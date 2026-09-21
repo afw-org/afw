@@ -35,12 +35,12 @@ afw_data_type_boolean_true;
 AFW_DECLARE_CONST_DATA(afw_boolean_t)
 afw_data_type_boolean_false;
 
-#define AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_, A_DATATYPE_2_) \
-((A_DATATYPE_1_) == (A_DATATYPE_2_))
+#define AFW_DATA_TYPE_EQUAL(_A_DATATYPE_1_, _A_DATATYPE_2_) \
+((_A_DATATYPE_1_) == (_A_DATATYPE_2_))
 
-#define AFW_DATA_TYPE_ASSERT_EQUAL(A_DATATYPE_1_, A_DATATYPE_2_, A_SCOPE) \
-if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
-    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
+#define AFW_DATA_TYPE_ASSERT_EQUAL(_A_DATATYPE_1_, _A_DATATYPE_2_, _A_SCOPE) \
+if (!AFW_DATA_TYPE_EQUAL(_A_DATATYPE_1_,_A_DATATYPE_2_)) { \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", _A_SCOPE); \
 }
 
 
@@ -52,9 +52,9 @@ if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
  * (wired in afw_data_type.c). Not derived from generate docs or from
  * iterator_return_data_type (array iterates but has no fixed step type).
  */
-#define afw_data_type_has_iterator(data_type) \
-    ((data_type) && (data_type)->inf && \
-     (data_type)->inf->optional_initialize_iterator)
+#define afw_data_type_has_iterator(_data_type) \
+    ((_data_type) && (_data_type)->inf && \
+     (_data_type)->inf->optional_initialize_iterator)
 
 
 /**
@@ -66,8 +66,8 @@ if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
  * the type has no keyless iterator, or step type is not fixed at type level
  * (e.g. array). See issue #153.
  */
-#define afw_data_type_iterator_return_data_type(data_type) \
-    ((data_type) ? (data_type)->iterator_return_data_type : NULL)
+#define afw_data_type_iterator_return_data_type(_data_type) \
+    ((_data_type) ? (_data_type)->iterator_return_data_type : NULL)
 
 
 /**
@@ -81,16 +81,16 @@ if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
  * Soft probe: use afw_data_type_has_iterator() first, or test the optional
  * method pointer.
  */
-#define afw_data_type_initialize_iterator(data_type, internal, iterator, xctx) \
+#define afw_data_type_initialize_iterator(_data_type, _internal, _iterator, _xctx) \
 do { \
-    if (!(data_type) || !(data_type)->inf || \
-        !(data_type)->inf->optional_initialize_iterator) \
+    if (!(_data_type) || !(_data_type)->inf || \
+        !(_data_type)->inf->optional_initialize_iterator) \
     { \
         AFW_THROW_ERROR_Z(general, \
-            "Data type does not support iterator", (xctx)); \
+            "Data type does not support _iterator", (_xctx)); \
     } \
-    (data_type)->inf->optional_initialize_iterator( \
-        (data_type), (internal), (iterator), (xctx)); \
+    (_data_type)->inf->optional_initialize_iterator( \
+        (_data_type), (_internal), (_iterator), (_xctx)); \
 } while (0)
 
 

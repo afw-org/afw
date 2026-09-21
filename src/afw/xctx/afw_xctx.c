@@ -758,10 +758,10 @@ afw_xctx_release(
 //#define AFW_XCTX_SCOPE_DEBUG
 
 #ifdef AFW_XCTX_SCOPE_DEBUG
-#define afw_xctx_scope_debug(place, block, scope, parent_scope, note, xctx) \
-    impl_scope_debug(place, block, scope, parent_scope, note, xctx)
+#define afw_xctx_scope_debug(_place, _block, _scope, _parent_scope, _note, _xctx) \
+    impl_scope_debug(_place, _block, _scope, _parent_scope, _note, _xctx)
 #else
-#define afw_xctx_scope_debug(place, block, scope, parent_scope, note, xctx)
+#define afw_xctx_scope_debug(_place, _block, _scope, _parent_scope, _note, _xctx)
 #endif
 
 #ifdef AFW_XCTX_SCOPE_DEBUG

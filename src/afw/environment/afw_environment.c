@@ -240,15 +240,15 @@ typedef struct {
  */
 static impl_registry_type_entry_t
 impl_initial_types[] = {
-#define XX(id, register_additional, allow_reregister, property_name, \
-    object_type_id, description) \
+#define XX(_id, _register_additional, _allow_reregister, _property_name, \
+    object_type_id, _description) \
     {   \
-        AFW_UTF8_LITERAL(AFW_STRINGIFY(id)), \
-        AFW_UTF8_LITERAL(AFW_STRINGIFY(id)), \
+        AFW_UTF8_LITERAL(AFW_STRINGIFY(_id)), \
+        AFW_UTF8_LITERAL(AFW_STRINGIFY(_id)), \
         AFW_UTF8_LITERAL(object_type_id), \
-        AFW_UTF8_LITERAL(description), \
-        register_additional, \
-        allow_reregister \
+        AFW_UTF8_LITERAL(_description), \
+        _register_additional, \
+        _allow_reregister \
     },
     AFW_ENVIRONMENT_REGISTRY_TYPE_MAP(XX)
 #undef XX

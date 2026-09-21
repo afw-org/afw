@@ -39,9 +39,9 @@ typedef struct {
 /* Target types */
 static impl_type_entry_t
 impl_assignment_types[] = {
-#define XX(id, description) \
-{   AFW_UTF8_LITERAL(AFW_STRINGIFY(id)), \
-    AFW_UTF8_LITERAL(description) \
+#define XX(_id, _description) \
+{   AFW_UTF8_LITERAL(AFW_STRINGIFY(_id)), \
+    AFW_UTF8_LITERAL(_description) \
 },
     AFW_COMPILE_INTERNAL_ASSIGNMENT_TYPE_MAP(XX)
 #undef XX

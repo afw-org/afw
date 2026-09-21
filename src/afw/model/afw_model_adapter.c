@@ -27,8 +27,8 @@
 
 static const afw_utf8_t *
 impl_on_object_type_ids[] = {
-#define XX(id) \
-    afw_s_ ## id,
+#define XX(_id) \
+    afw_s_ ## _id,
     AFW_MODEL_ON_MAP(XX)
 #undef XX
     NULL
@@ -36,8 +36,8 @@ impl_on_object_type_ids[] = {
 
 static afw_utf8_t
 impl_on_paths[] = {
-#define XX(id) \
-    AFW_UTF8_LITERAL( "/afw/" #id "/current"),
+#define XX(_id) \
+    AFW_UTF8_LITERAL( "/afw/" #_id "/current"),
     AFW_MODEL_ON_MAP(XX)
 #undef XX
     { NULL }

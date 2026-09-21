@@ -13,7 +13,7 @@
 
 #include "afw_internal.h"
 
-#define XX(name, data_type, compile_function, description)                     \
+#define XX(name, _data_type, _compile_function, description)                     \
                                                                                \
 static const afw_utf8_t                                                        \
 impl_compile_type_ ## name ## _name =                                          \
@@ -39,15 +39,15 @@ AFW_COMPILE_TYPE_MAP(XX)
 
 static const afw_compile_type_info_t
 impl_compile_type_mnemonic[] = {
-#define XX(name, data_type, compile_function, description)                     \
+#define XX(name, _data_type, _compile_function, description)                     \
 {                                                                              \
     afw_compile_type_ ## name,                                                 \
     &impl_compile_type_ ## name ## _name,                                      \
     &impl_compile_type_ ## name ## _name_value.pub,                            \
     &impl_compile_type_ ## name ## _description,                               \
     &impl_compile_type_ ## name ## _description_value.pub,                     \
-    &afw_data_type_ ## data_type ##_direct,                                    \
-    compile_function                                                           \
+    &afw_data_type_ ## _data_type ##_direct,                                    \
+    _compile_function                                                           \
 },                                                                             \
 
     AFW_COMPILE_TYPE_MAP(XX)

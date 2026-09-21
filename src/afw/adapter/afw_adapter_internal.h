@@ -43,11 +43,11 @@ struct afw_adapter_xctx_internal_s {
     afw_boolean_t loading_object_types;
 };
 
-#define AFW_ADAPTER_SCOPE_INTERNAL(xctx) \
-    ((xctx)->adapter_xctx_internal \
-    ? (xctx)->adapter_xctx_internal \
-    : ((xctx)->adapter_xctx_internal = \
-        afw_xctx_calloc_type(afw_adapter_xctx_internal_t, xctx)))
+#define AFW_ADAPTER_SCOPE_INTERNAL(_xctx) \
+    ((_xctx)->adapter_xctx_internal \
+    ? (_xctx)->adapter_xctx_internal \
+    : ((_xctx)->adapter_xctx_internal = \
+        afw_xctx_calloc_type(afw_adapter_xctx_internal_t, _xctx)))
 
 
 struct afw_adapter_internal_session_cache_s {

@@ -158,10 +158,10 @@ afw_compile_and_evaluate(
  * @param xctx of caller.
  * @return result of compiling and evaluating string.
  */
-#define afw_compile_and_evaluate_type( \
-    compile_type, string, source_location, p, xctx) \
-    afw_compile_and_evaluate(string, source_location, \
-        afw_compile_type_ ## compile_type, p, xctx)
+#define afw_compile_and_evaluate_type(\
+    compile_type, _string, _source_location, _p, _xctx) \
+    afw_compile_and_evaluate(_string, _source_location, \
+        afw_compile_type_ ## compile_type, _p, _xctx)
 
 
 
@@ -229,11 +229,11 @@ afw_compile_to_value_with_callback(
  * The _meta_.path and _meta_.parentPaths of any compiled object is always
  * used to set the corresponding values in the new object.
  */
-#define afw_compile_to_value(string, source_location, compile_type, \
-    shared, p, xctx) \
-    afw_compile_to_value_with_callback(string, NULL, NULL, \
-        source_location, compile_type, afw_compile_residual_check_to_full, \
-        shared, p, xctx)
+#define afw_compile_to_value(_string, _source_location, _compile_type, \
+    shared, _p, _xctx) \
+    afw_compile_to_value_with_callback(_string, NULL, NULL, \
+        _source_location, _compile_type, afw_compile_residual_check_to_full, \
+        shared, _p, _xctx)
 
 
 /**
@@ -247,12 +247,12 @@ afw_compile_to_value_with_callback(
  *
  * Either shared or p must be specified.
  */
-#define afw_compile_script_source(string, source_location, shared, \
-    p, xctx) \
-    afw_compile_to_value_with_callback(string, NULL, NULL, \
-        source_location, afw_compile_type_script, \
+#define afw_compile_script_source(_string, _source_location, _shared, \
+    p, _xctx) \
+    afw_compile_to_value_with_callback(_string, NULL, NULL, \
+        _source_location, afw_compile_type_script, \
         afw_compile_residual_check_to_full, \
-        shared, p, xctx)
+        _shared, p, _xctx)
 
 
 
@@ -289,12 +289,12 @@ afw_compile_script(
  *
  * Either shared or p must be specified.
  */
-#define afw_compile_template_source(string, source_location, shared, \
-    p, xctx) \
-    afw_compile_to_value_with_callback(string, NULL, NULL, \
-        source_location, afw_compile_type_template, \
+#define afw_compile_template_source(_string, _source_location, _shared, \
+    p, _xctx) \
+    afw_compile_to_value_with_callback(_string, NULL, NULL, \
+        _source_location, afw_compile_type_template, \
         afw_compile_residual_check_to_full, \
-        shared, p, xctx)
+        _shared, p, _xctx)
 
 
 

@@ -126,9 +126,9 @@ struct afw_environment_s {
  * These are just the core registry type.  Other types can be created by
  * calling afw_environment_create_registry_type() in an extension.
  */
-#define AFW_ENVIRONMENT_REGISTRY_TYPE_MAP(XX)                                   \
+#define AFW_ENVIRONMENT_REGISTRY_TYPE_MAP(_XX)                                   \
                                                                                 \
-    XX(registry_type,                                                           \
+    _XX(registry_type,                                                           \
         NULL,                                                                   \
         false,                                                                  \
         "registryType",                                                         \
@@ -136,28 +136,28 @@ struct afw_environment_s {
         "The afw_environment_registry_type_t associated with this property "    \
             "name .")                                                           \
                                                                                 \
-    XX(singleton,                                                               \
+    _XX(singleton,                                                               \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
         "singleton",                                                            \
         "_AdaptiveSingleton_",                                                  \
         "The void pointer for a singleton key.")                                \
                                                                                 \
-    XX(adapter_id,                                                              \
+    _XX(adapter_id,                                                              \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "adapterId",                                                            \
         "_AdaptiveAdapter_",                                                    \
         "The afw_adapter_id_t struct for this adapter id.")                     \
                                                                                 \
-    XX(adapter_type,                                                            \
+    _XX(adapter_type,                                                            \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "adapterType",                                                          \
         "_AdaptiveAdapterType_",                                                \
         "The afw_adapter_factory_t instance for an adapter type.")              \
                                                                                 \
-    XX(authorization_handler_id,                                                \
+    _XX(authorization_handler_id,                                                \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "authorizationHandlerId",                                               \
@@ -165,7 +165,7 @@ struct afw_environment_s {
         "The afw_authorization_handler_id_t struct for an "                     \
         "authorization handler id.")                                            \
                                                                                 \
-    XX(authorization_handler_type,                                              \
+    _XX(authorization_handler_type,                                              \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "authorizationHandlerType",                                             \
@@ -173,21 +173,21 @@ struct afw_environment_s {
         "The afw_authorization_handler_factory_t instance for an "              \
         "authorization handler type.")                                          \
                                                                                 \
-    XX(conf_type,                                                               \
+    _XX(conf_type,                                                               \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "confType",                                                             \
         "_AdaptiveConfType_",                                                   \
         "The afw_environment_conf_type_t for a configuration type.")            \
                                                                                 \
-    XX(content_type,                                                            \
+    _XX(content_type,                                                            \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
         "contentType",                                                          \
         "_AdaptiveContentType_",                                                \
         "The afw_content_type_t instance for a content type.")                  \
                                                                                 \
-    XX(context_type,                                                            \
+    _XX(context_type,                                                            \
         impl_internal_additional_register_object,                               \
         true,                                                                   \
         "contextType",                                                          \
@@ -196,105 +196,105 @@ struct afw_environment_s {
         "`/afw/_AdaptiveContextType_/<context_type_id>`"                        \
         " runtime object will be set to this object as well.")                  \
                                                                                 \
-    XX(data_type,                                                               \
+    _XX(data_type,                                                               \
         NULL,                                                                   \
         false,                                                                  \
         "dataType",                                                             \
         "_AdaptiveDataType_",                                                   \
         "The afw_data_type_t struct for a data type id.")                       \
                                                                                 \
-    XX(error_rv_decoder,                                                        \
+    _XX(error_rv_decoder,                                                        \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
         "errorRVDecoder",                                                       \
         "_AdaptiveErrorRVDecoder_",                                             \
         "The afw_environment_error_rv_decoder_z_t function for a rv source id.")\
                                                                                 \
-    XX(extension,                                                               \
+    _XX(extension,                                                               \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "extension",                                                            \
         "_AdaptiveExtension_",                                                  \
         "The afw_extension_t for a loaded extension.")                          \
                                                                                 \
-    XX(flag,                                                                    \
+    _XX(flag,                                                                    \
         NULL,                                                                   \
         false,                                                                  \
         "flagType",                                                             \
         "_AdaptiveFlag_",                                                       \
         "The afw_flag_t for a flag_id.")                                        \
                                                                                 \
-    XX(function,                                                                \
+    _XX(function,                                                                \
         NULL,                                                                   \
         false,                                                                  \
         "function",                                                             \
         "_AdaptiveFunction_",                                                   \
         "The afw_value_function_definition_t struct for a function id.")        \
                                                                                 \
-    XX(lock,                                                                    \
+    _XX(lock,                                                                    \
         impl_internal_additional_register_default,                              \
         true,                                                                   \
         "lockId",                                                               \
         "_AdaptiveLock_",                                                       \
         "The afw_lock_t instance for a log id.")                                \
                                                                                 \
-    XX(log,                                                                     \
+    _XX(log,                                                                     \
         impl_internal_additional_register_default,                              \
         true,                                                                   \
         "logId",                                                                \
         "_AdaptiveLog_",                                                        \
         "The afw_log_t instance for a log id.")                                 \
                                                                                 \
-    XX(log_type,                                                                \
+    _XX(log_type,                                                                \
         impl_internal_additional_register_log_type,                             \
         false,                                                                  \
         "logType",                                                              \
         "_AdaptiveLogType_",                                                    \
         "The afw_log_factory_t instance for a log type.")                       \
                                                                                 \
-    XX(policy_combining_algorithm,                                              \
+    _XX(policy_combining_algorithm,                                              \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "policyCombiningAlgorithmId",                                           \
         "_AdaptivePolicyCombiningAlgorithm_",                                   \
         "The afw_value_function_definition_t struct for a policy combining algorithm.")    \
                                                                                 \
-    XX(request_handler,                                                         \
+    _XX(request_handler,                                                         \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
         "requestHandler",                                                       \
         "_AdaptiveRequestHandler_",                                             \
         "The afw_request_handler_t instance for a request handler entry.")      \
                                                                                 \
-    XX(request_handler_type,                                                    \
+    _XX(request_handler_type,                                                    \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "requestHandlerType",                                                   \
         "_AdaptiveRequestHandlerType_",                                         \
         "The afw_request_handler_factory_t instance for a handler type.")       \
                                                                                 \
-    XX(rule_combining_algorithm,                                                \
+    _XX(rule_combining_algorithm,                                                \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "ruleCombiningAlgorithmId",                                             \
         "_AdaptiveRuleCombiningAlgorithm_",                                     \
         "The afw_value_function_definition_t struct for a rule combining algorithm.")      \
                                                                                 \
-    XX(runtime_custom,                                                          \
+    _XX(runtime_custom,                                                          \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
         "runtimeCustom",                                                        \
         "_AdaptiveRuntimeCustom_",                                              \
         "The afw_runtime_custom_t for custom afw object type handling.")        \
                                                                                 \
-    XX(runtime_object_map_inf,                                                  \
+    _XX(runtime_object_map_inf,                                                  \
         NULL,                                                                   \
         false,                                                                  \
         "runtimeObjectMapInf",                                                  \
         "_AdaptiveRuntimeObjectMapInf_",                                        \
         "The runtime object map interface for an object type id.")              \
                                                                                 \
-    XX(runtime_value_accessor,                                                  \
+    _XX(runtime_value_accessor,                                                  \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "runtimeValueAccessor",                                                 \
@@ -302,28 +302,28 @@ struct afw_environment_s {
         "The afw_runtime_value_accessor_info_t for an accessor name "           \
             "(function plus Adaptive-visible contract properties).")            \
                                                                                 \
-    XX(service,                                                                 \
+    _XX(service,                                                                 \
         NULL,                                                                   \
         true,                                                                   \
         "serviceId",                                                            \
         "_AdaptiveService_",                                                    \
         "The afw_service_t for a service_id.")                                  \
                                                                                 \
-    XX(service_type,                                                            \
+    _XX(service_type,                                                            \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
         "serviceType",                                                          \
         "_AdaptiveServiceType_",                                                \
         "The afw_service_type_t for a service_type_id.")                        \
                                                                                 \
-    XX(string_literal,                                                          \
+    _XX(string_literal,                                                          \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
         "stringLiteral",                                                        \
         "_AdaptiveStringLiteral_",                                              \
         "Reusable string values (const afw_value_string_t), keyed by content.") \
                                                                                 \
-    XX(value_inf,                                                               \
+    _XX(value_inf,                                                               \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
         "valueInf",                                                             \
@@ -333,9 +333,9 @@ struct afw_environment_s {
 
 /** @brief Enum for the core registry types. */
 typedef enum {
-#define XX(id, register_additional, allow_reregister, property_name,          \
-    object_type_id, description)                                              \
-    afw_environemnt_registry_type_ ## id,
+#define XX(_id, _register_additional, _allow_reregister, _property_name, \
+    object_type_id, _description)                                              \
+    afw_environemnt_registry_type_ ## _id,
     AFW_ENVIRONMENT_REGISTRY_TYPE_MAP(XX)
 #undef XX
     afw_environemnt_registry_type_max_core_type
@@ -606,10 +606,10 @@ afw_environment_create(
  * compatibility.  If you want to handle this situation differently,
  * use AFW_VERSION_CHECK before AFW_ENVIRONMENT_CREATE().  
  */
-#define AFW_ENVIRONMENT_CREATE(xctx, argc, argv, environment_create_error) \
+#define AFW_ENVIRONMENT_CREATE(_xctx, _argc, _argv, _environment_create_error) \
     AFW_VERSION_ABORT_IF_NOT_COMPATIBLE("AFW_ENVIRONMENT_CREATE()"); \
-    xctx = afw_environment_create(AFW_VERSION_HEX, argc, argv, \
-        environment_create_error)
+    _xctx = afw_environment_create(AFW_VERSION_HEX, _argc, _argv, \
+        _environment_create_error)
 
 
 /**
@@ -1282,10 +1282,10 @@ afw_environment_get_error_rv_decoder(
  * @param log_priority to be used if this flag triggers a log message.
  * @param xctx of caller.
  */
-#define afw_environment_register_flag( \
-    flag_id, brief, description, included_by_flag_id, xctx) \
+#define afw_environment_register_flag(\
+    flag_id, _brief, _description, _included_by_flag_id, _xctx) \
 afw_flag_environment_register_flag( \
-    flag_id, brief, description, included_by_flag_id, xctx)
+    flag_id, _brief, _description, _included_by_flag_id, _xctx)
 
 
 

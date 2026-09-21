@@ -33,8 +33,8 @@ AFW_BEGIN_DECLARES
  * @param s_z zero terminated string to write.
  * @param xctx of caller.
  */
-#define afw_writer_write_z(writer, s_z, xctx) \
-afw_writer_write(writer, s_z, strlen(s_z), xctx)
+#define afw_writer_write_z(_writer, _s_z, _xctx) \
+afw_writer_write(_writer, _s_z, strlen(_s_z), _xctx)
 
 
 /**
@@ -43,8 +43,8 @@ afw_writer_write(writer, s_z, strlen(s_z), xctx)
  * @param s utf8 string.
  * @param xctx of caller.
  */
-#define afw_writer_write_utf8(writer, S, xctx) \
-afw_writer_write(writer, (S)->s, (S)->len, xctx)
+#define afw_writer_write_utf8(_writer, _S, _xctx) \
+afw_writer_write(_writer, (_S)->s, (_S)->len, _xctx)
 
 
 

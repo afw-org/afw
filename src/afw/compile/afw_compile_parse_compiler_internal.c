@@ -219,9 +219,9 @@ impl_assignment_type_from_utf8(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s)
 {
-#define XX(id, description) \
-    if (afw_utf8_equal_utf8_z(s, #id)) { \
-        return afw_compile_assignment_type_ ## id; \
+#define XX(_id, _description) \
+    if (afw_utf8_equal_utf8_z(s, #_id)) { \
+        return afw_compile_assignment_type_ ## _id; \
     }
     AFW_COMPILE_INTERNAL_ASSIGNMENT_TYPE_MAP(XX)
 #undef XX

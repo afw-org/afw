@@ -117,23 +117,23 @@ struct afw_thread_s {
  * Not a second running counter. Thread peak is the worker's life;
  * do not subtract snap from peak. Needs the complete `afw_thread_t`.
  */
-#define afw_xctx_pool_bytes_in_use(xctx) \
-    (((xctx)->thread && \
-        (xctx)->thread->pool_bytes_in_use > \
-            (xctx)->snap_pool_bytes_in_use) \
-        ? ((xctx)->thread->pool_bytes_in_use - \
-            (xctx)->snap_pool_bytes_in_use) \
+#define afw_xctx_pool_bytes_in_use(_xctx) \
+    (((_xctx)->thread && \
+        (_xctx)->thread->pool_bytes_in_use > \
+            (_xctx)->snap_pool_bytes_in_use) \
+        ? ((_xctx)->thread->pool_bytes_in_use - \
+            (_xctx)->snap_pool_bytes_in_use) \
         : (afw_size_t)0)
 
 /**
  * @brief This xctx's ST chunk bytes (thread current minus snap).
  */
-#define afw_xctx_pool_chunk_bytes(xctx) \
-    (((xctx)->thread && \
-        (xctx)->thread->pool_chunk_bytes > \
-            (xctx)->snap_pool_chunk_bytes) \
-        ? ((xctx)->thread->pool_chunk_bytes - \
-            (xctx)->snap_pool_chunk_bytes) \
+#define afw_xctx_pool_chunk_bytes(_xctx) \
+    (((_xctx)->thread && \
+        (_xctx)->thread->pool_chunk_bytes > \
+            (_xctx)->snap_pool_chunk_bytes) \
+        ? ((_xctx)->thread->pool_chunk_bytes - \
+            (_xctx)->snap_pool_chunk_bytes) \
         : (afw_size_t)0)
 
 /** @brief Platform default mutex (non-recursive on nix). */
@@ -215,11 +215,11 @@ afw_thread_join(
  * }
  * AFW_THREAD_MUTEX_UNLOCK();
  */
-#define AFW_THREAD_MUTEX_LOCK(mutex, xctx) \
+#define AFW_THREAD_MUTEX_LOCK(_mutex, _xctx) \
 do { \
     afw_thread_mutex_t *this_mutex; \
-    this_mutex = mutex; \
-    afw_thread_mutex_lock(this_mutex, xctx); \
+    this_mutex = _mutex; \
+    afw_thread_mutex_lock(this_mutex, _xctx); \
     AFW_TRY
 
 

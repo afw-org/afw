@@ -13,12 +13,12 @@
 
 #include "afw_internal.h"
 
-#define IMPL_IS_DIGIT(n) ((n) >= '0' && (n) <= '9')
+#define IMPL_IS_DIGIT(_n) ((_n) >= '0' && (_n) <= '9')
 
-#define IMPL_SAFE_DIGIT(c, to, error) \
+#define IMPL_SAFE_DIGIT(_c, _to, _error) \
 do { \
-    to = c - '0'; \
-    if (to < 0 || to > 9) goto error; \
+    _to = _c - '0'; \
+    if (_to < 0 || _to > 9) goto _error; \
 } while (0)
 
 #define IMPL_MAX_TIME_ZONE_LEN sizeof("-01:00") - 1

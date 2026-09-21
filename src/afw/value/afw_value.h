@@ -51,9 +51,9 @@ AFW_BEGIN_DECLARES
  *
  * `static const` lives with the `.so` — permanent inf, not unmanaged.
  */
-#define AFW_VALUE_STRING_LITERAL(A_STRING) { \
+#define AFW_VALUE_STRING_LITERAL(_A_STRING) { \
     { &afw_value_permanent_string_inf }, \
-    AFW_UTF8_LITERAL(A_STRING) \
+    AFW_UTF8_LITERAL(_A_STRING) \
 }
 
 
@@ -66,9 +66,9 @@ AFW_BEGIN_DECLARES
  * const afw_value_string_t name = AFW_VALUE_STRING_UNMANAGED(utf8);
  * afw_object_get_property(obj, &name.pub, xctx);
  */
-#define AFW_VALUE_STRING_UNMANAGED(A_UTF8) { \
+#define AFW_VALUE_STRING_UNMANAGED(_A_UTF8) { \
     { &afw_value_unmanaged_string_inf }, \
-    *(A_UTF8) \
+    *(_A_UTF8) \
 }
 
 
@@ -529,7 +529,7 @@ afw_value_integer_min;
  * afw_object_set_property(..., afw_v_*, ...) over set_property_as_string
  * when an afw_v_* already exists for that constant.
  */
-#define afw_value_for_boolean(variable) (variable) \
+#define afw_value_for_boolean(_variable) (_variable) \
     ? afw_boolean_v_true \
     : afw_boolean_v_false
 
@@ -543,11 +543,11 @@ afw_value_integer_min;
  * Requires an evaluated boolean (cast-safe like `afw_value_is_boolean`). If
  * A_VALUE is NULL or not an evaluated boolean, the result is false.
  */
-#define afw_value_is_boolean_true(A_VALUE) \
+#define afw_value_is_boolean_true(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_boolean && \
-    ((const afw_value_boolean_t *)A_VALUE)->internal \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_boolean && \
+    ((const afw_value_boolean_t *)_A_VALUE)->internal \
 )
 
 
@@ -562,10 +562,10 @@ afw_value_integer_min;
  * Does **not** mean “variable name is unbound” — that is an xctx/symbol
  * question (see afw_xctx_scope_symbol_exists_by_name).
  */
-#define afw_value_is_nullish(A_VALUE) \
+#define afw_value_is_nullish(_A_VALUE) \
 ( \
-    (!A_VALUE) || (A_VALUE) == afw_value_undefined || \
-    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_null \
+    (!_A_VALUE) || (_A_VALUE) == afw_value_undefined || \
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_null \
 )
 
 
@@ -580,8 +580,8 @@ afw_value_integer_min;
  * strictNullChecks (issue #131). Prefer the singleton when storing a present
  * undefined value so APIs that use C NULL for “not defined” stay unambiguous.
  */
-#define afw_value_is_undefined(A_VALUE) \
-    (!A_VALUE || (A_VALUE) == afw_value_undefined)
+#define afw_value_is_undefined(_A_VALUE) \
+    (!_A_VALUE || (_A_VALUE) == afw_value_undefined)
 
 
 
@@ -592,8 +592,8 @@ afw_value_integer_min;
  *
  * True only for the afw_value_void pointer. C NULL is undefined, not void.
  */
-#define afw_value_is_void(A_VALUE) \
-    ((A_VALUE) == afw_value_void)
+#define afw_value_is_void(_A_VALUE) \
+    ((_A_VALUE) == afw_value_void)
 
 
 
@@ -613,8 +613,8 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
  * @param A_VALUE to test.
  * @return value inf implementation id.
  */
-#define AFW_VALUE_TYPE_ID(A_VALUE) \
-&(A_VALUE)->inf->rti.implementation_id
+#define AFW_VALUE_TYPE_ID(_A_VALUE) \
+&(_A_VALUE)->inf->rti.implementation_id
 
 
 
@@ -628,10 +628,10 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
  * `afw_value_is_*` / `AFW_VALUE_IS_DATA_TYPE` check for that type). False for
  * C NULL and for unevaluated IR (calls, constructs, references, …).
  */
-#define afw_value_is_defined_and_evaluated(A_VALUE) \
+#define afw_value_is_defined_and_evaluated(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf->is_evaluated_of_data_type \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type \
 )
 
 
@@ -645,10 +645,10 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
  * `is_evaluated_of_data_type`), or A_VALUE is missing. Not a produce-type
  * check — see `AFW_VALUE_EVALUATES_TO_DATA_TYPE`.
  */
-#define afw_value_is_undefined_or_evaluated(A_VALUE) \
+#define afw_value_is_undefined_or_evaluated(_A_VALUE) \
 ( \
-    (!A_VALUE) || \
-    (A_VALUE)->inf->is_evaluated_of_data_type \
+    (!_A_VALUE) || \
+    (_A_VALUE)->inf->is_evaluated_of_data_type \
 )
 
 
@@ -682,10 +682,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_assignment_target(A_VALUE) \
+#define afw_value_is_assignment_target(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_assignment_target_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_assignment_target_inf \
 )
 
 
@@ -694,10 +694,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_script_type_declaration(A_VALUE) \
+#define afw_value_is_script_type_declaration(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_script_type_declaration_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_script_type_declaration_inf \
 )
 
  
@@ -707,10 +707,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_block(A_VALUE) \
+#define afw_value_is_block(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_block_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_block_inf \
 )
 
 
@@ -720,10 +720,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_call(A_VALUE) \
+#define afw_value_is_call(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_call_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_call_inf \
 )
 
 
@@ -733,10 +733,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_call_built_in_function(A_VALUE) \
+#define afw_value_is_call_built_in_function(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_call_built_in_function_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_call_built_in_function_inf \
 )
 
 
@@ -746,10 +746,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_call_script_function(A_VALUE) \
+#define afw_value_is_call_script_function(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_call_script_function_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_call_script_function_inf \
 )
 
 
@@ -759,13 +759,13 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_any_call(A_VALUE) \
+#define afw_value_is_any_call(_A_VALUE) \
 ( \
-    (A_VALUE) && \
+    (_A_VALUE) && \
     ( \
-        (A_VALUE)->inf == &afw_value_call_built_in_function_inf || \
-        (A_VALUE)->inf == &afw_value_call_script_function_inf || \
-        (A_VALUE)->inf == &afw_value_call_inf \
+        (_A_VALUE)->inf == &afw_value_call_built_in_function_inf || \
+        (_A_VALUE)->inf == &afw_value_call_script_function_inf || \
+        (_A_VALUE)->inf == &afw_value_call_inf \
     ) \
 )
 
@@ -776,13 +776,13 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_compiled_value(A_VALUE) \
+#define afw_value_is_compiled_value(_A_VALUE) \
 ( \
-    (A_VALUE) && \
+    (_A_VALUE) && \
     ( \
-        (A_VALUE)->inf == &afw_value_compiled_value_inf || \
-        (A_VALUE)->inf == &afw_value_compiled_value_assignable_inf || \
-        (A_VALUE)->inf == &afw_value_managed_compiled_value_inf \
+        (_A_VALUE)->inf == &afw_value_compiled_value_inf || \
+        (_A_VALUE)->inf == &afw_value_compiled_value_assignable_inf || \
+        (_A_VALUE)->inf == &afw_value_managed_compiled_value_inf \
     ) \
 )
 
@@ -793,10 +793,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_function_definition(A_VALUE) \
+#define afw_value_is_function_definition(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_function_definition_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_function_definition_inf \
 )
 
 
@@ -806,10 +806,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_function_thunk(A_VALUE) \
+#define afw_value_is_function_thunk(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_function_thunk_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_function_thunk_inf \
 )
 
 
@@ -819,10 +819,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_array_expression(A_VALUE) \
+#define afw_value_is_array_expression(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_list_expression_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_list_expression_inf \
 )
 
 
@@ -832,10 +832,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_object_expression(A_VALUE) \
+#define afw_value_is_object_expression(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_object_expression_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_object_expression_inf \
 )
 
 
@@ -846,10 +846,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_object_construct(A_VALUE) \
+#define afw_value_is_object_construct(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_object_construct_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_object_construct_inf \
 )
 
 
@@ -859,10 +859,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_script_function_definition(A_VALUE) \
+#define afw_value_is_script_function_definition(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_script_function_definition_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_script_function_definition_inf \
 )
 
 
@@ -872,10 +872,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_closure_binding(A_VALUE) \
+#define afw_value_is_closure_binding(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_closure_binding_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_closure_binding_inf \
 )
 
 
@@ -885,11 +885,11 @@ afw_value_is_fully_evaluated(
  * Inf flag, not a type test. Closures are managed. Unmanaged and
  * permanents are not. Use after generate of afw_value_inf_t.
  */
-#define afw_value_is_managed(A_VALUE) \
+#define afw_value_is_managed(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf && \
-    (A_VALUE)->inf->is_managed \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf && \
+    (_A_VALUE)->inf->is_managed \
 )
 
 
@@ -898,10 +898,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_qualified_variable_reference(A_VALUE) \
+#define afw_value_is_qualified_variable_reference(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_qualified_variable_reference_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_qualified_variable_reference_inf \
 )
 
 
@@ -911,10 +911,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_reference_by_key(A_VALUE) \
+#define afw_value_is_reference_by_key(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_reference_by_key_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_reference_by_key_inf \
 )
 
 
@@ -924,10 +924,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_template_definition(A_VALUE) \
+#define afw_value_is_template_definition(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_template_definition_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_template_definition_inf \
 )
 
 
@@ -937,10 +937,10 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_symbol_reference(A_VALUE) \
+#define afw_value_is_symbol_reference(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_symbol_reference_inf \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf == &afw_value_symbol_reference_inf \
 )
 
  
@@ -954,9 +954,9 @@ afw_value_is_fully_evaluated(
  * A_VALUE to `const afw_value_<A_TYPE_ID>_t *`. For evaluated data types use
  * `AFW_VALUE_ASSERT_IS_DATA_TYPE` instead.
  */
-#define AFW_VALUE_ASSERT_IS(A_VALUE, A_TYPE_ID, A_SCOPE) \
-if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
-    AFW_THROW_ERROR_Z(conversion_error, "Expecting " #A_TYPE_ID, A_SCOPE)
+#define AFW_VALUE_ASSERT_IS(_A_VALUE, _A_TYPE_ID, _A_SCOPE) \
+if (!_A_VALUE || (_A_VALUE)->inf != &afw_value_ ## _A_TYPE_ID ## _inf) \
+    AFW_THROW_ERROR_Z(conversion_error, "Expecting " #_A_TYPE_ID, _A_SCOPE)
 
 
 /**
@@ -971,8 +971,8 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
  * `afw_value_get_data_type()` / `AFW_VALUE_EVALUATES_TO_DATA_TYPE` when the
  * method may compute type, or `AFW_VALUE_IS_DATA_TYPE` before a typed cast.
  */
-#define afw_value_quick_data_type(A_VALUE) \
-((A_VALUE)->inf->data_type)
+#define afw_value_quick_data_type(_A_VALUE) \
+((_A_VALUE)->inf->data_type)
 
 
 /**
@@ -984,12 +984,12 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
  * optional_initialize_iterator on that data type. Not a produce-type probe.
  * Soft only — does not throw.
  */
-#define afw_value_has_iterator(A_VALUE) \
+#define afw_value_has_iterator(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf->is_evaluated_of_data_type && \
-    (A_VALUE)->inf->is_evaluated_of_data_type->inf && \
-    (A_VALUE)->inf->is_evaluated_of_data_type->inf->optional_initialize_iterator \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type->inf && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type->inf->optional_initialize_iterator \
 )
 
 
@@ -1002,10 +1002,10 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
  * get_data_type(). NULL if produce type is unknown on the inf, or the type
  * has no fixed iterator step type. See issue #153.
  */
-#define afw_value_iterator_return_data_type(A_VALUE) \
+#define afw_value_iterator_return_data_type(_A_VALUE) \
 ( \
-    ((A_VALUE) && (A_VALUE)->inf->data_type) \
-    ? (A_VALUE)->inf->data_type->iterator_return_data_type \
+    ((_A_VALUE) && (_A_VALUE)->inf->data_type) \
+    ? (_A_VALUE)->inf->data_type->iterator_return_data_type \
     : NULL \
 )
 
@@ -1020,18 +1020,18 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
  * the value is missing, not evaluated, or its type has no iterator. Soft
  * probe: afw_value_has_iterator() first.
  */
-#define afw_value_initialize_iterator(A_VALUE, iterator, xctx) \
+#define afw_value_initialize_iterator(_A_VALUE, _iterator, _xctx) \
 do { \
     const afw_data_type_t *_afw_it_dt = \
-        (A_VALUE) ? (A_VALUE)->inf->is_evaluated_of_data_type : NULL; \
+        (_A_VALUE) ? (_A_VALUE)->inf->is_evaluated_of_data_type : NULL; \
     if (!_afw_it_dt || !_afw_it_dt->inf || \
         !_afw_it_dt->inf->optional_initialize_iterator) \
     { \
         AFW_THROW_ERROR_Z(general, \
-            "Value does not support iterator", (xctx)); \
+            "Value does not support _iterator", (_xctx)); \
     } \
     _afw_it_dt->inf->optional_initialize_iterator( \
-        _afw_it_dt, AFW_VALUE_INTERNAL(A_VALUE), (iterator), (xctx)); \
+        _afw_it_dt, AFW_VALUE_INTERNAL(_A_VALUE), (_iterator), (_xctx)); \
 } while (0)
 
 
@@ -1043,9 +1043,9 @@ do { \
  * Same field as `afw_value_quick_data_type` (`inf->data_type`). Produce-type
  * hint only — not cast-safe; see that macro.
  */
-#define afw_value_get_quick_data_type_id(A_VALUE) \
-(((A_VALUE) && (A_VALUE)->inf->data_type) \
-? &((A_VALUE)->inf->data_type->data_type_id) \
+#define afw_value_get_quick_data_type_id(_A_VALUE) \
+(((_A_VALUE) && (_A_VALUE)->inf->data_type) \
+? &((_A_VALUE)->inf->data_type->data_type_id) \
 : afw_s_unknown)
 
 
@@ -1062,10 +1062,10 @@ do { \
  * (not necessarily cast-safe yet), use
  * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, A_DATA_TYPE, xctx)` instead.
  */
-#define AFW_VALUE_IS_DATA_TYPE(A_VALUE,A_DATA_TYPE) \
+#define AFW_VALUE_IS_DATA_TYPE(_A_VALUE, _A_DATA_TYPE) \
 ( \
-    (A_VALUE) && (A_VALUE)->inf->is_evaluated_of_data_type && \
-    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_ ## A_DATA_TYPE \
+    (_A_VALUE) && (_A_VALUE)->inf->is_evaluated_of_data_type && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_ ## _A_DATA_TYPE \
 )
 
 
@@ -1085,11 +1085,11 @@ do { \
  * `const afw_value_<A_DATA_TYPE>_t *` until the value is evaluated (or
  * otherwise finished) and `AFW_VALUE_IS_DATA_TYPE` / `afw_value_is_*` holds.
  */
-#define AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, A_DATA_TYPE, xctx) \
+#define AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, _A_DATA_TYPE, _xctx) \
 ( \
-    (A_VALUE) && \
-    afw_value_get_data_type((A_VALUE), (xctx)) == \
-        afw_data_type_ ## A_DATA_TYPE \
+    (_A_VALUE) && \
+    afw_value_get_data_type((_A_VALUE), (_xctx)) == \
+        afw_data_type_ ## _A_DATA_TYPE \
 )
 
 
@@ -1103,10 +1103,10 @@ do { \
  * Asserts the `AFW_VALUE_IS_DATA_TYPE` contract: after success it is safe to
  * cast A_VALUE to `const afw_value_<A_DATA_TYPE>_t *`.
  */
-#define AFW_VALUE_ASSERT_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE, A_SCOPE) \
+#define AFW_VALUE_ASSERT_IS_DATA_TYPE(_A_VALUE, _A_DATA_TYPE, _A_SCOPE) \
 do { \
-if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE)) \
-    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
+if (!AFW_VALUE_IS_DATA_TYPE(_A_VALUE, _A_DATA_TYPE)) \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", _A_SCOPE); \
 } while (0)
 
 
@@ -1119,11 +1119,11 @@ if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE)) \
  * Asserts cast safety to `const afw_value_anyURI_t *` or
  * `const afw_value_string_t *` (check which with `AFW_VALUE_IS_DATA_TYPE`).
  */
-#define AFW_VALUE_ASSERT_IS_ANYURI_OR_STRING(A_VALUE, A_SCOPE) \
+#define AFW_VALUE_ASSERT_IS_ANYURI_OR_STRING(_A_VALUE, _A_SCOPE) \
 do { \
-if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, anyURI) && \
-    !AFW_VALUE_IS_DATA_TYPE(A_VALUE, string) ) \
-    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
+if (!AFW_VALUE_IS_DATA_TYPE(_A_VALUE, anyURI) && \
+    !AFW_VALUE_IS_DATA_TYPE(_A_VALUE, string) ) \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", _A_SCOPE); \
 } while (0)
 
 
@@ -1186,8 +1186,8 @@ afw_value_contains(
  * struct that outlives p: get_reference. Replace that field:
  * release the old occupant (or slot_store).
  */
-#define afw_value_evaluate(value, p, xctx) \
-    afw_value_evaluate_impl(value, p, xctx)
+#define afw_value_evaluate(_value, _p, _xctx) \
+    afw_value_evaluate_impl(_value, _p, _xctx)
 
 AFW_DECLARE(const afw_value_t *)
 afw_value_evaluate_impl(
@@ -1229,8 +1229,8 @@ afw_value_get_assignable(
 
 
 /** Compatibility name. */
-#define afw_value_clone_or_reference(instance, xctx) \
-    afw_value_get_reference(instance, xctx)
+#define afw_value_clone_or_reference(_instance, _xctx) \
+    afw_value_get_reference(_instance, _xctx)
 
 
 /**
@@ -1340,10 +1340,10 @@ afw_value_slot_store(
  * If there is not an optional_get_optimized method for this value, the
  * value passed is returned asis.
  */
-#define afw_value_get_optimized(value, p, xctx) \
-(((value) && (value)->inf->optional_evaluate) \
-    ? (value)->inf->optional_get_optimized(value) \
-    : value)
+#define afw_value_get_optimized(_value, _p, _xctx) \
+(((_value) && (_value)->inf->optional_evaluate) \
+    ? (_value)->inf->optional_get_optimized(_value) \
+    : _value)
 
 
 
@@ -1370,9 +1370,9 @@ afw_value_slot_store(
  * Compares `afw_value_get_data_type()` results (produce type), not cast-safe
  * evaluated layout. Either side may still be unevaluated.
  */
-#define AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx) \
-(afw_value_get_data_type(value1, xctx) == \
-    afw_value_get_data_type(value2, xctx))
+#define AFW_VALUE_DATA_TYPES_EQUAL(_value1, _value2, _xctx) \
+(afw_value_get_data_type(_value1, _xctx) == \
+    afw_value_get_data_type(_value2, _xctx))
 
 
 
@@ -1385,10 +1385,10 @@ afw_value_slot_store(
  * Uses `AFW_VALUE_DATA_TYPES_EQUAL` (`get_data_type`). Does not assert
  * cast-safe evaluated layouts.
  */
-#define AFW_VALUE_ASSERT_DATA_TYPES_EQUAL(value1, value2, xctx) \
-if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \
+#define AFW_VALUE_ASSERT_DATA_TYPES_EQUAL(_value1, _value2, _xctx) \
+if (!AFW_VALUE_DATA_TYPES_EQUAL(_value1, _value2, _xctx)) \
 { \
-    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", xctx); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", _xctx); \
 }
 
 
@@ -1956,10 +1956,10 @@ afw_value_function_thunk_create_impl(
  * @param xctx of caller.
  * @return Created afw_value_t.
  */
-#define afw_value_function_thunk_create( \
-    name, like_function_value, execute, ctx, p, xctx) \
+#define afw_value_function_thunk_create(\
+    name, _like_function_value, _execute, _ctx, _p, _xctx) \
 afw_value_function_thunk_create_impl( \
-    name, like_function_value, execute, ctx, AFW__FILE_LINE__, p, xctx)
+    name, _like_function_value, _execute, _ctx, AFW__FILE_LINE__, _p, _xctx)
 
 
 
@@ -2375,74 +2375,74 @@ typedef enum afw_value_type_check_mode_e {
  */
 
 /** Mode from compiled value (NULL cv => process flags). */
-#define AFW_VALUE_TYPE_CHECK_MODE_CV(cv, xctx) \
-    ( (cv) \
-        ? ( (cv)->compile_policy.type_check_compile_only \
+#define AFW_VALUE_TYPE_CHECK_MODE_CV(_cv, _xctx) \
+    ( (_cv) \
+        ? ( (_cv)->compile_policy.type_check_compile_only \
             ? afw_value_type_check_mode_compile_only \
-            : ( (cv)->compile_policy.type_check \
+            : ( (_cv)->compile_policy.type_check \
                 ? afw_value_type_check_mode_on \
                 : afw_value_type_check_mode_off ) ) \
         : ( afw_flag_is_active( \
-                (xctx)->env->flag_index_compile_typeCheckCompileOnly_active, \
-                (xctx)) \
+                (_xctx)->env->flag_index_compile_typeCheckCompileOnly_active, \
+                (_xctx)) \
             ? afw_value_type_check_mode_compile_only \
             : ( afw_flag_is_active( \
-                    (xctx)->env->flag_index_compile_typeCheck_active, \
-                    (xctx)) \
+                    (_xctx)->env->flag_index_compile_typeCheck_active, \
+                    (_xctx)) \
                 ? afw_value_type_check_mode_on \
                 : afw_value_type_check_mode_off ) ) )
 
 /** Mode from call/assign/etc. contextual (NULL => process flags). */
-#define AFW_VALUE_TYPE_CHECK_MODE(contextual, xctx) \
+#define AFW_VALUE_TYPE_CHECK_MODE(_contextual, _xctx) \
     AFW_VALUE_TYPE_CHECK_MODE_CV( \
-        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+        ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
 
-#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED_CV(cv, xctx) \
-    (AFW_VALUE_TYPE_CHECK_MODE_CV((cv), (xctx)) != \
+#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED_CV(_cv, _xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE_CV((_cv), (_xctx)) != \
         afw_value_type_check_mode_off)
 
-#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) \
-    (AFW_VALUE_TYPE_CHECK_MODE((contextual), (xctx)) != \
+#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(_contextual, _xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE((_contextual), (_xctx)) != \
         afw_value_type_check_mode_off)
 
-#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED_CV(cv, xctx) \
-    (AFW_VALUE_TYPE_CHECK_MODE_CV((cv), (xctx)) == \
+#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED_CV(_cv, _xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE_CV((_cv), (_xctx)) == \
         afw_value_type_check_mode_on)
 
-#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx) \
-    (AFW_VALUE_TYPE_CHECK_MODE((contextual), (xctx)) == \
+#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(_contextual, _xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE((_contextual), (_xctx)) == \
         afw_value_type_check_mode_on)
 
-#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY_CV(cv, xctx) \
-    ( (cv) \
-        ? (cv)->compile_policy.no_implicit_any \
+#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY_CV(_cv, _xctx) \
+    ( (_cv) \
+        ? (_cv)->compile_policy.no_implicit_any \
         : afw_flag_is_active( \
-            (xctx)->env->flag_index_compile_noImplicitAny_active, (xctx)) )
+            (_xctx)->env->flag_index_compile_noImplicitAny_active, (_xctx)) )
 
-#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY(contextual, xctx) \
+#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY(_contextual, _xctx) \
     AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY_CV( \
-        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+        ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
 
-#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS_CV(cv, xctx) \
-    ( (cv) \
-        ? (cv)->compile_policy.strict_null_checks \
+#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS_CV(_cv, _xctx) \
+    ( (_cv) \
+        ? (_cv)->compile_policy.strict_null_checks \
         : afw_flag_is_active( \
-            (xctx)->env->flag_index_compile_strictNullChecks_active, \
-            (xctx)) )
+            (_xctx)->env->flag_index_compile_strictNullChecks_active, \
+            (_xctx)) )
 
-#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS(contextual, xctx) \
+#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS(_contextual, _xctx) \
     AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS_CV( \
-        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+        ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
 
-#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV(cv, xctx) \
-    ( (cv) \
-        ? (cv)->compile_policy.no_optimize \
+#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV(_cv, _xctx) \
+    ( (_cv) \
+        ? (_cv)->compile_policy.no_optimize \
         : afw_flag_is_active( \
-            (xctx)->env->flag_index_compile_noOptimize_active, (xctx)) )
+            (_xctx)->env->flag_index_compile_noOptimize_active, (_xctx)) )
 
-#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE(contextual, xctx) \
+#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE(_contextual, _xctx) \
     AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV( \
-        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+        ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
 
 /**
  * @brief True if type is missing, any, or zero-init leaf any.

@@ -148,9 +148,9 @@ afw_error_processing_handled(afw_xctx_t *xctx);
  * compile options and whether do/while makes a block. Caller's
  * semicolon attaches to longjmp.
  */
-#define afw_error_processing_throw(xctx, code) \
-    (xctx)->error_processing_count++; \
-    longjmp((xctx)->current_try->throw_jmp_buf, (code))
+#define afw_error_processing_throw(_xctx, _code) \
+    (_xctx)->error_processing_count++; \
+    longjmp((_xctx)->current_try->throw_jmp_buf, (_code))
 
 /**
  * @name AFW error throw / try design (read before touching longjmp)
@@ -253,7 +253,7 @@ typedef struct afw_error_footprint_s {
  * AFW_THROW related macros should be used instead.
  *
  */
-#define AFW_THROW_UNHANDLED_ERROR(unhandled_error, _ERROR, _CODE, _RV_SOURCE_ID, _RV, _MESSAGE_Z) \
+#define AFW_THROW_UNHANDLED_ERROR(_unhandled_error, _ERROR, _CODE, _RV_SOURCE_ID, _RV, _MESSAGE_Z) \
 do { \
     (_ERROR)->code = afw_error_code_ ## _CODE; \
     (_ERROR)->source_z = AFW__FILE_LINE__;\
@@ -261,7 +261,7 @@ do { \
     (_ERROR)->rv = _RV; \
     (_ERROR)->rv_decoded_z = NULL; \
     (_ERROR)->message_z = _MESSAGE_Z; \
-    longjmp((unhandled_error)->throw_jmp_buf, afw_error_code_ ##_CODE); \
+    longjmp((_unhandled_error)->throw_jmp_buf, afw_error_code_ ##_CODE); \
 } while (0);
 
 
@@ -342,8 +342,8 @@ AFW_DECLARE(void
  *
  * Always follow with a semicolon ( AFW_THROW(xctx); ).
  */
-#define AFW_THROW(xctx) \
-    afw_error_processing_throw((xctx), (xctx)->error->code)
+#define AFW_THROW(_xctx) \
+    afw_error_processing_throw((_xctx), (_xctx)->error->code)
 
 
 /**
@@ -354,11 +354,11 @@ AFW_DECLARE(void
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_Z(code, message_z, xctx) \
+#define AFW_THROW_ERROR_Z(_code, _message_z, _xctx) \
 do { \
-    afw_error_set_z(afw_error_code_ ## code, \
-        AFW__FILE_LINE__, message_z, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_set_z(afw_error_code_ ## _code, \
+        AFW__FILE_LINE__, _message_z, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -371,12 +371,12 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_WITH_DATA_Z(code, _data, message_z, xctx) \
+#define AFW_THROW_ERROR_WITH_DATA_Z(_code, _data, _message_z, _xctx) \
 do { \
-    xctx->error->data = _data; \
-    afw_error_set_z(afw_error_code_ ## code, \
-        AFW__FILE_LINE__, message_z, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    _xctx->error->data = _data; \
+    afw_error_set_z(afw_error_code_ ## _code, \
+        AFW__FILE_LINE__, _message_z, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -390,12 +390,12 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, xctx) \
+#define AFW_THROW_ERROR_RV_Z(_code, _rv_source_id, _rv, _message_z, _xctx) \
 do { \
-    afw_error_rv_set_z(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        AFW__FILE_LINE__, message_z, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_rv_set_z(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## _rv_source_id, _rv, \
+        AFW__FILE_LINE__, _message_z, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -410,14 +410,14 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_WITH_DATA_RV_Z(code, _data, \
-        rv_source_id, rv, message_z, xctx) \
+#define AFW_THROW_ERROR_WITH_DATA_RV_Z(_code, _data, \
+        rv_source_id, _rv, _message_z, _xctx) \
 do { \
-    xctx->error->data = _data; \
-    afw_error_rv_set_z(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        AFW__FILE_LINE__, message_z, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    _xctx->error->data = _data; \
+    afw_error_rv_set_z(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, _rv, \
+        AFW__FILE_LINE__, _message_z, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -434,11 +434,11 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_FZ(code, xctx, format_z, ...) \
+#define AFW_THROW_ERROR_FZ(_code, _xctx, _format_z, ...) \
 do { \
-    afw_error_set_fz(afw_error_code_ ## code, \
-        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_set_fz(afw_error_code_ ## _code, \
+        AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -452,12 +452,12 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_WITH_DATA_FZ(code, _data, xctx, format_z, ...) \
+#define AFW_THROW_ERROR_WITH_DATA_FZ(_code, _data, _xctx, _format_z, ...) \
 do { \
-    xctx->error->data = _data; \
-    afw_error_set_fz(afw_error_code_ ## code, \
-        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    _xctx->error->data = _data; \
+    afw_error_set_fz(afw_error_code_ ## _code, \
+        AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -472,12 +472,12 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_RV_FZ(code, rv_source_id, rv, xctx, format_z, ...) \
+#define AFW_THROW_ERROR_RV_FZ(_code, _rv_source_id, _rv, _xctx, _format_z, ...) \
 do { \
-    afw_error_rv_set_fz(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_rv_set_fz(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## _rv_source_id, _rv, \
+        AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -493,14 +493,14 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_WITH_DATA_RV_FZ(code, _data, \
-        rv_source_id, rv, xctx, format_z, ...) \
+#define AFW_THROW_ERROR_WITH_DATA_RV_FZ(_code, _data, \
+        rv_source_id, _rv, _xctx, _format_z, ...) \
 do { \
-    xctx->error->data = _data; \
-    afw_error_rv_set_fz(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    _xctx->error->data = _data; \
+    afw_error_rv_set_fz(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, _rv, \
+        AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -513,11 +513,11 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_VZ(code, format_z, ap, xctx) \
+#define AFW_THROW_ERROR_VZ(_code, _format_z, _ap, _xctx) \
 do { \
-    afw_error_set_vz(afw_error_code_ ## code, \
-        AFW__FILE_LINE__, format_z, ap, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_set_vz(afw_error_code_ ## _code, \
+        AFW__FILE_LINE__, _format_z, _ap, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -531,12 +531,12 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_WITH_DATA_VZ(code, _data, format_z, ap, xctx) \
+#define AFW_THROW_ERROR_WITH_DATA_VZ(_code, _data, _format_z, _ap, _xctx) \
 do { \
-    xctx->error->data = _data; \
-    afw_error_set_vz(afw_error_code_ ## code, \
-        AFW__FILE_LINE__, format_z, ap, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    _xctx->error->data = _data; \
+    afw_error_set_vz(afw_error_code_ ## _code, \
+        AFW__FILE_LINE__, _format_z, _ap, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -549,12 +549,12 @@ do { \
  * @param ap arguments for format_z
  * @param xctx of caller.
  */
-#define AFW_THROW_ERROR_RV_VZ(code, rv_source_id, rv, format_z, ap, xctx) \
+#define AFW_THROW_ERROR_RV_VZ(_code, _rv_source_id, _rv, _format_z, _ap, _xctx) \
 do { \
-    afw_error_rv_set_vz(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        AFW__FILE_LINE__, format_z, ap, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_rv_set_vz(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## _rv_source_id, _rv, \
+        AFW__FILE_LINE__, _format_z, _ap, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -568,14 +568,14 @@ do { \
  * @param ap arguments for format_z
  * @param xctx of caller.
  */
-#define AFW_THROW_ERROR_WITH_DATA_RV_VZ(code, _data, \
-        rv_source_id, rv, format_z, ap, xctx) \
+#define AFW_THROW_ERROR_WITH_DATA_RV_VZ(_code, _data, \
+        rv_source_id, _rv, _format_z, _ap, _xctx) \
 do { \
-    xctx->error->data = _data; \
-    afw_error_rv_set_vz(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        AFW__FILE_LINE__, format_z, ap, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    _xctx->error->data = _data; \
+    afw_error_rv_set_vz(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, _rv, \
+        AFW__FILE_LINE__, _format_z, _ap, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -588,11 +588,11 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_FOOTPRINT_Z(code, message_z, xctx) \
+#define AFW_THROW_ERROR_FOOTPRINT_Z(_code, _message_z, _xctx) \
 do { \
-    afw_error_set_z(afw_error_code_ ## code, \
-        footprint.source_z, message_z, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_set_z(afw_error_code_ ## _code, \
+        footprint.source_z, _message_z, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -608,12 +608,12 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_FOOTPRINT_RV_Z(code, rv_source_id, rv, message_z, xctx) \
+#define AFW_THROW_ERROR_FOOTPRINT_RV_Z(_code, _rv_source_id, _rv, _message_z, _xctx) \
 do { \
-    afw_error_rv_set_z(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        footprint.source_z, message_z, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_rv_set_z(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## _rv_source_id, _rv, \
+        footprint.source_z, _message_z, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -628,11 +628,11 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_FOOTPRINT_FZ(code, xctx, format_z, ...) \
+#define AFW_THROW_ERROR_FOOTPRINT_FZ(_code, _xctx, _format_z, ...) \
 do { \
-    afw_error_set_fz(afw_error_code_ ## code, \
-        footprint.source_z, xctx, format_z, __VA_ARGS__); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_set_fz(afw_error_code_ ## _code, \
+        footprint.source_z, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 
@@ -649,12 +649,12 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_FOOTPRINT_RV_FZ(code, rv_source_id, rv, xctx, format_z, ...) \
+#define AFW_THROW_ERROR_FOOTPRINT_RV_FZ(_code, _rv_source_id, _rv, _xctx, _format_z, ...) \
 do { \
-    afw_error_rv_set_fz(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        footprint.source_z, xctx, format_z, __VA_ARGS__); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_rv_set_fz(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## _rv_source_id, _rv, \
+        footprint.source_z, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 /**
@@ -668,11 +668,11 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_ERROR_FOOTPRINT_VZ(code, format_z, ap, xctx) \
+#define AFW_THROW_ERROR_FOOTPRINT_VZ(_code, _format_z, _ap, _xctx) \
 do { \
-    afw_error_set_vz(afw_error_code_ ## code, \
-        footprint.source_z, format_z, ap, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_set_vz(afw_error_code_ ## _code, \
+        footprint.source_z, _format_z, _ap, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 /**
@@ -686,12 +686,12 @@ do { \
  * @param ap arguments for format_z
  * @param xctx of caller.
  */
-#define AFW_THROW_ERROR_FOOTPRINT_RV_VZ(code, rv_source_id, rv, format_z, ap, xctx) \
+#define AFW_THROW_ERROR_FOOTPRINT_RV_VZ(_code, _rv_source_id, _rv, _format_z, _ap, _xctx) \
 do { \
-    afw_error_rv_set_vz(afw_error_code_ ## code, \
-        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
-        footprint.source_z, format_z, ap, xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
+    afw_error_rv_set_vz(afw_error_code_ ## _code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## _rv_source_id, _rv, \
+        footprint.source_z, _format_z, _ap, _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
 /**
@@ -699,11 +699,11 @@ do { \
  *
  * Always follow with a semicolon;
  */
-#define AFW_THROW_MEMORY_ERROR(xctx) \
+#define AFW_THROW_MEMORY_ERROR(_xctx) \
 do { \
     afw_error_set_z(afw_error_code_memory, \
-        AFW__FILE_LINE__, "Memory error", xctx); \
-    afw_error_processing_throw((xctx), afw_error_code_memory); \
+        AFW__FILE_LINE__, "Memory error", _xctx); \
+    afw_error_processing_throw((_xctx), afw_error_code_memory); \
 } while (0)
 
 /**
@@ -715,13 +715,13 @@ do { \
  * to->rv_decoded_z is adjusted if they point to the corresponding
  * wa in from.
  */
-#define AFW_ERROR_COPY(to, from) \
-    memcpy((to), (from), sizeof(afw_error_t)); \
-    if ((from)->message_z == &(from)->message_wa[0]) { \
-        (to)->message_z = &(to)->message_wa[0]; \
+#define AFW_ERROR_COPY(_to, _from) \
+    memcpy((_to), (_from), sizeof(afw_error_t)); \
+    if ((_from)->message_z == &(_from)->message_wa[0]) { \
+        (_to)->message_z = &(_to)->message_wa[0]; \
     } \
-    if ((from)->rv_decoded_z == &(from)->decode_rv_wa[0]) { \
-        (to)->rv_decoded_z = &(to)->decode_rv_wa[0]; \
+    if ((_from)->rv_decoded_z == &(_from)->decode_rv_wa[0]) { \
+        (_to)->rv_decoded_z = &(_to)->decode_rv_wa[0]; \
     }
 
 
@@ -1080,8 +1080,8 @@ afw_error_message_vz(const afw_utf8_z_t *format, va_list ap,
  * Some compilers return the full path name for __FILE__, but we normally
  * just want to display the part of path after last slash.
  */
-#define afw_error_source_file(error) \
-    afw_utf8_z_source_file((error)->source_z)
+#define afw_error_source_file(_error) \
+    afw_utf8_z_source_file((_error)->source_z)
 
 
 /**

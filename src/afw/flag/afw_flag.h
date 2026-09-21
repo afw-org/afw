@@ -81,8 +81,8 @@ struct afw_flag_s {
  * @param xctx of caller
  * @return true or false
  */
-#define afw_flag_is_active(flag_index, xctx) \
-((flag_index) < (xctx)->flags_count && (xctx)->flags[flag_index])
+#define afw_flag_is_active(_flag_index, _xctx) \
+((_flag_index) < (_xctx)->flags_count && (_xctx)->flags[_flag_index])
 
 
 

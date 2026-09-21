@@ -49,8 +49,8 @@ AFW_BEGIN_DECLARES
  * @param d is double to check.
  * @return true if number is finite.
  */
-#define afw_number_is_finite(d) \
-    ((d) <= DBL_MAX && (d) >= -DBL_MAX)
+#define afw_number_is_finite(_d) \
+    ((_d) <= DBL_MAX && (_d) >= -DBL_MAX)
 
 
 /**
@@ -58,7 +58,7 @@ AFW_BEGIN_DECLARES
  * @param d is double to check.
  * @return true if number is positive infinity.
  */
-#define afw_number_is_positive_infinity(d) ((d) > DBL_MAX)
+#define afw_number_is_positive_infinity(_d) ((_d) > DBL_MAX)
 
 
 /**
@@ -66,7 +66,7 @@ AFW_BEGIN_DECLARES
  * @param d is double to check.
  * @return true if number is negative infinity.
  */
-#define afw_number_is_negative_infinity(d) ((d) < -DBL_MAX)
+#define afw_number_is_negative_infinity(_d) ((_d) < -DBL_MAX)
 
 
 /**
@@ -77,7 +77,7 @@ AFW_BEGIN_DECLARES
  * If a number is not a number (NaN) the number compared to itself will not be
  * true.
  */
-#define afw_number_is_NaN(d) (!((d) == (d)))
+#define afw_number_is_NaN(_d) (!((_d) == (_d)))
 
 
 /**
@@ -108,8 +108,8 @@ afw_number_parse(
  * @param xctx of caller.
  * @return len of number in buffer starting at buffer or -1 if error.
  */
-#define afw_number_parse_integer(cursor, len, i, p, xctx) \
-    afw_number_parse(cursor, len, i, NULL, NULL, p, xctx)
+#define afw_number_parse_integer(_cursor, _len, _i, _p, _xctx) \
+    afw_number_parse(_cursor, _len, _i, NULL, NULL, _p, _xctx)
 
 
 /**
@@ -121,8 +121,8 @@ afw_number_parse(
  * @param xctx of caller.
  * @return len of number in buffer starting at buffer or -1 if error.
  */
-#define afw_number_parse_double(cursor, len, d, p, xctx) \
-    afw_number_parse(cursor, len, NULL, d, NULL, p, xctx)
+#define afw_number_parse_double(_cursor, _len, _d, _p, _xctx) \
+    afw_number_parse(_cursor, _len, NULL, _d, NULL, _p, _xctx)
 
 
 /**

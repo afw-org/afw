@@ -454,26 +454,26 @@ afw_runtime_register_object_map_infs(
 
 
 
-#define AFW_RUNTIME_OBJECT_RTI(label_, meta_)                                   \
+#define AFW_RUNTIME_OBJECT_RTI(_label_, _meta_)                                   \
                                                                                 \
 static const afw_interface_implementation_rti_t                                 \
-label_ = {                                                                      \
+_label_ = {                                                                      \
     AFW_UTF8_LITERAL("afw_object"),                                             \
     AFW_UTF8_LITERAL(__FILE__),                                                 \
     AFW_UTF8_LITERAL("afw_runtime"),                                            \
-    &meta_                                                                      \
+    &_meta_                                                                      \
 };                                                                              \
            
 
-#define AFW_RUNTIME_OBJECT_INF(inf_, meta_)                                     \
+#define AFW_RUNTIME_OBJECT_INF(_inf_, _meta_)                                     \
                                                                                 \
 AFW_DEFINE_CONST_DATA(afw_object_inf_t)                                         \
-inf_ = {                                                                        \
+_inf_ = {                                                                        \
     {                                                                           \
         AFW_UTF8_LITERAL("afw_object"),                                         \
         AFW_UTF8_LITERAL(__FILE__),                                             \
         AFW_UTF8_LITERAL("afw_runtime"),                                        \
-        &meta_                                                                  \
+        &_meta_                                                                  \
     },                                                                          \
     afw_runtime_object_release,                                                 \
     afw_runtime_object_get_reference,                                           \

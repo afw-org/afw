@@ -38,8 +38,8 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
  */
 #define AFW_ARRAY_MEMORY_OPTION_new_p                (1 << 0)
 #define AFW_ARRAY_MEMORY_OPTION_cede_p               (1 << 1)
-#define AFW_ARRAY_MEMORY_OPTION_IS(options_mask, option) \
-    ((((options_mask) & (AFW_ARRAY_MEMORY_OPTION_ ## option))) != 0)
+#define AFW_ARRAY_MEMORY_OPTION_IS(_options_mask, _option) \
+    ((((_options_mask) & (AFW_ARRAY_MEMORY_OPTION_ ## _option))) != 0)
 
 
 /**
@@ -144,17 +144,17 @@ afw_array_create_wrapper_with_options(
 /**
  * @brief Create a memory wrapper over another array (options 0).
  */
-#define afw_array_create_wrapper_unmanaged_new_p(wrapped, p, xctx) \
+#define afw_array_create_wrapper_unmanaged_new_p(_wrapped, _p, _xctx) \
     afw_array_create_wrapper_with_options( \
-        AFW_ARRAY_MEMORY_OPTION_new_p, wrapped, p, xctx)
+        AFW_ARRAY_MEMORY_OPTION_new_p, _wrapped, _p, _xctx)
 
 
 /**
  * @brief Create an unmanaged memory wrapper over another array.
  */
-#define afw_array_create_wrapper_unmanaged(wrapped, p, xctx) \
+#define afw_array_create_wrapper_unmanaged(_wrapped, _p, _xctx) \
     afw_array_create_wrapper_with_options( \
-        0, wrapped, p, xctx)
+        0, _wrapped, _p, _xctx)
 
 
 /**
@@ -231,17 +231,17 @@ afw_array_as_value(
  * data type are added, afw_array_get_data_type() will return
  * that data type.
  */
-#define afw_array_create_unmanaged_of(data_type, p, xctx) \
+#define afw_array_create_unmanaged_of(_data_type, _p, _xctx) \
     afw_array_create_with_options( \
-        0, data_type, p, xctx)
+        0, _data_type, _p, _xctx)
 
 
 /**
  * @brief Create a pool-world memory array (new child of p->managed_p).
  */
-#define afw_array_create_unmanaged_new_p(p, xctx) \
+#define afw_array_create_unmanaged_new_p(_p, _xctx) \
     afw_array_create_with_options( \
-        AFW_ARRAY_MEMORY_OPTION_new_p, NULL, p, xctx)
+        AFW_ARRAY_MEMORY_OPTION_new_p, NULL, _p, _xctx)
 
 
 /**
@@ -252,8 +252,8 @@ afw_array_as_value(
  *
  * Start 0. Lifetime is p. Value get_reference / release throw.
  */
-#define afw_array_create_unmanaged(p, xctx) \
-    afw_array_create_with_options(0, NULL, p, xctx)
+#define afw_array_create_unmanaged(_p, _xctx) \
+    afw_array_create_with_options(0, NULL, _p, _xctx)
 
 
 
@@ -739,8 +739,8 @@ afw_array_remove_all_values(
  * @param xctx of caller.
  * @return boolean result.
  */
-#define afw_array_is_immutable(array, xctx) \
-(afw_array_get_setter(array, xctx) == NULL)
+#define afw_array_is_immutable(_array, _xctx) \
+(afw_array_get_setter(_array, _xctx) == NULL)
 
 
 

@@ -186,8 +186,8 @@ struct afw_function_environment_s {
  * Used in adaptive function execute bodies. Like all AFW_FUNCTION_* macros,
  * "x" must be the name of the function execute struct pointer.
  */
-#define AFW_FUNCTION_ARGV(A_N) \
-((A_N <= x->argc) ? x->argv[A_N] : NULL)
+#define AFW_FUNCTION_ARGV(_A_N) \
+((_A_N <= x->argc) ? x->argv[_A_N] : NULL)
 
 
 
@@ -199,10 +199,10 @@ struct afw_function_environment_s {
  * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
  * struct pointer.
  */
-#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(n) \
+#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(_n) \
 do { \
-    if ((x->argc) != (n)) {\
-        AFW_THROW_ERROR_Z(argument_error, "Expecting " #n " parameters.", x->xctx);\
+    if ((x->argc) != (_n)) {\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting " #_n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -216,10 +216,10 @@ do { \
  * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
  * struct pointer.
  */
-#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(n) \
+#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(_n) \
 do { \
-    if (x->argc < (n)) {\
-        AFW_THROW_ERROR_Z(argument_error, "Expecting at least " #n " parameters.", x->xctx);\
+    if (x->argc < (_n)) {\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting at least " #_n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -233,10 +233,10 @@ do { \
  * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
  * struct pointer.
  */
-#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(n) \
+#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(_n) \
 do { \
-    if (x->argc > (n)) {\
-        AFW_THROW_ERROR_Z(argument_error, "Expecting no more than " #n " parameters.", x->xctx);\
+    if (x->argc > (_n)) {\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting no more than " #_n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -250,9 +250,9 @@ do { \
  * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
  * struct pointer.
  */
-#define AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(A_VALUE) \
-if (!(A_VALUE) || !afw_utf8_equal( \
-    &afw_value_get_data_type(((const afw_value_t *)A_VALUE), x->xctx)->cType, \
+#define AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(_A_VALUE) \
+if (!(_A_VALUE) || !afw_utf8_equal( \
+    &afw_value_get_data_type(((const afw_value_t *)_A_VALUE), x->xctx)->cType, \
     afw_s_afw_utf8_t)) \
 { \
     AFW_THROW_ERROR_Z(argument_error, \
@@ -269,9 +269,9 @@ if (!(A_VALUE) || !afw_utf8_equal( \
  * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
  * struct pointer.
  */
-#define AFW_FUNCTION_PARAMETER_IS_PRESENT(A_N) \
-    (AFW_FUNCTION_ARGV(A_N) != NULL && \
-    AFW_FUNCTION_ARGV(A_N) != afw_value_undefined)
+#define AFW_FUNCTION_PARAMETER_IS_PRESENT(_A_N) \
+    (AFW_FUNCTION_ARGV(_A_N) != NULL && \
+    AFW_FUNCTION_ARGV(_A_N) != afw_value_undefined)
 
 
 
@@ -289,9 +289,9 @@ if (!(A_VALUE) || !afw_utf8_equal( \
  *
  * It is up to the implementation to handle a NULL A_RESULT.
  */
-#define AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(A_RESULT, A_N, A_TYPE) \
-A_RESULT = (const afw_value_##A_TYPE##_t *) \
-    afw_function_evaluate_parameter(x, A_N, afw_data_type_##A_TYPE)
+#define AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(_A_RESULT, _A_N, _A_TYPE) \
+_A_RESULT = (const afw_value_##_A_TYPE##_t *) \
+    afw_function_evaluate_parameter(x, _A_N, afw_data_type_##_A_TYPE)
 
 
 
@@ -306,8 +306,8 @@ A_RESULT = (const afw_value_##A_TYPE##_t *) \
  *
  * It is up to the implementation to handle a NULL A_RESULT.
  */
-#define AFW_FUNCTION_EVALUATE_PARAMETER(A_RESULT, A_N) \
-A_RESULT = afw_function_evaluate_parameter(x, A_N, NULL)
+#define AFW_FUNCTION_EVALUATE_PARAMETER(_A_RESULT, _A_N) \
+_A_RESULT = afw_function_evaluate_parameter(x, _A_N, NULL)
 
 
 
@@ -320,8 +320,8 @@ A_RESULT = afw_function_evaluate_parameter(x, A_N, NULL)
  * `const afw_value_t *` until a cast-safe `is_*` / `IS_DATA_TYPE` check. "x"
  * is the function execute struct pointer.
  */
-#define AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(A_RESULT, A_N) \
-A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
+#define AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(_A_RESULT, _A_N) \
+_A_RESULT = afw_function_evaluate_required_parameter(x, _A_N, NULL);
 
 
 
@@ -334,12 +334,12 @@ A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
  * `const afw_value_boolean_t *`), else throws argument_error. "x" is the function
  * execute struct pointer.
  */
-#define AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(A_RESULT, A_N) \
-A_RESULT = (const afw_value_boolean_t *) \
-    afw_function_evaluate_required_parameter(x, A_N, NULL); \
-    if (!afw_value_is_boolean(A_RESULT)) \
+#define AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(_A_RESULT, _A_N) \
+_A_RESULT = (const afw_value_boolean_t *) \
+    afw_function_evaluate_required_parameter(x, _A_N, NULL); \
+    if (!afw_value_is_boolean(_A_RESULT)) \
         AFW_THROW_ERROR_FZ(argument_error, xctx, \
-            "Condition must be boolean (parameter %d)", (A_N))
+            "Condition must be boolean (parameter %d)", (_A_N))
 
 
 
@@ -353,9 +353,9 @@ A_RESULT = (const afw_value_boolean_t *) \
  * cast-safe `const afw_value_<A_TYPE>_t *`. Throws if missing or wrong type.
  * Not a produce-type-only check. "x" is the function execute struct pointer.
  */
-#define AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(A_RESULT, A_N, A_TYPE) \
-A_RESULT = (const afw_value_##A_TYPE##_t *) \
-    afw_function_evaluate_required_parameter(x, A_N, afw_data_type_##A_TYPE)
+#define AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(_A_RESULT, _A_N, _A_TYPE) \
+_A_RESULT = (const afw_value_##_A_TYPE##_t *) \
+    afw_function_evaluate_required_parameter(x, _A_N, afw_data_type_##_A_TYPE)
 
 
 

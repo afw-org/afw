@@ -96,16 +96,16 @@ afw_log_priority_to_priority_id(
  * @param priority enum to convert
  * @return priority_mask.
  */
-#define afw_log_priority_mask(priority) \
-    ((afw_log_priority_mask_t)(1 << (priority)))
+#define afw_log_priority_mask(_priority) \
+    ((afw_log_priority_mask_t)(1 << (_priority)))
 
 /**
  * @brief Get the priority mask for all equal or higher log priorities.
  * @param priority enum of lowest priority for mask.
  * @return priority_mask.
  */
-#define afw_log_up_to_priority_mask(priority) \
-    ((afw_log_priority_mask_t)((1 << ((priority) + 1)) - 1))
+#define afw_log_up_to_priority_mask(_priority) \
+    ((afw_log_priority_mask_t)((1 << ((_priority) + 1)) - 1))
 
 /**
  * @brief Determined if log priority corresponding bit is on in mask.
@@ -113,8 +113,8 @@ afw_log_priority_to_priority_id(
  * @param priority to test.
  * @return true or false.
  */
-#define afw_log_priority_in_mask(mask, priority) \
-    ((((1 << (priority)) & (mask)) != 0))
+#define afw_log_priority_in_mask(_mask, _priority) \
+    ((((1 << (_priority)) & (_mask)) != 0))
 
 /**
  * @brief Set the corresponding bit for a priority in a mask.
@@ -123,13 +123,13 @@ afw_log_priority_to_priority_id(
  * @param value true or false.
  * @return true or false.
  */
-#define afw_log_set_priority_in_mask(mask, priority, value) \
+#define afw_log_set_priority_in_mask(_mask, _priority, _value) \
     do { \
-        if (value) { \
-            *(mask) |= (1 << (priority)); \
+        if (_value) { \
+            *(_mask) |= (1 << (_priority)); \
         } \
         else { \
-            *(mask) &= ~(1 << (priority)); \
+            *(_mask) &= ~(1 << (_priority)); \
         } \
     } while (0)
 
@@ -139,9 +139,9 @@ afw_log_priority_to_priority_id(
  * @param message to log.
  * @param xctx of caller.
  */
-#define AFW_LOG(priority, message, xctx) \
-    afw_log_write(xctx->env->log, afw_log_priority_ ## priority, \
-        AFW__FILE_LINE__, message, xctx)
+#define AFW_LOG(_priority, _message, _xctx) \
+    afw_log_write(_xctx->env->log, afw_log_priority_ ## _priority, \
+        AFW__FILE_LINE__, _message, _xctx)
 
 /**
  * @brief Log an afw_utf8_z_t message to environment's log.
@@ -149,9 +149,9 @@ afw_log_priority_to_priority_id(
  * @param message to log.
  * @param xctx of caller.
  */
-#define AFW_LOG_Z(priority, message_z, xctx) \
-    afw_log_write_z(xctx->env->log, afw_log_priority_ ## priority, \
-        AFW__FILE_LINE__, message_z, xctx)
+#define AFW_LOG_Z(_priority, _message_z, _xctx) \
+    afw_log_write_z(_xctx->env->log, afw_log_priority_ ## _priority, \
+        AFW__FILE_LINE__, _message_z, _xctx)
 
 /**
  * @brief Log an message to environment's log using a printf style format and
@@ -161,9 +161,9 @@ afw_log_priority_to_priority_id(
  * @param ap va_list for format.
  * @param xctx of caller.
  */
-#define AFW_LOG_VZ(priority, format_z, ap, xctx) \
-    afw_log_write_vz(xctx->env->log, afw_log_priority_ ## priority, \
-        AFW__FILE_LINE__, format_z, ap, xctx)
+#define AFW_LOG_VZ(_priority, _format_z, _ap, _xctx) \
+    afw_log_write_vz(_xctx->env->log, afw_log_priority_ ## _priority, \
+        AFW__FILE_LINE__, _format_z, _ap, _xctx)
 
 /**
  * @brief Log an message to environment's log using a printf style format
@@ -173,9 +173,9 @@ afw_log_priority_to_priority_id(
  * @param format_z for message to log.
  * @param ... parameters for format.
  */
-#define AFW_LOG_FZ(priority, xctx, format_z, ...) \
-    afw_log_write_fz(xctx->env->log, afw_log_priority_ ## priority, \
-        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__)
+#define AFW_LOG_FZ(_priority, _xctx, _format_z, ...) \
+    afw_log_write_fz(_xctx->env->log, afw_log_priority_ ## _priority, \
+        AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__)
 
  
 /**

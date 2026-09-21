@@ -23,20 +23,20 @@
 
 AFW_BEGIN_DECLARES
 
-#define AFW_TIME_SECONDS_TO_MICROSECONDS(SECONDS) \
-    (afw_integer_t)(SECONDS) * (afw_integer_t)1000000
+#define AFW_TIME_SECONDS_TO_MICROSECONDS(_SECONDS) \
+    (afw_integer_t)(_SECONDS) * (afw_integer_t)1000000
 
-#define AFW_TIME_MINUTES_TO_MICROSECONDS(MINUTES) \
+#define AFW_TIME_MINUTES_TO_MICROSECONDS(_MINUTES) \
     AFW_TIME_SECONDS_TO_MICROSECONDS( \
-        (afw_integer_t)(MINUTES) * (afw_integer_t)60)
+        (afw_integer_t)(_MINUTES) * (afw_integer_t)60)
 
-#define AFW_TIME_HOURS_TO_MICROSECONDS(HOURS) \
+#define AFW_TIME_HOURS_TO_MICROSECONDS(_HOURS) \
     AFW_TIME_MINUTES_TO_MICROSECONDS( \
-        (afw_integer_t)(HOURS) * (afw_integer_t)60)
+        (afw_integer_t)(_HOURS) * (afw_integer_t)60)
 
-#define AFW_TIME_DAYS_TO_MICROSECONDS(DAYS) \
+#define AFW_TIME_DAYS_TO_MICROSECONDS(_DAYS) \
     AFW_TIME_HOURS_TO_MICROSECONDS( \
-        (afw_integer_t)(DAYS) * (afw_integer_t)24)
+        (afw_integer_t)(_DAYS) * (afw_integer_t)24)
 
 
 /**

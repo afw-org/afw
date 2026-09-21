@@ -53,34 +53,34 @@ afw_atomic_integer_cas(
 #ifdef AFW_WINDOWS
 
 /** @brief 32-bit atomic decrement */
-#define afw_atomic_uint32_decrement(mem) \
-    ((afw_uint32_t)InterlockedDecrement((LONG *)(mem)))
+#define afw_atomic_uint32_decrement(_mem) \
+    ((afw_uint32_t)InterlockedDecrement((LONG *)(_mem)))
 
 /** @brief Integer atomic decrement */
-#define afw_atomic_integer_decrement(mem) \
-    (InterlockedDecrement64(mem))
+#define afw_atomic_integer_decrement(_mem) \
+    (InterlockedDecrement64(_mem))
 
 /** @brief 32-bit atomic increment */
-#define afw_atomic_uint32_increment(mem) \
-    ((afw_uint32_t)InterlockedIncrement((LONG *)(mem)))
+#define afw_atomic_uint32_increment(_mem) \
+    ((afw_uint32_t)InterlockedIncrement((LONG *)(_mem)))
 
 /** @brief Integer atomic increment */
-#define afw_atomic_integer_increment(mem) \
-    (InterlockedIncrement64(mem))
+#define afw_atomic_integer_increment(_mem) \
+    (InterlockedIncrement64(_mem))
 
 #else
 
 /** @brief 32-bit atomic decrement */
-#define afw_atomic_uint32_decrement(mem) (--(*(mem)))
+#define afw_atomic_uint32_decrement(_mem) (--(*(_mem)))
 
 /** @brief Integer atomic decrement */
-#define afw_atomic_integer_decrement(mem) (--(*(mem)))
+#define afw_atomic_integer_decrement(_mem) (--(*(_mem)))
 
 /** @brief 32-bit atomic increment */
-#define afw_atomic_uint32_increment(mem) (++(*(mem)))
+#define afw_atomic_uint32_increment(_mem) (++(*(_mem)))
 
 /** @brief Integer atomic increment */
-#define afw_atomic_integer_increment(mem) (++(*(mem)))
+#define afw_atomic_integer_increment(_mem) (++(*(_mem)))
 
 #endif
 

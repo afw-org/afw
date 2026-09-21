@@ -38,7 +38,7 @@ typedef struct impl_reconcile_wa_s {
 
 /* Array of entry type ids. */
 static const afw_utf8_t * entry_type[] = {
-#define XX(id, _) &afw_self_s_ ## id,
+#define XX(_id, _) &afw_self_s_ ## _id,
     AFW_ADAPTER_MODIFY_ENTRY_TYPE_MAP(XX)
 #undef XX
     NULL
@@ -47,7 +47,7 @@ static const afw_utf8_t * entry_type[] = {
 
 /* Array to determine if type has a value. */
 static const afw_boolean_t entry_type_has_value[] = {
-#define XX(id, has) has,
+#define XX(_id, _has) _has,
     AFW_ADAPTER_MODIFY_ENTRY_TYPE_MAP(XX)
 #undef XX
     false
@@ -56,8 +56,8 @@ static const afw_boolean_t entry_type_has_value[] = {
 
 /* Array of entry type ids as adaptive string values. */
 static const afw_value_string_t entry_type_value[] = {
-#define XX(id, _) { {&afw_value_unmanaged_string_inf}, \
-    { #id, sizeof(#id) - 1 } },
+#define XX(_id, _) { {&afw_value_unmanaged_string_inf}, \
+    { #_id, sizeof(#_id) - 1 } },
     AFW_ADAPTER_MODIFY_ENTRY_TYPE_MAP(XX)
 #undef XX
     {{NULL}}
