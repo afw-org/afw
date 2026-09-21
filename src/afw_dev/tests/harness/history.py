@@ -39,12 +39,22 @@ def run():
         "skip": False,
     })
 
+    rec = file_record("a.as", 50, 10 * 1024, 1, 0, 0, xctx_chunk_bytes=64 * 1024)
+    tests.append({
+        "test": "file-record-chunk-bytes",
+        "description": "file_record stores xctx_chunk_bytes",
+        "passed": rec.get("xctx_chunk_bytes") == 64 * 1024,
+        "skip": False,
+    })
+
     tests.append({
         "test": "format-xctx-bytes-commas",
         "description": "console memory uses comma-separated max N xctx",
         "passed": (
             format_xctx_bytes(195097776) == "195,097,776"
             and format_test_timing(58, 12288) == "(58ms, max 12,288 xctx)"
+            and format_test_timing(58, 12288, 16384) ==
+                "(58ms, max 12,288 xctx, 16,384 chunk)"
             and format_test_timing(58) == "(58ms)"
         ),
         "skip": False,

@@ -454,6 +454,11 @@ impl_afw_value_optional_evaluate(
         afw_v_poolBytesInUse,
         (afw_integer_t)afw_xctx_pool_bytes_in_use(xctx),
         xctx);
+    afw_object_set_property_as_integer_internal(
+        self->test_script_object_value->internal,
+        afw_v_poolChunkBytes,
+        (afw_integer_t)afw_xctx_pool_chunk_bytes(xctx),
+        xctx);
 
     return afw_value_create_unmanaged_object(
         self->test_script_object_value->internal, p, xctx);

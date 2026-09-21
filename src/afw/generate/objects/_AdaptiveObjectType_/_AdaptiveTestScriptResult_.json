@@ -43,6 +43,12 @@
             "description": "File-level xctx ST asked-for bytes (thread current minus snap) after all cases. Not process-wide. afwdev test prints this next to duration.",
             "label": "Pool Bytes In Use"
         },
+        "poolChunkBytes": {
+            "brief": "This-eval ST chunk bytes",
+            "dataType": "integer",
+            "description": "File-level xctx ST posix_memalign chunk bytes (thread current minus snap) after all cases. Not process-wide. afwdev test harvests this next to poolBytesInUse.",
+            "label": "Pool Chunk Bytes"
+        },
         "tests": {
             "brief": "List of test results",
             "dataType": "array",

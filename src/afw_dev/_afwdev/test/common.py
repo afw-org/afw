@@ -68,11 +68,7 @@ def show_all_cases(options):
     return bool(pattern) and pattern != ".*"
 
 
-def xctx_bytes_from_response(response):
-    """File-level xctx asked-for bytes from a test_script result, or None."""
-    if not isinstance(response, dict):
-        return None
-    n = response.get("poolBytesInUse")
+def _nonneg_int(n):
     if n is None:
         return None
     try:
@@ -82,6 +78,20 @@ def xctx_bytes_from_response(response):
     if n < 0:
         return None
     return n
+
+
+def xctx_bytes_from_response(response):
+    """File-level xctx asked-for bytes from a test_script result, or None."""
+    if not isinstance(response, dict):
+        return None
+    return _nonneg_int(response.get("poolBytesInUse"))
+
+
+def xctx_chunk_bytes_from_response(response):
+    """File-level xctx chunk bytes from a test_script result, or None."""
+    if not isinstance(response, dict):
+        return None
+    return _nonneg_int(response.get("poolChunkBytes"))
 
 
 def format_xctx_bytes(n):
@@ -97,12 +107,18 @@ def format_xctx_bytes(n):
     return "{:,}".format(n)
 
 
-def format_test_timing(duration_ms, xctx_bytes=None):
-    """'(58ms)' or '(58ms, max 12,288 xctx)' for file lines that show duration."""
+def format_test_timing(duration_ms, xctx_bytes=None, xctx_chunk_bytes=None):
+    """'(58ms)' or '(58ms, max 12,288 xctx, 16,384 chunk)'."""
     shown = format_xctx_bytes(xctx_bytes)
-    if shown is None:
+    chunk = format_xctx_bytes(xctx_chunk_bytes)
+    if shown is None and chunk is None:
         return "({}ms)".format(duration_ms)
-    return "({}ms, max {} xctx)".format(duration_ms, shown)
+    if chunk is None:
+        return "({}ms, max {} xctx)".format(duration_ms, shown)
+    if shown is None:
+        return "({}ms, max {} chunk)".format(duration_ms, chunk)
+    return "({}ms, max {} xctx, {} chunk)".format(
+        duration_ms, shown, chunk)
 
 
 def errors_only_console(options):
@@ -233,13 +249,15 @@ def write_results_summary(options, summary, tool_label="test"):
                 fd.write(
                     "passed={p} failed={f} skipped={s} total={n}\n"
                     "time_seconds={sec}\n"
-                    "max_xctx_bytes={b}\n".format(
+                    "max_xctx_bytes={b}\n"
+                    "max_xctx_chunk_bytes={c}\n".format(
                         p=t.get("passed", t.get("ok", 0)),
                         f=t.get("failed", t.get("fail", 0)),
                         s=t.get("skipped", t.get("timeout", 0)),
                         n=t.get("total", 0),
                         sec=summary.get("time_seconds", 0),
                         b=summary.get("max_xctx_bytes", 0),
+                        c=summary.get("max_xctx_chunk_bytes", 0),
                     ))
             else:
                 fd.write(nfc.json_dumps(summary, indent=2) + "\n")
