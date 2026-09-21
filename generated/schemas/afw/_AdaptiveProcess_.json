@@ -67,10 +67,64 @@
                     "title": "Limit Request Pool Bytes",
                     "type": "integer"
                 },
+                "memoryRegionBytesInUse": {
+                    "description": "Process-wide sum of memory_region bytes currently handed out to heaps (not on a free list).",
+                    "markdownDescription": "**Memory Region Bytes In Use**\n\nProcess-wide sum of memory_region bytes currently handed out to heaps (not on a free list).",
+                    "title": "Memory Region Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListBytes": {
+                    "description": "Process-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
+                    "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
+                    "title": "Memory Region Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListCount": {
+                    "description": "Process-wide count of memory_region allocations on thread free lists.",
+                    "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists.",
+                    "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
                 "memoryRegionFreeListMaxBytes": {
                     "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
                     "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
                     "title": "Memory Region Free List Max Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeOverCap": {
+                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+                    "title": "Memory Region Free Over Cap",
+                    "type": "integer"
+                },
+                "memoryRegionGetHits": {
+                    "description": "Process-wide count of memory_region get() that reused a free-list region since environment create.",
+                    "markdownDescription": "**Memory Region Get Hits**\n\nProcess-wide count of memory_region get() that reused a free-list region since environment create.",
+                    "title": "Memory Region Get Hits",
+                    "type": "integer"
+                },
+                "memoryRegionGetMisses": {
+                    "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign since environment create.",
+                    "title": "Memory Region Get Misses",
+                    "type": "integer"
+                },
+                "memoryRegionPeakBytesInUse": {
+                    "description": "High-water of memoryRegionBytesInUse since environment create.",
+                    "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create.",
+                    "title": "Memory Region Peak Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionPeakFreeListBytes": {
+                    "description": "High-water of memoryRegionFreeListBytes since environment create.",
+                    "markdownDescription": "**Memory Region Peak Free List Bytes**\n\nHigh-water of memoryRegionFreeListBytes since environment create.",
+                    "title": "Memory Region Peak Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionRegionsInUse": {
+                    "description": "Process-wide count of memory_region allocations currently handed out to heaps.",
+                    "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps.",
+                    "title": "Memory Region Regions In Use",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -188,10 +242,64 @@
                     "title": "Limit Request Pool Bytes",
                     "type": "integer"
                 },
+                "memoryRegionBytesInUse": {
+                    "description": "Process-wide sum of memory_region bytes currently handed out to heaps (not on a free list).",
+                    "markdownDescription": "**Memory Region Bytes In Use**\n\nProcess-wide sum of memory_region bytes currently handed out to heaps (not on a free list).",
+                    "title": "Memory Region Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListBytes": {
+                    "description": "Process-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
+                    "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
+                    "title": "Memory Region Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListCount": {
+                    "description": "Process-wide count of memory_region allocations on thread free lists.",
+                    "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists.",
+                    "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
                 "memoryRegionFreeListMaxBytes": {
                     "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
                     "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
                     "title": "Memory Region Free List Max Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeOverCap": {
+                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+                    "title": "Memory Region Free Over Cap",
+                    "type": "integer"
+                },
+                "memoryRegionGetHits": {
+                    "description": "Process-wide count of memory_region get() that reused a free-list region since environment create.",
+                    "markdownDescription": "**Memory Region Get Hits**\n\nProcess-wide count of memory_region get() that reused a free-list region since environment create.",
+                    "title": "Memory Region Get Hits",
+                    "type": "integer"
+                },
+                "memoryRegionGetMisses": {
+                    "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign since environment create.",
+                    "title": "Memory Region Get Misses",
+                    "type": "integer"
+                },
+                "memoryRegionPeakBytesInUse": {
+                    "description": "High-water of memoryRegionBytesInUse since environment create.",
+                    "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create.",
+                    "title": "Memory Region Peak Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionPeakFreeListBytes": {
+                    "description": "High-water of memoryRegionFreeListBytes since environment create.",
+                    "markdownDescription": "**Memory Region Peak Free List Bytes**\n\nHigh-water of memoryRegionFreeListBytes since environment create.",
+                    "title": "Memory Region Peak Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionRegionsInUse": {
+                    "description": "Process-wide count of memory_region allocations currently handed out to heaps.",
+                    "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps.",
+                    "title": "Memory Region Regions In Use",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -319,10 +427,64 @@
             "title": "Limit Request Pool Bytes",
             "type": "integer"
         },
+        "memoryRegionBytesInUse": {
+            "description": "Process-wide sum of memory_region bytes currently handed out to heaps (not on a free list).",
+            "markdownDescription": "**Memory Region Bytes In Use**\n\nProcess-wide sum of memory_region bytes currently handed out to heaps (not on a free list).",
+            "title": "Memory Region Bytes In Use",
+            "type": "integer"
+        },
+        "memoryRegionFreeListBytes": {
+            "description": "Process-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
+            "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
+            "title": "Memory Region Free List Bytes",
+            "type": "integer"
+        },
+        "memoryRegionFreeListCount": {
+            "description": "Process-wide count of memory_region allocations on thread free lists.",
+            "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists.",
+            "title": "Memory Region Free List Count",
+            "type": "integer"
+        },
         "memoryRegionFreeListMaxBytes": {
             "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
             "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
             "title": "Memory Region Free List Max Bytes",
+            "type": "integer"
+        },
+        "memoryRegionFreeOverCap": {
+            "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+            "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+            "title": "Memory Region Free Over Cap",
+            "type": "integer"
+        },
+        "memoryRegionGetHits": {
+            "description": "Process-wide count of memory_region get() that reused a free-list region since environment create.",
+            "markdownDescription": "**Memory Region Get Hits**\n\nProcess-wide count of memory_region get() that reused a free-list region since environment create.",
+            "title": "Memory Region Get Hits",
+            "type": "integer"
+        },
+        "memoryRegionGetMisses": {
+            "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
+            "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign since environment create.",
+            "title": "Memory Region Get Misses",
+            "type": "integer"
+        },
+        "memoryRegionPeakBytesInUse": {
+            "description": "High-water of memoryRegionBytesInUse since environment create.",
+            "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create.",
+            "title": "Memory Region Peak Bytes In Use",
+            "type": "integer"
+        },
+        "memoryRegionPeakFreeListBytes": {
+            "description": "High-water of memoryRegionFreeListBytes since environment create.",
+            "markdownDescription": "**Memory Region Peak Free List Bytes**\n\nHigh-water of memoryRegionFreeListBytes since environment create.",
+            "title": "Memory Region Peak Free List Bytes",
+            "type": "integer"
+        },
+        "memoryRegionRegionsInUse": {
+            "description": "Process-wide count of memory_region allocations currently handed out to heaps.",
+            "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps.",
+            "title": "Memory Region Regions In Use",
             "type": "integer"
         },
         "peakPoolBytesInUse": {

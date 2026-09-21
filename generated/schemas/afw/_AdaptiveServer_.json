@@ -37,6 +37,60 @@
                     "title": "Max Concurrent",
                     "type": "integer"
                 },
+                "memoryRegionBytesInUse": {
+                    "description": "Process-wide sum of memory_region bytes currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Bytes In Use**\n\nProcess-wide sum of memory_region bytes currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListBytes": {
+                    "description": "Process-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListCount": {
+                    "description": "Process-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
+                "memoryRegionFreeOverCap": {
+                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free Over Cap",
+                    "type": "integer"
+                },
+                "memoryRegionGetHits": {
+                    "description": "Process-wide count of memory_region get() that reused a free-list region. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Get Hits**\n\nProcess-wide count of memory_region get() that reused a free-list region. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Get Hits",
+                    "type": "integer"
+                },
+                "memoryRegionGetMisses": {
+                    "description": "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Get Misses",
+                    "type": "integer"
+                },
+                "memoryRegionPeakBytesInUse": {
+                    "description": "High-water of memoryRegionBytesInUse since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Peak Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionPeakFreeListBytes": {
+                    "description": "High-water of memoryRegionFreeListBytes since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Peak Free List Bytes**\n\nHigh-water of memoryRegionFreeListBytes since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Peak Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionRegionsInUse": {
+                    "description": "Process-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Regions In Use",
+                    "type": "integer"
+                },
                 "peakPoolBytesInUse": {
                     "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
@@ -151,6 +205,60 @@
                     "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
                     "markdownDescription": "**Max Concurrent**\n\nThis is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
                     "title": "Max Concurrent",
+                    "type": "integer"
+                },
+                "memoryRegionBytesInUse": {
+                    "description": "Process-wide sum of memory_region bytes currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Bytes In Use**\n\nProcess-wide sum of memory_region bytes currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListBytes": {
+                    "description": "Process-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListCount": {
+                    "description": "Process-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
+                "memoryRegionFreeOverCap": {
+                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free Over Cap",
+                    "type": "integer"
+                },
+                "memoryRegionGetHits": {
+                    "description": "Process-wide count of memory_region get() that reused a free-list region. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Get Hits**\n\nProcess-wide count of memory_region get() that reused a free-list region. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Get Hits",
+                    "type": "integer"
+                },
+                "memoryRegionGetMisses": {
+                    "description": "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Get Misses",
+                    "type": "integer"
+                },
+                "memoryRegionPeakBytesInUse": {
+                    "description": "High-water of memoryRegionBytesInUse since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Peak Bytes In Use",
+                    "type": "integer"
+                },
+                "memoryRegionPeakFreeListBytes": {
+                    "description": "High-water of memoryRegionFreeListBytes since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Peak Free List Bytes**\n\nHigh-water of memoryRegionFreeListBytes since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Peak Free List Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionRegionsInUse": {
+                    "description": "Process-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Regions In Use",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -270,6 +378,60 @@
             "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
             "markdownDescription": "**Max Concurrent**\n\nThis is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
             "title": "Max Concurrent",
+            "type": "integer"
+        },
+        "memoryRegionBytesInUse": {
+            "description": "Process-wide sum of memory_region bytes currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Bytes In Use**\n\nProcess-wide sum of memory_region bytes currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Bytes In Use",
+            "type": "integer"
+        },
+        "memoryRegionFreeListBytes": {
+            "description": "Process-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Free List Bytes",
+            "type": "integer"
+        },
+        "memoryRegionFreeListCount": {
+            "description": "Process-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Free List Count",
+            "type": "integer"
+        },
+        "memoryRegionFreeOverCap": {
+            "description": "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Free Over Cap",
+            "type": "integer"
+        },
+        "memoryRegionGetHits": {
+            "description": "Process-wide count of memory_region get() that reused a free-list region. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Get Hits**\n\nProcess-wide count of memory_region get() that reused a free-list region. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Get Hits",
+            "type": "integer"
+        },
+        "memoryRegionGetMisses": {
+            "description": "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Get Misses",
+            "type": "integer"
+        },
+        "memoryRegionPeakBytesInUse": {
+            "description": "High-water of memoryRegionBytesInUse since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Peak Bytes In Use",
+            "type": "integer"
+        },
+        "memoryRegionPeakFreeListBytes": {
+            "description": "High-water of memoryRegionFreeListBytes since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Peak Free List Bytes**\n\nHigh-water of memoryRegionFreeListBytes since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Peak Free List Bytes",
+            "type": "integer"
+        },
+        "memoryRegionRegionsInUse": {
+            "description": "Process-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Regions In Use",
             "type": "integer"
         },
         "peakPoolBytesInUse": {

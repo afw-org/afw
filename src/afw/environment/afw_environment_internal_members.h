@@ -193,6 +193,21 @@
     /** @brief High-water of pool_chunk_bytes. */
     AFW_ATOMIC afw_size_t peak_pool_chunk_bytes;
 
+    /**
+     * @brief Process-wide memory_region stats (sum of per-thread
+     *     instances). Hits/misses/over-cap are counts since env
+     *     create. Live bytes/counts are outstanding now.
+     */
+    AFW_ATOMIC afw_size_t memory_region_bytes_in_use;
+    AFW_ATOMIC afw_size_t memory_region_regions_in_use;
+    AFW_ATOMIC afw_size_t memory_region_free_list_bytes;
+    AFW_ATOMIC afw_size_t memory_region_free_list_count;
+    AFW_ATOMIC afw_size_t memory_region_get_hits;
+    AFW_ATOMIC afw_size_t memory_region_get_misses;
+    AFW_ATOMIC afw_size_t memory_region_free_over_cap;
+    AFW_ATOMIC afw_size_t memory_region_peak_bytes_in_use;
+    AFW_ATOMIC afw_size_t memory_region_peak_free_list_bytes;
+
     /*---------- LOCKS ----------*/
 
     /** @brief Lock for whole environment. */

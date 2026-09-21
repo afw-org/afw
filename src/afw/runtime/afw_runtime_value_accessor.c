@@ -706,6 +706,95 @@ afw_runtime_value_accessor_env_pool_stat(
 }
 
 
+/* --- env_memory_region_stat ---------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_env_memory_region_stat =
+    AFW_UTF8_LITERAL(
+        "Read env process-wide memory_region reuse stats");
+
+static const afw_utf8_t
+impl_description_env_memory_region_stat =
+    AFW_UTF8_LITERAL(
+        "Ignores internal (zeroOffset). Property name selects "
+        "memoryRegionBytesInUse, memoryRegionRegionsInUse, "
+        "memoryRegionFreeListBytes, memoryRegionFreeListCount, "
+        "memoryRegionGetHits, memoryRegionGetMisses, "
+        "memoryRegionFreeOverCap, memoryRegionPeakBytesInUse, or "
+        "memoryRegionPeakFreeListBytes from xctx->env. Integer copy "
+        "in the caller pool. Process-wide sum of per-thread regions.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_env_memory_region_stat = {
+    .key = afw_s_env_memory_region_stat,
+    .function = afw_runtime_value_accessor_env_memory_region_stat,
+    .brief = &impl_brief_env_memory_region_stat,
+    .description = &impl_description_env_memory_region_stat,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_env_memory_region_stat(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_size_t n;
+    const afw_environment_t *env;
+
+    (void)internal;
+    if (!xctx || !xctx->env || !prop || !prop->name) {
+        return NULL;
+    }
+    env = xctx->env;
+    if (afw_value_equal(prop->name, afw_v_memoryRegionBytesInUse, xctx)) {
+        n = env->memory_region_bytes_in_use;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionRegionsInUse, xctx))
+    {
+        n = env->memory_region_regions_in_use;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionFreeListBytes, xctx))
+    {
+        n = env->memory_region_free_list_bytes;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionFreeListCount, xctx))
+    {
+        n = env->memory_region_free_list_count;
+    }
+    else if (afw_value_equal(prop->name, afw_v_memoryRegionGetHits, xctx)) {
+        n = env->memory_region_get_hits;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionGetMisses, xctx))
+    {
+        n = env->memory_region_get_misses;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionFreeOverCap, xctx))
+    {
+        n = env->memory_region_free_over_cap;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionPeakBytesInUse, xctx))
+    {
+        n = env->memory_region_peak_bytes_in_use;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionPeakFreeListBytes, xctx))
+    {
+        n = env->memory_region_peak_free_list_bytes;
+    }
+    else {
+        return NULL;
+    }
+    return afw_value_create_unmanaged_integer((afw_integer_t)n, p, xctx);
+}
+
+
 /* --- env_rss ------------------------------------------------------------- */
 
 static const afw_utf8_t
@@ -1503,6 +1592,7 @@ impl_core_value_accessor_infos[] = {
     &impl_info_null_terminated_array_of_values,
     &impl_info_size,
     &impl_info_env_pool_stat,
+    &impl_info_env_memory_region_stat,
     &impl_info_env_rss,
     &impl_info_env_pid,
     &impl_info_env_program_name,

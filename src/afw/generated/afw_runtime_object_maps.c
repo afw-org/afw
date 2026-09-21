@@ -3906,6 +3906,36 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_size
     },
     {
+        afw_v_memoryRegionBytesInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionFreeListBytes,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionFreeListCount,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
         afw_v_memoryRegionFreeListMaxBytes,
         offsetof(afw_environment_t, memory_region_free_list_max_bytes),
         -1,
@@ -3914,6 +3944,66 @@ impl_properties__AdaptiveProcess_[] = {
         NULL,
         &afw_self_s_size,
         afw_runtime_value_accessor_size
+    },
+    {
+        afw_v_memoryRegionFreeOverCap,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionGetHits,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionGetMisses,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionPeakBytesInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionPeakFreeListBytes,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionRegionsInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
     },
     {
         afw_v_peakPoolBytesInUse,
@@ -4010,7 +4100,7 @@ impl_properties__AdaptiveProcess_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveProcess_ = {
     &afw_self_s__AdaptiveProcess_,
-    18,
+    27,
     &impl_properties__AdaptiveProcess_[0]
 };
 
@@ -4491,6 +4581,96 @@ impl_properties__AdaptiveServer_[] = {
         afw_runtime_value_accessor_default
     },
     {
+        afw_v_memoryRegionBytesInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionFreeListBytes,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionFreeListCount,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionFreeOverCap,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionGetHits,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionGetMisses,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionPeakBytesInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionPeakFreeListBytes,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionRegionsInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
         afw_v_peakPoolBytesInUse,
         0,
         -1,
@@ -4625,7 +4805,7 @@ impl_properties__AdaptiveServer_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveServer_ = {
     &afw_self_s__AdaptiveServer_,
-    17,
+    26,
     &impl_properties__AdaptiveServer_[0]
 };
 

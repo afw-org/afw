@@ -1375,6 +1375,10 @@ Process environment variables and invocation info are created at **environment c
 | **`limitCStackHeadroomBytes`** | Minimum remaining C stack before `payload_too_large` (default 256KiB; **0** = unlimited) |
 | **`chunkMin` / `compileChunkMin` / `xctxChunkMin`** | Heap posix_memalign minima (rounded up to 4k) |
 | **`memoryRegionFreeListMaxBytes`** | Cap on the thread heap-chunk reuse list (default 256KiB; **0** = posix_memalign/free every get/free) |
+| **`memoryRegionBytesInUse` / `memoryRegionRegionsInUse`** | Live region bytes/count handed out to heaps (process-wide) |
+| **`memoryRegionFreeListBytes` / `memoryRegionFreeListCount`** | Live reuse-list bytes/count (not in a heap) |
+| **`memoryRegionGetHits` / `memoryRegionGetMisses` / `memoryRegionFreeOverCap`** | Counts since env create (reuse vs posix_memalign vs over-cap `free()`) |
+| **`memoryRegionPeakBytesInUse` / `memoryRegionPeakFreeListBytes`** | High-water of the live region bytes |
 
 Example:
 
@@ -1384,7 +1388,7 @@ assert(length(process::args) >= 1);
 const home = environment::HOME;
 ```
 
-**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool **currents and peaks**, **`pid`**, **`programName`**, and **`rss`** also appear on **`_AdaptiveServer_/current`** (same process-wide numbers). Limits, chunk mins, and **`memoryRegionFreeListMaxBytes`** are on **`process::`**. Over-limit Adaptive eval throws **`payload_too_large`** (HTTP **413**). Optional **`type=application`** conf overrides any `limit*` / chunk min / this cap (`0` on a limit = unlimited). Flag **`response:metrics`** adds this-request `metrics` on `_AdaptiveResponse_` (off by default).
+**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool **currents and peaks**, **memory_region live/peak/hit counts**, **`pid`**, **`programName`**, and **`rss`** also appear on **`_AdaptiveServer_/current`** (same process-wide numbers). Limits, chunk mins, and **`memoryRegionFreeListMaxBytes`** are on **`process::`**. Over-limit Adaptive eval throws **`payload_too_large`** (HTTP **413**). Optional **`type=application`** conf overrides any `limit*` / chunk min / this cap (`0` on a limit = unlimited). Flag **`response:metrics`** adds this-request `metrics` on `_AdaptiveResponse_` (off by default).
 
 See [Process telemetry](#process-telemetry-and-request-caps-issue-329).
 
