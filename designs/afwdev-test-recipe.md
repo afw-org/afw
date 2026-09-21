@@ -36,7 +36,8 @@ afwdev test -T src/afw/tests-extra/model-lifecycle
 mkdir -p /tmp/afw-overnight-soak
 afwdev test -T src/afw/tests-extra/overnight-soak
 # 8h soak 2026-09-19 passed (~40M requests, RSS plateau ~63–69 MiB).
-# Default duration_s is 20s; bump yaml for another long run.
+# Default: 8 sampled model stop/start cycles, then duration_s 60.
+# Bump yaml duration_s/timeout_s/threads for another long run.
 ```
 
 ### Machine-readable summary (opt-in)

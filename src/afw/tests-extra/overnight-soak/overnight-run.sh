@@ -1,6 +1,7 @@
 #!/bin/sh
 # Optional helper: wipe metrics files and run this leaf.
-# Edit orchestration.yaml duration_s/timeout_s first for a long firehose.
+# Edit orchestration.yaml duration_s/timeout_s/threads first for a long firehose.
+# The default already runs model stop/start 8 times before the 60s firehose.
 set -e
 LEAF="$(cd "$(dirname "$0")" && pwd)"
 mkdir -p /tmp/afw-overnight-soak
