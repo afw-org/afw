@@ -73,13 +73,13 @@ afw_value_permanent_any_inf;
 
 /**
  * @brief Macro to determine if data type is any.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_any(A_DATA_TYPE) \
+#define afw_data_type_is_any(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_any \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_any \
 )
 
 /** @brief struct for data type any values. */

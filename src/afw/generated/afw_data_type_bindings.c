@@ -26,7 +26,7 @@
 #include "afw_data_type_bindings.h"
 
 static const afw_data_type_t * impl_data_type_bindings[] = {
-#define XX(id) &afw_data_type_ ##id##_direct,
+#define XX(_id) &afw_data_type_ ##_id##_direct,
 AFW_DATA_TYPES_MAP(XX)
     NULL
 };

@@ -27,6 +27,15 @@ def write_generated_by(fd, generated_by):
     fd.write(get_generated_by(generated_by))
 
 
+def macro_param(name):
+    """C macro parameter with a leading underscore so it cannot replace a field."""
+    if not name or name == '...':
+        return name
+    if name.startswith('_'):
+        return name
+    return '_' + name
+
+
 def get_copyright(title, copyright):
     #t = title
     #if (len(t) < 73):

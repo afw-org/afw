@@ -205,7 +205,7 @@ def write_h_section(fd, prefix, obj):
     needs_found = direct_return and ctype.find('*') == -1
     needs_found_param = ''
     if needs_found:
-        needs_found_param = 'found, '
+        needs_found_param = '_found, '
     amp_if_needed = ''
     if not direct_return: amp_if_needed='&'
 
@@ -303,47 +303,47 @@ def write_h_section(fd, prefix, obj):
 
     fd.write('\n/**\n')
     fd.write(' * @brief Macro to determine if data type is ' + id + '.\n')
-    fd.write(' * @param A_DATA_TYPE to test.\n')
+    fd.write(' * @param _A_DATA_TYPE to test.\n')
     fd.write(' * @return boolean result.\n')
     fd.write(' */\n')
-    fd.write('#define afw_data_type_is_' + id + '(A_DATA_TYPE) \\\n')
+    fd.write('#define afw_data_type_is_' + id + '(_A_DATA_TYPE) \\\n')
     fd.write('( \\\n')
-    fd.write('    (A_DATA_TYPE) && \\\n')
-    fd.write('    (A_DATA_TYPE) == afw_data_type_' + id + ' \\\n')
+    fd.write('    (_A_DATA_TYPE) && \\\n')
+    fd.write('    (_A_DATA_TYPE) == afw_data_type_' + id + ' \\\n')
     fd.write(')\n')
 
     if not special:
 
         fd.write('\n/**\n')
-        fd.write(' * @brief True if A_VALUE is an evaluated ' + id + ' value.\n')
-        fd.write(' * @param A_VALUE to test.\n')
+        fd.write(' * @brief True if _A_VALUE is an evaluated ' + id + ' value.\n')
+        fd.write(' * @param _A_VALUE to test.\n')
         fd.write(' * @return boolean result.\n')
         fd.write(' *\n')
-        fd.write(' * For evaluated values only. When true, it is safe to cast A_VALUE to\n')
+        fd.write(' * For evaluated values only. When true, it is safe to cast _A_VALUE to\n')
         fd.write(' * `const afw_value_' + id + '_t *`.\n')
         fd.write(' * If you want to know if the value will be ' + id + ' when fully\n')
         fd.write(' * evaluated (not necessarily cast-safe yet), use\n')
-        fd.write(' * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, ' + id + ', xctx)` instead.\n')
+        fd.write(' * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, ' + id + ', xctx)` instead.\n')
         fd.write(' */\n')
-        fd.write('#define afw_value_is_' + id + '(A_VALUE) \\\n')
+        fd.write('#define afw_value_is_' + id + '(_A_VALUE) \\\n')
         fd.write('( \\\n')
-        fd.write('    (A_VALUE) && \\\n')
-        fd.write('    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_' + id + '\\\n')
+        fd.write('    (_A_VALUE) && \\\n')
+        fd.write('    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_' + id + '\\\n')
         fd.write(')\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief True if A_VALUE is an evaluated array of ' + id + '.\n')
-        fd.write(' * @param A_VALUE to test.\n')
+        fd.write(' * @brief True if _A_VALUE is an evaluated array of ' + id + '.\n')
+        fd.write(' * @param _A_VALUE to test.\n')
         fd.write(' * @return boolean result.\n')
         fd.write(' *\n')
-        fd.write(' * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)\n')
+        fd.write(' * When true, _A_VALUE is an evaluated array (`const afw_value_array_t *`)\n')
         fd.write(' * whose element data type is ' + id + '.\n')
         fd.write(' */\n')
-        fd.write('#define afw_value_is_array_of_' + id + '(A_VALUE) \\\n')
+        fd.write('#define afw_value_is_array_of_' + id + '(_A_VALUE) \\\n')
         fd.write('( \\\n')
-        fd.write('    afw_value_is_array(A_VALUE) && \\\n')
+        fd.write('    afw_value_is_array(_A_VALUE) && \\\n')
         fd.write('    afw_array_get_data_type( \\\n')
-        fd.write('        ((const afw_value_array_t *)(A_VALUE))->internal, \\\n')
+        fd.write('        ((const afw_value_array_t *)(_A_VALUE))->internal, \\\n')
         fd.write('        xctx) == afw_data_type_' + id + ' \\\n')
         fd.write(')\n')
 
@@ -667,9 +667,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * Does not evaluate. Throws if present but not ' + id + '.\n')
         fd.write(' */\n')
         fd.write('#define afw_object_get_property_as_' + id + '( \\\n')
-        fd.write('    object, property_name, xctx) \\\n')
+        fd.write('    _object, _property_name, _xctx) \\\n')
         fd.write('afw_object_get_property_as_' + id + '_source( \\\n')
-        fd.write('    object, property_name, AFW__FILE_LINE__, xctx)\n')
+        fd.write('    _object, _property_name, AFW__FILE_LINE__, _xctx)\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get property as ' + id + ' value.\n')
@@ -696,9 +696,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return ' + return_type + '.\n')
         fd.write(' */\n')
         fd.write('#define afw_object_get_property_as_' + id + '_internal( \\\n')
-        fd.write('    object, property_name, ' + needs_found_param + 'xctx) \\\n')
+        fd.write('    _object, _property_name, ' + needs_found_param + '_xctx) \\\n')
         fd.write('afw_object_get_property_as_' + id + '_internal_source( \\\n')
-        fd.write('    object, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, xctx)\n')
+        fd.write('    _object, _property_name, ' + needs_found_param + 'AFW__FILE_LINE__, _xctx)\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get property as ' + id + ' internal.\n')
@@ -728,9 +728,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return (const afw_value_' + id + '_t *) or NULL if no more.\n')
         fd.write(' */\n')
         fd.write('#define afw_object_get_next_property_as_' + id + '( \\\n')
-        fd.write('    object, iterator, property_name, xctx) \\\n')
+        fd.write('    _object, _iterator, _property_name, _xctx) \\\n')
         fd.write('afw_object_get_next_property_as_' + id + '_source( \\\n')
-        fd.write('    object, iterator, property_name, AFW__FILE_LINE__, xctx)\n')
+        fd.write('    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get next property as ' + id + ' value.\n')
@@ -760,9 +760,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return ' + return_type + '.\n')
         fd.write(' */\n')
         fd.write('#define afw_object_get_next_property_as_' + id + '_internal( \\\n')
-        fd.write('    object, iterator, property_name, ' + needs_found_param + 'xctx) \\\n')
+        fd.write('    _object, _iterator, _property_name, ' + needs_found_param + '_xctx) \\\n')
         fd.write('afw_object_get_next_property_as_' + id + '_internal_source( \\\n')
-        fd.write('    object, iterator, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, xctx)\n')
+        fd.write('    _object, _iterator, _property_name, ' + needs_found_param + 'AFW__FILE_LINE__, _xctx)\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get next property as ' + id + ' internal.\n')
@@ -841,9 +841,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * you want to start from the first value again.\n')
         fd.write(' */\n')
         fd.write('#define afw_array_of_' + id + '_get_next( \\\n')
-        fd.write('    array, iterator, xctx) \\\n')
+        fd.write('    _array, _iterator, _xctx) \\\n')
         fd.write('    afw_array_of_' + id + '_get_next_source( \\\n')
-        fd.write('    array, iterator, AFW__FILE_LINE__, xctx)\n')
+        fd.write('    _array, _iterator, AFW__FILE_LINE__, _xctx)\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get next ' + id + ' value from array of ' + id + '.\n')
@@ -870,9 +870,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return (' + return_type + ') or NULL.\n')
         fd.write(' */\n')
         fd.write('#define afw_array_of_' + id + '_get_next_internal( \\\n')
-        fd.write('    array, iterator, ' + needs_found_param + 'xctx) \\\n')
+        fd.write('    _array, _iterator, ' + needs_found_param + '_xctx) \\\n')
         fd.write('    afw_array_of_' + id + '_get_next_internal_source( \\\n')
-        fd.write('    array, iterator, ' + needs_found_param + 'AFW__FILE_LINE__, xctx)\n')
+        fd.write('    _array, _iterator, ' + needs_found_param + 'AFW__FILE_LINE__, _xctx)\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get next ' + id + ' internal from array of ' + id + '.\n')
@@ -987,7 +987,7 @@ def write_c_section(fd, prefix, obj):
     needs_found = direct_return and ctype.find('*') == -1
     needs_found_param = ''
     if needs_found:
-        needs_found_param = 'found, '
+        needs_found_param = '_found, '
     amp_if_needed = ''
     if not direct_return: amp_if_needed='&'
 
@@ -2841,10 +2841,10 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
         fd.write('\n/**\n')
         fd.write(' * @brief Data type map.\n')
         fd.write(' */\n')
-        fd.write('#define ' + prefix.upper() + 'DATA_TYPES_MAP(XX) \\\n')
+        fd.write('#define ' + prefix.upper() + 'DATA_TYPES_MAP(_XX) \\\n')
         for obj in data_type_array:
             id = obj['_meta_']['objectId']
-            fd.write('    XX(' + id + ') \\\n')
+            fd.write('    _XX(' + id + ') \\\n')
         fd.write('\n')
 
         if options['core']: 
@@ -2853,7 +2853,7 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
             fd.write(' */\n')
             fd.write('typedef enum afw_data_type_number_e {\n')
             fd.write('    afw_data_type_number_special,\n')
-            fd.write('#define XX(id) afw_data_type_number_ ## id,\n')
+            fd.write('#define XX(_id) afw_data_type_number_ ## _id,\n')
             fd.write('    AFW_DATA_TYPES_MAP(XX)\n')
             fd.write('    #undef XX\n')
             fd.write('    afw_data_type_number_max\n')
@@ -2898,7 +2898,7 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
         fd.write('#include "' + prefix + 'data_type_bindings.h"\n')
         fd.write('\n')
         fd.write('static const afw_data_type_t * ' + 'impl_data_type_bindings[] = {\n')
-        fd.write('#define XX(id) &' + prefix + 'data_type_ ##id##_direct,\n')
+        fd.write('#define XX(_id) &' + prefix + 'data_type_ ##_id##_direct,\n')
         fd.write(prefix.upper() + 'DATA_TYPES_MAP(XX)\n')
         fd.write('    NULL\n')
         fd.write('};\n')

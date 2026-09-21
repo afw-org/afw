@@ -73,13 +73,13 @@ afw_value_permanent_undefined_inf;
 
 /**
  * @brief Macro to determine if data type is undefined.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_undefined(A_DATA_TYPE) \
+#define afw_data_type_is_undefined(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_undefined \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_undefined \
 )
 
 /** @brief struct for data type undefined values. */

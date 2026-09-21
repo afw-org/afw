@@ -109,45 +109,45 @@ afw_value_permanent_template_inf;
 
 /**
  * @brief Macro to determine if data type is template.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_template(A_DATA_TYPE) \
+#define afw_data_type_is_template(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_template \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_template \
 )
 
 /**
- * @brief True if A_VALUE is an evaluated template value.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated template value.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * For evaluated values only. When true, it is safe to cast _A_VALUE to
  * `const afw_value_template_t *`.
  * If you want to know if the value will be template when fully
  * evaluated (not necessarily cast-safe yet), use
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, template, xctx)` instead.
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, template, xctx)` instead.
  */
-#define afw_value_is_template(A_VALUE) \
+#define afw_value_is_template(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_template\
+    (_A_VALUE) && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_template\
 )
 
 /**
- * @brief True if A_VALUE is an evaluated array of template.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated array of template.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * When true, _A_VALUE is an evaluated array (`const afw_value_array_t *`)
  * whose element data type is template.
  */
-#define afw_value_is_array_of_template(A_VALUE) \
+#define afw_value_is_array_of_template(_A_VALUE) \
 ( \
-    afw_value_is_array(A_VALUE) && \
+    afw_value_is_array(_A_VALUE) && \
     afw_array_get_data_type( \
-        ((const afw_value_array_t *)(A_VALUE))->internal, \
+        ((const afw_value_array_t *)(_A_VALUE))->internal, \
         xctx) == afw_data_type_template \
 )
 
@@ -371,9 +371,9 @@ afw_value_template_create(const afw_utf8_t * internal,
  * Does not evaluate. Throws if present but not template.
  */
 #define afw_object_get_property_as_template( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_template_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as template value.
@@ -398,9 +398,9 @@ afw_object_get_property_as_template_source(
  * @return const afw_utf8_t *.
  */
 #define afw_object_get_property_as_template_internal( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_template_internal_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as template internal.
@@ -426,9 +426,9 @@ afw_object_get_property_as_template_internal_source(
  * @return (const afw_value_template_t *) or NULL if no more.
  */
 #define afw_object_get_next_property_as_template( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_template_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as template value.
@@ -456,9 +456,9 @@ afw_object_get_next_property_as_template_source(
  * @return const afw_utf8_t *.
  */
 #define afw_object_get_next_property_as_template_internal( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_template_internal_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as template internal.
@@ -524,9 +524,9 @@ afw_object_set_property_as_template_internal(
  * you want to start from the first value again.
  */
 #define afw_array_of_template_get_next( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_template_get_next_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next template value from array of template.
@@ -551,9 +551,9 @@ afw_array_of_template_get_next_source(
  * @return (const afw_utf8_t *) or NULL.
  */
 #define afw_array_of_template_get_next_internal( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_template_get_next_internal_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next template internal from array of template.

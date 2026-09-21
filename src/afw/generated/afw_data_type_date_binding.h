@@ -98,45 +98,45 @@ afw_value_permanent_date_inf;
 
 /**
  * @brief Macro to determine if data type is date.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_date(A_DATA_TYPE) \
+#define afw_data_type_is_date(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_date \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_date \
 )
 
 /**
- * @brief True if A_VALUE is an evaluated date value.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated date value.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * For evaluated values only. When true, it is safe to cast _A_VALUE to
  * `const afw_value_date_t *`.
  * If you want to know if the value will be date when fully
  * evaluated (not necessarily cast-safe yet), use
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, date, xctx)` instead.
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, date, xctx)` instead.
  */
-#define afw_value_is_date(A_VALUE) \
+#define afw_value_is_date(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_date\
+    (_A_VALUE) && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_date\
 )
 
 /**
- * @brief True if A_VALUE is an evaluated array of date.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated array of date.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * When true, _A_VALUE is an evaluated array (`const afw_value_array_t *`)
  * whose element data type is date.
  */
-#define afw_value_is_array_of_date(A_VALUE) \
+#define afw_value_is_array_of_date(_A_VALUE) \
 ( \
-    afw_value_is_array(A_VALUE) && \
+    afw_value_is_array(_A_VALUE) && \
     afw_array_get_data_type( \
-        ((const afw_value_array_t *)(A_VALUE))->internal, \
+        ((const afw_value_array_t *)(_A_VALUE))->internal, \
         xctx) == afw_data_type_date \
 )
 
@@ -315,9 +315,9 @@ afw_value_date_create(const afw_date_t * internal,
  * Does not evaluate. Throws if present but not date.
  */
 #define afw_object_get_property_as_date( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_date_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as date value.
@@ -342,9 +342,9 @@ afw_object_get_property_as_date_source(
  * @return const afw_date_t *.
  */
 #define afw_object_get_property_as_date_internal( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_date_internal_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as date internal.
@@ -370,9 +370,9 @@ afw_object_get_property_as_date_internal_source(
  * @return (const afw_value_date_t *) or NULL if no more.
  */
 #define afw_object_get_next_property_as_date( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_date_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as date value.
@@ -400,9 +400,9 @@ afw_object_get_next_property_as_date_source(
  * @return const afw_date_t *.
  */
 #define afw_object_get_next_property_as_date_internal( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_date_internal_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as date internal.
@@ -468,9 +468,9 @@ afw_object_set_property_as_date_internal(
  * you want to start from the first value again.
  */
 #define afw_array_of_date_get_next( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_date_get_next_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next date value from array of date.
@@ -495,9 +495,9 @@ afw_array_of_date_get_next_source(
  * @return (const afw_date_t *) or NULL.
  */
 #define afw_array_of_date_get_next_internal( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_date_get_next_internal_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next date internal from array of date.

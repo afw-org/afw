@@ -651,10 +651,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('\n/**\n')
             fd.write(' * @brief Data type method id map for ' + prefix + '\n')
             fd.write(' */\n')
-            c.write_wrapped(fd, 80, '', '#define ' + prefix.upper() + 'DATA_TYPE_METHOD_ID_MAP(XX)',
+            c.write_wrapped(fd, 80, '', '#define ' + prefix.upper() + 'DATA_TYPE_METHOD_ID_MAP(_XX)',
                 last_char='\\')
             for id in dataTypeMethod:
-                c.write_wrapped(fd, 80, '    XX(', id + ')', last_char='\\')
+                c.write_wrapped(fd, 80, '    _XX(', id + ')', last_char='\\')
             fd.write('\n')
             fd.write('\n/**\n')
             fd.write(' * @brief Data type method number enum for ' + prefix + '\n')
@@ -664,7 +664,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write(' */\n')
             fd.write('typedef enum ' + prefix + 'data_type_method_number_e {\n')
             fd.write('    ' + prefix + 'data_type_method_number_unassigned = 0,\n')
-            fd.write('#define XX(id) ' + prefix + 'data_type_method_number_ ## id,\n')
+            fd.write('#define XX(_id) ' + prefix + 'data_type_method_number_ ## _id,\n')
             fd.write('    ' + prefix.upper() + 'DATA_TYPE_METHOD_ID_MAP(XX)\n')
             fd.write('#undef XX\n')
             fd.write('    ' + prefix + 'data_type_method_number__max\n')

@@ -135,16 +135,16 @@ struct afw_extension_inf_s {
  * @see @ref afw_extension_s "afw_extension_t"
  */
 #define afw_extension_initialize( \
-    instance, \
-    properties, \
-    p, \
-    xctx \
+    _instance, \
+    _properties, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->initialize( \
-    (instance), \
-    (properties), \
-    (p), \
-    (xctx) \
+(_instance)->inf->initialize( \
+    (_instance), \
+    (_properties), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -157,12 +157,12 @@ struct afw_extension_inf_s {
  * @see @ref afw_extension_s "afw_extension_t"
  */
 #define afw_extension_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -241,16 +241,16 @@ struct afw_adapter_factory_inf_s {
  * @see @ref afw_adapter_factory_s "afw_adapter_factory_t"
  */
 #define afw_adapter_factory_create_adapter_cede_p( \
-    instance, \
-    properties, \
-    p, \
-    xctx \
+    _instance, \
+    _properties, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->create_adapter_cede_p( \
-    (instance), \
-    (properties), \
-    (p), \
-    (xctx) \
+(_instance)->inf->create_adapter_cede_p( \
+    (_instance), \
+    (_properties), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -393,12 +393,12 @@ struct afw_adapter_inf_s {
  * @see @ref afw_adapter_s "afw_adapter_t"
  */
 #define afw_adapter_destroy( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->destroy( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->destroy( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -415,12 +415,12 @@ struct afw_adapter_inf_s {
  * @see @ref afw_adapter_s "afw_adapter_t"
  */
 #define afw_adapter_create_adapter_session( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->create_adapter_session( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->create_adapter_session( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -435,14 +435,14 @@ struct afw_adapter_inf_s {
  * @see @ref afw_adapter_s "afw_adapter_t"
  */
 #define afw_adapter_get_additional_metrics( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_additional_metrics( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_additional_metrics( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -535,16 +535,16 @@ struct afw_adapter_object_type_cache_inf_s {
  * @see @ref afw_adapter_object_type_cache_s "afw_adapter_object_type_cache_t"
  */
 #define afw_adapter_object_type_cache_get( \
-    instance, \
-    object_type_id, \
-    final_result, \
-    xctx \
+    _instance, \
+    _object_type_id, \
+    _final_result, \
+    _xctx \
 ) \
-(instance)->inf->get( \
-    (instance), \
-    (object_type_id), \
-    (final_result), \
-    (xctx) \
+(_instance)->inf->get( \
+    (_instance), \
+    (_object_type_id), \
+    (_final_result), \
+    (_xctx) \
 )
 
 /**
@@ -558,14 +558,14 @@ struct afw_adapter_object_type_cache_inf_s {
  * @see @ref afw_adapter_object_type_cache_s "afw_adapter_object_type_cache_t"
  */
 #define afw_adapter_object_type_cache_set( \
-    instance, \
-    object_type, \
-    xctx \
+    _instance, \
+    _object_type, \
+    _xctx \
 ) \
-(instance)->inf->set( \
-    (instance), \
-    (object_type), \
-    (xctx) \
+(_instance)->inf->set( \
+    (_instance), \
+    (_object_type), \
+    (_xctx) \
 )
 
 /** @} */
@@ -753,12 +753,12 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_destroy( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->destroy( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->destroy( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -790,26 +790,26 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_retrieve_objects( \
-    instance, \
-    impl_request, \
-    object_type_id, \
-    criteria, \
-    context, \
-    callback, \
-    adapter_type_specific, \
-    p, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _object_type_id, \
+    _criteria, \
+    _context, \
+    _callback, \
+    _adapter_type_specific, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->retrieve_objects( \
-    (instance), \
-    (impl_request), \
-    (object_type_id), \
-    (criteria), \
-    (context), \
-    (callback), \
-    (adapter_type_specific), \
-    (p), \
-    (xctx) \
+(_instance)->inf->retrieve_objects( \
+    (_instance), \
+    (_impl_request), \
+    (_object_type_id), \
+    (_criteria), \
+    (_context), \
+    (_callback), \
+    (_adapter_type_specific), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -839,26 +839,26 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_get_object( \
-    instance, \
-    impl_request, \
-    object_type_id, \
-    object_id, \
-    context, \
-    callback, \
-    adapter_type_specific, \
-    p, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _object_type_id, \
+    _object_id, \
+    _context, \
+    _callback, \
+    _adapter_type_specific, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_object( \
-    (instance), \
-    (impl_request), \
-    (object_type_id), \
-    (object_id), \
-    (context), \
-    (callback), \
-    (adapter_type_specific), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_object( \
+    (_instance), \
+    (_impl_request), \
+    (_object_type_id), \
+    (_object_id), \
+    (_context), \
+    (_callback), \
+    (_adapter_type_specific), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -893,22 +893,22 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_add_object( \
-    instance, \
-    impl_request, \
-    object_type_id, \
-    suggested_object_id, \
-    object, \
-    adapter_type_specific, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _object_type_id, \
+    _suggested_object_id, \
+    _object, \
+    _adapter_type_specific, \
+    _xctx \
 ) \
-(instance)->inf->add_object( \
-    (instance), \
-    (impl_request), \
-    (object_type_id), \
-    (suggested_object_id), \
-    (object), \
-    (adapter_type_specific), \
-    (xctx) \
+(_instance)->inf->add_object( \
+    (_instance), \
+    (_impl_request), \
+    (_object_type_id), \
+    (_suggested_object_id), \
+    (_object), \
+    (_adapter_type_specific), \
+    (_xctx) \
 )
 
 /**
@@ -934,22 +934,22 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_modify_object( \
-    instance, \
-    impl_request, \
-    object_type_id, \
-    object_id, \
-    entry, \
-    adapter_type_specific, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _object_type_id, \
+    _object_id, \
+    _entry, \
+    _adapter_type_specific, \
+    _xctx \
 ) \
-(instance)->inf->modify_object( \
-    (instance), \
-    (impl_request), \
-    (object_type_id), \
-    (object_id), \
-    (entry), \
-    (adapter_type_specific), \
-    (xctx) \
+(_instance)->inf->modify_object( \
+    (_instance), \
+    (_impl_request), \
+    (_object_type_id), \
+    (_object_id), \
+    (_entry), \
+    (_adapter_type_specific), \
+    (_xctx) \
 )
 
 /**
@@ -973,22 +973,22 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_replace_object( \
-    instance, \
-    impl_request, \
-    object_type_id, \
-    object_id, \
-    replacement_object, \
-    adapter_type_specific, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _object_type_id, \
+    _object_id, \
+    _replacement_object, \
+    _adapter_type_specific, \
+    _xctx \
 ) \
-(instance)->inf->replace_object( \
-    (instance), \
-    (impl_request), \
-    (object_type_id), \
-    (object_id), \
-    (replacement_object), \
-    (adapter_type_specific), \
-    (xctx) \
+(_instance)->inf->replace_object( \
+    (_instance), \
+    (_impl_request), \
+    (_object_type_id), \
+    (_object_id), \
+    (_replacement_object), \
+    (_adapter_type_specific), \
+    (_xctx) \
 )
 
 /**
@@ -1012,20 +1012,20 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_delete_object( \
-    instance, \
-    impl_request, \
-    object_type_id, \
-    object_id, \
-    adapter_type_specific, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _object_type_id, \
+    _object_id, \
+    _adapter_type_specific, \
+    _xctx \
 ) \
-(instance)->inf->delete_object( \
-    (instance), \
-    (impl_request), \
-    (object_type_id), \
-    (object_id), \
-    (adapter_type_specific), \
-    (xctx) \
+(_instance)->inf->delete_object( \
+    (_instance), \
+    (_impl_request), \
+    (_object_type_id), \
+    (_object_id), \
+    (_adapter_type_specific), \
+    (_xctx) \
 )
 
 /**
@@ -1044,12 +1044,12 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_begin_transaction( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->begin_transaction( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->begin_transaction( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1064,12 +1064,12 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_get_journal_interface( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_journal_interface( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_journal_interface( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1084,12 +1084,12 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_get_key_value_interface( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_key_value_interface( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_key_value_interface( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1103,12 +1103,12 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_get_index_interface( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_index_interface( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_index_interface( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1124,12 +1124,12 @@ struct afw_adapter_session_inf_s {
  * @see @ref afw_adapter_session_s "afw_adapter_session_t"
  */
 #define afw_adapter_session_get_object_type_cache_interface( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_object_type_cache_interface( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_object_type_cache_interface( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -1197,12 +1197,12 @@ struct afw_adapter_transaction_inf_s {
  * @see @ref afw_adapter_transaction_s "afw_adapter_transaction_t"
  */
 #define afw_adapter_transaction_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1215,12 +1215,12 @@ struct afw_adapter_transaction_inf_s {
  * @see @ref afw_adapter_transaction_s "afw_adapter_transaction_t"
  */
 #define afw_adapter_transaction_commit( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->commit( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->commit( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -1325,12 +1325,12 @@ struct afw_adapter_impl_index_cursor_inf_s {
  * @see @ref afw_adapter_impl_index_cursor_s "afw_adapter_impl_index_cursor_t"
  */
 #define afw_adapter_impl_index_cursor_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1346,14 +1346,14 @@ struct afw_adapter_impl_index_cursor_inf_s {
  * @see @ref afw_adapter_impl_index_cursor_s "afw_adapter_impl_index_cursor_t"
  */
 #define afw_adapter_impl_index_cursor_get_next_object( \
-    instance, \
-    pool, \
-    xctx \
+    _instance, \
+    _pool, \
+    _xctx \
 ) \
-(instance)->inf->get_next_object( \
-    (instance), \
-    (pool), \
-    (xctx) \
+(_instance)->inf->get_next_object( \
+    (_instance), \
+    (_pool), \
+    (_xctx) \
 )
 
 /**
@@ -1369,14 +1369,14 @@ struct afw_adapter_impl_index_cursor_inf_s {
  * @see @ref afw_adapter_impl_index_cursor_s "afw_adapter_impl_index_cursor_t"
  */
 #define afw_adapter_impl_index_cursor_contains_object( \
-    instance, \
-    object, \
-    xctx \
+    _instance, \
+    _object, \
+    _xctx \
 ) \
-(instance)->inf->contains_object( \
-    (instance), \
-    (object), \
-    (xctx) \
+(_instance)->inf->contains_object( \
+    (_instance), \
+    (_object), \
+    (_xctx) \
 )
 
 /**
@@ -1393,14 +1393,14 @@ struct afw_adapter_impl_index_cursor_inf_s {
  * @see @ref afw_adapter_impl_index_cursor_s "afw_adapter_impl_index_cursor_t"
  */
 #define afw_adapter_impl_index_cursor_inner_join( \
-    instance, \
-    cursor, \
-    xctx \
+    _instance, \
+    _cursor, \
+    _xctx \
 ) \
-(instance)->inf->inner_join( \
-    (instance), \
-    (cursor), \
-    (xctx) \
+(_instance)->inf->inner_join( \
+    (_instance), \
+    (_cursor), \
+    (_xctx) \
 )
 
 /**
@@ -1416,14 +1416,14 @@ struct afw_adapter_impl_index_cursor_inf_s {
  * @see @ref afw_adapter_impl_index_cursor_s "afw_adapter_impl_index_cursor_t"
  */
 #define afw_adapter_impl_index_cursor_get_count( \
-    instance, \
-    count, \
-    xctx \
+    _instance, \
+    _count, \
+    _xctx \
 ) \
-(instance)->inf->get_count( \
-    (instance), \
-    (count), \
-    (xctx) \
+(_instance)->inf->get_count( \
+    (_instance), \
+    (_count), \
+    (_xctx) \
 )
 
 /** @} */
@@ -1520,18 +1520,18 @@ struct afw_adapter_key_value_inf_s {
  * @see @ref afw_adapter_key_value_s "afw_adapter_key_value_t"
  */
 #define afw_adapter_key_value_add( \
-    instance, \
-    namespace, \
-    key, \
-    value, \
-    xctx \
+    _instance, \
+    _namespace, \
+    _key, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->add( \
-    (instance), \
-    (namespace), \
-    (key), \
-    (value), \
-    (xctx) \
+(_instance)->inf->add( \
+    (_instance), \
+    (_namespace), \
+    (_key), \
+    (_value), \
+    (_xctx) \
 )
 
 /**
@@ -1548,20 +1548,20 @@ struct afw_adapter_key_value_inf_s {
  * @see @ref afw_adapter_key_value_s "afw_adapter_key_value_t"
  */
 #define afw_adapter_key_value_delete( \
-    instance, \
-    namespace, \
-    key, \
-    value, \
-    must_exist, \
-    xctx \
+    _instance, \
+    _namespace, \
+    _key, \
+    _value, \
+    _must_exist, \
+    _xctx \
 ) \
-(instance)->inf->delete( \
-    (instance), \
-    (namespace), \
-    (key), \
-    (value), \
-    (must_exist), \
-    (xctx) \
+(_instance)->inf->delete( \
+    (_instance), \
+    (_namespace), \
+    (_key), \
+    (_value), \
+    (_must_exist), \
+    (_xctx) \
 )
 
 /**
@@ -1579,20 +1579,20 @@ struct afw_adapter_key_value_inf_s {
  * @see @ref afw_adapter_key_value_s "afw_adapter_key_value_t"
  */
 #define afw_adapter_key_value_replace( \
-    instance, \
-    namespace, \
-    key, \
-    value, \
-    must_exist, \
-    xctx \
+    _instance, \
+    _namespace, \
+    _key, \
+    _value, \
+    _must_exist, \
+    _xctx \
 ) \
-(instance)->inf->replace( \
-    (instance), \
-    (namespace), \
-    (key), \
-    (value), \
-    (must_exist), \
-    (xctx) \
+(_instance)->inf->replace( \
+    (_instance), \
+    (_namespace), \
+    (_key), \
+    (_value), \
+    (_must_exist), \
+    (_xctx) \
 )
 
 /**
@@ -1608,16 +1608,16 @@ struct afw_adapter_key_value_inf_s {
  * @see @ref afw_adapter_key_value_s "afw_adapter_key_value_t"
  */
 #define afw_adapter_key_value_get( \
-    instance, \
-    namespace, \
-    key, \
-    xctx \
+    _instance, \
+    _namespace, \
+    _key, \
+    _xctx \
 ) \
-(instance)->inf->get( \
-    (instance), \
-    (namespace), \
-    (key), \
-    (xctx) \
+(_instance)->inf->get( \
+    (_instance), \
+    (_namespace), \
+    (_key), \
+    (_xctx) \
 )
 
 /** @} */
@@ -1773,22 +1773,22 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_open( \
-    instance, \
-    object_type_id, \
-    key, \
-    unique, \
-    reverse, \
-    pool, \
-    xctx \
+    _instance, \
+    _object_type_id, \
+    _key, \
+    _unique, \
+    _reverse, \
+    _pool, \
+    _xctx \
 ) \
-(instance)->inf->open( \
-    (instance), \
-    (object_type_id), \
-    (key), \
-    (unique), \
-    (reverse), \
-    (pool), \
-    (xctx) \
+(_instance)->inf->open( \
+    (_instance), \
+    (_object_type_id), \
+    (_key), \
+    (_unique), \
+    (_reverse), \
+    (_pool), \
+    (_xctx) \
 )
 
 /**
@@ -1801,12 +1801,12 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1821,12 +1821,12 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_get_index_definitions( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_index_definitions( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_index_definitions( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -1842,14 +1842,14 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_update_index_definitions( \
-    instance, \
-    indexDefinitions, \
-    xctx \
+    _instance, \
+    _indexDefinitions, \
+    _xctx \
 ) \
-(instance)->inf->update_index_definitions( \
-    (instance), \
-    (indexDefinitions), \
-    (xctx) \
+(_instance)->inf->update_index_definitions( \
+    (_instance), \
+    (_indexDefinitions), \
+    (_xctx) \
 )
 
 /**
@@ -1873,24 +1873,24 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_add( \
-    instance, \
-    object_type_id, \
-    object_id, \
-    key, \
-    value, \
-    unique, \
-    pool, \
-    xctx \
+    _instance, \
+    _object_type_id, \
+    _object_id, \
+    _key, \
+    _value, \
+    _unique, \
+    _pool, \
+    _xctx \
 ) \
-(instance)->inf->add( \
-    (instance), \
-    (object_type_id), \
-    (object_id), \
-    (key), \
-    (value), \
-    (unique), \
-    (pool), \
-    (xctx) \
+(_instance)->inf->add( \
+    (_instance), \
+    (_object_type_id), \
+    (_object_id), \
+    (_key), \
+    (_value), \
+    (_unique), \
+    (_pool), \
+    (_xctx) \
 )
 
 /**
@@ -1913,22 +1913,22 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_delete( \
-    instance, \
-    object_type_id, \
-    object_id, \
-    key, \
-    value, \
-    pool, \
-    xctx \
+    _instance, \
+    _object_type_id, \
+    _object_id, \
+    _key, \
+    _value, \
+    _pool, \
+    _xctx \
 ) \
-(instance)->inf->delete( \
-    (instance), \
-    (object_type_id), \
-    (object_id), \
-    (key), \
-    (value), \
-    (pool), \
-    (xctx) \
+(_instance)->inf->delete( \
+    (_instance), \
+    (_object_type_id), \
+    (_object_id), \
+    (_key), \
+    (_value), \
+    (_pool), \
+    (_xctx) \
 )
 
 /**
@@ -1951,18 +1951,18 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_drop( \
-    instance, \
-    object_type_id, \
-    key, \
-    pool, \
-    xctx \
+    _instance, \
+    _object_type_id, \
+    _key, \
+    _pool, \
+    _xctx \
 ) \
-(instance)->inf->drop( \
-    (instance), \
-    (object_type_id), \
-    (key), \
-    (pool), \
-    (xctx) \
+(_instance)->inf->drop( \
+    (_instance), \
+    (_object_type_id), \
+    (_key), \
+    (_pool), \
+    (_xctx) \
 )
 
 /**
@@ -1986,24 +1986,24 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_open_cursor( \
-    instance, \
-    object_type_id, \
-    index_key, \
-    operator, \
-    value, \
-    unique, \
-    pool, \
-    xctx \
+    _instance, \
+    _object_type_id, \
+    _index_key, \
+    _operator, \
+    _value, \
+    _unique, \
+    _pool, \
+    _xctx \
 ) \
-(instance)->inf->open_cursor( \
-    (instance), \
-    (object_type_id), \
-    (index_key), \
-    (operator), \
-    (value), \
-    (unique), \
-    (pool), \
-    (xctx) \
+(_instance)->inf->open_cursor( \
+    (_instance), \
+    (_object_type_id), \
+    (_index_key), \
+    (_operator), \
+    (_value), \
+    (_unique), \
+    (_pool), \
+    (_xctx) \
 )
 
 /**
@@ -2017,12 +2017,12 @@ struct afw_adapter_impl_index_inf_s {
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
 #define afw_adapter_impl_index_get_session( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_session( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_session( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -2099,16 +2099,16 @@ struct afw_authorization_handler_factory_inf_s {
  * @see @ref afw_authorization_handler_factory_s "afw_authorization_handler_factory_t"
  */
 #define afw_authorization_handler_factory_create_authorization_handler_cede_p( \
-    instance, \
-    properties, \
-    p, \
-    xctx \
+    _instance, \
+    _properties, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->create_authorization_handler_cede_p( \
-    (instance), \
-    (properties), \
-    (p), \
-    (xctx) \
+(_instance)->inf->create_authorization_handler_cede_p( \
+    (_instance), \
+    (_properties), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -2282,12 +2282,12 @@ struct afw_authorization_handler_inf_s {
  * @see @ref afw_authorization_handler_s "afw_authorization_handler_t"
  */
 #define afw_authorization_handler_destroy( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->destroy( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->destroy( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -2306,20 +2306,20 @@ struct afw_authorization_handler_inf_s {
  * @see @ref afw_authorization_handler_s "afw_authorization_handler_t"
  */
 #define afw_authorization_handler_check( \
-    instance, \
-    resource_id, \
-    object, \
-    action_id, \
-    p, \
-    xctx \
+    _instance, \
+    _resource_id, \
+    _object, \
+    _action_id, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->check( \
-    (instance), \
-    (resource_id), \
-    (object), \
-    (action_id), \
-    (p), \
-    (xctx) \
+(_instance)->inf->check( \
+    (_instance), \
+    (_resource_id), \
+    (_object), \
+    (_action_id), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -2440,18 +2440,18 @@ struct afw_content_type_inf_s {
  * @see @ref afw_content_type_s "afw_content_type_t"
  */
 #define afw_content_type_raw_to_value( \
-    instance, \
-    raw, \
-    source_location, \
-    p, \
-    xctx \
+    _instance, \
+    _raw, \
+    _source_location, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->raw_to_value( \
-    (instance), \
-    (raw), \
-    (source_location), \
-    (p), \
-    (xctx) \
+(_instance)->inf->raw_to_value( \
+    (_instance), \
+    (_raw), \
+    (_source_location), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -2474,26 +2474,26 @@ struct afw_content_type_inf_s {
  * @see @ref afw_content_type_s "afw_content_type_t"
  */
 #define afw_content_type_raw_to_object( \
-    instance, \
-    raw, \
-    source_location, \
-    adapter_id, \
-    object_type_id, \
-    object_id, \
-    cede_p, \
-    p, \
-    xctx \
+    _instance, \
+    _raw, \
+    _source_location, \
+    _adapter_id, \
+    _object_type_id, \
+    _object_id, \
+    _cede_p, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->raw_to_object( \
-    (instance), \
-    (raw), \
-    (source_location), \
-    (adapter_id), \
-    (object_type_id), \
-    (object_id), \
-    (cede_p), \
-    (p), \
-    (xctx) \
+(_instance)->inf->raw_to_object( \
+    (_instance), \
+    (_raw), \
+    (_source_location), \
+    (_adapter_id), \
+    (_object_type_id), \
+    (_object_id), \
+    (_cede_p), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -2519,22 +2519,22 @@ struct afw_content_type_inf_s {
  * @see @ref afw_content_type_s "afw_content_type_t"
  */
 #define afw_content_type_write_value( \
-    instance, \
-    value, \
-    options, \
-    context, \
-    callback, \
-    p, \
-    xctx \
+    _instance, \
+    _value, \
+    _options, \
+    _context, \
+    _callback, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->write_value( \
-    (instance), \
-    (value), \
-    (options), \
-    (context), \
-    (callback), \
-    (p), \
-    (xctx) \
+(_instance)->inf->write_value( \
+    (_instance), \
+    (_value), \
+    (_options), \
+    (_context), \
+    (_callback), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -2560,20 +2560,20 @@ struct afw_content_type_inf_s {
  * @see @ref afw_content_type_s "afw_content_type_t"
  */
 #define afw_content_type_create_object_list_writer( \
-    instance, \
-    options, \
-    context, \
-    callback, \
-    p, \
-    xctx \
+    _instance, \
+    _options, \
+    _context, \
+    _callback, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->create_object_list_writer( \
-    (instance), \
-    (options), \
-    (context), \
-    (callback), \
-    (p), \
-    (xctx) \
+(_instance)->inf->create_object_list_writer( \
+    (_instance), \
+    (_options), \
+    (_context), \
+    (_callback), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -2644,12 +2644,12 @@ struct afw_content_type_object_list_writer_inf_s {
  * @see @ref afw_content_type_object_list_writer_s "afw_content_type_object_list_writer_t"
  */
 #define afw_content_type_object_list_writer_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -2665,16 +2665,16 @@ struct afw_content_type_object_list_writer_inf_s {
  * @see @ref afw_content_type_object_list_writer_s "afw_content_type_object_list_writer_t"
  */
 #define afw_content_type_object_list_writer_write_object( \
-    instance, \
-    object, \
-    p, \
-    xctx \
+    _instance, \
+    _object, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->write_object( \
-    (instance), \
-    (object), \
-    (p), \
-    (xctx) \
+(_instance)->inf->write_object( \
+    (_instance), \
+    (_object), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -2962,16 +2962,16 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_internal_to_utf8( \
-    instance, \
-    from_internal, \
-    p, \
-    xctx \
+    _instance, \
+    _from_internal, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->internal_to_utf8( \
-    (instance), \
-    (from_internal), \
-    (p), \
-    (xctx) \
+(_instance)->inf->internal_to_utf8( \
+    (_instance), \
+    (_from_internal), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -2988,18 +2988,18 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_utf8_to_internal( \
-    instance, \
-    to_internal, \
-    from_utf8, \
-    p, \
-    xctx \
+    _instance, \
+    _to_internal, \
+    _from_utf8, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->utf8_to_internal( \
-    (instance), \
-    (to_internal), \
-    (from_utf8), \
-    (p), \
-    (xctx) \
+(_instance)->inf->utf8_to_internal( \
+    (_instance), \
+    (_to_internal), \
+    (_from_utf8), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -3020,16 +3020,16 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_compare_internal( \
-    instance, \
-    internal1, \
-    internal2, \
-    xctx \
+    _instance, \
+    _internal1, \
+    _internal2, \
+    _xctx \
 ) \
-(instance)->inf->compare_internal( \
-    (instance), \
-    (internal1), \
-    (internal2), \
-    (xctx) \
+(_instance)->inf->compare_internal( \
+    (_instance), \
+    (_internal1), \
+    (_internal2), \
+    (_xctx) \
 )
 
 /**
@@ -3047,20 +3047,20 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_convert_internal( \
-    instance, \
-    to_internal, \
-    from_internal, \
-    to_data_type, \
-    p, \
-    xctx \
+    _instance, \
+    _to_internal, \
+    _from_internal, \
+    _to_data_type, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->convert_internal( \
-    (instance), \
-    (to_internal), \
-    (from_internal), \
-    (to_data_type), \
-    (p), \
-    (xctx) \
+(_instance)->inf->convert_internal( \
+    (_instance), \
+    (_to_internal), \
+    (_from_internal), \
+    (_to_data_type), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -3077,18 +3077,18 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_clone_internal( \
-    instance, \
-    to_internal, \
-    from_internal, \
-    p, \
-    xctx \
+    _instance, \
+    _to_internal, \
+    _from_internal, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->clone_internal( \
-    (instance), \
-    (to_internal), \
-    (from_internal), \
-    (p), \
-    (xctx) \
+(_instance)->inf->clone_internal( \
+    (_instance), \
+    (_to_internal), \
+    (_from_internal), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -3103,16 +3103,16 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_value_compiler_listing( \
-    instance, \
-    writer, \
-    value, \
-    xctx \
+    _instance, \
+    _writer, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->value_compiler_listing( \
-    (instance), \
-    (writer), \
-    (value), \
-    (xctx) \
+(_instance)->inf->value_compiler_listing( \
+    (_instance), \
+    (_writer), \
+    (_value), \
+    (_xctx) \
 )
 
 /**
@@ -3127,16 +3127,16 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_write_as_expression( \
-    instance, \
-    writer, \
-    from_internal, \
-    xctx \
+    _instance, \
+    _writer, \
+    _from_internal, \
+    _xctx \
 ) \
-(instance)->inf->write_as_expression( \
-    (instance), \
-    (writer), \
-    (from_internal), \
-    (xctx) \
+(_instance)->inf->write_as_expression( \
+    (_instance), \
+    (_writer), \
+    (_from_internal), \
+    (_xctx) \
 )
 
 /**
@@ -3170,16 +3170,16 @@ struct afw_data_type_inf_s {
  * @see @ref afw_data_type_s "afw_data_type_t"
  */
 #define afw_data_type_optional_initialize_iterator( \
-    instance, \
-    internal, \
-    iterator, \
-    xctx \
+    _instance, \
+    _internal, \
+    _iterator, \
+    _xctx \
 ) \
-(instance)->inf->optional_initialize_iterator( \
-    (instance), \
-    (internal), \
-    (iterator), \
-    (xctx) \
+(_instance)->inf->optional_initialize_iterator( \
+    (_instance), \
+    (_internal), \
+    (_iterator), \
+    (_xctx) \
 )
 
 /** @} */
@@ -3335,12 +3335,12 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_set_immutable( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->set_immutable( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->set_immutable( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -3364,12 +3364,12 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_determine_data_type_and_set_immutable( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->determine_data_type_and_set_immutable( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->determine_data_type_and_set_immutable( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -3385,14 +3385,14 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_push_value( \
-    instance, \
-    value, \
-    xctx \
+    _instance, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->push_value( \
-    (instance), \
-    (value), \
-    (xctx) \
+(_instance)->inf->push_value( \
+    (_instance), \
+    (_value), \
+    (_xctx) \
 )
 
 /**
@@ -3426,14 +3426,14 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_pop_value( \
-    instance, \
-    found, \
-    xctx \
+    _instance, \
+    _found, \
+    _xctx \
 ) \
-(instance)->inf->pop_value( \
-    (instance), \
-    (found), \
-    (xctx) \
+(_instance)->inf->pop_value( \
+    (_instance), \
+    (_found), \
+    (_xctx) \
 )
 
 /**
@@ -3464,14 +3464,14 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_shift_value( \
-    instance, \
-    found, \
-    xctx \
+    _instance, \
+    _found, \
+    _xctx \
 ) \
-(instance)->inf->shift_value( \
-    (instance), \
-    (found), \
-    (xctx) \
+(_instance)->inf->shift_value( \
+    (_instance), \
+    (_found), \
+    (_xctx) \
 )
 
 /**
@@ -3501,16 +3501,16 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_insert_value( \
-    instance, \
-    index, \
-    value, \
-    xctx \
+    _instance, \
+    _index, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->insert_value( \
-    (instance), \
-    (index), \
-    (value), \
-    (xctx) \
+(_instance)->inf->insert_value( \
+    (_instance), \
+    (_index), \
+    (_value), \
+    (_xctx) \
 )
 
 /**
@@ -3530,16 +3530,16 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_set_value( \
-    instance, \
-    index, \
-    value, \
-    xctx \
+    _instance, \
+    _index, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->set_value( \
-    (instance), \
-    (index), \
-    (value), \
-    (xctx) \
+(_instance)->inf->set_value( \
+    (_instance), \
+    (_index), \
+    (_value), \
+    (_xctx) \
 )
 
 /**
@@ -3556,14 +3556,14 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_remove_value_by_index( \
-    instance, \
-    index, \
-    xctx \
+    _instance, \
+    _index, \
+    _xctx \
 ) \
-(instance)->inf->remove_value_by_index( \
-    (instance), \
-    (index), \
-    (xctx) \
+(_instance)->inf->remove_value_by_index( \
+    (_instance), \
+    (_index), \
+    (_xctx) \
 )
 
 /**
@@ -3580,14 +3580,14 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_remove_value( \
-    instance, \
-    value, \
-    xctx \
+    _instance, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->remove_value( \
-    (instance), \
-    (value), \
-    (xctx) \
+(_instance)->inf->remove_value( \
+    (_instance), \
+    (_value), \
+    (_xctx) \
 )
 
 /**
@@ -3600,12 +3600,12 @@ struct afw_array_setter_inf_s {
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_remove_all_values( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->remove_all_values( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->remove_all_values( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -3759,12 +3759,12 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -3779,12 +3779,12 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_reference( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_reference( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -3798,12 +3798,12 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_count( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_count( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_count( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -3817,12 +3817,12 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_data_type( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_data_type( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_data_type( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -3839,16 +3839,16 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_entry_meta( \
-    instance, \
-    index, \
-    p, \
-    xctx \
+    _instance, \
+    _index, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_entry_meta( \
-    (instance), \
-    (index), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_entry_meta( \
+    (_instance), \
+    (_index), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -3863,14 +3863,14 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_entry_value( \
-    instance, \
-    index, \
-    xctx \
+    _instance, \
+    _index, \
+    _xctx \
 ) \
-(instance)->inf->get_entry_value( \
-    (instance), \
-    (index), \
-    (xctx) \
+(_instance)->inf->get_entry_value( \
+    (_instance), \
+    (_index), \
+    (_xctx) \
 )
 
 /**
@@ -3889,16 +3889,16 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_next_entry_meta( \
-    instance, \
-    iterator, \
-    p, \
-    xctx \
+    _instance, \
+    _iterator, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_next_entry_meta( \
-    (instance), \
-    (iterator), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_next_entry_meta( \
+    (_instance), \
+    (_iterator), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -3915,14 +3915,14 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_next_value( \
-    instance, \
-    iterator, \
-    xctx \
+    _instance, \
+    _iterator, \
+    _xctx \
 ) \
-(instance)->inf->get_next_value( \
-    (instance), \
-    (iterator), \
-    (xctx) \
+(_instance)->inf->get_next_value( \
+    (_instance), \
+    (_iterator), \
+    (_xctx) \
 )
 
 /**
@@ -3947,14 +3947,14 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_initialize_iterator( \
-    instance, \
-    iterator, \
-    xctx \
+    _instance, \
+    _iterator, \
+    _xctx \
 ) \
-(instance)->inf->initialize_iterator( \
-    (instance), \
-    (iterator), \
-    (xctx) \
+(_instance)->inf->initialize_iterator( \
+    (_instance), \
+    (_iterator), \
+    (_xctx) \
 )
 
 /**
@@ -3968,12 +3968,12 @@ struct afw_array_inf_s {
  * @see @ref afw_array_s "afw_array_t"
  */
 #define afw_array_get_setter( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_setter( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_setter( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -4049,16 +4049,16 @@ struct afw_log_factory_inf_s {
  * @see @ref afw_log_factory_s "afw_log_factory_t"
  */
 #define afw_log_factory_create_log_cede_p( \
-    instance, \
-    properties, \
-    p, \
-    xctx \
+    _instance, \
+    _properties, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->create_log_cede_p( \
-    (instance), \
-    (properties), \
-    (p), \
-    (xctx) \
+(_instance)->inf->create_log_cede_p( \
+    (_instance), \
+    (_properties), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -4174,12 +4174,12 @@ struct afw_log_inf_s {
  * @see @ref afw_log_s "afw_log_t"
  */
 #define afw_log_destroy( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->destroy( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->destroy( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -4193,14 +4193,14 @@ struct afw_log_inf_s {
  * @see @ref afw_log_s "afw_log_t"
  */
 #define afw_log_set_own_mask( \
-    instance, \
-    mask, \
-    xctx \
+    _instance, \
+    _mask, \
+    _xctx \
 ) \
-(instance)->inf->set_own_mask( \
-    (instance), \
-    (mask), \
-    (xctx) \
+(_instance)->inf->set_own_mask( \
+    (_instance), \
+    (_mask), \
+    (_xctx) \
 )
 
 /**
@@ -4216,18 +4216,18 @@ struct afw_log_inf_s {
  * @see @ref afw_log_s "afw_log_t"
  */
 #define afw_log_write( \
-    instance, \
-    priority, \
-    source_z, \
-    message, \
-    xctx \
+    _instance, \
+    _priority, \
+    _source_z, \
+    _message, \
+    _xctx \
 ) \
-(instance)->inf->write( \
-    (instance), \
-    (priority), \
-    (source_z), \
-    (message), \
-    (xctx) \
+(_instance)->inf->write( \
+    (_instance), \
+    (_priority), \
+    (_source_z), \
+    (_message), \
+    (_xctx) \
 )
 
 /** @} */
@@ -4303,12 +4303,12 @@ struct afw_object_setter_inf_s {
  * @see @ref afw_object_setter_s "afw_object_setter_t"
  */
 #define afw_object_setter_set_immutable( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->set_immutable( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->set_immutable( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -4334,16 +4334,16 @@ struct afw_object_setter_inf_s {
  * @see @ref afw_object_setter_s "afw_object_setter_t"
  */
 #define afw_object_setter_set_property( \
-    instance, \
-    property_name, \
-    value, \
-    xctx \
+    _instance, \
+    _property_name, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->set_property( \
-    (instance), \
-    (property_name), \
-    (value), \
-    (xctx) \
+(_instance)->inf->set_property( \
+    (_instance), \
+    (_property_name), \
+    (_value), \
+    (_xctx) \
 )
 
 /** @} */
@@ -4506,12 +4506,12 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -4528,12 +4528,12 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_reference( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_reference( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -4547,12 +4547,12 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_count( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_count( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_count( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -4568,14 +4568,14 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_meta( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_meta( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_meta( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -4590,14 +4590,14 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_property( \
-    instance, \
-    property_name, \
-    xctx \
+    _instance, \
+    _property_name, \
+    _xctx \
 ) \
-(instance)->inf->get_property( \
-    (instance), \
-    (property_name), \
-    (xctx) \
+(_instance)->inf->get_property( \
+    (_instance), \
+    (_property_name), \
+    (_xctx) \
 )
 
 /**
@@ -4614,16 +4614,16 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_property_meta( \
-    instance, \
-    property_name, \
-    p, \
-    xctx \
+    _instance, \
+    _property_name, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_property_meta( \
-    (instance), \
-    (property_name), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_property_meta( \
+    (_instance), \
+    (_property_name), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -4641,16 +4641,16 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_next_property( \
-    instance, \
-    iterator, \
-    property_name, \
-    xctx \
+    _instance, \
+    _iterator, \
+    _property_name, \
+    _xctx \
 ) \
-(instance)->inf->get_next_property( \
-    (instance), \
-    (iterator), \
-    (property_name), \
-    (xctx) \
+(_instance)->inf->get_next_property( \
+    (_instance), \
+    (_iterator), \
+    (_property_name), \
+    (_xctx) \
 )
 
 /**
@@ -4670,18 +4670,18 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_next_property_meta( \
-    instance, \
-    iterator, \
-    property_name, \
-    p, \
-    xctx \
+    _instance, \
+    _iterator, \
+    _property_name, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_next_property_meta( \
-    (instance), \
-    (iterator), \
-    (property_name), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_next_property_meta( \
+    (_instance), \
+    (_iterator), \
+    (_property_name), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -4696,14 +4696,14 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_has_property( \
-    instance, \
-    property_name, \
-    xctx \
+    _instance, \
+    _property_name, \
+    _xctx \
 ) \
-(instance)->inf->has_property( \
-    (instance), \
-    (property_name), \
-    (xctx) \
+(_instance)->inf->has_property( \
+    (_instance), \
+    (_property_name), \
+    (_xctx) \
 )
 
 /**
@@ -4717,12 +4717,12 @@ struct afw_object_inf_s {
  * @see @ref afw_object_s "afw_object_t"
  */
 #define afw_object_get_setter( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_setter( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_setter( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -4853,12 +4853,12 @@ struct afw_server_inf_s {
  * @see @ref afw_server_s "afw_server_t"
  */
 #define afw_server_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -4872,14 +4872,14 @@ struct afw_server_inf_s {
  * @see @ref afw_server_s "afw_server_t"
  */
 #define afw_server_run( \
-    instance, \
-    handler, \
-    xctx \
+    _instance, \
+    _handler, \
+    _xctx \
 ) \
-(instance)->inf->run( \
-    (instance), \
-    (handler), \
-    (xctx) \
+(_instance)->inf->run( \
+    (_instance), \
+    (_handler), \
+    (_xctx) \
 )
 
 /** @} */
@@ -4998,14 +4998,14 @@ struct afw_service_type_inf_s {
  * @see @ref afw_service_type_s "afw_service_type_t"
  */
 #define afw_service_type_related_instance_count( \
-    instance, \
-    id, \
-    xctx \
+    _instance, \
+    _id, \
+    _xctx \
 ) \
-(instance)->inf->related_instance_count( \
-    (instance), \
-    (id), \
-    (xctx) \
+(_instance)->inf->related_instance_count( \
+    (_instance), \
+    (_id), \
+    (_xctx) \
 )
 
 /**
@@ -5023,16 +5023,16 @@ struct afw_service_type_inf_s {
  * @see @ref afw_service_type_s "afw_service_type_t"
  */
 #define afw_service_type_start_cede_p( \
-    instance, \
-    properties, \
-    p, \
-    xctx \
+    _instance, \
+    _properties, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->start_cede_p( \
-    (instance), \
-    (properties), \
-    (p), \
-    (xctx) \
+(_instance)->inf->start_cede_p( \
+    (_instance), \
+    (_properties), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -5046,14 +5046,14 @@ struct afw_service_type_inf_s {
  * @see @ref afw_service_type_s "afw_service_type_t"
  */
 #define afw_service_type_stop( \
-    instance, \
-    id, \
-    xctx \
+    _instance, \
+    _id, \
+    _xctx \
 ) \
-(instance)->inf->stop( \
-    (instance), \
-    (id), \
-    (xctx) \
+(_instance)->inf->stop( \
+    (_instance), \
+    (_id), \
+    (_xctx) \
 )
 
 /**
@@ -5071,16 +5071,16 @@ struct afw_service_type_inf_s {
  * @see @ref afw_service_type_s "afw_service_type_t"
  */
 #define afw_service_type_restart_cede_p( \
-    instance, \
-    properties, \
-    p, \
-    xctx \
+    _instance, \
+    _properties, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->restart_cede_p( \
-    (instance), \
-    (properties), \
-    (p), \
-    (xctx) \
+(_instance)->inf->restart_cede_p( \
+    (_instance), \
+    (_properties), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -5193,12 +5193,12 @@ struct afw_object_associative_array_inf_s {
  * @see @ref afw_object_associative_array_s "afw_object_associative_array_t"
  */
 #define afw_object_associative_array_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -5212,12 +5212,12 @@ struct afw_object_associative_array_inf_s {
  * @see @ref afw_object_associative_array_s "afw_object_associative_array_t"
  */
 #define afw_object_associative_array_get_reference( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_reference( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -5238,14 +5238,14 @@ struct afw_object_associative_array_inf_s {
  * @see @ref afw_object_associative_array_s "afw_object_associative_array_t"
  */
 #define afw_object_associative_array_get( \
-    instance, \
-    key, \
-    xctx \
+    _instance, \
+    _key, \
+    _xctx \
 ) \
-(instance)->inf->get( \
-    (instance), \
-    (key), \
-    (xctx) \
+(_instance)->inf->get( \
+    (_instance), \
+    (_key), \
+    (_xctx) \
 )
 
 /**
@@ -5266,14 +5266,14 @@ struct afw_object_associative_array_inf_s {
  * @see @ref afw_object_associative_array_s "afw_object_associative_array_t"
  */
 #define afw_object_associative_array_get_associated_object_reference( \
-    instance, \
-    key, \
-    xctx \
+    _instance, \
+    _key, \
+    _xctx \
 ) \
-(instance)->inf->get_associated_object_reference( \
-    (instance), \
-    (key), \
-    (xctx) \
+(_instance)->inf->get_associated_object_reference( \
+    (_instance), \
+    (_key), \
+    (_xctx) \
 )
 
 /**
@@ -5293,16 +5293,16 @@ struct afw_object_associative_array_inf_s {
  * @see @ref afw_object_associative_array_s "afw_object_associative_array_t"
  */
 #define afw_object_associative_array_for_each( \
-    instance, \
-    context, \
-    cb, \
-    xctx \
+    _instance, \
+    _context, \
+    _cb, \
+    _xctx \
 ) \
-(instance)->inf->for_each( \
-    (instance), \
-    (context), \
-    (cb), \
-    (xctx) \
+(_instance)->inf->for_each( \
+    (_instance), \
+    (_context), \
+    (_cb), \
+    (_xctx) \
 )
 
 /**
@@ -5333,16 +5333,16 @@ struct afw_object_associative_array_inf_s {
  * @see @ref afw_object_associative_array_s "afw_object_associative_array_t"
  */
 #define afw_object_associative_array_set( \
-    instance, \
-    key, \
-    object, \
-    xctx \
+    _instance, \
+    _key, \
+    _object, \
+    _xctx \
 ) \
-(instance)->inf->set( \
-    (instance), \
-    (key), \
-    (object), \
-    (xctx) \
+(_instance)->inf->set( \
+    (_instance), \
+    (_key), \
+    (_object), \
+    (_xctx) \
 )
 
 /** @} */
@@ -5419,16 +5419,16 @@ struct afw_request_handler_factory_inf_s {
  * @see @ref afw_request_handler_factory_s "afw_request_handler_factory_t"
  */
 #define afw_request_handler_factory_create_request_handler_cede_p( \
-    instance, \
-    properties, \
-    p, \
-    xctx \
+    _instance, \
+    _properties, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->create_request_handler_cede_p( \
-    (instance), \
-    (properties), \
-    (p), \
-    (xctx) \
+(_instance)->inf->create_request_handler_cede_p( \
+    (_instance), \
+    (_properties), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -5496,12 +5496,12 @@ struct afw_request_handler_inf_s {
  * @see @ref afw_request_handler_s "afw_request_handler_t"
  */
 #define afw_request_handler_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -5516,14 +5516,14 @@ struct afw_request_handler_inf_s {
  * @see @ref afw_request_handler_s "afw_request_handler_t"
  */
 #define afw_request_handler_process( \
-    instance, \
-    request, \
-    xctx \
+    _instance, \
+    _request, \
+    _xctx \
 ) \
-(instance)->inf->process( \
-    (instance), \
-    (request), \
-    (xctx) \
+(_instance)->inf->process( \
+    (_instance), \
+    (_request), \
+    (_xctx) \
 )
 
 /** @} */
@@ -5582,12 +5582,12 @@ struct afw_connection_inf_s {
  * @see @ref afw_connection_s "afw_connection_t"
  */
 #define afw_connection_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -5710,14 +5710,14 @@ struct afw_iterator_inf_s {
  * @see @ref afw_iterator_s "afw_iterator_t"
  */
 #define afw_iterator_get_next( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_next( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_next( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -5735,16 +5735,16 @@ struct afw_iterator_inf_s {
  * @see @ref afw_iterator_s "afw_iterator_t"
  */
 #define afw_iterator_get_by_index( \
-    instance, \
-    index, \
-    p, \
-    xctx \
+    _instance, \
+    _index, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_by_index( \
-    (instance), \
-    (index), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_by_index( \
+    (_instance), \
+    (_index), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -5758,12 +5758,12 @@ struct afw_iterator_inf_s {
  * @see @ref afw_iterator_s "afw_iterator_t"
  */
 #define afw_iterator_get_count( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_count( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_count( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -5885,18 +5885,18 @@ struct afw_iterator_with_key_inf_s {
  * @see @ref afw_iterator_with_key_s "afw_iterator_with_key_t"
  */
 #define afw_iterator_with_key_get_next( \
-    instance, \
-    key, \
-    value, \
-    p, \
-    xctx \
+    _instance, \
+    _key, \
+    _value, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_next( \
-    (instance), \
-    (key), \
-    (value), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_next( \
+    (_instance), \
+    (_key), \
+    (_value), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -5920,20 +5920,20 @@ struct afw_iterator_with_key_inf_s {
  * @see @ref afw_iterator_with_key_s "afw_iterator_with_key_t"
  */
 #define afw_iterator_with_key_get_by_index( \
-    instance, \
-    index, \
-    key, \
-    value, \
-    p, \
-    xctx \
+    _instance, \
+    _index, \
+    _key, \
+    _value, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_by_index( \
-    (instance), \
-    (index), \
-    (key), \
-    (value), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_by_index( \
+    (_instance), \
+    (_index), \
+    (_key), \
+    (_value), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -5947,12 +5947,12 @@ struct afw_iterator_with_key_inf_s {
  * @see @ref afw_iterator_with_key_s "afw_iterator_with_key_t"
  */
 #define afw_iterator_with_key_get_count( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_count( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_count( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -6022,12 +6022,12 @@ struct afw_iterator_old_inf_s {
  * @see @ref afw_iterator_old_s "afw_iterator_old_t"
  */
 #define afw_iterator_old_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6047,14 +6047,14 @@ struct afw_iterator_old_inf_s {
  * @see @ref afw_iterator_old_s "afw_iterator_old_t"
  */
 #define afw_iterator_old_next( \
-    instance, \
-    key, \
-    value \
+    _instance, \
+    _key, \
+    _value \
 ) \
-(instance)->inf->next( \
-    (instance), \
-    (key), \
-    (value) \
+(_instance)->inf->next( \
+    (_instance), \
+    (_key), \
+    (_value) \
 )
 
 /** @} */
@@ -6276,12 +6276,12 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6295,14 +6295,14 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_set_error_info( \
-    instance, \
-    error_info, \
-    xctx \
+    _instance, \
+    _error_info, \
+    _xctx \
 ) \
-(instance)->inf->set_error_info( \
-    (instance), \
-    (error_info), \
-    (xctx) \
+(_instance)->inf->set_error_info( \
+    (_instance), \
+    (_error_info), \
+    (_xctx) \
 )
 
 /**
@@ -6320,20 +6320,20 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_read_raw_request_body( \
-    instance, \
-    buffer_size, \
-    buffer, \
-    size, \
-    more_to_read, \
-    xctx \
+    _instance, \
+    _buffer_size, \
+    _buffer, \
+    _size, \
+    _more_to_read, \
+    _xctx \
 ) \
-(instance)->inf->read_raw_request_body( \
-    (instance), \
-    (buffer_size), \
-    (buffer), \
-    (size), \
-    (more_to_read), \
-    (xctx) \
+(_instance)->inf->read_raw_request_body( \
+    (_instance), \
+    (_buffer_size), \
+    (_buffer), \
+    (_size), \
+    (_more_to_read), \
+    (_xctx) \
 )
 
 /**
@@ -6349,16 +6349,16 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_set_response_status_code( \
-    instance, \
-    code, \
-    reason, \
-    xctx \
+    _instance, \
+    _code, \
+    _reason, \
+    _xctx \
 ) \
-(instance)->inf->set_response_status_code( \
-    (instance), \
-    (code), \
-    (reason), \
-    (xctx) \
+(_instance)->inf->set_response_status_code( \
+    (_instance), \
+    (_code), \
+    (_reason), \
+    (_xctx) \
 )
 
 /**
@@ -6373,16 +6373,16 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_write_response_header( \
-    instance, \
-    name, \
-    value, \
-    xctx \
+    _instance, \
+    _name, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->write_response_header( \
-    (instance), \
-    (name), \
-    (value), \
-    (xctx) \
+(_instance)->inf->write_response_header( \
+    (_instance), \
+    (_name), \
+    (_value), \
+    (_xctx) \
 )
 
 /**
@@ -6398,16 +6398,16 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_write_raw_response_body( \
-    instance, \
-    size, \
-    buffer, \
-    xctx \
+    _instance, \
+    _size, \
+    _buffer, \
+    _xctx \
 ) \
-(instance)->inf->write_raw_response_body( \
-    (instance), \
-    (size), \
-    (buffer), \
-    (xctx) \
+(_instance)->inf->write_raw_response_body( \
+    (_instance), \
+    (_size), \
+    (_buffer), \
+    (_xctx) \
 )
 
 /**
@@ -6420,12 +6420,12 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_flush_response( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->flush_response( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->flush_response( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6438,12 +6438,12 @@ struct afw_request_inf_s {
  * @see @ref afw_request_s "afw_request_t"
  */
 #define afw_request_finish_response( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->finish_response( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->finish_response( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -6563,12 +6563,12 @@ struct afw_stream_inf_s {
  * @see @ref afw_stream_s "afw_stream_t"
  */
 #define afw_stream_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6582,12 +6582,12 @@ struct afw_stream_inf_s {
  * @see @ref afw_stream_s "afw_stream_t"
  */
 #define afw_stream_flush( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->flush( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->flush( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6605,16 +6605,16 @@ struct afw_stream_inf_s {
  * @see @ref afw_stream_s "afw_stream_t"
  */
 #define afw_stream_read( \
-    instance, \
-    buffer, \
-    size, \
-    xctx \
+    _instance, \
+    _buffer, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->read( \
-    (instance), \
-    (buffer), \
-    (size), \
-    (xctx) \
+(_instance)->inf->read( \
+    (_instance), \
+    (_buffer), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -6629,16 +6629,16 @@ struct afw_stream_inf_s {
  * @see @ref afw_stream_s "afw_stream_t"
  */
 #define afw_stream_write( \
-    instance, \
-    buffer, \
-    size, \
-    xctx \
+    _instance, \
+    _buffer, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->write( \
-    (instance), \
-    (buffer), \
-    (size), \
-    (xctx) \
+(_instance)->inf->write( \
+    (_instance), \
+    (_buffer), \
+    (_size), \
+    (_xctx) \
 )
 
 /** @} */
@@ -6813,12 +6813,12 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6831,12 +6831,12 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_get_reference( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_reference( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6853,12 +6853,12 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_destroy( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->destroy( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->destroy( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -6873,14 +6873,14 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_calloc( \
-    instance, \
-    size, \
-    xctx \
+    _instance, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->calloc( \
-    (instance), \
-    (size), \
-    (xctx) \
+(_instance)->inf->calloc( \
+    (_instance), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -6897,14 +6897,14 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_calloc_no_throw( \
-    instance, \
-    size, \
-    xctx \
+    _instance, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->calloc_no_throw( \
-    (instance), \
-    (size), \
-    (xctx) \
+(_instance)->inf->calloc_no_throw( \
+    (_instance), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -6919,14 +6919,14 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_malloc( \
-    instance, \
-    size, \
-    xctx \
+    _instance, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->malloc( \
-    (instance), \
-    (size), \
-    (xctx) \
+(_instance)->inf->malloc( \
+    (_instance), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -6943,14 +6943,14 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_malloc_no_throw( \
-    instance, \
-    size, \
-    xctx \
+    _instance, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->malloc_no_throw( \
-    (instance), \
-    (size), \
-    (xctx) \
+(_instance)->inf->malloc_no_throw( \
+    (_instance), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -6971,16 +6971,16 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_free_memory( \
-    instance, \
-    address, \
-    size, \
-    xctx \
+    _instance, \
+    _address, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->free_memory( \
-    (instance), \
-    (address), \
-    (size), \
-    (xctx) \
+(_instance)->inf->free_memory( \
+    (_instance), \
+    (_address), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -6998,16 +6998,16 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_free_memory_no_throw( \
-    instance, \
-    address, \
-    size, \
-    xctx \
+    _instance, \
+    _address, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->free_memory_no_throw( \
-    (instance), \
-    (address), \
-    (size), \
-    (xctx) \
+(_instance)->inf->free_memory_no_throw( \
+    (_instance), \
+    (_address), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -7025,18 +7025,18 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_register_cleanup( \
-    instance, \
-    data, \
-    data2, \
-    cleanup, \
-    xctx \
+    _instance, \
+    _data, \
+    _data2, \
+    _cleanup, \
+    _xctx \
 ) \
-(instance)->inf->register_cleanup( \
-    (instance), \
-    (data), \
-    (data2), \
-    (cleanup), \
-    (xctx) \
+(_instance)->inf->register_cleanup( \
+    (_instance), \
+    (_data), \
+    (_data2), \
+    (_cleanup), \
+    (_xctx) \
 )
 
 /**
@@ -7052,18 +7052,18 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_deregister_cleanup( \
-    instance, \
-    data, \
-    data2, \
-    cleanup, \
-    xctx \
+    _instance, \
+    _data, \
+    _data2, \
+    _cleanup, \
+    _xctx \
 ) \
-(instance)->inf->deregister_cleanup( \
-    (instance), \
-    (data), \
-    (data2), \
-    (cleanup), \
-    (xctx) \
+(_instance)->inf->deregister_cleanup( \
+    (_instance), \
+    (_data), \
+    (_data2), \
+    (_cleanup), \
+    (_xctx) \
 )
 
 /**
@@ -7080,12 +7080,12 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_run_cleanups( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->run_cleanups( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->run_cleanups( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -7103,12 +7103,12 @@ struct afw_pool_inf_s {
  * @see @ref afw_pool_s "afw_pool_t"
  */
 #define afw_pool_garbage_collect( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->garbage_collect( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->garbage_collect( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -7271,16 +7271,16 @@ struct afw_memory_region_inf_s {
  * @see @ref afw_memory_region_s "afw_memory_region_t"
  */
 #define afw_memory_region_get( \
-    instance, \
-    region, \
-    size, \
-    xctx \
+    _instance, \
+    _region, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->get( \
-    (instance), \
-    (region), \
-    (size), \
-    (xctx) \
+(_instance)->inf->get( \
+    (_instance), \
+    (_region), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -7298,16 +7298,16 @@ struct afw_memory_region_inf_s {
  * @see @ref afw_memory_region_s "afw_memory_region_t"
  */
 #define afw_memory_region_free( \
-    instance, \
-    region, \
-    size, \
-    xctx \
+    _instance, \
+    _region, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->free( \
-    (instance), \
-    (region), \
-    (size), \
-    (xctx) \
+(_instance)->inf->free( \
+    (_instance), \
+    (_region), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -7323,12 +7323,12 @@ struct afw_memory_region_inf_s {
  * @see @ref afw_memory_region_s "afw_memory_region_t"
  */
 #define afw_memory_region_cleanup( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->cleanup( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->cleanup( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -7344,12 +7344,12 @@ struct afw_memory_region_inf_s {
  * @see @ref afw_memory_region_s "afw_memory_region_t"
  */
 #define afw_memory_region_lock( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->lock( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->lock( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -7363,12 +7363,12 @@ struct afw_memory_region_inf_s {
  * @see @ref afw_memory_region_s "afw_memory_region_t"
  */
 #define afw_memory_region_unlock( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->unlock( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->unlock( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -7382,12 +7382,12 @@ struct afw_memory_region_inf_s {
  * @see @ref afw_memory_region_s "afw_memory_region_t"
  */
 #define afw_memory_region_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
@@ -7482,16 +7482,16 @@ struct afw_adapter_journal_inf_s {
  * @see @ref afw_adapter_journal_s "afw_adapter_journal_t"
  */
 #define afw_adapter_journal_add_entry( \
-    instance, \
-    impl_request, \
-    entry, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _entry, \
+    _xctx \
 ) \
-(instance)->inf->add_entry( \
-    (instance), \
-    (impl_request), \
-    (entry), \
-    (xctx) \
+(_instance)->inf->add_entry( \
+    (_instance), \
+    (_impl_request), \
+    (_entry), \
+    (_xctx) \
 )
 
 /**
@@ -7521,24 +7521,24 @@ struct afw_adapter_journal_inf_s {
  * @see @ref afw_adapter_journal_s "afw_adapter_journal_t"
  */
 #define afw_adapter_journal_get_entry( \
-    instance, \
-    impl_request, \
-    option, \
-    consumer_id, \
-    entry_cursor, \
-    limit, \
-    response, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _option, \
+    _consumer_id, \
+    _entry_cursor, \
+    _limit, \
+    _response, \
+    _xctx \
 ) \
-(instance)->inf->get_entry( \
-    (instance), \
-    (impl_request), \
-    (option), \
-    (consumer_id), \
-    (entry_cursor), \
-    (limit), \
-    (response), \
-    (xctx) \
+(_instance)->inf->get_entry( \
+    (_instance), \
+    (_impl_request), \
+    (_option), \
+    (_consumer_id), \
+    (_entry_cursor), \
+    (_limit), \
+    (_response), \
+    (_xctx) \
 )
 
 /**
@@ -7559,18 +7559,18 @@ struct afw_adapter_journal_inf_s {
  * @see @ref afw_adapter_journal_s "afw_adapter_journal_t"
  */
 #define afw_adapter_journal_mark_entry_consumed( \
-    instance, \
-    impl_request, \
-    consumer_id, \
-    entry_cursor, \
-    xctx \
+    _instance, \
+    _impl_request, \
+    _consumer_id, \
+    _entry_cursor, \
+    _xctx \
 ) \
-(instance)->inf->mark_entry_consumed( \
-    (instance), \
-    (impl_request), \
-    (consumer_id), \
-    (entry_cursor), \
-    (xctx) \
+(_instance)->inf->mark_entry_consumed( \
+    (_instance), \
+    (_impl_request), \
+    (_consumer_id), \
+    (_entry_cursor), \
+    (_xctx) \
 )
 
 /** @} */
@@ -7747,12 +7747,12 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_optional_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->optional_release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->optional_release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -7768,12 +7768,12 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_get_reference( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_reference( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -7792,14 +7792,14 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_get_assignable_value( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_assignable_value( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_assignable_value( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -7815,14 +7815,14 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_create_iterator( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->create_iterator( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->create_iterator( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -7847,14 +7847,14 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_optional_evaluate( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->optional_evaluate( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->optional_evaluate( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -7878,12 +7878,12 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_get_data_type( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->get_data_type( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->get_data_type( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -7901,14 +7901,14 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_get_evaluated_meta( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_evaluated_meta( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_evaluated_meta( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -7928,14 +7928,14 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_get_evaluated_metas( \
-    instance, \
-    p, \
-    xctx \
+    _instance, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_evaluated_metas( \
-    (instance), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_evaluated_metas( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
 )
 
 /**
@@ -7950,14 +7950,14 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_produce_compiler_listing( \
-    instance, \
-    writer, \
-    xctx \
+    _instance, \
+    _writer, \
+    _xctx \
 ) \
-(instance)->inf->produce_compiler_listing( \
-    (instance), \
-    (writer), \
-    (xctx) \
+(_instance)->inf->produce_compiler_listing( \
+    (_instance), \
+    (_writer), \
+    (_xctx) \
 )
 
 /**
@@ -7971,14 +7971,14 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_decompile( \
-    instance, \
-    writer, \
-    xctx \
+    _instance, \
+    _writer, \
+    _xctx \
 ) \
-(instance)->inf->decompile( \
-    (instance), \
-    (writer), \
-    (xctx) \
+(_instance)->inf->decompile( \
+    (_instance), \
+    (_writer), \
+    (_xctx) \
 )
 
 /**
@@ -7994,16 +7994,16 @@ struct afw_value_inf_s {
  * @see @ref afw_value_s "afw_value_t"
  */
 #define afw_value_get_info( \
-    instance, \
-    info, \
-    p, \
-    xctx \
+    _instance, \
+    _info, \
+    _p, \
+    _xctx \
 ) \
-(instance)->inf->get_info( \
-    (instance), \
-    (info), \
-    (p), \
-    (xctx) \
+(_instance)->inf->get_info( \
+    (_instance), \
+    (_info), \
+    (_p), \
+    (_xctx) \
 )
 
 /** @} */
@@ -8078,16 +8078,16 @@ struct afw_variable_handler_inf_s {
  * @see @ref afw_variable_handler_s "afw_variable_handler_t"
  */
 #define afw_variable_handler_get_variable( \
-    instance, \
-    qualifier, \
-    name, \
-    xctx \
+    _instance, \
+    _qualifier, \
+    _name, \
+    _xctx \
 ) \
-(instance)->inf->get_variable( \
-    (instance), \
-    (qualifier), \
-    (name), \
-    (xctx) \
+(_instance)->inf->get_variable( \
+    (_instance), \
+    (_qualifier), \
+    (_name), \
+    (_xctx) \
 )
 
 /**
@@ -8104,18 +8104,18 @@ struct afw_variable_handler_inf_s {
  * @see @ref afw_variable_handler_s "afw_variable_handler_t"
  */
 #define afw_variable_handler_set_variable( \
-    instance, \
-    qualifier, \
-    name, \
-    value, \
-    xctx \
+    _instance, \
+    _qualifier, \
+    _name, \
+    _value, \
+    _xctx \
 ) \
-(instance)->inf->set_variable( \
-    (instance), \
-    (qualifier), \
-    (name), \
-    (value), \
-    (xctx) \
+(_instance)->inf->set_variable( \
+    (_instance), \
+    (_qualifier), \
+    (_name), \
+    (_value), \
+    (_xctx) \
 )
 
 /** @} */
@@ -8241,12 +8241,12 @@ struct afw_writer_inf_s {
  * @see @ref afw_writer_s "afw_writer_t"
  */
 #define afw_writer_release( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->release( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -8260,12 +8260,12 @@ struct afw_writer_inf_s {
  * @see @ref afw_writer_s "afw_writer_t"
  */
 #define afw_writer_flush( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->flush( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->flush( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -8280,16 +8280,16 @@ struct afw_writer_inf_s {
  * @see @ref afw_writer_s "afw_writer_t"
  */
 #define afw_writer_write( \
-    instance, \
-    buffer, \
-    size, \
-    xctx \
+    _instance, \
+    _buffer, \
+    _size, \
+    _xctx \
 ) \
-(instance)->inf->write( \
-    (instance), \
-    (buffer), \
-    (size), \
-    (xctx) \
+(_instance)->inf->write( \
+    (_instance), \
+    (_buffer), \
+    (_size), \
+    (_xctx) \
 )
 
 /**
@@ -8302,12 +8302,12 @@ struct afw_writer_inf_s {
  * @see @ref afw_writer_s "afw_writer_t"
  */
 #define afw_writer_write_eol( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->write_eol( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->write_eol( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -8320,12 +8320,12 @@ struct afw_writer_inf_s {
  * @see @ref afw_writer_s "afw_writer_t"
  */
 #define afw_writer_increment_indent( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->increment_indent( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->increment_indent( \
+    (_instance), \
+    (_xctx) \
 )
 
 /**
@@ -8338,12 +8338,12 @@ struct afw_writer_inf_s {
  * @see @ref afw_writer_s "afw_writer_t"
  */
 #define afw_writer_decrement_indent( \
-    instance, \
-    xctx \
+    _instance, \
+    _xctx \
 ) \
-(instance)->inf->decrement_indent( \
-    (instance), \
-    (xctx) \
+(_instance)->inf->decrement_indent( \
+    (_instance), \
+    (_xctx) \
 )
 
 /** @} */
