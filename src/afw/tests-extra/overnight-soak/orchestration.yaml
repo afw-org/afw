@@ -4,13 +4,20 @@
 # Metrics: /tmp/afw-overnight-soak/metrics.tsv
 #   uuid rss poolBytesInUse peakPoolBytesInUse poolChunkBytes
 #   peakPoolChunkBytes concurrent maxConcurrent requestCount getObjectCount
-# rss/pool* from process::; concurrent/requestCount from _AdaptiveServer_/current.
+#   memoryRegionBytesInUse memoryRegionRegionsInUse
+#   memoryRegionFreeListBytes memoryRegionFreeListCount
+#   memoryRegionGetHits memoryRegionGetMisses memoryRegionFreeOverCap
+#   memoryRegionPeakBytesInUse memoryRegionPeakFreeListBytes
+# rss/pool*/memoryRegion* from process::; concurrent/requestCount from
+# _AdaptiveServer_/current.
 # RSS first/last: rss-first.txt / rss-last.txt (process::rss bytes).
 version: 1
 description: >
   One hermetic afwfcgi, mixed pool (eval pin, model onGetObject
-  evaluate(compile), catalog, file CRUD, REST, language-shaped scripts).
-  Sampler appends TSV; after firehose RSS must not grow 64 MiB from first sample.
+  evaluate(compile), catalog, file CRUD, REST, language-shaped scripts,
+  model stop/start with onGetObject swap, file produce/consume,
+  nasty eval, Rube Goldberg). Sampler appends TSV; after firehose RSS
+  must not grow 64 MiB from first sample.
 host: afwfcgi
 afwfcgi:
   threads: 8
@@ -153,10 +160,36 @@ tests:
     sourceType: test_script
     source: <<< tests/suites/pool_eval_lifetime.as
 
+  - name: model-swap
+    description: Stop swap-model, persist new onGetObject, restart location, start, get, restore.
+    sourceType: script
+    source: <<< tests/model_swap.as
+    expect: true
+
+  - name: file-pc
+    description: Copy one file object inbox to outbox and delete.
+    sourceType: script
+    source: <<< tests/file_pc.as
+    expect: true
+
+  - name: nasty
+    sourceType: script
+    source: <<< tests/nasty.as
+    expect: true
+
+  - name: rube-goldberg
+    sourceType: script
+    source: <<< tests/rube_goldberg.as
+    expect: "🎉 Happy Anniversary of becoming 29! 🥚🥳🎊"
+
 schedule:
   - sequential:
       - metrics-sample
       - metrics-readback
+      - model-swap
+      - file-pc
+      - nasty
+      - rube-goldberg
   - firehose:
       # Overnight (2026-09-19 run): duration_s 28800, timeout_s 30000,
       # threads 32, concurrency 32, stopOnError false, maxFailRate 0.01.
@@ -188,6 +221,9 @@ schedule:
         - suite-for
         - suite-void
         - suite-pool-eval
+        - file-pc
+        - nasty
+        - rube-goldberg
         - metrics-sample
       policy: roundRobin
       seed: 1

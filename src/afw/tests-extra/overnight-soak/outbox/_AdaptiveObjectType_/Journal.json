@@ -1,0 +1,11 @@
+{
+    "objectType": "Journal",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,
+    "propertyTypes": {
+        "n": { "dataType": "integer" },
+        "msg": { "dataType": "string" }
+    }
+}
