@@ -76,7 +76,10 @@ afw_value_decompile_call_args(
          * Call-site spread was compiled as list_expression / array_expression;
          * surface form is ...expr (issue #140).
          */
-        if (args->argv[i] && afw_value_is_array_expression(args->argv[i])) {
+        if (!args->argv[i]) {
+            afw_value_decompile(afw_value_void, writer, xctx);
+        }
+        else if (args->argv[i] && afw_value_is_array_expression(args->argv[i])) {
             const afw_value_list_expression_t *le =
                 (const afw_value_list_expression_t *)args->argv[i];
             afw_writer_write_z(writer, "...", xctx);

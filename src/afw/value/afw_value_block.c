@@ -174,6 +174,11 @@ afw_value_block_evaluate_statement(
     afw_xctx_statement_flow_set_type(sequential, xctx);
     xctx->statement_flow_label = NULL;
 
+    /* Flattened empty `{ }` / empty statement. */
+    if (!statement) {
+        return afw_value_void;
+    }
+
     /*
      * Nested `{ }`: child deactivate isolates last into script_result.
      * If it wrote, clear this frame's last so a prior assignment does
