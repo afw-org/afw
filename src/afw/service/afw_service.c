@@ -416,6 +416,7 @@ impl_start_cb(
     const afw_utf8_t *startup;
     afw_service_t *service;
     afw_service_t *old_service;
+    const afw_object_t *service_object;
     const afw_object_t *conf;
     const afw_utf8_t *source_location;
 
@@ -444,11 +445,19 @@ impl_start_cb(
             break; /* Return. */
         }
 
+        /*
+         * Get a new p for the service, clone the object into the new p, and
+         * release the object passed to this callback.
+         */
+        p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+        service_object = afw_object_create_clone(object, p, xctx);
+        afw_object_release(object, xctx);
+
         /* Get serviceId.  Default to object id. */
-        service_id = afw_object_get_property_as_string_internal(object,
+        service_id = afw_object_get_property_as_string_internal(service_object,
             afw_v_serviceId, xctx);
         if (!service_id) {
-            service_id = afw_object_meta_get_object_id(object, xctx);
+            service_id = afw_object_meta_get_object_id(service_object, xctx);
         }
         if (!service_id) {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -473,7 +482,6 @@ impl_start_cb(
 
         /* Allocate and initialize new service instance. */
         old_service = service;
-        p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location,
@@ -482,13 +490,14 @@ impl_start_cb(
         service->service_id.len = service_id->len;
         service->service_id.s = afw_memory_dup(
             service_id->s, service_id->len, p, xctx);
+        service->service_object = service_object;
         service->has_service_conf = true;
         if (!old_service) {
             afw_environment_register_service(&service->service_id, service,
                 xctx);
         }
 
-        conf = afw_object_get_property_as_object_internal(object,
+        conf = afw_object_get_property_as_object_internal(service_object,
             afw_v_conf, xctx);
         if (!conf) {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -1193,8 +1202,10 @@ afw_service_start(
     const afw_pool_t *p;
     impl_start_context_t ctx;
 
-    /* Clear ctx and set p. */
+    /* Clear ctx and set p, session to NULL. */
     afw_memory_clear(&ctx);
+    p = NULL;
+    session = NULL;
     ctx.manual_start = manual_start;
 
     service = afw_environment_get_service(service_id, xctx);
@@ -1220,10 +1231,10 @@ afw_service_start(
     }
 
     /* If there is a conf adapter, try to start. */
-    session = afw_adapter_session_create(
-        &xctx->env->conf_adapter->adapter_id, xctx);
     AFW_TRY {
         p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+        session = afw_adapter_session_create(
+            &xctx->env->conf_adapter->adapter_id, xctx);
         afw_adapter_session_get_object(session, NULL,
             afw_s__AdaptiveServiceConf_, service_id,
             &ctx, impl_start_cb, NULL, p, xctx);
@@ -1235,7 +1246,12 @@ afw_service_start(
     }
 
     AFW_FINALLY {
-        afw_adapter_session_release(session, xctx);
+        if (session) {
+            afw_adapter_session_release(session, xctx);
+        }
+        if (p) {
+            afw_pool_release(p, xctx);
+        }
     }
     AFW_ENDTRY;
 
@@ -1343,6 +1359,7 @@ impl_restart_get_cb(
     const afw_pool_t *p;
     const afw_utf8_t *service_id;
     const afw_utf8_t *startup;
+    const afw_object_t *service_object;
     afw_service_t *service;
     const afw_object_t *conf;
     const afw_utf8_t *source_location;
@@ -1370,7 +1387,15 @@ impl_restart_get_cb(
             break; /* Return. */
         }
 
-        /* Get serviceId.  Default to object id. */
+        /*
+         * Get a new p for the service, clone the object into the new p, and
+         * release the object passed to this callback.
+         */
+         p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+         service_object = afw_object_create_clone(object, p, xctx);
+         afw_object_release(object, xctx);
+
+         /* Get serviceId.  Default to object id. */
         service_id = afw_object_get_property_as_string_internal(object,
             afw_v_serviceId, xctx);
         if (!service_id) {
@@ -1384,7 +1409,6 @@ impl_restart_get_cb(
         }
 
         /* Allocate and initialize new service instance. */
-        p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location,
@@ -1394,6 +1418,7 @@ impl_restart_get_cb(
         service->service_id.s = afw_memory_dup(
             service_id->s, service_id->len, p, xctx);
         service->has_service_conf = true;
+        service->service_object = service_object;
 
         service->conf_source_location = afw_utf8_printf(
             p, xctx, "%ku/conf",
@@ -1451,8 +1476,10 @@ afw_service_restart(
     const afw_pool_t *p;
     impl_start_context_t ctx;
 
-    /* Clear ctx and set p. */
+    /* Clear ctx and set p, session to NULL. */
     afw_memory_clear(&ctx);
+    p = NULL;
+    session = NULL;
 
     service = afw_environment_get_service(service_id, xctx);
 
@@ -1470,10 +1497,10 @@ afw_service_restart(
     }
 
     error = false;
-    session = afw_adapter_session_create(
-        &xctx->env->conf_adapter->adapter_id, xctx);
     AFW_TRY {
         p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+        session = afw_adapter_session_create(
+            &xctx->env->conf_adapter->adapter_id, xctx);
         afw_adapter_session_get_object(session, NULL,
             afw_s__AdaptiveServiceConf_, service_id,
             &ctx, impl_restart_get_cb, NULL, p, xctx);
@@ -1485,7 +1512,12 @@ afw_service_restart(
     }
 
     AFW_FINALLY {
-        afw_adapter_session_release(session, xctx);
+        if (session) { /* Release session. */
+            afw_adapter_session_release(session, xctx);
+        }
+        if (p) {
+            afw_pool_release(p, xctx);
+        }
     }
     AFW_ENDTRY;
     if (error) {

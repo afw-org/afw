@@ -77,6 +77,9 @@ struct afw_service_s {
     /** @brief The source location associated with this service. */
     const afw_utf8_t *source_location;
 
+    /** @brief The service conf object.. */
+    const afw_object_t *service_object;
+
     /** @brief The properties object containing runtime and conf properties. */
     const afw_object_t *properties;
 
