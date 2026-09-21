@@ -15,6 +15,7 @@
 ```bash
 # 1) Gate (do not break)
 afwdev test -j
+# Memory line: max N xctx, N chunk. History: --compare / --trend / --trend-metric chunk
 
 # 2) Narrow product regression (example #149 catalog contracts)
 afwdev test --test-pattern catalog-value-accessors --show-all

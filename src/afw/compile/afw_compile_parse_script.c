@@ -30,6 +30,26 @@ impl_function_definition_rethrow =
     &afw_function_definition_rethrow.pub;
 
 
+/*
+ * Empty `{ }`: no names, no statements, no temps. Compile omits the
+ * frame; runtime does not skip 0-name blocks.
+ */
+static const afw_value_t *
+impl_omit_empty_block(const afw_value_t *result)
+{
+    const afw_value_block_t *block;
+
+    if (!result || !afw_value_is_block(result)) {
+        return result;
+    }
+    block = (const afw_value_block_t *)result;
+    if (block->symbol_count == 0 && block->statement_count == 0) {
+        return NULL;
+    }
+    return result;
+}
+
+
 static const afw_value_string_t *
 impl_copy_token_identifier(afw_compile_parser_t *parser)
 {
@@ -2227,9 +2247,14 @@ afw_compile_parse_Statement(
 
     /* If next token is '{', parse Block. */
     if (afw_compile_token_is(open_brace)) {
+        afw_compile_get_token();
+        if (afw_compile_token_is(close_brace)) {
+            return NULL;
+        }
+        afw_compile_reuse_token();
         result = afw_compile_parse_StatementList(parser,
             NULL, true, false, false, false);
-        return result;
+        return impl_omit_empty_block(result);
     }
 
     /* If pound_identifier, parse pragma or compiler-internal # form. */
@@ -2583,6 +2608,14 @@ afw_compile_parse_StatementList(
         afw_value_block_finalize(block, argc, argv, parser->xctx);
         result = &block->pub;
         afw_compile_parse_pop_value_block(parser);
+        /*
+         * Function / catch / finally `{ }` with no names and no
+         * statements is not a runtime frame. Keep the top script
+         * block.
+         */
+        if (block != parser->compiled_value->top_block) {
+            result = impl_omit_empty_block(result);
+        }
     }
 
     /* Return block or list. */

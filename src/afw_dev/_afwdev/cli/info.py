@@ -1085,8 +1085,9 @@ _info_test_compare = {
         "Compare two history JSON files by test path. No args: latest vs "
         "previous in --history-dir for this --env-mode. One path: that file "
         "vs latest. Two paths: older then newer. Does not run tests unless "
-        "--history is also given. xctx bytes is the signal (1.5× and "
-        "+32,768); ms is listed but noisy. Does not fail the process."
+        "--history is also given. xctx bytes and chunk bytes are the "
+        "signal (1.5× and +32,768); ms is listed but noisy. Does not "
+        "fail the process."
 }
 
 _info_test_trend = {
@@ -1096,7 +1097,8 @@ _info_test_trend = {
     "default": False,
     "noprompt": True,
     "help":
-        "Show xctx bytes (or --trend-metric ms) across history runs. "
+        "Show xctx bytes (or --trend-metric ms|chunk) across history "
+        "runs. "
         "No args: all reference runs for this --env-mode plus the last "
         "10 ordinary runs. A single integer is the ordinary-run count. "
         "Otherwise glob/paths of JSON files (same mode only). Does not "
@@ -1110,7 +1112,9 @@ _info_test_trend_metric = {
     "action": "store",
     "default": "bytes",
     "noprompt": True,
-    "help": "Metric for --trend movers: bytes (default, xctx asked-for) or ms."
+    "help":
+        "Metric for --trend movers: bytes (default, xctx asked-for), "
+        "chunk (posix_memalign), or ms."
 }
 
 _info_test_capture_goldens = {

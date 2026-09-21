@@ -273,7 +273,12 @@ impl_afw_value_decompile(
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
     }
-    afw_value_decompile_value(self->body, writer, xctx);
+    if (self->body) {
+        afw_value_decompile_value(self->body, writer, xctx);
+    }
+    else {
+        afw_writer_write_z(writer, "{}", xctx);
+    }
 
     /*
      * Trailing return Type after body when present and not bare any.

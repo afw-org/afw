@@ -34,7 +34,8 @@ from _afwdev.test.common import \
     load_test_environments, load_test_group_config, run_test, before_all, \
     before_each, after_all, after_each, test_group_matches_tags, \
     test_path_for_display, clip_detail, outcome_flag, errors_only_console, \
-    xctx_bytes_from_response, format_test_timing
+    xctx_bytes_from_response, xctx_chunk_bytes_from_response, \
+    format_test_timing
 from _afwdev.test.history import file_record
 
 
@@ -188,11 +189,13 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             test_display = test_path_for_display(test, pwd)
             duration_ms = round((end - start) * 1000)
             xctx_bytes = xctx_bytes_from_response(response)
+            xctx_chunk_bytes = xctx_chunk_bytes_from_response(response)
             if xctx_bytes is not None:
                 max_xctx_bytes = max(max_xctx_bytes, xctx_bytes)
             file_records.append(file_record(
                 test_display, duration_ms, xctx_bytes,
-                numPassed, numSkipped, numFailures))
+                numPassed, numSkipped, numFailures,
+                xctx_chunk_bytes=xctx_chunk_bytes))
 
             # Quiet human chatter when summary is the sole stdout artifact
             quiet_console = (options.get('output') == '-')
@@ -200,7 +203,8 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             if not quiet_console and msg.is_debug_mode() and (debug or error):
                 msg.highlighted_info("{}  {}".format(
                     test_display,
-                    format_test_timing(duration_ms, xctx_bytes))) 
+                    format_test_timing(
+                        duration_ms, xctx_bytes, xctx_chunk_bytes))) 
 
             if error is not None and not quiet_console:
                 # Process death / runner exception: always show path + message.
@@ -244,7 +248,8 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             if error is None:
                 msg.highlighted_info("{}  {}".format(
                     test_display,
-                    format_test_timing(duration_ms, xctx_bytes)))
+                    format_test_timing(
+                        duration_ms, xctx_bytes, xctx_chunk_bytes)))
 
                 if debug:
                     msg.debug('---\n' + debug + '\n---\n')

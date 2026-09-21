@@ -57,7 +57,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Streams / VFS / retrieve | stream + vfs rules; #127; #49; catalog composite soak **[#331](https://github.com/afw-org/afw/issues/331)** |
 | afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207; test history `--compare` / `--trend` ([#329](https://github.com/afw-org/afw/issues/329)) |
 | Process telemetry / request caps | `process::` `peak*` / `limit*` / `rss`; application conf overrides; `response:metrics`; hermetic `payload_too_large` worker ([#329](https://github.com/afw-org/afw/issues/329)) |
-| Heap chunk reuse | Thread `afw_memory_region`; `memoryRegionFreeListMaxBytes` ([#358](https://github.com/afw-org/afw/issues/358)). Record is the issue body. Pool impl split: `afw_pool.c` shared, `afw_pool_heap.c` store/scope, `afw_pool_tracker.c` tracker. |
+| Heap chunk reuse | Thread `afw_memory_region`; `memoryRegionFreeListMaxBytes` ([#358](https://github.com/afw-org/afw/issues/358)). Record is the issue body. Pool impl split: `afw_pool.c` shared, `afw_pool_heap.c` store/scope, `afw_pool_tracker.c` tracker. Live **block** stores `chunk *`; heap free list is LIFO with forward coalesce (no `first_chunk` walk). Glossary in `afw_pool.c`. `afwdev test -j` harvests `poolChunkBytes`. Compile omits empty `{ }` (no names, no statements). **#358 stays open.** Dual-ended carve of a chunk (small low, large high) is later, if `managed_p` fragmentation shows. |
 | Crypto | #74 pad |
 | Admin / Fiddle | atlas §16 (contract only) |
 | C vector / hash table | [`afw-vector.md`](afw-vector.md) (last `apr_array` [PR #310](https://github.com/afw-org/afw/pull/310)); [`afw-hash-table.md`](afw-hash-table.md) (last `apr_hash` converted) |
@@ -162,7 +162,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Compile → value graph → evaluate; EBNF-in-comments harvest; functions metadata + hand execute; statement_flow control |
+| **Settled map** | Compile → value graph → evaluate; EBNF-in-comments harvest; functions metadata + hand execute; statement_flow control. Compile omits empty `{ }` (no names, no statements); `{ stmt }` stays a frame (`empty_block.as`) |
 | **Day rules** | `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function` |
 | **Deep pads** | `compile-optimize-notes`, `pragma-hash-design`, `decompile-compiler-internal-inventory`, `compile-contextual-audit`, `adaptive-function-compile-typecheck`, `issue-28-type-syntax`, [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) (PR **#305** / **#306**; leftover wrapping dropped) |
 | **Probe** | `afw -s '…'` / tests under `src/afw/tests/`; regenerate EBNF via `--cdev`; check `generated/ebnf/syntax.ebnf` has `::=` for nonterminals |

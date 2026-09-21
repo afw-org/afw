@@ -132,8 +132,8 @@ struct afw_value_block_s {
 
 
 /*
- * Every `{ }` is a scope. Flattening a useless block into the
- * enclosing statement list is compile-side only.
+ * Every remaining `{ }` is a scope. Compile omits empty `{ }`
+ * (no names, no statements). Runtime does not skip 0-name blocks.
  */
 #define afw_value_block_has_scope(block) \
     ((void)(block), true)

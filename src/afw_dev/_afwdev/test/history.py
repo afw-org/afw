@@ -3,10 +3,10 @@
 # @file history.py
 # @brief Dated test-run records, --compare, and --trend.
 #
-# Per-file rows: path, ms, xctx_bytes (null if the binary did not stamp
-# poolBytesInUse). Console shows comma-separated bytes. ms is noisy.
-# Failed paths are not flagged for bytes/ms. Compare/trend never fail the
-# process in v1.
+# Per-file rows: path, ms, xctx_bytes, xctx_chunk_bytes (null if the
+# binary did not stamp poolBytesInUse / poolChunkBytes). Console shows
+# comma-separated bytes. ms is noisy. Failed paths are not flagged for
+# bytes/ms. Compare/trend never fail the process in v1.
 #
 
 import glob
@@ -191,11 +191,10 @@ def _failed(row):
     return int((row or {}).get("failed") or 0) > 0
 
 
-def _xctx_bytes(row):
-    """Asked-for bytes from a file row, or None."""
+def _int_field(row, key):
     if not row:
         return None
-    n = row.get("xctx_bytes")
+    n = row.get(key)
     if n is None:
         return None
     try:
@@ -205,12 +204,34 @@ def _xctx_bytes(row):
     return n if n >= 0 else None
 
 
+def _xctx_bytes(row):
+    """Asked-for bytes from a file row, or None."""
+    return _int_field(row, "xctx_bytes")
+
+
+def _xctx_chunk_bytes(row):
+    """Chunk bytes from a file row, or None."""
+    return _int_field(row, "xctx_chunk_bytes")
+
+
+def max_file_metric(records, key):
+    """Max of a non-negative int field across file records, or 0."""
+    m = 0
+    for row in records or []:
+        n = _int_field(row, key)
+        if n is not None and n > m:
+            m = n
+    return m
+
+
 def _trend_metric(options):
-    """'ms' or 'bytes'."""
+    """'ms', 'chunk', or 'bytes'."""
     raw = ((options or {}).get("trend_metric") or "bytes")
     metric = str(raw).strip().lower()
     if metric == "ms":
         return "ms"
+    if metric in ("chunk", "chunks"):
+        return "chunk"
     return "bytes"
 
 
@@ -235,12 +256,11 @@ def _ms(row):
     return n if n >= 0 else None
 
 
-def _bytes_fatter(old_row, new_row):
-    """True if new xctx bytes is out of family vs old."""
+def _metric_fatter(old_row, new_row, getter):
     if _failed(old_row) or _failed(new_row):
         return False
-    old_b = _xctx_bytes(old_row)
-    new_b = _xctx_bytes(new_row)
+    old_b = getter(old_row)
+    new_b = getter(new_row)
     if old_b is None or new_b is None or old_b <= 0:
         return False
     if new_b <= old_b:
@@ -248,16 +268,33 @@ def _bytes_fatter(old_row, new_row):
     return (new_b > old_b * BYTES_RATIO) and (new_b - old_b >= BYTES_FLOOR)
 
 
-def _bytes_thinner(old_row, new_row):
+def _metric_thinner(old_row, new_row, getter):
     if _failed(old_row) or _failed(new_row):
         return False
-    old_b = _xctx_bytes(old_row)
-    new_b = _xctx_bytes(new_row)
+    old_b = getter(old_row)
+    new_b = getter(new_row)
     if old_b is None or new_b is None or new_b <= 0:
         return False
     if new_b >= old_b:
         return False
     return (old_b > new_b * BYTES_RATIO) and (old_b - new_b >= BYTES_FLOOR)
+
+
+def _bytes_fatter(old_row, new_row):
+    """True if new xctx bytes is out of family vs old."""
+    return _metric_fatter(old_row, new_row, _xctx_bytes)
+
+
+def _bytes_thinner(old_row, new_row):
+    return _metric_thinner(old_row, new_row, _xctx_bytes)
+
+
+def _chunk_fatter(old_row, new_row):
+    return _metric_fatter(old_row, new_row, _xctx_chunk_bytes)
+
+
+def _chunk_thinner(old_row, new_row):
+    return _metric_thinner(old_row, new_row, _xctx_chunk_bytes)
 
 
 def _ms_slower(old_row, new_row):
@@ -284,9 +321,9 @@ def _ms_faster(old_row, new_row):
     return (old_m > new_m * MS_RATIO) and (old_m - new_m >= MS_FLOOR_MS)
 
 
-def _ratio_bytes(old_row, new_row):
-    old_b = _xctx_bytes(old_row)
-    new_b = _xctx_bytes(new_row)
+def _ratio_bytes(old_row, new_row, getter=_xctx_bytes):
+    old_b = getter(old_row)
+    new_b = getter(new_row)
     if not old_b or new_b is None:
         return 0
     return float(new_b) / float(old_b)
@@ -302,8 +339,11 @@ def compare_runs(old, new):
     added = sorted(new_paths - old_paths)
     gone = sorted(old_paths - new_paths)
     bytes_missing = 0
+    chunk_missing = 0
     fatter = []
     thinner = []
+    chunk_fatter = []
+    chunk_thinner = []
     slower = []
     faster = []
     for path in compared:
@@ -311,23 +351,35 @@ def compare_runs(old, new):
         n = new_files[path]
         if _xctx_bytes(o) is None or _xctx_bytes(n) is None:
             bytes_missing += 1
+        if _xctx_chunk_bytes(o) is None or _xctx_chunk_bytes(n) is None:
+            chunk_missing += 1
         if _bytes_fatter(o, n):
             fatter.append(path)
         if _bytes_thinner(o, n):
             thinner.append(path)
+        if _chunk_fatter(o, n):
+            chunk_fatter.append(path)
+        if _chunk_thinner(o, n):
+            chunk_thinner.append(path)
         if _ms_slower(o, n):
             slower.append(path)
         if _ms_faster(o, n):
             faster.append(path)
     fatter.sort(
         key=lambda p: _ratio_bytes(old_files[p], new_files[p]), reverse=True)
+    chunk_fatter.sort(
+        key=lambda p: _ratio_bytes(
+            old_files[p], new_files[p], _xctx_chunk_bytes), reverse=True)
     return {
         "compared": compared,
         "added": added,
         "gone": gone,
         "bytes_missing": bytes_missing,
+        "chunk_missing": chunk_missing,
         "fatter": fatter,
         "thinner": thinner,
+        "chunk_fatter": chunk_fatter,
+        "chunk_thinner": chunk_thinner,
         "slower": slower,
         "faster": faster,
         "old_files": old_files,
@@ -359,11 +411,24 @@ def print_compare(result, show_all=False):
             "bytes missing in {n} compared path(s) "
             "(old afw / non-test_script)".format(
                 n=result["bytes_missing"]))
+    if result.get("chunk_missing"):
+        msg.highlighted_info(
+            "chunk bytes missing in {n} compared path(s) "
+            "(older harvest / non-test_script)".format(
+                n=result["chunk_missing"]))
     msg.highlighted_info(
         "Memory:  {f} fatter  {t} thinner  "
         "(threshold {r}× and +{floor})".format(
             f=len(result["fatter"]),
             t=len(result["thinner"]),
+            r=BYTES_RATIO,
+            floor=format_xctx_bytes(BYTES_FLOOR),
+        ))
+    msg.highlighted_info(
+        "Chunk:   {f} fatter  {t} thinner  "
+        "(threshold {r}× and +{floor})".format(
+            f=len(result.get("chunk_fatter") or []),
+            t=len(result.get("chunk_thinner") or []),
             r=BYTES_RATIO,
             floor=format_xctx_bytes(BYTES_FLOOR),
         ))
@@ -379,7 +444,7 @@ def print_compare(result, show_all=False):
     show = result["fatter"] if not show_all else result["fatter"]
     if show:
         msg.highlighted_info("")
-        msg.highlighted_info("Fatter:")
+        msg.highlighted_info("Fatter (xctx):")
         for path in show[:TREND_TOP] if not show_all else show:
             o = old_files[path]
             n = new_files[path]
@@ -387,6 +452,19 @@ def print_compare(result, show_all=False):
                 "  {ob} → {nb}  {path}".format(
                     ob=_fmt_metric(_xctx_bytes(o), "bytes"),
                     nb=_fmt_metric(_xctx_bytes(n), "bytes"),
+                    path=path))
+    show_chunk = result.get("chunk_fatter") or []
+    if show_chunk:
+        msg.highlighted_info("")
+        msg.highlighted_info("Fatter (chunk):")
+        listing = show_chunk if show_all else show_chunk[:TREND_TOP]
+        for path in listing:
+            o = old_files[path]
+            n = new_files[path]
+            msg.highlighted_info(
+                "  {ob} → {nb}  {path}".format(
+                    ob=_fmt_metric(_xctx_chunk_bytes(o), "bytes"),
+                    nb=_fmt_metric(_xctx_chunk_bytes(n), "bytes"),
                     path=path))
     def _list(title, paths):
         if not paths:
@@ -513,38 +591,43 @@ def trend_runs(runs, options=None):
         peer_ms.append({"ms": total, "n": n})
     peer_label = peer_run.get("label") or (
         "ref" if is_reference_run(peer_run) else "first")
-    series_max = []
-    for run in runs:
-        mx = 0
-        any_b = False
-        for path, row in files_by_path(run).items():
-            if not ok(path):
-                continue
-            b = _xctx_bytes(row)
-            if b is None:
-                continue
-            any_b = True
-            mx = max(mx, b)
-        series_max.append(mx if any_b else None)
+    def _series_max(getter):
+        out = []
+        for run in runs:
+            mx = 0
+            any_b = False
+            for path, row in files_by_path(run).items():
+                if not ok(path):
+                    continue
+                b = getter(row)
+                if b is None:
+                    continue
+                any_b = True
+                mx = max(mx, b)
+            out.append(mx if any_b else None)
+        return out
+
+    series_max = _series_max(_xctx_bytes)
+    series_max_chunk = _series_max(_xctx_chunk_bytes)
     movers = []
     metric = _trend_metric(options)
+    if metric == "ms":
+        getter = _ms
+    elif metric == "chunk":
+        getter = _xctx_chunk_bytes
+    else:
+        getter = _xctx_bytes
     for path in sorted(first_p & last_p):
         o = first[path]
         n = last[path]
-        if metric == "ms":
-            old_v, new_v = _ms(o), _ms(n)
-        else:
-            old_v, new_v = _xctx_bytes(o), _xctx_bytes(n)
+        old_v, new_v = getter(o), getter(n)
         if old_v is None or new_v is None or old_v <= 0:
             continue
         ratio = float(new_v) / float(old_v)
         series = []
         for run in runs:
             row = files_by_path(run).get(path)
-            if metric == "ms":
-                series.append(_ms(row))
-            else:
-                series.append(_xctx_bytes(row))
+            series.append(getter(row) if row else None)
         present = [x for x in series if x is not None]
         movers.append({
             "path": path,
@@ -560,6 +643,7 @@ def trend_runs(runs, options=None):
         "new": added,
         "gone": gone,
         "series_max": series_max,
+        "series_max_chunk": series_max_chunk,
         "peer_ms": peer_ms,
         "peer_label": peer_label,
         "movers": movers,
@@ -586,21 +670,26 @@ def print_trend(result, show_all=False):
         msg.highlighted_info(
             "Peer ms ({n} files):  {bits}".format(
                 n=npeer, bits="  ".join(bits)))
-    maxes = result.get("series_max") or []
-    metric = result.get("metric") or "bytes"
-    if any(x is not None for x in maxes):
+    def _print_maxes(title, maxes):
+        if not any(x is not None for x in (maxes or [])):
+            return
         bits = []
         for run, n in zip(runs, maxes):
             label = run.get("_basename") or _run_label(run)
             if label.endswith(".json"):
                 label = label[:-5]
             bits.append("{}:{}".format(label, _fmt_metric(n, "bytes")))
-        msg.highlighted_info("Run max:  " + "  ".join(bits))
+        msg.highlighted_info(title + "  " + "  ".join(bits))
+
+    metric = result.get("metric") or "bytes"
+    _print_maxes("Run max xctx:", result.get("series_max") or [])
+    _print_maxes("Run max chunk:", result.get("series_max_chunk") or [])
     movers = result["movers"]
     show = movers if show_all else movers[:TREND_TOP]
     if show:
         msg.highlighted_info("")
-        unit = "ms" if metric == "ms" else "bytes"
+        unit = "ms" if metric == "ms" else (
+            "chunk" if metric == "chunk" else "bytes")
         msg.highlighted_info("Top movers ({u}, first → last):".format(u=unit))
         for m in show:
             msg.highlighted_info(
@@ -628,7 +717,8 @@ def print_trend(result, show_all=False):
     _list("Gone since first run", result["gone"])
 
 
-def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped, num_failed):
+def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped,
+                num_failed, xctx_chunk_bytes=None):
     rec = {
         "path": path,
         "ms": int(duration_ms),
@@ -636,7 +726,10 @@ def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped, num_fail
         "skipped": int(num_skipped),
         "failed": int(num_failed),
         "xctx_bytes": None,
+        "xctx_chunk_bytes": None,
     }
     if xctx_bytes is not None:
         rec["xctx_bytes"] = int(xctx_bytes)
+    if xctx_chunk_bytes is not None:
+        rec["xctx_chunk_bytes"] = int(xctx_chunk_bytes)
     return rec

@@ -481,46 +481,40 @@ afw_pool_heap_internal_reservoir_heap(afw_pool_internal_self_t *self)
 }
 
 
-static char *
-impl_chunk_usable(afw_pool_chunk_t *chunk)
-{
-    return (char *)chunk + AFW_POOL_ALIGN_UP(sizeof(afw_pool_chunk_t));
-}
+#define impl_chunk_usable(_chunk) \
+    ((char *)(_chunk) + AFW_POOL_ALIGN_UP(sizeof(afw_pool_chunk_t)))
 
+#define impl_chunk_end(_chunk) \
+    ((char *)(_chunk) + (_chunk)->size)
 
-static char *
-impl_chunk_end(afw_pool_chunk_t *chunk)
-{
-    return (char *)chunk + chunk->size;
-}
+#define AFW_POOL_BLOCK_FREE_BIT ((uintptr_t)1)
 
+#define impl_block_chunk(_start) \
+    ((afw_pool_chunk_t *)(((uintptr_t) \
+        ((afw_pool_free_node_t *)(_start))->chunk) & \
+        ~AFW_POOL_BLOCK_FREE_BIT))
 
-static afw_pool_chunk_t *
-impl_chunk_containing(afw_pool_internal_heap_self_t *heap, void *addr)
-{
-    afw_pool_chunk_t *chunk;
-    char *p;
+#define impl_block_set_chunk(_start, _chunk) \
+    (((afw_pool_free_node_t *)(_start))->chunk = (_chunk))
 
-    p = (char *)addr;
-    for (chunk = heap->first_chunk; chunk; chunk = chunk->next) {
-        if (p >= (char *)chunk && p < impl_chunk_end(chunk)) {
-            return chunk;
-        }
-    }
-    return NULL;
-}
+#define impl_block_mark_free(_start) \
+    (((afw_pool_free_node_t *)(_start))->chunk = \
+        (afw_pool_chunk_t *)(((uintptr_t)impl_block_chunk(_start)) | \
+            AFW_POOL_BLOCK_FREE_BIT))
 
+#define impl_block_is_free(_start) \
+    ((((uintptr_t)((afw_pool_free_node_t *)(_start))->chunk) & \
+        AFW_POOL_BLOCK_FREE_BIT) != 0)
 
-static afw_boolean_t
-impl_same_chunk(afw_pool_internal_heap_self_t *heap, void *a, void *b)
-{
-    afw_pool_chunk_t *ca;
-    afw_pool_chunk_t *cb;
+#define impl_same_chunk(_a, _b) \
+    (impl_block_chunk(_a) == impl_block_chunk(_b))
 
-    ca = impl_chunk_containing(heap, a);
-    cb = impl_chunk_containing(heap, b);
-    return (ca && ca == cb);
-}
+#define impl_addr_in_chunk(_addr, _chunk, _need) \
+    ((_addr) && (_chunk) && (_need) != 0 && \
+        (char *)(_addr) >= impl_chunk_usable(_chunk) && \
+        (char *)(_addr) <= impl_chunk_end(_chunk) && \
+        (afw_size_t)(impl_chunk_end(_chunk) - (char *)(_addr)) >= \
+            (_need))
 
 
 AFW_DEFINE(afw_size_t)
@@ -721,9 +715,9 @@ impl_heap_create(
 }
 
 /*
- * First-fit on an address-ordered free list. Overlay lives only on
- * freed blocks. Remainder too small to hold a free node is left on
- * the list so total is always recoverable as prefix + USER size.
+ * First-fit on a LIFO free list. Overlay lives only on freed
+ * blocks. Remainder too small to hold a free node is left on the
+ * list so total is always recoverable as prefix + USER size.
  */
 static void
 impl_heap_free_unlink(
@@ -842,16 +836,23 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
         if (curr->total - total >= sizeof(afw_pool_free_node_t)) {
             rest = (afw_pool_free_node_t *)(((char *)curr) + total);
             rest->total = curr->total - total;
+            rest->chunk = impl_block_chunk(curr);
+            impl_block_mark_free(rest);
             rest->prev = prev;
+            rest->next = next;
             if (prev) {
                 prev->next = rest;
             }
             else {
                 head->first = rest;
             }
+            if (next) {
+                next->prev = rest;
+            }
             if (next &&
                 ((char *)rest) + rest->total == (char *)next &&
-                impl_same_chunk(heap, rest, next))
+                impl_block_is_free(next) &&
+                impl_same_chunk(rest, next))
             {
                 rest->total += next->total;
                 rest->next = next->next;
@@ -859,13 +860,8 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
                     next->next->prev = rest;
                 }
             }
-            else {
-                rest->next = next;
-                if (next) {
-                    next->prev = rest;
-                }
-            }
         }
+        impl_block_set_chunk(curr, impl_block_chunk(curr));
         *reused = true;
         return curr;
     }
@@ -875,12 +871,14 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
         start = heap->bump;
         heap->bump += total;
         heap->remaining -= total;
+        impl_block_set_chunk(start, heap->current_chunk);
         return start;
     }
 
     if (heap->current_chunk &&
         heap->remaining >= sizeof(afw_pool_free_node_t))
     {
+        impl_block_set_chunk(heap->bump, heap->current_chunk);
         afw_pool_heap_internal_add_to_free_list(heap, heap->bump,
             heap->remaining, xctx);
     }
@@ -941,6 +939,7 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     start = heap->bump;
     heap->bump += total;
     heap->remaining -= total;
+    impl_block_set_chunk(start, chunk);
     return start;
 }
 
@@ -953,8 +952,6 @@ afw_pool_heap_internal_add_to_free_list(
     afw_xctx_t *xctx)
 {
     afw_pool_free_node_t *freeing;
-    afw_pool_free_node_t *prev;
-    afw_pool_free_node_t *curr;
     afw_pool_internal_free_memory_head_t *head;
 
     (void)xctx;
@@ -965,49 +962,41 @@ afw_pool_heap_internal_add_to_free_list(
 
     freeing = (afw_pool_free_node_t *)start;
     freeing->total = total;
+    impl_block_mark_free(freeing);
+
+    {
+        char *nstart;
+        afw_pool_chunk_t *chunk;
+        afw_pool_free_node_t *nxt;
+
+        chunk = impl_block_chunk(freeing);
+        nstart = ((char *)freeing) + freeing->total;
+        /*
+         * Unused bump in the current chunk is not a block header.
+         * Peeking it is an uninit read (valgrind).
+         */
+        if (chunk &&
+            !(chunk == heap->current_chunk &&
+                nstart == heap->bump) &&
+            impl_addr_in_chunk(nstart, chunk,
+                sizeof(afw_pool_free_node_t)) &&
+            impl_block_is_free(nstart) &&
+            impl_block_chunk(nstart) == chunk)
+        {
+            nxt = (afw_pool_free_node_t *)nstart;
+            if (impl_addr_in_chunk(nstart, chunk, nxt->total)) {
+                impl_heap_free_unlink(&head->first, nxt);
+                freeing->total += nxt->total;
+            }
+        }
+    }
+
     freeing->prev = NULL;
-    freeing->next = NULL;
-
-    prev = NULL;
-    curr = head->first;
-    while (curr && curr < freeing) {
-        prev = curr;
-        curr = curr->next;
+    freeing->next = head->first;
+    if (head->first) {
+        head->first->prev = freeing;
     }
-
-    freeing->prev = prev;
-    freeing->next = curr;
-    if (prev) {
-        prev->next = freeing;
-    }
-    else {
-        head->first = freeing;
-    }
-    if (curr) {
-        curr->prev = freeing;
-    }
-
-    if (curr &&
-        ((char *)freeing) + freeing->total == (char *)curr &&
-        impl_same_chunk(heap, freeing, curr))
-    {
-        freeing->total += curr->total;
-        freeing->next = curr->next;
-        if (curr->next) {
-            curr->next->prev = freeing;
-        }
-    }
-
-    if (prev &&
-        ((char *)prev) + prev->total == (char *)freeing &&
-        impl_same_chunk(heap, prev, freeing))
-    {
-        prev->total += freeing->total;
-        prev->next = freeing->next;
-        if (freeing->next) {
-            freeing->next->prev = prev;
-        }
-    }
+    head->first = freeing;
 }
 
 static void

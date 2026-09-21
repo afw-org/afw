@@ -161,6 +161,8 @@ def run(options):
         start = time.time()
         results, failures, max_xctx_bytes, file_records = runner.run(
             options, srcdirs)
+        max_xctx_chunk_bytes = test_history.max_file_metric(
+            file_records, "xctx_chunk_bytes")
         end = time.time()
 
         # iterate over results dict and print results
@@ -210,9 +212,15 @@ def run(options):
 
             msg.highlighted_info("{} total".format(total_tests))
             msg.highlighted_info("Time:          {}s".format(elapsed))
-            if max_xctx_bytes:
-                msg.highlighted_info("Memory:        max {} xctx".format(
-                    format_xctx_bytes(max_xctx_bytes)))
+            if max_xctx_bytes or max_xctx_chunk_bytes:
+                parts = []
+                if max_xctx_bytes:
+                    parts.append("{} xctx".format(
+                        format_xctx_bytes(max_xctx_bytes)))
+                if max_xctx_chunk_bytes:
+                    parts.append("{} chunk".format(
+                        format_xctx_bytes(max_xctx_chunk_bytes)))
+                msg.highlighted_info("Memory:        max " + ", ".join(parts))
 
             # Console-only digest so parallel -j runs still end with greppable paths
             print_failure_digest(failures)
@@ -232,6 +240,7 @@ def run(options):
             },
             'time_seconds': elapsed,
             'max_xctx_bytes': max_xctx_bytes or 0,
+            'max_xctx_chunk_bytes': max_xctx_chunk_bytes or 0,
             'mode': test_history.env_mode(options),
             'git': test_history.git_meta(),
             'files': sorted(

@@ -29773,6 +29773,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7d9604c533d3 \
+    "File-level xctx ST posix_memalign chunk bytes (thread current minus snap) after all cases. Not process-wide. afwdev test harvests this next to poolBytesInUse."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7d9604c533d3 */
+#define afw_s_zz__7d9604c533d3 \
+    (&afw_self_v_zz__7d9604c533d3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7d9604c533d3 */
+#define afw_self_s_zz__7d9604c533d3 \
+    (afw_self_v_zz__7d9604c533d3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7d9604c533d3 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7d9604c533d3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7d9604c533d3 */
+#define afw_z_zz__7d9604c533d3 \
+    (afw_self_v_zz__7d9604c533d3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7d9604c533d3 */
+#define afw_v_zz__7d9604c533d3 \
+    (&afw_self_v_zz__7d9604c533d3.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7da16cee43b4 \
     "function ge<script> (\n    arg1: script,\n    arg2: script\n): boolean;\n"
 
@@ -84265,6 +84291,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
 #define afw_v_zz__This_eval_ST_asked_for_bytes \
     (&afw_self_v_zz__This_eval_ST_asked_for_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_eval_ST_chunk_bytes \
+    "This-eval ST chunk bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_eval_ST_chunk_bytes */
+#define afw_s_zz__This_eval_ST_chunk_bytes \
+    (&afw_self_v_zz__This_eval_ST_chunk_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_eval_ST_chunk_bytes */
+#define afw_self_s_zz__This_eval_ST_chunk_bytes \
+    (afw_self_v_zz__This_eval_ST_chunk_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_eval_ST_chunk_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_eval_ST_chunk_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_eval_ST_chunk_bytes */
+#define afw_z_zz__This_eval_ST_chunk_bytes \
+    (afw_self_v_zz__This_eval_ST_chunk_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_eval_ST_chunk_bytes */
+#define afw_v_zz__This_eval_ST_chunk_bytes \
+    (&afw_self_v_zz__This_eval_ST_chunk_bytes.pub)
 
 
 

@@ -12,6 +12,68 @@
  *
  * Heap store is `afw_pool_heap.c`. Tracker store is
  * `afw_pool_tracker.c`. A pool is a heap unless it is a tracker.
+ *
+ * Glossary — two layers; do not mix:
+ *
+ *   afw_memory_region — thread-owned. Not a pool. get/free whole
+ *   aligned allocations.
+ *   Heap store — a living pool carving USER out of chunks it holds.
+ *
+ *   pool — a heap or a tracker.
+ *   heap — owns chunks; malloc/free_memory happen here.
+ *   tracker — gets bytes from an ancestor heap and remembers them.
+ *   free_memory only marks.
+ *   scope — heap used for `{ }`. Smaller chunk_min (4k), plus
+ *   last-release delay on throw.
+ *
+ *   chunk — `afw_pool_chunk_t`. One posix_memalign allocation the
+ *   heap holds. Linked from first_chunk. Typical sizes: 4k (scope)
+ *   or 64k (`xctx->p`).
+ *   region — the `void *` from `afw_memory_region_get()`. The heap
+ *   uses that pointer as a chunk. Same bytes, two names: region at
+ *   the thread, chunk once the heap owns it.
+ *   page — hardware MMU page, or the 4096 posix_memalign alignment
+ *   (`AFW_POOL_CHUNK_ALIGN`). Not a type name. Not a chunk or a
+ *   region.
+ *
+ *   USER — pointer malloc returns. size on malloc/free_memory is
+ *   always USER size.
+ *   block — one malloc/free_memory unit inside a chunk (USER plus
+ *   any prefix). Overlay when freed: `afw_pool_free_node_t`. Not an
+ *   Adaptive Script block (`afw_value_block`).
+ *   prefix — bytes before USER. Heap: [chunk*][USER]. Debug heap:
+ *   [chunk*…][size][pool][USER]. Tracker: [next][size][USER].
+ *   free node — `afw_pool_free_node_t` written on a freed block.
+ *
+ *   free list — two lists. (1) Heap `free_memory_head`: freed
+ *   blocks inside live chunks. (2) memory_region: whole
+ *   regions/chunks after the heap is destroyed.
+ *   bump / remaining — unused tail of current_chunk. Not a block
+ *   until malloc takes it or it is put on the heap free list.
+ *   current_chunk — chunk the bump is carving.
+ *   first_chunk — this heap's chunk list. Extra chunks are
+ *   prepended.
+ *   chunk_min — smallest chunk this heap will get. 0 = env default
+ *   (64k). Scope uses compile/4k.
+ *   asked-for vs chunk_bytes — sum of malloc sizes vs bytes in
+ *   chunks still held.
+ *   containing — `chunk *` on the block (which chunk this block is
+ *   in). Not a walk of first_chunk.
+ *   coalesce — merge two adjacent free blocks in the same chunk.
+ *   first-fit — walk the heap free list; take the first block big
+ *   enough.
+ *   LIFO — push at the list head. memory_region free() does this
+ *   for regions. The heap free list is also LIFO.
+ *
+ *   parent / child — pool lifetime only. Store is the ancestor
+ *   heap.
+ *   managed_p — dest pool for managed values. Not a store kind.
+ *
+ * Script vs pool (same English word):
+ *   block — pool: malloc unit in a chunk. Script: `afw_value_block`
+ *   (`{ }` frame).
+ *   scope — pool: the pool for `{ }`. Script: running frame /
+ *   qualifier stack.
  */
 
 #include "afw_internal.h"
