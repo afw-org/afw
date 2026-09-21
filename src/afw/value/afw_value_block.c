@@ -34,17 +34,17 @@
 #define AFW_VALUE_SELF_T afw_value_block_t
 #include "afw_value_impl_declares.h"
 
-#define IMPL_TEMP_FIX_ASSIGNS(XX) \
+#define IMPL_TEMP_FIX_ASSIGNS(_XX) \
     modified_x.p = p; \
     modified_x.xctx = xctx; \
-    modified_x.function = &afw_function_definition_ ## XX; \
+    modified_x.function = &afw_function_definition_ ## _XX; \
     modified_x.argv = argv; \
     modified_x.argc = argc; \
 
-#define IMPL_TEMP_FIX(XX) \
+#define IMPL_TEMP_FIX(_XX) \
     afw_function_execute_t modified_x; \
     afw_memory_clear(&modified_x); \
-    IMPL_TEMP_FIX_ASSIGNS(XX) \
+    IMPL_TEMP_FIX_ASSIGNS(_XX) \
     x = &modified_x
 
 

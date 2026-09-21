@@ -37,8 +37,8 @@ AFW_BEGIN_DECLARES
  *
  * (xctx is used inside the locked block via the surrounding context.)
  */
-#define AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) \
-AFW_LOCK_READ_BEGIN((adapter)->impl->adapter_lock_rw)
+#define AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(_adapter) \
+AFW_LOCK_READ_BEGIN((_adapter)->impl->adapter_lock_rw)
 
 
 /**
@@ -64,8 +64,8 @@ AFW_LOCK_READ_END
  *
  * (xctx is used inside the locked block via the surrounding context.)
  */
-#define AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(adapter) \
-AFW_LOCK_WRITE_BEGIN((adapter)->impl->adapter_lock_rw)
+#define AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(_adapter) \
+AFW_LOCK_WRITE_BEGIN((_adapter)->impl->adapter_lock_rw)
 
 
 /**

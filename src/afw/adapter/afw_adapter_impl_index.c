@@ -1376,8 +1376,8 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
 }
 
 /* useful macro for determining if node, x, is a non-leaf node */
-#define AFW_QUERY_CRITERIA_CONTINUE(x) \
-    (x != AFW_QUERY_CRITERIA_FALSE && x != AFW_QUERY_CRITERIA_TRUE)
+#define AFW_QUERY_CRITERIA_CONTINUE(_x) \
+    (_x != AFW_QUERY_CRITERIA_FALSE && _x != AFW_QUERY_CRITERIA_TRUE)
 
 /*
  * afw_boolean_t afw_adapter_impl_index_sargable_entry()

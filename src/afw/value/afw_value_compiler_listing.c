@@ -30,7 +30,7 @@ impl_default_tab = AFW_UTF8_LITERAL("    ");
 /* Frame symbol types. */
 static const afw_utf8_t *
 impl_symbol_type_names[] = {
-#define XX(name, description) &afw_self_s_ ## name,
+#define XX(_name, _description) &afw_self_s_ ## _name,
     AFW_VALUE_BLOCK_SYMBOL_TYPE(XX)
 #undef XX
     NULL

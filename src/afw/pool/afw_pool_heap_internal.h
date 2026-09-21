@@ -29,11 +29,11 @@
 
 AFW_BEGIN_DECLARES
 
-#define AFW_POOL_HEAP_ALLOC_START(user) \
-    ((void *)((char *)(user) - AFW_POOL_HEAP_PREFIX_BYTES))
+#define AFW_POOL_HEAP_ALLOC_START(_user) \
+    ((void *)((char *)(_user) - AFW_POOL_HEAP_PREFIX_BYTES))
 
-#define AFW_POOL_HEAP_USER_FROM_START(start) \
-    ((void *)((char *)(start) + AFW_POOL_HEAP_PREFIX_BYTES))
+#define AFW_POOL_HEAP_USER_FROM_START(_start) \
+    ((void *)((char *)(_start) + AFW_POOL_HEAP_PREFIX_BYTES))
 
 /** Heap chunk. Destroy walks first_chunk and free()s each. */
 typedef struct afw_pool_chunk_s afw_pool_chunk_t;
@@ -52,8 +52,8 @@ struct afw_pool_free_node_s {
 };
 
 #define AFW_POOL_ALIGN ((afw_size_t)16)
-#define AFW_POOL_ALIGN_UP(n) \
-    (((n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
+#define AFW_POOL_ALIGN_UP(_n) \
+    (((_n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
 /** posix_memalign alignment (page). Not an env knob. */
 #define AFW_POOL_CHUNK_ALIGN ((afw_size_t)4096)
 
@@ -156,10 +156,10 @@ struct afw_pool_internal_self_with_free_memory_head_s {
 };
 
 
-#define afw_pool_heap_internal_as_heap(self) \
-    ((afw_pool_internal_heap_self_t *)(self))
-#define afw_pool_heap_internal_as_scope(self) \
-    ((afw_pool_internal_scope_self_t *)(self))
+#define afw_pool_heap_internal_as_heap(_self) \
+    ((afw_pool_internal_heap_self_t *)(_self))
+#define afw_pool_heap_internal_as_scope(_self) \
+    ((afw_pool_internal_scope_self_t *)(_self))
 
 
 afw_pool_internal_heap_self_t *

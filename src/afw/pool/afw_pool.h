@@ -313,8 +313,8 @@ afw_pool_thread_create(
  * memory for a specified type and cast the return pointer to
  * a pointer to that type.
  */
-#define afw_pool_calloc_type(instance, type, xctx) \
-    (type *) afw_pool_calloc(instance, sizeof(type), xctx)
+#define afw_pool_calloc_type(_instance, _type, _xctx) \
+    (_type *) afw_pool_calloc(_instance, sizeof(_type), _xctx)
 
 
 /**
@@ -328,8 +328,8 @@ afw_pool_thread_create(
  * memory for a specified type and cast the return pointer to a pointer
  * to that type.
  */
-#define afw_pool_malloc_type(instance, type, xctx) \
-    (type *) afw_pool_malloc(instance, sizeof(type), xctx)
+#define afw_pool_malloc_type(_instance, _type, _xctx) \
+    (_type *) afw_pool_malloc(_instance, sizeof(_type), _xctx)
 
 
 /**
@@ -339,8 +339,8 @@ afw_pool_thread_create(
  * @param type allocated.
  * @param xctx of caller.
  */
-#define afw_pool_free_memory_type(instance, address, type, xctx) \
-    afw_pool_free_memory(instance, address, sizeof(type), xctx)
+#define afw_pool_free_memory_type(_instance, _address, _type, _xctx) \
+    afw_pool_free_memory(_instance, _address, sizeof(_type), _xctx)
 
 
 /**

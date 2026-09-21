@@ -134,10 +134,10 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx);
  * @param enum_suffix is appended to afw_stream_number_
  * @param xctx of caller.
  */
-#define afw_stream_standard(enum_suffix, xctx) \
-(((xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix]) \
-? (xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix] \
-: afw_stream_standard_impl(afw_stream_number_ ## enum_suffix, xctx) )
+#define afw_stream_standard(_enum_suffix, _xctx) \
+(((_xctx)->stream_anchor->streams[afw_stream_number_ ## _enum_suffix]) \
+? (_xctx)->stream_anchor->streams[afw_stream_number_ ## _enum_suffix] \
+: afw_stream_standard_impl(afw_stream_number_ ## _enum_suffix, _xctx) )
 
 
 
@@ -146,8 +146,8 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx);
  * @param enum_suffix is appended to afw_stream_number_
  * @param xctx of caller.
  */
-#define afw_stream_standard_is_set(enum_suffix, xctx) \
-((xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix] != NULL )
+#define afw_stream_standard_is_set(_enum_suffix, _xctx) \
+((_xctx)->stream_anchor->streams[afw_stream_number_ ## _enum_suffix] != NULL )
 
 
 
@@ -158,11 +158,11 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx);
  * @param xctx of caller.
  * @return stream instance.
  */
-#define afw_stream_standard_set(enum_suffix, stream, xctx) \
-if ((xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix]) { \
-    AFW_THROW_ERROR(general, "Stream already set", xctx); \
+#define afw_stream_standard_set(_enum_suffix, _stream, _xctx) \
+if ((_xctx)->stream_anchor->streams[afw_stream_number_ ## _enum_suffix]) { \
+    AFW_THROW_ERROR(general, "Stream already set", _xctx); \
 } \
-(xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix] = stream
+(_xctx)->stream_anchor->streams[afw_stream_number_ ## _enum_suffix] = _stream
 
  
  
@@ -173,13 +173,13 @@ if ((xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix]) { \
  *
  * Note: afw_stream_console_stream() will get a new one if called.
  */
-#define afw_stream_standard_release(enum_suffix, xctx) \
-if ((xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix]) { \
+#define afw_stream_standard_release(_enum_suffix, _xctx) \
+if ((_xctx)->stream_anchor->streams[afw_stream_number_ ## _enum_suffix]) { \
     afw_stream_release( \
-        (xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix], \
-        xctx); \
-    *(afw_stream_t **)&(xctx)->stream_anchor-> \
-        streams[afw_stream_number_ ## enum_suffix] = NULL; \
+        (_xctx)->stream_anchor->streams[afw_stream_number_ ## _enum_suffix], \
+        _xctx); \
+    *(afw_stream_t **)&(_xctx)->stream_anchor-> \
+        streams[afw_stream_number_ ## _enum_suffix] = NULL; \
 }
 
 
@@ -190,8 +190,8 @@ if ((xctx)->stream_anchor->streams[afw_stream_number_ ## enum_suffix]) { \
  * @param s_z zero terminated string to write.
  * @param xctx of caller.
  */
-#define afw_stream_write_z(writer, s_z, xctx) \
-afw_stream_write(writer, s_z, strlen(s_z), xctx)
+#define afw_stream_write_z(_writer, _s_z, _xctx) \
+afw_stream_write(_writer, _s_z, strlen(_s_z), _xctx)
 
 
 
@@ -200,8 +200,8 @@ afw_stream_write(writer, s_z, strlen(s_z), xctx)
  * @param writer instance.
  * @param xctx of caller.
  */
-#define afw_stream_write_eol(writer, xctx) \
-afw_stream_write(writer, "\n", strlen("\n"), xctx)
+#define afw_stream_write_eol(_writer, _xctx) \
+afw_stream_write(_writer, "\n", strlen("\n"), _xctx)
 
 
 
@@ -211,8 +211,8 @@ afw_stream_write(writer, "\n", strlen("\n"), xctx)
  * @param s utf8 string.
  * @param xctx of caller.
  */
-#define afw_stream_write_utf8(writer, S, xctx) \
-afw_stream_write(writer, (S)->s, (S)->len, xctx)
+#define afw_stream_write_utf8(_writer, _S, _xctx) \
+afw_stream_write(_writer, (_S)->s, (_S)->len, _xctx)
 
 
 

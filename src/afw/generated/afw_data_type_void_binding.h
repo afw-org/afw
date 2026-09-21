@@ -73,13 +73,13 @@ afw_value_permanent_void_inf;
 
 /**
  * @brief Macro to determine if data type is void.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_void(A_DATA_TYPE) \
+#define afw_data_type_is_void(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_void \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_void \
 )
 
 /** @brief struct for data type void values. */

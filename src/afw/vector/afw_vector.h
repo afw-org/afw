@@ -98,8 +98,8 @@ typedef struct afw_vector_s afw_vector_t;
  *     v = afw_vector_create(impl_int_vector_t, 4, p, xctx);
  *     afw_vector_push(v, xctx) = 1;
  */
-#define AFW_VECTOR_STRUCT(struct_name, entry_type) \
-struct struct_name { \
+#define AFW_VECTOR_STRUCT(_struct_name, _entry_type) \
+struct _struct_name { \
     union { \
         const afw_vector_t internal; \
         struct { \
@@ -107,7 +107,7 @@ struct struct_name { \
             afw_size_t entry_size; \
             afw_size_t count; \
             afw_size_t allocated; \
-            entry_type *entries; \
+            _entry_type *entries; \
             afw_integer_t growth; \
         }; \
     }; \
@@ -129,39 +129,39 @@ typedef struct afw_octet_vector_s afw_octet_vector_t;
  *
  * Entry size is sizeof(*entries) of the typedef.
  */
-#define afw_vector_create(typedef_name, \
-    initial_allocated, p, xctx) \
-((typedef_name *)afw_vector_create_impl( \
-    sizeof(*(((typedef_name *)0)->entries)), \
-    initial_allocated, (afw_integer_t)-2, p, xctx))
+#define afw_vector_create(_typedef_name, \
+    initial_allocated, _p, _xctx) \
+((_typedef_name *)afw_vector_create_impl( \
+    sizeof(*(((_typedef_name *)0)->entries)), \
+    initial_allocated, (afw_integer_t)-2, _p, _xctx))
 
 /**
  * @brief Create a vector with an explicit growth policy.
  * @param growth 0 cannot grow; >0 add that many; -2 double current.
  */
-#define afw_vector_create_with_growth(typedef_name, \
-    initial_allocated, growth, p, xctx) \
-((typedef_name *)afw_vector_create_impl( \
-    sizeof(*(((typedef_name *)0)->entries)), \
-    initial_allocated, (growth), p, xctx))
+#define afw_vector_create_with_growth(_typedef_name, \
+    initial_allocated, _growth, _p, _xctx) \
+((_typedef_name *)afw_vector_create_impl( \
+    sizeof(*(((_typedef_name *)0)->entries)), \
+    initial_allocated, (_growth), _p, _xctx))
 
 /**
  * @brief Create a vector that cannot grow past initial_allocated.
  */
-#define afw_vector_create_fixed(typedef_name, \
-    initial_allocated, p, xctx) \
-((typedef_name *)afw_vector_create_impl( \
-    sizeof(*(((typedef_name *)0)->entries)), \
-    initial_allocated, (afw_integer_t)0, p, xctx))
+#define afw_vector_create_fixed(_typedef_name, \
+    initial_allocated, _p, _xctx) \
+((_typedef_name *)afw_vector_create_impl( \
+    sizeof(*(((_typedef_name *)0)->entries)), \
+    initial_allocated, (afw_integer_t)0, _p, _xctx))
 
 /**
  * @brief Create a fixed vector during xctx init (no AFW_TRY).
  */
-#define afw_vector_create_fixed_unhandled(typedef_name, \
-    initial_allocated, p, xctx) \
-((typedef_name *)afw_vector_create_fixed_unhandled_impl( \
-    sizeof(*(((typedef_name *)0)->entries)), \
-    initial_allocated, p, xctx))
+#define afw_vector_create_fixed_unhandled(_typedef_name, \
+    initial_allocated, _p, _xctx) \
+((_typedef_name *)afw_vector_create_fixed_unhandled_impl( \
+    sizeof(*(((_typedef_name *)0)->entries)), \
+    initial_allocated, _p, _xctx))
 
 /**
  * @brief Create an untyped vector.
@@ -336,9 +336,9 @@ afw_vector_release_impl(
 /**
  * @brief Copy into a typed vector.
  */
-#define afw_vector_copy(typedef_name, instance, p, xctx) \
-((typedef_name *)afw_vector_copy_impl( \
-    &((instance)->internal), (p), (xctx)))
+#define afw_vector_copy(_typedef_name, _instance, _p, _xctx) \
+((_typedef_name *)afw_vector_copy_impl( \
+    &((_instance)->internal), (_p), (_xctx)))
 
 /**
  * @brief Copy used entries to an exact-sized typed block.
@@ -346,38 +346,38 @@ afw_vector_release_impl(
  *     // out is entry_type *; n is used count. Does not release v.
  *     afw_vector_copy_entries(v, &n, &out, p, xctx);
  */
-#define afw_vector_copy_entries(instance, count, ptr, p, xctx) \
-    afw_vector_copy_entries_impl(&((instance)->internal), \
-        (count), (void **)(ptr), (p), (xctx))
+#define afw_vector_copy_entries(_instance, _count, _ptr, _p, _xctx) \
+    afw_vector_copy_entries_impl(&((_instance)->internal), \
+        (_count), (void **)(_ptr), (_p), (_xctx))
 
 /**
  * @brief Free header and entries chunk. Do not use after.
  */
-#define afw_vector_release(instance, xctx) \
-    afw_vector_release_impl(&((instance)->internal), xctx)
+#define afw_vector_release(_instance, _xctx) \
+    afw_vector_release_impl(&((_instance)->internal), _xctx)
 
 /**
  * @brief Copy used entries out, then release the work vector.
  */
-#define afw_vector_copy_entries_and_release( \
-    instance, count, ptr, p, xctx) \
-    afw_vector_copy_entries((instance), (count), (ptr), \
-        (p), (xctx)); \
-    afw_vector_release((instance), (xctx))
+#define afw_vector_copy_entries_and_release(\
+    instance, _count, _ptr, _p, _xctx) \
+    afw_vector_copy_entries((instance), (_count), (_ptr), \
+        (_p), (_xctx)); \
+    afw_vector_release((instance), (_xctx))
 
 /**
  * @brief Ensure capacity on a typed vector. Count unchanged.
  */
-#define afw_vector_ensure(instance, min_allocated, xctx) \
-    afw_vector_ensure_impl(&((instance)->internal), \
-        (min_allocated), (xctx))
+#define afw_vector_ensure(_instance, _min_allocated, _xctx) \
+    afw_vector_ensure_impl(&((_instance)->internal), \
+        (_min_allocated), (_xctx))
 
 /**
  * @brief Append n entries from src. instance->entries may move.
  */
-#define afw_vector_append(instance, src, n, xctx) \
-    afw_vector_append_impl(&((instance)->internal), \
-        (src), (n), (xctx))
+#define afw_vector_append(_instance, _src, _n, _xctx) \
+    afw_vector_append_impl(&((_instance)->internal), \
+        (_src), (_n), (_xctx))
 
 /**
  * @brief Append one uninitialized slot. Lvalue of the entry type.
@@ -390,16 +390,16 @@ afw_vector_release_impl(
  * The impl call is a full statement so grow finishes before
  * entries is used.
  */
-#define afw_vector_push(instance, xctx) \
+#define afw_vector_push(_instance, _xctx) \
     afw_vector_push_index_impl( \
-        &((instance)->internal), xctx); \
-    (instance)->entries[(instance)->count - 1]
+        &((_instance)->internal), _xctx); \
+    (_instance)->entries[(_instance)->count - 1]
 
 /**
  * @brief Last entry. Caller must not use on empty.
  */
-#define afw_vector_last(instance) \
-    ((instance)->entries[(instance)->count - 1])
+#define afw_vector_last(_instance) \
+    ((_instance)->entries[(_instance)->count - 1])
 
 /**
  * @brief Remove the last element. Throws on empty.
@@ -411,8 +411,8 @@ afw_vector_release_impl(
  *
  * The popped slot remains in the buffer until overwritten.
  */
-#define afw_vector_pop(instance, xctx) \
-    afw_vector_pop_index_impl(&((instance)->internal), xctx)
+#define afw_vector_pop(_instance, _xctx) \
+    afw_vector_pop_index_impl(&((_instance)->internal), _xctx)
 
 /**
  * @brief Insert a hole at index. Lvalue of the new slot.
@@ -422,23 +422,23 @@ afw_vector_release_impl(
  *
  *     afw_vector_insert(v, i, xctx) = value;  // hole; rest move up
  */
-#define afw_vector_insert(instance, index, xctx) \
+#define afw_vector_insert(_instance, _index, _xctx) \
     afw_vector_insert_impl( \
-        &((instance)->internal), (index), xctx); \
-    (instance)->entries[index]
+        &((_instance)->internal), (_index), _xctx); \
+    (_instance)->entries[_index]
 
 /**
  * @brief Remove the element at index (memmove to close).
  */
-#define afw_vector_remove(instance, index, xctx) \
-    afw_vector_remove_impl(&((instance)->internal), \
-        (index), xctx)
+#define afw_vector_remove(_instance, _index, _xctx) \
+    afw_vector_remove_impl(&((_instance)->internal), \
+        (_index), _xctx)
 
 /**
  * @brief Set count to 0. Capacity is kept.
  */
-#define afw_vector_clear(instance) \
-    ((instance)->count = 0)
+#define afw_vector_clear(_instance) \
+    ((_instance)->count = 0)
 
 AFW_END_DECLARES
 

@@ -43,9 +43,9 @@ AFW_BEGIN_DECLARES
  * macros is an rti.  This macro defines a static rti that can be passed to
  * these for non-interface tracing.
  */
-#define AFW_TRACE_STATIC_TRACE_ID(label, trace_id) \
-static const afw_interface_implementation_rti_t label = \
-    {"afw_trace_id", __FILE__, trace_id};
+#define AFW_TRACE_STATIC_TRACE_ID(_label, _trace_id) \
+static const afw_interface_implementation_rti_t _label = \
+    {"afw_trace_id", __FILE__, _trace_id};
 
 
 /**
@@ -60,14 +60,14 @@ static const afw_interface_implementation_rti_t label = \
  * Use 2 - 8 when a particular trace benefits from a different log priority.
  * For example, 2 - 8 could indicate more detail for a particular flag.
  */
-#define afw_trace(trace_level, flag_index, instance, message, xctx) \
-    if ((flag_index) < (xctx)->flags_count && (xctx)->flags[flag_index]) \
+#define afw_trace(_trace_level, _flag_index, _instance, _message, _xctx) \
+    if ((_flag_index) < (_xctx)->flags_count && (_xctx)->flags[_flag_index]) \
         afw_trace_write( \
-            afw_log_priority_trace##trace_level, \
-            ((instance) ? \
-                &((const afw_instance_t *)instance)->inf->rti \
+            afw_log_priority_trace##_trace_level, \
+            ((_instance) ? \
+                &((const afw_instance_t *)_instance)->inf->rti \
                 : NULL), \
-            AFW__FILE_LINE__, message, xctx)
+            AFW__FILE_LINE__, _message, _xctx)
 
 
 /**
@@ -83,14 +83,14 @@ static const afw_interface_implementation_rti_t label = \
  * Use 2 - 8 when a particular trace benefits from a different log priority.
  * For example, 2 - 8 could indicate more detail for a particular flag.
  */
-#define afw_trace_fz(trace_level, flag_index, instance, xctx, format_z, ...) \
-    if ((flag_index) < (xctx)->flags_count && (xctx)->flags[flag_index]) \
+#define afw_trace_fz(_trace_level, _flag_index, _instance, _xctx, _format_z, ...) \
+    if ((_flag_index) < (_xctx)->flags_count && (_xctx)->flags[_flag_index]) \
         afw_trace_write_fz( \
-            afw_log_priority_trace##trace_level, \
-            ((instance) ? \
-                &((const afw_instance_t *)instance)->inf->rti \
+            afw_log_priority_trace##_trace_level, \
+            ((_instance) ? \
+                &((const afw_instance_t *)_instance)->inf->rti \
                 : NULL), \
-            AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__)
+            AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__)
 
 
 /**
@@ -106,14 +106,14 @@ static const afw_interface_implementation_rti_t label = \
  * Use 2 - 8 when a particular trace benefits from a different log priority.
  * For example, 2 - 8 could indicate more detail for a particular flag.
  */
-#define afw_trace_vz(trace_level, flag_index, instance, format_z, ap, xctx) \
-    if ((flag_index) < (xctx)->flags_count && (xctx)->flags[flag_index]) \
+#define afw_trace_vz(_trace_level, _flag_index, _instance, _format_z, _ap, _xctx) \
+    if ((_flag_index) < (_xctx)->flags_count && (_xctx)->flags[_flag_index]) \
         afw_trace_write_vz( \
-            afw_log_priority_trace##trace_level, \
-            ((instance) ? \
-                &((const afw_instance_t *)instance)->inf->rti \
+            afw_log_priority_trace##_trace_level, \
+            ((_instance) ? \
+                &((const afw_instance_t *)_instance)->inf->rti \
                 : NULL), \
-            AFW__FILE_LINE__, format_z, ap, xctx)
+            AFW__FILE_LINE__, _format_z, _ap, _xctx)
 
 
 /**
@@ -128,14 +128,14 @@ static const afw_interface_implementation_rti_t label = \
  * Use 2 - 8 when a particular trace benefits from a different log priority.
  * For example, 2 - 8 could indicate more detail for a particular flag.
  */
-#define afw_trace_z(trace_level, flag_index, instance, message_z, xctx) \
-    if ((flag_index) < (xctx)->flags_count && (xctx)->flags[flag_index]) \
+#define afw_trace_z(_trace_level, _flag_index, _instance, _message_z, _xctx) \
+    if ((_flag_index) < (_xctx)->flags_count && (_xctx)->flags[_flag_index]) \
         afw_trace_write_z( \
-            afw_log_priority_trace##trace_level, \
-            ((instance) ? \
-                &((const afw_instance_t *)instance)->inf->rti \
+            afw_log_priority_trace##_trace_level, \
+            ((_instance) ? \
+                &((const afw_instance_t *)_instance)->inf->rti \
                 : NULL), \
-            AFW__FILE_LINE__, message_z, xctx)
+            AFW__FILE_LINE__, _message_z, _xctx)
 
 
 /**

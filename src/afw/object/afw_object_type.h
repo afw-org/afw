@@ -78,9 +78,9 @@ struct afw_object_type_property_type_s {
  * @param xctx of caller.
  * @return value of object type property.
  */
-#define afw_object_type_get_property(object_type, property_name, xctx) \
-    afw_object_get_property((object_type)->object_type_object, \
-        property_name, xctx)
+#define afw_object_type_get_property(_object_type, _property_name, _xctx) \
+    afw_object_get_property((_object_type)->object_type_object, \
+        _property_name, _xctx)
 
 
 
@@ -91,10 +91,10 @@ struct afw_object_type_property_type_s {
  * @param xctx of caller.
  * @return utf8 or NULL if not found.
  */
-#define afw_object_type_get_property_convert_to_utf8(object_type_object, \
-    property_name, xctx) \
-    afw_object_get_property_convert_to_utf8((object_type)->object_type_object, \
-        property_name, xctx)
+#define afw_object_type_get_property_convert_to_utf8(_object_type_object, \
+    property_name, _xctx) \
+    afw_object_get_property_convert_to_utf8((object_type)->_object_type_object, \
+        property_name, _xctx)
 
 
 /**

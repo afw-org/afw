@@ -510,19 +510,19 @@ impl_string_parser_set_error_fz(
 
 
 /*  Macro used to set parse error in xctx and throw it. */
-#define IMPL_STRING_THROW_ERROR_Z(message_z) \
+#define IMPL_STRING_THROW_ERROR_Z(_message_z) \
 do { \
     impl_string_parser_set_error_z(parser, \
-        AFW__FILE_LINE__, message_z); \
+        AFW__FILE_LINE__, _message_z); \
     afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
 
 /*  Macro used to set parse error in xctx and throw it. */
-#define IMPL_STRING_THROW_ERROR_FZ(format_z, ...) \
+#define IMPL_STRING_THROW_ERROR_FZ(_format_z, ...) \
 do { \
     impl_string_parser_set_error_fz(parser, \
-        AFW__FILE_LINE__, format_z, __VA_ARGS__); \
+        AFW__FILE_LINE__, _format_z, __VA_ARGS__); \
     afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
@@ -533,36 +533,36 @@ do { \
  */
 #define AFW_QUERY_CRITERIA_PARSE_NESTING_MAX 256
 
-#define impl_query_parse_nesting_enter(parser) \
+#define impl_query_parse_nesting_enter(_parser) \
 do { \
-    AFW_XCTX_THROW_IF_TERMINATING((parser)->xctx); \
-    (parser)->parse_nesting++; \
-    if ((parser)->parse_nesting > AFW_QUERY_CRITERIA_PARSE_NESTING_MAX) { \
+    AFW_XCTX_THROW_IF_TERMINATING((_parser)->xctx); \
+    (_parser)->parse_nesting++; \
+    if ((_parser)->parse_nesting > AFW_QUERY_CRITERIA_PARSE_NESTING_MAX) { \
         IMPL_STRING_THROW_ERROR_Z("Filter nesting is too deep"); \
     } \
 } while (0)
 
-#define impl_query_parse_nesting_leave(parser) \
+#define impl_query_parse_nesting_leave(_parser) \
 do { \
-    if ((parser)->parse_nesting > 0) { \
-        (parser)->parse_nesting--; \
+    if ((_parser)->parse_nesting > 0) { \
+        (_parser)->parse_nesting--; \
     } \
 } while (0)
 
-#define impl_query_object_parse_nesting_enter(parser) \
+#define impl_query_object_parse_nesting_enter(_parser) \
 do { \
-    AFW_XCTX_THROW_IF_TERMINATING((parser)->xctx); \
-    (parser)->parse_nesting++; \
-    if ((parser)->parse_nesting > AFW_QUERY_CRITERIA_PARSE_NESTING_MAX) { \
+    AFW_XCTX_THROW_IF_TERMINATING((_parser)->xctx); \
+    (_parser)->parse_nesting++; \
+    if ((_parser)->parse_nesting > AFW_QUERY_CRITERIA_PARSE_NESTING_MAX) { \
         AFW_THROW_ERROR_Z(syntax, \
-            "Filter nesting is too deep", (parser)->xctx); \
+            "Filter nesting is too deep", (_parser)->xctx); \
     } \
 } while (0)
 
-#define impl_query_object_parse_nesting_leave(parser) \
+#define impl_query_object_parse_nesting_leave(_parser) \
 do { \
-    if ((parser)->parse_nesting > 0) { \
-        (parser)->parse_nesting--; \
+    if ((_parser)->parse_nesting > 0) { \
+        (_parser)->parse_nesting--; \
     } \
 } while (0)
 

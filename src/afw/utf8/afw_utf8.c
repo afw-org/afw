@@ -34,8 +34,8 @@ impl_throw_if_embedded_nul(
 /* afw_utf8_t with 0 len and null s. */
 static const afw_utf8_t impl_utf8_null = { NULL, 0 };
 
-#define IMPL_WHITESPACE(c) \
-((c) == 0x20 || (c) == 0x09 || (c) == 0x0d || (c) == 0x0a)
+#define IMPL_WHITESPACE(_c) \
+((_c) == 0x20 || (_c) == 0x09 || (_c) == 0x0d || (_c) == 0x0a)
 
 /* Get next codepoint. */
 AFW_DEFINE(afw_code_point_t)
@@ -1059,18 +1059,18 @@ impl_out_libc(
 
 
 /* Star width/precision sit in `spec` as `*`; pass those ints then val. */
-#define IMPL_SNPRINTF(val) do { \
+#define IMPL_SNPRINTF(_val) do { \
     if (star_width && star_prec) { \
-        impl_out_libc(&o, xctx, spec, aw, aprec, (val)); \
+        impl_out_libc(&o, xctx, spec, aw, aprec, (_val)); \
     } \
     else if (star_width) { \
-        impl_out_libc(&o, xctx, spec, aw, (val)); \
+        impl_out_libc(&o, xctx, spec, aw, (_val)); \
     } \
     else if (star_prec) { \
-        impl_out_libc(&o, xctx, spec, aprec, (val)); \
+        impl_out_libc(&o, xctx, spec, aprec, (_val)); \
     } \
     else { \
-        impl_out_libc(&o, xctx, spec, (val)); \
+        impl_out_libc(&o, xctx, spec, (_val)); \
     } \
 } while (0)
 

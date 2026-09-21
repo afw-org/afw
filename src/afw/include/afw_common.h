@@ -172,53 +172,53 @@
  *
  * There must be a corresponding AFW_DEFINE() in a /src/afw/ source .c file.
  */
-#define AFW_DECLARE(type) \
+#define AFW_DECLARE(_type) \
 AFW_DECLSPEC_DECLARE \
-type \
+_type \
 AFW_CALLING_CONVENTION
 
 /**
  * @brief Declare a public afw function with variable arguments.
  * @param type of return value.
  */
-#define AFW_DECLARE_ELLIPSIS(type) \
+#define AFW_DECLARE_ELLIPSIS(_type) \
 AFW_DECLSPEC_DECLARE \
-type \
+_type \
 AFW_CALLING_CONVENTION_ELLIPSIS
 
 /**
  * @brief Declare a public afw const variable.
  * @param type of variable
  */
-#define AFW_DECLARE_CONST_DATA(type) \
+#define AFW_DECLARE_CONST_DATA(_type) \
 AFW_DECLSPEC_DECLARE \
-const type
+const _type
 
 /**
  * @brief Define a public afw function.
  * @param type of return value.
  */
-#define AFW_DEFINE(type) \
+#define AFW_DEFINE(_type) \
 AFW_DECLSPEC_DEFINE \
-type \
+_type \
 AFW_CALLING_CONVENTION
 
 /**
  * @brief Define a public afw function with variable arguments.
  * @param type of return value.
  */
-#define AFW_DEFINE_ELLIPSIS(type) \
+#define AFW_DEFINE_ELLIPSIS(_type) \
 AFW_DECLSPEC_DEFINE \
-type \
+_type \
 AFW_CALLING_CONVENTION_ELLIPSIS
 
 /**
  * @brief Define a public afw const variable.
  * @param type of variable
  */
-#define AFW_DEFINE_CONST_DATA(type) \
+#define AFW_DEFINE_CONST_DATA(_type) \
 AFW_DECLSPEC_DEFINE \
-const type
+const _type
 
 #define AFW_CALLBACK \
 AFW_CALLING_CONVENTION
@@ -227,9 +227,9 @@ AFW_CALLING_CONVENTION
 AFW_CALLING_CONVENTION_ELLIPSIS
 
 #ifdef WIN32
-#define AFW_DEFINE_DSO(type) __declspec(dllexport) type
+#define AFW_DEFINE_DSO(_type) __declspec(dllexport) _type
 #else
-#define AFW_DEFINE_DSO(type) type
+#define AFW_DEFINE_DSO(_type) _type
 #endif
 
 #ifdef AFW_DISABLE_INLINE
@@ -243,12 +243,12 @@ AFW_CALLING_CONVENTION_ELLIPSIS
 /** AFW Inline. */
 #define AFW_STATIC_INLINE static AFW_INLINE
 
-#define AFW_DECLARE_STATIC(type) static type
+#define AFW_DECLARE_STATIC(_type) static _type
 
 #if defined(DOXYGEN)
-#define AFW_DEFINE_STATIC_INLINE(type) type
+#define AFW_DEFINE_STATIC_INLINE(_type) _type
 #else
-#define AFW_DEFINE_STATIC_INLINE(type) AFW_STATIC_INLINE type
+#define AFW_DEFINE_STATIC_INLINE(_type) AFW_STATIC_INLINE _type
 #endif
 
 /* Include template headers. */
@@ -301,11 +301,11 @@ AFW_CALLING_CONVENTION_ELLIPSIS
  *
  * @fixme Remove when no remaining call sites.
  */
-#define AFW_ASSERT(e) assert(e)
+#define AFW_ASSERT(_e) assert(_e)
 
 /** @fixme */
 #ifndef offsetof
-#define offsetof(type, member)  __builtin_offsetof (type, member)
+#define offsetof(_type, _member)  __builtin_offsetof (_type, _member)
 #endif
 
 AFW_BEGIN_DECLARES
@@ -314,8 +314,8 @@ AFW_BEGIN_DECLARES
 #define AFW_ADAPTER_ID "afw"
 
 /** @brief Evaluate x and quote the results. */
-#define AFW_STRINGIFY(x) AFW_STRINGIFY_x(x)
-#define AFW_STRINGIFY_x(x) #x
+#define AFW_STRINGIFY(_x) AFW_STRINGIFY_x(_x)
+#define AFW_STRINGIFY_x(_x) #_x
 
 /** @brief file:line */
 #define AFW__FILE_LINE__ __FILE__ ":" AFW_STRINGIFY(__LINE__)
@@ -489,9 +489,9 @@ typedef int (*afw_utf8_octet_get_cb_t) (
  * @param integer to test.
  * @return boolean result.
  */
-#define AFW_INTEGER_IS_SAFE_DOUBLE(integer) \
-    ((integer) <= AFW_INTEGER_MAX_SAFE_DOUBLE && \
-    ((integer) >= AFW_INTEGER_MIN_SAFE_DOUBLE)
+#define AFW_INTEGER_IS_SAFE_DOUBLE(_integer) \
+    ((_integer) <= AFW_INTEGER_MAX_SAFE_DOUBLE && \
+    ((_integer) >= AFW_INTEGER_MIN_SAFE_DOUBLE)
 
 
 /**
@@ -601,25 +601,25 @@ typedef _Bool afw_boolean_t;
  *
  * There must be and afw_s_ with each name in map.
  */
-#define AFW_COMPILE_TYPE_MAP(XX)                                                \
+#define AFW_COMPILE_TYPE_MAP(_XX)                                                \
                                                                                 \
-    XX(error,                                                                   \
+    _XX(error,                                                                   \
         string, NULL,                                                           \
         "This is an error")                                                     \
                                                                                 \
-    XX(json,                                                                    \
+    _XX(json,                                                                    \
         string,                                                                 \
         &afw_function_definition_compile_json,                                  \
         "Compile strict json")                                                  \
                                                                                 \
-    XX(regexp,                                                                  \
+    _XX(regexp,                                                                  \
         regexp,                                                                 \
         &afw_function_definition_compile_regexp,                                \
         "Parses a regular expression conforming to XML Schemas Part 2 "         \
         "Datatype Appendix F and builds an automata suitable for testing "      \
         "strings against that regular expression ")                             \
                                                                                 \
-    XX(relaxed_json,                                                            \
+    _XX(relaxed_json,                                                            \
         string,                                                                 \
         &afw_function_definition_compile_relaxed_json,                          \
         "1) Allows inline and block comments\n"                                 \
@@ -629,25 +629,25 @@ typedef _Bool afw_boolean_t;
         "3) Allows Infinity, -Infinity, NaN, and -NaN for number values.\n"     \
         "4) Allows a trailing comma in Object and List.")                       \
                                                                                 \
-    XX(script,                                                                  \
+    _XX(script,                                                                  \
         script,                                                                 \
         &afw_function_definition_compile_script,                                \
         "See production Script in src/afw/doc/syntax/index.html or "            \
         "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
                                                                                 \
-    XX(template,                                                                \
+    _XX(template,                                                                \
         template,                                                               \
         &afw_function_definition_compile_template,                              \
         "See production Template in src/afw/doc/syntax/index.html or "          \
         "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
                                                                                 \
-    XX(test_script,                                                             \
+    _XX(test_script,                                                             \
         script,                                                                 \
         &afw_function_definition_compile_script,                                \
         "See production TestScript in src/afw/doc/syntax/index.html or "        \
         "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
                                                                                 \
-    XX(xpathExpression,                                                         \
+    _XX(xpathExpression,                                                         \
         xpathExpression,                                                        \
         &afw_function_definition_compile_xpathExpression,                       \
         "XML Path Language (XPath) expression")                                 \
@@ -656,8 +656,8 @@ typedef _Bool afw_boolean_t;
  * @brief Compile type enum
  */
 typedef enum afw_compile_type_e {
-#define XX(name, data_type, compile_function, description) \
-    afw_compile_type_ ## name,
+#define XX(_name, _data_type, _compile_function, _description) \
+    afw_compile_type_ ## _name,
     AFW_COMPILE_TYPE_MAP(XX)
 #undef XX
     afw_compile_type_count
@@ -785,7 +785,7 @@ typedef struct afw_utf8_array_s {
  * bad pointer. Runtime / unknown bytes go through afw_utf8_set /
  * afw_utf8_create, not this macro.
  */
-#define AFW_UTF8_LITERAL(A_STRING) {A_STRING, sizeof(A_STRING) - 1}
+#define AFW_UTF8_LITERAL(_A_STRING) {_A_STRING, sizeof(_A_STRING) - 1}
 
 
 /**
@@ -813,8 +813,8 @@ typedef struct afw_utf8_array_s {
  * The argument for " AFW_UTF8_FMT " is an int length (not size_t) followed by
  * a comma and const char *.  
  */
-#define AFW_UTF8_FMT_ARG(A_STRING) \
-    (int)(A_STRING)->len, (const char *)(A_STRING)->s
+#define AFW_UTF8_FMT_ARG(_A_STRING) \
+    (int)(_A_STRING)->len, (const char *)(_A_STRING)->s
 
 
 /**
@@ -1047,79 +1047,79 @@ typedef struct afw_object_meta_s {
  * client_closed            - Client closed the connection.
  *
  */
-#define AFW_ERROR_CODE_MAP(XX)                                                  \
-    XX(none,                               true,  200, "OK"                               )\
-    XX(general,                            true,  500, "General Error"                    )\
-    XX(throw,                              true,  400, "Statement throw encountered"      )\
-    XX(assertion_failed,                   true,  400, "Assertion failed"                 )\
-    XX(argument_error,                     true,  400, "Argument Error"                   )\
-    XX(conversion_error,                   true,  400, "Conversion Error"                 )\
-    XX(undefined_value,                    true,  400, "Undefined Value"                  )\
-    XX(syntax,                             true,  400, "Syntax Error"                     )\
-    XX(created,                            true,  201, "Created"                          )\
-    XX(accepted,                           true,  202, "Accepted"                         )\
-    XX(no_content,                         false, 204, "No Content"                       )\
-    XX(partial_content,                    true,  206, "Partial Content"                  )\
-    XX(multi_status,                       true,  207, "Multi-Status"                     )\
-    XX(multiple_choices,                   true,  300, "Multiple Choices"                 )\
-    XX(moved_permanently,                  true,  301, "Moved Permanently"                )\
-    XX(moved_temporarily,                  true,  302, "Found"                            )\
-    XX(see_other,                          true,  303, "See Other"                        )\
-    XX(not_modified,                       false, 304, "Not Modified"                     )\
-    XX(temporary_redirect,                 true,  307, "Temporary Redirect"               )\
-    XX(permanent_redirect,                 true,  308, "Permanent Redirect"               )\
-    XX(bad_request,                        true,  400, "Bad Request"                      )\
-    XX(query_too_complex,                  true,  400, "Query Too Complex"                )\
-    XX(request_syntax,                     true,  400, "Request Syntax Error"             )\
-    XX(authentication_required,            true,  401, "Authentication Needed"            )\
-    XX(payment_required,                   true,  402, "Payment Required"                 )\
-    XX(denied,                             true,  403, "Forbidden - Access Denied"        )\
-    XX(read_only,                          true,  403, "Forbidden - Read Only"            )\
-    XX(not_found,                          true,  404, "Not Found"                        )\
-    XX(method_not_allowed,                 true,  405, "Method Not Allowed"               )\
-    XX(unsupported_accept,                 false, 406, "Unsupported Content Type Requested")\
-    XX(proxy_authentication_required,      true,  407, "Proxy Authentication Required"    )\
-    XX(client_timeout,                     true,  408, "Request Timeout"                  )\
-    XX(conflict,                           true,  409, "Conflict"                         )\
-    XX(gone,                               true,  410, "Gone"                             )\
-    XX(length_required,                    true,  411, "Content Length Required"          )\
-    XX(precondition_failed,                true,  412, "Precondition Failed"              )\
-    XX(payload_too_large,                  true,  413, "Content Too Large"                )\
-    XX(uri_too_long,                       true,  414, "URI Too Long"                     )\
-    XX(unsupported_content,                true,  415, "Unsupported Media Type"           )\
-    XX(range_not_satisfiable,              true,  416, "Range Not Satisfiable"            )\
-    XX(expectation_failed,                 true,  417, "Expectation Failed"               )\
-    XX(im_a_teapot,                        true,  418, "I'm a Teapot"                     )\
-    XX(misdirected_request,                true,  421, "Misdirected Request"              )\
-    XX(unprocessable_content,              true,  422, "Unprocessable Content"            )\
-    XX(locked,                             true,  423, "Locked"                           )\
-    XX(failed_dependency,                  true,  424, "Failed Dependency"                )\
-    XX(too_early,                          true,  425, "Too Early"                        )\
-    XX(upgrade_required,                   true,  426, "Upgrade Required"                 )\
-    XX(precondition_required,              true,  428, "Precondition Required"            )\
-    XX(too_many_requests,                  true,  429, "Too Many Requests"                )\
-    XX(request_header_fields_too_large,    true,  431, "Request Header Fields Too Large"  )\
-    XX(unavailable_for_legal_reasons,      true,  451, "Unavailable For Legal Reasons"    )\
-    XX(memory,                             true,  500, "Memory Error"                     )\
-    XX(coding_error,                       true,  500, "Internal Coding Error"            )\
-    XX(method_not_supported,               true,  501, "Method Not Supported"             )\
-    XX(bad_gateway,                        true,  502, "Bad Gateway"                      )\
-    XX(service_unavailable,                true,  503, "Service Unavailable"              )\
-    XX(terminating,                        true,  503, "Server Terminating"               )\
-    XX(gateway_timeout,                    true,  504, "Gateway Timeout"                  )\
-    XX(http_version_not_supported,         true,  505, "HTTP Version Not Supported"       )\
-    XX(variant_also_negotiates,            true,  506, "Variant Also Negotiates"          )\
-    XX(insufficient_storage,               true,  507, "Insufficient Storage"             )\
-    XX(loop_detected,                      true,  508, "Loop Detected"                    )\
-    XX(network_authentication_required,    true,  511, "Network Authentication Required"  )\
-    XX(client_closed,                      false, 000, "Client Closed Connection"         )\
+#define AFW_ERROR_CODE_MAP(_XX)                                                  \
+    _XX(none,                               true,  200, "OK"                               )\
+    _XX(general,                            true,  500, "General Error"                    )\
+    _XX(throw,                              true,  400, "Statement throw encountered"      )\
+    _XX(assertion_failed,                   true,  400, "Assertion failed"                 )\
+    _XX(argument_error,                     true,  400, "Argument Error"                   )\
+    _XX(conversion_error,                   true,  400, "Conversion Error"                 )\
+    _XX(undefined_value,                    true,  400, "Undefined Value"                  )\
+    _XX(syntax,                             true,  400, "Syntax Error"                     )\
+    _XX(created,                            true,  201, "Created"                          )\
+    _XX(accepted,                           true,  202, "Accepted"                         )\
+    _XX(no_content,                         false, 204, "No Content"                       )\
+    _XX(partial_content,                    true,  206, "Partial Content"                  )\
+    _XX(multi_status,                       true,  207, "Multi-Status"                     )\
+    _XX(multiple_choices,                   true,  300, "Multiple Choices"                 )\
+    _XX(moved_permanently,                  true,  301, "Moved Permanently"                )\
+    _XX(moved_temporarily,                  true,  302, "Found"                            )\
+    _XX(see_other,                          true,  303, "See Other"                        )\
+    _XX(not_modified,                       false, 304, "Not Modified"                     )\
+    _XX(temporary_redirect,                 true,  307, "Temporary Redirect"               )\
+    _XX(permanent_redirect,                 true,  308, "Permanent Redirect"               )\
+    _XX(bad_request,                        true,  400, "Bad Request"                      )\
+    _XX(query_too_complex,                  true,  400, "Query Too Complex"                )\
+    _XX(request_syntax,                     true,  400, "Request Syntax Error"             )\
+    _XX(authentication_required,            true,  401, "Authentication Needed"            )\
+    _XX(payment_required,                   true,  402, "Payment Required"                 )\
+    _XX(denied,                             true,  403, "Forbidden - Access Denied"        )\
+    _XX(read_only,                          true,  403, "Forbidden - Read Only"            )\
+    _XX(not_found,                          true,  404, "Not Found"                        )\
+    _XX(method_not_allowed,                 true,  405, "Method Not Allowed"               )\
+    _XX(unsupported_accept,                 false, 406, "Unsupported Content Type Requested")\
+    _XX(proxy_authentication_required,      true,  407, "Proxy Authentication Required"    )\
+    _XX(client_timeout,                     true,  408, "Request Timeout"                  )\
+    _XX(conflict,                           true,  409, "Conflict"                         )\
+    _XX(gone,                               true,  410, "Gone"                             )\
+    _XX(length_required,                    true,  411, "Content Length Required"          )\
+    _XX(precondition_failed,                true,  412, "Precondition Failed"              )\
+    _XX(payload_too_large,                  true,  413, "Content Too Large"                )\
+    _XX(uri_too_long,                       true,  414, "URI Too Long"                     )\
+    _XX(unsupported_content,                true,  415, "Unsupported Media Type"           )\
+    _XX(range_not_satisfiable,              true,  416, "Range Not Satisfiable"            )\
+    _XX(expectation_failed,                 true,  417, "Expectation Failed"               )\
+    _XX(im_a_teapot,                        true,  418, "I'm a Teapot"                     )\
+    _XX(misdirected_request,                true,  421, "Misdirected Request"              )\
+    _XX(unprocessable_content,              true,  422, "Unprocessable Content"            )\
+    _XX(locked,                             true,  423, "Locked"                           )\
+    _XX(failed_dependency,                  true,  424, "Failed Dependency"                )\
+    _XX(too_early,                          true,  425, "Too Early"                        )\
+    _XX(upgrade_required,                   true,  426, "Upgrade Required"                 )\
+    _XX(precondition_required,              true,  428, "Precondition Required"            )\
+    _XX(too_many_requests,                  true,  429, "Too Many Requests"                )\
+    _XX(request_header_fields_too_large,    true,  431, "Request Header Fields Too Large"  )\
+    _XX(unavailable_for_legal_reasons,      true,  451, "Unavailable For Legal Reasons"    )\
+    _XX(memory,                             true,  500, "Memory Error"                     )\
+    _XX(coding_error,                       true,  500, "Internal Coding Error"            )\
+    _XX(method_not_supported,               true,  501, "Method Not Supported"             )\
+    _XX(bad_gateway,                        true,  502, "Bad Gateway"                      )\
+    _XX(service_unavailable,                true,  503, "Service Unavailable"              )\
+    _XX(terminating,                        true,  503, "Server Terminating"               )\
+    _XX(gateway_timeout,                    true,  504, "Gateway Timeout"                  )\
+    _XX(http_version_not_supported,         true,  505, "HTTP Version Not Supported"       )\
+    _XX(variant_also_negotiates,            true,  506, "Variant Also Negotiates"          )\
+    _XX(insufficient_storage,               true,  507, "Insufficient Storage"             )\
+    _XX(loop_detected,                      true,  508, "Loop Detected"                    )\
+    _XX(network_authentication_required,    true,  511, "Network Authentication Required"  )\
+    _XX(client_closed,                      false, 000, "Client Closed Connection"         )\
 
 /** Adaptive Framework error codes enum. */
 typedef enum afw_error_code_e {
     afw_error_code_is_not_specified = 0,
     
-#define XX(id, error_allow_in_response, http_response_code,  description) \
-    afw_error_code_ ## id,
+#define XX(_id, _error_allow_in_response, _http_response_code, _description) \
+    afw_error_code_ ## _id,
     AFW_ERROR_CODE_MAP(XX)
 #undef XX
 
@@ -1516,11 +1516,11 @@ typedef const afw_utf8_t *
 
 
 /** @brief Map used for afw_service_startup_t enum. */
-#define AFW_SERVICE_STARTUP_MAP(XX)                                             \
-    XX(disabled,    "Service is disabled and cannot be started."               )\
-    XX(permanent,   "Service is permanently started and can not be stopped."   )\
-    XX(manual,      "Service is started and stopped manually."                 )\
-    XX(immediate,   "Service is started immediately and can be stopped and "    \
+#define AFW_SERVICE_STARTUP_MAP(_XX)                                             \
+    _XX(disabled,    "Service is disabled and cannot be started."               )\
+    _XX(permanent,   "Service is permanently started and can not be stopped."   )\
+    _XX(manual,      "Service is started and stopped manually."                 )\
+    _XX(immediate,   "Service is started immediately and can be stopped and "    \
                     "started manually."    )\
 
 /**
@@ -1531,7 +1531,7 @@ typedef const afw_utf8_t *
  */
 typedef enum afw_service_startup_e {
 
-#define XX(id, desc) afw_service_startup_ ## id,
+#define XX(_id, _desc) afw_service_startup_ ## _id,
     AFW_SERVICE_STARTUP_MAP(XX)
 #undef XX
 
@@ -1539,15 +1539,15 @@ typedef enum afw_service_startup_e {
 } afw_service_startup_t;
 
 /** @brief Map used for afw_service_status_t enum. */
-#define AFW_SERVICE_STATUS_MAP(XX)                                              \
-    XX(error,    "Service is not running because of an error."                 )\
-    XX(disabled, "Service is disabled."                                        )\
-    XX(ready_to_start, "Service is ready to start."                            )\
-    XX(starting, "Service is starting."                                        )\
-    XX(running,  "Service is running."                                         )\
-    XX(stopping, "Service is finishing active work and releasing resources."   )\
-    XX(stopped,  "Service is stopped and can be started manually."             )\
-    XX(restarting,"Service is restarting."                                     )\
+#define AFW_SERVICE_STATUS_MAP(_XX)                                              \
+    _XX(error,    "Service is not running because of an error."                 )\
+    _XX(disabled, "Service is disabled."                                        )\
+    _XX(ready_to_start, "Service is ready to start."                            )\
+    _XX(starting, "Service is starting."                                        )\
+    _XX(running,  "Service is running."                                         )\
+    _XX(stopping, "Service is finishing active work and releasing resources."   )\
+    _XX(stopped,  "Service is stopped and can be started manually."             )\
+    _XX(restarting,"Service is restarting."                                     )\
 
 /**
  * @brief Typedef for service status enum.
@@ -1557,7 +1557,7 @@ typedef enum afw_service_startup_e {
  */
 typedef enum afw_service_status_e {
 
-#define XX(id, desc) afw_service_status_ ## id,
+#define XX(_id, _desc) afw_service_status_ ## _id,
     AFW_SERVICE_STATUS_MAP(XX)
 #undef XX
 

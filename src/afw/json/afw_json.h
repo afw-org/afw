@@ -136,10 +136,10 @@ afw_json_from_value_with_indent(
  *
  * This function can be used for callbacks of type afw_utf8_to_value_t.
  */
-#define afw_json_to_value(json, source_location, p, xctx) \
-    afw_compile_to_value(json, source_location, \
+#define afw_json_to_value(_json, _source_location, _p, _xctx) \
+    afw_compile_to_value(_json, _source_location, \
         afw_compile_type_relaxed_json, \
-        NULL, p, xctx)
+        NULL, _p, _xctx)
 
 
 /**
@@ -150,9 +150,9 @@ afw_json_from_value_with_indent(
  * @param xctx of caller.
  * @return object instance.
  */
-#define afw_json_to_object(string, cede_p, p, xctx) \
-    afw_compile_json_to_object(string, NULL, NULL, NULL, NULL, \
-        cede_p, p, xctx)
+#define afw_json_to_object(_string, _cede_p, _p, _xctx) \
+    afw_compile_json_to_object(_string, NULL, NULL, NULL, NULL, \
+        _cede_p, _p, _xctx)
 
 
 /**
@@ -175,12 +175,12 @@ afw_json_from_value_with_indent(
  * NULL, the object's meta will not be set.
  *
  */
-#define afw_json_to_object_with_meta(string, source_location, \
-    adapter_id, object_type_id, object_id, \
-    cede_p, p, xctx) \
-    afw_compile_json_to_object(string, source_location, \
-        adapter_id, object_type_id, object_id, \
-        cede_p, p, xctx)
+#define afw_json_to_object_with_meta(_string, _source_location, \
+    adapter_id, _object_type_id, _object_id, \
+    cede_p, _p, _xctx) \
+    afw_compile_json_to_object(_string, _source_location, \
+        adapter_id, _object_type_id, _object_id, \
+        cede_p, _p, _xctx)
 
 
 /**

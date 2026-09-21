@@ -38,10 +38,10 @@ static const afw_value_string_t
 impl_startup_values[] =
 {
 
-#define XX(id, _) \
+#define XX(_id, _) \
     { \
         {&afw_value_unmanaged_string_inf}, \
-        AFW_UTF8_LITERAL(# id) \
+        AFW_UTF8_LITERAL(# _id) \
     },
     AFW_SERVICE_STARTUP_MAP(XX)
 #undef XX
@@ -54,17 +54,17 @@ impl_startup_values[] =
 
 
 
-#define impl_startup_value(id) \
-(const afw_value_t *)&impl_startup_values[afw_service_startup_ ## id]
+#define impl_startup_value(_id) \
+(const afw_value_t *)&impl_startup_values[afw_service_startup_ ## _id]
 
 
 
 static const afw_value_string_t impl_startup_descriptions[] =
 {
-#define XX(id, desc) \
+#define XX(_id, _desc) \
     { \
         {&afw_value_unmanaged_string_inf}, \
-        AFW_UTF8_LITERAL(desc) \
+        AFW_UTF8_LITERAL(_desc) \
     },
     AFW_SERVICE_STARTUP_MAP(XX)
 #undef XX
@@ -79,10 +79,10 @@ static const afw_value_string_t impl_startup_descriptions[] =
 static const afw_value_string_t
 impl_status_values[] =
 {
-#define XX(id, _) \
+#define XX(_id, _) \
     { \
         {&afw_value_unmanaged_string_inf}, \
-        AFW_UTF8_LITERAL(# id) \
+        AFW_UTF8_LITERAL(# _id) \
     },
     AFW_SERVICE_STATUS_MAP(XX)
 #undef XX
@@ -94,18 +94,18 @@ impl_status_values[] =
 
 
 
-#define impl_status_value(id) \
-(const afw_value_t *)&impl_status_values[afw_service_status_ ## id]
+#define impl_status_value(_id) \
+(const afw_value_t *)&impl_status_values[afw_service_status_ ## _id]
 
 
 static const afw_value_string_t
 impl_status_descriptions[] =
 {
 
-#define XX(id, desc) \
+#define XX(_id, _desc) \
     { \
         {&afw_value_unmanaged_string_inf}, \
-        AFW_UTF8_LITERAL(desc) \
+        AFW_UTF8_LITERAL(_desc) \
     },
     AFW_SERVICE_STATUS_MAP(XX)
 #undef XX

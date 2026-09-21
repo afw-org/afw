@@ -43,8 +43,8 @@ AFW_BEGIN_DECLARES
  * @see designs/adaptive-function-compile-typecheck.md
  */
 /** Compile-time adaptive formals: same gate as unit/flag compile typeCheck. */
-#define AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(contextual, xctx) \
-    (AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED((contextual), (xctx)))
+#define AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(_contextual, _xctx) \
+    (AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED((_contextual), (_xctx)))
 
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
@@ -135,12 +135,12 @@ struct afw_value_block_s {
  * Every remaining `{ }` is a scope. Compile omits empty `{ }`
  * (no names, no statements). Runtime does not skip 0-name blocks.
  */
-#define afw_value_block_has_scope(block) \
-    ((void)(block), true)
+#define afw_value_block_has_scope(_block) \
+    ((void)(_block), true)
 
 /* Frame block for this `{ }`: always self. */
-#define afw_value_block_scope_block(block) \
-    (block)
+#define afw_value_block_scope_block(_block) \
+    (_block)
 
 
 
@@ -264,25 +264,25 @@ struct afw_value_type_s {
  *
  * There must be and afw_s_ with each name in map.
  */
-#define AFW_VALUE_BLOCK_SYMBOL_TYPE(XX)                                     \
+#define AFW_VALUE_BLOCK_SYMBOL_TYPE(_XX)                                     \
                                                                             \
-    XX(undeclared, "Undeclared symbol")                                     \
+    _XX(undeclared, "Undeclared symbol")                                     \
                                                                             \
-    XX(const, "A const variable")                                           \
+    _XX(const, "A const variable")                                           \
                                                                             \
-    XX(function, "A function")                                              \
+    _XX(function, "A function")                                              \
                                                                             \
-    XX(let, "A let variable")                                               \
+    _XX(let, "A let variable")                                               \
                                                                             \
-    XX(parameter, "A function parameter")                                   \
+    _XX(parameter, "A function parameter")                                   \
 
 
 /**
  * @brief Block symbol type enum
  */
 typedef enum afw_value_block_symbol_type_e {
-#define XX(name, description) \
-    afw_value_block_symbol_type_ ## name,
+#define XX(_name, _description) \
+    afw_value_block_symbol_type_ ## _name,
     AFW_VALUE_BLOCK_SYMBOL_TYPE(XX)
 #undef XX
     afw_value_block_symbol_type_count

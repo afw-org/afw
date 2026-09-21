@@ -31,16 +31,16 @@ AFW_BEGIN_DECLARES
  *
  * XX(name, true/false if tuple has value)
  */
-#define AFW_ADAPTER_MODIFY_ENTRY_TYPE_MAP(XX)                                  \
-    XX(add_value,           true)                                              \
-    XX(remove_property,     false)                                             \
-    XX(remove_value,        true)                                              \
-    XX(set_property,        true)                                              \
+#define AFW_ADAPTER_MODIFY_ENTRY_TYPE_MAP(_XX)                                  \
+    _XX(add_value,           true)                                              \
+    _XX(remove_property,     false)                                             \
+    _XX(remove_value,        true)                                              \
+    _XX(set_property,        true)                                              \
 
 
 /**  @brief Adapter session modify type enum. */
 typedef enum afw_adapter_modify_entry_type_e {
-#define XX(id, _) afw_adapter_modify_entry_type_ ## id,
+#define XX(_id, _) afw_adapter_modify_entry_type_ ## _id,
     AFW_ADAPTER_MODIFY_ENTRY_TYPE_MAP(XX)
 #undef XX
     afw_adapter_modify_entry_type_invalid

@@ -31,10 +31,10 @@
 #include "afw_object_setter_impl_declares.h"
 
 
-#define IMPL_ASSERT_META_MUTABLE(instance, xctx) \
-if (!(instance)->p) {\
+#define IMPL_ASSERT_META_MUTABLE(_instance, _xctx) \
+if (!(_instance)->p) {\
     AFW_THROW_ERROR_Z(general, \
-        "Can not set meta in a const object", xctx); \
+        "Can not set meta in a const object", _xctx); \
 }
 
 

@@ -236,12 +236,12 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                             fd.write('    ' +  prev + ', \\\n')
                         else:
                             fd.write(' \\\n')
-                        prev = parameter.get('name')
+                        prev = c.macro_param(parameter.get('name'))
                 if prev != '':
                     fd.write('    ' +  prev + ' \\\n')
 
                 fd.write(') \\\n')
-                fd.write('(instance)->inf->' + method_name + '(')
+                fd.write('(' + c.macro_param('instance') + ')->inf->' + method_name + '(')
 
                 prev = ''
                 for parameter in method.findall('parameter'):
@@ -253,7 +253,7 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                             fd.write('    (' +  prev + '), \\\n')
                         else:
                             fd.write(' \\\n')
-                        prev = parameter.get('name')
+                        prev = c.macro_param(parameter.get('name'))
                 if prev != '':
                     fd.write('    (' +  prev + ') \\\n')
 

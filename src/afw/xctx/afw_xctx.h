@@ -238,8 +238,8 @@ afw_xctx_check_resource_limits(
  * @param xctx of caller.
  * @return true if environment terminating.
  */
-#define afw_xctx_environment_is_terminating(xctx) \
-    ((xctx)->env->terminating)
+#define afw_xctx_environment_is_terminating(_xctx) \
+    ((_xctx)->env->terminating)
 
 
 /**
@@ -250,11 +250,11 @@ afw_xctx_check_resource_limits(
  * stops starting more work during graceful shutdown. Requires AFW throw
  * macros (e.g. via afw_error.h / afw_minimal.h).
  */
-#define AFW_XCTX_THROW_IF_TERMINATING(xctx) \
+#define AFW_XCTX_THROW_IF_TERMINATING(_xctx) \
     do { \
-        if (afw_xctx_environment_is_terminating(xctx)) { \
+        if (afw_xctx_environment_is_terminating(_xctx)) { \
             AFW_THROW_ERROR_Z(terminating, \
-                "Server is terminating", (xctx)); \
+                "Server is terminating", (_xctx)); \
         } \
     } while (0)
 
@@ -265,8 +265,8 @@ afw_xctx_check_resource_limits(
  * @param xctx of caller.
  * @return Pointer to memory allocated.
  */
-#define afw_xctx_calloc(size, xctx) \
-    afw_pool_calloc((xctx)->p, (size), (xctx))
+#define afw_xctx_calloc(_size, _xctx) \
+    afw_pool_calloc((_xctx)->p, (_size), (_xctx))
 
 
 /**
@@ -279,8 +279,8 @@ afw_xctx_check_resource_limits(
  * memory for a specified type and cast the return pointer to
  * a pointer to that type.
  */
-#define afw_xctx_calloc_type(type, xctx) \
-    (type *) afw_pool_calloc((xctx)->p, sizeof(type), (xctx))
+#define afw_xctx_calloc_type(_type, _xctx) \
+    (_type *) afw_pool_calloc((_xctx)->p, sizeof(_type), (_xctx))
 
 
 /**
@@ -289,8 +289,8 @@ afw_xctx_check_resource_limits(
  * @param xctx of caller.
  * @return Pointer to memory allocated.
  */
-#define afw_xctx_malloc(size, xctx) \
-    afw_pool_malloc((xctx)->p, (size), (xctx))
+#define afw_xctx_malloc(_size, _xctx) \
+    afw_pool_malloc((_xctx)->p, (_size), (_xctx))
 
 
 /**
@@ -303,8 +303,8 @@ afw_xctx_check_resource_limits(
  * memory for a specified type and cast the return pointer to a pointer to
  * that type.
  */
-#define afw_xctx_malloc_type(type, xctx) \
-    (type *) afw_pool_malloc((xctx)->p, sizeof(type), (xctx))
+#define afw_xctx_malloc_type(_type, _xctx) \
+    (_type *) afw_pool_malloc((_xctx)->p, sizeof(_type), (_xctx))
 
 
 /**
@@ -315,8 +315,8 @@ afw_xctx_check_resource_limits(
  *
  * Same pool as afw_xctx_malloc (`xctx->p`).
  */
-#define afw_xctx_free(address, size, xctx) \
-    afw_pool_free_memory((xctx)->p, (address), (size), (xctx))
+#define afw_xctx_free(_address, _size, _xctx) \
+    afw_pool_free_memory((_xctx)->p, (_address), (_size), (_xctx))
 
 
 /**
@@ -325,8 +325,8 @@ afw_xctx_check_resource_limits(
  * @param type allocated.
  * @param xctx of caller.
  */
-#define afw_xctx_free_type(address, type, xctx) \
-    afw_pool_free_memory((xctx)->p, (address), sizeof(type), (xctx))
+#define afw_xctx_free_type(_address, _type, _xctx) \
+    afw_pool_free_memory((_xctx)->p, (_address), sizeof(_type), (_xctx))
 
 
 /**
@@ -373,9 +373,9 @@ do { \
  * }
  * AFW_XCTX_AUTHORIZATION_MODE_END;
  */
-#define AFW_XCTX_AUTHORIZATION_MODE_BEGIN(modeId) \
+#define AFW_XCTX_AUTHORIZATION_MODE_BEGIN(_modeId) \
     const afw_value_t *this_PREVIOUS_MODE = xctx->mode; \
-    xctx->mode = afw_authorization_mode_id_ ## modeId ## _value; \
+    xctx->mode = afw_authorization_mode_id_ ## _modeId ## _value; \
 AFW_TRY
 
 
@@ -432,9 +432,9 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
  * @param xctx of caller.
  * @return Current scope.
  */
-#define afw_xctx_scope_current(xctx) \
-    ((xctx->scope_stack->count > 0) \
-    ? xctx->scope_stack->entries[xctx->scope_stack->count - 1] \
+#define afw_xctx_scope_current(_xctx) \
+    ((_xctx->scope_stack->count > 0) \
+    ? _xctx->scope_stack->entries[_xctx->scope_stack->count - 1] \
     : NULL)
 
 /**
@@ -444,9 +444,9 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
  * top-level call has no Adaptive caller. After a script function
  * body, nested `{ }` have unwound and this is the caller `{ }`.
  */
-#define afw_xctx_scope_of_caller(xctx) \
-    ((xctx->scope_stack->count >= 2) \
-    ? xctx->scope_stack->entries[xctx->scope_stack->count - 2] \
+#define afw_xctx_scope_of_caller(_xctx) \
+    ((_xctx->scope_stack->count >= 2) \
+    ? _xctx->scope_stack->entries[_xctx->scope_stack->count - 2] \
     : NULL)
 
 /**
@@ -849,24 +849,24 @@ afw_xctx_scope_symbol_set_value_by_name(
  * @param flow to set.
  * @param xctx of caller.
  */
-#define afw_xctx_statement_flow_set(flow, xctx) \
-    ((afw_xctx_t *)xctx)->statement_flow = (flow)
+#define afw_xctx_statement_flow_set(_flow, _xctx) \
+    ((afw_xctx_t *)_xctx)->statement_flow = (_flow)
 
 /**
  * @brief Set the xctx statement flow to <type>
  * @param type is afw_xctx_statement_flow_<type> of flow to set.
  * @param xctx of caller.
  */
-#define afw_xctx_statement_flow_set_type(type, xctx) \
-    ((afw_xctx_t *)xctx)->statement_flow = \
-        afw_xctx_statement_flow_ ## type
+#define afw_xctx_statement_flow_set_type(_type, _xctx) \
+    ((afw_xctx_t *)_xctx)->statement_flow = \
+        afw_xctx_statement_flow_ ## _type
 /**
  * @brief Get the xctx statement flow
  * @param xctx of caller.
  * @return flow.
  */
-#define afw_xctx_statement_flow_get(xctx) \
-    (((afw_xctx_t *)xctx)->statement_flow)
+#define afw_xctx_statement_flow_get(_xctx) \
+    (((afw_xctx_t *)_xctx)->statement_flow)
 
 /**
  * @brief Test if xctx statement flow <type>
@@ -874,9 +874,9 @@ afw_xctx_scope_symbol_set_value_by_name(
  * @param xctx of caller.
  * @return boolean result of test.
  */
-#define afw_xctx_statement_flow_is_type(type, xctx) \
-    (((afw_xctx_t *)xctx)->statement_flow == \
-        afw_xctx_statement_flow_ ## type)
+#define afw_xctx_statement_flow_is_type(_type, _xctx) \
+    (((afw_xctx_t *)_xctx)->statement_flow == \
+        afw_xctx_statement_flow_ ## _type)
 
 /**
  * @brief Test if xctx statement flow is one that should leave loop or switch
@@ -886,19 +886,19 @@ afw_xctx_scope_symbol_set_value_by_name(
  * This is true if the statement flow is break, return, and rethrow but false
  * for continue and sequential.
  */
-#define afw_xctx_statement_flow_is_leave(xctx) \
-    (((afw_xctx_t *)xctx)->statement_flow >= \
+#define afw_xctx_statement_flow_is_leave(_xctx) \
+    (((afw_xctx_t *)_xctx)->statement_flow >= \
         afw_xctx_statement_flow_ge_is_leave)
 
 /**
  * @brief Reset xctx statement flow break and continue to sequential
  * @param xctx of caller.
  */
-#define afw_xctx_statement_flow_reset_break_and_continue(xctx) \
-    if (((afw_xctx_t *)xctx)->statement_flow <= \
+#define afw_xctx_statement_flow_reset_break_and_continue(_xctx) \
+    if (((afw_xctx_t *)_xctx)->statement_flow <= \
         afw_xctx_statement_flow_ge_is_leave) { \
-            afw_xctx_statement_flow_set_type(sequential, xctx); \
-            ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
+            afw_xctx_statement_flow_set_type(sequential, _xctx); \
+            ((afw_xctx_t *)_xctx)->statement_flow_label = NULL; \
     }
 
 /**
@@ -908,10 +908,10 @@ afw_xctx_scope_symbol_set_value_by_name(
  * This should be used at the end of script function evaluation, template
  * evaluation, and all eval() adaptive functions.
  */
-#define afw_xctx_statement_flow_reset_all_except_rethrow(xctx) \
-    if (!afw_xctx_statement_flow_is_type(rethrow, xctx)) { \
-        afw_xctx_statement_flow_set_type(sequential, xctx); \
-        ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
+#define afw_xctx_statement_flow_reset_all_except_rethrow(_xctx) \
+    if (!afw_xctx_statement_flow_is_type(rethrow, _xctx)) { \
+        afw_xctx_statement_flow_set_type(sequential, _xctx); \
+        ((afw_xctx_t *)_xctx)->statement_flow_label = NULL; \
     }
 
 /**
@@ -919,9 +919,9 @@ afw_xctx_scope_symbol_set_value_by_name(
  * @param xctx of caller.
  * @return Current script result, or undefined if none has been written.
  */
-#define afw_xctx_script_result_get(xctx) \
-    ((xctx)->script_result \
-        ? (xctx)->script_result \
+#define afw_xctx_script_result_get(_xctx) \
+    ((_xctx)->script_result \
+        ? (_xctx)->script_result \
         : afw_value_undefined)
 
 /**
@@ -933,8 +933,8 @@ afw_xctx_scope_symbol_set_value_by_name(
  * evaluate that must not change the caller's last saves and restores
  * the pointer.
  */
-#define afw_xctx_script_result_set(v, xctx) \
-    afw_xctx_script_result_set_value((v), (xctx))
+#define afw_xctx_script_result_set(_v, _xctx) \
+    afw_xctx_script_result_set_value((_v), (_xctx))
 
 
 /**
@@ -979,32 +979,32 @@ struct afw_xctx_evaluation_stack_entry_s {
 AFW_VECTOR_STRUCT(afw_xctx_evaluation_stack_s,
     afw_xctx_evaluation_stack_entry_t);
 
-#define AFW_XCTX_EVALUATION_STACK_LAST(xctx) \
-    (&(xctx)->evaluation_stack->entries[ \
-        (xctx)->evaluation_stack->count - 1])
+#define AFW_XCTX_EVALUATION_STACK_LAST(_xctx) \
+    (&(_xctx)->evaluation_stack->entries[ \
+        (_xctx)->evaluation_stack->count - 1])
 
 
 #ifdef AFW_DEBUG_EVALUATION
-#define AFW_XCTX_DEBUG_EVALUATION_PRINT(xctx, op_z, extra_fmt_z, ...) \
+#define AFW_XCTX_DEBUG_EVALUATION_PRINT(_xctx, _op_z, _extra_fmt_z, ...) \
 do { \
-    if ((xctx) && (xctx)->env && (xctx)->env->debug_fd && \
+    if ((_xctx) && (_xctx)->env && (_xctx)->env->debug_fd && \
         afw_flag_is_active( \
-            (xctx)->env->flag_index_debug_evaluation, (xctx))) \
+            (_xctx)->env->flag_index_debug_evaluation, (_xctx))) \
     { \
         if (afw_flag_is_active( \
-                (xctx)->env->flag_index_debug_evaluation_detail, (xctx))) \
+                (_xctx)->env->flag_index_debug_evaluation_detail, (_xctx))) \
         { \
-            fprintf((xctx)->env->debug_fd, \
-                ">debug eval %s" extra_fmt_z " (%s)\n", \
-                op_z, ##__VA_ARGS__, \
+            fprintf((_xctx)->env->debug_fd, \
+                ">debug eval %s" _extra_fmt_z " (%s)\n", \
+                _op_z, ##__VA_ARGS__, \
                 afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         } \
         else { \
-            fprintf((xctx)->env->debug_fd, \
+            fprintf((_xctx)->env->debug_fd, \
                 ">debug eval %s (%s)\n", \
-                op_z, afw_utf8_z_source_file(AFW__FILE_LINE__)); \
+                _op_z, afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         } \
-        fflush((xctx)->env->debug_fd); \
+        fflush((_xctx)->env->debug_fd); \
     } \
 } while (0)
 #endif
@@ -1017,9 +1017,9 @@ do { \
  * @return Don't use.
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_push_value(VALUE, xctx) \
+#define afw_xctx_evaluation_stack_push_value(_VALUE, _xctx) \
 do { \
-    const afw_value_t *_afw_eval_push_value = (VALUE); \
+    const afw_value_t *_afw_eval_push_value = (_VALUE); \
     const char *_afw_eval_inf_s = "-"; \
     int _afw_eval_inf_len = 1; \
     if (_afw_eval_push_value && _afw_eval_push_value->inf) { \
@@ -1032,24 +1032,24 @@ do { \
             _afw_eval_inf_len = 1; \
         } \
     } \
-    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((_xctx), \
         "push_value", \
         " value %p inf " AFW_UTF8_FMT, \
         (const void *)_afw_eval_push_value, \
         _afw_eval_inf_len, _afw_eval_inf_s); \
-    afw_xctx_check_resource_limits((xctx), 1); \
+    afw_xctx_check_resource_limits((_xctx), 1); \
     afw_vector_push_index_impl( \
-        &(xctx)->evaluation_stack->internal, (xctx)); \
-    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = \
+        &(_xctx)->evaluation_stack->internal, (_xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->value = \
         _afw_eval_push_value; \
 } while (0)
 #else
-#define afw_xctx_evaluation_stack_push_value(VALUE, xctx) \
+#define afw_xctx_evaluation_stack_push_value(_VALUE, _xctx) \
     do { \
-        afw_xctx_check_resource_limits((xctx), 1); \
+        afw_xctx_check_resource_limits((_xctx), 1); \
         afw_vector_push_index_impl( \
-            &(xctx)->evaluation_stack->internal, (xctx)); \
-        AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = (VALUE); \
+            &(_xctx)->evaluation_stack->internal, (_xctx)); \
+        AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->value = (_VALUE); \
     } while (0)
 #endif
 
@@ -1060,36 +1060,36 @@ do { \
  * @param xctx of caller.
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_push_parameter_number( \
-    PARAMETER_NUMBER, xctx) \
+#define afw_xctx_evaluation_stack_push_parameter_number(\
+    PARAMETER_NUMBER, _xctx) \
 do { \
     afw_size_t _afw_eval_push_pn = (PARAMETER_NUMBER); \
-    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((_xctx), \
         "push_parameter_number", \
         " n " AFW_SIZE_T_FMT, \
         _afw_eval_push_pn); \
-    afw_xctx_check_resource_limits((xctx), 2); \
+    afw_xctx_check_resource_limits((_xctx), 2); \
     afw_vector_push_index_impl( \
-        &(xctx)->evaluation_stack->internal, (xctx)); \
-    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->parameter_number = \
+        &(_xctx)->evaluation_stack->internal, (_xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->parameter_number = \
         _afw_eval_push_pn; \
     afw_vector_push_index_impl( \
-        &(xctx)->evaluation_stack->internal, (xctx)); \
-    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id = \
+        &(_xctx)->evaluation_stack->internal, (_xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->entry_id = \
         afw_s_parameter_number; \
 } while (0)
 #else
-#define afw_xctx_evaluation_stack_push_parameter_number( \
-    PARAMETER_NUMBER, xctx) \
+#define afw_xctx_evaluation_stack_push_parameter_number(\
+    PARAMETER_NUMBER, _xctx) \
 do { \
-    afw_xctx_check_resource_limits((xctx), 2); \
+    afw_xctx_check_resource_limits((_xctx), 2); \
     afw_vector_push_index_impl( \
-        &(xctx)->evaluation_stack->internal, (xctx)); \
-    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->parameter_number = \
+        &(_xctx)->evaluation_stack->internal, (_xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->parameter_number = \
         (PARAMETER_NUMBER); \
     afw_vector_push_index_impl( \
-        &(xctx)->evaluation_stack->internal, (xctx)); \
-    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id = \
+        &(_xctx)->evaluation_stack->internal, (_xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->entry_id = \
         afw_s_parameter_number; \
 } while (0)
 #endif
@@ -1100,24 +1100,24 @@ do { \
  * @param xctx of caller.
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_pop(xctx) \
+#define afw_xctx_evaluation_stack_pop(_xctx) \
 do { \
-    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((_xctx), \
         "pop", ""); \
-    if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id == \
+    if (AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->entry_id == \
         afw_s_parameter_number) { \
-        afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
+        afw_vector_pop((_xctx)->evaluation_stack, (_xctx)); \
     } \
-    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
+    afw_vector_pop((_xctx)->evaluation_stack, (_xctx)); \
 } while (0)
 #else
-#define afw_xctx_evaluation_stack_pop(xctx) \
+#define afw_xctx_evaluation_stack_pop(_xctx) \
 do { \
-    if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id == \
+    if (AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->entry_id == \
         afw_s_parameter_number) { \
-        afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
+        afw_vector_pop((_xctx)->evaluation_stack, (_xctx)); \
     } \
-    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
+    afw_vector_pop((_xctx)->evaluation_stack, (_xctx)); \
 } while (0)
 #endif
 
@@ -1127,15 +1127,15 @@ do { \
  * @param xctx of caller.
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_pop_value(xctx) \
+#define afw_xctx_evaluation_stack_pop_value(_xctx) \
 do { \
-    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((_xctx), \
         "pop_value", ""); \
-    afw_xctx_evaluation_stack_pop_value_impl(xctx); \
+    afw_xctx_evaluation_stack_pop_value_impl(_xctx); \
 } while (0)
 #else
-#define afw_xctx_evaluation_stack_pop_value(xctx) \
-    afw_xctx_evaluation_stack_pop_value_impl(xctx)
+#define afw_xctx_evaluation_stack_pop_value(_xctx) \
+    afw_xctx_evaluation_stack_pop_value_impl(_xctx)
 #endif
 
 
@@ -1150,19 +1150,19 @@ do { \
  * nothing to keep, use afw_xctx_evaluation_stack_pop().
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_pop_parameter_number(VALUE, xctx) \
+#define afw_xctx_evaluation_stack_pop_parameter_number(_VALUE, _xctx) \
 do { \
-    const afw_value_t *_afw_pop_pn_value = (VALUE); \
-    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+    const afw_value_t *_afw_pop_pn_value = (_VALUE); \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((_xctx), \
         "pop_parameter_number", ""); \
-    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
-    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = _afw_pop_pn_value; \
+    afw_vector_pop((_xctx)->evaluation_stack, (_xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->value = _afw_pop_pn_value; \
 } while (0)
 #else
-#define afw_xctx_evaluation_stack_pop_parameter_number(VALUE, xctx) \
+#define afw_xctx_evaluation_stack_pop_parameter_number(_VALUE, _xctx) \
 do { \
-    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
-    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = (VALUE); \
+    afw_vector_pop((_xctx)->evaluation_stack, (_xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(_xctx)->value = (_VALUE); \
 } while (0)
 #endif
 
@@ -1189,15 +1189,15 @@ afw_xctx_evaluation_stack_pop_value_impl(
  * @param xctx of caller.
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_save_top(xctx) \
+#define afw_xctx_evaluation_stack_save_top(_xctx) \
 afw_size_t evaluation_stack_save_top = \
-(xctx)->evaluation_stack->count; \
-AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+(_xctx)->evaluation_stack->count; \
+AFW_XCTX_DEBUG_EVALUATION_PRINT((_xctx), \
     "save_top", "")
 #else
-#define afw_xctx_evaluation_stack_save_top(xctx) \
+#define afw_xctx_evaluation_stack_save_top(_xctx) \
 afw_size_t evaluation_stack_save_top = \
-(xctx)->evaluation_stack->count
+(_xctx)->evaluation_stack->count
 #endif
 
 
@@ -1206,16 +1206,16 @@ afw_size_t evaluation_stack_save_top = \
  * @param xctx of caller.
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_restore_top(xctx) \
+#define afw_xctx_evaluation_stack_restore_top(_xctx) \
 do { \
-    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((_xctx), \
         "restore_top", ""); \
     afw_xctx_evaluation_stack_rewind( \
-        evaluation_stack_save_top, (xctx)); \
+        evaluation_stack_save_top, (_xctx)); \
 } while (0)
 #else
-#define afw_xctx_evaluation_stack_restore_top(xctx) \
-afw_xctx_evaluation_stack_rewind(evaluation_stack_save_top, xctx)
+#define afw_xctx_evaluation_stack_restore_top(_xctx) \
+afw_xctx_evaluation_stack_rewind(evaluation_stack_save_top, _xctx)
 #endif
 
 

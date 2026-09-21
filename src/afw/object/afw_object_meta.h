@@ -45,8 +45,8 @@ struct afw_object_meta_object_s {
  * @param instance of object whose meta object is to be returned.
  * @return meta object.
  */
-#define afw_object_meta_object(instance) \
-    (const afw_object_t *)((instance)->meta.meta_object)
+#define afw_object_meta_object(_instance) \
+    (const afw_object_t *)((_instance)->meta.meta_object)
 
 
 
@@ -70,11 +70,11 @@ afw_object_meta_add_error(
  * @param message_z null terminated string error message.
  * @param xctx of caller.
  */
-#define afw_object_meta_add_error_z(instance, \
-    message_z, xctx) \
-afw_object_meta_add_error(instance, \
-    afw_utf8_create(message_z, AFW_UTF8_Z_LEN, (instance)->p, xctx), \
-    xctx)
+#define afw_object_meta_add_error_z(_instance, \
+    message_z, _xctx) \
+afw_object_meta_add_error(_instance, \
+    afw_utf8_create(message_z, AFW_UTF8_Z_LEN, (_instance)->p, _xctx), \
+    _xctx)
 
 
 
@@ -85,10 +85,10 @@ afw_object_meta_add_error(instance, \
  * @param format_z format for error message.
  * @param ... for format_z.
  */
-#define afw_object_meta_add_error_fz(instance, \
-    xctx, format_z, ...) \
-afw_object_meta_add_error(instance, \
-    afw_utf8_printf((instance)->p, xctx, format_z, __VA_ARGS__), \
+#define afw_object_meta_add_error_fz(_instance, \
+    xctx, _format_z, ...) \
+afw_object_meta_add_error(_instance, \
+    afw_utf8_printf((_instance)->p, xctx, _format_z, __VA_ARGS__), \
     xctx)
 
 
@@ -148,11 +148,11 @@ afw_object_meta_add_property_error(
  * @param message_z null terminated string error message.
  * @param xctx of caller.
  */
-#define afw_object_meta_add_property_error_z(instance, \
-    property_name, message_z, xctx) \
-afw_object_meta_add_property_error(instance, property_name, \
-    afw_utf8_create(message_z, AFW_UTF8_Z_LEN, (instance)->p, xctx), \
-    xctx)
+#define afw_object_meta_add_property_error_z(_instance, \
+    property_name, _message_z, _xctx) \
+afw_object_meta_add_property_error(_instance, property_name, \
+    afw_utf8_create(_message_z, AFW_UTF8_Z_LEN, (_instance)->p, _xctx), \
+    _xctx)
 
 
 
@@ -164,11 +164,11 @@ afw_object_meta_add_property_error(instance, property_name, \
  * @param format_z format for error message.
  * @param ... for format_z.
  */
-#define afw_object_meta_add_property_error_fz(instance, \
-    property_name, xctx, format_z, ...) \
-afw_object_meta_add_property_error(instance, property_name, \
-    afw_utf8_printf((instance)->p, xctx, format_z, __VA_ARGS__), \
-    xctx)
+#define afw_object_meta_add_property_error_fz(_instance, \
+    property_name, _xctx, _format_z, ...) \
+afw_object_meta_add_property_error(_instance, property_name, \
+    afw_utf8_printf((_instance)->p, _xctx, _format_z, __VA_ARGS__), \
+    _xctx)
 
 
 
@@ -277,10 +277,10 @@ afw_object_meta_get_nonempty_delta(
  * @param xctx of caller.
  * @return value of meta property.
  */
-#define afw_object_meta_get_property(instance, property_name, xctx) \
-(instance->meta.meta_object) \
-    ? afw_object_get_property(afw_object_meta_object(instance), \
-        property_name, xctx) \
+#define afw_object_meta_get_property(_instance, _property_name, _xctx) \
+(_instance->meta.meta_object) \
+    ? afw_object_get_property(afw_object_meta_object(_instance), \
+        _property_name, _xctx) \
     : NULL
 
 
@@ -292,12 +292,12 @@ afw_object_meta_get_nonempty_delta(
  * @param xctx of caller.
  * @return value of meta property.
  */
-#define afw_object_meta_get_property_as_string_internal(instance, \
-    property_name, xctx) \
-(instance->meta.meta_object) \
+#define afw_object_meta_get_property_as_string_internal(_instance, \
+    property_name, _xctx) \
+(_instance->meta.meta_object) \
     ? afw_object_get_property_as_string_internal( \
-        afw_object_meta_object(instance), \
-            property_name, xctx) \
+        afw_object_meta_object(_instance), \
+            property_name, _xctx) \
     : NULL
 
 
@@ -308,8 +308,8 @@ afw_object_meta_get_nonempty_delta(
  * @param xctx of caller.
  * @return embedding object or NULL.
  */
-#define afw_object_meta_get_embedding_object(instance, xctx) \
-((instance)->embedding_object)
+#define afw_object_meta_get_embedding_object(_instance, _xctx) \
+((_instance)->embedding_object)
 
 
 
@@ -331,12 +331,12 @@ afw_object_meta_get_object_id(
  * @param xctx of caller.
  * @return embedding object or NULL.
  */
-#define afw_object_meta_get_object_type_id(instance, xctx) \
+#define afw_object_meta_get_object_type_id(_instance, _xctx) \
 ( \
-    (instance)->meta.object_type_uri && \
-    (instance)->meta.object_type_uri->len != 0 \
+    (_instance)->meta.object_type_uri && \
+    (_instance)->meta.object_type_uri->len != 0 \
 ) \
-? (instance)->meta.object_type_uri : NULL
+? (_instance)->meta.object_type_uri : NULL
 
 
 
@@ -574,9 +574,9 @@ afw_object_meta_set_parent_paths(
  * @param value to set.
  * @param xctx of caller.
  */
-#define afw_object_meta_set_property(instance, property_name, value, xctx) \
+#define afw_object_meta_set_property(_instance, _property_name, _value, _xctx) \
 afw_object_set_property( \
-    afw_object_meta_get_nonempty_delta(instance, xctx), property_name, value, xctx)
+    afw_object_meta_get_nonempty_delta(_instance, _xctx), _property_name, _value, _xctx)
 
 
 
@@ -587,11 +587,11 @@ afw_object_set_property( \
  * @param string_z zero terminate string.
  * @param xctx of caller.
  */
-#define afw_object_meta_set_property_from_utf8_z(instance, \
-    property_name, string_z, xctx) \
+#define afw_object_meta_set_property_from_utf8_z(_instance, \
+    property_name, _string_z, _xctx) \
 afw_object_set_property_as_string_from_utf8_z( \
-    afw_object_meta_get_nonempty_delta(instance, xctx), \
-        property_name, string_z, xctx)
+    afw_object_meta_get_nonempty_delta(_instance, _xctx), \
+        property_name, _string_z, _xctx)
 
 
 
@@ -603,11 +603,11 @@ afw_object_set_property_as_string_from_utf8_z( \
  * @param value to set.
  * @param xctx of caller.
  */
-#define afw_object_meta_set_property_as(instance, property_name, \
-    data_type, value, xctx) \
+#define afw_object_meta_set_property_as(_instance, _property_name, \
+    data_type, _value, _xctx) \
 afw_object_set_property_as_ ## data_type ## _internal( \
-    afw_object_meta_get_nonempty_delta(instance, xctx), \
-    property_name, value, xctx)
+    afw_object_meta_get_nonempty_delta(_instance, _xctx), \
+    _property_name, _value, _xctx)
 
 
 
@@ -619,11 +619,11 @@ afw_object_set_property_as_ ## data_type ## _internal( \
  * @param value to set.
  * @param xctx of caller.
  */
-#define afw_object_meta_set_property_type_property(instance, \
-    property_name, property_type_property_name, value, xctx) \
+#define afw_object_meta_set_property_type_property(_instance, \
+    property_name, _property_type_property_name, _value, _xctx) \
 afw_object_set_property( \
-    afw_object_meta_get_property_type(instance, property_name, xctx), \
-    property_type_property_name, value, xctx)
+    afw_object_meta_get_property_type(_instance, property_name, _xctx), \
+    _property_type_property_name, _value, _xctx)
 
 
 
@@ -636,11 +636,11 @@ afw_object_set_property( \
  * @param string_z zero terminate string.
  * @param xctx of caller.
  */
-#define afw_object_meta_set_property_type_property_from_utf8_z(instance, \
-    property_name, property_type_property_name, string_z, xctx) \
+#define afw_object_meta_set_property_type_property_from_utf8_z(_instance, \
+    property_name, _property_type_property_name, _string_z, _xctx) \
 afw_object_set_property_as_string_from_utf8_z( \
-    afw_object_meta_get_property_type(instance, property_name, xctx), \
-    property_type_property_name, string_z, xctx)
+    afw_object_meta_get_property_type(_instance, property_name, _xctx), \
+    _property_type_property_name, _string_z, _xctx)
 
 
 
@@ -654,12 +654,12 @@ afw_object_set_property_as_string_from_utf8_z( \
  * @param value to set.
  * @param xctx of caller.
  */
-#define afw_object_meta_set_property_type_property_as(instance, \
-    property_name, property_type_property_name, \
-    data_type, value, xctx) \
+#define afw_object_meta_set_property_type_property_as(_instance, \
+    property_name, _property_type_property_name, \
+    data_type, _value, _xctx) \
 afw_object_set_property_as_ ## data_type ## _internal( \
-    afw_object_meta_get_property_type(instance, property_name, xctx), \
-    property_type_property_name, value, xctx)
+    afw_object_meta_get_property_type(_instance, property_name, _xctx), \
+    _property_type_property_name, _value, _xctx)
 
 
 

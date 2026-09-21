@@ -110,8 +110,8 @@ typedef struct afw_hash_table_index_s afw_hash_table_index_t;
  *     afw_hash_table_set_utf8(ht, name, value, xctx);  // key not copied
  *     value = afw_hash_table_get_utf8(ht, name);       // NULL if absent
  */
-#define AFW_HASH_TABLE_STRUCT(struct_name, value_type) \
-struct struct_name { \
+#define AFW_HASH_TABLE_STRUCT(_struct_name, _value_type) \
+struct _struct_name { \
     union { \
         const afw_hash_table_t internal; \
         struct { \
@@ -138,8 +138,8 @@ AFW_HASH_TABLE_STRUCT(afw_void_hash_table_s, void *);
  *
  * Starts with 16 buckets; doubles when load is high.
  */
-#define afw_hash_table_create(typedef_name, p, xctx) \
-((typedef_name *)afw_hash_table_create_impl((p), (xctx)))
+#define afw_hash_table_create(_typedef_name, _p, _xctx) \
+((_typedef_name *)afw_hash_table_create_impl((_p), (_xctx)))
 
 /**
  * @brief Create an untyped hash table.
@@ -244,41 +244,41 @@ afw_hash_table_release_impl(
 /**
  * @brief Get the value for key, or NULL.
  */
-#define afw_hash_table_get(instance, key, klen) \
-    afw_hash_table_get_impl(&(instance)->internal, \
-        (key), (klen))
+#define afw_hash_table_get(_instance, _key, _klen) \
+    afw_hash_table_get_impl(&(_instance)->internal, \
+        (_key), (_klen))
 
 /**
  * @brief Get the value for a utf8 key, or NULL.
  */
-#define afw_hash_table_get_utf8(instance, key) \
-    afw_hash_table_get((instance), (key)->s, (key)->len)
+#define afw_hash_table_get_utf8(_instance, _key) \
+    afw_hash_table_get((_instance), (_key)->s, (_key)->len)
 
 /**
  * @brief Set or delete the value for key. NULL value deletes.
  */
-#define afw_hash_table_set(instance, key, klen, value, xctx) \
-    afw_hash_table_set_impl(&(instance)->internal, \
-        (key), (klen), (value), (xctx))
+#define afw_hash_table_set(_instance, _key, _klen, _value, _xctx) \
+    afw_hash_table_set_impl(&(_instance)->internal, \
+        (_key), (_klen), (_value), (_xctx))
 
 /**
  * @brief Set or delete the value for a utf8 key.
  */
-#define afw_hash_table_set_utf8(instance, key, value, xctx) \
-    afw_hash_table_set((instance), (key)->s, (key)->len, \
-        (value), (xctx))
+#define afw_hash_table_set_utf8(_instance, _key, _value, _xctx) \
+    afw_hash_table_set((_instance), (_key)->s, (_key)->len, \
+        (_value), (_xctx))
 
 /**
  * @brief Position index at the first entry (or end).
  */
-#define afw_hash_table_first(instance, index) \
-    afw_hash_table_first_impl(&(instance)->internal, (index))
+#define afw_hash_table_first(_instance, _index) \
+    afw_hash_table_first_impl(&(_instance)->internal, (_index))
 
 /**
  * @brief Advance index to the next entry (or end).
  */
-#define afw_hash_table_next(index) \
-    afw_hash_table_next_impl(index)
+#define afw_hash_table_next(_index) \
+    afw_hash_table_next_impl(_index)
 
 /**
  * @brief Fill key/klen/value. Returns false at end.
@@ -293,21 +293,21 @@ afw_hash_table_release_impl(
  *         afw_hash_table_this(&hi, &key, &klen, &value);
  *         afw_hash_table_next(&hi))
  */
-#define afw_hash_table_this(index, key, klen, value) \
-    afw_hash_table_this_impl((index), \
-        (const void **)(key), (klen), (void **)(value))
+#define afw_hash_table_this(_index, _key, _klen, _value) \
+    afw_hash_table_this_impl((_index), \
+        (const void **)(_key), (_klen), (void **)(_value))
 
 /**
  * @brief Recycle all entries. Capacity is kept.
  */
-#define afw_hash_table_clear(instance, xctx) \
-    afw_hash_table_clear_impl(&(instance)->internal, (xctx))
+#define afw_hash_table_clear(_instance, _xctx) \
+    afw_hash_table_clear_impl(&(_instance)->internal, (_xctx))
 
 /**
  * @brief Free header, buckets, and entries. Do not use after.
  */
-#define afw_hash_table_release(instance, xctx) \
-    afw_hash_table_release_impl(&(instance)->internal, (xctx))
+#define afw_hash_table_release(_instance, _xctx) \
+    afw_hash_table_release_impl(&(_instance)->internal, (_xctx))
 
 AFW_END_DECLARES
 

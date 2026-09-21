@@ -14,7 +14,7 @@
 #include "afw_internal.h"
 
 
-#define IMPL_SELF(internal) ((afw_vector_t *)(internal))
+#define IMPL_SELF(_internal) ((afw_vector_t *)(_internal))
 
 
 static afw_size_t

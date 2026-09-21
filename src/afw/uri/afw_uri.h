@@ -116,8 +116,8 @@ typedef afw_uint32_t afw_uri_octet_type_t;
  * @param mask for true types.
  * @return boolean result of test.
  */
-#define AFW_URI_OCTET_IS(type, mask) \
-((type) & (AFW_URI_OCTET_ ## mask))
+#define AFW_URI_OCTET_IS(_type, _mask) \
+((_type) & (AFW_URI_OCTET_ ## _mask))
 
 
 /** @brief Token type table indexed by afw_octet_t ( 0 - 255 ). */

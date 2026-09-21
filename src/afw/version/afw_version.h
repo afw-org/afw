@@ -63,13 +63,13 @@ afw_version_check(unsigned int version);
  * the compiled_version, as well as if any dependency are not the appropriate
  * level.
  */
-#define AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE( \
-    info, compiled_version, xctx) \
+#define AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE(\
+    info, _compiled_version, _xctx) \
 do { \
     const afw_utf8_z_t *msg_z; \
-    msg_z = afw_version_check(compiled_version); \
+    msg_z = afw_version_check(_compiled_version); \
     if (msg_z) { \
-        AFW_THROW_ERROR_FZ(general, xctx, \
+        AFW_THROW_ERROR_FZ(general, _xctx, \
             "%ku %s", \
             (info), msg_z); \
     } \
@@ -85,12 +85,12 @@ do { \
  * the version compiled against, as well as if any dependency are not the
  * appropriate level.
  */
-#define AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE(id_z, xctx) \
+#define AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE(_id_z, _xctx) \
 do { \
     const afw_utf8_z_t *msg_z; \
     msg_z = AFW_VERSION_CHECK; \
     if (msg_z) { \
-        AFW_THROW_ERROR_FZ(general, xctx, "%s %s", id_z, msg_z); \
+        AFW_THROW_ERROR_FZ(general, _xctx, "%s %s", _id_z, msg_z); \
     } \
 } while (0)
 
@@ -106,12 +106,12 @@ do { \
  * compatible with the version compiled against, as well as if any dependency
  * are not the appropriate level.
  */
-#define AFW_VERSION_ABORT_IF_NOT_COMPATIBLE(id_z) \
+#define AFW_VERSION_ABORT_IF_NOT_COMPATIBLE(_id_z) \
 do { \
     const afw_utf8_z_t *msg_z; \
     msg_z = AFW_VERSION_CHECK; \
     if (msg_z) { \
-        fprintf(stderr, "%s %s", id_z, msg_z); \
+        fprintf(stderr, "%s %s", _id_z, msg_z); \
         abort(); \
     } \
 } while (0)

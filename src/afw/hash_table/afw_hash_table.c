@@ -14,7 +14,7 @@
 #include "afw_internal.h"
 
 
-#define IMPL_SELF(internal) ((afw_hash_table_t *)(internal))
+#define IMPL_SELF(_internal) ((afw_hash_table_t *)(_internal))
 
 #define IMPL_INITIAL_ALLOCATED 16
 

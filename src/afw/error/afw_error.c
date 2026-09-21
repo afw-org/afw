@@ -59,13 +59,13 @@ static const impl_error_code_map_t impl_error_code_map[] = {
         AFW_UTF8_LITERAL("200 OK")
     },
 
-#define XX(id, error_allow_in_response, http_response_code, description) \
+#define XX(_id, _error_allow_in_response, _http_response_code, _description) \
     { \
-        AFW_UTF8_LITERAL( #id ), \
-        error_allow_in_response, \
-        http_response_code, \
-        AFW_UTF8_LITERAL( #description ), \
-        AFW_UTF8_LITERAL( #http_response_code " " #description ) \
+        AFW_UTF8_LITERAL( #_id ), \
+        _error_allow_in_response, \
+        _http_response_code, \
+        AFW_UTF8_LITERAL( #_description ), \
+        AFW_UTF8_LITERAL( #_http_response_code " " #_description ) \
     },
     AFW_ERROR_CODE_MAP(XX)
 #undef XX

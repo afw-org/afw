@@ -73,13 +73,13 @@ afw_value_permanent_unknown_inf;
 
 /**
  * @brief Macro to determine if data type is unknown.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_unknown(A_DATA_TYPE) \
+#define afw_data_type_is_unknown(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_unknown \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_unknown \
 )
 
 /** @brief struct for data type unknown values. */

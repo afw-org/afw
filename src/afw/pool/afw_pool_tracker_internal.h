@@ -41,29 +41,29 @@ struct afw_pool_tracker_node_s {
 
 #define AFW_POOL_TRACKER_FREED_BIT ((uintptr_t)1)
 
-#define AFW_POOL_TRACKER_NODE(user) \
-    ((afw_pool_tracker_node_t *)((char *)(user) - \
+#define AFW_POOL_TRACKER_NODE(_user) \
+    ((afw_pool_tracker_node_t *)((char *)(_user) - \
         AFW_POOL_TRACKER_PREFIX_BYTES))
 
-#define AFW_POOL_TRACKER_TO_USER(node) \
-    ((void *)((char *)(node) + AFW_POOL_TRACKER_PREFIX_BYTES))
+#define AFW_POOL_TRACKER_TO_USER(_node) \
+    ((void *)((char *)(_node) + AFW_POOL_TRACKER_PREFIX_BYTES))
 
 #ifdef AFW_DEBUG_POOL
-#define AFW_POOL_TRACKER_USER_SIZE(node) ((node)->debug.size)
+#define AFW_POOL_TRACKER_USER_SIZE(_node) ((_node)->debug.size)
 #else
-#define AFW_POOL_TRACKER_USER_SIZE(node) ((node)->size)
+#define AFW_POOL_TRACKER_USER_SIZE(_node) ((_node)->size)
 #endif
 
-#define AFW_POOL_TRACKER_NEXT(node) \
+#define AFW_POOL_TRACKER_NEXT(_node) \
     ((afw_pool_tracker_node_t *) \
-        ((uintptr_t)((node)->next) & ~AFW_POOL_TRACKER_FREED_BIT))
+        ((uintptr_t)((_node)->next) & ~AFW_POOL_TRACKER_FREED_BIT))
 
-#define AFW_POOL_TRACKER_IS_FREED(node) \
-    (((uintptr_t)((node)->next) & AFW_POOL_TRACKER_FREED_BIT) != 0)
+#define AFW_POOL_TRACKER_IS_FREED(_node) \
+    (((uintptr_t)((_node)->next) & AFW_POOL_TRACKER_FREED_BIT) != 0)
 
-#define AFW_POOL_TRACKER_MARK_FREED(node) \
-    ((node)->next = (afw_pool_tracker_node_t *) \
-        ((uintptr_t)((node)->next) | AFW_POOL_TRACKER_FREED_BIT))
+#define AFW_POOL_TRACKER_MARK_FREED(_node) \
+    ((_node)->next = (afw_pool_tracker_node_t *) \
+        ((uintptr_t)((_node)->next) | AFW_POOL_TRACKER_FREED_BIT))
 
 
 typedef struct afw_pool_internal_tracker_self_s
@@ -78,8 +78,8 @@ struct afw_pool_internal_tracker_self_s {
 };
 
 
-#define afw_pool_tracker_internal_as_tracker(self) \
-    ((afw_pool_internal_tracker_self_t *)(self))
+#define afw_pool_tracker_internal_as_tracker(_self) \
+    ((afw_pool_internal_tracker_self_t *)(_self))
 
 AFW_END_DECLARES
 

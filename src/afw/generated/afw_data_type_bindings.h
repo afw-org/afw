@@ -64,42 +64,42 @@
 /**
  * @brief Data type map.
  */
-#define AFW_DATA_TYPES_MAP(XX) \
-    XX(any) \
-    XX(anyURI) \
-    XX(array) \
-    XX(base64Binary) \
-    XX(boolean) \
-    XX(date) \
-    XX(dateTime) \
-    XX(dayTimeDuration) \
-    XX(dnsName) \
-    XX(double) \
-    XX(function) \
-    XX(hexBinary) \
-    XX(ia5String) \
-    XX(integer) \
-    XX(ipAddress) \
-    XX(json) \
-    XX(null) \
-    XX(object) \
-    XX(objectId) \
-    XX(objectPath) \
-    XX(password) \
-    XX(regexp) \
-    XX(relaxed_json) \
-    XX(rfc822Name) \
-    XX(script) \
-    XX(string) \
-    XX(template) \
-    XX(time) \
-    XX(undefined) \
-    XX(unevaluated) \
-    XX(unknown) \
-    XX(void) \
-    XX(x500Name) \
-    XX(xpathExpression) \
-    XX(yearMonthDuration) \
+#define AFW_DATA_TYPES_MAP(_XX) \
+    _XX(any) \
+    _XX(anyURI) \
+    _XX(array) \
+    _XX(base64Binary) \
+    _XX(boolean) \
+    _XX(date) \
+    _XX(dateTime) \
+    _XX(dayTimeDuration) \
+    _XX(dnsName) \
+    _XX(double) \
+    _XX(function) \
+    _XX(hexBinary) \
+    _XX(ia5String) \
+    _XX(integer) \
+    _XX(ipAddress) \
+    _XX(json) \
+    _XX(null) \
+    _XX(object) \
+    _XX(objectId) \
+    _XX(objectPath) \
+    _XX(password) \
+    _XX(regexp) \
+    _XX(relaxed_json) \
+    _XX(rfc822Name) \
+    _XX(script) \
+    _XX(string) \
+    _XX(template) \
+    _XX(time) \
+    _XX(undefined) \
+    _XX(unevaluated) \
+    _XX(unknown) \
+    _XX(void) \
+    _XX(x500Name) \
+    _XX(xpathExpression) \
+    _XX(yearMonthDuration) \
 
 
 /**
@@ -107,7 +107,7 @@
  */
 typedef enum afw_data_type_number_e {
     afw_data_type_number_special,
-#define XX(id) afw_data_type_number_ ## id,
+#define XX(_id) afw_data_type_number_ ## _id,
     AFW_DATA_TYPES_MAP(XX)
     #undef XX
     afw_data_type_number_max

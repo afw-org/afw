@@ -98,45 +98,45 @@ afw_value_permanent_dayTimeDuration_inf;
 
 /**
  * @brief Macro to determine if data type is dayTimeDuration.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_dayTimeDuration(A_DATA_TYPE) \
+#define afw_data_type_is_dayTimeDuration(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_dayTimeDuration \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_dayTimeDuration \
 )
 
 /**
- * @brief True if A_VALUE is an evaluated dayTimeDuration value.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated dayTimeDuration value.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * For evaluated values only. When true, it is safe to cast _A_VALUE to
  * `const afw_value_dayTimeDuration_t *`.
  * If you want to know if the value will be dayTimeDuration when fully
  * evaluated (not necessarily cast-safe yet), use
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, dayTimeDuration, xctx)` instead.
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, dayTimeDuration, xctx)` instead.
  */
-#define afw_value_is_dayTimeDuration(A_VALUE) \
+#define afw_value_is_dayTimeDuration(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_dayTimeDuration\
+    (_A_VALUE) && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_dayTimeDuration\
 )
 
 /**
- * @brief True if A_VALUE is an evaluated array of dayTimeDuration.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated array of dayTimeDuration.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * When true, _A_VALUE is an evaluated array (`const afw_value_array_t *`)
  * whose element data type is dayTimeDuration.
  */
-#define afw_value_is_array_of_dayTimeDuration(A_VALUE) \
+#define afw_value_is_array_of_dayTimeDuration(_A_VALUE) \
 ( \
-    afw_value_is_array(A_VALUE) && \
+    afw_value_is_array(_A_VALUE) && \
     afw_array_get_data_type( \
-        ((const afw_value_array_t *)(A_VALUE))->internal, \
+        ((const afw_value_array_t *)(_A_VALUE))->internal, \
         xctx) == afw_data_type_dayTimeDuration \
 )
 
@@ -315,9 +315,9 @@ afw_value_dayTimeDuration_create(const afw_dayTimeDuration_t * internal,
  * Does not evaluate. Throws if present but not dayTimeDuration.
  */
 #define afw_object_get_property_as_dayTimeDuration( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_dayTimeDuration_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as dayTimeDuration value.
@@ -342,9 +342,9 @@ afw_object_get_property_as_dayTimeDuration_source(
  * @return const afw_dayTimeDuration_t *.
  */
 #define afw_object_get_property_as_dayTimeDuration_internal( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_dayTimeDuration_internal_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as dayTimeDuration internal.
@@ -370,9 +370,9 @@ afw_object_get_property_as_dayTimeDuration_internal_source(
  * @return (const afw_value_dayTimeDuration_t *) or NULL if no more.
  */
 #define afw_object_get_next_property_as_dayTimeDuration( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_dayTimeDuration_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as dayTimeDuration value.
@@ -400,9 +400,9 @@ afw_object_get_next_property_as_dayTimeDuration_source(
  * @return const afw_dayTimeDuration_t *.
  */
 #define afw_object_get_next_property_as_dayTimeDuration_internal( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_dayTimeDuration_internal_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as dayTimeDuration internal.
@@ -468,9 +468,9 @@ afw_object_set_property_as_dayTimeDuration_internal(
  * you want to start from the first value again.
  */
 #define afw_array_of_dayTimeDuration_get_next( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_dayTimeDuration_get_next_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next dayTimeDuration value from array of dayTimeDuration.
@@ -495,9 +495,9 @@ afw_array_of_dayTimeDuration_get_next_source(
  * @return (const afw_dayTimeDuration_t *) or NULL.
  */
 #define afw_array_of_dayTimeDuration_get_next_internal( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_dayTimeDuration_get_next_internal_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next dayTimeDuration internal from array of dayTimeDuration.

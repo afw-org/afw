@@ -113,18 +113,18 @@ struct afw_pool_internal_self_s {
 };
 
 
-#define afw_pool_internal_region(self) \
-    ((self)->thread ? (self)->thread->memory_region : NULL)
+#define afw_pool_internal_region(_self) \
+    ((_self)->thread ? (_self)->thread->memory_region : NULL)
 
 /*
  * MT methods lock the pool's thread region (recursive so get/free
  * inside malloc are fine). ST get/free do not lock. Uses xctx from
  * the enclosing function.
  */
-#define IMPL_MULTITHREADED_LOCK_BEGIN(pool) \
+#define IMPL_MULTITHREADED_LOCK_BEGIN(_pool) \
 const afw_memory_region_t *_this_region = \
-    ((pool)->thread \
-        ? (pool)->thread->memory_region : NULL); \
+    ((_pool)->thread \
+        ? (_pool)->thread->memory_region : NULL); \
 if (_this_region) { \
     afw_memory_region_lock(_this_region, xctx); \
 } \
@@ -144,12 +144,12 @@ AFW_ENDTRY
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
 
-#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z) \
+#define IMPL_PRINT_DEBUG_INFO_Z(_level, _info_z) \
 do { \
     FILE *fd; \
     if (xctx && xctx->env && xctx->env->debug_fd && \
         afw_flag_is_active( \
-            xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
+            xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##_level, xctx)) \
     { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
@@ -162,7 +162,7 @@ do { \
             " refs " AFW_INTEGER_FMT \
             " parent " AFW_INTEGER_FMT \
             " (%s)\n", \
-            info_z, \
+            _info_z, \
             self->thread ? self->thread->thread_number : \
                 (afw_integer_t)0, \
             self->pool_number, \
@@ -180,16 +180,16 @@ do { \
     } \
 } while (0)
 
-#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...) \
+#define IMPL_PRINT_DEBUG_INFO_FZ(_level, _format_z, ...) \
 do { \
     FILE *fd; \
     if (xctx && xctx->env && xctx->env->debug_fd && \
         afw_flag_is_active( \
-            xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
+            xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##_level, xctx)) \
     { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
-            ">debug pool " format_z " thread " AFW_INTEGER_FMT \
+            ">debug pool " _format_z " thread " AFW_INTEGER_FMT \
             " pool " AFW_INTEGER_FMT \
             " in_use " AFW_SIZE_T_FMT \
             " total " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
@@ -240,12 +240,12 @@ afw_pool_internal_debug_poison_user(void *user, afw_size_t size);
 
 #else
 
-#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z)
-#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...)
-#define afw_pool_internal_debug_prefix_set(self, user, size) ((void)0)
-#define afw_pool_internal_debug_prefix_ok(self, address, size) (true)
-#define afw_pool_internal_debug_check_prefix(self, address, size, xctx) ((void)0)
-#define afw_pool_internal_debug_poison_user(user, size) ((void)0)
+#define IMPL_PRINT_DEBUG_INFO_Z(_level, _info_z)
+#define IMPL_PRINT_DEBUG_INFO_FZ(_level, _format_z, ...)
+#define afw_pool_internal_debug_prefix_set(_self, _user, _size) ((void)0)
+#define afw_pool_internal_debug_prefix_ok(_self, _address, _size) (true)
+#define afw_pool_internal_debug_check_prefix(_self, _address, _size, _xctx) ((void)0)
+#define afw_pool_internal_debug_poison_user(_user, _size) ((void)0)
 
 #endif
 
@@ -368,8 +368,8 @@ afw_pool_internal_calloc_unhandled(
     afw_size_t size,
     afw_xctx_t *xctx);
 
-#define afw_pool_internal_calloc_type_unhandled(instance, type, xctx) \
-    (type *) afw_pool_internal_calloc_unhandled(instance, sizeof(type), xctx)
+#define afw_pool_internal_calloc_type_unhandled(_instance, _type, _xctx) \
+    (_type *) afw_pool_internal_calloc_unhandled(_instance, sizeof(_type), _xctx)
 
 AFW_END_DECLARES
 

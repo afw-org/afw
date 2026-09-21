@@ -108,45 +108,45 @@ afw_value_permanent_array_inf;
 
 /**
  * @brief Macro to determine if data type is array.
- * @param A_DATA_TYPE to test.
+ * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_array(A_DATA_TYPE) \
+#define afw_data_type_is_array(_A_DATA_TYPE) \
 ( \
-    (A_DATA_TYPE) && \
-    (A_DATA_TYPE) == afw_data_type_array \
+    (_A_DATA_TYPE) && \
+    (_A_DATA_TYPE) == afw_data_type_array \
 )
 
 /**
- * @brief True if A_VALUE is an evaluated array value.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated array value.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * For evaluated values only. When true, it is safe to cast _A_VALUE to
  * `const afw_value_array_t *`.
  * If you want to know if the value will be array when fully
  * evaluated (not necessarily cast-safe yet), use
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, array, xctx)` instead.
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, array, xctx)` instead.
  */
-#define afw_value_is_array(A_VALUE) \
+#define afw_value_is_array(_A_VALUE) \
 ( \
-    (A_VALUE) && \
-    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_array\
+    (_A_VALUE) && \
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_array\
 )
 
 /**
- * @brief True if A_VALUE is an evaluated array of array.
- * @param A_VALUE to test.
+ * @brief True if _A_VALUE is an evaluated array of array.
+ * @param _A_VALUE to test.
  * @return boolean result.
  *
- * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * When true, _A_VALUE is an evaluated array (`const afw_value_array_t *`)
  * whose element data type is array.
  */
-#define afw_value_is_array_of_array(A_VALUE) \
+#define afw_value_is_array_of_array(_A_VALUE) \
 ( \
-    afw_value_is_array(A_VALUE) && \
+    afw_value_is_array(_A_VALUE) && \
     afw_array_get_data_type( \
-        ((const afw_value_array_t *)(A_VALUE))->internal, \
+        ((const afw_value_array_t *)(_A_VALUE))->internal, \
         xctx) == afw_data_type_array \
 )
 
@@ -326,9 +326,9 @@ afw_value_array_create(const afw_array_t * internal,
  * Does not evaluate. Throws if present but not array.
  */
 #define afw_object_get_property_as_array( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_array_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as array value.
@@ -353,9 +353,9 @@ afw_object_get_property_as_array_source(
  * @return const afw_array_t *.
  */
 #define afw_object_get_property_as_array_internal( \
-    object, property_name, xctx) \
+    _object, _property_name, _xctx) \
 afw_object_get_property_as_array_internal_source( \
-    object, property_name, AFW__FILE_LINE__, xctx)
+    _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get property as array internal.
@@ -381,9 +381,9 @@ afw_object_get_property_as_array_internal_source(
  * @return (const afw_value_array_t *) or NULL if no more.
  */
 #define afw_object_get_next_property_as_array( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_array_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as array value.
@@ -411,9 +411,9 @@ afw_object_get_next_property_as_array_source(
  * @return const afw_array_t *.
  */
 #define afw_object_get_next_property_as_array_internal( \
-    object, iterator, property_name, xctx) \
+    _object, _iterator, _property_name, _xctx) \
 afw_object_get_next_property_as_array_internal_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+    _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next property as array internal.
@@ -479,9 +479,9 @@ afw_object_set_property_as_array_internal(
  * you want to start from the first value again.
  */
 #define afw_array_of_array_get_next( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_array_get_next_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next array value from array of array.
@@ -506,9 +506,9 @@ afw_array_of_array_get_next_source(
  * @return (const afw_array_t *) or NULL.
  */
 #define afw_array_of_array_get_next_internal( \
-    array, iterator, xctx) \
+    _array, _iterator, _xctx) \
     afw_array_of_array_get_next_internal_source( \
-    array, iterator, AFW__FILE_LINE__, xctx)
+    _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
  * @brief Get next array internal from array of array.

@@ -37,10 +37,10 @@
 
 
 /* Set meta.properties property. */
-#define impl_meta_property_type_get(self, property_name, xctx) \
+#define impl_meta_property_type_get(_self, _property_name, _xctx) \
 afw_object_meta_get_property_type( \
-    ((const afw_object_t *)self), \
-    property_name, xctx)
+    ((const afw_object_t *)_self), \
+    _property_name, _xctx)
 
 /*--- Static declares. ---*/
 

@@ -22,24 +22,24 @@
  * This header is included by afw_common.h.  I can only include "templates".
  */
 
-#define AFW_ASSOCIATIVE_ARRAY_TEMPLATE(name, type) \
+#define AFW_ASSOCIATIVE_ARRAY_TEMPLATE(_name, _type) \
 \
-struct name##_s { \
+struct _name##_s { \
     const afw_pool_t *p; \
 }; \
 \
-AFW_DEFINE_STATIC_INLINE( const name##_t * ) \
-name##_create( \
+AFW_DEFINE_STATIC_INLINE( const _name##_t * ) \
+_name##_create( \
     afw_associative_array_get_reference_value_cb get_reference_value, \
     afw_associative_array_release_value_cb release_value, \
     const afw_pool_t *p, afw_xctx_t *xctx) \
 {\
-    return (const name##_t *)afw_associative_array_create( \
+    return (const _name##_t *)afw_associative_array_create( \
         get_reference_value, release_value, p, xctx); \
 }\
 \
 AFW_DEFINE_STATIC_INLINE( void ) \
-name##_release(const name##_t *instance, \
+_name##_release(const _name##_t *instance, \
     afw_xctx_t *xctx) \
 {\
     afw_associative_array_release( \
@@ -48,7 +48,7 @@ name##_release(const name##_t *instance, \
 }\
 \
 AFW_DEFINE_STATIC_INLINE( void ) \
-name##_get_reference(const name##_t *instance, \
+_name##_get_reference(const _name##_t *instance, \
     afw_xctx_t *xctx) \
 {\
     afw_associative_array_get_reference( \
@@ -56,8 +56,8 @@ name##_get_reference(const name##_t *instance, \
         xctx); \
 }\
 \
-AFW_DEFINE_STATIC_INLINE( const type * ) \
-name##_get(const name##_t *instance, const afw_utf8_t *key, \
+AFW_DEFINE_STATIC_INLINE( const _type * ) \
+_name##_get(const _name##_t *instance, const afw_utf8_t *key, \
     afw_xctx_t *xctx) \
 {\
     return afw_associative_array_get( \
@@ -65,9 +65,9 @@ name##_get(const name##_t *instance, const afw_utf8_t *key, \
         key, xctx); \
 }\
 \
-AFW_DEFINE_STATIC_INLINE( const type * ) \
-name##_get_associated_object_reference( \
-    const name##_t *instance, const afw_utf8_t *key, afw_xctx_t *xctx) \
+AFW_DEFINE_STATIC_INLINE( const _type * ) \
+_name##_get_associated_object_reference( \
+    const _name##_t *instance, const afw_utf8_t *key, afw_xctx_t *xctx) \
 {\
     return afw_associative_array_get_associated_object_reference( \
         (const afw_associative_array_t *)instance, \
@@ -75,7 +75,7 @@ name##_get_associated_object_reference( \
 }\
 \
 AFW_DEFINE_STATIC_INLINE( void ) \
-name##_for_each(const name##_t *instance, void *context, \
+_name##_for_each(const _name##_t *instance, void *context, \
     afw_value_cb_t callback, afw_xctx_t *xctx) \
 {\
     afw_associative_array_for_each( \
@@ -84,8 +84,8 @@ name##_for_each(const name##_t *instance, void *context, \
 }\
 \
 AFW_DEFINE_STATIC_INLINE( void ) \
-name##_set(const name##_t *instance, \
-    const afw_utf8_t *key, const type *value, \
+_name##_set(const _name##_t *instance, \
+    const afw_utf8_t *key, const _type *value, \
     afw_xctx_t *xctx) \
 {\
     afw_associative_array_set( \

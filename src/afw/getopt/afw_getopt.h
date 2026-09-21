@@ -60,8 +60,8 @@ typedef struct afw_getopt_option_s {
  * @param has_arg true if the option takes an argument
  * @param description Help text
  */
-#define AFW_GETOPT_OPTION(name, ch, has_arg, description) \
-    { name, (ch), (has_arg), (description) }
+#define AFW_GETOPT_OPTION(_name, _ch, _has_arg, _description) \
+    { _name, (_ch), (_has_arg), (_description) }
 
 /** Sentinel that ends an option table. */
 #define AFW_GETOPT_TABLE_END { NULL, 0, false, NULL }

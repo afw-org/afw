@@ -166,17 +166,17 @@ afw_object_string_property_name_internal(
 #define AFW_OBJECT_S_PN_META_OBJECTTYPE afw_s_a_meta_objectType
 
 /** @brief The object type id for object type objects is _AdaptiveObjectType_. */
-#define AFW_OBJECT_ID_IS_OBJECT_TYPE(OBJECT_TYPE_ID) \
-    afw_utf8_equal((OBJECT_TYPE_ID), afw_s__AdaptiveObjectType_)
+#define AFW_OBJECT_ID_IS_OBJECT_TYPE(_OBJECT_TYPE_ID) \
+    afw_utf8_equal((_OBJECT_TYPE_ID), afw_s__AdaptiveObjectType_)
 
 /** @brief Core object type objects have an object id starting with _Adaptive. */
-#define AFW_OBJECT_IS_CORE_OBJECT_TYPE_ID(OBJECT_TYPE_ID, OBJECT_ID) \
-    AFW_OBJECT_ID_IS_OBJECT_TYPE(OBJECT_TYPE_ID) && \
-    afw_utf8_starts_with((OBJECT_ID), afw_s__Adaptive)
+#define AFW_OBJECT_IS_CORE_OBJECT_TYPE_ID(_OBJECT_TYPE_ID, _OBJECT_ID) \
+    AFW_OBJECT_ID_IS_OBJECT_TYPE(_OBJECT_TYPE_ID) && \
+    afw_utf8_starts_with((_OBJECT_ID), afw_s__Adaptive)
 
 /** @brief Core type ids starting with _Adaptive. */
-#define AFW_OBJECT_IS_CORE_TYPE_ID(ID) \
-    afw_utf8_starts_with((ID), afw_s__Adaptive)
+#define AFW_OBJECT_IS_CORE_TYPE_ID(_ID) \
+    afw_utf8_starts_with((_ID), afw_s__Adaptive)
 
 
 /**
@@ -197,8 +197,8 @@ afw_object_property_count(
  * @param xctx of caller.
  * @return boolean result.
  */
-#define afw_object_is_immutable(instance, xctx) \
-    (afw_object_get_setter(instance, xctx) == NULL)
+#define afw_object_is_immutable(_instance, _xctx) \
+    (afw_object_get_setter(_instance, _xctx) == NULL)
 
 
 
@@ -211,9 +211,9 @@ afw_object_property_count(
  * @param instance of object to check.
  * @param xctx of caller.
  */
-#define AFW_OBJECT_ASSERT_ENTITY(instance, xctx) \
+#define AFW_OBJECT_ASSERT_ENTITY(_instance, _xctx) \
 do { \
-    if (instance->meta.embedding_object) \
+    if (_instance->meta.embedding_object) \
         AFW_OBJECT_IMPL_ERROR_OBJECT_NOT_ENTITY; \
     } \
 while (0)
@@ -228,18 +228,18 @@ while (0)
  * @param instance of object to check.
  * @param xctx of caller.
  */
-#define AFW_OBJECT_ASSERT_MUTABLE(instance, xctx) \
+#define AFW_OBJECT_ASSERT_MUTABLE(_instance, _xctx) \
 do { \
-    if (afw_object_is_immutable(instance, xctx)) \
+    if (afw_object_is_immutable(_instance, _xctx)) \
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE; \
     } \
 while (0)
 
 
-#define AFW_OBJECT_ERROR_PROPERTY_IMMUTABLE(property_name) \
+#define AFW_OBJECT_ERROR_PROPERTY_IMMUTABLE(_property_name) \
 AFW_THROW_ERROR_FZ(read_only, xctx, \
     "Object property '%ku' is immutable", \
-    afw_object_property_name_display_utf8((property_name), xctx))
+    afw_object_property_name_display_utf8((_property_name), xctx))
 
 /**
  * @brief Set an object to immutable if it is not already.
@@ -445,10 +445,10 @@ afw_object_set_property_as_string_from_utf8_z(
  * @param entity is place to set entity.
  * @param object to find entity for.
  */
-#define AFW_OBJECT_GET_ENTITY(entity,object) \
-    entity = object; \
-    while (entity->meta.embedding_object) \
-        entity = entity->meta.embedding_object
+#define AFW_OBJECT_GET_ENTITY(_entity, _object) \
+    _entity = _object; \
+    while (_entity->meta.embedding_object) \
+        _entity = _entity->meta.embedding_object
 
 
 /**
@@ -738,8 +738,8 @@ afw_object_memory_associative_array_create(
 
 
 /** @brief Test memory object option mask option. */
-#define AFW_OBJECT_MEMORY_OPTION_IS(options_mask, option) \
-    ((((options_mask) & (AFW_OBJECT_MEMORY_OPTION_ ## option))) != 0)
+#define AFW_OBJECT_MEMORY_OPTION_IS(_options_mask, _option) \
+    ((((_options_mask) & (AFW_OBJECT_MEMORY_OPTION_ ## _option))) != 0)
 
 
 /**
@@ -869,9 +869,9 @@ afw_object_create_wrapper_with_options(
  * @param xctx of caller.
  * @return instance of new wrapper object.
  */
-#define afw_object_create_wrapper_unmanaged_new_p(wrapped, p, xctx) \
+#define afw_object_create_wrapper_unmanaged_new_p(_wrapped, _p, _xctx) \
     afw_object_create_wrapper_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_new_p, wrapped, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_new_p, _wrapped, _p, _xctx)
 
 
 /**
@@ -881,9 +881,9 @@ afw_object_create_wrapper_with_options(
  * @param xctx of caller.
  * @return instance of new wrapper object.
  */
-#define afw_object_create_wrapper_unmanaged(wrapped, p, xctx) \
+#define afw_object_create_wrapper_unmanaged(_wrapped, _p, _xctx) \
     afw_object_create_wrapper_with_options( \
-        0, wrapped, p, xctx)
+        0, _wrapped, _p, _xctx)
 
 
 /**
@@ -908,9 +908,9 @@ afw_object_create_script_wrapper(
  * @param xctx of caller.
  * @return instance of new wrapper object.
  */
-#define afw_object_create_wrapper_unmanaged_cede_p(wrapped, p, xctx) \
+#define afw_object_create_wrapper_unmanaged_cede_p(_wrapped, _p, _xctx) \
     afw_object_create_wrapper_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_cede_p, wrapped, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_cede_p, _wrapped, _p, _xctx)
 
 
 /**
@@ -973,9 +973,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  *
  * afw_object_release(object, xctx);
  */
-#define afw_object_create_unmanaged_cede_p(p, xctx) \
+#define afw_object_create_unmanaged_cede_p(_p, _xctx) \
     afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_cede_p, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_cede_p, _p, _xctx)
 
 
 /**
@@ -987,9 +987,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * Unmanaged bag (pool world). Instance get_reference / release pin
  * the child pool. Value get_reference / release throw.
  */
-#define afw_object_create_unmanaged_new_p(p, xctx) \
+#define afw_object_create_unmanaged_new_p(_p, _xctx) \
     afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_new_p, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_new_p, _p, _xctx)
 
 
 /**
@@ -1000,8 +1000,8 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  *
  * Start 0. Lifetime is p. Value get_reference / release throw.
  */
-#define afw_object_create_unmanaged(p, xctx) \
-    afw_object_create_with_options(0, p, xctx)
+#define afw_object_create_unmanaged(_p, _xctx) \
+    afw_object_create_with_options(0, _p, _xctx)
 
 
 /**
@@ -1066,25 +1066,25 @@ afw_object_insure_embedded_exists(
  * variable that will be NULL on the first call and have the embedder on
  * subsequent calls.
  */
-#define AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED( \
-    result,embedding_object,property_name,always_create_unmanaged, \
-    cede_p,entity_p,xctx) \
-    if (always_create_unmanaged || \
-        (property_name && \
-        afw_value_equal((property_name), afw_v__meta_, xctx))) \
+#define AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED(\
+    result, _embedding_object, _property_name, _always_create_unmanaged, \
+    cede_p, _entity_p, _xctx) \
+    if (_always_create_unmanaged || \
+        (_property_name && \
+        afw_value_equal((_property_name), afw_v__meta_, _xctx))) \
     { \
-        result = afw_object_create_unmanaged(entity_p, xctx); \
+        result = afw_object_create_unmanaged(_entity_p, _xctx); \
     } \
-    else if (embedding_object) { \
+    else if (_embedding_object) { \
         result = afw_object_create_embedded( \
-            embedding_object, property_name, xctx); \
+            _embedding_object, _property_name, _xctx); \
     } \
     else { \
         result = afw_object_create_with_options( \
             (cede_p) \
             ? AFW_OBJECT_MEMORY_OPTION_cede_p \
             : AFW_OBJECT_MEMORY_OPTION_new_p, \
-            entity_p, xctx); \
+            _entity_p, _xctx); \
     } \
 
 

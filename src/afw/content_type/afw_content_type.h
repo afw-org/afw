@@ -67,9 +67,9 @@ afw_content_type_value_to_raw(
  * @param xctx of caller.
  * @return converted raw encoded memory.
  */
-#define afw_content_type_object_to_raw(instance, object, options, p, xctx) \
-    afw_content_type_value_to_raw(instance, \
-        afw_value_create_unmanaged_object(object, p, xctx), options, p, xctx)
+#define afw_content_type_object_to_raw(_instance, _object, _options, _p, _xctx) \
+    afw_content_type_value_to_raw(_instance, \
+        afw_value_create_unmanaged_object(_object, _p, _xctx), _options, _p, _xctx)
 
 
 /**
@@ -77,8 +77,8 @@ afw_content_type_value_to_raw(
  * @param instance of content type.
  * @return result of test.
 */
-#define afw_content_type_is_application_afw(instance) \
-((instance) && (instance)->inf == &afw_content_type_application_afw_inf)
+#define afw_content_type_is_application_afw(_instance) \
+((_instance) && (_instance)->inf == &afw_content_type_application_afw_inf)
 
 
 

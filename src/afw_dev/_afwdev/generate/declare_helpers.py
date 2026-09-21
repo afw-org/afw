@@ -95,7 +95,7 @@ def generate(generated_by, options):
         fd.write(' * \n')
         fd.write(' * Any data declared this way is not considered part of the external API.\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DECLARE_INTERNAL_CONST_DATA(type) extern const type\n')
+        fd.write('#define ' + uprefix + 'DECLARE_INTERNAL_CONST_DATA(_type) extern const _type\n')
 
         fd.write('\n\n')
         fd.write('/**\n')
@@ -109,7 +109,7 @@ def generate(generated_by, options):
         fd.write(' * \n')
         fd.write(' * Any data defined this way is not considered part of the external API. \n') 
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DEFINE_INTERNAL_CONST_DATA(type) const type\n')
+        fd.write('#define ' + uprefix + 'DEFINE_INTERNAL_CONST_DATA(_type) const _type\n')
 
         fd.write('\n\n')
         fd.write('/**\n')
@@ -123,7 +123,7 @@ def generate(generated_by, options):
         fd.write(' * \n')
         fd.write(' * Any function declared this way is not considered part of the external API.\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DECLARE_INTERNAL(type) extern type\n')
+        fd.write('#define ' + uprefix + 'DECLARE_INTERNAL(_type) extern _type\n')
 
         fd.write('\n\n')
         fd.write('/**\n')
@@ -137,7 +137,7 @@ def generate(generated_by, options):
         fd.write(' * \n')
         fd.write(' * Any function defined this way is not considered part of the external API. \n') 
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DEFINE_INTERNAL(type) type\n')
+        fd.write('#define ' + uprefix + 'DEFINE_INTERNAL(_type) _type\n')
 
         fd.write('\n\n')
         fd.write('/**\n')
@@ -156,9 +156,9 @@ def generate(generated_by, options):
         fd.write(' * ' + uprefix + 'DECLARE(const afw_utf8_t *)\n')
         fd.write(' * ' + prefix + 'some_function(int a);\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DECLARE(type) \\\n')
+        fd.write('#define ' + uprefix + 'DECLARE(_type) \\\n')
         fd.write(uprefix + 'DECLSPEC_DECLARE \\\n')
-        fd.write('type \\\n')
+        fd.write('_type \\\n')
         fd.write(uprefix + 'CALLING_CONVENTION\n')
 
         fd.write('\n\n')
@@ -179,9 +179,9 @@ def generate(generated_by, options):
         fd.write(' * ' + uprefix + 'DECLARE_ELLIPSIS(const afw_utf8_t *)\n')
         fd.write(' * ' + prefix + 'some_function(int a, ...);\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DECLARE_ELLIPSIS(type) \\\n')
+        fd.write('#define ' + uprefix + 'DECLARE_ELLIPSIS(_type) \\\n')
         fd.write(uprefix + 'DECLSPEC_DECLARE \\\n')
-        fd.write('type \\\n')
+        fd.write('_type \\\n')
         fd.write(uprefix + 'CALLING_CONVENTION_ELLIPSIS\n')
 
         fd.write('\n\n')
@@ -202,9 +202,9 @@ def generate(generated_by, options):
         fd.write(' * ' + uprefix + 'DECLARE_CONST_DATA(afw_utf8_t *)\n')
         fd.write(' * ' + prefix + 'a_string;\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DECLARE_CONST_DATA(type) \\\n')
+        fd.write('#define ' + uprefix + 'DECLARE_CONST_DATA(_type) \\\n')
         fd.write(uprefix + 'DECLSPEC_DECLARE \\\n')
-        fd.write('const type\n')
+        fd.write('const _type\n')
 
         fd.write('\n\n')
         fd.write('/**\n')
@@ -224,9 +224,9 @@ def generate(generated_by, options):
         fd.write(' * ' + uprefix + 'DEFINE(const afw_utf8_t *)\n')
         fd.write(' * ' + prefix + 'some_function(int a) {...}\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DEFINE(type) \\\n')
+        fd.write('#define ' + uprefix + 'DEFINE(_type) \\\n')
         fd.write(uprefix + 'DECLSPEC_DEFINE \\\n')
-        fd.write('type \\\n')
+        fd.write('_type \\\n')
         fd.write(uprefix + 'CALLING_CONVENTION\n')
 
         fd.write('\n\n')
@@ -247,9 +247,9 @@ def generate(generated_by, options):
         fd.write(' * ' + uprefix + 'DEFINE_ELLIPSIS(const afw_utf8_t *) \n')
         fd.write(' * ' + prefix + 'some_function(int a, ...) {...}\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DEFINE_ELLIPSIS(type) \\\n')
+        fd.write('#define ' + uprefix + 'DEFINE_ELLIPSIS(_type) \\\n')
         fd.write(uprefix + 'DECLSPEC_DEFINE \\\n')
-        fd.write('type \\\n')
+        fd.write('_type \\\n')
         fd.write(uprefix + 'CALLING_CONVENTION_ELLIPSIS\n')
 
         fd.write('\n\n')
@@ -270,9 +270,9 @@ def generate(generated_by, options):
         fd.write(' * ' + uprefix + 'DEFINE_CONST_DATA(afw_utf8_t *)\n')
         fd.write(' * ' + prefix + 'a_string;\n')
         fd.write(' */\n')
-        fd.write('#define ' + uprefix + 'DEFINE_CONST_DATA(type) \\\n')
+        fd.write('#define ' + uprefix + 'DEFINE_CONST_DATA(_type) \\\n')
         fd.write(uprefix + 'DECLSPEC_DEFINE \\\n')
-        fd.write('const type\n')
+        fd.write('const _type\n')
 
 
         #-----------------------------------------------
@@ -286,9 +286,9 @@ def generate(generated_by, options):
 
         fd.write('\n\n')
         fd.write('#ifdef WIN32\n')
-        fd.write('#define ' + uprefix + 'DEFINE_DSO(type) __declspec(dllexport) type\n')
+        fd.write('#define ' + uprefix + 'DEFINE_DSO(_type) __declspec(dllexport) _type\n')
         fd.write('#else\n')
-        fd.write('#define ' + uprefix + 'DEFINE_DSO(type) type\n')
+        fd.write('#define ' + uprefix + 'DEFINE_DSO(_type) _type\n')
         fd.write('#endif\n')
 
         fd.write('\n\n')
@@ -304,12 +304,12 @@ def generate(generated_by, options):
         fd.write('/** AFW Inline. */\n')
         fd.write('#define ' + uprefix + 'STATIC_INLINE static ' + uprefix + 'INLINE\n')
         fd.write('\n')
-        fd.write('#define ' + uprefix + 'DECLARE_STATIC(type) static type\n')
+        fd.write('#define ' + uprefix + 'DECLARE_STATIC(_type) static _type\n')
         fd.write('\n')
         fd.write('#if defined(DOXYGEN)\n')
-        fd.write('#define ' + uprefix + 'DEFINE_STATIC_INLINE(type) type\n')
+        fd.write('#define ' + uprefix + 'DEFINE_STATIC_INLINE(_type) _type\n')
         fd.write('#else\n')
-        fd.write('#define ' + uprefix + 'DEFINE_STATIC_INLINE(type) ' + uprefix + 'STATIC_INLINE type\n')
+        fd.write('#define ' + uprefix + 'DEFINE_STATIC_INLINE(_type) ' + uprefix + 'STATIC_INLINE _type\n')
         fd.write('#endif\n')
         fd.write('\n')
 

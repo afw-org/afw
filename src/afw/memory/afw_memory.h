@@ -37,16 +37,16 @@ AFW_BEGIN_DECLARES
  * The size of the type of the variable pointed to by the to parameter is
  * used for the size used by memcpy().
  */
-#define afw_memory_copy(to, from) \
-memcpy((to), (from), sizeof(*(to)))
+#define afw_memory_copy(_to, _from) \
+memcpy((_to), (_from), sizeof(*(_to)))
 
 
 /**
  * @brief Clear preallocated memory for sizeof(*(to)).
  * @param to address.
  */
-#define afw_memory_clear(to) \
-memset((to), 0, sizeof(*(to)))
+#define afw_memory_clear(_to) \
+memset((_to), 0, sizeof(*(_to)))
 
 
 /**
@@ -58,8 +58,8 @@ memset((to), 0, sizeof(*(to)))
  *
  * Same as afw_pool_calloc() with `p, xctx` at the end.
  */
-#define afw_memory_calloc(size, p, xctx) \
-    afw_pool_calloc((p), (size), (xctx))
+#define afw_memory_calloc(_size, _p, _xctx) \
+    afw_pool_calloc((_p), (_size), (_xctx))
 
 
 /**
@@ -69,8 +69,8 @@ memset((to), 0, sizeof(*(to)))
  * @param xctx of caller.
  * @return Pointer to memory allocated.
  */
-#define afw_memory_malloc(size, p, xctx) \
-    afw_pool_malloc((p), (size), (xctx))
+#define afw_memory_malloc(_size, _p, _xctx) \
+    afw_pool_malloc((_p), (_size), (_xctx))
 
 
 /**
@@ -80,8 +80,8 @@ memset((to), 0, sizeof(*(to)))
  * @param xctx of caller.
  * @return Pointer cast to type *.
  */
-#define afw_memory_calloc_type(type, p, xctx) \
-    (type *) afw_pool_calloc((p), sizeof(type), (xctx))
+#define afw_memory_calloc_type(_type, _p, _xctx) \
+    (_type *) afw_pool_calloc((_p), sizeof(_type), (_xctx))
 
 
 /**
@@ -91,8 +91,8 @@ memset((to), 0, sizeof(*(to)))
  * @param xctx of caller.
  * @return Pointer cast to type *.
  */
-#define afw_memory_malloc_type(type, p, xctx) \
-    (type *) afw_pool_malloc((p), sizeof(type), (xctx))
+#define afw_memory_malloc_type(_type, _p, _xctx) \
+    (_type *) afw_pool_malloc((_p), sizeof(_type), (_xctx))
 
 
 /**
@@ -102,8 +102,8 @@ memset((to), 0, sizeof(*(to)))
  * @param p pool.
  * @param xctx of caller.
  */
-#define afw_memory_free(address, size, p, xctx) \
-    afw_pool_free_memory((p), (address), (size), (xctx))
+#define afw_memory_free(_address, _size, _p, _xctx) \
+    afw_pool_free_memory((_p), (_address), (_size), (_xctx))
 
 
 /**
@@ -113,8 +113,8 @@ memset((to), 0, sizeof(*(to)))
  * @param p pool.
  * @param xctx of caller.
  */
-#define afw_memory_free_type(address, type, p, xctx) \
-    afw_pool_free_memory((p), (address), sizeof(type), (xctx))
+#define afw_memory_free_type(_address, _type, _p, _xctx) \
+    afw_pool_free_memory((_p), (_address), sizeof(_type), (_xctx))
 
 
 /**
@@ -165,10 +165,10 @@ afw_memory_set(
 /**
  * @brief Set a preallocated afw_memory_t pointing at ptr (no copy).
  */
-#define afw_memory_set_no_copy(to, ptr, size) \
+#define afw_memory_set_no_copy(_to, _ptr, _size) \
     do { \
-        (to)->ptr = (ptr); \
-        (to)->size = (size); \
+        (_to)->_ptr = (_ptr); \
+        (_to)->_size = (_size); \
     } while (0)
 
 

@@ -138,8 +138,8 @@ AFW_BEGIN_DECLARES
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_printable(v) \
-    ( ((v)>=AFW_ASCII_SPACE) && ((v)<=AFW_ASCII_TILDE) )
+#define afw_ascii_is_printable(_v) \
+    ( ((_v)>=AFW_ASCII_SPACE) && ((_v)<=AFW_ASCII_TILDE) )
 
 
 /**
@@ -147,8 +147,8 @@ AFW_BEGIN_DECLARES
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_lowercase(v) \
-    ( ((v) >= 'a') && ((v) <= 'z') )
+#define afw_ascii_is_lowercase(_v) \
+    ( ((_v) >= 'a') && ((_v) <= 'z') )
 
 
 /**
@@ -156,8 +156,8 @@ AFW_BEGIN_DECLARES
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_uppercase(v) \
-    ( ((v) >= 'A') && ((v) <= 'Z') )
+#define afw_ascii_is_uppercase(_v) \
+    ( ((_v) >= 'A') && ((_v) <= 'Z') )
 
 
 /**
@@ -165,8 +165,8 @@ AFW_BEGIN_DECLARES
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_alpha(v) \
-    ( afw_ascii_is_ascii_lowercase(v) || afw_ascii_is_ascii_uppercase(v) )
+#define afw_ascii_is_alpha(_v) \
+    ( afw_ascii_is_ascii_lowercase(_v) || afw_ascii_is_ascii_uppercase(_v) )
 
 
 /**
@@ -174,8 +174,8 @@ AFW_BEGIN_DECLARES
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_alphanumeric(v) \
-    ( afw_ascii_is_ascii_alpha(v) || ( ((v)>='0') && ((v)<='9') ) )
+#define afw_ascii_is_alphanumeric(_v) \
+    ( afw_ascii_is_ascii_alpha(_v) || ( ((_v)>='0') && ((_v)<='9') ) )
 
 
 /**
@@ -186,9 +186,9 @@ AFW_BEGIN_DECLARES
  * Casts through unsigned char so a signed char holding a UTF-8 multi-byte
  * octet (high bit set) is not treated as a control character.
  */
-#define afw_ascii_is_control_character(v) \
-    ( (((unsigned char)(v)) <= 31) || \
-      (((unsigned char)(v)) == AFW_ASCII_DELETE) )
+#define afw_ascii_is_control_character(_v) \
+    ( (((unsigned char)(_v)) <= 31) || \
+      (((unsigned char)(_v)) == AFW_ASCII_DELETE) )
 
 
 /**
@@ -196,8 +196,8 @@ AFW_BEGIN_DECLARES
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_digit(v) \
-    ( ((v)>='0') && ((v)<='9') )
+#define afw_ascii_is_digit(_v) \
+    ( ((_v)>='0') && ((_v)<='9') )
 
 
 
@@ -216,8 +216,8 @@ afw_ascii_decode_hex_digit(afw_octet_t octet);
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_hex_digit(v) \
-    ( afw_ascii_decode_hex_digit(v) != -1 )
+#define afw_ascii_is_hex_digit(_v) \
+    ( afw_ascii_decode_hex_digit(_v) != -1 )
 
 
 /**
@@ -235,8 +235,8 @@ afw_ascii_encode_hex_digit(afw_octet_t octet);
  * @param v is octet to test.
  * @return result of test.
  */
-#define afw_ascii_is_whitespace(v) \
-    ((v) == 32 || ((v) >= 9 && (v) <= 13))
+#define afw_ascii_is_whitespace(_v) \
+    ((_v) == 32 || ((_v) >= 9 && (_v) <= 13))
 
 
 AFW_END_DECLARES

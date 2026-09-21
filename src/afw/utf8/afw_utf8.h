@@ -208,9 +208,9 @@ afw_utf8_icu_error_name_z(int rv);
  * @param xctx of caller.
  * @return true if valid utf-8.
  */
-#define afw_utf8_is_valid(s, len, xctx) \
-    (afw_utf8_nfc(s, len, afw_utf8_nfc_option_is_valid, \
-        (xctx)->p, xctx) == NULL)
+#define afw_utf8_is_valid(_s, _len, _xctx) \
+    (afw_utf8_nfc(_s, _len, afw_utf8_nfc_option_is_valid, \
+        (_xctx)->p, _xctx) == NULL)
 
 
 
@@ -222,9 +222,9 @@ afw_utf8_icu_error_name_z(int rv);
  * @param xctx of caller.
  * @return true if valid utf-8 and NFC normalize.
  */
-#define afw_utf8_is_nfc(s, len, p, xctx) \
-    (afw_utf8_nfc(s, len, afw_utf8_nfc_option_is_nfc, \
-        p, xctx) == NULL)
+#define afw_utf8_is_nfc(_s, _len, _p, _xctx) \
+    (afw_utf8_nfc(_s, _len, afw_utf8_nfc_option_is_nfc, \
+        _p, _xctx) == NULL)
 
 
 /**
@@ -237,8 +237,8 @@ afw_utf8_icu_error_name_z(int rv);
  * Cast only. Does not copy. The utf8 bytes are already NFC.
  * The view is pointer + size, not a C string.
  */
-#define afw_utf8_as_memory(string, p, xctx) \
-    ((const afw_memory_t *)(string))
+#define afw_utf8_as_memory(_string, _p, _xctx) \
+    ((const afw_memory_t *)(_string))
 
 
 /**
@@ -250,9 +250,9 @@ afw_utf8_icu_error_name_z(int rv);
  *
  * Short name: copy into p and NFC. Invalid utf-8 throws.
  */
-#define afw_utf8_from_memory(memory, p, xctx) \
-    afw_utf8_nfc((const afw_utf8_octet_t *)(memory)->ptr, (memory)->size, \
-        afw_utf8_nfc_option_create_copy, p, xctx)
+#define afw_utf8_from_memory(_memory, _p, _xctx) \
+    afw_utf8_nfc((const afw_utf8_octet_t *)(_memory)->ptr, (_memory)->size, \
+        afw_utf8_nfc_option_create_copy, _p, _xctx)
 
 
 
@@ -287,8 +287,8 @@ afw_utf8_from_encoding(
  * Valid but not NFC is normalized into p. The copy has no trailing 0;
  * do not use the result `->s` as a C string.
  */
-#define afw_utf8_create(s, len, p, xctx) \
-    afw_utf8_nfc(s, len, afw_utf8_nfc_option_create_copy, p, xctx)
+#define afw_utf8_create(_s, _len, _p, _xctx) \
+    afw_utf8_nfc(_s, _len, afw_utf8_nfc_option_create_copy, _p, _xctx)
 
 
 /**
@@ -300,9 +300,9 @@ afw_utf8_from_encoding(
  * You have a `utf8_z`; you get an `afw_utf8_t`. Inverse of
  * `afw_utf8_to_utf8_z`.
  */
-#define afw_utf8_z_to_utf8(s_z, p, xctx) \
-    afw_utf8_nfc(s_z, AFW_UTF8_Z_LEN, afw_utf8_nfc_option_create_copy, \
-        p, xctx)
+#define afw_utf8_z_to_utf8(_s_z, _p, _xctx) \
+    afw_utf8_nfc(_s_z, AFW_UTF8_Z_LEN, afw_utf8_nfc_option_create_copy, \
+        _p, _xctx)
 
 
 /**
@@ -829,130 +829,130 @@ afw_utf8_z_snprintf_ks_vas(
  * `afwdev build --scan` checks these calls (count and types) via
  * libclang. gcc `-Wformat` only knows libc printf.
  */
-#define afw_utf8_printf(p, xctx, format_z, ...) \
-    afw_utf8_printf_as((p), (xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_printf(_p, _xctx, _format_z, ...) \
+    afw_utf8_printf_as((_p), (_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_printf_v(format_z, ap, p, xctx) \
+#define afw_utf8_printf_v(_format_z, _ap, _p, _xctx) \
     afw_utf8_printf_vas( \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (p), (xctx))
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_p), (_xctx))
 
-#define afw_utf8_printf_u(p, xctx, format, ...) \
-    afw_utf8_printf_as((p), (xctx), \
-        (format)->s, (format)->len, ##__VA_ARGS__)
+#define afw_utf8_printf_u(_p, _xctx, _format, ...) \
+    afw_utf8_printf_as((_p), (_xctx), \
+        (_format)->s, (_format)->len, ##__VA_ARGS__)
 
-#define afw_utf8_printf_vu(format, ap, p, xctx) \
-    afw_utf8_printf_vas((format)->s, (format)->len, (ap), (p), (xctx))
+#define afw_utf8_printf_vu(_format, _ap, _p, _xctx) \
+    afw_utf8_printf_vas((_format)->s, (_format)->len, (_ap), (_p), (_xctx))
 
-#define afw_utf8_printf_len(xctx, format_z, ...) \
-    afw_utf8_printf_len_as((xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_printf_len(_xctx, _format_z, ...) \
+    afw_utf8_printf_len_as((_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_printf_len_v(format_z, ap, xctx) \
+#define afw_utf8_printf_len_v(_format_z, _ap, _xctx) \
     afw_utf8_printf_len_vas( \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (xctx))
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_xctx))
 
-#define afw_utf8_printf_len_u(xctx, format, ...) \
-    afw_utf8_printf_len_as((xctx), \
-        (format)->s, (format)->len, ##__VA_ARGS__)
+#define afw_utf8_printf_len_u(_xctx, _format, ...) \
+    afw_utf8_printf_len_as((_xctx), \
+        (_format)->s, (_format)->len, ##__VA_ARGS__)
 
-#define afw_utf8_printf_len_vu(format, ap, xctx) \
-    afw_utf8_printf_len_vas((format)->s, (format)->len, (ap), (xctx))
+#define afw_utf8_printf_len_vu(_format, _ap, _xctx) \
+    afw_utf8_printf_len_vas((_format)->s, (_format)->len, (_ap), (_xctx))
 
-#define afw_utf8_snprintf(dest, size, xctx, format_z, ...) \
-    afw_utf8_snprintf_as((dest), (size), (xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_snprintf(_dest, _size, _xctx, _format_z, ...) \
+    afw_utf8_snprintf_as((_dest), (_size), (_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_snprintf_v(dest, size, format_z, ap, xctx) \
-    afw_utf8_snprintf_vas((dest), (size), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (xctx))
+#define afw_utf8_snprintf_v(_dest, _size, _format_z, _ap, _xctx) \
+    afw_utf8_snprintf_vas((_dest), (_size), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_xctx))
 
-#define afw_utf8_snprintf_u(dest, size, xctx, format, ...) \
-    afw_utf8_snprintf_as((dest), (size), (xctx), \
-        (format)->s, (format)->len, ##__VA_ARGS__)
+#define afw_utf8_snprintf_u(_dest, _size, _xctx, _format, ...) \
+    afw_utf8_snprintf_as((_dest), (_size), (_xctx), \
+        (_format)->s, (_format)->len, ##__VA_ARGS__)
 
-#define afw_utf8_snprintf_vu(dest, size, format, ap, xctx) \
-    afw_utf8_snprintf_vas((dest), (size), \
-        (format)->s, (format)->len, (ap), (xctx))
+#define afw_utf8_snprintf_vu(_dest, _size, _format, _ap, _xctx) \
+    afw_utf8_snprintf_vas((_dest), (_size), \
+        (_format)->s, (_format)->len, (_ap), (_xctx))
 
-#define afw_utf8_z_printf(p, xctx, format_z, ...) \
-    afw_utf8_z_printf_as((p), (xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_z_printf(_p, _xctx, _format_z, ...) \
+    afw_utf8_z_printf_as((_p), (_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_z_printf_v(format_z, ap, p, xctx) \
+#define afw_utf8_z_printf_v(_format_z, _ap, _p, _xctx) \
     afw_utf8_z_printf_vas( \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (p), (xctx))
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_p), (_xctx))
 
-#define afw_utf8_z_printf_u(p, xctx, format, ...) \
-    afw_utf8_z_printf_as((p), (xctx), \
-        (format)->s, (format)->len, ##__VA_ARGS__)
+#define afw_utf8_z_printf_u(_p, _xctx, _format, ...) \
+    afw_utf8_z_printf_as((_p), (_xctx), \
+        (_format)->s, (_format)->len, ##__VA_ARGS__)
 
-#define afw_utf8_z_printf_vu(format, ap, p, xctx) \
-    afw_utf8_z_printf_vas((format)->s, (format)->len, (ap), (p), (xctx))
+#define afw_utf8_z_printf_vu(_format, _ap, _p, _xctx) \
+    afw_utf8_z_printf_vas((_format)->s, (_format)->len, (_ap), (_p), (_xctx))
 
-#define afw_utf8_z_printf_len(xctx, format_z, ...) \
-    afw_utf8_z_printf_len_as((xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_z_printf_len(_xctx, _format_z, ...) \
+    afw_utf8_z_printf_len_as((_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_z_printf_len_v(format_z, ap, xctx) \
+#define afw_utf8_z_printf_len_v(_format_z, _ap, _xctx) \
     afw_utf8_z_printf_len_vas( \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (xctx))
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_xctx))
 
-#define afw_utf8_z_printf_len_u(xctx, format, ...) \
-    afw_utf8_z_printf_len_as((xctx), \
-        (format)->s, (format)->len, ##__VA_ARGS__)
+#define afw_utf8_z_printf_len_u(_xctx, _format, ...) \
+    afw_utf8_z_printf_len_as((_xctx), \
+        (_format)->s, (_format)->len, ##__VA_ARGS__)
 
-#define afw_utf8_z_printf_len_vu(format, ap, xctx) \
-    afw_utf8_z_printf_len_vas((format)->s, (format)->len, (ap), (xctx))
+#define afw_utf8_z_printf_len_vu(_format, _ap, _xctx) \
+    afw_utf8_z_printf_len_vas((_format)->s, (_format)->len, (_ap), (_xctx))
 
-#define afw_utf8_z_snprintf(dest, size, xctx, format_z, ...) \
-    afw_utf8_z_snprintf_as((dest), (size), (xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_z_snprintf(_dest, _size, _xctx, _format_z, ...) \
+    afw_utf8_z_snprintf_as((_dest), (_size), (_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_z_snprintf_v(dest, size, format_z, ap, xctx) \
-    afw_utf8_z_snprintf_vas((dest), (size), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (xctx))
+#define afw_utf8_z_snprintf_v(_dest, _size, _format_z, _ap, _xctx) \
+    afw_utf8_z_snprintf_vas((_dest), (_size), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_xctx))
 
-#define afw_utf8_z_snprintf_u(dest, size, xctx, format, ...) \
-    afw_utf8_z_snprintf_as((dest), (size), (xctx), \
-        (format)->s, (format)->len, ##__VA_ARGS__)
+#define afw_utf8_z_snprintf_u(_dest, _size, _xctx, _format, ...) \
+    afw_utf8_z_snprintf_as((_dest), (_size), (_xctx), \
+        (_format)->s, (_format)->len, ##__VA_ARGS__)
 
-#define afw_utf8_z_snprintf_vu(dest, size, format, ap, xctx) \
-    afw_utf8_z_snprintf_vas((dest), (size), \
-        (format)->s, (format)->len, (ap), (xctx))
+#define afw_utf8_z_snprintf_vu(_dest, _size, _format, _ap, _xctx) \
+    afw_utf8_z_snprintf_vas((_dest), (_size), \
+        (_format)->s, (_format)->len, (_ap), (_xctx))
 
 /* See afw_utf8_printf: `_ks` encodes %s / %ku / AFW_UTF8_FMT. */
-#define afw_utf8_printf_ks(p, xctx, format_z, ...) \
-    afw_utf8_printf_ks_as((p), (xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_printf_ks(_p, _xctx, _format_z, ...) \
+    afw_utf8_printf_ks_as((_p), (_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_printf_ks_v(format_z, ap, p, xctx) \
+#define afw_utf8_printf_ks_v(_format_z, _ap, _p, _xctx) \
     afw_utf8_printf_ks_vas( \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (p), (xctx))
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_p), (_xctx))
 
-#define afw_utf8_z_snprintf_ks(dest, size, xctx, format_z, ...) \
-    afw_utf8_z_snprintf_ks_as((dest), (size), (xctx), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+#define afw_utf8_z_snprintf_ks(_dest, _size, _xctx, _format_z, ...) \
+    afw_utf8_z_snprintf_ks_as((_dest), (_size), (_xctx), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_z_snprintf_ks_v(dest, size, format_z, ap, xctx) \
-    afw_utf8_z_snprintf_ks_vas((dest), (size), \
-        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
-        (ap), (xctx))
+#define afw_utf8_z_snprintf_ks_v(_dest, _size, _format_z, _ap, _xctx) \
+    afw_utf8_z_snprintf_ks_vas((_dest), (_size), \
+        (const afw_utf8_octet_t *)(_format_z), AFW_UTF8_Z_LEN, \
+        (_ap), (_xctx))
 
 
 /**

@@ -28,22 +28,22 @@
 AFW_BEGIN_DECLARES
 
 
-#define AFW_MODEL_ON_MAP(XX) \
-XX(_AdaptiveModelCurrentOnAddObject_) \
-XX(_AdaptiveModelCurrentOnDeleteObject_) \
-XX(_AdaptiveModelCurrentOnGetInitialObjectId_) \
-XX(_AdaptiveModelCurrentOnGetInitialValue_) \
-XX(_AdaptiveModelCurrentOnGetObject_) \
-XX(_AdaptiveModelCurrentOnGetProperty_) \
-XX(_AdaptiveModelCurrentOnModifyObject_) \
-XX(_AdaptiveModelCurrentOnReplaceObject_) \
-XX(_AdaptiveModelCurrentOnRetrieveObjects_) \
-XX(_AdaptiveModelCurrentOnSetProperty_) \
+#define AFW_MODEL_ON_MAP(_XX) \
+_XX(_AdaptiveModelCurrentOnAddObject_) \
+_XX(_AdaptiveModelCurrentOnDeleteObject_) \
+_XX(_AdaptiveModelCurrentOnGetInitialObjectId_) \
+_XX(_AdaptiveModelCurrentOnGetInitialValue_) \
+_XX(_AdaptiveModelCurrentOnGetObject_) \
+_XX(_AdaptiveModelCurrentOnGetProperty_) \
+_XX(_AdaptiveModelCurrentOnModifyObject_) \
+_XX(_AdaptiveModelCurrentOnReplaceObject_) \
+_XX(_AdaptiveModelCurrentOnRetrieveObjects_) \
+_XX(_AdaptiveModelCurrentOnSetProperty_) \
 
 
 typedef enum {
-#define XX(id) \
-    afw_model_on_map_ ## id,
+#define XX(_id) \
+    afw_model_on_map_ ## _id,
     AFW_MODEL_ON_MAP(XX)
 #undef XX
     afw_model_on_map_count
@@ -365,8 +365,8 @@ struct afw_model_internal_adapter_self_s {
     union {
         afw_runtime_object_indirect_t instance_skeleton[1];
         struct {
-#define XX(id) \
-            afw_runtime_object_indirect_t instance_skeleton_ ## id;
+#define XX(_id) \
+            afw_runtime_object_indirect_t instance_skeleton_ ## _id;
             AFW_MODEL_ON_MAP(XX)
 #undef XX
         };

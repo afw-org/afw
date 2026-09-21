@@ -511,31 +511,31 @@ struct afw_compile_internal_parser_s {
  * @param id of assignment type
  * @param description of this assignment type
  */
-#define AFW_COMPILE_INTERNAL_ASSIGNMENT_TYPE_MAP(XX)                            \
+#define AFW_COMPILE_INTERNAL_ASSIGNMENT_TYPE_MAP(_XX)                            \
                                                                                 \
-    XX(assign_only,                                                             \
+    _XX(assign_only,                                                             \
         "This is an assignment to an existing variable.")                       \
                                                                                 \
-    XX(const,                                                                   \
+    _XX(const,                                                                   \
         "This is an assignment to a new const variable.")                       \
                                                                                 \
-    XX(let,                                                                     \
+    _XX(let,                                                                     \
         "This is an assignment to a new local variable. ")                      \
                                                                                 \
-    XX(parameter,                                                               \
+    _XX(parameter,                                                               \
         "This introduces a function/lambda parameter (or Pattern leaf).")       \
                                                                                 \
-    XX(reference_only,                                                          \
+    _XX(reference_only,                                                          \
         "No assignment, just reference.")                                       \
                                                                                 \
-    XX(use_assignment_targets,                                                  \
+    _XX(use_assignment_targets,                                                  \
         "Use the assignment type from assignment target.")                      \
                                                                                 \
 
 /** @brief Enum for assignment types. */
 typedef enum {
-#define XX(id, description)                                                   \
-    afw_compile_assignment_type_ ## id,
+#define XX(_id, _description)                                                   \
+    afw_compile_assignment_type_ ## _id,
     AFW_COMPILE_INTERNAL_ASSIGNMENT_TYPE_MAP(XX)
 #undef XX
     afw_compile_assignment_type_max_type
@@ -547,21 +547,21 @@ typedef enum {
  * @param id of assignment target type
  * @param description of this assignment target type
  */
-#define AFW_COMPILE_INTERNAL_ASSIGNMENT_TARGET_TYPE_MAP(XX)                     \
+#define AFW_COMPILE_INTERNAL_ASSIGNMENT_TARGET_TYPE_MAP(_XX)                     \
                                                                                 \
-    XX(list_destructure,                                                        \
+    _XX(list_destructure,                                                        \
         "This is a list destructure.")                                          \
                                                                                 \
-    XX(object_destructure,                                                      \
+    _XX(object_destructure,                                                      \
         "This is a object destructure.")                                        \
                                                                                 \
-    XX(symbol_reference,                                                      \
+    _XX(symbol_reference,                                                      \
         "This is a symbol reference.")                                        \
 
 /** @brief Enum for assignment target types. */
 typedef enum {
-#define XX(id, description)                                                   \
-    afw_compile_assignment_target_type_ ## id,
+#define XX(_id, _description)                                                   \
+    afw_compile_assignment_target_type_ ## _id,
     AFW_COMPILE_INTERNAL_ASSIGNMENT_TARGET_TYPE_MAP(XX)
 #undef XX
     afw_compile_assignment_target_type_max_type
@@ -673,23 +673,23 @@ AFW_VECTOR_STRUCT(afw_compile_internal_args_s, const afw_value_t *);
  */
 
 /* Resolve contextual offset/size into a utf8 view of full_source. */
-#define afw_value_contextual_resolve_value_source( \
-    value_source, contextual) \
+#define afw_value_contextual_resolve_value_source(\
+    value_source, _contextual) \
 do { \
-    if ((contextual)->compiled_value && \
-        (contextual)->compiled_value->full_source)  \
+    if ((_contextual)->compiled_value && \
+        (_contextual)->compiled_value->full_source)  \
     { \
-        (value_source)->s = (((contextual)->compiled_value->full_source)->s) + \
-            (contextual)->value_offset; \
-        (value_source)->len = (contextual)->value_size; \
+        (value_source)->s = (((_contextual)->compiled_value->full_source)->s) + \
+            (_contextual)->value_offset; \
+        (value_source)->len = (_contextual)->value_size; \
     } \
     else { \
         memset((value_source), 0, sizeof(afw_utf8_t)); \
     } \
 } while (0)
 
-#define afw_compile_token_is(token_type) \
-    (parser->token->type == afw_compile_token_type_##token_type)
+#define afw_compile_token_is(_token_type) \
+    (parser->token->type == afw_compile_token_type_##_token_type)
 
 #define afw_compile_token_is_unqualified_identifier() \
     (parser->token->type == afw_compile_token_type_identifier && \
@@ -737,10 +737,10 @@ do { \
 #define afw_compile_token_boolean_value() \
     (&(parser)->token->boolean->pub)
 
-#define afw_compile_token_is_name(string_value) \
+#define afw_compile_token_is_name(_string_value) \
     (afw_compile_token_is_unqualified_identifier() && \
     (parser)->token->identifier_name == \
-        (const afw_value_string_t *)(string_value))
+        (const afw_value_string_t *)(_string_value))
 
 #define afw_compile_is_at_eof() \
     (parser->last_octet_eof)
@@ -753,9 +753,9 @@ do { \
 #define afw_compile_peek_next_token() \
     afw_compile_peek_next_token_impl(parser)
 
-#define afw_compile_peek_next_token_is(token_type) \
+#define afw_compile_peek_next_token_is(_token_type) \
     (afw_compile_peek_next_token_impl(parser) == \
-        afw_compile_token_type_##token_type)
+        afw_compile_token_type_##_token_type)
 
 /* Point xctx error at this unit's contextual / cursor (before throws). */
 #define afw_compile_set_contextual() \
@@ -763,17 +763,17 @@ do { \
     parser->xctx->error->parser_cursor = parser->cursor
 
 /* Set parse error in xctx and longjmp (syntax). Requires active AFW try. */
-#define AFW_COMPILE_THROW_ERROR_Z(message_z) \
+#define AFW_COMPILE_THROW_ERROR_Z(_message_z) \
 do { \
     afw_compile_parse_set_error_z(parser, \
-        AFW__FILE_LINE__, message_z); \
+        AFW__FILE_LINE__, _message_z); \
     afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
-#define AFW_COMPILE_THROW_ERROR_FZ(format_z, ...) \
+#define AFW_COMPILE_THROW_ERROR_FZ(_format_z, ...) \
 do { \
     afw_compile_parse_set_error_fz(parser, \
-        AFW__FILE_LINE__, format_z, __VA_ARGS__); \
+        AFW__FILE_LINE__, _format_z, __VA_ARGS__); \
     afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
@@ -781,20 +781,20 @@ do { \
  * Recursive Type / destructure nesting. Assumes local `parser`.
  * See AFW_COMPILE_PARSE_NESTING_MAX.
  */
-#define afw_compile_parse_nesting_enter(parser) \
+#define afw_compile_parse_nesting_enter(_parser) \
 do { \
-    AFW_XCTX_THROW_IF_TERMINATING((parser)->xctx); \
-    (parser)->parse_nesting++; \
-    if ((parser)->parse_nesting > AFW_COMPILE_PARSE_NESTING_MAX) { \
+    AFW_XCTX_THROW_IF_TERMINATING((_parser)->xctx); \
+    (_parser)->parse_nesting++; \
+    if ((_parser)->parse_nesting > AFW_COMPILE_PARSE_NESTING_MAX) { \
         AFW_COMPILE_THROW_ERROR_Z( \
             "Type or pattern nesting is too deep"); \
     } \
 } while (0)
 
-#define afw_compile_parse_nesting_leave(parser) \
+#define afw_compile_parse_nesting_leave(_parser) \
 do { \
-    if ((parser)->parse_nesting > 0) { \
-        (parser)->parse_nesting--; \
+    if ((_parser)->parse_nesting > 0) { \
+        (_parser)->parse_nesting--; \
     } \
 } while (0)
 
@@ -821,14 +821,14 @@ if (afw_compile_is_at_eof()) \
 #define afw_compile_get_unescaped_code_point() \
     afw_compile_get_unescaped_code_point_impl(parser)
 
-#define afw_compile_next_raw_starts_with(s) \
-    afw_compile_next_raw_starts_with_impl(parser, s)
+#define afw_compile_next_raw_starts_with(_s) \
+    afw_compile_next_raw_starts_with_impl(parser, _s)
 
-#define afw_compile_next_raw_starts_with_z(s_z) \
-    afw_compile_next_raw_starts_with_z_impl(parser, s_z)
+#define afw_compile_next_raw_starts_with_z(_s_z) \
+    afw_compile_next_raw_starts_with_z_impl(parser, _s_z)
 
-#define afw_compile_get_raw_line(line) \
-    afw_compile_get_raw_line_impl(parser, line)
+#define afw_compile_get_raw_line(_line) \
+    afw_compile_get_raw_line_impl(parser, _line)
 
 /* Advance: fill parser->token. Also clears next_can_be_* flags. */
 #define afw_compile_get_token() \
@@ -839,12 +839,12 @@ if (afw_compile_is_at_eof()) \
     parser->get_token_before_eol = true; \
     afw_compile_get_token_impl(parser)
 
-#define afw_compile_save_offset(save) \
-    save = parser->token->token_source_offset
+#define afw_compile_save_offset(_save) \
+    _save = parser->token->token_source_offset
 
-#define afw_compile_get_token_and_save_offset(save) \
+#define afw_compile_get_token_and_save_offset(_save) \
     afw_compile_get_token_impl(parser); \
-    save = parser->token->token_source_offset
+    _save = parser->token->token_source_offset
 
 /*
  * Set before the next get_token so '+' / '-' are binary and '<' / '>'
@@ -872,47 +872,47 @@ if (afw_compile_is_at_eof()) \
     afw_compile_reuse_token_impl(parser)
 
 /* Cursor save/restore for speculative scan (code points, not tokens). */
-#define afw_compile_save_cursor(save) \
-    save = parser->cursor
+#define afw_compile_save_cursor(_save) \
+    _save = parser->cursor
 
-#define afw_compile_restore_cursor(save) \
+#define afw_compile_restore_cursor(_save) \
 do { \
     parser->last_octet_eof = false; \
-    parser->cursor = save; \
+    parser->cursor = _save; \
 } while (0)
 
-#define afw_compile_cursor_equal(save) \
-    (parser->cursor == save)
+#define afw_compile_cursor_equal(_save) \
+    (parser->cursor == _save)
 
-#define afw_compile_source_buffer_at(save) \
-    (parser->full_source->s + save)
+#define afw_compile_source_buffer_at(_save) \
+    (parser->full_source->s + _save)
 
-#define afw_compile_source_buffer_length_from(save) \
-    (parser->cursor - save)
+#define afw_compile_source_buffer_length_from(_save) \
+    (parser->cursor - _save)
 
-#define afw_compile_create_contextual_to_cursor(start_offset) \
-    afw_compile_create_contextual(parser, start_offset, \
-        parser->cursor - start_offset)
+#define afw_compile_create_contextual_to_cursor(_start_offset) \
+    afw_compile_create_contextual(parser, _start_offset, \
+        parser->cursor - _start_offset)
 
-#define afw_compile_create_source_location(start_offset) \
+#define afw_compile_create_source_location(_start_offset) \
     afw_compile_create_source_location_impl(parser, \
-    start_offset)
+    _start_offset)
 
 /* Pop current_block to its parent (after link_new_value_block). */
-#define afw_compile_parse_pop_value_block(parser) \
-    (parser)->compiled_value->current_block = \
-        (parser)->compiled_value->current_block->parent_block
+#define afw_compile_parse_pop_value_block(_parser) \
+    (_parser)->compiled_value->current_block = \
+        (_parser)->compiled_value->current_block->parent_block
 
 /* Temporary arg/statement list helpers (uses parser for pool/xctx). */
-#define afw_compile_args_create(parser) \
+#define afw_compile_args_create(_parser) \
 afw_vector_create(afw_compile_args_t, 10, \
-    (parser)->p, (parser)->xctx)
+    (_parser)->p, (_parser)->xctx)
 
-#define afw_compile_args_add_value(args, value) \
-afw_vector_push(args, (parser)->xctx) = value
+#define afw_compile_args_add_value(_args, _value) \
+afw_vector_push(_args, (parser)->xctx) = _value
 
-#define afw_compile_args_finalize(args, argc, argv) \
-afw_vector_copy_entries_and_release((args), (argc), (argv), \
+#define afw_compile_args_finalize(_args, _argc, _argv) \
+afw_vector_copy_entries_and_release((_args), (_argc), (_argv), \
     (parser)->p, (parser)->xctx)
 
 
@@ -964,11 +964,11 @@ afw_compile_get_string_literal(
     afw_size_t len);
 
 /* Intern utf8 as a string value (env hit or compile_literal). */
-#define afw_compile_intern_utf8_string(utf8) \
-    (afw_compile_get_string_literal((parser), (utf8)->s, (utf8)->len))
+#define afw_compile_intern_utf8_string(_utf8) \
+    (afw_compile_get_string_literal((parser), (_utf8)->s, (_utf8)->len))
 
-#define afw_compile_intern_utf8(utf8) \
-    (&afw_compile_intern_utf8_string(utf8)->pub)
+#define afw_compile_intern_utf8(_utf8) \
+    (&afw_compile_intern_utf8_string(_utf8)->pub)
 
 void
 afw_compile_get_token_impl(
