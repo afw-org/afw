@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-swap-model",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "model",
+        "adapterId": "swap-model",
+        "modelLocationAdapterId": "swap-backend",
+        "modelId": "SoakSwap",
+        "mappedAdapterId": "swap-backend"
+    }
+}

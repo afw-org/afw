@@ -37,6 +37,15 @@ TSV columns (tab-separated), from **`process::`** and
 | maxConcurrent | server `maxConcurrent` |
 | requestCount | server `requestCount` |
 | getObjectCount | `_AdaptiveAdapter_/afw` metrics |
+| memoryRegionBytesInUse | `process::memoryRegionBytesInUse` |
+| memoryRegionRegionsInUse | `process::memoryRegionRegionsInUse` |
+| memoryRegionFreeListBytes | `process::memoryRegionFreeListBytes` |
+| memoryRegionFreeListCount | `process::memoryRegionFreeListCount` |
+| memoryRegionGetHits | `process::memoryRegionGetHits` |
+| memoryRegionGetMisses | `process::memoryRegionGetMisses` |
+| memoryRegionFreeOverCap | `process::memoryRegionFreeOverCap` |
+| memoryRegionPeakBytesInUse | `process::memoryRegionPeakBytesInUse` |
+| memoryRegionPeakFreeListBytes | `process::memoryRegionPeakFreeListBytes` |
 
 `rss_check` uses `process::rss` bytes (64 MiB growth cap).
 
@@ -77,7 +86,10 @@ That only wipes the TSV/RSS files and runs this leaf. Edit yaml first
 for an 8h firehose. It does **not** loop `afwdev test -j`.
 
 Pool: eval pin, model `onGetObject` evaluate(compile), file CRUD,
-REST GET, catalog, language-shaped scripts, plus **gate `test_script`
-files** sent as FCGI actions (`04-include-test-script` pattern):
+REST GET, catalog, language-shaped scripts, **model stop/start with
+onGetObject swap** (isolated `swap-model` / `swap-backend`; sequential
+warmup — firehose restart leaked RSS), **file produce/consume** inbox
+to outbox, **nasty-eval** and anniversary Rube Goldberg in the
+firehose, plus **gate `test_script` files** as FCGI actions:
 `function`, `let_const`, `for`, `void_result`, `pool_eval_lifetime`,
 `mini_suite`. Copies live in `tests/suites/`.

@@ -4,6 +4,15 @@ const used = process::poolBytesInUse;
 const peak_used = process::peakPoolBytesInUse;
 const chunks = process::poolChunkBytes;
 const peak_chunks = process::peakPoolChunkBytes;
+const region_used = process::memoryRegionBytesInUse;
+const region_count = process::memoryRegionRegionsInUse;
+const region_free_bytes = process::memoryRegionFreeListBytes;
+const region_free_count = process::memoryRegionFreeListCount;
+const region_hits = process::memoryRegionGetHits;
+const region_misses = process::memoryRegionGetMisses;
+const region_over = process::memoryRegionFreeOverCap;
+const region_peak_used = process::memoryRegionPeakBytesInUse;
+const region_peak_free = process::memoryRegionPeakFreeListBytes;
 let concurrent = 0;
 let max_conc = 0;
 let requests = 0;
@@ -24,7 +33,12 @@ const line = generate_uuid() + "\t" +
     string(used) + "\t" + string(peak_used) + "\t" +
     string(chunks) + "\t" + string(peak_chunks) + "\t" +
     string(concurrent) + "\t" + string(max_conc) + "\t" +
-    string(requests) + "\t" + string(gets);
+    string(requests) + "\t" + string(gets) + "\t" +
+    string(region_used) + "\t" + string(region_count) + "\t" +
+    string(region_free_bytes) + "\t" + string(region_free_count) + "\t" +
+    string(region_hits) + "\t" + string(region_misses) + "\t" +
+    string(region_over) + "\t" +
+    string(region_peak_used) + "\t" + string(region_peak_free);
 const sn = open_file("metrics", "logs/metrics.tsv", "a", true);
 writeln(sn, line);
 close(sn);

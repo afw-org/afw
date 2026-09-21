@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-outbox",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "outbox",
+        "root": "outbox/",
+        "filenameSuffix": ".json",
+        "contentType": "json"
+    }
+}

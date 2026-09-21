@@ -1,0 +1,13 @@
+{
+    "serviceId": "adapter-swap-backend",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "swap-backend",
+        "root": "objects-swap/",
+        "filenameSuffix": ".json",
+        "contentType": "json",
+        "isModelLocation": true
+    }
+}

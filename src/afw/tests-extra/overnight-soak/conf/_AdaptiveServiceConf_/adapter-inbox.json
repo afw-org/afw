@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-inbox",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "inbox",
+        "root": "inbox/",
+        "filenameSuffix": ".json",
+        "contentType": "json"
+    }
+}
