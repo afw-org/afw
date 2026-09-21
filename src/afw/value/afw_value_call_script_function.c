@@ -327,7 +327,10 @@ impl_afw_value_optional_evaluate(
         }
 
         /* Brace body: same running-result rule as a script (issue #62). */
-        if (afw_value_is_block(script->body)) {
+        if (!script->body) {
+            result = afw_value_void;
+        }
+        else if (afw_value_is_block(script->body)) {
             afw_function_execute_t exec;
 
             afw_memory_clear(&exec);

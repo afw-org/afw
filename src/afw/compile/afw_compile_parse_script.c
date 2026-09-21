@@ -2608,6 +2608,14 @@ afw_compile_parse_StatementList(
         afw_value_block_finalize(block, argc, argv, parser->xctx);
         result = &block->pub;
         afw_compile_parse_pop_value_block(parser);
+        /*
+         * Function / catch / finally `{ }` with no names and no
+         * statements is not a runtime frame. Keep the top script
+         * block.
+         */
+        if (block != parser->compiled_value->top_block) {
+            result = impl_omit_empty_block(result);
+        }
     }
 
     /* Return block or list. */

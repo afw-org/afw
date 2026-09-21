@@ -99,3 +99,42 @@ return 0;
 const f = function() {};
 assert(f() === undefined);
 return 0;
+
+//?
+//? test: function-empty-body-is-undefined-not-void
+//? description: untyped empty `{}` body is undefined, not void
+//? expect: 0
+//? source: ...
+
+const f = function() {};
+assert(f() !== print());
+assert(f() === undefined);
+return 0;
+
+//?
+//? test: catch-empty-no-binding
+//? description: empty `catch {}` still catches
+//? expect: 0
+//? source: ...
+
+let saw = false;
+try {
+    throw "x";
+} catch {
+    saw = true;
+}
+assert(saw === true);
+return 0;
+
+//?
+//? test: finally-empty
+//? description: empty `finally {}` still runs after try
+//? expect: 0
+//? source: ...
+
+let n = 0;
+try {
+    n = 1;
+} finally {}
+assert(n === 1);
+return 0;
