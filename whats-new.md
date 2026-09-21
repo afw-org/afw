@@ -337,8 +337,8 @@ New limit/cap property ids should use a **`max…`** prefix (`maxReadBytes`, `ma
 | Flag | Who | Role |
 |------|-----|------|
 | **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
-| **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_bytes`) |
-| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx bytes optional so older `afw` still records timing |
+| **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_bytes` / `xctx_chunk_bytes`) |
+| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx asked-for and chunk bytes optional so older `afw` still records timing. `--trend-metric bytes\|chunk\|ms` |
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
@@ -989,7 +989,7 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 - **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Overlay **`set`** on look-through faces holds the local overlay. Get/retrieve already return a **face** — do not `clone()` just to set properties.
 - **`afw_pool_release`**: returns the pool or **NULL** if that call destroyed it.
 - **Closures (#35):** literals wrap a script function as a closure when stored (same as assign/`return`). Throw-path tests: `src/afw/tests/language/script/throw_rewind.as`.
-- **0-symbol `{ }`:** nested blocks with no `let`/`const` evaluate in the parent.
+- **Empty `{ }`:** compile omits a `{ }` with no names and no statements (including empty function / `catch` / `finally` bodies). `{ stmt }` stays a frame so temps die with it. Tests: `src/afw/tests/language/script/empty_block.as`.
 - Maintainer map: `designs/experiment-brainstorm.md` (two worlds); eval `p` `designs/experiment-eval-p.md` (PR **#287**); rails `designs/issue-2-hold-in-inf.md`; archaeology `designs/issue-2-lifetime.md`.
 
 **C note:** value/pool lifetime work is part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) line — same rebuild rule for out-of-tree linkers.
@@ -999,7 +999,7 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 - Adaptive `clone()` is not the C `clone_unmanaged` / `clone_managed` pair.
 - Renaming `clone_or_reference` → `get_reference` in user-facing C docs; dropping generated slice infs; mmap / per-chunk free lists.
 
-Statement evaluation `p` **is** each `{ }` frame’s scope pool when that `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame. Large nested `eval` comment tests (`comments-bmp-*.as`) run in default `afwdev test -j`.
+Statement evaluation `p` **is** each `{ }` frame’s scope pool when that `{ }` has a frame (PR **#287**). Compile omits empty `{ }` (no names, no statements). Large nested `eval` comment tests (`comments-bmp-*.as`) run in default `afwdev test -j`.
 
 [↑ Highlights](#highlights)
 
@@ -1406,7 +1406,7 @@ Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool b
 
 A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** when there is still room to build the error. If allocation itself fails, the error is **`memory`**. Either is OK; the worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI. A positive retrieve **`maxObjects`** is a separate cardinality throw (`payload_too_large`) and is not the request memory cap.
 
-`afwdev test` prints `(Nms, max N xctx)` on file lines (comma-separated xctx asked-for bytes) and `Memory: max N xctx` on the run summary. **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path (bytes optional).
+`afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs posix_memalign chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes.
 
 [↑ Highlights](#highlights)
 

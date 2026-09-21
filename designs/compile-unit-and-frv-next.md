@@ -34,7 +34,7 @@ Do **not** start with “implement a fix” unless you share the plan. Open with
 
 Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*). Tests: `language/script/for.as` (`for-let-break-keeps-previous-last`), `script_result.as`, `test262/statements/try.as` (`completion-values-fn-finally-normal`).
 
-**Every `{ }` is a scope.** Runtime does not skip 0-name blocks (the old #245 skip). Flattening a useless block is compile-side only. `iter_p` is gone; braced loop bodies are frames.
+**Every remaining `{ }` is a scope.** Runtime does not skip 0-name blocks (the old #245 skip). Compile omits a `{ }` with **no names and no statements** (statement `{ }`, and empty function / `catch` / `finally` bodies). `{ stmt }` stays a frame so temps die with it. `iter_p` is gone; braced loop bodies are frames. Tests: `language/script/empty_block.as`.
 
 **`last_result` lives on the scope**, not only on `xctx->script_result`. Pointer only (not a managed slot like `frame_slots[]`). Starts void. `afw_xctx_scope_set_last_result` ignores void / NULL / no current scope.
 
