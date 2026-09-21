@@ -46,6 +46,24 @@ assert(meta(p.compileChunkMin).dataType === "integer");
 assert(p.compileChunkMin === 4096);
 assert(meta(p.xctxChunkMin).dataType === "integer");
 assert(p.xctxChunkMin === 65536);
+assert(meta(p.memoryRegionGetHits).dataType === "integer");
+assert(p.memoryRegionGetHits >= 0);
+assert(meta(p.memoryRegionGetMisses).dataType === "integer");
+assert(p.memoryRegionGetMisses >= 1);
+assert(meta(p.memoryRegionBytesInUse).dataType === "integer");
+assert(p.memoryRegionBytesInUse >= 0);
+assert(meta(p.memoryRegionPeakBytesInUse).dataType === "integer");
+assert(p.memoryRegionPeakBytesInUse >= p.memoryRegionBytesInUse);
+assert(meta(p.memoryRegionFreeListBytes).dataType === "integer");
+assert(p.memoryRegionFreeListBytes >= 0);
+assert(meta(p.memoryRegionPeakFreeListBytes).dataType === "integer");
+assert(p.memoryRegionPeakFreeListBytes >= p.memoryRegionFreeListBytes);
+assert(meta(p.memoryRegionFreeListCount).dataType === "integer");
+assert(p.memoryRegionFreeListCount >= 0);
+assert(meta(p.memoryRegionRegionsInUse).dataType === "integer");
+assert(p.memoryRegionRegionsInUse >= 0);
+assert(meta(p.memoryRegionFreeOverCap).dataType === "integer");
+assert(p.memoryRegionFreeOverCap >= 0);
 return 0;
 
 
@@ -77,6 +95,23 @@ assert(process::rss >= 0);
 assert(process::limitEvaluationStackCount === 500);
 assert(process::chunkMin === 65536);
 assert(process::memoryRegionFreeListMaxBytes === 262144);
+assert(meta(process::memoryRegionGetHits).dataType === "integer");
+assert(process::memoryRegionGetHits >= 0);
+assert(meta(process::memoryRegionGetMisses).dataType === "integer");
+assert(process::memoryRegionGetMisses >= 1);
+return 0;
+
+
+//?
+//? test: process-region-scope-reuse
+//? description: sequential `{ let }` reuses a 4k region (get hit)
+//? expect: 0
+//? source: ...
+
+let hits = process::memoryRegionGetHits;
+{ let x = 1; }
+{ let y = 2; }
+assert(process::memoryRegionGetHits >= hits + 1);
 return 0;
 
 

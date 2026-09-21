@@ -74,6 +74,120 @@ impl_account_returned(afw_memory_region_t *pub, afw_size_t size)
 }
 
 
+static afw_environment_t *
+impl_env(afw_xctx_t *xctx)
+{
+    if (!xctx || !xctx->env) {
+        return NULL;
+    }
+    return (afw_environment_t *)xctx->env;
+}
+
+
+static void
+impl_env_peak(AFW_ATOMIC afw_size_t *peak, afw_size_t n)
+{
+    if (n > *peak) {
+        *peak = n;
+    }
+}
+
+
+static void
+impl_env_sub(AFW_ATOMIC afw_size_t *slot, afw_size_t n)
+{
+    if (*slot >= n) {
+        *slot -= n;
+    }
+    else {
+        *slot = 0;
+    }
+}
+
+
+static void
+impl_env_hit(afw_xctx_t *xctx, afw_size_t size)
+{
+    afw_environment_t *env;
+
+    env = impl_env(xctx);
+    if (!env) {
+        return;
+    }
+    env->memory_region_get_hits += 1;
+    impl_env_sub(&env->memory_region_free_list_count, 1);
+    impl_env_sub(&env->memory_region_free_list_bytes, size);
+    env->memory_region_bytes_in_use += size;
+    env->memory_region_regions_in_use += 1;
+    impl_env_peak(&env->memory_region_peak_bytes_in_use,
+        env->memory_region_bytes_in_use);
+}
+
+
+static void
+impl_env_miss(afw_xctx_t *xctx, afw_size_t size)
+{
+    afw_environment_t *env;
+
+    env = impl_env(xctx);
+    if (!env) {
+        return;
+    }
+    env->memory_region_get_misses += 1;
+    env->memory_region_bytes_in_use += size;
+    env->memory_region_regions_in_use += 1;
+    impl_env_peak(&env->memory_region_peak_bytes_in_use,
+        env->memory_region_bytes_in_use);
+}
+
+
+static void
+impl_env_to_list(afw_xctx_t *xctx, afw_size_t size)
+{
+    afw_environment_t *env;
+
+    env = impl_env(xctx);
+    if (!env) {
+        return;
+    }
+    impl_env_sub(&env->memory_region_bytes_in_use, size);
+    impl_env_sub(&env->memory_region_regions_in_use, 1);
+    env->memory_region_free_list_count += 1;
+    env->memory_region_free_list_bytes += size;
+    impl_env_peak(&env->memory_region_peak_free_list_bytes,
+        env->memory_region_free_list_bytes);
+}
+
+
+static void
+impl_env_over_cap(afw_xctx_t *xctx, afw_size_t size)
+{
+    afw_environment_t *env;
+
+    env = impl_env(xctx);
+    if (!env) {
+        return;
+    }
+    impl_env_sub(&env->memory_region_bytes_in_use, size);
+    impl_env_sub(&env->memory_region_regions_in_use, 1);
+    env->memory_region_free_over_cap += 1;
+}
+
+
+static void
+impl_env_drain_list(afw_xctx_t *xctx, afw_size_t bytes, afw_size_t count)
+{
+    afw_environment_t *env;
+
+    env = impl_env(xctx);
+    if (!env) {
+        return;
+    }
+    impl_env_sub(&env->memory_region_free_list_bytes, bytes);
+    impl_env_sub(&env->memory_region_free_list_count, count);
+}
+
+
 static void
 impl_lock(impl_afw_memory_region_self_t *self, afw_xctx_t *xctx)
 {
@@ -123,7 +237,6 @@ impl_afw_memory_region_get(
     void *mem;
     afw_size_t need;
 
-    (void)xctx;
     if (region) {
         *region = NULL;
     }
@@ -149,6 +262,7 @@ impl_afw_memory_region_get(
                 pub->free_list_bytes -= need;
                 pub->get_hits += 1;
                 impl_account_in_use(pub, need);
+                impl_env_hit(xctx, need);
                 *region = node;
                 *size = need;
                 return;
@@ -164,6 +278,7 @@ impl_afw_memory_region_get(
     }
     pub->get_misses += 1;
     impl_account_in_use(pub, need);
+    impl_env_miss(xctx, need);
     *region = mem;
     *size = need;
 }
@@ -182,7 +297,6 @@ impl_afw_memory_region_free(
     afw_memory_region_t *pub;
     impl_free_node_t *node;
 
-    (void)xctx;
     if (!region) {
         return;
     }
@@ -204,10 +318,12 @@ impl_afw_memory_region_free(
         if (pub->free_list_bytes > pub->peak_free_list_bytes) {
             pub->peak_free_list_bytes = pub->free_list_bytes;
         }
+        impl_env_to_list(xctx, size);
         return;
     }
 
     pub->free_over_cap += 1;
+    impl_env_over_cap(xctx, size);
     free(region);
 }
 
@@ -222,12 +338,16 @@ impl_afw_memory_region_cleanup(
 {
     impl_free_node_t *node;
     impl_free_node_t *next;
+    afw_size_t bytes;
+    afw_size_t count;
 
-    (void)xctx;
+    bytes = self->pub.free_list_bytes;
+    count = self->pub.free_list_count;
     node = self->free_list;
     self->free_list = NULL;
     self->pub.free_list_count = 0;
     self->pub.free_list_bytes = 0;
+    impl_env_drain_list(xctx, bytes, count);
     while (node) {
         next = node->next;
         free(node);

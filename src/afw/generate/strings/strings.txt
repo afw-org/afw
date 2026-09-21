@@ -330,6 +330,7 @@ BS
 size
 uint32
 env_pool_stat
+env_memory_region_stat
 env_rss
 env_pid
 env_program_name

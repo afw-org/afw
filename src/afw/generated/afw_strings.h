@@ -52887,6 +52887,32 @@ afw_self_v_entryCursor;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_env_memory_region_stat \
+    "env_memory_region_stat"
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_memory_region_stat */
+#define afw_s_env_memory_region_stat \
+    (&afw_self_v_env_memory_region_stat.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_memory_region_stat */
+#define afw_self_s_env_memory_region_stat \
+    (afw_self_v_env_memory_region_stat.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_env_memory_region_stat */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_memory_region_stat;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_env_memory_region_stat */
+#define afw_z_env_memory_region_stat \
+    (afw_self_v_env_memory_region_stat.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_env_memory_region_stat */
+#define afw_v_env_memory_region_stat \
+    (&afw_self_v_env_memory_region_stat.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_env_pid \
     "env_pid"
 
@@ -73609,6 +73635,84 @@ afw_self_v_memberName;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionBytesInUse \
+    "memoryRegionBytesInUse"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionBytesInUse */
+#define afw_s_memoryRegionBytesInUse \
+    (&afw_self_v_memoryRegionBytesInUse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionBytesInUse */
+#define afw_self_s_memoryRegionBytesInUse \
+    (afw_self_v_memoryRegionBytesInUse.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionBytesInUse */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionBytesInUse;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionBytesInUse */
+#define afw_z_memoryRegionBytesInUse \
+    (afw_self_v_memoryRegionBytesInUse.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionBytesInUse */
+#define afw_v_memoryRegionBytesInUse \
+    (&afw_self_v_memoryRegionBytesInUse.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionFreeListBytes \
+    "memoryRegionFreeListBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListBytes */
+#define afw_s_memoryRegionFreeListBytes \
+    (&afw_self_v_memoryRegionFreeListBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListBytes */
+#define afw_self_s_memoryRegionFreeListBytes \
+    (afw_self_v_memoryRegionFreeListBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionFreeListBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionFreeListBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionFreeListBytes */
+#define afw_z_memoryRegionFreeListBytes \
+    (afw_self_v_memoryRegionFreeListBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionFreeListBytes */
+#define afw_v_memoryRegionFreeListBytes \
+    (&afw_self_v_memoryRegionFreeListBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionFreeListCount \
+    "memoryRegionFreeListCount"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListCount */
+#define afw_s_memoryRegionFreeListCount \
+    (&afw_self_v_memoryRegionFreeListCount.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListCount */
+#define afw_self_s_memoryRegionFreeListCount \
+    (afw_self_v_memoryRegionFreeListCount.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionFreeListCount */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionFreeListCount;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionFreeListCount */
+#define afw_z_memoryRegionFreeListCount \
+    (afw_self_v_memoryRegionFreeListCount.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionFreeListCount */
+#define afw_v_memoryRegionFreeListCount \
+    (&afw_self_v_memoryRegionFreeListCount.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_memoryRegionFreeListMaxBytes \
     "memoryRegionFreeListMaxBytes"
 
@@ -73631,6 +73735,162 @@ afw_self_v_memoryRegionFreeListMaxBytes;
 /** @brief 'const afw_value_t *' for AFW_Q_memoryRegionFreeListMaxBytes */
 #define afw_v_memoryRegionFreeListMaxBytes \
     (&afw_self_v_memoryRegionFreeListMaxBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionFreeOverCap \
+    "memoryRegionFreeOverCap"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeOverCap */
+#define afw_s_memoryRegionFreeOverCap \
+    (&afw_self_v_memoryRegionFreeOverCap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeOverCap */
+#define afw_self_s_memoryRegionFreeOverCap \
+    (afw_self_v_memoryRegionFreeOverCap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionFreeOverCap */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionFreeOverCap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionFreeOverCap */
+#define afw_z_memoryRegionFreeOverCap \
+    (afw_self_v_memoryRegionFreeOverCap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionFreeOverCap */
+#define afw_v_memoryRegionFreeOverCap \
+    (&afw_self_v_memoryRegionFreeOverCap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionGetHits \
+    "memoryRegionGetHits"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionGetHits */
+#define afw_s_memoryRegionGetHits \
+    (&afw_self_v_memoryRegionGetHits.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionGetHits */
+#define afw_self_s_memoryRegionGetHits \
+    (afw_self_v_memoryRegionGetHits.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionGetHits */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionGetHits;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionGetHits */
+#define afw_z_memoryRegionGetHits \
+    (afw_self_v_memoryRegionGetHits.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionGetHits */
+#define afw_v_memoryRegionGetHits \
+    (&afw_self_v_memoryRegionGetHits.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionGetMisses \
+    "memoryRegionGetMisses"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionGetMisses */
+#define afw_s_memoryRegionGetMisses \
+    (&afw_self_v_memoryRegionGetMisses.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionGetMisses */
+#define afw_self_s_memoryRegionGetMisses \
+    (afw_self_v_memoryRegionGetMisses.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionGetMisses */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionGetMisses;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionGetMisses */
+#define afw_z_memoryRegionGetMisses \
+    (afw_self_v_memoryRegionGetMisses.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionGetMisses */
+#define afw_v_memoryRegionGetMisses \
+    (&afw_self_v_memoryRegionGetMisses.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionPeakBytesInUse \
+    "memoryRegionPeakBytesInUse"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionPeakBytesInUse */
+#define afw_s_memoryRegionPeakBytesInUse \
+    (&afw_self_v_memoryRegionPeakBytesInUse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionPeakBytesInUse */
+#define afw_self_s_memoryRegionPeakBytesInUse \
+    (afw_self_v_memoryRegionPeakBytesInUse.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionPeakBytesInUse */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionPeakBytesInUse;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionPeakBytesInUse */
+#define afw_z_memoryRegionPeakBytesInUse \
+    (afw_self_v_memoryRegionPeakBytesInUse.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionPeakBytesInUse */
+#define afw_v_memoryRegionPeakBytesInUse \
+    (&afw_self_v_memoryRegionPeakBytesInUse.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionPeakFreeListBytes \
+    "memoryRegionPeakFreeListBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionPeakFreeListBytes */
+#define afw_s_memoryRegionPeakFreeListBytes \
+    (&afw_self_v_memoryRegionPeakFreeListBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionPeakFreeListBytes */
+#define afw_self_s_memoryRegionPeakFreeListBytes \
+    (afw_self_v_memoryRegionPeakFreeListBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionPeakFreeListBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionPeakFreeListBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionPeakFreeListBytes */
+#define afw_z_memoryRegionPeakFreeListBytes \
+    (afw_self_v_memoryRegionPeakFreeListBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionPeakFreeListBytes */
+#define afw_v_memoryRegionPeakFreeListBytes \
+    (&afw_self_v_memoryRegionPeakFreeListBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionRegionsInUse \
+    "memoryRegionRegionsInUse"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionRegionsInUse */
+#define afw_s_memoryRegionRegionsInUse \
+    (&afw_self_v_memoryRegionRegionsInUse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionRegionsInUse */
+#define afw_self_s_memoryRegionRegionsInUse \
+    (afw_self_v_memoryRegionRegionsInUse.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionRegionsInUse */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionRegionsInUse;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionRegionsInUse */
+#define afw_z_memoryRegionRegionsInUse \
+    (afw_self_v_memoryRegionRegionsInUse.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionRegionsInUse */
+#define afw_v_memoryRegionRegionsInUse \
+    (&afw_self_v_memoryRegionRegionsInUse.pub)
 
 
 

@@ -108,6 +108,105 @@
                 "valueAccessor": "size"
             }
         },
+        "memoryRegionBytesInUse": {
+            "allowQuery": true,
+            "brief": "Region bytes handed out to heaps",
+            "dataType": "integer",
+            "description": "Process-wide sum of memory_region bytes currently handed out to heaps (not on a free list).",
+            "label": "Memory Region Bytes In Use",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionRegionsInUse": {
+            "allowQuery": true,
+            "brief": "Region count handed out to heaps",
+            "dataType": "integer",
+            "description": "Process-wide count of memory_region allocations currently handed out to heaps.",
+            "label": "Memory Region Regions In Use",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionFreeListBytes": {
+            "allowQuery": true,
+            "brief": "Bytes sitting on region free lists",
+            "dataType": "integer",
+            "description": "Process-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
+            "label": "Memory Region Free List Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionFreeListCount": {
+            "allowQuery": true,
+            "brief": "Regions sitting on free lists",
+            "dataType": "integer",
+            "description": "Process-wide count of memory_region allocations on thread free lists.",
+            "label": "Memory Region Free List Count",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionGetHits": {
+            "allowQuery": true,
+            "brief": "Region get() satisfied from a free list",
+            "dataType": "integer",
+            "description": "Process-wide count of memory_region get() that reused a free-list region since environment create.",
+            "label": "Memory Region Get Hits",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionGetMisses": {
+            "allowQuery": true,
+            "brief": "Region get() that called posix_memalign",
+            "dataType": "integer",
+            "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
+            "label": "Memory Region Get Misses",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionFreeOverCap": {
+            "allowQuery": true,
+            "brief": "Region free() that called free() over cap",
+            "dataType": "integer",
+            "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+            "label": "Memory Region Free Over Cap",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionPeakBytesInUse": {
+            "allowQuery": true,
+            "brief": "High-water of region bytes in use",
+            "dataType": "integer",
+            "description": "High-water of memoryRegionBytesInUse since environment create.",
+            "label": "Memory Region Peak Bytes In Use",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionPeakFreeListBytes": {
+            "allowQuery": true,
+            "brief": "High-water of region free-list bytes",
+            "dataType": "integer",
+            "description": "High-water of memoryRegionFreeListBytes since environment create.",
+            "label": "Memory Region Peak Free List Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
         "peakPoolBytesInUse": {
             "allowQuery": true,
             "brief": "High-water of AFW asked-for bytes",
