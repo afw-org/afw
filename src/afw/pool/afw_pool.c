@@ -41,8 +41,8 @@
  *   block — one malloc/free_memory unit inside a chunk (USER plus
  *   any prefix). Overlay when freed: `afw_pool_free_node_t`. Not an
  *   Adaptive Script block (`afw_value_block`).
- *   prefix — bytes before USER. Debug heap: [size][pool][USER].
- *   Tracker: [next][size][USER].
+ *   prefix — bytes before USER. Heap: [chunk*][USER]. Debug heap:
+ *   [chunk*…][size][pool][USER]. Tracker: [next][size][USER].
  *   free node — `afw_pool_free_node_t` written on a freed block.
  *
  *   free list — two lists. (1) Heap `free_memory_head`: freed
@@ -57,13 +57,13 @@
  *   (64k). Scope uses compile/4k.
  *   asked-for vs chunk_bytes — sum of malloc sizes vs bytes in
  *   chunks still held.
- *   containing — `impl_chunk_containing`: walk first_chunk to see
- *   which chunk an address is in.
+ *   containing — `chunk *` on the block (which chunk this block is
+ *   in). Not a walk of first_chunk.
  *   coalesce — merge two adjacent free blocks in the same chunk.
  *   first-fit — walk the heap free list; take the first block big
  *   enough.
  *   LIFO — push at the list head. memory_region free() does this
- *   for regions. The heap free list is address-ordered, not LIFO.
+ *   for regions. The heap free list is also LIFO.
  *
  *   parent / child — pool lifetime only. Store is the ancestor
  *   heap.

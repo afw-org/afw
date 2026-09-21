@@ -20,7 +20,9 @@
  * Scope is a heap with compile-sized chunks plus throw last-release
  * delay.
  *
- * Heap live: [USER] or, if AFW_DEBUG_POOL, [size][pool][USER].
+ * Heap live: [chunk][USER] or, if AFW_DEBUG_POOL,
+ * [chunk…][size][pool][USER]. `chunk` is the posix_memalign
+ * chunk so free coalescing does not walk first_chunk.
  * Freed heap blocks overlay afw_pool_free_node_t at the block start.
  * Tracker gets blocks from this store (`afw_pool_heap_internal_reservoir_heap`).
  */
@@ -33,19 +35,20 @@ AFW_BEGIN_DECLARES
 #define AFW_POOL_HEAP_USER_FROM_START(start) \
     ((void *)((char *)(start) + AFW_POOL_HEAP_PREFIX_BYTES))
 
-/** Free-list overlay at the start of a freed block. `total` is the whole block. */
-typedef struct afw_pool_free_node_s afw_pool_free_node_t;
-struct afw_pool_free_node_s {
-    afw_size_t total;
-    afw_pool_free_node_t *prev;
-    afw_pool_free_node_t *next;
-};
-
-/** Heap region. Destroy walks first_chunk and free()s each. */
+/** Heap chunk. Destroy walks first_chunk and free()s each. */
 typedef struct afw_pool_chunk_s afw_pool_chunk_t;
 struct afw_pool_chunk_s {
     afw_pool_chunk_t *next;
     afw_size_t size;
+};
+
+/** Free-list overlay at the start of a freed block. `total` is the whole block. */
+typedef struct afw_pool_free_node_s afw_pool_free_node_t;
+struct afw_pool_free_node_s {
+    afw_pool_chunk_t *chunk;
+    afw_size_t total;
+    afw_pool_free_node_t *prev;
+    afw_pool_free_node_t *next;
 };
 
 #define AFW_POOL_ALIGN ((afw_size_t)16)
@@ -64,7 +67,7 @@ struct afw_pool_chunk_s {
         ? sizeof(afw_pool_debug_prefix_t) \
         : sizeof(afw_pool_free_node_t))
 #else
-#define AFW_POOL_HEAP_PREFIX_BYTES ((afw_size_t)0)
+#define AFW_POOL_HEAP_PREFIX_BYTES sizeof(afw_pool_chunk_t *)
 #endif
 
 typedef struct afw_pool_internal_free_memory_head_s
