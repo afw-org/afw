@@ -119,11 +119,11 @@
             "authorizationCheck": {
                 "required": true,
                 "label": "Authorization Check",
-                "description": "This is hybrid is evaluated to determine whether to allow the requested access to the specified resourceId and/or object.",
+                "description": "This is script to evaluate to determine whether to allow the requested access to the specified resourceId and/or object.",
                 "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-                "dataType": "template",
+                "dataType": "script",
                 "contextType": "authorizationCheck",
-                "brief": "Hybrid to determine whether to allow access to the specified resourceId and/or object",
+                "brief": "Template to determine whether to allow access to the specified resourceId and/or object",
                 "allowQuery": true
             }
         },

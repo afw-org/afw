@@ -1,8 +1,23 @@
 // See the 'COPYING' file in the project root for licensing information.
+import {editor as monacoEditorMock} from "monaco-editor";
 import {server, http, HttpResponse, render, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
 import Fiddle from "./Fiddle";
 
-describe("Fiddle Tests", () => {    
+/*
+ * jsdom can't drive Monaco's real DOM/canvas editing surface, so the fiddle
+ * script tabs are backed by
+ * src/afw_test/javascript/src/__mocks__/monaco-editor.js. TabbedCodeEditor
+ * mounts a single CodeEditor once the first tab exists and just swaps its
+ * "source" prop as tabs are added/switched, so there's exactly one mock
+ * editor instance to grab - use it to simulate typing via its
+ * __setValueAndFireChange() test helper.
+ */
+const getLatestMonacoEditorInstance = () => {
+    const results = monacoEditorMock.create.mock.results;
+    return results[results.length - 1]?.value;
+};
+
+describe("Fiddle Tests", () => {
 
     beforeEach(() => {
         mswPostCallback.mockClear();
@@ -30,8 +45,12 @@ describe("Fiddle Tests", () => {
         await waitFor(() => expect(screen.getByLabelText("New Source Window")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("New Source Window"));
 
-        await waitFor(() => expect(screen.getByRole("textbox")).toBeInTheDocument());
-        fireEvent.change(screen.getByRole("textbox"), { target: { value: "1 + 1" } });
+        await waitFor(() => expect(getLatestMonacoEditorInstance()).toBeDefined());
+        getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
+        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+        // real 100ms debounce wrapper - give it a moment to fire before
+        // interacting further
+        await new Promise(resolve => setTimeout(resolve, 150));
 
         mswPostCallback.mockClear();
 
@@ -69,8 +88,12 @@ describe("Fiddle Tests", () => {
         await waitFor(() => expect(screen.getByLabelText("New Source Window")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("New Source Window"));
 
-        await waitFor(() => expect(screen.getByRole("textbox")).toBeInTheDocument());
-        fireEvent.change(screen.getByRole("textbox"), { target: { value: "1 + 1" } });
+        await waitFor(() => expect(getLatestMonacoEditorInstance()).toBeDefined());
+        getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
+        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+        // real 100ms debounce wrapper - give it a moment to fire before
+        // interacting further
+        await new Promise(resolve => setTimeout(resolve, 150));
 
         mswPostCallback.mockClear();
 
@@ -113,7 +136,7 @@ describe("Fiddle Tests", () => {
         // open a second tab and make unsaved changes to it
         fireEvent.click(screen.getByLabelText("New Source Window"));
         await waitFor(() => expect(screen.getByText("Untitled-2")).toBeInTheDocument());
-        fireEvent.change(screen.getByRole("textbox"), { target: { value: "1 + 1" } });
+        getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
         await waitFor(() => expect(screen.getByText("Untitled-2 *")).toBeInTheDocument());
 
         // navigate back to the first (clean) tab, making it active
@@ -149,8 +172,12 @@ describe("Fiddle Tests", () => {
 
         fireEvent.click(screen.getByLabelText("New Source Window"));
 
-        await waitFor(() => expect(screen.getByRole("textbox")).toBeInTheDocument());
-        fireEvent.change(screen.getByRole("textbox"), { target: { value: "1 + 1" } });
+        await waitFor(() => expect(getLatestMonacoEditorInstance()).toBeDefined());
+        getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
+        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+        // real 100ms debounce wrapper - give it a moment to fire before
+        // interacting further
+        await new Promise(resolve => setTimeout(resolve, 150));
 
         mswPostCallback.mockClear();
 
