@@ -236,7 +236,7 @@ struct afw_environment_s {
         true,                                                                   \
         "lockId",                                                               \
         "_AdaptiveLock_",                                                       \
-        "The afw_lock_t instance for a log id.")                                \
+        "The afw_lock_t instance for a lock id.")                               \
                                                                                 \
     _XX(log,                                                                     \
         impl_internal_additional_register_default,                              \

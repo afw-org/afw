@@ -2163,12 +2163,12 @@ afw_environment_register_lock(
 
 AFW_DEFINE(const afw_lock_t *)
 afw_environment_get_lock(
-    const afw_utf8_t *log_type,
+    const afw_utf8_t *lock_id,
     afw_xctx_t *xctx)
 {
     return (const afw_lock_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_log_type,
-        log_type,
+        afw_environemnt_registry_type_lock,
+        lock_id,
         xctx);
 }
 
