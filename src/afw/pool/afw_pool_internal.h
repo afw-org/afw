@@ -102,13 +102,17 @@ struct afw_pool_internal_self_s {
      *
      * Starts at 1 on create; get_reference / release. The create
      * reference does not pin the parent. Each get_reference does.
+     * impl_afw_pool_thread_inf does not: that pool holds its
+     * parent from create until teardown.
      */
     afw_integer_t reference_count;
 
     /**
      * @brief Parent references taken by get_reference on this child.
      *
-     * Dropped one at a time by release. Not used for the create reference.
+     * Dropped one at a time by release. Not used for the create
+     * reference. The thread pool's one parent hold is applied
+     * at teardown, not stored here during its life.
      */
     afw_integer_t parent_pins;
 

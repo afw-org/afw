@@ -32,9 +32,12 @@
  * - Parent/child is lifetime only. Store is the ancestor heap.
  *   Trackers may parent other trackers. A heap or tracker pins its
  *   parent only while an extra hold is outstanding. The create
- *   reference does not. At 0, destroy children that never pinned
- *   this pool, then free this store. A referenced child still
- *   linked is an error.
+ *   reference does not. A thread pool (afw_pool_thread_create)
+ *   uses impl_afw_pool_thread_inf: one parent hold from
+ *   create until teardown, and get_reference does not pin that
+ *   parent. At 0, destroy
+ *   children that never pinned this pool, then free this store.
+ *   A referenced child still linked is an error.
  * - One ST job heap per xctx (thread handoff off env->p, including
  *   base). A `{ }` frame is the scope pool (`afw_pool_scope_create`;
  *   top parent is the evaluate dest, nested parent is the parent

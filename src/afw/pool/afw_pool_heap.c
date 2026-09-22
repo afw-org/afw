@@ -1158,6 +1158,89 @@ impl_pool_mt_implementation_specific =
 #undef impl_afw_pool_register_cleanup
 #undef impl_afw_pool_deregister_cleanup
 
+/*
+ * Thread pool. One parent hold from create until teardown.
+ * get_reference does not pin the parent, so a worker does not
+ * bump the base job pool.
+ */
+static void
+impl_thread_pool_teardown(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    self->parent_pins = 1;
+    afw_pool_heap_teardown_store(self, xctx);
+}
+
+static void
+impl_thread_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
+    self->reference_count++;
+}
+
+static const afw_pool_t *
+impl_thread_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
+    return afw_pool_internal_release_common(
+        self, xctx, impl_thread_pool_teardown);
+}
+
+static void
+impl_thread_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
+    if (!self->destroying) {
+        afw_pool_internal_mark_destroying(self);
+    }
+    afw_pool_internal_destroy_children(self, xctx);
+    impl_thread_pool_teardown(self, xctx);
+}
+
+#define AFW_POOL_INF_ONLY 1
+#define AFW_IMPLEMENTATION_ID "thread"
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_thread_inf
+#define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
+#define impl_afw_pool_release impl_thread_pool_release
+#define impl_afw_pool_get_reference impl_thread_pool_get_reference
+#define impl_afw_pool_run_cleanups impl_heap_afw_pool_run_cleanups
+#define impl_afw_pool_destroy impl_thread_pool_destroy
+#define impl_afw_pool_calloc afw_pool_heap_calloc
+#define impl_afw_pool_malloc afw_pool_heap_malloc
+#define impl_afw_pool_free_memory afw_pool_heap_free_memory
+#define impl_afw_pool_free_memory_no_throw \
+    afw_pool_heap_free_memory_no_throw
+#define impl_afw_pool_calloc_no_throw afw_pool_heap_calloc_no_throw
+#define impl_afw_pool_malloc_no_throw afw_pool_heap_malloc_no_throw
+#define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
+#define impl_afw_pool_deregister_cleanup \
+    afw_pool_internal_deregister_cleanup
+
+#include "afw_pool_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_SPECIFIC
+#undef AFW_POOL_INF_ONLY
+#undef impl_afw_pool_release
+#undef impl_afw_pool_get_reference
+#undef impl_afw_pool_run_cleanups
+#undef impl_afw_pool_destroy
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free_memory
+#undef impl_afw_pool_free_memory_no_throw
+#undef impl_afw_pool_calloc_no_throw
+#undef impl_afw_pool_malloc_no_throw
+#undef impl_afw_pool_register_cleanup
+#undef impl_afw_pool_deregister_cleanup
+
 afw_boolean_t
 afw_pool_heap_internal_is_multithreaded(const afw_pool_t *p)
 {
@@ -1299,12 +1382,22 @@ afw_pool_thread_create(
     }
     thread->memory_region = region;
     AFW_TRY {
-        self = (AFW_POOL_SELF_T *)
-            afw_pool_heap_internal_create_st_for_thread(
-                xctx->p, true, xctx->env->xctx_chunk_min,
-                thread, xctx);
-        impl_pool_set_owning_thread(afw_pool_heap_internal_as_heap(self), thread);
+        self = afw_pool_heap_create_self(xctx->p,
+            &impl_afw_pool_thread_inf, true,
+            xctx->env->xctx_chunk_min,
+            sizeof(afw_pool_internal_self_with_free_memory_head_t),
+            thread, xctx);
+        impl_pool_set_owning_thread(
+            afw_pool_heap_internal_as_heap(self), thread);
         thread->p = &self->pub;
+        /*
+         * One hold on the base job pool, taken on this thread.
+         * The thread inf does not pin on later get_reference.
+         * Teardown releases this hold.
+         */
+        if (self->parent) {
+            afw_pool_get_reference(&self->parent->pub, xctx);
+        }
     }
     AFW_CATCH_UNHANDLED {
         afw_memory_region_release(region, xctx);

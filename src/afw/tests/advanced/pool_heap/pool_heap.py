@@ -144,6 +144,11 @@ def run():
                 "tracker calloc ~56 after mixed optional free and "
                 "tracker last-release does not hang",
             ),
+            (
+                "thread_parent_hold",
+                "thread pool holds its parent once; get_reference "
+                "does not pin that parent",
+            ),
     ]
     if debug_pool:
         cases.extend([

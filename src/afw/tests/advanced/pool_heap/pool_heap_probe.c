@@ -10,6 +10,7 @@
 #include "afw_pool_tracker_internal.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <signal.h>
 #include <unistd.h>
@@ -1112,6 +1113,78 @@ impl_for_clone_churn(afw_xctx_t *xctx)
     return 0;
 }
 
+
+/*
+ * Thread pool takes one parent hold. Later get_reference stays on
+ * the thread pool. Last release gives that hold back.
+ */
+static int
+impl_thread_parent_hold(afw_xctx_t *xctx)
+{
+    afw_thread_t *thread;
+    afw_pool_internal_self_t *parent;
+    afw_pool_internal_self_t *child;
+    const afw_memory_region_t *region;
+    afw_integer_t parent_refs;
+    int i;
+    int rc;
+
+    rc = 0;
+    parent = impl_self(xctx->p);
+    parent_refs = parent->reference_count;
+    thread = afw_pool_thread_create(-1, xctx);
+    if (!thread || !thread->p) {
+        return impl_fail("thread_parent_hold", "create failed");
+    }
+    region = thread->memory_region;
+    child = impl_self(thread->p);
+    if (child->pub.inf == parent->pub.inf ||
+        child->parent_pins != 0 ||
+        parent->reference_count != parent_refs + 1)
+    {
+        rc = impl_fail("thread_parent_hold",
+            "create did not take one parent hold");
+    }
+    else {
+        for (i = 0; i < 8; i++) {
+            afw_pool_get_reference(thread->p, xctx);
+        }
+        if (parent->reference_count != parent_refs + 1 ||
+            child->reference_count != 9 ||
+            child->parent_pins != 0)
+        {
+            rc = impl_fail("thread_parent_hold",
+                "get_reference pinned the parent");
+        }
+        else {
+            for (i = 0; i < 8; i++) {
+                afw_pool_release(thread->p, xctx);
+            }
+            if (parent->reference_count != parent_refs + 1 ||
+                child->reference_count != 1)
+            {
+                rc = impl_fail("thread_parent_hold",
+                    "extra release dropped the parent");
+            }
+        }
+    }
+    while (child->reference_count > 1) {
+        afw_pool_release(thread->p, xctx);
+    }
+    afw_pool_release(thread->p, xctx);
+    if (rc == 0 &&
+        (parent->reference_count != parent_refs || parent->destroying))
+    {
+        rc = impl_fail("thread_parent_hold",
+            "teardown did not release the one parent hold");
+    }
+    if (region) {
+        afw_memory_region_release(region, xctx);
+    }
+    free(thread);
+    return rc;
+}
+
 int
 main(int argc, char **argv)
 {
@@ -1185,6 +1258,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "for_clone_churn") == 0) {
         rc = impl_for_clone_churn(xctx);
     }
+    else if (strcmp(case_name, "thread_parent_hold") == 0) {
+        rc = impl_thread_parent_hold(xctx);
+    }
     else if (strcmp(case_name, "double_free_throws") == 0) {
         rc = impl_double_free_throws(xctx);
     }
@@ -1208,6 +1284,7 @@ main(int argc, char **argv)
             "deregister_cleanup|"
             "nonadjacent_reuse|"
             "for_clone_churn|create_child_of_heap|leftover_child_heap|"
+            "thread_parent_hold|"
             "double_free_throws"
 #ifdef AFW_DEBUG_POOL
             "|debug_free_wrong_size|debug_free_wrong_pool"
