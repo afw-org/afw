@@ -195,6 +195,30 @@ def note(options):
         msg.highlighted_info("Failure log: " + path)
 
 
+def clear_failures(options, directory=None):
+    """Delete failure logs for this mode. Returns how many files were removed."""
+    from _afwdev.common import msg
+    directory = directory or DEFAULT_FAILURE_DIR
+    mode = _mode_suffix(env_mode(options))
+    suffixes = (
+        "-{}.log".format(mode),
+        "-{}.log.state.json".format(mode),
+    )
+    removed = 0
+    if os.path.isdir(directory):
+        for name in os.listdir(directory):
+            if not name.endswith(suffixes):
+                continue
+            path = os.path.join(directory, name)
+            if os.path.isfile(path) and not os.path.islink(path):
+                os.remove(path)
+                removed += 1
+    msg.highlighted_info(
+        "Removed {n} failure file(s) from {d}".format(
+            n=removed, d=directory))
+    return removed
+
+
 def finish(options):
     """Remove the log when the run had no failures."""
     path = (options or {}).get("_failure_log")

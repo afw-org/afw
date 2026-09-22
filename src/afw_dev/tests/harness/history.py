@@ -6,9 +6,12 @@ import os
 import tempfile
 
 from _afwdev.test.common import format_test_timing, format_xctx_bytes
+from _afwdev.test.failure_log import clear_failures
 from _afwdev.test.history import (
     compare_runs, file_record, trend_runs, _bytes_fatter, BYTES_FLOOR,
     history_filename, is_reference_name, select_trend_files,
+    clear_history, delete_history_ref, list_history_refs,
+    ref_label_from_name,
 )
 
 
@@ -185,6 +188,126 @@ def run():
         ),
         "skip": False,
     })
+
+    tests.append({
+        "test": "ref-label-from-name",
+        "description": "label is the -ref- segment before -mode.json",
+        "passed": (
+            ref_label_from_name(ref_name, "afw") == "pre-mgg"
+            and ref_label_from_name(
+                "2026-09-14T010203000Z-afw.json", "afw") is None
+        ),
+        "skip": False,
+    })
+
+    house = tempfile.mkdtemp()
+    try:
+        names = [
+            "2026-01-01T000000000Z-ref-old-afw.json",
+            "2026-02-01T000000000Z-afw.json",
+            "2026-03-01T000000000Z-ref-thread-inf-afw.json",
+            "2026-04-01T000000000Z-afw.json",
+            "2026-05-01T000000000Z-afw.json",
+            "2026-06-01T000000000Z-ref-other-afw.json",
+            "2026-04-01T000000000Z-valgrind.json",
+        ]
+        for name in names:
+            open(os.path.join(house, name), "w").close()
+        os.symlink(
+            "2026-02-01T000000000Z-afw.json",
+            os.path.join(house, "latest-afw.json"))
+        opts = {"mode": "afw", "history_dir": house}
+        picked = [
+            os.path.basename(p)
+            for p in select_trend_files(house, "afw", 10, "thread-inf")
+        ]
+        tests.append({
+            "test": "trend-one-ref-and-later",
+            "description": "one label plus ordinary runs after that reference",
+            "passed": (
+                picked == [
+                    "2026-03-01T000000000Z-ref-thread-inf-afw.json",
+                    "2026-04-01T000000000Z-afw.json",
+                    "2026-05-01T000000000Z-afw.json",
+                ]
+            ),
+            "skip": False,
+        })
+        removed = clear_history(opts)
+        left = sorted(os.listdir(house))
+        tests.append({
+            "test": "clear-history-keeps-refs",
+            "description": "ordinary runs and a dangling latest go; refs stay",
+            "passed": (
+                removed == 4
+                and "2026-02-01T000000000Z-afw.json" not in left
+                and "2026-04-01T000000000Z-afw.json" not in left
+                and "2026-05-01T000000000Z-afw.json" not in left
+                and "latest-afw.json" not in left
+                and "2026-01-01T000000000Z-ref-old-afw.json" in left
+                and "2026-03-01T000000000Z-ref-thread-inf-afw.json" in left
+                and "2026-06-01T000000000Z-ref-other-afw.json" in left
+                and "2026-04-01T000000000Z-valgrind.json" in left
+            ),
+            "skip": False,
+        })
+        labels = list_history_refs(opts)
+        tests.append({
+            "test": "list-history-refs",
+            "description": "labels for this mode, in timestamp order",
+            "passed": labels == ["old", "thread-inf", "other"],
+            "skip": False,
+        })
+        gone = delete_history_ref(
+            {"mode": "afw", "history_dir": house,
+             "delete_history_ref": "thread-inf"})
+        left = sorted(os.listdir(house))
+        tests.append({
+            "test": "delete-history-ref",
+            "description": "one label is removed; other refs and modes stay",
+            "passed": (
+                gone == 1
+                and "2026-03-01T000000000Z-ref-thread-inf-afw.json" not in left
+                and "2026-01-01T000000000Z-ref-old-afw.json" in left
+                and "2026-06-01T000000000Z-ref-other-afw.json" in left
+                and "2026-04-01T000000000Z-valgrind.json" in left
+            ),
+            "skip": False,
+        })
+    finally:
+        for name in os.listdir(house):
+            os.remove(os.path.join(house, name))
+        os.rmdir(house)
+
+    fails = tempfile.mkdtemp()
+    try:
+        for name in (
+            "2026-01-01T000000000Z-afw.log",
+            "2026-01-01T000000000Z-afw.log.state.json",
+            "2026-01-01T000000000Z-valgrind.log",
+            "2026-01-01T000000000Z-valgrind.log.state.json",
+            "notes.txt",
+        ):
+            open(os.path.join(fails, name), "w").close()
+        nfail = clear_failures({"mode": "afw"}, directory=fails)
+        left = sorted(os.listdir(fails))
+        tests.append({
+            "test": "clear-failures-one-mode",
+            "description": "afw logs and state go; valgrind and other files stay",
+            "passed": (
+                nfail == 2
+                and left == [
+                    "2026-01-01T000000000Z-valgrind.log",
+                    "2026-01-01T000000000Z-valgrind.log.state.json",
+                    "notes.txt",
+                ]
+            ),
+            "skip": False,
+        })
+    finally:
+        for name in os.listdir(fails):
+            os.remove(os.path.join(fails, name))
+        os.rmdir(fails)
 
     return {
         "description": description,

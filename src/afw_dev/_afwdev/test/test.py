@@ -152,11 +152,22 @@ def run(options):
             'compare') is not None
         want_trend = options.get('trend') is not False and options.get(
             'trend') is not None
-        skip_run = (want_compare or want_trend) and not (
-            options.get('history') or options.get('history_ref'))
+        try:
+            if _wants_housekeeping(options):
+                _do_housekeeping(options)
+        except (ValueError, OSError) as e:
+            msg.error_exit(str(e))
+        # --history-ref marks a run, except with --trend where it
+        # selects that reference and does not run unless --history.
+        record_run = bool(options.get('history')) or (
+            bool(options.get('history_ref')) and not want_trend)
+        skip_run = (
+            want_compare or want_trend or _wants_housekeeping(options)
+        ) and not record_run
 
         if skip_run:
-            _run_compare_trend(options)
+            if want_compare or want_trend:
+                _run_compare_trend(options)
             sys.exit(0)
 
         failure_log.begin(options)
@@ -281,6 +292,25 @@ def run(options):
                 sys.exit(0)
         finally:
             failure_log.finish(options)
+
+
+def _wants_housekeeping(options):
+    return bool(
+        options.get('clear_failures')
+        or options.get('clear_history')
+        or options.get('list_history_refs')
+        or options.get('delete_history_ref'))
+
+
+def _do_housekeeping(options):
+    if options.get('clear_failures'):
+        failure_log.clear_failures(options)
+    if options.get('clear_history'):
+        test_history.clear_history(options)
+    if options.get('delete_history_ref'):
+        test_history.delete_history_ref(options)
+    if options.get('list_history_refs'):
+        test_history.list_history_refs(options)
 
 
 def _run_compare_trend(options):

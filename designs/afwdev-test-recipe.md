@@ -16,6 +16,8 @@
 # 1) Gate (do not break)
 afwdev test -j
 # Memory line: max N xctx, N chunk. History: --compare / --trend / --trend-metric chunk
+# --clear-history keeps -ref- baselines. --trend --history-ref LABEL
+# --clear-failures removes this mode's ~/.afw/test-failures logs
 
 # 2) Narrow product regression (example #149 catalog contracts)
 afwdev test --test-pattern catalog-value-accessors --show-all

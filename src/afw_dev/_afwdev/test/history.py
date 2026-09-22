@@ -87,6 +87,18 @@ def is_reference_name(name):
     return "-ref-" in os.path.basename(name or "")
 
 
+def ref_label_from_name(name, mode):
+    """Label from `{stamp}-ref-{label}-{mode}.json`, or None."""
+    base = os.path.basename(name or "")
+    suffix = "-" + _mode_suffix(mode) + ".json"
+    marker = "-ref-"
+    if not base.endswith(suffix) or marker not in base:
+        return None
+    stem = base[: -len(suffix)]
+    _stamp, label = stem.split(marker, 1)
+    return label or None
+
+
 def is_reference_run(run):
     if not run:
         return False
@@ -121,11 +133,30 @@ def list_run_files(dir_path, mode):
     return [os.path.join(dir_path, n) for n in names]
 
 
-def select_trend_files(dir_path, mode, count=TREND_DEFAULT_COUNT):
-    """All reference runs for mode plus the last N non-reference, oldest first."""
+def select_trend_files(dir_path, mode, count=TREND_DEFAULT_COUNT, ref_label=None):
+    """Reference runs for mode plus the last N ordinary runs, oldest first.
+
+    ref_label keeps that reference (and later files with the same label)
+    plus ordinary runs after the oldest match. Other references are left out.
+    """
     all_files = list_run_files(dir_path, mode)
-    refs = [p for p in all_files if is_reference_name(p)]
-    nonrefs = [p for p in all_files if not is_reference_name(p)]
+    label = sanitize_ref_label(ref_label)
+    if ref_label and not label:
+        raise ValueError("empty history ref label")
+    if label:
+        refs = [p for p in all_files if ref_label_from_name(p, mode) == label]
+        if not refs:
+            raise ValueError(
+                "no history ref {l} for mode {m} in {d}".format(
+                    l=label, m=mode, d=dir_path))
+        anchor = os.path.basename(refs[0])
+        nonrefs = [
+            p for p in all_files
+            if not is_reference_name(p) and os.path.basename(p) > anchor
+        ]
+    else:
+        refs = [p for p in all_files if is_reference_name(p)]
+        nonrefs = [p for p in all_files if not is_reference_name(p)]
     count = max(1, int(count))
     chosen = refs + nonrefs[-count:]
     # Unique, keep timestamp order (basename sorts with the stamp prefix).
@@ -147,6 +178,86 @@ def load_run(path):
     data["_path"] = path
     data["_basename"] = os.path.basename(path)
     return data
+
+
+def _latest_path(dir_path, mode):
+    return os.path.join(
+        dir_path, "latest-{}.json".format(_mode_suffix(mode)))
+
+
+def _drop_dangling_latest(dir_path, mode):
+    """Remove latest-{mode}.json when its target is gone. Returns 1 or 0."""
+    latest = _latest_path(dir_path, mode)
+    if not os.path.islink(latest):
+        return 0
+    target = os.readlink(latest)
+    full = target if os.path.isabs(target) else os.path.join(dir_path, target)
+    if os.path.exists(full):
+        return 0
+    os.remove(latest)
+    return 1
+
+
+def clear_history(options):
+    """Delete ordinary history for this mode. Reference runs stay."""
+    dir_path = history_dir(options)
+    mode = env_mode(options)
+    removed = 0
+    if dir_path and os.path.isdir(dir_path):
+        for path in list_run_files(dir_path, mode):
+            if is_reference_name(path):
+                continue
+            if os.path.isfile(path) and not os.path.islink(path):
+                os.remove(path)
+                removed += 1
+        removed += _drop_dangling_latest(dir_path, mode)
+    msg.highlighted_info(
+        "Removed {n} history file(s) from {d}".format(
+            n=removed, d=dir_path))
+    return removed
+
+
+def list_history_refs(options):
+    """Print reference labels for this mode. Returns the labels."""
+    dir_path = history_dir(options)
+    mode = env_mode(options)
+    labels = []
+    seen = set()
+    for path in list_run_files(dir_path, mode):
+        label = ref_label_from_name(path, mode)
+        if label and label not in seen:
+            seen.add(label)
+            labels.append(label)
+    msg.highlighted_info(
+        "History refs in {d} ({m}):".format(d=dir_path, m=mode))
+    if not labels:
+        msg.highlighted_info("  (none)")
+    else:
+        for label in labels:
+            msg.highlighted_info("  " + label)
+    return labels
+
+
+def delete_history_ref(options):
+    """Delete history files whose reference label matches. Returns count."""
+    label = sanitize_ref_label((options or {}).get("delete_history_ref"))
+    if not label:
+        raise ValueError("empty history ref label")
+    dir_path = history_dir(options)
+    mode = env_mode(options)
+    removed = 0
+    if dir_path and os.path.isdir(dir_path):
+        for path in list_run_files(dir_path, mode):
+            if ref_label_from_name(path, mode) != label:
+                continue
+            if os.path.isfile(path) and not os.path.islink(path):
+                os.remove(path)
+                removed += 1
+        removed += _drop_dangling_latest(dir_path, mode)
+    msg.highlighted_info(
+        "Removed {n} history file(s) for ref {l} from {d}".format(
+            n=removed, l=label, d=dir_path))
+    return removed
 
 
 def write_history(summary, options):
@@ -533,7 +644,9 @@ def resolve_trend_runs(options):
             files.extend(expanded)
         files = sorted(set(files), key=lambda p: os.path.basename(p))
     else:
-        files = select_trend_files(dir_path, mode, count)
+        files = select_trend_files(
+            dir_path, mode, count,
+            (options or {}).get("history_ref") or None)
     if len(files) < 2:
         raise ValueError(
             "need at least two history files for --trend (mode {m})".format(

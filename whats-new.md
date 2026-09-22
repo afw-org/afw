@@ -338,7 +338,7 @@ New limit/cap property ids should use a **`max…`** prefix (`maxReadBytes`, `ma
 |------|-----|------|
 | **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
 | **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_bytes` / `xctx_chunk_bytes`) |
-| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx asked-for and chunk bytes optional so older `afw` still records timing. `--trend-metric bytes\|chunk\|ms` |
+| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx asked-for and chunk bytes optional so older `afw` still records timing. `--trend-metric bytes\|chunk\|ms`. `--clear-history` drops ordinary runs for this `--env-mode` and keeps `-ref-` baselines. `--trend --history-ref LABEL` uses that baseline plus later ordinary runs. `--clear-failures` deletes `~/.afw/test-failures/` logs for this mode. |
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
@@ -1410,7 +1410,7 @@ Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool b
 
 A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** when there is still room to build the error. If allocation itself fails, the error is **`memory`**. Either is OK; the worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI. A positive retrieve **`maxObjects`** is a separate cardinality throw (`payload_too_large`) and is not the request memory cap.
 
-`afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs posix_memalign chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes.
+`afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs posix_memalign chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes. **`--clear-history`** removes ordinary runs for this mode and keeps reference baselines. **`--trend --history-ref LABEL`** charts that baseline and ordinary runs after it. **`--clear-failures`** removes this mode's logs under `~/.afw/test-failures/`.
 
 [↑ Highlights](#highlights)
 
