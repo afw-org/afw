@@ -63,14 +63,14 @@ export const ObjectEditorHeader = (props) => {
             if (e.srcElement.nodeName === "BODY" && (e.key === "e" || e.key === "E")) {
                 onEditable(true);
             } else if (e.srcElement.nodeName === "BODY" && (e.code === "Escape" || e.key === "Esc"))
-                onEditable(false);
+                onDismiss();
         };
 
         window.addEventListener("keyup", onKeyUp);
 
         return () => { window.removeEventListener("keyup", onKeyUp); };
 
-    }, [onEditable]);
+    }, [onEditable, onDismiss]);
 
     return (
         <div style={{
