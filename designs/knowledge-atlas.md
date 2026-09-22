@@ -57,7 +57,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Streams / VFS / retrieve | stream + vfs rules; #127; #49; catalog composite soak **[#331](https://github.com/afw-org/afw/issues/331)** |
 | afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207; test history `--compare` / `--trend` ([#329](https://github.com/afw-org/afw/issues/329)) |
 | Process telemetry / request caps | `process::` `peak*` / `limit*` / `rss`; application conf overrides; `response:metrics`; hermetic `payload_too_large` worker ([#329](https://github.com/afw-org/afw/issues/329)) |
-| Heap chunk reuse | Thread `afw_memory_region`; `memoryRegionFreeListMaxBytes` ([#358](https://github.com/afw-org/afw/issues/358)). Record is the issue body. Pool impl split: `afw_pool.c` shared, `afw_pool_heap.c` store/scope, `afw_pool_tracker.c` tracker. Live **block** stores `chunk *`; heap free list is LIFO with forward coalesce (no `first_chunk` walk). Glossary in `afw_pool.c`. `afwdev test -j` harvests `poolChunkBytes`. Compile omits empty `{ }` (no names, no statements). Process-wide region hits/misses/free-list on `process::` and `_AdaptiveServer_/current`. Dual-ended carve of a chunk (small low, large high) is later, if `managed_p` fragmentation shows. |
+| Heap chunk reuse | Thread `afw_memory_region`; `memoryRegionFreeListMaxBytes` ([#358](https://github.com/afw-org/afw/issues/358)). Record is the issue body. Pool impl split: `afw_pool.c` shared, `afw_pool_heap.c` store, `afw_pool_scope.c` the `{ }` frame (the scope object is that pool), `afw_pool_tracker.c` tracker. A heap or tracker pins its parent only while `get_reference` holds the child; a scope holds its parent from create until teardown. Live **block** stores `chunk *`; heap free list is LIFO with forward coalesce (no `first_chunk` walk). Glossary in `afw_pool.c`. `afwdev test -j` harvests `poolChunkBytes`. Compile omits empty `{ }` (no names, no statements). Process-wide region hits/misses/free-list on `process::` and `_AdaptiveServer_/current`. Dual-ended carve of a chunk (small low, large high) is later, if `managed_p` fragmentation shows. |
 | Crypto | #74 pad |
 | Admin / Fiddle | atlas §16 (contract only) |
 | C vector / hash table | [`afw-vector.md`](afw-vector.md) (last `apr_array` [PR #310](https://github.com/afw-org/afw/pull/310)); [`afw-hash-table.md`](afw-hash-table.md) (last `apr_hash` converted) |
@@ -223,7 +223,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Adapters as normalized object stores; model maps; request handlers; auth; retrieve limits (#49). Model `on*` compile is cached on the **location** adapter (`isModelLocation`); model-adapter restart alone does not reload. |
+| **Settled map** | Adapters as normalized object stores; model maps; request handlers; auth; retrieve limits (#49). Model `on*` compile is cached on the **location** adapter (`isModelLocation`); model-adapter restart alone does not reload. A stoppable `_AdaptiveServiceConf_` generation keeps the inner conf in its own pool parented on `env->p` (`conf->p` is what the adapter or log receives). Permanent `afw.conf` services stay in `env->p`. An object view borrows its instance until `get_reference`. |
 | **Day rules** | `afw-core-services`, `afw-model-adapter`, `afw-adapter-index` |
 | **Deep pads** | Issue/theme pads as needed; model optional `mappedAdapterId` (#109) in model rule |
 | **Probe** | Adapter CRUD via tests; `service_start/stop/restart/get`; lifecycle leaf under `tests-extra` |

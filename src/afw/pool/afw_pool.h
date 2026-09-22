@@ -29,15 +29,21 @@
  *   return the block until destroy or garbage_collect.
  *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
  *   chunks (4k-aligned, 64k minimum). Not a third AFW pool kind.
- * - Parent/child is lifetime only (last-release throws if children
- *   remain). Store is the ancestor heap. Trackers may parent other
- *   trackers.
+ * - Parent/child is lifetime only. Store is the ancestor heap.
+ *   Trackers may parent other trackers. A heap or tracker pins its
+ *   parent only while an extra hold is outstanding. The create
+ *   reference does not. At 0, destroy children that never pinned
+ *   this pool, then free this store. A referenced child still
+ *   linked is an error.
  * - One ST job heap per xctx (thread handoff off env->p, including
- *   base). `{ }` is `afw_pool_scope_create` of dest `p` (top:
- *   evaluate dest; nested: parent scope->p). Heap/scope/tracker
- *   follow parent ST/MT.
- *   Closures pin the inner scope; the xctx heap outlives the outer
- *   `{ }`.
+ *   base). A `{ }` frame is the scope pool (`afw_pool_scope_create`;
+ *   top parent is the evaluate dest, nested parent is the parent
+ *   scope pool). A scope holds its parent from create until
+ *   teardown, and its pool count stays at 1 so throw-path delay
+ *   still sees a last release. Blank pool, no block:
+ *   `afw_pool_scope_allocate`. Heap/scope/tracker follow parent
+ *   ST/MT. Closures hold the inner scope; the xctx heap outlives
+ *   the outer `{ }`.
  * - `afw_pool_create()` is a heap like the parent (ST or MT lock
  *   wrappers), **inherits** managed_p. Tracker is
  *   `afw_pool_tracker_create()`. `env->p` is the process MT job heap.
@@ -57,12 +63,6 @@
  *   `peak_pool_bytes_in_use` / `peak_pool_chunk_bytes`. Adaptive
  *   `pool_bytes_in_use()` vs `process_rss()`. This xctx:
  *   `afw_pool_subtree_*` on `xctx->p`.
- * - Heap and tracker: an extra hold pins the parent. The create
- *   reference does not. At 0, destroy children that never pinned
- *   this pool, then free this store. A referenced child still
- *   linked is an error. A scope pool keeps the old link rule:
- *   one parent hold from create until teardown, and its count
- *   stays at 1 so throw-path delay still sees a last release.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
  * - `afw_pool_heap_internal_release_delayed()`: last-release scopes delayed
