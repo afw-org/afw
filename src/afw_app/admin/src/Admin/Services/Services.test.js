@@ -1049,10 +1049,63 @@ describe("Services Tests", () => {
             await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("reconcile_object"));
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "authorizationHandler-auth-scriptXYZ"));
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("description", "This is a new description."));
-             
+
             await waitForSpinner();
 
         });
-    });    
+
+        // Regression test for issue #80: the Escape-key shortcut used to
+        // call onEditable(false) directly, bypassing the "Discard Changes?"
+        // confirmation that the Cancel button goes through - so any keyup
+        // Escape that reached the window with document.body as its target
+        // (which is common around Monaco's own handling of Escape, e.g. to
+        // dismiss its autocomplete popup while typing a script) silently
+        // discarded the whole in-progress edit. See ObjectEditor.js.
+        test("Escape while editing an authorizationHandler/script service prompts to discard, not silently close", async () => {
+
+            render(
+                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
+                    <Services />
+                </MemoryRouter>
+            );
+
+            await waitForServiceConfigs();
+            await waitForSpinner();
+
+            await waitFor(() => expect(screen.getByText("auth-script")).toBeInTheDocument());
+
+            const row = screen.getByText("auth-script").closest("tr");
+            fireEvent.click(row);
+
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
+            fireEvent.click(screen.getByLabelText("Edit"));
+
+            await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());
+            fireEvent.click(screen.getByLabelText("Edit Object"));
+
+            await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+            await waitForSpinner();
+
+            await waitFor(() => expect(screen.getByLabelText("Save")).toBeInTheDocument());
+
+            // make an unsaved change, so there's something at stake
+            fireEvent.change(screen.getByLabelText("Service Id"), { target: { value: "authorizationHandler-auth-scriptXYZ" } });
+
+            // simulate the stray Escape keyup Monaco's own key handling can
+            // produce while the user is typing - document.body is the
+            // srcElement ObjectEditorHeader's shortcut listener checks for
+            document.body.dispatchEvent(new KeyboardEvent("keyup", { code: "Escape", key: "Escape", bubbles: true }));
+
+            // it should prompt to discard, not exit outright
+            await waitFor(() => expect(screen.getByText("Discard Changes")).toBeInTheDocument());
+            expect(screen.getByLabelText("Save")).toBeInTheDocument();
+            expect(screen.getByLabelText("Service Id").value).toBe("authorizationHandler-auth-scriptXYZ");
+
+            // and clicking "No" keeps the edit alive with the change intact
+            fireEvent.click(screen.getByLabelText("No"));
+            expect(screen.getByLabelText("Save")).toBeInTheDocument();
+            expect(screen.getByLabelText("Service Id").value).toBe("authorizationHandler-auth-scriptXYZ");
+        });
+    });
 
 });

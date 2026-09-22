@@ -2,10 +2,10 @@
 import {MemoryRouter} from "react-router-dom";
 import {ThemeProvider, createTheme} from "@mui/material/styles";
 
-import {AdaptiveProvider} from "@afw/react";
+import {AdaptiveProvider, combineComponentRegistries} from "@afw/react";
 import {AfwClient} from "@afw/client";
-import {componentRegistry} from "@afw/react-material-ui";
-import {MonacoProvider} from "@afw/react-monaco";
+import {componentRegistry as muiComponentRegistry} from "@afw/react-material-ui";
+import monacoComponentRegistry, {MonacoProvider} from "@afw/react-monaco";
 
 import {AppCoreProvider} from "./App/AppCoreProvider";
 import {AppContext} from "./context";
@@ -55,11 +55,11 @@ const AllTheProviders = ({ children }) => {
         <ThemeProvider theme={createTheme({})}>
             <AppContext.Provider value={applicationProps}>
                 <MemoryRouter>
-                    <AdaptiveProvider 
+                    <AdaptiveProvider
                         client={client}
-                        componentRegistry={componentRegistry} 
-                        onCopy={onCopy} 
-                        clipboard={clipboard} 
+                        componentRegistry={combineComponentRegistries("admin", [ muiComponentRegistry, monacoComponentRegistry ])}
+                        onCopy={onCopy}
+                        clipboard={clipboard}
                     >
                         <AppCoreProvider>
                             <MonacoProvider theme="dark">

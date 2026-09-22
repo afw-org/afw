@@ -1,8 +1,23 @@
 // See the 'COPYING' file in the project root for licensing information.
+import {editor as monacoEditorMock} from "monaco-editor";
 import {render, waitFor, within, fireEvent, screen, waitForSpinner, server, http, HttpResponse, mswPostCallback, mswGetCallback} from "../../test-utils";
 import Requests from "./Requests";
 
-describe("Requests Tests", () => {    
+/*
+ * jsdom can't drive Monaco's real DOM/canvas editing surface, so the
+ * Headers/Request/Response tabs are backed by
+ * src/afw_test/javascript/src/__mocks__/monaco-editor.js. TabbedCodeEditor
+ * keeps a single CodeEditor mounted and swaps its "source" prop as tabs are
+ * switched, so there's exactly one mock editor instance for the whole
+ * component's lifetime - grab it to simulate typing (__setValueAndFireChange)
+ * or to read whatever tab is currently displayed (getValue()).
+ */
+const getLatestMonacoEditorInstance = () => {
+    const results = monacoEditorMock.create.mock.results;
+    return results[results.length - 1].value;
+};
+
+describe("Requests Tests", () => {
 
     beforeEach(() => {
         mswPostCallback.mockClear();       
@@ -65,7 +80,7 @@ describe("Requests Tests", () => {
         ));
         await waitForSpinner();
 
-        expect(await screen.findByText("{}")).toBeInTheDocument();
+        await waitFor(() => expect(getLatestMonacoEditorInstance().getValue()).toBe("{}"));
 
     });
 
@@ -115,7 +130,7 @@ describe("Requests Tests", () => {
         ));
         await waitForSpinner();
 
-        expect(await screen.findByText("<xml />")).toBeInTheDocument();
+        await waitFor(() => expect(getLatestMonacoEditorInstance().getValue()).toBe("<xml />"));
 
     });
 
@@ -135,9 +150,14 @@ describe("Requests Tests", () => {
             "function": "print",
             "arg": "hi"
         });
-        
-        const request = screen.getByTestId("request");
-        fireEvent.change(request, { target: { value } });
+
+        // "Request" is the default active tab, so this is that tab's editor
+        getLatestMonacoEditorInstance().__setValueAndFireChange(value);
+
+        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+        // real 100ms debounce wrapper around onSourceChanged - give it a
+        // moment to fire and land in Requests' tab state before Send reads it
+        await new Promise(resolve => setTimeout(resolve, 150));
 
         // select JSON
         const contentTypeDropdown = within(screen.getByTestId("requests-accept"));

@@ -1,11 +1,24 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {createMemoryHistory} from "history";
 import {Router} from "react-router-dom";
+import {editor as monacoEditorMock} from "monaco-editor";
 
-import {render, waitFor, within, fireEvent, userEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
+import {render, waitFor, within, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
 
 import objectTypeObject from "@afw/test/build/cjs/__mocks__/get_object/files/_AdaptiveObjectType_/_AdaptiveObjectType_.json";
 import Objects from "../Objects";
+
+/*
+ * jsdom can't drive Monaco's real DOM/canvas editing surface, so the "View
+ * object source" CodeEditor is backed by src/afw_test/javascript/src/__mocks__/monaco-editor.js.
+ * This grabs the most recently created mock editor instance (the one behind
+ * whichever CodeEditor is currently on screen) so a test can simulate typing
+ * via its __setValueAndFireChange() test helper.
+ */
+const getLatestMonacoEditorInstance = () => {
+    const results = monacoEditorMock.create.mock.results;
+    return results[results.length - 1].value;
+};
 
 
 describe("ObjectsEditorLayout Tests", () => { 
@@ -383,14 +396,16 @@ describe("ObjectsEditorLayout Tests", () => {
         fireEvent.click(button);               
         
         await waitFor(() => expect(screen.getByLabelText("Save")).not.toBeEnabled());
-        const textarea = screen.getByRole("code").querySelector("textarea");
-        const position = textarea.value.indexOf("\"allowAdd\": true");
+        const monacoInstance = getLatestMonacoEditorInstance();
+        const source = monacoInstance.getValue();
+        const position = source.indexOf("\"allowAdd\": true");
 
-        textarea.setSelectionRange(position+11, position+16);
-        userEvent.type(textarea, "{backspace}false");
+        monacoInstance.__setValueAndFireChange(
+            source.slice(0, position + 11) + "false" + source.slice(position + 16)
+        );
 
-        await waitFor(() => expect(screen.getByLabelText("Save")).toBeEnabled());        
-        
+        await waitFor(() => expect(screen.getByLabelText("Save")).toBeEnabled());
+
 
         mswPostCallback.mockClear();
         fireEvent.click(screen.getByLabelText("Save"));
@@ -435,15 +450,17 @@ describe("ObjectsEditorLayout Tests", () => {
         fireEvent.click(button);               
         
         await waitFor(() => expect(screen.getByLabelText("Save")).not.toBeEnabled());
-        const textarea = screen.getByRole("code").querySelector("textarea");
-        const position = textarea.value.indexOf("\"allowAdd\": true");
+        const monacoInstance = getLatestMonacoEditorInstance();
+        const source = monacoInstance.getValue();
+        const position = source.indexOf("\"allowAdd\": true");
 
-        textarea.setSelectionRange(position+11, position+16);
-        userEvent.type(textarea, "{backspace}false");
+        monacoInstance.__setValueAndFireChange(
+            source.slice(0, position + 11) + "false" + source.slice(position + 16)
+        );
 
-        await waitFor(() => expect(screen.getByLabelText("Save")).toBeEnabled());        
-        
-        fireEvent.click(screen.getByRole("button", { name: "View object in Responsive View" }));    
+        await waitFor(() => expect(screen.getByLabelText("Save")).toBeEnabled());
+
+        fireEvent.click(screen.getByRole("button", { name: "View object in Responsive View" }));
 
         expect(screen.getByLabelText("Allow Add")).not.toBeChecked();
         
@@ -481,24 +498,25 @@ describe("ObjectsEditorLayout Tests", () => {
         fireEvent.click(button);               
         
         await waitFor(() => expect(screen.getByLabelText("Save")).not.toBeEnabled());
-        const textarea = screen.getByRole("code").querySelector("textarea");
-        const position = textarea.value.indexOf("\"allowAdd\": true");
+        const monacoInstance = getLatestMonacoEditorInstance();
+        const source = monacoInstance.getValue();
+        const position = source.indexOf("\"allowAdd\": true");
 
-        textarea.setSelectionRange(position+11, position+16);
-        userEvent.type(textarea, "{backspace}false");
+        monacoInstance.__setValueAndFireChange(
+            source.slice(0, position + 11) + "false" + source.slice(position + 16)
+        );
 
-        await waitFor(() => expect(screen.getByLabelText("Save")).toBeEnabled());        
-        
+        await waitFor(() => expect(screen.getByLabelText("Save")).toBeEnabled());
 
         fireEvent.click(screen.getByLabelText("Cancel"));
 
         // confirm discard
         await waitFor(() => expect(screen.getByLabelText("Yes")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("Yes"));
-        
-        expect(textarea.value.indexOf("\"allowAdd\": true")).toBe(position);        
 
-    });    
+        await waitFor(() => expect(monacoInstance.getValue().indexOf("\"allowAdd\": true")).toBe(position));
+
+    });
 
     test("Edit object then cancel the changes, but don't confirm discarding changes", async () => {
 
