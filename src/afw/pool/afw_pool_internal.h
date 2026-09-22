@@ -81,7 +81,10 @@ struct afw_pool_internal_self_s {
     const afw_thread_t *thread;
 
     /**
-     * @brief AFW parent. Child holds it; listed on first_child.
+     * @brief AFW parent. Listed on first_child.
+     *
+     * Linking does not keep the parent alive. get_reference on this
+     * child does, once per hold past the create reference.
      */
     afw_pool_internal_self_t *parent;
 
@@ -97,9 +100,17 @@ struct afw_pool_internal_self_s {
     /**
      * @brief Reference count.
      *
-     * Starts at 1 on create; get_reference / release.
+     * Starts at 1 on create; get_reference / release. The create
+     * reference does not pin the parent. Each get_reference does.
      */
     afw_integer_t reference_count;
+
+    /**
+     * @brief Parent references taken by get_reference on this child.
+     *
+     * Dropped one at a time by release. Not used for the create reference.
+     */
+    afw_integer_t parent_pins;
 
     /** @brief Outstanding malloc/calloc (minus free/destroy). */
     afw_size_t bytes_allocated;
@@ -292,6 +303,11 @@ void
 afw_pool_internal_link_as_child(
     afw_pool_internal_self_t *parent,
     afw_pool_internal_self_t *child,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_pin_parent(
+    afw_pool_internal_self_t *self,
     afw_xctx_t *xctx);
 
 void

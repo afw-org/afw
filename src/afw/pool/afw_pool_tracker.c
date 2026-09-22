@@ -474,17 +474,31 @@ impl_tracker_teardown_store(
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
 
+    afw_integer_t parent_pins;
+
     parent = self->parent;
     parent_destroying = parent && parent->destroying;
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Tracker has no parent", xctx);
     }
+    parent_pins = self->parent_pins;
+    self->parent_pins = 0;
     afw_pool_internal_unlink_from_parent(self, xctx);
     impl_tracker_return_leftovers(afw_pool_tracker_internal_as_tracker(self), xctx);
     afw_pool_internal_account_destroy(self, xctx);
     afw_pool_free_memory(&parent->pub, self, self_bytes, xctx);
+    /* self is back in the parent. A release at parent ref 1 frees it. */
     if (!parent_destroying) {
-        afw_pool_release(&parent->pub, xctx);
+        while (parent_pins > 0) {
+            afw_boolean_t parent_dies;
+
+            parent_pins--;
+            parent_dies = (parent->reference_count == 1);
+            afw_pool_release(&parent->pub, xctx);
+            if (parent_dies) {
+                break;
+            }
+        }
     }
 }
 

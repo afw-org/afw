@@ -237,8 +237,6 @@ impl_add_child(
     afw_pool_internal_self_t *parent,
     afw_pool_internal_self_t *child, afw_xctx_t *xctx)
 {
-    afw_pool_get_reference(&parent->pub, xctx);
-
     child->parent = parent;
     child->next_sibling = parent->first_child;
     parent->first_child = child;
@@ -271,6 +269,23 @@ impl_unlink_child(
         }
     }
 }
+
+/*
+ * Keep parent alive for the life of this child without consuming a
+ * child reference. Scope pools use this. A plain child does not.
+ */
+void
+afw_pool_internal_pin_parent(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    if (!self->parent || self->parent->destroying) {
+        return;
+    }
+    self->parent_pins++;
+    afw_pool_get_reference(&self->parent->pub, xctx);
+}
+
 
 void
 afw_pool_internal_link_as_child(
@@ -460,11 +475,40 @@ afw_pool_internal_release_common(
     afw_xctx_t *xctx,
     void (*teardown)(AFW_POOL_SELF_T *self, afw_xctx_t *xctx))
 {
+    /*
+     * Extra holds (past the create reference) pin the parent. Drop one
+     * pin per extra release. The release that hits 0 does not, because
+     * the create reference never pinned the parent.
+     */
+    if (self->reference_count > 1) {
+        afw_pool_internal_self_t *parent;
+        afw_boolean_t parent_dies;
+
+        self->reference_count--;
+        parent = self->parent;
+        if (self->parent_pins > 0 && parent && !parent->destroying) {
+            self->parent_pins--;
+            parent_dies = (parent->reference_count == 1);
+            afw_pool_release(&parent->pub, xctx);
+            if (parent_dies) {
+                return NULL;
+            }
+        }
+        return &self->pub;
+    }
+
     if (--(self->reference_count) == 0) {
         if (self->destroying) {
             afw_pool_internal_run_cleanups(self, xctx);
             return NULL;
         }
+        /*
+         * Unreferenced children did not pin this pool. Destroy them
+         * with it. A child that was get_referenced holds a pin, so it
+         * cannot still be linked here.
+         */
+        afw_pool_internal_mark_destroying(self);
+        afw_pool_internal_destroy_children(self, xctx);
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
@@ -488,6 +532,10 @@ afw_pool_internal_get_reference(
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
     self->reference_count++;
+    if (self->parent && !self->parent->destroying) {
+        self->parent_pins++;
+        afw_pool_get_reference(&self->parent->pub, xctx);
+    }
 }
 
 /*

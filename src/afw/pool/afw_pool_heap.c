@@ -1098,13 +1098,30 @@ impl_heap_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
+    afw_integer_t parent_pins;
 
     parent = self->parent;
     parent_destroying = parent && parent->destroying;
+    parent_pins = self->parent_pins;
+    self->parent_pins = 0;
     afw_pool_internal_unlink_from_parent(self, xctx);
     afw_pool_internal_account_destroy(self, xctx);
+    /*
+     * Drop pins before free_chunks. This struct and an xctx pool's
+     * xctx live in these chunks; a later parent release reads xctx.
+     * A release that finds the parent at 1 destroys it.
+     */
     if (parent && !parent_destroying) {
-        afw_pool_release(&parent->pub, xctx);
+        while (parent_pins > 0) {
+            afw_boolean_t parent_dies;
+
+            parent_pins--;
+            parent_dies = (parent->reference_count == 1);
+            afw_pool_release(&parent->pub, xctx);
+            if (parent_dies) {
+                break;
+            }
+        }
     }
     impl_heap_free_chunks(afw_pool_heap_internal_as_heap(self), xctx);
 }

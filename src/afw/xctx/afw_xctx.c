@@ -895,6 +895,9 @@ afw_xctx_scope_create(
             "afw_xctx_scope_create(): p required", xctx);
     }
     scope_p = afw_pool_scope_create(p, xctx);
+    /* Scope stays live without an extra pool reference, and keeps p alive. */
+    afw_pool_internal_pin_parent(
+        (afw_pool_internal_self_t *)scope_p, xctx);
     scope = afw_pool_calloc(scope_p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
