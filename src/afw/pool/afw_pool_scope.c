@@ -102,7 +102,7 @@ impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
      * extra releases leave it. Teardown releases that one hold.
      */
     self->parent_pins = 1;
-    impl_heap_teardown_store(self, xctx);
+    afw_pool_heap_teardown_store(self, xctx);
 }
 
 
@@ -180,13 +180,13 @@ impl_scope_garbage_collect(
 #define impl_afw_pool_get_reference impl_scope_afw_pool_get_reference
 #define impl_afw_pool_run_cleanups impl_scope_afw_pool_run_cleanups
 #define impl_afw_pool_destroy impl_scope_afw_pool_destroy
-#define impl_afw_pool_calloc impl_heap_afw_pool_calloc
-#define impl_afw_pool_malloc impl_heap_afw_pool_malloc
-#define impl_afw_pool_free_memory impl_heap_afw_pool_free_memory
+#define impl_afw_pool_calloc afw_pool_heap_calloc
+#define impl_afw_pool_malloc afw_pool_heap_malloc
+#define impl_afw_pool_free_memory afw_pool_heap_free_memory
 #define impl_afw_pool_free_memory_no_throw \
-    impl_heap_afw_pool_free_memory_no_throw
-#define impl_afw_pool_calloc_no_throw impl_heap_afw_pool_calloc_no_throw
-#define impl_afw_pool_malloc_no_throw impl_heap_afw_pool_malloc_no_throw
+    afw_pool_heap_free_memory_no_throw
+#define impl_afw_pool_calloc_no_throw afw_pool_heap_calloc_no_throw
+#define impl_afw_pool_malloc_no_throw afw_pool_heap_malloc_no_throw
 #define impl_afw_pool_garbage_collect impl_scope_garbage_collect
 #define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
 #define impl_afw_pool_deregister_cleanup afw_pool_internal_deregister_cleanup
@@ -266,7 +266,7 @@ impl_mt_scope_calloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = impl_heap_afw_pool_calloc(self, size, xctx);
+        result = afw_pool_heap_calloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -281,7 +281,7 @@ impl_mt_scope_malloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = impl_heap_afw_pool_malloc(self, size, xctx);
+        result = afw_pool_heap_malloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -296,7 +296,7 @@ impl_mt_scope_calloc_no_throw(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = impl_heap_afw_pool_calloc_no_throw(self, size, xctx);
+        result = afw_pool_heap_calloc_no_throw(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -311,7 +311,7 @@ impl_mt_scope_malloc_no_throw(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = impl_heap_afw_pool_malloc_no_throw(self, size, xctx);
+        result = afw_pool_heap_malloc_no_throw(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -325,7 +325,7 @@ impl_mt_scope_free_memory(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_heap_afw_pool_free_memory(self, address, size, xctx);
+        afw_pool_heap_free_memory(self, address, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -338,7 +338,7 @@ impl_mt_scope_free_memory_no_throw(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_heap_afw_pool_free_memory_no_throw(self, address, size, xctx);
+        afw_pool_heap_free_memory_no_throw(self, address, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -445,7 +445,7 @@ impl_scope_object_create(
     if (self_bytes < offsetof(afw_pool_scope_t, frame_slots)) {
         self_bytes = offsetof(afw_pool_scope_t, frame_slots);
     }
-    self = impl_heap_create(parent,
+    self = afw_pool_heap_create_self(parent,
         afw_pool_internal_is_multithreaded(parent)
             ? &impl_afw_pool_scope_multithreaded_inf
             : &impl_afw_pool_scope_inf,

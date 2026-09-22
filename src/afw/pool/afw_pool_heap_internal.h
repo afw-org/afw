@@ -227,7 +227,7 @@ afw_pool_heap_internal_release_delayed(
     afw_xctx_t *xctx);
 
 afw_pool_internal_self_t *
-impl_heap_create(
+afw_pool_heap_create_self(
     const afw_pool_t *afw_parent,
     const afw_pool_inf_t *inf,
     afw_boolean_t as_managed_p,
@@ -237,43 +237,43 @@ impl_heap_create(
     afw_xctx_t *xctx);
 
 void
-impl_heap_teardown_store(
+afw_pool_heap_teardown_store(
     afw_pool_internal_self_t *self,
     afw_xctx_t *xctx);
 
 void *
-impl_heap_afw_pool_calloc(
+afw_pool_heap_calloc(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void *
-impl_heap_afw_pool_malloc(
+afw_pool_heap_malloc(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void
-impl_heap_afw_pool_free_memory(
+afw_pool_heap_free_memory(
     afw_pool_internal_self_t *self,
     void *address,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void *
-impl_heap_afw_pool_calloc_no_throw(
+afw_pool_heap_calloc_no_throw(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void *
-impl_heap_afw_pool_malloc_no_throw(
+afw_pool_heap_malloc_no_throw(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void
-impl_heap_afw_pool_free_memory_no_throw(
+afw_pool_heap_free_memory_no_throw(
     afw_pool_internal_self_t *self,
     void *address,
     afw_size_t size,

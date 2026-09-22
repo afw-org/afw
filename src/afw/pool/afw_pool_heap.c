@@ -61,13 +61,13 @@ impl_heap_afw_pool_destroy(
     afw_xctx_t *xctx);
 #define impl_afw_pool_destroy impl_heap_afw_pool_destroy
 
-#define impl_afw_pool_calloc impl_heap_afw_pool_calloc
-#define impl_afw_pool_malloc impl_heap_afw_pool_malloc
-#define impl_afw_pool_free_memory impl_heap_afw_pool_free_memory
+#define impl_afw_pool_calloc afw_pool_heap_calloc
+#define impl_afw_pool_malloc afw_pool_heap_malloc
+#define impl_afw_pool_free_memory afw_pool_heap_free_memory
 #define impl_afw_pool_free_memory_no_throw \
-    impl_heap_afw_pool_free_memory_no_throw
-#define impl_afw_pool_calloc_no_throw impl_heap_afw_pool_calloc_no_throw
-#define impl_afw_pool_malloc_no_throw impl_heap_afw_pool_malloc_no_throw
+    afw_pool_heap_free_memory_no_throw
+#define impl_afw_pool_calloc_no_throw afw_pool_heap_calloc_no_throw
+#define impl_afw_pool_malloc_no_throw afw_pool_heap_malloc_no_throw
 
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -307,7 +307,7 @@ static afw_pool_internal_heap_self_t *impl_base_pool_self;
 
 /* Create skeleton heap struct. Parent is any AFW pool. */
 afw_pool_internal_self_t *
-impl_heap_create(
+afw_pool_heap_create_self(
     const afw_pool_t *afw_parent,
     const afw_pool_inf_t *inf,
     afw_boolean_t as_managed_p,
@@ -682,7 +682,7 @@ impl_heap_free_chunks(afw_pool_internal_heap_self_t *heap, afw_xctx_t *xctx)
 }
 
 void
-impl_heap_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+afw_pool_heap_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
@@ -723,7 +723,7 @@ impl_heap_afw_pool_release(
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    return afw_pool_internal_release_common(self, xctx, impl_heap_teardown_store);
+    return afw_pool_internal_release_common(self, xctx, afw_pool_heap_teardown_store);
 }
 
 
@@ -756,7 +756,7 @@ impl_heap_afw_pool_destroy(
         afw_pool_internal_mark_destroying(self);
     }
     afw_pool_internal_destroy_children(self, xctx);
-    impl_heap_teardown_store(self, xctx);
+    afw_pool_heap_teardown_store(self, xctx);
 }
 
 static void *
@@ -805,7 +805,7 @@ impl_heap_malloc_internal(
  * Implementation of method calloc for interface afw_pool.
  */
 void *
-impl_heap_afw_pool_calloc(
+afw_pool_heap_calloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -821,7 +821,7 @@ impl_heap_afw_pool_calloc(
  * Implementation of method malloc for interface afw_pool.
  */
 void *
-impl_heap_afw_pool_malloc(
+afw_pool_heap_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -830,7 +830,7 @@ impl_heap_afw_pool_malloc(
 }
 
 void *
-impl_heap_afw_pool_malloc_no_throw(
+afw_pool_heap_malloc_no_throw(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -839,7 +839,7 @@ impl_heap_afw_pool_malloc_no_throw(
 }
 
 void *
-impl_heap_afw_pool_calloc_no_throw(
+afw_pool_heap_calloc_no_throw(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -894,7 +894,7 @@ impl_heap_free_internal(
 }
 
 void
-impl_heap_afw_pool_free_memory(
+afw_pool_heap_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
@@ -904,7 +904,7 @@ impl_heap_afw_pool_free_memory(
 }
 
 void
-impl_heap_afw_pool_free_memory_no_throw(
+afw_pool_heap_free_memory_no_throw(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
@@ -982,7 +982,7 @@ impl_mt_afw_pool_calloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = impl_heap_afw_pool_calloc(self, size, xctx);
+        result = afw_pool_heap_calloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -997,7 +997,7 @@ impl_mt_afw_pool_malloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = impl_heap_afw_pool_malloc(self, size, xctx);
+        result = afw_pool_heap_malloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -1017,7 +1017,7 @@ impl_mt_afw_pool_calloc_no_throw(
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
-    result = impl_heap_afw_pool_calloc_no_throw(self, size, xctx);
+    result = afw_pool_heap_calloc_no_throw(self, size, xctx);
     if (region) {
         afw_memory_region_unlock(region, xctx);
     }
@@ -1037,7 +1037,7 @@ impl_mt_afw_pool_malloc_no_throw(
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
-    result = impl_heap_afw_pool_malloc_no_throw(self, size, xctx);
+    result = afw_pool_heap_malloc_no_throw(self, size, xctx);
     if (region) {
         afw_memory_region_unlock(region, xctx);
     }
@@ -1052,7 +1052,7 @@ impl_mt_afw_pool_free_memory(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_heap_afw_pool_free_memory(self, address, size, xctx);
+        afw_pool_heap_free_memory(self, address, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -1070,7 +1070,7 @@ impl_mt_afw_pool_free_memory_no_throw(
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
-    impl_heap_afw_pool_free_memory_no_throw(self, address, size, xctx);
+    afw_pool_heap_free_memory_no_throw(self, address, size, xctx);
     if (region) {
         afw_memory_region_unlock(region, xctx);
     }
@@ -1182,7 +1182,7 @@ afw_pool_heap_internal_create(
     inf = multithreaded
         ? &impl_afw_pool_heap_multithreaded_inf
         : &impl_afw_pool_inf;
-    self = impl_heap_create(parent, inf, as_managed_p, chunk_min,
+    self = afw_pool_heap_create_self(parent, inf, as_managed_p, chunk_min,
         sizeof(afw_pool_internal_self_with_free_memory_head_t),
         NULL, xctx);
     return &self->pub;
@@ -1206,7 +1206,7 @@ afw_pool_heap_internal_create_st_for_thread(
         AFW_THROW_ERROR_Z(general,
             "Heap requires thread->memory_region", xctx);
     }
-    self = impl_heap_create(parent, &impl_afw_pool_inf, as_managed_p,
+    self = afw_pool_heap_create_self(parent, &impl_afw_pool_inf, as_managed_p,
         chunk_min,
         sizeof(afw_pool_internal_self_with_free_memory_head_t),
         thread, xctx);
