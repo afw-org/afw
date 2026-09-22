@@ -1038,12 +1038,12 @@ typedef struct afw_value_symbol_reference_s
 afw_value_symbol_reference_t;
 
 /**
- * @brief Vector of `const afw_xctx_scope_t *` (`xctx->scope_stack`).
+ * @brief Vector of `const afw_pool_scope_t *` (`xctx->scope_stack`).
  *
- * See afw_xctx.h.
+ * Struct is in afw_pool_scope_internal.h. Core only.
  */
-typedef struct afw_xctx_scope_p_vector_s
-afw_xctx_scope_p_vector_t;
+typedef struct afw_pool_scope_p_vector_s
+afw_pool_scope_p_vector_t;
 
 /**
  * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.
@@ -1055,12 +1055,14 @@ typedef struct afw_xctx_s
 afw_xctx_t;
 
 /**
- * @brief One evaluation scope frame on an xctx (`afw_xctx_scope_t`).
+ * @brief One evaluation scope frame (`afw_pool_scope_t`).
  *
- * See afw_xctx.h; scopes often own a subpool for automatic cleanup.
+ * The scope object is its pool. Struct, macros, and functions are in
+ * afw_pool_scope_internal.h. Core only. Public headers keep this
+ * incomplete typedef so a value may hold the pointer.
  */
-typedef struct afw_xctx_scope_s
-afw_xctx_scope_t;
+typedef struct afw_pool_scope_s
+afw_pool_scope_t;
 
 /**
  * Enum typedef for afw_xctx_statement_flow_t.

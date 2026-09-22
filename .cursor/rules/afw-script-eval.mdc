@@ -28,7 +28,7 @@ afw_compile_to_value*
 ## Execute
 
 - Lazy: `inf->optional_evaluate` (`afw_value_evaluate` macro in `afw_value.h`).
-- Scopes: `afw_xctx_scope_*` on `scope_stack`. Frame tree is `parent_scope_block` / `scope_depth` (not syntax `parent_block` / `depth`). Slots by `scope_depth` + `symbol.index`. When `{ }` has a frame, statement eval `p` is `scope->p` ([PR #287](https://github.com/afw-org/afw/pull/287)).
+- Scopes: `afw_pool_scope_*` on `scope_stack`. Frame tree is `parent_scope_block` / `scope_depth` (not syntax `parent_block` / `depth`). Slots by `scope_depth` + `symbol.index`. When `{ }` has a frame, statement eval `p` is `scope->p` ([PR #287](https://github.com/afw-org/afw/pull/287)).
 - Control flow: `afw_xctx_statement_flow_*` (sequential / break / continue / return / rethrow).
 - `last_result` on each scope; `script_result` is the isolate at deactivate unless the scope was cloned ([PR #306](https://github.com/afw-org/afw/pull/306)). Nested `{ }` is void (parent extra-holds). `return()` extra-holds on current. Nested eval save/restore `script_result`. `for`/`while`/`try` are C-void except `return`/`rethrow`. Every remaining `{ }` is a frame. Compile omits empty `{ }` (no names, no statements). `{ stmt }` stays a frame so temps die with it.
 - Calls: `afw_value_call_create` specializes built-in vs script vs closure (`value/afw_value_call.c`).

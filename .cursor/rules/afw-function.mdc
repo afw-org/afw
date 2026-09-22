@@ -34,7 +34,7 @@ When the result must be an **assignable** that lives until the current scope end
 | Language constructors `array()` / `create_array()` | `create_script_wrapper` in `x->p`. `[i]` compiles to `array()`. Do **not** `create_managed` here (`array_rebind` climbed when we did). |
 | `pop` / `shift` | Return the occupant (or undefined). Do **not** extra-hold the occupant. |
 
-`afw_xctx_scope_get_assignable_for_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_xctx_scope_set_last_result_for_lifetime`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md).
+`afw_pool_scope_get_assignable_for_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_pool_scope_set_last_result_for_lifetime`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md).
 
 ## Optional defaults and returned mutables
 

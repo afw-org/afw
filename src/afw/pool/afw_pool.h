@@ -228,20 +228,17 @@ afw_pool_tracker_create(
 
 
 /**
- * @brief Create a scope pool (evaluation `{ }`).
+ * @brief Allocate a scope pool with no block.
  * @param parent heap or tracker (or another scope).
  * @param xctx of caller.
- * @return ST heap, compile-sized (4k) chunks, inherits managed_p.
+ * @return The scope pool (`afw_pool_scope_t` is that pool).
  *
- * Last-release is delayed while error_processing_count > 0 so CATCH
- * can still use values from this `{ }`. ENDTRY calls
- * afw_pool_heap_internal_release_delayed().
- *
- * Inherits managed_p. Do not create a `{ }` with *_as_managed_p:
- * managed values dest'd at that frame would die with the `{ }`.
+ * A `{ }` frame is afw_pool_scope_create(). This entry is the pool
+ * alone: no symbols, reference count 0. Last-release is delayed
+ * while error_processing_count > 0. Inherits managed_p.
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_scope_create(
+afw_pool_scope_allocate(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 

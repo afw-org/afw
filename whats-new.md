@@ -48,8 +48,8 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
 | `create_managed` | Frame in **`p->managed_p`** (pass the evaluation `p`). |
 | `get_assignable` | Isolate into a slot (`value, p, xctx`). Promote/clone uses `p->managed_p`. |
-| `afw_xctx_scope_get_assignable_for_scope_lifetime` | `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
-| `afw_xctx_scope_get_assignable_for_p_lifetime` | Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
+| `afw_pool_scope_get_assignable_for_scope_lifetime` | `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
+| `afw_pool_scope_get_assignable_for_p_lifetime` | Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, `create_managed`, `get_assignable` / `slot_store`, or extra allocation (iterator / meta). **Not** on value getters or `get_reference`. |
 
@@ -78,7 +78,7 @@ Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / 
 | `afw_pool_create(heap)` as a nested heap; `afw_pool_create_xctx_p` | **`afw_pool_create`** is a **heap** like the parent (ST or MT). Tracker: **`afw_pool_tracker_create`**. ST heap: **`afw_pool_heap_create(parent, chunk_min, xctx)`** (`0` = 64k). Job/MT: **`afw_pool_multithread_create(env->p)`**. Evaluation `{ }` is **`afw_pool_scope_create`**. |
 | `afw_byte_t` | **`afw_octet_t`**. `afw_utf8_octet_t` stays `char`. |
 | `error->backtrace` as a pool utf8 / `afw_os_backtrace` returning a buffer | **`const afw_value_hexBinary_t *`** (NULL if none). Captured only when this xctx has **`response:error:backtrace`** on (not a memory error). **`afw_error_release_backtrace`**. Error object property is still a **`ks`** string of those octets. A request can set it with **`_flags_`** / **`flag_set`**. The `afw` command defaults **`response:error`** on. |
-| `afw_xctx_scope_get_assignable_for_lifetime` | **`get_assignable_for_scope_lifetime`** (current `{ }`). Script return uses **`get_assignable_for_p_lifetime`** on the caller. |
+| `afw_pool_scope_get_assignable_for_lifetime` | **`get_assignable_for_scope_lifetime`** (current `{ }`). Script return uses **`get_assignable_for_p_lifetime`** on the caller. |
 | `afw_pool_register_cleanup_before` | **`afw_pool_register_cleanup`**. Callbacks must not throw uncaught (that stops the rest of the list). |
 | `afw_pool_destroy` that ran cleanup callbacks | **`destroy` is storage-only** (must not fail). **`afw_pool_run_cleanups`** first if callbacks must run (`xctx_release` does both). Last-`release` (RC 0) still runs callbacks then teardown. |
 

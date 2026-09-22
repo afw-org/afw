@@ -560,7 +560,7 @@ afw_value_integer_min;
  * True for C NULL, afw_value_undefined, or Adaptive null. Script nullish
  * coalescing / is_nullish and type-check nullish assignability use this idea.
  * Does **not** mean “variable name is unbound” — that is an xctx/symbol
- * question (see afw_xctx_scope_symbol_exists_by_name).
+ * question (see afw_pool_scope_symbol_exists_by_name).
  */
 #define afw_value_is_nullish(_A_VALUE) \
 ( \
@@ -1789,7 +1789,7 @@ afw_value_common_create(
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create(
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_lexical_scope,
+    const afw_pool_scope_t *enclosing_lexical_scope,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -1897,7 +1897,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_lexical_scope,
+    const afw_pool_scope_t *enclosing_lexical_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,

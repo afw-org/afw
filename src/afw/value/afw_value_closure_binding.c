@@ -32,7 +32,7 @@
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create(
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_lexical_scope,
+    const afw_pool_scope_t *enclosing_lexical_scope,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -75,14 +75,14 @@ afw_value_closure_binding_create_if_needed(
     afw_xctx_t *xctx)
 {
     const afw_value_script_function_definition_t *function;
-    const afw_xctx_scope_t *scope;
+    const afw_pool_scope_t *scope;
 
     if (!value || !afw_value_is_script_function_definition(value)) {
         return value;
     }
 
     function = (const afw_value_script_function_definition_t *)value;
-    scope = afw_xctx_scope_current(xctx);
+    scope = afw_pool_scope_current(xctx);
     if (!scope || !scope->block) {
         return value;
     }
@@ -92,7 +92,7 @@ afw_value_closure_binding_create_if_needed(
      * block we happen to be in (e.g. `if { c0 = tick }` where tick was
      * created in the enclosing body). Do not hoist names.
      */
-    scope = afw_xctx_scope_find_for_block(
+    scope = afw_pool_scope_find_for_block(
         function->enclosing_block, scope, xctx);
     if (!scope) {
         AFW_THROW_ERROR_Z(general,
@@ -115,7 +115,7 @@ impl_afw_value_optional_release(
     }
     if (self->reference_count == 1) {
         self->reference_count = 0;
-        afw_xctx_scope_release(self->enclosing_lexical_scope, xctx);
+        afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
         afw_pool_free_memory_type(self->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }
@@ -132,7 +132,7 @@ impl_afw_value_get_reference(
 {
     self->reference_count++;
     if (self->reference_count == 1) {
-        afw_xctx_scope_get_reference(self->enclosing_lexical_scope, xctx);
+        afw_pool_scope_get_reference(self->enclosing_lexical_scope, xctx);
     }
     return &self->pub;
 }

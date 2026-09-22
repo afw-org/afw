@@ -79,7 +79,7 @@
  * afw_pool_heap_create_as_managed_p(),
  * afw_pool_multithread_create(),
  * afw_pool_multithread_create_as_managed_p(),
- * afw_pool_tracker_create(), afw_pool_scope_create(),
+ * afw_pool_tracker_create(), afw_pool_scope_allocate(),
  * afw_pool_calloc(), afw_pool_malloc(),
  * afw_pool_calloc_no_throw(), afw_pool_malloc_no_throw(),
  * afw_pool_internal_calloc_unhandled(), afw_pool_internal_malloc_unhandled(),

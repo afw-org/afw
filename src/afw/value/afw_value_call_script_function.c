@@ -43,7 +43,7 @@ const afw_value_t *
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_lexical_scope,
+    const afw_pool_scope_t *enclosing_lexical_scope,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -66,7 +66,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_lexical_scope,
+    const afw_pool_scope_t *enclosing_lexical_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,
@@ -130,9 +130,9 @@ impl_afw_value_optional_evaluate(
     const afw_value_script_function_definition_t *script;
     const afw_value_t *result;
     const afw_value_t *saved_script_result;
-    const afw_xctx_scope_t *enclosing_lexical_scope;
-    const afw_xctx_scope_t *parameter_scope;
-    const afw_xctx_scope_t *caller_scope;
+    const afw_pool_scope_t *enclosing_lexical_scope;
+    const afw_pool_scope_t *parameter_scope;
+    const afw_pool_scope_t *caller_scope;
     const afw_value_t *value;
     const afw_value_script_function_parameter_t *const *params;
     const afw_value_t *const *arg;
@@ -145,7 +145,7 @@ impl_afw_value_optional_evaluate(
     result = NULL;
     saved_script_result = xctx->script_result;
     xctx->script_result = afw_value_undefined;
-    caller_scope = afw_xctx_scope_current(xctx);
+    caller_scope = afw_pool_scope_current(xctx);
     parameter_scope = NULL;
     script = self->script_function_definition;
 
@@ -164,7 +164,7 @@ impl_afw_value_optional_evaluate(
      * caller chain. Missing is still "not on the stack".
      */
     else {
-        enclosing_lexical_scope = afw_xctx_scope_find_for_block(
+        enclosing_lexical_scope = afw_pool_scope_find_for_block(
             script->enclosing_block, caller_scope, xctx);
         if (!enclosing_lexical_scope) {
             AFW_THROW_ERROR_Z(general,
@@ -180,7 +180,7 @@ impl_afw_value_optional_evaluate(
         if (script->signature && script->signature->block) {
 
             /* Make a scope for parameters. */
-            parameter_scope = afw_xctx_scope_create(
+            parameter_scope = afw_pool_scope_create(
                 script->signature->block, enclosing_lexical_scope, p, xctx);
 
             /*
@@ -263,7 +263,7 @@ impl_afw_value_optional_evaluate(
                 }
 
                 /* Pass 2: activate, defaults, store / Pattern (0-based i). */
-                afw_xctx_scope_activate(parameter_scope, xctx);
+                afw_pool_scope_activate(parameter_scope, xctx);
 
                 for (i = 0, params = script->parameters;
                     i < script->count;
@@ -306,7 +306,7 @@ impl_afw_value_optional_evaluate(
                     else if ((*params)->symbol) {
                         /* NULL / missing optional → permanent undefined singleton. */
                         afw_value_slot_store(
-                            afw_xctx_scope_symbol_get_value_address(
+                            afw_pool_scope_symbol_get_value_address(
                                 (*params)->symbol, parameter_scope, xctx),
                             value, parameter_scope->p, xctx);
                     }
@@ -315,7 +315,7 @@ impl_afw_value_optional_evaluate(
 
             /* If named function, set its symbol in parameter scope. */
             if (script->signature->function_name_symbol) {
-                afw_xctx_scope_symbol_set_value(
+                afw_pool_scope_symbol_set_value(
                     script->signature->function_name_symbol,
                     (const afw_value_t *)script, xctx);
             }
@@ -323,7 +323,7 @@ impl_afw_value_optional_evaluate(
 
         /* If no parameters, just activate enclosing scope. */
         else {
-            afw_xctx_scope_activate(enclosing_lexical_scope, xctx);
+            afw_pool_scope_activate(enclosing_lexical_scope, xctx);
         }
 
         /* Brace body: same running-result rule as a script (issue #62). */
@@ -343,7 +343,7 @@ impl_afw_value_optional_evaluate(
         }
         else {
             result = afw_value_evaluate(script->body, p, xctx);
-            afw_xctx_scope_set_last_result(result, xctx);
+            afw_pool_scope_set_last_result(result, xctx);
             if (result && !afw_value_is_void(result)) {
                 afw_xctx_script_result_set(result, xctx);
                 result = afw_xctx_script_result_get(xctx);
@@ -390,11 +390,11 @@ impl_afw_value_optional_evaluate(
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
-            const afw_xctx_scope_t *caller;
+            const afw_pool_scope_t *caller;
 
-            caller = afw_xctx_scope_of_caller(xctx);
+            caller = afw_pool_scope_of_caller(xctx);
             if (caller) {
-                result = afw_xctx_scope_get_assignable_for_p_lifetime(
+                result = afw_pool_scope_get_assignable_for_p_lifetime(
                     result, caller, xctx);
             }
             else {
@@ -408,10 +408,10 @@ impl_afw_value_optional_evaluate(
         /* Creator release; deactivate first if this frame is current. */
         if (parameter_scope)
         {
-            if (afw_xctx_scope_current(xctx) == parameter_scope) {
-                afw_xctx_scope_deactivate(parameter_scope, xctx);
+            if (afw_pool_scope_current(xctx) == parameter_scope) {
+                afw_pool_scope_deactivate(parameter_scope, xctx);
             }
-            afw_xctx_scope_release(parameter_scope, xctx);
+            afw_pool_scope_release(parameter_scope, xctx);
         }
 
         /*
@@ -419,9 +419,9 @@ impl_afw_value_optional_evaluate(
          * — that last belongs to the defining frame, not this call
          * (extra RC on let f = function(){} in a loop).
          */
-        else if (afw_xctx_scope_current(xctx) == enclosing_lexical_scope) {
+        else if (afw_pool_scope_current(xctx) == enclosing_lexical_scope) {
             afw_vector_pop(xctx->scope_stack, xctx);
-            afw_xctx_scope_release(enclosing_lexical_scope, xctx);
+            afw_pool_scope_release(enclosing_lexical_scope, xctx);
         }
 
         afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
@@ -438,7 +438,7 @@ impl_afw_value_optional_evaluate(
     AFW_ENDTRY;
 
     /* Make sure we're back in caller's scope. */
-    if (caller_scope != afw_xctx_scope_current(xctx)) {
+    if (caller_scope != afw_pool_scope_current(xctx)) {
         AFW_THROW_ERROR_Z(general,
             "Caller scope not current on return from function",
             xctx);

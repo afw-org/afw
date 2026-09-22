@@ -230,7 +230,7 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 8. **(draft / historical)** Short-lived expression/script/model work may use a single outer pool for the whole unit; long-running loops/recursion need scope subpools + managed escape.
 9. **(draft / pattern)** Some containers manage lifetime by holding a reference on their own pool/subpool — still valid under target for managed containers.
 10. **(target)** Assign: value methods hide pool/object nastiness; callers use clone_or_reference / release only.
-11. **(target / phase 2)** `afw_xctx_scope_release` final teardown: walk `symbol_values[]` + release each, then subpool. **Today:** pool-only. `afw_xctx.h` evaluation_result comments partly aspirational.
+11. **(target / phase 2)** `afw_pool_scope_release` final teardown: walk `symbol_values[]` + release each, then subpool. **Today:** pool-only. `afw_xctx.h` evaluation_result comments partly aspirational.
 12. **(target)** `clone_or_reference` never returns unmanaged.
 13. **(target)** Adaptive values immutable as values; instance behind object/array may be mutable and shared.
 
@@ -254,7 +254,7 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 | 2026-07-23 | Prefer **all** value-kind lifetime nastiness in `clone_or_reference` / `optional_release` (not in every container) | Includes non–data-type values; many still have NULL methods today |
 | 2026-07-23 | Prefer **ship new paths early** when they do not break existing behavior; save big-bang switches for scope/assign | Object/array identity work can land incrementally |
 | 2026-07-23 | Highest break risk: **scope lifetime + assign** (e.g. `afw_function_compiler_script.c`), not most object/array plumbing | xctx/clone wiring left conservative on purpose during large #2/scope work |
-| 2026-07-24 | **Scope teardown intent:** on final `afw_xctx_scope_release`, release **each frame variable** (`optional_release` on `symbol_values[]`) then subpool — not pool-only forever | Design target (phase 2); not in mainline today; abandoned branch may have had it |
+| 2026-07-24 | **Scope teardown intent:** on final `afw_pool_scope_release`, release **each frame variable** (`optional_release` on `symbol_values[]`) then subpool — not pool-only forever | Design target (phase 2); not in mainline today; abandoned branch may have had it |
 | 2026-07-24 | **Target model: `clone_or_reference` never returns unmanaged** — always permanent or managed | Core invariant; see **Value Lifetime Model (target)** |
 | 2026-07-24 | **Stored slots** (scope, managed property/element, durable eval result) hold only permanent or managed values | Unmanaged = pool temporary / pre-promotion |
 | 2026-07-24 | Unmanaged scalar escape → **managed clone** in dest pool | |
@@ -1280,7 +1280,7 @@ Several different “managed by pool” stories coexist; **validate case by case
 
 | Pattern | What dies together | Typical mechanism | Examples |
 |---------|-------------------|-------------------|----------|
-| **Scope subpool** | Scope-local work for one activation | Always **subpool** of `xctx->p`; release when scope RC → 0 | `afw_xctx_scope_create` |
+| **Scope subpool** | Scope-local work for one activation | Always **subpool** of `xctx->p`; release when scope RC → 0 | `afw_pool_scope_create` |
 | **Unit / component full pool** | Whole unit’s storage at once | Own **full** pool (or managed lifetime via **pool get_reference/release** instead of a separate counter) | Adapters (`env->p` child); **compiled_value**’s `p` holding AST/literals; other “create a pool for this thing, free the whole thing” call sites during eval |
 | **Compile temps** | Only while compiling | Separate temp/shared pool released when compile finishes; durable graph stays on the unit pool | Parser/shared `temp_p` vs `compiled_value->p` |
 | **Container with escaping parts** | Container ≠ all property/element values | Container may use own subpool for structure; **values** may need **optional_release / clone_or_reference** so they can **outlive** the object/array | Memory object properties; array elements shared across scopes |
@@ -1350,7 +1350,7 @@ Brainstorm while triage **P3** (non-adjacent free-list splice) was in context. *
 ```text
 compiled unit evaluate
   xctx->p          = regular pool (request-session / thread / call pool)
-  each scope       = afw_pool_create_subpool(xctx->p)   # see afw_xctx_scope_create
+  each scope       = afw_pool_create_subpool(xctx->p)   # see afw_pool_scope_create
   scope struct + symbol_values[] allocated in that subpool
   value storage may live in parent or be managed elsewhere;
   when scope ends → afw_pool_release(scope->p) frees scope-local tracking
@@ -1360,8 +1360,8 @@ compiled unit evaluate
 
 Comment in subpool destroy explicitly mentions **scopes + variable assignment** reparenting children with remaining refs.
 
-**Scope code today (`afw_xctx_scope_create`):** always `p = afw_pool_create_subpool(xctx->p)`; scope lives in that subpool; release when refcount ≤ 1.  
-**`afw_xctx_scope_clone`:** copies `symbol_values` pointers with **`@fixme change these to value references when that's done`** — open #2 wiring.
+**Scope code today (`afw_pool_scope_create`):** always `p = afw_pool_create_subpool(xctx->p)`; scope lives in that subpool; release when refcount ≤ 1.  
+**`afw_pool_scope_clone`:** copies `symbol_values` pointers with **`@fixme change these to value references when that's done`** — open #2 wiring.
 
 #### Script assign path — `afw_function_compiler_script.c`
 
@@ -1370,7 +1370,7 @@ Compiled script nodes often evaluate through **compiler_script** execute helpers
 **`impl_assign` / `impl_assign_value`** (central for “value moves into a variable”):
 
 - Comment: call **before** full evaluate so clone need can be decided; objects/arrays may need clone if they could be mutated.
-- **Today:** if object or array → **`afw_value_clone(value, p, xctx)`**; else → **`afw_value_evaluate(value, p, xctx)`**; then write into assignment target / `afw_xctx_scope_symbol_set_value`.
+- **Today:** if object or array → **`afw_value_clone(value, p, xctx)`**; else → **`afw_value_evaluate(value, p, xctx)`**; then write into assignment target / `afw_pool_scope_symbol_set_value`.
 - **Intended (remembered direction):** once managed object/array + data-type value infs are solid, use **`clone_or_reference()`** on the value so:
   - permanent/unmanaged → as-is or clone into pool as needed  
   - managed containers → **get_reference** (RC) instead of always deep clone  
@@ -1943,7 +1943,7 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 - Subpools added for **long-running scripts**: per-scope free without destroying whole xctx pool; bytes in **parent** pool, subpool tracks and returns them.
 - Short expressions/scripts/model runs can still use one outer pool for the whole unit.
 - Cross-scope assign: scalars clone; objects/arrays need **RC** — managed containers + value `clone_or_reference`.
-- `afw_xctx_scope_create` uses subpool of `xctx->p`; scope_clone has FIXME for value references.
+- `afw_pool_scope_create` uses subpool of `xctx->p`; scope_clone has FIXME for value references.
 - Script **`impl_assign`** currently `afw_value_clone` for object/array; intended path **`clone_or_reference`** after managed object/array + data-type value wiring.
 - Part of #2 not fully implemented yet.
 

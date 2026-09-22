@@ -707,7 +707,7 @@ afw_function_execute_variable_is_not_null(
 
     /* Unqualified: symbol must be bound; empty slot is undefined, not null. */
     if (qualifier.len == 0) {
-        value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+        value_address = afw_pool_scope_symbol_get_value_address_by_name(
             &name, x->xctx);
         if (!value_address) {
             return afw_boolean_v_false;
@@ -862,7 +862,7 @@ afw_function_execute_variable_exists(
 
     /* Unqualified: symbol present, even if slot is still C NULL. */
     if (qualifier.len == 0) {
-        return afw_xctx_scope_symbol_exists_by_name(&name, x->xctx)
+        return afw_pool_scope_symbol_exists_by_name(&name, x->xctx)
             ? afw_boolean_v_true
             : afw_boolean_v_false;
     }
@@ -933,7 +933,7 @@ afw_function_execute_variable_get(
     value = NULL;
 
     if (qualifier.len == 0) {
-        value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+        value_address = afw_pool_scope_symbol_get_value_address_by_name(
             &name, x->xctx);
         if (value_address) {
             bound = true;

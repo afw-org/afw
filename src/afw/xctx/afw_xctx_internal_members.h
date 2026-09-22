@@ -44,10 +44,10 @@
 
     /**
      * The execution context (xctx) runtime scope stack. Entries are
-     * const afw_xctx_scope_t * (NULL sentinel around compiled_value
+     * const afw_pool_scope_t * (NULL sentinel around compiled_value
      * evaluate).
      */
-    afw_xctx_scope_p_vector_t *scope_stack;
+    afw_pool_scope_p_vector_t *scope_stack;
 
     /**
      * The execution context (xctx) qualifier stack. Entries are
