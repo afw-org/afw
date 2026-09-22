@@ -336,11 +336,12 @@ afw_adapter_impl_create_cede_p(
         afw_object_get_property_as_boolean_internal(
             properties, afw_v_checkIndividualObjectReadAccess, &found, xctx);
 
-    /** @fixme Reuse if already exists or reuse correct pool. */
-    /* Create runtime metrics object and set in properties. */
+    /* Metrics object lives in the adapter pool. Stop removes it from
+     * the runtime table before that pool is released.
+     */
     impl->metrics_object = afw_runtime_object_create_indirect(
         afw_s__AdaptiveAdapterMetrics_,
-        &adapter->adapter_id, impl, xctx->env->p, xctx);
+        &adapter->adapter_id, impl, p, xctx);
 
     /* If this is layout adapter id, allow layout object type. */
     if (xctx->env->layout_adapter_id &&

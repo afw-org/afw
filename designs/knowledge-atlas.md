@@ -223,11 +223,11 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Adapters as normalized object stores; model maps; request handlers; auth; retrieve limits (#49). Model `on*` compile is cached on the **location** adapter (`isModelLocation`); model-adapter restart alone does not reload. A stoppable `_AdaptiveServiceConf_` generation keeps the inner conf in its own pool parented on `env->p` (`conf->p` is what the adapter or log receives). Permanent `afw.conf` services stay in `env->p`. An object view borrows its instance until `get_reference`. |
+| **Settled map** | Adapters as normalized object stores; model maps; request handlers; auth; retrieve limits (#49). Model `on*` compile is cached on the **location** adapter (`isModelLocation`); model-adapter restart alone does not reload. A stoppable `_AdaptiveServiceConf_` generation keeps the inner conf in its own pool parented on `env->p` (`conf->p` is what the adapter or log receives). Permanent `afw.conf` services stay in `env->p`. An object view borrows its instance until `get_reference`. `_AdaptiveAdapterMetrics_` is created in the adapter pool. `afw_runtime_object_release` does not free it; stop removes it from the runtime table before that pool is released. |
 | **Day rules** | `afw-core-services`, `afw-model-adapter`, `afw-adapter-index` |
 | **Deep pads** | Issue/theme pads as needed; model optional `mappedAdapterId` (#109) in model rule |
 | **Probe** | Adapter CRUD via tests; `service_start/stop/restart/get`; lifecycle leaf under `tests-extra` |
-| **Open** | Index create/txn residuals (#54/#57); more adapter types; RQL paging if we want it (#49); catalog `composite`/`normalize` cost **[#331](https://github.com/afw-org/afw/issues/331)** (`check_object_errors.as` / `object_options.as`) |
+| **Open** | Index create/txn residuals (#54/#57); more adapter types; RQL paging if we want it (#49); catalog `composite`/`normalize` cost **[#331](https://github.com/afw-org/afw/issues/331)** (`check_object_errors.as` / `object_options.as`). **[#366](https://github.com/afw-org/afw/issues/366)** sequential model swap still adds 3216 bytes of `poolBytesInUse` per swap after the metrics object moved to the adapter pool. RSS still steps after the per-thread memory-region free lists fill (8×64 KiB, `free()` does not shrink RSS). Issue body is the record. Do not put that swap in the firehose. |
 | **Gap** | No dedicated “adapter write path” playbook — use core-services + tests |
 
 ---
