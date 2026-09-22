@@ -532,7 +532,6 @@ impl_start_cb(
         service->service_id.len = service_id->len;
         service->service_id.s = afw_memory_dup(
             service_id->s, service_id->len, p, xctx);
-        service_id = &service->service_id;
         service->has_service_conf = true;
         service->conf_source_location = afw_utf8_printf(
             p, xctx, "%ku/conf",
@@ -558,7 +557,9 @@ impl_start_cb(
     AFW_CATCH_UNHANDLED {
         afw_error_write_log(afw_log_priority_err, AFW_ERROR_THROWN, xctx);
         AFW_LOG_FZ(err, xctx, "Service '%ku' failed to start.",
-                service_id);
+            (service && service->service_id.s)
+                ? &service->service_id
+                : service_id);
         if (service && service->service_id.s &&
             afw_environment_get_service(&service->service_id, xctx) == service)
         {
@@ -1461,7 +1462,6 @@ impl_restart_get_cb(
         service->service_id.len = service_id->len;
         service->service_id.s = afw_memory_dup(
             service_id->s, service_id->len, p, xctx);
-        service_id = &service->service_id;
         service->has_service_conf = true;
         service->conf_source_location = afw_utf8_printf(
             p, xctx, "%ku/conf",
@@ -1487,7 +1487,9 @@ impl_restart_get_cb(
     AFW_CATCH_UNHANDLED {
         afw_error_write_log(afw_log_priority_err, AFW_ERROR_THROWN, xctx);
         AFW_LOG_FZ(err, xctx, "Service '%ku' failed to start.",
-                service_id);
+            (service && service->service_id.s)
+                ? &service->service_id
+                : service_id);
         if (service && service->service_id.s &&
             afw_environment_get_service(&service->service_id, xctx) == service)
         {
