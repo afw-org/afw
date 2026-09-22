@@ -36,6 +36,17 @@ from _afwdev.test.orchestrated.fcgi_client import fcgi_request
 from _afwdev.test.orchestrated.hosts import afwfcgi as afwfcgi_host
 from _afwdev.test.orchestrated.hosts import local as local_host
 from _afwdev.test.orchestrated import x_afw_demux
+from _afwdev.test import failure_log
+
+
+def _journal_failure(options, name, err, ctx):
+    failure_log.record(
+        options,
+        name=name,
+        message=error_message(err) or str(err),
+        err=err,
+        stderr_path=(ctx or {}).get("log_path"),
+    )
 
 
 def _capture_goldens_enabled(options):
@@ -125,6 +136,7 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
             "socket_path": socket_path,
             "under_valgrind": under_valgrind,
             "conf_path": conf_path if os.path.isfile(conf_path) else None,
+            "log_path": (handle or {}).get("log_path"),
         }
 
         for phase in schedule:
@@ -298,6 +310,7 @@ def _run_named_test(item, work_dir, source_leaf, ctx, timeout,
                 cause=e,
             )
         debug_parts.append(error_message(wrapped))
+        _journal_failure(options, name, wrapped, ctx)
         if fail_fast:
             raise wrapped
         return wrapped
@@ -318,6 +331,7 @@ def _run_parallel(items, n, work_dir, source_leaf, ctx, timeout,
                            doc_feed, debug_parts, options)
             return item["name"], True, round((time.time() - t0) * 1000), None
         except Exception as e:
+            _journal_failure(options, item.get("name"), e, ctx)
             return item["name"], False, round((time.time() - t0) * 1000), e
     with ThreadPoolExecutor(max_workers=n) as ex:
         futs = [ex.submit(one, it) for it in items]
@@ -402,6 +416,7 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
                            max(5.0, timeout), doc_feed, debug_parts, options)
             return True, None
         except Exception as e:
+            _journal_failure(options, item.get("name"), e, ctx)
             return False, e
 
     with ThreadPoolExecutor(max_workers=concurrency) as ex:

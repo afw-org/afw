@@ -1187,15 +1187,26 @@ impl_afw_object_release (
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-        const afw_object_t *entity;
+    const afw_object_t *entity;
+    const afw_object_t *origin;
 
     /* Methods release and get_reference act on the entity. */
     AFW_OBJECT_GET_ENTITY(entity, &self->pub);
     self = (AFW_OBJECT_SELF_T *)entity;
 
-    /* Decrement count and release object's pool if zero. */
-    if (afw_atomic_integer_decrement(&self->view->reference_count) == 0) {
-        afw_pool_release(self->pub.p, xctx);
+    /*
+     * Borrow until get_reference. Release at 0 does not destroy the view.
+     * Each hold has a matching release of the viewed object.
+     */
+    if (self->view->reference_count <= 0) {
+        return;
+    }
+    afw_atomic_integer_decrement(&self->view->reference_count);
+    origin = (self->view->main_entity)
+        ? self->view->main_entity->origin
+        : NULL;
+    if (origin) {
+        afw_object_release(origin, xctx);
     }
 }
 
@@ -1210,13 +1221,20 @@ impl_afw_object_get_reference (
     afw_xctx_t *xctx)
 {
     const afw_object_t *entity;
+    const afw_object_t *origin;
 
     /* Methods release and get_reference act on the entity. */
     AFW_OBJECT_GET_ENTITY(entity, &self->pub);
     self = (AFW_OBJECT_SELF_T *)entity;
 
-    /* Increment reference count. */
+    /* A hold on the view holds the object it is viewing. */
     afw_atomic_integer_increment(&self->view->reference_count);
+    origin = (self->view->main_entity)
+        ? self->view->main_entity->origin
+        : NULL;
+    if (origin) {
+        afw_object_get_reference(origin, xctx);
+    }
 }
 
 /*
@@ -1349,10 +1367,10 @@ afw_object_view_create(
     const afw_value_t *value;
 
     /*
-     * Add reference to instance.  Instance most have lifetime at least as
-     * long as returned view object since uncloned values are used.
+     * Borrow instance. Uncloned values from it are used. A get_reference
+     * on the view holds instance; release drops that hold. The view is
+     * not destroyed when its count returns to 0.
      */
-    afw_object_get_reference(instance, xctx);
 
     /* If no options specified, just return instance asis. */
     if (!options || options->mask == 0)
@@ -1364,7 +1382,7 @@ afw_object_view_create(
     p = afw_pool_tracker_create(p, xctx);
     view = afw_pool_calloc_type(p, afw_object_view_internal_view_t, xctx);
     view->p = p;
-    view->reference_count = 1;
+    view->reference_count = 0;
     view->options = afw_object_options_create(NULL, options, p, xctx);
 
     /* Parse entity path and adapter id. */

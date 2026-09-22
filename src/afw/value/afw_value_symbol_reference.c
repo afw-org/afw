@@ -78,7 +78,7 @@ impl_afw_value_optional_evaluate(
     xctx->error->contextual = self->contextual;
 
     /* Get value of symbol. */
-    result = afw_xctx_scope_symbol_get_value(self->symbol, xctx);
+    result = afw_pool_scope_symbol_get_value(self->symbol, xctx);
 
     /* Pop value from evaluation stack and return result. */
     afw_xctx_evaluation_stack_pop_value(xctx);

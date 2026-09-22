@@ -416,7 +416,7 @@ struct afw_value_call_script_function_s {
     };
 
     const afw_value_script_function_definition_t *script_function_definition;
-    const afw_xctx_scope_t *enclosing_lexical_scope;
+    const afw_pool_scope_t *enclosing_lexical_scope;
     afw_value_call_args_t args;
     
     /*
@@ -462,7 +462,7 @@ struct afw_value_closure_binding_s {
 
     const afw_pool_t *p;
     const afw_value_script_function_definition_t *script_function_definition;
-    const afw_xctx_scope_t *enclosing_lexical_scope;
+    const afw_pool_scope_t *enclosing_lexical_scope;
     afw_size_t reference_count;
 };
 
@@ -947,7 +947,7 @@ const afw_value_t *
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_lexical_scope, /* NULL if not enclosed. */
+    const afw_pool_scope_t *enclosing_lexical_scope, /* NULL if not enclosed. */
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,

@@ -48233,58 +48233,6 @@ afw_self_v_checkRequired;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_chunkMin \
-    "chunkMin"
-
-/** @brief 'afw_utf8_t' for AFW_Q_chunkMin */
-#define afw_s_chunkMin \
-    (&afw_self_v_chunkMin.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_chunkMin */
-#define afw_self_s_chunkMin \
-    (afw_self_v_chunkMin.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_chunkMin */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_chunkMin;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_chunkMin */
-#define afw_z_chunkMin \
-    (afw_self_v_chunkMin.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_chunkMin */
-#define afw_v_chunkMin \
-    (&afw_self_v_chunkMin.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_chunk_min \
-    "chunk_min"
-
-/** @brief 'afw_utf8_t' for AFW_Q_chunk_min */
-#define afw_s_chunk_min \
-    (&afw_self_v_chunk_min.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_chunk_min */
-#define afw_self_s_chunk_min \
-    (afw_self_v_chunk_min.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_chunk_min */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_chunk_min;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_chunk_min */
-#define afw_z_chunk_min \
-    (afw_self_v_chunk_min.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_chunk_min */
-#define afw_v_chunk_min \
-    (&afw_self_v_chunk_min.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_class \
     "class"
 
@@ -48623,32 +48571,6 @@ afw_self_v_compile;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_compileChunkMin \
-    "compileChunkMin"
-
-/** @brief 'afw_utf8_t' for AFW_Q_compileChunkMin */
-#define afw_s_compileChunkMin \
-    (&afw_self_v_compileChunkMin.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_compileChunkMin */
-#define afw_self_s_compileChunkMin \
-    (afw_self_v_compileChunkMin.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_compileChunkMin */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_compileChunkMin;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_compileChunkMin */
-#define afw_z_compileChunkMin \
-    (afw_self_v_compileChunkMin.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_compileChunkMin */
-#define afw_v_compileChunkMin \
-    (&afw_self_v_compileChunkMin.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_compileDate \
     "compileDate"
 
@@ -48931,32 +48853,6 @@ afw_self_v_compileXpathExpression;
 /** @brief 'const afw_value_t *' for AFW_Q_compileXpathExpression */
 #define afw_v_compileXpathExpression \
     (&afw_self_v_compileXpathExpression.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_compile_chunk_min \
-    "compile_chunk_min"
-
-/** @brief 'afw_utf8_t' for AFW_Q_compile_chunk_min */
-#define afw_s_compile_chunk_min \
-    (&afw_self_v_compile_chunk_min.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_compile_chunk_min */
-#define afw_self_s_compile_chunk_min \
-    (afw_self_v_compile_chunk_min.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_compile_chunk_min */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_compile_chunk_min;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_compile_chunk_min */
-#define afw_z_compile_chunk_min \
-    (afw_self_v_compile_chunk_min.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_compile_chunk_min */
-#define afw_v_compile_chunk_min \
-    (&afw_self_v_compile_chunk_min.pub)
 
 
 
@@ -51301,6 +51197,32 @@ afw_self_v_defaultAdapterId;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_defaultChunkMin \
+    "defaultChunkMin"
+
+/** @brief 'afw_utf8_t' for AFW_Q_defaultChunkMin */
+#define afw_s_defaultChunkMin \
+    (&afw_self_v_defaultChunkMin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_defaultChunkMin */
+#define afw_self_s_defaultChunkMin \
+    (afw_self_v_defaultChunkMin.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_defaultChunkMin */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_defaultChunkMin;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_defaultChunkMin */
+#define afw_z_defaultChunkMin \
+    (afw_self_v_defaultChunkMin.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_defaultChunkMin */
+#define afw_v_defaultChunkMin \
+    (&afw_self_v_defaultChunkMin.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_defaultFlags \
     "defaultFlags"
 
@@ -51401,6 +51323,32 @@ afw_self_v_defaultValue;
 /** @brief 'const afw_value_t *' for AFW_Q_defaultValue */
 #define afw_v_defaultValue \
     (&afw_self_v_defaultValue.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_default_chunk_min \
+    "default_chunk_min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_default_chunk_min */
+#define afw_s_default_chunk_min \
+    (&afw_self_v_default_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_default_chunk_min */
+#define afw_self_s_default_chunk_min \
+    (afw_self_v_default_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_default_chunk_min */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_default_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_default_chunk_min */
+#define afw_z_default_chunk_min \
+    (afw_self_v_default_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_default_chunk_min */
+#define afw_v_default_chunk_min \
+    (&afw_self_v_default_chunk_min.pub)
 
 
 
@@ -90245,6 +90193,58 @@ afw_self_v_slice;
 /** @brief 'const afw_value_t *' for AFW_Q_slice */
 #define afw_v_slice \
     (&afw_self_v_slice.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_smallChunkMin \
+    "smallChunkMin"
+
+/** @brief 'afw_utf8_t' for AFW_Q_smallChunkMin */
+#define afw_s_smallChunkMin \
+    (&afw_self_v_smallChunkMin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_smallChunkMin */
+#define afw_self_s_smallChunkMin \
+    (afw_self_v_smallChunkMin.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_smallChunkMin */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_smallChunkMin;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_smallChunkMin */
+#define afw_z_smallChunkMin \
+    (afw_self_v_smallChunkMin.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_smallChunkMin */
+#define afw_v_smallChunkMin \
+    (&afw_self_v_smallChunkMin.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_small_chunk_min \
+    "small_chunk_min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_small_chunk_min */
+#define afw_s_small_chunk_min \
+    (&afw_self_v_small_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_small_chunk_min */
+#define afw_self_s_small_chunk_min \
+    (afw_self_v_small_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_small_chunk_min */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_small_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_small_chunk_min */
+#define afw_z_small_chunk_min \
+    (afw_self_v_small_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_small_chunk_min */
+#define afw_v_small_chunk_min \
+    (&afw_self_v_small_chunk_min.pub)
 
 
 

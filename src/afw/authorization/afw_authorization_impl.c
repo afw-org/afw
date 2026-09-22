@@ -152,16 +152,30 @@ afw_authorization_handler_impl_create_cede_p(
     s = afw_utf8_printf(p, xctx,
         "authorization_handler_id:%ku",
         &self->authorization_handler_id);
-    if (!afw_environment_get_lock(s, xctx)) {
-        self->authorization_handler_lock_rw = afw_lock_create_rw_and_register(
-            afw_utf8_clone(s, xctx->env->p, xctx),
-            afw_utf8_printf(xctx->env->p, xctx,
-                "Authorization handler id '%ku' read/write lock",
-                &self->authorization_handler_id),
-            afw_utf8_printf(xctx->env->p, xctx,
-                "Read/write lock used internally by authorization_handler id '%ku' implementation.",
-                &self->authorization_handler_id),
-            xctx);
+    /*
+     * The registered value is &rw->lock, and lock is the first member
+     * of afw_lock_rw_t, so the pointer is the rw lock.
+     */
+    {
+        const afw_lock_t *existing;
+
+        existing = afw_environment_get_lock(s, xctx);
+        if (existing) {
+            self->authorization_handler_lock_rw =
+                (const afw_lock_rw_t *)existing;
+        }
+        else {
+            self->authorization_handler_lock_rw =
+                afw_lock_create_rw_and_register(
+                    afw_utf8_clone(s, xctx->env->p, xctx),
+                    afw_utf8_printf(xctx->env->p, xctx,
+                        "Authorization handler id '%ku' read/write lock",
+                        &self->authorization_handler_id),
+                    afw_utf8_printf(xctx->env->p, xctx,
+                        "Read/write lock used internally by authorization_handler id '%ku' implementation.",
+                        &self->authorization_handler_id),
+                    xctx);
+        }
     }
 
     /* Service id. */

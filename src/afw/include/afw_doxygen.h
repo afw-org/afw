@@ -65,21 +65,22 @@
  * One ST job heap per xctx (`afw_pool_heap_create_as_managed_p`).
  * `afw_pool_create()` is a heap like the parent (ST or MT),
  * inherits managed_p. Tracker is `afw_pool_tracker_create()`.
- * `afw_pool_multithread_create_as_managed_p(env->p)` for
- * conf/server/log/adapter.
+ * `afw_pool_multithread_create_as_managed_p(env->p, chunk_min)` for
+ * conf/server/log/adapter. 0 is env->default_chunk_min (64k). Those callers
+ * pass small_chunk_min (4k).
  * Trackers get memory from the ancestor heap. Evaluation `{ }` uses
  * a scope pool (`afw_pool_scope_create` of dest p, 4k chunks,
  * inherits managed_p).
  * Destroy returns the chain to the ancestor heap. Parent/child is
  * lifetime only. Last-release does not call destroy.
- * The heap store is 64k-min, 4k-aligned chunks; destroy free()s the
- * list.
+ * Default chunk floor is 64k (chunk_min 0), 4k-aligned. Scope and
+ * conf/adapter/service pools pass 4k.
  *
  * Key functions: afw_pool_create(), afw_pool_heap_create(),
  * afw_pool_heap_create_as_managed_p(),
  * afw_pool_multithread_create(),
  * afw_pool_multithread_create_as_managed_p(),
- * afw_pool_tracker_create(), afw_pool_scope_create(),
+ * afw_pool_tracker_create(), afw_pool_scope_allocate(),
  * afw_pool_calloc(), afw_pool_malloc(),
  * afw_pool_calloc_no_throw(), afw_pool_malloc_no_throw(),
  * afw_pool_internal_calloc_unhandled(), afw_pool_internal_malloc_unhandled(),

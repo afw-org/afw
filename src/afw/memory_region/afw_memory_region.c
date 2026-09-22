@@ -8,16 +8,19 @@
 
 /**
  * @file afw_memory_region.c
- * @brief Default afw_memory_region: capped free list of posix_memalign
- *    pages for heaps.
+ * @brief Default afw_memory_region: capped free list of mmap pages
+ *    for heaps.
  *
- * The instance is C calloc; release() frees it. get/free/cleanup
- * do not lock. MT heap/tracker wrappers call lock/unlock. Cap 0
- * is posix_memalign/free on every get/free (metrics still update).
+ * The instance is C calloc; release() frees it. Chunks are mmap'd
+ * and munmap'd so RSS drops when a chunk does not stay on the free
+ * list. get/free/cleanup do not lock. MT heap/tracker wrappers call
+ * lock/unlock. Cap 0 is mmap/munmap on every get/free (metrics
+ * still update).
  */
 
 #include "afw_internal.h"
 #include <stdlib.h>
+#include <sys/mman.h>
 
 
 typedef struct impl_free_node_s impl_free_node_t;
@@ -206,15 +209,19 @@ impl_unlock(impl_afw_memory_region_self_t *self, afw_xctx_t *xctx)
 }
 
 
+/*
+ * mmap, not posix_memalign. free() of a 64 KiB aligned block stays
+ * in the glibc heap, so RSS climbed on every miss/over-cap pair.
+ * munmap gives the pages back. The pointer is still page aligned.
+ */
 static void *
-impl_posix_memalign(afw_size_t size)
+impl_map_chunk(afw_size_t size)
 {
     void *mem;
-    int rv;
 
-    mem = NULL;
-    rv = posix_memalign(&mem, AFW_MEMORY_REGION_ALIGN, size);
-    if (rv != 0 || !mem) {
+    mem = mmap(NULL, size, PROT_READ | PROT_WRITE,
+        MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (mem == MAP_FAILED) {
         return NULL;
     }
     return mem;
@@ -271,7 +278,7 @@ impl_afw_memory_region_get(
         }
     }
 
-    mem = impl_posix_memalign(need);
+    mem = impl_map_chunk(need);
     if (!mem) {
         *size = 0;
         return;
@@ -304,27 +311,50 @@ impl_afw_memory_region_free(
     size = impl_round_up(size);
     impl_account_returned(pub, size);
 
+    /*
+     * Keep this chunk when it fits the cap. If the list is full of
+     * other sizes, drop the oldest until it fits. Otherwise a later
+     * get of this size misses and mmap grows RSS for one swap.
+     */
     if (pub->free_list_max_bytes != 0 &&
-        size <= pub->free_list_max_bytes &&
-        pub->free_list_bytes <=
-            pub->free_list_max_bytes - size)
+        size <= pub->free_list_max_bytes)
     {
-        node = (impl_free_node_t *)region;
-        node->next = self->free_list;
-        node->size = size;
-        self->free_list = node;
-        pub->free_list_count += 1;
-        pub->free_list_bytes += size;
-        if (pub->free_list_bytes > pub->peak_free_list_bytes) {
-            pub->peak_free_list_bytes = pub->free_list_bytes;
+        while (self->free_list &&
+            pub->free_list_bytes + size > pub->free_list_max_bytes)
+        {
+            node = self->free_list;
+            self->free_list = node->next;
+            pub->free_list_count -= 1;
+            pub->free_list_bytes -= node->size;
+            impl_env_drain_list(xctx, node->size, 1);
+            pub->free_over_cap += 1;
+            {
+                afw_environment_t *env = impl_env(xctx);
+                if (env) {
+                    env->memory_region_free_over_cap += 1;
+                }
+            }
+            munmap(node, node->size);
         }
-        impl_env_to_list(xctx, size);
-        return;
+        if (pub->free_list_bytes + size <= pub->free_list_max_bytes)
+        {
+            node = (impl_free_node_t *)region;
+            node->next = self->free_list;
+            node->size = size;
+            self->free_list = node;
+            pub->free_list_count += 1;
+            pub->free_list_bytes += size;
+            if (pub->free_list_bytes > pub->peak_free_list_bytes) {
+                pub->peak_free_list_bytes = pub->free_list_bytes;
+            }
+            impl_env_to_list(xctx, size);
+            return;
+        }
     }
 
     pub->free_over_cap += 1;
     impl_env_over_cap(xctx, size);
-    free(region);
+    munmap(region, size);
 }
 
 
@@ -350,7 +380,7 @@ impl_afw_memory_region_cleanup(
     impl_env_drain_list(xctx, bytes, count);
     while (node) {
         next = node->next;
-        free(node);
+        munmap(node, node->size);
         node = next;
     }
 }

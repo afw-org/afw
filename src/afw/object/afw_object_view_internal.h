@@ -102,8 +102,8 @@ struct afw_object_view_internal_object_self_s {
     /*
      * Object passed as origin parameter on impl_object_create().
      *
-     * Warning: May not be valid after return from afw_object_view_create().
-     *          May not be cloned and caller may release it.
+     * The instance passed to afw_object_view_create() is borrowed.
+     * get_reference on the view holds it, and release drops that hold.
      */
     const afw_object_t *origin;
 

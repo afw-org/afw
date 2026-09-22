@@ -64,7 +64,7 @@ afw_value_block_evaluate_statements(
     for (i = start; i < self->statement_count; i++) {
         last = afw_value_block_evaluate_statement(
             x, self->statements[i], p, xctx);
-        afw_xctx_scope_set_last_result(last, xctx);
+        afw_pool_scope_set_last_result(last, xctx);
         if (afw_xctx_statement_flow_is_type(return, xctx)) {
             result = (last && !afw_value_is_void(last))
                 ? last
@@ -93,7 +93,7 @@ afw_value_block_evaluate_block(
     const afw_value_t *saved_script_result;
     const afw_compile_value_contextual_t *saved_contextual;
     const afw_pool_t *eval_p;
-    const afw_xctx_scope_t *scope;
+    const afw_pool_scope_t *scope;
 
     /* Push value on evaluation stack. */
     afw_xctx_evaluation_stack_push_value(
@@ -115,9 +115,9 @@ afw_value_block_evaluate_block(
      * Every `{ }` is a frame. Top still starts with current NULL
      * (compiled_value sentinel).
      */
-    scope = afw_xctx_scope_create(self,
-        afw_xctx_scope_current(xctx), p, xctx);
-    afw_xctx_scope_activate(scope, xctx);
+    scope = afw_pool_scope_create(self,
+        afw_pool_scope_current(xctx), p, xctx);
+    afw_pool_scope_activate(scope, xctx);
     eval_p = scope->p;
     AFW_TRY{
         afw_value_block_evaluate_statements(
@@ -130,10 +130,10 @@ afw_value_block_evaluate_block(
          * break/continue keep flowing until the matching loop
          * consumes them; each enclosing `{ }` still deactivates here.
          */
-        if (afw_xctx_scope_current(xctx) == scope) {
-            afw_xctx_scope_deactivate(scope, xctx);
+        if (afw_pool_scope_current(xctx) == scope) {
+            afw_pool_scope_deactivate(scope, xctx);
         }
-        afw_xctx_scope_release(scope, xctx);
+        afw_pool_scope_release(scope, xctx);
     }
     AFW_ENDTRY;
 
@@ -193,7 +193,7 @@ afw_value_block_evaluate_statement(
             x, (const afw_value_block_t *)statement, p, xctx,
             false);
         if (xctx->script_result != saved_script_result) {
-            afw_xctx_scope_clear_last_result(xctx);
+            afw_pool_scope_clear_last_result(xctx);
         }
         return afw_value_void;
     }

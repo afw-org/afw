@@ -28,23 +28,35 @@
  *   ancestor heap. free_memory on a tracker marks; it does not
  *   return the block until destroy or garbage_collect.
  *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
- *   chunks (4k-aligned, 64k minimum). Not a third AFW pool kind.
- * - Parent/child is lifetime only (last-release throws if children
- *   remain). Store is the ancestor heap. Trackers may parent other
- *   trackers.
+ *   chunks (4k-aligned; default floor 64k when chunk_min is 0).
+ *   Not a third AFW pool kind.
+ * - Parent/child is lifetime only. Store is the ancestor heap.
+ *   Trackers may parent other trackers. A heap or tracker pins its
+ *   parent only while an extra hold is outstanding. The create
+ *   reference does not. A thread pool (afw_pool_thread_create)
+ *   uses impl_afw_pool_thread_inf: one parent hold from
+ *   create until teardown, and get_reference does not pin that
+ *   parent. At 0, destroy
+ *   children that never pinned this pool, then free this store.
+ *   A referenced child still linked is an error.
  * - One ST job heap per xctx (thread handoff off env->p, including
- *   base). `{ }` is `afw_pool_scope_create` of dest `p` (top:
- *   evaluate dest; nested: parent scope->p). Heap/scope/tracker
- *   follow parent ST/MT.
- *   Closures pin the inner scope; the xctx heap outlives the outer
- *   `{ }`.
+ *   base). A `{ }` frame is the scope pool (`afw_pool_scope_create`;
+ *   top parent is the evaluate dest, nested parent is the parent
+ *   scope pool). A scope holds its parent from create until
+ *   teardown, and its pool count stays at 1 so throw-path delay
+ *   still sees a last release. Blank pool, no block:
+ *   `afw_pool_scope_allocate`. Heap/scope/tracker follow parent
+ *   ST/MT. Closures hold the inner scope; the xctx heap outlives
+ *   the outer `{ }`.
  * - `afw_pool_create()` is a heap like the parent (ST or MT lock
  *   wrappers), **inherits** managed_p. Tracker is
  *   `afw_pool_tracker_create()`. `env->p` is the process MT job heap.
  *   Things you start (conf, server, log, adapter) use
- *   `afw_pool_multithread_create_as_managed_p(env->p)`. Compile
- *   units use `afw_pool_heap_create` (own chunks, inherit
- *   managed_p; optional smaller chunk_min).
+ *   `afw_pool_multithread_create_as_managed_p(env->p, chunk_min)`.
+ *   0 is env->default_chunk_min (64k). Those callers pass
+ *   small_chunk_min (4k). Compile units use
+ *   `afw_pool_heap_create` (own chunks, inherit managed_p;
+ *   optional smaller chunk_min).
  * - `managed_p` is a pool property. Unmarked heap/MT create,
  *   trackers, and `scope_create` **inherit** `parent->managed_p`.
  *   `*_as_managed_p` sets `managed_p = self` (this pool is a
@@ -57,9 +69,6 @@
  *   `peak_pool_bytes_in_use` / `peak_pool_chunk_bytes`. Adaptive
  *   `pool_bytes_in_use()` vs `process_rss()`. This xctx:
  *   `afw_pool_subtree_*` on `xctx->p`.
- * - Last-release: decrement; if 0 and children remain, throw; else
- *   callbacks, unchain, free this store, release parent. Does not
- *   call destroy. "Children remaining" is a leaked child.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
  * - `afw_pool_heap_internal_release_delayed()`: last-release scopes delayed
@@ -83,7 +92,7 @@ AFW_BEGIN_DECLARES
  * @return 0 if size is 0; otherwise at least one page, multiple of
  *    the page.
  *
- * Use this when storing env chunk_min / compile_chunk_min /
+ * Use this when storing env chunk_min / small_chunk_min /
  * xctx_chunk_min and byte limits. Heap create then does not redo
  * the round.
  */
@@ -135,7 +144,7 @@ afw_pool_create(
 /**
  * @brief Create a single-thread heap that inherits managed_p.
  * @param parent of new pool (may be multithreaded env/base).
- * @param chunk_min minimum posix_memalign size; 0 = env->chunk_min.
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -156,7 +165,7 @@ afw_pool_heap_create(
 /**
  * @brief Create a single-thread heap with managed_p = self.
  * @param parent of new pool (may be multithreaded env/base).
- * @param chunk_min minimum posix_memalign size; 0 = env->chunk_min.
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -178,31 +187,40 @@ afw_pool_heap_create_as_managed_p(
 /**
  * @brief Create a multithreaded heap that inherits managed_p.
  * @param parent must be a multithreaded heap (usually env->p).
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
  * Child MT store. Inherits parent->managed_p. Use
  * multithread_create_as_managed_p when this pool is the dest.
+ * 0 is the process floor (64k), same as heap_create. Pass
+ * small_chunk_min (4k) for a small child.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_multithread_create(
     const afw_pool_t *parent,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
 
 /**
  * @brief Create a multithreaded heap with managed_p = self.
  * @param parent must be a multithreaded heap (usually env->p).
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
  * This pool is a managed dest (same rule as
  * heap_create_as_managed_p). For things you start that outlive a
  * request: conf, server, log, adapter. Their `p` is this pool.
+ * Those callers pass small_chunk_min (4k). 0 is the process
+ * floor (64k). A single allocation larger than the floor still
+ * gets a chunk that fits.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_multithread_create_as_managed_p(
     const afw_pool_t *parent,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
 
@@ -225,20 +243,17 @@ afw_pool_tracker_create(
 
 
 /**
- * @brief Create a scope pool (evaluation `{ }`).
+ * @brief Allocate a scope pool with no block.
  * @param parent heap or tracker (or another scope).
  * @param xctx of caller.
- * @return ST heap, compile-sized (4k) chunks, inherits managed_p.
+ * @return The scope pool (`afw_pool_scope_t` is that pool).
  *
- * Last-release is delayed while error_processing_count > 0 so CATCH
- * can still use values from this `{ }`. ENDTRY calls
- * afw_pool_heap_internal_release_delayed().
- *
- * Inherits managed_p. Do not create a `{ }` with *_as_managed_p:
- * managed values dest'd at that frame would die with the `{ }`.
+ * A `{ }` frame is afw_pool_scope_create(). This entry is the pool
+ * alone: no symbols, reference count 0. Last-release is delayed
+ * while error_processing_count > 0. Inherits managed_p.
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_scope_create(
+afw_pool_scope_allocate(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 

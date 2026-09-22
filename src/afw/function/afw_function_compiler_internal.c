@@ -171,8 +171,8 @@ impl_try_keep_return(afw_xctx_t *xctx)
         return;
     }
     v = afw_xctx_script_result_get(xctx);
-    v = afw_xctx_scope_get_assignable_for_scope_lifetime(v, xctx);
-    afw_xctx_scope_set_last_result(v, xctx);
+    v = afw_pool_scope_get_assignable_for_scope_lifetime(v, xctx);
+    afw_pool_scope_set_last_result(v, xctx);
 }
 
 
@@ -198,7 +198,7 @@ impl_evaluate_loop_body(
         afw_value_block_evaluate_block(x,
             (const afw_value_block_t *)body, p, xctx, false);
         if (xctx->script_result != saved_script_result) {
-            afw_xctx_scope_clear_last_result(xctx);
+            afw_pool_scope_clear_last_result(xctx);
         }
         return afw_value_void;
     }
@@ -211,25 +211,25 @@ impl_evaluate_loop_body(
  * clone() marks the original; deactivate then skips script_result_set.
  * Release previous; it dies unless a closure holds it.
  */
-static const afw_xctx_scope_t *
+static const afw_pool_scope_t *
 impl_for_let_next_clone(
-    const afw_xctx_scope_t *previous,
+    const afw_pool_scope_t *previous,
     afw_xctx_t *xctx)
 {
-    const afw_xctx_scope_t *scope;
+    const afw_pool_scope_t *scope;
 
     if (previous) {
-        scope = afw_xctx_scope_clone(previous, xctx);
-        if (afw_xctx_scope_current(xctx) == previous) {
-            afw_xctx_scope_deactivate(previous, xctx);
+        scope = afw_pool_scope_clone(previous, xctx);
+        if (afw_pool_scope_current(xctx) == previous) {
+            afw_pool_scope_deactivate(previous, xctx);
         }
-        afw_xctx_scope_release(previous, xctx);
+        afw_pool_scope_release(previous, xctx);
     }
     else {
-        scope = afw_xctx_scope_clone(
-            afw_xctx_scope_current(xctx), xctx);
+        scope = afw_pool_scope_clone(
+            afw_pool_scope_current(xctx), xctx);
     }
-    afw_xctx_scope_activate(scope, xctx);
+    afw_pool_scope_activate(scope, xctx);
     return scope;
 }
 
@@ -622,7 +622,7 @@ impl_assignment_target(
         }
         afw_value_type_check_assignable(&symbol->type, value,
             "assignment", contextual, xctx);
-        afw_xctx_scope_symbol_set_value(symbol, value, xctx);
+        afw_pool_scope_symbol_set_value(symbol, value, xctx);
         break;
 
     case afw_compile_assignment_target_type_max_type:
@@ -718,7 +718,7 @@ impl_assign_value(
             afw_value_type_check_assignable(&t->symbol->type, value,
                 "assignment", t->contextual, xctx);
         }
-        afw_xctx_scope_symbol_set_value(t->symbol, value, xctx);
+        afw_pool_scope_symbol_set_value(t->symbol, value, xctx);
     }
 
     /* Reference by key */
@@ -828,7 +828,7 @@ impl_evaluate_one_or_more_values(
  * the enclosing script/function scope.
  */
 static afw_boolean_t
-impl_is_c_style_for_let_wrapper(const afw_xctx_scope_t *scope)
+impl_is_c_style_for_let_wrapper(const afw_pool_scope_t *scope)
 {
     const afw_value_t *stmt;
     const afw_value_call_built_in_function_t *call;
@@ -1212,7 +1212,7 @@ afw_function_execute_for(
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
     const afw_value_boolean_t *condition;
-    const afw_xctx_scope_t *previous_iterator_scope;
+    const afw_pool_scope_t *previous_iterator_scope;
     const afw_value_t *result;
     const afw_value_t *increment;
     const afw_value_t *body;
@@ -1223,7 +1223,7 @@ afw_function_execute_for(
     previous_iterator_scope = NULL;
     this_label = NULL;
     clone_each = impl_is_c_style_for_let_wrapper(
-        afw_xctx_scope_current(xctx));
+        afw_pool_scope_current(xctx));
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(5);
@@ -1283,13 +1283,13 @@ afw_function_execute_for(
 
         /* Creator release of the last clone; pop if still current. */
         if (previous_iterator_scope) {
-            if (afw_xctx_scope_current(xctx) ==
+            if (afw_pool_scope_current(xctx) ==
                 previous_iterator_scope)
             {
-                afw_xctx_scope_deactivate(
+                afw_pool_scope_deactivate(
                     previous_iterator_scope, xctx);
             }
-            afw_xctx_scope_release(previous_iterator_scope, xctx);
+            afw_pool_scope_release(previous_iterator_scope, xctx);
         }
     }
     AFW_ENDTRY;
@@ -1356,7 +1356,7 @@ afw_function_execute_for_of(
     const afw_value_t *iterable;
     const afw_value_t *value;
     const afw_value_t *for_of_target;
-    const afw_xctx_scope_t *previous_iterator_scope;
+    const afw_pool_scope_t *previous_iterator_scope;
     afw_compile_internal_assignment_type_t assignment_type;
     afw_compile_internal_assignment_type_t head_type;
     afw_iterator_t iterator;
@@ -1426,13 +1426,13 @@ afw_function_execute_for_of(
 
         impl_loop_consume_if_target(this_label, xctx);
         if (previous_iterator_scope) {
-            if (afw_xctx_scope_current(xctx) ==
+            if (afw_pool_scope_current(xctx) ==
                 previous_iterator_scope)
             {
-                afw_xctx_scope_deactivate(
+                afw_pool_scope_deactivate(
                     previous_iterator_scope, xctx);
             }
-            afw_xctx_scope_release(previous_iterator_scope, xctx);
+            afw_pool_scope_release(previous_iterator_scope, xctx);
         }
 
     }
@@ -1662,7 +1662,7 @@ afw_function_execute_return(
             result = afw_value_void;
         }
     }
-    afw_xctx_scope_set_last_result(result, xctx);
+    afw_pool_scope_set_last_result(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
     return result;
 }
@@ -1897,7 +1897,7 @@ afw_function_execute_switch(
                 }
                 result = afw_value_block_evaluate_statement(
                     x, statement, p, xctx);
-                afw_xctx_scope_set_last_result(result, xctx);
+                afw_pool_scope_set_last_result(result, xctx);
                 if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
                     break;
                 }
@@ -2091,8 +2091,8 @@ afw_function_execute_try(
     const afw_object_t *error_object;
     const afw_value_t *error_value;
     const afw_value_t *saved_label;
-    const afw_xctx_scope_t *scope_at_entry;
-    const afw_xctx_scope_t *scope;
+    const afw_pool_scope_t *scope_at_entry;
+    const afw_pool_scope_t *scope;
     afw_xctx_statement_flow_t use_type;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
@@ -2104,7 +2104,7 @@ afw_function_execute_try(
      * or no throw), return the current last; uncaught percolates.
      */
     use_type = afw_xctx_statement_flow_get(xctx);
-    scope_at_entry = afw_xctx_scope_current(xctx);
+    scope_at_entry = afw_pool_scope_current(xctx);
     AFW_TRY {
         afw_value_block_evaluate_statement(
             x, x->argv[1], p, xctx);
@@ -2113,7 +2113,7 @@ afw_function_execute_try(
     }
 
     AFW_CATCH_UNHANDLED {
-        afw_xctx_scope_unwind(scope_at_entry, xctx);
+        afw_pool_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
             /*
              * Catch body is a block when there is a binding (arg 4
@@ -2139,16 +2139,16 @@ afw_function_execute_try(
                  * Bind the error after the catch frame exists. Do not
                  * call evaluate_block: it would create the scope again.
                  */
-                const afw_xctx_scope_t *catch_scope;
+                const afw_pool_scope_t *catch_scope;
                 const afw_pool_t *eval_p;
                 const afw_error_t *caught_error = &this_THROWN_ERROR;
                 const afw_value_block_t *block =
                     (const afw_value_block_t *)x->argv[3];
                 catch_scope = NULL;
                 AFW_TRY{
-                    catch_scope = afw_xctx_scope_create(
-                        block, afw_xctx_scope_current(xctx), p, xctx);
-                    afw_xctx_scope_activate(catch_scope, xctx);
+                    catch_scope = afw_pool_scope_create(
+                        block, afw_pool_scope_current(xctx), p, xctx);
+                    afw_pool_scope_activate(catch_scope, xctx);
                     eval_p = catch_scope->p;
                     error_object = afw_error_to_object(
                         caught_error, eval_p, xctx);
@@ -2214,10 +2214,10 @@ afw_function_execute_try(
                 }
                 AFW_FINALLY{
                     if (catch_scope) {
-                        if (afw_xctx_scope_current(xctx) == catch_scope) {
-                            afw_xctx_scope_deactivate(catch_scope, xctx);
+                        if (afw_pool_scope_current(xctx) == catch_scope) {
+                            afw_pool_scope_deactivate(catch_scope, xctx);
                         }
-                        afw_xctx_scope_release(catch_scope, xctx);
+                        afw_pool_scope_release(catch_scope, xctx);
                     }
                 }
                 AFW_ENDTRY;
@@ -2238,7 +2238,7 @@ afw_function_execute_try(
     }
 
     AFW_FINALLY {
-        afw_xctx_scope_unwind(scope_at_entry, xctx);
+        afw_pool_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
             saved_label = xctx->statement_flow_label;
             /*
@@ -2279,7 +2279,7 @@ afw_function_execute_try(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_set(use_type, xctx);
-    scope = afw_xctx_scope_current(xctx);
+    scope = afw_pool_scope_current(xctx);
     if (scope && scope->last_result) {
         return scope->last_result;
     }

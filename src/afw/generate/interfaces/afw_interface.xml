@@ -235,7 +235,8 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
     <variable name="p" type="const afw_pool_t *">
       <description>
         Adapter's pool for the life of the adapter. Created
-        multithread_create_as_managed_p (managed_p = self).
+        multithread_create_as_managed_p (managed_p = self,
+        small_chunk_min, usually 4k).
         create_managed(adapter-&gt;p) allocates here.
       </description>
     </variable>
@@ -3475,7 +3476,8 @@ const afw_content_type_t *
     <variable name="p" type="const afw_pool_t *">
       <description>
         Log's pool for the life of the log. Created
-        multithread_create_as_managed_p (managed_p = self).
+        multithread_create_as_managed_p (managed_p = self,
+        small_chunk_min, usually 4k).
       </description>
     </variable>
 

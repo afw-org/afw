@@ -110,6 +110,11 @@ def run():
                 "heap_tracker_create under env->p (multithreaded heap) works",
             ),
             (
+                "multithread_chunk_min",
+                "multithread create: 0 is env chunk_min; "
+                "small_chunk_min stays the floor",
+            ),
+            (
                 "create_child_of_heap",
                 "afw_pool_create of a ST heap parent is a ST heap; "
                 "free recycles",
@@ -143,6 +148,11 @@ def run():
                 "for_clone_churn",
                 "tracker calloc ~56 after mixed optional free and "
                 "tracker last-release does not hang",
+            ),
+            (
+                "thread_parent_hold",
+                "thread pool holds its parent once; get_reference "
+                "does not pin that parent",
             ),
     ]
     if debug_pool:

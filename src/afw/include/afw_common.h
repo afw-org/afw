@@ -1163,7 +1163,7 @@ typedef void (*afw_pool_cleanup_function_p_t)(
  *
  * This contract is for **qualifier frames** only. Unqualified lexical `let` /
  * params use scope symbol slots (see afw_xctx_get_optionally_qualified_variable
- * and afw_xctx_scope_symbol_exists_by_name); do not assume get_cb rules apply
+ * and afw_pool_scope_symbol_exists_by_name); do not assume get_cb rules apply
  * to bare names.
  */
 typedef const afw_value_t *

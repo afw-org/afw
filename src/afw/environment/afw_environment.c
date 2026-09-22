@@ -330,12 +330,12 @@ afw_environment_create(
     env->limit_c_stack_headroom_bytes =
         afw_pool_round_up_chunk_size(
             AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES);
-    env->chunk_min = afw_pool_round_up_chunk_size(
-        AFW_ENVIRONMENT_CHUNK_MIN
-            ? AFW_ENVIRONMENT_CHUNK_MIN : 1);
-    env->compile_chunk_min = afw_pool_round_up_chunk_size(
-        AFW_ENVIRONMENT_COMPILE_CHUNK_MIN
-            ? AFW_ENVIRONMENT_COMPILE_CHUNK_MIN : 1);
+    env->default_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN
+            ? AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN : 1);
+    env->small_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_SMALL_CHUNK_MIN
+            ? AFW_ENVIRONMENT_SMALL_CHUNK_MIN : 1);
     env->xctx_chunk_min = afw_pool_round_up_chunk_size(
         AFW_ENVIRONMENT_XCTX_CHUNK_MIN
             ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
@@ -2163,12 +2163,12 @@ afw_environment_register_lock(
 
 AFW_DEFINE(const afw_lock_t *)
 afw_environment_get_lock(
-    const afw_utf8_t *log_type,
+    const afw_utf8_t *lock_id,
     afw_xctx_t *xctx)
 {
     return (const afw_lock_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_log_type,
-        log_type,
+        afw_environemnt_registry_type_lock,
+        lock_id,
         xctx);
 }
 

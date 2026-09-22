@@ -1060,8 +1060,59 @@ _info_test_history_ref = {
     "help":
         "Write this run as a reference baseline (implies --history). "
         "Filename includes -ref-LABEL- (e.g. …-ref-pre-mgg-afw.json). "
-        "--trend always includes reference runs for this --env-mode plus "
-        "the last N ordinary runs. Peer totals use the oldest reference."
+        "--clear-history keeps these files. With --trend and no paths, "
+        "LABEL selects that reference plus ordinary runs after it and "
+        "does not run tests unless --history is also given. Peer totals "
+        "use the oldest reference."
+}
+
+_info_test_clear_failures = {
+    "optionName": "clear_failures",
+    "arg": "--clear-failures",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Delete failure logs for this --env-mode under "
+        "~/.afw/test-failures/ (the .log and its .state.json). "
+        "Does not run tests unless --history or --history-ref is "
+        "also given."
+}
+
+_info_test_clear_history = {
+    "optionName": "clear_history",
+    "arg": "--clear-history",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Delete ordinary history for this --env-mode. Reference runs "
+        "(-ref-LABEL-) are kept. Does not run tests unless --history "
+        "or --history-ref is also given. With --history, clears first, "
+        "then records the new run."
+}
+
+_info_test_list_history_refs = {
+    "optionName": "list_history_refs",
+    "arg": "--list-history-refs",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Print reference labels in the history directory for this "
+        "--env-mode. Does not run tests."
+}
+
+_info_test_delete_history_ref = {
+    "optionName": "delete_history_ref",
+    "arg": "--delete-history-ref",
+    "action": "store",
+    "default": "",
+    "noprompt": True,
+    "help":
+        "Delete history files whose reference label is LABEL "
+        "(this --env-mode). Does not run tests unless --history or "
+        "--history-ref is also given."
 }
 
 _info_test_history_dir = {
@@ -1071,8 +1122,9 @@ _info_test_history_dir = {
     "default": "",
     "noprompt": True,
     "help":
-        "Directory for --history / --compare / --trend. Default "
-        "~/.afw/test-history/ (or test_history_dir in afwdev-settings.json)."
+        "Directory for --history / --compare / --trend / --clear-history. "
+        "Default ~/.afw/test-history/ (or test_history_dir in "
+        "afwdev-settings.json)."
 }
 
 _info_test_compare = {
@@ -1100,9 +1152,11 @@ _info_test_trend = {
         "Show xctx bytes (or --trend-metric ms|chunk) across history "
         "runs. "
         "No args: all reference runs for this --env-mode plus the last "
-        "10 ordinary runs. A single integer is the ordinary-run count. "
-        "Otherwise glob/paths of JSON files (same mode only). Does not "
-        "run tests unless --history or --history-ref is also given. "
+        "10 ordinary runs. With --history-ref LABEL and no paths: that "
+        "reference plus ordinary runs after it. A single integer is the "
+        "ordinary-run count. Otherwise glob/paths of JSON files (same "
+        "mode only). Does not run tests unless --history is also given "
+        "(--history-ref alone selects, it does not record). "
         "Peer ms is files in oldest reference ∩ last run."
 }
 
@@ -1151,6 +1205,10 @@ _info_test = {
         _info_test_capture_goldens,
         _info_test_history,
         _info_test_history_ref,
+        _info_test_clear_failures,
+        _info_test_clear_history,
+        _info_test_list_history_refs,
+        _info_test_delete_history_ref,
         _info_test_history_dir,
         _info_test_compare,
         _info_test_trend,

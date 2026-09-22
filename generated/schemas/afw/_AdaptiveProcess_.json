@@ -31,23 +31,17 @@
                     "title": "Arguments",
                     "type": "array"
                 },
-                "chunkMin": {
-                    "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
-                    "markdownDescription": "**Chunk Min**\n\nProcess default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
-                    "title": "Chunk Min",
-                    "type": "integer"
-                },
-                "compileChunkMin": {
-                    "description": "posix_memalign minimum used when creating a compile-unit heap.",
-                    "markdownDescription": "**Compile Chunk Min**\n\nposix_memalign minimum used when creating a compile-unit heap.",
-                    "title": "Compile Chunk Min",
-                    "type": "integer"
-                },
                 "cwd": {
                     "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "title": "Working Directory",
                     "type": "string"
+                },
+                "defaultChunkMin": {
+                    "description": "Process default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "markdownDescription": "**Default Chunk Min**\n\nProcess default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "title": "Default Chunk Min",
+                    "type": "integer"
                 },
                 "limitCStackHeadroomBytes": {
                     "description": "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
@@ -167,6 +161,12 @@
                     "description": "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
                     "markdownDescription": "**RSS**\n\nLive resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
                     "title": "RSS",
+                    "type": "integer"
+                },
+                "smallChunkMin": {
+                    "description": "Minimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools.",
+                    "markdownDescription": "**Small Chunk Min**\n\nMinimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools.",
+                    "title": "Small Chunk Min",
                     "type": "integer"
                 },
                 "startTime": {
@@ -206,23 +206,17 @@
                     "title": "Arguments",
                     "type": "array"
                 },
-                "chunkMin": {
-                    "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
-                    "markdownDescription": "**Chunk Min**\n\nProcess default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
-                    "title": "Chunk Min",
-                    "type": "integer"
-                },
-                "compileChunkMin": {
-                    "description": "posix_memalign minimum used when creating a compile-unit heap.",
-                    "markdownDescription": "**Compile Chunk Min**\n\nposix_memalign minimum used when creating a compile-unit heap.",
-                    "title": "Compile Chunk Min",
-                    "type": "integer"
-                },
                 "cwd": {
                     "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "title": "Working Directory",
                     "type": "string"
+                },
+                "defaultChunkMin": {
+                    "description": "Process default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "markdownDescription": "**Default Chunk Min**\n\nProcess default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "title": "Default Chunk Min",
+                    "type": "integer"
                 },
                 "limitCStackHeadroomBytes": {
                     "description": "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
@@ -342,6 +336,12 @@
                     "description": "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
                     "markdownDescription": "**RSS**\n\nLive resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
                     "title": "RSS",
+                    "type": "integer"
+                },
+                "smallChunkMin": {
+                    "description": "Minimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools.",
+                    "markdownDescription": "**Small Chunk Min**\n\nMinimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools.",
+                    "title": "Small Chunk Min",
                     "type": "integer"
                 },
                 "startTime": {
@@ -391,23 +391,17 @@
             "title": "Arguments",
             "type": "array"
         },
-        "chunkMin": {
-            "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
-            "markdownDescription": "**Chunk Min**\n\nProcess default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
-            "title": "Chunk Min",
-            "type": "integer"
-        },
-        "compileChunkMin": {
-            "description": "posix_memalign minimum used when creating a compile-unit heap.",
-            "markdownDescription": "**Compile Chunk Min**\n\nposix_memalign minimum used when creating a compile-unit heap.",
-            "title": "Compile Chunk Min",
-            "type": "integer"
-        },
         "cwd": {
             "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
             "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
             "title": "Working Directory",
             "type": "string"
+        },
+        "defaultChunkMin": {
+            "description": "Process default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+            "markdownDescription": "**Default Chunk Min**\n\nProcess default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+            "title": "Default Chunk Min",
+            "type": "integer"
         },
         "limitCStackHeadroomBytes": {
             "description": "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
@@ -527,6 +521,12 @@
             "description": "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
             "markdownDescription": "**RSS**\n\nLive resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
             "title": "RSS",
+            "type": "integer"
+        },
+        "smallChunkMin": {
+            "description": "Minimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools.",
+            "markdownDescription": "**Small Chunk Min**\n\nMinimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools.",
+            "title": "Small Chunk Min",
             "type": "integer"
         },
         "startTime": {

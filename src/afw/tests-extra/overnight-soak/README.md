@@ -4,12 +4,14 @@ One hermetic `afwfcgi`, mixed requests, Adaptive metrics sampler appends
 `/tmp/afw-overnight-soak/metrics.tsv`. After the firehose, `rss_check`
 fails if RSS grew **64 MiB** from the first sample.
 
-Not in `afwdev test -j`. Default `duration_s` is a **20s smoke** so
-`afwdev test -T src/afw/tests-extra` does not run for hours.
+Not in `afwdev test -j`. The default is a check-in, not an overnight
+run: **8 sequential model stop/start cycles**, each followed by a
+metrics sample, then a **60s** firehose. Model swap stays out of the
+firehose (a firehose of that swap grew RSS about 1 GiB/min).
 
 Container disk: this leaf writes TSV + two small RSS files under
-`/tmp/afw-overnight-soak` (smoke ~0.2 MiB; 8h at the 20s rate is on
-the order of a few hundred MiB, not GiB). `adapter_churn` add/delete
+`/tmp/afw-overnight-soak` (check-in is a few MiB of TSV; 8h at this
+sample rate is on the order of a few hundred MiB, not GiB). `adapter_churn` add/delete
 so the file adapter does not accumulate objects. The harness wipes
 `/tmp/afwdev_test_output` each leaf.
 
@@ -53,11 +55,12 @@ TSV columns (tab-separated), from **`process::`** and
 
 In `orchestration.yaml`:
 
-| Field | Smoke (default) | 8h run 2026-09-19 |
-|-------|-----------------|-------------------|
+| Field | Check-in (default) | 8h run 2026-09-19 |
+|-------|--------------------|-------------------|
+| model stop/start | 8, before the firehose, sampled | same schedule, then the long firehose |
 | `afwfcgi.threads` | 8 | 32 |
-| `timeout_s` | 90 | 30000 |
-| `duration_s` | 20 | 28800 |
+| `timeout_s` | 180 | 30000 |
+| `duration_s` | 60 | 28800 |
 | `concurrency` | 16 | 32 |
 | `stopOnError` | true | false |
 | `maxFailRate` | (unset) | 0.01 |
@@ -74,7 +77,7 @@ That 8h run **passed** (`28806s`, `rss_check` held):
 | `poolChunkBytes` | ~10.9–16.9 MiB |
 | `concurrent` | 1–29 (`maxConcurrent` 32) |
 
-RSS grew 42 MiB from the first sample (under 64 MiB). After warmup it sat in a ~6 MiB band. Default yaml stays the 20s smoke so `test -T tests-extra` is not 8 hours.
+RSS grew 42 MiB from the first sample (under 64 MiB). After warmup it sat in a ~6 MiB band. The default stays the check-in above so `test -T tests-extra` is not 8 hours. Model stop/start is the first work after the baseline sample; raising `duration_s` alone does not run it again.
 
 `timeout_s` must exceed `duration_s`.
 

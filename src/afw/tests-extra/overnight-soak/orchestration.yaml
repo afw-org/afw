@@ -1,4 +1,5 @@
-# Smoke: afwdev test -T src/afw/tests-extra/overnight-soak
+# Check-in: afwdev test -T src/afw/tests-extra/overnight-soak
+# Model stop/start is repeated and sampled before the firehose.
 # Overnight: see README.md (duration_s / timeout_s / threads).
 #
 # Metrics: /tmp/afw-overnight-soak/metrics.tsv
@@ -21,7 +22,7 @@ description: >
 host: afwfcgi
 afwfcgi:
   threads: 8
-timeout_s: 90
+timeout_s: 180
 feed:
   kind: action
   accept: application/json
@@ -183,17 +184,26 @@ tests:
     expect: "🎉 Happy Anniversary of becoming 29! 🥚🥳🎊"
 
 schedule:
+  # Baseline sample, then model stop/start. Each swap is followed by a
+  # sample so a leak shows at the start of the TSV. Not in the firehose:
+  # a firehose of this swap grew RSS about 1 GiB/min.
   - sequential:
       - metrics-sample
+  - repeat:
+      times: 8
+      tests:
+        - model-swap
+        - metrics-sample
+  - sequential:
       - metrics-readback
-      - model-swap
       - file-pc
       - nasty
       - rube-goldberg
   - firehose:
-      # Overnight (2026-09-19 run): duration_s 28800, timeout_s 30000,
-      # threads 32, concurrency 32, stopOnError false, maxFailRate 0.01.
-      duration_s: 20
+      # Check-in default is 60s after the swaps. Overnight (2026-09-19):
+      # duration_s 28800, timeout_s 30000, threads 32, concurrency 32,
+      # stopOnError false, maxFailRate 0.01.
+      duration_s: 60
       concurrency: 16
       fromTests:
         - cheap

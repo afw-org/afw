@@ -6373,6 +6373,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__1924162d9b9a \
+    "Optional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1924162d9b9a */
+#define afw_s_zz__1924162d9b9a \
+    (&afw_self_v_zz__1924162d9b9a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1924162d9b9a */
+#define afw_self_s_zz__1924162d9b9a \
+    (afw_self_v_zz__1924162d9b9a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1924162d9b9a */
+extern const afw_value_string_t \
+    afw_self_v_zz__1924162d9b9a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1924162d9b9a */
+#define afw_z_zz__1924162d9b9a \
+    (afw_self_v_zz__1924162d9b9a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1924162d9b9a */
+#define afw_v_zz__1924162d9b9a \
+    (&afw_self_v_zz__1924162d9b9a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__193939b7c684 \
     "(value: anyURI, regexp: string, replacement: string, limit?: integer): string"
 
@@ -10503,32 +10529,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2b4a01ba0b45 */
 #define afw_v_zz__2b4a01ba0b45 \
     (&afw_self_v_zz__2b4a01ba0b45.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__2b4e0a221c66 \
-    "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b4e0a221c66 */
-#define afw_s_zz__2b4e0a221c66 \
-    (&afw_self_v_zz__2b4e0a221c66.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b4e0a221c66 */
-#define afw_self_s_zz__2b4e0a221c66 \
-    (afw_self_v_zz__2b4e0a221c66.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2b4e0a221c66 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2b4e0a221c66;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2b4e0a221c66 */
-#define afw_z_zz__2b4e0a221c66 \
-    (afw_self_v_zz__2b4e0a221c66.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2b4e0a221c66 */
-#define afw_v_zz__2b4e0a221c66 \
-    (&afw_self_v_zz__2b4e0a221c66.pub)
 
 
 
@@ -21709,32 +21709,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5af71dba0882 */
 #define afw_v_zz__5af71dba0882 \
     (&afw_self_v_zz__5af71dba0882.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5b05f568dad1 \
-    "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5b05f568dad1 */
-#define afw_s_zz__5b05f568dad1 \
-    (&afw_self_v_zz__5b05f568dad1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5b05f568dad1 */
-#define afw_self_s_zz__5b05f568dad1 \
-    (afw_self_v_zz__5b05f568dad1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5b05f568dad1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5b05f568dad1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5b05f568dad1 */
-#define afw_z_zz__5b05f568dad1 \
-    (afw_self_v_zz__5b05f568dad1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5b05f568dad1 */
-#define afw_v_zz__5b05f568dad1 \
-    (&afw_self_v_zz__5b05f568dad1.pub)
 
 
 
@@ -37833,6 +37807,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__9dc16b1fc74b \
+    "Process default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9dc16b1fc74b */
+#define afw_s_zz__9dc16b1fc74b \
+    (&afw_self_v_zz__9dc16b1fc74b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9dc16b1fc74b */
+#define afw_self_s_zz__9dc16b1fc74b \
+    (afw_self_v_zz__9dc16b1fc74b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9dc16b1fc74b */
+extern const afw_value_string_t \
+    afw_self_v_zz__9dc16b1fc74b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9dc16b1fc74b */
+#define afw_z_zz__9dc16b1fc74b \
+    (afw_self_v_zz__9dc16b1fc74b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9dc16b1fc74b */
+#define afw_v_zz__9dc16b1fc74b \
+    (&afw_self_v_zz__9dc16b1fc74b.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__9dc4f527608c \
     "function ne<time> (\n    arg1: time,\n    arg2: any\n): boolean;\n"
 
@@ -46283,32 +46283,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Chunk_Min \
-    "Chunk Min"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Chunk_Min */
-#define afw_s_zz__Chunk_Min \
-    (&afw_self_v_zz__Chunk_Min.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Chunk_Min */
-#define afw_self_s_zz__Chunk_Min \
-    (afw_self_v_zz__Chunk_Min.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Chunk_Min */
-extern const afw_value_string_t \
-    afw_self_v_zz__Chunk_Min;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Chunk_Min */
-#define afw_z_zz__Chunk_Min \
-    (afw_self_v_zz__Chunk_Min.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Chunk_Min */
-#define afw_v_zz__Chunk_Min \
-    (&afw_self_v_zz__Chunk_Min.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Clone__dataType__value \
     "Clone <dataType> value"
 
@@ -46695,32 +46669,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Compare_two_URIs_ */
 #define afw_v_zz__Compare_two_URIs_ \
     (&afw_self_v_zz__Compare_two_URIs_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Compile_Chunk_Min \
-    "Compile Chunk Min"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_Chunk_Min */
-#define afw_s_zz__Compile_Chunk_Min \
-    (&afw_self_v_zz__Compile_Chunk_Min.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_Chunk_Min */
-#define afw_self_s_zz__Compile_Chunk_Min \
-    (afw_self_v_zz__Compile_Chunk_Min.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Compile_Chunk_Min */
-extern const afw_value_string_t \
-    afw_self_v_zz__Compile_Chunk_Min;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Compile_Chunk_Min */
-#define afw_z_zz__Compile_Chunk_Min \
-    (afw_self_v_zz__Compile_Chunk_Min.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_Chunk_Min */
-#define afw_v_zz__Compile_Chunk_Min \
-    (&afw_self_v_zz__Compile_Chunk_Min.pub)
 
 
 
@@ -47319,32 +47267,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_type_of_internal */
 #define afw_v_zz__Compile_type_of_internal \
     (&afw_self_v_zz__Compile_type_of_internal.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Compile_unit_heap_chunk_min \
-    "Compile-unit heap chunk min"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_unit_heap_chunk_min */
-#define afw_s_zz__Compile_unit_heap_chunk_min \
-    (&afw_self_v_zz__Compile_unit_heap_chunk_min.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_unit_heap_chunk_min */
-#define afw_self_s_zz__Compile_unit_heap_chunk_min \
-    (afw_self_v_zz__Compile_unit_heap_chunk_min.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Compile_unit_heap_chunk_min */
-extern const afw_value_string_t \
-    afw_self_v_zz__Compile_unit_heap_chunk_min;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Compile_unit_heap_chunk_min */
-#define afw_z_zz__Compile_unit_heap_chunk_min \
-    (afw_self_v_zz__Compile_unit_heap_chunk_min.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_unit_heap_chunk_min */
-#define afw_v_zz__Compile_unit_heap_chunk_min \
-    (&afw_self_v_zz__Compile_unit_heap_chunk_min.pub)
 
 
 
@@ -52887,6 +52809,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Default_Chunk_Min \
+    "Default Chunk Min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_Chunk_Min */
+#define afw_s_zz__Default_Chunk_Min \
+    (&afw_self_v_zz__Default_Chunk_Min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_Chunk_Min */
+#define afw_self_s_zz__Default_Chunk_Min \
+    (afw_self_v_zz__Default_Chunk_Min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Default_Chunk_Min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Default_Chunk_Min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Default_Chunk_Min */
+#define afw_z_zz__Default_Chunk_Min \
+    (afw_self_v_zz__Default_Chunk_Min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Default_Chunk_Min */
+#define afw_v_zz__Default_Chunk_Min \
+    (&afw_self_v_zz__Default_Chunk_Min.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Default_Flags \
     "Default Flags"
 
@@ -52991,28 +52939,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Default_heap_posix_memalign_size \
-    "Default heap posix_memalign size"
+#define AFW_Q_zz__Default_heap_chunk_min \
+    "Default heap chunk min"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_heap_posix_memalign_size */
-#define afw_s_zz__Default_heap_posix_memalign_size \
-    (&afw_self_v_zz__Default_heap_posix_memalign_size.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_heap_chunk_min */
+#define afw_s_zz__Default_heap_chunk_min \
+    (&afw_self_v_zz__Default_heap_chunk_min.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_heap_posix_memalign_size */
-#define afw_self_s_zz__Default_heap_posix_memalign_size \
-    (afw_self_v_zz__Default_heap_posix_memalign_size.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_heap_chunk_min */
+#define afw_self_s_zz__Default_heap_chunk_min \
+    (afw_self_v_zz__Default_heap_chunk_min.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Default_heap_posix_memalign_size */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Default_heap_chunk_min */
 extern const afw_value_string_t \
-    afw_self_v_zz__Default_heap_posix_memalign_size;
+    afw_self_v_zz__Default_heap_chunk_min;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Default_heap_posix_memalign_size */
-#define afw_z_zz__Default_heap_posix_memalign_size \
-    (afw_self_v_zz__Default_heap_posix_memalign_size.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Default_heap_chunk_min */
+#define afw_z_zz__Default_heap_chunk_min \
+    (afw_self_v_zz__Default_heap_chunk_min.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Default_heap_posix_memalign_size */
-#define afw_v_zz__Default_heap_posix_memalign_size \
-    (&afw_self_v_zz__Default_heap_posix_memalign_size.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Default_heap_chunk_min */
+#define afw_v_zz__Default_heap_chunk_min \
+    (&afw_self_v_zz__Default_heap_chunk_min.pub)
 
 
 
@@ -69397,54 +69345,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Override_compile_unit_heap_chunk_min \
-    "Override compile-unit heap chunk min"
+#define AFW_Q_zz__Override_default_heap_chunk_min \
+    "Override default heap chunk min"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
-#define afw_s_zz__Override_compile_unit_heap_chunk_min \
-    (&afw_self_v_zz__Override_compile_unit_heap_chunk_min.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_default_heap_chunk_min */
+#define afw_s_zz__Override_default_heap_chunk_min \
+    (&afw_self_v_zz__Override_default_heap_chunk_min.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
-#define afw_self_s_zz__Override_compile_unit_heap_chunk_min \
-    (afw_self_v_zz__Override_compile_unit_heap_chunk_min.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_default_heap_chunk_min */
+#define afw_self_s_zz__Override_default_heap_chunk_min \
+    (afw_self_v_zz__Override_default_heap_chunk_min.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_default_heap_chunk_min */
 extern const afw_value_string_t \
-    afw_self_v_zz__Override_compile_unit_heap_chunk_min;
+    afw_self_v_zz__Override_default_heap_chunk_min;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
-#define afw_z_zz__Override_compile_unit_heap_chunk_min \
-    (afw_self_v_zz__Override_compile_unit_heap_chunk_min.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_default_heap_chunk_min */
+#define afw_z_zz__Override_default_heap_chunk_min \
+    (afw_self_v_zz__Override_default_heap_chunk_min.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
-#define afw_v_zz__Override_compile_unit_heap_chunk_min \
-    (&afw_self_v_zz__Override_compile_unit_heap_chunk_min.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Override_default_heap_posix_memalign_size \
-    "Override default heap posix_memalign size"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
-#define afw_s_zz__Override_default_heap_posix_memalign_size \
-    (&afw_self_v_zz__Override_default_heap_posix_memalign_size.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
-#define afw_self_s_zz__Override_default_heap_posix_memalign_size \
-    (afw_self_v_zz__Override_default_heap_posix_memalign_size.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
-extern const afw_value_string_t \
-    afw_self_v_zz__Override_default_heap_posix_memalign_size;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
-#define afw_z_zz__Override_default_heap_posix_memalign_size \
-    (afw_self_v_zz__Override_default_heap_posix_memalign_size.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
-#define afw_v_zz__Override_default_heap_posix_memalign_size \
-    (&afw_self_v_zz__Override_default_heap_posix_memalign_size.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_default_heap_chunk_min */
+#define afw_v_zz__Override_default_heap_chunk_min \
+    (&afw_self_v_zz__Override_default_heap_chunk_min.pub)
 
 
 
@@ -69471,6 +69393,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Override_request_thread_ST_asked_for_cap */
 #define afw_v_zz__Override_request_thread_ST_asked_for_cap \
     (&afw_self_v_zz__Override_request_thread_ST_asked_for_cap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_small_heap_chunk_min \
+    "Override small heap chunk min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_small_heap_chunk_min */
+#define afw_s_zz__Override_small_heap_chunk_min \
+    (&afw_self_v_zz__Override_small_heap_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_small_heap_chunk_min */
+#define afw_self_s_zz__Override_small_heap_chunk_min \
+    (afw_self_v_zz__Override_small_heap_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_small_heap_chunk_min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_small_heap_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_small_heap_chunk_min */
+#define afw_z_zz__Override_small_heap_chunk_min \
+    (afw_self_v_zz__Override_small_heap_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_small_heap_chunk_min */
+#define afw_v_zz__Override_small_heap_chunk_min \
+    (&afw_self_v_zz__Override_small_heap_chunk_min.pub)
 
 
 
@@ -76153,6 +76101,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Signature_used_for_current_returnObject__ */
 #define afw_v_zz__Signature_used_for_current_returnObject__ \
     (&afw_self_v_zz__Signature_used_for_current_returnObject__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Small_Chunk_Min \
+    "Small Chunk Min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Small_Chunk_Min */
+#define afw_s_zz__Small_Chunk_Min \
+    (&afw_self_v_zz__Small_Chunk_Min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Small_Chunk_Min */
+#define afw_self_s_zz__Small_Chunk_Min \
+    (afw_self_v_zz__Small_Chunk_Min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Small_Chunk_Min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Small_Chunk_Min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Small_Chunk_Min */
+#define afw_z_zz__Small_Chunk_Min \
+    (afw_self_v_zz__Small_Chunk_Min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Small_Chunk_Min */
+#define afw_v_zz__Small_Chunk_Min \
+    (&afw_self_v_zz__Small_Chunk_Min.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Small_heap_chunk_min \
+    "Small heap chunk min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Small_heap_chunk_min */
+#define afw_s_zz__Small_heap_chunk_min \
+    (&afw_self_v_zz__Small_heap_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Small_heap_chunk_min */
+#define afw_self_s_zz__Small_heap_chunk_min \
+    (afw_self_v_zz__Small_heap_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Small_heap_chunk_min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Small_heap_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Small_heap_chunk_min */
+#define afw_z_zz__Small_heap_chunk_min \
+    (afw_self_v_zz__Small_heap_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Small_heap_chunk_min */
+#define afw_v_zz__Small_heap_chunk_min \
+    (&afw_self_v_zz__Small_heap_chunk_min.pub)
 
 
 
@@ -125609,32 +125609,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a11800d60aea \
-    "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a11800d60aea */
-#define afw_s_zz__a11800d60aea \
-    (&afw_self_v_zz__a11800d60aea.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a11800d60aea */
-#define afw_self_s_zz__a11800d60aea \
-    (afw_self_v_zz__a11800d60aea.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a11800d60aea */
-extern const afw_value_string_t \
-    afw_self_v_zz__a11800d60aea;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a11800d60aea */
-#define afw_z_zz__a11800d60aea \
-    (afw_self_v_zz__a11800d60aea.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a11800d60aea */
-#define afw_v_zz__a11800d60aea \
-    (&afw_self_v_zz__a11800d60aea.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a12992e382c3 \
     "Returns the zero-based index into <dataType> value of subString. If subString is not found, -1 is returned."
 
@@ -146851,32 +146825,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__efe44f4331a9 \
-    "posix_memalign minimum used when creating a compile-unit heap."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__efe44f4331a9 */
-#define afw_s_zz__efe44f4331a9 \
-    (&afw_self_v_zz__efe44f4331a9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__efe44f4331a9 */
-#define afw_self_s_zz__efe44f4331a9 \
-    (afw_self_v_zz__efe44f4331a9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__efe44f4331a9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__efe44f4331a9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__efe44f4331a9 */
-#define afw_z_zz__efe44f4331a9 \
-    (afw_self_v_zz__efe44f4331a9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__efe44f4331a9 */
-#define afw_v_zz__efe44f4331a9 \
-    (&afw_self_v_zz__efe44f4331a9.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__effba8d3a09f \
     "Stream number objects will be written to as they are retrieved."
 
@@ -149347,6 +149295,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f2ffeca2cb68 \
+    "Optional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f2ffeca2cb68 */
+#define afw_s_zz__f2ffeca2cb68 \
+    (&afw_self_v_zz__f2ffeca2cb68.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f2ffeca2cb68 */
+#define afw_self_s_zz__f2ffeca2cb68 \
+    (afw_self_v_zz__f2ffeca2cb68.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f2ffeca2cb68 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f2ffeca2cb68;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f2ffeca2cb68 */
+#define afw_z_zz__f2ffeca2cb68 \
+    (afw_self_v_zz__f2ffeca2cb68.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f2ffeca2cb68 */
+#define afw_v_zz__f2ffeca2cb68 \
+    (&afw_self_v_zz__f2ffeca2cb68.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f30298b1b019 \
     "Return the value of a bound variable. Optional default applies only when the name is not bound — not when the value is undefined. If unbound and no default is given, the result is undefined. The default is the evaluated value at that moment (identity)."
 
@@ -150019,6 +149993,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f58fad6636c4 */
 #define afw_v_zz__f58fad6636c4 \
     (&afw_self_v_zz__f58fad6636c4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__f59452d6b11c \
+    "Minimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f59452d6b11c */
+#define afw_s_zz__f59452d6b11c \
+    (&afw_self_v_zz__f59452d6b11c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f59452d6b11c */
+#define afw_self_s_zz__f59452d6b11c \
+    (afw_self_v_zz__f59452d6b11c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f59452d6b11c */
+extern const afw_value_string_t \
+    afw_self_v_zz__f59452d6b11c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f59452d6b11c */
+#define afw_z_zz__f59452d6b11c \
+    (afw_self_v_zz__f59452d6b11c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f59452d6b11c */
+#define afw_v_zz__f59452d6b11c \
+    (&afw_self_v_zz__f59452d6b11c.pub)
 
 
 

@@ -348,17 +348,17 @@ afw_application_internal_register_basic_application_context_type(
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        afw_s_chunkMin, afw_s_runtime,
+        afw_s_defaultChunkMin, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
-        "Chunk Min",
-        "Default heap posix_memalign size when create passes 0.",
+        "Default Chunk Min",
+        "Default heap chunk min when create passes 0.",
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        afw_s_compileChunkMin, afw_s_runtime,
+        afw_s_smallChunkMin, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
-        "Compile Chunk Min",
-        "Compile-unit heap chunk min.",
+        "Small Chunk Min",
+        "Chunk min for compile, scope, service, adapter, log, and conf.",
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
@@ -592,12 +592,12 @@ afw_application_internal_application_conf_type_create_cede_p(
         &env->limit_c_stack_headroom_bytes, NULL,
         IMPL_KNOB_LIMIT_BYTES, source_location, xctx);
     impl_apply_optional_size_limit(properties,
-        afw_v_chunkMin,
-        &env->chunk_min, NULL,
+        afw_v_defaultChunkMin,
+        &env->default_chunk_min, NULL,
         IMPL_KNOB_CHUNK_MIN, source_location, xctx);
     impl_apply_optional_size_limit(properties,
-        afw_v_compileChunkMin,
-        &env->compile_chunk_min, NULL,
+        afw_v_smallChunkMin,
+        &env->small_chunk_min, NULL,
         IMPL_KNOB_CHUNK_MIN, source_location, xctx);
     impl_apply_optional_size_limit(properties,
         afw_v_xctxChunkMin,

@@ -48,8 +48,8 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
 | `create_managed` | Frame in **`p->managed_p`** (pass the evaluation `p`). |
 | `get_assignable` | Isolate into a slot (`value, p, xctx`). Promote/clone uses `p->managed_p`. |
-| `afw_xctx_scope_get_assignable_for_scope_lifetime` | `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
-| `afw_xctx_scope_get_assignable_for_p_lifetime` | Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
+| `afw_pool_scope_get_assignable_for_scope_lifetime` | Core only (`afw_pool_scope_internal.h`). `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
+| `afw_pool_scope_get_assignable_for_p_lifetime` | Core only. Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, `create_managed`, `get_assignable` / `slot_store`, or extra allocation (iterator / meta). **Not** on value getters or `get_reference`. |
 
@@ -75,10 +75,10 @@ Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / 
 | `afw_array_get_next_value(..., p, xctx)` / `push_internal` / `get_next_internal` | Drop dest `p` on `get_next_value` / `get_entry_value`. Gone: `push_internal`, `insert_internal`, `remove_internal`, `get_next_internal`, `get_entry_internal`. Use **`push_value`** / **`get_next_value`** or typed `array_of_<type>_add` / `_add_internal`. [Typed values](#typed-value-pointers-vs-c-internals) |
 | `afw_value_as_assignable` / `compile_and_evaluate_as` | **`afw_value_get_assignable`**. **`afw_value_compile_and_evaluate_using`**. [Typed values](#typed-value-pointers-vs-c-internals) |
 | Object/array create that “owns a pool” as `create_managed` | **`create_unmanaged`** (live in `p`), **`create_unmanaged_new_p`**, **`create_unmanaged_cede_p`**. **`create_managed(p, xctx)`** is a **frame** (slots + RC in **`p->managed_p`**). Isolate with **`get_assignable`**. Unmanaged object/array **value** `get_reference` / `release` **throw**. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta) |
-| `afw_pool_create(heap)` as a nested heap; `afw_pool_create_xctx_p` | **`afw_pool_create`** is a **heap** like the parent (ST or MT). Tracker: **`afw_pool_tracker_create`**. ST heap: **`afw_pool_heap_create(parent, chunk_min, xctx)`** (`0` = 64k). Job/MT: **`afw_pool_multithread_create(env->p)`**. Evaluation `{ }` is **`afw_pool_scope_create`**. |
+| `afw_pool_create(heap)` as a nested heap; `afw_pool_create_xctx_p` | **`afw_pool_create`** is a **heap** like the parent (ST or MT). Tracker: **`afw_pool_tracker_create`**. ST heap: **`afw_pool_heap_create(parent, chunk_min, xctx)`** (`0` = 64k). Job/MT: **`afw_pool_multithread_create(parent, chunk_min, xctx)`** (`0` = 64k). Service, adapter, log, and conf pass **`small_chunk_min`** (4k). A blank scope pool is **`afw_pool_scope_allocate(parent, xctx)`**. The `{ }` frame is core-only **`afw_pool_scope_create`**. |
 | `afw_byte_t` | **`afw_octet_t`**. `afw_utf8_octet_t` stays `char`. |
 | `error->backtrace` as a pool utf8 / `afw_os_backtrace` returning a buffer | **`const afw_value_hexBinary_t *`** (NULL if none). Captured only when this xctx has **`response:error:backtrace`** on (not a memory error). **`afw_error_release_backtrace`**. Error object property is still a **`ks`** string of those octets. A request can set it with **`_flags_`** / **`flag_set`**. The `afw` command defaults **`response:error`** on. |
-| `afw_xctx_scope_get_assignable_for_lifetime` | **`get_assignable_for_scope_lifetime`** (current `{ }`). Script return uses **`get_assignable_for_p_lifetime`** on the caller. |
+| `afw_pool_scope_get_assignable_for_lifetime` | **`get_assignable_for_scope_lifetime`** (current `{ }`). Script return uses **`get_assignable_for_p_lifetime`** on the caller. |
 | `afw_pool_register_cleanup_before` | **`afw_pool_register_cleanup`**. Callbacks must not throw uncaught (that stops the rest of the list). |
 | `afw_pool_destroy` that ran cleanup callbacks | **`destroy` is storage-only** (must not fail). **`afw_pool_run_cleanups`** first if callbacks must run (`xctx_release` does both). Last-`release` (RC 0) still runs callbacks then teardown. |
 
@@ -338,7 +338,7 @@ New limit/cap property ids should use a **`max…`** prefix (`maxReadBytes`, `ma
 |------|-----|------|
 | **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
 | **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_bytes` / `xctx_chunk_bytes`) |
-| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx asked-for and chunk bytes optional so older `afw` still records timing. `--trend-metric bytes\|chunk\|ms` |
+| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx asked-for and chunk bytes optional so older `afw` still records timing. `--trend-metric bytes\|chunk\|ms`. `--clear-history` drops ordinary runs for this `--env-mode` and keeps `-ref-` baselines. `--trend --history-ref LABEL` uses that baseline plus later ordinary runs. `--clear-failures` deletes `~/.afw/test-failures/` logs for this mode. |
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
@@ -982,7 +982,7 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 
 - Prefer **shared permanent Adaptive values** (`afw_v_*`) for known scalars where safe.
 - **Slot protocol:** assign / parameters hold the new value and release the old; scope last-release walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration. No `var` hoist, no TDZ, no `for-in`.
-- **Pools:** **libafw does not use APR.** `afw_pool_heap_create` (ST, inherit `managed_p`; default 64k min, compile units 4k), `*_as_managed_p` (`managed_p = self`; xctx/thread/env), `afw_pool_create` (heap like the parent), `afw_pool_tracker_create`, `afw_pool_scope_create` (evaluation `{ }`: ST heap, 4k, inherit, throw last-release delay), `afw_pool_multithread_create` (conf/adapter/server). One ST job heap per xctx. Tracker `free_memory` marks; `garbage_collect` returns marked. `destroy` is storage-only; **`run_cleanups`** first. Process base pool is process lifetime (valgrind **still reachable** is intended).
+- **Pools:** **libafw does not use APR.** `afw_pool_heap_create` (ST, inherit `managed_p`; default 64k min, compile units 4k), `*_as_managed_p` (`managed_p = self`; xctx/thread/env), `afw_pool_create` (heap like the parent), `afw_pool_tracker_create`, `afw_pool_scope_create` (evaluation `{ }`: ST heap, 4k, inherit, throw last-release delay), `afw_pool_multithread_create(parent, chunk_min, xctx)` (`0` = 64k; conf/adapter/server/log pass 4k). One ST job heap per xctx. Tracker `free_memory` marks; `garbage_collect` returns marked. `destroy` is storage-only; **`run_cleanups`** first. Process base pool is process lifetime (valgrind **still reachable** is intended).
 - **Compile unit:** script/template/test_script `compile()` is a **managed** `compiled_value`. Evaluate **pins** the result on dest `p` (no copy-out clone).
 - **Script return:** pin on the caller (`get_assignable_for_p_lifetime`). No leftover function-return wrapper inf.
 - **Live counters:** `process::poolBytesInUse` / `maxPoolBytesInUse` / `poolChunkBytes` / `maxPoolChunkBytes` (same numbers on `_AdaptiveServer_/current`).
@@ -1373,7 +1373,7 @@ Process environment variables and invocation info are created at **environment c
 | **`limitEvaluationStackCount`** | Adaptive eval-stack cap per xctx (default 500; **0** = unlimited) |
 | **`limitRequestPoolBytes`** | Request-thread ST asked-for cap (default 64MiB; **0** = unlimited). CLI is uncapped unless application conf sets this |
 | **`limitCStackHeadroomBytes`** | Minimum remaining C stack before `payload_too_large` (default 256KiB; **0** = unlimited) |
-| **`chunkMin` / `compileChunkMin` / `xctxChunkMin`** | Heap posix_memalign minima (rounded up to 4k) |
+| **`defaultChunkMin` / `smallChunkMin` / `xctxChunkMin`** | Heap chunk minima (rounded up to 4k). `defaultChunkMin` is what create `chunk_min` 0 uses (64k). `smallChunkMin` is compile, scope, service, adapter, log, and conf (4k). `xctxChunkMin` is the request/thread heap |
 | **`memoryRegionFreeListMaxBytes`** | Cap on the thread heap-chunk reuse list (default 256KiB; **0** = posix_memalign/free every get/free) |
 | **`memoryRegionBytesInUse` / `memoryRegionRegionsInUse`** | Live region bytes/count handed out to heaps (process-wide) |
 | **`memoryRegionFreeListBytes` / `memoryRegionFreeListCount`** | Live reuse-list bytes/count (not in a heap) |
@@ -1410,7 +1410,7 @@ Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool b
 
 A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** when there is still room to build the error. If allocation itself fails, the error is **`memory`**. Either is OK; the worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI. A positive retrieve **`maxObjects`** is a separate cardinality throw (`payload_too_large`) and is not the request memory cap.
 
-`afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs posix_memalign chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes.
+`afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs posix_memalign chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes. **`--clear-history`** removes ordinary runs for this mode and keeps reference baselines. **`--trend --history-ref LABEL`** charts that baseline and ordinary runs after it. **`--clear-failures`** removes this mode's logs under `~/.afw/test-failures/`.
 
 [↑ Highlights](#highlights)
 

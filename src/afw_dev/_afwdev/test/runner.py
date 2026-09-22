@@ -37,6 +37,7 @@ from _afwdev.test.common import \
     xctx_bytes_from_response, xctx_chunk_bytes_from_response, \
     format_test_timing
 from _afwdev.test.history import file_record
+from _afwdev.test import failure_log
 
 
 ##
@@ -226,13 +227,19 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             after_each(root, testGroupConfig, testEnvironment)
 
             if hasFailures:
+                detail_text = _failure_detail(error, response, numFailures)
                 failures.append({
                     'test': test_display,
-                    'detail': clip_detail(
-                        _failure_detail(error, response, numFailures)),
+                    'detail': clip_detail(detail_text),
                     'srcdir': srcdir,
                     'group': test_path_for_display(root, pwd),
                 })
+                failure_log.record(
+                    options,
+                    name=test_display,
+                    message=detail_text,
+                    err=error,
+                )
 
             # Default is errors-only; --show-all or a real --test-pattern
             # prints successful tests too.

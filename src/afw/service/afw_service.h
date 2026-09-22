@@ -77,10 +77,15 @@ struct afw_service_s {
     /** @brief The source location associated with this service. */
     const afw_utf8_t *source_location;
 
-    /** @brief The properties object containing runtime and conf properties. */
+    /**
+     * @brief Clone of the conf property.
+     *
+     * This is the adapter, log, or authorization-handler configuration,
+     * not the _AdaptiveServiceConf_ object that contained it.
+     */
     const afw_object_t *properties;
 
-    /** @brief The source location associated with the conf for this service. */
+    /** @brief The source location associated with the conf property. */
     const afw_utf8_t *conf_source_location;
 
     /** @brief The status of the service. */

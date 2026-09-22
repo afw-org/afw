@@ -15,8 +15,9 @@
  * @file afw_pool_heap_internal.h
  * @brief Heap store internals (`afw_pool_heap.c`).
  *
- * The heap owns the free list and posix_memalign chunks (4k-aligned,
- * 64k minimum). Destroy returns chunks to the thread memory_region.
+ * The heap owns the free list and posix_memalign chunks (4k-aligned).
+ * chunk_min 0 is the 64k floor. Destroy returns chunks to the thread
+ * memory_region.
  * Scope is a heap with compile-sized chunks plus throw last-release
  * delay.
  *
@@ -224,6 +225,59 @@ afw_pool_heap_internal_create(
 void
 afw_pool_heap_internal_release_delayed(
     const afw_pool_t *instance,
+    afw_xctx_t *xctx);
+
+afw_pool_internal_self_t *
+afw_pool_heap_create_self(
+    const afw_pool_t *afw_parent,
+    const afw_pool_inf_t *inf,
+    afw_boolean_t as_managed_p,
+    afw_size_t chunk_min,
+    afw_size_t self_bytes,
+    const afw_thread_t *thread,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_heap_teardown_store(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_heap_calloc(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_heap_malloc(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_heap_free_memory(
+    afw_pool_internal_self_t *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_heap_calloc_no_throw(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_heap_malloc_no_throw(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_heap_free_memory_no_throw(
+    afw_pool_internal_self_t *self,
+    void *address,
+    afw_size_t size,
     afw_xctx_t *xctx);
 
 AFW_END_DECLARES

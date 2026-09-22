@@ -1263,12 +1263,12 @@ impl_register_transferred_temp(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_xctx_scope_t *scope;
+    const afw_pool_scope_t *scope;
 
     if (!value) {
         return NULL;
     }
-    scope = afw_xctx_scope_current(xctx);
+    scope = afw_pool_scope_current(xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
     }

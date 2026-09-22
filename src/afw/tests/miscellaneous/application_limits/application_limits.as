@@ -12,8 +12,8 @@
 assert(process::limitEvaluationStackCount === 40);
 assert(process::limitCStackHeadroomBytes === 0);
 assert(process::limitRequestPoolBytes === 67108864);
-assert(process::chunkMin === 4096);
-assert(process::compileChunkMin === 4096);
+assert(process::defaultChunkMin === 4096);
+assert(process::smallChunkMin === 4096);
 assert(process::xctxChunkMin === 8192);
 assert(process::memoryRegionFreeListMaxBytes === 4096);
 return 0;

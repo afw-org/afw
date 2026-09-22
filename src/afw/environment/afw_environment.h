@@ -18,16 +18,16 @@
  * Exception: the base thread is created before env or the base pool
  * exist (`afw_thread_internal_create_base_thread()`), then
  * `afw_pool_heap_internal_create_base_pool(thread)`. That pool create may
- * use `AFW_ENVIRONMENT_CHUNK_MIN`. After env create, heap
- * `chunk_min == 0` means `env->chunk_min`.
+ * use `AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN`. After env create, heap
+ * `chunk_min == 0` means `env->default_chunk_min`.
  */
 #define AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT ((afw_size_t)500)
 #define AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES \
     ((afw_size_t)(64 * 1024 * 1024))
 #define AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES \
     ((afw_size_t)(256 * 1024))
-#define AFW_ENVIRONMENT_CHUNK_MIN ((afw_size_t)65536)
-#define AFW_ENVIRONMENT_COMPILE_CHUNK_MIN ((afw_size_t)4096)
+#define AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN ((afw_size_t)65536)
+#define AFW_ENVIRONMENT_SMALL_CHUNK_MIN ((afw_size_t)4096)
 #define AFW_ENVIRONMENT_XCTX_CHUNK_MIN ((afw_size_t)65536)
 
 /**
@@ -57,10 +57,11 @@ AFW_BEGIN_DECLARES
 struct afw_environment_s {
 
     /**
-     * @brief Process pool. MT heap, managed_p = self
-     * (`afw_pool_multithread_create_as_managed_p`). Conf, server,
-     * log, and adapter pools are usually the same kind of dest,
-     * parented here.
+     * @brief Process pool. MT heap, managed_p = self.
+     * Conf, server, log, and adapter pools are usually the same
+     * kind of dest, parented here, with small_chunk_min (4k).
+     * `afw_pool_multithread_create_as_managed_p` chunk_min 0 is
+     * env->default_chunk_min (64k).
      */
     const afw_pool_t *p;
 
@@ -236,7 +237,7 @@ struct afw_environment_s {
         true,                                                                   \
         "lockId",                                                               \
         "_AdaptiveLock_",                                                       \
-        "The afw_lock_t instance for a log id.")                                \
+        "The afw_lock_t instance for a lock id.")                               \
                                                                                 \
     _XX(log,                                                                     \
         impl_internal_additional_register_default,                              \

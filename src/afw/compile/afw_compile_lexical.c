@@ -2525,7 +2525,7 @@ afw_compile_lexical_parser_create(
     else {
         /* Child of dest p->managed_p (caller already passed managed_p). */
         unit_p = afw_pool_heap_create(p,
-            xctx->env->compile_chunk_min, xctx);
+            xctx->env->small_chunk_min, xctx);
         use_shared = afw_compile_shared_create(unit_p, xctx);
         shared_created = true;
     }

@@ -54,7 +54,9 @@
  *   first_chunk — this heap's chunk list. Extra chunks are
  *   prepended.
  *   chunk_min — smallest chunk this heap will get. 0 = env default
- *   (64k). Scope uses compile/4k.
+ *   (64k). Scope, compile, and service/adapter/conf/log MT pools
+ *   use small_chunk_min (4k). env->p and xctx->p stay on the
+ *   64k floor.
  *   asked-for vs chunk_bytes — sum of malloc sizes vs bytes in
  *   chunks still held.
  *   containing — `chunk *` on the block (which chunk this block is
@@ -237,8 +239,6 @@ impl_add_child(
     afw_pool_internal_self_t *parent,
     afw_pool_internal_self_t *child, afw_xctx_t *xctx)
 {
-    afw_pool_get_reference(&parent->pub, xctx);
-
     child->parent = parent;
     child->next_sibling = parent->first_child;
     parent->first_child = child;
@@ -460,11 +460,40 @@ afw_pool_internal_release_common(
     afw_xctx_t *xctx,
     void (*teardown)(AFW_POOL_SELF_T *self, afw_xctx_t *xctx))
 {
+    /*
+     * Extra holds (past the create reference) pin the parent. Drop one
+     * pin per extra release. The release that hits 0 does not, because
+     * the create reference never pinned the parent.
+     */
+    if (self->reference_count > 1) {
+        afw_pool_internal_self_t *parent;
+        afw_boolean_t parent_dies;
+
+        self->reference_count--;
+        parent = self->parent;
+        if (self->parent_pins > 0 && parent && !parent->destroying) {
+            self->parent_pins--;
+            parent_dies = (parent->reference_count == 1);
+            afw_pool_release(&parent->pub, xctx);
+            if (parent_dies) {
+                return NULL;
+            }
+        }
+        return &self->pub;
+    }
+
     if (--(self->reference_count) == 0) {
         if (self->destroying) {
             afw_pool_internal_run_cleanups(self, xctx);
             return NULL;
         }
+        /*
+         * Unreferenced children did not pin this pool. Destroy them
+         * with it. A child that was get_referenced holds a pin, so it
+         * cannot still be linked here.
+         */
+        afw_pool_internal_mark_destroying(self);
+        afw_pool_internal_destroy_children(self, xctx);
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
@@ -488,6 +517,10 @@ afw_pool_internal_get_reference(
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
     self->reference_count++;
+    if (self->parent && !self->parent->destroying) {
+        self->parent_pins++;
+        afw_pool_get_reference(&self->parent->pub, xctx);
+    }
 }
 
 /*

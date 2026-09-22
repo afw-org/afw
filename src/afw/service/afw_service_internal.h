@@ -53,16 +53,17 @@ afw_service_internal_AdaptiveService_get_object(
  * @internal
  * @brief Start initial services defined in conf adapter.
  * @param service id.
- * @param p passed to
- *    afw_application_internal_application_conf_type_create_cede_p().
+ * @param p is the application conf pool. It is not used as the retrieve
+ *    pool. A scratch pool parented on env->p is created and released when
+ *    retrieve_objects returns.
  * @param xctx of caller.
  *
  * Services are defined by object type _AdaptiveServiceConf_ objects
  * in the application's confAdapterId adapter.
  *
  * This is called from
- * afw_application_internal_application_conf_type_create_cede_p() with the p
- * passed to start services with startup equal "immediate" and "permanent".
+ * afw_application_internal_application_conf_type_create_cede_p() to start
+ * services with startup equal "immediate" and "permanent".
  */
 void
 afw_service_internal_start_initial_services(

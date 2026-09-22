@@ -143,7 +143,7 @@ A **slot** is a named variable, a **parameter**, or the **hidden result** on a f
 
 ### When the scope walks
 
-A scope **has** a reference count (tree today: `afw_xctx_scope_t`). Create starts at 0. Activate bumps it. A **closure** `add_reference`s the enclosing scope. A child holds its **parent lexical** scope. Block end / deactivate is **one** `release`.
+A scope **has** a reference count (tree today: `afw_pool_scope_t`). Create starts at 0. Activate bumps it. A **closure** `add_reference`s the enclosing scope. A child holds its **parent lexical** scope. Block end / deactivate is **one** `release`.
 
 **Walk slots on the scope’s last `release`, not on `}`.** Then the scope pool can go. Today the last `release` mostly releases the pool and does **not** walk slots — that walk is what this story adds.
 

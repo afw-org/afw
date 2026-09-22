@@ -35,6 +35,7 @@ from _afwdev.test.common import (
     find_test_groups, load_test_group_config, test_group_matches_tags,
     print_failure_digest, normalize_tests_paths, write_results_summary,
     clip_detail, format_xctx_bytes)
+from _afwdev.test import failure_log
 from _afwdev.test import history as test_history
 
 
@@ -151,130 +152,165 @@ def run(options):
             'compare') is not None
         want_trend = options.get('trend') is not False and options.get(
             'trend') is not None
-        skip_run = (want_compare or want_trend) and not (
-            options.get('history') or options.get('history_ref'))
+        try:
+            if _wants_housekeeping(options):
+                _do_housekeeping(options)
+        except (ValueError, OSError) as e:
+            msg.error_exit(str(e))
+        # --history-ref marks a run, except with --trend where it
+        # selects that reference and does not run unless --history.
+        record_run = bool(options.get('history')) or (
+            bool(options.get('history_ref')) and not want_trend)
+        skip_run = (
+            want_compare or want_trend or _wants_housekeeping(options)
+        ) and not record_run
 
         if skip_run:
-            _run_compare_trend(options)
+            if want_compare or want_trend:
+                _run_compare_trend(options)
             sys.exit(0)
 
-        start = time.time()
-        results, failures, max_xctx_bytes, file_records = runner.run(
-            options, srcdirs)
-        max_xctx_chunk_bytes = test_history.max_file_metric(
-            file_records, "xctx_chunk_bytes")
-        end = time.time()
+        failure_log.begin(options)
+        try:
+            start = time.time()
+            results, failures, max_xctx_bytes, file_records = runner.run(
+                options, srcdirs)
+            max_xctx_chunk_bytes = test_history.max_file_metric(
+                file_records, "xctx_chunk_bytes")
+            end = time.time()
 
-        # iterate over results dict and print results
-        for srcdir, stats in results.items():            
-            passed, skipped, failed = stats
+            # iterate over results dict and print results
+            for srcdir, stats in results.items():            
+                passed, skipped, failed = stats
 
-            total_passed += passed
-            total_skipped += skipped
-            total_failed += failed
-            total_tests += passed + skipped + failed
+                total_passed += passed
+                total_skipped += skipped
+                total_failed += failed
+                total_tests += passed + skipped + failed
 
-            if failed > 0:
-                srcdirs_failed += 1
+                if failed > 0:
+                    srcdirs_failed += 1
 
-        srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)
-        elapsed = round(end - start, 2)
+            srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)
+            elapsed = round(end - start, 2)
 
-        # When --output is '-', keep stdout clean for the machine summary
-        summary_to_stdout = (options.get('output') == '-')
+            # When --output is '-', keep stdout clean for the machine summary
+            summary_to_stdout = (options.get('output') == '-')
 
-        if not summary_to_stdout:
-            # Print human summary
-            msg.highlighted_info("")
-            msg.highlighted_info("Source Dirs:   ", end="")
-            if srcdirs_failed > 0:
-                msg.error("{} failed".format(srcdirs_failed), end="")
-                msg.highlighted_info(", ", end="")
-            if srcdirs_skipped > 0:
-                msg.warn("{} skipped".format(srcdirs_skipped), end="")
-                msg.highlighted_info(", ", end="")
-            if srcdirs_passed > 0:
-                msg.success("{} passed".format(srcdirs_passed), end="")
-                msg.highlighted_info(", ", end="")
+            if not summary_to_stdout:
+                # Print human summary
+                msg.highlighted_info("")
+                msg.highlighted_info("Source Dirs:   ", end="")
+                if srcdirs_failed > 0:
+                    msg.error("{} failed".format(srcdirs_failed), end="")
+                    msg.highlighted_info(", ", end="")
+                if srcdirs_skipped > 0:
+                    msg.warn("{} skipped".format(srcdirs_skipped), end="")
+                    msg.highlighted_info(", ", end="")
+                if srcdirs_passed > 0:
+                    msg.success("{} passed".format(srcdirs_passed), end="")
+                    msg.highlighted_info(", ", end="")
 
-            msg.highlighted_info("{} total".format(total_srcdirs))
+                msg.highlighted_info("{} total".format(total_srcdirs))
 
-            msg.highlighted_info("Tests:         ", end="")
+                msg.highlighted_info("Tests:         ", end="")
+                if total_failed > 0:
+                    msg.error("{} failed".format(total_failed), end="")
+                    msg.highlighted_info(", ", end="")
+                if total_skipped > 0:
+                    msg.warn("{} skipped".format(total_skipped), end="")
+                    msg.highlighted_info(", ", end="")
+                if total_passed > 0:
+                    msg.success("{} passed".format(total_passed), end="")
+                    msg.highlighted_info(", ", end="")
+
+                msg.highlighted_info("{} total".format(total_tests))
+                msg.highlighted_info("Time:          {}s".format(elapsed))
+                if max_xctx_bytes or max_xctx_chunk_bytes:
+                    parts = []
+                    if max_xctx_bytes:
+                        parts.append("{} xctx".format(
+                            format_xctx_bytes(max_xctx_bytes)))
+                    if max_xctx_chunk_bytes:
+                        parts.append("{} chunk".format(
+                            format_xctx_bytes(max_xctx_chunk_bytes)))
+                    msg.highlighted_info("Memory:        max " + ", ".join(parts))
+
+                # Console-only digest so parallel -j runs still end with greppable paths
+                print_failure_digest(failures)
+
+            summary = {
+                'srcdirs': {
+                    'passed': srcdirs_passed,
+                    'failed': srcdirs_failed,
+                    'skipped': srcdirs_skipped,
+                    'total': total_srcdirs,
+                },
+                'tests': {
+                    'passed': total_passed,
+                    'failed': total_failed,
+                    'skipped': total_skipped,
+                    'total': total_tests,
+                },
+                'time_seconds': elapsed,
+                'max_xctx_bytes': max_xctx_bytes or 0,
+                'max_xctx_chunk_bytes': max_xctx_chunk_bytes or 0,
+                'mode': test_history.env_mode(options),
+                'git': test_history.git_meta(),
+                'files': sorted(
+                    file_records or [], key=lambda r: r.get('path') or ''),
+                'by_srcdir': {
+                    srcdir: {
+                        'passed': stats[0],
+                        'skipped': stats[1],
+                        'failed': stats[2],
+                    }
+                    for srcdir, stats in results.items()
+                },
+                'failures': [
+                    {
+                        'test': f.get('test'),
+                        'detail': clip_detail(f.get('detail')),
+                        'group': f.get('group'),
+                        'srcdir': f.get('srcdir'),
+                    }
+                    for f in (failures or [])
+                ],
+            }
+            write_results_summary(options, summary, tool_label='test')
+
+            if test_history.should_write_history(options):
+                test_history.write_history(summary, options)
+
+            if want_compare or want_trend:
+                _run_compare_trend(options)
+
             if total_failed > 0:
-                msg.error("{} failed".format(total_failed), end="")
-                msg.highlighted_info(", ", end="")
-            if total_skipped > 0:
-                msg.warn("{} skipped".format(total_skipped), end="")
-                msg.highlighted_info(", ", end="")
-            if total_passed > 0:
-                msg.success("{} passed".format(total_passed), end="")
-                msg.highlighted_info(", ", end="")
+                failure_log.note(options)
+                sys.exit(1)
+            else:
+                sys.exit(0)
+        finally:
+            failure_log.finish(options)
 
-            msg.highlighted_info("{} total".format(total_tests))
-            msg.highlighted_info("Time:          {}s".format(elapsed))
-            if max_xctx_bytes or max_xctx_chunk_bytes:
-                parts = []
-                if max_xctx_bytes:
-                    parts.append("{} xctx".format(
-                        format_xctx_bytes(max_xctx_bytes)))
-                if max_xctx_chunk_bytes:
-                    parts.append("{} chunk".format(
-                        format_xctx_bytes(max_xctx_chunk_bytes)))
-                msg.highlighted_info("Memory:        max " + ", ".join(parts))
 
-            # Console-only digest so parallel -j runs still end with greppable paths
-            print_failure_digest(failures)
+def _wants_housekeeping(options):
+    return bool(
+        options.get('clear_failures')
+        or options.get('clear_history')
+        or options.get('list_history_refs')
+        or options.get('delete_history_ref'))
 
-        summary = {
-            'srcdirs': {
-                'passed': srcdirs_passed,
-                'failed': srcdirs_failed,
-                'skipped': srcdirs_skipped,
-                'total': total_srcdirs,
-            },
-            'tests': {
-                'passed': total_passed,
-                'failed': total_failed,
-                'skipped': total_skipped,
-                'total': total_tests,
-            },
-            'time_seconds': elapsed,
-            'max_xctx_bytes': max_xctx_bytes or 0,
-            'max_xctx_chunk_bytes': max_xctx_chunk_bytes or 0,
-            'mode': test_history.env_mode(options),
-            'git': test_history.git_meta(),
-            'files': sorted(
-                file_records or [], key=lambda r: r.get('path') or ''),
-            'by_srcdir': {
-                srcdir: {
-                    'passed': stats[0],
-                    'skipped': stats[1],
-                    'failed': stats[2],
-                }
-                for srcdir, stats in results.items()
-            },
-            'failures': [
-                {
-                    'test': f.get('test'),
-                    'detail': clip_detail(f.get('detail')),
-                    'group': f.get('group'),
-                    'srcdir': f.get('srcdir'),
-                }
-                for f in (failures or [])
-            ],
-        }
-        write_results_summary(options, summary, tool_label='test')
 
-        if test_history.should_write_history(options):
-            test_history.write_history(summary, options)
-
-        if want_compare or want_trend:
-            _run_compare_trend(options)
-
-        if total_failed > 0:
-            sys.exit(1)
-        else:
-            sys.exit(0)
+def _do_housekeeping(options):
+    if options.get('clear_failures'):
+        failure_log.clear_failures(options)
+    if options.get('clear_history'):
+        test_history.clear_history(options)
+    if options.get('delete_history_ref'):
+        test_history.delete_history_ref(options)
+    if options.get('list_history_refs'):
+        test_history.list_history_refs(options)
 
 
 def _run_compare_trend(options):

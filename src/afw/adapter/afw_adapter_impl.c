@@ -237,16 +237,28 @@ afw_adapter_impl_create_cede_p(
     s = afw_utf8_printf(p, xctx,
         "adapter_id:'%ku'",
         impl->adapter_id);
-    if (!afw_environment_get_lock(s, xctx)) {
-        impl->adapter_lock_rw = afw_lock_create_rw_and_register(
-            afw_utf8_clone(s, xctx->env->p, xctx),
-            afw_utf8_printf(xctx->env->p, xctx,
-                "Adapter id '%ku' read/write lock",
-                impl->adapter_id),
-            afw_utf8_printf(xctx->env->p, xctx,
-                "Read/write lock used internally by adapter id '%ku' implementation",
-                impl->adapter_id),
-            xctx);
+    /*
+     * The registered value is &rw->lock, and lock is the first member
+     * of afw_lock_rw_t, so the pointer is the rw lock.
+     */
+    {
+        const afw_lock_t *existing;
+
+        existing = afw_environment_get_lock(s, xctx);
+        if (existing) {
+            impl->adapter_lock_rw = (const afw_lock_rw_t *)existing;
+        }
+        else {
+            impl->adapter_lock_rw = afw_lock_create_rw_and_register(
+                afw_utf8_clone(s, xctx->env->p, xctx),
+                afw_utf8_printf(xctx->env->p, xctx,
+                    "Adapter id '%ku' read/write lock",
+                    impl->adapter_id),
+                afw_utf8_printf(xctx->env->p, xctx,
+                    "Read/write lock used internally by adapter id '%ku' implementation",
+                    impl->adapter_id),
+                xctx);
+        }
     }
 
     /* Service id. */
@@ -336,11 +348,12 @@ afw_adapter_impl_create_cede_p(
         afw_object_get_property_as_boolean_internal(
             properties, afw_v_checkIndividualObjectReadAccess, &found, xctx);
 
-    /** @fixme Reuse if already exists or reuse correct pool. */
-    /* Create runtime metrics object and set in properties. */
+    /* Metrics object lives in the adapter pool. Stop removes it from
+     * the runtime table before that pool is released.
+     */
     impl->metrics_object = afw_runtime_object_create_indirect(
         afw_s__AdaptiveAdapterMetrics_,
-        &adapter->adapter_id, impl, xctx->env->p, xctx);
+        &adapter->adapter_id, impl, p, xctx);
 
     /* If this is layout adapter id, allow layout object type. */
     if (xctx->env->layout_adapter_id &&

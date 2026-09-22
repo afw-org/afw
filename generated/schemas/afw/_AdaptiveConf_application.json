@@ -134,18 +134,6 @@
                     "title": "Authorization",
                     "type": "object"
                 },
-                "chunkMin": {
-                    "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "markdownDescription": "**Chunk Min**\n\nOptional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "title": "Chunk Min",
-                    "type": "integer"
-                },
-                "compileChunkMin": {
-                    "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "markdownDescription": "**Compile Chunk Min**\n\nOptional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "title": "Compile Chunk Min",
-                    "type": "integer"
-                },
                 "confAdapterId": {
                     "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
                     "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
@@ -158,6 +146,12 @@
                     "markdownDescription": "**Default Adapter**\n\nThis is the adapterId chosen by default for user interface select components.",
                     "title": "Default Adapter",
                     "type": "string"
+                },
+                "defaultChunkMin": {
+                    "description": "Optional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Default Chunk Min**\n\nOptional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Default Chunk Min",
+                    "type": "integer"
                 },
                 "defaultFlags": {
                     "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
@@ -265,6 +259,12 @@
                     "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
                     "title": "Root File Paths",
                     "type": "object"
+                },
+                "smallChunkMin": {
+                    "description": "Optional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Small Chunk Min**\n\nOptional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Small Chunk Min",
+                    "type": "integer"
                 },
                 "sourceLocation": {
                     "description": "This is a contextual string added when this configuration object is processed.",
@@ -317,18 +317,6 @@
                     "title": "Authorization",
                     "type": "object"
                 },
-                "chunkMin": {
-                    "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "markdownDescription": "**Chunk Min**\n\nOptional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "title": "Chunk Min",
-                    "type": "integer"
-                },
-                "compileChunkMin": {
-                    "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "markdownDescription": "**Compile Chunk Min**\n\nOptional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
-                    "title": "Compile Chunk Min",
-                    "type": "integer"
-                },
                 "confAdapterId": {
                     "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
                     "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
@@ -341,6 +329,12 @@
                     "markdownDescription": "**Default Adapter**\n\nThis is the adapterId chosen by default for user interface select components.",
                     "title": "Default Adapter",
                     "type": "string"
+                },
+                "defaultChunkMin": {
+                    "description": "Optional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Default Chunk Min**\n\nOptional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Default Chunk Min",
+                    "type": "integer"
                 },
                 "defaultFlags": {
                     "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
@@ -448,6 +442,12 @@
                     "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
                     "title": "Root File Paths",
                     "type": "object"
+                },
+                "smallChunkMin": {
+                    "description": "Optional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Small Chunk Min**\n\nOptional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Small Chunk Min",
+                    "type": "integer"
                 },
                 "title": {
                     "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
@@ -572,18 +572,6 @@
             "title": "Authorization",
             "type": "object"
         },
-        "chunkMin": {
-            "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
-            "markdownDescription": "**Chunk Min**\n\nOptional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
-            "title": "Chunk Min",
-            "type": "integer"
-        },
-        "compileChunkMin": {
-            "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
-            "markdownDescription": "**Compile Chunk Min**\n\nOptional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
-            "title": "Compile Chunk Min",
-            "type": "integer"
-        },
         "confAdapterId": {
             "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
             "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
@@ -596,6 +584,12 @@
             "markdownDescription": "**Default Adapter**\n\nThis is the adapterId chosen by default for user interface select components.",
             "title": "Default Adapter",
             "type": "string"
+        },
+        "defaultChunkMin": {
+            "description": "Optional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "markdownDescription": "**Default Chunk Min**\n\nOptional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "title": "Default Chunk Min",
+            "type": "integer"
         },
         "defaultFlags": {
             "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
@@ -703,6 +697,12 @@
             "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
             "title": "Root File Paths",
             "type": "object"
+        },
+        "smallChunkMin": {
+            "description": "Optional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "markdownDescription": "**Small Chunk Min**\n\nOptional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "title": "Small Chunk Min",
+            "type": "integer"
         },
         "sourceLocation": {
             "description": "This is a contextual string added when this configuration object is processed.",
