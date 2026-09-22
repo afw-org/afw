@@ -126,12 +126,26 @@ afw_file_adapter_create_cede_p(
         afw_utf8_concat(p, xctx, self->root, &impl_s_journal_lock, NULL),
         p, xctx);
 
-    self->journal_rw_lock = afw_lock_create_rw_and_register(
-        afw_s_a_lock_file_journal_anchor,
-        afw_s_a_lock_file_journal_anchor_brief,
-        afw_s_a_lock_file_journal_anchor_description,
-        xctx
-    );
+    /*
+     * One process-wide journal anchor lock. The registered value is
+     * &rw->lock, and lock is the first member of afw_lock_rw_t.
+     */
+    {
+        const afw_lock_t *existing;
+
+        existing = afw_environment_get_lock(
+            afw_s_a_lock_file_journal_anchor, xctx);
+        if (existing) {
+            self->journal_rw_lock = (const afw_lock_rw_t *)existing;
+        }
+        else {
+            self->journal_rw_lock = afw_lock_create_rw_and_register(
+                afw_s_a_lock_file_journal_anchor,
+                afw_s_a_lock_file_journal_anchor_brief,
+                afw_s_a_lock_file_journal_anchor_description,
+                xctx);
+        }
+    }
 
     /* If isDevelopmentInput is true, provide appropriate object types. */
     b = afw_object_get_property_as_boolean_internal(properties,
