@@ -167,6 +167,22 @@ impl_scope_afw_pool_destroy(
 #define impl_afw_pool_free_memory_no_throw \
     impl_heap_afw_pool_free_memory_no_throw
 
+/*
+ * Old link rule. The create link holds the parent until teardown.
+ * Later holds only keep this scope pool alive.
+ */
+static void
+impl_scope_afw_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
+    self->reference_count++;
+}
+
+#undef impl_afw_pool_get_reference
+#define impl_afw_pool_get_reference impl_scope_afw_pool_get_reference
+
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
 
 #include "afw_pool_impl_declares.h"
@@ -1129,6 +1145,11 @@ impl_heap_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 static void
 impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
+    /*
+     * One parent hold from create. It is not kept in parent_pins, so
+     * extra releases leave it. Teardown releases that one hold.
+     */
+    self->parent_pins = 1;
     impl_heap_teardown_store(self, xctx);
 }
 
@@ -1816,6 +1837,13 @@ afw_pool_scope_create(
         (xctx->env && xctx->env->compile_chunk_min)
             ? xctx->env->compile_chunk_min : (afw_size_t)4096,
         sizeof(afw_pool_internal_scope_self_t), NULL, xctx);
+    /*
+     * Old link rule: hold the parent for the life of this scope pool.
+     * Count stays 1, so throw-path delay still sees a last release.
+     */
+    if (self->parent && !self->parent->destroying) {
+        afw_pool_get_reference(&self->parent->pub, xctx);
+    }
     return &self->pub;
 }
 

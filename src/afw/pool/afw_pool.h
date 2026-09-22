@@ -57,9 +57,12 @@
  *   `peak_pool_bytes_in_use` / `peak_pool_chunk_bytes`. Adaptive
  *   `pool_bytes_in_use()` vs `process_rss()`. This xctx:
  *   `afw_pool_subtree_*` on `xctx->p`.
- * - Last-release: decrement; if 0 and children remain, throw; else
- *   callbacks, unchain, free this store, release parent. Does not
- *   call destroy. "Children remaining" is a leaked child.
+ * - Heap and tracker: an extra hold pins the parent. The create
+ *   reference does not. At 0, destroy children that never pinned
+ *   this pool, then free this store. A referenced child still
+ *   linked is an error. A scope pool keeps the old link rule:
+ *   one parent hold from create until teardown, and its count
+ *   stays at 1 so throw-path delay still sees a last release.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
  * - `afw_pool_heap_internal_release_delayed()`: last-release scopes delayed

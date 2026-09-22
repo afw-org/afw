@@ -270,23 +270,6 @@ impl_unlink_child(
     }
 }
 
-/*
- * Keep parent alive for the life of this child without consuming a
- * child reference. Scope pools use this. A plain child does not.
- */
-void
-afw_pool_internal_pin_parent(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    if (!self->parent || self->parent->destroying) {
-        return;
-    }
-    self->parent_pins++;
-    afw_pool_get_reference(&self->parent->pub, xctx);
-}
-
-
 void
 afw_pool_internal_link_as_child(
     afw_pool_internal_self_t *parent,

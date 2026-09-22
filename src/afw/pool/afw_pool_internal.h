@@ -306,11 +306,6 @@ afw_pool_internal_link_as_child(
     afw_xctx_t *xctx);
 
 void
-afw_pool_internal_pin_parent(
-    afw_pool_internal_self_t *self,
-    afw_xctx_t *xctx);
-
-void
 afw_pool_internal_unlink_from_parent(
     afw_pool_internal_self_t *self, afw_xctx_t *xctx);
 
