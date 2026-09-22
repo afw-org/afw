@@ -330,12 +330,12 @@ afw_environment_create(
     env->limit_c_stack_headroom_bytes =
         afw_pool_round_up_chunk_size(
             AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES);
-    env->chunk_min = afw_pool_round_up_chunk_size(
-        AFW_ENVIRONMENT_CHUNK_MIN
-            ? AFW_ENVIRONMENT_CHUNK_MIN : 1);
-    env->compile_chunk_min = afw_pool_round_up_chunk_size(
-        AFW_ENVIRONMENT_COMPILE_CHUNK_MIN
-            ? AFW_ENVIRONMENT_COMPILE_CHUNK_MIN : 1);
+    env->default_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN
+            ? AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN : 1);
+    env->small_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_SMALL_CHUNK_MIN
+            ? AFW_ENVIRONMENT_SMALL_CHUNK_MIN : 1);
     env->xctx_chunk_min = afw_pool_round_up_chunk_size(
         AFW_ENVIRONMENT_XCTX_CHUNK_MIN
             ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);

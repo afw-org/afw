@@ -31,28 +31,6 @@
                 "memberName": "process_args"
             }
         },
-        "chunkMin": {
-            "allowQuery": true,
-            "brief": "Default heap posix_memalign size",
-            "dataType": "integer",
-            "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
-            "label": "Chunk Min",
-            "runtime": {
-                "memberName": "chunk_min",
-                "valueAccessor": "size"
-            }
-        },
-        "compileChunkMin": {
-            "allowQuery": true,
-            "brief": "Compile-unit heap chunk min",
-            "dataType": "integer",
-            "description": "posix_memalign minimum used when creating a compile-unit heap.",
-            "label": "Compile Chunk Min",
-            "runtime": {
-                "memberName": "compile_chunk_min",
-                "valueAccessor": "size"
-            }
-        },
         "cwd": {
             "allowQuery": true,
             "brief": "Working directory at environment create",
@@ -62,6 +40,17 @@
             "runtime": {
                 "memberName": "process_cwd",
                 "valueAccessor": "indirect"
+            }
+        },
+        "defaultChunkMin": {
+            "allowQuery": true,
+            "brief": "Default heap chunk min",
+            "dataType": "integer",
+            "description": "Process default minimum chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+            "label": "Default Chunk Min",
+            "runtime": {
+                "memberName": "default_chunk_min",
+                "valueAccessor": "size"
             }
         },
         "limitCStackHeadroomBytes": {
@@ -280,6 +269,17 @@
             "runtime": {
                 "zeroOffset": true,
                 "valueAccessor": "env_rss"
+            }
+        },
+        "smallChunkMin": {
+            "allowQuery": true,
+            "brief": "Small heap chunk min",
+            "dataType": "integer",
+            "description": "Minimum chunk size for compile units, evaluation scopes, and service, adapter, log, and conf pools.",
+            "label": "Small Chunk Min",
+            "runtime": {
+                "memberName": "small_chunk_min",
+                "valueAccessor": "size"
             }
         },
         "startTime": {

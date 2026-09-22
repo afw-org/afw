@@ -168,7 +168,8 @@ impl_conf_for_service_type(
     const afw_pool_t *p;
     const afw_object_t *cede_conf;
 
-    p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+    p = afw_pool_multithread_create_as_managed_p(
+        xctx->env->p, xctx->env->small_chunk_min, xctx);
     cede_conf = afw_object_create_clone(conf, p, xctx);
     if (source_location) {
         afw_object_set_property_as_string_internal(cede_conf,
@@ -524,7 +525,8 @@ impl_start_cb(
             break; /* Return. */
         }
 
-        p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+        p = afw_pool_multithread_create_as_managed_p(
+            xctx->env->p, xctx->env->small_chunk_min, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location, p, xctx);
@@ -619,7 +621,7 @@ afw_service_internal_start_initial_services(
     /* Start immediate and permanent services. */
     AFW_TRY {
         retrieve_p = afw_pool_multithread_create_as_managed_p(
-            xctx->env->p, xctx);
+            xctx->env->p, xctx->env->small_chunk_min, xctx);
         session = afw_adapter_session_create(
             &xctx->env->conf_adapter->adapter_id, xctx);
         afw_adapter_session_retrieve_objects(session, NULL,
@@ -1289,7 +1291,8 @@ afw_service_start(
 
     /* If there is a conf adapter, try to start. */
     AFW_TRY {
-        p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+        p = afw_pool_multithread_create_as_managed_p(
+            xctx->env->p, xctx->env->small_chunk_min, xctx);
         session = afw_adapter_session_create(
             &xctx->env->conf_adapter->adapter_id, xctx);
         afw_adapter_session_get_object(session, NULL,
@@ -1454,7 +1457,8 @@ impl_restart_get_cb(
                 source_location);
         }
 
-        p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+        p = afw_pool_multithread_create_as_managed_p(
+            xctx->env->p, xctx->env->small_chunk_min, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location, p, xctx);
@@ -1555,7 +1559,8 @@ afw_service_restart(
 
     error = false;
     AFW_TRY {
-        p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
+        p = afw_pool_multithread_create_as_managed_p(
+            xctx->env->p, xctx->env->small_chunk_min, xctx);
         session = afw_adapter_session_create(
             &xctx->env->conf_adapter->adapter_id, xctx);
         afw_adapter_session_get_object(session, NULL,

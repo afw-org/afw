@@ -137,19 +137,20 @@
     afw_size_t limit_c_stack_headroom_bytes;
 
     /**
-     * @brief Default heap posix_memalign size when create passes 0.
+     * @brief Default heap chunk min when create passes 0.
      *
-     * Default `AFW_ENVIRONMENT_CHUNK_MIN`. Align and packing stay
+     * Default `AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN`. Align and packing stay
      * pool implementation, not env knobs.
      */
-    afw_size_t chunk_min;
+    afw_size_t default_chunk_min;
 
     /**
-     * @brief Compile-unit heap chunk_min.
+     * @brief Small heap chunk min.
      *
-     * Default `AFW_ENVIRONMENT_COMPILE_CHUNK_MIN`.
+     * Compile units, evaluation scopes, and service, adapter, log,
+     * and conf pools. Default `AFW_ENVIRONMENT_SMALL_CHUNK_MIN`.
      */
-    afw_size_t compile_chunk_min;
+    afw_size_t small_chunk_min;
 
     /**
      * @brief xctx/thread heap chunk_min (process default).

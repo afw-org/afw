@@ -28,7 +28,7 @@
  * Same shape as tests/advanced/pool_alloc/pool_alloc_probe.c.
  *
  * Compiles with extra -I to src/afw/pool and src/afw/environment,
- * and -DAFW_ENVIRONMENT_INTERNAL_MEMBERS so env->chunk_min and
+ * and -DAFW_ENVIRONMENT_INTERNAL_MEMBERS so env->default_chunk_min and
  * pool_bytes_in_use are visible (not on the public env prefix).
  */
 
@@ -519,12 +519,52 @@ impl_tracker_parent(afw_xctx_t *xctx)
             "afw_pool_create of MT parent is not an MT heap");
     }
     afw_pool_release(mt, xctx);
-    mt = afw_pool_multithread_create(xctx->env->p, xctx);
+    mt = afw_pool_multithread_create(xctx->env->p, 0, xctx);
     if (!afw_pool_heap_internal_is_multithreaded(mt)) {
         return impl_fail("tracker_parent",
             "multithread_create did not return an MT heap");
     }
     afw_pool_release(mt, xctx);
+    return 0;
+}
+
+/*
+ * 0 is env->default_chunk_min (64k). An explicit small_chunk_min stays
+ * the floor, including the first chunk.
+ */
+static int
+impl_multithread_chunk_min(afw_xctx_t *xctx)
+{
+    const afw_pool_t *pool;
+    afw_pool_internal_heap_self_t *heap;
+
+    pool = afw_pool_multithread_create_as_managed_p(
+        xctx->env->p, xctx->env->small_chunk_min, xctx);
+    heap = impl_heap(pool);
+    if (!afw_pool_heap_internal_is_multithreaded(pool) ||
+        pool->managed_p != pool ||
+        heap->chunk_min != xctx->env->small_chunk_min ||
+        !heap->first_chunk ||
+        heap->first_chunk->size != xctx->env->small_chunk_min)
+    {
+        return impl_fail("multithread_chunk_min",
+            "small_chunk_min was not the floor");
+    }
+    afw_pool_release(pool, xctx);
+
+    pool = afw_pool_multithread_create(xctx->env->p, 0, xctx);
+    heap = impl_heap(pool);
+    if (!afw_pool_heap_internal_is_multithreaded(pool) ||
+        pool->managed_p == pool ||
+        pool->managed_p != xctx->env->p ||
+        heap->chunk_min != xctx->env->default_chunk_min ||
+        !heap->first_chunk ||
+        heap->first_chunk->size != xctx->env->default_chunk_min)
+    {
+        return impl_fail("multithread_chunk_min",
+            "0 did not use env->default_chunk_min");
+    }
+    afw_pool_release(pool, xctx);
     return 0;
 }
 
@@ -844,7 +884,7 @@ impl_heap_chunks(afw_xctx_t *xctx)
     n = 0;
     for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
         n++;
-        if (chunk->size < xctx->env->chunk_min) {
+        if (chunk->size < xctx->env->default_chunk_min) {
             return impl_fail("heap_chunks", "chunk smaller than chunk_min");
         }
         if ((chunk->size & (AFW_POOL_CHUNK_ALIGN - 1)) != 0) {
@@ -862,7 +902,7 @@ impl_heap_chunks(afw_xctx_t *xctx)
     }
 
     before = impl_in_use(xctx);
-    a = afw_pool_malloc(heap, xctx->env->chunk_min, xctx);
+    a = afw_pool_malloc(heap, xctx->env->default_chunk_min, xctx);
     if (!a) {
         return impl_fail("heap_chunks", "chunk_min malloc returned NULL");
     }
@@ -874,14 +914,14 @@ impl_heap_chunks(afw_xctx_t *xctx)
         return impl_fail("heap_chunks", "large malloc did not add a chunk");
     }
 
-    b = afw_pool_malloc(heap, xctx->env->chunk_min * 2, xctx);
+    b = afw_pool_malloc(heap, xctx->env->default_chunk_min * 2, xctx);
     if (!b) {
         return impl_fail("heap_chunks",
             "2*chunk_min malloc returned NULL");
     }
 
-    afw_pool_free_memory(heap, a, xctx->env->chunk_min, xctx);
-    afw_pool_free_memory(heap, b, xctx->env->chunk_min * 2, xctx);
+    afw_pool_free_memory(heap, a, xctx->env->default_chunk_min, xctx);
+    afw_pool_free_memory(heap, b, xctx->env->default_chunk_min * 2, xctx);
     afw_pool_release(heap, xctx);
     if (impl_expect_in_use(xctx, before, "heap_chunks after release")) {
         return 1;
@@ -1237,6 +1277,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "tracker_parent") == 0) {
         rc = impl_tracker_parent(xctx);
     }
+    else if (strcmp(case_name, "multithread_chunk_min") == 0) {
+        rc = impl_multithread_chunk_min(xctx);
+    }
     else if (strcmp(case_name, "create_child_of_heap") == 0) {
         rc = impl_create_child_of_heap(xctx);
     }
@@ -1280,6 +1323,7 @@ main(int argc, char **argv)
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
+            "multithread_chunk_min|"
             "unhandled_alloc|heap_chunks|"
             "deregister_cleanup|"
             "nonadjacent_reuse|"

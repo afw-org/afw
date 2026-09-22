@@ -194,9 +194,9 @@ impl_normalize_chunk_min(afw_size_t chunk_min, const afw_environment_t *env)
 {
     if (chunk_min == 0) {
         if (env) {
-            return env->chunk_min;
+            return env->default_chunk_min;
         }
-        chunk_min = AFW_ENVIRONMENT_CHUNK_MIN;
+        chunk_min = AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN;
     }
     return afw_pool_round_up_chunk_size(chunk_min);
 }
@@ -1336,7 +1336,7 @@ afw_pool_heap_internal_create_base_pool(const afw_thread_t *thread)
     }
     self = impl_heap_allocate_self(
         &impl_afw_pool_heap_multithreaded_inf,
-        AFW_ENVIRONMENT_CHUNK_MIN,
+        AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN,
         sizeof(afw_pool_internal_self_with_free_memory_head_t),
         thread->memory_region, NULL);
     if (!self) {
@@ -1437,6 +1437,7 @@ afw_pool_create(
 AFW_DEFINE(const afw_pool_t *)
 afw_pool_multithread_create(
     const afw_pool_t *parent,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx)
 {
     if (!parent) {
@@ -1448,13 +1449,15 @@ afw_pool_multithread_create(
             "multithreaded heap",
             xctx);
     }
-    return afw_pool_heap_internal_create(parent, true, false, 0, xctx);
+    return afw_pool_heap_internal_create(parent, true, false,
+        chunk_min, xctx);
 }
 
 
 AFW_DEFINE(const afw_pool_t *)
 afw_pool_multithread_create_as_managed_p(
     const afw_pool_t *parent,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx)
 {
     if (!parent) {
@@ -1466,7 +1469,8 @@ afw_pool_multithread_create_as_managed_p(
             "be a multithreaded heap",
             xctx);
     }
-    return afw_pool_heap_internal_create(parent, true, true, 0, xctx);
+    return afw_pool_heap_internal_create(parent, true, true,
+        chunk_min, xctx);
 }
 
 AFW_DEFINE(afw_size_t)

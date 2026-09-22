@@ -28,7 +28,8 @@
  *   ancestor heap. free_memory on a tracker marks; it does not
  *   return the block until destroy or garbage_collect.
  *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
- *   chunks (4k-aligned, 64k minimum). Not a third AFW pool kind.
+ *   chunks (4k-aligned; default floor 64k when chunk_min is 0).
+ *   Not a third AFW pool kind.
  * - Parent/child is lifetime only. Store is the ancestor heap.
  *   Trackers may parent other trackers. A heap or tracker pins its
  *   parent only while an extra hold is outstanding. The create
@@ -51,9 +52,11 @@
  *   wrappers), **inherits** managed_p. Tracker is
  *   `afw_pool_tracker_create()`. `env->p` is the process MT job heap.
  *   Things you start (conf, server, log, adapter) use
- *   `afw_pool_multithread_create_as_managed_p(env->p)`. Compile
- *   units use `afw_pool_heap_create` (own chunks, inherit
- *   managed_p; optional smaller chunk_min).
+ *   `afw_pool_multithread_create_as_managed_p(env->p, chunk_min)`.
+ *   0 is env->default_chunk_min (64k). Those callers pass
+ *   small_chunk_min (4k). Compile units use
+ *   `afw_pool_heap_create` (own chunks, inherit managed_p;
+ *   optional smaller chunk_min).
  * - `managed_p` is a pool property. Unmarked heap/MT create,
  *   trackers, and `scope_create` **inherit** `parent->managed_p`.
  *   `*_as_managed_p` sets `managed_p = self` (this pool is a
@@ -89,7 +92,7 @@ AFW_BEGIN_DECLARES
  * @return 0 if size is 0; otherwise at least one page, multiple of
  *    the page.
  *
- * Use this when storing env chunk_min / compile_chunk_min /
+ * Use this when storing env chunk_min / small_chunk_min /
  * xctx_chunk_min and byte limits. Heap create then does not redo
  * the round.
  */
@@ -141,7 +144,7 @@ afw_pool_create(
 /**
  * @brief Create a single-thread heap that inherits managed_p.
  * @param parent of new pool (may be multithreaded env/base).
- * @param chunk_min minimum posix_memalign size; 0 = env->chunk_min.
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -162,7 +165,7 @@ afw_pool_heap_create(
 /**
  * @brief Create a single-thread heap with managed_p = self.
  * @param parent of new pool (may be multithreaded env/base).
- * @param chunk_min minimum posix_memalign size; 0 = env->chunk_min.
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -184,31 +187,40 @@ afw_pool_heap_create_as_managed_p(
 /**
  * @brief Create a multithreaded heap that inherits managed_p.
  * @param parent must be a multithreaded heap (usually env->p).
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
  * Child MT store. Inherits parent->managed_p. Use
  * multithread_create_as_managed_p when this pool is the dest.
+ * 0 is the process floor (64k), same as heap_create. Pass
+ * small_chunk_min (4k) for a small child.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_multithread_create(
     const afw_pool_t *parent,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
 
 /**
  * @brief Create a multithreaded heap with managed_p = self.
  * @param parent must be a multithreaded heap (usually env->p).
+ * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
  * This pool is a managed dest (same rule as
  * heap_create_as_managed_p). For things you start that outlive a
  * request: conf, server, log, adapter. Their `p` is this pool.
+ * Those callers pass small_chunk_min (4k). 0 is the process
+ * floor (64k). A single allocation larger than the floor still
+ * gets a chunk that fits.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_multithread_create_as_managed_p(
     const afw_pool_t *parent,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
 

@@ -54,7 +54,9 @@
  *   first_chunk — this heap's chunk list. Extra chunks are
  *   prepended.
  *   chunk_min — smallest chunk this heap will get. 0 = env default
- *   (64k). Scope uses compile/4k.
+ *   (64k). Scope, compile, and service/adapter/conf/log MT pools
+ *   use small_chunk_min (4k). env->p and xctx->p stay on the
+ *   64k floor.
  *   asked-for vs chunk_bytes — sum of malloc sizes vs bytes in
  *   chunks still held.
  *   containing — `chunk *` on the block (which chunk this block is

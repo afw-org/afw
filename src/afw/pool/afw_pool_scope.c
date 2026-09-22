@@ -450,8 +450,9 @@ impl_scope_object_create(
             ? &impl_afw_pool_scope_multithreaded_inf
             : &impl_afw_pool_scope_inf,
         false,
-        (xctx->env && xctx->env->compile_chunk_min)
-            ? xctx->env->compile_chunk_min : (afw_size_t)4096,
+        (xctx->env && xctx->env->small_chunk_min)
+            ? xctx->env->small_chunk_min
+            : AFW_ENVIRONMENT_SMALL_CHUNK_MIN,
         self_bytes, NULL, xctx);
     scope = (afw_pool_scope_t *)self;
     scope->p = &scope->pub;

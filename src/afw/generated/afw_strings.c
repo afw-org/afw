@@ -11151,18 +11151,6 @@ afw_self_v_checkRequired = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_chunkMin = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_chunkMin)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_chunk_min = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_chunk_min)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_class = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_class)
@@ -11241,12 +11229,6 @@ afw_self_v_compile = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_compileChunkMin = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_compileChunkMin)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileDate)
@@ -11310,12 +11292,6 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileXpathExpression)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_compile_chunk_min = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_compile_chunk_min)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -11859,6 +11835,12 @@ afw_self_v_defaultAdapterId = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_defaultChunkMin = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_defaultChunkMin)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_defaultFlags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_defaultFlags)
@@ -11880,6 +11862,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_defaultValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_defaultValue)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_default_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_default_chunk_min)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -20847,6 +20835,18 @@ afw_self_v_slice = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_smallChunkMin = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_smallChunkMin)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_small_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_small_chunk_min)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_some = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_some)
@@ -24651,6 +24651,12 @@ afw_self_v_zz__19101f3724f8 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__1924162d9b9a = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__1924162d9b9a)
+};
+
+const afw_value_string_t
 afw_self_v_zz__193939b7c684 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__193939b7c684)
@@ -25602,12 +25608,6 @@ const afw_value_string_t
 afw_self_v_zz__2b4a01ba0b45 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__2b4a01ba0b45)
-};
-
-const afw_value_string_t
-afw_self_v_zz__2b4e0a221c66 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__2b4e0a221c66)
 };
 
 const afw_value_string_t
@@ -28188,12 +28188,6 @@ const afw_value_string_t
 afw_self_v_zz__5af71dba0882 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__5af71dba0882)
-};
-
-const afw_value_string_t
-afw_self_v_zz__5b05f568dad1 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__5b05f568dad1)
 };
 
 const afw_value_string_t
@@ -31911,6 +31905,12 @@ afw_self_v_zz__9da55d705fe7 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__9dc16b1fc74b = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__9dc16b1fc74b)
+};
+
+const afw_value_string_t
 afw_self_v_zz__9dc4f527608c = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__9dc4f527608c)
@@ -33861,12 +33861,6 @@ afw_self_v_zz__Checks_whether_value_starts_with_a_string = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Chunk_Min = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Chunk_Min)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Clone__dataType__value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Clone__dataType__value)
@@ -33954,12 +33948,6 @@ const afw_value_string_t
 afw_self_v_zz__Compare_two_URIs_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Compare_two_URIs_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Compile_Chunk_Min = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Compile_Chunk_Min)
 };
 
 const afw_value_string_t
@@ -34098,12 +34086,6 @@ const afw_value_string_t
 afw_self_v_zz__Compile_type_of_internal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Compile_type_of_internal)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Compile_unit_heap_chunk_min = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Compile_unit_heap_chunk_min)
 };
 
 const afw_value_string_t
@@ -35385,6 +35367,12 @@ afw_self_v_zz__Default_Adapter = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Default_Chunk_Min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Default_Chunk_Min)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Default_Flags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Default_Flags)
@@ -35409,9 +35397,9 @@ afw_self_v_zz__Default_Value = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Default_heap_posix_memalign_size = {
+afw_self_v_zz__Default_heap_chunk_min = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Default_heap_posix_memalign_size)
+    AFW_UTF8_LITERAL(AFW_Q_zz__Default_heap_chunk_min)
 };
 
 const afw_value_string_t
@@ -39195,21 +39183,21 @@ afw_self_v_zz__Override_C_stack_remaining_required_before_throw = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Override_compile_unit_heap_chunk_min = {
+afw_self_v_zz__Override_default_heap_chunk_min = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Override_compile_unit_heap_chunk_min)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Override_default_heap_posix_memalign_size = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Override_default_heap_posix_memalign_size)
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_default_heap_chunk_min)
 };
 
 const afw_value_string_t
 afw_self_v_zz__Override_request_thread_ST_asked_for_cap = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Override_request_thread_ST_asked_for_cap)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Override_small_heap_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_small_heap_chunk_min)
 };
 
 const afw_value_string_t
@@ -40752,6 +40740,18 @@ const afw_value_string_t
 afw_self_v_zz__Signature_used_for_current_returnObject__ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Signature_used_for_current_returnObject__)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Small_Chunk_Min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Small_Chunk_Min)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Small_heap_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Small_heap_chunk_min)
 };
 
 const afw_value_string_t
@@ -52167,12 +52167,6 @@ afw_self_v_zz__a10ae596cfca = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__a11800d60aea = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__a11800d60aea)
-};
-
-const afw_value_string_t
 afw_self_v_zz__a12992e382c3 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__a12992e382c3)
@@ -57069,12 +57063,6 @@ afw_self_v_zz__ef5a6f97690c = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__efe44f4331a9 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__efe44f4331a9)
-};
-
-const afw_value_string_t
 afw_self_v_zz__effba8d3a09f = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__effba8d3a09f)
@@ -57645,6 +57633,12 @@ afw_self_v_zz__f2ec37f42268 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__f2ffeca2cb68 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__f2ffeca2cb68)
+};
+
+const afw_value_string_t
 afw_self_v_zz__f30298b1b019 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__f30298b1b019)
@@ -57798,6 +57792,12 @@ const afw_value_string_t
 afw_self_v_zz__f58fad6636c4 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__f58fad6636c4)
+};
+
+const afw_value_string_t
+afw_self_v_zz__f59452d6b11c = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__f59452d6b11c)
 };
 
 const afw_value_string_t
@@ -63790,8 +63790,6 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_checkIntermediateMode,
     &afw_self_v_checkOnly,
     &afw_self_v_checkRequired,
-    &afw_self_v_chunkMin,
-    &afw_self_v_chunk_min,
     &afw_self_v_class,
     &afw_self_v_clone,
     &afw_self_v_cloneArray,
@@ -63805,7 +63803,6 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_compareUri,
     &afw_self_v_compare_uri,
     &afw_self_v_compile,
-    &afw_self_v_compileChunkMin,
     &afw_self_v_compileDate,
     &afw_self_v_compileFromFile,
     &afw_self_v_compileJson,
@@ -63817,7 +63814,6 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_compileTime,
     &afw_self_v_compileType,
     &afw_self_v_compileXpathExpression,
-    &afw_self_v_compile_chunk_min,
     &afw_self_v_compile_from_file,
     &afw_self_v_compile_json,
     &afw_self_v_compile_regexp,
@@ -63908,10 +63904,12 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_decompile,
     &afw_self_v_default,
     &afw_self_v_defaultAdapterId,
+    &afw_self_v_defaultChunkMin,
     &afw_self_v_defaultFlags,
     &afw_self_v_defaultModelAdapterId,
     &afw_self_v_defaultOptions,
     &afw_self_v_defaultValue,
+    &afw_self_v_default_chunk_min,
     &afw_self_v_define,
     &afw_self_v_delete,
     &afw_self_v_deleteCount,
@@ -65404,6 +65402,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_skeleton,
     &afw_self_v_skip,
     &afw_self_v_slice,
+    &afw_self_v_smallChunkMin,
+    &afw_self_v_small_chunk_min,
     &afw_self_v_some,
     &afw_self_v_sort,
     &afw_self_v_source,

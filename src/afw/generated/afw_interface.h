@@ -283,7 +283,8 @@ struct afw_adapter_s {
 
     /**
      * Adapter's pool for the life of the adapter. Created
-     * multithread_create_as_managed_p (managed_p = self).
+     * multithread_create_as_managed_p (managed_p = self,
+     * small_chunk_min, usually 4k).
      * create_managed(adapter->p) allocates here.
      */
     const afw_pool_t * p;
@@ -4089,7 +4090,8 @@ struct afw_log_s {
 
     /**
      * Log's pool for the life of the log. Created
-     * multithread_create_as_managed_p (managed_p = self).
+     * multithread_create_as_managed_p (managed_p = self,
+     * small_chunk_min, usually 4k).
      */
     const afw_pool_t * p;
 

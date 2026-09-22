@@ -3846,26 +3846,6 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_default
     },
     {
-        afw_v_chunkMin,
-        offsetof(afw_environment_t, chunk_min),
-        -1,
-        &afw_data_type_integer_direct,
-        AFW_UTF8_LITERAL(""),
-        NULL,
-        &afw_self_s_size,
-        afw_runtime_value_accessor_size
-    },
-    {
-        afw_v_compileChunkMin,
-        offsetof(afw_environment_t, compile_chunk_min),
-        -1,
-        &afw_data_type_integer_direct,
-        AFW_UTF8_LITERAL(""),
-        NULL,
-        &afw_self_s_size,
-        afw_runtime_value_accessor_size
-    },
-    {
         afw_v_cwd,
         offsetof(afw_environment_t, process_cwd),
         -1,
@@ -3874,6 +3854,16 @@ impl_properties__AdaptiveProcess_[] = {
         NULL,
         &afw_self_s_indirect,
         afw_runtime_value_accessor_indirect
+    },
+    {
+        afw_v_defaultChunkMin,
+        offsetof(afw_environment_t, default_chunk_min),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
     },
     {
         afw_v_limitCStackHeadroomBytes,
@@ -4074,6 +4064,16 @@ impl_properties__AdaptiveProcess_[] = {
         NULL,
         &afw_self_s_env_rss,
         afw_runtime_value_accessor_env_rss
+    },
+    {
+        afw_v_smallChunkMin,
+        offsetof(afw_environment_t, small_chunk_min),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
     },
     {
         afw_v_startTime,

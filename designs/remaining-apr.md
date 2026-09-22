@@ -28,8 +28,8 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 |------|------|
 | `afw_pool_heap_create(parent, chunk_min, xctx)` | ST heap, **inherits** `managed_p`. Compile units (own chunks; **4k**). |
 | `afw_pool_heap_create_as_managed_p(...)` | ST **job** heap, `managed_p = self`. xctx/thread. |
-| `afw_pool_multithread_create(env->p)` | MT heap, **inherits** `managed_p`. |
-| `afw_pool_multithread_create_as_managed_p(env->p)` | MT **job** heap, `managed_p = self`. Conf, adapter, server, log. |
+| `afw_pool_multithread_create(parent, chunk_min, xctx)` | MT heap, **inherits** `managed_p`. `0` = `env->default_chunk_min` (64k). |
+| `afw_pool_multithread_create_as_managed_p(parent, chunk_min, xctx)` | MT **job** heap, `managed_p = self`. Conf, adapter, server, log pass `small_chunk_min` (4k). `0` is the 64k floor. |
 | `afw_pool_create(parent)` | Heap like the parent (ST or MT lock wrappers), inherits `managed_p`. Parent/child is **lifetime** only. |
 | `afw_pool_tracker_create(parent)` | Tracker. ST or MT lock wrappers from the parent. No throw last-release delay. Heap or tracker parent. |
 | `afw_pool_scope_create(parent)` | Evaluation `{ }`. ST heap, 4k chunks, inherits `managed_p`; last-release delayed while `error_processing_count` > 0. |

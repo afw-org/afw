@@ -110,6 +110,11 @@ def run():
                 "heap_tracker_create under env->p (multithreaded heap) works",
             ),
             (
+                "multithread_chunk_min",
+                "multithread create: 0 is env chunk_min; "
+                "small_chunk_min stays the floor",
+            ),
+            (
                 "create_child_of_heap",
                 "afw_pool_create of a ST heap parent is a ST heap; "
                 "free recycles",

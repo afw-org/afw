@@ -15,8 +15,9 @@
  * @file afw_pool_heap_internal.h
  * @brief Heap store internals (`afw_pool_heap.c`).
  *
- * The heap owns the free list and posix_memalign chunks (4k-aligned,
- * 64k minimum). Destroy returns chunks to the thread memory_region.
+ * The heap owns the free list and posix_memalign chunks (4k-aligned).
+ * chunk_min 0 is the 64k floor. Destroy returns chunks to the thread
+ * memory_region.
  * Scope is a heap with compile-sized chunks plus throw last-release
  * delay.
  *

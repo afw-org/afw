@@ -27,22 +27,6 @@
             "description": "This defines how authorization checking occurs in this application.",
             "label": "Authorization"
         },
-        "chunkMin": {
-            "allowQuery": true,
-            "brief": "Override default heap posix_memalign size",
-            "dataType": "integer",
-            "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
-            "label": "Chunk Min",
-            "required": false
-        },
-        "compileChunkMin": {
-            "allowQuery": true,
-            "brief": "Override compile-unit heap chunk min",
-            "dataType": "integer",
-            "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
-            "label": "Compile Chunk Min",
-            "required": false
-        },
         "confAdapterId": {
             "allowQuery": true,
             "allowWrite": false,
@@ -57,6 +41,14 @@
             "dataType": "string",
             "description": "This is the adapterId chosen by default for user interface select components.",
             "label": "Default Adapter",
+            "required": false
+        },
+        "defaultChunkMin": {
+            "allowQuery": true,
+            "brief": "Override default heap chunk min",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "label": "Default Chunk Min",
             "required": false
         },
         "defaultFlags": {
@@ -164,6 +156,14 @@
             "dataTypeParameter": "_AdaptiveRootFilePaths_",
             "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
             "label": "Root File Paths",
+            "required": false
+        },
+        "smallChunkMin": {
+            "allowQuery": true,
+            "brief": "Override small heap chunk min",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process smallChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "label": "Small Chunk Min",
             "required": false
         },
         "title": {
