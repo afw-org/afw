@@ -26,6 +26,37 @@
  */
 
 /**
+ * @brief Compare two elements.
+ * @param a element pointer from the array.
+ * @param b element pointer from the array.
+ * @param data caller data.
+ * @return negative if a is before b, 0 if equal, positive if a is after b.
+ */
+typedef int (*afw_sort_compare_t)(
+    const void *a,
+    const void *b,
+    void *data);
+
+
+/**
+ * @brief Sort with a compare callback.
+ * @param base array of element pointers.
+ * @param count number of elements.
+ * @param compare called with the pointers stored in base.
+ * @param data passed to compare.
+ *
+ * The smaller side is recursed and the larger side is looped, so the
+ * depth stays logarithmic.
+ */
+AFW_DECLARE(void)
+afw_sort(
+    const void **base,
+    afw_size_t count,
+    afw_sort_compare_t compare,
+    void *data);
+
+
+/**
  * @brief Sort by a `const afw_utf8_t *` at the start of each element.
  * @param base array of pointers.
  * @param count number of elements.

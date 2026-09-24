@@ -86,7 +86,10 @@ impl_swap(const void **base, afw_size_t i, afw_size_t j)
 
 static void
 impl_insertion(
-    const void **base, afw_size_t count, const impl_state_t *state)
+    const void **base,
+    afw_size_t count,
+    afw_sort_compare_t compare,
+    void *data)
 {
     afw_size_t i;
 
@@ -96,7 +99,7 @@ impl_insertion(
 
         value = base[i];
         j = i;
-        while (j > 0 && impl_compare(base[j - 1], value, state) > 0) {
+        while (j > 0 && compare(base[j - 1], value, data) > 0) {
             base[j] = base[j - 1];
             j--;
         }
@@ -107,49 +110,96 @@ impl_insertion(
 /* Median of three, left in the last slot. */
 static void
 impl_median_of_three(
-    const void **base, afw_size_t count, const impl_state_t *state)
+    const void **base,
+    afw_size_t count,
+    afw_sort_compare_t compare,
+    void *data)
 {
     afw_size_t mid;
     afw_size_t last;
 
     mid = count / 2;
     last = count - 1;
-    if (impl_compare(base[0], base[mid], state) > 0) {
+    if (compare(base[0], base[mid], data) > 0) {
         impl_swap(base, 0, mid);
     }
-    if (impl_compare(base[0], base[last], state) > 0) {
+    if (compare(base[0], base[last], data) > 0) {
         impl_swap(base, 0, last);
     }
-    if (impl_compare(base[mid], base[last], state) > 0) {
+    if (compare(base[mid], base[last], data) > 0) {
         impl_swap(base, mid, last);
     }
     impl_swap(base, mid, last);
 }
 
+/*
+ * Recurse the smaller side and loop the larger so the depth stays
+ * logarithmic.
+ */
 static void
-impl_sort(const void **base, afw_size_t count, const impl_state_t *state)
+impl_sort(
+    const void **base,
+    afw_size_t count,
+    afw_sort_compare_t compare,
+    void *data)
 {
-    const void *pivot;
-    afw_size_t i;
-    afw_size_t j;
+    while (count >= 8) {
+        const void *pivot;
+        afw_size_t i;
+        afw_size_t j;
+        afw_size_t left;
+        afw_size_t right;
 
-    if (count < 8) {
-        impl_insertion(base, count, state);
-        return;
-    }
-
-    impl_median_of_three(base, count, state);
-    pivot = base[count - 1];
-    i = 0;
-    for (j = 0; j + 1 < count; j++) {
-        if (impl_compare(base[j], pivot, state) < 0) {
-            impl_swap(base, i, j);
-            i++;
+        impl_median_of_three(base, count, compare, data);
+        pivot = base[count - 1];
+        i = 0;
+        for (j = 0; j + 1 < count; j++) {
+            if (compare(base[j], pivot, data) < 0) {
+                impl_swap(base, i, j);
+                i++;
+            }
+        }
+        impl_swap(base, i, count - 1);
+        left = i;
+        right = count - i - 1;
+        if (left < right) {
+            impl_sort(base, left, compare, data);
+            base += i + 1;
+            count = right;
+        }
+        else {
+            impl_sort(base + i + 1, right, compare, data);
+            count = left;
         }
     }
-    impl_swap(base, i, count - 1);
-    impl_sort(base, i, state);
-    impl_sort(base + i + 1, count - i - 1, state);
+    if (count > 1) {
+        impl_insertion(base, count, compare, data);
+    }
+}
+
+/*
+ * Implementation of afw_sort().
+ */
+AFW_DEFINE(void)
+afw_sort(
+    const void **base,
+    afw_size_t count,
+    afw_sort_compare_t compare,
+    void *data)
+{
+    if (!base || !compare || count < 2) {
+        return;
+    }
+    impl_sort(base, count, compare, data);
+}
+
+static int
+impl_compare_cb(const void *a, const void *b, void *data)
+{
+    const impl_state_t *state;
+
+    state = data;
+    return impl_compare(a, b, state);
 }
 
 static void
@@ -161,12 +211,9 @@ impl_sort_kind(
 {
     impl_state_t state;
 
-    if (!base || count < 2) {
-        return;
-    }
     state.kind = kind;
     state.offset = offset;
-    impl_sort(base, count, &state);
+    afw_sort(base, count, impl_compare_cb, &state);
 }
 
 /*

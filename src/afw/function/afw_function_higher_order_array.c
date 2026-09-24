@@ -918,89 +918,23 @@ typedef struct {
     afw_xctx_t *xctx;
 } impl_sort_ctx_t;
 
-static afw_size_t
-impl_partition(
-    impl_sort_ctx_t *ctx,
-    afw_size_t low,
-    afw_size_t high) 
-{ 
-    const afw_value_t *pivot;
-    const afw_value_t *value;
-    const afw_value_t *return_value;
-    afw_size_t i, j;
-
-    /* Start pivot from high. */
-    pivot = ctx->values[high];
-
-    /* Put everything to right and left of pivot based on compare. */
-    ctx->args[2] = pivot;
-    for (i = low, j = low; j <= high - 1; j++)
-    {
-        /* Call compareFunction with ctx->values[j] and pivot. */
-        ctx->args[1] = ctx->values[j];
-        return_value = afw_value_evaluate(ctx->compareFunction,
-            ctx->p, ctx->xctx);
-        AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
-
-        /*
-         * if compareFunction(values[j], pivot) is true, swap values[i] and
-         * value[j] then increment i
-         */
-        if (((const afw_value_boolean_t *)return_value)->internal)
-        {
-            value = ctx->values[i];
-            ctx->values[i] = ctx->values[j];
-            ctx->values[j] = value;
-            i++;
-        }
-    }
-
-    /* Swap values[new pivot index] and values[high] */
-    value = ctx->values[i];
-    ctx->values[i] = ctx->values[high];
-    ctx->values[high] = value;
-
-    /* Return new pivot index. */
-    return i;
-} 
- 
-static void
-impl_quick_sort(
-    impl_sort_ctx_t *ctx,
-    afw_size_t low,
-    afw_size_t high)
+/* True from compareFunction means a comes before b. */
+static int
+impl_sort_compare(const void *a, const void *b, void *data)
 {
-    afw_size_t pivot_i;
-    afw_size_t left_n;
-    afw_size_t right_n;
+    impl_sort_ctx_t *ctx = data;
+    const afw_value_t *return_value;
 
-    /*
-     * Recurse the smaller partition and loop the larger so worst-case
-     * depth is log2(n). Last-element Lomuto still has O(n^2) time on
-     * already-sorted input; the stack is what this bounds.
-     */
-    while (low < high) {
-        pivot_i = impl_partition(ctx, low, high);
-        left_n = (pivot_i > low) ? (pivot_i - low) : 0;
-        right_n = high - pivot_i;
-
-        if (left_n < right_n) {
-            if (left_n > 1) {
-                impl_quick_sort(ctx, low, pivot_i - 1);
-            }
-            low = pivot_i + 1;
-        }
-        else {
-            if (right_n > 1) {
-                impl_quick_sort(ctx, pivot_i + 1, high);
-            }
-            if (pivot_i == 0) {
-                break;
-            }
-            high = pivot_i - 1;
-        }
+    ctx->args[1] = a;
+    ctx->args[2] = b;
+    return_value = afw_value_evaluate(ctx->compareFunction,
+        ctx->p, ctx->xctx);
+    AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
+    if (((const afw_value_boolean_t *)return_value)->internal) {
+        return -1;
     }
-} 
+    return 1;
+}
 
 /*
  * Adaptive function: sort
@@ -1084,10 +1018,9 @@ afw_function_execute_sort(
         }
     }
 
-    /* Sort. */
-    if (ctx.count > 0) {
-        impl_quick_sort(&ctx, 0, ctx.count - 1);
-    }
+    /* Sort. True from compareFunction means the first value comes first. */
+    afw_sort((const void **)ctx.values, ctx.count,
+        impl_sort_compare, &ctx);
 
     /* Return sorted array. */
     result = (const afw_value_array_t *)
