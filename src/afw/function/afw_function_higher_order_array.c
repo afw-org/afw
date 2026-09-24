@@ -918,22 +918,36 @@ typedef struct {
     afw_xctx_t *xctx;
 } impl_sort_ctx_t;
 
-/* True from compareFunction means a comes before b. */
+/* True from compareFunction means the first argument comes before the second. */
+static afw_boolean_t
+impl_sort_before(impl_sort_ctx_t *ctx, const void *first, const void *second)
+{
+    const afw_value_t *return_value;
+
+    ctx->args[1] = first;
+    ctx->args[2] = second;
+    return_value = afw_value_evaluate(ctx->compareFunction,
+        ctx->p, ctx->xctx);
+    AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
+    return ((const afw_value_boolean_t *)return_value)->internal;
+}
+
+/* Neither direction true means the two values are equal. */
 static int
 impl_sort_compare(const void *a, const void *b, void *data)
 {
     impl_sort_ctx_t *ctx = data;
-    const afw_value_t *return_value;
 
-    ctx->args[1] = a;
-    ctx->args[2] = b;
-    return_value = afw_value_evaluate(ctx->compareFunction,
-        ctx->p, ctx->xctx);
-    AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
-    if (((const afw_value_boolean_t *)return_value)->internal) {
+    if (a == b) {
+        return 0;
+    }
+    if (impl_sort_before(ctx, a, b)) {
         return -1;
     }
-    return 1;
+    if (impl_sort_before(ctx, b, a)) {
+        return 1;
+    }
+    return 0;
 }
 
 /*
@@ -1018,7 +1032,10 @@ afw_function_execute_sort(
         }
     }
 
-    /* Sort. True from compareFunction means the first value comes first. */
+    /*
+     * True from compareFunction means the first value comes first.
+     * False in both directions means the values are equal.
+     */
     afw_sort((const void **)ctx.values, ctx.count,
         impl_sort_compare, &ctx);
 
