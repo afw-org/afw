@@ -296,6 +296,12 @@ afw_lmdb_self_v_allowWrite = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_boolean = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_boolean)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_branch_pages = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_branch_pages)
@@ -479,6 +485,12 @@ const afw_value_string_t
 afw_lmdb_self_v_internalConfig = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_internalConfig)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_isModelLocation = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_isModelLocation)
 };
 
 const afw_value_string_t
@@ -800,6 +812,12 @@ afw_lmdb_self_v_zz__1cc9e1fe02cc = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__259e3ed3f888 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__259e3ed3f888)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__2fcf2b562f4d = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2fcf2b562f4d)
@@ -953,6 +971,12 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__Information_about_individual_LMDB_databases_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Information_about_individual_LMDB_databases_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Is_Model_Location = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Is_Model_Location)
 };
 
 const afw_value_string_t
@@ -1142,6 +1166,12 @@ afw_lmdb_self_v_zz__Soft_time_limit_for_requests_ = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__This_adapter_can_hold__AdaptiveModel__objects = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__This_adapter_can_hold__AdaptiveModel__objects)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__Time_Limits = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Time_Limits)
@@ -1325,6 +1355,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_allowEntity,
     &afw_lmdb_self_v_allowQuery,
     &afw_lmdb_self_v_allowWrite,
+    &afw_lmdb_self_v_boolean,
     &afw_lmdb_self_v_branch_pages,
     &afw_lmdb_self_v_brief,
     &afw_lmdb_self_v_camelCaseFunctionLabel,
@@ -1356,6 +1387,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_information,
     &afw_lmdb_self_v_integer,
     &afw_lmdb_self_v_internalConfig,
+    &afw_lmdb_self_v_isModelLocation,
     &afw_lmdb_self_v_label,
     &afw_lmdb_self_v_last_pgno,
     &afw_lmdb_self_v_last_txnid,

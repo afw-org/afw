@@ -307,6 +307,10 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
         properties, p, xctx);
     self = (afw_lmdb_adapter_t *)adapter;
 
+    /* LMDB stores _AdaptiveObjectType_ objects like any other object type. */
+    afw_adapter_impl_set_supported_core_object_type(adapter,
+        afw_s__AdaptiveObjectType_, true, true, xctx);
+
     /* This adapter will always use the UBJSON content type */
     self->ubjson = afw_environment_get_content_type(
         afw_s_ubjson, xctx);

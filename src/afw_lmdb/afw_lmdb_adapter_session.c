@@ -157,17 +157,6 @@ impl_afw_adapter_session_get_object(
     const afw_object_t *object;
     const afw_utf8_t *internal_id;
 
-    /*
-     * If object_type_id is _AdaptiveObjectType_, return a generic object type for
-     * now.  This may change if the lmdb adapter starts storing object types.
-     */
-    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
-        object = afw_adapter_impl_generic_object_type_object_get(
-            self->pub.adapter, object_id, p, xctx);
-        callback(object, context, xctx);
-        return;
-    }
-
     /* begin the transaction */
     AFW_LMDB_BEGIN_TRANSACTION(adapter, self, MDB_RDONLY, false, xctx) {
 

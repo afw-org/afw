@@ -1199,6 +1199,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_boolean \
+    "boolean"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_boolean */
+#define afw_lmdb_s_boolean \
+    (&afw_lmdb_self_v_boolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_boolean */
+#define afw_lmdb_self_s_boolean \
+    (afw_lmdb_self_v_boolean.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_boolean */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_boolean;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_boolean */
+#define afw_lmdb_z_boolean \
+    (afw_lmdb_self_v_boolean.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_boolean */
+#define afw_lmdb_v_boolean \
+    (&afw_lmdb_self_v_boolean.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_branch_pages \
     "branch_pages"
 
@@ -2001,6 +2027,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_internalConfig */
 #define afw_lmdb_v_internalConfig \
     (&afw_lmdb_self_v_internalConfig.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_isModelLocation \
+    "isModelLocation"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_isModelLocation */
+#define afw_lmdb_s_isModelLocation \
+    (&afw_lmdb_self_v_isModelLocation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_isModelLocation */
+#define afw_lmdb_self_s_isModelLocation \
+    (afw_lmdb_self_v_isModelLocation.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_isModelLocation */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_isModelLocation;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_isModelLocation */
+#define afw_lmdb_z_isModelLocation \
+    (afw_lmdb_self_v_isModelLocation.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_isModelLocation */
+#define afw_lmdb_v_isModelLocation \
+    (&afw_lmdb_self_v_isModelLocation.pub)
 
 
 
@@ -3383,6 +3435,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__259e3ed3f888 \
+    "If specified, this adapter can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adapter. Compiled models are cached on this adapter instance: a model adapter that uses this location loads on* once and reuses that compile until this location adapter is recreated. Replacing an _AdaptiveModel_ object does not recompile a live model by itself."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__259e3ed3f888 */
+#define afw_lmdb_s_zz__259e3ed3f888 \
+    (&afw_lmdb_self_v_zz__259e3ed3f888.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__259e3ed3f888 */
+#define afw_lmdb_self_s_zz__259e3ed3f888 \
+    (afw_lmdb_self_v_zz__259e3ed3f888.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__259e3ed3f888 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__259e3ed3f888;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__259e3ed3f888 */
+#define afw_lmdb_z_zz__259e3ed3f888 \
+    (afw_lmdb_self_v_zz__259e3ed3f888.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__259e3ed3f888 */
+#define afw_lmdb_v_zz__259e3ed3f888 \
+    (&afw_lmdb_self_v_zz__259e3ed3f888.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz__2fcf2b562f4d \
     "This category provides adaptive functions for interacting with a Lightning Memory-Mapped Database (LMDB)."
 
@@ -4055,6 +4133,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Information_about_individual_LMDB_databases_ */
 #define afw_lmdb_v_zz__Information_about_individual_LMDB_databases_ \
     (&afw_lmdb_self_v_zz__Information_about_individual_LMDB_databases_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__Is_Model_Location \
+    "Is Model Location"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__Is_Model_Location */
+#define afw_lmdb_s_zz__Is_Model_Location \
+    (&afw_lmdb_self_v_zz__Is_Model_Location.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__Is_Model_Location */
+#define afw_lmdb_self_s_zz__Is_Model_Location \
+    (afw_lmdb_self_v_zz__Is_Model_Location.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__Is_Model_Location */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__Is_Model_Location;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Is_Model_Location */
+#define afw_lmdb_z_zz__Is_Model_Location \
+    (afw_lmdb_self_v_zz__Is_Model_Location.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Is_Model_Location */
+#define afw_lmdb_v_zz__Is_Model_Location \
+    (&afw_lmdb_self_v_zz__Is_Model_Location.pub)
 
 
 
@@ -4861,6 +4965,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Soft_time_limit_for_requests_ */
 #define afw_lmdb_v_zz__Soft_time_limit_for_requests_ \
     (&afw_lmdb_self_v_zz__Soft_time_limit_for_requests_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__This_adapter_can_hold__AdaptiveModel__objects \
+    "This adapter can hold _AdaptiveModel_ objects"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__This_adapter_can_hold__AdaptiveModel__objects */
+#define afw_lmdb_s_zz__This_adapter_can_hold__AdaptiveModel__objects \
+    (&afw_lmdb_self_v_zz__This_adapter_can_hold__AdaptiveModel__objects.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__This_adapter_can_hold__AdaptiveModel__objects */
+#define afw_lmdb_self_s_zz__This_adapter_can_hold__AdaptiveModel__objects \
+    (afw_lmdb_self_v_zz__This_adapter_can_hold__AdaptiveModel__objects.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__This_adapter_can_hold__AdaptiveModel__objects */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__This_adapter_can_hold__AdaptiveModel__objects;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__This_adapter_can_hold__AdaptiveModel__objects */
+#define afw_lmdb_z_zz__This_adapter_can_hold__AdaptiveModel__objects \
+    (afw_lmdb_self_v_zz__This_adapter_can_hold__AdaptiveModel__objects.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__This_adapter_can_hold__AdaptiveModel__objects */
+#define afw_lmdb_v_zz__This_adapter_can_hold__AdaptiveModel__objects \
+    (&afw_lmdb_self_v_zz__This_adapter_can_hold__AdaptiveModel__objects.pub)
 
 
 

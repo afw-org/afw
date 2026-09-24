@@ -29,6 +29,13 @@
             "required": false,
             "unique": false
         },
+        "isModelLocation": {
+            "allowQuery": true,
+            "brief": "This adapter can hold _AdaptiveModel_ objects",
+            "dataType": "boolean",
+            "description": "If specified, this adapter can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adapter. Compiled models are cached on this adapter instance: a model adapter that uses this location loads on* once and reuses that compile until this location adapter is recreated. Replacing an _AdaptiveModel_ object does not recompile a live model by itself.",
+            "label": "Is Model Location"
+        },
         "limits": {
             "allowQuery": true,
             "dataType": "object",
