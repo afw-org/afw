@@ -518,10 +518,11 @@ afw_object_is_memory_managed(const afw_object_t *object)
 
 
 /*
- * Internal tuning. The first 32 names stay a list walk. Past that,
- * property_index finds the name. Not an application setting.
+ * Internal tuning. The instruction minimum on object_options.as was 9.
+ * 12 stays in the flat part of that curve and keeps a 16-bucket table
+ * off objects that are still cheap to scan. Not an application setting.
  */
-#define IMPL_MEMORY_PROPERTY_INDEX_COUNT 32
+#define IMPL_MEMORY_PROPERTY_INDEX_COUNT 12
 
 
 /* String name bytes, or NULL if name is not a string. */
