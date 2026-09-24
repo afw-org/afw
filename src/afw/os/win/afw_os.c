@@ -304,6 +304,15 @@ afw_os_backtrace(
 }
 
 
+AFW_DEFINE(void)
+afw_os_backtrace_cleanup(afw_xctx_t *xctx)
+{
+    if (xctx != NULL) {
+        xctx->os_backtrace_data = NULL;
+    }
+}
+
+
 struct afw_os_dso_s {
     HMODULE handle;
 };

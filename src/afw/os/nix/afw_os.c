@@ -796,19 +796,70 @@ afw_os_backtrace(
     return impl_finish_backtrace(start, s, cap, xctx);
 }
 
+AFW_DEFINE(void)
+afw_os_backtrace_cleanup(afw_xctx_t *xctx)
+{
+    if (xctx != NULL) {
+        xctx->os_backtrace_data = NULL;
+    }
+}
+
 #else
+
+/*
+ * One Dwfl for this xctx. The first backtrace reports the process
+ * modules. Later calls on the same xctx only unwind and look up.
+ * Request xctxs are not shared across afwfcgi threads. The struct
+ * lives in xctx->p. dwfl_end runs in afw_os_backtrace_cleanup()
+ * before that pool is destroyed. debuginfo_path stays NULL so
+ * libdw uses its default search path; its address is what the
+ * copied callbacks keep.
+ */
+typedef struct impl_os_backtrace_data_s {
+    char *debuginfo_path;
+    Dwfl *dwfl;
+    Dwfl_Callbacks callbacks;
+} impl_os_backtrace_data_t;
+
+static Dwfl *
+impl_xctx_dwfl(afw_xctx_t *xctx)
+{
+    impl_os_backtrace_data_t *data;
+
+    data = xctx->os_backtrace_data;
+    if (data != NULL) {
+        return data->dwfl;
+    }
+
+    data = afw_pool_calloc_no_throw(xctx->p,
+        sizeof(impl_os_backtrace_data_t), xctx);
+    if (data == NULL) {
+        return NULL;
+    }
+
+    data->callbacks.find_elf = dwfl_linux_proc_find_elf;
+    data->callbacks.find_debuginfo = dwfl_standard_find_debuginfo;
+    data->callbacks.debuginfo_path = &data->debuginfo_path;
+
+    data->dwfl = dwfl_begin(&data->callbacks);
+    if (data->dwfl == NULL) {
+        afw_pool_free_memory_no_throw(xctx->p, data,
+            sizeof(impl_os_backtrace_data_t), xctx);
+        return NULL;
+    }
+
+    dwfl_linux_proc_report(data->dwfl, getpid());
+    dwfl_report_end(data->dwfl, NULL, NULL);
+    xctx->os_backtrace_data = data;
+    return data->dwfl;
+}
+
 AFW_DEFINE(const afw_value_hexBinary_t *)
 afw_os_backtrace(
     afw_error_code_t code,
     int max_backtrace,
     afw_xctx_t *xctx)
 {
-    char *debuginfo_path = NULL;
-    Dwfl_Callbacks callbacks = {
-        .find_elf = dwfl_linux_proc_find_elf,
-        .find_debuginfo = dwfl_standard_find_debuginfo,
-        .debuginfo_path = &debuginfo_path,
-    };
     Dwfl *dwfl;
     Dwarf_Addr addr;
     Dwfl_Module *module;
@@ -852,20 +903,16 @@ afw_os_backtrace(
     *s++ = '\n';
     len--;
 
-    dwfl = dwfl_begin(&callbacks);
-    if (!dwfl) {
+    dwfl = impl_xctx_dwfl(xctx);
+    if (dwfl == NULL) {
         afw_pool_free_memory_no_throw(xctx->p, start, cap, xctx);
         return &impl_no_memory_hexBinary;
     }
 
-    dwfl_linux_proc_report(dwfl, getpid());
-    dwfl_report_end(dwfl, NULL, NULL);
-
     unw_getcontext(&uc);
     rc = unw_init_local(&cursor, &uc);
     if (rc) {
-        /* error occurred, initializing cursor for local unwinding */
-        dwfl_end(dwfl);
+        /* Keep the Dwfl. Only the unwind cursor failed. */
         return impl_finish_backtrace(start, s, cap, xctx);
     }
 
@@ -914,11 +961,30 @@ afw_os_backtrace(
         }
     }
     
-    /* free resources from dwfl_begin */
-    dwfl_end(dwfl);
-
     return impl_finish_backtrace(start, s, cap, xctx);
 }
+
+AFW_DEFINE(void)
+afw_os_backtrace_cleanup(afw_xctx_t *xctx)
+{
+    impl_os_backtrace_data_t *data;
+    Dwfl *dwfl;
+
+    if (xctx == NULL) {
+        return;
+    }
+    data = xctx->os_backtrace_data;
+    if (data == NULL) {
+        return;
+    }
+    xctx->os_backtrace_data = NULL;
+    dwfl = data->dwfl;
+    data->dwfl = NULL;
+    if (dwfl != NULL) {
+        dwfl_end(dwfl);
+    }
+}
+
 #endif
 
 

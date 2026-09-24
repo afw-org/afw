@@ -114,6 +114,18 @@ afw_os_backtrace(
 
 
 /**
+ * @brief Release the OS backtrace session held by xctx.
+ * @param xctx whose session to release. NULL is a no-op.
+ *
+ * Does not throw. Safe if this xctx never called afw_os_backtrace()
+ * and safe to call twice. afw_xctx_release() calls this before
+ * destroying the xctx pool.
+ */
+AFW_DECLARE(void)
+afw_os_backtrace_cleanup(afw_xctx_t *xctx);
+
+
+/**
  * @brief Current working directory, allocated in p.
  * @return directory or NULL if unavailable.
  */
