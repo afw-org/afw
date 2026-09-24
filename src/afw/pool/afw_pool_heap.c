@@ -366,7 +366,33 @@ afw_pool_heap_create_self(
  * First-fit on a LIFO free list. Overlay lives only on freed
  * blocks. Remainder too small to hold a free node is left on the
  * list so total is always recoverable as prefix + USER size.
+ *
+ * largest is an upper bound. A take of a max-sized node sets it to
+ * AFW_SIZE_T_MAX until a full miss walk records the new maximum.
+ * Allocations larger than a known maximum skip the walk.
  */
+static void
+impl_largest_before_unlink(
+    afw_pool_internal_free_memory_head_t *head,
+    const afw_pool_free_node_t *node)
+{
+    if (head->largest != AFW_SIZE_T_MAX &&
+        node->total >= head->largest)
+    {
+        head->largest = AFW_SIZE_T_MAX;
+    }
+}
+
+static void
+impl_largest_note(
+    afw_pool_internal_free_memory_head_t *head,
+    afw_size_t total)
+{
+    if (head->largest != AFW_SIZE_T_MAX && total > head->largest) {
+        head->largest = total;
+    }
+}
+
 static void
 impl_heap_free_unlink(
     afw_pool_free_node_t **head,
@@ -447,13 +473,22 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     const afw_memory_region_t *region;
     char *end;
     void *start;
+    afw_size_t seen_max;
 
     head = heap->free_memory_head;
     curr = NULL;
-    if (head) {
+    /*
+     * largest < total means no free node can satisfy this request.
+     * AFW_SIZE_T_MAX is unknown, so that still walks.
+     */
+    if (head && head->first && head->largest >= total) {
+        seen_max = 0;
         slow = head->first;
         fast = slow;
         for (curr = slow; curr; curr = curr->next) {
+            if (curr->total > seen_max) {
+                seen_max = curr->total;
+            }
             if (curr->total >= total &&
                 (curr->total == total ||
                     curr->total - total >= sizeof(afw_pool_free_node_t)))
@@ -475,11 +510,16 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
                     xctx);
             }
         }
+        /* Full miss. seen_max is the exact maximum still on the list. */
+        if (!curr) {
+            head->largest = seen_max;
+        }
     }
 
     if (curr) {
         prev = curr->prev;
         next = curr->next;
+        impl_largest_before_unlink(head, curr);
         impl_heap_free_unlink(&head->first, curr);
         if (curr->total - total >= sizeof(afw_pool_free_node_t)) {
             rest = (afw_pool_free_node_t *)(((char *)curr) + total);
@@ -502,12 +542,22 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
                 impl_block_is_free(next) &&
                 impl_same_chunk(rest, next))
             {
+                impl_largest_before_unlink(head, next);
                 rest->total += next->total;
                 rest->next = next->next;
                 if (next->next) {
                     next->next->prev = rest;
                 }
             }
+            if (head->first == rest && rest->next == NULL) {
+                head->largest = rest->total;
+            }
+            else {
+                impl_largest_note(head, rest->total);
+            }
+        }
+        else if (!head->first) {
+            head->largest = 0;
         }
         impl_block_set_chunk(curr, impl_block_chunk(curr));
         *reused = true;
@@ -633,6 +683,7 @@ afw_pool_heap_internal_add_to_free_list(
         {
             nxt = (afw_pool_free_node_t *)nstart;
             if (impl_addr_in_chunk(nstart, chunk, nxt->total)) {
+                impl_largest_before_unlink(head, nxt);
                 impl_heap_free_unlink(&head->first, nxt);
                 freeing->total += nxt->total;
             }
@@ -645,6 +696,12 @@ afw_pool_heap_internal_add_to_free_list(
         head->first->prev = freeing;
     }
     head->first = freeing;
+    if (freeing->next == NULL) {
+        head->largest = freeing->total;
+    }
+    else {
+        impl_largest_note(head, freeing->total);
+    }
 }
 
 static void
