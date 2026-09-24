@@ -44,6 +44,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_AdaptiveProperty = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -59,6 +60,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -74,6 +76,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete_Option = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -89,6 +92,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Box = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -104,6 +108,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_BoxItem = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -119,6 +124,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Breadcrumb = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -134,6 +140,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_BreadcrumbItem = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -149,6 +156,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Button = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -164,6 +172,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Callout = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -179,6 +188,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Chart = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -194,6 +204,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Chart_Data = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -209,6 +220,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Checkbox = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -224,6 +236,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -239,6 +252,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup_Option = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -254,6 +268,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_CodeEditor = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -269,6 +284,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Collapsible = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -284,6 +300,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Common = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -299,6 +316,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DatePicker = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -314,6 +332,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DateTimePicker = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -329,6 +348,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Dialog = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -344,6 +364,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DiffEditor = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -359,6 +380,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Divider = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -374,6 +396,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Drawer = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -389,6 +412,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -404,6 +428,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DropdownEditor = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -419,6 +444,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown_Option = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -434,6 +460,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_EditableCallout = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -449,6 +476,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_EditableLabel = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -464,6 +492,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Hidden = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -479,6 +508,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Icon = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -494,6 +524,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Image = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -509,6 +540,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Label = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -524,6 +556,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Link = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -539,6 +572,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_List = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -554,6 +588,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -569,6 +604,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor_Item = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -584,6 +620,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Menu = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -599,6 +636,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Menu_Item = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -614,6 +652,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Message = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -629,6 +668,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Modal = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -644,6 +684,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Native = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -659,6 +700,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Nav = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -674,6 +716,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Nav_Item = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -689,6 +732,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Paper = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -704,6 +748,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Picker = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -719,6 +764,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Picker_Item = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -734,6 +780,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Responsive = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -749,6 +796,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveCol = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -764,6 +812,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveRow = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -779,6 +828,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Responsive_Breakpoints = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -794,6 +844,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Skeleton = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -809,6 +860,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Slider = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -824,6 +876,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Snackbar = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -839,6 +892,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_SpinButton = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -854,6 +908,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Spinner = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -869,6 +924,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Stepper = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -884,6 +940,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Style = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -899,6 +956,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Table = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -914,6 +972,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Table_Column = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -929,6 +988,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Table_Row = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -944,6 +1004,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tabs = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -959,6 +1020,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tabs_Tab = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -974,6 +1036,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TextField = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -989,6 +1052,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TimeDuration = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1004,6 +1068,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TimePicker = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1019,6 +1084,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TimezonePicker = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1034,6 +1100,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Toggle = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1049,6 +1116,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ToggleButtons = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1064,6 +1132,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Toolbar = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1079,6 +1148,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tooltip = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1094,6 +1164,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tree = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1109,6 +1180,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tree_Node = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1124,6 +1196,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Typography = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1139,6 +1212,7 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1154,6 +1228,7 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_embedded = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1169,6 +1244,7 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_filterOptions = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1184,6 +1260,7 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_preferredComponent = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1199,6 +1276,7 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_sortOptions = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 

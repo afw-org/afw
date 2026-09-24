@@ -37,6 +37,7 @@
 #include "afw_atomic.h"
 #include "afw_authorization.h"
 #include "afw_authorization_impl.h"
+#include "afw_binary_search.h"
 #include "afw_code_point.h"
 #include "afw_compile.h"
 #include "afw_components.h"

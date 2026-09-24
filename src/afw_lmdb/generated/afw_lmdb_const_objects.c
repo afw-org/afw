@@ -81,6 +81,7 @@ impl_3_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_3_properties[] = {
     &impl_3_property_allowQuery,
@@ -134,7 +135,8 @@ impl_3 = {
             &impl_3_meta_path
         }
     },
-    &impl_3_properties[0]
+    &impl_3_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -192,6 +194,7 @@ impl_4_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_4_properties[] = {
     &impl_4_property_allowQuery,
@@ -245,7 +248,8 @@ impl_4 = {
             &impl_4_meta_path
         }
     },
-    &impl_4_properties[0]
+    &impl_4_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -303,6 +307,7 @@ impl_5_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_5_properties[] = {
     &impl_5_property_allowQuery,
@@ -356,7 +361,8 @@ impl_5 = {
             &impl_5_meta_path
         }
     },
-    &impl_5_properties[0]
+    &impl_5_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -405,6 +411,7 @@ impl_2_property_version = {
     &impl_2_property_value_version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_2_properties[] = {
     &impl_2_property_information,
@@ -454,7 +461,8 @@ impl_2 = {
             &impl_2_meta_path
         }
     },
-    &impl_2_properties[0]
+    &impl_2_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -529,6 +537,7 @@ impl_1_property_propertyTypes = {
     &impl_1_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_1_properties[] = {
     &impl_1_property_allowEntity,
@@ -580,7 +589,8 @@ impl_1 = {
             &impl_1_meta_path
         }
     },
-    &impl_1_properties[0]
+    &impl_1_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -638,6 +648,7 @@ impl_8_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_8_properties[] = {
     &impl_8_property_allowQuery,
@@ -690,7 +701,8 @@ impl_8 = {
             &impl_8_meta_path
         }
     },
-    &impl_8_properties[0]
+    &impl_8_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -742,6 +754,7 @@ impl_9_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_9_properties[] = {
     &impl_9_property_allowQuery,
@@ -794,7 +807,8 @@ impl_9 = {
             &impl_9_meta_path
         }
     },
-    &impl_9_properties[0]
+    &impl_9_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -846,6 +860,7 @@ impl_10_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_10_properties[] = {
     &impl_10_property_allowQuery,
@@ -898,7 +913,8 @@ impl_10 = {
             &impl_10_meta_path
         }
     },
-    &impl_10_properties[0]
+    &impl_10_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -950,6 +966,7 @@ impl_11_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_11_properties[] = {
     &impl_11_property_allowQuery,
@@ -1002,7 +1019,8 @@ impl_11 = {
             &impl_11_meta_path
         }
     },
-    &impl_11_properties[0]
+    &impl_11_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1060,6 +1078,7 @@ impl_12_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_12_properties[] = {
     &impl_12_property_allowQuery,
@@ -1113,7 +1132,8 @@ impl_12 = {
             &impl_12_meta_path
         }
     },
-    &impl_12_properties[0]
+    &impl_12_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -1165,6 +1185,7 @@ impl_13_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_13_properties[] = {
     &impl_13_property_allowQuery,
@@ -1217,7 +1238,8 @@ impl_13 = {
             &impl_13_meta_path
         }
     },
-    &impl_13_properties[0]
+    &impl_13_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1302,6 +1324,7 @@ impl_7_property_numreaders = {
     &impl_7_property_value_numreaders.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_7_properties[] = {
     &impl_7_property_last_pgno,
@@ -1354,7 +1377,8 @@ impl_7 = {
             &impl_7_meta_path
         }
     },
-    &impl_7_properties[0]
+    &impl_7_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1429,6 +1453,7 @@ impl_6_property_propertyTypes = {
     &impl_6_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_6_properties[] = {
     &impl_6_property_allowEntity,
@@ -1480,7 +1505,8 @@ impl_6 = {
             &impl_6_meta_path
         }
     },
-    &impl_6_properties[0]
+    &impl_6_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -1538,6 +1564,7 @@ impl_16_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_16_properties[] = {
     &impl_16_property_allowQuery,
@@ -1590,7 +1617,8 @@ impl_16 = {
             &impl_16_meta_path
         }
     },
-    &impl_16_properties[0]
+    &impl_16_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1642,6 +1670,7 @@ impl_17_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_17_properties[] = {
     &impl_17_property_allowQuery,
@@ -1694,7 +1723,8 @@ impl_17 = {
             &impl_17_meta_path
         }
     },
-    &impl_17_properties[0]
+    &impl_17_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1746,6 +1776,7 @@ impl_18_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_18_properties[] = {
     &impl_18_property_allowQuery,
@@ -1798,7 +1829,8 @@ impl_18 = {
             &impl_18_meta_path
         }
     },
-    &impl_18_properties[0]
+    &impl_18_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1850,6 +1882,7 @@ impl_19_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_19_properties[] = {
     &impl_19_property_allowQuery,
@@ -1902,7 +1935,8 @@ impl_19 = {
             &impl_19_meta_path
         }
     },
-    &impl_19_properties[0]
+    &impl_19_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1960,6 +1994,7 @@ impl_20_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_20_properties[] = {
     &impl_20_property_allowQuery,
@@ -2013,7 +2048,8 @@ impl_20 = {
             &impl_20_meta_path
         }
     },
-    &impl_20_properties[0]
+    &impl_20_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -2065,6 +2101,7 @@ impl_21_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_21_properties[] = {
     &impl_21_property_allowQuery,
@@ -2117,7 +2154,8 @@ impl_21 = {
             &impl_21_meta_path
         }
     },
-    &impl_21_properties[0]
+    &impl_21_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -2202,6 +2240,7 @@ impl_15_property_psize = {
     &impl_15_property_value_psize.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_15_properties[] = {
     &impl_15_property_branch_pages,
@@ -2254,7 +2293,8 @@ impl_15 = {
             &impl_15_meta_path
         }
     },
-    &impl_15_properties[0]
+    &impl_15_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -2329,6 +2369,7 @@ impl_14_property_propertyTypes = {
     &impl_14_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_14_properties[] = {
     &impl_14_property_allowEntity,
@@ -2380,7 +2421,8 @@ impl_14 = {
             &impl_14_meta_path
         }
     },
-    &impl_14_properties[0]
+    &impl_14_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -2411,6 +2453,7 @@ impl_23_property_dataTypeParameter = {
     &afw_lmdb_self_v__AdaptiveAdapterMetrics_adapter_lmdb_statistic.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_23_properties[] = {
     &impl_23_property_dataType,
@@ -2459,7 +2502,8 @@ impl_23 = {
             &impl_23_meta_path
         }
     },
-    &impl_23_properties[0]
+    &impl_23_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -2534,6 +2578,7 @@ impl_22_property_otherProperties = {
     &impl_22_property_value_otherProperties.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_22_properties[] = {
     &impl_22_property_allowEntity,
@@ -2585,7 +2630,8 @@ impl_22 = {
             &impl_22_meta_path
         }
     },
-    &impl_22_properties[0]
+    &impl_22_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -2643,6 +2689,7 @@ impl_26_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_26_properties[] = {
     &impl_26_property_allowQuery,
@@ -2695,7 +2742,8 @@ impl_26 = {
             &impl_26_meta_path
         }
     },
-    &impl_26_properties[0]
+    &impl_26_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -2747,6 +2795,7 @@ impl_27_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_27_properties[] = {
     &impl_27_property_allowQuery,
@@ -2799,7 +2848,8 @@ impl_27 = {
             &impl_27_meta_path
         }
     },
-    &impl_27_properties[0]
+    &impl_27_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -2851,6 +2901,7 @@ impl_28_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_28_properties[] = {
     &impl_28_property_allowQuery,
@@ -2903,7 +2954,8 @@ impl_28 = {
             &impl_28_meta_path
         }
     },
-    &impl_28_properties[0]
+    &impl_28_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -2955,6 +3007,7 @@ impl_29_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_29_properties[] = {
     &impl_29_property_allowQuery,
@@ -3007,7 +3060,8 @@ impl_29 = {
             &impl_29_meta_path
         }
     },
-    &impl_29_properties[0]
+    &impl_29_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -3068,6 +3122,7 @@ impl_25_property_version_string = {
     &impl_25_property_value_version_string.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_25_properties[] = {
     &impl_25_property_major,
@@ -3118,7 +3173,8 @@ impl_25 = {
             &impl_25_meta_path
         }
     },
-    &impl_25_properties[0]
+    &impl_25_properties[0],
+    4
 };
 
 static const afw_value_object_t
@@ -3193,6 +3249,7 @@ impl_24_property_propertyTypes = {
     &impl_24_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_24_properties[] = {
     &impl_24_property_allowEntity,
@@ -3244,7 +3301,8 @@ impl_24 = {
             &impl_24_meta_path
         }
     },
-    &impl_24_properties[0]
+    &impl_24_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -3308,6 +3366,7 @@ impl_32_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_32_properties[] = {
     &impl_32_property_allowQuery,
@@ -3361,7 +3420,8 @@ impl_32 = {
             &impl_32_meta_path
         }
     },
-    &impl_32_properties[0]
+    &impl_32_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -3419,6 +3479,7 @@ impl_33_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_33_properties[] = {
     &impl_33_property_allowQuery,
@@ -3472,7 +3533,8 @@ impl_33 = {
             &impl_33_meta_path
         }
     },
-    &impl_33_properties[0]
+    &impl_33_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -3530,6 +3592,7 @@ impl_34_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_34_properties[] = {
     &impl_34_property_allowQuery,
@@ -3583,7 +3646,8 @@ impl_34 = {
             &impl_34_meta_path
         }
     },
-    &impl_34_properties[0]
+    &impl_34_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -3632,6 +3696,7 @@ impl_31_property_limits = {
     &impl_31_property_value_limits.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_31_properties[] = {
     &impl_31_property_env,
@@ -3707,7 +3772,8 @@ impl_31 = {
             &impl_31_meta_path
         }
     },
-    &impl_31_properties[0]
+    &impl_31_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -3782,6 +3848,7 @@ impl_30_property_propertyTypes = {
     &impl_30_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_30_properties[] = {
     &impl_30_property_allowEntity,
@@ -3833,7 +3900,8 @@ impl_30 = {
             &impl_30_meta_path
         }
     },
-    &impl_30_properties[0]
+    &impl_30_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -3891,6 +3959,7 @@ impl_37_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_37_properties[] = {
     &impl_37_property_allowQuery,
@@ -3943,7 +4012,8 @@ impl_37 = {
             &impl_37_meta_path
         }
     },
-    &impl_37_properties[0]
+    &impl_37_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -3995,6 +4065,7 @@ impl_38_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_38_properties[] = {
     &impl_38_property_allowQuery,
@@ -4047,7 +4118,8 @@ impl_38 = {
             &impl_38_meta_path
         }
     },
-    &impl_38_properties[0]
+    &impl_38_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -4099,6 +4171,7 @@ impl_39_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_39_properties[] = {
     &impl_39_property_allowQuery,
@@ -4151,7 +4224,8 @@ impl_39 = {
             &impl_39_meta_path
         }
     },
-    &impl_39_properties[0]
+    &impl_39_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -4203,6 +4277,7 @@ impl_40_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_40_properties[] = {
     &impl_40_property_allowQuery,
@@ -4255,7 +4330,8 @@ impl_40 = {
             &impl_40_meta_path
         }
     },
-    &impl_40_properties[0]
+    &impl_40_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -4313,6 +4389,7 @@ impl_41_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_41_properties[] = {
     &impl_41_property_allowQuery,
@@ -4366,7 +4443,8 @@ impl_41 = {
             &impl_41_meta_path
         }
     },
-    &impl_41_properties[0]
+    &impl_41_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -4439,6 +4517,7 @@ impl_36_property_path = {
     &impl_36_property_value_path.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_36_properties[] = {
     &impl_36_property_mapsize,
@@ -4490,7 +4569,8 @@ impl_36 = {
             &impl_36_meta_path
         }
     },
-    &impl_36_properties[0]
+    &impl_36_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -4565,6 +4645,7 @@ impl_35_property_propertyTypes = {
     &impl_35_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_35_properties[] = {
     &impl_35_property_allowEntity,
@@ -4616,7 +4697,8 @@ impl_35 = {
             &impl_35_meta_path
         }
     },
-    &impl_35_properties[0]
+    &impl_35_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -4674,6 +4756,7 @@ impl_44_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_44_properties[] = {
     &impl_44_property_allowQuery,
@@ -4726,7 +4809,8 @@ impl_44 = {
             &impl_44_meta_path
         }
     },
-    &impl_44_properties[0]
+    &impl_44_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -4818,6 +4902,7 @@ impl_45_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_45_properties[] = {
     &impl_45_property_allowQuery,
@@ -4872,7 +4957,8 @@ impl_45 = {
             &impl_45_meta_path
         }
     },
-    &impl_45_properties[0]
+    &impl_45_properties[0],
+    8
 };
 
 static const afw_value_object_t
@@ -4909,6 +4995,7 @@ impl_43_property_cardinalityStrategy = {
     &impl_43_property_value_cardinalityStrategy.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_43_properties[] = {
     &impl_43_property_cardinalityProbeCap,
@@ -4957,7 +5044,8 @@ impl_43 = {
             &impl_43_meta_path
         }
     },
-    &impl_43_properties[0]
+    &impl_43_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -5032,6 +5120,7 @@ impl_42_property_propertyTypes = {
     &impl_42_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_42_properties[] = {
     &impl_42_property_allowEntity,
@@ -5083,7 +5172,8 @@ impl_42 = {
             &impl_42_meta_path
         }
     },
-    &impl_42_properties[0]
+    &impl_42_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -5147,6 +5237,7 @@ impl_48_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_48_properties[] = {
     &impl_48_property_allowQuery,
@@ -5200,7 +5291,8 @@ impl_48 = {
             &impl_48_meta_path
         }
     },
-    &impl_48_properties[0]
+    &impl_48_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -5258,6 +5350,7 @@ impl_49_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_49_properties[] = {
     &impl_49_property_allowQuery,
@@ -5311,7 +5404,8 @@ impl_49 = {
             &impl_49_meta_path
         }
     },
-    &impl_49_properties[0]
+    &impl_49_properties[0],
+    7
 };
 
 static const afw_value_object_t
@@ -5348,6 +5442,7 @@ impl_47_property_time = {
     &impl_47_property_value_time.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_47_properties[] = {
     &impl_47_property_size,
@@ -5396,7 +5491,8 @@ impl_47 = {
             &impl_47_meta_path
         }
     },
-    &impl_47_properties[0]
+    &impl_47_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -5471,6 +5567,7 @@ impl_46_property_propertyTypes = {
     &impl_46_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_46_properties[] = {
     &impl_46_property_allowEntity,
@@ -5522,7 +5619,8 @@ impl_46 = {
             &impl_46_meta_path
         }
     },
-    &impl_46_properties[0]
+    &impl_46_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -5580,6 +5678,7 @@ impl_52_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_52_properties[] = {
     &impl_52_property_allowQuery,
@@ -5632,7 +5731,8 @@ impl_52 = {
             &impl_52_meta_path
         }
     },
-    &impl_52_properties[0]
+    &impl_52_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -5684,6 +5784,7 @@ impl_53_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_53_properties[] = {
     &impl_53_property_allowQuery,
@@ -5736,7 +5837,8 @@ impl_53 = {
             &impl_53_meta_path
         }
     },
-    &impl_53_properties[0]
+    &impl_53_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -5773,6 +5875,7 @@ impl_51_property_soft = {
     &impl_51_property_value_soft.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_51_properties[] = {
     &impl_51_property_hard,
@@ -5821,7 +5924,8 @@ impl_51 = {
             &impl_51_meta_path
         }
     },
-    &impl_51_properties[0]
+    &impl_51_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -5896,6 +6000,7 @@ impl_50_property_propertyTypes = {
     &impl_50_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_50_properties[] = {
     &impl_50_property_allowEntity,
@@ -5947,7 +6052,8 @@ impl_50 = {
             &impl_50_meta_path
         }
     },
-    &impl_50_properties[0]
+    &impl_50_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -6005,6 +6111,7 @@ impl_56_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_56_properties[] = {
     &impl_56_property_allowQuery,
@@ -6057,7 +6164,8 @@ impl_56 = {
             &impl_56_meta_path
         }
     },
-    &impl_56_properties[0]
+    &impl_56_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -6109,6 +6217,7 @@ impl_57_property_unique = {
     &afw_lmdb_boolean_self_v_false.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_57_properties[] = {
     &impl_57_property_allowQuery,
@@ -6161,7 +6270,8 @@ impl_57 = {
             &impl_57_meta_path
         }
     },
-    &impl_57_properties[0]
+    &impl_57_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -6198,6 +6308,7 @@ impl_55_property_soft = {
     &impl_55_property_value_soft.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_55_properties[] = {
     &impl_55_property_hard,
@@ -6246,7 +6357,8 @@ impl_55 = {
             &impl_55_meta_path
         }
     },
-    &impl_55_properties[0]
+    &impl_55_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -6321,6 +6433,7 @@ impl_54_property_propertyTypes = {
     &impl_54_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_54_properties[] = {
     &impl_54_property_allowEntity,
@@ -6372,7 +6485,8 @@ impl_54 = {
             &impl_54_meta_path
         }
     },
-    &impl_54_properties[0]
+    &impl_54_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -6406,6 +6520,7 @@ impl_58_property_description = {
     &afw_lmdb_self_v_zz__2fcf2b562f4d.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_58_properties[] = {
     &impl_58_property_brief,
@@ -6455,7 +6570,8 @@ impl_58 = {
             &impl_58_meta_path
         }
     },
-    &impl_58_properties[0]
+    &impl_58_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -6483,6 +6599,7 @@ impl_59_property_objectId = {
     &afw_lmdb_self_v_lmdb_extension.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_59_properties[] = {
     &impl_59_property_description,
@@ -6531,7 +6648,8 @@ impl_59 = {
             &impl_59_meta_path
         }
     },
-    &impl_59_properties[0]
+    &impl_59_properties[0],
+    2
 };
 
 static const afw_value_object_t

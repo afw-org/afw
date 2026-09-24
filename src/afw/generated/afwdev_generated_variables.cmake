@@ -45,6 +45,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     atomic/afw_atomic.h
     authorization/afw_authorization.h
     authorization/afw_authorization_impl.h
+    binary_search/afw_binary_search.h
     code_point/afw_code_point.h
     compile/afw_compile.h
     components/afw_components.h
@@ -197,6 +198,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/associative_array
     ${CMAKE_CURRENT_SOURCE_DIR}/atomic
     ${CMAKE_CURRENT_SOURCE_DIR}/authorization
+    ${CMAKE_CURRENT_SOURCE_DIR}/binary_search
     ${CMAKE_CURRENT_SOURCE_DIR}/code_point
     ${CMAKE_CURRENT_SOURCE_DIR}/compile
     ${CMAKE_CURRENT_SOURCE_DIR}/components
@@ -268,6 +270,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     authorization/afw_authorization.c
     authorization/afw_authorization_handler_type_script.c
     authorization/afw_authorization_impl.c
+    binary_search/afw_binary_search.c
     code_point/afw_code_point.c
     compile/afw_compile.c
     compile/afw_compile_lexical.c

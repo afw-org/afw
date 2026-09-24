@@ -45,6 +45,7 @@ impl_1_property_objectId = {
     &afw_server_fcgi_self_v_afw_server_fcgi.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_1_properties[] = {
     &impl_1_property_description,
@@ -93,7 +94,8 @@ impl_1 = {
             &impl_1_meta_path
         }
     },
-    &impl_1_properties[0]
+    &impl_1_properties[0],
+    2
 };
 
 static const afw_value_object_t

@@ -82,7 +82,8 @@ impl_runtime_meta_const_embedded_untyped_object = {
     NULL,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
-    false
+    false,
+    offsetof(afw_runtime_const_object_instance_t, property_count)
 };
 
 AFW_RUNTIME_OBJECT_INF(
@@ -1095,9 +1096,24 @@ afw_runtime_object_get_property(
         : NULL);
 
     if (more) {
-        for (; *more; more++) {
-            if (afw_value_equal(property_name, (*more)->name, xctx)) {
-                return (*more)->value;
+        if (meta->property_count_offset != (size_t)-1) {
+            const afw_runtime_property_t *found;
+            afw_size_t count;
+
+            count = *(const afw_size_t *)
+                (internal + meta->property_count_offset);
+            found = (const afw_runtime_property_t *)
+                afw_binary_search_by_name(
+                    (const void * const *)more, count, property_name);
+            if (found) {
+                return found->value;
+            }
+        }
+        else {
+            for (; *more; more++) {
+                if (afw_value_equal(property_name, (*more)->name, xctx)) {
+                    return (*more)->value;
+                }
             }
         }
     }

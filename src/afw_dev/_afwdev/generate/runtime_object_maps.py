@@ -147,6 +147,14 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
     else:
         fd.write('    false,\n')
 
+    # property_count_offset. Const instances carry a count for search.
+    if (typedef == 'afw_runtime_const_object_instance_t' and
+            labels.get('properties') is not None):
+        fd.write('    offsetof(afw_runtime_const_object_instance_t, '
+            'property_count),\n')
+    else:
+        fd.write('    (size_t)-1,\n')
+
     # end of afw_runtime_object_type_meta_t.
     fd.write('};\n')
 
