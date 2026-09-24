@@ -517,6 +517,118 @@ afw_object_is_memory_managed(const afw_object_t *object)
 }
 
 
+/*
+ * Internal tuning. The first 32 names stay a list walk. Past that,
+ * property_index finds the name. Not an application setting.
+ */
+#define IMPL_MEMORY_PROPERTY_INDEX_COUNT 32
+
+
+/* String name bytes, or NULL if name is not a string. */
+static const afw_utf8_t *
+impl_string_name_utf8(const afw_value_t *name)
+{
+    if (!afw_value_is_string(name)) {
+        return NULL;
+    }
+    return &((const afw_value_string_t *)name)->internal;
+}
+
+
+/* Index one entry. A non-string name is remembered and left off the hash. */
+static void
+impl_index_set(
+    afw_object_internal_memory_object_t *self,
+    afw_object_internal_name_value_entry_t *e,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *utf8;
+
+    if (!self->property_index) {
+        return;
+    }
+    utf8 = impl_string_name_utf8(e->name);
+    if (!utf8) {
+        self->has_non_string_name = true;
+        return;
+    }
+    afw_hash_table_set_utf8(self->property_index, utf8, e, xctx);
+}
+
+
+/* Build the index once the list is past the tuning count. */
+static void
+impl_index_ensure(
+    afw_object_internal_memory_object_t *self,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+
+    if (self->property_index ||
+        self->property_count <= IMPL_MEMORY_PROPERTY_INDEX_COUNT)
+    {
+        return;
+    }
+    self->property_index = afw_hash_table_create(
+        afw_void_hash_table_t, self->pub.p, xctx);
+    for (e = self->first_property; e; e = e->next) {
+        impl_index_set(self, e, xctx);
+    }
+}
+
+
+/* Local entry for this name, or NULL. */
+static afw_object_internal_name_value_entry_t *
+impl_find_entry(
+    afw_object_internal_memory_object_t *self,
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+    const afw_utf8_t *utf8;
+
+    if (self->property_index && afw_value_is_string(property_name)) {
+        utf8 = impl_string_name_utf8(property_name);
+        return afw_hash_table_get_utf8(self->property_index, utf8);
+    }
+
+    for (e = self->first_property; e; e = e->next) {
+        if (afw_value_equal(e->name, property_name, xctx)) {
+            return e;
+        }
+    }
+    return NULL;
+}
+
+
+/* Append a new entry and count it. The index is updated when it exists. */
+static void
+impl_link_new(
+    afw_object_internal_memory_object_t *self,
+    afw_object_internal_name_value_entry_t *e,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t indexed;
+
+    indexed = self->property_index != NULL;
+    if (self->last_property) {
+        self->last_property->next = e;
+    }
+    else {
+        self->first_property = e;
+    }
+    self->last_property = e;
+    self->property_count++;
+    if (!afw_value_is_string(e->name)) {
+        self->has_non_string_name = true;
+    }
+    impl_index_ensure(self, xctx);
+    if (indexed) {
+        impl_index_set(self, e, xctx);
+    }
+}
+
+
 /* Unlink one local entry. The value is released when this object owns it. */
 static void
 impl_unlink_property(
@@ -542,10 +654,26 @@ impl_unlink_property(
         else {
             self->first_property = e->next;
         }
+        if (self->last_property == e) {
+            self->last_property = prev;
+        }
+        if (self->property_count > 0) {
+            self->property_count--;
+        }
+        if (self->property_index) {
+            const afw_utf8_t *utf8;
+
+            utf8 = impl_string_name_utf8(e->name);
+            if (utf8) {
+                afw_hash_table_set_utf8(self->property_index,
+                    utf8, NULL, xctx);
+            }
+        }
         /*
          * Plain memory objects store the caller's value pointer.
          * Wrapped and managed objects slot_store it, so they own it.
          * Managed names are assignable and owned the same way.
+         * Drop the hash key before the name bytes are released.
          */
         if (managed || self->wrapped) {
             afw_value_release(e->value, xctx);
@@ -818,13 +946,12 @@ impl_get_local_property(
 
     *found_local = false;
 
-    for (e = self->first_property; e; e = e->next) {
-        if (afw_value_equal(e->name, property_name, xctx)) {
-            *found_local = true;
-            return e->value;
-        }
+    e = impl_find_entry(self, property_name, xctx);
+    if (!e) {
+        return NULL;
     }
-    return NULL;
+    *found_local = true;
+    return e->value;
 }
 
 
@@ -1075,7 +1202,6 @@ impl_afw_object_setter_set_property(
     afw_object_internal_memory_object_t *memory_object_self =
         (afw_object_internal_memory_object_t *)self->object;
     afw_object_internal_name_value_entry_t *e;
-    afw_object_internal_name_value_entry_t *final_e;
 
     do { if (memory_object_self->immutable) { AFW_OBJECT_ERROR_OBJECT_IMMUTABLE; } } while (0);
 
@@ -1084,22 +1210,20 @@ impl_afw_object_setter_set_property(
         value = afw_value_undefined;
     }
 
-    for (e = memory_object_self->first_property,final_e = NULL; e; e = e->next) {
-        final_e = e;
-        if (afw_value_equal(e->name, property_name, xctx)) {
-            /*
-             * Overlay hold only on look-through faces. Generic memory
-             * objects still store the pointer (adapter/runtime/snapshots).
-             */
-            if (memory_object_self->wrapped) {
-                afw_value_slot_store(&e->value, value,
-                    self->object->p, xctx);
-            }
-            else {
-                e->value = value;
-            }
-            return;
+    e = impl_find_entry(memory_object_self, property_name, xctx);
+    if (e) {
+        /*
+         * Overlay hold only on look-through faces. Generic memory
+         * objects still store the pointer (adapter/runtime/snapshots).
+         */
+        if (memory_object_self->wrapped) {
+            afw_value_slot_store(&e->value, value,
+                self->object->p, xctx);
         }
+        else {
+            e->value = value;
+        }
+        return;
     }
     e = afw_pool_calloc_type(self->object->p,
         afw_object_internal_name_value_entry_t, xctx);
@@ -1131,12 +1255,7 @@ impl_afw_object_setter_set_property(
     else {
         e->value = value;
     }
-    if (final_e) {
-        final_e->next = e;
-    }
-    else {
-        memory_object_self->first_property = e;
-    }
+    impl_link_new(memory_object_self, e, xctx);
 }
 
 
@@ -1208,7 +1327,6 @@ impl_afw_object_managed_setter_set_property(
     afw_object_internal_memory_object_t *memory_object_self =
         (afw_object_internal_memory_object_t *)self->object;
     afw_object_internal_name_value_entry_t *e;
-    afw_object_internal_name_value_entry_t *final_e;
 
     do { if (memory_object_self->immutable) { AFW_OBJECT_ERROR_OBJECT_IMMUTABLE; } } while (0);
 
@@ -1217,15 +1335,11 @@ impl_afw_object_managed_setter_set_property(
         value = afw_value_undefined;
     }
 
-    for (e = memory_object_self->first_property, final_e = NULL;
-        e; e = e->next)
-    {
-        final_e = e;
-        if (afw_value_equal(e->name, property_name, xctx)) {
-            afw_value_slot_store(&e->value, value,
-                self->object->p, xctx);
-            return;
-        }
+    e = impl_find_entry(memory_object_self, property_name, xctx);
+    if (e) {
+        afw_value_slot_store(&e->value, value,
+            self->object->p, xctx);
+        return;
     }
     e = afw_pool_calloc_type(self->object->p,
         afw_object_internal_name_value_entry_t, xctx);
@@ -1236,12 +1350,7 @@ impl_afw_object_managed_setter_set_property(
     e->name = afw_value_get_assignable(property_name,
         self->object->p, xctx);
     afw_value_slot_store(&e->value, value, self->object->p, xctx);
-    if (final_e) {
-        final_e->next = e;
-    }
-    else {
-        memory_object_self->first_property = e;
-    }
+    impl_link_new(memory_object_self, e, xctx);
 }
 
 
