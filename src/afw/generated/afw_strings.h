@@ -12145,84 +12145,6 @@ afw_self_v_a_flag_response_error_backtraceEvaluation;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_a_flag_response_error_backtraceEvaluation_all \
-    "response:error:backtraceEvaluation:all"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all */
-#define afw_s_a_flag_response_error_backtraceEvaluation_all \
-    (&afw_self_v_a_flag_response_error_backtraceEvaluation_all.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all */
-#define afw_self_s_a_flag_response_error_backtraceEvaluation_all \
-    (afw_self_v_a_flag_response_error_backtraceEvaluation_all.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_response_error_backtraceEvaluation_all;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_response_error_backtraceEvaluation_all */
-#define afw_z_a_flag_response_error_backtraceEvaluation_all \
-    (afw_self_v_a_flag_response_error_backtraceEvaluation_all.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_response_error_backtraceEvaluation_all */
-#define afw_v_a_flag_response_error_backtraceEvaluation_all \
-    (&afw_self_v_a_flag_response_error_backtraceEvaluation_all.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_response_error_backtraceEvaluation_all_brief \
-    "Include evaluation backtrace for every code"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_brief */
-#define afw_s_a_flag_response_error_backtraceEvaluation_all_brief \
-    (&afw_self_v_a_flag_response_error_backtraceEvaluation_all_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_brief */
-#define afw_self_s_a_flag_response_error_backtraceEvaluation_all_brief \
-    (afw_self_v_a_flag_response_error_backtraceEvaluation_all_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_response_error_backtraceEvaluation_all_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_brief */
-#define afw_z_a_flag_response_error_backtraceEvaluation_all_brief \
-    (afw_self_v_a_flag_response_error_backtraceEvaluation_all_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_brief */
-#define afw_v_a_flag_response_error_backtraceEvaluation_all_brief \
-    (&afw_self_v_a_flag_response_error_backtraceEvaluation_all_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_response_error_backtraceEvaluation_all_description \
-    "Include an evaluation backtrace for every error code, including script throw and syntax. Also turns on response:error:backtraceEvaluation."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_description */
-#define afw_s_a_flag_response_error_backtraceEvaluation_all_description \
-    (&afw_self_v_a_flag_response_error_backtraceEvaluation_all_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_description */
-#define afw_self_s_a_flag_response_error_backtraceEvaluation_all_description \
-    (afw_self_v_a_flag_response_error_backtraceEvaluation_all_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_response_error_backtraceEvaluation_all_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_description */
-#define afw_z_a_flag_response_error_backtraceEvaluation_all_description \
-    (afw_self_v_a_flag_response_error_backtraceEvaluation_all_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_response_error_backtraceEvaluation_all_description */
-#define afw_v_a_flag_response_error_backtraceEvaluation_all_description \
-    (&afw_self_v_a_flag_response_error_backtraceEvaluation_all_description.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_a_flag_response_error_backtraceEvaluation_brief \
     "Include evaluation backtrace"
 
@@ -12250,7 +12172,7 @@ afw_self_v_a_flag_response_error_backtraceEvaluation_brief;
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_response_error_backtraceEvaluation_description \
-    "Include evaluation backtrace in error responses. Codes marked trace-all-only, such as script throw and syntax, are omitted."
+    "Include an evaluation backtrace in error responses for every error code, including script throw and syntax."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtraceEvaluation_description */
 #define afw_s_a_flag_response_error_backtraceEvaluation_description \
@@ -12328,7 +12250,7 @@ afw_self_v_a_flag_response_error_backtrace_all_brief;
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_response_error_backtrace_all_description \
-    "Include a code backtrace for every error code, including script throw and syntax. Also turns on response:error:backtrace."
+    "Include a code backtrace for every error code, including script throw and syntax. Also turns on response:error:backtrace. Does not change the evaluation backtrace."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_error_backtrace_all_description */
 #define afw_s_a_flag_response_error_backtrace_all_description \

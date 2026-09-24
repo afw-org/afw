@@ -94,9 +94,10 @@ impl_trace_all_only(afw_error_code_t code)
 
 
 /*
- * trace_all_only codes use the :all flag. Other codes use the
- * normal flag. :all also turns the normal flag on, so a normal
- * code is still traced when only :all was requested.
+ * Code backtrace only. trace_all_only codes use
+ * response:error:backtrace:all. Other codes use
+ * response:error:backtrace. :all also turns that flag on.
+ * The evaluation backtrace ignores this column.
  */
 static afw_boolean_t
 impl_trace_flag_active(
@@ -653,10 +654,8 @@ afw_error_to_utf8(
     /** @fixme "%.0" AFW_SIZE_T_FMT_NO_PERCENT should cause 0 not to be printed, but it does. */
     do_contextual = afw_flag_is_active(
         xctx->env->flag_index_response_error_contextual, xctx);
-    do_evaluation_backtrace = impl_trace_flag_active(error->code,
-        xctx->env->flag_index_response_error_backtraceEvaluation,
-        xctx->env->flag_index_response_error_backtraceEvaluation_all,
-        xctx);
+    do_evaluation_backtrace = afw_flag_is_active(
+        xctx->env->flag_index_response_error_backtraceEvaluation, xctx);
     do_code_backtrace = error->backtrace != NULL;
 
 
@@ -880,10 +879,8 @@ afw_error_print_with_xctx(
     rv = afw_error_print(fp, error);
     if (rv < 0) return rv;
 
-    if (impl_trace_flag_active(error->code,
-        xctx->env->flag_index_response_error_backtraceEvaluation,
-        xctx->env->flag_index_response_error_backtraceEvaluation_all,
-        xctx))
+    if (afw_flag_is_active(
+        xctx->env->flag_index_response_error_backtraceEvaluation, xctx))
     {
         backtraceExpression = impl_evaluation_backtrace(error, p, xctx);
         if (backtraceExpression && backtraceExpression->len > 0) {
@@ -1055,11 +1052,9 @@ afw_error_add_to_object(
             xctx);
     }
 
-    /* Evaluation backtrace. */
-    if (impl_trace_flag_active(error->code,
-        xctx->env->flag_index_response_error_backtraceEvaluation,
-        xctx->env->flag_index_response_error_backtraceEvaluation_all,
-        xctx))
+    /* Evaluation backtrace. Ignores trace_all_only. */
+    if (afw_flag_is_active(
+        xctx->env->flag_index_response_error_backtraceEvaluation, xctx))
     {
         evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
         if (evaluation_backtrace) {

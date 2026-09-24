@@ -295,9 +295,6 @@
     /** @brief Flag index of response:error:backtraceEvaluation. */
     afw_size_t flag_index_response_error_backtraceEvaluation;
 
-    /** @brief Flag index of response:error:backtraceEvaluation:all. */
-    afw_size_t flag_index_response_error_backtraceEvaluation_all;
-
     /** @brief Flag index of response:error:contextual. */
     afw_size_t flag_index_response_error_contextual;
 

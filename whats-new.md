@@ -218,7 +218,7 @@ A failed convert-from-text of **date**, **dateTime**, **time**, **dayTimeDuratio
 
 The map also includes assigned IANA HTTP statuses a server or extension may issue (201–511 that we might use, plus Adaptive extras that share a number). Prefer **`e.id`**. Script `throw` may use the request-facing names (including `gone`, `too_many_requests`, redirects). Host names such as `memory` and `coding_error` are not allowed on script `throw`.
 
-Script `throw` with no id, and `syntax`, do not include a code backtrace or an evaluation backtrace unless **`response:error:backtrace:all`** or **`response:error:backtraceEvaluation:all`** is on. The `afw` command still defaults **`response:error`** on, and that does not turn `:all` on. The message, source, and offset still print. Other codes, including `argument_error` and `denied`, still trace when **`response:error:backtrace`** is on. Setting `:all` also turns that normal flag on.
+Script `throw` with no id, and `syntax`, do not include a code backtrace unless **`response:error:backtrace:all`** is on. The evaluation backtrace still follows **`response:error:backtraceEvaluation`** for every code, including those two. The `afw` command defaults **`response:error`** on, which turns the evaluation trace on and does not turn `:all` on. Other codes, including `argument_error` and `denied`, still get a code backtrace when **`response:error:backtrace`** is on. Setting `:all` also turns that normal flag on.
 
 | Situation | `e.id` | HTTP if uncaught |
 |-----------|--------|------------------|

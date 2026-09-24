@@ -962,8 +962,9 @@ typedef struct afw_object_meta_s {
  *
  * id: Token pasted as afw_error_code_<id> and exposed as _AdaptiveError_.id.
  * error_allow_in_response: If false, HTTP response omits the error object.
- * trace_all_only: If true, traces require the matching response:error:*:all
- *     flag. Script throw (no id) and syntax.
+ * trace_all_only: If true, the code backtrace requires
+ *     response:error:backtrace:all. The evaluation backtrace ignores
+ *     this column. Script throw (no id) and syntax.
  * http_response_code: Status for an uncaught error on an HTTP request.
  * description: Phrase after the status number (e.g. "404 Not Found").
  *
@@ -1049,11 +1050,12 @@ typedef struct afw_object_meta_s {
  *
  * client_closed            - Client closed the connection.
  *
- * trace_all_only follows error_allow_in_response. True means a code
- * backtrace and an evaluation backtrace are captured only when the
- * matching response:error:*:all flag is on. Script throw (no id) and
- * syntax are that kind. Other codes use response:error:backtrace and
- * response:error:backtraceEvaluation.
+ * trace_all_only follows error_allow_in_response. True means the
+ * code backtrace is captured only when response:error:backtrace:all
+ * is on. The evaluation backtrace follows
+ * response:error:backtraceEvaluation for every code. Script throw
+ * (no id) and syntax are trace_all_only. Other codes use
+ * response:error:backtrace for the code backtrace.
  */
 #define AFW_ERROR_CODE_MAP(_XX)                                                  \
     _XX(none,                               true,  false, 200, "OK"                                )\
