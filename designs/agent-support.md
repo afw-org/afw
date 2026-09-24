@@ -102,7 +102,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 **Shapes that keep coming back (learn these, not ticket lists)**
 
 - **Create vs evaluate** — do not mix (`afw-script-eval`). `argv[0]` at create is the callee expression; `x->function` is harvest at evaluate.  
-- **New get, old delete** — look-through / face / view added on read; mutate/delete/count still the old impl. Faces: delete is a local NULL tombstone (`issue-17`).  
+- **New get, old delete** — look-through / face / view added on read; mutate/count still the old impl. A face `property_delete` / `set_property(name, NULL)` stores `afw_value_undefined` and the name stays, so the base is not revived. `afw_object_get_property()` returns C NULL only when the name is absent. `afw_object_remove_property()` unlinks (`issue-17`, PR **#372**).
 - **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs live metrics (metrics/properties pin the instance until the caller pool is cleaned up; they are not a deep snapshot).  
 - **Two impls of one interface** — memory array index uses `>= count`; C-array view used `> count` (gate: `tests/advanced/array_view_index/`).  
 - **Script integer → malloc / spin / C stack** — APR pools often abort on huge alloc; empty match + “replace all” never advances; type and destructure parse have a nesting limit (`AFW_COMPILE_PARSE_NESTING_MAX`); other grammars may not.  
