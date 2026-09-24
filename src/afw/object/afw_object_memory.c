@@ -519,10 +519,11 @@ afw_object_is_memory_managed(const afw_object_t *object)
 
 /*
  * Internal tuning. The instruction minimum on object_options.as was 9.
- * 12 stays in the flat part of that curve and keeps a 16-bucket table
- * off objects that are still cheap to scan. Not an application setting.
+ * 20 stays on the flat part of that curve. That script builds wide
+ * catalog objects, so a lower limit indexes objects that are still
+ * cheap to scan. Not an application setting.
  */
-#define IMPL_MEMORY_PROPERTY_INDEX_COUNT 12
+#define IMPL_MEMORY_PROPERTY_INDEX_COUNT 20
 
 
 /* String name bytes, or NULL if name is not a string. */
