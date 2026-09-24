@@ -20134,7 +20134,7 @@ afw_function_definition_property_delete;
  * @brief Adaptive Function `property_delete`
  * @param x function execute parameter.
  *
- * Delete a property in an object.
+ * Set a property's value to undefined. The name stays on the object.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -20150,13 +20150,13 @@ afw_function_definition_property_delete;
  *
  * Parameters:
  *
- *   object - (object) This is the object to delete property from.
+ *   object - (object) This is the object.
  *
- *   name - (string) This is a name of the property to delete.
+ *   name - (string) This is the property name.
  *
  * Returns:
  *
- *   (boolean) True if object had the property and it was deleted.
+ *   (boolean) True if the object had the property. Its value is now undefined.
  */
 const afw_value_t *
 afw_function_execute_property_delete(
@@ -20170,7 +20170,7 @@ afw_function_definition_property_delete_by_reference;
  * @brief Adaptive Function `property_delete_by_reference`
  * @param x function execute parameter.
  *
- * Delete a property from an object by reference.
+ * Set a referenced property's value to undefined. The name stays on the object.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -20185,11 +20185,11 @@ afw_function_definition_property_delete_by_reference;
  *
  * Parameters:
  *
- *   reference - (any) This is a reference to the object property to delete.
+ *   reference - (any) This is a reference to the object property.
  *
  * Returns:
  *
- *   (boolean) True if object had the property and it was deleted.
+ *   (boolean) True if the object had the property. Its value is now undefined.
  */
 const afw_value_t *
 afw_function_execute_property_delete_by_reference(

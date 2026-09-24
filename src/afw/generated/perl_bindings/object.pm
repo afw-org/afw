@@ -316,29 +316,29 @@ Value to convert
 
 =head3 property_delete
 
-Delete a property in an object.
-Delete a property
+Set a property's value to undefined. The name stays on the object.
+Set property value to undefined
 
 =head4 Parameters
 
     $object
 
-This is the object to delete property from.
+This is the object.
 
     $name
 
-This is a name of the property to delete.
+This is the property name.
 
 =head3 property_delete_by_reference
 
-Delete a property from an object by reference.
-Delete referenced property
+Set a referenced property's value to undefined. The name stays on the object.
+Set referenced property to undefined
 
 =head4 Parameters
 
     $reference
 
-This is a reference to the object property to delete.
+This is a reference to the object property.
 
 =head3 property_exists
 

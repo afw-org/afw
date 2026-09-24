@@ -551,7 +551,6 @@ impl_index_set(
     }
     utf8 = impl_string_name_utf8(e->name);
     if (!utf8) {
-        self->has_non_string_name = true;
         return;
     }
     afw_hash_table_set_utf8(self->property_index, utf8, e, xctx);
@@ -621,9 +620,6 @@ impl_link_new(
     }
     self->last_property = e;
     self->property_count++;
-    if (!afw_value_is_string(e->name)) {
-        self->has_non_string_name = true;
-    }
     impl_index_ensure(self, xctx);
     if (indexed) {
         impl_index_set(self, e, xctx);

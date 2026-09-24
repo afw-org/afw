@@ -412,13 +412,14 @@ export function afwObject(client : any, value : any) : any {
 }
 
 /**
- * Delete a property in an object.
+ * Set a property's value to undefined. The name stays on the object.
  * 
- * @param {object} object - This is the object to delete property from.
+ * @param {object} object - This is the object.
  * 
- * @param {string} name - This is a name of the property to delete.
+ * @param {string} name - This is the property name.
  * 
- * @returns {boolean} True if object had the property and it was deleted.
+ * @returns {boolean} True if the object had the property. Its value is now
+ *     undefined.
  */
 export function afwPropertyDelete(client : any, object : object, name : string) : any {
 
@@ -432,11 +433,13 @@ export function afwPropertyDelete(client : any, object : object, name : string) 
 }
 
 /**
- * Delete a property from an object by reference.
+ * Set a referenced property's value to undefined. The name stays on the
+ * object.
  * 
- * @param {} reference - This is a reference to the object property to delete.
+ * @param {} reference - This is a reference to the object property.
  * 
- * @returns {boolean} True if object had the property and it was deleted.
+ * @returns {boolean} True if the object had the property. Its value is now
+ *     undefined.
  */
 export function afwPropertyDeleteByReference(client : any, reference : any) : any {
 

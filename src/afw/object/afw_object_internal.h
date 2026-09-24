@@ -65,9 +65,6 @@ struct afw_object_internal_memory_object_s {
      */
     afw_void_hash_table_t *property_index;
 
-    /** True after a non-string name is stored. */
-    afw_boolean_t has_non_string_name;
-
     /*
      * Optional base for look-through gets (NULL for a normal memory object).
      * Local properties shadow this object; sets never write to it.
