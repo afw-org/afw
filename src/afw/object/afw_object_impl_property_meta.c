@@ -404,6 +404,29 @@ impl_afw_object_setter_set_property(
 }
 
 
+/*
+ * Implementation of method remove_property for interface afw_object_setter.
+ */
+void
+impl_afw_object_setter_remove_property(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx)
+{
+    afw_object_impl_property_meta_object_self_t *object_self =
+        (afw_object_impl_property_meta_object_self_t *)self->object;
+    const afw_object_t *property_type;
+
+    property_type = afw_object_meta_get_property_type(
+        ((const afw_value_object_t *)&object_self->meta_object_value)->internal,
+        object_self->property_name, xctx);
+    if (!property_type) {
+        return;
+    }
+    afw_object_remove_property(property_type, property_name, xctx);
+}
+
+
 
 /*
  * A general impl of method get_property_meta for interface afw_object

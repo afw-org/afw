@@ -479,7 +479,7 @@ Under the hood a face is a **memory wrapper** (local sets; get falls through or 
 
 Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
 
-`property_delete` on a face (including a script object literal) now hides the property. The first ship left unshadowed delete as a silent no-op — look-through still saw the shared base.
+`afw_object_get_property()` returns C **NULL** only when the name is absent. A present undefined value is the `afw_value_undefined` pointer, so `if (!afw_object_get_property(...))` means the property does not exist. `afw_object_set_property()` with a C **NULL** value stores `afw_value_undefined` and the name stays. `property_delete` on a face (including a script object literal) does that: `property_exists` stays true, and look-through does not revive the shared base. `afw_object_remove_property()` unlinks the name. `get_next_property()` still returns NULL when the walk is finished.
 
 ### `clone()` vs `freeze` vs `const` vs faces
 

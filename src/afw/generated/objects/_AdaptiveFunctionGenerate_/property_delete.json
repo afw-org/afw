@@ -1,28 +1,28 @@
 {
     "afwCamelCaseFunctionLabel": "afwPropertyDelete",
-    "brief": "Delete a property",
+    "brief": "Set property value to undefined",
     "camelCaseFunctionLabel": "propertyDelete",
     "category": "object",
-    "description": "Delete a property in an object.",
+    "description": "Set a property's value to undefined. The name stays on the object.",
     "functionId": "property_delete",
     "functionLabel": "property_delete",
     "parameters": [
         {
             "brief": "Object containing property",
             "dataType": "object",
-            "description": "This is the object to delete property from.",
+            "description": "This is the object.",
             "name": "object"
         },
         {
             "brief": "Property name",
             "dataType": "string",
-            "description": "This is a name of the property to delete.",
+            "description": "This is the property name.",
             "name": "name"
         }
     ],
     "returns": {
-        "brief": "True if deleted",
+        "brief": "True if the property was present",
         "dataType": "boolean",
-        "description": "True if object had the property and it was deleted."
+        "description": "True if the object had the property. Its value is now undefined."
     }
 }

@@ -45,6 +45,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     atomic/afw_atomic.h
     authorization/afw_authorization.h
     authorization/afw_authorization_impl.h
+    binary_search/afw_binary_search.h
     code_point/afw_code_point.h
     compile/afw_compile.h
     components/afw_components.h
@@ -172,6 +173,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     runtime/afw_runtime_value_accessor.h
     safe_cast/afw_safe_cast.h
     service/afw_service.h
+    sort/afw_sort.h
     stream/afw_stream.h
     thread/afw_thread.h
     time/afw_time.h
@@ -197,6 +199,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/associative_array
     ${CMAKE_CURRENT_SOURCE_DIR}/atomic
     ${CMAKE_CURRENT_SOURCE_DIR}/authorization
+    ${CMAKE_CURRENT_SOURCE_DIR}/binary_search
     ${CMAKE_CURRENT_SOURCE_DIR}/code_point
     ${CMAKE_CURRENT_SOURCE_DIR}/compile
     ${CMAKE_CURRENT_SOURCE_DIR}/components
@@ -229,6 +232,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/runtime
     ${CMAKE_CURRENT_SOURCE_DIR}/safe_cast
     ${CMAKE_CURRENT_SOURCE_DIR}/service
+    ${CMAKE_CURRENT_SOURCE_DIR}/sort
     ${CMAKE_CURRENT_SOURCE_DIR}/stream
     ${CMAKE_CURRENT_SOURCE_DIR}/thread
     ${CMAKE_CURRENT_SOURCE_DIR}/time
@@ -268,6 +272,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     authorization/afw_authorization.c
     authorization/afw_authorization_handler_type_script.c
     authorization/afw_authorization_impl.c
+    binary_search/afw_binary_search.c
     code_point/afw_code_point.c
     compile/afw_compile.c
     compile/afw_compile_lexical.c
@@ -429,6 +434,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     safe_cast/afw_safe_cast.c
     service/afw_service.c
     service/afw_service_context.c
+    sort/afw_sort.c
     stream/afw_stream.c
     stream/afw_stream_fd.c
     thread/afw_thread.c

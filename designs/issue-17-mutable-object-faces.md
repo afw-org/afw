@@ -34,7 +34,7 @@ Callers often expect an object value to be **theirs to mutate**. AFW often hands
 ### 1. Memory faces
 
 - **Objects:** `afw_object_create_wrapper_unmanaged_new_p_*` — local props first, look-through base, sets stay on face.  
-- **Delete on a face:** `set_property(name, NULL)` with **no local entry** creates a NULL local tombstone so look-through does not revive the base. Getter/`has`/iterate already treat a NULL local as deleted (`afw_object_memory.c`). Residual of the original ship — landed on `develop` after PR **#150**.  
+- **NULL value vs absent name:** `afw_object_get_property()` returns C NULL only when the name is absent. A present undefined value is `afw_value_undefined`. `afw_object_set_property(name, NULL)` stores that singleton and the name stays, so look-through does not revive the base and `has` stays true. `afw_object_remove_property()` unlinks the name. `property_delete` is the set-undefined path. The old NULL local tombstone (has/iterate treat NULL as deleted) is gone ([PR #372](https://github.com/afw-org/afw/pull/372)).
 - **Arrays:** `afw_array_create_wrapper_unmanaged_new_p_*` — local vector; nested structured values re-faced on materialize / promote.  
 - **Nested hard edge:** always put a **new** face over the nested **instance as given** (do **not** peel to ultimate base — preserves face-ring content, e.g. model `onGetProperty` `let l=[]; add_entries…`). Typed `map` uses `get_next_value` (promote on get).
 
@@ -82,7 +82,7 @@ Temporary “arrays still clone” was removed when object clone-on-bind dropped
 
 | Suite | Covers |
 |-------|--------|
-| `object_literal_wrapper.as` / `array_literal_wrapper.as` | Literals, multi-call, nested hard edge, property_get/variable_get defaults + map. Object face **delete / tombstone** covered in `object_literal_wrapper.as`. |
+| `object_literal_wrapper.as` / `array_literal_wrapper.as` | Literals, multi-call, nested hard edge, property_get/variable_get defaults + map. Object face **undefined value** (name stays, base not revived) covered in `object_literal_wrapper.as`. |
 | `issue17_faces_regression.as` | Cross-path mix |
 | File adapter / journal tests | get/retrieve faces; journal consumer peers seeded on journal adapter |
 | `src/afw_yaml/tests/` | allow output + to_object |

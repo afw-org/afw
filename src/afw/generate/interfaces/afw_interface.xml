@@ -3663,8 +3663,8 @@ AFW_DEFINE(const afw_log_t *)
         The value and name must be available for the life of the object. Use the
         object's pool to allocate memory for the name and value, if necessary.
 
-        If value is NULL, the property is removed. If the property does not exist,
-        no error is thrown.
+        If value is NULL, it is stored as undefined. The name stays on the
+        object. A NULL return from get_property() means the name is absent.
 
         An exception is thrown if the object is immutable.
       </description>
@@ -3681,8 +3681,34 @@ AFW_DEFINE(const afw_log_t *)
 
       <parameter name="value" type="const afw_value_t *">
         <description>
-          Value to set or NULL to remove the property.
+          Value to set. NULL is undefined.
         </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="remove_property">
+
+      <description>
+        Remove a property owned by this object. If the name is absent, no
+        error is thrown. Ancestors are not changed.
+
+        An exception is thrown if the object is immutable.
+      </description>
+
+      <parameter name="instance" type="const afw_object_setter_t *">
+        <description>Pointer to this object setter instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_value_t *">
+        <description>Property name of property to remove.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">

@@ -1,19 +1,19 @@
 {
-    "brief": "Delete referenced property",
+    "brief": "Set referenced property to undefined",
     "category": "object",
-    "description": "Delete a property from an object by reference.",
+    "description": "Set a referenced property's value to undefined. The name stays on the object.",
     "functionId": "property_delete_by_reference",
     "functionLabel": "property_delete_by_reference",
     "parameters": [
         {
             "brief": "Property to delete",
-            "description": "This is a reference to the object property to delete.",
+            "description": "This is a reference to the object property.",
             "name": "reference"
         }
     ],
     "returns": {
-        "brief": "True if deleted",
+        "brief": "True if the property was present",
         "dataType": "boolean",
-        "description": "True if object had the property and it was deleted."
+        "description": "True if the object had the property. Its value is now undefined."
     }
 }

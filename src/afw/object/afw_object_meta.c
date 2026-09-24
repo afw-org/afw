@@ -439,7 +439,7 @@ afw_object_meta_set_meta_object(
         if (!parsed_path->first_property_name) {
             afw_object_meta_set_ids_using_path(instance, path, xctx);
         }
-        afw_object_set_property(meta, afw_v_path, NULL, xctx);
+        afw_object_remove_property(meta, afw_v_path, xctx);
     }
 
     /* Try to determine object type if path didn't set it. */
@@ -1129,4 +1129,24 @@ impl_afw_object_setter_set_property(
         }
         afw_object_set_property(object_meta_object_self->delta, property_name, value, xctx);
     }
+}
+
+
+/*
+ * Implementation of method remove_property for interface afw_object_setter.
+ */
+void
+impl_afw_object_setter_remove_property(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx)
+{
+    afw_object_meta_object_t *object_meta_object_self =
+        (afw_object_meta_object_t *)self->object;
+
+    if (!object_meta_object_self->delta) {
+        return;
+    }
+    afw_object_remove_property(object_meta_object_self->delta,
+        property_name, xctx);
 }

@@ -840,8 +840,7 @@ impl_afw_adapter_journal_get_entry_internal(
                     afw_v_consumeCursor, entry_object_id, xctx);
                 afw_object_set_property_as_dateTime_internal(peer,
                     afw_v_consumeStartTime, now, xctx);
-                afw_object_remove_property(peer, afw_v_advanceCursor,
-                    xctx);
+                afw_object_remove_property(peer, afw_v_advanceCursor, xctx);
             }
 
             /* If not applicable, set advance cursor to to point to eof. */

@@ -57,6 +57,7 @@ impl_3_property_description = {
     &afw_crypto_self_v_zz__Always_AES_GCM_in_v1_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_3_properties[] = {
     &impl_3_property_brief,
@@ -106,7 +107,8 @@ impl_3 = {
             &impl_3_meta_path
         }
     },
-    &impl_3_properties[0]
+    &impl_3_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -140,6 +142,7 @@ impl_4_property_description = {
     &afw_crypto_self_v_zz__Encrypted_octets_without_authentication_tag_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_4_properties[] = {
     &impl_4_property_brief,
@@ -189,7 +192,8 @@ impl_4 = {
             &impl_4_meta_path
         }
     },
-    &impl_4_properties[0]
+    &impl_4_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -223,6 +227,7 @@ impl_5_property_description = {
     &afw_crypto_self_v_zz__IV_used_for_this_encryption__12_octets_recommended__.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_5_properties[] = {
     &impl_5_property_brief,
@@ -272,7 +277,8 @@ impl_5 = {
             &impl_5_meta_path
         }
     },
-    &impl_5_properties[0]
+    &impl_5_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -306,6 +312,7 @@ impl_6_property_description = {
     &afw_crypto_self_v_zz__128_or_256_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_6_properties[] = {
     &impl_6_property_brief,
@@ -355,7 +362,8 @@ impl_6 = {
             &impl_6_meta_path
         }
     },
-    &impl_6_properties[0]
+    &impl_6_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -389,6 +397,7 @@ impl_7_property_description = {
     &afw_crypto_self_v_zz__16_octet_authentication_tag_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_7_properties[] = {
     &impl_7_property_brief,
@@ -438,7 +447,8 @@ impl_7 = {
             &impl_7_meta_path
         }
     },
-    &impl_7_properties[0]
+    &impl_7_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -511,6 +521,7 @@ impl_2_property_tag = {
     &impl_2_property_value_tag.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_2_properties[] = {
     &impl_2_property_algorithm,
@@ -562,7 +573,8 @@ impl_2 = {
             &impl_2_meta_path
         }
     },
-    &impl_2_properties[0]
+    &impl_2_properties[0],
+    5
 };
 
 static const afw_value_object_t
@@ -655,6 +667,7 @@ impl_1_property_propertyTypes = {
     &impl_1_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_1_properties[] = {
     &impl_1_property_allowAdd,
@@ -709,7 +722,8 @@ impl_1 = {
             &impl_1_meta_path
         }
     },
-    &impl_1_properties[0]
+    &impl_1_properties[0],
+    8
 };
 
 static const afw_value_object_t
@@ -749,6 +763,7 @@ impl_10_property_description = {
     &afw_crypto_self_v_zz__b3bb5e59e7f5.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_10_properties[] = {
     &impl_10_property_brief,
@@ -798,7 +813,8 @@ impl_10 = {
             &impl_10_meta_path
         }
     },
-    &impl_10_properties[0]
+    &impl_10_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -832,6 +848,7 @@ impl_11_property_description = {
     &afw_crypto_self_v_zz__If_true__crypto_export_key_may_return_raw_key_octets_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_11_properties[] = {
     &impl_11_property_brief,
@@ -881,7 +898,8 @@ impl_11 = {
             &impl_11_meta_path
         }
     },
-    &impl_11_properties[0]
+    &impl_11_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -915,6 +933,7 @@ impl_12_property_description = {
     &afw_crypto_self_v_zz__Always_raw_in_v1_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_12_properties[] = {
     &impl_12_property_brief,
@@ -964,7 +983,8 @@ impl_12 = {
             &impl_12_meta_path
         }
     },
-    &impl_12_properties[0]
+    &impl_12_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -998,6 +1018,7 @@ impl_13_property_description = {
     &afw_crypto_self_v_zz__Random_64_bit_keystore_key_id__process_local_capability__.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_13_properties[] = {
     &impl_13_property_brief,
@@ -1047,7 +1068,8 @@ impl_13 = {
             &impl_13_meta_path
         }
     },
-    &impl_13_properties[0]
+    &impl_13_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1081,6 +1103,7 @@ impl_14_property_description = {
     &afw_crypto_self_v_zz__Bit_length_when_known__e_g__128_or_256_for_AES_GCM__.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_14_properties[] = {
     &impl_14_property_brief,
@@ -1130,7 +1153,8 @@ impl_14 = {
             &impl_14_meta_path
         }
     },
-    &impl_14_properties[0]
+    &impl_14_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1170,6 +1194,7 @@ impl_15_property_description = {
     &afw_crypto_self_v_zz__Subset_of_encrypt__decrypt__sign__verify__derive_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_15_properties[] = {
     &impl_15_property_brief,
@@ -1220,7 +1245,8 @@ impl_15 = {
             &impl_15_meta_path
         }
     },
-    &impl_15_properties[0]
+    &impl_15_properties[0],
+    4
 };
 
 static const afw_value_object_t
@@ -1305,6 +1331,7 @@ impl_9_property_usages = {
     &impl_9_property_value_usages.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_9_properties[] = {
     &impl_9_property_algorithm,
@@ -1357,7 +1384,8 @@ impl_9 = {
             &impl_9_meta_path
         }
     },
-    &impl_9_properties[0]
+    &impl_9_properties[0],
+    6
 };
 
 static const afw_value_object_t
@@ -1450,6 +1478,7 @@ impl_8_property_propertyTypes = {
     &impl_8_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_8_properties[] = {
     &impl_8_property_allowAdd,
@@ -1504,7 +1533,8 @@ impl_8 = {
             &impl_8_meta_path
         }
     },
-    &impl_8_properties[0]
+    &impl_8_properties[0],
+    8
 };
 
 static const afw_value_object_t
@@ -1550,6 +1580,7 @@ impl_18_property_description = {
     &afw_crypto_self_v_zz__Normative_algorithm_name_registry_supported_by_this_build_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_18_properties[] = {
     &impl_18_property_brief,
@@ -1600,7 +1631,8 @@ impl_18 = {
             &impl_18_meta_path
         }
     },
-    &impl_18_properties[0]
+    &impl_18_properties[0],
+    4
 };
 
 static const afw_value_object_t
@@ -1634,6 +1666,7 @@ impl_19_property_description = {
     &afw_crypto_self_v_zz__afw_crypto_package_extension_version_string_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_19_properties[] = {
     &impl_19_property_brief,
@@ -1683,7 +1716,8 @@ impl_19 = {
             &impl_19_meta_path
         }
     },
-    &impl_19_properties[0]
+    &impl_19_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1717,6 +1751,7 @@ impl_20_property_description = {
     &afw_crypto_self_v_zz__OpenSSL_version_OPENSSL_VERSION__string_.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_20_properties[] = {
     &impl_20_property_brief,
@@ -1766,7 +1801,8 @@ impl_20 = {
             &impl_20_meta_path
         }
     },
-    &impl_20_properties[0]
+    &impl_20_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1815,6 +1851,7 @@ impl_17_property_opensslVersion = {
     &impl_17_property_value_opensslVersion.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_17_properties[] = {
     &impl_17_property_algorithms,
@@ -1864,7 +1901,8 @@ impl_17 = {
             &impl_17_meta_path
         }
     },
-    &impl_17_properties[0]
+    &impl_17_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1957,6 +1995,7 @@ impl_16_property_propertyTypes = {
     &impl_16_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_16_properties[] = {
     &impl_16_property_allowAdd,
@@ -2011,7 +2050,8 @@ impl_16 = {
             &impl_16_meta_path
         }
     },
-    &impl_16_properties[0]
+    &impl_16_properties[0],
+    8
 };
 
 static const afw_value_object_t
@@ -2045,6 +2085,7 @@ impl_21_property_description = {
     &afw_crypto_self_v_zz__c99747e7651b.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_21_properties[] = {
     &impl_21_property_brief,
@@ -2094,7 +2135,8 @@ impl_21 = {
             &impl_21_meta_path
         }
     },
-    &impl_21_properties[0]
+    &impl_21_properties[0],
+    3
 };
 
 static const afw_value_object_t

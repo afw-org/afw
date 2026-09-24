@@ -425,8 +425,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
             obj = impl_find_object(&property_name, false, object,
                 first_property_name_entry, xctx);
             if (obj) {
-                impl_set_property(object, first_property_name_entry, NULL,
-                    xctx);
+                afw_object_remove_property(obj, property_name, xctx);
             }
 
             break;

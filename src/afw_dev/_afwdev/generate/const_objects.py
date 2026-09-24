@@ -228,7 +228,8 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
         fd.write('    ' + value_expr + '\n')
         fd.write('};\n')
 
-    fd.write('\nstatic const afw_runtime_property_t *\n')
+    fd.write('\n/* Sorted by name for afw_binary_search_by_name(). */\n')
+    fd.write('static const afw_runtime_property_t *\n')
     fd.write(obj['_meta_']['_label_'] + '_properties[] = {\n')
     for propname in sorted(propnames):
         tag_propname = propname.replace('-', '_')
@@ -295,7 +296,8 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
         fd.write('            &' + meta.get('_label_') + '_meta_path\n')
         fd.write('        }\n')
         fd.write('    },\n')
-        fd.write('    &' + meta.get('_label_') + '_properties[0]\n')
+        fd.write('    &' + meta.get('_label_') + '_properties[0],\n')
+        fd.write('    ' + str(len(propnames)) + '\n')
         fd.write('};\n')
     else:
         fd.write('\nstatic const afw_runtime_const_object_instance_t\n')
@@ -318,7 +320,8 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
         #@todo object type and path
         fd.write('        }\n')
         fd.write('    },\n')
-        fd.write('    &' + meta.get('_label_') + '_properties[0]\n')
+        fd.write('    &' + meta.get('_label_') + '_properties[0],\n')
+        fd.write('    ' + str(len(propnames)) + '\n')
         fd.write('};\n')
 
     fd.write('\nstatic const afw_value_object_t\n')

@@ -35,6 +35,7 @@ impl_runtime_meta__AdaptiveCryptoEncryptResult_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -50,6 +51,7 @@ impl_runtime_meta__AdaptiveCryptoKey_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -65,6 +67,7 @@ impl_runtime_meta__AdaptiveCryptoVersionInfo_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 

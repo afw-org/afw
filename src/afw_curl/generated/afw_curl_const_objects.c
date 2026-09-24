@@ -63,6 +63,7 @@ impl_3_property_label = {
     &afw_curl_self_v_Headers.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_3_properties[] = {
     &impl_3_property_dataType,
@@ -113,7 +114,8 @@ impl_3 = {
             &impl_3_meta_path
         }
     },
-    &impl_3_properties[0]
+    &impl_3_properties[0],
+    4
 };
 
 static const afw_value_object_t
@@ -147,6 +149,7 @@ impl_4_property_label = {
     &afw_curl_self_v_Response.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_4_properties[] = {
     &impl_4_property_dataType,
@@ -196,7 +199,8 @@ impl_4 = {
             &impl_4_meta_path
         }
     },
-    &impl_4_properties[0]
+    &impl_4_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -230,6 +234,7 @@ impl_5_property_label = {
     &afw_curl_self_v_zz__Response_Code.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_5_properties[] = {
     &impl_5_property_dataType,
@@ -279,7 +284,8 @@ impl_5 = {
             &impl_5_meta_path
         }
     },
-    &impl_5_properties[0]
+    &impl_5_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -328,6 +334,7 @@ impl_2_property_response_code = {
     &impl_2_property_value_response_code.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_2_properties[] = {
     &impl_2_property_headers,
@@ -377,7 +384,8 @@ impl_2 = {
             &impl_2_meta_path
         }
     },
-    &impl_2_properties[0]
+    &impl_2_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -470,6 +478,7 @@ impl_1_property_propertyTypes = {
     &impl_1_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_1_properties[] = {
     &impl_1_property_allowAdd,
@@ -524,7 +533,8 @@ impl_1 = {
             &impl_1_meta_path
         }
     },
-    &impl_1_properties[0]
+    &impl_1_properties[0],
+    8
 };
 
 static const afw_value_object_t
@@ -564,6 +574,7 @@ impl_8_property_label = {
     &afw_curl_self_v_zz__Auto_Referer.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_8_properties[] = {
     &impl_8_property_dataType,
@@ -613,7 +624,8 @@ impl_8 = {
             &impl_8_meta_path
         }
     },
-    &impl_8_properties[0]
+    &impl_8_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -647,6 +659,7 @@ impl_9_property_label = {
     &afw_curl_self_v_zz__V4_Signature.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_9_properties[] = {
     &impl_9_property_dataType,
@@ -696,7 +709,8 @@ impl_9 = {
             &impl_9_meta_path
         }
     },
-    &impl_9_properties[0]
+    &impl_9_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -730,6 +744,7 @@ impl_10_property_label = {
     &afw_curl_self_v_zz__CA_Blob.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_10_properties[] = {
     &impl_10_property_dataType,
@@ -779,7 +794,8 @@ impl_10 = {
             &impl_10_meta_path
         }
     },
-    &impl_10_properties[0]
+    &impl_10_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -813,6 +829,7 @@ impl_11_property_label = {
     &afw_curl_self_v_zz__CA_Info.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_11_properties[] = {
     &impl_11_property_dataType,
@@ -862,7 +879,8 @@ impl_11 = {
             &impl_11_meta_path
         }
     },
-    &impl_11_properties[0]
+    &impl_11_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -896,6 +914,7 @@ impl_12_property_label = {
     &afw_curl_self_v_zz__CA_Path.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_12_properties[] = {
     &impl_12_property_dataType,
@@ -945,7 +964,8 @@ impl_12 = {
             &impl_12_meta_path
         }
     },
-    &impl_12_properties[0]
+    &impl_12_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -979,6 +999,7 @@ impl_13_property_label = {
     &afw_curl_self_v_zz__Cert_Info.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_13_properties[] = {
     &impl_13_property_dataType,
@@ -1028,7 +1049,8 @@ impl_13 = {
             &impl_13_meta_path
         }
     },
-    &impl_13_properties[0]
+    &impl_13_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1062,6 +1084,7 @@ impl_14_property_label = {
     &afw_curl_self_v_zz__Connect_Timeout.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_14_properties[] = {
     &impl_14_property_dataType,
@@ -1111,7 +1134,8 @@ impl_14 = {
             &impl_14_meta_path
         }
     },
-    &impl_14_properties[0]
+    &impl_14_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1145,6 +1169,7 @@ impl_15_property_label = {
     &afw_curl_self_v_Cookies.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_15_properties[] = {
     &impl_15_property_dataType,
@@ -1194,7 +1219,8 @@ impl_15 = {
             &impl_15_meta_path
         }
     },
-    &impl_15_properties[0]
+    &impl_15_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1228,6 +1254,7 @@ impl_16_property_label = {
     &afw_curl_self_v_zz__Follow_Location.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_16_properties[] = {
     &impl_16_property_dataType,
@@ -1277,7 +1304,8 @@ impl_16 = {
             &impl_16_meta_path
         }
     },
-    &impl_16_properties[0]
+    &impl_16_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1311,6 +1339,7 @@ impl_17_property_label = {
     &afw_curl_self_v_zz__Fresh_Connect.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_17_properties[] = {
     &impl_17_property_dataType,
@@ -1360,7 +1389,8 @@ impl_17 = {
             &impl_17_meta_path
         }
     },
-    &impl_17_properties[0]
+    &impl_17_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1394,6 +1424,7 @@ impl_18_property_label = {
     &afw_curl_self_v_zz__Header_Function.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_18_properties[] = {
     &impl_18_property_dataType,
@@ -1443,7 +1474,8 @@ impl_18 = {
             &impl_18_meta_path
         }
     },
-    &impl_18_properties[0]
+    &impl_18_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1471,6 +1503,7 @@ impl_19_property_label = {
     &afw_curl_self_v_zz__Header_User_Data.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_19_properties[] = {
     &impl_19_property_description,
@@ -1519,7 +1552,8 @@ impl_19 = {
             &impl_19_meta_path
         }
     },
-    &impl_19_properties[0]
+    &impl_19_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -1553,6 +1587,7 @@ impl_20_property_label = {
     &afw_curl_self_v_zz__HTTP_Proxy_Tunnel.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_20_properties[] = {
     &impl_20_property_dataType,
@@ -1602,7 +1637,8 @@ impl_20 = {
             &impl_20_meta_path
         }
     },
-    &impl_20_properties[0]
+    &impl_20_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1636,6 +1672,7 @@ impl_21_property_label = {
     &afw_curl_self_v_zz__HTTP_Version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_21_properties[] = {
     &impl_21_property_dataType,
@@ -1685,7 +1722,8 @@ impl_21 = {
             &impl_21_meta_path
         }
     },
-    &impl_21_properties[0]
+    &impl_21_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1719,6 +1757,7 @@ impl_22_property_label = {
     &afw_curl_self_v_Interface.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_22_properties[] = {
     &impl_22_property_dataType,
@@ -1768,7 +1807,8 @@ impl_22 = {
             &impl_22_meta_path
         }
     },
-    &impl_22_properties[0]
+    &impl_22_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1802,6 +1842,7 @@ impl_23_property_label = {
     &afw_curl_self_v_Keepalive.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_23_properties[] = {
     &impl_23_property_dataType,
@@ -1851,7 +1892,8 @@ impl_23 = {
             &impl_23_meta_path
         }
     },
-    &impl_23_properties[0]
+    &impl_23_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1885,6 +1927,7 @@ impl_24_property_label = {
     &afw_curl_self_v_Proxy.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_24_properties[] = {
     &impl_24_property_dataType,
@@ -1934,7 +1977,8 @@ impl_24 = {
             &impl_24_meta_path
         }
     },
-    &impl_24_properties[0]
+    &impl_24_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -1968,6 +2012,7 @@ impl_25_property_label = {
     &afw_curl_self_v_zz__Proxy_Service_Name.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_25_properties[] = {
     &impl_25_property_dataType,
@@ -2017,7 +2062,8 @@ impl_25 = {
             &impl_25_meta_path
         }
     },
-    &impl_25_properties[0]
+    &impl_25_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2051,6 +2097,7 @@ impl_26_property_label = {
     &afw_curl_self_v_zz__Read_Function.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_26_properties[] = {
     &impl_26_property_dataType,
@@ -2100,7 +2147,8 @@ impl_26 = {
             &impl_26_meta_path
         }
     },
-    &impl_26_properties[0]
+    &impl_26_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2134,6 +2182,7 @@ impl_27_property_label = {
     &afw_curl_self_v_zz__Read_Function_Size.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_27_properties[] = {
     &impl_27_property_dataType,
@@ -2183,7 +2232,8 @@ impl_27 = {
             &impl_27_meta_path
         }
     },
-    &impl_27_properties[0]
+    &impl_27_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2211,6 +2261,7 @@ impl_28_property_label = {
     &afw_curl_self_v_zz__Read_User_Data.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_28_properties[] = {
     &impl_28_property_description,
@@ -2259,7 +2310,8 @@ impl_28 = {
             &impl_28_meta_path
         }
     },
-    &impl_28_properties[0]
+    &impl_28_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -2293,6 +2345,7 @@ impl_29_property_label = {
     &afw_curl_self_v_zz__Service_Name.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_29_properties[] = {
     &impl_29_property_dataType,
@@ -2342,7 +2395,8 @@ impl_29 = {
             &impl_29_meta_path
         }
     },
-    &impl_29_properties[0]
+    &impl_29_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2376,6 +2430,7 @@ impl_30_property_label = {
     &afw_curl_self_v_zz__SSL_Verify_Host.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_30_properties[] = {
     &impl_30_property_dataType,
@@ -2425,7 +2480,8 @@ impl_30 = {
             &impl_30_meta_path
         }
     },
-    &impl_30_properties[0]
+    &impl_30_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2459,6 +2515,7 @@ impl_31_property_label = {
     &afw_curl_self_v_zz__SSL_Verify_Peer.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_31_properties[] = {
     &impl_31_property_dataType,
@@ -2508,7 +2565,8 @@ impl_31 = {
             &impl_31_meta_path
         }
     },
-    &impl_31_properties[0]
+    &impl_31_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2542,6 +2600,7 @@ impl_32_property_label = {
     &afw_curl_self_v_zz__SSL_Verify_Status.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_32_properties[] = {
     &impl_32_property_dataType,
@@ -2591,7 +2650,8 @@ impl_32 = {
             &impl_32_meta_path
         }
     },
-    &impl_32_properties[0]
+    &impl_32_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2625,6 +2685,7 @@ impl_33_property_label = {
     &afw_curl_self_v_zz__SSL_Version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_33_properties[] = {
     &impl_33_property_dataType,
@@ -2674,7 +2735,8 @@ impl_33 = {
             &impl_33_meta_path
         }
     },
-    &impl_33_properties[0]
+    &impl_33_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2708,6 +2770,7 @@ impl_34_property_label = {
     &afw_curl_self_v_zz__TCP_No_Delay.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_34_properties[] = {
     &impl_34_property_dataType,
@@ -2757,7 +2820,8 @@ impl_34 = {
             &impl_34_meta_path
         }
     },
-    &impl_34_properties[0]
+    &impl_34_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2791,6 +2855,7 @@ impl_35_property_label = {
     &afw_curl_self_v_Timeout.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_35_properties[] = {
     &impl_35_property_dataType,
@@ -2840,7 +2905,8 @@ impl_35 = {
             &impl_35_meta_path
         }
     },
-    &impl_35_properties[0]
+    &impl_35_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2874,6 +2940,7 @@ impl_36_property_label = {
     &afw_curl_self_v_zz__User_Password.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_36_properties[] = {
     &impl_36_property_dataType,
@@ -2923,7 +2990,8 @@ impl_36 = {
             &impl_36_meta_path
         }
     },
-    &impl_36_properties[0]
+    &impl_36_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -2957,6 +3025,7 @@ impl_37_property_label = {
     &afw_curl_self_v_Verbose.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_37_properties[] = {
     &impl_37_property_dataType,
@@ -3006,7 +3075,8 @@ impl_37 = {
             &impl_37_meta_path
         }
     },
-    &impl_37_properties[0]
+    &impl_37_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -3040,6 +3110,7 @@ impl_38_property_label = {
     &afw_curl_self_v_zz__Write_Function.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_38_properties[] = {
     &impl_38_property_dataType,
@@ -3089,7 +3160,8 @@ impl_38 = {
             &impl_38_meta_path
         }
     },
-    &impl_38_properties[0]
+    &impl_38_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -3117,6 +3189,7 @@ impl_39_property_label = {
     &afw_curl_self_v_zz__Write_User_Data.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_39_properties[] = {
     &impl_39_property_description,
@@ -3165,7 +3238,8 @@ impl_39 = {
             &impl_39_meta_path
         }
     },
-    &impl_39_properties[0]
+    &impl_39_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -3562,6 +3636,7 @@ impl_7_property_writeUserData = {
     &impl_7_property_value_writeUserData.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_7_properties[] = {
     &impl_7_property_autoReferer,
@@ -3640,7 +3715,8 @@ impl_7 = {
             &impl_7_meta_path
         }
     },
-    &impl_7_properties[0]
+    &impl_7_properties[0],
+    32
 };
 
 static const afw_value_object_t
@@ -3733,6 +3809,7 @@ impl_6_property_propertyTypes = {
     &impl_6_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_6_properties[] = {
     &impl_6_property_allowAdd,
@@ -3787,7 +3864,8 @@ impl_6 = {
             &impl_6_meta_path
         }
     },
-    &impl_6_properties[0]
+    &impl_6_properties[0],
+    8
 };
 
 static const afw_value_object_t
@@ -3821,6 +3899,7 @@ impl_42_property_label = {
     &afw_curl_self_v_Age.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_42_properties[] = {
     &impl_42_property_dataType,
@@ -3869,7 +3948,8 @@ impl_42 = {
             &impl_42_meta_path
         }
     },
-    &impl_42_properties[0]
+    &impl_42_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -3897,6 +3977,7 @@ impl_43_property_label = {
     &afw_curl_self_v_zz__Brotli_Version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_43_properties[] = {
     &impl_43_property_dataType,
@@ -3945,7 +4026,8 @@ impl_43 = {
             &impl_43_meta_path
         }
     },
-    &impl_43_properties[0]
+    &impl_43_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -3979,6 +4061,7 @@ impl_44_property_label = {
     &afw_curl_self_v_Features.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_44_properties[] = {
     &impl_44_property_dataType,
@@ -4028,7 +4111,8 @@ impl_44 = {
             &impl_44_meta_path
         }
     },
-    &impl_44_properties[0]
+    &impl_44_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -4056,6 +4140,7 @@ impl_45_property_label = {
     &afw_curl_self_v_Host.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_45_properties[] = {
     &impl_45_property_dataType,
@@ -4104,7 +4189,8 @@ impl_45 = {
             &impl_45_meta_path
         }
     },
-    &impl_45_properties[0]
+    &impl_45_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -4132,6 +4218,7 @@ impl_46_property_label = {
     &afw_curl_self_v_zz__LibSSH_Version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_46_properties[] = {
     &impl_46_property_dataType,
@@ -4180,7 +4267,8 @@ impl_46 = {
             &impl_46_meta_path
         }
     },
-    &impl_46_properties[0]
+    &impl_46_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -4208,6 +4296,7 @@ impl_47_property_label = {
     &afw_curl_self_v_zz__LibZ_Version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_47_properties[] = {
     &impl_47_property_dataType,
@@ -4256,7 +4345,8 @@ impl_47 = {
             &impl_47_meta_path
         }
     },
-    &impl_47_properties[0]
+    &impl_47_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -4290,6 +4380,7 @@ impl_48_property_label = {
     &afw_curl_self_v_Protocols.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_48_properties[] = {
     &impl_48_property_dataType,
@@ -4339,7 +4430,8 @@ impl_48 = {
             &impl_48_meta_path
         }
     },
-    &impl_48_properties[0]
+    &impl_48_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -4367,6 +4459,7 @@ impl_49_property_label = {
     &afw_curl_self_v_zz__SSL_Version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_49_properties[] = {
     &impl_49_property_dataType,
@@ -4415,7 +4508,8 @@ impl_49 = {
             &impl_49_meta_path
         }
     },
-    &impl_49_properties[0]
+    &impl_49_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -4443,6 +4537,7 @@ impl_50_property_label = {
     &afw_curl_self_v_zz__SSL_Version_Number.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_50_properties[] = {
     &impl_50_property_dataType,
@@ -4491,7 +4586,8 @@ impl_50 = {
             &impl_50_meta_path
         }
     },
-    &impl_50_properties[0]
+    &impl_50_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -4519,6 +4615,7 @@ impl_51_property_label = {
     &afw_curl_self_v_Version.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_51_properties[] = {
     &impl_51_property_dataType,
@@ -4567,7 +4664,8 @@ impl_51 = {
             &impl_51_meta_path
         }
     },
-    &impl_51_properties[0]
+    &impl_51_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -4595,6 +4693,7 @@ impl_52_property_label = {
     &afw_curl_self_v_zz__Version_Number.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_52_properties[] = {
     &impl_52_property_dataType,
@@ -4643,7 +4742,8 @@ impl_52 = {
             &impl_52_meta_path
         }
     },
-    &impl_52_properties[0]
+    &impl_52_properties[0],
+    2
 };
 
 static const afw_value_object_t
@@ -4788,6 +4888,7 @@ impl_41_property_version_num = {
     &impl_41_property_value_version_num.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_41_properties[] = {
     &impl_41_property_age,
@@ -4845,7 +4946,8 @@ impl_41 = {
             &impl_41_meta_path
         }
     },
-    &impl_41_properties[0]
+    &impl_41_properties[0],
+    11
 };
 
 static const afw_value_object_t
@@ -4938,6 +5040,7 @@ impl_40_property_propertyTypes = {
     &impl_40_property_value_propertyTypes.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_40_properties[] = {
     &impl_40_property_allowAdd,
@@ -4992,7 +5095,8 @@ impl_40 = {
             &impl_40_meta_path
         }
     },
-    &impl_40_properties[0]
+    &impl_40_properties[0],
+    8
 };
 
 static const afw_value_object_t
@@ -5026,6 +5130,7 @@ impl_53_property_description = {
     &afw_curl_self_v_zz__bcaae6f8e80f.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_53_properties[] = {
     &impl_53_property_brief,
@@ -5075,7 +5180,8 @@ impl_53 = {
             &impl_53_meta_path
         }
     },
-    &impl_53_properties[0]
+    &impl_53_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -5109,6 +5215,7 @@ impl_54_property_description = {
     &afw_curl_self_v_zz__8eeb339598c5.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_54_properties[] = {
     &impl_54_property_brief,
@@ -5158,7 +5265,8 @@ impl_54 = {
             &impl_54_meta_path
         }
     },
-    &impl_54_properties[0]
+    &impl_54_properties[0],
+    3
 };
 
 static const afw_value_object_t
@@ -5192,6 +5300,7 @@ impl_55_property_description = {
     &afw_curl_self_v_zz__27fdf40947dd.pub
 };
 
+/* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_55_properties[] = {
     &impl_55_property_brief,
@@ -5241,7 +5350,8 @@ impl_55 = {
             &impl_55_meta_path
         }
     },
-    &impl_55_properties[0]
+    &impl_55_properties[0],
+    3
 };
 
 static const afw_value_object_t

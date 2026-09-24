@@ -35,6 +35,7 @@ impl_runtime_meta__AdaptiveAction_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -50,6 +51,7 @@ impl_runtime_meta__AdaptiveActions_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -156,6 +158,7 @@ impl_runtime_meta__AdaptiveAdapterMetrics_ = {
     &impl_runtime_object_map__AdaptiveAdapterMetrics_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -202,6 +205,7 @@ impl_runtime_meta__AdaptiveAdapterType_ = {
     &impl_runtime_object_map__AdaptiveAdapterType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -288,6 +292,7 @@ impl_runtime_meta__AdaptiveAdapter_ = {
     &impl_runtime_object_map__AdaptiveAdapter_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -324,6 +329,7 @@ impl_runtime_meta__AdaptiveApplicationComponents_ = {
     &impl_runtime_object_map__AdaptiveApplicationComponents_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -339,6 +345,7 @@ impl_runtime_meta__AdaptiveApplication_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -354,6 +361,7 @@ impl_runtime_meta__AdaptiveAuthorizationControl_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -369,6 +377,7 @@ impl_runtime_meta__AdaptiveAuthorizationDecision_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -415,6 +424,7 @@ impl_runtime_meta__AdaptiveAuthorizationHandlerType_ = {
     &impl_runtime_object_map__AdaptiveAuthorizationHandlerType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -501,6 +511,7 @@ impl_runtime_meta__AdaptiveAuthorizationHandler_ = {
     &impl_runtime_object_map__AdaptiveAuthorizationHandler_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -516,6 +527,7 @@ impl_runtime_meta__AdaptiveAuthorizationMode_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -531,6 +543,7 @@ impl_runtime_meta__AdaptiveAuthorizationResult_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -546,6 +559,7 @@ impl_runtime_meta__AdaptiveCollection_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -672,6 +686,7 @@ impl_runtime_meta__AdaptiveConfType_ = {
     &impl_runtime_object_map__AdaptiveConfType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -687,6 +702,7 @@ impl_runtime_meta__AdaptiveConf_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -702,6 +718,7 @@ impl_runtime_meta__AdaptiveConf_adapter = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -717,6 +734,7 @@ impl_runtime_meta__AdaptiveConf_adapter_afw_runtime = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -732,6 +750,7 @@ impl_runtime_meta__AdaptiveConf_adapter_file = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -747,6 +766,7 @@ impl_runtime_meta__AdaptiveConf_adapter_model = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -762,6 +782,7 @@ impl_runtime_meta__AdaptiveConf_application = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -777,6 +798,7 @@ impl_runtime_meta__AdaptiveConf_authorizationHandler = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -792,6 +814,7 @@ impl_runtime_meta__AdaptiveConf_authorizationHandler_script = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -807,6 +830,7 @@ impl_runtime_meta__AdaptiveConf_extension = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -822,6 +846,7 @@ impl_runtime_meta__AdaptiveConf_log = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -837,6 +862,7 @@ impl_runtime_meta__AdaptiveConf_log_event_log = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -852,6 +878,7 @@ impl_runtime_meta__AdaptiveConf_log_standard = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -867,6 +894,7 @@ impl_runtime_meta__AdaptiveConf_log_syslog = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -882,6 +910,7 @@ impl_runtime_meta__AdaptiveConf_requestHandler = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -897,6 +926,7 @@ impl_runtime_meta__AdaptiveConf_requestHandler_adapter = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -933,6 +963,7 @@ impl_runtime_meta__AdaptiveContentType_ = {
     &impl_runtime_object_map__AdaptiveContentType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -948,6 +979,7 @@ impl_runtime_meta__AdaptiveContextType_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -963,6 +995,7 @@ impl_runtime_meta__AdaptiveDataTypeGenerate_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1149,6 +1182,7 @@ impl_runtime_meta__AdaptiveDataType_ = {
     &impl_runtime_object_map__AdaptiveDataType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1225,6 +1259,7 @@ impl_runtime_meta__AdaptiveEnvironmentRegistryType_ = {
     &impl_runtime_object_map__AdaptiveEnvironmentRegistryType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1240,6 +1275,7 @@ impl_runtime_meta__AdaptiveEnvironmentRegistry_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1255,6 +1291,7 @@ impl_runtime_meta__AdaptiveEnvironmentVariables_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1291,6 +1328,7 @@ impl_runtime_meta__AdaptiveErrorRVDecoder_ = {
     &impl_runtime_object_map__AdaptiveErrorRVDecoder_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1306,6 +1344,7 @@ impl_runtime_meta__AdaptiveError_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1362,6 +1401,7 @@ impl_runtime_meta__AdaptiveExtension_ = {
     &impl_runtime_object_map__AdaptiveExtension_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1458,6 +1498,7 @@ impl_runtime_meta__AdaptiveFlag_ = {
     &impl_runtime_object_map__AdaptiveFlag_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1473,6 +1514,7 @@ impl_runtime_meta__AdaptiveFunctionCategory_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1488,6 +1530,7 @@ impl_runtime_meta__AdaptiveFunctionDeclaration_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1503,6 +1546,7 @@ impl_runtime_meta__AdaptiveFunctionErrorThrown_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1518,6 +1562,7 @@ impl_runtime_meta__AdaptiveFunctionGenerate_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1644,6 +1689,7 @@ impl_runtime_meta__AdaptiveFunctionParameter_ = {
     &impl_runtime_object_map__AdaptiveFunctionParameter_,
     -1,
     false,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1950,6 +1996,7 @@ impl_runtime_meta__AdaptiveFunction_ = {
     &impl_runtime_object_map__AdaptiveFunction_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1965,6 +2012,7 @@ impl_runtime_meta__AdaptiveInterface_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1980,6 +2028,7 @@ impl_runtime_meta__AdaptiveJournalEntryRequest_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -1995,6 +2044,7 @@ impl_runtime_meta__AdaptiveJournalEntrySource_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2010,6 +2060,7 @@ impl_runtime_meta__AdaptiveJournalEntry_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2025,6 +2076,7 @@ impl_runtime_meta__AdaptiveLayoutComponentTypeCategory_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2040,6 +2092,7 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2055,6 +2108,7 @@ impl_runtime_meta__AdaptiveLayoutComponent_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2131,6 +2185,7 @@ impl_runtime_meta__AdaptiveLock_ = {
     &impl_runtime_object_map__AdaptiveLock_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2177,6 +2232,7 @@ impl_runtime_meta__AdaptiveLogType_ = {
     &impl_runtime_object_map__AdaptiveLogType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2243,6 +2299,7 @@ impl_runtime_meta__AdaptiveLog_ = {
     &impl_runtime_object_map__AdaptiveLog_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2258,6 +2315,7 @@ impl_runtime_meta__AdaptiveManifest_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2273,6 +2331,7 @@ impl_runtime_meta__AdaptiveMetaPropertyType_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2288,6 +2347,7 @@ impl_runtime_meta__AdaptiveMetaPropertyTypes_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2303,6 +2363,7 @@ impl_runtime_meta__AdaptiveMeta_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2409,6 +2470,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnAddObject_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnAddObject_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2505,6 +2567,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnDeleteObject_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnDeleteObject_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2661,6 +2724,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnGetInitialObjectId_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetInitialObjectId_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2817,6 +2881,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnGetInitialValue_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetInitialValue_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2923,6 +2988,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnGetObject_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetObject_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3049,6 +3115,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnGetProperty_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetProperty_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3155,6 +3222,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnModifyObject_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnModifyObject_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3261,6 +3329,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnReplaceObject_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnReplaceObject_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3377,6 +3446,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnRetrieveObjects_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnRetrieveObjects_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3503,6 +3573,7 @@ impl_runtime_meta__AdaptiveModelCurrentOnSetProperty_ = {
     &impl_runtime_object_map__AdaptiveModelCurrentOnSetProperty_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3589,6 +3660,7 @@ impl_runtime_meta__AdaptiveModelCurrent_ = {
     &impl_runtime_object_map__AdaptiveModelCurrent_,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3604,6 +3676,7 @@ impl_runtime_meta__AdaptiveModelObjectType_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3619,6 +3692,7 @@ impl_runtime_meta__AdaptiveModelObjectTypes_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3634,6 +3708,7 @@ impl_runtime_meta__AdaptiveModelPropertyType_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3649,6 +3724,7 @@ impl_runtime_meta__AdaptiveModelPropertyTypes_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3664,6 +3740,7 @@ impl_runtime_meta__AdaptiveModel_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3679,6 +3756,7 @@ impl_runtime_meta__AdaptiveObjectOptions_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3694,6 +3772,7 @@ impl_runtime_meta__AdaptiveObjectType_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3709,6 +3788,7 @@ impl_runtime_meta__AdaptiveObjectTypes_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3724,6 +3804,7 @@ impl_runtime_meta__AdaptiveObject_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3739,6 +3820,7 @@ impl_runtime_meta__AdaptivePackageCompileOptions_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3754,6 +3836,7 @@ impl_runtime_meta__AdaptivePackageSrcdirInfo_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3769,6 +3852,7 @@ impl_runtime_meta__AdaptivePackageSrcdirs_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3784,6 +3868,7 @@ impl_runtime_meta__AdaptivePackage_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3799,6 +3884,7 @@ impl_runtime_meta__AdaptiveParsedURI_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3814,6 +3900,7 @@ impl_runtime_meta__AdaptivePolymorphicFunction_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4110,6 +4197,7 @@ impl_runtime_meta__AdaptiveProcess_ = {
     &impl_runtime_object_map__AdaptiveProcess_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4125,6 +4213,7 @@ impl_runtime_meta__AdaptivePropertyTypes_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4140,6 +4229,7 @@ impl_runtime_meta__AdaptiveProvisioningPeer_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4155,6 +4245,7 @@ impl_runtime_meta__AdaptiveQualifierDefinitions_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4170,6 +4261,7 @@ impl_runtime_meta__AdaptiveQueryCriteriaFilter_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4185,6 +4277,7 @@ impl_runtime_meta__AdaptiveQueryCriteria_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4200,6 +4293,7 @@ impl_runtime_meta__AdaptiveRequestContext_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4246,6 +4340,7 @@ impl_runtime_meta__AdaptiveRequestHandlerType_ = {
     &impl_runtime_object_map__AdaptiveRequestHandlerType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4261,6 +4356,7 @@ impl_runtime_meta__AdaptiveRequestHandler_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4276,6 +4372,7 @@ impl_runtime_meta__AdaptiveRequestProperties_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4291,6 +4388,7 @@ impl_runtime_meta__AdaptiveResponseAction_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4306,6 +4404,7 @@ impl_runtime_meta__AdaptiveResponseMetrics_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4321,6 +4420,7 @@ impl_runtime_meta__AdaptiveResponse_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4336,6 +4436,7 @@ impl_runtime_meta__AdaptiveRootFilePaths_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4372,6 +4473,7 @@ impl_runtime_meta__AdaptiveRuntimeCustom_ = {
     &impl_runtime_object_map__AdaptiveRuntimeCustom_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4387,6 +4489,7 @@ impl_runtime_meta__AdaptiveRuntimeLabels_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4423,6 +4526,7 @@ impl_runtime_meta__AdaptiveRuntimeObjectMapInf_ = {
     &impl_runtime_object_map__AdaptiveRuntimeObjectMapInf_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4438,6 +4542,7 @@ impl_runtime_meta__AdaptiveRuntimeObject_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4453,6 +4558,7 @@ impl_runtime_meta__AdaptiveRuntimeProperty_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4529,6 +4635,7 @@ impl_runtime_meta__AdaptiveRuntimeValueAccessor_ = {
     &impl_runtime_object_map__AdaptiveRuntimeValueAccessor_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4815,6 +4922,7 @@ impl_runtime_meta__AdaptiveServer_ = {
     &impl_runtime_object_map__AdaptiveServer_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4830,6 +4938,7 @@ impl_runtime_meta__AdaptiveServiceConf_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4896,6 +5005,7 @@ impl_runtime_meta__AdaptiveServiceType_ = {
     &impl_runtime_object_map__AdaptiveServiceType_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4911,6 +5021,7 @@ impl_runtime_meta__AdaptiveService_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4947,6 +5058,7 @@ impl_runtime_meta__AdaptiveSingleton_ = {
     &impl_runtime_object_map__AdaptiveSingleton_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4983,6 +5095,7 @@ impl_runtime_meta__AdaptiveStringLiteral_ = {
     &impl_runtime_object_map__AdaptiveStringLiteral_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -4998,6 +5111,7 @@ impl_runtime_meta__AdaptiveSystemInfo_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5013,6 +5127,7 @@ impl_runtime_meta__AdaptiveTag_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5028,6 +5143,7 @@ impl_runtime_meta__AdaptiveTemplatePropertiesObjects_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5043,6 +5159,7 @@ impl_runtime_meta__AdaptiveTemplateProperties_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5058,6 +5175,7 @@ impl_runtime_meta__AdaptiveTestScriptResult_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5073,6 +5191,7 @@ impl_runtime_meta__AdaptiveTestScriptTestResult_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5109,6 +5228,7 @@ impl_runtime_meta__AdaptiveValueInf_ = {
     &impl_runtime_object_map__AdaptiveValueInf_,
     -1,
     true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5124,6 +5244,7 @@ impl_runtime_meta__AdaptiveValueMeta_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5139,6 +5260,7 @@ impl_runtime_meta__AdaptiveValuePath_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -5154,6 +5276,7 @@ impl_runtime_meta__AdaptiveVersionInfo_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 

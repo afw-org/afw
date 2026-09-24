@@ -35,6 +35,7 @@ impl_runtime_meta__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -50,6 +51,7 @@ impl_runtime_meta__AdaptiveConf_adapter_ldap = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -65,6 +67,7 @@ impl_runtime_meta__AdaptiveConf_adapter_ldap_bind = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -80,6 +83,7 @@ impl_runtime_meta__AdaptiveLdapAttributeType_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -95,6 +99,7 @@ impl_runtime_meta__AdaptiveLdapMatchingRuleUse_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -110,6 +115,7 @@ impl_runtime_meta__AdaptiveLdapMatchingRule_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -125,6 +131,7 @@ impl_runtime_meta__AdaptiveLdapObjectClass_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -140,6 +147,7 @@ impl_runtime_meta__AdaptiveLdapRootDse_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -155,6 +163,7 @@ impl_runtime_meta__AdaptiveLdapSchema_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -170,6 +179,7 @@ impl_runtime_meta__AdaptiveLdapSyntax_ = {
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
 };
 
 AFW_RUNTIME_OBJECT_INF( 

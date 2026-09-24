@@ -507,12 +507,13 @@ class object
     /**
      * property_delete()
      *
-     * Delete a property in an object.
+     * Set a property's value to undefined. The name stays on the object.
      *
-     * @param object $object This is the object to delete property from.
-     * @param string $name This is a name of the property to delete.
+     * @param object $object This is the object.
+     * @param string $name This is the property name.
      *
-     * @return boolean True if object had the property and it was deleted.
+     * @return boolean True if the object had the property. Its value is now
+     *                 undefined.
      */
     public function property_delete(, $object, $name)
     {
@@ -531,11 +532,13 @@ class object
     /**
      * property_delete_by_reference()
      *
-     * Delete a property from an object by reference.
+     * Set a referenced property's value to undefined. The name stays on the
+     * object.
      *
-     * @param $reference This is a reference to the object property to delete.
+     * @param $reference This is a reference to the object property.
      *
-     * @return boolean True if object had the property and it was deleted.
+     * @return boolean True if the object had the property. Its value is now
+     *                 undefined.
      */
     public function property_delete_by_reference(, $reference)
     {

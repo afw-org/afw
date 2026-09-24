@@ -606,16 +606,16 @@ def object(session, value):
 
 def property_delete(session, object, name):
     """
-    Delete a property
+    Set property value to undefined
 
-    Delete a property in an object.
+    Set a property's value to undefined. The name stays on the object.
 
     Args:
-        object (dict): This is the object to delete property from.
-        name (str): This is a name of the property to delete.
+        object (dict): This is the object.
+        name (str): This is the property name.
 
     Returns:
-        bool: True if object had the property and it was deleted.
+        bool: True if the object had the property. Its value is now undefined.
     """
 
     request = session.Request()
@@ -636,16 +636,16 @@ def property_delete(session, object, name):
 
 def property_delete_by_reference(session, reference):
     """
-    Delete referenced property
+    Set referenced property to undefined
 
-    Delete a property from an object by reference.
+    Set a referenced property's value to undefined. The name stays on the
+    object.
 
     Args:
-        reference (object): This is a reference to the object property to
-            delete.
+        reference (object): This is a reference to the object property.
 
     Returns:
-        bool: True if object had the property and it was deleted.
+        bool: True if the object had the property. Its value is now undefined.
     """
 
     request = session.Request()

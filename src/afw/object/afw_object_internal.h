@@ -51,6 +51,20 @@ struct afw_object_internal_memory_object_s {
     /** Singly-linked properties in insert order. */
     afw_object_internal_name_value_entry_t *first_property;
 
+    /** Last property, so a new name appends without a walk. */
+    afw_object_internal_name_value_entry_t *last_property;
+
+    /** Number of properties on the list. */
+    afw_size_t property_count;
+
+    /**
+     * Name to list entry, or NULL until property_count passes
+     * IMPL_MEMORY_PROPERTY_INDEX_COUNT. The value is the entry.
+     * A string name's bytes are the key. A non-string name stays
+     * on the list only.
+     */
+    afw_void_hash_table_t *property_index;
+
     /*
      * Optional base for look-through gets (NULL for a normal memory object).
      * Local properties shadow this object; sets never write to it.

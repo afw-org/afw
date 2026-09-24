@@ -83,6 +83,16 @@ struct afw_runtime_object_type_meta_s {
      * If false, offsets are relative to the start of the object instance.
      */
     afw_boolean_t indirect;
+
+    /**
+     * @brief Offset of the property count, or (size_t)-1.
+     *
+     * When this is not (size_t)-1, it is the offset of an afw_size_t
+     * count of the properties pointer list. That list is sorted by
+     * name and is searched with afw_binary_search_by_name_value(). A list
+     * that is only NULL terminated leaves this as (size_t)-1.
+     */
+    size_t property_count_offset;
 };
 
 
@@ -167,8 +177,11 @@ struct afw_runtime_const_object_instance_s {
     /** pub->inf MUST point to afw_runtime_object_inf. */
     afw_object_t pub;
 
-    /** NULL terminated array of read-only properties. */ 
+    /** NULL terminated array of read-only properties, sorted by name. */
     const afw_runtime_property_t *const * properties;
+
+    /** Count of properties. The NULL terminator is not included. */
+    afw_size_t property_count;
 
 };
 

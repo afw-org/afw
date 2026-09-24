@@ -25563,6 +25563,12 @@ afw_self_v_zz__2a43810d554a = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2a60165a1640 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2a60165a1640)
+};
+
+const afw_value_string_t
 afw_self_v_zz__2a7826098a7f = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__2a7826098a7f)
@@ -31461,6 +31467,12 @@ afw_self_v_zz__95fcb77954b8 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__965ea705498d = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__965ea705498d)
+};
+
+const afw_value_string_t
 afw_self_v_zz__966c95a82be2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__966c95a82be2)
@@ -35451,24 +35463,6 @@ afw_self_v_zz__Delete_Object_Count = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Delete_a_property = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Delete_a_property)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Delete_a_property_from_an_object_by_reference_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Delete_a_property_from_an_object_by_reference_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Delete_a_property_in_an_object_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Delete_a_property_in_an_object_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Delete_adaptive_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Delete_adaptive_object)
@@ -35490,12 +35484,6 @@ const afw_value_string_t
 afw_self_v_zz__Delete_an_adaptive_object_with_a_given_URI_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Delete_an_adaptive_object_with_a_given_URI_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Delete_referenced_property = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Delete_referenced_property)
 };
 
 const afw_value_string_t
@@ -40659,6 +40647,18 @@ afw_self_v_zz__Set_or_unset_one_or_more_active_xctx__request__flags_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Set_property_value_to_undefined = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Set_property_value_to_undefined)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Set_referenced_property_to_undefined = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Set_referenced_property_to_undefined)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Sets_the_role_the_Web_server_expects_the_application_to_play = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Sets_the_role_the_Web_server_expects_the_application_to_play)
@@ -42861,15 +42861,9 @@ afw_self_v_zz__This_is_a_default_function_parameter_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__This_is_a_name_of_the_property_to_delete_ = {
+afw_self_v_zz__This_is_a_reference_to_the_object_property_ = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__This_is_a_name_of_the_property_to_delete_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__This_is_a_reference_to_the_object_property_to_delete_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__This_is_a_reference_to_the_object_property_to_delete_)
+    AFW_UTF8_LITERAL(AFW_Q_zz__This_is_a_reference_to_the_object_property_)
 };
 
 const afw_value_string_t
@@ -43185,6 +43179,12 @@ afw_self_v_zz__This_is_the_number_of_required_parameters_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__This_is_the_object_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__This_is_the_object_)
+};
+
+const afw_value_string_t
 afw_self_v_zz__This_is_the_object_from_mapped_adapter_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__This_is_the_object_from_mapped_adapter_)
@@ -43209,12 +43209,6 @@ afw_self_v_zz__This_is_the_object_mapped_to_mappedAdapter_object_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__This_is_the_object_to_delete_property_from_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__This_is_the_object_to_delete_property_from_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__This_is_the_object_to_map_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__This_is_the_object_to_map_)
@@ -43230,6 +43224,12 @@ const afw_value_string_t
 afw_self_v_zz__This_is_the_object_to_return_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__This_is_the_object_to_return_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__This_is_the_property_name_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__This_is_the_property_name_)
 };
 
 const afw_value_string_t
@@ -43485,18 +43485,6 @@ afw_self_v_zz__True_if_bound_and_value_is_not_Adaptive_null_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__True_if_deleted = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__True_if_deleted)
-};
-
-const afw_value_string_t
-afw_self_v_zz__True_if_object_had_the_property_and_it_was_deleted_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__True_if_object_had_the_property_and_it_was_deleted_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__True_if_present_and_value_is_not_Adaptive_null_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__True_if_present_and_value_is_not_Adaptive_null_)
@@ -43530,6 +43518,12 @@ const afw_value_string_t
 afw_self_v_zz__True_if_the_property_is_present_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__True_if_the_property_is_present_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__True_if_the_property_was_present = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__True_if_the_property_was_present)
 };
 
 const afw_value_string_t
@@ -52110,6 +52104,12 @@ const afw_value_string_t
 afw_self_v_zz__a01af9ad30ef = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__a01af9ad30ef)
+};
+
+const afw_value_string_t
+afw_self_v_zz__a01ca675f701 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__a01ca675f701)
 };
 
 const afw_value_string_t

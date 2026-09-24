@@ -10325,6 +10325,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__2a60165a1640 \
+    "Set a referenced property's value to undefined. The name stays on the object."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a60165a1640 */
+#define afw_s_zz__2a60165a1640 \
+    (&afw_self_v_zz__2a60165a1640.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a60165a1640 */
+#define afw_self_s_zz__2a60165a1640 \
+    (afw_self_v_zz__2a60165a1640.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2a60165a1640 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2a60165a1640;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2a60165a1640 */
+#define afw_z_zz__2a60165a1640 \
+    (afw_self_v_zz__2a60165a1640.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2a60165a1640 */
+#define afw_v_zz__2a60165a1640 \
+    (&afw_self_v_zz__2a60165a1640.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__2a7826098a7f \
     "Checks for boolean arg1 is greater than or equal to boolean arg2 and return the boolean result."
 
@@ -35883,6 +35909,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__965ea705498d \
+    "Set a property's value to undefined. The name stays on the object."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__965ea705498d */
+#define afw_s_zz__965ea705498d \
+    (&afw_self_v_zz__965ea705498d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__965ea705498d */
+#define afw_self_s_zz__965ea705498d \
+    (afw_self_v_zz__965ea705498d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__965ea705498d */
+extern const afw_value_string_t \
+    afw_self_v_zz__965ea705498d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__965ea705498d */
+#define afw_z_zz__965ea705498d \
+    (afw_self_v_zz__965ea705498d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__965ea705498d */
+#define afw_v_zz__965ea705498d \
+    (&afw_self_v_zz__965ea705498d.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__966c95a82be2 \
     "function eqx<function> (\n    arg1: function,\n    arg2: any\n): boolean;\n"
 
@@ -53173,84 +53225,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Delete_a_property \
-    "Delete a property"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_a_property */
-#define afw_s_zz__Delete_a_property \
-    (&afw_self_v_zz__Delete_a_property.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_a_property */
-#define afw_self_s_zz__Delete_a_property \
-    (afw_self_v_zz__Delete_a_property.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Delete_a_property */
-extern const afw_value_string_t \
-    afw_self_v_zz__Delete_a_property;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Delete_a_property */
-#define afw_z_zz__Delete_a_property \
-    (afw_self_v_zz__Delete_a_property.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Delete_a_property */
-#define afw_v_zz__Delete_a_property \
-    (&afw_self_v_zz__Delete_a_property.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Delete_a_property_from_an_object_by_reference_ \
-    "Delete a property from an object by reference."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_a_property_from_an_object_by_reference_ */
-#define afw_s_zz__Delete_a_property_from_an_object_by_reference_ \
-    (&afw_self_v_zz__Delete_a_property_from_an_object_by_reference_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_a_property_from_an_object_by_reference_ */
-#define afw_self_s_zz__Delete_a_property_from_an_object_by_reference_ \
-    (afw_self_v_zz__Delete_a_property_from_an_object_by_reference_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Delete_a_property_from_an_object_by_reference_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Delete_a_property_from_an_object_by_reference_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Delete_a_property_from_an_object_by_reference_ */
-#define afw_z_zz__Delete_a_property_from_an_object_by_reference_ \
-    (afw_self_v_zz__Delete_a_property_from_an_object_by_reference_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Delete_a_property_from_an_object_by_reference_ */
-#define afw_v_zz__Delete_a_property_from_an_object_by_reference_ \
-    (&afw_self_v_zz__Delete_a_property_from_an_object_by_reference_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Delete_a_property_in_an_object_ \
-    "Delete a property in an object."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_a_property_in_an_object_ */
-#define afw_s_zz__Delete_a_property_in_an_object_ \
-    (&afw_self_v_zz__Delete_a_property_in_an_object_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_a_property_in_an_object_ */
-#define afw_self_s_zz__Delete_a_property_in_an_object_ \
-    (afw_self_v_zz__Delete_a_property_in_an_object_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Delete_a_property_in_an_object_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Delete_a_property_in_an_object_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Delete_a_property_in_an_object_ */
-#define afw_z_zz__Delete_a_property_in_an_object_ \
-    (afw_self_v_zz__Delete_a_property_in_an_object_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Delete_a_property_in_an_object_ */
-#define afw_v_zz__Delete_a_property_in_an_object_ \
-    (&afw_self_v_zz__Delete_a_property_in_an_object_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Delete_adaptive_object \
     "Delete adaptive object"
 
@@ -53351,32 +53325,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Delete_an_adaptive_object_with_a_given_URI_ */
 #define afw_v_zz__Delete_an_adaptive_object_with_a_given_URI_ \
     (&afw_self_v_zz__Delete_an_adaptive_object_with_a_given_URI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Delete_referenced_property \
-    "Delete referenced property"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_referenced_property */
-#define afw_s_zz__Delete_referenced_property \
-    (&afw_self_v_zz__Delete_referenced_property.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Delete_referenced_property */
-#define afw_self_s_zz__Delete_referenced_property \
-    (afw_self_v_zz__Delete_referenced_property.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Delete_referenced_property */
-extern const afw_value_string_t \
-    afw_self_v_zz__Delete_referenced_property;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Delete_referenced_property */
-#define afw_z_zz__Delete_referenced_property \
-    (afw_self_v_zz__Delete_referenced_property.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Delete_referenced_property */
-#define afw_v_zz__Delete_referenced_property \
-    (&afw_self_v_zz__Delete_referenced_property.pub)
 
 
 
@@ -75741,6 +75689,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Set_property_value_to_undefined \
+    "Set property value to undefined"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Set_property_value_to_undefined */
+#define afw_s_zz__Set_property_value_to_undefined \
+    (&afw_self_v_zz__Set_property_value_to_undefined.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Set_property_value_to_undefined */
+#define afw_self_s_zz__Set_property_value_to_undefined \
+    (afw_self_v_zz__Set_property_value_to_undefined.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Set_property_value_to_undefined */
+extern const afw_value_string_t \
+    afw_self_v_zz__Set_property_value_to_undefined;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Set_property_value_to_undefined */
+#define afw_z_zz__Set_property_value_to_undefined \
+    (afw_self_v_zz__Set_property_value_to_undefined.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Set_property_value_to_undefined */
+#define afw_v_zz__Set_property_value_to_undefined \
+    (&afw_self_v_zz__Set_property_value_to_undefined.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Set_referenced_property_to_undefined \
+    "Set referenced property to undefined"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Set_referenced_property_to_undefined */
+#define afw_s_zz__Set_referenced_property_to_undefined \
+    (&afw_self_v_zz__Set_referenced_property_to_undefined.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Set_referenced_property_to_undefined */
+#define afw_self_s_zz__Set_referenced_property_to_undefined \
+    (afw_self_v_zz__Set_referenced_property_to_undefined.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Set_referenced_property_to_undefined */
+extern const afw_value_string_t \
+    afw_self_v_zz__Set_referenced_property_to_undefined;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Set_referenced_property_to_undefined */
+#define afw_z_zz__Set_referenced_property_to_undefined \
+    (afw_self_v_zz__Set_referenced_property_to_undefined.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Set_referenced_property_to_undefined */
+#define afw_v_zz__Set_referenced_property_to_undefined \
+    (&afw_self_v_zz__Set_referenced_property_to_undefined.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Sets_the_role_the_Web_server_expects_the_application_to_play \
     "Sets the role the Web server expects the application to play"
 
@@ -85283,54 +85283,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__This_is_a_name_of_the_property_to_delete_ \
-    "This is a name of the property to delete."
+#define AFW_Q_zz__This_is_a_reference_to_the_object_property_ \
+    "This is a reference to the object property."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_a_name_of_the_property_to_delete_ */
-#define afw_s_zz__This_is_a_name_of_the_property_to_delete_ \
-    (&afw_self_v_zz__This_is_a_name_of_the_property_to_delete_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_a_reference_to_the_object_property_ */
+#define afw_s_zz__This_is_a_reference_to_the_object_property_ \
+    (&afw_self_v_zz__This_is_a_reference_to_the_object_property_.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_a_name_of_the_property_to_delete_ */
-#define afw_self_s_zz__This_is_a_name_of_the_property_to_delete_ \
-    (afw_self_v_zz__This_is_a_name_of_the_property_to_delete_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_a_reference_to_the_object_property_ */
+#define afw_self_s_zz__This_is_a_reference_to_the_object_property_ \
+    (afw_self_v_zz__This_is_a_reference_to_the_object_property_.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__This_is_a_name_of_the_property_to_delete_ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_is_a_reference_to_the_object_property_ */
 extern const afw_value_string_t \
-    afw_self_v_zz__This_is_a_name_of_the_property_to_delete_;
+    afw_self_v_zz__This_is_a_reference_to_the_object_property_;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_is_a_name_of_the_property_to_delete_ */
-#define afw_z_zz__This_is_a_name_of_the_property_to_delete_ \
-    (afw_self_v_zz__This_is_a_name_of_the_property_to_delete_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_is_a_reference_to_the_object_property_ */
+#define afw_z_zz__This_is_a_reference_to_the_object_property_ \
+    (afw_self_v_zz__This_is_a_reference_to_the_object_property_.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_a_name_of_the_property_to_delete_ */
-#define afw_v_zz__This_is_a_name_of_the_property_to_delete_ \
-    (&afw_self_v_zz__This_is_a_name_of_the_property_to_delete_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__This_is_a_reference_to_the_object_property_to_delete_ \
-    "This is a reference to the object property to delete."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_a_reference_to_the_object_property_to_delete_ */
-#define afw_s_zz__This_is_a_reference_to_the_object_property_to_delete_ \
-    (&afw_self_v_zz__This_is_a_reference_to_the_object_property_to_delete_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_a_reference_to_the_object_property_to_delete_ */
-#define afw_self_s_zz__This_is_a_reference_to_the_object_property_to_delete_ \
-    (afw_self_v_zz__This_is_a_reference_to_the_object_property_to_delete_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__This_is_a_reference_to_the_object_property_to_delete_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__This_is_a_reference_to_the_object_property_to_delete_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_is_a_reference_to_the_object_property_to_delete_ */
-#define afw_z_zz__This_is_a_reference_to_the_object_property_to_delete_ \
-    (afw_self_v_zz__This_is_a_reference_to_the_object_property_to_delete_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_a_reference_to_the_object_property_to_delete_ */
-#define afw_v_zz__This_is_a_reference_to_the_object_property_to_delete_ \
-    (&afw_self_v_zz__This_is_a_reference_to_the_object_property_to_delete_.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_a_reference_to_the_object_property_ */
+#define afw_v_zz__This_is_a_reference_to_the_object_property_ \
+    (&afw_self_v_zz__This_is_a_reference_to_the_object_property_.pub)
 
 
 
@@ -86687,6 +86661,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__This_is_the_object_ \
+    "This is the object."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_the_object_ */
+#define afw_s_zz__This_is_the_object_ \
+    (&afw_self_v_zz__This_is_the_object_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_the_object_ */
+#define afw_self_s_zz__This_is_the_object_ \
+    (afw_self_v_zz__This_is_the_object_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_is_the_object_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_is_the_object_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_is_the_object_ */
+#define afw_z_zz__This_is_the_object_ \
+    (afw_self_v_zz__This_is_the_object_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_the_object_ */
+#define afw_v_zz__This_is_the_object_ \
+    (&afw_self_v_zz__This_is_the_object_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__This_is_the_object_from_mapped_adapter_ \
     "This is the object from mapped adapter."
 
@@ -86791,32 +86791,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__This_is_the_object_to_delete_property_from_ \
-    "This is the object to delete property from."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_the_object_to_delete_property_from_ */
-#define afw_s_zz__This_is_the_object_to_delete_property_from_ \
-    (&afw_self_v_zz__This_is_the_object_to_delete_property_from_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_the_object_to_delete_property_from_ */
-#define afw_self_s_zz__This_is_the_object_to_delete_property_from_ \
-    (afw_self_v_zz__This_is_the_object_to_delete_property_from_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__This_is_the_object_to_delete_property_from_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__This_is_the_object_to_delete_property_from_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_is_the_object_to_delete_property_from_ */
-#define afw_z_zz__This_is_the_object_to_delete_property_from_ \
-    (afw_self_v_zz__This_is_the_object_to_delete_property_from_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_the_object_to_delete_property_from_ */
-#define afw_v_zz__This_is_the_object_to_delete_property_from_ \
-    (&afw_self_v_zz__This_is_the_object_to_delete_property_from_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__This_is_the_object_to_map_ \
     "This is the object to map."
 
@@ -86891,6 +86865,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_the_object_to_return_ */
 #define afw_v_zz__This_is_the_object_to_return_ \
     (&afw_self_v_zz__This_is_the_object_to_return_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_is_the_property_name_ \
+    "This is the property name."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_the_property_name_ */
+#define afw_s_zz__This_is_the_property_name_ \
+    (&afw_self_v_zz__This_is_the_property_name_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_the_property_name_ */
+#define afw_self_s_zz__This_is_the_property_name_ \
+    (afw_self_v_zz__This_is_the_property_name_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_is_the_property_name_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_is_the_property_name_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_is_the_property_name_ */
+#define afw_z_zz__This_is_the_property_name_ \
+    (afw_self_v_zz__This_is_the_property_name_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_the_property_name_ */
+#define afw_v_zz__This_is_the_property_name_ \
+    (&afw_self_v_zz__This_is_the_property_name_.pub)
 
 
 
@@ -87987,58 +87987,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__True_if_deleted \
-    "True if deleted"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_deleted */
-#define afw_s_zz__True_if_deleted \
-    (&afw_self_v_zz__True_if_deleted.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_deleted */
-#define afw_self_s_zz__True_if_deleted \
-    (afw_self_v_zz__True_if_deleted.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__True_if_deleted */
-extern const afw_value_string_t \
-    afw_self_v_zz__True_if_deleted;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__True_if_deleted */
-#define afw_z_zz__True_if_deleted \
-    (afw_self_v_zz__True_if_deleted.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_deleted */
-#define afw_v_zz__True_if_deleted \
-    (&afw_self_v_zz__True_if_deleted.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__True_if_object_had_the_property_and_it_was_deleted_ \
-    "True if object had the property and it was deleted."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_object_had_the_property_and_it_was_deleted_ */
-#define afw_s_zz__True_if_object_had_the_property_and_it_was_deleted_ \
-    (&afw_self_v_zz__True_if_object_had_the_property_and_it_was_deleted_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_object_had_the_property_and_it_was_deleted_ */
-#define afw_self_s_zz__True_if_object_had_the_property_and_it_was_deleted_ \
-    (afw_self_v_zz__True_if_object_had_the_property_and_it_was_deleted_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__True_if_object_had_the_property_and_it_was_deleted_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__True_if_object_had_the_property_and_it_was_deleted_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__True_if_object_had_the_property_and_it_was_deleted_ */
-#define afw_z_zz__True_if_object_had_the_property_and_it_was_deleted_ \
-    (afw_self_v_zz__True_if_object_had_the_property_and_it_was_deleted_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_object_had_the_property_and_it_was_deleted_ */
-#define afw_v_zz__True_if_object_had_the_property_and_it_was_deleted_ \
-    (&afw_self_v_zz__True_if_object_had_the_property_and_it_was_deleted_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__True_if_present_and_value_is_not_Adaptive_null_ \
     "True if present and value is not Adaptive null."
 
@@ -88191,6 +88139,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_the_property_is_present_ */
 #define afw_v_zz__True_if_the_property_is_present_ \
     (&afw_self_v_zz__True_if_the_property_is_present_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__True_if_the_property_was_present \
+    "True if the property was present"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_the_property_was_present */
+#define afw_s_zz__True_if_the_property_was_present \
+    (&afw_self_v_zz__True_if_the_property_was_present.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_the_property_was_present */
+#define afw_self_s_zz__True_if_the_property_was_present \
+    (afw_self_v_zz__True_if_the_property_was_present.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__True_if_the_property_was_present */
+extern const afw_value_string_t \
+    afw_self_v_zz__True_if_the_property_was_present;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__True_if_the_property_was_present */
+#define afw_z_zz__True_if_the_property_was_present \
+    (afw_self_v_zz__True_if_the_property_was_present.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_the_property_was_present */
+#define afw_v_zz__True_if_the_property_was_present \
+    (&afw_self_v_zz__True_if_the_property_was_present.pub)
 
 
 
@@ -125371,6 +125345,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a01af9ad30ef */
 #define afw_v_zz__a01af9ad30ef \
     (&afw_self_v_zz__a01af9ad30ef.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__a01ca675f701 \
+    "True if the object had the property. Its value is now undefined."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a01ca675f701 */
+#define afw_s_zz__a01ca675f701 \
+    (&afw_self_v_zz__a01ca675f701.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a01ca675f701 */
+#define afw_self_s_zz__a01ca675f701 \
+    (afw_self_v_zz__a01ca675f701.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a01ca675f701 */
+extern const afw_value_string_t \
+    afw_self_v_zz__a01ca675f701;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a01ca675f701 */
+#define afw_z_zz__a01ca675f701 \
+    (afw_self_v_zz__a01ca675f701.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a01ca675f701 */
+#define afw_v_zz__a01ca675f701 \
+    (&afw_self_v_zz__a01ca675f701.pub)
 
 
 

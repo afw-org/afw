@@ -9,7 +9,7 @@ Compiler emits wrap_literal_object for top-level script object literals so each
 evaluation gets a memory look-through face (sets stay local; base not poisoned).
 Also covers explicit wrap_literal_object, multi-call isolation (function /
 lambda / compiled function / return mutate), nested literals, param defaults,
-pattern bind, and face delete / tombstone. Arrays and #110 default clone are
+pattern bind, and a face property set to undefined. Arrays and #110 default clone are
 separate.
 
 //? sourceType: script
@@ -422,9 +422,9 @@ return 0;
 //?
 //? test: wrap_literal_object-delete-unshadowed
 //? description: ...
-property_delete of a never-shadowed face property must hide the wrapped base
-(local NULL tombstone). has/get/keys see it gone; a missing name still returns
-false; a later set on the same name works.
+property_delete passes a NULL value, which is undefined. The name stays,
+so the wrapped base is not revived. has/get/keys see undefined, not the
+base. A missing name still returns false. A later set on the same name works.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -432,22 +432,24 @@ false; a later set on the same name works.
 const w = wrap_literal_object({ a: 1, b: 2 });
 
 assert(property_delete(w, "nope") === false, "missing name");
-assert(property_delete(w, "a") === true, "unshadowed delete claims success");
-assert(property_exists(w, "a") === false, "tombstone hides base from has");
-assert(is_nullish(w.a), "tombstone hides base from get");
+assert(property_delete(w, "a") === true, "name was present");
+assert(property_exists(w, "a") === true, "undefined value is present");
+assert(is_nullish(w.a), "value is undefined, not the base");
 assert(w.b === 2, "sibling property still look-through");
 const names = keys(w);
-assert(length(names) === 1, "iterator skips tombstone");
-assert(names[0] === "b", "iterator still yields b");
+assert(length(names) === 2, "undefined property is listed");
+assert(names[0] === "a", "local undefined name");
+assert(names[1] === "b", "wrapped sibling");
 
 w.a = 7;
-assert(w.a === 7, "set after tombstone");
+assert(w.a === 7, "set after undefined");
 assert(property_exists(w, "a") === true);
 
 const local = wrap_literal_object({ a: 1 });
 local.a = 99;
-assert(property_delete(local, "a") === true, "delete after local override");
-assert(property_exists(local, "a") === false);
+assert(property_delete(local, "a") === true, "undefined after local override");
+assert(property_exists(local, "a") === true);
+assert(is_nullish(local.a), "override replaced by undefined");
 
 return 0;
 
@@ -463,7 +465,8 @@ the same object literal (compile-time shared base stays intact).
 const w1 = wrap_literal_object({ a: 1, b: 2 });
 const w2 = wrap_literal_object({ a: 1, b: 2 });
 assert(property_delete(w1, "a") === true);
-assert(property_exists(w1, "a") === false);
+assert(property_exists(w1, "a") === true);
+assert(is_nullish(w1.a), "w1 a is undefined");
 assert(w2.a === 1, "sibling face still sees its base a");
 assert(w2.b === 2);
 
@@ -473,14 +476,16 @@ function make() {
 
 const first = make();
 assert(property_delete(first, "a") === true);
-assert(property_exists(first, "a") === false);
+assert(property_exists(first, "a") === true);
+assert(is_nullish(first.a), "first face value is undefined");
 const second = make();
 assert(second.a === 1, "next eval of the literal must still see a");
-assert(property_exists(first, "a") === false, "first face keeps its tombstone");
+assert(property_exists(first, "a") === true, "first face keeps undefined");
 
 const nest = { inner: { x: 1, y: 2 } };
 assert(property_delete(nest.inner, "x") === true);
-assert(property_exists(nest.inner, "x") === false, "nested face tombstone");
+assert(property_exists(nest.inner, "x") === true, "nested undefined stays");
+assert(is_nullish(nest.inner.x), "nested value is undefined");
 assert(nest.inner.y === 2);
 
 return 0;
