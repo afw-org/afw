@@ -102,17 +102,6 @@ afw_object_set_immutable(
 }
 
 
-/* Remove a property from object. */
-AFW_DEFINE(void)
-afw_object_remove_property(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_xctx_t *xctx)
-{
-    afw_object_set_property(instance, property_name, NULL, xctx);
-}
-
-
 /* Set the value of an object's property. */
 AFW_DEFINE(void)
 afw_object_set_property(
@@ -130,6 +119,25 @@ afw_object_set_property(
     }
 
     afw_object_setter_set_property(setter, property_name, value, xctx);
+}
+
+
+/* Remove a property from an object. */
+AFW_DEFINE(void)
+afw_object_remove_property(
+    const afw_object_t *instance,
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx)
+{
+    const afw_object_setter_t *setter;
+
+    setter = afw_object_get_setter(instance, xctx);
+
+    if (!setter) {
+        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    }
+
+    afw_object_setter_remove_property(setter, property_name, xctx);
 }
 
 

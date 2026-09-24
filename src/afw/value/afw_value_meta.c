@@ -356,6 +356,28 @@ impl_afw_object_setter_set_property(
 }
 
 
+/*
+ * Implementation of method remove_property for interface afw_object_setter.
+ */
+void
+impl_afw_object_setter_remove_property(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx)
+{
+    afw_value_meta_object_self_t *meta_object_self =
+        (afw_value_meta_object_self_t *)self->object;
+
+    do { if (meta_object_self->immutable) { AFW_OBJECT_ERROR_OBJECT_IMMUTABLE; } } while (0);
+
+    if (!meta_object_self->additional) {
+        return;
+    }
+    afw_object_remove_property(meta_object_self->additional,
+        property_name, xctx);
+}
+
+
 
 afw_value_meta_object_self_t *
 afw_value_internal_create_meta_object_self(

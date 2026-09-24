@@ -42,3 +42,16 @@ impl_afw_object_setter_set_property(
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
 }
+
+/*
+ * Implementation of method remove_property for interface afw_object_setter.
+ */
+void
+impl_afw_object_setter_remove_property(
+    AFW_OBJECT_SETTER_SELF_T *self,
+    const afw_value_t * property_name,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}

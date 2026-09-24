@@ -688,8 +688,10 @@ impl_additional_object_option_processing(
                 impl_meta_set_property(self, afw_v_resolvedParentPaths,
                     &resolved_parent_paths->pub, xctx);
             }
-            afw_object_meta_set_property((const afw_object_t *)self,
-                afw_v_parentPaths, NULL, xctx);
+            afw_object_remove_property(
+                afw_object_meta_get_nonempty_delta(
+                    (const afw_object_t *)self, xctx),
+                afw_v_parentPaths, xctx);
         }
 
         else {

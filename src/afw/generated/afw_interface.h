@@ -4280,6 +4280,13 @@ typedef void
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
+/** @sa afw_object_setter_remove_property() */
+typedef void
+(*afw_object_setter_remove_property_t)(
+    const afw_object_setter_t * instance,
+    const afw_value_t * property_name,
+    afw_xctx_t * xctx);
+
 /**
  * @brief Method table (inf) for interface `afw_object_setter`.
  *
@@ -4290,6 +4297,7 @@ struct afw_object_setter_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_setter_set_immutable_t set_immutable;
     afw_object_setter_set_property_t set_property;
+    afw_object_setter_remove_property_t remove_property;
 };
 
 /**
@@ -4324,13 +4332,13 @@ struct afw_object_setter_inf_s {
  * The value and name must be available for the life of the object. Use the
  * object's pool to allocate memory for the name and value, if necessary.
  * 
- * If value is NULL, the property is removed. If the property does not exist,
- * no error is thrown.
+ * If value is NULL, it is stored as undefined. The name stays on the
+ * object. A NULL return from get_property() means the name is absent.
  * 
  * An exception is thrown if the object is immutable.
  * @param instance Pointer to this object setter instance.
  * @param property_name Property name of property to set.
- * @param value Value to set or NULL to remove the property.
+ * @param value Value to set. NULL is undefined.
  * @param xctx This is the caller's xctx.
  * @relates afw_object_setter_t
  * @see @ref afw_object_setter_s "afw_object_setter_t"
@@ -4345,6 +4353,30 @@ struct afw_object_setter_inf_s {
     (_instance), \
     (_property_name), \
     (_value), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `remove_property` of interface `afw_object_setter`.
+ *
+ * Remove a property owned by this object. If the name is absent, no
+ * error is thrown. Ancestors are not changed.
+ * 
+ * An exception is thrown if the object is immutable.
+ * @param instance Pointer to this object setter instance.
+ * @param property_name Property name of property to remove.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_setter_t
+ * @see @ref afw_object_setter_s "afw_object_setter_t"
+ */
+#define afw_object_setter_remove_property( \
+    _instance, \
+    _property_name, \
+    _xctx \
+) \
+(_instance)->inf->remove_property( \
+    (_instance), \
+    (_property_name), \
     (_xctx) \
 )
 

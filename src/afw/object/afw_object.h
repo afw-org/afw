@@ -251,28 +251,10 @@ afw_object_set_immutable(const afw_object_t *instance, afw_xctx_t *xctx);
 
 
 /**
- * @brief Remove a property from object.
- * @param instance of object.
- * @param property_name of property to remove.
- * @param xctx of caller.
- *
- * Remove a property owned by an object.  The object ancestors are not
- * changed.  If the property does not exist, this method will do nothing.
- * If it is important to know if property exists that is being removed,
- * use method has_property() first.
- */
-AFW_DECLARE(void)
-afw_object_remove_property(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_xctx_t *xctx);
-
-
-/**
  * @brief Set the value of an object's property.
  * @param instance of object.
  * @param property_name of property to set.
- * @param value to set or NULL to remove property.
+ * @param value to set. NULL is undefined.
  * @param xctx of caller.
  *
  * Set the value of a property owned by an object.  The property will be
@@ -283,8 +265,9 @@ afw_object_remove_property(
  * The value and name must be available for the life of the object.  Use the
  * object's pool to allocate memory for the name and value, if necessary.
  *
- * If value is NULL, the property is removed.  If the property does not exist,
- * no error is thrown.
+ * If value is NULL, it is stored as undefined. The name stays on the
+ * object. A NULL return from get_property() means the name is absent
+ * and says nothing about a value.
  *
  * An exception is thrown if the object is immutable.
  */
@@ -293,6 +276,24 @@ afw_object_set_property(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Remove a property from an object.
+ * @param instance of object.
+ * @param property_name of property to remove.
+ * @param xctx of caller.
+ *
+ * Unlinks the name. If the name is absent, no error is thrown.
+ * Ancestors are not changed.
+ *
+ * An exception is thrown if the object is immutable.
+ */
+AFW_DECLARE(void)
+afw_object_remove_property(
+    const afw_object_t *instance,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
