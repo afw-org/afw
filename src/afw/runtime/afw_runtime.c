@@ -1103,7 +1103,7 @@ afw_runtime_object_get_property(
             count = *(const afw_size_t *)
                 (internal + meta->property_count_offset);
             found = (const afw_runtime_property_t *)
-                afw_binary_search_by_name(
+                afw_binary_search_by_name_value(
                     (const void * const *)more, count, property_name);
             if (found) {
                 return found->value;

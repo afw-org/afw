@@ -89,7 +89,7 @@ struct afw_runtime_object_type_meta_s {
      *
      * When this is not (size_t)-1, it is the offset of an afw_size_t
      * count of the properties pointer list. That list is sorted by
-     * name and is searched with afw_binary_search_by_name(). A list
+     * name and is searched with afw_binary_search_by_name_value(). A list
      * that is only NULL terminated leaves this as (size_t)-1.
      */
     size_t property_count_offset;

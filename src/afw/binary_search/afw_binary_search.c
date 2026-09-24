@@ -12,41 +12,89 @@
  */
 
 #include "afw_internal.h"
+#include <string.h>
 
-/* The looked-up name as UTF-8, or NULL if it is not a string. */
-static const afw_utf8_t *
-impl_name_utf8(const afw_value_t *name)
+static const afw_utf8_t impl_ctype_utf8 =
+    AFW_UTF8_LITERAL("afw_utf8_t");
+static const afw_utf8_t impl_ctype_memory =
+    AFW_UTF8_LITERAL("afw_memory_t");
+
+/* Shared prefix, then the shorter length. */
+static int
+impl_compare_memory(const afw_memory_t *a, const afw_memory_t *b)
 {
-    if (!afw_value_is_string(name)) {
-        return NULL;
+    afw_size_t n;
+    int cmp;
+
+    n = (a->size < b->size) ? a->size : b->size;
+    if (n > 0 && a->ptr && b->ptr) {
+        cmp = memcmp(a->ptr, b->ptr, n);
+        if (cmp != 0) {
+            return cmp;
+        }
     }
-    return &((const afw_value_string_t *)name)->internal;
+    if (a->size < b->size) {
+        return -1;
+    }
+    if (a->size > b->size) {
+        return 1;
+    }
+    return 0;
 }
 
-/* Name field at the start of an element. */
-static const afw_utf8_t *
-impl_element_name_utf8(const void *element)
+/* Scalar internal as pointer and size. False if not an evaluated scalar. */
+static afw_boolean_t
+impl_scalar_memory(
+    const afw_value_t *value, afw_memory_t *memory)
 {
-    const afw_value_t *name;
+    const afw_data_type_t *type;
+    const afw_utf8_t *utf8;
 
-    name = *(const afw_value_t * const *)element;
-    return impl_name_utf8(name);
+    if (!value || !value->inf) {
+        return false;
+    }
+    type = value->inf->is_evaluated_of_data_type;
+    if (!type || !type->scalar) {
+        return false;
+    }
+
+    /*
+     * afw_utf8_t and afw_memory_t are pointer then size. Other scalars
+     * hold internal immediately after the value header.
+     */
+    if (afw_utf8_equal(&type->cType, &impl_ctype_utf8) ||
+        afw_utf8_equal(&type->cType, &impl_ctype_memory))
+    {
+        utf8 = (const afw_utf8_t *)
+            ((const char *)value + sizeof(afw_value_t));
+        memory->ptr = (const afw_octet_t *)utf8->s;
+        memory->size = utf8->len;
+        return true;
+    }
+
+    memory->ptr = (const afw_octet_t *)
+        ((const char *)value + sizeof(afw_value_t));
+    memory->size = type->c_type_size;
+    return true;
 }
 
-/*
- * Implementation of afw_binary_search_by_name().
- */
-AFW_DEFINE(const void *)
-afw_binary_search_by_name(
+/* Name value at the start of an element. */
+static const afw_value_t *
+impl_element_name(const void *element)
+{
+    return *(const afw_value_t * const *)element;
+}
+
+static const void *
+impl_search(
     const void * const *base,
     afw_size_t count,
-    const afw_value_t *name)
+    const afw_memory_t *key,
+    const afw_data_type_t *key_type)
 {
-    const afw_utf8_t *key;
     afw_size_t low;
     afw_size_t high;
 
-    key = impl_name_utf8(name);
     if (!base || !key || count == 0) {
         return NULL;
     }
@@ -55,15 +103,24 @@ afw_binary_search_by_name(
     high = count;
     while (low < high) {
         afw_size_t mid;
-        const afw_utf8_t *element_name;
+        const afw_value_t *name;
+        const afw_data_type_t *name_type;
+        afw_memory_t element;
         int cmp;
 
         mid = low + ((high - low) / 2);
-        element_name = impl_element_name_utf8(base[mid]);
-        if (!element_name) {
+        name = impl_element_name(base[mid]);
+        if (!name || !name->inf) {
             return NULL;
         }
-        cmp = afw_utf8_compare(key, element_name);
+        name_type = name->inf->is_evaluated_of_data_type;
+        if (name_type != key_type) {
+            return NULL;
+        }
+        if (!impl_scalar_memory(name, &element)) {
+            return NULL;
+        }
+        cmp = impl_compare_memory(key, &element);
         if (cmp == 0) {
             return base[mid];
         }
@@ -76,4 +133,45 @@ afw_binary_search_by_name(
     }
 
     return NULL;
+}
+
+/*
+ * Implementation of afw_binary_search_by_name().
+ */
+AFW_DEFINE(const void *)
+afw_binary_search_by_name(
+    const void * const *base,
+    afw_size_t count,
+    const afw_utf8_t *name)
+{
+    afw_memory_t key;
+
+    if (!name) {
+        return NULL;
+    }
+    key.ptr = (const afw_octet_t *)name->s;
+    key.size = name->len;
+    return impl_search(base, count, &key, afw_data_type_string);
+}
+
+/*
+ * Implementation of afw_binary_search_by_name_value().
+ */
+AFW_DEFINE(const void *)
+afw_binary_search_by_name_value(
+    const void * const *base,
+    afw_size_t count,
+    const afw_value_t *name)
+{
+    const afw_data_type_t *type;
+    afw_memory_t key;
+
+    if (!name || !name->inf) {
+        return NULL;
+    }
+    type = name->inf->is_evaluated_of_data_type;
+    if (!impl_scalar_memory(name, &key)) {
+        return NULL;
+    }
+    return impl_search(base, count, &key, type);
 }
