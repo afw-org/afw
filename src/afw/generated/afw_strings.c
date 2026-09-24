@@ -2823,6 +2823,24 @@ afw_self_v_a_flag_response_error_backtraceEvaluation = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_error_backtraceEvaluation_all = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation_all)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_error_backtraceEvaluation_all_brief = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation_all_brief)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_error_backtraceEvaluation_all_description = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation_all_description)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtraceEvaluation_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation_brief)
@@ -2832,6 +2850,24 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtraceEvaluation_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation_description)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_error_backtrace_all = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtrace_all)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_error_backtrace_all_brief = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtrace_all_brief)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_error_backtrace_all_description = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtrace_all_description)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)

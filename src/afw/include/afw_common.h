@@ -957,10 +957,13 @@ typedef struct afw_object_meta_s {
 
 /** @brief Error code map.
  *
- * Each row is: id, error_allow_in_response, http_response_code, description.
+ * Each row is: id, error_allow_in_response, trace_all_only,
+ * http_response_code, description.
  *
  * id: Token pasted as afw_error_code_<id> and exposed as _AdaptiveError_.id.
  * error_allow_in_response: If false, HTTP response omits the error object.
+ * trace_all_only: If true, traces require the matching response:error:*:all
+ *     flag. Script throw (no id) and syntax.
  * http_response_code: Status for an uncaught error on an HTTP request.
  * description: Phrase after the status number (e.g. "404 Not Found").
  *
@@ -1046,79 +1049,86 @@ typedef struct afw_object_meta_s {
  *
  * client_closed            - Client closed the connection.
  *
+ * trace_all_only follows error_allow_in_response. True means a code
+ * backtrace and an evaluation backtrace are captured only when the
+ * matching response:error:*:all flag is on. Script throw (no id) and
+ * syntax are that kind. Other codes use response:error:backtrace and
+ * response:error:backtraceEvaluation.
  */
 #define AFW_ERROR_CODE_MAP(_XX)                                                  \
-    _XX(none,                               true,  200, "OK"                               )\
-    _XX(general,                            true,  500, "General Error"                    )\
-    _XX(throw,                              true,  400, "Statement throw encountered"      )\
-    _XX(assertion_failed,                   true,  400, "Assertion failed"                 )\
-    _XX(argument_error,                     true,  400, "Argument Error"                   )\
-    _XX(conversion_error,                   true,  400, "Conversion Error"                 )\
-    _XX(undefined_value,                    true,  400, "Undefined Value"                  )\
-    _XX(syntax,                             true,  400, "Syntax Error"                     )\
-    _XX(created,                            true,  201, "Created"                          )\
-    _XX(accepted,                           true,  202, "Accepted"                         )\
-    _XX(no_content,                         false, 204, "No Content"                       )\
-    _XX(partial_content,                    true,  206, "Partial Content"                  )\
-    _XX(multi_status,                       true,  207, "Multi-Status"                     )\
-    _XX(multiple_choices,                   true,  300, "Multiple Choices"                 )\
-    _XX(moved_permanently,                  true,  301, "Moved Permanently"                )\
-    _XX(moved_temporarily,                  true,  302, "Found"                            )\
-    _XX(see_other,                          true,  303, "See Other"                        )\
-    _XX(not_modified,                       false, 304, "Not Modified"                     )\
-    _XX(temporary_redirect,                 true,  307, "Temporary Redirect"               )\
-    _XX(permanent_redirect,                 true,  308, "Permanent Redirect"               )\
-    _XX(bad_request,                        true,  400, "Bad Request"                      )\
-    _XX(query_too_complex,                  true,  400, "Query Too Complex"                )\
-    _XX(request_syntax,                     true,  400, "Request Syntax Error"             )\
-    _XX(authentication_required,            true,  401, "Authentication Needed"            )\
-    _XX(payment_required,                   true,  402, "Payment Required"                 )\
-    _XX(denied,                             true,  403, "Forbidden - Access Denied"        )\
-    _XX(read_only,                          true,  403, "Forbidden - Read Only"            )\
-    _XX(not_found,                          true,  404, "Not Found"                        )\
-    _XX(method_not_allowed,                 true,  405, "Method Not Allowed"               )\
-    _XX(unsupported_accept,                 false, 406, "Unsupported Content Type Requested")\
-    _XX(proxy_authentication_required,      true,  407, "Proxy Authentication Required"    )\
-    _XX(client_timeout,                     true,  408, "Request Timeout"                  )\
-    _XX(conflict,                           true,  409, "Conflict"                         )\
-    _XX(gone,                               true,  410, "Gone"                             )\
-    _XX(length_required,                    true,  411, "Content Length Required"          )\
-    _XX(precondition_failed,                true,  412, "Precondition Failed"              )\
-    _XX(payload_too_large,                  true,  413, "Content Too Large"                )\
-    _XX(uri_too_long,                       true,  414, "URI Too Long"                     )\
-    _XX(unsupported_content,                true,  415, "Unsupported Media Type"           )\
-    _XX(range_not_satisfiable,              true,  416, "Range Not Satisfiable"            )\
-    _XX(expectation_failed,                 true,  417, "Expectation Failed"               )\
-    _XX(im_a_teapot,                        true,  418, "I'm a Teapot"                     )\
-    _XX(misdirected_request,                true,  421, "Misdirected Request"              )\
-    _XX(unprocessable_content,              true,  422, "Unprocessable Content"            )\
-    _XX(locked,                             true,  423, "Locked"                           )\
-    _XX(failed_dependency,                  true,  424, "Failed Dependency"                )\
-    _XX(too_early,                          true,  425, "Too Early"                        )\
-    _XX(upgrade_required,                   true,  426, "Upgrade Required"                 )\
-    _XX(precondition_required,              true,  428, "Precondition Required"            )\
-    _XX(too_many_requests,                  true,  429, "Too Many Requests"                )\
-    _XX(request_header_fields_too_large,    true,  431, "Request Header Fields Too Large"  )\
-    _XX(unavailable_for_legal_reasons,      true,  451, "Unavailable For Legal Reasons"    )\
-    _XX(memory,                             true,  500, "Memory Error"                     )\
-    _XX(coding_error,                       true,  500, "Internal Coding Error"            )\
-    _XX(method_not_supported,               true,  501, "Method Not Supported"             )\
-    _XX(bad_gateway,                        true,  502, "Bad Gateway"                      )\
-    _XX(service_unavailable,                true,  503, "Service Unavailable"              )\
-    _XX(terminating,                        true,  503, "Server Terminating"               )\
-    _XX(gateway_timeout,                    true,  504, "Gateway Timeout"                  )\
-    _XX(http_version_not_supported,         true,  505, "HTTP Version Not Supported"       )\
-    _XX(variant_also_negotiates,            true,  506, "Variant Also Negotiates"          )\
-    _XX(insufficient_storage,               true,  507, "Insufficient Storage"             )\
-    _XX(loop_detected,                      true,  508, "Loop Detected"                    )\
-    _XX(network_authentication_required,    true,  511, "Network Authentication Required"  )\
-    _XX(client_closed,                      false, 000, "Client Closed Connection"         )\
+    _XX(none,                               true,  false, 200, "OK"                                )\
+    _XX(general,                            true,  false, 500, "General Error"                     )\
+    _XX(throw,                              true,  true,  400, "Statement throw encountered"       )\
+    _XX(assertion_failed,                   true,  false, 400, "Assertion failed"                  )\
+    _XX(argument_error,                     true,  false, 400, "Argument Error"                    )\
+    _XX(conversion_error,                   true,  false, 400, "Conversion Error"                  )\
+    _XX(undefined_value,                    true,  false, 400, "Undefined Value"                   )\
+    _XX(syntax,                             true,  true,  400, "Syntax Error"                      )\
+    _XX(created,                            true,  false, 201, "Created"                           )\
+    _XX(accepted,                           true,  false, 202, "Accepted"                          )\
+    _XX(no_content,                         false, false, 204, "No Content"                        )\
+    _XX(partial_content,                    true,  false, 206, "Partial Content"                   )\
+    _XX(multi_status,                       true,  false, 207, "Multi-Status"                      )\
+    _XX(multiple_choices,                   true,  false, 300, "Multiple Choices"                  )\
+    _XX(moved_permanently,                  true,  false, 301, "Moved Permanently"                 )\
+    _XX(moved_temporarily,                  true,  false, 302, "Found"                             )\
+    _XX(see_other,                          true,  false, 303, "See Other"                         )\
+    _XX(not_modified,                       false, false, 304, "Not Modified"                      )\
+    _XX(temporary_redirect,                 true,  false, 307, "Temporary Redirect"                )\
+    _XX(permanent_redirect,                 true,  false, 308, "Permanent Redirect"                )\
+    _XX(bad_request,                        true,  false, 400, "Bad Request"                       )\
+    _XX(query_too_complex,                  true,  false, 400, "Query Too Complex"                 )\
+    _XX(request_syntax,                     true,  false, 400, "Request Syntax Error"              )\
+    _XX(authentication_required,            true,  false, 401, "Authentication Needed"             )\
+    _XX(payment_required,                   true,  false, 402, "Payment Required"                  )\
+    _XX(denied,                             true,  false, 403, "Forbidden - Access Denied"         )\
+    _XX(read_only,                          true,  false, 403, "Forbidden - Read Only"             )\
+    _XX(not_found,                          true,  false, 404, "Not Found"                         )\
+    _XX(method_not_allowed,                 true,  false, 405, "Method Not Allowed"                )\
+    _XX(unsupported_accept,                 false, false, 406, "Unsupported Content Type Requested")\
+    _XX(proxy_authentication_required,      true,  false, 407, "Proxy Authentication Required"     )\
+    _XX(client_timeout,                     true,  false, 408, "Request Timeout"                   )\
+    _XX(conflict,                           true,  false, 409, "Conflict"                          )\
+    _XX(gone,                               true,  false, 410, "Gone"                              )\
+    _XX(length_required,                    true,  false, 411, "Content Length Required"           )\
+    _XX(precondition_failed,                true,  false, 412, "Precondition Failed"               )\
+    _XX(payload_too_large,                  true,  false, 413, "Content Too Large"                 )\
+    _XX(uri_too_long,                       true,  false, 414, "URI Too Long"                      )\
+    _XX(unsupported_content,                true,  false, 415, "Unsupported Media Type"            )\
+    _XX(range_not_satisfiable,              true,  false, 416, "Range Not Satisfiable"             )\
+    _XX(expectation_failed,                 true,  false, 417, "Expectation Failed"                )\
+    _XX(im_a_teapot,                        true,  false, 418, "I'm a Teapot"                      )\
+    _XX(misdirected_request,                true,  false, 421, "Misdirected Request"               )\
+    _XX(unprocessable_content,              true,  false, 422, "Unprocessable Content"             )\
+    _XX(locked,                             true,  false, 423, "Locked"                            )\
+    _XX(failed_dependency,                  true,  false, 424, "Failed Dependency"                 )\
+    _XX(too_early,                          true,  false, 425, "Too Early"                         )\
+    _XX(upgrade_required,                   true,  false, 426, "Upgrade Required"                  )\
+    _XX(precondition_required,              true,  false, 428, "Precondition Required"             )\
+    _XX(too_many_requests,                  true,  false, 429, "Too Many Requests"                 )\
+    _XX(request_header_fields_too_large,    true,  false, 431, "Request Header Fields Too Large"   )\
+    _XX(unavailable_for_legal_reasons,      true,  false, 451, "Unavailable For Legal Reasons"     )\
+    _XX(memory,                             true,  false, 500, "Memory Error"                      )\
+    _XX(coding_error,                       true,  false, 500, "Internal Coding Error"             )\
+    _XX(method_not_supported,               true,  false, 501, "Method Not Supported"              )\
+    _XX(bad_gateway,                        true,  false, 502, "Bad Gateway"                       )\
+    _XX(service_unavailable,                true,  false, 503, "Service Unavailable"               )\
+    _XX(terminating,                        true,  false, 503, "Server Terminating"                )\
+    _XX(gateway_timeout,                    true,  false, 504, "Gateway Timeout"                   )\
+    _XX(http_version_not_supported,         true,  false, 505, "HTTP Version Not Supported"        )\
+    _XX(variant_also_negotiates,            true,  false, 506, "Variant Also Negotiates"           )\
+    _XX(insufficient_storage,               true,  false, 507, "Insufficient Storage"              )\
+    _XX(loop_detected,                      true,  false, 508, "Loop Detected"                     )\
+    _XX(network_authentication_required,    true,  false, 511, "Network Authentication Required"   )\
+    _XX(client_closed,                      false, false, 000, "Client Closed Connection"          )\
+
 
 /** Adaptive Framework error codes enum. */
 typedef enum afw_error_code_e {
     afw_error_code_is_not_specified = 0,
     
-#define XX(_id, _error_allow_in_response, _http_response_code, _description) \
+#define XX(_id, _error_allow_in_response, _trace_all_only, \
+    _http_response_code, _description) \
     afw_error_code_ ## _id,
     AFW_ERROR_CODE_MAP(XX)
 #undef XX

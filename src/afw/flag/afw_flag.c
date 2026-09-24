@@ -513,6 +513,41 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
         afw_s_a_flag_response_error_contextual,
         xctx);
 
+    /*
+     * :all is not included by response:error. Setting :all turns
+     * the normal flag on. Setting the normal flag leaves :all off,
+     * so script throw and syntax stay quiet.
+     */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_response_error_backtrace_all,
+        afw_s_a_flag_response_error_backtrace_all_brief,
+        afw_s_a_flag_response_error_backtrace_all_description,
+        NULL,
+        xctx);
+    env->flag_index_response_error_backtrace_all =
+        afw_environment_get_flag(
+            afw_s_a_flag_response_error_backtrace_all,
+            xctx)->flag_index;
+    afw_flag_add_included_by(
+        afw_s_a_flag_response_error_backtrace,
+        afw_s_a_flag_response_error_backtrace_all,
+        xctx);
+
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_response_error_backtraceEvaluation_all,
+        afw_s_a_flag_response_error_backtraceEvaluation_all_brief,
+        afw_s_a_flag_response_error_backtraceEvaluation_all_description,
+        NULL,
+        xctx);
+    env->flag_index_response_error_backtraceEvaluation_all =
+        afw_environment_get_flag(
+            afw_s_a_flag_response_error_backtraceEvaluation_all,
+            xctx)->flag_index;
+    afw_flag_add_included_by(
+        afw_s_a_flag_response_error_backtraceEvaluation,
+        afw_s_a_flag_response_error_backtraceEvaluation_all,
+        xctx);
+
     /* Register response:console, stderr, and stdout. */
     afw_flag_environment_register_flag(
         afw_s_a_flag_response_console,

@@ -211,11 +211,19 @@ a_flag_response_error_description=Include backtrace, backtraceEvaluation, and co
 
 a_flag_response_error_backtrace=response:error:backtrace
 a_flag_response_error_backtrace_brief=Include backtrace
-a_flag_response_error_backtrace_description=Include backtrace in error responses.
+a_flag_response_error_backtrace_description=Include backtrace in error responses. Codes marked trace-all-only, such as script throw and syntax, are omitted.
+
+a_flag_response_error_backtrace_all=response:error:backtrace:all
+a_flag_response_error_backtrace_all_brief=Include backtrace for every code
+a_flag_response_error_backtrace_all_description=Include a code backtrace for every error code, including script throw and syntax. Also turns on response:error:backtrace.
 
 a_flag_response_error_backtraceEvaluation=response:error:backtraceEvaluation
 a_flag_response_error_backtraceEvaluation_brief=Include evaluation backtrace
-a_flag_response_error_backtraceEvaluation_description=Include evaluation backtrace in error responses.
+a_flag_response_error_backtraceEvaluation_description=Include evaluation backtrace in error responses. Codes marked trace-all-only, such as script throw and syntax, are omitted.
+
+a_flag_response_error_backtraceEvaluation_all=response:error:backtraceEvaluation:all
+a_flag_response_error_backtraceEvaluation_all_brief=Include evaluation backtrace for every code
+a_flag_response_error_backtraceEvaluation_all_description=Include an evaluation backtrace for every error code, including script throw and syntax. Also turns on response:error:backtraceEvaluation.
 
 a_flag_response_error_contextual=response:error:contextual
 a_flag_response_error_contextual_brief=Include contextual

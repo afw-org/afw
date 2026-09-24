@@ -88,10 +88,12 @@ struct afw_error_s {
     const afw_utf8_z_t * rv_decoded_z;
 
     /**
-     * @brief OS backtrace when response:error:backtrace is on.
+     * @brief OS backtrace when this code's trace flag is on.
      *
-     * Captured only if the flag is active and this is not a memory
-     * error. Managed hexBinary of OS octets (not necessarily UTF-8).
+     * trace_all_only codes (script throw, syntax) need
+     * response:error:backtrace:all. Other codes need
+     * response:error:backtrace. Not captured for a memory error.
+     * Managed hexBinary of OS octets (not necessarily UTF-8).
      * NULL if none. Caller of afw_os_backtrace() must
      * afw_value_release() when finished.
      */
