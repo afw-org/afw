@@ -31,6 +31,22 @@
  */
 
 /**
+ * @brief Order two name values the way the search does.
+ * @param a name.
+ * @param b name.
+ * @return negative if a is before b, 0 if equal, positive if a is after b.
+ *
+ * Same evaluated scalar data type: shared prefix, then length.
+ * afw_utf8_t and afw_memory_t use their pointer and size. Any other
+ * scalar uses internal. A different data type does not compare equal.
+ */
+AFW_DECLARE(int)
+afw_binary_search_compare_names(
+    const afw_value_t *a,
+    const afw_value_t *b);
+
+
+/**
  * @brief Find an element by UTF-8 name.
  * @param base array of pointers. Each points at a struct whose first
  *    field is `const afw_value_t *name`.

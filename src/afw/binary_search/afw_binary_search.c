@@ -136,6 +136,45 @@ impl_search(
 }
 
 /*
+ * Implementation of afw_binary_search_compare_names().
+ */
+AFW_DEFINE(int)
+afw_binary_search_compare_names(
+    const afw_value_t *a,
+    const afw_value_t *b)
+{
+    const afw_data_type_t *type_a;
+    const afw_data_type_t *type_b;
+    afw_memory_t memory_a;
+    afw_memory_t memory_b;
+
+    if (a == b) {
+        return 0;
+    }
+    type_a = (a && a->inf) ? a->inf->is_evaluated_of_data_type : NULL;
+    type_b = (b && b->inf) ? b->inf->is_evaluated_of_data_type : NULL;
+    if (type_a != type_b) {
+        if (!type_a) {
+            return -1;
+        }
+        if (!type_b) {
+            return 1;
+        }
+        if ((const char *)type_a < (const char *)type_b) {
+            return -1;
+        }
+        return 1;
+    }
+    if (!impl_scalar_memory(a, &memory_a) ||
+        !impl_scalar_memory(b, &memory_b))
+    {
+        return 0;
+    }
+    return impl_compare_memory(&memory_a, &memory_b);
+}
+
+
+/*
  * Implementation of afw_binary_search_by_name().
  */
 AFW_DEFINE(const void *)

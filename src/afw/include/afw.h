@@ -69,6 +69,7 @@
 #include "afw_object_type.h"
 #include "afw_object_view.h"
 #include "afw_query_criteria.h"
+#include "afw_sort.h"
 #include "afw_request.h"
 #include "afw_request_impl.h"
 #include "afw_request_handler.h"

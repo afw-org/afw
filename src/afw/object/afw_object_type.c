@@ -14,6 +14,50 @@
 #include "afw_internal.h"
 
 
+/* First field is the name so afw_binary_search_by_name_value() can see it. */
+typedef struct {
+    const afw_value_t *name;
+    const afw_object_type_property_type_t *property_type;
+} impl_property_type_index_entry_t;
+
+
+static void
+impl_build_property_type_index(
+    afw_object_type_t *self,
+    afw_size_t count,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    impl_property_type_index_entry_t *entries;
+    const void **slots;
+    const afw_object_type_property_type_t *property_type;
+    afw_size_t i;
+
+    entries = afw_pool_calloc(p,
+        count * sizeof(impl_property_type_index_entry_t), xctx);
+    slots = afw_pool_calloc(p, count * sizeof(const void *), xctx);
+    i = 0;
+    for (property_type = self->first_property_type;
+        property_type && i < count;
+        property_type = property_type->next)
+    {
+        if (!afw_value_is_string(property_type->property_name)) {
+            return;
+        }
+        entries[i].name = property_type->property_name;
+        entries[i].property_type = property_type;
+        slots[i] = &entries[i];
+        i++;
+    }
+    if (i != count) {
+        return;
+    }
+    afw_sort_by_name_value(slots, count);
+    self->property_type_count = count;
+    self->property_type_index = (const void * const *)slots;
+}
+
+
 static afw_object_type_property_type_t *
 impl_create_property_type(
     const afw_object_t *property_types_object,
@@ -79,7 +123,12 @@ afw_object_type_internal_create(
     self->property_types_object = afw_object_get_property_as_object_internal(
         object_type_object, afw_v_propertyTypes, xctx);
     if (self->property_types_object) {
+        afw_size_t count;
+        afw_boolean_t all_strings;
+
         iterator = NULL;
+        count = 0;
+        all_strings = true;
         while ((property_type_object =
             afw_object_get_next_property_as_object_internal(self->property_types_object,
                 &iterator, &property_name, xctx)))
@@ -89,6 +138,13 @@ afw_object_type_internal_create(
             property_type->property_name = property_name;
             property_type->next = self->first_property_type;
             self->first_property_type = property_type;
+            count++;
+            if (!afw_value_is_string(property_name)) {
+                all_strings = false;
+            }
+        }
+        if (count > 0 && all_strings) {
+            impl_build_property_type_index(self, count, p, xctx);
         }
     }
 
@@ -114,6 +170,19 @@ afw_object_type_property_type_get(
     afw_xctx_t *xctx)
 {
     const afw_object_type_property_type_t *result;
+
+    if (object_type->property_type_index) {
+        const impl_property_type_index_entry_t *found;
+
+        found = afw_binary_search_by_name_value(
+            object_type->property_type_index,
+            object_type->property_type_count,
+            property_name);
+        if (found) {
+            return found->property_type;
+        }
+        return object_type->other_properties;
+    }
 
     for (result = object_type->first_property_type;
         result && !afw_value_equal(result->property_name, property_name,

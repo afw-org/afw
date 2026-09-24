@@ -33,6 +33,14 @@ struct afw_object_type_s {
     const afw_object_t *other_properties_object;
     const afw_object_type_property_type_t *first_property_type;
     const afw_object_type_property_type_t *other_properties;
+
+    /**
+     * Sorted name index, or NULL. Built once after the list exists.
+     * Each entry's first field is the property name. get_next still
+     * walks first_property_type.
+     */
+    const void * const *property_type_index;
+    afw_size_t property_type_count;
 };
 
 typedef struct afw_object_type_extended_data_type_s

@@ -173,6 +173,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     runtime/afw_runtime_value_accessor.h
     safe_cast/afw_safe_cast.h
     service/afw_service.h
+    sort/afw_sort.h
     stream/afw_stream.h
     thread/afw_thread.h
     time/afw_time.h
@@ -231,6 +232,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/runtime
     ${CMAKE_CURRENT_SOURCE_DIR}/safe_cast
     ${CMAKE_CURRENT_SOURCE_DIR}/service
+    ${CMAKE_CURRENT_SOURCE_DIR}/sort
     ${CMAKE_CURRENT_SOURCE_DIR}/stream
     ${CMAKE_CURRENT_SOURCE_DIR}/thread
     ${CMAKE_CURRENT_SOURCE_DIR}/time
@@ -432,6 +434,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     safe_cast/afw_safe_cast.c
     service/afw_service.c
     service/afw_service_context.c
+    sort/afw_sort.c
     stream/afw_stream.c
     stream/afw_stream_fd.c
     thread/afw_thread.c
