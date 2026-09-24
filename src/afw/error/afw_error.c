@@ -44,6 +44,7 @@ afw_error_processing_handled(afw_xctx_t *xctx)
 typedef struct impl_error_code_map_s {
     afw_utf8_t id;
     afw_boolean_t error_allow_in_response;
+    afw_boolean_t trace_all_only;
     int http_response_code;
     afw_utf8_t description;
     afw_utf8_t html_description;
@@ -54,15 +55,18 @@ static const impl_error_code_map_t impl_error_code_map[] = {
     {
         AFW_UTF8_LITERAL("is_not_specified"),
         false,
+        false,
         500,
         AFW_UTF8_LITERAL("OK"),
         AFW_UTF8_LITERAL("200 OK")
     },
 
-#define XX(_id, _error_allow_in_response, _http_response_code, _description) \
+#define XX(_id, _error_allow_in_response, _trace_all_only, \
+    _http_response_code, _description) \
     { \
         AFW_UTF8_LITERAL( #_id ), \
         _error_allow_in_response, \
+        _trace_all_only, \
         _http_response_code, \
         AFW_UTF8_LITERAL( #_description ), \
         AFW_UTF8_LITERAL( #_http_response_code " " #_description ) \
@@ -75,6 +79,38 @@ static const impl_error_code_map_t impl_error_code_map[] = {
 
 static const afw_utf8_t impl_s_a_html_unknown =
     AFW_UTF8_LITERAL("500 Unknown Error");
+
+
+static afw_boolean_t
+impl_trace_all_only(afw_error_code_t code)
+{
+    if (code < sizeof(impl_error_code_map) / sizeof(impl_error_code_map_t) &&
+        code >= 0)
+    {
+        return impl_error_code_map[code].trace_all_only;
+    }
+    return false;
+}
+
+
+/*
+ * Code backtrace only. trace_all_only codes use
+ * response:error:backtrace:all. Other codes use
+ * response:error:backtrace. :all also turns that flag on.
+ * The evaluation backtrace ignores this column.
+ */
+static afw_boolean_t
+impl_trace_flag_active(
+    afw_error_code_t code,
+    afw_size_t normal_index,
+    afw_size_t all_index,
+    afw_xctx_t *xctx)
+{
+    afw_size_t index;
+
+    index = impl_trace_all_only(code) ? all_index : normal_index;
+    return afw_flag_is_active(index, xctx);
+}
 
 
 
@@ -115,13 +151,17 @@ afw_error_rv_set_z(
 
     afw_error_release_backtrace(xctx->error, xctx);
     /*
-     * Capture only if this xctx has response:error:backtrace on.
-     * env->flag_index_* is the slot; the boolean is xctx->flags
-     * (env defaults until flag_set / action _flags_ copies them).
+     * Capture only if this xctx wants a code backtrace.
+     * trace_all_only codes (script throw, syntax) need
+     * response:error:backtrace:all. Other codes need
+     * response:error:backtrace. env->flag_index_* is the slot;
+     * the boolean is xctx->flags.
      */
     if (code != afw_error_code_memory &&
-        afw_flag_is_active(
-            xctx->env->flag_index_response_error_backtrace, xctx))
+        impl_trace_flag_active(code,
+            xctx->env->flag_index_response_error_backtrace,
+            xctx->env->flag_index_response_error_backtrace_all,
+            xctx))
     {
         xctx->error->backtrace = afw_os_backtrace(code, -1, xctx);
     }
@@ -616,11 +656,13 @@ afw_error_to_utf8(
         xctx->env->flag_index_response_error_contextual, xctx);
     do_evaluation_backtrace = afw_flag_is_active(
         xctx->env->flag_index_response_error_backtraceEvaluation, xctx);
-    do_code_backtrace = afw_flag_is_active(
-        xctx->env->flag_index_response_error_backtrace, xctx);
+    do_code_backtrace = error->backtrace != NULL;
 
 
-    evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
+    evaluation_backtrace = NULL;
+    if (do_evaluation_backtrace) {
+        evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
+    }
 
     result = afw_utf8_printf_ks(p, xctx,
         "%ks"                          /* message. */
@@ -838,8 +880,7 @@ afw_error_print_with_xctx(
     if (rv < 0) return rv;
 
     if (afw_flag_is_active(
-        xctx->env->flag_index_response_error_backtraceEvaluation,
-        xctx))
+        xctx->env->flag_index_response_error_backtraceEvaluation, xctx))
     {
         backtraceExpression = impl_evaluation_backtrace(error, p, xctx);
         if (backtraceExpression && backtraceExpression->len > 0) {
@@ -1011,7 +1052,7 @@ afw_error_add_to_object(
             xctx);
     }
 
-    /* Evaluation backtrace. */
+    /* Evaluation backtrace. Ignores trace_all_only. */
     if (afw_flag_is_active(
         xctx->env->flag_index_response_error_backtraceEvaluation, xctx))
     {

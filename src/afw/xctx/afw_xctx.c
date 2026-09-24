@@ -582,12 +582,14 @@ afw_xctx_release(
             afw_pool_run_cleanups(instance->p, xctx);
         }
         AFW_FINALLY {
+            afw_os_backtrace_cleanup((afw_xctx_t *)instance);
             afw_pool_destroy(instance->p, xctx);
             return;
         }
         AFW_ENDTRY;
     }
     else {
+        afw_os_backtrace_cleanup((afw_xctx_t *)instance);
         afw_stream_internal_release_all_streams(xctx);
     }
 }
