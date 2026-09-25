@@ -289,7 +289,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | `afwdev test -T path` | Opt-in only (`tests-extra/`, etc.) | Opt-in |
 | `afwdev test --env-mode afwfcgi` | Conf-free `.as` on live `:8080/afw` (skips hermetic orchestrated leaves) | Optional |
 | `afwdev test --env-mode valgrind -j` | Memory check on `.as` via `afw` **and** on C probes via `run_c_probe()`; heavy — fewer jobs often faster wall-clock | Optional full verify |
-| `schedule.firehose` leaves under `tests-extra/` | Load thrash at hermetic afwfcgi | **No** |
+| `schedule.firehose` leaves under `tests-extra/` | Load thrash at hermetic afwfcgi. `firehose` is the busy server (until stopped). `manual` is the same server with a heartbeat and no load. HTTP front prints a port; 8080 stays the normal server. [PR #383](https://github.com/afw-org/afw/pull/383). | **No** |
 
 ```bash
 ./afwdev build --cdev          # day-to-day C/Python; also AFW_DEBUG_EVALUATION/LOCK/POOL

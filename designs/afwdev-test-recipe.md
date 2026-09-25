@@ -40,6 +40,13 @@ afwdev test -T src/afw/tests-extra/overnight-soak
 # 8h soak 2026-09-19 passed (~40M requests, RSS plateau ~63–69 MiB).
 # Default: 8 sampled model stop/start cycles, then duration_s 60.
 # Bump yaml duration_s/timeout_s/threads for another long run.
+
+# 7) Busy server and the quiet one (PR #383). Both run until Ctrl-C or POST /stop.
+# firehose is the load. manual is the same server, no load, heartbeat every 30s.
+# Open the printed http://127.0.0.1:<port>/ . Port 8080 stays on /var/run/afw.sock.
+# slapd package required. Do not stop/restart adapter-model here (#382).
+afwdev test -T src/afw/tests-extra/firehose
+afwdev test -T src/afw/tests-extra/manual
 ```
 
 ### Machine-readable summary (opt-in)
@@ -71,6 +78,7 @@ Then: `afwdev task check-149`
 
 - After `./afwdev build --install` / `--cdev`, **restart afwfcgi** if attach tests talk to a long-lived process (stale libs).  
 - **`afwdev blast` is retired** — use `schedule.firehose` leaves under `tests-extra/`.
+- **`-j` runs groups in parallel and files in one group one at a time.** A group shares one work directory and one conf. Do not run those files together. Split a slow directory into separate groups, each with its own work directory, only when the tests do not share an external service.
 - Full verify: `./afwdev build --fulldev` then `afwdev test --env-mode valgrind -j` then `afwdev test -j`. Valgrind is heavy; if thrashing, try **`-j 4`** (full cores can still finish ~5 min when healthy on a 32-core/30 GiB box). That valgrind run wraps `.as` via `afw` **and** C probes via `run_c_probe()` (suite suppressions cover libunwind on a throw). A valgrind fail prints `kind` + top frames. `--error-detail` adds source/expect/short backtrace for any fail (not a firehose). Full valgrind XML stays `--debug`. `-j` buffers each group so FAIL blocks do not interleave. See [`c-probes.md`](c-probes.md).
 - A real `--test-pattern` shows passing cases (no need for `--show-all`). `--srcdir-pattern` only counts matching source dirs in the summary.
 - `//? expect-stdout` / `expect-stderr` on Adaptive test scripts; orchestrated leaves use hyphen keys + optional x-afw demux (`expect-response`, `expect-raw-*`).
