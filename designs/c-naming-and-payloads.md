@@ -50,7 +50,7 @@ Most scalars are one chunk (`afw_integer_t`). Objects/arrays are a `const` point
 | **`ks`** | `^` + uppercase hex + `^` (runs); `^^` = caret | **No** | **No** |
 | **`create_property_name`** | Same encode | Then NFC | **Yes** — a name |
 
-Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text. `ks` always **copies**. `printf` / `z_printf` assemble then **`create`** (throw). `%ks` is the only `ks` conversion. Authority: `src/afw/utf8/afw_utf8.h`.
+Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text, which is why that test is in front of the control test: tab, LF, VT, FF, and CR are Cc, and the outcome name for "original octets" is copy, not an encoding of whitespace. `ks` always **copies**. Below U+0080 the category answers are the macros in `afw_code_point.h`; a ks run copies that ASCII and stops at `^`, a bare control, or a non-ASCII byte. `afw_utf8_nfc` still walks with `U8_NEXT` and skips the property lookup below U+0300. `printf` / `z_printf` assemble then **`create`** (throw). `%ks` is the only `ks` conversion. Authority: `src/afw/utf8/afw_utf8.h`.
 
 Env / FCGI names: only three `create_property_name` callers. Documented in object types + `whats-new`.
 

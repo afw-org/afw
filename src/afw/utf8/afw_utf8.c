@@ -390,13 +390,14 @@ afw_utf8_nfc(
 static const afw_utf8_octet_t impl_hex_digit[] = "0123456789ABCDEF";
 static const afw_utf8_octet_t impl_hex_digit_lower[] = "0123456789abcdef";
 
+/* copy: original octets. caret: ^^. hex: ^ + uppercase hex + ^. */
 typedef enum {
-    impl_enc_text,
-    impl_enc_caret,
-    impl_enc_hex
-} impl_enc_kind_t;
+    impl_ks_copy,
+    impl_ks_caret,
+    impl_ks_hex
+} impl_ks_kind_t;
 
-static impl_enc_kind_t
+static impl_ks_kind_t
 impl_ks_kind(
     const afw_utf8_octet_t *s,
     afw_size_t len,
@@ -418,25 +419,28 @@ impl_ks_kind(
     }
 
     if (cp < 0) {
-        return impl_enc_hex;
+        return impl_ks_hex;
     }
     if (cp == 0x5E) {
-        return impl_enc_caret;
+        return impl_ks_caret;
     }
+    /*
+     * Tab, LF, VT, FF, and CR are Cc. Copy them so the control
+     * test below does not hex-encode a newline.
+     */
     if (afw_code_point_is_whitespace_or_eol((afw_code_point_t)cp)) {
-        return impl_enc_text;
+        return impl_ks_copy;
     }
     if (afw_code_point_is_control((afw_code_point_t)cp)) {
-        return impl_enc_hex;
+        return impl_ks_hex;
     }
-    return impl_enc_text;
+    return impl_ks_copy;
 }
 
 
 /*
- * End of a run of ASCII text. Stops at a non-ASCII octet, at _stop
+ * End of a run of ASCII text. Stops at a non-ASCII octet, at stop
  * (ks passes '^'), or at a control that is not whitespace or EOL.
- * The category tests are the ASCII macros.
  */
 static afw_size_t
 impl_utf8_ascii_text_end(
@@ -463,7 +467,7 @@ impl_utf8_ascii_text_end(
 }
 
 
-static impl_enc_kind_t
+static impl_ks_kind_t
 impl_ks_next(
     const afw_utf8_octet_t *s,
     afw_size_t len,
@@ -479,17 +483,17 @@ impl_ks_next(
     }
     if (c == 0x5E) {
         *end = i + 1;
-        return impl_enc_caret;
+        return impl_ks_caret;
     }
     if (AFW_CODE_POINT_ASCII_IS_CONTROL(c) &&
         !AFW_CODE_POINT_ASCII_IS_WHITESPACE_OR_EOL(c))
     {
         *end = i + 1;
-        return impl_enc_hex;
+        return impl_ks_hex;
     }
     text_end = impl_utf8_ascii_text_end(s, len, i, 0x5E);
     *end = text_end;
-    return impl_enc_text;
+    return impl_ks_copy;
 }
 
 
@@ -508,7 +512,7 @@ impl_utf8_encode_ks(
     afw_size_t o;
     afw_size_t b;
     afw_boolean_t in_hex;
-    impl_enc_kind_t kind;
+    impl_ks_kind_t kind;
 
     if (len == AFW_UTF8_Z_LEN) {
         len = (s) ? strlen((const char *)s) : 0;
@@ -521,7 +525,7 @@ impl_utf8_encode_ks(
     in_hex = false;
     for (i = 0; i < len; i = end) {
         kind = impl_ks_next(s, len, i, &end);
-        if (kind == impl_enc_hex) {
+        if (kind == impl_ks_hex) {
             if (!in_hex) {
                 need += 1;
                 in_hex = true;
@@ -533,7 +537,7 @@ impl_utf8_encode_ks(
                 need += 1;
                 in_hex = false;
             }
-            need += (kind == impl_enc_caret) ? 2 : (end - i);
+            need += (kind == impl_ks_caret) ? 2 : (end - i);
         }
     }
     if (in_hex) {
@@ -552,7 +556,7 @@ impl_utf8_encode_ks(
     in_hex = false;
     for (i = 0; i < len; i = end) {
         kind = impl_ks_next(s, len, i, &end);
-        if (kind == impl_enc_hex) {
+        if (kind == impl_ks_hex) {
             if (!in_hex) {
                 out[o++] = IMPL_KS_ESC;
                 in_hex = true;
@@ -567,7 +571,7 @@ impl_utf8_encode_ks(
                 out[o++] = IMPL_KS_ESC;
                 in_hex = false;
             }
-            if (kind == impl_enc_caret) {
+            if (kind == impl_ks_caret) {
                 out[o++] = IMPL_KS_ESC;
                 out[o++] = IMPL_KS_ESC;
             }
@@ -944,7 +948,7 @@ impl_out_ks(
     afw_size_t end;
     afw_size_t b;
     afw_boolean_t in_hex;
-    impl_enc_kind_t kind;
+    impl_ks_kind_t kind;
 
     if (!s || len == 0) {
         return;
@@ -952,7 +956,7 @@ impl_out_ks(
     in_hex = false;
     for (i = 0; i < len; i = end) {
         kind = impl_ks_next(s, len, i, &end);
-        if (kind == impl_enc_hex) {
+        if (kind == impl_ks_hex) {
             if (!in_hex) {
                 impl_out_byte(o, IMPL_KS_ESC);
                 in_hex = true;
@@ -968,7 +972,7 @@ impl_out_ks(
                 impl_out_byte(o, IMPL_KS_ESC);
                 in_hex = false;
             }
-            if (kind == impl_enc_caret) {
+            if (kind == impl_ks_caret) {
                 impl_out_byte(o, IMPL_KS_ESC);
                 impl_out_byte(o, IMPL_KS_ESC);
             }
