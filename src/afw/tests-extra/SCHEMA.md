@@ -28,7 +28,7 @@ This is the **full-ish** shape we want to aim at. First implementation should **
 
 | Field | Default | Meaning |
 |-------|---------|---------|
-| `threads` | `1` | Maps to `afwfcgi -n` |
+| `threads` | `1` | Maps to `afwfcgi -n`. An integer, or a percent of online CPUs such as `50%` (1 through 100). `50%` is the stress default; `100%` is the try-to-break setting. |
 | `conf` | `afw.conf` | Relative to leaf |
 
 Harness owns: work dir copy, Unix socket under work dir, start/ready/stop, SIGTERM path (see #158).
@@ -207,13 +207,27 @@ See leaves `07`, `07b`, `07c` under this directory for longer soaks (opt-in via
 schedule:
   - firehose:
       duration_s: 60            # and/or maxRequests
-      concurrency: 8
+      concurrency: 8            # or "100%" of afwfcgi.threads
+      clientProcesses: 1        # or "50%" of online CPUs; 1 keeps a thread pool
       fromTests: [a, b, c]      # names from tests[]
       stopOnError: false        # blast-like: keep going, tally errors
       seed: 42                  # RNG for policy: random
       policy: random            # or roundRobin
       maxFail: 0                # optional absolute fail budget
       maxFailRate: 0.05         # optional fail fraction budget (0..1)
+
+`concurrency` and `clientProcesses` take the same integer-or-percent form.
+A percent on `concurrency` is of the server thread count (so `"100%"` is one
+request in flight per server thread). A percent on `clientProcesses` is of
+online CPUs. Omitted `clientProcesses` is 1, which is the single-process
+thread pool. Above 1, the firehose feeds `afwfcgi` from that many Python
+processes so the GIL does not leave server threads sitting in accept.
+`_AdaptiveServer_/current.maxConcurrent` is recorded on the firehose summary.
+If the `afwfcgi` process exits during the phase, the leaf fails even when
+some requests already succeeded.
+
+Copy `src/afw/tests-extra/stress-fcgi/` to start a leaf that takes about half
+the machine. Set `threads: "100%"` on that copy to try to break the server.
 ```
 
 ```yaml

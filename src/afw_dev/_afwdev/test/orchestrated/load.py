@@ -161,15 +161,9 @@ def load_orchestration_document(marker_path):
             "afwfcgi block must be a mapping: " + marker_path)
     else:
         threads = afwfcgi.get("threads", 1)
-        try:
-            threads = int(threads)
-        except (TypeError, ValueError) as e:
-            raise OrchestrationLoadError(
-                "afwfcgi.threads must be an integer: " + marker_path) from e
-        if threads < 1:
-            raise OrchestrationLoadError(
-                "afwfcgi.threads must be >= 1: " + marker_path)
-        afwfcgi["threads"] = threads
+        spec = parse_count_spec(threads, "afwfcgi.threads", marker_path)
+        # Percent is of the CPUs on this machine, so one leaf travels.
+        afwfcgi["threads"] = resolve_count_spec(spec, os.cpu_count() or 1)
 
     if raw.get("schedule") is not None:
         if not isinstance(raw["schedule"], list):
@@ -180,6 +174,49 @@ def load_orchestration_document(marker_path):
         raw["description"] = os.path.basename(os.path.dirname(marker_path))
 
     return raw
+
+
+def parse_count_spec(value, what, where):
+    """
+    An absolute integer >= 1, or a percent string such as '50%'.
+
+    Percents are 1 through 100. The caller supplies the base they apply to.
+    """
+    if isinstance(value, str):
+        text = value.strip()
+        if text.endswith("%") and len(text) > 1:
+            try:
+                pct = float(text[:-1])
+            except ValueError as e:
+                raise OrchestrationLoadError(
+                    "{} percent is not a number ({})".format(what, where)
+                ) from e
+            if pct <= 0.0 or pct > 100.0:
+                raise OrchestrationLoadError(
+                    "{} percent must be from 1 to 100 ({})".format(
+                        what, where))
+            return ("pct", pct)
+    try:
+        count = int(value)
+    except (TypeError, ValueError) as e:
+        raise OrchestrationLoadError(
+            "{} must be an integer or a percent ({})".format(what, where)
+        ) from e
+    if count < 1:
+        raise OrchestrationLoadError(
+            "{} must be >= 1 ({})".format(what, where))
+    return ("abs", count)
+
+
+def resolve_count_spec(spec, base):
+    """Turn a parse_count_spec() result into a count. Percent rounds."""
+    kind, number = spec
+    if kind == "abs":
+        return int(number)
+    resolved = int(round(float(base) * float(number) / 100.0))
+    if resolved < 1:
+        return 1
+    return resolved
 
 
 def merge_feed(document_feed, test_feed):

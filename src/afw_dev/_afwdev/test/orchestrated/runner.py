@@ -5,11 +5,17 @@ Run one orchestrated-test leaf (orchestration.yaml|json).
 Returns (response, error, debug) compatible with afwdev test parse_test_run.
 """
 
+import multiprocessing
 import os
 import random
 import re
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import (
+    FIRST_COMPLETED,
+    ThreadPoolExecutor,
+    as_completed,
+    wait,
+)
 
 from _afwdev.common import msg, nfc
 from _afwdev.common.errors import (
@@ -27,7 +33,9 @@ from _afwdev.test.orchestrated.load import (
     eval_function_for_source_type,
     load_orchestration_document,
     merge_feed,
+    parse_count_spec,
     parse_triple_lt_path,
+    resolve_count_spec,
     resolve_file_bytes,
     resolve_file_text,
     resolve_source_text,
@@ -217,7 +225,7 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                 _run_firehose(
                     body, tests_by_name, work_dir, source_leaf, ctx,
                     remaining, doc_feed, debug_parts, step_timings,
-                    description, options)
+                    description, options, handle, threads)
 
             elif kind == "repeat":
                 if not isinstance(body, dict):
@@ -353,9 +361,308 @@ def _run_parallel(items, n, work_dir, source_leaf, ctx, timeout,
             cause=err)
 
 
+def _resolve_firehose_count(value, base, what, default):
+    if value is None:
+        return default
+    spec = parse_count_spec(value, what, what)
+    return resolve_count_spec(spec, base)
+
+
+def _afwfcgi_dead(handle):
+    """Error if the server process has exited, else None."""
+    if not handle:
+        return None
+    proc = handle.get("process")
+    if proc is None or proc.poll() is None:
+        return None
+    tail = ""
+    log_path = handle.get("log_path")
+    if log_path and os.path.isfile(log_path):
+        try:
+            with open(log_path, "rb") as fd:
+                tail = fd.read()[-2000:].decode("utf-8", "replace").strip()
+        except OSError:
+            tail = ""
+    return AfwdevRunnerError(
+        "afwfcgi exited ({}) during firehose. {}".format(
+            proc.returncode, tail or "(no stderr)"))
+
+
+def _sample_server(socket_path):
+    """One read of _AdaptiveServer_/current. None if the read fails."""
+    source = (
+        "const s = get_object(\"afw\", \"_AdaptiveServer_\", \"current\");\n"
+        "return [s.threadCount, s.concurrent, s.maxConcurrent, "
+        "s.requestCount];\n"
+    )
+    body = nfc.json_dumps({
+        "actions": [{"function": "eval<script>", "source": source}],
+    })
+    try:
+        result = fcgi_request(
+            socket_path, path="/afw", method="POST", body=body,
+            param_overrides={"HTTP_ACCEPT": "application/json"},
+            timeout=5.0,
+        )
+        parsed = nfc.json_loads((result.get("body") or b"").decode("utf-8"))
+    except Exception:
+        return None
+    if not isinstance(parsed, dict) or parsed.get("status") != "success":
+        return None
+    actions = parsed.get("actions") or []
+    if not actions or not isinstance(actions[0], dict):
+        return None
+    values = actions[0].get("result")
+    if not isinstance(values, list) or len(values) < 4:
+        return None
+    return {
+        "threadCount": values[0],
+        "concurrent": values[1],
+        "maxConcurrent": values[2],
+        "requestCount": values[3],
+    }
+
+
+def _firehose_request_ok(item, work_dir, socket_path, doc_feed, timeout):
+    """Issue one action request. Raise on a failed or non-success response."""
+    source = resolve_source_text(item, work_dir)
+    source_type = item.get("sourceType") or "script"
+    feed = merge_feed(doc_feed, item.get("feed"))
+    function = eval_function_for_source_type(source_type, feed)
+    if function == "evaluate":
+        action = {"function": "evaluate", "expression": source}
+    else:
+        action = {"function": function, "source": source}
+    body = nfc.json_dumps({"actions": [action]})
+    result = fcgi_request(
+        socket_path,
+        path=feed.get("path") or "/afw",
+        method="POST",
+        body=body,
+        param_overrides={
+            "HTTP_ACCEPT": feed.get("accept") or "application/json"},
+        timeout=timeout,
+    )
+    raw = result.get("body") or b""
+    if result.get("status_code") != 200:
+        raise AfwdevRunnerError(
+            "firehose {}: HTTP {}".format(
+                item.get("name"), result.get("status_code")))
+    parsed = nfc.json_loads(raw.decode("utf-8", "replace"))
+    if not isinstance(parsed, dict) or parsed.get("status") != "success":
+        raise AfwdevRunnerError(
+            "firehose {} failed: {}".format(
+                item.get("name"), raw[:300].decode("utf-8", "replace")))
+    return True
+
+
+# Set before the fork pool starts so workers inherit them. Passing a
+# Condition through the task queue raises "shared through inheritance".
+_FH_STOP = None
+_FH_ISSUED = None
+
+
+def _firehose_process_entry(args):
+    """One client process. Returns (ok, fail, first_error_or_None)."""
+    stop = _FH_STOP
+    issued = _FH_ISSUED
+    (socket_path, work_dir, items, doc_feed, deadline, seed, policy,
+     per, max_requests, timeout, stop_on_error) = args
+    def one_loop(start):
+        ok = fail = 0
+        first = None
+        rr = start
+        rng = random.Random(start)
+        while True:
+            if stop.is_set():
+                break
+            if deadline is not None and time.time() >= deadline:
+                break
+            if max_requests is not None:
+                with issued.get_lock():
+                    if issued.value >= max_requests:
+                        break
+                    issued.value += 1
+            if policy == "roundRobin":
+                item = items[rr % len(items)]
+                rr += 1
+            else:
+                item = rng.choice(items)
+            try:
+                _firehose_request_ok(
+                    item, work_dir, socket_path, doc_feed, timeout)
+                ok += 1
+            except Exception as exc:
+                fail += 1
+                if first is None:
+                    first = "{}".format(exc)
+                if stop_on_error:
+                    stop.set()
+                    break
+        return ok, fail, first
+
+    if per <= 1:
+        return one_loop(seed)
+    with ThreadPoolExecutor(max_workers=per) as ex:
+        futs = [ex.submit(one_loop, seed + i * 997) for i in range(per)]
+        ok = fail = 0
+        first = None
+        for fut in futs:
+            part_ok, part_fail, part_first = fut.result()
+            ok += part_ok
+            fail += part_fail
+            if first is None and part_first:
+                first = part_first
+        return ok, fail, first
+
+
+def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
+                          timeout, doc_feed, options, t_end, t0, policy,
+                          rng, max_requests, stop_on_error, handle,
+                          quiet_log):
+    """Single-process firehose. One Python thread per in-flight request."""
+    ok = fail = 0
+    total = 0
+    first_error = None
+    rr_i = 0
+
+    def pick_item():
+        nonlocal rr_i
+        if policy == "roundRobin":
+            item = pool[rr_i % len(pool)]
+            rr_i += 1
+            return item
+        return rng.choice(pool)
+
+    def one(item):
+        try:
+            _run_test_item(item, work_dir, source_leaf, ctx,
+                           max(5.0, timeout), doc_feed, quiet_log, options)
+            return True, None
+        except Exception as e:
+            _journal_failure(options, item.get("name"), e, ctx)
+            return False, e
+
+    with ThreadPoolExecutor(max_workers=concurrency) as ex:
+        pending = set()
+        while True:
+            dead = _afwfcgi_dead(handle)
+            if dead is not None:
+                raise dead
+            if t_end is not None and time.time() >= t_end:
+                break
+            if max_requests is not None and total >= max_requests:
+                break
+            if time.time() - t0 > timeout:
+                raise AfwdevRunnerError(
+                    "orchestrated-test timed out during firehose")
+
+            while len(pending) < concurrency:
+                if max_requests is not None and total >= max_requests:
+                    break
+                if t_end is not None and time.time() >= t_end:
+                    break
+                item = pick_item()
+                pending.add(ex.submit(one, item))
+                total += 1
+
+            if not pending:
+                break
+
+            # A timed sleep here raced ahead of the workers and capped
+            # the leaf near concurrency/10ms.
+            done, pending = wait(
+                pending, timeout=0.05, return_when=FIRST_COMPLETED)
+            if not done:
+                continue
+            for fut in done:
+                success, err = fut.result()
+                if success:
+                    ok += 1
+                else:
+                    fail += 1
+                    if first_error is None:
+                        first_error = err
+                    if stop_on_error:
+                        for p in pending:
+                            p.cancel()
+                        raise AfwAdaptiveError(
+                            "firehose stopOnError: {}".format(
+                                error_message(err)),
+                            cause=err)
+
+        for fut in as_completed(pending):
+            success, err = fut.result()
+            if success:
+                ok += 1
+            else:
+                fail += 1
+                if first_error is None:
+                    first_error = err
+
+    dead = _afwfcgi_dead(handle)
+    if dead is not None:
+        raise dead
+    return ok, fail, total, first_error
+
+
+def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
+                            socket_path, doc_feed, deadline, policy, seed,
+                            max_requests, timeout, stop_on_error, handle):
+    """Feed afwfcgi from several processes. Raises if the server exits."""
+    if client_processes > concurrency:
+        client_processes = concurrency
+    base = concurrency // client_processes
+    extra = concurrency % client_processes
+    global _FH_STOP, _FH_ISSUED
+    ctx = multiprocessing.get_context("fork")
+    _FH_STOP = ctx.Event()
+    _FH_ISSUED = ctx.Value("i", 0)
+    stop = _FH_STOP
+    pool_mp = ctx.Pool(client_processes)
+    asyncs = []
+    for i in range(client_processes):
+        per = base + (1 if i < extra else 0)
+        if per < 1:
+            per = 1
+        asyncs.append(pool_mp.apply_async(_firehose_process_entry, ((
+            socket_path, work_dir, pool, doc_feed, deadline,
+            (seed or 0) + i * 1009, policy, per,
+            max_requests, timeout, stop_on_error,
+        ),)))
+    died = None
+    try:
+        while not all(item.ready() for item in asyncs):
+            died = _afwfcgi_dead(handle)
+            if died is not None:
+                stop.set()
+                break
+            time.sleep(0.2)
+        if died is None:
+            died = _afwfcgi_dead(handle)
+    finally:
+        if died is not None:
+            stop.set()
+            pool_mp.terminate()
+        else:
+            pool_mp.close()
+        pool_mp.join()
+    if died is not None:
+        raise died
+    ok = fail = 0
+    first_error = None
+    for item in asyncs:
+        part_ok, part_fail, part_first = item.get()
+        ok += part_ok
+        fail += part_fail
+        if first_error is None and part_first:
+            first_error = AfwdevRunnerError(part_first)
+    return ok, fail, ok + fail, first_error
+
+
 def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
                   timeout, doc_feed, debug_parts, step_timings, description,
-                  options):
+                  options, handle=None, server_threads=1):
     names = body.get("fromTests") or []
     pool = []
     for name in names:
@@ -368,8 +675,15 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     if not pool:
         raise AfwdevRunnerError("firehose fromTests pool is empty")
 
-    concurrency = int(body.get("concurrency") or 1)
-    concurrency = max(1, concurrency)
+    cpu = os.cpu_count() or 1
+    concurrency = _resolve_firehose_count(
+        body.get("concurrency"), server_threads,
+        "firehose.concurrency", 1)
+    client_processes = _resolve_firehose_count(
+        body.get("clientProcesses"), cpu,
+        "firehose.clientProcesses", 1)
+    if client_processes > concurrency:
+        client_processes = concurrency
     duration_s = body.get("duration_s")
     max_requests = body.get("maxRequests")
     if duration_s is None and max_requests is None:
@@ -397,84 +711,30 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
 
     t_end = time.time() + duration_s if duration_s is not None else None
     t0 = time.time()
-    ok = fail = 0
-    total = 0
-    first_error = None
-    rr_i = 0
 
-    def pick_item():
-        nonlocal rr_i
-        if policy == "roundRobin":
-            item = pool[rr_i % len(pool)]
-            rr_i += 1
-            return item
-        return rng.choice(pool)
+    # Per-request lines here would be millions of strings on a long
+    # soak. The firehose summary below is the record. Failures on the
+    # single-process path still go through _journal_failure.
+    class _DropLog:
+        def append(self, _item):
+            return None
 
-    def one(item):
-        try:
-            _run_test_item(item, work_dir, source_leaf, ctx,
-                           max(5.0, timeout), doc_feed, debug_parts, options)
-            return True, None
-        except Exception as e:
-            _journal_failure(options, item.get("name"), e, ctx)
-            return False, e
+    quiet_log = _DropLog()
+    socket_path = ctx.get("socket_path")
 
-    with ThreadPoolExecutor(max_workers=concurrency) as ex:
-        pending = set()
-        while True:
-            if t_end is not None and time.time() >= t_end:
-                break
-            if max_requests is not None and total >= max_requests:
-                break
-            if time.time() - t0 > timeout:
-                raise AfwdevRunnerError(
-                    "orchestrated-test timed out during firehose")
-
-            while len(pending) < concurrency:
-                if max_requests is not None and total >= max_requests:
-                    break
-                if t_end is not None and time.time() >= t_end:
-                    break
-                item = pick_item()
-                pending.add(ex.submit(one, item))
-                total += 1
-
-            if not pending:
-                break
-
-            done = []
-            for fut in list(pending):
-                if fut.done():
-                    done.append(fut)
-            if not done:
-                time.sleep(0.01)
-                continue
-            for fut in done:
-                pending.discard(fut)
-                success, err = fut.result()
-                if success:
-                    ok += 1
-                else:
-                    fail += 1
-                    if first_error is None:
-                        first_error = err
-                    if stop_on_error:
-                        for p in pending:
-                            p.cancel()
-                        raise AfwAdaptiveError(
-                            "firehose stopOnError: {}".format(
-                                error_message(err)),
-                            cause=err)
-
-        # drain
-        for fut in as_completed(pending):
-            success, err = fut.result()
-            if success:
-                ok += 1
-            else:
-                fail += 1
-                if first_error is None:
-                    first_error = err
+    wall_end = t0 + timeout
+    if t_end is not None and t_end < wall_end:
+        wall_end = t_end
+    if client_processes > 1:
+        ok, fail, total, first_error = _run_firehose_processes(
+            client_processes, concurrency, pool, work_dir, socket_path,
+            doc_feed, wall_end, policy, seed if seed is not None else 0,
+            max_requests, max(5.0, timeout), stop_on_error, handle)
+    else:
+        ok, fail, total, first_error = _run_firehose_threads(
+            concurrency, pool, work_dir, source_leaf, ctx, timeout,
+            doc_feed, options, t_end, t0, policy, rng, max_requests,
+            stop_on_error, handle, quiet_log)
 
     elapsed = max(time.time() - t0, 1e-9)
     rps = total / elapsed
@@ -487,9 +747,18 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         "rps": round(rps, 2),
         "policy": policy,
         "concurrency": concurrency,
+        "clientProcesses": client_processes,
+        "threads": server_threads,
     }
     if seed is not None:
         summary["seed"] = seed
+    dead = _afwfcgi_dead(handle)
+    if dead is not None:
+        raise dead
+    if socket_path:
+        server_stats = _sample_server(socket_path)
+        if server_stats:
+            summary["server"] = server_stats
 
     # Pass criteria: explicit maxFail / maxFailRate win; else blast-like
     # (survive with any successes; only hard-fail if every request failed).
@@ -519,10 +788,19 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         passed = True
         reason = None
 
-    debug_parts.append(
-        "firehose done in {:.1f}s total={} ok={} fail={} "
-        "failRate={:.2%} rps={:.1f} policy={}".format(
-            elapsed, total, ok, fail, fail_rate, rps, policy))
+    server_note = ""
+    server_stats = summary.get("server")
+    if server_stats:
+        server_note = " maxConcurrent={}/{}".format(
+            server_stats.get("maxConcurrent"),
+            server_stats.get("threadCount"))
+    line = (
+        "firehose {:.1f}s total={} ok={} fail={} rps={:.0f} "
+        "threads={} clientProcesses={}{}".format(
+            elapsed, total, ok, fail, rps, server_threads,
+            client_processes, server_note))
+    debug_parts.append(line)
+    msg.highlighted_info(line)
     step_timings.append({
         "name": "firehose",
         "ms": round(elapsed * 1000),
