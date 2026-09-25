@@ -906,7 +906,12 @@ impl_add_contextual(
 }
 
 
-/* Adaptive string for a diagnostic utf8: ks encode, then NFC. */
+/*
+ * ks encode, then NFC when the encoding still has a non-ASCII octet.
+ * ASCII ks output is already NFC, so the property can point at that
+ * buffer. A non-ASCII encoding that is not NFC is normalized into a
+ * new buffer and the ks bytes are freed.
+ */
 static const afw_utf8_t *
 impl_octets_ks_value(
     const afw_utf8_octet_t *s,
@@ -915,12 +920,34 @@ impl_octets_ks_value(
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *encoded;
+    const afw_utf8_t *result;
+    afw_size_t i;
+    afw_boolean_t ascii;
 
     if (!s) {
         return NULL;
     }
     encoded = afw_utf8_create_ks(s, len, p, xctx);
-    return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+    if (!encoded || !encoded->s || encoded->len == 0 ||
+        encoded == afw_s_a_empty_string)
+    {
+        return encoded;
+    }
+    ascii = true;
+    for (i = 0; i < encoded->len; i++) {
+        if ((unsigned char)encoded->s[i] >= 0x80) {
+            ascii = false;
+            break;
+        }
+    }
+    if (ascii || afw_utf8_is_nfc(encoded->s, encoded->len, p, xctx)) {
+        return encoded;
+    }
+    result = afw_utf8_create(encoded->s, encoded->len, p, xctx);
+    if (result && result->s != encoded->s) {
+        afw_pool_free_memory(p, (void *)encoded->s, encoded->len, xctx);
+    }
+    return result;
 }
 
 
@@ -1025,6 +1052,22 @@ afw_error_add_to_object(
                 afw_v_backtraceEvaluation,
                 impl_utf8_ks_value(evaluation_backtrace, p, xctx),
                 xctx);
+            /*
+             * The property points at the ks string. The raw writer
+             * copy is only the input to that encode.
+             */
+            if (evaluation_backtrace != afw_s_a_empty_string) {
+                if (evaluation_backtrace->s &&
+                    evaluation_backtrace->len)
+                {
+                    afw_pool_free_memory(p,
+                        (void *)evaluation_backtrace->s,
+                        evaluation_backtrace->len, xctx);
+                }
+                afw_pool_free_memory(p,
+                    (void *)evaluation_backtrace,
+                    sizeof(afw_utf8_t), xctx);
+            }
         }
     }
 

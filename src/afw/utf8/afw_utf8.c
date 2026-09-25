@@ -401,6 +401,65 @@ impl_ks_kind(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     afw_size_t i,
+    afw_size_t *end);
+
+/*
+ * ASCII that ks copies unchanged: tab/LF/VT/FF/CR and printable
+ * ASCII except '^'. Cc (including DEL) and '^' are not in this set.
+ * U+0020 is the only Zs below U+0080.
+ */
+static afw_boolean_t
+impl_ks_ascii_plain(unsigned char c)
+{
+    if (c == 0x09 || c == 0x0A || c == 0x0B || c == 0x0C || c == 0x0D) {
+        return true;
+    }
+    return c >= 0x20 && c <= 0x7E && c != 0x5E;
+}
+
+
+/*
+ * Next ks span. Plain ASCII is one run. '^' is one byte. An ASCII
+ * Cc byte is one hex byte. Anything at or above U+0080 uses the
+ * code-point classifier.
+ */
+static impl_enc_kind_t
+impl_ks_span(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    afw_size_t i,
+    afw_size_t *end)
+{
+    unsigned char c;
+    afw_size_t j;
+
+    c = (unsigned char)s[i];
+    if (c < 0x80) {
+        if (impl_ks_ascii_plain(c)) {
+            j = i + 1;
+            while (j < len &&
+                impl_ks_ascii_plain((unsigned char)s[j]))
+            {
+                j++;
+            }
+            *end = j;
+            return impl_enc_text;
+        }
+        *end = i + 1;
+        if (c == 0x5E) {
+            return impl_enc_caret;
+        }
+        return impl_enc_hex;
+    }
+    return impl_ks_kind(s, len, i, end);
+}
+
+
+static impl_enc_kind_t
+impl_ks_kind(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    afw_size_t i,
     afw_size_t *end)
 {
     UChar32 cp;
@@ -459,7 +518,7 @@ impl_utf8_encode_ks(
     need = 0;
     in_hex = false;
     for (i = 0; i < len; i = end) {
-        kind = impl_ks_kind(s, len, i, &end);
+        kind = impl_ks_span(s, len, i, &end);
         if (kind == impl_enc_hex) {
             if (!in_hex) {
                 need += 1;
@@ -490,7 +549,7 @@ impl_utf8_encode_ks(
     o = 0;
     in_hex = false;
     for (i = 0; i < len; i = end) {
-        kind = impl_ks_kind(s, len, i, &end);
+        kind = impl_ks_span(s, len, i, &end);
         if (kind == impl_enc_hex) {
             if (!in_hex) {
                 out[o++] = IMPL_KS_ESC;
@@ -890,7 +949,7 @@ impl_out_ks(
     }
     in_hex = false;
     for (i = 0; i < len; i = end) {
-        kind = impl_ks_kind(s, len, i, &end);
+        kind = impl_ks_span(s, len, i, &end);
         if (kind == impl_enc_hex) {
             if (!in_hex) {
                 impl_out_byte(o, IMPL_KS_ESC);
