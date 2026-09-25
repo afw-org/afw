@@ -48,6 +48,37 @@ AFW_DECLARE(afw_boolean_t)
 afw_code_point_is_eol(afw_code_point_t cp);
 
 /**
+ * @brief ASCII whitespace: tab, VT, FF, space.
+ *
+ * U+0020 is the only Zs below U+0080. LF and CR are EOL, not whitespace.
+ * The code point is in U+0000–U+007F.
+ */
+#define AFW_CODE_POINT_ASCII_IS_WHITESPACE(_cp) \
+    ((_cp) == 0x0009 || (_cp) == 0x000B || \
+     (_cp) == 0x000C || (_cp) == 0x0020)
+
+/**
+ * @brief ASCII EOL: LF, CR. The code point is in U+0000–U+007F.
+ */
+#define AFW_CODE_POINT_ASCII_IS_EOL(_cp) \
+    ((_cp) == 0x000A || (_cp) == 0x000D)
+
+/**
+ * @brief ASCII whitespace or EOL.
+ */
+#define AFW_CODE_POINT_ASCII_IS_WHITESPACE_OR_EOL(_cp) \
+    (AFW_CODE_POINT_ASCII_IS_WHITESPACE(_cp) || \
+     AFW_CODE_POINT_ASCII_IS_EOL(_cp))
+
+/**
+ * @brief C0 controls and DEL, including tab, LF, VT, FF, and CR.
+ *
+ * The code point is in U+0000–U+007F. C1 is not ASCII.
+ */
+#define AFW_CODE_POINT_ASCII_IS_CONTROL(_cp) \
+    ((_cp) <= 0x1F || (_cp) == 0x7F)
+
+/**
  * @brief True if cp is Adaptive whitespace (tab/VT/FF/ZWNBSP or Zs).
  */
 AFW_DECLARE(afw_boolean_t)

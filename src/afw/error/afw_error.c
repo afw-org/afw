@@ -266,12 +266,14 @@ impl_write_source_lines(
 {
     afw_size_t j, line;
     afw_size_t offset;
+    afw_size_t run;
     afw_size_t number_of_lines;
     afw_size_t max_column_number;
     char buf2[(AFW_SIZE_T_MAX_BUFFER * 3) + 8];
     int offset_cell_octets;
     int line_cell_octets;
     afw_boolean_t new_line;
+    const afw_utf8_octet_t *s;
 
     afw_utf8_line_count_and_max_column(
         &number_of_lines, &max_column_number, source, 4, xctx);
@@ -282,48 +284,53 @@ impl_write_source_lines(
     line_cell_octets =
         afw_number_bytes_needed_size_t(number_of_lines);
 
-    /* Check for \n. */
+    /* A tab at the start of a line is written before that line's prefix. */
     line = 1;
     new_line = true;
-
-    /* Loop writing source. */
-    for (j = 0, offset = 0; j < source->len; j++)
-    {
-        if (source->s[j] == '\t')
-        {
+    s = source->s;
+    offset = 0;
+    j = 0;
+    while (j < source->len) {
+        if (s[j] == '\t') {
             afw_writer_write_z(w, "    ", xctx);
             offset += 4;
+            j++;
+            continue;
         }
-        else {
-            if (new_line) {
-                new_line = false;
-                snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                    "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                    "%*" AFW_SIZE_T_FMT_NO_PERCENT,
-                    offset_cell_octets, offset,
-                    line_cell_octets, line);
-                afw_writer_write_z(w, buf2, xctx);
-                if (error_line == line) {
-                    afw_writer_write_z(w, " > ", xctx);
-                }
-                else {
-                    afw_writer_write_z(w, " | ", xctx);
-                }
+        if (new_line) {
+            new_line = false;
+            snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT,
+                offset_cell_octets, offset,
+                line_cell_octets, line);
+            afw_writer_write_z(w, buf2, xctx);
+            if (error_line == line) {
+                afw_writer_write_z(w, " > ", xctx);
             }
-            if (source->s[j] == '\n')
-            {
+            else {
+                afw_writer_write_z(w, " | ", xctx);
+            }
+        }
+        run = j;
+        while (j < source->len && s[j] != '\t') {
+            if (s[j] == '\n') {
+                j++;
+                offset++;
                 if (line != 0) {
                     line++;
                     new_line = true;
                 }
+                break;
             }
-            afw_writer_write(w, source->s + j, 1, xctx);
+            j++;
             offset++;
         }
+        afw_writer_write(w, s + run, j - run, xctx);
     }
     if (line == 0 || !new_line) {
         afw_writer_write_eol(w, xctx);
-    }   
+    }
 }
 
 
@@ -343,7 +350,7 @@ impl_evaluation_backtrace(
     char buf2[(AFW_SIZE_T_MAX_BUFFER * 3) + 8];
     const afw_compile_value_contextual_t *last_contextual;
     afw_integer_t i, entry_number;
-    afw_size_t j, line, parameter_number;
+    afw_size_t parameter_number;
     afw_size_t error_line, error_column;
     afw_size_t error_offset;
     afw_size_t line_number;
@@ -351,7 +358,7 @@ impl_evaluation_backtrace(
     afw_size_t number_of_lines;
     afw_size_t max_column_number;
     afw_size_t offset;
-    afw_boolean_t new_line, caret_on_error;
+    afw_boolean_t caret_on_error;
     int offset_cell_octets;
     int line_cell_octets;
     int column_cell_octets;
@@ -519,54 +526,10 @@ impl_evaluation_backtrace(
                 afw_writer_write_z(w, buf2, xctx);
                 afw_writer_write_eol(w, xctx);
 
-                /* Check for \n. */
-                line = 1;
-                new_line = true;
-
-                /* Loop writing source. */
-                for (j = 0, offset = 0;
-                    j < info.contextual->compiled_value->full_source->len;
-                    j++)
-                {
-                    if (info.contextual->compiled_value->full_source->s[j]
-                        == '\t')
-                    {
-                        afw_writer_write_z(w, "    ", xctx);
-                        offset += 4;
-                    }
-                    else {
-                        if (new_line) {
-                            new_line = false;
-                            snprintf(buf2, sizeof(buf2),
-                                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                                "%*" AFW_SIZE_T_FMT_NO_PERCENT,
-                                offset_cell_octets, offset,
-                                line_cell_octets, line);
-                            afw_writer_write_z(w, buf2, xctx);
-                            if (caret_on_error && error_line == line) {
-                                afw_writer_write_z(w, " > ", xctx);
-                            }
-                            else {
-                                afw_writer_write_z(w, " | ", xctx);
-                            }
-                        }
-                        if (info.contextual->compiled_value->full_source->s[j]
-                            == '\n')
-                        {
-                            if (line != 0) {
-                                line++;
-                                new_line = true;
-                            }
-                        }
-                        afw_writer_write(w,
-                            info.contextual->compiled_value->full_source->s + j,
-                            1, xctx);
-                        offset++;
-                    }
-                }
-                if (line == 0 || !new_line) {
-                    afw_writer_write_eol(w, xctx);
-                }
+                impl_write_source_lines(w,
+                    info.contextual->compiled_value->full_source,
+                    caret_on_error ? error_line : 0,
+                    p, xctx);
 
                 afw_writer_write_eol(w, xctx);
                 afw_writer_write_z(w, "---Evaluation Backtrace", xctx);
@@ -943,7 +906,12 @@ impl_add_contextual(
 }
 
 
-/* Adaptive string for a diagnostic utf8: ks encode, then NFC. */
+/*
+ * ks encode, then NFC when the encoding still has a non-ASCII octet.
+ * ASCII ks output is already NFC, so the property can point at that
+ * buffer. A non-ASCII encoding that is not NFC is normalized into a
+ * new buffer and the ks bytes are freed.
+ */
 static const afw_utf8_t *
 impl_octets_ks_value(
     const afw_utf8_octet_t *s,
@@ -952,12 +920,34 @@ impl_octets_ks_value(
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *encoded;
+    const afw_utf8_t *result;
+    afw_size_t i;
+    afw_boolean_t ascii;
 
     if (!s) {
         return NULL;
     }
     encoded = afw_utf8_create_ks(s, len, p, xctx);
-    return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+    if (!encoded || !encoded->s || encoded->len == 0 ||
+        encoded == afw_s_a_empty_string)
+    {
+        return encoded;
+    }
+    ascii = true;
+    for (i = 0; i < encoded->len; i++) {
+        if ((unsigned char)encoded->s[i] >= 0x80) {
+            ascii = false;
+            break;
+        }
+    }
+    if (ascii || afw_utf8_is_nfc(encoded->s, encoded->len, p, xctx)) {
+        return encoded;
+    }
+    result = afw_utf8_create(encoded->s, encoded->len, p, xctx);
+    if (result && result->s != encoded->s) {
+        afw_pool_free_memory(p, (void *)encoded->s, encoded->len, xctx);
+    }
+    return result;
 }
 
 
@@ -1062,6 +1052,22 @@ afw_error_add_to_object(
                 afw_v_backtraceEvaluation,
                 impl_utf8_ks_value(evaluation_backtrace, p, xctx),
                 xctx);
+            /*
+             * The property points at the ks string. The raw writer
+             * copy is only the input to that encode.
+             */
+            if (evaluation_backtrace != afw_s_a_empty_string) {
+                if (evaluation_backtrace->s &&
+                    evaluation_backtrace->len)
+                {
+                    afw_pool_free_memory(p,
+                        (void *)evaluation_backtrace->s,
+                        evaluation_backtrace->len, xctx);
+                }
+                afw_pool_free_memory(p,
+                    (void *)evaluation_backtrace,
+                    sizeof(afw_utf8_t), xctx);
+            }
         }
     }
 

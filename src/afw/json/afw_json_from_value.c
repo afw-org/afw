@@ -82,21 +82,6 @@ impl_write(impl_from_value_wa_t *wa,
 
 
 static void
-impl_printf(impl_from_value_wa_t *wa,
-    const afw_utf8_z_t *format_z, ...)
-{
-    va_list arg;
-    const afw_utf8_t *s;
-
-    va_start(arg, format_z);
-    s = afw_utf8_printf_v(format_z, arg, wa->p, wa->xctx);
-    va_end(arg);
-
-    wa->callback(wa->context, s->s, s->len, wa->p, wa->xctx);
-}
-
-
-static void
 impl_put_ws(impl_from_value_wa_t *wa)
 {
     afw_size_t indent;
@@ -120,75 +105,109 @@ impl_put_ws(impl_from_value_wa_t *wa)
 
 
 static void
+impl_json_out(
+    impl_from_value_wa_t *wa,
+    const afw_writer_t *writer,
+    const void *buffer,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    if (size == 0) {
+        return;
+    }
+    if (wa) {
+        wa->callback(wa->context, buffer, size, wa->p, wa->xctx);
+    }
+    else {
+        afw_writer_write(writer, buffer, size, xctx);
+    }
+}
+
+
+/*
+ * JSON string (RFC 8259): escape ", \, and U+0000–U+001F. Printable ASCII
+ * and non-ASCII UTF-8 octets pass through. A safe run is one write.
+ * c == 7 is written as \b, matching the previous encoder.
+ */
+static void
+impl_encode_json_string(
+    const afw_utf8_t *string,
+    impl_from_value_wa_t *wa,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_octet_t *s;
+    const afw_utf8_octet_t *end;
+    const afw_utf8_octet_t *run;
+    unsigned char c;
+    char esc[2];
+    char hex2[2];
+    static const char hex_digits[] = "0123456789abcdef";
+
+    impl_json_out(wa, writer, "\"", 1, xctx);
+
+    if (string->len == 0) {
+        impl_json_out(wa, writer, "\"", 1, xctx);
+        return;
+    }
+    s = string->s;
+    end = s + string->len;
+    while (s < end) {
+        run = s;
+        while (s < end) {
+            c = (unsigned char)*s;
+            if (c < 32 || c == '\\' || c == '"') {
+                break;
+            }
+            s++;
+        }
+        if (s != run) {
+            impl_json_out(wa, writer, run,
+                (afw_size_t)(s - run), xctx);
+        }
+        if (s == end) {
+            break;
+        }
+        c = (unsigned char)*s;
+        if (c == '\\' || c == '"') {
+            esc[0] = '\\';
+            esc[1] = (char)c;
+            impl_json_out(wa, writer, esc, 2, xctx);
+        }
+        else if (c == 10) {
+            impl_json_out(wa, writer, "\\n", 2, xctx);
+        }
+        else if (c == 13) {
+            impl_json_out(wa, writer, "\\r", 2, xctx);
+        }
+        else if (c == 9) {
+            impl_json_out(wa, writer, "\\t", 2, xctx);
+        }
+        else if (c == 12) {
+            impl_json_out(wa, writer, "\\f", 2, xctx);
+        }
+        else if (c == 7) {
+            impl_json_out(wa, writer, "\\b", 2, xctx);
+        }
+        else {
+            impl_json_out(wa, writer, "\\u00", 4, xctx);
+            hex2[0] = hex_digits[c / 16];
+            hex2[1] = hex_digits[c % 16];
+            impl_json_out(wa, writer, hex2, 2, xctx);
+        }
+        s++;
+    }
+
+    impl_json_out(wa, writer, "\"", 1, xctx);
+}
+
+
+static void
 impl_put_json_string(
     impl_from_value_wa_t *wa,
     const afw_utf8_t *string)
 {
-    /* Unsigned: afw_utf8_octet_t is char and may be signed; high UTF-8 bytes
-     * must not be treated as control characters (see afw_common.h). */
-    unsigned char c;
-    afw_size_t len;
-    const afw_utf8_octet_t *s;
-
-    impl_putc(wa, '"');
-
-    s = string->s;
-    len = string->len;
-
-    while (len > 0) {
-        c = (unsigned char)*s;
-
-        /* Add an extra backslash if character is backslash or quote. */
-        if (c == '\\' || c == '"') {
-            impl_putc(wa, '\\');
-        }
-
-        /*
-         * Pass through ASCII printable and all non-ASCII UTF-8 octets.
-         * JSON (RFC 8259) only requires escaping ", \, and U+0000–U+001F.
-         */
-        if (c >= 32) {
-            impl_putc(wa, c);
-        }
-
-        /* If \n */
-        else if (c == 10) {
-            impl_puts(wa, "\\n");
-        }
-
-        /* If \r */
-        else if (c == 13) {
-            impl_puts(wa, "\\r");
-        }
-
-        /* If \t */
-        else if (c == 9) {
-            impl_puts(wa, "\\t");
-        }
-
-        /* If \f */
-        else if (c == 12) {
-            impl_puts(wa, "\\f");
-        }
-
-        /* If \b */
-        else if (c == 7) {
-            impl_puts(wa, "\\b");
-        }
-
-        /*
-         * If other control character, output as \u followed by character as four
-         * byte hex characters.
-         */
-        else {
-            impl_printf(wa, "\\u%04x", (unsigned)c);
-        }
-
-        len--;
-        s++;
-    }
-
-    impl_putc(wa, '"');
+    impl_encode_json_string(string, wa, NULL, wa->xctx);
 }
 
 
@@ -530,74 +549,7 @@ afw_json_write_encoded_string(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    /* Unsigned: see impl_put_json_string — signed char breaks UTF-8. */
-    unsigned char c;
-    char c1;
-    char hex2[2];
-    static const char hex_digits[] = "0123456789abcdef";
-    afw_size_t len;
-    const afw_utf8_octet_t *s;
-
-    afw_writer_write_z(writer, "\"", xctx);
-
-    s = string->s;
-    len = string->len;
-
-    while (len > 0) {
-        c = (unsigned char)*s;
-
-        /* Add an extra backslash if character is backslash or quote. */
-        if (c == '\\' || c == '"') {
-            afw_writer_write_z(writer, "\\", xctx);
-        }
-
-        /* ASCII printable and non-ASCII UTF-8 octets (RFC 8259). */
-        if (c >= 32) {
-            c1 = (char)c;
-            afw_writer_write(writer, &c1, 1, xctx);
-        }
-
-        /* If \n */
-        else if (c == 10) {
-            afw_writer_write_z(writer, "\\n", xctx);
-        }
-
-        /* If \r */
-        else if (c == 13) {
-            afw_writer_write_z(writer, "\\r", xctx);
-        }
-
-        /* If \t */
-        else if (c == 9) {
-            afw_writer_write_z(writer, "\\t", xctx);
-        }
-
-        /* If \f */
-        else if (c == 12) {
-            afw_writer_write_z(writer, "\\f", xctx);
-        }
-
-        /* If \b */
-        else if (c == 7) {
-            afw_writer_write_z(writer, "\\b", xctx);
-        }
-
-        /*
-         * If other control character, output as \u followed by character as four
-         * byte hex characters.
-         */
-        else {
-            afw_writer_write_z(writer, "\\u00", xctx);
-            hex2[0] = hex_digits[c / 16];
-            hex2[1] = hex_digits[c % 16];
-            afw_writer_write(writer, hex2, 2, xctx);
-        }
-
-        len--;
-        s++;
-    }
-
-    afw_writer_write_z(writer, "\"", xctx);
+    impl_encode_json_string(string, NULL, writer, xctx);
 }
 
 

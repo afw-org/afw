@@ -557,6 +557,8 @@ C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` i
 
 **`ks`** (create/set, always copy): valid UTF-8 text passes through; `^` becomes `^^`; Unicode control (Cc) and invalid UTF-8 **runs** become `^` + uppercase hex + `^`. Tab/LF/CR and other whitespace/EOL stay as text. Result is valid UTF-8, **not** promised NFC, **not** an Adaptive value.
 
+The rule is unchanged. A run of ordinary ASCII is copied in one write, in `ks` and in JSON strings. An error object's `backtraceEvaluation` property holds that `ks` string; the temporary used to build it is released. On the [#363](https://github.com/afw-org/afw/issues/363) profile, `for-of.as` pool bytes in use fell from about 106MB to 55MB, and the suite ceiling from about 129MB to 55MB. [#363](https://github.com/afw-org/afw/issues/363) stays open.
+
 **`afw_utf8_printf` / `z_printf`** assemble with their own formatter, then **`create`** (NFC / throw). They do **not** ks-encode the whole result. Use these for **viewable** text (logs, traces). Do **not** use them to write data files or round-trip octets — write `.s` + `.len` or **`as_memory`**. **`AFW_THROW_ERROR_FZ`**, **`afw_error_to_utf8`**, and the error object use **`printf_ks` / `z_snprintf_ks`**: `%s` and `%ku` **`ks`** instead of throw, so assembling or reporting an error cannot throw because of dirty bytes. Authority: `src/afw/utf8/afw_utf8.h`.
 
 | Spec | Pass | Notes |
