@@ -63,7 +63,7 @@
  *   in). Not a walk of first_chunk.
  *   coalesce — merge two adjacent free blocks in the same chunk.
  *   first-fit — walk the heap free list; take the first block big
- *   enough.
+ *   enough. Skip the walk when largest is known to be too small.
  *   LIFO — push at the list head. memory_region free() does this
  *   for regions. The heap free list is also LIFO.
  *

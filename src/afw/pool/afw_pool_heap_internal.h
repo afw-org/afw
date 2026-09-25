@@ -76,6 +76,12 @@ afw_pool_internal_free_memory_head_t;
 
 struct afw_pool_internal_free_memory_head_s {
     afw_pool_free_node_t *first;
+
+    /*
+     * Upper bound on free-node totals. AFW_SIZE_T_MAX means the
+     * bound is unknown and the list must be walked. 0 means empty.
+     */
+    afw_size_t largest;
 };
 
 
