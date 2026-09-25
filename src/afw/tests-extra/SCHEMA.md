@@ -228,6 +228,25 @@ some requests already succeeded.
 
 Copy `src/afw/tests-extra/stress-fcgi/` to start a leaf that takes about half
 the machine. Set `threads: "100%"` on that copy to try to break the server.
+
+`afwfcgi.http` starts an HTTP server for the life of the leaf. `maps` are
+file prefixes. A relative `root` is under `afw_package_dir_path` (the
+package root). `root: .` is the test work directory. `/afw` is not a file
+prefix. Every other path is FastCGI to this leaf's socket. `/apps` and
+`/docs` use the admin fallbacks. Omit `port` to bind a free port. The leaf
+prints `http://127.0.0.1:<port>/` and sets `AFW_WORLD_HTTP_URL` and
+`AFW_TEST_WORK_DIR` before `afwfcgi` starts.
+
+```yaml
+afwfcgi:
+  http:
+    port: 8081
+    maps:
+      - { prefix: /apps, root: build/js/apps }
+      - { prefix: /docs, root: build/docs }
+      - { prefix: /tests-extra, root: src/afw/tests-extra }
+      - { prefix: /work, root: . }
+```
 ```
 
 ```yaml

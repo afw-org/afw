@@ -41,6 +41,7 @@ from _afwdev.test.orchestrated.load import (
     resolve_source_text,
 )
 from _afwdev.test.orchestrated.fcgi_client import fcgi_request
+from _afwdev.test.orchestrated import http_front
 from _afwdev.test.orchestrated.hosts import afwfcgi as afwfcgi_host
 from _afwdev.test.orchestrated.hosts import local as local_host
 from _afwdev.test.orchestrated import x_afw_demux
@@ -114,9 +115,14 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
     source_leaf = os.path.dirname(os.path.abspath(marker_path))
 
     handle = None
+    http_front_handle = None
     t0 = time.time()
     try:
         socket_path = None
+        http_doc = (doc.get("afwfcgi") or {}).get("http")
+        if http_doc and host_kind == "afwfcgi":
+            http_front_handle = http_front.prepare(
+                http_doc, work_dir, options)
         if host_kind == "afwfcgi":
             # Valgrind cold-start is much slower, especially under -j load.
             ready_cap = 120.0 if under_valgrind else 30.0
@@ -130,6 +136,9 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
             socket_path = handle["socket_path"]
             debug_parts.append("started: " + " ".join(handle["argv"]))
             debug_parts.append("socket: " + socket_path)
+            if http_front_handle is not None:
+                http_front.serve(http_front_handle, socket_path)
+                debug_parts.append("http: " + http_front_handle.url)
         else:
             debug_parts.append("host: local (afw --local 1 per work item)")
 
@@ -287,6 +296,8 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
             _debug_blob(debug_parts, handle),
         )
     finally:
+        if http_front_handle is not None:
+            http_front.stop(http_front_handle)
         if handle is not None:
             afwfcgi_host.stop_afwfcgi(handle)
 

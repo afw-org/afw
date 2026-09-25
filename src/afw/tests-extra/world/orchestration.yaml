@@ -12,6 +12,16 @@ description: Busy afwfcgi with file, model, lmdb, vfs, ldap, and the afw catalog
 host: afwfcgi
 afwfcgi:
   threads: "50%"
+  http:
+    maps:
+      - prefix: /apps
+        root: build/js/apps
+      - prefix: /docs
+        root: build/docs
+      - prefix: /tests-extra
+        root: src/afw/tests-extra
+      - prefix: /work
+        root: .
 timeout_s: 180
 
 feed:
@@ -79,6 +89,11 @@ tests:
     source: <<< tests/read_ldap.as
     expect: true
 
+  - name: http-get-hello
+    sourceType: script
+    source: <<< tests/http_get_hello.as
+    expect: true
+
 schedule:
   - sequential:
       - generate
@@ -98,6 +113,7 @@ schedule:
         - read-vfs
         - churn-vfs
         - read-ldap
+        - http-get-hello
       policy: random
       seed: 1
       stopOnError: false

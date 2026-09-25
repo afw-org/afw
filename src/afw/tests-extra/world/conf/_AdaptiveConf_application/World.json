@@ -1,4 +1,7 @@
 {
     "title": "World",
-    "defaultAdapterId": "model"
+    "defaultAdapterId": "model",
+    "extensions": [
+        "afw_curl"
+    ]
 }
