@@ -266,12 +266,14 @@ impl_write_source_lines(
 {
     afw_size_t j, line;
     afw_size_t offset;
+    afw_size_t run;
     afw_size_t number_of_lines;
     afw_size_t max_column_number;
     char buf2[(AFW_SIZE_T_MAX_BUFFER * 3) + 8];
     int offset_cell_octets;
     int line_cell_octets;
     afw_boolean_t new_line;
+    const afw_utf8_octet_t *s;
 
     afw_utf8_line_count_and_max_column(
         &number_of_lines, &max_column_number, source, 4, xctx);
@@ -282,48 +284,53 @@ impl_write_source_lines(
     line_cell_octets =
         afw_number_bytes_needed_size_t(number_of_lines);
 
-    /* Check for \n. */
+    /* A tab at the start of a line is written before that line's prefix. */
     line = 1;
     new_line = true;
-
-    /* Loop writing source. */
-    for (j = 0, offset = 0; j < source->len; j++)
-    {
-        if (source->s[j] == '\t')
-        {
+    s = source->s;
+    offset = 0;
+    j = 0;
+    while (j < source->len) {
+        if (s[j] == '\t') {
             afw_writer_write_z(w, "    ", xctx);
             offset += 4;
+            j++;
+            continue;
         }
-        else {
-            if (new_line) {
-                new_line = false;
-                snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                    "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                    "%*" AFW_SIZE_T_FMT_NO_PERCENT,
-                    offset_cell_octets, offset,
-                    line_cell_octets, line);
-                afw_writer_write_z(w, buf2, xctx);
-                if (error_line == line) {
-                    afw_writer_write_z(w, " > ", xctx);
-                }
-                else {
-                    afw_writer_write_z(w, " | ", xctx);
-                }
+        if (new_line) {
+            new_line = false;
+            snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT,
+                offset_cell_octets, offset,
+                line_cell_octets, line);
+            afw_writer_write_z(w, buf2, xctx);
+            if (error_line == line) {
+                afw_writer_write_z(w, " > ", xctx);
             }
-            if (source->s[j] == '\n')
-            {
+            else {
+                afw_writer_write_z(w, " | ", xctx);
+            }
+        }
+        run = j;
+        while (j < source->len && s[j] != '\t') {
+            if (s[j] == '\n') {
+                j++;
+                offset++;
                 if (line != 0) {
                     line++;
                     new_line = true;
                 }
+                break;
             }
-            afw_writer_write(w, source->s + j, 1, xctx);
+            j++;
             offset++;
         }
+        afw_writer_write(w, s + run, j - run, xctx);
     }
     if (line == 0 || !new_line) {
         afw_writer_write_eol(w, xctx);
-    }   
+    }
 }
 
 
@@ -343,7 +350,7 @@ impl_evaluation_backtrace(
     char buf2[(AFW_SIZE_T_MAX_BUFFER * 3) + 8];
     const afw_compile_value_contextual_t *last_contextual;
     afw_integer_t i, entry_number;
-    afw_size_t j, line, parameter_number;
+    afw_size_t parameter_number;
     afw_size_t error_line, error_column;
     afw_size_t error_offset;
     afw_size_t line_number;
@@ -351,7 +358,7 @@ impl_evaluation_backtrace(
     afw_size_t number_of_lines;
     afw_size_t max_column_number;
     afw_size_t offset;
-    afw_boolean_t new_line, caret_on_error;
+    afw_boolean_t caret_on_error;
     int offset_cell_octets;
     int line_cell_octets;
     int column_cell_octets;
@@ -519,54 +526,10 @@ impl_evaluation_backtrace(
                 afw_writer_write_z(w, buf2, xctx);
                 afw_writer_write_eol(w, xctx);
 
-                /* Check for \n. */
-                line = 1;
-                new_line = true;
-
-                /* Loop writing source. */
-                for (j = 0, offset = 0;
-                    j < info.contextual->compiled_value->full_source->len;
-                    j++)
-                {
-                    if (info.contextual->compiled_value->full_source->s[j]
-                        == '\t')
-                    {
-                        afw_writer_write_z(w, "    ", xctx);
-                        offset += 4;
-                    }
-                    else {
-                        if (new_line) {
-                            new_line = false;
-                            snprintf(buf2, sizeof(buf2),
-                                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                                "%*" AFW_SIZE_T_FMT_NO_PERCENT,
-                                offset_cell_octets, offset,
-                                line_cell_octets, line);
-                            afw_writer_write_z(w, buf2, xctx);
-                            if (caret_on_error && error_line == line) {
-                                afw_writer_write_z(w, " > ", xctx);
-                            }
-                            else {
-                                afw_writer_write_z(w, " | ", xctx);
-                            }
-                        }
-                        if (info.contextual->compiled_value->full_source->s[j]
-                            == '\n')
-                        {
-                            if (line != 0) {
-                                line++;
-                                new_line = true;
-                            }
-                        }
-                        afw_writer_write(w,
-                            info.contextual->compiled_value->full_source->s + j,
-                            1, xctx);
-                        offset++;
-                    }
-                }
-                if (line == 0 || !new_line) {
-                    afw_writer_write_eol(w, xctx);
-                }
+                impl_write_source_lines(w,
+                    info.contextual->compiled_value->full_source,
+                    caret_on_error ? error_line : 0,
+                    p, xctx);
 
                 afw_writer_write_eol(w, xctx);
                 afw_writer_write_z(w, "---Evaluation Backtrace", xctx);
