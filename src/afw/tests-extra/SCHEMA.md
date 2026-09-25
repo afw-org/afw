@@ -206,7 +206,8 @@ See leaves `07`, `07b`, `07c` under this directory for longer soaks (opt-in via
 ```yaml
 schedule:
   - firehose:
-      duration_s: 60            # and/or maxRequests
+      duration_s: 60            # or untilStopped: true, not both
+      untilStopped: false       # run until Ctrl-C or POST /stop
       concurrency: 8            # or "100%" of afwfcgi.threads
       clientProcesses: 1        # or "50%" of online CPUs; 1 keeps a thread pool
       fromTests: [a, b, c]      # names from tests[]
@@ -215,6 +216,13 @@ schedule:
       policy: random            # or roundRobin
       maxFail: 0                # optional absolute fail budget
       maxFailRate: 0.05         # optional fail fraction budget (0..1)
+
+A firehose ends on `duration_s`, on `maxRequests`, or when you ask it to
+stop. `untilStopped: true` means there is no `duration_s`: it runs until
+Ctrl-C or `POST /stop` on the HTTP port. Setting both `untilStopped` and
+`duration_s` is an error. `timeout_s` still caps a timed firehose. It does
+not cap `untilStopped`. Asking to stop also ends a timed firehose early.
+The requests already in flight finish, then the summary is printed.
 
 `concurrency` and `clientProcesses` take the same integer-or-percent form.
 A percent on `concurrency` is of the server thread count (so `"100%"` is one

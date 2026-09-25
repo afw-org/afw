@@ -1,8 +1,8 @@
 # World: one afwfcgi, several adapters, fake data, concurrent work.
 # Opt-in: afwdev test -T src/afw/tests-extra/world
 #
-# Checked-in run is two minutes at half the CPUs. For a longer run,
-# raise duration_s and timeout_s (timeout_s must stay above duration_s).
+# The firehose runs until you stop it (Ctrl-C, or POST /stop on the
+# printed HTTP port). It then prints the summary and shuts down.
 # Add adapters by dropping a service conf in conf/_AdaptiveServiceConf_/
 # and a script in tests/. Keep adapter stop/restart out of this firehose
 # until issue #382 is fixed.
@@ -22,7 +22,6 @@ afwfcgi:
         root: src/afw/tests-extra
       - prefix: /work
         root: .
-timeout_s: 180
 
 feed:
   kind: action
@@ -98,7 +97,7 @@ schedule:
   - sequential:
       - generate
   - firehose:
-      duration_s: 120
+      untilStopped: true
       concurrency: "100%"
       clientProcesses: "50%"
       fromTests:

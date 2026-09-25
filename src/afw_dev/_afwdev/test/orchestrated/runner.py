@@ -9,6 +9,8 @@ import multiprocessing
 import os
 import random
 import re
+import signal
+import threading
 import time
 from concurrent.futures import (
     FIRST_COMPLETED,
@@ -123,6 +125,7 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
         if http_doc and host_kind == "afwfcgi":
             http_front_handle = http_front.prepare(
                 http_doc, work_dir, options)
+            http_front_handle.httpd.ask_stop = _ask_firehose_stop
         if host_kind == "afwfcgi":
             # Valgrind cold-start is much slower, especially under -j load.
             ready_cap = 120.0 if under_valgrind else 30.0
@@ -471,6 +474,29 @@ def _firehose_request_ok(item, work_dir, socket_path, doc_feed, timeout):
 # Condition through the task queue raises "shared through inheritance".
 _FH_STOP = None
 _FH_ISSUED = None
+_ASKED = threading.Event()
+
+
+def _ask_firehose_stop():
+    """End the current firehose after the requests already in flight."""
+    if _ASKED.is_set():
+        return
+    _ASKED.set()
+    stop = _FH_STOP
+    if stop is not None:
+        try:
+            stop.set()
+        except Exception:
+            pass
+    msg.highlighted_info("stopping")
+
+
+def _on_firehose_signal(signum, _frame):
+    if _ASKED.is_set():
+        signal.signal(signum, signal.SIG_DFL)
+        os.kill(os.getpid(), signum)
+        return
+    _ask_firehose_stop()
 
 
 def _firehose_process_entry(args):
@@ -485,7 +511,7 @@ def _firehose_process_entry(args):
         rr = start
         rng = random.Random(start)
         while True:
-            if stop.is_set():
+            if stop is None or stop.is_set():
                 break
             if deadline is not None and time.time() >= deadline:
                 break
@@ -530,7 +556,7 @@ def _firehose_process_entry(args):
 def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
                           timeout, doc_feed, options, t_end, t0, policy,
                           rng, max_requests, stop_on_error, handle,
-                          quiet_log):
+                          quiet_log, honor_timeout=True):
     """Single-process firehose. One Python thread per in-flight request."""
     ok = fail = 0
     total = 0
@@ -560,15 +586,18 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
             dead = _afwfcgi_dead(handle)
             if dead is not None:
                 raise dead
+            if _ASKED.is_set():
+                break
             if t_end is not None and time.time() >= t_end:
                 break
-            if max_requests is not None and total >= max_requests:
-                break
-            if time.time() - t0 > timeout:
+            if honor_timeout and time.time() - t0 > timeout:
                 raise AfwdevRunnerError(
                     "orchestrated-test timed out during firehose")
-
+            if max_requests is not None and total >= max_requests:
+                break
             while len(pending) < concurrency:
+                if _ASKED.is_set():
+                    break
                 if max_requests is not None and total >= max_requests:
                     break
                 if t_end is not None and time.time() >= t_end:
@@ -630,6 +659,8 @@ def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
     _FH_STOP = ctx.Event()
     _FH_ISSUED = ctx.Value("i", 0)
     stop = _FH_STOP
+    if _ASKED.is_set():
+        stop.set()
     pool_mp = ctx.Pool(client_processes)
     asyncs = []
     for i in range(client_processes):
@@ -644,6 +675,8 @@ def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
     died = None
     try:
         while not all(item.ready() for item in asyncs):
+            if _ASKED.is_set():
+                stop.set()
             died = _afwfcgi_dead(handle)
             if died is not None:
                 stop.set()
@@ -695,11 +728,16 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         "firehose.clientProcesses", 1)
     if client_processes > concurrency:
         client_processes = concurrency
+    until_stopped = bool(body.get("untilStopped", False))
     duration_s = body.get("duration_s")
     max_requests = body.get("maxRequests")
-    if duration_s is None and max_requests is None:
+    if until_stopped and duration_s is not None:
         raise AfwdevRunnerError(
-            "firehose requires duration_s and/or maxRequests")
+            "firehose untilStopped and duration_s are different endings; "
+            "set one")
+    if (not until_stopped and duration_s is None and max_requests is None):
+        raise AfwdevRunnerError(
+            "firehose requires duration_s, maxRequests, or untilStopped")
     duration_s = float(duration_s) if duration_s is not None else None
     max_requests = int(max_requests) if max_requests is not None else None
     stop_on_error = bool(body.get("stopOnError", False))
@@ -733,19 +771,32 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     quiet_log = _DropLog()
     socket_path = ctx.get("socket_path")
 
-    wall_end = t0 + timeout
-    if t_end is not None and t_end < wall_end:
-        wall_end = t_end
-    if client_processes > 1:
-        ok, fail, total, first_error = _run_firehose_processes(
-            client_processes, concurrency, pool, work_dir, socket_path,
-            doc_feed, wall_end, policy, seed if seed is not None else 0,
-            max_requests, max(5.0, timeout), stop_on_error, handle)
+    if until_stopped:
+        wall_end = None
+        request_timeout = 30.0
     else:
-        ok, fail, total, first_error = _run_firehose_threads(
-            concurrency, pool, work_dir, source_leaf, ctx, timeout,
-            doc_feed, options, t_end, t0, policy, rng, max_requests,
-            stop_on_error, handle, quiet_log)
+        wall_end = t0 + timeout
+        if t_end is not None and t_end < wall_end:
+            wall_end = t_end
+        request_timeout = max(5.0, timeout)
+    previous_signals = {}
+    for signum in (signal.SIGINT, signal.SIGTERM):
+        previous_signals[signum] = signal.signal(signum, _on_firehose_signal)
+    try:
+        if client_processes > 1:
+            ok, fail, total, first_error = _run_firehose_processes(
+                client_processes, concurrency, pool, work_dir, socket_path,
+                doc_feed, wall_end, policy, seed if seed is not None else 0,
+                max_requests, request_timeout, stop_on_error, handle)
+        else:
+            ok, fail, total, first_error = _run_firehose_threads(
+                concurrency, pool, work_dir, source_leaf, ctx, timeout,
+                doc_feed, options, t_end, t0, policy, rng, max_requests,
+                stop_on_error, handle, quiet_log,
+                honor_timeout=not until_stopped)
+    finally:
+        for signum, handler in previous_signals.items():
+            signal.signal(signum, handler)
 
     elapsed = max(time.time() - t0, 1e-9)
     rps = total / elapsed

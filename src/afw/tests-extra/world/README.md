@@ -14,4 +14,6 @@ Now: file adapter `data`, model `model` mapped onto it, lmdb adapter `lmdb`, vfs
 
 The HTTP front is `afwfcgi.http`. It serves `build/js/apps`, `build/docs`, and `src/afw/tests-extra`, and it sends every other path to this leaf's `afwfcgi`. The leaf prints `http://127.0.0.1:<port>/`. Open that for the admin app against this server. Port 8080 stays on `/var/run/afw.sock`. `http_get` reads `/tests-extra/world/vfs/hello.txt` through that port. `/work` is the test work directory (`AFW_TEST_WORK_DIR`).
 
+The firehose runs until you stop it. Ctrl-C, or `POST /stop` on that same port. It finishes requests already in flight, prints the summary, and shuts down. A second Ctrl-C stops immediately.
+
 LDAP is a private `slapd` on `127.0.0.1` and a free port. `config.py` starts it in `before_all` and stops it in `after_all`. The database is a fresh directory in the test work directory, loaded from `ldap/seed.ldif`. The leaf needs the `slapd` package. It does not use a directory on port 389. The firehose reads `cn=Ada`. An add of `inetOrgPerson` is rejected by slapd because the adapter does not send the required `sn` attribute.

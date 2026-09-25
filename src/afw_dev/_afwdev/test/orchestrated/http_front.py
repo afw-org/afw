@@ -207,6 +207,19 @@ class _Handler(BaseHTTPRequestHandler):
             path = path.rstrip("/")
         maps = self.server.front_maps
 
+        if path == "/stop":
+            ask = getattr(self.server, "ask_stop", None)
+            if ask is not None:
+                ask()
+            payload = b"stopping\n"
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain")
+            self.send_header("Content-Length", str(len(payload)))
+            self.end_headers()
+            if not head:
+                self.wfile.write(payload)
+            return
+
         if path == "/favicon.ico":
             self.send_response(204)
             self.end_headers()
