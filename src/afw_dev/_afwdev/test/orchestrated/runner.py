@@ -239,6 +239,17 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                     remaining, doc_feed, debug_parts, step_timings,
                     description, options, handle, threads)
 
+            elif kind == "heartbeat":
+                if host_kind == "local":
+                    raise AfwdevRunnerError(
+                        "schedule heartbeat is not supported for host local")
+                if not isinstance(body, dict):
+                    raise AfwdevRunnerError(
+                        "schedule heartbeat body must be a mapping")
+                _run_heartbeat(
+                    body, ctx.get("socket_path"), debug_parts, step_timings,
+                    handle)
+
             elif kind == "repeat":
                 if not isinstance(body, dict):
                     raise AfwdevRunnerError(
@@ -400,6 +411,83 @@ def _afwfcgi_dead(handle):
     return AfwdevRunnerError(
         "afwfcgi exited ({}) during firehose. {}".format(
             proc.returncode, tail or "(no stderr)"))
+
+
+def _run_heartbeat(body, socket_path, debug_parts, step_timings, handle):
+    """Print a server status line every interval_s until stop or duration."""
+    until_stopped = bool(body.get("untilStopped", False))
+    duration_s = body.get("duration_s")
+    if until_stopped and duration_s is not None:
+        raise AfwdevRunnerError(
+            "heartbeat untilStopped and duration_s are different endings; "
+            "set one")
+    if not until_stopped and duration_s is None:
+        raise AfwdevRunnerError(
+            "heartbeat requires duration_s or untilStopped")
+    interval = float(body.get("interval_s") or 30)
+    if interval < 1:
+        raise AfwdevRunnerError("heartbeat interval_s must be >= 1")
+    source = (
+        "const s = get_object(\"afw\", \"_AdaptiveServer_\", \"current\");\n"
+        "return [s.requestCount, s.concurrent, s.threadCount, "
+        "process::poolBytesInUse, process::rss];\n"
+    )
+    payload = nfc.json_dumps({
+        "actions": [{"function": "eval<script>", "source": source}],
+    })
+    end = None if until_stopped else time.time() + float(duration_s)
+    t0 = time.time()
+    previous_signals = {}
+    for signum in (signal.SIGINT, signal.SIGTERM):
+        previous_signals[signum] = signal.signal(signum, _on_firehose_signal)
+
+    def once():
+        dead = _afwfcgi_dead(handle)
+        if dead is not None:
+            raise dead
+        result = fcgi_request(
+            socket_path, path="/afw", method="POST", body=payload,
+            param_overrides={"HTTP_ACCEPT": "application/json"},
+            timeout=10.0)
+        parsed = nfc.json_loads((result.get("body") or b"").decode("utf-8"))
+        if not isinstance(parsed, dict) or parsed.get("status") != "success":
+            raise AfwdevRunnerError(
+                "heartbeat read failed: {}".format(
+                    (result.get("body") or b"")[:300]))
+        requests, concurrent, threads, pool, rss = (
+            parsed["actions"][0]["result"])
+        line = (
+            "heartbeat requests={} concurrent={} threads={} "
+            "pool={:.2f}MiB rss={:.2f}MiB".format(
+                requests, concurrent, threads,
+                float(pool) / (1024.0 * 1024.0),
+                float(rss) / (1024.0 * 1024.0)))
+        msg.highlighted_info(line)
+        debug_parts.append(line)
+
+    try:
+        while True:
+            if _ASKED.is_set():
+                break
+            if end is not None and time.time() >= end:
+                break
+            once()
+            slept = 0.0
+            while slept < interval:
+                if _ASKED.is_set():
+                    break
+                if end is not None and time.time() >= end:
+                    break
+                time.sleep(0.25)
+                slept += 0.25
+    finally:
+        for signum, handler in previous_signals.items():
+            signal.signal(signum, handler)
+    step_timings.append({
+        "name": "heartbeat",
+        "ms": round((time.time() - t0) * 1000),
+        "passed": True,
+    })
 
 
 def _sample_server(socket_path):

@@ -1,5 +1,5 @@
-# World: one afwfcgi, several adapters, fake data, concurrent work.
-# Opt-in: afwdev test -T src/afw/tests-extra/world
+# Firehose: one afwfcgi, several adapters, fake data, concurrent work.
+# Opt-in: afwdev test -T src/afw/tests-extra/firehose
 #
 # The firehose runs until you stop it (Ctrl-C, or POST /stop on the
 # printed HTTP port). It then prints the summary and shuts down.

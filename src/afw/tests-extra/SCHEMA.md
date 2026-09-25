@@ -224,6 +224,17 @@ Ctrl-C or `POST /stop` on the HTTP port. Setting both `untilStopped` and
 not cap `untilStopped`. Asking to stop also ends a timed firehose early.
 The requests already in flight finish, then the summary is printed.
 
+`heartbeat` prints one status line every `interval_s` (default 30). It has
+the same `duration_s` / `untilStopped` rule. `tests-extra/manual` is that
+quiet server. `tests-extra/firehose` is the load.
+
+```yaml
+schedule:
+  - heartbeat:
+      interval_s: 30
+      untilStopped: true
+```
+
 `concurrency` and `clientProcesses` take the same integer-or-percent form.
 A percent on `concurrency` is of the server thread count (so `"100%"` is one
 request in flight per server thread). A percent on `clientProcesses` is of
