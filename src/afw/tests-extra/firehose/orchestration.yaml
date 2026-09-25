@@ -1,0 +1,119 @@
+# Firehose: one afwfcgi, several adapters, fake data, concurrent work.
+# Opt-in: afwdev test -T src/afw/tests-extra/firehose
+#
+# The firehose runs until you stop it (Ctrl-C, or POST /stop on the
+# printed HTTP port). It then prints the summary and shuts down.
+# Add adapters by dropping a service conf in conf/_AdaptiveServiceConf_/
+# and a script in tests/. Keep adapter stop/restart out of this firehose
+# until issue #382 is fixed.
+
+version: 1
+description: Busy afwfcgi with file, model, lmdb, vfs, ldap, and the afw catalog
+host: afwfcgi
+afwfcgi:
+  threads: "50%"
+  http:
+    maps:
+      - prefix: /apps
+        root: build/js/apps
+      - prefix: /docs
+        root: build/docs
+      - prefix: /tests-extra
+        root: src/afw/tests-extra
+      - prefix: /work
+        root: .
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: generate
+    sourceType: script
+    source: <<< tests/generate.as
+    expect: true
+
+  - name: read-person
+    sourceType: script
+    source: <<< tests/read_person.as
+    expect: true
+
+  - name: read-note
+    sourceType: script
+    source: <<< tests/read_note.as
+    expect: true
+
+  - name: read-roster
+    sourceType: script
+    source: <<< tests/read_roster.as
+    expect: true
+
+  - name: read-generated
+    sourceType: script
+    source: <<< tests/read_generated.as
+    expect: true
+
+  - name: churn-note
+    sourceType: script
+    source: <<< tests/churn_note.as
+    expect: true
+
+  - name: churn-model
+    sourceType: script
+    source: <<< tests/churn_model.as
+    expect: true
+
+  - name: catalog
+    sourceType: script
+    source: <<< tests/catalog.as
+    expect: true
+
+  - name: churn-lmdb
+    sourceType: script
+    source: <<< tests/churn_lmdb.as
+    expect: true
+
+  - name: read-vfs
+    sourceType: script
+    source: <<< tests/read_vfs.as
+    expect: true
+
+  - name: churn-vfs
+    sourceType: script
+    source: <<< tests/churn_vfs.as
+    expect: true
+
+  - name: read-ldap
+    sourceType: script
+    source: <<< tests/read_ldap.as
+    expect: true
+
+  - name: http-get-hello
+    sourceType: script
+    source: <<< tests/http_get_hello.as
+    expect: true
+
+schedule:
+  - sequential:
+      - generate
+  - firehose:
+      untilStopped: true
+      concurrency: "100%"
+      clientProcesses: "50%"
+      fromTests:
+        - read-person
+        - read-note
+        - read-roster
+        - read-generated
+        - churn-note
+        - churn-model
+        - catalog
+        - churn-lmdb
+        - read-vfs
+        - churn-vfs
+        - read-ldap
+        - http-get-hello
+      policy: random
+      seed: 1
+      stopOnError: false
+      maxFail: 0

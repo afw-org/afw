@@ -1,0 +1,32 @@
+# Quiet server for the admin app. Same adapters and HTTP front as firehose.
+# Opt-in: afwdev test -T src/afw/tests-extra/manual
+#
+# No load. A heartbeat line every 30 seconds. Runs until Ctrl-C or
+# POST /stop on the printed port.
+
+version: 1
+description: Manual afwfcgi for the admin app
+host: afwfcgi
+afwfcgi:
+  threads: 4
+  http:
+    maps:
+      - prefix: /apps
+        root: build/js/apps
+      - prefix: /docs
+        root: build/docs
+      - prefix: /tests-extra
+        root: src/afw/tests-extra
+      - prefix: /work
+        root: .
+
+tests:
+  - name: ready
+    sourceType: script
+    source: "return true;\n"
+    skip: true
+
+schedule:
+  - heartbeat:
+      interval_s: 30
+      untilStopped: true

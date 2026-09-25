@@ -1,0 +1,14 @@
+{
+    "objectType": "Roster",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,
+    "propertyTypes": {
+        "title": { "dataType": "string" },
+        "members": {
+            "dataType": "array",
+            "dataTypeParameter": "string"
+        }
+    }
+}

@@ -1,0 +1,51 @@
+# Stress afwfcgi. Opt-in: afwdev test -T src/afw/tests-extra/stress-fcgi
+#
+# threads and clientProcesses are percents of the CPUs on this machine.
+# concurrency is a percent of the server thread count. 50% is the normal
+# stress size. For a harder run, set threads to "100%".
+#
+# The leaf fails if afwfcgi exits, or if any request fails (maxFail: 0).
+# The summary line includes maxConcurrent from _AdaptiveServer_/current.
+# That high-water should sit near threadCount when the server was actually
+# filled.
+
+version: 1
+description: Stress afwfcgi at about half the CPUs
+host: afwfcgi
+afwfcgi:
+  threads: "50%"
+timeout_s: 60
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: "true"
+    sourceType: script
+    source: |
+      return true;
+
+  - name: arithmetic
+    sourceType: script
+    source: |
+      assert((1 + 2) == 3);
+      return 3;
+
+  - name: server-touch
+    sourceType: script
+    source: |
+      const s = get_object("afw", "_AdaptiveServer_", "current");
+      assert(s.threadCount >= 1);
+      return s.requestCount;
+
+schedule:
+  - firehose:
+      duration_s: 10
+      concurrency: "100%"
+      clientProcesses: "50%"
+      fromTests: ["true", arithmetic, server-touch]
+      policy: random
+      seed: 1
+      stopOnError: false
+      maxFail: 0

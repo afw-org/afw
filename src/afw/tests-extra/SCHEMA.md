@@ -28,7 +28,7 @@ This is the **full-ish** shape we want to aim at. First implementation should **
 
 | Field | Default | Meaning |
 |-------|---------|---------|
-| `threads` | `1` | Maps to `afwfcgi -n` |
+| `threads` | `1` | Maps to `afwfcgi -n`. An integer, or a percent of online CPUs such as `50%` (1 through 100). `50%` is the stress default; `100%` is the try-to-break setting. |
 | `conf` | `afw.conf` | Relative to leaf |
 
 Harness owns: work dir copy, Unix socket under work dir, start/ready/stop, SIGTERM path (see #158).
@@ -206,14 +206,66 @@ See leaves `07`, `07b`, `07c` under this directory for longer soaks (opt-in via
 ```yaml
 schedule:
   - firehose:
-      duration_s: 60            # and/or maxRequests
-      concurrency: 8
+      duration_s: 60            # or untilStopped: true, not both
+      untilStopped: false       # run until Ctrl-C or POST /stop
+      concurrency: 8            # or "100%" of afwfcgi.threads
+      clientProcesses: 1        # or "50%" of online CPUs; 1 keeps a thread pool
       fromTests: [a, b, c]      # names from tests[]
       stopOnError: false        # blast-like: keep going, tally errors
       seed: 42                  # RNG for policy: random
       policy: random            # or roundRobin
       maxFail: 0                # optional absolute fail budget
       maxFailRate: 0.05         # optional fail fraction budget (0..1)
+
+A firehose ends on `duration_s`, on `maxRequests`, or when you ask it to
+stop. `untilStopped: true` means there is no `duration_s`: it runs until
+Ctrl-C or `POST /stop` on the HTTP port. Setting both `untilStopped` and
+`duration_s` is an error. `timeout_s` still caps a timed firehose. It does
+not cap `untilStopped`. Asking to stop also ends a timed firehose early.
+The requests already in flight finish, then the summary is printed.
+
+`heartbeat` prints one status line every `interval_s` (default 30). It has
+the same `duration_s` / `untilStopped` rule. `tests-extra/manual` is that
+quiet server. `tests-extra/firehose` is the load.
+
+```yaml
+schedule:
+  - heartbeat:
+      interval_s: 30
+      untilStopped: true
+```
+
+`concurrency` and `clientProcesses` take the same integer-or-percent form.
+A percent on `concurrency` is of the server thread count (so `"100%"` is one
+request in flight per server thread). A percent on `clientProcesses` is of
+online CPUs. Omitted `clientProcesses` is 1, which is the single-process
+thread pool. Above 1, the firehose feeds `afwfcgi` from that many Python
+processes so the GIL does not leave server threads sitting in accept.
+`_AdaptiveServer_/current.maxConcurrent` is recorded on the firehose summary.
+If the `afwfcgi` process exits during the phase, the leaf fails even when
+some requests already succeeded.
+
+Copy `src/afw/tests-extra/stress-fcgi/` to start a leaf that takes about half
+the machine. Set `threads: "100%"` on that copy to try to break the server.
+
+`afwfcgi.http` starts an HTTP server for the life of the leaf. `maps` are
+file prefixes. A relative `root` is under `afw_package_dir_path` (the
+package root). `root: .` is the test work directory. `/afw` is not a file
+prefix. Every other path is FastCGI to this leaf's socket. `/apps` and
+`/docs` use the admin fallbacks. Omit `port` to bind a free port. The leaf
+prints `http://127.0.0.1:<port>/` and sets `AFW_WORLD_HTTP_URL` and
+`AFW_TEST_WORK_DIR` before `afwfcgi` starts.
+
+```yaml
+afwfcgi:
+  http:
+    port: 8081
+    maps:
+      - { prefix: /apps, root: build/js/apps }
+      - { prefix: /docs, root: build/docs }
+      - { prefix: /tests-extra, root: src/afw/tests-extra }
+      - { prefix: /work, root: . }
+```
 ```
 
 ```yaml

@@ -1,0 +1,7 @@
+{
+    "title": "Firehose",
+    "defaultAdapterId": "model",
+    "extensions": [
+        "afw_curl"
+    ]
+}

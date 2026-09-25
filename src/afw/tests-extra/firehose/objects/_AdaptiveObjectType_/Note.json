@@ -1,0 +1,12 @@
+{
+    "objectType": "Note",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,
+    "propertyTypes": {
+        "title": { "dataType": "string" },
+        "body": { "dataType": "string" },
+        "personId": { "dataType": "string" }
+    }
+}
