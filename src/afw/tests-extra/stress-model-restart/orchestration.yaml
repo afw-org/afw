@@ -1,0 +1,50 @@
+# Restart adapter-model while other requests read through it.
+# The model service lives in the conf adapter (startup immediate), so
+# service_restart can load it again. adapter-afw is not touched.
+# Opt-in: afwdev test -T src/afw/tests-extra/stress-model-restart
+#
+# The leaf fails if afwfcgi exits. Request errors are counted.
+
+version: 1
+description: Restart adapter-model under concurrent reads
+host: afwfcgi
+afwfcgi:
+  threads: "50%"
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: read-model
+    sourceType: script
+    source: |
+      const o = get_object("model", "Demo", "seed");
+      assert(o.msg === "from-eval");
+      assert(o.tag === "soak");
+      return true;
+
+  - name: restart-model
+    sourceType: script
+    source: |
+      const svc = service_restart("adapter-model");
+      assert(svc.serviceId === "adapter-model");
+      return svc.status;
+
+  - name: stop-start-model
+    sourceType: script
+    source: |
+      service_stop("adapter-model");
+      const svc = service_start("adapter-model");
+      return svc.status;
+
+schedule:
+  - firehose:
+      duration_s: 30
+      concurrency: "100%"
+      clientProcesses: "50%"
+      fromTests: [read-model, restart-model, stop-start-model]
+      policy: random
+      seed: 1
+      stopOnError: false
