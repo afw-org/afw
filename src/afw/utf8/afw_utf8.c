@@ -155,11 +155,18 @@ afw_utf8_nfc(
             "ICU implementation restrict - len to large or negative", xctx);
     }
 
-    /* Do a fast check to determine if further normalization is required. */
+    /*
+     * Fast check for whether normalization is required. A byte
+     * below U+0080 is valid and already NFC, so it skips U8_NEXT.
+     */
     string = s;
     length = (int32_t)len;
     is_nfc = UNORM_YES;
     for (i = 0; i < length;) {
+        if ((unsigned char)string[i] < 0x80) {
+            i++;
+            continue;
+        }
         U8_NEXT(string, i, length, c);
 
         /* If codepoint is invalid ... */
@@ -441,6 +448,9 @@ impl_ks_kind(
 /*
  * End of a run of ASCII text. Stops at a non-ASCII octet, at stop
  * (ks passes '^'), or at a control that is not whitespace or EOL.
+ * Eight bytes of printable ASCII that are not stop advance together.
+ * A byte below U+0020, DEL, or a non-ASCII octet uses the scalar test
+ * so tab, LF, VT, FF, and CR still copy.
  */
 static afw_size_t
 impl_utf8_ascii_text_end(
@@ -449,8 +459,31 @@ impl_utf8_ascii_text_end(
     afw_size_t i,
     unsigned char stop)
 {
+    uint64_t stopw;
+
+    stopw = (uint64_t)stop * 0x0101010101010101ULL;
     while (i < len) {
         unsigned char c;
+        uint64_t w;
+        uint64_t x;
+        uint64_t t;
+
+        if (i + 8 <= len) {
+            memcpy(&w, s + i, 8);
+            x = w ^ 0x7F7F7F7F7F7F7F7FULL;
+            t = (w | 0x8080808080808080ULL) -
+                0x2020202020202020ULL;
+            if ((w & 0x8080808080808080ULL) == 0 &&
+                ((x - 0x0101010101010101ULL) & ~x &
+                    0x8080808080808080ULL) == 0 &&
+                (((w ^ stopw) - 0x0101010101010101ULL) &
+                    ~(w ^ stopw) & 0x8080808080808080ULL) == 0 &&
+                (~t & 0x8080808080808080ULL) == 0)
+            {
+                i += 8;
+                continue;
+            }
+        }
 
         c = (unsigned char)s[i];
         if (c >= 0x80 || c == stop) {
