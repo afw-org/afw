@@ -1,0 +1,12 @@
+{
+    "objectType": "Person",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,
+    "propertyTypes": {
+        "name": { "dataType": "string" },
+        "city": { "dataType": "string" },
+        "active": { "dataType": "boolean" }
+    }
+}

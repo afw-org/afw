@@ -1,0 +1,41 @@
+{
+    "modelId": "World",
+    "objectTypes": {
+        "Person": {
+            "mappedObjectType": "Person",
+            "onGetObject": "return current::useDefaultProcessing;",
+            "onAddObject": "return current::useDefaultProcessing;",
+            "onDeleteObject": "return current::useDefaultProcessing;",
+            "onReplaceObject": "return current::useDefaultProcessing;",
+            "propertyTypes": {
+                "name": { "dataType": "string", "mappedPropertyName": "name" },
+                "city": { "dataType": "string", "mappedPropertyName": "city" },
+                "active": { "dataType": "boolean", "mappedPropertyName": "active" }
+            }
+        },
+        "Note": {
+            "mappedObjectType": "Note",
+            "onGetObject": "return current::useDefaultProcessing;",
+            "onAddObject": "return current::useDefaultProcessing;",
+            "onDeleteObject": "return current::useDefaultProcessing;",
+            "onReplaceObject": "return current::useDefaultProcessing;",
+            "propertyTypes": {
+                "title": { "dataType": "string", "mappedPropertyName": "title" },
+                "body": { "dataType": "string", "mappedPropertyName": "body" },
+                "personId": { "dataType": "string", "mappedPropertyName": "personId" }
+            }
+        },
+        "Roster": {
+            "mappedObjectType": "Roster",
+            "onGetObject": "return current::useDefaultProcessing;",
+            "propertyTypes": {
+                "title": { "dataType": "string", "mappedPropertyName": "title" },
+                "members": {
+                    "dataType": "array",
+                    "dataTypeParameter": "string",
+                    "mappedPropertyName": "members"
+                }
+            }
+        }
+    }
+}
