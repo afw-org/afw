@@ -1,0 +1,51 @@
+# Restart a plain file adapter while other requests read through it.
+# Same shape as stress-model-restart, without a model or location adapter.
+# adapter-filebox is an immediate service in the conf adapter, so
+# service_restart can load it again. adapter-afw and adapter-conf are
+# not touched.
+# Opt-in: afwdev test -T src/afw/tests-extra/stress-file-restart
+#
+# The leaf fails if afwfcgi exits. Request errors are counted.
+
+version: 1
+description: Restart a file adapter under concurrent reads
+host: afwfcgi
+afwfcgi:
+  threads: "50%"
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: read-file
+    sourceType: script
+    source: |
+      const o = get_object("filebox", "Demo", "seed");
+      assert(o.msg === "from-file");
+      return true;
+
+  - name: restart-file
+    sourceType: script
+    source: |
+      const svc = service_restart("adapter-filebox");
+      assert(svc.serviceId === "adapter-filebox");
+      return svc.status;
+
+  - name: stop-start-file
+    sourceType: script
+    source: |
+      service_stop("adapter-filebox");
+      const svc = service_start("adapter-filebox");
+      return svc.status;
+
+schedule:
+  - firehose:
+      duration_s: 30
+      concurrency: "100%"
+      clientProcesses: "50%"
+      fromTests: [read-file, restart-file, stop-start-file]
+      policy: random
+      seed: 1
+      stopOnError: false
