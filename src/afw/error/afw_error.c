@@ -256,28 +256,65 @@ afw_error_set_vz(
 }
 
 
+/*
+ * Source-listing prefix. Same bytes as "%*zu", so the listing
+ * does not call snprintf on every line. A value wider than
+ * width is written in full.
+ */
+static afw_size_t
+impl_write_padded_size(
+    char *buf,
+    afw_size_t value,
+    int width)
+{
+    char rev[32];
+    char *p;
+    int n;
+    int pad;
+    afw_size_t v;
+
+    n = 0;
+    v = value;
+    do {
+        rev[n++] = (char)('0' + (int)(v % 10));
+        v /= 10;
+    } while (v != 0);
+
+    p = buf;
+    pad = width - n;
+    while (pad > 0) {
+        *p++ = ' ';
+        pad--;
+    }
+    while (n > 0) {
+        *p++ = rev[--n];
+    }
+    return (afw_size_t)(p - buf);
+}
+
+
+/*
+ * number_of_lines was already counted by the caller and sizes
+ * the line cell. This walk only prints the source.
+ */
 static void
 impl_write_source_lines(
     const afw_writer_t *w,
     const afw_utf8_t *source,
     afw_size_t error_line,
+    afw_size_t number_of_lines,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_size_t j, line;
     afw_size_t offset;
     afw_size_t run;
-    afw_size_t number_of_lines;
-    afw_size_t max_column_number;
     char buf2[(AFW_SIZE_T_MAX_BUFFER * 3) + 8];
     int offset_cell_octets;
     int line_cell_octets;
     afw_boolean_t new_line;
     const afw_utf8_octet_t *s;
 
-    afw_utf8_line_count_and_max_column(
-        &number_of_lines, &max_column_number, source, 4, xctx);
-    
     offset_cell_octets =
         afw_number_bytes_needed_size_t(source->len);
 
@@ -298,13 +335,16 @@ impl_write_source_lines(
             continue;
         }
         if (new_line) {
+            afw_size_t prefix;
+
             new_line = false;
-            snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                "%*" AFW_SIZE_T_FMT_NO_PERCENT,
-                offset_cell_octets, offset,
-                line_cell_octets, line);
-            afw_writer_write_z(w, buf2, xctx);
+            prefix = impl_write_padded_size(
+                buf2, offset, offset_cell_octets);
+            buf2[prefix++] = ' ';
+            buf2[prefix++] = ' ';
+            prefix += impl_write_padded_size(
+                buf2 + prefix, line, line_cell_octets);
+            afw_writer_write(w, buf2, prefix, xctx);
             if (error_line == line) {
                 afw_writer_write_z(w, " > ", xctx);
             }
@@ -382,11 +422,15 @@ impl_evaluation_backtrace(
         caret_on_error = afw_utf8_line_column_of_offset(
             &error_line, &error_column,
             error->parser_source, error->parser_cursor, 4, xctx);
+        afw_utf8_line_count_and_max_column(
+            &number_of_lines, &max_column_number,
+            error->parser_source, 4, xctx);
         afw_writer_write_z(w, "---Compile error:", xctx);
         afw_writer_write(w, error->message_z, strlen(error->message_z), xctx);
         afw_writer_write_eol(w, xctx);
         afw_writer_write_eol(w, xctx);
-        impl_write_source_lines(w, error->parser_source, error_line, p, xctx);
+        impl_write_source_lines(w, error->parser_source, error_line,
+            number_of_lines, p, xctx);
         afw_writer_write_eol(w, xctx);      
     }
 
@@ -529,7 +573,7 @@ impl_evaluation_backtrace(
                 impl_write_source_lines(w,
                     info.contextual->compiled_value->full_source,
                     caret_on_error ? error_line : 0,
-                    p, xctx);
+                    number_of_lines, p, xctx);
 
                 afw_writer_write_eol(w, xctx);
                 afw_writer_write_z(w, "---Evaluation Backtrace", xctx);

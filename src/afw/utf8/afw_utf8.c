@@ -155,11 +155,18 @@ afw_utf8_nfc(
             "ICU implementation restrict - len to large or negative", xctx);
     }
 
-    /* Do a fast check to determine if further normalization is required. */
+    /*
+     * Bytes below U+0080 are valid and already NFC, so they skip
+     * U8_NEXT. The quick check below U+0300 is unchanged.
+     */
     string = s;
     length = (int32_t)len;
     is_nfc = UNORM_YES;
     for (i = 0; i < length;) {
+        if ((unsigned char)string[i] < 0x80) {
+            i++;
+            continue;
+        }
         U8_NEXT(string, i, length, c);
 
         /* If codepoint is invalid ... */
@@ -439,8 +446,21 @@ impl_ks_kind(
 
 
 /*
- * End of a run of ASCII text. Stops at a non-ASCII octet, at stop
- * (ks passes '^'), or at a control that is not whitespace or EOL.
+ * True if any octet of _w is 0. The high bit of each octet is
+ * clear. _w is evaluated more than once.
+ */
+#define IMPL_ASCII8_HAS_ZERO(_w) \
+    ((((_w) - 0x0101010101010101ULL) & ~(_w) & \
+        0x8080808080808080ULL) != 0)
+
+/*
+ * End of a copy run. Stops at a non-ASCII octet, at stop (ks
+ * passes '^'), or at a control that is not whitespace or EOL.
+ *
+ * Eight octets advance together when each is printable ASCII
+ * and not stop: no high bit, not DEL, not stop, and not below
+ * U+0020. Any other octet uses the scalar loop, which still
+ * copies tab, LF, VT, FF, and CR.
  */
 static afw_size_t
 impl_utf8_ascii_text_end(
@@ -449,8 +469,32 @@ impl_utf8_ascii_text_end(
     afw_size_t i,
     unsigned char stop)
 {
+    uint64_t stopw;
+
+    stopw = (uint64_t)stop * 0x0101010101010101ULL;
     while (i < len) {
         unsigned char c;
+        uint64_t w;
+        uint64_t below;
+
+        if (i + 8 <= len) {
+            memcpy(&w, s + i, 8);
+            /*
+             * High bit clear in an octet of below means that
+             * octet is below U+0020.
+             */
+            below = (w | 0x8080808080808080ULL) -
+                0x2020202020202020ULL;
+            if ((w & 0x8080808080808080ULL) == 0 &&
+                !IMPL_ASCII8_HAS_ZERO(
+                    w ^ 0x7F7F7F7F7F7F7F7FULL) &&
+                !IMPL_ASCII8_HAS_ZERO(w ^ stopw) &&
+                (~below & 0x8080808080808080ULL) == 0)
+            {
+                i += 8;
+                continue;
+            }
+        }
 
         c = (unsigned char)s[i];
         if (c >= 0x80 || c == stop) {
@@ -2597,7 +2641,11 @@ afw_utf8_z_source_file(const afw_utf8_z_t *source_z) {
 
 
 
-/* Determine the line and column of an offset in a string. */
+/*
+ * Same line and column as a scan from the start of the string.
+ * Breaks are '\n' only. memchr finds that line, then the tab, CR,
+ * and lead-byte column rules run only on it.
+ */
 /** @todo change this to also return code point offset. */
 AFW_DEFINE(afw_boolean_t)
 afw_utf8_line_column_of_offset(
@@ -2608,48 +2656,51 @@ afw_utf8_line_column_of_offset(
     int tab_size,
     afw_xctx_t *xctx)
 {
+    const afw_octet_t *line;
+    const afw_octet_t *nl;
+    const afw_octet_t *limit;
     afw_size_t newlines;
     afw_size_t line_offset;
-    const afw_octet_t *c;
-    const afw_octet_t *end;
-    afw_boolean_t result;
+    afw_size_t n;
 
-    for (
-        newlines = line_offset = 0,
-        c =  (const afw_octet_t *)s->s,
-        end = c + (offset <= s->len ? offset : s->len);
-        c < end;
-        c++)
-    {
-        if (*c == '\n') {
-            newlines++;
-            line_offset = 0;
+    n = (offset <= s->len) ? offset : s->len;
+    line = (const afw_octet_t *)s->s;
+    limit = line + n;
+    newlines = 0;
+    while (line < limit) {
+        nl = memchr(line, '\n', (size_t)(limit - line));
+        if (!nl) {
+            break;
         }
-        else if (*c == '\t') {
-            line_offset = (line_offset + tab_size) % tab_size * tab_size;
+        newlines++;
+        line = (const afw_octet_t *)nl + 1;
+    }
+
+    line_offset = 0;
+    for (; line < limit; line++) {
+        if (*line == '\t') {
+            line_offset =
+                (line_offset + tab_size) % tab_size * tab_size;
         }
-        else if ((*c < 128 || *c >= 0b11000000) && *c != '\r') {
+        else if ((*line < 128 || *line >= 0b11000000) &&
+            *line != '\r')
+        {
             line_offset++;
         }
     }
 
-    if (newlines == 0) {
-        *line_number = 1;
-        *column_number = line_offset + 1;
-        result = false;
-    }
-    else {
-        *line_number = newlines + 1;
-        *column_number = line_offset + 1;
-        result = true;
-    }
-
-    return result;
+    *line_number = newlines + 1;
+    *column_number = line_offset + 1;
+    return newlines != 0;
 }
 
 
 
-/* Determine the line and column of an offset in a string. */
+/*
+ * Same line count and max column as afw_utf8_next_code_point.
+ * ASCII is counted here. CR, LF, U+2028, and U+2029 end a line.
+ * Tab adds tab_size. An invalid sequence stops the count.
+ */
 /** @todo change this to also return octet offset. */
 AFW_DEFINE(void)
 afw_utf8_line_count_and_max_column(
@@ -2659,32 +2710,66 @@ afw_utf8_line_count_and_max_column(
     int tab_size,
     afw_xctx_t *xctx)
 {
+    const afw_utf8_octet_t *c;
+    const afw_utf8_octet_t *end;
+    afw_size_t lines;
     afw_size_t column_number;
+    afw_size_t max_column;
+    afw_size_t used;
     afw_code_point_t cp;
-    afw_size_t offset;
+    unsigned char o;
 
-    *number_of_lines = 1;
-    *max_column_number = 0;
+    /*
+     * afw_utf8_next_code_point throws when len does not fit in
+     * int32, including on an all-ASCII string. Throw first.
+     */
+    if (s->len > (afw_size_t)INT32_MAX) {
+        afw_safe_cast_size_to_int32(s->len, xctx);
+    }
 
-    for (offset = 0, column_number=1;;) {
-        cp = afw_utf8_next_code_point(s->s, &offset, s->len, xctx);
-        if (cp < 0) {
-            break;
-        }
-        if (cp == '\t') {
-            column_number += tab_size;
-        }
-        else if (afw_code_point_is_eol(cp)) {
-            *number_of_lines += 1;
-            column_number = 1;
+    lines = 1;
+    max_column = 0;
+    column_number = 1;
+    c = s->s;
+    end = c + s->len;
+
+    while (c < end) {
+        o = (unsigned char)*c;
+        if (o < 0x80) {
+            c++;
+            if (o == '\t') {
+                column_number += (afw_size_t)tab_size;
+            }
+            else if (o == '\n' || o == '\r') {
+                lines++;
+                column_number = 1;
+            }
+            else {
+                column_number++;
+            }
         }
         else {
-            column_number++;
+            used = (afw_size_t)(c - s->s);
+            cp = afw_utf8_next_code_point(s->s, &used, s->len, xctx);
+            if (cp < 0) {
+                break;
+            }
+            c = s->s + used;
+            if (cp == 0x2028 || cp == 0x2029) {
+                lines++;
+                column_number = 1;
+            }
+            else {
+                column_number++;
+            }
         }
-        if (*max_column_number < column_number) {
-            *max_column_number = column_number;
+        if (max_column < column_number) {
+            max_column = column_number;
         }
     }
+
+    *number_of_lines = lines;
+    *max_column_number = max_column;
 }
 
 
