@@ -160,6 +160,8 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
 
         before_all(root, testGroupConfig, testEnvironment)
             
+        # Files in one group share one work directory and one conf.
+        # -j runs groups in parallel. It must not run these files together.
         for test in tests:
             before_each(root, testGroupConfig, testEnvironment)
             
