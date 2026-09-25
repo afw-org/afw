@@ -8,7 +8,7 @@
 # until issue #382 is fixed.
 
 version: 1
-description: Busy afwfcgi with file data, one model, and the afw catalog
+description: Busy afwfcgi with file, model, lmdb, vfs, and the afw catalog
 host: afwfcgi
 afwfcgi:
   threads: "50%"
@@ -59,6 +59,21 @@ tests:
     source: <<< tests/catalog.as
     expect: true
 
+  - name: churn-lmdb
+    sourceType: script
+    source: <<< tests/churn_lmdb.as
+    expect: true
+
+  - name: read-vfs
+    sourceType: script
+    source: <<< tests/read_vfs.as
+    expect: true
+
+  - name: churn-vfs
+    sourceType: script
+    source: <<< tests/churn_vfs.as
+    expect: true
+
 schedule:
   - sequential:
       - generate
@@ -74,6 +89,9 @@ schedule:
         - churn-note
         - churn-model
         - catalog
+        - churn-lmdb
+        - read-vfs
+        - churn-vfs
       policy: random
       seed: 1
       stopOnError: false

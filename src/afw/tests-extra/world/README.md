@@ -10,4 +10,4 @@ afwdev test -T src/afw/tests-extra/world
 
 For a longer run, raise `duration_s` and `timeout_s` in `orchestration.yaml`. `timeout_s` must stay above `duration_s`.
 
-Now: file adapter `data`, model `model` mapped onto it, and the built-in `afw` catalog. `curl` and `ldap` wait for a peer. lmdb and vfs are next. Do not put `adapter-model` stop/restart in this firehose until #382 is fixed.
+Now: file adapter `data`, model `model` mapped onto it, lmdb adapter `lmdb`, vfs adapter `vfs`, and the built-in `afw` catalog. `curl` and `ldap` wait for a peer. Do not put `adapter-model` stop/restart in this firehose until #382 is fixed.
