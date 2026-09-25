@@ -261,23 +261,19 @@ impl_write_source_lines(
     const afw_writer_t *w,
     const afw_utf8_t *source,
     afw_size_t error_line,
+    afw_size_t number_of_lines,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_size_t j, line;
     afw_size_t offset;
     afw_size_t run;
-    afw_size_t number_of_lines;
-    afw_size_t max_column_number;
     char buf2[(AFW_SIZE_T_MAX_BUFFER * 3) + 8];
     int offset_cell_octets;
     int line_cell_octets;
     afw_boolean_t new_line;
     const afw_utf8_octet_t *s;
 
-    afw_utf8_line_count_and_max_column(
-        &number_of_lines, &max_column_number, source, 4, xctx);
-    
     offset_cell_octets =
         afw_number_bytes_needed_size_t(source->len);
 
@@ -382,11 +378,15 @@ impl_evaluation_backtrace(
         caret_on_error = afw_utf8_line_column_of_offset(
             &error_line, &error_column,
             error->parser_source, error->parser_cursor, 4, xctx);
+        afw_utf8_line_count_and_max_column(
+            &number_of_lines, &max_column_number,
+            error->parser_source, 4, xctx);
         afw_writer_write_z(w, "---Compile error:", xctx);
         afw_writer_write(w, error->message_z, strlen(error->message_z), xctx);
         afw_writer_write_eol(w, xctx);
         afw_writer_write_eol(w, xctx);
-        impl_write_source_lines(w, error->parser_source, error_line, p, xctx);
+        impl_write_source_lines(w, error->parser_source, error_line,
+            number_of_lines, p, xctx);
         afw_writer_write_eol(w, xctx);      
     }
 
@@ -529,7 +529,7 @@ impl_evaluation_backtrace(
                 impl_write_source_lines(w,
                     info.contextual->compiled_value->full_source,
                     caret_on_error ? error_line : 0,
-                    p, xctx);
+                    number_of_lines, p, xctx);
 
                 afw_writer_write_eol(w, xctx);
                 afw_writer_write_z(w, "---Evaluation Backtrace", xctx);

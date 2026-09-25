@@ -2597,6 +2597,10 @@ afw_utf8_z_source_file(const afw_utf8_z_t *source_z) {
 
 
 
+/*
+ * Line breaks are '\n' only. memchr finds the line that contains
+ * the offset; tab, CR, and lead-byte column rules run on that line.
+ */
 /* Determine the line and column of an offset in a string. */
 /** @todo change this to also return code point offset. */
 AFW_DEFINE(afw_boolean_t)
@@ -2608,48 +2612,54 @@ afw_utf8_line_column_of_offset(
     int tab_size,
     afw_xctx_t *xctx)
 {
+    const afw_octet_t *line;
+    const afw_octet_t *nl;
+    const afw_octet_t *limit;
     afw_size_t newlines;
     afw_size_t line_offset;
-    const afw_octet_t *c;
-    const afw_octet_t *end;
-    afw_boolean_t result;
+    afw_size_t n;
 
-    for (
-        newlines = line_offset = 0,
-        c =  (const afw_octet_t *)s->s,
-        end = c + (offset <= s->len ? offset : s->len);
-        c < end;
-        c++)
-    {
-        if (*c == '\n') {
-            newlines++;
-            line_offset = 0;
+    (void)xctx;
+
+    n = (offset <= s->len) ? offset : s->len;
+    line = (const afw_octet_t *)s->s;
+    limit = line + n;
+    newlines = 0;
+    while (line < limit) {
+        nl = memchr(line, '\n', (size_t)(limit - line));
+        if (!nl) {
+            break;
         }
-        else if (*c == '\t') {
-            line_offset = (line_offset + tab_size) % tab_size * tab_size;
+        newlines++;
+        line = (const afw_octet_t *)nl + 1;
+    }
+
+    line_offset = 0;
+    for (; line < limit; line++) {
+        if (*line == '\t') {
+            line_offset =
+                (line_offset + tab_size) % tab_size * tab_size;
         }
-        else if ((*c < 128 || *c >= 0b11000000) && *c != '\r') {
+        else if ((*line < 128 || *line >= 0b11000000) &&
+            *line != '\r')
+        {
             line_offset++;
         }
     }
 
-    if (newlines == 0) {
-        *line_number = 1;
-        *column_number = line_offset + 1;
-        result = false;
-    }
-    else {
-        *line_number = newlines + 1;
-        *column_number = line_offset + 1;
-        result = true;
-    }
-
-    return result;
+    *line_number = newlines + 1;
+    *column_number = line_offset + 1;
+    return newlines != 0;
 }
 
 
 
-/* Determine the line and column of an offset in a string. */
+/*
+ * Same answers as walking afw_utf8_next_code_point. ASCII stays
+ * here. CR, LF, U+2028, and U+2029 end a line. Tab adds tab_size.
+ * An invalid sequence stops the count.
+ */
+/* Determine the line count and maximum column in a string. */
 /** @todo change this to also return octet offset. */
 AFW_DEFINE(void)
 afw_utf8_line_count_and_max_column(
@@ -2659,32 +2669,66 @@ afw_utf8_line_count_and_max_column(
     int tab_size,
     afw_xctx_t *xctx)
 {
+    const afw_utf8_octet_t *c;
+    const afw_utf8_octet_t *end;
+    afw_size_t lines;
     afw_size_t column_number;
+    afw_size_t max_column;
+    afw_size_t used;
     afw_code_point_t cp;
-    afw_size_t offset;
+    unsigned char o;
 
-    *number_of_lines = 1;
-    *max_column_number = 0;
+    /*
+     * afw_utf8_next_code_point throws when len does not fit in
+     * int32. Do that before counting, including for an ASCII string.
+     */
+    if (s->len > (afw_size_t)INT32_MAX) {
+        afw_safe_cast_size_to_int32(s->len, xctx);
+    }
 
-    for (offset = 0, column_number=1;;) {
-        cp = afw_utf8_next_code_point(s->s, &offset, s->len, xctx);
-        if (cp < 0) {
-            break;
-        }
-        if (cp == '\t') {
-            column_number += tab_size;
-        }
-        else if (afw_code_point_is_eol(cp)) {
-            *number_of_lines += 1;
-            column_number = 1;
+    lines = 1;
+    max_column = 0;
+    column_number = 1;
+    c = s->s;
+    end = c + s->len;
+
+    while (c < end) {
+        o = (unsigned char)*c;
+        if (o < 0x80) {
+            c++;
+            if (o == '\t') {
+                column_number += (afw_size_t)tab_size;
+            }
+            else if (o == '\n' || o == '\r') {
+                lines++;
+                column_number = 1;
+            }
+            else {
+                column_number++;
+            }
         }
         else {
-            column_number++;
+            used = (afw_size_t)(c - s->s);
+            cp = afw_utf8_next_code_point(s->s, &used, s->len, xctx);
+            if (cp < 0) {
+                break;
+            }
+            c = s->s + used;
+            if (cp == 0x2028 || cp == 0x2029) {
+                lines++;
+                column_number = 1;
+            }
+            else {
+                column_number++;
+            }
         }
-        if (*max_column_number < column_number) {
-            *max_column_number = column_number;
+        if (max_column < column_number) {
+            max_column = column_number;
         }
     }
+
+    *number_of_lines = lines;
+    *max_column_number = max_column;
 }
 
 
