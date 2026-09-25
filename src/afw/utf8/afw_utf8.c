@@ -156,8 +156,8 @@ afw_utf8_nfc(
     }
 
     /*
-     * Fast check for whether normalization is required. A byte
-     * below U+0080 is valid and already NFC, so it skips U8_NEXT.
+     * Bytes below U+0080 are valid and already NFC, so they skip
+     * U8_NEXT. The quick check below U+0300 is unchanged.
      */
     string = s;
     length = (int32_t)len;
@@ -446,11 +446,21 @@ impl_ks_kind(
 
 
 /*
- * End of a run of ASCII text. Stops at a non-ASCII octet, at stop
- * (ks passes '^'), or at a control that is not whitespace or EOL.
- * Eight bytes of printable ASCII that are not stop advance together.
- * A byte below U+0020, DEL, or a non-ASCII octet uses the scalar test
- * so tab, LF, VT, FF, and CR still copy.
+ * True if any octet of _w is 0. The high bit of each octet is
+ * clear. _w is evaluated more than once.
+ */
+#define IMPL_ASCII8_HAS_ZERO(_w) \
+    ((((_w) - 0x0101010101010101ULL) & ~(_w) & \
+        0x8080808080808080ULL) != 0)
+
+/*
+ * End of a copy run. Stops at a non-ASCII octet, at stop (ks
+ * passes '^'), or at a control that is not whitespace or EOL.
+ *
+ * Eight octets advance together when each is printable ASCII
+ * and not stop: no high bit, not DEL, not stop, and not below
+ * U+0020. Any other octet uses the scalar loop, which still
+ * copies tab, LF, VT, FF, and CR.
  */
 static afw_size_t
 impl_utf8_ascii_text_end(
@@ -465,20 +475,21 @@ impl_utf8_ascii_text_end(
     while (i < len) {
         unsigned char c;
         uint64_t w;
-        uint64_t x;
-        uint64_t t;
+        uint64_t below;
 
         if (i + 8 <= len) {
             memcpy(&w, s + i, 8);
-            x = w ^ 0x7F7F7F7F7F7F7F7FULL;
-            t = (w | 0x8080808080808080ULL) -
+            /*
+             * High bit clear in an octet of below means that
+             * octet is below U+0020.
+             */
+            below = (w | 0x8080808080808080ULL) -
                 0x2020202020202020ULL;
             if ((w & 0x8080808080808080ULL) == 0 &&
-                ((x - 0x0101010101010101ULL) & ~x &
-                    0x8080808080808080ULL) == 0 &&
-                (((w ^ stopw) - 0x0101010101010101ULL) &
-                    ~(w ^ stopw) & 0x8080808080808080ULL) == 0 &&
-                (~t & 0x8080808080808080ULL) == 0)
+                !IMPL_ASCII8_HAS_ZERO(
+                    w ^ 0x7F7F7F7F7F7F7F7FULL) &&
+                !IMPL_ASCII8_HAS_ZERO(w ^ stopw) &&
+                (~below & 0x8080808080808080ULL) == 0)
             {
                 i += 8;
                 continue;
@@ -2631,10 +2642,10 @@ afw_utf8_z_source_file(const afw_utf8_z_t *source_z) {
 
 
 /*
- * Line breaks are '\n' only. memchr finds the line that contains
- * the offset; tab, CR, and lead-byte column rules run on that line.
+ * Same line and column as a scan from the start of the string.
+ * Breaks are '\n' only. memchr finds that line, then the tab, CR,
+ * and lead-byte column rules run only on it.
  */
-/* Determine the line and column of an offset in a string. */
 /** @todo change this to also return code point offset. */
 AFW_DEFINE(afw_boolean_t)
 afw_utf8_line_column_of_offset(
@@ -2651,8 +2662,6 @@ afw_utf8_line_column_of_offset(
     afw_size_t newlines;
     afw_size_t line_offset;
     afw_size_t n;
-
-    (void)xctx;
 
     n = (offset <= s->len) ? offset : s->len;
     line = (const afw_octet_t *)s->s;
@@ -2688,11 +2697,10 @@ afw_utf8_line_column_of_offset(
 
 
 /*
- * Same answers as walking afw_utf8_next_code_point. ASCII stays
- * here. CR, LF, U+2028, and U+2029 end a line. Tab adds tab_size.
- * An invalid sequence stops the count.
+ * Same line count and max column as afw_utf8_next_code_point.
+ * ASCII is counted here. CR, LF, U+2028, and U+2029 end a line.
+ * Tab adds tab_size. An invalid sequence stops the count.
  */
-/* Determine the line count and maximum column in a string. */
 /** @todo change this to also return octet offset. */
 AFW_DEFINE(void)
 afw_utf8_line_count_and_max_column(
@@ -2713,7 +2721,7 @@ afw_utf8_line_count_and_max_column(
 
     /*
      * afw_utf8_next_code_point throws when len does not fit in
-     * int32. Do that before counting, including for an ASCII string.
+     * int32, including on an all-ASCII string. Throw first.
      */
     if (s->len > (afw_size_t)INT32_MAX) {
         afw_safe_cast_size_to_int32(s->len, xctx);

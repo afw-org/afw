@@ -256,6 +256,47 @@ afw_error_set_vz(
 }
 
 
+/*
+ * Source-listing prefix. Same bytes as "%*zu", so the listing
+ * does not call snprintf on every line. A value wider than
+ * width is written in full.
+ */
+static afw_size_t
+impl_write_padded_size(
+    char *buf,
+    afw_size_t value,
+    int width)
+{
+    char rev[32];
+    char *p;
+    int n;
+    int pad;
+    afw_size_t v;
+
+    n = 0;
+    v = value;
+    do {
+        rev[n++] = (char)('0' + (int)(v % 10));
+        v /= 10;
+    } while (v != 0);
+
+    p = buf;
+    pad = width - n;
+    while (pad > 0) {
+        *p++ = ' ';
+        pad--;
+    }
+    while (n > 0) {
+        *p++ = rev[--n];
+    }
+    return (afw_size_t)(p - buf);
+}
+
+
+/*
+ * number_of_lines was already counted by the caller and sizes
+ * the line cell. This walk only prints the source.
+ */
 static void
 impl_write_source_lines(
     const afw_writer_t *w,
@@ -294,13 +335,16 @@ impl_write_source_lines(
             continue;
         }
         if (new_line) {
+            afw_size_t prefix;
+
             new_line = false;
-            snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                "%*" AFW_SIZE_T_FMT_NO_PERCENT,
-                offset_cell_octets, offset,
-                line_cell_octets, line);
-            afw_writer_write_z(w, buf2, xctx);
+            prefix = impl_write_padded_size(
+                buf2, offset, offset_cell_octets);
+            buf2[prefix++] = ' ';
+            buf2[prefix++] = ' ';
+            prefix += impl_write_padded_size(
+                buf2 + prefix, line, line_cell_octets);
+            afw_writer_write(w, buf2, prefix, xctx);
             if (error_line == line) {
                 afw_writer_write_z(w, " > ", xctx);
             }
