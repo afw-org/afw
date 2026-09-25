@@ -8,7 +8,7 @@
 # until issue #382 is fixed.
 
 version: 1
-description: Busy afwfcgi with file, model, lmdb, vfs, and the afw catalog
+description: Busy afwfcgi with file, model, lmdb, vfs, ldap, and the afw catalog
 host: afwfcgi
 afwfcgi:
   threads: "50%"
@@ -74,6 +74,11 @@ tests:
     source: <<< tests/churn_vfs.as
     expect: true
 
+  - name: read-ldap
+    sourceType: script
+    source: <<< tests/read_ldap.as
+    expect: true
+
 schedule:
   - sequential:
       - generate
@@ -92,6 +97,7 @@ schedule:
         - churn-lmdb
         - read-vfs
         - churn-vfs
+        - read-ldap
       policy: random
       seed: 1
       stopOnError: false
