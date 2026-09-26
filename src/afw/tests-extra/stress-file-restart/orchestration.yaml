@@ -6,13 +6,15 @@
 # Opt-in: afwdev test -T src/afw/tests-extra/stress-file-restart
 #
 # The leaf fails if afwfcgi exits. Request errors are counted.
+# Counts are absolute. A percent tops out at one per CPU, which left
+# this leaf near idle on a 32-core machine.
 
 version: 1
 description: Restart a file adapter under concurrent reads
 host: afwfcgi
 afwfcgi:
-  threads: "50%"
-timeout_s: 90
+  threads: 96
+timeout_s: 240
 
 feed:
   kind: action
@@ -42,9 +44,9 @@ tests:
 
 schedule:
   - firehose:
-      duration_s: 30
-      concurrency: "100%"
-      clientProcesses: "50%"
+      duration_s: 180
+      concurrency: 192
+      clientProcesses: 32
       fromTests: [read-file, restart-file, stop-start-file]
       policy: random
       seed: 1
