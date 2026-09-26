@@ -13,8 +13,9 @@
  */
 export const constructLanguageConfiguration = (monaco) => ({
 
-    wordPattern: /(-?\d*\.\d\w*)|([^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g,
-    
+    /* Allow a qualifier::name reference (e.g. current::foo) to be treated as one word. */
+    wordPattern: /(-?\d*\.\d\w*)|([^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+(?:::[^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)*)/g,
+
     comments: {
         lineComment: '//',
         blockComment: ['/*', '*/']
@@ -72,6 +73,15 @@ export const constructLanguageConfiguration = (monaco) => ({
         { open: "/**", close: " */", notIn: ["string"] }
     ],
 
+    surroundingPairs: [
+        { open: '{', close: '}' },
+        { open: '[', close: ']' },
+        { open: '(', close: ')' },
+        { open: '"', close: '"' },
+        { open: '\'', close: '\'' },
+        { open: '`', close: '`' },
+    ],
+
     folding: {
         markers: {
             start: new RegExp("^\\s*//\\s*#?region\\b"),
@@ -98,37 +108,62 @@ export const monarchLanguage = {
         { token: 'delimiter.angle', open: '<', close: '>' }
     ],
 
+    /*
+     * Reserved words per afw_compile_lexical.c ReservedWords: statement /
+     * clause keywords, predefined const literals ('null' is listed here
+     * rather than typeKeywords so it colors consistently with true/false/
+     * undefined), plus words that are reserved but not implemented as
+     * syntax today (they still cannot be used as identifiers). 'of' and
+     * 'using' are contextual (for-of, switch-using) and not reserved, but
+     * are included for highlighting since they are structural.
+     */
     keywords: [
-        "break", "catch", "const", "continue", "do", "else", "false", "for", "foreach", 
-        "function", "if", "let", "of", "return", "throw", "true", "try", "undefined", "while"
+        "break", "case", "catch", "const", "continue", "default", "do",
+        "else", "extends", "false", "finally", "for", "function", "if",
+        "interface", "let", "null", "of", "return", "switch", "throw",
+        "true", "try", "type", "undefined", "using", "void", "while",
+        // reserved but not implemented as syntax (afw_compile_lexical.c UnusedButReservedWords)
+        "as", "async", "await", "class", "delete", "export", "from",
+        "import", "in", "instanceof", "super", "this", "typeof", "var", "with",
     ],
 
-    /*! \fixme these should be fetched from dataTypes? */
+    // Adaptive data type ids valid in Type position (afw_compile_parse_expression.c DataType).
+    // 'function' and 'void' are DataType names too, but are left out here (as
+    // 'null' already is) since they collide with 'keywords' below and are far
+    // more commonly typed as the statement/lambda keyword and unary operator,
+    // respectively, than as a bare type annotation - cases checks typeKeywords
+    // first, so keeping them here would mis-tag every 'function'/'void' use.
     typeKeywords: [
-        "anyUri", "base64Binary", "boolean", "date", "dateTime", 
-        "dayTimeDuration", "dnsName", "double", "hexBinary","ia5String", 
-        "integer", "ipAddress", "array", "null", "object", "objectId",
-        "objectPath", "password", "rfc822Name", "string", "template", "time", 
-        "x500Name", "xPathExpression", "yearMonthDuration",
+        "any", "anyURI", "array", "base64Binary", "boolean", "date", "dateTime",
+        "dayTimeDuration", "dnsName", "double", "expression",
+        "hexBinary", "ia5String", "integer", "ipAddress", "object", "objectId",
+        "objectPath", "password", "regexp", "rfc822Name", "script", "string",
+        "template", "time", "unevaluated", "unknown", "x500Name",
+        "xpathExpression", "yearMonthDuration",
+    ],
+
+    // Predefined numeric const literals (afw_compile_lexical.c); not identifiers.
+    numberKeywords: [
+        "Infinity", "INF", "NaN",
     ],
 
     operators: [
         "=", ">", "<", ":", "==", "===", "<=", ">=", "!=", "!==",
-        "+", "-", "*", "**", "/", "%", "..", "&&", "||",
-        "+=", "-=", "*=", "**=", "..=", "%=", "/=", "&&=", "||=",
-        "->"
+        "+", "-", "*", "**", "/", "%", "&", "|", "&&", "||", "??",
+        "+=", "-=", "*=", "**=", "%=", "/=", "&&=", "||=", "??=",
+        "++", "--", "->", "?->", "?", "=>", "..."
     ],
 
     // we include these common regular expressions
     symbols: /[=><!~?:&|+\-*\/\^%]+/,
-    escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
-    digits: /\d+(_+\d+)*/,
-    octaldigits: /[0-7]+(_+[0-7]+)*/,
-    binarydigits: /[0-1]+(_+[0-1]+)*/,
-    hexdigits: /[[0-9a-fA-F]+(_+[0-9a-fA-F]+)*/,
-
-    regexpctl: /[(){}\[\]\$\^|\-*+?\.]/,
-    regexpesc: /\\(?:[bBdDfnrstvwWn0\\\/]|@regexpctl|c[A-Z]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4})/,
+    // Char escapes per afw_compile_lexical.c: known short forms + \xHH (2 hex
+    // digits) + \uXXXX or \u{H+}. Any other backslash + non-digit is a valid
+    // NonEscapeSequence (identity escape, e.g. \A -> A); backslash + 1-9 is invalid.
+    escapes: /\\(?:[bfnrtv0\\"'`\/]|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{[0-9A-Fa-f]+\})/,
+    digits: /\d+/,
+    octaldigits: /[0-7]+/,
+    binarydigits: /[0-1]+/,
+    hexdigits: /[0-9a-fA-F]+/,
 
     tokenizer: {
         root: [
@@ -140,26 +175,37 @@ export const monarchLanguage = {
             // identifiers and keywords
             [/[a-z_$][\w]*(::)?[\w$]*/, {
                 cases: {
+                    '@numberKeywords': 'number',
                     '@typeKeywords': 'type.identifier',
                     '@keywords': 'keyword',
                     '@default': 'identifier'
                 }
             }],
-            [/[A-Z][\w\$]*/, 'type.identifier'],  // to show identifier names nicely
-            [/[A-Z][\w\$]*/, 'identifier'],
+            [/[A-Z][\w\$]*/, {
+                cases: {
+                    '@numberKeywords': 'number',
+                    '@default': 'type.identifier'
+                }
+            }],
 
-            // whitespace
+            // whitespace (also claims the '#!...' shebang line, so it must come
+            // before the generic pound-identifier rules below)
             { include: '@whitespace' },
 
-            // regular expression: ensure it is terminated before beginning (otherwise it is an operator)
-            [/\/(?=([^\\\/]|\\.)+\/([gimsuy]*)(\s*)(\.|;|\/|,|\)|\]|\}|$))/, { token: 'regexp', bracket: '@open', next: '@regexp' }],
+            // compiler-internal / pragma pound-identifiers: #compile, #pi, #block(...), etc.
+            // (afw_compile_parse_compiler_internal.c, afw_compile_parse_pragma.c)
+            [/#\{/, { token: 'delimiter.bracket', next: '@bracketCounting' }],
+            [/#[a-zA-Z_$][\w$]*/, 'annotation'],
+            [/#/, 'delimiter'],
 
             // delimiters and operators
             [/[()\[\]]/, '@brackets'],
             [/[<>](?!@symbols)/, '@brackets'],
             [/!(?=([^=]|$))/, 'delimiter'],
+            [/\?\./, 'delimiter'],
+            [/\.\.\./, 'delimiter'],
             [
-                /@symbols/, 
+                /@symbols/,
                 {
                     cases: {
                         '@operators': 'delimiter',
@@ -168,13 +214,15 @@ export const monarchLanguage = {
                 }
             ],
 
-            // numbers
-            [/(@digits)[eE]([\-+]?(@digits))?/, 'number.float'],
-            [/(@digits)\.(@digits)([eE][\-+]?(@digits))?/, 'number.float'],
-            [/0[xX](@hexdigits)n?/, 'number.hex'],
-            [/0[oO]?(@octaldigits)n?/, 'number.octal'],
-            [/0[bB](@binarydigits)n?/, 'number.binary'],
-            [/(@digits)n?/, 'number'],
+            // numbers (afw_compile_lexical.c: no digit separators, no BigInt
+            // suffix; octal/hex/binary require an explicit 0o/0x/0b prefix)
+            [/(@digits)\.(@digits)?([eE][\-+]?(@digits))?/, 'number.float'],
+            [/\.(@digits)([eE][\-+]?(@digits))?/, 'number.float'],
+            [/(@digits)[eE][\-+]?(@digits)/, 'number.float'],
+            [/0[xX](@hexdigits)/, 'number.hex'],
+            [/0[oO](@octaldigits)/, 'number.octal'],
+            [/0[bB](@binarydigits)/, 'number.binary'],
+            [/(@digits)/, 'number'],
 
             // delimiter: after number because of .\d floats
             [/[;,.]/, 'delimiter'],
@@ -197,7 +245,6 @@ export const monarchLanguage = {
 
         comment: [
             [/[^\/*]+/, 'comment'],
-            [/^#!.*/, 'comment'],
             [/\*\//, 'comment', '@pop'],
             [/[\/*]/, 'comment']
         ],
@@ -208,46 +255,35 @@ export const monarchLanguage = {
             [/[\/*]/, 'comment.doc']
         ],
 
-        // We match regular expression quite precisely
-        regexp: [
-            [/(\{)(\d+(?:,\d*)?)(\})/, ['regexp.escape.control', 'regexp.escape.control', 'regexp.escape.control']],
-            [/(\[)(\^?)(?=(?:[^\]\\\/]|\\.)+)/, ['regexp.escape.control', { token: 'regexp.escape.control', next: '@regexrange' }]],
-            [/(\()(\?:|\?=|\?!)/, ['regexp.escape.control', 'regexp.escape.control']],
-            [/[()]/, 'regexp.escape.control'],
-            [/@regexpctl/, 'regexp.escape.control'],
-            [/[^\\\/]/, 'regexp'],
-            [/@regexpesc/, 'regexp.escape'],
-            [/\\\./, 'regexp.invalid'],
-            [/(\/)([gimsuy]*)/, [{ token: 'regexp', bracket: '@close', next: '@pop' }, 'keyword.other']],
-        ],
-
-        regexrange: [
-            [/-/, 'regexp.escape.control'],
-            [/\^/, 'regexp.invalid'],
-            [/@regexpesc/, 'regexp.escape'],
-            [/[^\]]/, 'regexp'],
-            [/\]/, { token: 'regexp.escape.control', next: '@pop', bracket: '@close' }]
-        ],
+        // Adaptive Script has no regex-literal syntax ('/' is always divide,
+        // see afw_compile_lexical.c) so there is deliberately no regexp state here.
 
         string_double: [
             [/[^\\"]+/, 'string'],
             [/@escapes/, 'string.escape'],
-            [/\\./, 'string.escape.invalid'],
+            [/\\[1-9]/, 'string.escape.invalid'],
+            [/\\./, 'string.escape'],
             [/"/, 'string', '@pop']
         ],
 
         string_single: [
             [/[^\\']+/, 'string'],
             [/@escapes/, 'string.escape'],
-            [/\\./, 'string.escape.invalid'],
+            [/\\[1-9]/, 'string.escape.invalid'],
+            [/\\./, 'string.escape'],
             [/'/, 'string', '@pop']
         ],
 
+        // Template body (afw_compile_parse_template.c): both '${' (eval-time)
+        // and '#{' (compile-time) substitutions are recognized, and a lone
+        // '$' or '#' not starting a substitution is plain text.
         string_backtick: [
             [/\$\{/, { token: 'delimiter.bracket', next: '@bracketCounting' }],
-            [/[^\\`$]+/, 'string'],
+            [/#\{/, { token: 'delimiter.bracket', next: '@bracketCounting' }],
+            [/(?:[^\\`$#]|\$(?!\{)|#(?!\{))+/, 'string'],
             [/@escapes/, 'string.escape'],
-            [/\\./, 'string.escape.invalid'],
+            [/\\[1-9]/, 'string.escape.invalid'],
+            [/\\./, 'string.escape'],
             [/`/, 'string', '@pop']
         ],
 
@@ -327,8 +363,7 @@ export const objectTypeCompletionItemProvider = (monaco, objectTypes) => {
 export const dataTypeCompletionItemProvider = (monaco, dataTypes) => {
     const suggestions = [];
 
-    dataTypes.forEach(dataType => {
-        const {dataTypeId, brief, description} = dataType;
+    dataTypes.forEach(({dataType: dataTypeId, brief, description}) => {
 
         suggestions.push({
             label: '"' + dataTypeId + '"',
@@ -445,6 +480,210 @@ export const polymorphicMethodCompletionItemProvider = (monaco, functions) => {
             return ({
                 suggestions: suggestions.map(s => ({ ...s }))
             });
+        }
+    };
+};
+
+
+/*
+ * Flattens monaco.editor.tokenize()'s per-line Token[][] (offsets only) into
+ * a single array of { text, type, line, column } tokens with the source
+ * text sliced in, using the same Monarch classification that already
+ * drives syntax highlighting - so declarations inside strings/comments are
+ * never mistaken for real ones the way a plain text/regex scan could.
+ */
+const tokenizeToFlatTokens = (monaco, model) => {
+    const text = model.getValue();
+    const lines = text.split(/\r\n|\r|\n/);
+    const tokensByLine = monaco.editor.tokenize(text, model.getLanguageId());
+
+    const tokens = [];
+    for (let lineIndex = 0; lineIndex < tokensByLine.length; lineIndex++) {
+        const lineTokens = tokensByLine[lineIndex];
+        const lineText = lines[lineIndex] ?? "";
+
+        for (let i = 0; i < lineTokens.length; i++) {
+            const start = lineTokens[i].offset;
+            const end = (i + 1 < lineTokens.length) ? lineTokens[i + 1].offset : lineText.length;
+            const raw = lineText.substring(start, end);
+            const text = raw.trim();
+
+            if (text) {
+                tokens.push({
+                    text,
+                    type: lineTokens[i].type,
+                    line: lineIndex + 1,
+                    column: start + 1 + (raw.length - raw.trimStart().length),
+                });
+            }
+        }
+    }
+
+    return tokens;
+};
+
+/*
+ * Scans a flat token stream (see tokenizeToFlatTokens) for local variable
+ * declarations that are in scope at the given cursor position, following
+ * the shapes of the real grammar (afw_compile_parse_script.c /
+ * afw_compile_parse_expression.c): LetDeclaration, ConstDeclaration,
+ * FunctionStatement/Lambda ParameterBinding + EllipsisParameter, and Catch
+ * bindings.
+ *
+ * Scoping is approximated with brace depth: a name is attributed to the
+ * depth its declaration is visible at, and is dropped as soon as a '}' at
+ * that depth (or shallower) is seen. The token stream is truncated to the
+ * cursor position first, so a name is never offered before its own
+ * declaration, and any block that has already closed before the cursor has
+ * already had its names dropped by the time the scan ends - whatever
+ * remains is exactly what is visible at the cursor. Destructuring patterns
+ * ([a, b] / {a, b}) are skipped as a whole rather than expanded; this is a
+ * lightweight scanner, not a parser, so it favors simple, common cases.
+ */
+const collectLocalVariableNames = (monaco, model, position) => {
+    const allTokens = tokenizeToFlatTokens(monaco, model);
+    const tokens = allTokens.filter(t =>
+        t.line < position.lineNumber ||
+        (t.line === position.lineNumber && t.column <= position.column)
+    );
+
+    const isText = (t, str) => t !== undefined && t.text === str;
+    const isType = (t, suffix) => t !== undefined && t.type === (suffix + ".as");
+    const isKeyword = (t, word) => isType(t, "keyword") && t.text === word;
+    const isIdentifier = (t) => isType(t, "identifier") || isType(t, "type.identifier");
+    /* '${' and '#{' (template substitutions) open with a two-character
+       token but still close with a plain '}', so they must count as
+       openers here too or brace-depth tracking goes out of balance the
+       moment a template literal containing a substitution is scanned. */
+    const isOpenBrace = (t) => isText(t, "{") || isText(t, "${") || isText(t, "#{");
+
+    const names = [];
+    let depth = 0;
+
+    /* Skip one balanced sub-expression (default value, ': Type', etc.)
+       starting at i. Stops - without consuming it - at the first ','
+       or unmatched closing bracket/';' seen while locally back at
+       depth 0, so the caller can see what ended it. */
+    const skipExpression = (i) => {
+        let nested = 0;
+        while (i < tokens.length) {
+            const t = tokens[i];
+            if (isText(t, "(") || isText(t, "[") || isOpenBrace(t)) {
+                nested++;
+            } else if (isText(t, ")") || isText(t, "]") || isText(t, "}")) {
+                if (nested === 0)
+                    return i;
+                nested--;
+            } else if (nested === 0 && (isText(t, ",") || isText(t, ";"))) {
+                return i;
+            }
+            i++;
+        }
+        return i;
+    };
+
+    /* Collects a comma-separated ParameterBinding / AssignmentTarget list
+       (identifiers, optionally with a destructure target, ': Type', '?',
+       or '= default') starting at i, attributing each name to declDepth.
+       Returns the index of whatever token ended the list (a closing
+       bracket, ';', or the 'of' of a for-of target) without consuming it. */
+    const collectBindingList = (i, declDepth) => {
+        while (i < tokens.length) {
+            const t = tokens[i];
+
+            if (isIdentifier(t)) {
+                names.push({ name: t.text, depth: declDepth });
+                i++;
+            } else if (isText(t, "[") || isText(t, "{")) {
+                i = skipExpression(i) + 1;
+                continue;
+            } else if (isText(t, "...")) {
+                i++;
+                continue;
+            } else {
+                return i;
+            }
+
+            i = skipExpression(i);
+            if (isText(tokens[i], ","))
+                i++;
+            else
+                return i;
+        }
+        return i;
+    };
+
+    let i = 0;
+    while (i < tokens.length) {
+        const t = tokens[i];
+
+        if (isOpenBrace(t)) {
+            depth++;
+            i++;
+            continue;
+        }
+
+        if (isText(t, "}")) {
+            for (let n = names.length - 1; n >= 0; n--) {
+                if (names[n].depth >= depth)
+                    names.splice(n, 1);
+            }
+            depth = Math.max(0, depth - 1);
+            i++;
+            continue;
+        }
+
+        if (isKeyword(t, "let") || isKeyword(t, "const")) {
+            i = collectBindingList(i + 1, depth);
+            continue;
+        }
+
+        if (isKeyword(t, "catch") && isText(tokens[i + 1], "(")) {
+            i = collectBindingList(i + 2, depth + 1) + 1;
+            continue;
+        }
+
+        if (isKeyword(t, "function")) {
+            let j = i + 1;
+            if (isIdentifier(tokens[j])) {
+                /* named function statement: the name is visible in the
+                   enclosing scope, not just inside its own body */
+                names.push({ name: tokens[j].text, depth });
+                j++;
+            }
+            if (isText(tokens[j], "("))
+                j = collectBindingList(j + 1, depth + 1) + 1;
+            i = j;
+            continue;
+        }
+
+        i++;
+    }
+
+    return Array.from(new Set(names.map(n => n.name)));
+};
+
+/**
+ * localVariableCompletionItemProvider()
+ *
+ * This routine suggests local variables, function parameters and catch
+ * bindings that are in scope at the cursor, using Monaco's own tokenizer
+ * output (see collectLocalVariableNames) rather than the document's raw
+ * text, so declarations are recognized the way the language actually
+ * classifies them (and not, say, inside a string or comment).
+ */
+export const localVariableCompletionItemProvider = (monaco) => {
+    return {
+        provideCompletionItems: (model, position) => {
+            const names = collectLocalVariableNames(monaco, model, position);
+
+            return {
+                suggestions: names.map(name => ({
+                    label: name,
+                    kind: monaco.languages.CompletionItemKind.Variable,
+                    insertText: name,
+                }))
+            };
         }
     };
 };
