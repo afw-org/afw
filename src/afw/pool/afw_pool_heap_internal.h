@@ -208,6 +208,28 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
  * created; may be NULL only if create failed earlier. Chunks come
  * from mt_region, not thread->memory_region. xctx does not exist yet.
  */
+extern const afw_pool_inf_t impl_afw_pool_heap_multithreaded_inf;
+
+const afw_pool_t *
+impl_heap_afw_pool_release(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+impl_heap_afw_pool_run_cleanups(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+impl_heap_afw_pool_destroy(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+impl_heap_afw_pool_garbage_collect(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
 const afw_pool_t *
 afw_pool_heap_internal_create_base_pool(
     const afw_thread_t *thread,

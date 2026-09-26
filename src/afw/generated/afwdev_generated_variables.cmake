@@ -419,6 +419,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     os/win/afw_os_thread.c
     pool/afw_pool.c
     pool/afw_pool_heap.c
+    pool/afw_pool_heap_multithreaded.c
     pool/afw_pool_scope.c
     pool/afw_pool_tracker.c
     query_criteria/afw_query_criteria.c
