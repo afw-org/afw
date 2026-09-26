@@ -411,7 +411,7 @@ afw_environment_create(
     };
     env->p = p;
     env->pool_chunk_bytes =
-        ((const afw_pool_internal_heap_self_t *)p)->chunk_bytes;
+        ((const afw_pool_heap_internal_self_t *)p)->chunk_bytes;
     env->peak_pool_chunk_bytes = env->pool_chunk_bytes;
     env->limit_evaluation_stack_count =
         AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT;

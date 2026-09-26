@@ -25,58 +25,58 @@
  * Heap live: [chunk][USER] or, if AFW_DEBUG_POOL,
  * [chunk…][size][pool][USER]. `chunk` is the posix_memalign
  * chunk so free coalescing does not walk first_chunk.
- * Freed heap blocks overlay afw_pool_free_node_t at the block start.
+ * Freed heap blocks overlay afw_pool_heap_internal_free_node_t at the block start.
  * Tracker gets blocks from this store (`afw_pool_heap_internal_reservoir_heap`).
  */
 
 AFW_BEGIN_DECLARES
 
-#define AFW_POOL_HEAP_ALLOC_START(_user) \
-    ((void *)((char *)(_user) - AFW_POOL_HEAP_PREFIX_BYTES))
+#define AFW_POOL_HEAP_INTERNAL_ALLOC_START(_user) \
+    ((void *)((char *)(_user) - AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES))
 
-#define AFW_POOL_HEAP_USER_FROM_START(_start) \
-    ((void *)((char *)(_start) + AFW_POOL_HEAP_PREFIX_BYTES))
+#define AFW_POOL_HEAP_INTERNAL_USER_FROM_START(_start) \
+    ((void *)((char *)(_start) + AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES))
 
 /** Heap chunk. Destroy walks first_chunk and free()s each. */
-typedef struct afw_pool_chunk_s afw_pool_chunk_t;
-struct afw_pool_chunk_s {
-    afw_pool_chunk_t *next;
+typedef struct afw_pool_heap_internal_chunk_s afw_pool_heap_internal_chunk_t;
+struct afw_pool_heap_internal_chunk_s {
+    afw_pool_heap_internal_chunk_t *next;
     afw_size_t size;
 };
 
 /** Free-list overlay at the start of a freed block. `total` is the whole block. */
-typedef struct afw_pool_free_node_s afw_pool_free_node_t;
-struct afw_pool_free_node_s {
-    afw_pool_chunk_t *chunk;
+typedef struct afw_pool_heap_internal_free_node_s afw_pool_heap_internal_free_node_t;
+struct afw_pool_heap_internal_free_node_s {
+    afw_pool_heap_internal_chunk_t *chunk;
     afw_size_t total;
-    afw_pool_free_node_t *prev;
-    afw_pool_free_node_t *next;
+    afw_pool_heap_internal_free_node_t *prev;
+    afw_pool_heap_internal_free_node_t *next;
 };
 
-#define AFW_POOL_ALIGN ((afw_size_t)16)
-#define AFW_POOL_ALIGN_UP(_n) \
-    (((_n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
+#define AFW_POOL_HEAP_INTERNAL_ALIGN ((afw_size_t)16)
+#define AFW_POOL_HEAP_INTERNAL_ALIGN_UP(_n) \
+    (((_n) + (AFW_POOL_HEAP_INTERNAL_ALIGN - 1)) & ~(AFW_POOL_HEAP_INTERNAL_ALIGN - 1))
 /** posix_memalign alignment (page). Not an env knob. */
-#define AFW_POOL_CHUNK_ALIGN ((afw_size_t)4096)
+#define AFW_POOL_HEAP_INTERNAL_CHUNK_ALIGN ((afw_size_t)4096)
 
 /*
  * Heap debug prefix is at least a free node so overlay on free does
  * not touch USER. [size][pool] stay immediately before USER.
  */
 #ifdef AFW_DEBUG_POOL
-#define AFW_POOL_HEAP_PREFIX_BYTES \
-    ((sizeof(afw_pool_debug_prefix_t) > sizeof(afw_pool_free_node_t)) \
-        ? sizeof(afw_pool_debug_prefix_t) \
-        : sizeof(afw_pool_free_node_t))
+#define AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES \
+    ((sizeof(afw_pool_internal_debug_prefix_t) > sizeof(afw_pool_heap_internal_free_node_t)) \
+        ? sizeof(afw_pool_internal_debug_prefix_t) \
+        : sizeof(afw_pool_heap_internal_free_node_t))
 #else
-#define AFW_POOL_HEAP_PREFIX_BYTES sizeof(afw_pool_chunk_t *)
+#define AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES sizeof(afw_pool_heap_internal_chunk_t *)
 #endif
 
-typedef struct afw_pool_internal_free_memory_head_s
-afw_pool_internal_free_memory_head_t;
+typedef struct afw_pool_heap_internal_free_memory_head_s
+afw_pool_heap_internal_free_memory_head_t;
 
-struct afw_pool_internal_free_memory_head_s {
-    afw_pool_free_node_t *first;
+struct afw_pool_heap_internal_free_memory_head_s {
+    afw_pool_heap_internal_free_node_t *first;
 
     /*
      * Upper bound on free-node totals. AFW_SIZE_T_MAX means the
@@ -86,10 +86,10 @@ struct afw_pool_internal_free_memory_head_s {
 };
 
 
-typedef struct afw_pool_internal_heap_self_s
-afw_pool_internal_heap_self_t;
+typedef struct afw_pool_heap_internal_self_s
+afw_pool_heap_internal_self_t;
 
-struct afw_pool_internal_heap_self_s {
+struct afw_pool_heap_internal_self_s {
 
     afw_pool_internal_self_t common;
 
@@ -107,10 +107,10 @@ struct afw_pool_internal_heap_self_s {
      * Destroy walks this list and free()s every chunk. The heap
      * self lives in the first allocated chunk.
      */
-    afw_pool_chunk_t *first_chunk;
+    afw_pool_heap_internal_chunk_t *first_chunk;
 
     /** @brief Chunk currently used for bump allocation. */
-    afw_pool_chunk_t *current_chunk;
+    afw_pool_heap_internal_chunk_t *current_chunk;
 
     /** @brief Next unused byte in current_chunk. */
     char *bump;
@@ -132,7 +132,7 @@ struct afw_pool_internal_heap_self_s {
     afw_size_t chunk_min;
 
     /** @brief Heap-owned free list head. */
-    afw_pool_internal_free_memory_head_t *free_memory_head;
+    afw_pool_heap_internal_free_memory_head_t *free_memory_head;
 };
 
 
@@ -140,15 +140,15 @@ struct afw_pool_internal_heap_self_s {
  * Scope pool. ST job heap (4k chunks) plus last-release delay while a
  * script throw is handled.
  */
-typedef struct afw_pool_internal_scope_self_s
-afw_pool_internal_scope_self_t;
+typedef struct afw_pool_heap_internal_scope_self_s
+afw_pool_heap_internal_scope_self_t;
 
-struct afw_pool_internal_scope_self_s {
+struct afw_pool_heap_internal_scope_self_s {
 
-    afw_pool_internal_heap_self_t heap;
+    afw_pool_heap_internal_self_t heap;
 
     /* Don't access this directly. Use heap.free_memory_head. */
-    afw_pool_internal_free_memory_head_t memory_for_free_memory_head;
+    afw_pool_heap_internal_free_memory_head_t memory_for_free_memory_head;
 
     /**
      * Next pool delaying last release while
@@ -161,24 +161,24 @@ struct afw_pool_internal_scope_self_s {
 };
 
 
-typedef struct afw_pool_internal_self_with_free_memory_head_s
-afw_pool_internal_self_with_free_memory_head_t;
-struct afw_pool_internal_self_with_free_memory_head_s {
+typedef struct afw_pool_heap_internal_self_with_free_memory_head_s
+afw_pool_heap_internal_self_with_free_memory_head_t;
+struct afw_pool_heap_internal_self_with_free_memory_head_s {
 
-    afw_pool_internal_heap_self_t heap;
+    afw_pool_heap_internal_self_t heap;
 
     /* Don't access this directly. Use free_memory_head pointer instead. */
-    afw_pool_internal_free_memory_head_t memory_for_free_memory_head;
+    afw_pool_heap_internal_free_memory_head_t memory_for_free_memory_head;
 };
 
 
 #define afw_pool_heap_internal_as_heap(_self) \
-    ((afw_pool_internal_heap_self_t *)(_self))
+    ((afw_pool_heap_internal_self_t *)(_self))
 #define afw_pool_heap_internal_as_scope(_self) \
-    ((afw_pool_internal_scope_self_t *)(_self))
+    ((afw_pool_heap_internal_scope_self_t *)(_self))
 
 
-afw_pool_internal_heap_self_t *
+afw_pool_heap_internal_self_t *
 afw_pool_heap_internal_reservoir_heap(afw_pool_internal_self_t *self);
 
 afw_size_t
@@ -190,46 +190,46 @@ afw_pool_heap_internal_block_bytes(
 
 void
 afw_pool_heap_internal_add_to_free_list(
-    afw_pool_internal_heap_self_t *heap,
+    afw_pool_heap_internal_self_t *heap,
     void *start,
     afw_size_t total,
     afw_xctx_t *xctx);
 
 void *
 afw_pool_heap_internal_take_from_free_list_or_chunk(
-    afw_pool_internal_heap_self_t *heap,
+    afw_pool_heap_internal_self_t *heap,
     afw_size_t total,
     afw_boolean_t *reused,
     afw_xctx_t *xctx,
     afw_boolean_t unhandled);
+
+extern const afw_pool_inf_t afw_pool_heap_internal_multithreaded_inf;
+
+const afw_pool_t *
+afw_pool_heap_internal_release(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_heap_internal_run_cleanups(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_heap_internal_destroy(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_heap_internal_garbage_collect(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
 
 /**
  * Create the process base MT pool. thread is the base thread already
  * created; may be NULL only if create failed earlier. Chunks come
  * from mt_region, not thread->memory_region. xctx does not exist yet.
  */
-extern const afw_pool_inf_t impl_afw_pool_heap_multithreaded_inf;
-
-const afw_pool_t *
-impl_heap_afw_pool_release(
-    afw_pool_internal_self_t *self,
-    afw_xctx_t *xctx);
-
-void
-impl_heap_afw_pool_run_cleanups(
-    afw_pool_internal_self_t *self,
-    afw_xctx_t *xctx);
-
-void
-impl_heap_afw_pool_destroy(
-    afw_pool_internal_self_t *self,
-    afw_xctx_t *xctx);
-
-void
-impl_heap_afw_pool_garbage_collect(
-    afw_pool_internal_self_t *self,
-    afw_xctx_t *xctx);
-
 const afw_pool_t *
 afw_pool_heap_internal_create_base_pool(
     const afw_thread_t *thread,
@@ -258,7 +258,7 @@ afw_pool_heap_internal_create_st(
     afw_xctx_t *xctx);
 
 const afw_pool_t *
-afw_pool_heap_multithreaded_create(
+afw_pool_heap_internal_multithreaded_create(
     const afw_pool_t *parent,
     afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
@@ -273,7 +273,7 @@ afw_pool_heap_internal_allocate_self(
     afw_xctx_t *xctx);
 
 afw_pool_internal_self_t *
-afw_pool_heap_multithreaded_create_self(
+afw_pool_heap_internal_multithreaded_create_self(
     const afw_pool_t *afw_parent,
     const afw_pool_inf_t *inf,
     afw_boolean_t as_managed_p,
@@ -291,7 +291,7 @@ afw_pool_heap_internal_release_delayed(
     afw_xctx_t *xctx);
 
 afw_pool_internal_self_t *
-afw_pool_heap_create_self(
+afw_pool_heap_internal_create_self(
     const afw_pool_t *afw_parent,
     const afw_pool_inf_t *inf,
     afw_boolean_t as_managed_p,
@@ -301,43 +301,43 @@ afw_pool_heap_create_self(
     afw_xctx_t *xctx);
 
 void
-afw_pool_heap_teardown_store(
+afw_pool_heap_internal_teardown_store(
     afw_pool_internal_self_t *self,
     afw_xctx_t *xctx);
 
 void *
-afw_pool_heap_calloc(
+afw_pool_heap_internal_calloc(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void *
-afw_pool_heap_malloc(
+afw_pool_heap_internal_malloc(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void
-afw_pool_heap_free_memory(
+afw_pool_heap_internal_free_memory(
     afw_pool_internal_self_t *self,
     void *address,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void *
-afw_pool_heap_calloc_no_throw(
+afw_pool_heap_internal_calloc_no_throw(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void *
-afw_pool_heap_malloc_no_throw(
+afw_pool_heap_internal_malloc_no_throw(
     afw_pool_internal_self_t *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void
-afw_pool_heap_free_memory_no_throw(
+afw_pool_heap_internal_free_memory_no_throw(
     afw_pool_internal_self_t *self,
     void *address,
     afw_size_t size,

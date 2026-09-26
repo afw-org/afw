@@ -13,6 +13,7 @@
  * Old link rule: create holds the parent until teardown. The scope
  * reference count is separate and stays at 1 for the creator, so
  * throw-path delay still sees a pool count of 1.
+ * The multithreaded inf is `afw_pool_scope_multithreaded.c`.
  */
 
 #include "afw_internal.h"
@@ -26,20 +27,12 @@ impl_scope_specific =
         /* tracker */ false
     };
 
-static const afw_pool_internal_inf_implementation_specific_t
-impl_scope_mt_specific =
-    {
-        /* multithreaded */ true,
-        /* tracker */ false
-    };
-
-
 static void
 impl_clear_delay(
-    afw_pool_internal_scope_self_t *me, afw_xctx_t *xctx)
+    afw_pool_heap_internal_scope_self_t *me, afw_xctx_t *xctx)
 {
     const afw_pool_t **pos;
-    afw_pool_internal_scope_self_t *curr;
+    afw_pool_heap_internal_scope_self_t *curr;
 
     if (!me->error_delaying_release) {
         return;
@@ -71,7 +64,7 @@ impl_clear_delay(
  */
 static afw_boolean_t
 impl_error_delaying_release(
-    afw_pool_internal_scope_self_t *me,
+    afw_pool_heap_internal_scope_self_t *me,
     afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *self;
@@ -102,26 +95,26 @@ impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
      * extra releases leave it. Teardown releases that one hold.
      */
     self->parent_pins = 1;
-    afw_pool_heap_teardown_store(self, xctx);
+    afw_pool_heap_internal_teardown_store(self, xctx);
 }
 
 
-static void
-impl_scope_afw_pool_get_reference(
+void
+afw_pool_internal_scope_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
     self->reference_count++;
 }
 
 
-static const afw_pool_t *
-impl_scope_afw_pool_release(
+const afw_pool_t *
+afw_pool_internal_scope_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "release");
     if (impl_error_delaying_release(
             afw_pool_heap_internal_as_scope(self), xctx))
     {
@@ -132,12 +125,12 @@ impl_scope_afw_pool_release(
 }
 
 
-static void
-impl_scope_afw_pool_run_cleanups(
+void
+afw_pool_internal_scope_run_cleanups(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
     if (!self->destroying) {
         impl_clear_delay(afw_pool_heap_internal_as_scope(self), xctx);
         afw_pool_internal_mark_destroying(self);
@@ -147,12 +140,12 @@ impl_scope_afw_pool_run_cleanups(
 }
 
 
-static void
-impl_scope_afw_pool_destroy(
+void
+afw_pool_internal_scope_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     if (!self->destroying) {
         impl_clear_delay(afw_pool_heap_internal_as_scope(self), xctx);
         afw_pool_internal_mark_destroying(self);
@@ -162,12 +155,12 @@ impl_scope_afw_pool_destroy(
 }
 
 
-static void
-impl_scope_garbage_collect(
+void
+afw_pool_internal_scope_garbage_collect(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "garbage_collect");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "garbage_collect");
     (void)self;
     (void)xctx;
 }
@@ -176,18 +169,18 @@ impl_scope_garbage_collect(
 #define AFW_IMPLEMENTATION_ID "scope"
 #define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_scope_inf
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_scope_specific
-#define impl_afw_pool_release impl_scope_afw_pool_release
-#define impl_afw_pool_get_reference impl_scope_afw_pool_get_reference
-#define impl_afw_pool_run_cleanups impl_scope_afw_pool_run_cleanups
-#define impl_afw_pool_destroy impl_scope_afw_pool_destroy
-#define impl_afw_pool_calloc afw_pool_heap_calloc
-#define impl_afw_pool_malloc afw_pool_heap_malloc
-#define impl_afw_pool_free_memory afw_pool_heap_free_memory
+#define impl_afw_pool_release afw_pool_internal_scope_release
+#define impl_afw_pool_get_reference afw_pool_internal_scope_get_reference
+#define impl_afw_pool_run_cleanups afw_pool_internal_scope_run_cleanups
+#define impl_afw_pool_destroy afw_pool_internal_scope_destroy
+#define impl_afw_pool_calloc afw_pool_heap_internal_calloc
+#define impl_afw_pool_malloc afw_pool_heap_internal_malloc
+#define impl_afw_pool_free_memory afw_pool_heap_internal_free_memory
 #define impl_afw_pool_free_memory_no_throw \
-    afw_pool_heap_free_memory_no_throw
-#define impl_afw_pool_calloc_no_throw afw_pool_heap_calloc_no_throw
-#define impl_afw_pool_malloc_no_throw afw_pool_heap_malloc_no_throw
-#define impl_afw_pool_garbage_collect impl_scope_garbage_collect
+    afw_pool_heap_internal_free_memory_no_throw
+#define impl_afw_pool_calloc_no_throw afw_pool_heap_internal_calloc_no_throw
+#define impl_afw_pool_malloc_no_throw afw_pool_heap_internal_malloc_no_throw
+#define impl_afw_pool_garbage_collect afw_pool_internal_scope_garbage_collect
 #define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
 #define impl_afw_pool_deregister_cleanup afw_pool_internal_deregister_cleanup
 
@@ -205,219 +198,6 @@ impl_scope_garbage_collect(
 #undef impl_afw_pool_free_memory_no_throw
 #undef impl_afw_pool_calloc_no_throw
 #undef impl_afw_pool_malloc_no_throw
-#undef impl_afw_pool_garbage_collect
-#undef impl_afw_pool_register_cleanup
-#undef impl_afw_pool_deregister_cleanup
-
-
-static const afw_pool_t *
-impl_mt_scope_release(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    const afw_pool_t *result;
-
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = impl_scope_afw_pool_release(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-    return result;
-}
-
-static void
-impl_mt_scope_get_reference(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_scope_afw_pool_get_reference(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-static void
-impl_mt_scope_run_cleanups(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_scope_afw_pool_run_cleanups(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-static void
-impl_mt_scope_destroy(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_scope_afw_pool_destroy(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-static void *
-impl_mt_scope_calloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = afw_pool_heap_calloc(self, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-    return result;
-}
-
-static void *
-impl_mt_scope_malloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = afw_pool_heap_malloc(self, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-    return result;
-}
-
-static void *
-impl_mt_scope_calloc_no_throw(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = afw_pool_heap_calloc_no_throw(self, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-    return result;
-}
-
-static void *
-impl_mt_scope_malloc_no_throw(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        result = afw_pool_heap_malloc_no_throw(self, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-    return result;
-}
-
-static void
-impl_mt_scope_free_memory(
-    AFW_POOL_SELF_T *self,
-    void *address,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        afw_pool_heap_free_memory(self, address, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-static void
-impl_mt_scope_free_memory_no_throw(
-    AFW_POOL_SELF_T *self,
-    void *address,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        afw_pool_heap_free_memory_no_throw(self, address, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-static void
-impl_mt_scope_garbage_collect(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_scope_garbage_collect(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-static void
-impl_mt_scope_register_cleanup(
-    AFW_POOL_SELF_T *self,
-    void *data,
-    void *data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        afw_pool_internal_register_cleanup(
-            self, data, data2, cleanup, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-static void
-impl_mt_scope_deregister_cleanup(
-    AFW_POOL_SELF_T *self,
-    void *data,
-    void *data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        afw_pool_internal_deregister_cleanup(
-            self, data, data2, cleanup, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-
-#define AFW_POOL_INF_ONLY 1
-#define AFW_IMPLEMENTATION_ID "scope_multithreaded"
-#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_scope_multithreaded_inf
-#define AFW_IMPLEMENTATION_SPECIFIC &impl_scope_mt_specific
-#define impl_afw_pool_release impl_mt_scope_release
-#define impl_afw_pool_get_reference impl_mt_scope_get_reference
-#define impl_afw_pool_run_cleanups impl_mt_scope_run_cleanups
-#define impl_afw_pool_destroy impl_mt_scope_destroy
-#define impl_afw_pool_calloc impl_mt_scope_calloc
-#define impl_afw_pool_malloc impl_mt_scope_malloc
-#define impl_afw_pool_calloc_no_throw impl_mt_scope_calloc_no_throw
-#define impl_afw_pool_malloc_no_throw impl_mt_scope_malloc_no_throw
-#define impl_afw_pool_free_memory impl_mt_scope_free_memory
-#define impl_afw_pool_free_memory_no_throw impl_mt_scope_free_memory_no_throw
-#define impl_afw_pool_garbage_collect impl_mt_scope_garbage_collect
-#define impl_afw_pool_register_cleanup impl_mt_scope_register_cleanup
-#define impl_afw_pool_deregister_cleanup impl_mt_scope_deregister_cleanup
-
-#include "afw_pool_impl_declares.h"
-#undef AFW_POOL_INF_ONLY
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef AFW_IMPLEMENTATION_SPECIFIC
-#undef impl_afw_pool_release
-#undef impl_afw_pool_get_reference
-#undef impl_afw_pool_run_cleanups
-#undef impl_afw_pool_destroy
-#undef impl_afw_pool_calloc
-#undef impl_afw_pool_malloc
-#undef impl_afw_pool_calloc_no_throw
-#undef impl_afw_pool_malloc_no_throw
-#undef impl_afw_pool_free_memory
-#undef impl_afw_pool_free_memory_no_throw
 #undef impl_afw_pool_garbage_collect
 #undef impl_afw_pool_register_cleanup
 #undef impl_afw_pool_deregister_cleanup
@@ -446,8 +226,8 @@ impl_scope_object_create(
         self_bytes = offsetof(afw_pool_scope_t, frame_slots);
     }
     if (afw_pool_internal_is_multithreaded(parent)) {
-        self = afw_pool_heap_multithreaded_create_self(parent,
-            &impl_afw_pool_scope_multithreaded_inf,
+        self = afw_pool_heap_internal_multithreaded_create_self(parent,
+            &afw_pool_internal_scope_multithreaded_inf,
             false,
             (xctx->env && xctx->env->small_chunk_min)
                 ? xctx->env->small_chunk_min
@@ -455,7 +235,7 @@ impl_scope_object_create(
             self_bytes, NULL, xctx);
     }
     else {
-        self = afw_pool_heap_create_self(parent,
+        self = afw_pool_heap_internal_create_self(parent,
             &impl_afw_pool_scope_inf,
             false,
             (xctx->env && xctx->env->small_chunk_min)
@@ -494,7 +274,7 @@ afw_pool_heap_internal_release_delayed(
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
-    afw_pool_internal_scope_self_t *delay;
+    afw_pool_heap_internal_scope_self_t *delay;
 
     (void)instance;
     if (!xctx) {
@@ -530,7 +310,7 @@ static void impl_scope_debug(
 {
     const afw_pool_scope_t *current_scope;
 
-    current_scope = afw_pool_scope_current(xctx);
+    current_scope = afw_pool_scope_internal_current(xctx);
     printf("\n");
     printf("--- debug: " AFW_SIZE_T_FMT " %s",
         (scope)
@@ -631,7 +411,7 @@ afw_pool_scope_symbol_get_value_address_by_name(
     const afw_value_block_t *block;
     const afw_value_block_symbol_t *symbol;
 
-    for (scope = afw_pool_scope_current(xctx);
+    for (scope = afw_pool_scope_internal_current(xctx);
          scope;
          scope = scope->parent_lexical_scope)
     {
@@ -659,7 +439,7 @@ afw_pool_scope_symbol_get_value(
     const afw_value_t **value_address;
 
     value_address = afw_pool_scope_symbol_get_value_address(
-        symbol, afw_pool_scope_current(xctx), xctx);
+        symbol, afw_pool_scope_internal_current(xctx), xctx);
 
     return *value_address;
 }
@@ -704,7 +484,7 @@ afw_pool_scope_symbol_set_value(
     const afw_value_t **value_address;
     const afw_pool_scope_t *scope;
 
-    scope = afw_pool_scope_current(xctx);
+    scope = afw_pool_scope_internal_current(xctx);
     value_address = afw_pool_scope_symbol_get_value_address(
         symbol, scope, xctx);
 
@@ -731,7 +511,7 @@ afw_pool_scope_symbol_set_value_by_name(
             symbol_name);
     }
 
-    scope = afw_pool_scope_current(xctx);
+    scope = afw_pool_scope_internal_current(xctx);
     afw_value_slot_store(value_address, value,
         scope ? scope->p : xctx->p, xctx);
 }
@@ -922,12 +702,12 @@ afw_pool_scope_deactivate(
     afw_pool_scope_debug(
         "<- afw_pool_scope_deactivate() begin",
         scope->block, scope, scope->parent_lexical_scope,
-        (afw_pool_scope_current(xctx) == scope)
+        (afw_pool_scope_internal_current(xctx) == scope)
             ? NULL
             : "- current scope is not scope passed",
         xctx);
 
-    if (scope != afw_pool_scope_current(xctx)) {
+    if (scope != afw_pool_scope_internal_current(xctx)) {
         AFW_THROW_ERROR_Z(general,
             "Request to deactivate scope that is not current",
             xctx);
@@ -953,7 +733,7 @@ afw_pool_scope_unwind(
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
     for (;;) {
-        current_scope = afw_pool_scope_current(xctx);
+        current_scope = afw_pool_scope_internal_current(xctx);
         if (!current_scope) {
             AFW_THROW_ERROR_Z(general,
                 "afw_pool_scope_unwind() did not find specified scope",
@@ -1011,7 +791,7 @@ afw_pool_scope_set_last_result(
     if (!value || afw_value_is_void(value)) {
         return;
     }
-    scope = afw_pool_scope_current(xctx);
+    scope = afw_pool_scope_internal_current(xctx);
     if (scope) {
         ((afw_pool_scope_t *)scope)->last_result = value;
     }
@@ -1024,7 +804,7 @@ afw_pool_scope_clear_last_result(
 {
     const afw_pool_scope_t *scope;
 
-    scope = afw_pool_scope_current(xctx);
+    scope = afw_pool_scope_internal_current(xctx);
     if (scope) {
         ((afw_pool_scope_t *)scope)->last_result = afw_value_void;
     }
@@ -1063,7 +843,7 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
     afw_xctx_t *xctx)
 {
     return afw_pool_scope_get_assignable_for_p_lifetime(
-        value, afw_pool_scope_current(xctx), xctx);
+        value, afw_pool_scope_internal_current(xctx), xctx);
 }
 
 

@@ -220,14 +220,14 @@ impl_for_let_next_clone(
 
     if (previous) {
         scope = afw_pool_scope_clone(previous, xctx);
-        if (afw_pool_scope_current(xctx) == previous) {
+        if (afw_pool_scope_internal_current(xctx) == previous) {
             afw_pool_scope_deactivate(previous, xctx);
         }
         afw_pool_scope_release(previous, xctx);
     }
     else {
         scope = afw_pool_scope_clone(
-            afw_pool_scope_current(xctx), xctx);
+            afw_pool_scope_internal_current(xctx), xctx);
     }
     afw_pool_scope_activate(scope, xctx);
     return scope;
@@ -1223,7 +1223,7 @@ afw_function_execute_for(
     previous_iterator_scope = NULL;
     this_label = NULL;
     clone_each = impl_is_c_style_for_let_wrapper(
-        afw_pool_scope_current(xctx));
+        afw_pool_scope_internal_current(xctx));
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(5);
@@ -1283,7 +1283,7 @@ afw_function_execute_for(
 
         /* Creator release of the last clone; pop if still current. */
         if (previous_iterator_scope) {
-            if (afw_pool_scope_current(xctx) ==
+            if (afw_pool_scope_internal_current(xctx) ==
                 previous_iterator_scope)
             {
                 afw_pool_scope_deactivate(
@@ -1426,7 +1426,7 @@ afw_function_execute_for_of(
 
         impl_loop_consume_if_target(this_label, xctx);
         if (previous_iterator_scope) {
-            if (afw_pool_scope_current(xctx) ==
+            if (afw_pool_scope_internal_current(xctx) ==
                 previous_iterator_scope)
             {
                 afw_pool_scope_deactivate(
@@ -2104,7 +2104,7 @@ afw_function_execute_try(
      * or no throw), return the current last; uncaught percolates.
      */
     use_type = afw_xctx_statement_flow_get(xctx);
-    scope_at_entry = afw_pool_scope_current(xctx);
+    scope_at_entry = afw_pool_scope_internal_current(xctx);
     AFW_TRY {
         afw_value_block_evaluate_statement(
             x, x->argv[1], p, xctx);
@@ -2147,7 +2147,7 @@ afw_function_execute_try(
                 catch_scope = NULL;
                 AFW_TRY{
                     catch_scope = afw_pool_scope_create(
-                        block, afw_pool_scope_current(xctx), p, xctx);
+                        block, afw_pool_scope_internal_current(xctx), p, xctx);
                     afw_pool_scope_activate(catch_scope, xctx);
                     eval_p = catch_scope->p;
                     error_object = afw_error_to_object(
@@ -2214,7 +2214,7 @@ afw_function_execute_try(
                 }
                 AFW_FINALLY{
                     if (catch_scope) {
-                        if (afw_pool_scope_current(xctx) == catch_scope) {
+                        if (afw_pool_scope_internal_current(xctx) == catch_scope) {
                             afw_pool_scope_deactivate(catch_scope, xctx);
                         }
                         afw_pool_scope_release(catch_scope, xctx);
@@ -2279,7 +2279,7 @@ afw_function_execute_try(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_set(use_type, xctx);
-    scope = afw_pool_scope_current(xctx);
+    scope = afw_pool_scope_internal_current(xctx);
     if (scope && scope->last_result) {
         return scope->last_result;
     }

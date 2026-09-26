@@ -82,7 +82,7 @@ afw_value_closure_binding_create_if_needed(
     }
 
     function = (const afw_value_script_function_definition_t *)value;
-    scope = afw_pool_scope_current(xctx);
+    scope = afw_pool_scope_internal_current(xctx);
     if (!scope || !scope->block) {
         return value;
     }

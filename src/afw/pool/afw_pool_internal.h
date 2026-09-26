@@ -40,23 +40,23 @@ typedef struct afw_pool_internal_inf_implementation_specific_s {
 
 #ifdef AFW_DEBUG_POOL
 /** Immediately before USER on heap and tracker. */
-typedef struct afw_pool_debug_prefix_s {
+typedef struct afw_pool_internal_debug_prefix_s {
     afw_size_t size;
     const afw_pool_t *pool;
-} afw_pool_debug_prefix_t;
-#define AFW_POOL_DEBUG_PREFIX_BYTES sizeof(afw_pool_debug_prefix_t)
+} afw_pool_internal_debug_prefix_t;
+#define AFW_POOL_INTERNAL_DEBUG_PREFIX_BYTES sizeof(afw_pool_internal_debug_prefix_t)
 /*
  * USER fill on free. First word is a value `inf` pointer: non-canonical
  * on x86-64 so any `value->inf->…` faults, not only optional_release.
  */
 #ifdef __LP64__
-#define AFW_POOL_DEBUG_POISON \
+#define AFW_POOL_INTERNAL_DEBUG_POISON \
     ((afw_size_t)0x0BADF00D0BADF00DULL)
 #else
-#define AFW_POOL_DEBUG_POISON ((afw_size_t)0x0BADF00Du)
+#define AFW_POOL_INTERNAL_DEBUG_POISON ((afw_size_t)0x0BADF00Du)
 #endif
 #else
-#define AFW_POOL_DEBUG_PREFIX_BYTES ((afw_size_t)0)
+#define AFW_POOL_INTERNAL_DEBUG_PREFIX_BYTES ((afw_size_t)0)
 #endif
 
 /**
@@ -142,7 +142,7 @@ afw_pool_internal_memory_region(const afw_pool_internal_self_t *self);
  * and link_as_child takes it again. ST pools do not use this.
  * Uses xctx from the enclosing function.
  */
-#define IMPL_MULTITHREADED_LOCK_BEGIN(_pool) \
+#define AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(_pool) \
 const afw_memory_region_t *_this_region = \
     afw_pool_internal_memory_region(_pool); \
 if (_this_region) { \
@@ -150,7 +150,7 @@ if (_this_region) { \
 } \
 AFW_TRY
 
-#define IMPL_MULTITHREADED_LOCK_END \
+#define AFW_POOL_INTERNAL_MULTITHREADED_LOCK_END \
 AFW_FINALLY { \
     if (_this_region) { \
         afw_memory_region_unlock(_this_region, xctx); \
@@ -164,7 +164,7 @@ AFW_ENDTRY
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
 
-#define IMPL_PRINT_DEBUG_INFO_Z(_level, _info_z) \
+#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(_level, _info_z) \
 do { \
     FILE *fd; \
     if (xctx && xctx->env && xctx->env->debug_fd && \
@@ -200,7 +200,7 @@ do { \
     } \
 } while (0)
 
-#define IMPL_PRINT_DEBUG_INFO_FZ(_level, _format_z, ...) \
+#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(_level, _format_z, ...) \
 do { \
     FILE *fd; \
     if (xctx && xctx->env && xctx->env->debug_fd && \
@@ -260,8 +260,8 @@ afw_pool_internal_debug_poison_user(void *user, afw_size_t size);
 
 #else
 
-#define IMPL_PRINT_DEBUG_INFO_Z(_level, _info_z)
-#define IMPL_PRINT_DEBUG_INFO_FZ(_level, _format_z, ...)
+#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(_level, _info_z)
+#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(_level, _format_z, ...)
 #define afw_pool_internal_debug_prefix_set(_self, _user, _size) ((void)0)
 #define afw_pool_internal_debug_prefix_ok(_self, _address, _size) (true)
 #define afw_pool_internal_debug_check_prefix(_self, _address, _size, _xctx) ((void)0)
@@ -370,6 +370,106 @@ void
 afw_pool_internal_print_debug_info(
     int indent,
     const afw_pool_t *pool,
+    afw_xctx_t *xctx);
+
+const afw_pool_t *
+afw_pool_internal_scope_release(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_scope_get_reference(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_scope_run_cleanups(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_scope_destroy(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_scope_garbage_collect(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+const afw_pool_t *
+afw_pool_internal_tracker_release(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_tracker_run_cleanups(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_tracker_destroy(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_internal_tracker_calloc(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_internal_tracker_malloc(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_internal_tracker_calloc_no_throw(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_internal_tracker_malloc_no_throw(
+    afw_pool_internal_self_t *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_tracker_free_memory(
+    afw_pool_internal_self_t *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_tracker_free_memory_no_throw(
+    afw_pool_internal_self_t *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void
+afw_pool_internal_tracker_garbage_collect(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+extern const afw_pool_inf_t afw_pool_internal_scope_multithreaded_inf;
+
+extern const afw_pool_inf_t afw_pool_internal_tracker_multithreaded_inf;
+
+afw_pool_internal_self_t *
+afw_pool_internal_tracker_create(
+    afw_pool_internal_self_t *parent,
+    const afw_pool_inf_t *inf,
+    afw_size_t self_bytes,
+    afw_xctx_t *xctx);
+
+afw_pool_internal_self_t *
+afw_pool_internal_tracker_multithreaded_create_self(
+    afw_pool_internal_self_t *parent,
+    afw_size_t self_bytes,
     afw_xctx_t *xctx);
 
 /**

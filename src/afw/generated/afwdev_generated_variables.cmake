@@ -421,7 +421,9 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     pool/afw_pool_heap.c
     pool/afw_pool_heap_multithreaded.c
     pool/afw_pool_scope.c
+    pool/afw_pool_scope_multithreaded.c
     pool/afw_pool_tracker.c
+    pool/afw_pool_tracker_multithreaded.c
     query_criteria/afw_query_criteria.c
     request/afw_request.c
     request/afw_request_handler.c

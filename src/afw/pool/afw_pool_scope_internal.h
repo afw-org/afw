@@ -27,7 +27,7 @@ struct afw_pool_scope_s {
 
     union {
         afw_pool_t pub;
-        afw_pool_internal_scope_self_t internal;
+        afw_pool_heap_internal_scope_self_t internal;
     };
 
     /** Same address as pub. Callers keep using scope->p. */
@@ -80,7 +80,7 @@ AFW_VECTOR_STRUCT(afw_pool_scope_p_vector_s, const afw_pool_scope_t *);
  * @param xctx of caller.
  * @return Current scope.
  */
-#define afw_pool_scope_current(_xctx) \
+#define afw_pool_scope_internal_current(_xctx) \
     ((_xctx->scope_stack->count > 0) \
     ? _xctx->scope_stack->entries[_xctx->scope_stack->count - 1] \
     : NULL)
@@ -92,7 +92,7 @@ AFW_VECTOR_STRUCT(afw_pool_scope_p_vector_s, const afw_pool_scope_t *);
  * top-level call has no Adaptive caller. After a script function
  * body, nested `{ }` have unwound and this is the caller `{ }`.
  */
-#define afw_pool_scope_of_caller(_xctx) \
+#define afw_pool_scope_internal_of_caller(_xctx) \
     ((_xctx->scope_stack->count >= 2) \
     ? _xctx->scope_stack->entries[_xctx->scope_stack->count - 2] \
     : NULL)
@@ -215,7 +215,7 @@ afw_pool_scope_set_last_result_for_lifetime(
  * structs of the currently active scopes in order of their activation.
  *
  * The current scope, which can be retrieved by calling
- * afw_pool_scope_current(), is at the top of the scope stack.
+ * afw_pool_scope_internal_current(), is at the top of the scope stack.
  *
  * The scope stack is maintained by afw_pool_scope_activate(), which
  * pushes a scope and takes a stack reference, paired with

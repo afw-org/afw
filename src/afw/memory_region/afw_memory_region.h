@@ -28,7 +28,7 @@
 
 AFW_BEGIN_DECLARES
 
-/** @brief posix_memalign alignment (page). Same as AFW_POOL_CHUNK_ALIGN. */
+/** @brief posix_memalign alignment (page). Same as AFW_POOL_HEAP_INTERNAL_CHUNK_ALIGN. */
 #define AFW_MEMORY_REGION_ALIGN ((afw_size_t)4096)
 
 /**
