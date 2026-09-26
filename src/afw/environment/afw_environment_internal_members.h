@@ -225,6 +225,14 @@
      */
     const afw_lock_t *environment_lock;
 
+    /**
+     * @brief Lock for the service registry and service reference counts.
+     *
+     * Not recursive. Take environment_lock first, then this lock.
+     * Do not hold it across adapter, log, or authorization work.
+     */
+    const afw_lock_t *service_lock;
+
     /** @brief Lock for protecting changes to adapter id anchors. */
     const afw_lock_t *adapter_id_anchor_lock;
 

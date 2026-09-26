@@ -116,6 +116,15 @@ struct afw_service_s {
 
     /** @brief Has a service conf object. */
     afw_boolean_t has_service_conf;
+
+    /**
+     * @brief Registry hold plus in-flight users.
+     *
+     * Starts at 1 for the registry. impl_register_service drops that
+     * hold on the previous generation. The pool is released only when
+     * this hits 0, and only under environment_lock.
+     */
+    afw_integer_t reference_count;
 };
 
 

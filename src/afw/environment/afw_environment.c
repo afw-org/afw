@@ -37,6 +37,14 @@ impl_early_error =
 };
 
 
+static const afw_utf8_t impl_s_lock_service =
+    AFW_UTF8_LITERAL("service");
+static const afw_utf8_t impl_s_lock_service_brief =
+    AFW_UTF8_LITERAL("Service registry");
+static const afw_utf8_t impl_s_lock_service_description =
+    AFW_UTF8_LITERAL(
+        "Service registry pointer and service reference count.");
+
 static afw_boolean_t
 impl_check_manifest_cb(
     const afw_object_t *object,
@@ -606,6 +614,14 @@ afw_environment_create(
             afw_s_a_lock_environment_brief,
             afw_s_a_lock_environment_description,
             true, xctx);
+
+    /* Service registry and reference counts. Not recursive. */
+    env->service_lock =
+        afw_lock_create_and_register(
+            &impl_s_lock_service,
+            &impl_s_lock_service_brief,
+            &impl_s_lock_service_description,
+            false, xctx);
 
     /* Create adapter id anchors lock. */
     env->adapter_id_anchor_lock =
