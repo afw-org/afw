@@ -343,14 +343,6 @@ const AppNav = (props) => {
                                     url: "/Admin/Models",
                                 },
                                 {
-                                    label: "Provisioning",
-                                    url: "/Admin/Provisioning",
-                                },
-                                {
-                                    label: "Authorization",
-                                    url: "/Admin/Authorization",
-                                },
-                                {
                                     label: "Request Handlers",
                                     url: "/Admin/RequestHandlers",
                                 },
@@ -416,10 +408,6 @@ const AppNav = (props) => {
                             url: "/Tools",
                             isExpanded: toolsOpen,
                             items: [
-                                {
-                                    label: "Layouts",
-                                    url: "/Tools/Layouts",
-                                },
                                 {
                                     label: "Fiddle",
                                     url: "/Tools/Fiddle",

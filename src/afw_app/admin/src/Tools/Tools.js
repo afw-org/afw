@@ -64,34 +64,6 @@ export const Tools = () => {
                                                     contains:
                                                             <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper }}>
                                                                 <div style={{ display: "flex" }}>
-                                                                    <Icon style={{ marginRight: theme.spacing(1) }} color="primary" iconName="web" />
-                                                                    <Typography size="7" text="Layouts" />
-                                                                </div>
-                                                                <div style={{ height: "250px", paddingTop: theme.spacing(2) }}>
-                                                                    <Typography
-                                                                        text="Layouts allow you to design custom UI components to arrange
-                                                                                objects and their properties in ways that make sense for your
-                                                                                data."
-                                                                    />
-                                                                </div>
-                                                                <Divider />
-                                                                <Button 
-                                                                    color="primary"
-                                                                    variant="text" 
-                                                                    label="Create Layouts" 
-                                                                    onClick={() => history.push("/Tools/Layouts")} 
-                                                                    endIcon="chevron_right"
-                                                                />
-                                                            </div>
-                                                },
-                                                {
-                                                    breakpoints: {
-                                                        small: 12,
-                                                        large: 6,
-                                                    },
-                                                    contains:
-                                                            <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper }}>
-                                                                <div style={{ display: "flex" }}>
                                                                     <Icon style={{ marginRight: theme.spacing(1) }} color="primary" iconName="code" />
                                                                     <Typography size="7" text="Fiddle" />
                                                                 </div>
