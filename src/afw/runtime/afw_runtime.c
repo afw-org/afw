@@ -166,16 +166,26 @@ impl_set_entry(
             object_type_id->s, object_type_id->len, ht, xctx);
     }
 
-    if (!overwrite) {
-        existing = afw_hash_table_get(ht, object_id->s, object_id->len);
-        if (existing) {
-            AFW_THROW_ERROR_FZ(general, xctx,
-                "Runtime object /afw/%ku/%ku already set",
-                object_type_id,
-                object_id);
-        }
+    /*
+     * The table lives for the process. Copy a new key into env->p.
+     * Overwrite keeps that copy.
+     */
+    existing = afw_hash_table_get(ht, object_id->s, object_id->len);
+    if (!overwrite && existing) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Runtime object /afw/%ku/%ku already set",
+            object_type_id,
+            object_id);
     }
-    afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
+    if (!existing && object_id->len > 0) {
+        const void *key;
+
+        key = afw_memory_dup(object_id->s, object_id->len, p, xctx);
+        afw_hash_table_set(ht, key, object_id->len, entry, xctx);
+    }
+    else {
+        afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
+    }
 }
 
 

@@ -211,7 +211,16 @@
 
     /*---------- LOCKS ----------*/
 
-    /** @brief Lock for whole environment. */
+    /**
+     * @brief Lock for whole environment.
+     *
+     * Recursive. Service stop and restart hold it only while changing
+     * status or the service registry pointer, using AFW_LOCK_BEGIN /
+     * AFW_LOCK_END. That section calls get_service and register_service,
+     * which lock it again. It must not call adapter or conf code.
+     * Those paths already hold this lock while they register and
+     * publish a runtime object.
+     */
     const afw_lock_t *environment_lock;
 
     /** @brief Lock for protecting changes to adapter id anchors. */
