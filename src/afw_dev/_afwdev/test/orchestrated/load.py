@@ -178,9 +178,10 @@ def load_orchestration_document(marker_path):
 
 def parse_count_spec(value, what, where):
     """
-    An absolute integer >= 1, or a percent string such as '50%'.
+    An absolute integer >= 1, or a percent string such as '50%' or '300%'.
 
-    Percents are 1 through 100. The caller supplies the base they apply to.
+    Percents are 1 through 400. Over 100 is more than one per base unit.
+    The caller supplies the base they apply to.
     """
     if isinstance(value, str):
         text = value.strip()
@@ -191,9 +192,9 @@ def parse_count_spec(value, what, where):
                 raise OrchestrationLoadError(
                     "{} percent is not a number ({})".format(what, where)
                 ) from e
-            if pct <= 0.0 or pct > 100.0:
+            if pct <= 0.0 or pct > 400.0:
                 raise OrchestrationLoadError(
-                    "{} percent must be from 1 to 100 ({})".format(
+                    "{} percent must be from 1 to 400 ({})".format(
                         what, where))
             return ("pct", pct)
     try:
