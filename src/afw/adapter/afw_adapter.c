@@ -433,6 +433,7 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
     const afw_adapter_internal_cache_t *cache;
     afw_adapter_internal_transaction_t *transaction;
     const afw_adapter_transaction_t *new_transaction;
+    const afw_utf8_t *stable_id;
     int i;
 
     /* Get cached session. */
@@ -446,8 +447,14 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
             afw_adapter_internal_session_cache_t, xctx);
         session_cache->session = afw_adapter_session_create(adapter_id, xctx);
         if (session_cache->session) {
+            /*
+             * The hash table keeps this pointer. The caller's bytes
+             * may belong to a scope or an adapter pool that dies
+             * before the request releases the cache.
+             */
+            stable_id = afw_utf8_clone(adapter_id, xctx->p, xctx);
             afw_hash_table_set(cache->session_cache,
-                adapter_id->s, adapter_id->len, session_cache, xctx);
+                stable_id->s, stable_id->len, session_cache, xctx);
         }
     }
 
