@@ -695,14 +695,19 @@ const afw_value_t *
 afw_function_execute_service_restart(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *service_id;
+    const afw_value_string_t *service_id_value;
+    const afw_utf8_t *service_id;
     const afw_object_t *obj;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(service_id, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(service_id_value, 1, string);
 
-    afw_service_restart(&service_id->internal, x->xctx);
+    /* Restart can release the pool that held the caller's string. */
+    service_id = afw_utf8_clone(
+        &service_id_value->internal, x->p, x->xctx);
 
-    obj = afw_service_get_object(&service_id->internal, x->p, x->xctx);
+    afw_service_restart(service_id, x->xctx);
+
+    obj = afw_service_get_object(service_id, x->p, x->xctx);
 
     if (!obj) {
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
@@ -750,14 +755,19 @@ const afw_value_t *
 afw_function_execute_service_start(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *service_id;
+    const afw_value_string_t *service_id_value;
+    const afw_utf8_t *service_id;
     const afw_object_t *obj;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(service_id, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(service_id_value, 1, string);
 
-    afw_service_start(&service_id->internal, true, x->xctx);
+    /* Start can release the pool that held the caller's string. */
+    service_id = afw_utf8_clone(
+        &service_id_value->internal, x->p, x->xctx);
 
-    obj = afw_service_get_object(&service_id->internal, x->p, x->xctx);
+    afw_service_start(service_id, true, x->xctx);
+
+    obj = afw_service_get_object(service_id, x->p, x->xctx);
 
     if (!obj) {
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
@@ -805,14 +815,19 @@ const afw_value_t *
 afw_function_execute_service_stop(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *service_id;
+    const afw_value_string_t *service_id_value;
+    const afw_utf8_t *service_id;
     const afw_object_t *obj;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(service_id, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(service_id_value, 1, string);
 
-    afw_service_stop(&service_id->internal, x->xctx);
+    /* Stop can release the pool that held the caller's string. */
+    service_id = afw_utf8_clone(
+        &service_id_value->internal, x->p, x->xctx);
 
-    obj = afw_service_get_object(&service_id->internal, x->p, x->xctx);
+    afw_service_stop(service_id, x->xctx);
+
+    obj = afw_service_get_object(service_id, x->p, x->xctx);
 
     if (!obj) {
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);

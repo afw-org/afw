@@ -1267,6 +1267,9 @@ afw_service_start(
     const afw_pool_t *p;
     impl_start_context_t ctx;
 
+    /* The caller's id may live in a pool this start releases. */
+    service_id = afw_utf8_clone(service_id, xctx->p, xctx);
+
     /* Clear ctx and set p, session to NULL. */
     afw_memory_clear(&ctx);
     p = NULL;
@@ -1334,6 +1337,9 @@ afw_service_stop(
 {
     afw_service_t *service;
     const afw_utf8_t *description;
+
+    /* The caller's id may live in a pool this stop releases. */
+    service_id = afw_utf8_clone(service_id, xctx->p, xctx);
 
     /*
      * environment_lock only changes the status pointer-side claim.
@@ -1545,6 +1551,9 @@ afw_service_restart(
     afw_boolean_t error;
     const afw_pool_t *p;
     impl_start_context_t ctx;
+
+    /* The caller's id may live in a pool this restart releases. */
+    service_id = afw_utf8_clone(service_id, xctx->p, xctx);
 
     /* Clear ctx and set p, session to NULL. */
     afw_memory_clear(&ctx);
