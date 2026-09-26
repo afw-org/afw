@@ -219,7 +219,9 @@
      * AFW_LOCK_END. That section calls get_service and register_service,
      * which lock it again. It must not call adapter or conf code.
      * Those paths already hold this lock while they register and
-     * publish a runtime object.
+     * publish a runtime object. get and foreach of an indirect runtime
+     * object with no callback hold it across the managed clone. A
+     * service keeps its own lock for work inside the service.
      */
     const afw_lock_t *environment_lock;
 

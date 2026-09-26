@@ -567,8 +567,67 @@ impl_check_manifest_cb(
 
 
 /*
+ * The managed clone starts at reference count 1. get and foreach do
+ * not release it, so the caller's pool does.
+ */
+static void
+impl_object_clone_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    AFW_TRY {
+        afw_object_release((const afw_object_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Pool cleanup must not throw. */
+    }
+    AFW_ENDTRY;
+}
+
+
+
+/*
+ * No callback: the object is registry structure. environment_lock is
+ * held across the clone. A callback is the service's own lock and clone.
+ */
+static const afw_object_t *
+impl_clone_under_environment_lock(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *clone;
+    const afw_value_t *value;
+
+    clone = NULL;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        value = afw_value_get_assignable(object->value, p, xctx);
+        if (value && afw_value_is_object(value)) {
+            clone = ((const afw_value_object_t *)value)->internal;
+            AFW_TRY {
+                afw_pool_register_cleanup(p, (void *)clone, NULL,
+                    impl_object_clone_cleanup, xctx);
+            }
+            AFW_CATCH_UNHANDLED {
+                afw_object_release(clone, xctx);
+                clone = NULL;
+                AFW_ERROR_RETHROW;
+            }
+            AFW_ENDTRY;
+        }
+    }
+    AFW_LOCK_END;
+
+    return clone ? clone : object;
+}
+
+
+
+/*
  * If this indirect object was created with a callback, call it with
- * the object pointer as data. Otherwise return the object.
+ * the object pointer as data. Otherwise clone under environment_lock.
  */
 static const afw_object_t *
 impl_object_for_caller(
@@ -590,7 +649,7 @@ impl_object_for_caller(
     }
     indirect = (afw_runtime_object_indirect_t *)object;
     if (!indirect->cb) {
-        return object;
+        return impl_clone_under_environment_lock(object, p, xctx);
     }
     return indirect->cb((void *)object, p, xctx);
 }
@@ -643,7 +702,6 @@ afw_runtime_get_object(
 
     if (result) {
         result = impl_object_for_caller(result, p, xctx);
-        afw_object_get_reference(result, xctx);
     }
     return result;
 }
@@ -868,10 +926,8 @@ impl_afw_adapter_session_get_object(
         return;
     }
 
-    /* Call callback with object. */
+    /* Call callback with object. The pool releases a managed clone. */
     object = afw_runtime_get_object(object_type_id, object_id, p, xctx);
-    if (object) afw_object_get_reference(object, xctx);
-
     callback(object, context, xctx);
 }
 

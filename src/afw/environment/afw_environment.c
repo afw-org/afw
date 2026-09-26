@@ -160,6 +160,46 @@ impl_internal_additional_register_adapter_id(
 
 
 
+static void
+impl_process_object_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    AFW_TRY {
+        afw_object_release((const afw_object_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Pool cleanup must not throw. */
+    }
+    AFW_ENDTRY;
+}
+
+
+
+/*
+ * Live counters. A property-by-property clone copies peak before
+ * current, and the copy itself allocates. Return a managed face so
+ * later reads still see the live object.
+ */
+static const afw_object_t *
+impl_process_runtime_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *face;
+
+    face = afw_object_create_wrapper_managed(
+        (const afw_object_t *)data, p, xctx);
+    afw_pool_register_cleanup(p, (void *)face, NULL,
+        impl_process_object_cleanup, xctx);
+    return face;
+}
+
+
+
 /* Create runtime object and context type for log type. */
 static void
 impl_internal_additional_register_log_type(
@@ -541,7 +581,7 @@ afw_environment_create(
 
         rt = afw_runtime_object_create_indirect(
             afw_s__AdaptiveProcess_, afw_s_current,
-            (void *)env, NULL, p, xctx);
+            (void *)env, impl_process_runtime_object, p, xctx);
         env->process_object = rt;
         afw_runtime_env_set_object(rt, true, xctx);
         afw_xctx_qualifier_stack_qualifier_object_push(
