@@ -162,6 +162,23 @@ struct afw_runtime_object_map_s  {
 };
 
 
+/**
+ * @brief Callback that returns a runtime object for a caller's pool.
+ * @param data is the runtime object pointer.
+ * @param p pool of the caller. The callback registers any release here.
+ * @param xctx of caller.
+ * @return object safe for p.
+ *
+ * Specified when the indirect runtime object is created. get and foreach
+ * call it with the stored object as data. NULL means return that object.
+ */
+typedef const afw_object_t *
+(*afw_runtime_object_cb_t)(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 /** @brief Struct for runtime objects. */
 struct afw_runtime_object_indirect_s {
     /** pub->inf MUST point to afw_runtime_object_inf. */
@@ -169,6 +186,12 @@ struct afw_runtime_object_indirect_s {
 
     /** Pointer to internal representation mapped by property_map. */
     void * internal;
+
+    /**
+     * Optional. When set, get and foreach call this instead of
+     * returning the object pointer. data is that object pointer.
+     */
+    afw_runtime_object_cb_t cb;
 };
 
 
@@ -213,6 +236,8 @@ struct afw_runtime_property_s {
  * @param inf of map.
  * @param object_id of object.
  * @param internal is pointer to object's internal.
+ * @param cb optional. NULL returns the object from get and foreach.
+ *    Otherwise those call this with the object pointer.
  * @param p for result.
  * @param xctx
  *
@@ -225,6 +250,7 @@ afw_runtime_object_create_indirect_using_inf(
     const afw_object_inf_t *inf,
     const afw_utf8_t *object_id,
     void * internal,
+    afw_runtime_object_cb_t cb,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -262,11 +288,7 @@ afw_runtime_env_set_objects(
  * @param xctx of caller.
  * @return object.
  */
-typedef const afw_object_t *
-(*afw_runtime_object_wrapper_p_cb_t)(
-    void *data,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
+typedef afw_runtime_object_cb_t afw_runtime_object_wrapper_p_cb_t;
 
 
 
@@ -295,6 +317,8 @@ afw_runtime_env_set_object_cb_wrapper(
  * @param object_type_id of a registered map.
  * @param object_id of object.
  * @param internal is pointer to object's internal.
+ * @param cb optional. NULL returns the object from get and foreach.
+ *    Otherwise those call this with the object pointer.
  * @param overwrite whether to throw error is object with path exists.
  * @param xctx
  *
@@ -307,6 +331,7 @@ afw_runtime_env_create_and_set_indirect_object(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     void *internal,
+    afw_runtime_object_cb_t cb,
     afw_boolean_t overwrite,
     afw_xctx_t *xctx);
 
@@ -317,6 +342,8 @@ afw_runtime_env_create_and_set_indirect_object(
  * @param inf of map.
  * @param object_id of object.
  * @param internal is pointer to object's internal.
+ * @param cb optional. NULL returns the object from get and foreach.
+ *    Otherwise those call this with the object pointer.
  * @param overwrite whether to throw error is object with path exists.
  * @param xctx
  *
@@ -329,6 +356,7 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
     const afw_object_inf_t *inf,
     const afw_utf8_t *object_id,
     void * internal,
+    afw_runtime_object_cb_t cb,
     afw_boolean_t overwrite,
     afw_xctx_t *xctx);
 
@@ -339,6 +367,7 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
  * @param object_type_id of objects to pass to callback.
  * @param context to be passed to callback.
  * @param callback function.
+ * @param p pool of the caller.
  * @param xctx of caller.
  *
  * Custom handled object types are not supported and will call callback
@@ -351,6 +380,7 @@ AFW_DECLARE(void)
 afw_runtime_foreach(
     const afw_utf8_t *object_type_id,
     void *context, afw_object_cb_t callback,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -380,11 +410,13 @@ afw_runtime_get_internal_session(
  * @brief Get a runtime object.
  * @param object_type_id of object.
  * @param object_id of object.
+ * @param p pool of the caller.
  * @param xctx of caller.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_runtime_get_object(
     const afw_utf8_t *object_type_id, const afw_utf8_t *object_id,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -393,6 +425,8 @@ afw_runtime_get_object(
  * @param object_type_id of a registered map.
  * @param object_id of object.
  * @param internal is pointer to object's internal.
+ * @param cb optional. NULL returns the object from get and foreach.
+ *    Otherwise those call this with the object pointer.
  * @param p for result.
  * @param xctx
  *
@@ -405,6 +439,23 @@ afw_runtime_object_create_indirect(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     void * internal,
+    afw_runtime_object_cb_t cb,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Return the _AdaptiveServer_ runtime object for a caller's pool.
+ * @param data is the _AdaptiveServer_ runtime object.
+ * @param p pool of the caller.
+ * @param xctx of caller.
+ *
+ * Same signature as afw_runtime_object_cb_t. The server object is
+ * registered with this callback.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_server_get_runtime_object(
+    void *data,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

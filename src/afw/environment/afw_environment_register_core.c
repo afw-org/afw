@@ -60,6 +60,7 @@ static const afw_utf8_z_t * impl_rv_decoder_z_errno(int rv,
 typedef struct impl_AdaptiveLayoutComponentType_context_s {
     void *original_context;
     afw_object_cb_t original_callback;
+    const afw_pool_t *p;
     afw_boolean_t skip_runtime;
 } impl_AdaptiveLayoutComponentType_context_t;
 
@@ -77,7 +78,7 @@ impl_AdaptiveLayoutComponentType_retrieve_cb(
         if (ctx->skip_runtime) {
             if (afw_runtime_get_object(
                 afw_object_meta_get_object_type_id(object, xctx),
-                object->meta.id, xctx))
+                object->meta.id, ctx->p, xctx))
             {
                 AFW_LOG_FZ(info, xctx,
                     "/%ku/_AdaptiveLayoutComponentType_/%ku ignored because AFW core or an extension supplies it",
@@ -111,11 +112,12 @@ impl_AdaptiveLayoutComponentType_retrieve_objects(
 
     ctx.original_callback = callback;
     ctx.original_context = context;
+    ctx.p = p;
     ctx.skip_runtime = false;
 
     /* Return core component types. */
     afw_runtime_foreach(object_type_id, (void *)&ctx,
-        impl_AdaptiveLayoutComponentType_retrieve_cb, xctx);
+        impl_AdaptiveLayoutComponentType_retrieve_cb, p, xctx);
 
     /* If there is a layout adapter, check it too. */
     if (xctx->env->layout_adapter_id) {
@@ -151,7 +153,7 @@ impl_AdaptiveLayoutComponentType_get_object(
     const afw_adapter_session_t *session;
 
     /* Check for runtime object first. */
-    object = afw_runtime_get_object(object_type_id, object_id, xctx);
+    object = afw_runtime_get_object(object_type_id, object_id, p, xctx);
     if (object) {
         callback(object, context, xctx);
     }
@@ -442,7 +444,7 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     afw_components = afw_pool_calloc_type(xctx->env->p, afw_components_t, xctx);
     afw_runtime_env_create_and_set_indirect_object(
         afw_s__AdaptiveApplicationComponents_,
-        afw_s_current, afw_components, true, xctx);
+        afw_s_current, afw_components, NULL, true, xctx);
 
     /** @fixme Not implemented yet
         Register factory for log_type=file.

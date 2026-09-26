@@ -145,6 +145,115 @@ impl_get_reference(
 
 
 
+static void
+impl_adapter_reference_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    AFW_TRY {
+        afw_adapter_release((const afw_adapter_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Pool cleanup must not throw. */
+    }
+    AFW_ENDTRY;
+}
+
+
+
+const afw_adapter_t *
+afw_adapter_internal_pin_for_pool_lock_held(
+    const afw_adapter_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_adapter_id_anchor_t *anchor;
+
+    if (!instance || p == instance->p) {
+        return NULL;
+    }
+
+    for (
+        anchor = (afw_adapter_id_anchor_t *)
+            afw_environment_get_adapter_id(&instance->adapter_id, xctx);
+        anchor;
+        anchor = anchor->stopping)
+    {
+        if (anchor->adapter == instance) {
+            anchor->reference_count++;
+            return instance;
+        }
+    }
+
+    return NULL;
+}
+
+
+
+void
+afw_adapter_internal_register_pin_cleanup(
+    const afw_adapter_t *held,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!held) {
+        return;
+    }
+
+    AFW_TRY {
+        afw_pool_register_cleanup(p, (void *)held, NULL,
+            impl_adapter_reference_cleanup, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_adapter_release(held, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
+}
+
+
+
+AFW_DEFINE(const afw_object_t *)
+afw_adapter_get_runtime_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    /* The anchor and this object live in env->p. */
+    (void)p;
+    (void)xctx;
+    return (const afw_object_t *)data;
+}
+
+
+
+AFW_DEFINE(const afw_object_t *)
+afw_adapter_get_metrics_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *object = (const afw_object_t *)data;
+    afw_runtime_object_indirect_t *indirect =
+        (afw_runtime_object_indirect_t *)object;
+    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)indirect->internal;
+    const afw_adapter_t *held;
+
+    held = NULL;
+    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+        held = afw_adapter_internal_pin_for_pool_lock_held(
+            impl->adapter, p, xctx);
+    }
+    AFW_LOCK_END;
+
+    afw_adapter_internal_register_pin_cleanup(held, p, xctx);
+    return object;
+}
+
+
+
 /* Get an adapter and make sure it is started. */
 AFW_DEFINE(const afw_adapter_t *)
 afw_adapter_get_reference(
@@ -504,7 +613,7 @@ afw_adapter_get_object_type(
         afw_utf8_equal(object_type_id, afw_s__AdaptiveValueMeta_))
     {
         object = afw_runtime_get_object(
-            afw_s__AdaptiveObjectType_, object_type_id, xctx);
+            afw_s__AdaptiveObjectType_, object_type_id, p, xctx);
         result = afw_object_type_internal_create(
             adapter, object, p, xctx);
     }
@@ -713,7 +822,7 @@ afw_adapter_internal_register_service_type(afw_xctx_t *xctx)
     }
     self->title = afw_s_a_service_type_adapter_title;
     self->conf_type_object = afw_runtime_get_object(afw_s__AdaptiveConfType_,
-        afw_s_adapter, xctx);
+        afw_s_adapter, xctx->p, xctx);
     afw_environment_register_service_type(afw_s_adapter, self, xctx);
 }
 

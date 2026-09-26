@@ -627,24 +627,17 @@ impl_afw_value_get_assignable_value(
     afw_xctx_t *xctx)
 {
     const afw_object_t *obj;
-    const afw_object_t *w;
 
     obj = ((const afw_value_object_t *)instance)->internal;
     if (afw_object_is_memory_managed(obj)) {
         afw_object_get_reference(obj, xctx);
         return obj->value;
     }
-    /* Script `{}`: deep clone. Runtime/adapter/view: */
-    /* managed look-through wrapper (preserves meta). */
-    if (obj && obj->inf &&
-        afw_utf8_equal_utf8_z(&obj->inf->rti.implementation_id,
-            "memory") &&
-        !afw_object_is_memory_wrapper(obj))
-    {
-        return afw_value_clone_managed(instance, p, xctx);
+    /* Non-permanent, non-managed: copy names and values. */
+    if (!obj) {
+        return instance;
     }
-    w = afw_object_create_wrapper_managed(obj, p, xctx);
-    return w->value;
+    return afw_value_clone_managed(instance, p, xctx);
 }
 
 /* Permanent object/array: managed wrapper (object) or clone (array). */

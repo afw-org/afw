@@ -152,7 +152,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     /* If module_path is not supplied, see if it is registered. */
     if (!module_path) {
         manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
-            extension_id, xctx);
+            extension_id, p, xctx);
         if (manifest) {
             value = afw_object_get_property(manifest, afw_v_modulePath, xctx);
             if (value) {

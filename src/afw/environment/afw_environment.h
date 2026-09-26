@@ -145,7 +145,7 @@ struct afw_environment_s {
         "The void pointer for a singleton key.")                                \
                                                                                 \
     _XX(adapter_id,                                                              \
-        impl_internal_additional_register_default,                              \
+        impl_internal_additional_register_adapter_id,                           \
         false,                                                                  \
         "adapterId",                                                            \
         "_AdaptiveAdapter_",                                                    \

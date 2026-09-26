@@ -825,13 +825,14 @@ impl_properties_to_object_type(
 
 static void
 impl_set_synthetic_object_type(afw_void_hash_table_t *ht,
+    const afw_pool_t *p,
     const afw_utf8_t *object_type_id,
     afw_xctx_t *xctx)
 {
     const afw_object_t *object_type;
 
     object_type = afw_runtime_get_object(
-        afw_s__AdaptiveObjectType_, object_type_id, xctx);
+        afw_s__AdaptiveObjectType_, object_type_id, p, xctx);
     if (!object_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Missing object '/afw/_AdaptiveObjectType_/%ku'",
@@ -1177,25 +1178,25 @@ impl_make_object_types(
     }
 
     /* Add synthetic object types. */
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_s__AdaptiveObjectType_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_s__AdaptiveValueMeta_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapAttributeType_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapMatchingRuleUse_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapMatchingRuleUse_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapMatchingRule_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapObjectClass_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapRootDse_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapSchema_, xctx);
-    impl_set_synthetic_object_type(metadata->object_type_objects,
+    impl_set_synthetic_object_type(metadata->object_type_objects, metadata->p,
         afw_ldap_s__AdaptiveLdapSyntax_, xctx);
 }
 

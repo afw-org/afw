@@ -653,7 +653,7 @@ afw_log_internal_register_service_type(afw_xctx_t *xctx)
     }
     self->title = afw_s_a_service_type_log_title;
     self->conf_type_object = afw_runtime_get_object(afw_s__AdaptiveConfType_,
-        afw_s_log, xctx);
+        afw_s_log, xctx->p, xctx);
     afw_environment_register_service_type(afw_s_log, self, xctx);
 }
 

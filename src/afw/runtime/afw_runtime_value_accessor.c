@@ -947,75 +947,6 @@ afw_runtime_value_accessor_uint32(
 }
 
 
-/* --- adapter live-object pin (metrics / properties) ---------------------- */
-
-static void
-impl_release_adapter_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)data2;
-    (void)p;
-
-    if (data) {
-        afw_adapter_release((const afw_adapter_t *)data, xctx);
-    }
-}
-
-/*
- * Caller holds adapter_id_anchor_lock. Increment the instance's anchor
- * count so stop/replace drains instead of destroying while p still holds
- * a live metrics/properties object. Skip when p is the instance pool
- * (same lifetime — extra pin would release during destroy).
- */
-static const afw_adapter_t *
-impl_pin_adapter_for_pool_lock_held(
-    const afw_adapter_t *instance,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_adapter_id_anchor_t *anchor;
-
-    if (!instance || p == instance->p) {
-        return NULL;
-    }
-
-    for (
-        anchor = (afw_adapter_id_anchor_t *)
-            afw_environment_get_adapter_id(&instance->adapter_id, xctx);
-        anchor;
-        anchor = anchor->stopping)
-    {
-        if (anchor->adapter == instance) {
-            anchor->reference_count++;
-            return instance;
-        }
-    }
-
-    return NULL;
-}
-
-static void
-impl_register_adapter_pin_cleanup(
-    const afw_adapter_t *held,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!held) {
-        return;
-    }
-
-    AFW_TRY {
-        afw_pool_register_cleanup(
-            p, (void *)held, NULL, impl_release_adapter_cleanup, xctx);
-    }
-    AFW_CATCH_UNHANDLED {
-        afw_adapter_release(held, xctx);
-        AFW_ERROR_RETHROW;
-    }
-    AFW_ENDTRY;
-}
-
-
 /* --- adapter_metrics ----------------------------------------------------- */
 
 static const afw_utf8_t
@@ -1069,14 +1000,14 @@ afw_runtime_value_accessor_adapter_metrics(
         if (adapter && adapter->impl) {
             metrics_object = adapter->impl->metrics_object;
             if (metrics_object) {
-                held = impl_pin_adapter_for_pool_lock_held(
+                held = afw_adapter_internal_pin_for_pool_lock_held(
                     adapter, p, xctx);
             }
         }
     }
     AFW_LOCK_END;
 
-    impl_register_adapter_pin_cleanup(held, p, xctx);
+    afw_adapter_internal_register_pin_cleanup(held, p, xctx);
 
     return (metrics_object)
         ? afw_value_create_unmanaged_object(metrics_object, p, xctx)
@@ -1140,14 +1071,14 @@ afw_runtime_value_accessor_adapter_properties(
                 (const char *)internal - prop->offset);
             adapter = anchor->adapter;
             if (adapter) {
-                held = impl_pin_adapter_for_pool_lock_held(
+                held = afw_adapter_internal_pin_for_pool_lock_held(
                     adapter, p, xctx);
             }
         }
     }
     AFW_LOCK_END;
 
-    impl_register_adapter_pin_cleanup(held, p, xctx);
+    afw_adapter_internal_register_pin_cleanup(held, p, xctx);
 
     return (properties)
         ? afw_value_create_unmanaged_object(properties, p, xctx)

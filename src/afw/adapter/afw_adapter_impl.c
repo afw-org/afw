@@ -353,7 +353,7 @@ afw_adapter_impl_create_cede_p(
      */
     impl->metrics_object = afw_runtime_object_create_indirect(
         afw_s__AdaptiveAdapterMetrics_,
-        &adapter->adapter_id, impl, p, xctx);
+        &adapter->adapter_id, impl, afw_adapter_get_metrics_object, p, xctx);
 
     /* If this is layout adapter id, allow layout object type. */
     if (xctx->env->layout_adapter_id &&
@@ -605,7 +605,7 @@ afw_adapter_impl_set_supported_core_object_type(
             afw_adapter_impl_core_object_type_t, xctx);
         e->object_type_id = object_type_id;
         e->object = afw_runtime_get_object(afw_s__AdaptiveObjectType_,
-            object_type_id, xctx);
+            object_type_id, p, xctx);
         if (!e->object) {
             AFW_THROW_ERROR_Z(general, "Invalid object type id", xctx);
         }
@@ -1235,7 +1235,7 @@ impl_afw_adapter_session_get_object(
 
         /* Return /afw/_AdaptiveObjectType_/<objectId> asis. */
         object_type_object = afw_runtime_get_object(
-            object_type_id, object_id, xctx);
+            object_type_id, object_id, p, xctx);
         if (object_type_object) {
             impl_setup_object_delivery_callbacks(&ctx, impl,
                 callback, context,

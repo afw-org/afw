@@ -82,6 +82,39 @@ afw_adapter_get_reference(const afw_utf8_t *adapter_id, afw_xctx_t *xctx);
 
 
 /**
+ * @brief Return the _AdaptiveAdapter_ runtime object for a caller's pool.
+ * @param data is that runtime object.
+ * @param p pool of the caller.
+ * @param xctx of caller.
+ *
+ * Same signature as afw_runtime_object_cb_t. The anchor object is
+ * registered with this callback. The anchor lives in env->p.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_adapter_get_runtime_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Return the _AdaptiveAdapterMetrics_ object for a caller's pool.
+ * @param data is that runtime object.
+ * @param p pool of the caller. afw_adapter_release is registered here.
+ * @param xctx of caller.
+ *
+ * Same signature as afw_runtime_object_cb_t. Pins this adapter
+ * instance, active or draining, until p is released. Does not
+ * start an adapter.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_adapter_get_metrics_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Parse query criteria object appropriate for an adapter.
  * @param query_criteria is an _AdaptiveQueryCriteria_ object.
  * @param adapter_id of adapter.

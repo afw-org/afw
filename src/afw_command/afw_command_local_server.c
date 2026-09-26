@@ -517,7 +517,7 @@ afw_command_local_server_create(
     /* Create and set runtime object for server. */
     afw_runtime_env_create_and_set_indirect_object(
         afw_s__AdaptiveServer_,
-        afw_s_current, self, true, xctx);
+        afw_s_current, self, afw_server_get_runtime_object, true, xctx);
 
     /* If there's not a conf file already processed, process a default one. */
     if (!self->command_self->conf_z) {

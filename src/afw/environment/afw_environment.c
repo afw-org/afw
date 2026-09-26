@@ -85,13 +85,11 @@ impl_module_path_from_property(
 
 /* Create default runtime object that just has key. */
 static void
-impl_internal_additional_register_default(
+impl_internal_additional_register_indirect(
     const afw_utf8_t *type_id,
-    int type_number,
     const afw_utf8_t *key,
     const void *value,
-    const void *register_additional_param,
-    const void **register_additional_use,
+    afw_runtime_object_cb_t cb,
     afw_xctx_t *xctx)
 {
     afw_environment_internal_t *env;
@@ -114,12 +112,50 @@ impl_internal_additional_register_default(
     if (value) {
         afw_runtime_env_create_and_set_indirect_object(
             type->object_type_id, key,
-            (void *)value, true, xctx);
+            (void *)value, cb, true, xctx);
     }
     else {
         afw_runtime_remove_object(type->object_type_id,
             key, xctx);
     }
+}
+
+
+
+static void
+impl_internal_additional_register_default(
+    const afw_utf8_t *type_id,
+    int type_number,
+    const afw_utf8_t *key,
+    const void *value,
+    const void *register_additional_param,
+    const void **register_additional_use,
+    afw_xctx_t *xctx)
+{
+    (void)type_number;
+    (void)register_additional_param;
+    (void)register_additional_use;
+    impl_internal_additional_register_indirect(
+        type_id, key, value, NULL, xctx);
+}
+
+
+
+static void
+impl_internal_additional_register_adapter_id(
+    const afw_utf8_t *type_id,
+    int type_number,
+    const afw_utf8_t *key,
+    const void *value,
+    const void *register_additional_param,
+    const void **register_additional_use,
+    afw_xctx_t *xctx)
+{
+    (void)type_number;
+    (void)register_additional_param;
+    (void)register_additional_use;
+    impl_internal_additional_register_indirect(
+        type_id, key, value, afw_adapter_get_runtime_object, xctx);
 }
 
 
@@ -174,7 +210,7 @@ impl_internal_additional_register_key_only(
             ps = afw_pool_calloc(xctx->env->p, sizeof(afw_utf8_t *), xctx);
             *ps = key;
             afw_runtime_env_create_and_set_indirect_object(
-                type->object_type_id, key, (void *)ps, true, xctx);
+                type->object_type_id, key, (void *)ps, NULL, true, xctx);
         }
         else {
             afw_runtime_remove_object(type->object_type_id, key, xctx);
@@ -505,7 +541,7 @@ afw_environment_create(
 
         rt = afw_runtime_object_create_indirect(
             afw_s__AdaptiveProcess_, afw_s_current,
-            (void *)env, p, xctx);
+            (void *)env, NULL, p, xctx);
         env->process_object = rt;
         afw_runtime_env_set_object(rt, true, xctx);
         afw_xctx_qualifier_stack_qualifier_object_push(
@@ -517,7 +553,7 @@ afw_environment_create(
         type = env->registry_types->entries[i];
         afw_runtime_env_create_and_set_indirect_object_using_inf(
             &afw_runtime_inf__AdaptiveEnvironmentRegistryType_,
-            type->registry_type_id, type, true, xctx);
+            type->registry_type_id, type, NULL, true, xctx);
         afw_environment_registry_register(
             afw_environemnt_registry_type_registry_type,
             type->property_name, (void *)type, xctx);
@@ -649,7 +685,7 @@ afw_environment_create_registry_type(
             type, xctx);
         afw_runtime_env_create_and_set_indirect_object_using_inf(
             &afw_runtime_inf__AdaptiveEnvironmentRegistryType_,
-            type->registry_type_id, type, true, xctx);
+            type->registry_type_id, type, NULL, true, xctx);
         afw_environment_registry_register(
             afw_environemnt_registry_type_registry_type,
             type->property_name, (void *)type, xctx);
@@ -683,7 +719,7 @@ afw_environment_get_registry_type_by_id(
             ctx.type = afw_s_registry_type;
             ctx.key = registry_type_id;
             afw_runtime_foreach(afw_s__AdaptiveManifest_,
-                &ctx, impl_check_manifest_cb, xctx);
+                &ctx, impl_check_manifest_cb, xctx->p, xctx);
             type = afw_hash_table_get(
                 env->registry_names_ht,
                 registry_type_id->s,
@@ -921,7 +957,7 @@ afw_environment_registry_get(
             ctx.type = type->registry_type_id;
             ctx.key = key;
             afw_runtime_foreach(afw_s__AdaptiveManifest_,
-                &ctx, impl_check_manifest_cb, xctx);
+                &ctx, impl_check_manifest_cb, xctx->p, xctx);
             result = afw_hash_table_get(type->ht, key->s, key->len);
         }
 
@@ -1149,7 +1185,7 @@ afw_environment_load_extension(
 
             if (!module_path) {
                 manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
-                    extension_id, xctx);
+                    extension_id, p, xctx);
                 if (manifest) {
                     module_path = impl_module_path_from_property(manifest,
                         NULL, p, xctx);

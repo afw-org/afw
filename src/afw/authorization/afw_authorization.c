@@ -1229,7 +1229,7 @@ afw_authorization_internal_register_service_and_conf(
     }
     self->title = afw_s_a_service_type_authorizationHandler_title;
     self->conf_type_object = afw_runtime_get_object(afw_s__AdaptiveConfType_,
-        afw_s_authorizationHandler, xctx);
+        afw_s_authorizationHandler, xctx->p, xctx);
     afw_environment_register_service_type(afw_s_authorizationHandler, self, xctx);
 }
 
