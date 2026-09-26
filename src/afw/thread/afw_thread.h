@@ -73,7 +73,8 @@ struct afw_thread_s {
      *
      * Created at thread create (including base). Heaps call
      * afw_memory_region_get/free on this. release() is thread death
-     * only.
+     * only. Its mutex serializes caller malloc/free on an MT pool.
+     * It is not the pool structure lock.
      */
     const afw_memory_region_t *memory_region;
 
@@ -109,6 +110,16 @@ struct afw_thread_s {
 
     /** @brief C-stack size in bytes. 0 if unknown. */
     afw_size_t c_stack_size;
+
+    /**
+     * @brief One mutex for pools whose `thread` is this.
+     *
+     * Parent/child list and reference count. Non-recursive.
+     * Not the memory-region mutex. C calloc, same life as this
+     * struct. NULL only if create failed. Kept last so existing
+     * field offsets stay stable for binaries built before it.
+     */
+    afw_os_mutex_t *pool_lock;
 };
 
 /**

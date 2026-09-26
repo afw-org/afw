@@ -1221,6 +1221,10 @@ impl_thread_parent_hold(afw_xctx_t *xctx)
     if (region) {
         afw_memory_region_release(region, xctx);
     }
+    if (thread->pool_lock) {
+        afw_os_mutex_free_unhandled(thread->pool_lock);
+        thread->pool_lock = NULL;
+    }
     free(thread);
     return rc;
 }

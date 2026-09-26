@@ -602,7 +602,7 @@ afw_pool_scope_symbol_get_value_address(
             &symbol->name->internal);
     }
 
-    if (symbol->index >= scope->block->symbol_count) {
+    if (symbol->index >= scope->symbol_count) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "symbol '%ku' index " AFW_SIZE_T_FMT
             " is out of range for scope",
@@ -777,12 +777,13 @@ afw_pool_scope_create(
         + (block->symbol_count * sizeof(const afw_value_t *));
     scope = impl_scope_object_create(p, self_bytes, xctx);
     scope->block = block;
+    scope->symbol_count = block->symbol_count;
     scope->reference_count = 1;
     scope->last_result = afw_value_void;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
 
-    for (i = 0; i < block->symbol_count; i++) {
+    for (i = 0; i < scope->symbol_count; i++) {
         scope->frame_slots[i] = afw_value_undefined;
     }
 
@@ -859,7 +860,7 @@ afw_pool_scope_clone(
             &parent_self->pub, xctx);
     }
 
-    for (i = 0; i < scope->block->symbol_count; i++) {
+    for (i = 0; i < scope->symbol_count; i++) {
         afw_value_slot_store(&scope->frame_slots[i],
             original_scope->frame_slots[i], scope->p, xctx);
     }
@@ -978,7 +979,7 @@ afw_pool_scope_release(
     }
 
     if (scope->block) {
-        for (i = 0; i < scope->block->symbol_count; i++) {
+        for (i = 0; i < scope->symbol_count; i++) {
             afw_value_release(scope->frame_slots[i], xctx);
             ((afw_pool_scope_t *)scope)->frame_slots[i] =
                 afw_value_undefined;

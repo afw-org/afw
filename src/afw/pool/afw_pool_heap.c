@@ -1235,7 +1235,16 @@ impl_thread_pool_get_reference(
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
+    /*
+     * No parent pin. Still the same count the release path locks.
+     */
+    if (self->thread && self->thread->pool_lock) {
+        afw_os_mutex_lock(self->thread->pool_lock, xctx);
+    }
     self->reference_count++;
+    if (self->thread && self->thread->pool_lock) {
+        afw_os_mutex_unlock(self->thread->pool_lock, xctx);
+    }
 }
 
 static const afw_pool_t *
@@ -1438,6 +1447,13 @@ afw_pool_thread_create(
             "Unable to allocate memory_region", xctx);
     }
     thread->memory_region = region;
+    thread->pool_lock = afw_os_mutex_create_unhandled(AFW_OS_MUTEX_UNNESTED);
+    if (!thread->pool_lock) {
+        afw_memory_region_release(region, xctx);
+        free(thread);
+        AFW_THROW_ERROR_Z(general,
+            "Unable to allocate pool lock", xctx);
+    }
     AFW_TRY {
         self = afw_pool_heap_create_self(xctx->p,
             &impl_afw_pool_thread_inf, true,
@@ -1457,6 +1473,7 @@ afw_pool_thread_create(
         }
     }
     AFW_CATCH_UNHANDLED {
+        afw_os_mutex_free_unhandled(thread->pool_lock);
         afw_memory_region_release(region, xctx);
         free(thread);
         AFW_ERROR_RETHROW;

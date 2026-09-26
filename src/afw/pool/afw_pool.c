@@ -31,7 +31,11 @@
  *   or 64k (`xctx->p`).
  *   region — the `void *` from `afw_memory_region_get()`. The heap
  *   uses that pointer as a chunk. Same bytes, two names: region at
- *   the thread, chunk once the heap owns it.
+ *   the thread, chunk once the heap owns it. The region's mutex
+ *   serializes MT malloc/free only.
+ *   pool_lock — one non-recursive mutex on the owning thread.
+ *   Parent/child list and reference count for every pool with
+ *   that thread, ST and MT.
  *   page — hardware MMU page, or the 4096 posix_memalign alignment
  *   (`AFW_POOL_CHUNK_ALIGN`). Not a type name. Not a chunk or a
  *   region.
@@ -234,6 +238,28 @@ afw_pool_internal_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xc
     self->bytes_allocated = 0;
 }
 
+/*
+ * Owning thread's pool_lock. Not the memory-region mutex.
+ * Short sections only: do not call pool release, destroy, or
+ * malloc while holding it (those take it again, and MT malloc
+ * takes the region lock).
+ */
+static void
+impl_lock_owner(const afw_thread_t *thread, afw_xctx_t *xctx)
+{
+    if (thread && thread->pool_lock) {
+        afw_os_mutex_lock(thread->pool_lock, xctx);
+    }
+}
+
+static void
+impl_unlock_owner(const afw_thread_t *thread, afw_xctx_t *xctx)
+{
+    if (thread && thread->pool_lock) {
+        afw_os_mutex_unlock(thread->pool_lock, xctx);
+    }
+}
+
 static void
 impl_add_child(
     afw_pool_internal_self_t *parent,
@@ -278,15 +304,9 @@ afw_pool_internal_link_as_child(
     afw_pool_internal_self_t *child,
     afw_xctx_t *xctx)
 {
-    if (afw_pool_internal_is_multithreaded(&parent->pub)) {
-        IMPL_MULTITHREADED_LOCK_BEGIN(parent) {
-            impl_add_child(parent, child, xctx);
-        }
-        IMPL_MULTITHREADED_LOCK_END;
-    }
-    else {
-        impl_add_child(parent, child, xctx);
-    }
+    impl_lock_owner(parent->thread, xctx);
+    impl_add_child(parent, child, xctx);
+    impl_unlock_owner(parent->thread, xctx);
 }
 
 #ifdef AFW_DEBUG_POOL
@@ -401,15 +421,9 @@ afw_pool_internal_unlink_from_parent(
     if (!parent) {
         return;
     }
-    if (afw_pool_internal_is_multithreaded(&parent->pub)) {
-        IMPL_MULTITHREADED_LOCK_BEGIN(parent) {
-            impl_unlink_child(parent, self, xctx);
-        }
-        IMPL_MULTITHREADED_LOCK_END;
-    }
-    else {
-        impl_unlink_child(parent, self, xctx);
-    }
+    impl_lock_owner(parent->thread, xctx);
+    impl_unlink_child(parent, self, xctx);
+    impl_unlock_owner(parent->thread, xctx);
 }
 
 void
@@ -427,14 +441,25 @@ afw_pool_internal_mark_destroying(AFW_POOL_SELF_T *self)
 void
 afw_pool_internal_destroy_children(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
-    while (self->first_child) {
+    /*
+     * Detach one child under the owner lock, then destroy it
+     * outside. Destroy runs teardown, which unlinks again and
+     * may malloc. Holding the lock across that deadlocks the
+     * non-recursive mutex and inverts it with the region lock.
+     */
+    for (;;) {
         afw_pool_internal_self_t *child;
 
+        impl_lock_owner(self->thread, xctx);
         child = self->first_child;
-        afw_pool_destroy(&child->pub, xctx);
-        if (self->first_child == child) {
+        if (child) {
             impl_unlink_child(self, child, xctx);
         }
+        impl_unlock_owner(self->thread, xctx);
+        if (!child) {
+            return;
+        }
+        afw_pool_destroy(&child->pub, xctx);
     }
 }
 
@@ -464,45 +489,79 @@ afw_pool_internal_release_common(
      * Extra holds (past the create reference) pin the parent. Drop one
      * pin per extra release. The release that hits 0 does not, because
      * the create reference never pinned the parent.
+     *
+     * The count is shared with other threads when a child outlives
+     * its creating call. Take the owning thread's pool_lock for
+     * the decrement only. Parent release and teardown run after
+     * it (they take the lock again; it is not recursive).
      */
-    if (self->reference_count > 1) {
-        afw_pool_internal_self_t *parent;
+    {
+        afw_boolean_t last;
+        afw_boolean_t already;
+        afw_boolean_t drop_pin;
         afw_boolean_t parent_dies;
+        afw_pool_internal_self_t *parent;
 
-        self->reference_count--;
-        parent = self->parent;
-        if (self->parent_pins > 0 && parent && !parent->destroying) {
-            self->parent_pins--;
-            parent_dies = (parent->reference_count == 1);
-            afw_pool_release(&parent->pub, xctx);
-            if (parent_dies) {
-                return NULL;
+        last = false;
+        already = false;
+        drop_pin = false;
+        parent_dies = false;
+        parent = NULL;
+        impl_lock_owner(self->thread, xctx);
+        if (self->reference_count > 1) {
+            self->reference_count--;
+            parent = self->parent;
+            if (self->parent_pins > 0 && parent && !parent->destroying) {
+                self->parent_pins--;
+                drop_pin = true;
+                /*
+                 * Same-thread signal: parent release below destroys
+                 * this child. Not atomic with that release.
+                 */
+                parent_dies = (parent->reference_count == 1);
             }
         }
-        return &self->pub;
-    }
+        else if (self->reference_count == 1) {
+            self->reference_count = 0;
+            last = true;
+        }
+        else {
+            already = true;
+        }
+        impl_unlock_owner(self->thread, xctx);
 
-    if (--(self->reference_count) == 0) {
-        if (self->destroying) {
-            afw_pool_internal_run_cleanups(self, xctx);
+        if (already) {
             return NULL;
         }
-        /*
-         * Unreferenced children did not pin this pool. Destroy them
-         * with it. A child that was get_referenced holds a pin, so it
-         * cannot still be linked here.
-         */
-        afw_pool_internal_mark_destroying(self);
-        afw_pool_internal_destroy_children(self, xctx);
-        if (self->first_child) {
-            AFW_THROW_ERROR_Z(general,
-                "Pool last-release with children remaining", xctx);
+        if (!last) {
+            if (drop_pin) {
+                afw_pool_release(&parent->pub, xctx);
+                if (parent_dies) {
+                    return NULL;
+                }
+            }
+            return &self->pub;
         }
+    }
+
+    if (self->destroying) {
         afw_pool_internal_run_cleanups(self, xctx);
-        teardown(self, xctx);
         return NULL;
     }
-    return &self->pub;
+    /*
+     * Unreferenced children did not pin this pool. Destroy them
+     * with it. A child that was get_referenced holds a pin, so it
+     * cannot still be linked here.
+     */
+    afw_pool_internal_mark_destroying(self);
+    afw_pool_internal_destroy_children(self, xctx);
+    if (self->first_child) {
+        AFW_THROW_ERROR_Z(general,
+            "Pool last-release with children remaining", xctx);
+    }
+    afw_pool_internal_run_cleanups(self, xctx);
+    teardown(self, xctx);
+    return NULL;
 }
 
 
@@ -516,10 +575,20 @@ afw_pool_internal_get_reference(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
-    self->reference_count++;
-    if (self->parent && !self->parent->destroying) {
-        self->parent_pins++;
-        afw_pool_get_reference(&self->parent->pub, xctx);
+    {
+        afw_boolean_t pin_parent;
+
+        pin_parent = false;
+        impl_lock_owner(self->thread, xctx);
+        self->reference_count++;
+        if (self->parent && !self->parent->destroying) {
+            self->parent_pins++;
+            pin_parent = true;
+        }
+        impl_unlock_owner(self->thread, xctx);
+        if (pin_parent) {
+            afw_pool_get_reference(&self->parent->pub, xctx);
+        }
     }
 }
 

@@ -46,6 +46,13 @@ struct afw_pool_scope_s {
     const afw_value_t *last_result;
 
     /**
+     * Length of frame_slots. Copied from the block at create.
+     * Release uses this, not block->symbol_count: the block lives
+     * in the compile pool and must not be able to change the walk.
+     */
+    afw_size_t symbol_count;
+
+    /**
      * Set when a sibling clone is taken. This frame is no longer
      * the running iteration; deactivate does not script_result_set.
      */
