@@ -49,12 +49,6 @@ afw_thread_internal_create_base_thread(void)
         return NULL;
     }
     self->memory_region = region;
-    self->pool_lock = afw_os_mutex_create_unhandled(AFW_OS_MUTEX_UNNESTED);
-    if (!self->pool_lock) {
-        afw_memory_region_release(region, NULL);
-        free(self);
-        return NULL;
-    }
     return self;
 }
 
@@ -66,10 +60,6 @@ afw_thread_internal_release_base_thread(
 {
     if (!thread) {
         return;
-    }
-    if (thread->pool_lock) {
-        afw_os_mutex_free_unhandled(thread->pool_lock);
-        thread->pool_lock = NULL;
     }
     if (thread->memory_region) {
         afw_memory_region_release(thread->memory_region, xctx);

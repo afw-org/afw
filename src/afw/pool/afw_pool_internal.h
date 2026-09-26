@@ -132,10 +132,9 @@ struct afw_pool_internal_self_s {
     ((_self)->thread ? (_self)->thread->memory_region : NULL)
 
 /*
- * MT malloc/free lock the pool's thread memory region (recursive,
- * so a get inside malloc is fine). That mutex is for callers
- * changing bytes in the pool. Parent/child and reference count use
- * thread->pool_lock instead. Uses xctx from the enclosing function.
+ * MT methods lock the pool's thread region (recursive so get/free
+ * inside malloc are fine). ST get/free do not lock. Uses xctx from
+ * the enclosing function.
  */
 #define IMPL_MULTITHREADED_LOCK_BEGIN(_pool) \
 const afw_memory_region_t *_this_region = \
