@@ -445,15 +445,24 @@ impl_scope_object_create(
     if (self_bytes < offsetof(afw_pool_scope_t, frame_slots)) {
         self_bytes = offsetof(afw_pool_scope_t, frame_slots);
     }
-    self = afw_pool_heap_create_self(parent,
-        afw_pool_internal_is_multithreaded(parent)
-            ? &impl_afw_pool_scope_multithreaded_inf
-            : &impl_afw_pool_scope_inf,
-        false,
-        (xctx->env && xctx->env->small_chunk_min)
-            ? xctx->env->small_chunk_min
-            : AFW_ENVIRONMENT_SMALL_CHUNK_MIN,
-        self_bytes, NULL, xctx);
+    if (afw_pool_internal_is_multithreaded(parent)) {
+        self = afw_pool_heap_multithreaded_create_self(parent,
+            &impl_afw_pool_scope_multithreaded_inf,
+            false,
+            (xctx->env && xctx->env->small_chunk_min)
+                ? xctx->env->small_chunk_min
+                : AFW_ENVIRONMENT_SMALL_CHUNK_MIN,
+            self_bytes, NULL, xctx);
+    }
+    else {
+        self = afw_pool_heap_create_self(parent,
+            &impl_afw_pool_scope_inf,
+            false,
+            (xctx->env && xctx->env->small_chunk_min)
+                ? xctx->env->small_chunk_min
+                : AFW_ENVIRONMENT_SMALL_CHUNK_MIN,
+            self_bytes, NULL, xctx);
+    }
     scope = (afw_pool_scope_t *)self;
     scope->p = &scope->pub;
     /*

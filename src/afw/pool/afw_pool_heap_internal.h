@@ -251,11 +251,35 @@ afw_pool_heap_internal_create_st_for_thread(
     afw_xctx_t *xctx);
 
 const afw_pool_t *
-afw_pool_heap_internal_create(
+afw_pool_heap_internal_create_st(
     const afw_pool_t *parent,
-    afw_boolean_t multithreaded,
     afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
+    afw_xctx_t *xctx);
+
+const afw_pool_t *
+afw_pool_heap_multithreaded_create(
+    const afw_pool_t *parent,
+    afw_boolean_t as_managed_p,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx);
+
+afw_pool_internal_self_t *
+afw_pool_heap_internal_allocate_self(
+    const afw_pool_inf_t *inf,
+    afw_size_t chunk_min,
+    afw_size_t self_bytes,
+    const afw_memory_region_t *region,
+    afw_xctx_t *xctx);
+
+afw_pool_internal_self_t *
+afw_pool_heap_multithreaded_create_self(
+    const afw_pool_t *afw_parent,
+    const afw_pool_inf_t *inf,
+    afw_boolean_t as_managed_p,
+    afw_size_t chunk_min,
+    afw_size_t self_bytes,
+    const afw_thread_t *thread,
     afw_xctx_t *xctx);
 
 /**

@@ -689,8 +689,11 @@ afw_pool_create(
      * managed_p. Tracker is afw_pool_tracker_create(). Job heaps
      * use *_as_managed_p.
      */
-    return afw_pool_heap_internal_create(parent,
-        afw_pool_internal_is_multithreaded(parent), false, 0, xctx);
+    if (afw_pool_internal_is_multithreaded(parent)) {
+        return afw_pool_heap_multithreaded_create(
+            parent, false, 0, xctx);
+    }
+    return afw_pool_heap_internal_create_st(parent, false, 0, xctx);
 }
 
 
@@ -709,8 +712,8 @@ afw_pool_multithread_create(
             "multithreaded heap",
             xctx);
     }
-    return afw_pool_heap_internal_create(parent, true, false,
-        chunk_min, xctx);
+    return afw_pool_heap_multithreaded_create(
+        parent, false, chunk_min, xctx);
 }
 
 
@@ -729,8 +732,8 @@ afw_pool_multithread_create_as_managed_p(
             "be a multithreaded heap",
             xctx);
     }
-    return afw_pool_heap_internal_create(parent, true, true,
-        chunk_min, xctx);
+    return afw_pool_heap_multithreaded_create(
+        parent, true, chunk_min, xctx);
 }
 
 

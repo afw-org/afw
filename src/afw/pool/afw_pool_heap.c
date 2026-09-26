@@ -275,8 +275,8 @@ impl_chunk_malloc(
 }
 
 
-static afw_pool_internal_self_t *
-impl_heap_allocate_self(
+afw_pool_internal_self_t *
+afw_pool_heap_internal_allocate_self(
     const afw_pool_inf_t *inf,
     afw_size_t chunk_min,
     afw_size_t self_bytes,
@@ -333,7 +333,7 @@ impl_heap_allocate_self(
  */
 static afw_pool_internal_heap_self_t *impl_base_pool_self;
 
-/* Create skeleton heap struct. Parent is any AFW pool. */
+/* Single-threaded heap or scope. Chunks come from the thread region. */
 afw_pool_internal_self_t *
 afw_pool_heap_create_self(
     const afw_pool_t *afw_parent,
@@ -347,9 +347,7 @@ afw_pool_heap_create_self(
     afw_pool_internal_self_t *self;
     afw_pool_internal_heap_self_t *heap;
     afw_pool_internal_self_t *parent_self;
-    const afw_pool_internal_inf_implementation_specific_t *spec;
     const afw_memory_region_t *region;
-    afw_boolean_t multithreaded;
 
     if (!thread && xctx) {
         thread = xctx->thread;
@@ -360,42 +358,17 @@ afw_pool_heap_create_self(
         }
         AFW_THROW_ERROR_Z(general, "Heap requires a thread", xctx);
     }
-    spec = inf ? inf->rti.implementation_specific : NULL;
-    multithreaded = spec && spec->is_multithreaded;
-    if (multithreaded) {
-        if (!xctx || !xctx->env) {
-            if (!xctx) {
-                return NULL;
-            }
-            AFW_THROW_ERROR_Z(general,
-                "Multithreaded heap requires the environment region",
-                xctx);
+    region = thread->memory_region;
+    if (!region) {
+        if (!xctx) {
+            return NULL;
         }
-        region = ((const afw_environment_t *)xctx->env)
-            ->multithreaded_memory_region;
-        if (!region) {
-            AFW_THROW_ERROR_Z(general,
-                "Multithreaded heap requires the environment region",
-                xctx);
-        }
-        afw_memory_region_lock(region, xctx);
+        AFW_THROW_ERROR_Z(general,
+            "Heap requires thread->memory_region", xctx);
     }
-    else {
-        region = thread->memory_region;
-        if (!region) {
-            if (!xctx) {
-                return NULL;
-            }
-            AFW_THROW_ERROR_Z(general,
-                "Heap requires thread->memory_region", xctx);
-        }
-    }
-    self = impl_heap_allocate_self(inf, chunk_min, self_bytes,
+    self = afw_pool_heap_internal_allocate_self(inf, chunk_min, self_bytes,
         region, xctx);
     if (!self) {
-        if (multithreaded) {
-            afw_memory_region_unlock(region, xctx);
-        }
         if (!xctx) {
             return NULL;
         }
@@ -422,10 +395,6 @@ afw_pool_heap_create_self(
         if (afw_pool_internal_counts_on_thread(self)) {
             afw_pool_internal_thread_add_chunks(self->thread, heap->chunk_bytes);
         }
-    }
-
-    if (multithreaded) {
-        afw_memory_region_unlock(region, xctx);
     }
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
@@ -1149,24 +1118,19 @@ afw_pool_heap_internal_is_multithreaded(const afw_pool_t *p)
 }
 
 const afw_pool_t *
-afw_pool_heap_internal_create(
+afw_pool_heap_internal_create_st(
     const afw_pool_t *parent,
-    afw_boolean_t multithreaded,
     afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
     afw_xctx_t *xctx)
 {
     AFW_POOL_SELF_T *self;
-    const afw_pool_inf_t *inf;
 
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-
-    inf = multithreaded
-        ? &impl_afw_pool_heap_multithreaded_inf
-        : &impl_afw_pool_inf;
-    self = afw_pool_heap_create_self(parent, inf, as_managed_p, chunk_min,
+    self = afw_pool_heap_create_self(parent, &impl_afw_pool_inf,
+        as_managed_p, chunk_min,
         sizeof(afw_pool_internal_self_with_free_memory_head_t),
         NULL, xctx);
     return &self->pub;
@@ -1207,9 +1171,12 @@ afw_pool_heap_create(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    return afw_pool_heap_internal_create(parent,
-        afw_pool_internal_is_multithreaded(parent), false,
-        chunk_min, xctx);
+    if (afw_pool_internal_is_multithreaded(parent)) {
+        return afw_pool_heap_multithreaded_create(
+            parent, false, chunk_min, xctx);
+    }
+    return afw_pool_heap_internal_create_st(
+        parent, false, chunk_min, xctx);
 }
 
 
@@ -1222,9 +1189,12 @@ afw_pool_heap_create_as_managed_p(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    return afw_pool_heap_internal_create(parent,
-        afw_pool_internal_is_multithreaded(parent), true,
-        chunk_min, xctx);
+    if (afw_pool_internal_is_multithreaded(parent)) {
+        return afw_pool_heap_multithreaded_create(
+            parent, true, chunk_min, xctx);
+    }
+    return afw_pool_heap_internal_create_st(
+        parent, true, chunk_min, xctx);
 }
 
 const afw_pool_t *
@@ -1243,7 +1213,7 @@ afw_pool_heap_internal_create_base_pool(
      * every later multithreaded create.
      */
     afw_memory_region_lock(mt_region, NULL);
-    self = impl_heap_allocate_self(
+    self = afw_pool_heap_internal_allocate_self(
         &impl_afw_pool_heap_multithreaded_inf,
         AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN,
         sizeof(afw_pool_internal_self_with_free_memory_head_t),

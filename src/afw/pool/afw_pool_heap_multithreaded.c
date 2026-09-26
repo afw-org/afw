@@ -243,3 +243,88 @@ impl_pool_mt_implementation_specific =
 #undef impl_afw_pool_register_cleanup
 #undef impl_afw_pool_deregister_cleanup
 #undef impl_afw_pool_garbage_collect
+
+afw_pool_internal_self_t *
+afw_pool_heap_multithreaded_create_self(
+    const afw_pool_t *afw_parent,
+    const afw_pool_inf_t *inf,
+    afw_boolean_t as_managed_p,
+    afw_size_t chunk_min,
+    afw_size_t self_bytes,
+    const afw_thread_t *thread,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *self;
+    afw_pool_internal_heap_self_t *heap;
+    afw_pool_internal_self_t *parent_self;
+    const afw_memory_region_t *region;
+
+    if (!xctx || !xctx->env) {
+        if (!xctx) {
+            return NULL;
+        }
+        AFW_THROW_ERROR_Z(general,
+            "Multithreaded heap requires the environment region",
+            xctx);
+    }
+    if (!thread) {
+        thread = xctx->thread;
+    }
+    if (!thread) {
+        AFW_THROW_ERROR_Z(general, "Heap requires a thread", xctx);
+    }
+    region = ((const afw_environment_t *)xctx->env)
+        ->multithreaded_memory_region;
+    if (!region) {
+        AFW_THROW_ERROR_Z(general,
+            "Multithreaded heap requires the environment region",
+            xctx);
+    }
+    afw_memory_region_lock(region, xctx);
+    self = afw_pool_heap_internal_allocate_self(inf, chunk_min, self_bytes,
+        region, xctx);
+    if (!self) {
+        afw_memory_region_unlock(region, xctx);
+        AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
+    }
+    heap = afw_pool_heap_internal_as_heap(self);
+    heap->memory_region = region;
+    if (!as_managed_p && afw_parent) {
+        self->pub.managed_p = afw_parent->managed_p
+            ? afw_parent->managed_p
+            : afw_parent;
+    }
+    self->thread = thread;
+    afw_pool_internal_assign_pool_number(self);
+    if (afw_parent) {
+        parent_self = (afw_pool_internal_self_t *)afw_parent;
+        afw_pool_internal_link_as_child(parent_self, self, xctx);
+    }
+    if (xctx->env && heap->chunk_bytes) {
+        afw_pool_internal_env_add_chunks((afw_environment_t *)xctx->env,
+            heap->chunk_bytes);
+    }
+    afw_memory_region_unlock(region, xctx);
+    return self;
+}
+
+
+const afw_pool_t *
+afw_pool_heap_multithreaded_create(
+    const afw_pool_t *parent,
+    afw_boolean_t as_managed_p,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *self;
+
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+    }
+    self = afw_pool_heap_multithreaded_create_self(parent,
+        &impl_afw_pool_heap_multithreaded_inf,
+        as_managed_p, chunk_min,
+        sizeof(afw_pool_internal_self_with_free_memory_head_t),
+        NULL, xctx);
+    return &self->pub;
+}
