@@ -3,6 +3,9 @@ import {useState, useEffect} from "react";
 
 import {
     useFunctions,
+    useAdapters,
+    useObjectTypes,
+    useDataTypes,
 } from "@afw/react";
 
 import {MonacoContext} from "../context";
@@ -14,6 +17,10 @@ import {
     monarchLanguage as afwScriptMonarchLanguage,
     functionCompletionItemProvider,
     polymorphicMethodCompletionItemProvider,
+    localVariableCompletionItemProvider,
+    adaptersCompletionItemProvider,
+    objectTypeCompletionItemProvider,
+    dataTypeCompletionItemProvider,
     hoverProvider as afwScriptHoverProvider,
     signatureHelpProvider,
     signatures
@@ -44,7 +51,10 @@ import {
 export const MonacoProvider = ({ theme, children }) => {
 
     const [monaco, setMonaco] = useState();
-    const {functions} = useFunctions();    
+    const {functions} = useFunctions();
+    const {adapters} = useAdapters();
+    const {objectTypes} = useObjectTypes();
+    const {dataTypes} = useDataTypes();
 
     useEffect(() => {
         let isMounted = true;
@@ -132,6 +142,9 @@ export const MonacoProvider = ({ theme, children }) => {
             const methodProvider = monaco.languages.registerCompletionItemProvider("afw",
                 polymorphicMethodCompletionItemProvider(monaco, functions)
             );
+            const localVariableProvider = monaco.languages.registerCompletionItemProvider("afw",
+                localVariableCompletionItemProvider(monaco)
+            );
 
             const sigs = signatures(functions);
             const signatureProvider = monaco.languages.registerSignatureHelpProvider("afw",
@@ -142,14 +155,32 @@ export const MonacoProvider = ({ theme, children }) => {
                 afwScriptHoverProvider(monaco, functions)
             );
 
-            return () => {
-                itemProvider.dispose();
-                signatureProvider.dispose();
-                hoverProvider.dispose();
-                methodProvider.dispose();
-            };
+            const providers = [itemProvider, methodProvider, localVariableProvider, signatureProvider, hoverProvider];
+
+            /* adapters, objectTypes and dataTypes each load independently, so
+               register their completion providers as they become available
+               rather than waiting on all of them together. */
+            if (adapters) {
+                providers.push(monaco.languages.registerCompletionItemProvider("afw",
+                    adaptersCompletionItemProvider(monaco, adapters)
+                ));
+            }
+
+            if (objectTypes) {
+                providers.push(monaco.languages.registerCompletionItemProvider("afw",
+                    objectTypeCompletionItemProvider(monaco, objectTypes)
+                ));
+            }
+
+            if (dataTypes) {
+                providers.push(monaco.languages.registerCompletionItemProvider("afw",
+                    dataTypeCompletionItemProvider(monaco, dataTypes)
+                ));
+            }
+
+            return () => providers.forEach(provider => provider.dispose());
         }
-    }, [monaco, functions]);
+    }, [monaco, functions, adapters, objectTypes, dataTypes]);
 
     return (
         <MonacoContext.Provider value={{ monaco, theme }}>
