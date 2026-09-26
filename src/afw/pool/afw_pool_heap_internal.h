@@ -16,8 +16,9 @@
  * @brief Heap store internals (`afw_pool_heap.c`).
  *
  * The heap owns the free list and posix_memalign chunks (4k-aligned).
- * chunk_min 0 is the 64k floor. Destroy returns chunks to the thread
- * memory_region.
+ * chunk_min 0 is the 64k floor. Destroy returns chunks to this
+ * heap's memory_region. A single-threaded heap uses its thread's
+ * region. A multithreaded heap uses the environment's region.
  * Scope is a heap with compile-sized chunks plus throw last-release
  * delay.
  *
@@ -91,6 +92,14 @@ afw_pool_internal_heap_self_t;
 struct afw_pool_internal_heap_self_s {
 
     afw_pool_internal_self_t common;
+
+    /**
+     * @brief Where this heap's chunks come from.
+     *
+     * Single-threaded: the owning thread's region. Multithreaded:
+     * the environment's region. Not looked up from `thread` later.
+     */
+    const afw_memory_region_t *memory_region;
 
     /**
      * @brief First malloc chunk.
@@ -196,11 +205,13 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
 
 /**
  * Create the process base MT pool. thread is the base thread already
- * created; may be NULL only if create failed earlier. xctx does not
- * exist yet.
+ * created; may be NULL only if create failed earlier. Chunks come
+ * from mt_region, not thread->memory_region. xctx does not exist yet.
  */
 const afw_pool_t *
-afw_pool_heap_internal_create_base_pool(const afw_thread_t *thread);
+afw_pool_heap_internal_create_base_pool(
+    const afw_thread_t *thread,
+    const afw_memory_region_t *mt_region);
 
 afw_boolean_t
 afw_pool_heap_internal_is_multithreaded(const afw_pool_t *p);

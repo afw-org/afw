@@ -129,6 +129,26 @@ afw_pool_heap_internal_reservoir_heap(afw_pool_internal_self_t *self)
 }
 
 
+const afw_memory_region_t *
+afw_pool_internal_memory_region(const afw_pool_internal_self_t *self)
+{
+    afw_pool_internal_heap_self_t *heap;
+
+    if (!self) {
+        return NULL;
+    }
+    if (afw_pool_internal_is_heap(&self->pub)) {
+        heap = afw_pool_heap_internal_as_heap(
+            (afw_pool_internal_self_t *)self);
+    }
+    else {
+        heap = afw_pool_heap_internal_reservoir_heap(
+            (afw_pool_internal_self_t *)self);
+    }
+    return heap ? heap->memory_region : NULL;
+}
+
+
 #define impl_chunk_usable(_chunk) \
     ((char *)(_chunk) + AFW_POOL_ALIGN_UP(sizeof(afw_pool_chunk_t)))
 
@@ -319,23 +339,62 @@ afw_pool_heap_create_self(
     afw_pool_internal_self_t *self;
     afw_pool_internal_heap_self_t *heap;
     afw_pool_internal_self_t *parent_self;
+    const afw_pool_internal_inf_implementation_specific_t *spec;
+    const afw_memory_region_t *region;
+    afw_boolean_t multithreaded;
 
     if (!thread && xctx) {
         thread = xctx->thread;
     }
-    if (!thread || !thread->memory_region) {
+    if (!thread) {
         if (!xctx) {
             return NULL;
         }
-        AFW_THROW_ERROR_Z(general,
-            "Heap requires thread->memory_region", xctx);
+        AFW_THROW_ERROR_Z(general, "Heap requires a thread", xctx);
+    }
+    spec = inf ? inf->rti.implementation_specific : NULL;
+    multithreaded = spec && spec->is_multithreaded;
+    if (multithreaded) {
+        if (!xctx || !xctx->env) {
+            if (!xctx) {
+                return NULL;
+            }
+            AFW_THROW_ERROR_Z(general,
+                "Multithreaded heap requires the environment region",
+                xctx);
+        }
+        region = ((const afw_environment_t *)xctx->env)
+            ->multithreaded_memory_region;
+        if (!region) {
+            AFW_THROW_ERROR_Z(general,
+                "Multithreaded heap requires the environment region",
+                xctx);
+        }
+        afw_memory_region_lock(region, xctx);
+    }
+    else {
+        region = thread->memory_region;
+        if (!region) {
+            if (!xctx) {
+                return NULL;
+            }
+            AFW_THROW_ERROR_Z(general,
+                "Heap requires thread->memory_region", xctx);
+        }
     }
     self = impl_heap_allocate_self(inf, chunk_min, self_bytes,
-        thread->memory_region, xctx);
+        region, xctx);
     if (!self) {
+        if (multithreaded) {
+            afw_memory_region_unlock(region, xctx);
+        }
+        if (!xctx) {
+            return NULL;
+        }
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
     heap = afw_pool_heap_internal_as_heap(self);
+    heap->memory_region = region;
     if (!as_managed_p && afw_parent) {
         self->pub.managed_p = afw_parent->managed_p
             ? afw_parent->managed_p
@@ -355,6 +414,10 @@ afw_pool_heap_create_self(
         if (afw_pool_internal_counts_on_thread(self)) {
             afw_pool_internal_thread_add_chunks(self->thread, heap->chunk_bytes);
         }
+    }
+
+    if (multithreaded) {
+        afw_memory_region_unlock(region, xctx);
     }
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
@@ -605,14 +668,13 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
         }
     }
 
-    region = (heap->common.thread)
-        ? heap->common.thread->memory_region : NULL;
+    region = heap->memory_region;
     if (!region) {
         if (unhandled || !xctx) {
             return NULL;
         }
         AFW_THROW_ERROR_Z(general,
-            "Heap requires thread->memory_region", xctx);
+            "Heap requires a memory_region", xctx);
     }
     chunk = impl_chunk_malloc(total, heap->chunk_min, region, xctx);
     if (!chunk) {
@@ -726,8 +788,7 @@ impl_heap_free_chunks(afw_pool_internal_heap_self_t *heap, afw_xctx_t *xctx)
     heap->current_chunk = NULL;
     heap->bump = NULL;
     heap->remaining = 0;
-    region = (heap->common.thread)
-        ? heap->common.thread->memory_region : NULL;
+    region = heap->memory_region;
     while (chunk) {
         next = chunk->next;
         size = chunk->size;
@@ -1070,7 +1131,7 @@ impl_mt_afw_pool_calloc_no_throw(
     void *result;
 
     /* xctx init cannot AFW_TRY. */
-    region = afw_pool_internal_region(self);
+    region = afw_pool_internal_memory_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -1090,7 +1151,7 @@ impl_mt_afw_pool_malloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = afw_pool_internal_region(self);
+    region = afw_pool_internal_memory_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -1123,7 +1184,7 @@ impl_mt_afw_pool_free_memory_no_throw(
 {
     const afw_memory_region_t *region;
 
-    region = afw_pool_internal_region(self);
+    region = afw_pool_internal_memory_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -1384,24 +1445,35 @@ afw_pool_heap_create_as_managed_p(
 }
 
 const afw_pool_t *
-afw_pool_heap_internal_create_base_pool(const afw_thread_t *thread)
+afw_pool_heap_internal_create_base_pool(
+    const afw_thread_t *thread,
+    const afw_memory_region_t *mt_region)
 {
     afw_pool_internal_self_t *self;
+    afw_pool_internal_heap_self_t *heap;
 
-    if (!thread || !thread->memory_region) {
+    if (!thread || !mt_region) {
         return NULL;
     }
+    /*
+     * One thread exists. Take the lock anyway so this get matches
+     * every later multithreaded create.
+     */
+    afw_memory_region_lock(mt_region, NULL);
     self = impl_heap_allocate_self(
         &impl_afw_pool_heap_multithreaded_inf,
         AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN,
         sizeof(afw_pool_internal_self_with_free_memory_head_t),
-        thread->memory_region, NULL);
+        mt_region, NULL);
+    afw_memory_region_unlock(mt_region, NULL);
     if (!self) {
         return NULL;
     }
     self->pool_number = 1;
     self->thread = thread;
-    impl_base_pool_self = afw_pool_heap_internal_as_heap(self);
+    heap = afw_pool_heap_internal_as_heap(self);
+    heap->memory_region = mt_region;
+    impl_base_pool_self = heap;
     return &self->pub;
 }
 

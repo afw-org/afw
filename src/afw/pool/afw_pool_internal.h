@@ -128,18 +128,23 @@ struct afw_pool_internal_self_s {
 };
 
 
-#define afw_pool_internal_region(_self) \
-    ((_self)->thread ? (_self)->thread->memory_region : NULL)
+/*
+ * Region this pool allocates from. A heap stores it. A tracker
+ * uses its reservoir heap. MT pools share the environment region.
+ */
+const afw_memory_region_t *
+afw_pool_internal_memory_region(const afw_pool_internal_self_t *self);
 
 /*
- * MT methods lock the pool's thread region (recursive so get/free
- * inside malloc are fine). ST get/free do not lock. Uses xctx from
- * the enclosing function.
+ * MT methods hold the multithreaded region's mutex across the
+ * single-threaded body, including memory_region get/free. Those
+ * methods do not lock. The mutex is recursive: create holds it
+ * and link_as_child takes it again. ST pools do not use this.
+ * Uses xctx from the enclosing function.
  */
 #define IMPL_MULTITHREADED_LOCK_BEGIN(_pool) \
 const afw_memory_region_t *_this_region = \
-    ((_pool)->thread \
-        ? (_pool)->thread->memory_region : NULL); \
+    afw_pool_internal_memory_region(_pool); \
 if (_this_region) { \
     afw_memory_region_lock(_this_region, xctx); \
 } \

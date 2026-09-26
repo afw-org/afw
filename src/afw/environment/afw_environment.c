@@ -357,21 +357,28 @@ afw_environment_create(
     afw_error_t *error;
     afw_try_t unhandled_error;
     afw_thread_t *thread;
+    const afw_memory_region_t *mt_region;
 
     /* Check and initialize libxml2 */
     LIBXML_TEST_VERSION
 
     /*
-     * Base thread first (no pool yet): C calloc + memory_region.
-     * Then the base MT pool, with thread set from the start.
+     * Base thread first (no pool yet): C calloc + its own region.
+     * The multithreaded region is a second calloc. env->p uses
+     * that one. The thread region waits for the ST job heap.
      */
     thread = NULL;
+    mt_region = NULL;
     xctx = NULL;
     p = NULL;
     thread = afw_thread_internal_create_base_thread();
     if (!thread) goto early_error;
 
-    p = afw_pool_heap_internal_create_base_pool(thread);
+    mt_region = afw_memory_region_create(
+        AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES, NULL);
+    if (!mt_region) goto early_error;
+
+    p = afw_pool_heap_internal_create_base_pool(thread, mt_region);
     if (!p) goto early_error;
     thread->p = p;
 
@@ -425,6 +432,7 @@ afw_environment_create(
             ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
     env->memory_region_free_list_max_bytes =
         AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES;
+    env->multithreaded_memory_region = mt_region;
     env->debug_fd = stderr;
     env->stderr_fd = stderr;
     env->stdout_fd = stdout;
@@ -445,6 +453,8 @@ afw_environment_create(
     xctx->thread = thread;
     afw_os_c_stack_bounds(&thread->c_stack_base, &thread->c_stack_size);
     afw_memory_region_set_free_list_max_bytes(thread->memory_region,
+        env->memory_region_free_list_max_bytes, xctx);
+    afw_memory_region_set_free_list_max_bytes(mt_region,
         env->memory_region_free_list_max_bytes, xctx);
 
     /*
@@ -669,6 +679,9 @@ afw_environment_create(
     return xctx;
 
 early_error:
+    if (mt_region) {
+        afw_memory_region_release(mt_region, xctx);
+    }
     afw_thread_internal_release_base_thread(thread, xctx);
     return NULL;
 }

@@ -13,12 +13,11 @@
  *
  * The instance is C calloc; release() frees it. Chunks are mmap'd
  * and munmap'd so RSS drops when a chunk does not stay on the free
- * list. get and free take this region's mutex. A single-threaded
- * heap on this thread shares the region with any multithreaded
- * pool created here, so the wrapper lock alone does not cover
- * every get. The mutex is recursive: those wrappers already hold
- * it. Cap 0 is mmap/munmap on every get/free (metrics still
- * update).
+ * list. get and free do not lock. The caller holds the right
+ * lock: a multithreaded pool holds the multithreaded region's
+ * mutex, and a single-threaded pool is the only caller of its
+ * thread's region. Cap 0 is mmap/munmap on every get/free
+ * (metrics still update).
  */
 
 #include "afw_internal.h"
@@ -263,7 +262,6 @@ impl_afw_memory_region_get(
         return;
     }
 
-    impl_lock(self, xctx);
     if (pub->free_list_max_bytes != 0) {
         prev = &self->free_list;
         for (node = self->free_list; node; node = node->next) {
@@ -276,7 +274,6 @@ impl_afw_memory_region_get(
                 impl_env_hit(xctx, need);
                 *region = node;
                 *size = need;
-                impl_unlock(self, xctx);
                 return;
             }
             prev = &node->next;
@@ -286,7 +283,6 @@ impl_afw_memory_region_get(
     mem = impl_map_chunk(need);
     if (!mem) {
         *size = 0;
-        impl_unlock(self, xctx);
         return;
     }
     pub->get_misses += 1;
@@ -294,7 +290,6 @@ impl_afw_memory_region_get(
     impl_env_miss(xctx, need);
     *region = mem;
     *size = need;
-    impl_unlock(self, xctx);
 }
 
 
@@ -316,7 +311,6 @@ impl_afw_memory_region_free(
     }
     pub = &self->pub;
     size = impl_round_up(size);
-    impl_lock(self, xctx);
     impl_account_returned(pub, size);
 
     /*
@@ -356,7 +350,6 @@ impl_afw_memory_region_free(
                 pub->peak_free_list_bytes = pub->free_list_bytes;
             }
             impl_env_to_list(xctx, size);
-            impl_unlock(self, xctx);
             return;
         }
     }
@@ -364,7 +357,6 @@ impl_afw_memory_region_free(
     pub->free_over_cap += 1;
     impl_env_over_cap(xctx, size);
     munmap(region, size);
-    impl_unlock(self, xctx);
 }
 
 
@@ -465,8 +457,7 @@ afw_memory_region_set_free_list_max_bytes(
     if (!instance) {
         return;
     }
+    (void)xctx;
     self = (impl_afw_memory_region_self_t *)instance;
-    impl_lock(self, xctx);
     self->pub.free_list_max_bytes = free_list_max_bytes;
-    impl_unlock(self, xctx);
 }

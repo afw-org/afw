@@ -166,6 +166,14 @@
      */
     afw_size_t memory_region_free_list_max_bytes;
 
+    /**
+     * @brief Chunk list for every multithreaded pool.
+     *
+     * Process lifetime. Single-threaded pools use
+     * thread->memory_region instead.
+     */
+    const afw_memory_region_t *multithreaded_memory_region;
+
     /** @brief Copy of director log's mask for short circuit tests. */
     afw_log_priority_mask_t log_mask;
 

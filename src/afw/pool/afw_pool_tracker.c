@@ -242,7 +242,7 @@ impl_mt_tracker_afw_pool_calloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = afw_pool_internal_region(self);
+    region = afw_pool_internal_memory_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -262,7 +262,7 @@ impl_mt_tracker_afw_pool_malloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = afw_pool_internal_region(self);
+    region = afw_pool_internal_memory_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -295,7 +295,7 @@ impl_mt_tracker_afw_pool_free_memory_no_throw(
 {
     const afw_memory_region_t *region;
 
-    region = afw_pool_internal_region(self);
+    region = afw_pool_internal_memory_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }

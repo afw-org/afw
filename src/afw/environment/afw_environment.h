@@ -17,7 +17,7 @@
  *
  * Exception: the base thread is created before env or the base pool
  * exist (`afw_thread_internal_create_base_thread()`), then
- * `afw_pool_heap_internal_create_base_pool(thread)`. That pool create may
+ * `afw_pool_heap_internal_create_base_pool(thread, mt_region)`. That pool create may
  * use `AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN`. After env create, heap
  * `chunk_min == 0` means `env->default_chunk_min`.
  */

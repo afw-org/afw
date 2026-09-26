@@ -15,7 +15,8 @@
  *
  * Glossary — two layers; do not mix:
  *
- *   afw_memory_region — thread-owned. Not a pool. get/free whole
+ *   afw_memory_region — one list per thread, plus one
+ *   multithreaded list on the environment. Not a pool. get/free whole
  *   aligned allocations.
  *   Heap store — a living pool carving USER out of chunks it holds.
  *
