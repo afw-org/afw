@@ -1325,66 +1325,6 @@ afw_pool_thread_create(
     return thread;
 }
 
-/* ---------------------------- create() -------------------------------- */
-
-AFW_DEFINE(const afw_pool_t *)
-afw_pool_create(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx)
-{
-    if (!parent) {
-        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
-    }
-
-    /*
-     * Heap like the parent: ST or MT (lock wrappers). Inherits
-     * managed_p. Tracker is afw_pool_tracker_create(). Job heaps
-     * use *_as_managed_p.
-     */
-    return afw_pool_heap_internal_create(parent,
-        afw_pool_internal_is_multithreaded(parent), false, 0, xctx);
-}
-
-
-AFW_DEFINE(const afw_pool_t *)
-afw_pool_multithread_create(
-    const afw_pool_t *parent,
-    afw_size_t chunk_min,
-    afw_xctx_t *xctx)
-{
-    if (!parent) {
-        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
-    }
-    if (!afw_pool_heap_internal_is_multithreaded(parent)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_pool_multithread_create() parent must be a "
-            "multithreaded heap",
-            xctx);
-    }
-    return afw_pool_heap_internal_create(parent, true, false,
-        chunk_min, xctx);
-}
-
-
-AFW_DEFINE(const afw_pool_t *)
-afw_pool_multithread_create_as_managed_p(
-    const afw_pool_t *parent,
-    afw_size_t chunk_min,
-    afw_xctx_t *xctx)
-{
-    if (!parent) {
-        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
-    }
-    if (!afw_pool_heap_internal_is_multithreaded(parent)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_pool_multithread_create_as_managed_p() parent must "
-            "be a multithreaded heap",
-            xctx);
-    }
-    return afw_pool_heap_internal_create(parent, true, true,
-        chunk_min, xctx);
-}
-
 AFW_DEFINE(afw_size_t)
 afw_pool_chunk_bytes(const afw_pool_t *instance)
 {
