@@ -58,6 +58,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; Docker ICU/APR floor; ICU in `utf8/` + `code_point/` |
 | [`docker-cross-platform-builds.md`](docker-cross-platform-builds.md) | `afwdev build --docker` is a no-op stub; no base-image publish workflow in-repo; buildx `docker-container` driver vs a real multi-platform race; clean-context gotchas; RockyLinux 8→9 bump |
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
+| [`vscode-extension-proposal.md`](vscode-extension-proposal.md) | **Design-only, no issue yet** — native `.as` VS Code extension: TextMate grammar port, hybrid offline/live IntelliSense, `afwdev` integration; debugging framed via TS/V8/DAP analogy as a future core-runtime initiative |
 | [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277 closed** (PR **#278**) — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
 | [`experiment-eval-p.md`](experiment-eval-p.md) | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame; throwaway compile/eval loops flatten; BMP in default `test -j` |
 | [`remaining-apr.md`](remaining-apr.md) | APR gone. 64k-min chunks; inherit vs `*_as_managed_p`; `scope_create` 4k inherit; evaluate **pins** dest `p`. |
