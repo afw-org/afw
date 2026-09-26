@@ -1,15 +1,12 @@
 # Restart a plain file adapter while other requests read through it.
-# Includes stop-then-start, which clears the active adapter before the
-# next start. Restart-only is stress-file-restart-only.
-# Same shape as stress-model-restart, without a model or location adapter.
-# adapter-filebox is an immediate service in the conf adapter, so
-# service_restart can load it again. adapter-afw and adapter-conf are
-# not touched.
-# Opt-in: afwdev test -T src/afw/tests-extra/stress-file-restart
+# Only service_restart. The stop-then-start mix lives in
+# stress-file-restart and leaves the adapter with no active instance.
+# Restart creates the new adapter, then swaps it in, so a read should
+# still see the old instance or the new one.
+# Opt-in: afwdev test -T src/afw/tests-extra/stress-file-restart-only
 #
 # The leaf fails if afwfcgi exits. Request errors are counted.
 # Threads are 3 per CPU, with two requests in flight per thread.
-# A percent may be over 100. One per CPU left this leaf near idle.
 
 version: 1
 description: Restart a file adapter under concurrent reads
@@ -45,34 +42,12 @@ tests:
         throw e.message;
       }
 
-  - name: stop-start-file
-    sourceType: script
-    source: |
-      try {
-        service_stop("adapter-filebox");
-      }
-      catch (e) {
-        if (!includes<string>(e.message, "can not be stopped")) {
-          throw e.message;
-        }
-      }
-      try {
-        const svc = service_start("adapter-filebox");
-        return svc.status;
-      }
-      catch (e) {
-        if (includes<string>(e.message, "can not be started")) {
-          return "busy";
-        }
-        throw e.message;
-      }
-
 schedule:
   - firehose:
       duration_s: 60
       concurrency: "200%"
       clientProcesses: "100%"
-      fromTests: [read-file, restart-file, stop-start-file]
+      fromTests: [read-file, restart-file]
       policy: random
       seed: 1
       stopOnError: false
