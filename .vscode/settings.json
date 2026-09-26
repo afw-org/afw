@@ -1,4 +1,5 @@
 {
+    "editor.inlayHints.enabled": "off",
     "C_Cpp.intelliSenseEngine": "disabled",
     "cSpell.words": [
         "Accordian",
