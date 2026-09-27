@@ -171,3 +171,43 @@ assert(x.a === 11);
 x = f();
 assert(x.a === 11);
 return 0;
+
+//?
+//? test: eval-returns-closure
+//? description: eval<script> closure keeps its compile unit after the call (#342)
+//? expect: 0
+//? source: ...
+
+const g = eval<script>(script(
+    "let n = 4; return function() { return n; };"));
+assert(g() === 4);
+assert(g() === 4);
+return 0;
+
+//?
+//? test: eval-factory-returns-closure
+//? description: eval<script> factory returns an inner closure over a local (#342)
+//? expect: 0
+//? source: ...
+
+const g = eval<script>(script(
+    "function make() { let n = 11; return function() { return n; }; }" +
+    "return make();"));
+assert(g() === 11);
+return 0;
+
+//?
+//? test: eval-closure-overwrite-in-loop
+//? description: overwriting an eval<script> closure drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let g = function() { return -1; };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    g = eval<script>(script(
+        "let n = 4; return function() { return n; };"));
+    assert(g() === 4);
+}
+assert(g() === 4);
+return 0;
