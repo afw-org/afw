@@ -57,7 +57,232 @@ def _journal_failure(options, name, err, ctx):
         message=error_message(err) or str(err),
         err=err,
         stderr_path=(ctx or {}).get("log_path"),
+        stdout_path=(ctx or {}).get("stdout_path"),
     )
+
+
+# Distinct request errors kept for one firehose. The console and the
+# failure log show the first few. The work dir keeps a longer list
+# until the next afwdev test run wipes that temp directory.
+_FIREHOSE_SAMPLE_LIMIT = 64
+_FIREHOSE_SHOW = 8
+_SAMPLE_MESSAGE = re.compile(r'"message"\s*:\s*"((?:\\.|[^"\\])*)"')
+
+
+def _sample_message(exc):
+    """Stable one-line text. Adaptive message, without the xctx UUID."""
+    text = error_message(exc) or str(exc)
+    match = _SAMPLE_MESSAGE.search(text)
+    if match:
+        raw = match.group(1)
+        try:
+            text = raw.encode("utf-8").decode("unicode_escape")
+        except Exception:
+            text = raw
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) > 240:
+        text = text[:237] + "..."
+    return text or "error"
+
+
+class _FirehoseSamples(object):
+    """Distinct request errors for one firehose, with a count for each."""
+
+    def __init__(self):
+        self._rows = {}
+        self.other = 0
+
+    def add(self, name, exc):
+        message = _sample_message(exc)
+        key = (name or "?", message)
+        row = self._rows.get(key)
+        if row is not None:
+            row["count"] += 1
+            return False
+        if len(self._rows) >= _FIREHOSE_SAMPLE_LIMIT:
+            self.other += 1
+            return False
+        self._rows[key] = {"count": 1}
+        return True
+
+    def merge_rows(self, rows):
+        for row in rows or []:
+            name = row.get("name") or "?"
+            message = row.get("message") or "error"
+            count = int(row.get("count") or 0)
+            key = (name, message)
+            found = self._rows.get(key)
+            if found is not None:
+                found["count"] += count
+                continue
+            if len(self._rows) >= _FIREHOSE_SAMPLE_LIMIT:
+                self.other += count or 1
+                continue
+            self._rows[key] = {"count": count or 1}
+
+    def keys(self):
+        return set(self._rows.keys())
+
+    def as_list(self):
+        items = []
+        for (name, message), row in self._rows.items():
+            items.append({
+                "name": name,
+                "message": message,
+                "count": row["count"],
+            })
+        items.sort(key=lambda item: (
+            -item["count"], item["name"], item["message"]))
+        return items
+
+    def format(self, limit=_FIREHOSE_SHOW):
+        rows = self.as_list()
+        hidden = 0
+        if limit is not None:
+            hidden = max(0, len(rows) - limit)
+            rows = rows[:limit]
+        lines = []
+        for row in rows:
+            lines.append("{} x{}: {}".format(
+                row["name"], row["count"], row["message"]))
+        extra = hidden + self.other
+        if extra:
+            lines.append("+{} more".format(extra))
+        return "\n".join(lines)
+
+
+def _diag_dir(work_dir):
+    """Detail that is too noisy for the console.
+
+    Lives under the leaf work dir inside ``$tmpdir/afwdev_test_output``.
+    The next afwdev test run for that temp directory removes it.
+    """
+    return os.path.join(work_dir, "diag")
+
+
+def _sample_file(work_dir):
+    return os.path.join(_diag_dir(work_dir), "firehose-samples.txt")
+
+
+def _append_sample_line(work_dir, name, message):
+    """One line the parent can read if this worker is killed."""
+    if not work_dir:
+        return
+    text = (name or "?") + "\t" + (message or "error").replace(
+        "\t", " ").replace("\n", " ") + "\n"
+    try:
+        os.makedirs(_diag_dir(work_dir), exist_ok=True)
+        fd = os.open(
+            _sample_file(work_dir),
+            os.O_WRONLY | os.O_CREAT | os.O_APPEND,
+            0o644)
+    except OSError:
+        return
+    try:
+        os.write(fd, text.encode("utf-8"))
+    except OSError:
+        pass
+    finally:
+        os.close(fd)
+
+
+def _read_sample_file(work_dir):
+    path = _sample_file(work_dir)
+    rows = []
+    try:
+        with open(path, "r", encoding="utf-8", errors="replace") as fd:
+            for line in fd:
+                name, sep, message = line.strip().partition("\t")
+                if not sep:
+                    continue
+                rows.append({
+                    "name": name or "?",
+                    "message": message or "error",
+                    "count": 1,
+                })
+    except OSError:
+        return []
+    return rows
+
+
+def _record_kept_samples(options, ctx, samples, reason):
+    """Write the sample once. A passing run does not call this."""
+    text = samples.format() if samples is not None else ""
+    if not text:
+        return
+    message = reason or ""
+    if text not in message:
+        message = message + "\n" + text
+    ctx = ctx or {}
+    failure_log.record(
+        options,
+        name="firehose",
+        message=message,
+        detail=text,
+        stderr_path=ctx.get("log_path"),
+        stdout_path=ctx.get("stdout_path"),
+    )
+
+
+def _write_firehose_diag(work_dir, samples, header):
+    """Fuller error list in the work dir. None when there is nothing to say."""
+    if not work_dir or samples is None:
+        return None
+    text = samples.format(limit=None)
+    if not text:
+        return None
+    directory = _diag_dir(work_dir)
+    path = os.path.join(directory, "firehose-errors.txt")
+    body = (header or "firehose").rstrip() + "\n" + text + "\n"
+    for label, name in (
+            ("server stdout", "afwfcgi.stdout.log"),
+            ("server stderr", "afwfcgi.stderr.log")):
+        log_path = os.path.join(work_dir, name)
+        if os.path.isfile(log_path):
+            body += "{}: {}\n".format(label, log_path)
+    body += "Kept until the next afwdev test run for this temp directory.\n"
+    try:
+        os.makedirs(directory, exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fd:
+            fd.write(body)
+    except OSError:
+        return None
+    return path
+
+
+def _shown_samples(work_dir, samples, header):
+    """Console-sized sample plus the work-dir path when a diag file exists."""
+    path = _write_firehose_diag(work_dir, samples, header)
+    text = samples.format() if samples is not None else ""
+    if path:
+        text = (text + "\n" if text else "") + "detail: " + path
+    return text
+
+
+def _with_sample_text(reason, samples, work_dir=None, header=None):
+    text = _shown_samples(work_dir, samples, header or reason)
+    if not text:
+        return reason
+    if not reason:
+        return text
+    return reason + "\n" + text
+
+
+def _attach_samples(err, samples, work_dir=None):
+    """Keep the sample on an exception that is about to be raised."""
+    if err is None or samples is None:
+        return
+    err.firehose_samples = samples
+    message = error_message(err) or str(err)
+    # Death and timeout attach once, then the firehose handler sees the
+    # same exception. A second write would repeat the list in the file.
+    if work_dir and "\ndetail: " in message:
+        return
+    text = _shown_samples(work_dir, samples, message)
+    if not text:
+        return
+    if text not in message:
+        err.message = message + "\n" + text
 
 
 def _capture_goldens_enabled(options):
@@ -157,6 +382,7 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
             "under_valgrind": under_valgrind,
             "conf_path": conf_path if os.path.isfile(conf_path) else None,
             "log_path": (handle or {}).get("log_path"),
+            "stdout_path": (handle or {}).get("stdout_path"),
         }
 
         for phase in schedule:
@@ -588,14 +814,15 @@ def _on_firehose_signal(signum, _frame):
 
 
 def _firehose_process_entry(args):
-    """One client process. Returns (ok, fail, first_error_or_None)."""
+    """One client process. Returns (ok, fail, sample_rows, other)."""
     stop = _FH_STOP
     issued = _FH_ISSUED
     (socket_path, work_dir, items, doc_feed, deadline, seed, policy,
      per, max_requests, timeout, stop_on_error) = args
+
     def one_loop(start):
         ok = fail = 0
-        first = None
+        samples = _FirehoseSamples()
         rr = start
         rng = random.Random(start)
         while True:
@@ -619,26 +846,29 @@ def _firehose_process_entry(args):
                 ok += 1
             except Exception as exc:
                 fail += 1
-                if first is None:
-                    first = "{}".format(exc)
+                name = item.get("name")
+                if samples.add(name, exc):
+                    _append_sample_line(
+                        work_dir, name, _sample_message(exc))
                 if stop_on_error:
                     stop.set()
                     break
-        return ok, fail, first
+        return ok, fail, samples
 
     if per <= 1:
-        return one_loop(seed)
+        ok, fail, samples = one_loop(seed)
+        return ok, fail, samples.as_list(), samples.other
     with ThreadPoolExecutor(max_workers=per) as ex:
         futs = [ex.submit(one_loop, seed + i * 997) for i in range(per)]
         ok = fail = 0
-        first = None
+        merged = _FirehoseSamples()
         for fut in futs:
-            part_ok, part_fail, part_first = fut.result()
+            part_ok, part_fail, part_samples = fut.result()
             ok += part_ok
             fail += part_fail
-            if first is None and part_first:
-                first = part_first
-        return ok, fail, first
+            merged.merge_rows(part_samples.as_list())
+            merged.other += part_samples.other
+        return ok, fail, merged.as_list(), merged.other
 
 
 def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
@@ -648,7 +878,7 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
     """Single-process firehose. One Python thread per in-flight request."""
     ok = fail = 0
     total = 0
-    first_error = None
+    samples = _FirehoseSamples()
     rr_i = 0
 
     def pick_item():
@@ -665,7 +895,9 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
                            max(5.0, timeout), doc_feed, quiet_log, options)
             return True, None
         except Exception as e:
-            _journal_failure(options, item.get("name"), e, ctx)
+            if samples.add(item.get("name"), e):
+                _append_sample_line(
+                    work_dir, item.get("name"), _sample_message(e))
             return False, e
 
     with ThreadPoolExecutor(max_workers=concurrency) as ex:
@@ -679,8 +911,10 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
             if t_end is not None and time.time() >= t_end:
                 break
             if honor_timeout and time.time() - t0 > timeout:
-                raise AfwdevRunnerError(
+                err = AfwdevRunnerError(
                     "orchestrated-test timed out during firehose")
+                _attach_samples(err, samples, work_dir)
+                raise err
             if max_requests is not None and total >= max_requests:
                 break
             while len(pending) < concurrency:
@@ -709,15 +943,17 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
                     ok += 1
                 else:
                     fail += 1
-                    if first_error is None:
-                        first_error = err
                     if stop_on_error:
                         for p in pending:
                             p.cancel()
                         raise AfwAdaptiveError(
-                            "firehose stopOnError: {}".format(
-                                error_message(err)),
-                            cause=err)
+                            _with_sample_text(
+                                "firehose stopOnError: {}".format(
+                                    error_message(err)),
+                                samples,
+                                work_dir),
+                            cause=err,
+                            object={"errors": samples.as_list()})
 
         for fut in as_completed(pending):
             success, err = fut.result()
@@ -725,13 +961,12 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
                 ok += 1
             else:
                 fail += 1
-                if first_error is None:
-                    first_error = err
 
     dead = _afwfcgi_dead(handle)
     if dead is not None:
+        _attach_samples(dead, samples, work_dir)
         raise dead
-    return ok, fail, total, first_error
+    return ok, fail, total, samples
 
 
 def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
@@ -772,24 +1007,46 @@ def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
             time.sleep(0.2)
         if died is None:
             died = _afwfcgi_dead(handle)
+            if died is not None:
+                stop.set()
     finally:
-        if died is not None:
-            stop.set()
-            pool_mp.terminate()
-        else:
+        # Workers flush their sample lines before returning. Give them
+        # a moment after the server dies or the run is stopped. Then
+        # drop anyone still blocked.
+        if died is not None or _ASKED.is_set():
+            grace = time.time() + 3.0
+            while (not all(item.ready() for item in asyncs) and
+                    time.time() < grace):
+                time.sleep(0.1)
+        if all(item.ready() for item in asyncs):
             pool_mp.close()
+        else:
+            pool_mp.terminate()
         pool_mp.join()
-    if died is not None:
-        raise died
     ok = fail = 0
-    first_error = None
+    samples = _FirehoseSamples()
     for item in asyncs:
-        part_ok, part_fail, part_first = item.get()
+        if not item.ready():
+            continue
+        try:
+            part_ok, part_fail, part_rows, part_other = item.get(timeout=1)
+        except Exception:
+            continue
         ok += part_ok
         fail += part_fail
-        if first_error is None and part_first:
-            first_error = AfwdevRunnerError(part_first)
-    return ok, fail, ok + fail, first_error
+        samples.merge_rows(part_rows)
+        samples.other += int(part_other or 0)
+    have = samples.keys()
+    for row in _read_sample_file(work_dir):
+        key = (row.get("name") or "?", row.get("message") or "error")
+        if key in have:
+            continue
+        samples.merge_rows([row])
+        have.add(key)
+    if died is not None:
+        _attach_samples(died, samples, work_dir)
+        raise died
+    return ok, fail, ok + fail, samples
 
 
 def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
@@ -849,9 +1106,9 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     t_end = time.time() + duration_s if duration_s is not None else None
     t0 = time.time()
 
-    # Per-request lines here would be millions of strings on a long
-    # soak. The firehose summary below is the record. Failures on the
-    # single-process path still go through _journal_failure.
+    # Per-request lines would be millions of strings on a long soak.
+    # Workers keep a few distinct errors. That sample is written when
+    # the firehose fails or is stopped.
     class _DropLog:
         def append(self, _item):
             return None
@@ -872,16 +1129,22 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         previous_signals[signum] = signal.signal(signum, _on_firehose_signal)
     try:
         if client_processes > 1:
-            ok, fail, total, first_error = _run_firehose_processes(
+            ok, fail, total, samples = _run_firehose_processes(
                 client_processes, concurrency, pool, work_dir, socket_path,
                 doc_feed, wall_end, policy, seed if seed is not None else 0,
                 max_requests, request_timeout, stop_on_error, handle)
         else:
-            ok, fail, total, first_error = _run_firehose_threads(
+            ok, fail, total, samples = _run_firehose_threads(
                 concurrency, pool, work_dir, source_leaf, ctx, timeout,
                 doc_feed, options, t_end, t0, policy, rng, max_requests,
                 stop_on_error, handle, quiet_log,
                 honor_timeout=not until_stopped)
+    except AfwdevError as err:
+        _attach_samples(
+            err, getattr(err, "firehose_samples", None), work_dir)
+        # A stop must not stick to the next leaf in this process.
+        _ASKED.clear()
+        raise
     finally:
         for signum, handler in previous_signals.items():
             signal.signal(signum, handler)
@@ -931,12 +1194,13 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         reason = None
     elif ok == 0:
         passed = False
-        reason = "firehose: all {} request(s) failed: {}".format(
-            fail, error_message(first_error))
+        reason = "firehose: all {} request(s) failed".format(fail)
     else:
         # Mixed results, no threshold: blast-style tolerate errors
         passed = True
         reason = None
+    if samples is not None and samples.as_list():
+        summary["errors"] = samples.as_list()
 
     server_note = ""
     server_stats = summary.get("server")
@@ -949,20 +1213,40 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         "threads={} clientProcesses={}{}".format(
             elapsed, total, ok, fail, rps, server_threads,
             client_processes, server_note))
+    shown = ""
+    if fail > 0:
+        shown = _shown_samples(work_dir, samples, line)
     debug_parts.append(line)
     msg.highlighted_info(line)
+    # A pass can still have errors. Show the short sample under the
+    # summary. Do not fail the test and do not write a failure log.
+    # The longer list is under the work dir, in diag/firehose-errors.txt.
+    if passed and fail > 0 and shown:
+        debug_parts.append(shown)
+        msg.highlighted_info(shown)
     step_timings.append({
         "name": "firehose",
         "ms": round(elapsed * 1000),
         "passed": passed,
         "firehose": summary,
     })
-    if not passed:
-        raise AfwAdaptiveError(
-            reason or "firehose failed",
-            cause=first_error,
-            object=summary,
-        )
+    # A stop (Ctrl-C / SIGTERM) can end a run that still meets maxFail.
+    # Keep the sample. A clean pass writes nothing. Clear the stop so
+    # the next leaf in this process is not born already stopped.
+    stopped = _ASKED.is_set()
+    try:
+        if not passed:
+            message = reason or "firehose failed"
+            if shown:
+                message = message + "\n" + shown
+            raise AfwAdaptiveError(message, object=summary)
+        if stopped and fail > 0 and shown:
+            _record_kept_samples(
+                options, ctx, samples,
+                "firehose stopped with {} failure(s)\n{}".format(
+                    fail, shown))
+    finally:
+        _ASKED.clear()
 
 
 def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
@@ -1645,14 +1929,24 @@ def _fail_response(description, detail, step_timings=None):
     return body
 
 
+def _file_tail(path, limit):
+    try:
+        with open(path, "rb") as fd:
+            fd.seek(0, os.SEEK_END)
+            size = fd.tell()
+            fd.seek(max(0, size - limit), os.SEEK_SET)
+            return fd.read().decode("utf-8", errors="replace")
+    except OSError:
+        return ""
+
+
 def _debug_blob(debug_parts, handle):
     parts = list(debug_parts or [])
-    if handle and handle.get("log_path"):
-        try:
-            with open(handle["log_path"], "rb") as fd:
-                log = fd.read().decode("utf-8", errors="replace")
-            if log:
-                parts.append("--- afwfcgi stderr ---\n" + log[-12000:])
-        except OSError:
-            pass
+    if handle:
+        err_log = _file_tail(handle.get("log_path"), 12000)
+        if err_log:
+            parts.append("--- afwfcgi stderr ---\n" + err_log)
+        out_log = _file_tail(handle.get("stdout_path"), 12000)
+        if out_log:
+            parts.append("--- afwfcgi stdout ---\n" + out_log)
     return "\n".join(parts) if parts else None

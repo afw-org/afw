@@ -136,7 +136,8 @@ impl_set_entry(
 {
     afw_runtime_objects_t *runtime_objects;
     afw_void_hash_table_t *ht;
-    void *existing;
+    const impl_ht_object_entry *existing;
+    const afw_object_t *old_object;
     const afw_pool_t *p;
     afw_xctx_t *env_xctx;
 
@@ -170,7 +171,7 @@ impl_set_entry(
 
     /*
      * The table lives for the process. Copy a new key into env->p.
-     * Overwrite keeps that copy.
+     * Overwrite keeps that copy and releases the previous object.
      */
     existing = afw_hash_table_get(ht, object_id->s, object_id->len);
     if (!overwrite && existing) {
@@ -178,6 +179,12 @@ impl_set_entry(
             "Runtime object /afw/%ku/%ku already set",
             object_type_id,
             object_id);
+    }
+    old_object = NULL;
+    if (overwrite && existing && existing != entry &&
+        existing->cb_entry.always_NULL != NULL)
+    {
+        old_object = &existing->object;
     }
     if (!existing && object_id->len > 0) {
         const void *key;
@@ -187,6 +194,9 @@ impl_set_entry(
     }
     else {
         afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
+    }
+    if (old_object) {
+        afw_object_release(old_object, xctx);
     }
 }
 
@@ -447,14 +457,30 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
     afw_boolean_t overwrite,
     afw_xctx_t *xctx)
 {
+    const afw_pool_t *object_p;
     const afw_object_t *obj;
+    afw_runtime_object_indirect_t *indirect;
 
-    /* Create runtime object. */
+    /*
+     * Own pool, parented on env->p. The table holds one reference.
+     * Replacing or removing the entry releases it and the pool dies.
+     */
+    object_p = afw_pool_heap_create(xctx->env->p,
+        xctx->env->small_chunk_min, xctx);
     obj = afw_runtime_object_create_indirect_using_inf(inf, object_id,
-        internal, cb, xctx->env->p, xctx);
-        
-    /* Set it as a runtime object. */
-    afw_runtime_env_set_object(obj, overwrite, xctx);
+        internal, cb, object_p, xctx);
+    indirect = (afw_runtime_object_indirect_t *)obj;
+    indirect->refcounted = true;
+    indirect->reference_count = 1;
+
+    AFW_TRY {
+        afw_runtime_env_set_object(obj, overwrite, xctx);
+    }
+    AFW_FINALLY {
+        /* Drop the create hold. The table keeps the other one. */
+        afw_object_release(obj, xctx);
+    }
+    AFW_ENDTRY;
 }
 
 
@@ -469,14 +495,17 @@ afw_runtime_env_create_and_set_indirect_object(
     afw_boolean_t overwrite,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *obj;
-    
-    /* Create runtime object. */
-    obj  = afw_runtime_object_create_indirect(object_type_id, object_id,
-        internal, cb, xctx->env->p, xctx);
+    const afw_object_inf_t *inf;
 
-    /* Set it as a runtime object. */
-    afw_runtime_env_set_object(obj, overwrite, xctx);
+    inf = afw_environment_get_runtime_object_map_inf(
+        object_type_id, xctx);
+    if (!inf) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Runtime object map '%ku' is not registered",
+            object_type_id);
+    }
+    afw_runtime_env_create_and_set_indirect_object_using_inf(
+        inf, object_id, internal, cb, overwrite, xctx);
 }
 
 
@@ -1116,6 +1145,32 @@ impl_make_value_from_map_entry(
 
 
 
+static afw_runtime_object_indirect_t *
+impl_refcounted_indirect(
+    const afw_object_t *instance)
+{
+    const afw_runtime_object_type_meta_t *meta;
+    afw_runtime_object_indirect_t *indirect;
+
+    if (!instance || !instance->p || !instance->inf) {
+        return NULL;
+    }
+    if (instance->inf->release != afw_runtime_object_release) {
+        return NULL;
+    }
+    meta = instance->inf->rti.implementation_specific;
+    if (!meta || !meta->indirect) {
+        return NULL;
+    }
+    indirect = (afw_runtime_object_indirect_t *)instance;
+    if (!indirect->refcounted) {
+        return NULL;
+    }
+    return indirect;
+}
+
+
+
 /*
  * Implementation of method release of interface afw_object.
  */
@@ -1124,7 +1179,19 @@ afw_runtime_object_release(
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {
-    /** @fixme Think about this. */
+    afw_runtime_object_indirect_t *indirect;
+
+    /*
+     * Const runtime objects share this method and are not freed.
+     * Indirect objects created for the environment registry are
+     * refcounted; the last release frees their pool.
+     */
+    indirect = impl_refcounted_indirect(instance);
+    if (!indirect || indirect->reference_count <= 0) {
+        return;
+    }
+    indirect->reference_count--;
+    afw_pool_release(instance->p, xctx);
 }
 
 
@@ -1137,7 +1204,14 @@ afw_runtime_object_get_reference (
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {
-    /** @fixme Think about this. */
+    afw_runtime_object_indirect_t *indirect;
+
+    indirect = impl_refcounted_indirect(instance);
+    if (!indirect) {
+        return;
+    }
+    indirect->reference_count++;
+    afw_pool_get_reference(instance->p, xctx);
 }
 
 

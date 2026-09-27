@@ -393,7 +393,19 @@ afw_value_compile_and_evaluate(
     const afw_value_t *result;
 
     compiled_value = afw_value_compile(value, source_location, p, xctx);
-    result = afw_value_evaluate(compiled_value, p, xctx);
+    result = NULL;
+    AFW_TRY {
+        result = afw_value_evaluate(compiled_value, p, xctx);
+    }
+    AFW_FINALLY {
+        if (result) {
+            result = afw_value_get_assignable(result, p, xctx);
+        }
+        if (afw_value_is_compiled_value(compiled_value)) {
+            afw_value_release(compiled_value, xctx);
+        }
+    }
+    AFW_ENDTRY;
 
     return result;
 }
@@ -415,7 +427,19 @@ afw_value_compile_and_evaluate_using(
 
     compiled_value = afw_value_compile_as(value, source_location, compile_type,
         p, xctx);
-    result = afw_value_evaluate(compiled_value, p, xctx);
+    result = NULL;
+    AFW_TRY {
+        result = afw_value_evaluate(compiled_value, p, xctx);
+    }
+    AFW_FINALLY {
+        if (result) {
+            result = afw_value_get_assignable(result, p, xctx);
+        }
+        if (afw_value_is_compiled_value(compiled_value)) {
+            afw_value_release(compiled_value, xctx);
+        }
+    }
+    AFW_ENDTRY;
 
     return result;
 }

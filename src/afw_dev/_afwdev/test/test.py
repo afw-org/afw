@@ -287,6 +287,11 @@ def run(options):
 
             if total_failed > 0:
                 failure_log.note(options)
+            # Machine summary (--output -) stays free of this hint.
+            if not summary_to_stdout:
+                runner.note_kept_detail(
+                    options, had_errors=total_failed > 0)
+            if total_failed > 0:
                 sys.exit(1)
             else:
                 sys.exit(0)

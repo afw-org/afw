@@ -374,9 +374,11 @@ afw_log_add_to_environment(
     impl_log_head_t *head;
     const afw_pool_t *p;
     impl_afw_log_self_t *env_log;
+    const afw_log_t *old;
 
     /* Use p of environment. */
     p = xctx->env->p;
+    old = NULL;
 
     AFW_LOCK_BEGIN(xctx->env->active_log_list_lock) {
 
@@ -398,11 +400,12 @@ afw_log_add_to_environment(
         for (e = head->first_log; e; e = e->next) {
             if (e->log && afw_utf8_equal(&e->log->log_id, &instance->log_id))
             {
-                if (e->log) {
-                    /** @fixme runtime object might be accessing on another thread.
-                    afw_log_destroy(e->log, xctx);
-                     */
-                }
+                /*
+                 * The log owns the conf pool, parented on env->p.
+                 * Drop the list pointer here. Destroy runs after the
+                 * lock so pool cleanup can write a log line.
+                 */
+                old = e->log;
                 e->log = instance;
                 break;
             }
@@ -427,6 +430,10 @@ afw_log_add_to_environment(
 
     }
     AFW_LOCK_END;
+
+    if (old && old != instance) {
+        afw_log_destroy(old, xctx);
+    }
 
     afw_log_set_mask((const afw_log_t *)env_log, impl->mask, xctx);
 }
@@ -765,6 +772,7 @@ impl_afw_service_type_stop (
 {
     impl_afw_log_self_t *log_self;
     impl_log_entry_t *e;
+    const afw_log_t *old;
 
     afw_environment_register_log(id, NULL, xctx);
 
@@ -772,21 +780,25 @@ impl_afw_service_type_stop (
      * This counts on afw_service only calling if not stopped, if log is not
      * found, no error is thrown.
      */
+    old = NULL;
     AFW_LOCK_BEGIN(xctx->env->active_log_list_lock) {
         log_self = (impl_afw_log_self_t *)xctx->env->log;
-        for (e = log_self->head->first_log; e; e = e->next)
-        {
-            if (e->log && afw_utf8_equal(&e->log->log_id, id)) {
-                /** @fixme Need to be able to destroy, but runtime object might
-                 * be using.
-                 *
-                afw_log_destroy(e->log, xctx);
-                 */
-                e->log = NULL;
+        if (log_self->head) {
+            for (e = log_self->head->first_log; e; e = e->next)
+            {
+                if (e->log && afw_utf8_equal(&e->log->log_id, id)) {
+                    old = e->log;
+                    e->log = NULL;
+                    break;
+                }
             }
         }
     }
     AFW_LOCK_END;
+
+    if (old) {
+        afw_log_destroy(old, xctx);
+    }
 
     /* Reset environment log mask. */
     impl_reset_environment_log_mask(xctx);

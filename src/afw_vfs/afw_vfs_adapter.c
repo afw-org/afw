@@ -245,7 +245,8 @@ impl_afw_adapter_destroy(
     AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Memory is owned by the adapter pool; nothing else to release. */
+    /* The conf pool is parented on env->p. Nothing else releases it. */
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
