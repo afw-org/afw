@@ -47,7 +47,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Area | Pointers |
 |------|----------|
-| Env / runtime catalog / accessors | #149 pads; atlas §5; metrics/properties pin until caller pool cleanup |
+| Env / runtime catalog / accessors | #149 pads; atlas §5; metrics/properties are caller-pool snapshots (pin released after the copy) |
 | Hosts / stop | #158; atlas §6 |
 | Memory / faces / `create_array` | Two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md) (**#277**); eval `p` [`experiment-eval-p.md`](experiment-eval-p.md) (**#287**); rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md); 08-21 history [`issue-2-lifetime.md`](issue-2-lifetime.md); names-as-values; #17 faces; atlas §3 |
 | Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
@@ -179,7 +179,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-environment`, `afw-environment-variables`, `afw-core-services` (runtime section) |
 | **Deep pads** | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) (architecture), [`runtime-value-accessors.md`](runtime-value-accessors.md) (catalog snapshot), [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes) |
 | **Probe** | Typed `retrieve_objects` / GET `/afw/_Adaptive…_/`; `/afw/_AdaptiveRuntimeValueAccessor_/`; **do not** stop permanent `adapter-afw` / `adapter-conf`; prefer typed retrieve over full `current` materialize |
-| **Open** | Residuals under **#2** (managed object/array, long-running escape). Metrics/properties pin the instance until the caller pool is cleaned up (not a deep snapshot; not a managed wrapper). Runtime objects still map over live data; const graphs are fine. A later #2 option is clone-into-requestor-pool **under the lock** so changing data need only live long enough to copy. More adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built. **#280** `string_literal` is key-only on `current` (~11% of that object in one live `afwfcgi`). Possible later MAP flag “include in big object”; do not special-case size now. Say **environment registry**, not “catalog”. |
+| **Open** | Residuals under **#2** (managed object/array, long-running escape). Metrics shared counters and properties are managed snapshots in the caller pool: pin under `adapter_id_anchor_lock`, copy outside it, release after ([PR #386](https://github.com/afw-org/afw/pull/386)). `metrics.additional` pins only across `get_additional_metrics`; the object is built in `p` and must not refer to the adapter after return ([#381](https://github.com/afw-org/afw/issues/381)). The owner pool still sees the live object. Clone-into-requestor-pool **under the lock** is will-not-do. Other runtime objects still map over live data; const graphs are fine. More adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built. **#280** `string_literal` is key-only on `current` (~11% of that object in one live `afwfcgi`). Possible later MAP flag “include in big object”; do not special-case size now. Say **environment registry**, not “catalog”. |
 | **Gap** | Live-stack / action probes now in `agent-support`. Architecture pad remains the deep map. |
 
 **Registry discovery (condensed)**

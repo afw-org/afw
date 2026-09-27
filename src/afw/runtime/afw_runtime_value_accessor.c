@@ -1491,15 +1491,18 @@ afw_runtime_value_accessor_null_terminated_array_of_values(
 
 static const afw_utf8_t
 impl_brief_adapter_additional_metrics =
-    AFW_UTF8_LITERAL("Call adapter get_additional_metrics()");
+    AFW_UTF8_LITERAL(
+        "Adapter type-specific metrics built in the caller pool");
 
 static const afw_utf8_t
 impl_description_adapter_additional_metrics =
     AFW_UTF8_LITERAL(
-        "internal points at afw_adapter_impl_t. Pins the adapter, calls "
-        "afw_adapter_get_additional_metrics(), and registers that pin's "
-        "release on p so the type-specific object can stay live. NULL "
-        "when the adapter type has no extra stats.");
+        "internal points at afw_adapter_impl_t. Under "
+        "adapter_id_anchor_lock, pins the adapter. Outside the lock, calls "
+        "afw_adapter_get_additional_metrics(), which builds the object in p, "
+        "then releases the adapter. The object must not refer to the "
+        "adapter after that call returns. NULL when the adapter type has "
+        "no extra stats.");
 
 static const afw_runtime_value_accessor_info_t
 impl_info_adapter_additional_metrics = {
@@ -1540,26 +1543,18 @@ afw_runtime_value_accessor_adapter_additional_metrics(
     if (!held) {
         return NULL;
     }
+    /* The object is built in p and does not need the adapter after
+     * get_additional_metrics returns, so the pin covers the call only. */
     obj = NULL;
     AFW_TRY {
         obj = afw_adapter_get_additional_metrics(held, p, xctx);
     }
-    AFW_CATCH_UNHANDLED {
+    AFW_FINALLY {
         afw_adapter_release(held, xctx);
-        AFW_ERROR_RETHROW;
     }
     AFW_ENDTRY;
 
-    if (!obj) {
-        afw_adapter_release(held, xctx);
-        return NULL;
-    }
-
-    /* The pin stays until p is destroyed. The type's object can
-     * keep reading the adapter. Register releases the pin on failure. */
-    afw_adapter_internal_register_pin_cleanup(held, p, xctx);
-
-    return afw_object_as_value(obj, p, xctx);
+    return (obj) ? afw_object_as_value(obj, p, xctx) : NULL;
 }
 
 

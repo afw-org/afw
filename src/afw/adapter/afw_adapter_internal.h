@@ -200,32 +200,21 @@ afw_adapter_internal_conf_type_create_cede_p(
 
 /**
  * @internal
- * @brief Pin an adapter instance for the lifetime of p.
+ * @brief Pin an adapter instance; the caller holds adapter_id_anchor_lock
+ *    and later releases the pin with afw_adapter_release().
  * @param instance to pin. Active or draining.
- * @param p that will hold the object. No pin when p is instance->p.
+ * @param p of the caller. No pin when p is instance->p.
  * @param xctx of caller.
  * @return instance when pinned, otherwise NULL.
  *
  * Caller holds adapter_id_anchor_lock. Increments that instance's
  * anchor reference count so stop drains instead of destroying it.
+ * The caller releases the pin with afw_adapter_release(). The pin is
+ * not tied to the lifetime of p.
  */
 const afw_adapter_t *
 afw_adapter_internal_pin_for_pool_lock_held(
     const afw_adapter_t *instance,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @internal
- * @brief Register afw_adapter_release of held on p.
- *
- * No-op when held is NULL. If registering the cleanup throws, the
- * reference is released and the error is rethrown.
- */
-void
-afw_adapter_internal_register_pin_cleanup(
-    const afw_adapter_t *held,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

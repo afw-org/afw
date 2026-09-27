@@ -4300,7 +4300,7 @@ impl_44_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_44_property_description = {
     afw_v_description,
-    &afw_self_v_zz__f40d437fd517.pub
+    &afw_self_v_zz__68a1f720be9b.pub
 };
 
 static const afw_runtime_property_t
@@ -4485,7 +4485,7 @@ impl_46_property_dataType = {
 static const afw_runtime_property_t
 impl_46_property_description = {
     afw_v_description,
-    &afw_self_v_zz__b9eefb386513.pub
+    &afw_self_v_zz__9b1b3655d540.pub
 };
 
 static const afw_runtime_property_t

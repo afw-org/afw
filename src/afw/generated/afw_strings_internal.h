@@ -25249,6 +25249,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__68a1f720be9b \
+    "Snapshot of the metrics object for this adapter instance (`valueAccessor` adapter_metrics). The active adapter is pinned under adapter_id_anchor_lock, the shared counters are copied outside the lock into the caller pool, and the pin is released after the copy. `additional` is produced by the adapter type's get_additional_metrics and must not refer to the adapter after that call returns. The adapter's own pool still sees the live object. NULL when no active instance."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__68a1f720be9b */
+#define afw_s_zz__68a1f720be9b \
+    (&afw_self_v_zz__68a1f720be9b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__68a1f720be9b */
+#define afw_self_s_zz__68a1f720be9b \
+    (afw_self_v_zz__68a1f720be9b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__68a1f720be9b */
+extern const afw_value_string_t \
+    afw_self_v_zz__68a1f720be9b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__68a1f720be9b */
+#define afw_z_zz__68a1f720be9b \
+    (afw_self_v_zz__68a1f720be9b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__68a1f720be9b */
+#define afw_v_zz__68a1f720be9b \
+    (&afw_self_v_zz__68a1f720be9b.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__68a95da81f22 \
     "function url_encode<string> (\n    unencoded: string\n): string;\n"
 
@@ -37101,6 +37127,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9b193900e525 */
 #define afw_v_zz__9b193900e525 \
     (&afw_self_v_zz__9b193900e525.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9b1b3655d540 \
+    "Snapshot of selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). The pointer is loaded under adapter_id_anchor_lock, the adapter is referenced across the copy into the caller pool, and the reference is released after the copy. The adapter's own pool still sees the live object. Typically absent on the active anchor after full stop."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9b1b3655d540 */
+#define afw_s_zz__9b1b3655d540 \
+    (&afw_self_v_zz__9b1b3655d540.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9b1b3655d540 */
+#define afw_self_s_zz__9b1b3655d540 \
+    (afw_self_v_zz__9b1b3655d540.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9b1b3655d540 */
+extern const afw_value_string_t \
+    afw_self_v_zz__9b1b3655d540;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9b1b3655d540 */
+#define afw_z_zz__9b1b3655d540 \
+    (afw_self_v_zz__9b1b3655d540.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9b1b3655d540 */
+#define afw_v_zz__9b1b3655d540 \
+    (&afw_self_v_zz__9b1b3655d540.pub)
 
 
 
@@ -131849,32 +131901,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__b9eefb386513 \
-    "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. The accessor holds an instance reference until the caller pool is released, so a concurrent stop drains instead of destroying the object. Typically absent on the active anchor after full stop."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b9eefb386513 */
-#define afw_s_zz__b9eefb386513 \
-    (&afw_self_v_zz__b9eefb386513.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b9eefb386513 */
-#define afw_self_s_zz__b9eefb386513 \
-    (afw_self_v_zz__b9eefb386513.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b9eefb386513 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b9eefb386513;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b9eefb386513 */
-#define afw_z_zz__b9eefb386513 \
-    (afw_self_v_zz__b9eefb386513.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b9eefb386513 */
-#define afw_v_zz__b9eefb386513 \
-    (&afw_self_v_zz__b9eefb386513.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__ba0301c70e27 \
     "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited."
 
@@ -149681,32 +149707,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f40a3ae56edf */
 #define afw_v_zz__f40a3ae56edf \
     (&afw_self_v_zz__f40a3ae56edf.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f40d437fd517 \
-    "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. The accessor holds an instance reference until the caller pool is released, so a concurrent stop drains instead of destroying the object. Do not cache beyond that pool. NULL when no active instance."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f40d437fd517 */
-#define afw_s_zz__f40d437fd517 \
-    (&afw_self_v_zz__f40d437fd517.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f40d437fd517 */
-#define afw_self_s_zz__f40d437fd517 \
-    (afw_self_v_zz__f40d437fd517.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f40d437fd517 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f40d437fd517;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f40d437fd517 */
-#define afw_z_zz__f40d437fd517 \
-    (afw_self_v_zz__f40d437fd517.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f40d437fd517 */
-#define afw_v_zz__f40d437fd517 \
-    (&afw_self_v_zz__f40d437fd517.pub)
 
 
 

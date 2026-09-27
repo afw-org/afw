@@ -22,7 +22,7 @@
 3. A long-lived `afwfcgi` does not silently climb on firehose / nested-eval soaks (process/server pool stats — request-end valgrind hides leftovers).
 4. Parked polish is split off or will-not-do. Allocator tuning is not a close gate.
 
-“One request can loop forever without climbing” is the close bar we have been using. **Values that survive a request** (adapter cache, reused compile units, runtime objects pin until the **caller** pool dies) is a separate remainder — child issue or will-not-do, not silent “#2 done.”
+“One request can loop forever without climbing” is the close bar we have been using. **Values that survive a request** (adapter cache, reused compile units) is a separate remainder — child issue or will-not-do, not silent “#2 done.”
 
 ### Landed on `develop` (do not re-litigate)
 
@@ -45,7 +45,7 @@ Complementary, not this close bar: request caps / `process::` telemetry ([#329](
 |------|---------------------|
 | **Evidence** | [#379](https://github.com/afw-org/afw/issues/379). **2026-09-17** hard-loop table including `try_catch` **flat**. Isolate sitting [PR #340](https://github.com/afw-org/afw/pull/340). **2026-09-25** short remeasure on current `develop` (response:error off): `02` RSS locked at 22.00 MiB, pool floor 3.66 MiB; `07` RSS band about 22.5–24.5 MiB, pool floor 3.66 MiB; `07b` for 30 s with `maxRequests` removed, RSS locked at 22.25 MiB. A 5-minute high-rate run (about 2,400 and 4,800 requests/s) stayed flat: `07` RSS 27.7–30.4 MiB, pool lows near 5 MiB; `07b` RSS 22.50 MiB, pool 3.95–4.19 MiB. The old 43–46 MiB `07` reading is stale. The harness for a longer watch is [PR #383](https://github.com/afw-org/afw/pull/383): `tests-extra/firehose` (load, until stopped) and `tests-extra/manual` (no load, heartbeat). Overnight wall-clock is still not done. [#382](https://github.com/afw-org/afw/issues/382) is a crash, not this slope. |
 | **Watch (leak, not crash)** | [#380](https://github.com/afw-org/afw/issues/380). Splice copy-out then later assign; unassigned unmanaged temps in a tight loop; `readln` grows the line in `x->p` (`@fixme #2` in `afw_function_stream.c`). Soak or will-not-do. |
-| **Escape past one xctx** | [#381](https://github.com/afw-org/afw/issues/381). Runtime objects / adapter cache / reused compile units. #149 closed the accessor slice. Clone-into-requestor-pool under the lock is a later option — not silent close of #2. |
+| **Escape past one xctx** | [#381](https://github.com/afw-org/afw/issues/381). Runtime objects: [PR #386](https://github.com/afw-org/afw/pull/386) snapshots shared counters and properties into the caller pool (pin under `adapter_id_anchor_lock`, copy outside it, release after). `metrics.additional` is the short pin: held across `get_additional_metrics` only, released in `AFW_FINALLY`; the object is built in `p` and must not refer to the adapter after return. Clone-into-the-requestor-pool **under** the lock is **will-not-do**. Still open: adapter cache entries and compile units reused across requests. |
 
 ### Parked — not close-blockers unless we say so
 

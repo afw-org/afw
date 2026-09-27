@@ -43,9 +43,9 @@ editing the tables below. Property meaning:
 
 | key | brief | copiesUnderLock | returnsLiveReference |
 |-----|-------|-----------------|----------------------|
-| `adapter_additional_metrics` | Call adapter get_additional_metrics() | no | no |
-| `adapter_metrics` | Return live adapter metrics object | no | yes |
-| `adapter_properties` | Live adapter anchor properties object (pointer under lock) | no | yes |
+| `adapter_additional_metrics` | Adapter type-specific metrics built in the caller pool | no | no |
+| `adapter_metrics` | Managed snapshot of the adapter metrics object | no | no |
+| `adapter_properties` | Managed snapshot of the adapter properties object | no | no |
 | `adapter_reference_count` | Snapshot adapter anchor reference_count under lock | yes | no |
 | `afw_components_extension_loaded` | Ensure afw_components extension is loaded | no | no |
 | `applicable_flags` | Build array of applicable flag ids for a flag | no | no |
@@ -71,31 +71,31 @@ editing the tables below. Property meaning:
 ### By lifetime class (quick filter)
 
 - **copiesUnderLock:** `adapter_reference_count`, `authorization_handler_reference_count`, `stopping_adapter_instances`, `stopping_authorization_handler_instances`
-- **returnsLiveReference:** `adapter_metrics`, `adapter_properties`, `default`, `indirect`, `null_terminated_array_of_objects`, `null_terminated_array_of_values`, `value`
-- **Neither (typically scalar/copy into `p`):** `adapter_additional_metrics`, `afw_components_extension_loaded`, `applicable_flags`, `compile_type`, `data_type_id`, `null_terminated_array_of_internal`, `null_terminated_array_of_pointers`, `null_terminated_array_of_utf8_z_key_value_pair_objects`, `octet`, `service_startup`, `service_status`, `size`, `uint32`
+- **returnsLiveReference:** `default`, `indirect`, `null_terminated_array_of_objects`, `null_terminated_array_of_values`, `value`
+- **Neither (typically scalar/copy into `p`):** `adapter_additional_metrics`, `adapter_metrics`, `adapter_properties`, `afw_components_extension_loaded`, `applicable_flags`, `compile_type`, `data_type_id`, `null_terminated_array_of_internal`, `null_terminated_array_of_pointers`, `null_terminated_array_of_utf8_z_key_value_pair_objects`, `octet`, `service_startup`, `service_status`, `size`, `uint32`
 
 ## Full descriptions
 
 ### `adapter_additional_metrics`
 
-- **Brief:** Call adapter get_additional_metrics()
+- **Brief:** Adapter type-specific metrics built in the caller pool
 - **copiesUnderLock:** `false`
 - **returnsLiveReference:** `false`
-- **Description:** internal points at afw_adapter_impl_t. Calls afw_adapter_get_additional_metrics() with the adapter. Returned object lifetime follows that API (typically allocated in p).
+- **Description:** internal points at afw_adapter_impl_t. Under adapter_id_anchor_lock, pins the adapter. Outside the lock, calls afw_adapter_get_additional_metrics(), which builds the object in p, then releases the adapter. The object must not refer to the adapter after that call returns. NULL when the adapter type has no extra stats.
 
 ### `adapter_metrics`
 
-- **Brief:** Return live adapter metrics object
+- **Brief:** Managed snapshot of the adapter metrics object
 - **copiesUnderLock:** `false`
-- **returnsLiveReference:** `true`
-- **Description:** internal is a pointer to const afw_adapter_t * on an anchor. Under `adapter_id_anchor_lock`, loads `metrics_object` and wraps it after the lock (no deep copy). Live environment state (`returnsLiveReference`): counters may change while held. The accessor increments the instance reference count and releases it when `p` is cleaned up, so a concurrent stop drains instead of destroying the pool behind the object. Do not cache beyond that pool.
+- **returnsLiveReference:** `false`
+- **Description:** internal is a pointer to const afw_adapter_t * on an afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, loads the active adapter and pins it. Copies a managed snapshot of adapter->impl->metrics_object into p->managed_p, registers its release on p, then releases the adapter. NULL when no active adapter. Not a live reference.
 
 ### `adapter_properties`
 
-- **Brief:** Live adapter anchor properties object (pointer under lock)
+- **Brief:** Managed snapshot of the adapter properties object
 - **copiesUnderLock:** `false`
-- **returnsLiveReference:** `true`
-- **Description:** internal is a pointer to const afw_object_t * properties on an `afw_adapter_id_anchor_t`. Under `adapter_id_anchor_lock`, loads the properties pointer and wraps it without deep copy. NULL when no properties. Same pin as `adapter_metrics`. Typically absent on the active anchor after full stop.
+- **returnsLiveReference:** `false`
+- **Description:** internal is a pointer to const afw_object_t * properties on an afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, loads the properties pointer and pins the adapter. Copies a managed snapshot into p->managed_p, registers its release on p, then releases the adapter. NULL when no properties. Not a live reference.
 
 ### `adapter_reference_count`
 
