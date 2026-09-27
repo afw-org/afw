@@ -192,6 +192,16 @@ struct afw_runtime_object_indirect_s {
      * returning the object pointer. data is that object pointer.
      */
     afw_runtime_object_cb_t cb;
+
+    /**
+     * When true, get_reference and release track this object.
+     * The object's pool dies with the last release. Const runtime
+     * objects leave this false.
+     */
+    afw_boolean_t refcounted;
+
+    /** Holds. Meaningful only when refcounted is true. */
+    afw_integer_t reference_count;
 };
 
 
