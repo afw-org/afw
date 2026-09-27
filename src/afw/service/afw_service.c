@@ -979,10 +979,13 @@ impl_AdaptiveService_cb(
     const afw_object_t *conf_property;
     const afw_object_t *object;
     const afw_utf8_t *s;
+    const afw_utf8_t *stable_id;
     const afw_utf8_t *error_message;
     afw_boolean_t is_complete;
+    afw_boolean_t ours;
 
     is_complete = false;
+    ours = false;
     p = xctx->p;
     object = original_object;
     service = NULL;
@@ -990,9 +993,15 @@ impl_AdaptiveService_cb(
         service_id = afw_s_unknown; /* Get rid of compiler warning. */
         AFW_TRY {
 
-            p = original_object->p;
+            /*
+             * Copy onto the caller's pool while the conf session and
+             * the service retain are still held. The caller pool
+             * releases this object.
+             */
+            p = (ctx->p) ? ctx->p : xctx->p;
 
-            object = afw_object_create_unmanaged(p, xctx);
+            object = afw_object_create_managed(p, xctx);
+            ours = true;
 
             service_id = afw_object_get_property_as_string_internal(
                 original_object,
@@ -1048,15 +1057,20 @@ impl_AdaptiveService_cb(
 
         AFW_ENDTRY;
 
+        if (ours) {
+            afw_object_register_caller_release(object, p, xctx);
+        }
+
         meetsCriteria = true;
         if (ctx->criteria) {
             meetsCriteria = afw_query_criteria_test_object(object,
                 ctx->criteria, ctx->p, xctx);
         }
 
-        if (ctx->service_ids) {
-            afw_hash_table_set(ctx->service_ids, service_id->s,
-                service_id->len, service_id, xctx);
+        if (ctx->service_ids && service_id) {
+            stable_id = afw_utf8_clone(service_id, p, xctx);
+            afw_hash_table_set(ctx->service_ids, stable_id->s,
+                stable_id->len, stable_id, xctx);
         }
 
         if (meetsCriteria && ctx->original_callback) {
@@ -1092,11 +1106,22 @@ impl_retrieve_from_registry_cb(
     if (!ctx->service_ids ||
         !afw_hash_table_get(ctx->service_ids, key_s, key_len))
     {
-        object = afw_object_create_unmanaged_new_p(p, xctx);
-
-        impl_add_runtime_service_info_to_object(object, service,
-            NULL, service->properties, &service->service_id,
-            service->type, service->conf_id, xctx);
+        service = impl_service_retain(&service->service_id, xctx);
+        if (!service) {
+            return false;
+        }
+        object = NULL;
+        AFW_TRY {
+            object = afw_object_create_managed(p, xctx);
+            impl_add_runtime_service_info_to_object(object, service,
+                NULL, service->properties, &service->service_id,
+                service->type, service->conf_id, xctx);
+            afw_object_register_caller_release(object, p, xctx);
+        }
+        AFW_FINALLY {
+            impl_service_release((afw_service_t *)service, xctx);
+        }
+        AFW_ENDTRY;
 
         meetsCriteria = true;
         if (ctx->criteria) {

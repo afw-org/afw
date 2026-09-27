@@ -405,6 +405,25 @@ afw_object_create_managed_clone(
 
 
 AFW_DEFINE(const afw_object_t *)
+afw_object_create_managed_snapshot(
+    const afw_object_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *to;
+
+    if (!from) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_object_create_managed_snapshot requires from",
+            xctx);
+    }
+    to = afw_object_create_managed(p, xctx);
+    impl_copy_into_managed(to, from, xctx);
+    return to;
+}
+
+
+AFW_DEFINE(const afw_object_t *)
 afw_object_create_managed_embedded(
     const afw_object_t *embedding_object,
     const afw_value_t *property_name,

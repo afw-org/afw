@@ -202,7 +202,12 @@ afw_adapter_internal_register_pin_cleanup(
         return;
     }
 
+    if (!xctx) {
+        return;
+    }
+
     AFW_TRY {
+        afw_object_reject_process_lifetime_pool(p, xctx);
         afw_pool_register_cleanup(p, (void *)held, NULL,
             impl_adapter_reference_cleanup, xctx);
     }
@@ -240,16 +245,32 @@ afw_adapter_get_metrics_object(
         (afw_runtime_object_indirect_t *)object;
     afw_adapter_impl_t *impl = (afw_adapter_impl_t *)indirect->internal;
     const afw_adapter_t *held;
+    const afw_object_t *snapshot;
+
+    if (!impl || !impl->adapter || p == impl->adapter->p) {
+        return object;
+    }
 
     held = NULL;
+    snapshot = NULL;
     AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
         held = afw_adapter_internal_pin_for_pool_lock_held(
             impl->adapter, p, xctx);
     }
     AFW_LOCK_END;
 
-    afw_adapter_internal_register_pin_cleanup(held, p, xctx);
-    return object;
+    if (!held) {
+        return NULL;
+    }
+    AFW_TRY {
+        snapshot = afw_object_managed_clone_for_caller(object, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_adapter_release(held, xctx);
+    }
+    AFW_ENDTRY;
+
+    return snapshot;
 }
 
 

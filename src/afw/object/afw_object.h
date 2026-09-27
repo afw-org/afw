@@ -817,6 +817,66 @@ afw_object_create_managed_clone(
 
 
 /**
+ * @brief Always deep-copy from into a new managed object in p->managed_p.
+ * @param from object to copy.
+ * @param p dest pool (uses p->managed_p).
+ * @param xctx of caller.
+ * @return new managed object (reference count 1).
+ *
+ * Unlike afw_object_create_managed_clone(), an already-managed source
+ * is copied. The caller registers the release.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_create_managed_snapshot(
+    const afw_object_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Throw if p is env->p or the base xctx pool.
+ * @param p pool a release would be registered on.
+ * @param xctx of caller.
+ *
+ * Those pools are not destroyed until the process exits, so a
+ * registered release would not run.
+ */
+AFW_DECLARE(void)
+afw_object_reject_process_lifetime_pool(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Register object's release on p.
+ * @param object managed object whose create reference p will release.
+ * @param p pool that must be destroyed. Not env->p or the base xctx pool.
+ * @param xctx of caller.
+ *
+ * On failure the object is released and the error is rethrown.
+ */
+AFW_DECLARE(void)
+afw_object_register_caller_release(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Snapshot from into p->managed_p and register its release on p.
+ * @param from object to copy. NULL returns NULL.
+ * @param p caller's pool.
+ * @param xctx of caller.
+ * @return managed snapshot, or NULL when from is NULL.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_managed_clone_for_caller(
+    const afw_object_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Create a managed embedded object in a managed parent.
  * @param embedding_object managed parent.
  * @param property_name of the embedded object.

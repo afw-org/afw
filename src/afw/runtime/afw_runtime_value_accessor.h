@@ -419,16 +419,15 @@ afw_runtime_value_accessor_uint32(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Live adapter metrics object (active adapter pointer under lock).
+ * @brief Managed snapshot of the adapter metrics object.
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is pointer to const afw_adapter_t * on adapter id anchor.
  * @param p is pool to use.
  * @param xctx of caller.
- * @return object value wrapping metrics_object, or NULL if no active adapter.
+ * @return managed object value, or NULL if no active adapter.
  *
- * Loads the adapter pointer under adapter_id_anchor_lock. Result is still a
- * live reference (not a deep snapshot of counters). Pins the instance until
- * p is cleaned up so stop/replace cannot destroy the pool behind the object.
+ * Pins the adapter across the copy, builds the snapshot in p->managed_p,
+ * registers its release on p, then releases the adapter.
  */
 const afw_value_t *
 afw_runtime_value_accessor_adapter_metrics(
@@ -436,14 +435,15 @@ afw_runtime_value_accessor_adapter_metrics(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Live adapter anchor properties object (pointer under lock).
+ * @brief Managed snapshot of the adapter properties object.
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is pointer to const afw_object_t * properties on anchor.
  * @param p is pool to use.
  * @param xctx of caller.
- * @return object value wrapping properties, or NULL.
+ * @return managed object value, or NULL.
  *
- * Pins the instance until p is cleaned up, same as adapter_metrics.
+ * Pins the adapter across the copy, builds the snapshot in p->managed_p,
+ * registers its release on p, then releases the adapter.
  */
 const afw_value_t *
 afw_runtime_value_accessor_adapter_properties(
