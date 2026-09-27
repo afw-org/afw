@@ -163,9 +163,16 @@ impl_service_retain(
 
 
 
+/*
+ * Drop one reference. free_at_zero is false while a start or restart
+ * caller still owns the object: that caller frees the pool when this
+ * generation is not registered. Freeing here too would free it twice
+ * after a newer generation took the registry and this start threw.
+ */
 static void
-impl_service_release(
+impl_service_drop(
     afw_service_t *service,
+    afw_boolean_t free_at_zero,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *free_p;
@@ -178,7 +185,8 @@ impl_service_release(
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         AFW_LOCK_BEGIN(xctx->env->service_lock) {
             service->reference_count--;
-            if (service->reference_count <= 0 &&
+            if (free_at_zero &&
+                service->reference_count <= 0 &&
                 service->p && service->p != xctx->env->p)
             {
                 free_p = service->p;
@@ -191,6 +199,16 @@ impl_service_release(
     if (free_p) {
         afw_pool_release(free_p, xctx);
     }
+}
+
+
+
+static void
+impl_service_release(
+    afw_service_t *service,
+    afw_xctx_t *xctx)
+{
+    impl_service_drop(service, true, xctx);
 }
 
 
@@ -1351,20 +1369,33 @@ impl_start_service(
     const afw_object_t *conf,
     afw_xctx_t *xctx)
 {
-    AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
-    {
-        afw_dateTime_set_now(&service->start_time, NULL, xctx);
-        service->status = afw_service_status_starting;
-        impl_register_service(service, xctx);
-        AFW_LOG_FZ(debug, xctx, "Service '%ku' starting.",
-            &service->service_id);
-        afw_service_type_start_cede_p(service->service_type,
-            conf, conf->p, xctx);
-        service->status = afw_service_status_running;
-        AFW_LOG_FZ(info, xctx, "Service '%ku' successfully started.",
-            &service->service_id);
+    /*
+     * In-flight hold, same as stop. Unpublished until register, so the
+     * bump is visible before another thread can replace this generation
+     * and free it. The finally drops it. A throw leaves the pool to
+     * the caller, which frees an unregistered generation.
+     */
+    service->reference_count++;
+    AFW_TRY {
+        AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
+        {
+            afw_dateTime_set_now(&service->start_time, NULL, xctx);
+            service->status = afw_service_status_starting;
+            impl_register_service(service, xctx);
+            AFW_LOG_FZ(debug, xctx, "Service '%ku' starting.",
+                &service->service_id);
+            afw_service_type_start_cede_p(service->service_type,
+                conf, conf->p, xctx);
+            service->status = afw_service_status_running;
+            AFW_LOG_FZ(info, xctx, "Service '%ku' successfully started.",
+                &service->service_id);
+        }
+        AFW_THREAD_MUTEX_UNLOCK();
     }
-    AFW_THREAD_MUTEX_UNLOCK();
+    AFW_FINALLY {
+        impl_service_drop(service, !this_ERROR_OCCURRED, xctx);
+    }
+    AFW_ENDTRY;
 }
 
 
@@ -1525,20 +1556,28 @@ impl_restart_service(
     const afw_object_t *conf,
     afw_xctx_t *xctx)
 {
-    AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
-    {
-        afw_dateTime_set_now(&service->start_time, NULL, xctx);
-        service->status = afw_service_status_restarting;
-        impl_register_service(service, xctx);
-        AFW_LOG_FZ(debug, xctx, "Service '%ku' restarting.",
-            &service->service_id);
-        afw_service_type_restart_cede_p(service->service_type,
-            conf, conf->p, xctx);
-        service->status = afw_service_status_running;
-        AFW_LOG_FZ(info, xctx, "Service '%ku' successfully restarted.",
-            &service->service_id);
+    /* Same in-flight hold as start and stop. See impl_start_service. */
+    service->reference_count++;
+    AFW_TRY {
+        AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
+        {
+            afw_dateTime_set_now(&service->start_time, NULL, xctx);
+            service->status = afw_service_status_restarting;
+            impl_register_service(service, xctx);
+            AFW_LOG_FZ(debug, xctx, "Service '%ku' restarting.",
+                &service->service_id);
+            afw_service_type_restart_cede_p(service->service_type,
+                conf, conf->p, xctx);
+            service->status = afw_service_status_running;
+            AFW_LOG_FZ(info, xctx, "Service '%ku' successfully restarted.",
+                &service->service_id);
+        }
+        AFW_THREAD_MUTEX_UNLOCK();
     }
-    AFW_THREAD_MUTEX_UNLOCK();
+    AFW_FINALLY {
+        impl_service_drop(service, !this_ERROR_OCCURRED, xctx);
+    }
+    AFW_ENDTRY;
 }
 
 
