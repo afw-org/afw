@@ -61,7 +61,7 @@ Env / FCGI names: only three `create_property_name` callers. Documented in objec
 - **`create`** is the verb for “here is a new value.” Anyone in C can add an inf.
 - Built-in execute: `AFW_FUNCTION_EVALUATE_*` writes a **pointer** on the stack (`const afw_value_string_t *`); work uses `arg->internal`.
 - Header is immutable. Object/array `internal` points at an instance that can mutate.
-- **`compiled_value`** keeps one `full_source`. Children store a **contextual** window. Backtrace is the **evaluation stack**, not `parent`. Adaptive `compile()` at eval time uses `x->p` and `parent = NULL` so a compile-once script evaluated many times does not grow the script pool ([#212](https://github.com/afw-org/afw/issues/212)).
+- **`compiled_value`** keeps one `full_source`. Children store a **contextual** window. The backtrace is the evaluation stack, and each frame's source is that unit's `full_source`. Adaptive `compile()` at eval time passes `shared` NULL and `x->p`, so a compile-once script evaluated many times does not grow the script pool ([#212](https://github.com/afw-org/afw/issues/212)).
 
 Managed scalar headers live in dest `p->managed_p` and last-release `free_memory`s them via the stored p ([#277](https://github.com/afw-org/afw/issues/277)). Evaluate of a `compiled_value` **pins** the result on dest `p`.
 

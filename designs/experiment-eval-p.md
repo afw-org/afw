@@ -14,7 +14,7 @@ Nested `{ }` with **no symbols** is not a frame. It keeps caller `p` (already th
 
 `while` / `do_while` / classic `for` / `for_of` (not `for (let)`) eval the **body** on a per-trip tracker of **`xctx->p`** (the one ST heap; no `evaluation_heap`) and last-release it at the end of the trip. Condition stays on enclosing `p`. `for (let)` still clones the wrapper.
 
-**Compile is not eval scratch.** `afw_compile*()` is a C API: `shared->p`, else `parent->p` (and `parent->shared` if set), else dest `p` (`cede_p` is dest `p` as the unit; otherwise `afw_pool_heap_create(dest p, 4k)`). Adaptive `compile()` / `eval<script>` pass **`xctx->p`** as parent. Do not veto dest `p` inside compile.
+**Compile is not eval scratch.** `afw_compile_lexical_parser_create` uses `shared->p` when `shared` is passed. With no `shared`, `use_p` true allocates the unit on the passed `p`; `use_p` false (the `afw_compile_to_value` path, after that function takes `p->managed_p`) creates the unit with `afw_pool_heap_create` of that pool. There is no parent compiled value. Adaptive `compile<script>()` and `eval<script>()` pass `shared` NULL and `xctx->p`. Do not veto dest `p` inside compile.
 
 Caller `p` owns `shared` (model `on*`, `compile_templates`). If this parser **created** `shared`, `parser_finish` releases `temp_p` (literal lookup table) so the unit can last-release. Passed-in `shared` is not managed here.
 

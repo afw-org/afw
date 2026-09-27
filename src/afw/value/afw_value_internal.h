@@ -470,15 +470,21 @@ struct afw_value_closure_binding_s {
 /**
  * @brief Struct for compiled value value.
  *
- * This is the top level value return from the adaptive compiler when the
- * result is more than a literal.  It contains the full source that is
- * used by all children values, the symbol table, the literal value table
- * shared strings.
+ * This is the top level value returned from the adaptive compiler when
+ * the result is more than a literal. It holds this unit's full source,
+ * used by child values, and the symbol table.
  *
- * The compiled value can also have a parent where literal values, etc
- * are shared.  This parent also contributes to the source location.
+ * shared holds the string-literal hash for one compile. Environment
+ * literals are reused first. A miss is allocated on this compile's
+ * pool. This struct does not keep a parent literal table. Source
+ * location is this unit's own contextual and full_source.
  *
- * Methods of a compiled value value calls the root value's corresponding
+ * An evaluation-time compile (compile<script>() passes shared NULL and
+ * p = xctx->p) must live only as long as that evaluation. Interning
+ * its strings into a longer-lived compile-once unit pool would keep
+ * them after that evaluation ends.
+ *
+ * Methods of a compiled value call the root value's corresponding
  * methods for optional_evaluate() and get_data_type().
  */
 struct afw_value_internal_compiled_value_s {
@@ -498,9 +504,6 @@ struct afw_value_internal_compiled_value_s {
 
     /** @brief True if last RC last-releases self->p (unit created that pool). */
     afw_boolean_t unit_owns_p;
-
-    /** @brief The parent compiled value or NULL. */
-    const afw_value_compiled_value_t *parent;
 
     /** @brief Shared compile resources, or NULL. */
     const afw_compile_shared_t *shared;
@@ -543,23 +546,6 @@ struct afw_value_internal_compiled_value_s {
     /** @brief Current symbol block. */
     afw_value_block_t *current_block;
 
-    /**
-     * @brief Literal values
-     *
-     * The property name is formed by concatenating the data type, a ':'
-     * and the string_value of the literal.
-     *
-     * The value is an evaluated value of the data type.
-     */
-    const afw_object_t *literals;
-
-    /**
-     * @brief Shared strings.
-     *
-     * The property name is the string and value is an evaluated string.
-     */
-    const afw_object_t *strings;
-    
     /*
      * This is the optimized value or self. If self can be evaluated at create
      * time, this will the evaluated result. If this value references other
