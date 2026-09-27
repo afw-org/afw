@@ -116,6 +116,11 @@ impl_afw_value_optional_release(
     if (self->reference_count == 1) {
         self->reference_count = 0;
         afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
+        /* After this, script_function_definition may be freed. */
+        if (self->compiled_value) {
+            afw_value_release(self->compiled_value, xctx);
+            self->compiled_value = NULL;
+        }
         afw_pool_free_memory_type(self->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }
@@ -131,7 +136,8 @@ impl_afw_value_get_reference(
     afw_xctx_t * xctx)
 {
     self->reference_count++;
-    if (self->reference_count == 1) {
+    /* A binding that keeps a unit was handed its scope reference. */
+    if (self->reference_count == 1 && !self->compiled_value) {
         afw_pool_scope_get_reference(self->enclosing_lexical_scope, xctx);
     }
     return &self->pub;

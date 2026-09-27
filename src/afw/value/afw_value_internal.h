@@ -463,6 +463,15 @@ struct afw_value_closure_binding_s {
     const afw_pool_t *p;
     const afw_value_script_function_definition_t *script_function_definition;
     const afw_pool_scope_t *enclosing_lexical_scope;
+    /*
+     * Compile unit this binding keeps, or NULL. eval<script> transfers
+     * its compile-unit reference onto a new binding it returns when the
+     * result's script_function_definition was defined in that unit. The
+     * binding's last release drops it, so a later call still sees the
+     * body and the literals. Such a binding is also handed its scope
+     * reference, so its first get_reference does not take another.
+     */
+    const afw_value_t *compiled_value;
     afw_size_t reference_count;
 };
 

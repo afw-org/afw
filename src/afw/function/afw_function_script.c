@@ -90,6 +90,24 @@ afw_function_execute_compile_script(
 
 
 
+static afw_boolean_t
+impl_function_defined_in_unit(
+    const afw_value_script_function_definition_t *function,
+    const afw_value_compiled_value_t *unit)
+{
+    const afw_value_block_t *block;
+
+    for (block = function->enclosing_block; block;
+        block = block->parent_block)
+    {
+        if (block == unit->top_block) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 /*
  * Adaptive function: eval<script>
  *
@@ -134,6 +152,12 @@ afw_function_execute_eval_script(
     const afw_value_script_t *script;
     const afw_value_t *compiled;
     const afw_value_t *value = NULL;
+    const afw_value_compiled_value_t *unit;
+    afw_value_closure_binding_t *binding;
+    afw_value_closure_binding_t *inner;
+    afw_boolean_t keep_unit;
+    afw_boolean_t transferred;
+    const char *unexpected = NULL;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script, 1, script);
 
@@ -155,7 +179,66 @@ afw_function_execute_eval_script(
             }
         }
         AFW_FINALLY {
-            if (value) {
+            keep_unit = false;
+            transferred = false;
+            if (value && xctx->error_processing_count == 0 &&
+                afw_value_is_compiled_value(compiled))
+            {
+                unit = (const afw_value_compiled_value_t *)compiled;
+                if (afw_value_is_closure_binding(value)) {
+                    binding = (afw_value_closure_binding_t *)value;
+                    if (impl_function_defined_in_unit(
+                        binding->script_function_definition, unit))
+                    {
+                        if (binding->compiled_value) {
+                            unexpected = "Internal error: eval<script> "
+                                "closure_binding already keeps a "
+                                "compiled value";
+                        }
+                        else if (binding->reference_count == 0) {
+                            unexpected = "Internal error: eval<script> "
+                                "closure_binding has no scope reference "
+                                "to transfer";
+                        }
+                        else {
+                            /*
+                             * The inner binding's first reference is
+                             * pinned on the caller pool, and a pin in a
+                             * loop body lives until the xctx ends, so
+                             * neither it nor any reference returned
+                             * from here can be the last release.
+                             * Return a new binding at reference_count 0
+                             * that keeps the unit and takes over the
+                             * inner binding's scope reference. Zero the
+                             * inner count without freeing the header;
+                             * the later pin release hits the
+                             * reference_count == 0 early return.
+                             */
+                            inner = binding;
+                            binding = (afw_value_closure_binding_t *)
+                                afw_value_closure_binding_create(
+                                    inner->script_function_definition,
+                                    inner->enclosing_lexical_scope,
+                                    x->p, xctx);
+                            binding->compiled_value = compiled;
+                            inner->reference_count = 0;
+                            value = &binding->pub;
+                            transferred = true;
+                        }
+                        keep_unit = true;
+                    }
+                }
+                else if (afw_value_is_script_function_definition(value) &&
+                    impl_function_defined_in_unit(
+                        (const afw_value_script_function_definition_t *)
+                        value, unit))
+                {
+                    unexpected = "Internal error: eval<script> result is "
+                        "an unbound script function in its compile unit";
+                    keep_unit = true;
+                }
+            }
+            if (value && !transferred) {
                 value = afw_value_get_assignable(value, x->p, xctx);
             }
             /*
@@ -163,11 +246,15 @@ afw_function_execute_eval_script(
              * outer CATCH can still read error->contextual (source
              * location lives in the unit heap).
              */
-            if (xctx->error_processing_count == 0) {
+            if (xctx->error_processing_count == 0 && !keep_unit) {
                 afw_value_release(compiled, xctx);
             }
         }
         AFW_ENDTRY;
+    }
+
+    if (unexpected) {
+        AFW_THROW_ERROR_Z(general, unexpected, x->xctx);
     }
 
     afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
