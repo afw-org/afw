@@ -26,9 +26,9 @@ jobs:
                   echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             # prevent from having to install node_modules every time
             - name: Cache dependencies

@@ -18,9 +18,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -44,9 +44,9 @@ jobs:
                   set-safe-directory: true
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Install Linter Dependencies
               run: npm install -g eclint
@@ -278,9 +278,9 @@ jobs:
                   set-safe-directory: true
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -314,9 +314,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -350,9 +350,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -387,9 +387,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -422,9 +422,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -457,9 +457,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -492,9 +492,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -527,9 +527,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -562,9 +562,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
@@ -597,9 +597,9 @@ jobs:
                   persist-credentials: false
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "15"
+                  node-version: "24"
 
             - name: Cache dependencies
               id: cache
