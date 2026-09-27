@@ -376,6 +376,10 @@ AFW_DEFINE(const afw_adapter_t *)
 
       <description>
         Get additional adapter specific metrics.
+
+        The returned object is built in p and must not refer to the
+        adapter after this call returns. The caller holds the adapter
+        only for the duration of the call.
       </description>
 
       <parameter name="instance" type="const afw_adapter_t *">
@@ -395,7 +399,10 @@ AFW_DEFINE(const afw_adapter_t *)
       </parameter>
 
       <return type="const afw_object_t *">
-        <description>Object with metrics or NULL.</description>
+        <description>
+          Object with metrics built in p, or NULL when the adapter type
+          has no extra stats.
+        </description>
       </return>
 
     </method>

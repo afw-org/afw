@@ -428,10 +428,15 @@ struct afw_adapter_inf_s {
  * @brief Call method `get_additional_metrics` of interface `afw_adapter`.
  *
  * Get additional adapter specific metrics.
+ * 
+ * The returned object is built in p and must not refer to the
+ * adapter after this call returns. The caller holds the adapter
+ * only for the duration of the call.
  * @param instance Pointer to this adapter instance.
  * @param p Pool used for results.
  * @param xctx The execution context (xctx) of caller.
- * @return Object with metrics or NULL.
+ * @return Object with metrics built in p, or NULL when the adapter type has no
+ * extra stats.
  * @relates afw_adapter_t
  * @see @ref afw_adapter_s "afw_adapter_t"
  */

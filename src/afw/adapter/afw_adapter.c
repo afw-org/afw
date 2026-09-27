@@ -145,24 +145,6 @@ impl_get_reference(
 
 
 
-static void
-impl_adapter_reference_cleanup(
-    void *data, void *data2,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)data2;
-    (void)p;
-    AFW_TRY {
-        afw_adapter_release((const afw_adapter_t *)data, xctx);
-    }
-    AFW_CATCH_UNHANDLED {
-        /* Pool cleanup must not throw. */
-    }
-    AFW_ENDTRY;
-}
-
-
-
 const afw_adapter_t *
 afw_adapter_internal_pin_for_pool_lock_held(
     const afw_adapter_t *instance,
@@ -188,34 +170,6 @@ afw_adapter_internal_pin_for_pool_lock_held(
     }
 
     return NULL;
-}
-
-
-
-void
-afw_adapter_internal_register_pin_cleanup(
-    const afw_adapter_t *held,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!held) {
-        return;
-    }
-
-    if (!xctx) {
-        return;
-    }
-
-    AFW_TRY {
-        afw_object_reject_process_lifetime_pool(p, xctx);
-        afw_pool_register_cleanup(p, (void *)held, NULL,
-            impl_adapter_reference_cleanup, xctx);
-    }
-    AFW_CATCH_UNHANDLED {
-        afw_adapter_release(held, xctx);
-        AFW_ERROR_RETHROW;
-    }
-    AFW_ENDTRY;
 }
 
 
@@ -250,8 +204,8 @@ afw_adapter_get_metrics_object(
     /*
      * Shared counters (getObjectCount and the rest) are a snapshot.
      * Pin only across the copy, then drop it. Type-specific stats
-     * are the "additional" property and stay live; that accessor
-     * keeps its own pin until the caller pool dies.
+     * are the "additional" property; that accessor releases its pin
+     * when get_additional_metrics returns.
      * p == adapter->p is the owner and gets the live object.
      */
     if (!impl || !impl->adapter || p == impl->adapter->p) {
