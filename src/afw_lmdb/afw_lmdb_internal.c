@@ -76,12 +76,20 @@ MDB_dbi afw_lmdb_internal_open_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx)
 {
-    const afw_pool_t *adapter_p;
+    const afw_pool_t *registry_p;
     MDB_dbi dbi = 0;
     afw_lmdb_dbi_t *dbi_p;
     int rc;
 
-    adapter_p = ((afw_adapter_t *)adapter)->p;
+    /*
+     * dbi_handles is the process-wide shared-env registry's table
+     * (#387), reused by every generation that attaches to this path --
+     * not this specific adapter instance's own pool. A cache entry
+     * must live as long as the table does, so it goes in the same
+     * pool as the table itself, not adapter->p, which this instance's
+     * next restart releases out from under any later attacher.
+     */
+    registry_p = xctx->env->p;
 
     /* first check our adapter's dbi_handles */
     dbi_p = afw_hash_table_get_utf8(adapter->dbi_handles, database);
@@ -97,14 +105,15 @@ MDB_dbi afw_lmdb_internal_open_database(
         const afw_utf8_t *name;
 
         dbi_p = afw_lmdb_internal_dbi_handle(
-            adapter->dbEnv, dbi, adapter_p, xctx);
+            adapter->dbEnv, dbi, registry_p, xctx);
 
         /*
          * afw_hash_table stores the key pointer, same as apr_hash.
-         * Clone into adapter_p so request-scoped names (index create)
-         * outlive the request. Not a hash-API difference.
+         * Clone into registry_p so this outlives whichever instance
+         * happened to trigger the cache-miss (#387), same reasoning
+         * as the session-cache key fix in afw_adapter.c.
          */
-        name = afw_utf8_clone(database, adapter_p, xctx);
+        name = afw_utf8_clone(database, registry_p, xctx);
         afw_hash_table_set_utf8(adapter->dbi_handles,
             name, dbi_p, xctx);
     } else if (rc == MDB_NOTFOUND) {

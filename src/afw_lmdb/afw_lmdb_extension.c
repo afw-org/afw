@@ -49,6 +49,9 @@ impl_afw_extension_initialize(
     /* See function in generated/afw_lmdb_generated.c. */
     afw_lmdb_generated_register(xctx);
 
+    /* Shared MDB_env registry (#387); see afw_lmdb_adapter.c. */
+    afw_lmdb_internal_shared_env_registry_initialize(xctx);
+
     /* Return extension info. */
     return &impl_extension;
 }
