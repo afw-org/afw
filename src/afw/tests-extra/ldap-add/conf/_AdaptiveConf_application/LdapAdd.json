@@ -1,0 +1,6 @@
+{
+    "title": "LdapAdd",
+    "extensions": [
+        "afw_ldap"
+    ]
+}

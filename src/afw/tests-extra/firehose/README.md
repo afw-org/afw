@@ -14,4 +14,4 @@ The HTTP front is `afwfcgi.http`. It serves `build/js/apps`, `build/docs`, and `
 
 The firehose runs until you stop it. Ctrl-C, or `POST /stop` on that same port. It finishes requests already in flight, prints the summary, and shuts down. A second Ctrl-C stops immediately.
 
-LDAP is a private `slapd` on `127.0.0.1` and a free port. `config.py` starts it in `before_all` and stops it in `after_all`. The database is a fresh directory in the test work directory, loaded from `ldap/seed.ldif`. The leaf needs the `slapd` package. It does not use a directory on port 389. The firehose reads `cn=Ada`. An add of `inetOrgPerson` is rejected by slapd because the adapter does not send the required `sn` attribute.
+LDAP is a private `slapd` on `127.0.0.1` and a free port. `config.py` starts it in `before_all` and stops it in `after_all`. The database is a fresh directory in the test work directory, loaded from `ldap/seed.ldif`. The leaf needs the `slapd` package. It does not use a directory on port 389. The firehose reads `cn=Ada`. `sn` comes back as an array of one string. An add and a modify of `sn` are `src/afw/tests-extra/ldap-add`.

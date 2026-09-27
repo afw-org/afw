@@ -1,0 +1,14 @@
+{
+    "serviceId": "adapter-ldap",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "ldap",
+        "adapterId": "ldap",
+        "url": "${environment::AFW_WORLD_LDAP_URL}",
+        "bindParameters": {
+            "dn": "cn=admin,dc=world,dc=test",
+            "password": "secret"
+        }
+    }
+}

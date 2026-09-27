@@ -1,0 +1,20 @@
+# One inetOrgPerson add, get, delete, and a modify of sn.
+# Opt-in: afwdev test -T src/afw/tests-extra/ldap-add
+#
+# Uses the firehose slapd starter and the same seed. The firehose
+# load loop stays a read of cn=Ada.
+
+version: 1
+description: LDAP inetOrgPerson add sends sn
+host: local
+timeout_s: 60
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: add-inetorgperson
+    sourceType: script
+    source: <<< tests/add_inetorgperson.as
+    expect: true

@@ -1,0 +1,14 @@
+dn: dc=world,dc=test
+objectClass: dcObject
+objectClass: organization
+dc: world
+o: World
+
+dn: ou=people,dc=world,dc=test
+objectClass: organizationalUnit
+ou: people
+
+dn: cn=Ada,ou=people,dc=world,dc=test
+objectClass: inetOrgPerson
+cn: Ada
+sn: Lovelace

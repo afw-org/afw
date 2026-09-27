@@ -122,7 +122,7 @@ failures, RSS up 8.3 MiB. Both were under the 64 MiB cap.
 The `slapd` package has to be installed. The HTTP front maps
 `build/js/apps`, `build/docs`, and `src/afw/tests-extra`. Those
 directories have to exist. LDAP in this leaf is a read of `cn=Ada`.
-An add of `inetOrgPerson` is a different bug and is not in the pool.
+The add is `src/afw/tests-extra/ldap-add`.
 
 If `afwfcgi` dies, the harness stops the clients. The server's stderr
 is `afwfcgi.stderr.log` and its stdout (where log type standard

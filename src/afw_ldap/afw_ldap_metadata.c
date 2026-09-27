@@ -554,8 +554,35 @@ impl_make_property_type_and_handler_hash_tables(
          * Use syntax to determine datatype and handler.  Add handler to
          * ht_attribute_types.
          */
-        syntax = afw_object_get_property_as_string_internal(attribute_type_object,
-            afw_ldap_v_SYNTAX, xctx);
+        syntax = afw_object_get_property_as_string_internal(
+            attribute_type_object, afw_ldap_v_SYNTAX, xctx);
+        /*
+         * sn and cn are published as SUP name and carry no SYNTAX.
+         * name holds the directory-string syntax. Without it the
+         * attribute is omitted and an add skips sn.
+         */
+        if (!syntax) {
+            const afw_object_t *sup_object;
+            const afw_utf8_t *sup_name;
+            afw_size_t guard;
+
+            sup_object = attribute_type_object;
+            for (guard = 0; !syntax && guard < 8; guard++) {
+                sup_name = afw_object_get_property_as_string_internal(
+                    sup_object, afw_ldap_v_SUP, xctx);
+                if (!sup_name) {
+                    break;
+                }
+                sup_object = afw_hash_table_get(
+                    metadata->attribute_type_objects,
+                    sup_name->s, sup_name->len);
+                if (!sup_object) {
+                    break;
+                }
+                syntax = afw_object_get_property_as_string_internal(
+                    sup_object, afw_ldap_v_SYNTAX, xctx);
+            }
+        }
         if (syntax) {
 
             /* Get oid part of syntax. */
