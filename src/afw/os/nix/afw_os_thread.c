@@ -25,6 +25,7 @@
 #include <errno.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <sys/resource.h>
 
 
 struct afw_os_mutex_s {
@@ -349,6 +350,7 @@ afw_os_c_stack_bounds(void **base, afw_size_t *size)
     pthread_attr_t attr;
     void *addr;
     size_t nbytes;
+    struct rlimit rl;
     int err;
 
     if (base) {
@@ -366,6 +368,23 @@ afw_os_c_stack_bounds(void **base, afw_size_t *size)
     if (err != 0 || !addr || nbytes == 0) {
         return;
     }
+
+    /*
+     * musl reports an unreliable, much-too-small main-thread stack
+     * size (observed ~130KiB against an 8MiB RLIMIT_STACK), while
+     * its high end (addr + nbytes) tracks actual usage closely. When
+     * the process stack limit is bigger, keep that high end but
+     * rebase the low end on RLIMIT_STACK instead of musl's size.
+     */
+    if (getrlimit(RLIMIT_STACK, &rl) == 0 &&
+        rl.rlim_cur != RLIM_INFINITY &&
+        (afw_size_t)rl.rlim_cur > (afw_size_t)nbytes)
+    {
+        char *high = (char *)addr + nbytes;
+        addr = high - rl.rlim_cur;
+        nbytes = (size_t)rl.rlim_cur;
+    }
+
     if (base) {
         *base = addr;
     }
