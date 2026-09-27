@@ -540,15 +540,50 @@ impl_make_property_type_and_handler_hash_tables(
             AFW_THROW_ERROR_Z(general,
                 "LDAP attribute type object is missing objectId", xctx);
         }
+        /*
+         * NAME aliases share one schema object. Its object id is the
+         * last alias, so property_name is this hash key. The key bytes
+         * live on metadata->p for the life of the attribute type.
+         */
         attribute_type->property_name.inf = &afw_value_unmanaged_string_inf;
-        attribute_type->property_name.internal = *id;
+        attribute_type->property_name.internal.s =
+            (const afw_utf8_octet_t *)key;
+        attribute_type->property_name.internal.len = klen;
 
         /*
          * Use syntax to determine datatype and handler.  Add handler to
          * ht_attribute_types.
          */
-        syntax = afw_object_get_property_as_string_internal(attribute_type_object,
-            afw_ldap_v_SYNTAX, xctx);
+        syntax = afw_object_get_property_as_string_internal(
+            attribute_type_object, afw_ldap_v_SYNTAX, xctx);
+        /*
+         * A subtype may omit SYNTAX. The syntax comes from SUP.
+         * OpenLDAP publishes sn and cn as SUP name. Eight steps
+         * stops a cycle. An attribute that already has SYNTAX
+         * keeps it, so an eDirectory X-NDS_SYNTAX handler stays.
+         */
+        if (!syntax) {
+            const afw_object_t *sup_object;
+            const afw_utf8_t *sup_name;
+            afw_size_t guard;
+
+            sup_object = attribute_type_object;
+            for (guard = 0; !syntax && guard < 8; guard++) {
+                sup_name = afw_object_get_property_as_string_internal(
+                    sup_object, afw_ldap_v_SUP, xctx);
+                if (!sup_name) {
+                    break;
+                }
+                sup_object = afw_hash_table_get(
+                    metadata->attribute_type_objects,
+                    sup_name->s, sup_name->len);
+                if (!sup_object) {
+                    break;
+                }
+                syntax = afw_object_get_property_as_string_internal(
+                    sup_object, afw_ldap_v_SYNTAX, xctx);
+            }
+        }
         if (syntax) {
 
             /* Get oid part of syntax. */
@@ -638,12 +673,16 @@ impl_make_property_type_and_handler_hash_tables(
             /* If attribute can be read, make a property type object. */
             if (!attribute_type->never_allow_read) {
 
-                /* Create property type object and set ids. */
+                /*
+                 * Id is this NAME alias. The schema object id is the
+                 * last alias, so the sn value meta must not be surname.
+                 */
                 attribute_type->property_type_object =
                     afw_object_create_unmanaged(metadata->p, xctx);
                 afw_object_meta_set_ids(
                     attribute_type->property_type_object,
-                    adapter_id, afw_s__AdaptiveValueMeta_, id, xctx);
+                    adapter_id, afw_s__AdaptiveValueMeta_,
+                    &attribute_type->property_name.internal, xctx);
 
                 /* Set data type and data type parameter. */
                 if (attribute_type->is_single) {
@@ -710,8 +749,8 @@ impl_make_property_type_and_handler_hash_tables(
                         afw_v_description, value, xctx);
                 }
 
-                /* Add property type object to propertyType hash table. */
-                afw_hash_table_set(ht, id->s, id->len,
+                /* Same alias as property_name, so a lookup of sn finds sn. */
+                afw_hash_table_set(ht, key, klen,
                     attribute_type->property_type_object, xctx);
 
             }

@@ -151,6 +151,23 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Multi `let` / `const`**](#multi-let-and-const-issue-62) ([#62](https://github.com/afw-org/afw/issues/62)) | Several names on one `let` / `const`; C-style `for` init; `x = y = 1;` chain; script result is set by assignment, `return`, and a call that is not void; loop labels |
 | [**Compiler literals**](#compiler-literals-issue-106) ([#106](https://github.com/afw-org/afw/issues/106)) | `#doubleMax`, `#integerMax`, `#pi`, `#infinity`, and related `#` names fold to those values at compile |
 | [**`maxNumberOfParameters`**](#maxnumberofparameters-issue-125) ([#125](https://github.com/afw-org/afw/issues/125)) | Function metadata property renamed from `maximumNumberOfParameters` |
+| [**LDAP `sn` on add**](#ldap-inetorgperson-add-issue-384) ([#384](https://github.com/afw-org/afw/issues/384)) | An `inetOrgPerson` or `person` add sends `sn`. A get of `sn` or `cn` is an array when the directory attribute is not single-value |
+
+---
+
+## LDAP inetOrgPerson add (issue [#384](https://github.com/afw-org/afw/issues/384))
+
+An `add_object` of `inetOrgPerson` or `person` sends `sn`. OpenLDAP publishes `NAME ( 'sn' 'surname' )` as one attribute, and publishes `sn` and `cn` as `SUP name` with no syntax of their own. The add used to skip `sn`, and the directory rejected the entry.
+
+`sn` and `cn` are not single-value in that schema, so a get of one value is an array of one string. An attribute that already carries its own `SYNTAX` is unchanged. That includes an eDirectory attribute whose syntax object has `X-NDS_SYNTAX`.
+
+The check is opt-in and needs the `slapd` package:
+
+```bash
+afwdev test -T src/afw/tests-extra/ldap-add
+```
+
+[↑ Highlights](#highlights)
 
 ---
 
