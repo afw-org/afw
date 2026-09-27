@@ -539,6 +539,28 @@ afw_adapter_session_get_cached(const afw_utf8_t *adapter_id,
 
 
 
+/*
+ * One commit or release. A throw must not skip the rest of the walk.
+ * The first error keeps its backtrace; a caught ENDTRY would release
+ * it. Later errors are dropped.
+ *
+ * have_error and first_error belong to
+ * afw_adapter_session_commit_and_release_cache().
+ */
+#define impl_finish_one(_stmt) \
+    AFW_TRY { \
+        _stmt; \
+    } \
+    AFW_CATCH_UNHANDLED { \
+        if (!have_error) { \
+            AFW_ERROR_COPY(&first_error, &this_THROWN_ERROR); \
+            this_THROWN_ERROR.backtrace = NULL; \
+            have_error = true; \
+        } \
+    } \
+    AFW_ENDTRY
+
+
 /* Commit changes and release cached sessions and objects. */
 AFW_DEFINE(void)
 afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
@@ -551,19 +573,36 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
     const void * key;
     afw_size_t klen;
     afw_size_t i;
+    afw_error_t first_error;
+    afw_boolean_t have_error;
 
     cache = xctx->cache;
-    if (!cache) return;
+    if (!cache) {
+        return;
+    }
 
-    /* Call commit for all active transaction in reverse order of begin. */
+    /*
+     * Each caught throw drops error_processing_count in ENDTRY. Hold
+     * one count across the walk so that drop does not hit 0 and
+     * last-release delayed pools before the remaining sessions run.
+     * The hold is dropped below, before a rethrow, so the caller's
+     * catch is what flushes those pools.
+     */
+    have_error = false;
+    memset(&first_error, 0, sizeof(first_error));
+    xctx->error_processing_count++;
+
+    /* Commit, then release, in reverse order of begin. */
     i = cache->transactions->count;
     while (i > 0) {
         i--;
         transaction = cache->transactions->entries[i];
         if (!abort) {
-            afw_adapter_transaction_commit(transaction->transaction, xctx);
+            impl_finish_one(afw_adapter_transaction_commit(
+                transaction->transaction, xctx));
         }
-        afw_adapter_transaction_release(transaction->transaction, xctx);
+        impl_finish_one(afw_adapter_transaction_release(
+            transaction->transaction, xctx));
     }
 
     /* Release all active sessions in no particular order. */
@@ -571,17 +610,30 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
         afw_hash_table_this(&hi, &key, &klen, (void **)&session_cache);
         afw_hash_table_next(&hi))
     {
-        afw_adapter_session_release(session_cache->session, xctx);
+        impl_finish_one(afw_adapter_session_release(
+            session_cache->session, xctx));
     }
 
     /* If there is a runtime adapter session, release it. */
     if (cache->runtime_adapter_session) {
-        afw_adapter_session_release(cache->runtime_adapter_session, xctx);
+        impl_finish_one(afw_adapter_session_release(
+            cache->runtime_adapter_session, xctx));
     }
 
-    /* Clear pointer in xctx to cache struct. */
+    /* Cache struct dies with xctx->p. The pointer must not stay set. */
     xctx->cache = NULL;
+
+    if (have_error) {
+        xctx->error_processing_count--;
+        afw_error_release_backtrace(xctx->error, xctx);
+        AFW_ERROR_COPY(xctx->error, &first_error);
+        afw_error_processing_throw(xctx, first_error.code);
+    }
+
+    afw_error_processing_handled(xctx);
 }
+
+#undef impl_finish_one
 
 
 
