@@ -13,6 +13,24 @@ import time
 
 _proc = None
 
+_SCHEMA_DIRS = ("/etc/openldap/schema", "/etc/ldap/schema")
+_MODULE_DIRS = ("/usr/lib64/openldap", "/usr/lib/openldap", "/usr/lib/ldap")
+
+
+def _schema_dir():
+    for candidate in _SCHEMA_DIRS:
+        if os.path.isdir(candidate):
+            return candidate
+    raise RuntimeError(
+        "no LDAP schema directory found in %s" % (_SCHEMA_DIRS,))
+
+
+def _module_dir():
+    for candidate in _MODULE_DIRS:
+        if os.path.isdir(candidate):
+            return candidate
+    return None
+
 
 def _port():
     sock = socket.socket()
@@ -54,16 +72,21 @@ def before_all():
     data = os.path.join(work, "ldap-data")
     os.makedirs(data, exist_ok=True)
     port = _port()
+    schema = _schema_dir()
+    module_dir = _module_dir()
     conf_path = os.path.join(work, "slapd.conf")
     with open(conf_path, "w", encoding="utf-8") as fd:
         fd.write(
-            "include /etc/ldap/schema/core.schema\n"
-            "include /etc/ldap/schema/cosine.schema\n"
-            "include /etc/ldap/schema/inetorgperson.schema\n"
-            "\n"
-            "modulepath /usr/lib/ldap\n"
-            "moduleload back_mdb\n"
-            "\n"
+            "include %s/core.schema\n"
+            "include %s/cosine.schema\n"
+            "include %s/inetorgperson.schema\n"
+            "\n" % (schema, schema, schema))
+        if module_dir:
+            fd.write(
+                "modulepath %s\n"
+                "moduleload back_mdb\n"
+                "\n" % module_dir)
+        fd.write(
             "database mdb\n"
             "maxsize 10485760\n"
             "suffix \"dc=world,dc=test\"\n"
