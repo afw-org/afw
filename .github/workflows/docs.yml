@@ -22,9 +22,9 @@ jobs:
 
             - run: pip install -r python-requirements.txt
 
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@v4
               with:
-                  node-version: "20"
+                  node-version: "24"
 
             - name: Install npm packages (typedoc, for the Javascript bindings reference)
               run: npm install

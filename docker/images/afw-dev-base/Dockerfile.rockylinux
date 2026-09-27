@@ -18,10 +18,11 @@ RUN dnf install -y epel-release && \
     python3-pip python3-devel \
     fcgi fcgi-devel wget git \
     rpm-build npm \
+    openldap-devel openldap-servers \
     openssl openssl-devel doxygen && \
     dnf clean all && rm -rf /var/cache/*
 
-RUN npm install -g npm-upgrade && npm install -g n && n stable
+RUN npm install -g npm-upgrade && npm install -g n && n 24
 RUN npm install -g npm@10 eclint cspell
 
 # install python packages

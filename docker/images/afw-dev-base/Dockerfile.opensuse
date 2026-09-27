@@ -12,8 +12,12 @@ RUN zypper ref -s && \
     FastCGI FastCGI-devel libmysqlclient-devel \
     libdb-4_8 libdb-4_8-devel libcurl-devel git \
     lmdb lmdb-devel libedit-devel doxygen rpm-build valgrind lato-fonts \
+    openldap2-devel openldap2 \
     python3 python3-pip java-9-openjdk nodejs18 npm18 && \
     zypper cc -a
+
+RUN npm install -g npm-upgrade && npm install -g n && n 24
+RUN npm install -g npm@10 eclint cspell
 
 # change compiler symlinks
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 && \
