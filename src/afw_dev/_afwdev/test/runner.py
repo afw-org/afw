@@ -294,6 +294,53 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     return testGroup, passed, skipped, failed, failures, max_xctx_bytes, file_records
 
 
+def work_output_directory(options):
+    """``$tmpdir/afwdev_test_output``, or None when tmpdir is unset."""
+    tmpdir = (options or {}).get("tmpdir")
+    if not tmpdir:
+        return None
+    return os.path.join(tmpdir, "afwdev_test_output")
+
+
+def _has_diag(root):
+    """True when a firehose left a non-empty diag file.
+
+    That file is written when request errors were counted, including a
+    run that stayed under its error threshold and passed.
+    """
+    if not root or not os.path.isdir(root):
+        return False
+    for dirpath, _dirnames, filenames in os.walk(root):
+        if os.path.basename(dirpath) != "diag":
+            continue
+        for name in filenames:
+            path = os.path.join(dirpath, name)
+            try:
+                if os.path.getsize(path) > 0:
+                    return True
+            except OSError:
+                continue
+    return False
+
+
+def note_kept_detail(options, had_errors=False):
+    """One summary line when errors left detail in the work dir.
+
+    Printed when the run failed, or when a firehose counted request
+    errors and still passed. A clean pass prints nothing. The directory
+    is removed at the start of the next afwdev test for this temp
+    directory.
+    """
+    root = work_output_directory(options)
+    if not root or not os.path.isdir(root):
+        return
+    if not had_errors and not _has_diag(root):
+        return
+    msg.highlighted_info(
+        "Detail: {} kept until the next afwdev test for this temp directory"
+        .format(root))
+
+
 ##
 # @brief Creates a known, temporary folder to persist test output
 # @param options The options dictionary
@@ -304,7 +351,10 @@ def allocate_working_directory(options):
     tmpdir = options.get('tmpdir')
     working_directory = tmpdir + "/afwdev_test_output"
 
-    # if folder already exists, remove it first
+    # if folder already exists, remove it first.
+    # Leaf detail lives here until the next afwdev test run for this
+    # temp directory: work_dir/diag/, afwfcgi.stderr.log, and
+    # afwfcgi.stdout.log (log type standard writes stdout).
     if os.path.exists(working_directory):
         if options.get('output') != '-':
             msg.highlighted_info(

@@ -124,11 +124,16 @@ The `slapd` package has to be installed. The HTTP front maps
 directories have to exist. LDAP in this leaf is a read of `cn=Ada`.
 An add of `inetOrgPerson` is a different bug and is not in the pool.
 
-If `afwfcgi` dies, in-flight clients can sit until the leaf timeout.
-The summary is then late. The server log is
-`afwfcgi.stderr.log` under that leaf's work directory inside the
-tmpdir. Stderr is block-buffered when it is not a terminal, so a crash
-can hide the last service line.
+If `afwfcgi` dies, the harness stops the clients. The server's stderr
+is `afwfcgi.stderr.log` and its stdout (where log type standard
+writes) is `afwfcgi.stdout.log`, both in that leaf's work directory.
+afwdev line-buffers those streams when `stdbuf` is on PATH. The files
+stay until the next `afwdev test` for that temp directory. A firehose
+that saw request errors also leaves `diag/firehose-errors.txt` there.
+The console shows a short sample. When any request error was counted,
+including a run that stayed under its threshold and passed, the
+summary ends with a Detail line naming the temp directory. A clean
+pass does not.
 
 ## Focused leaves, not this pair
 

@@ -6,6 +6,7 @@ Binary is expected on PATH from `./afwdev build … --install`.
 """
 
 import os
+import shutil
 import signal
 import subprocess
 import time
@@ -37,8 +38,9 @@ def build_afwfcgi_argv(
         "-n", str(threads),
     ]
     if not under_valgrind:
-        return server
+        return _line_buffer_stdio(server)
 
+    # stdbuf works by LD_PRELOAD. Leave valgrind's argv alone.
     vg = [
         "valgrind",
         "--xml=yes",
@@ -48,6 +50,27 @@ def build_afwfcgi_argv(
     if valgrind_suppressions and os.path.isfile(valgrind_suppressions):
         vg.append("--suppressions=" + valgrind_suppressions)
     return vg + server
+
+
+def _line_buffer_stdio(argv):
+    """Line-buffer stdio so a crash leaves the last lines on disk.
+
+    A pipe or file is block-buffered. stdbuf is skipped when it is
+    not on PATH.
+    """
+    stdbuf = shutil.which("stdbuf")
+    if not stdbuf:
+        return argv
+    return [stdbuf, "-oL", "-eL"] + list(argv)
+
+
+def _close_quiet(fd):
+    if fd is None:
+        return
+    try:
+        fd.close()
+    except Exception:
+        pass
 
 
 def start_afwfcgi(
@@ -92,8 +115,17 @@ def start_afwfcgi(
         valgrind_suppressions=suppressions,
     )
 
+    # log type standard writes stdout and flushes each line. stderr is
+    # the startup fallback and valgrind XML. Both stay in the work dir
+    # until the next afwdev test run for this temp directory.
     log_path = os.path.join(work_dir, "afwfcgi.stderr.log")
+    out_path = os.path.join(work_dir, "afwfcgi.stdout.log")
     log_fd = open(log_path, "wb")
+    try:
+        out_fd = open(out_path, "wb")
+    except Exception:
+        _close_quiet(log_fd)
+        raise
 
     msg.debug("Starting afwfcgi: " + " ".join(argv))
     try:
@@ -101,18 +133,20 @@ def start_afwfcgi(
             argv,
             cwd=work_dir,
             stdin=subprocess.DEVNULL,
-            stdout=subprocess.DEVNULL,
+            stdout=out_fd,
             stderr=log_fd,
             start_new_session=True,
         )
     except FileNotFoundError as e:
-        log_fd.close()
+        _close_quiet(log_fd)
+        _close_quiet(out_fd)
         raise AfwfcgiHostError(
             "afwfcgi not found on PATH (install with "
             "./afwdev build --cdev or --fulldev): {}".format(e)
         ) from e
     except Exception as e:
-        log_fd.close()
+        _close_quiet(log_fd)
+        _close_quiet(out_fd)
         raise AfwfcgiHostError(
             "Failed to spawn afwfcgi: {}".format(e)) from e
 
@@ -122,6 +156,8 @@ def start_afwfcgi(
         "conf_path": conf_path,
         "log_path": log_path,
         "log_fd": log_fd,
+        "stdout_path": out_path,
+        "stdout_fd": out_fd,
         "argv": argv,
         "under_valgrind": under_valgrind,
     }
@@ -130,11 +166,13 @@ def start_afwfcgi(
     while time.time() < deadline:
         if proc.poll() is not None:
             log_fd.flush()
+            out_fd.flush()
             err = _read_log_tail(log_path)
+            out = _read_log_tail(out_path)
             stop_afwfcgi(handle)
             raise AfwfcgiHostError(
                 "afwfcgi exited during startup (code {}): {}".format(
-                    proc.returncode, err or "(no stderr)"))
+                    proc.returncode, err or out or "(no stderr)"))
         if os.path.exists(socket_path):
             # brief settle so accept loop is up
             time.sleep(0.05)
@@ -153,6 +191,7 @@ def stop_afwfcgi(handle, grace_s=5.0):
         return
     proc = handle.get("process")
     log_fd = handle.get("log_fd")
+    out_fd = handle.get("stdout_fd")
     socket_path = handle.get("socket_path")
 
     if proc is not None and proc.poll() is None:
@@ -179,12 +218,10 @@ def stop_afwfcgi(handle, grace_s=5.0):
             except Exception:
                 pass
 
-    if log_fd is not None:
-        try:
-            log_fd.close()
-        except Exception:
-            pass
-        handle["log_fd"] = None
+    _close_quiet(log_fd)
+    handle["log_fd"] = None
+    _close_quiet(out_fd)
+    handle["stdout_fd"] = None
 
     if socket_path and os.path.exists(socket_path):
         try:

@@ -5,7 +5,8 @@
 #
 # One file per afwdev test invocation under ~/.afw/test-failures/.
 # Every failure is one line. The first few of each distinct error also
-# get the message body and, when present, a tail of afwfcgi stderr.
+# get the message body and, when present, a tail of afwfcgi stderr
+# and stdout. log type standard writes stdout.
 # The work directory is wiped on the next run; this directory is not.
 #
 
@@ -120,7 +121,8 @@ def begin(options):
         return None
 
 
-def record(options, name, message, err=None, detail=None, stderr_path=None):
+def record(options, name, message, err=None, detail=None, stderr_path=None,
+           stdout_path=None):
     """Append one failure. Safe from threads and from -j worker processes."""
     path = (options or {}).get("_failure_log")
     if not path or not message:
@@ -129,7 +131,8 @@ def record(options, name, message, err=None, detail=None, stderr_path=None):
     line = _one_line(message)
     try:
         with _thread_lock:
-            _append(path, name, line, sig, err, detail, stderr_path)
+            _append(path, name, line, sig, err, detail, stderr_path,
+                    stdout_path)
     except OSError:
         return
 
@@ -147,7 +150,8 @@ def _load_state(state_path):
     return {"ordinal": 0, "sigs": {}}
 
 
-def _append(path, name, line, sig, err, detail, stderr_path):
+def _append(path, name, line, sig, err, detail, stderr_path,
+            stdout_path=None):
     import fcntl
     state_path = path + ".state.json"
     with open(path, "a", encoding="utf-8") as fd:
@@ -171,6 +175,10 @@ def _append(path, name, line, sig, err, detail, stderr_path):
                 if tail:
                     fd.write("--- afwfcgi stderr ---\n")
                     fd.write(tail + "\n")
+                out = _read_tail(stdout_path, STDERR_TAIL)
+                if out:
+                    fd.write("--- afwfcgi stdout ---\n")
+                    fd.write(out + "\n")
             else:
                 fd.write("# repeat {}\n".format(seen))
             fd.write("\n")
