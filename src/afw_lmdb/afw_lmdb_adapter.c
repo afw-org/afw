@@ -287,11 +287,89 @@ void afw_lmdb_adapter_open_databases(
         NULL, "LMDB Transaction committed.", xctx);
 }
 
+/* --- shared MDB_env registry (#387) ----------------------------------
+ *
+ * LMDB does not allow the same on-disk path to be opened twice in one
+ * process. AFW's restart replaces an adapter instance by creating the
+ * new one before the old one is done draining, which briefly needs
+ * both open at once unless they share a single MDB_env. This registry
+ * is that share: one entry per path, created the first time any
+ * instance opens that path, reused by every instance (any generation,
+ * any number of restarts) that opens it after. Entries live in
+ * xctx->env->p and are never closed during normal operation -- the
+ * afw_lmdb extension's own release() is never called (see
+ * afw_lmdb_extension.c), so the only teardown is the process exiting.
+ */
+
+static afw_void_hash_table_t *impl_shared_env_registry = NULL;
+static const afw_lock_t *impl_shared_env_registry_lock = NULL;
+
+static const afw_utf8_t impl_shared_env_registry_lock_id =
+    AFW_UTF8_LITERAL("afw_lmdb_shared_env_registry");
+static const afw_utf8_t impl_shared_env_registry_lock_brief =
+    AFW_UTF8_LITERAL("LMDB shared MDB_env registry lock");
+static const afw_utf8_t impl_shared_env_registry_lock_description =
+    AFW_UTF8_LITERAL(
+        "Guards find-then-create of the process-wide, path-keyed "
+        "MDB_env registry (#387), so two adapter instances racing to "
+        "open the same never-before-open path cannot both call "
+        "mdb_env_open().");
+
+void
+afw_lmdb_internal_shared_env_registry_initialize(afw_xctx_t *xctx)
+{
+    impl_shared_env_registry = afw_hash_table_create(
+        afw_void_hash_table_t, xctx->env->p, xctx);
+    impl_shared_env_registry_lock = afw_lock_create(
+        &impl_shared_env_registry_lock_id,
+        &impl_shared_env_registry_lock_brief,
+        &impl_shared_env_registry_lock_description,
+        false, xctx->env->p, xctx);
+}
+
+/* Look up an already-open entry for path, or NULL if this path has
+   never been opened in this process. */
+static const afw_lmdb_shared_env_t *
+impl_shared_env_find(const afw_utf8_z_t *path_z, afw_xctx_t *xctx)
+{
+    return (const afw_lmdb_shared_env_t *)afw_hash_table_get(
+        impl_shared_env_registry, path_z, strlen(path_z));
+}
+
+/* Caller must hold impl_shared_env_registry_lock and have just called
+   impl_shared_env_find() for the same path and gotten NULL back. */
+static const afw_lmdb_shared_env_t *
+impl_shared_env_add(
+    const afw_utf8_z_t *path_z, MDB_env *dbEnv, afw_xctx_t *xctx)
+{
+    const afw_pool_t *shared_p;
+    afw_lmdb_shared_env_t *shared;
+    const afw_utf8_t *key;
+
+    shared_p = xctx->env->p;
+    shared = afw_pool_calloc_type(shared_p, afw_lmdb_shared_env_t, xctx);
+    shared->dbEnv = dbEnv;
+    shared->dbLock = afw_thread_rwlock_create(shared_p, xctx);
+    shared->dbi_handles = afw_hash_table_create(
+        afw_void_hash_table_t, shared_p, xctx);
+
+    /* The registry outlives whatever instance's pool path_z is
+       allocated in, so the key must be its own stable copy. */
+    key = afw_utf8_create(
+        (const afw_utf8_octet_t *)path_z, AFW_UTF8_Z_LEN, shared_p, xctx);
+    afw_hash_table_set(impl_shared_env_registry,
+        key->s, key->len, shared, xctx);
+
+    return shared;
+}
+
 const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_lmdb_adapter_t *self;
+    const afw_lmdb_shared_env_t *shared;
+    MDB_env *dbEnv;
     afw_adapter_t *adapter;
     const afw_value_t *value;
     const afw_object_t *env;
@@ -330,56 +408,73 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
 
     self->env = afw_lmdb_adapter_parse_env(env, p, xctx);
 
-    /* create our LMDB environment */
-    rc = mdb_env_create(&self->dbEnv);
-    if (rc) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
-            "Unable to initialize LMDB environment.", xctx);
-    }
+    /* Attach to the MDB_env already open for this path, if a prior
+       generation (or another instance) has one -- LMDB will not allow
+       us to open it a second time (#387). Only create it fresh here
+       when this is genuinely the first time this process has seen
+       this path. */
+    shared = NULL;
+    AFW_LOCK_BEGIN(impl_shared_env_registry_lock) {
+        shared = impl_shared_env_find(self->env->path_z, xctx);
+        if (!shared) {
+            rc = mdb_env_create(&dbEnv);
+            if (rc) {
+                AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                    "Unable to initialize LMDB environment.", xctx);
+            }
 
-    /* set our maxdb's */
-    if (self->env->maxdbs)
-        mdb_env_set_maxdbs(self->dbEnv, self->env->maxdbs);
-    else
-        mdb_env_set_maxdbs(self->dbEnv, 128);
+            /* set our maxdb's */
+            if (self->env->maxdbs)
+                mdb_env_set_maxdbs(dbEnv, self->env->maxdbs);
+            else
+                mdb_env_set_maxdbs(dbEnv, 128);
 
-    /* set our maxreaders */
-    if (self->env->maxreaders)
-        mdb_env_set_maxreaders(self->dbEnv, self->env->maxreaders);
+            /* set our maxreaders */
+            if (self->env->maxreaders)
+                mdb_env_set_maxreaders(dbEnv, self->env->maxreaders);
 
-    /* set our mapsize */
-    if (self->env->mapsize)
-        mdb_env_set_mapsize(self->dbEnv, self->env->mapsize);
+            /* set our mapsize */
+            if (self->env->mapsize)
+                mdb_env_set_mapsize(dbEnv, self->env->mapsize);
 
-    /*
-        See:  https://github.com/BVLC/caffe/issues/2404
+            /*
+                See:  https://github.com/BVLC/caffe/issues/2404
 
-        To make valgrind happy, our mapsize must fit inside physical
-        memory.  Otherwise, the previous call will fail.
+                To make valgrind happy, our mapsize must fit inside physical
+                memory.  Otherwise, the previous call will fail.
 
-        If using valgrind, compile with -DVALGRIND
-     */
+                If using valgrind, compile with -DVALGRIND
+             */
 #ifdef VALGRIND
-    mdb_env_set_mapsize(self->dbEnv, 
-        (self->env->mapsize && (self->env->mapsize < 7438953472) ? 
-            self->env->mapsize : 7438953472));
+            mdb_env_set_mapsize(dbEnv,
+                (self->env->mapsize && (self->env->mapsize < 7438953472) ?
+                    self->env->mapsize : 7438953472));
 #endif
 
-    /* Now, open our LMDB environment */
-    rc = mdb_env_open(self->dbEnv, self->env->path_z, 0, self->env->mode);
-    if (rc) {
-        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
-            "Unable to open LMDB environment at path %s.  Check path and permissions.",
-            self->env->path_z);
-    }
+            /* Now, open our LMDB environment */
+            rc = mdb_env_open(dbEnv, self->env->path_z, 0, self->env->mode);
+            if (rc) {
+                AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+                    "Unable to open LMDB environment at path %s.  Check path and permissions.",
+                    self->env->path_z);
+            }
 
-    /* 
-        If multiple processes have the same LMDB environment open, then readers 
-        can accumulate.  This routine checks for stale readers and cleans them
-        up, if they are no longer in use.
-     */
-    // FIXME check return code here and decide what to do/throw
-    mdb_reader_check(self->dbEnv, &deadReaders);
+            /*
+                If multiple processes have the same LMDB environment open, then readers
+                can accumulate.  This routine checks for stale readers and cleans them
+                up, if they are no longer in use.
+             */
+            // FIXME check return code here and decide what to do/throw
+            mdb_reader_check(dbEnv, &deadReaders);
+
+            shared = impl_shared_env_add(self->env->path_z, dbEnv, xctx);
+        }
+    }
+    AFW_LOCK_END;
+
+    self->dbEnv = shared->dbEnv;
+    self->dbLock = shared->dbLock;
+    self->dbi_handles = shared->dbi_handles;
 
     value = afw_object_get_property(properties, afw_lmdb_v_limits, xctx);
     if (value) {
@@ -395,17 +490,6 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
 
     /* Load metadata. */
     afw_lmdb_metadata_refresh(self, xctx);
-
-    /* 
-        Create a database reader/writer lock, so transactions do not interfere
-        if we need to open a database in the future, that we haven't already
-        opened.
-     */
-    self->dbLock = afw_thread_rwlock_create(p, xctx);
-
-    /* create our dbi_handles */
-    self->dbi_handles = afw_hash_table_create(
-        afw_void_hash_table_t, p, xctx);
 
     /* load our internal configuration object */
     afw_lmdb_adapter_load_configuration(self, p, xctx);
@@ -426,25 +510,16 @@ void
 impl_afw_adapter_destroy(
     AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
-{  
-    afw_hash_table_index_t hi;
-    afw_lmdb_dbi_t *v;
-
-    /* close any open databases */
-    for (afw_hash_table_first(self->dbi_handles, &hi);
-        afw_hash_table_this(&hi, NULL, NULL, (void **)&v);
-        afw_hash_table_next(&hi))
-    {
-        mdb_dbi_close(self->dbEnv, v->dbi);
-    }
-
-    /* release our database reader/writer lock */
-    afw_thread_rwlock_destroy(self->dbLock);
-
-    /* close our LMDB environment */
-    mdb_env_close(self->dbEnv);
-
-    /* Release pool. */
+{
+    /*
+     * dbEnv, dbLock, and dbi_handles are not this instance's to close.
+     * LMDB does not allow the same path to be opened twice in one
+     * process (#387), so they live in the process-wide shared-env
+     * registry (impl_shared_env_find / impl_shared_env_add below),
+     * keyed by path and reused by every instance that restarts against
+     * it. Nothing here reaches zero references and closes; the
+     * registry entry lives until the process exits.
+     */
     afw_pool_release(self->pub.p, xctx);
 }
 
@@ -608,7 +683,12 @@ impl_afw_adapter_get_additional_metrics (
 
     afw_thread_rwlock_rdlock(self->dbLock, xctx);
 
-    rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
+    /*
+     * Read-only: this only lists database names and reads stats, so
+     * it must not compete with real writers for LMDB's single write
+     * transaction slot (#387).
+     */
+    rc = mdb_txn_begin(self->dbEnv, NULL, MDB_RDONLY, &txn);
     if (rc) {
         afw_thread_rwlock_unlock(self->dbLock, xctx);
 

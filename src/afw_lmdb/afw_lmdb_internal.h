@@ -39,6 +39,28 @@ typedef struct afw_lmdb_env_s {
     unsigned int flags;
 } afw_lmdb_env_t;
 
+/*
+ * An open MDB_env plus the state that guards it, shared by every
+ * adapter instance whose path resolves to this same entry. LMDB does
+ * not allow the same path to be opened twice in one process, so a
+ * restarted instance must attach to the existing entry for its path
+ * rather than reopening it (#387). Entries live in xctx->env->p and
+ * are never closed during normal operation -- see
+ * afw_lmdb_internal_shared_env_registry_initialize().
+ */
+typedef struct afw_lmdb_shared_env_s {
+    MDB_env *dbEnv;
+    afw_thread_rwlock_t *dbLock;
+    afw_void_hash_table_t *dbi_handles;
+} afw_lmdb_shared_env_t;
+
+/*
+ * Called exactly once, from afw_lmdb's afw_extension initialize(),
+ * before any adapter instance can start. Not safe to call more than
+ * once or concurrently with itself.
+ */
+void afw_lmdb_internal_shared_env_registry_initialize(afw_xctx_t *xctx);
+
 typedef struct afw_lmdb_limits_s {
     int size_soft;
     int size_hard;
