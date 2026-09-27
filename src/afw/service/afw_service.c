@@ -994,9 +994,15 @@ impl_AdaptiveService_cb(
         AFW_TRY {
 
             /*
-             * Copy onto the caller's pool while the conf session and
-             * the service retain are still held. The caller pool
-             * releases this object.
+             * The returned service object must not live on the conf
+             * object's pool. That pool dies with the adapter session,
+             * and a later const assignment then copies sourceLocation
+             * from unmapped memory. Build it managed on the caller's
+             * pool while the session and the service retain are held:
+             * an unmanaged set would keep the conf string pointer.
+             * The caller pool releases the create reference.
+             * service->properties stays the live object for the
+             * service itself.
              */
             p = (ctx->p) ? ctx->p : xctx->p;
 

@@ -1058,51 +1058,125 @@ afw_runtime_value_accessor_adapter_properties(
 {
     const afw_adapter_id_anchor_t *anchor;
     const afw_adapter_t *adapter;
-    const afw_adapter_t *held;
     const afw_object_t *properties;
 
     if (!internal) {
         return NULL;
     }
 
-    properties = NULL;
     adapter = NULL;
-    held = NULL;
     AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
-        properties = *(const afw_object_t * const *)internal;
-        if (properties && prop &&
-            prop->offset != (afw_size_t)-1)
-        {
+        if (internal && prop && prop->offset != (afw_size_t)-1) {
             anchor = (const afw_adapter_id_anchor_t *)(
                 (const char *)internal - prop->offset);
             adapter = anchor->adapter;
-            if (adapter) {
-                held = afw_adapter_internal_pin_for_pool_lock_held(
-                    adapter, p, xctx);
-            }
         }
     }
     AFW_LOCK_END;
 
-    if (!properties) {
-        return NULL;
-    }
-    if (adapter && p == adapter->p) {
-        return afw_object_as_value(properties, p, xctx);
-    }
-    if (!held) {
-        return NULL;
-    }
-    AFW_TRY {
-        properties = afw_object_managed_clone_for_caller(
-            properties, p, xctx);
-    }
-    AFW_FINALLY {
-        afw_adapter_release(held, xctx);
-    }
-    AFW_ENDTRY;
+    properties = afw_adapter_get_properties_object(adapter, p, xctx);
+    return (properties && properties->value)
+        ? properties->value
+        : (properties ? afw_object_as_value(properties, p, xctx) : NULL);
+}
 
-    return (properties) ? properties->value : NULL;
+
+/* --- authorization_handler_properties ------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_authorization_handler_properties =
+    AFW_UTF8_LITERAL(
+        "Managed snapshot of the authorization handler properties object");
+
+static const afw_utf8_t
+impl_description_authorization_handler_properties =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to properties on an "
+        "afw_authorization_handler_id_anchor_t. Under "
+        "authorization_handler_id_anchor_rw_lock, references the active "
+        "handler, copies a managed snapshot into p->managed_p, registers "
+        "its release on p, then releases the handler. NULL when the "
+        "handler is not active.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_authorization_handler_properties = {
+    .key = afw_s_authorization_handler_properties,
+    .function = afw_runtime_value_accessor_authorization_handler_properties,
+    .brief = &impl_brief_authorization_handler_properties,
+    .description = &impl_description_authorization_handler_properties,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_authorization_handler_properties(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_authorization_handler_id_anchor_t *anchor;
+    const afw_authorization_handler_t *held;
+    const afw_object_t *properties;
+
+    held = NULL;
+    AFW_LOCK_READ_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
+        if (internal && prop && prop->offset != (afw_size_t)-1) {
+            anchor = (afw_authorization_handler_id_anchor_t *)(
+                (const char *)internal - prop->offset);
+            held = anchor->authorization_handler;
+        }
+    }
+    AFW_LOCK_READ_END;
+
+    properties = afw_authorization_handler_get_properties_object(
+        held, p, xctx);
+    return (properties && properties->value)
+        ? properties->value
+        : (properties ? afw_object_as_value(properties, p, xctx) : NULL);
+}
+
+
+/* --- log_properties ------------------------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_log_properties =
+    AFW_UTF8_LITERAL(
+        "Managed snapshot of the log properties object");
+
+static const afw_utf8_t
+impl_description_log_properties =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to properties on an afw_log_t. While "
+        "environment_lock is held and this log is still registered, copies "
+        "a managed snapshot into p->managed_p and registers its release "
+        "on p. NULL when the log is no longer registered.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_log_properties = {
+    .key = afw_s_log_properties,
+    .function = afw_runtime_value_accessor_log_properties,
+    .brief = &impl_brief_log_properties,
+    .description = &impl_description_log_properties,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_log_properties(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_log_t *log;
+    const afw_object_t *snapshot;
+
+    if (!internal || !prop || prop->offset == (afw_size_t)-1) {
+        return NULL;
+    }
+
+    log = (const afw_log_t *)((const char *)internal - prop->offset);
+    snapshot = afw_log_get_properties_object(log, p, xctx);
+    return (snapshot && snapshot->value)
+        ? snapshot->value
+        : (snapshot ? afw_object_as_value(snapshot, p, xctx) : NULL);
 }
 
 
@@ -1573,6 +1647,8 @@ impl_core_value_accessor_infos[] = {
     &impl_info_authorization_handler_reference_count,
     &impl_info_adapter_metrics,
     &impl_info_adapter_properties,
+    &impl_info_authorization_handler_properties,
+    &impl_info_log_properties,
     &impl_info_null_terminated_array_of_internal,
     &impl_info_null_terminated_array_of_objects,
     &impl_info_null_terminated_array_of_utf8_z_key_value_pair_objects,

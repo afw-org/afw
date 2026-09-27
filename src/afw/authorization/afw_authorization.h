@@ -172,6 +172,24 @@ afw_authorization_check(
 
 
 /**
+ * @brief Managed snapshot of a handler's properties for a caller.
+ * @param instance of the handler. May be NULL.
+ * @param p caller's pool. The snapshot is in p->managed_p and its
+ *    release is registered on p.
+ * @param xctx of caller.
+ * @return snapshot, or the live properties object when p is the
+ *    handler's own pool, or NULL.
+ *
+ * References the handler across the copy, then releases it.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_authorization_handler_get_properties_object(
+    const afw_authorization_handler_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Get reference to authorization handler
  * @param authorization_handler_id of handler to get.
  * @param xctx of caller.

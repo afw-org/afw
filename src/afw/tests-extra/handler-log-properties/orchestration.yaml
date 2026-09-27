@@ -1,0 +1,69 @@
+# Opt-in. Snapshots of authorization handler and log properties,
+# then three restarts. The held snapshot stays readable.
+#   afwdev test -T src/afw/tests-extra/handler-log-properties
+
+version: 1
+description: Authorization handler and log property snapshots across restart
+host: afwfcgi
+afwfcgi:
+  threads: 2
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: handler-and-log-properties
+    sourceType: script
+    source: |
+      function restart3(serviceId) {
+          let done = 0;
+          let tries = 0;
+          while (done < 3 && tries < 12) {
+              tries = tries + 1;
+              try {
+                  const svc = service_restart(serviceId);
+                  assert(svc.serviceId === serviceId,
+                      serviceId + " status=" + string(svc.status)
+                      + " " + string(svc.statusMessage));
+                  assert(svc.status !== "error",
+                      string(svc.statusMessage));
+                  done = done + 1;
+              }
+              catch (e) {
+                  if (!includes<string>(e.message, "cannot be restarted")) {
+                      throw e.message;
+                  }
+              }
+          }
+          assert(done === 3, serviceId + " completed " + string(done));
+          return true;
+      }
+
+      const handler = get_object(
+          "afw", "_AdaptiveAuthorizationHandler_", "permit");
+      assert(handler.authorizationHandlerId === "permit");
+      const heldHandler = handler.properties;
+      assert(heldHandler.authorizationHandlerId === "permit",
+          "handler properties missing authorizationHandlerId");
+      restart3("authorizationHandler-permit");
+      assert(heldHandler.authorizationHandlerId === "permit",
+          "held handler properties died across restart");
+      const handlerAgain = get_object(
+          "afw", "_AdaptiveAuthorizationHandler_", "permit");
+      assert(handlerAgain.properties.authorizationHandlerId === "permit");
+
+      const log = get_object("afw", "_AdaptiveLog_", "standard");
+      assert(log.logId === "standard");
+      const heldLog = log.properties;
+      assert(heldLog.logId === "standard",
+          "log properties missing logId");
+      assert(heldLog.logType === "standard");
+      restart3("log-standard");
+      assert(heldLog.logId === "standard",
+          "held log properties died across restart");
+      const logAgain = get_object("afw", "_AdaptiveLog_", "standard");
+      assert(logAgain.properties.logType === "standard");
+      return true;
+    expect: true

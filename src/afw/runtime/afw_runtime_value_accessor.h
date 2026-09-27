@@ -451,6 +451,36 @@ afw_runtime_value_accessor_adapter_properties(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
+ * @brief Managed snapshot of an authorization handler's properties.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to properties on the handler id anchor.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return managed object value, or NULL.
+ *
+ * References the handler across the copy, then releases it.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_authorization_handler_properties(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Managed snapshot of a log's properties.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to properties on afw_log_t.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return managed object value, or NULL.
+ *
+ * Copies while the log is still the registered instance.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_log_properties(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
  * @brief Runtime value accessor to call afw_adapter_get_additional_metrics().
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is pointer start of afw_adapter_impl_t.

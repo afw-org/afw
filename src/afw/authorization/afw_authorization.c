@@ -1084,6 +1084,65 @@ impl_get_reference(
 
 
 
+/*
+ * Outside get of handler->properties. Do not call
+ * afw_authorization_handler_get_reference() here: that starts a
+ * handler that is not running. Pin this instance only, by walking
+ * the active anchor and its stopping chain. Then snapshot and
+ * release. The handler itself still reads properties directly.
+ */
+AFW_DEFINE(const afw_object_t *)
+afw_authorization_handler_get_properties_object(
+    const afw_authorization_handler_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_authorization_handler_id_anchor_t *anchor;
+    const afw_object_t *snapshot;
+    afw_boolean_t pinned;
+
+    if (!instance || !instance->properties) {
+        return NULL;
+    }
+    if (p == instance->p) {
+        return instance->properties;
+    }
+
+    pinned = false;
+    AFW_LOCK_WRITE_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
+        for (
+            anchor = (afw_authorization_handler_id_anchor_t *)
+                afw_environment_get_authorization_handler_id(
+                    &instance->authorization_handler_id, xctx);
+            anchor && anchor->authorization_handler != instance;
+            anchor = anchor->stopping);
+
+        if (anchor && anchor->authorization_handler == instance) {
+            anchor->reference_count++;
+            pinned = true;
+        }
+    }
+    AFW_LOCK_WRITE_END;
+
+    if (!pinned) {
+        return NULL;
+    }
+
+    snapshot = NULL;
+    AFW_TRY {
+        snapshot = afw_object_managed_clone_for_caller(
+            instance->properties, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_authorization_handler_release(instance, xctx);
+    }
+    AFW_ENDTRY;
+
+    return snapshot;
+}
+
+
+
 /* Get reference to authorization handler */
 AFW_DEFINE(const afw_authorization_handler_t *)
 afw_authorization_handler_get_reference(

@@ -325,6 +325,44 @@ afw_log_priority_to_priority_id(
 
 
 
+/*
+ * Outside get of log->properties. A log has no reference count.
+ * Stop unregisters it under environment_lock and can then destroy
+ * it, so the copy runs while that lock is held and this log is
+ * still the registered one. log:: during filter/format keeps the
+ * live object; that evaluation already holds the log.
+ */
+AFW_DEFINE(const afw_object_t *)
+afw_log_get_properties_object(
+    const afw_log_t *log,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_log_t *current;
+    const afw_object_t *snapshot;
+
+    if (!log || !log->properties) {
+        return NULL;
+    }
+    if (p == log->p) {
+        return log->properties;
+    }
+
+    snapshot = NULL;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        current = afw_environment_get_log(&log->log_id, xctx);
+        if (current == log && log->properties) {
+            snapshot = afw_object_managed_clone_for_caller(
+                log->properties, p, xctx);
+        }
+    }
+    AFW_LOCK_END;
+
+    return snapshot;
+}
+
+
+
 /* Add a log to environment. */
 AFW_DEFINE(void)
 afw_log_add_to_environment(
@@ -489,6 +527,10 @@ impl_write_formatted_message(
         /* Add qualifiers, if needed.  Note: last one pushed has precedence. */
         if (wa->e && (wa->e->log->impl->filter || wa->e->log->impl->format))
         {
+            /*
+             * log:: is the live properties object for this write.
+             * The log is the one formatting the message.
+             */
             afw_xctx_qualifier_stack_qualifier_object_push(afw_s_log,
                 wa->e->log->properties,
                 true, wa->p, xctx);

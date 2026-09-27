@@ -44411,6 +44411,32 @@ afw_self_v_authorization_handler_id_anchor;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_authorization_handler_properties \
+    "authorization_handler_properties"
+
+/** @brief 'afw_utf8_t' for AFW_Q_authorization_handler_properties */
+#define afw_s_authorization_handler_properties \
+    (&afw_self_v_authorization_handler_properties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_authorization_handler_properties */
+#define afw_self_s_authorization_handler_properties \
+    (afw_self_v_authorization_handler_properties.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_authorization_handler_properties */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_authorization_handler_properties;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_authorization_handler_properties */
+#define afw_z_authorization_handler_properties \
+    (afw_self_v_authorization_handler_properties.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_authorization_handler_properties */
+#define afw_v_authorization_handler_properties \
+    (&afw_self_v_authorization_handler_properties.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_authorization_handler_reference_count \
     "authorization_handler_reference_count"
 
@@ -71109,6 +71135,32 @@ afw_self_v_log_id;
 /** @brief 'const afw_value_t *' for AFW_Q_log_id */
 #define afw_v_log_id \
     (&afw_self_v_log_id.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_log_properties \
+    "log_properties"
+
+/** @brief 'afw_utf8_t' for AFW_Q_log_properties */
+#define afw_s_log_properties \
+    (&afw_self_v_log_properties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_log_properties */
+#define afw_self_s_log_properties \
+    (afw_self_v_log_properties.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_log_properties */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_log_properties;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_log_properties */
+#define afw_z_log_properties \
+    (afw_self_v_log_properties.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_log_properties */
+#define afw_v_log_properties \
+    (&afw_self_v_log_properties.pub)
 
 
 

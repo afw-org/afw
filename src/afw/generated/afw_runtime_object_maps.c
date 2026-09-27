@@ -463,8 +463,8 @@ impl_properties__AdaptiveAuthorizationHandler_[] = {
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_authorization_handler_properties,
+        afw_runtime_value_accessor_authorization_handler_properties
     },
     {
         afw_v_referenceCount,
@@ -2261,8 +2261,8 @@ impl_properties__AdaptiveLog_[] = {
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_log_properties,
+        afw_runtime_value_accessor_log_properties
     },
     {
         afw_v_serviceId,

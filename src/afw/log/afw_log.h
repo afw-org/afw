@@ -72,6 +72,25 @@ afw_log_get_priority_id_map();
 
 
 /**
+ * @brief Managed snapshot of a log's properties for a caller.
+ * @param log whose properties to copy. May be NULL.
+ * @param p caller's pool. The snapshot is in p->managed_p and its
+ *    release is registered on p.
+ * @param xctx of caller.
+ * @return snapshot, or the live properties object when p is the
+ *    log's own pool, or NULL when the log is no longer registered.
+ *
+ * A log has no reference count. The copy runs while environment_lock
+ * is held and this log is still the registered instance.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_log_get_properties_object(
+    const afw_log_t *log,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Convert a log priority id to priority.
  * @param id of log priority to convert
  * @return enum corresponding to log priority or -1 if not found.

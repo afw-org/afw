@@ -10269,6 +10269,12 @@ afw_self_v_authorization_handler_id_anchor = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_authorization_handler_properties = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_authorization_handler_properties)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization_handler_reference_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_handler_reference_count)
@@ -16428,6 +16434,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_log_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_log_id)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_log_properties = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_log_properties)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -23481,12 +23493,6 @@ afw_self_v_zz__04d87697503c = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__04ef01a6af9c = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__04ef01a6af9c)
-};
-
-const afw_value_string_t
 afw_self_v_zz__05281925d3a6 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__05281925d3a6)
@@ -23670,12 +23676,6 @@ const afw_value_string_t
 afw_self_v_zz__088048fdd914 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__088048fdd914)
-};
-
-const afw_value_string_t
-afw_self_v_zz__088218291030 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__088218291030)
 };
 
 const afw_value_string_t
@@ -26502,6 +26502,12 @@ const afw_value_string_t
 afw_self_v_zz__3b7ea3ee15b9 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__3b7ea3ee15b9)
+};
+
+const afw_value_string_t
+afw_self_v_zz__3bb64dc2874d = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__3bb64dc2874d)
 };
 
 const afw_value_string_t
@@ -56823,6 +56829,12 @@ afw_self_v_zz__eb1523b5ba25 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__eb6620896c37 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__eb6620896c37)
+};
+
+const afw_value_string_t
 afw_self_v_zz__eb7fcc3be524 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__eb7fcc3be524)
@@ -63660,6 +63672,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_authorization_handler,
     &afw_self_v_authorization_handler_id,
     &afw_self_v_authorization_handler_id_anchor,
+    &afw_self_v_authorization_handler_properties,
     &afw_self_v_authorization_handler_reference_count,
     &afw_self_v_authorization_handler_type,
     &afw_self_v_autoFlush,
@@ -64683,6 +64696,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_logId,
     &afw_self_v_logType,
     &afw_self_v_log_id,
+    &afw_self_v_log_properties,
     &afw_self_v_log_type,
     &afw_self_v_logical,
     &afw_self_v_lt,

@@ -98,6 +98,25 @@ afw_adapter_get_runtime_object(
 
 
 /**
+ * @brief Managed snapshot of an adapter's properties for a caller.
+ * @param adapter whose properties to copy. May be NULL.
+ * @param p caller's pool. The snapshot is in p->managed_p and its
+ *    release is registered on p.
+ * @param xctx of caller.
+ * @return snapshot, or the live properties object when p is the
+ *    adapter's own pool, or NULL.
+ *
+ * References the adapter across the copy, then releases it.
+ * Does not register a release on env->p or the base xctx pool.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_adapter_get_properties_object(
+    const afw_adapter_t *adapter,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Return the _AdaptiveAdapterMetrics_ object for a caller's pool.
  * @param data is that runtime object.
  * @param p pool of the caller. afw_adapter_release is registered here.

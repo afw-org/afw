@@ -247,6 +247,13 @@ afw_adapter_get_metrics_object(
     const afw_adapter_t *held;
     const afw_object_t *snapshot;
 
+    /*
+     * Shared counters (getObjectCount and the rest) are a snapshot.
+     * Pin only across the copy, then drop it. Type-specific stats
+     * are the "additional" property and stay live; that accessor
+     * keeps its own pin until the caller pool dies.
+     * p == adapter->p is the owner and gets the live object.
+     */
     if (!impl || !impl->adapter || p == impl->adapter->p) {
         return object;
     }
@@ -350,6 +357,53 @@ afw_adapter_query_criteria_parse_url_encoded_rql_string(
         url_encoded_rql_string, object_type, p, xctx);
     
     return result;
+}
+
+
+
+/*
+ * Outside get of adapter->properties. The adapter, and adapter::
+ * while a model session holds the adapter, use the live object.
+ * This references across the copy so a restart cannot free the
+ * source mid-clone, then drops that reference. The caller's pool
+ * releases the snapshot. p == adapter->p is the owner and keeps
+ * the live object.
+ */
+AFW_DEFINE(const afw_object_t *)
+afw_adapter_get_properties_object(
+    const afw_adapter_t *adapter,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_adapter_t *held;
+    const afw_object_t *snapshot;
+
+    if (!adapter || !adapter->properties) {
+        return NULL;
+    }
+    if (p == adapter->p) {
+        return adapter->properties;
+    }
+
+    held = afw_adapter_get_reference(&adapter->adapter_id, xctx);
+    if (held != adapter) {
+        if (held) {
+            afw_adapter_release(held, xctx);
+        }
+        return NULL;
+    }
+
+    snapshot = NULL;
+    AFW_TRY {
+        snapshot = afw_object_managed_clone_for_caller(
+            held->properties, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_adapter_release(held, xctx);
+    }
+    AFW_ENDTRY;
+
+    return snapshot;
 }
 
 
@@ -469,9 +523,10 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
         session_cache->session = afw_adapter_session_create(adapter_id, xctx);
         if (session_cache->session) {
             /*
-             * The hash table keeps this pointer. The caller's bytes
-             * may belong to a scope or an adapter pool that dies
-             * before the request releases the cache.
+             * The hash table stores this pointer and does not copy
+             * it. Release later memcmp's the key. A scope or an
+             * adapter pool can unmap those bytes first (seen as
+             * adapter id "afw"). The request pool outlives the cache.
              */
             stable_id = afw_utf8_clone(adapter_id, xctx->p, xctx);
             afw_hash_table_set(cache->session_cache,

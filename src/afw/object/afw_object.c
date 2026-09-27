@@ -37,6 +37,15 @@ impl_object_caller_release_cleanup(
 
 
 
+/*
+ * A registered release runs only when that pool is destroyed.
+ * env->p and the base xctx pool live until process exit, so a
+ * cleanup there never runs: each call leaks a reference, and an
+ * adapter pin would keep a stopped adapter from draining.
+ * A scope pool and a request xctx->p do die, so they are fine.
+ * A null xctx returns instead of throwing. AFW_THROW dereferences
+ * xctx.
+ */
 AFW_DEFINE(void)
 afw_object_reject_process_lifetime_pool(
     const afw_pool_t *p,
@@ -90,6 +99,14 @@ afw_object_register_caller_release(
 
 
 
+/*
+ * Outside callers get a new managed object, not the live one.
+ * create_managed_clone() would share an already-managed source,
+ * which would still die with the owner's pool. Snapshot always
+ * copies. Bytes are allocated in p->managed_p. The release is
+ * registered on p, because that is the pool the caller will
+ * destroy. For a scope, managed_p is the job heap.
+ */
 AFW_DEFINE(const afw_object_t *)
 afw_object_managed_clone_for_caller(
     const afw_object_t *from,
