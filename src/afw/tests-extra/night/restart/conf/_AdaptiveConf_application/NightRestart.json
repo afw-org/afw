@@ -1,0 +1,7 @@
+{
+    "title": "NightRestart",
+    "defaultAdapterId": "filebox",
+    "extensions": [
+        "afw_vfs"
+    ]
+}

@@ -1,0 +1,1 @@
+../../../07b-firehose-catalog-pool/tests/adapter_metrics.as

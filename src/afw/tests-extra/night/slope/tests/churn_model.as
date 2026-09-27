@@ -1,0 +1,1 @@
+../../../firehose/tests/churn_model.as

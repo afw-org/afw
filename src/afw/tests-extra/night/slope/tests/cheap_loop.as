@@ -1,0 +1,1 @@
+../../../07-firehose-blast-style/tests/cheap_loop.as
