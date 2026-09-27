@@ -19,6 +19,113 @@ impl_non_string_property_name_display =
     AFW_UTF8_LITERAL("<non-string>");
 
 
+static void
+impl_object_caller_release_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    AFW_TRY {
+        afw_object_release((const afw_object_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Pool cleanup must not throw. */
+    }
+    AFW_ENDTRY;
+}
+
+
+
+/*
+ * A registered release runs only when that pool is destroyed.
+ * env->p and the base xctx pool live until process exit, so a
+ * cleanup there never runs: each call leaks a reference, and an
+ * adapter pin would keep a stopped adapter from draining.
+ * A scope pool and a request xctx->p do die, so they are fine.
+ * A null xctx returns instead of throwing. AFW_THROW dereferences
+ * xctx.
+ */
+AFW_DEFINE(void)
+afw_object_reject_process_lifetime_pool(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!xctx) {
+        return;
+    }
+    if (!p || !xctx->env) {
+        AFW_THROW_ERROR_Z(general,
+            "Caller pool is required to register an object release",
+            xctx);
+    }
+    if (p == xctx->env->p) {
+        AFW_THROW_ERROR_Z(general,
+            "Cannot register an object release on env->p",
+            xctx);
+    }
+    if (xctx->env->base_xctx && p == xctx->env->base_xctx->p) {
+        AFW_THROW_ERROR_Z(general,
+            "Cannot register an object release on the base xctx pool",
+            xctx);
+    }
+}
+
+
+
+AFW_DEFINE(void)
+afw_object_register_caller_release(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!xctx) {
+        return;
+    }
+    afw_object_reject_process_lifetime_pool(p, xctx);
+    if (!object) {
+        return;
+    }
+    AFW_TRY {
+        afw_pool_register_cleanup(p, (void *)object, NULL,
+            impl_object_caller_release_cleanup, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_object_release(object, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
+}
+
+
+
+/*
+ * Outside callers get a new managed object, not the live one.
+ * create_managed_clone() would share an already-managed source,
+ * which would still die with the owner's pool. Snapshot always
+ * copies. Bytes are allocated in p->managed_p. The release is
+ * registered on p, because that is the pool the caller will
+ * destroy. For a scope, managed_p is the job heap.
+ */
+AFW_DEFINE(const afw_object_t *)
+afw_object_managed_clone_for_caller(
+    const afw_object_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *clone;
+
+    if (!from || !xctx) {
+        return NULL;
+    }
+    afw_object_reject_process_lifetime_pool(p, xctx);
+    clone = afw_object_create_managed_snapshot(from, p, xctx);
+    afw_object_register_caller_release(clone, p, xctx);
+    return clone;
+}
+
+
+
 /* Require a string property name (script / JSON / YAML / UBJSON). */
 AFW_DEFINE(const afw_value_t *)
 afw_object_require_string_property_name(

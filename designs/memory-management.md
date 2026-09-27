@@ -1268,7 +1268,7 @@ p = afw_pool_create(xctx->env->p, xctx);
 // conf object + adapter instance live in p; adapter->p = p
 ```
 
-`afw_adapter_impl_create_cede_p(..., p, ...)` allocates the adapter instance **in that pool**. Because parent is the env multithreaded pool, **`afw_pool_create` selects `multithreaded` inf** — locking on alloc/free is in those methods (`IMPL_MULTITHREADED_LOCK_*`), not a separate ad-hoc lock in adapter code.
+`afw_adapter_impl_create_cede_p(..., p, ...)` allocates the adapter instance **in that pool**. Because parent is the env multithreaded pool, **`afw_pool_create` selects `multithreaded` inf** — locking on alloc/free is in those methods (`AFW_POOL_INTERNAL_MULTITHREADED_LOCK_*`), not a separate ad-hoc lock in adapter code.
 
 Same **“own full pool, parent env (or other long-lived pool)”** idea shows up for other conf/runtime components (auth handlers, services, etc. — same bulk-free pattern). Not every temporary uses this; only things you want to **release as a whole** while env continues.
 

@@ -179,7 +179,7 @@ afw_server_fcgi_internal_create(const char *path,
     /* Create and set runtime object for server. */
     afw_runtime_env_create_and_set_indirect_object(
         afw_s__AdaptiveServer_,
-        afw_s_current, self, true, xctx);
+        afw_s_current, self, afw_server_get_runtime_object, true, xctx);
 
     /* Register flag trace:server */
     afw_flag_environment_register_flag(

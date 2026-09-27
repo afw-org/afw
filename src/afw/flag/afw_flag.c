@@ -761,7 +761,7 @@ afw_flag_environment_register_flag(
         self->brief = brief;
         self->description = description;
         self->object = afw_runtime_object_create_indirect(
-            afw_s__AdaptiveFlag_, self->flag_id, self, p, xctx);
+            afw_s__AdaptiveFlag_, self->flag_id, self, NULL, p, xctx);
         self->object_value = afw_value_create_unmanaged_object(
             self->object, p, xctx);
         self->flag_index = (env->flags_count_registered)++;

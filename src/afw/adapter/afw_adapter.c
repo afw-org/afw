@@ -145,6 +145,143 @@ impl_get_reference(
 
 
 
+static void
+impl_adapter_reference_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    AFW_TRY {
+        afw_adapter_release((const afw_adapter_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Pool cleanup must not throw. */
+    }
+    AFW_ENDTRY;
+}
+
+
+
+const afw_adapter_t *
+afw_adapter_internal_pin_for_pool_lock_held(
+    const afw_adapter_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_adapter_id_anchor_t *anchor;
+
+    if (!instance || p == instance->p) {
+        return NULL;
+    }
+
+    for (
+        anchor = (afw_adapter_id_anchor_t *)
+            afw_environment_get_adapter_id(&instance->adapter_id, xctx);
+        anchor;
+        anchor = anchor->stopping)
+    {
+        if (anchor->adapter == instance) {
+            anchor->reference_count++;
+            return instance;
+        }
+    }
+
+    return NULL;
+}
+
+
+
+void
+afw_adapter_internal_register_pin_cleanup(
+    const afw_adapter_t *held,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!held) {
+        return;
+    }
+
+    if (!xctx) {
+        return;
+    }
+
+    AFW_TRY {
+        afw_object_reject_process_lifetime_pool(p, xctx);
+        afw_pool_register_cleanup(p, (void *)held, NULL,
+            impl_adapter_reference_cleanup, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_adapter_release(held, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
+}
+
+
+
+AFW_DEFINE(const afw_object_t *)
+afw_adapter_get_runtime_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    /* The anchor and this object live in env->p. */
+    (void)p;
+    (void)xctx;
+    return (const afw_object_t *)data;
+}
+
+
+
+AFW_DEFINE(const afw_object_t *)
+afw_adapter_get_metrics_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *object = (const afw_object_t *)data;
+    afw_runtime_object_indirect_t *indirect =
+        (afw_runtime_object_indirect_t *)object;
+    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)indirect->internal;
+    const afw_adapter_t *held;
+    const afw_object_t *snapshot;
+
+    /*
+     * Shared counters (getObjectCount and the rest) are a snapshot.
+     * Pin only across the copy, then drop it. Type-specific stats
+     * are the "additional" property and stay live; that accessor
+     * keeps its own pin until the caller pool dies.
+     * p == adapter->p is the owner and gets the live object.
+     */
+    if (!impl || !impl->adapter || p == impl->adapter->p) {
+        return object;
+    }
+
+    held = NULL;
+    snapshot = NULL;
+    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+        held = afw_adapter_internal_pin_for_pool_lock_held(
+            impl->adapter, p, xctx);
+    }
+    AFW_LOCK_END;
+
+    if (!held) {
+        return NULL;
+    }
+    AFW_TRY {
+        snapshot = afw_object_managed_clone_for_caller(object, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_adapter_release(held, xctx);
+    }
+    AFW_ENDTRY;
+
+    return snapshot;
+}
+
+
+
 /* Get an adapter and make sure it is started. */
 AFW_DEFINE(const afw_adapter_t *)
 afw_adapter_get_reference(
@@ -220,6 +357,53 @@ afw_adapter_query_criteria_parse_url_encoded_rql_string(
         url_encoded_rql_string, object_type, p, xctx);
     
     return result;
+}
+
+
+
+/*
+ * Outside get of adapter->properties. The adapter, and adapter::
+ * while a model session holds the adapter, use the live object.
+ * This references across the copy so a restart cannot free the
+ * source mid-clone, then drops that reference. The caller's pool
+ * releases the snapshot. p == adapter->p is the owner and keeps
+ * the live object.
+ */
+AFW_DEFINE(const afw_object_t *)
+afw_adapter_get_properties_object(
+    const afw_adapter_t *adapter,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_adapter_t *held;
+    const afw_object_t *snapshot;
+
+    if (!adapter || !adapter->properties) {
+        return NULL;
+    }
+    if (p == adapter->p) {
+        return adapter->properties;
+    }
+
+    held = afw_adapter_get_reference(&adapter->adapter_id, xctx);
+    if (held != adapter) {
+        if (held) {
+            afw_adapter_release(held, xctx);
+        }
+        return NULL;
+    }
+
+    snapshot = NULL;
+    AFW_TRY {
+        snapshot = afw_object_managed_clone_for_caller(
+            held->properties, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_adapter_release(held, xctx);
+    }
+    AFW_ENDTRY;
+
+    return snapshot;
 }
 
 
@@ -324,6 +508,7 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
     const afw_adapter_internal_cache_t *cache;
     afw_adapter_internal_transaction_t *transaction;
     const afw_adapter_transaction_t *new_transaction;
+    const afw_utf8_t *stable_id;
     int i;
 
     /* Get cached session. */
@@ -337,8 +522,15 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
             afw_adapter_internal_session_cache_t, xctx);
         session_cache->session = afw_adapter_session_create(adapter_id, xctx);
         if (session_cache->session) {
+            /*
+             * The hash table stores this pointer and does not copy
+             * it. Release later memcmp's the key. A scope or an
+             * adapter pool can unmap those bytes first (seen as
+             * adapter id "afw"). The request pool outlives the cache.
+             */
+            stable_id = afw_utf8_clone(adapter_id, xctx->p, xctx);
             afw_hash_table_set(cache->session_cache,
-                adapter_id->s, adapter_id->len, session_cache, xctx);
+                stable_id->s, stable_id->len, session_cache, xctx);
         }
     }
 
@@ -504,7 +696,7 @@ afw_adapter_get_object_type(
         afw_utf8_equal(object_type_id, afw_s__AdaptiveValueMeta_))
     {
         object = afw_runtime_get_object(
-            afw_s__AdaptiveObjectType_, object_type_id, xctx);
+            afw_s__AdaptiveObjectType_, object_type_id, p, xctx);
         result = afw_object_type_internal_create(
             adapter, object, p, xctx);
     }
@@ -713,7 +905,7 @@ afw_adapter_internal_register_service_type(afw_xctx_t *xctx)
     }
     self->title = afw_s_a_service_type_adapter_title;
     self->conf_type_object = afw_runtime_get_object(afw_s__AdaptiveConfType_,
-        afw_s_adapter, xctx);
+        afw_s_adapter, xctx->p, xctx);
     afw_environment_register_service_type(afw_s_adapter, self, xctx);
 }
 

@@ -116,7 +116,7 @@ afw_value_block_evaluate_block(
      * (compiled_value sentinel).
      */
     scope = afw_pool_scope_create(self,
-        afw_pool_scope_current(xctx), p, xctx);
+        afw_pool_scope_internal_current(xctx), p, xctx);
     afw_pool_scope_activate(scope, xctx);
     eval_p = scope->p;
     AFW_TRY{
@@ -130,7 +130,7 @@ afw_value_block_evaluate_block(
          * break/continue keep flowing until the matching loop
          * consumes them; each enclosing `{ }` still deactivates here.
          */
-        if (afw_pool_scope_current(xctx) == scope) {
+        if (afw_pool_scope_internal_current(xctx) == scope) {
             afw_pool_scope_deactivate(scope, xctx);
         }
         afw_pool_scope_release(scope, xctx);

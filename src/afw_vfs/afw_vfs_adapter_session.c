@@ -625,7 +625,7 @@ impl_afw_adapter_session_retrieve_objects(
         object = afw_runtime_get_object(
             afw_s__AdaptiveObjectType_,
             afw_vfs_s__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects,
-            xctx);
+            p, xctx);
         if (object &&
             afw_query_criteria_test_object(object, criteria, p, xctx))
         {
@@ -636,7 +636,7 @@ impl_afw_adapter_session_retrieve_objects(
             object = afw_runtime_get_object(
                 afw_s__AdaptiveObjectType_,
                 afw_vfs_s__AdaptiveFile_vfs,
-                xctx);
+                p, xctx);
             if (object &&
                 afw_query_criteria_test_object(object, criteria, p, xctx))
             {

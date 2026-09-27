@@ -41,6 +41,7 @@ typedef struct {
 static const afw_object_t *
 impl_entry_to_object(
     const impl_ht_object_entry *entry,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_object_t *result;
@@ -50,7 +51,7 @@ impl_entry_to_object(
     }
 
     else if ((entry)->cb_entry.always_NULL == NULL) {
-        result = entry->cb_entry.cb(entry->cb_entry.data, xctx->p, xctx);
+        result = entry->cb_entry.cb(entry->cb_entry.data, p, xctx);
     }
 
     else {
@@ -64,6 +65,7 @@ impl_entry_to_object(
 static const afw_object_t *
 impl_get_object(
     afw_void_hash_table_t *ht, const void *key, afw_size_t klen,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_object_t *result;
@@ -71,7 +73,7 @@ impl_get_object(
 
     entry = afw_hash_table_get(ht, key, klen);
 
-    result = impl_entry_to_object(entry, xctx);
+    result = impl_entry_to_object(entry, p, xctx);
 
     return result;
 }
@@ -166,16 +168,26 @@ impl_set_entry(
             object_type_id->s, object_type_id->len, ht, xctx);
     }
 
-    if (!overwrite) {
-        existing = afw_hash_table_get(ht, object_id->s, object_id->len);
-        if (existing) {
-            AFW_THROW_ERROR_FZ(general, xctx,
-                "Runtime object /afw/%ku/%ku already set",
-                object_type_id,
-                object_id);
-        }
+    /*
+     * The table lives for the process. Copy a new key into env->p.
+     * Overwrite keeps that copy.
+     */
+    existing = afw_hash_table_get(ht, object_id->s, object_id->len);
+    if (!overwrite && existing) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Runtime object /afw/%ku/%ku already set",
+            object_type_id,
+            object_id);
     }
-    afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
+    if (!existing && object_id->len > 0) {
+        const void *key;
+
+        key = afw_memory_dup(object_id->s, object_id->len, p, xctx);
+        afw_hash_table_set(ht, key, object_id->len, entry, xctx);
+    }
+    else {
+        afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
+    }
 }
 
 
@@ -250,7 +262,7 @@ afw_runtime_remove_object(
                 object_type_id->s, object_type_id->len);
             if (ht) {
                 object = impl_get_object(ht, object_id->s, object_id->len,
-                    xctx);
+                    xctx->p, xctx);
                 if (object) {
                     afw_hash_table_set(ht, object_id->s, object_id->len,
                         NULL, xctx);
@@ -344,12 +356,28 @@ afw_runtime_register_object_map_infs(
 }
 
 
+/* _AdaptiveServer_ runtime object. Nothing beyond the object to pin. */
+AFW_DEFINE(const afw_object_t *)
+afw_server_get_runtime_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    /* The server struct is the object's internal and outlives requests. */
+    (void)p;
+    (void)xctx;
+    return (const afw_object_t *)data;
+}
+
+
+
 /* Create an indirect runtime object using a know inf. */
 AFW_DEFINE(const afw_object_t *)
 afw_runtime_object_create_indirect_using_inf(
     const afw_object_inf_t *inf,
     const afw_utf8_t *object_id,
     void * internal,
+    afw_runtime_object_cb_t cb,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -375,6 +403,7 @@ afw_runtime_object_create_indirect_using_inf(
         afw_s_afw, meta->object_type_id, object_id,
         p, xctx);
     obj->internal = internal;
+    obj->cb = cb;
 
     /* Return object. */
     return (const afw_object_t *)obj;
@@ -387,6 +416,7 @@ afw_runtime_object_create_indirect(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     void * internal,
+    afw_runtime_object_cb_t cb,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -402,7 +432,7 @@ afw_runtime_object_create_indirect(
     }
 
     return afw_runtime_object_create_indirect_using_inf(inf,
-        object_id, internal, p, xctx);    
+        object_id, internal, cb, p, xctx);    
 }
 
 
@@ -413,6 +443,7 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
     const afw_object_inf_t *inf,
     const afw_utf8_t *object_id,
     void * internal,
+    afw_runtime_object_cb_t cb,
     afw_boolean_t overwrite,
     afw_xctx_t *xctx)
 {
@@ -420,7 +451,7 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
 
     /* Create runtime object. */
     obj = afw_runtime_object_create_indirect_using_inf(inf, object_id,
-        internal, xctx->env->p, xctx);
+        internal, cb, xctx->env->p, xctx);
         
     /* Set it as a runtime object. */
     afw_runtime_env_set_object(obj, overwrite, xctx);
@@ -434,6 +465,7 @@ afw_runtime_env_create_and_set_indirect_object(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     void * internal,
+    afw_runtime_object_cb_t cb,
     afw_boolean_t overwrite,
     afw_xctx_t *xctx)
 {
@@ -441,7 +473,7 @@ afw_runtime_env_create_and_set_indirect_object(
     
     /* Create runtime object. */
     obj  = afw_runtime_object_create_indirect(object_type_id, object_id,
-        internal, xctx->env->p, xctx);
+        internal, cb, xctx->env->p, xctx);
 
     /* Set it as a runtime object. */
     afw_runtime_env_set_object(obj, overwrite, xctx);
@@ -534,10 +566,101 @@ impl_check_manifest_cb(
 }
 
 
+/*
+ * The managed clone starts at reference count 1. get and foreach do
+ * not release it, so the caller's pool does.
+ */
+static void
+impl_object_clone_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    AFW_TRY {
+        afw_object_release((const afw_object_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Pool cleanup must not throw. */
+    }
+    AFW_ENDTRY;
+}
+
+
+
+/*
+ * No callback: the object is registry structure. environment_lock is
+ * held across the clone. A callback is the service's own lock and clone.
+ */
+static const afw_object_t *
+impl_clone_under_environment_lock(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *clone;
+    const afw_value_t *value;
+
+    clone = NULL;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        value = afw_value_get_assignable(object->value, p, xctx);
+        if (value && afw_value_is_object(value)) {
+            clone = ((const afw_value_object_t *)value)->internal;
+            AFW_TRY {
+                afw_pool_register_cleanup(p, (void *)clone, NULL,
+                    impl_object_clone_cleanup, xctx);
+            }
+            AFW_CATCH_UNHANDLED {
+                afw_object_release(clone, xctx);
+                clone = NULL;
+                AFW_ERROR_RETHROW;
+            }
+            AFW_ENDTRY;
+        }
+    }
+    AFW_LOCK_END;
+
+    return clone ? clone : object;
+}
+
+
+
+/*
+ * If this indirect object was created with a callback, call it with
+ * the object pointer as data. Otherwise clone under environment_lock.
+ */
+static const afw_object_t *
+impl_object_for_caller(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_runtime_object_type_meta_t *meta;
+    afw_runtime_object_indirect_t *indirect;
+
+    if (!object || !object->inf ||
+        object->inf->get_property != afw_runtime_object_get_property)
+    {
+        return object;
+    }
+    meta = object->inf->rti.implementation_specific;
+    if (!meta || !meta->indirect) {
+        return object;
+    }
+    indirect = (afw_runtime_object_indirect_t *)object;
+    if (!indirect->cb) {
+        return impl_clone_under_environment_lock(object, p, xctx);
+    }
+    return indirect->cb((void *)object, p, xctx);
+}
+
+
+
 /* Get a runtime object. */
 AFW_DEFINE(const afw_object_t *)
 afw_runtime_get_object(
     const afw_utf8_t *object_type_id, const afw_utf8_t *object_id,
+    const afw_pool_t *p,
     AFW_COMPILER_ANNOTATION_NONNULL afw_xctx_t *xctx)
 {
     const afw_object_t *result;
@@ -553,7 +676,7 @@ afw_runtime_get_object(
                 object_type_id->s, object_type_id->len);
             if (ht) {
                 result = impl_get_object(ht, object_id->s, object_id->len,
-                    xctx);
+                    p, xctx);
                 if (result) break;
             }
         }
@@ -563,14 +686,14 @@ afw_runtime_get_object(
         ctx.object_type_id = object_type_id;
         ctx.object_id = object_id;
         afw_runtime_foreach(afw_s__AdaptiveManifest_,
-            &ctx, impl_check_manifest_cb, xctx);
+            &ctx, impl_check_manifest_cb, p, xctx);
         for (c = xctx; c; c = c->parent) {
             if (c->runtime_objects && c->runtime_objects->types_ht) {
                 ht = afw_hash_table_get(c->runtime_objects->types_ht,
                     object_type_id->s, object_type_id->len);
                 if (ht) {
                     result = impl_get_object(ht, object_id->s, object_id->len,
-                        xctx);
+                        p, xctx);
                     if (result) break;
                 }
             }
@@ -578,7 +701,7 @@ afw_runtime_get_object(
     }
 
     if (result) {
-        afw_object_get_reference(result, xctx);
+        result = impl_object_for_caller(result, p, xctx);
     }
     return result;
 }
@@ -589,6 +712,7 @@ AFW_DEFINE(void)
 afw_runtime_foreach(
     const afw_utf8_t *object_type_id,
     void *context, afw_object_cb_t callback,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     /*
@@ -596,7 +720,7 @@ afw_runtime_foreach(
      * session instance for a session-less retrieve.
      */
     impl_afw_adapter_session_retrieve_objects(NULL, NULL,
-        object_type_id, NULL, context, callback, NULL, xctx->p, xctx);
+        object_type_id, NULL, context, callback, NULL, p, xctx);
 }
 
 
@@ -754,7 +878,8 @@ impl_afw_adapter_session_retrieve_objects(
                     afw_hash_table_next(&hi))
                 {
                     AFW_XCTX_THROW_IF_TERMINATING(xctx);
-                    obj = impl_entry_to_object(entry, xctx);
+                    obj = impl_object_for_caller(
+                        impl_entry_to_object(entry, p, xctx), p, xctx);
                     if (afw_query_criteria_test_object(obj,
                         criteria, p, xctx))
                     {
@@ -801,10 +926,8 @@ impl_afw_adapter_session_get_object(
         return;
     }
 
-    /* Call callback with object. */
-    object = afw_runtime_get_object(object_type_id, object_id, xctx);
-    if (object) afw_object_get_reference(object, xctx);
-
+    /* Call callback with object. The pool releases a managed clone. */
+    object = afw_runtime_get_object(object_type_id, object_id, p, xctx);
     callback(object, context, xctx);
 }
 

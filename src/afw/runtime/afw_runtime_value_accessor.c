@@ -947,95 +947,22 @@ afw_runtime_value_accessor_uint32(
 }
 
 
-/* --- adapter live-object pin (metrics / properties) ---------------------- */
-
-static void
-impl_release_adapter_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)data2;
-    (void)p;
-
-    if (data) {
-        afw_adapter_release((const afw_adapter_t *)data, xctx);
-    }
-}
-
-/*
- * Caller holds adapter_id_anchor_lock. Increment the instance's anchor
- * count so stop/replace drains instead of destroying while p still holds
- * a live metrics/properties object. Skip when p is the instance pool
- * (same lifetime — extra pin would release during destroy).
- */
-static const afw_adapter_t *
-impl_pin_adapter_for_pool_lock_held(
-    const afw_adapter_t *instance,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_adapter_id_anchor_t *anchor;
-
-    if (!instance || p == instance->p) {
-        return NULL;
-    }
-
-    for (
-        anchor = (afw_adapter_id_anchor_t *)
-            afw_environment_get_adapter_id(&instance->adapter_id, xctx);
-        anchor;
-        anchor = anchor->stopping)
-    {
-        if (anchor->adapter == instance) {
-            anchor->reference_count++;
-            return instance;
-        }
-    }
-
-    return NULL;
-}
-
-static void
-impl_register_adapter_pin_cleanup(
-    const afw_adapter_t *held,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!held) {
-        return;
-    }
-
-    AFW_TRY {
-        afw_pool_register_cleanup(
-            p, (void *)held, NULL, impl_release_adapter_cleanup, xctx);
-    }
-    AFW_CATCH_UNHANDLED {
-        afw_adapter_release(held, xctx);
-        AFW_ERROR_RETHROW;
-    }
-    AFW_ENDTRY;
-}
-
-
 /* --- adapter_metrics ----------------------------------------------------- */
 
 static const afw_utf8_t
 impl_brief_adapter_metrics =
     AFW_UTF8_LITERAL(
-        "Live adapter metrics object (pointer loaded under anchor lock)");
+        "Managed snapshot of the adapter metrics object");
 
 static const afw_utf8_t
 impl_description_adapter_metrics =
     AFW_UTF8_LITERAL(
         "internal is a pointer to const afw_adapter_t * on an "
         "afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, loads the "
-        "active adapter and returns an object value wrapping "
-        "adapter->impl->metrics_object without deep-copying metrics. NULL when "
-        "no active adapter. The metrics object is live environment state "
-        "(returnsLiveReference): counters may change while held. The accessor "
-        "increments the instance reference count and releases it when p is "
-        "cleaned up, so a concurrent stop drains instead of destroying the "
-        "pool behind the object. Do not cache beyond the pool that produced "
-        "the value.");
+        "active adapter and pins it. Copies a managed snapshot of "
+        "adapter->impl->metrics_object into p->managed_p, registers its "
+        "release on p, then releases the adapter. NULL when no active "
+        "adapter. Not a live reference.");
 
 static const afw_runtime_value_accessor_info_t
 impl_info_adapter_metrics = {
@@ -1044,7 +971,7 @@ impl_info_adapter_metrics = {
     .brief = &impl_brief_adapter_metrics,
     .description = &impl_description_adapter_metrics,
     .copies_under_lock = false,
-    .returns_live_reference = true
+    .returns_live_reference = false
 };
 
 const afw_value_t *
@@ -1068,19 +995,33 @@ afw_runtime_value_accessor_adapter_metrics(
         adapter = *(const afw_adapter_t * const *)internal;
         if (adapter && adapter->impl) {
             metrics_object = adapter->impl->metrics_object;
-            if (metrics_object) {
-                held = impl_pin_adapter_for_pool_lock_held(
+            if (metrics_object && p != adapter->p) {
+                held = afw_adapter_internal_pin_for_pool_lock_held(
                     adapter, p, xctx);
             }
         }
     }
     AFW_LOCK_END;
 
-    impl_register_adapter_pin_cleanup(held, p, xctx);
+    if (!metrics_object) {
+        return NULL;
+    }
+    if (adapter && p == adapter->p) {
+        return afw_object_as_value(metrics_object, p, xctx);
+    }
+    if (!held) {
+        return NULL;
+    }
+    AFW_TRY {
+        metrics_object = afw_object_managed_clone_for_caller(
+            metrics_object, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_adapter_release(held, xctx);
+    }
+    AFW_ENDTRY;
 
-    return (metrics_object)
-        ? afw_value_create_unmanaged_object(metrics_object, p, xctx)
-        : NULL;
+    return (metrics_object) ? metrics_object->value : NULL;
 }
 
 
@@ -1089,20 +1030,16 @@ afw_runtime_value_accessor_adapter_metrics(
 static const afw_utf8_t
 impl_brief_adapter_properties =
     AFW_UTF8_LITERAL(
-        "Live adapter anchor properties object (pointer under lock)");
+        "Managed snapshot of the adapter properties object");
 
 static const afw_utf8_t
 impl_description_adapter_properties =
     AFW_UTF8_LITERAL(
         "internal is a pointer to const afw_object_t * properties on an "
         "afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, loads the "
-        "properties pointer and returns an object value wrapping it without "
-        "deep copy. NULL when no properties. Live environment state "
-        "(returnsLiveReference). Same pin as adapter_metrics: the accessor "
-        "increments the instance reference count and releases it when p is "
-        "cleaned up, so a concurrent stop drains instead of destroying the "
-        "pool behind the object. Typically absent on the active anchor after "
-        "full stop.");
+        "properties pointer and pins the adapter. Copies a managed snapshot "
+        "into p->managed_p, registers its release on p, then releases the "
+        "adapter. NULL when no properties. Not a live reference.");
 
 static const afw_runtime_value_accessor_info_t
 impl_info_adapter_properties = {
@@ -1111,7 +1048,7 @@ impl_info_adapter_properties = {
     .brief = &impl_brief_adapter_properties,
     .description = &impl_description_adapter_properties,
     .copies_under_lock = false,
-    .returns_live_reference = true
+    .returns_live_reference = false
 };
 
 const afw_value_t *
@@ -1121,37 +1058,125 @@ afw_runtime_value_accessor_adapter_properties(
 {
     const afw_adapter_id_anchor_t *anchor;
     const afw_adapter_t *adapter;
-    const afw_adapter_t *held;
     const afw_object_t *properties;
 
     if (!internal) {
         return NULL;
     }
 
-    properties = NULL;
     adapter = NULL;
-    held = NULL;
     AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
-        properties = *(const afw_object_t * const *)internal;
-        if (properties && prop &&
-            prop->offset != (afw_size_t)-1)
-        {
+        if (internal && prop && prop->offset != (afw_size_t)-1) {
             anchor = (const afw_adapter_id_anchor_t *)(
                 (const char *)internal - prop->offset);
             adapter = anchor->adapter;
-            if (adapter) {
-                held = impl_pin_adapter_for_pool_lock_held(
-                    adapter, p, xctx);
-            }
         }
     }
     AFW_LOCK_END;
 
-    impl_register_adapter_pin_cleanup(held, p, xctx);
+    properties = afw_adapter_get_properties_object(adapter, p, xctx);
+    return (properties && properties->value)
+        ? properties->value
+        : (properties ? afw_object_as_value(properties, p, xctx) : NULL);
+}
 
-    return (properties)
-        ? afw_value_create_unmanaged_object(properties, p, xctx)
-        : NULL;
+
+/* --- authorization_handler_properties ------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_authorization_handler_properties =
+    AFW_UTF8_LITERAL(
+        "Managed snapshot of the authorization handler properties object");
+
+static const afw_utf8_t
+impl_description_authorization_handler_properties =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to properties on an "
+        "afw_authorization_handler_id_anchor_t. Under "
+        "authorization_handler_id_anchor_rw_lock, references the active "
+        "handler, copies a managed snapshot into p->managed_p, registers "
+        "its release on p, then releases the handler. NULL when the "
+        "handler is not active.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_authorization_handler_properties = {
+    .key = afw_s_authorization_handler_properties,
+    .function = afw_runtime_value_accessor_authorization_handler_properties,
+    .brief = &impl_brief_authorization_handler_properties,
+    .description = &impl_description_authorization_handler_properties,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_authorization_handler_properties(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_authorization_handler_id_anchor_t *anchor;
+    const afw_authorization_handler_t *held;
+    const afw_object_t *properties;
+
+    held = NULL;
+    AFW_LOCK_READ_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
+        if (internal && prop && prop->offset != (afw_size_t)-1) {
+            anchor = (afw_authorization_handler_id_anchor_t *)(
+                (const char *)internal - prop->offset);
+            held = anchor->authorization_handler;
+        }
+    }
+    AFW_LOCK_READ_END;
+
+    properties = afw_authorization_handler_get_properties_object(
+        held, p, xctx);
+    return (properties && properties->value)
+        ? properties->value
+        : (properties ? afw_object_as_value(properties, p, xctx) : NULL);
+}
+
+
+/* --- log_properties ------------------------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_log_properties =
+    AFW_UTF8_LITERAL(
+        "Managed snapshot of the log properties object");
+
+static const afw_utf8_t
+impl_description_log_properties =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to properties on an afw_log_t. While "
+        "environment_lock is held and this log is still registered, copies "
+        "a managed snapshot into p->managed_p and registers its release "
+        "on p. NULL when the log is no longer registered.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_log_properties = {
+    .key = afw_s_log_properties,
+    .function = afw_runtime_value_accessor_log_properties,
+    .brief = &impl_brief_log_properties,
+    .description = &impl_description_log_properties,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_log_properties(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_log_t *log;
+    const afw_object_t *snapshot;
+
+    if (!internal || !prop || prop->offset == (afw_size_t)-1) {
+        return NULL;
+    }
+
+    log = (const afw_log_t *)((const char *)internal - prop->offset);
+    snapshot = afw_log_get_properties_object(log, p, xctx);
+    return (snapshot && snapshot->value)
+        ? snapshot->value
+        : (snapshot ? afw_object_as_value(snapshot, p, xctx) : NULL);
 }
 
 
@@ -1471,9 +1496,10 @@ impl_brief_adapter_additional_metrics =
 static const afw_utf8_t
 impl_description_adapter_additional_metrics =
     AFW_UTF8_LITERAL(
-        "internal points at afw_adapter_impl_t. Calls "
-        "afw_adapter_get_additional_metrics() with the adapter. Returned "
-        "object lifetime follows that API (typically allocated in p).");
+        "internal points at afw_adapter_impl_t. Pins the adapter, calls "
+        "afw_adapter_get_additional_metrics(), and registers that pin's "
+        "release on p so the type-specific object can stay live. NULL "
+        "when the adapter type has no extra stats.");
 
 static const afw_runtime_value_accessor_info_t
 impl_info_adapter_additional_metrics = {
@@ -1491,13 +1517,49 @@ afw_runtime_value_accessor_adapter_additional_metrics(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_adapter_impl_t *impl = internal;
+    const afw_adapter_t *held;
     const afw_object_t *obj;
 
-    obj = afw_adapter_get_additional_metrics(impl->adapter, p, xctx);
+    (void)prop;
 
-    return (obj)
-        ? afw_value_create_unmanaged_object(obj, p, xctx)
-        : NULL;
+    if (!impl || !impl->adapter || p == impl->adapter->p) {
+        if (!impl || !impl->adapter) {
+            return NULL;
+        }
+        obj = afw_adapter_get_additional_metrics(impl->adapter, p, xctx);
+        return (obj) ? afw_object_as_value(obj, p, xctx) : NULL;
+    }
+
+    held = NULL;
+    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+        held = afw_adapter_internal_pin_for_pool_lock_held(
+            impl->adapter, p, xctx);
+    }
+    AFW_LOCK_END;
+
+    if (!held) {
+        return NULL;
+    }
+    obj = NULL;
+    AFW_TRY {
+        obj = afw_adapter_get_additional_metrics(held, p, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_adapter_release(held, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
+
+    if (!obj) {
+        afw_adapter_release(held, xctx);
+        return NULL;
+    }
+
+    /* The pin stays until p is destroyed. The type's object can
+     * keep reading the adapter. Register releases the pin on failure. */
+    afw_adapter_internal_register_pin_cleanup(held, p, xctx);
+
+    return afw_object_as_value(obj, p, xctx);
 }
 
 
@@ -1585,6 +1647,8 @@ impl_core_value_accessor_infos[] = {
     &impl_info_authorization_handler_reference_count,
     &impl_info_adapter_metrics,
     &impl_info_adapter_properties,
+    &impl_info_authorization_handler_properties,
+    &impl_info_log_properties,
     &impl_info_null_terminated_array_of_internal,
     &impl_info_null_terminated_array_of_objects,
     &impl_info_null_terminated_array_of_utf8_z_key_value_pair_objects,

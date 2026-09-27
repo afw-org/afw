@@ -139,7 +139,7 @@ impl_make_registry_type_value(
     entries = afw_object_create_unmanaged_new_p(xctx->p, xctx);
 
     afw_runtime_foreach(object_type_id, (void *)entries,
-        impl_entry_cb, xctx);
+        impl_entry_cb, xctx->p, xctx);
 
     return afw_value_create_unmanaged_object(entries, xctx->p, xctx);
 }

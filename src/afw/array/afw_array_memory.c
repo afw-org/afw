@@ -1268,7 +1268,7 @@ impl_register_transferred_temp(
     if (!value) {
         return NULL;
     }
-    scope = afw_pool_scope_current(xctx);
+    scope = afw_pool_scope_internal_current(xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
     }

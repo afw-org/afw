@@ -26,8 +26,8 @@
                     "type": "integer"
                 },
                 "properties": {
-                    "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
-                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+                    "description": "Managed snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly.",
+                    "markdownDescription": "**Properties**\n\nManaged snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly.",
                     "title": "Properties",
                     "type": "object"
                 },
@@ -74,8 +74,8 @@
                     "type": "integer"
                 },
                 "properties": {
-                    "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
-                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+                    "description": "Managed snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly.",
+                    "markdownDescription": "**Properties**\n\nManaged snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly.",
                     "title": "Properties",
                     "type": "object"
                 },
@@ -132,8 +132,8 @@
             "type": "integer"
         },
         "properties": {
-            "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
-            "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+            "description": "Managed snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly.",
+            "markdownDescription": "**Properties**\n\nManaged snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly.",
             "title": "Properties",
             "type": "object"
         },

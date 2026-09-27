@@ -13,9 +13,11 @@
  *
  * The instance is C calloc; release() frees it. Chunks are mmap'd
  * and munmap'd so RSS drops when a chunk does not stay on the free
- * list. get/free/cleanup do not lock. MT heap/tracker wrappers call
- * lock/unlock. Cap 0 is mmap/munmap on every get/free (metrics
- * still update).
+ * list. get and free do not lock. The caller holds the right
+ * lock: a multithreaded pool holds the multithreaded region's
+ * mutex, and a single-threaded pool is the only caller of its
+ * thread's region. Cap 0 is mmap/munmap on every get/free
+ * (metrics still update).
  */
 
 #include "afw_internal.h"
@@ -455,8 +457,7 @@ afw_memory_region_set_free_list_max_bytes(
     if (!instance) {
         return;
     }
+    (void)xctx;
     self = (impl_afw_memory_region_self_t *)instance;
-    impl_lock(self, xctx);
     self->pub.free_list_max_bytes = free_list_max_bytes;
-    impl_unlock(self, xctx);
 }

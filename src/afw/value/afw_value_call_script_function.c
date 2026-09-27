@@ -145,7 +145,7 @@ impl_afw_value_optional_evaluate(
     result = NULL;
     saved_script_result = xctx->script_result;
     xctx->script_result = afw_value_undefined;
-    caller_scope = afw_pool_scope_current(xctx);
+    caller_scope = afw_pool_scope_internal_current(xctx);
     parameter_scope = NULL;
     script = self->script_function_definition;
 
@@ -392,7 +392,7 @@ impl_afw_value_optional_evaluate(
         {
             const afw_pool_scope_t *caller;
 
-            caller = afw_pool_scope_of_caller(xctx);
+            caller = afw_pool_scope_internal_of_caller(xctx);
             if (caller) {
                 result = afw_pool_scope_get_assignable_for_p_lifetime(
                     result, caller, xctx);
@@ -408,7 +408,7 @@ impl_afw_value_optional_evaluate(
         /* Creator release; deactivate first if this frame is current. */
         if (parameter_scope)
         {
-            if (afw_pool_scope_current(xctx) == parameter_scope) {
+            if (afw_pool_scope_internal_current(xctx) == parameter_scope) {
                 afw_pool_scope_deactivate(parameter_scope, xctx);
             }
             afw_pool_scope_release(parameter_scope, xctx);
@@ -419,7 +419,7 @@ impl_afw_value_optional_evaluate(
          * — that last belongs to the defining frame, not this call
          * (extra RC on let f = function(){} in a loop).
          */
-        else if (afw_pool_scope_current(xctx) == enclosing_lexical_scope) {
+        else if (afw_pool_scope_internal_current(xctx) == enclosing_lexical_scope) {
             afw_vector_pop(xctx->scope_stack, xctx);
             afw_pool_scope_release(enclosing_lexical_scope, xctx);
         }
@@ -438,7 +438,7 @@ impl_afw_value_optional_evaluate(
     AFW_ENDTRY;
 
     /* Make sure we're back in caller's scope. */
-    if (caller_scope != afw_pool_scope_current(xctx)) {
+    if (caller_scope != afw_pool_scope_internal_current(xctx)) {
         AFW_THROW_ERROR_Z(general,
             "Caller scope not current on return from function",
             xctx);

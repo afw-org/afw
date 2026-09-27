@@ -46,9 +46,9 @@
 #                 get_assignable_value promotes to managed in p->managed_p.
 #                 Object/array get_reference and optional_release throw
 #                 (same as scalars). get_assignable_value: already-
-#                 managed occupant → dual-face bump; generic memory
-#                 object/array → clone_managed; else managed look-through
-#                 wrapper.
+#                 managed occupant → dual-face bump; other non-permanent
+#                 object → clone_managed. Permanent object stays a
+#                 managed look-through wrapper.
 #
 # Create path depends on cType / directReturn (see designs/memory-management.md phase 0a):
 #   utf8/memory  — managed owns a byte copy after the header; slice available
@@ -2220,24 +2220,17 @@ def write_c_section(fd, prefix, obj):
             fd.write('{\n')
             if id == 'object':
                 fd.write('    const afw_object_t *obj;\n')
-                fd.write('    const afw_object_t *w;\n')
                 fd.write('\n')
                 fd.write('    obj = ((const afw_value_object_t *)instance)->internal;\n')
                 fd.write('    if (afw_object_is_memory_managed(obj)) {\n')
                 fd.write('        afw_object_get_reference(obj, xctx);\n')
                 fd.write('        return obj->value;\n')
                 fd.write('    }\n')
-                fd.write('    /* Script `{}`: deep clone. Runtime/adapter/view: */\n')
-                fd.write('    /* managed look-through wrapper (preserves meta). */\n')
-                fd.write('    if (obj && obj->inf &&\n')
-                fd.write('        afw_utf8_equal_utf8_z(&obj->inf->rti.implementation_id,\n')
-                fd.write('            "memory") &&\n')
-                fd.write('        !afw_object_is_memory_wrapper(obj))\n')
-                fd.write('    {\n')
-                fd.write('        return afw_value_clone_managed(instance, p, xctx);\n')
+                fd.write('    /* Non-permanent, non-managed: copy names and values. */\n')
+                fd.write('    if (!obj) {\n')
+                fd.write('        return instance;\n')
                 fd.write('    }\n')
-                fd.write('    w = afw_object_create_wrapper_managed(obj, p, xctx);\n')
-                fd.write('    return w->value;\n')
+                fd.write('    return afw_value_clone_managed(instance, p, xctx);\n')
             else:
                 fd.write('    const afw_array_t *a;\n')
                 fd.write('\n')

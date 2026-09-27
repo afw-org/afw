@@ -37,6 +37,14 @@ impl_early_error =
 };
 
 
+static const afw_utf8_t impl_s_lock_service =
+    AFW_UTF8_LITERAL("service");
+static const afw_utf8_t impl_s_lock_service_brief =
+    AFW_UTF8_LITERAL("Service registry");
+static const afw_utf8_t impl_s_lock_service_description =
+    AFW_UTF8_LITERAL(
+        "Service registry pointer and service reference count.");
+
 static afw_boolean_t
 impl_check_manifest_cb(
     const afw_object_t *object,
@@ -85,13 +93,11 @@ impl_module_path_from_property(
 
 /* Create default runtime object that just has key. */
 static void
-impl_internal_additional_register_default(
+impl_internal_additional_register_indirect(
     const afw_utf8_t *type_id,
-    int type_number,
     const afw_utf8_t *key,
     const void *value,
-    const void *register_additional_param,
-    const void **register_additional_use,
+    afw_runtime_object_cb_t cb,
     afw_xctx_t *xctx)
 {
     afw_environment_internal_t *env;
@@ -114,12 +120,90 @@ impl_internal_additional_register_default(
     if (value) {
         afw_runtime_env_create_and_set_indirect_object(
             type->object_type_id, key,
-            (void *)value, true, xctx);
+            (void *)value, cb, true, xctx);
     }
     else {
         afw_runtime_remove_object(type->object_type_id,
             key, xctx);
     }
+}
+
+
+
+static void
+impl_internal_additional_register_default(
+    const afw_utf8_t *type_id,
+    int type_number,
+    const afw_utf8_t *key,
+    const void *value,
+    const void *register_additional_param,
+    const void **register_additional_use,
+    afw_xctx_t *xctx)
+{
+    (void)type_number;
+    (void)register_additional_param;
+    (void)register_additional_use;
+    impl_internal_additional_register_indirect(
+        type_id, key, value, NULL, xctx);
+}
+
+
+
+static void
+impl_internal_additional_register_adapter_id(
+    const afw_utf8_t *type_id,
+    int type_number,
+    const afw_utf8_t *key,
+    const void *value,
+    const void *register_additional_param,
+    const void **register_additional_use,
+    afw_xctx_t *xctx)
+{
+    (void)type_number;
+    (void)register_additional_param;
+    (void)register_additional_use;
+    impl_internal_additional_register_indirect(
+        type_id, key, value, afw_adapter_get_runtime_object, xctx);
+}
+
+
+
+static void
+impl_process_object_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    AFW_TRY {
+        afw_object_release((const afw_object_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Pool cleanup must not throw. */
+    }
+    AFW_ENDTRY;
+}
+
+
+
+/*
+ * Live counters. A property-by-property clone copies peak before
+ * current, and the copy itself allocates. Return a managed face so
+ * later reads still see the live object.
+ */
+static const afw_object_t *
+impl_process_runtime_object(
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *face;
+
+    face = afw_object_create_wrapper_managed(
+        (const afw_object_t *)data, p, xctx);
+    afw_pool_register_cleanup(p, (void *)face, NULL,
+        impl_process_object_cleanup, xctx);
+    return face;
 }
 
 
@@ -174,7 +258,7 @@ impl_internal_additional_register_key_only(
             ps = afw_pool_calloc(xctx->env->p, sizeof(afw_utf8_t *), xctx);
             *ps = key;
             afw_runtime_env_create_and_set_indirect_object(
-                type->object_type_id, key, (void *)ps, true, xctx);
+                type->object_type_id, key, (void *)ps, NULL, true, xctx);
         }
         else {
             afw_runtime_remove_object(type->object_type_id, key, xctx);
@@ -273,21 +357,28 @@ afw_environment_create(
     afw_error_t *error;
     afw_try_t unhandled_error;
     afw_thread_t *thread;
+    const afw_memory_region_t *mt_region;
 
     /* Check and initialize libxml2 */
     LIBXML_TEST_VERSION
 
     /*
-     * Base thread first (no pool yet): C calloc + memory_region.
-     * Then the base MT pool, with thread set from the start.
+     * Base thread first (no pool yet): C calloc + its own region.
+     * The multithreaded region is a second calloc. env->p uses
+     * that one. The thread region waits for the ST job heap.
      */
     thread = NULL;
+    mt_region = NULL;
     xctx = NULL;
     p = NULL;
     thread = afw_thread_internal_create_base_thread();
     if (!thread) goto early_error;
 
-    p = afw_pool_heap_internal_create_base_pool(thread);
+    mt_region = afw_memory_region_create(
+        AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES, NULL);
+    if (!mt_region) goto early_error;
+
+    p = afw_pool_heap_internal_create_base_pool(thread, mt_region);
     if (!p) goto early_error;
     thread->p = p;
 
@@ -320,7 +411,7 @@ afw_environment_create(
     };
     env->p = p;
     env->pool_chunk_bytes =
-        ((const afw_pool_internal_heap_self_t *)p)->chunk_bytes;
+        ((const afw_pool_heap_internal_self_t *)p)->chunk_bytes;
     env->peak_pool_chunk_bytes = env->pool_chunk_bytes;
     env->limit_evaluation_stack_count =
         AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT;
@@ -341,6 +432,7 @@ afw_environment_create(
             ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
     env->memory_region_free_list_max_bytes =
         AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES;
+    env->multithreaded_memory_region = mt_region;
     env->debug_fd = stderr;
     env->stderr_fd = stderr;
     env->stdout_fd = stdout;
@@ -361,6 +453,8 @@ afw_environment_create(
     xctx->thread = thread;
     afw_os_c_stack_bounds(&thread->c_stack_base, &thread->c_stack_size);
     afw_memory_region_set_free_list_max_bytes(thread->memory_region,
+        env->memory_region_free_list_max_bytes, xctx);
+    afw_memory_region_set_free_list_max_bytes(mt_region,
         env->memory_region_free_list_max_bytes, xctx);
 
     /*
@@ -505,7 +599,7 @@ afw_environment_create(
 
         rt = afw_runtime_object_create_indirect(
             afw_s__AdaptiveProcess_, afw_s_current,
-            (void *)env, p, xctx);
+            (void *)env, impl_process_runtime_object, p, xctx);
         env->process_object = rt;
         afw_runtime_env_set_object(rt, true, xctx);
         afw_xctx_qualifier_stack_qualifier_object_push(
@@ -517,7 +611,7 @@ afw_environment_create(
         type = env->registry_types->entries[i];
         afw_runtime_env_create_and_set_indirect_object_using_inf(
             &afw_runtime_inf__AdaptiveEnvironmentRegistryType_,
-            type->registry_type_id, type, true, xctx);
+            type->registry_type_id, type, NULL, true, xctx);
         afw_environment_registry_register(
             afw_environemnt_registry_type_registry_type,
             type->property_name, (void *)type, xctx);
@@ -530,6 +624,14 @@ afw_environment_create(
             afw_s_a_lock_environment_brief,
             afw_s_a_lock_environment_description,
             true, xctx);
+
+    /* Service registry and reference counts. Not recursive. */
+    env->service_lock =
+        afw_lock_create_and_register(
+            &impl_s_lock_service,
+            &impl_s_lock_service_brief,
+            &impl_s_lock_service_description,
+            false, xctx);
 
     /* Create adapter id anchors lock. */
     env->adapter_id_anchor_lock =
@@ -577,6 +679,9 @@ afw_environment_create(
     return xctx;
 
 early_error:
+    if (mt_region) {
+        afw_memory_region_release(mt_region, xctx);
+    }
     afw_thread_internal_release_base_thread(thread, xctx);
     return NULL;
 }
@@ -649,7 +754,7 @@ afw_environment_create_registry_type(
             type, xctx);
         afw_runtime_env_create_and_set_indirect_object_using_inf(
             &afw_runtime_inf__AdaptiveEnvironmentRegistryType_,
-            type->registry_type_id, type, true, xctx);
+            type->registry_type_id, type, NULL, true, xctx);
         afw_environment_registry_register(
             afw_environemnt_registry_type_registry_type,
             type->property_name, (void *)type, xctx);
@@ -683,7 +788,7 @@ afw_environment_get_registry_type_by_id(
             ctx.type = afw_s_registry_type;
             ctx.key = registry_type_id;
             afw_runtime_foreach(afw_s__AdaptiveManifest_,
-                &ctx, impl_check_manifest_cb, xctx);
+                &ctx, impl_check_manifest_cb, xctx->p, xctx);
             type = afw_hash_table_get(
                 env->registry_names_ht,
                 registry_type_id->s,
@@ -921,7 +1026,7 @@ afw_environment_registry_get(
             ctx.type = type->registry_type_id;
             ctx.key = key;
             afw_runtime_foreach(afw_s__AdaptiveManifest_,
-                &ctx, impl_check_manifest_cb, xctx);
+                &ctx, impl_check_manifest_cb, xctx->p, xctx);
             result = afw_hash_table_get(type->ht, key->s, key->len);
         }
 
@@ -1149,7 +1254,7 @@ afw_environment_load_extension(
 
             if (!module_path) {
                 manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
-                    extension_id, xctx);
+                    extension_id, p, xctx);
                 if (manifest) {
                     module_path = impl_module_path_from_property(manifest,
                         NULL, p, xctx);

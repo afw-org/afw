@@ -1,0 +1,11 @@
+{
+    "serviceId": "log-standard",
+    "startup": "immediate",
+    "conf": {
+        "type": "log",
+        "logType": "standard",
+        "logId": "standard",
+        "err": true,
+        "info": true
+    }
+}

@@ -1,5 +1,6 @@
-// Hold live metrics/properties, stop the instance, still read them.
-// The accessors pin the instance on the request pool so stop drains.
+// Hold a snapshot of metrics and properties, then stop the instance.
+// The snapshot stays readable. A fresh get after stop finds no
+// active adapter.
 const a = get_object("afw", "_AdaptiveAdapter_", "file");
 assert(a !== null && a !== undefined);
 assert(a.adapterId === "file");

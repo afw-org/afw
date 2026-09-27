@@ -134,23 +134,98 @@ impl_restart_service(
 
 /*
  * Register service, replacing any previous afw_service_t for this id.
- * The service registry allows reregister. The new struct is registered
- * before the previous service pool is released. A permanent service lives
- * in env->p, which is not released.
+ * service_lock covers the pointer swap and the reference count.
+ * Take environment_lock first. The previous generation pool is
+ * released after both locks, and only when its count hits 0.
+ * A permanent service lives in env->p, which is not released.
  */
+static afw_service_t *
+impl_service_retain(
+    const afw_utf8_t *service_id,
+    afw_xctx_t *xctx)
+{
+    afw_service_t *service;
+
+    service = NULL;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        AFW_LOCK_BEGIN(xctx->env->service_lock) {
+            service = afw_environment_get_service(service_id, xctx);
+            if (service) {
+                service->reference_count++;
+            }
+        }
+        AFW_LOCK_END;
+    }
+    AFW_LOCK_END;
+
+    return service;
+}
+
+
+
+static void
+impl_service_release(
+    afw_service_t *service,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *free_p;
+
+    if (!service) {
+        return;
+    }
+
+    free_p = NULL;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        AFW_LOCK_BEGIN(xctx->env->service_lock) {
+            service->reference_count--;
+            if (service->reference_count <= 0 &&
+                service->p && service->p != xctx->env->p)
+            {
+                free_p = service->p;
+            }
+        }
+        AFW_LOCK_END;
+    }
+    AFW_LOCK_END;
+
+    if (free_p) {
+        afw_pool_release(free_p, xctx);
+    }
+}
+
+
+
 static void
 impl_register_service(
     afw_service_t *service,
     afw_xctx_t *xctx)
 {
-    const afw_service_t *previous;
+    afw_service_t *previous;
+    const afw_pool_t *free_p;
 
-    previous = afw_environment_get_service(&service->service_id, xctx);
-    afw_environment_register_service(&service->service_id, service, xctx);
-    if (previous && previous != service &&
-        previous->p != xctx->env->p)
-    {
-        afw_pool_release(previous->p, xctx);
+    previous = NULL;
+    free_p = NULL;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        AFW_LOCK_BEGIN(xctx->env->service_lock) {
+            previous = afw_environment_get_service(
+                &service->service_id, xctx);
+            afw_environment_register_service(
+                &service->service_id, service, xctx);
+            if (previous && previous != service) {
+                previous->reference_count--;
+                if (previous->reference_count <= 0 &&
+                    previous->p && previous->p != xctx->env->p)
+                {
+                    free_p = previous->p;
+                }
+            }
+        }
+        AFW_LOCK_END;
+    }
+    AFW_LOCK_END;
+
+    if (free_p) {
+        afw_pool_release(free_p, xctx);
     }
 }
 
@@ -514,21 +589,27 @@ impl_start_cb(
          * See if service already registered.  Return if anything except error
          * or a manual start and service stopped.
          */
-        service = afw_environment_get_service(service_id, xctx);
+        service = impl_service_retain(service_id, xctx);
         if (service &&
             service->status != afw_service_status_error &&
             !(ctx->manual_start &&
                 service->status == afw_service_status_stopped)
             )
         {
+            impl_service_release(service, xctx);
             service = NULL;
             break; /* Return. */
+        }
+        if (service) {
+            impl_service_release(service, xctx);
+            service = NULL;
         }
 
         p = afw_pool_multithread_create_as_managed_p(
             xctx->env->p, xctx->env->small_chunk_min, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
+        service->reference_count = 1;
         service->source_location = afw_utf8_clone(source_location, p, xctx);
         source_location = service->source_location;
         service->service_id.len = service_id->len;
@@ -898,19 +979,35 @@ impl_AdaptiveService_cb(
     const afw_object_t *conf_property;
     const afw_object_t *object;
     const afw_utf8_t *s;
+    const afw_utf8_t *stable_id;
     const afw_utf8_t *error_message;
     afw_boolean_t is_complete;
+    afw_boolean_t ours;
 
     is_complete = false;
+    ours = false;
     p = xctx->p;
     object = original_object;
+    service = NULL;
     if (object) {
         service_id = afw_s_unknown; /* Get rid of compiler warning. */
         AFW_TRY {
 
-            p = original_object->p;
+            /*
+             * The returned service object must not live on the conf
+             * object's pool. That pool dies with the adapter session,
+             * and a later const assignment then copies sourceLocation
+             * from unmapped memory. Build it managed on the caller's
+             * pool while the session and the service retain are held:
+             * an unmanaged set would keep the conf string pointer.
+             * The caller pool releases the create reference.
+             * service->properties stays the live object for the
+             * service itself.
+             */
+            p = (ctx->p) ? ctx->p : xctx->p;
 
-            object = afw_object_create_unmanaged(p, xctx);
+            object = afw_object_create_managed(p, xctx);
+            ours = true;
 
             service_id = afw_object_get_property_as_string_internal(
                 original_object,
@@ -933,14 +1030,20 @@ impl_AdaptiveService_cb(
                     service_id);
             }
 
-            service = afw_environment_get_service(service_id, xctx);
+            service = impl_service_retain(service_id, xctx);
             impl_add_runtime_service_info_to_object(object, service,
                 original_object, conf_property, service_id,
                 NULL, NULL, xctx);
+            impl_service_release((afw_service_t *)service, xctx);
+            service = NULL;
 
         }
 
         AFW_CATCH_UNHANDLED{
+            if (service) {
+                impl_service_release((afw_service_t *)service, xctx);
+                service = NULL;
+            }
             error_message = afw_utf8_create(
                 AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
                 p, xctx);
@@ -960,15 +1063,20 @@ impl_AdaptiveService_cb(
 
         AFW_ENDTRY;
 
+        if (ours) {
+            afw_object_register_caller_release(object, p, xctx);
+        }
+
         meetsCriteria = true;
         if (ctx->criteria) {
             meetsCriteria = afw_query_criteria_test_object(object,
                 ctx->criteria, ctx->p, xctx);
         }
 
-        if (ctx->service_ids) {
-            afw_hash_table_set(ctx->service_ids, service_id->s,
-                service_id->len, service_id, xctx);
+        if (ctx->service_ids && service_id) {
+            stable_id = afw_utf8_clone(service_id, p, xctx);
+            afw_hash_table_set(ctx->service_ids, stable_id->s,
+                stable_id->len, stable_id, xctx);
         }
 
         if (meetsCriteria && ctx->original_callback) {
@@ -1004,11 +1112,22 @@ impl_retrieve_from_registry_cb(
     if (!ctx->service_ids ||
         !afw_hash_table_get(ctx->service_ids, key_s, key_len))
     {
-        object = afw_object_create_unmanaged_new_p(p, xctx);
-
-        impl_add_runtime_service_info_to_object(object, service,
-            NULL, service->properties, &service->service_id,
-            service->type, service->conf_id, xctx);
+        service = impl_service_retain(&service->service_id, xctx);
+        if (!service) {
+            return false;
+        }
+        object = NULL;
+        AFW_TRY {
+            object = afw_object_create_managed(p, xctx);
+            impl_add_runtime_service_info_to_object(object, service,
+                NULL, service->properties, &service->service_id,
+                service->type, service->conf_id, xctx);
+            afw_object_register_caller_release(object, p, xctx);
+        }
+        AFW_FINALLY {
+            impl_service_release((afw_service_t *)service, xctx);
+        }
+        AFW_ENDTRY;
 
         meetsCriteria = true;
         if (ctx->criteria) {
@@ -1125,8 +1244,8 @@ afw_service_get_object(
     memset(&ctx, 0, sizeof(ctx));
     ctx.p = p;
 
-    /* Get service. */
-    service = afw_environment_get_service(service_id, xctx);
+    /* Get service. Hold it across the conf read. */
+    service = impl_service_retain(service_id, xctx);
 
     /*
      * If no service yet or is existing service that has a service conf, try
@@ -1192,6 +1311,7 @@ afw_service_get_object(
         }
     }
 
+    impl_service_release((afw_service_t *)service, xctx);
     return result;
 }
 
@@ -1214,6 +1334,7 @@ afw_service_start_using_AdaptiveConf_cede_p(
     (void)p;
     service = afw_pool_calloc_type(xctx->env->p, afw_service_t, xctx);
     service->p = xctx->env->p;
+    service->reference_count = 1;
     service->source_location = afw_s_conf;
     service->conf_source_location = source_location;
 
@@ -1261,13 +1382,16 @@ afw_service_start(
     const afw_pool_t *p;
     impl_start_context_t ctx;
 
+    /* The caller's id may live in a pool this start releases. */
+    service_id = afw_utf8_clone(service_id, xctx->p, xctx);
+
     /* Clear ctx and set p, session to NULL. */
     afw_memory_clear(&ctx);
     p = NULL;
     session = NULL;
     ctx.manual_start = manual_start;
 
-    service = afw_environment_get_service(service_id, xctx);
+    service = impl_service_retain(service_id, xctx);
 
     /* If service already registered, allow error status to retry. */
     if (service &&
@@ -1276,11 +1400,13 @@ afw_service_start(
         service->status != afw_service_status_error)
     {
         description = afw_service_status_description(service->status);
+        impl_service_release((afw_service_t *)service, xctx);
         AFW_THROW_ERROR_FZ(general, xctx,
             "Service '%ku' can not be started.  %ku",
             service_id,
             description);
     }
+    impl_service_release((afw_service_t *)service, xctx);
 
     /* Should not get this condition, but fuss anyways. */
     if (!xctx->env->conf_adapter) {
@@ -1329,51 +1455,64 @@ afw_service_stop(
     afw_service_t *service;
     const afw_utf8_t *description;
 
-    service = afw_environment_get_service(service_id, xctx);
-    if (!service) {
-        AFW_THROW_ERROR_FZ(general, xctx,
-            "Service '%ku' is not running",
-            service_id);
+    /* The caller's id may live in a pool this stop releases. */
+    service_id = afw_utf8_clone(service_id, xctx->p, xctx);
+
+    /*
+     * environment_lock only changes the status pointer-side claim.
+     * The stop itself runs after the lock is released.
+     */
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        AFW_LOCK_BEGIN(xctx->env->service_lock) {
+            service = afw_environment_get_service(service_id, xctx);
+            if (!service) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Service '%ku' is not running",
+                    service_id);
+            }
+            if (service->status != afw_service_status_running) {
+                description = afw_service_status_description(service->status);
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Service '%ku' can not be stopped.  %ku",
+                    &service->service_id,
+                    description);
+            }
+            service->reference_count++;
+            service->status = afw_service_status_stopping;
+        }
+        AFW_LOCK_END;
     }
+    AFW_LOCK_END;
 
     AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
     {
-        if (service->status == afw_service_status_running) {
-
-            AFW_TRY {
-                    service->status = afw_service_status_stopping;
-                    AFW_LOG_FZ(debug, xctx, "Service '%ku' stopping.",
-                        &service->service_id);
-                    service->status = afw_service_status_stopping;
-                    afw_service_type_stop(service->service_type,
-                        service->conf_id, xctx);
-                    AFW_LOG_FZ(info, xctx, "Service '%ku' successfully stopped.",
-                        &service->service_id);
-                    service->status = afw_service_status_stopped;
-            }
-
-            AFW_CATCH_UNHANDLED{
-                AFW_LOG_Z(err, AFW_ERROR_THROWN->message_z, xctx);
-                service->status =
-                    (afw_service_type_related_instance_count(
-                        service->service_type, service->conf_id, xctx) > 0)
-                    ? afw_service_status_running
-                    : afw_service_status_stopped;
-                AFW_ERROR_RETHROW;
-            }
-
-            AFW_ENDTRY;
+        AFW_TRY {
+            AFW_LOG_FZ(debug, xctx, "Service '%ku' stopping.",
+                &service->service_id);
+            afw_service_type_stop(service->service_type,
+                service->conf_id, xctx);
+            AFW_LOG_FZ(info, xctx, "Service '%ku' successfully stopped.",
+                &service->service_id);
+            service->status = afw_service_status_stopped;
         }
-        else {
-            description = afw_service_status_description(service->status);
-            AFW_THROW_ERROR_FZ(general, xctx,
-                "Service '%ku' can not be stopped.  %ku",
-                &service->service_id,
-                description);
 
+        AFW_CATCH_UNHANDLED{
+            AFW_LOG_Z(err, AFW_ERROR_THROWN->message_z, xctx);
+            service->status =
+                (afw_service_type_related_instance_count(
+                    service->service_type, service->conf_id, xctx) > 0)
+                ? afw_service_status_running
+                : afw_service_status_stopped;
+            impl_service_release(service, xctx);
+            service = NULL;
+            AFW_ERROR_RETHROW;
         }
+
+        AFW_ENDTRY;
     }
     AFW_THREAD_MUTEX_UNLOCK();
+
+    impl_service_release(service, xctx);
 
 }
 
@@ -1461,6 +1600,7 @@ impl_restart_get_cb(
             xctx->env->p, xctx->env->small_chunk_min, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
+        service->reference_count = 1;
         service->source_location = afw_utf8_clone(source_location, p, xctx);
         source_location = service->source_location;
         service->service_id.len = service_id->len;
@@ -1531,30 +1671,55 @@ afw_service_restart(
     const afw_utf8_t *service_id,
     afw_xctx_t *xctx)
 {
-    const afw_service_t *service;
+    afw_service_t *service;
+    const afw_service_t *current;
     const afw_adapter_session_t *session;
     afw_boolean_t error;
     const afw_pool_t *p;
     impl_start_context_t ctx;
+
+    /* The caller's id may live in a pool this restart releases. */
+    service_id = afw_utf8_clone(service_id, xctx->p, xctx);
 
     /* Clear ctx and set p, session to NULL. */
     afw_memory_clear(&ctx);
     p = NULL;
     session = NULL;
 
-    service = afw_environment_get_service(service_id, xctx);
-
-    /* If service already registered, allow error status to retry. */
-    if (!service || service->status != afw_service_status_running)
-    {
-        AFW_THROW_ERROR_FZ(general, xctx,
-            "Service '%ku' cannot be restarted.  It is not running",
-            service_id);
+    /*
+     * environment_lock only claims the status. Conf load and the
+     * adapter restart run after the lock is released.
+     */
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        AFW_LOCK_BEGIN(xctx->env->service_lock) {
+            service = afw_environment_get_service(service_id, xctx);
+            if (!service ||
+                service->status != afw_service_status_running)
+            {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Service '%ku' cannot be restarted.  It is not running",
+                    service_id);
+            }
+            service->reference_count++;
+            service->status = afw_service_status_restarting;
+        }
+        AFW_LOCK_END;
     }
+    AFW_LOCK_END;
 
     /* If there is a conf adapter, try to start. */
     if (!xctx->env->conf_adapter) {
-        goto error;
+        AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+            current = afw_environment_get_service(service_id, xctx);
+            if (current == service) {
+                service->status = afw_service_status_running;
+            }
+        }
+        AFW_LOCK_END;
+        impl_service_release(service, xctx);
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Error starting service '%ku'",
+            service_id);
     }
 
     error = false;
@@ -1583,12 +1748,19 @@ afw_service_restart(
     }
     AFW_ENDTRY;
     if (error) {
-        goto error;
+        AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+            current = afw_environment_get_service(service_id, xctx);
+            if (current == service &&
+                service->status == afw_service_status_restarting)
+            {
+                service->status = afw_service_status_running;
+            }
+        }
+        AFW_LOCK_END;
+        impl_service_release(service, xctx);
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Error starting service '%ku'",
+            service_id);
     }
-    return;
-
-error:
-    AFW_THROW_ERROR_FZ(general, xctx,
-        "Error starting service '%ku'",
-        service_id);
+    impl_service_release(service, xctx);
 }

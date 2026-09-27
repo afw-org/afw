@@ -31,8 +31,12 @@
             "allowQuery": false,
             "brief": "Properties associated with this handler",
             "dataType": "object",
-            "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
-            "label": "Properties"
+            "description": "Managed snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly.",
+            "label": "Properties",
+            "runtime": {
+                "memberName": "properties",
+                "valueAccessor": "authorization_handler_properties"
+            }
         },
         "referenceCount": {
             "allowQuery": true,

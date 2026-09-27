@@ -399,7 +399,7 @@ afw_context_variable_definitions_add_based_on_object(
     if (afw_object_meta_get_object_type_id(object, xctx))
     {
         object_type_object = afw_runtime_get_object(afw_s__AdaptiveObjectType_,
-            afw_object_meta_get_object_type_id(object, xctx), xctx);
+            afw_object_meta_get_object_type_id(object, xctx), p, xctx);
     }
     if (!object_type_object) {
         AFW_THROW_ERROR_Z(general, "Object requires valid object type", xctx);
@@ -494,7 +494,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
 
 
     object_type_object = afw_runtime_get_object(afw_s__AdaptiveObjectType_,
-        object_type_id, xctx);
+        object_type_id, p, xctx);
     if (!object_type_object) {
         AFW_THROW_ERROR_Z(general, "Object type does not exist", xctx);
     }

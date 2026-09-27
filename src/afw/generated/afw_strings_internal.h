@@ -1225,32 +1225,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__04ef01a6af9c \
-    "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__04ef01a6af9c */
-#define afw_s_zz__04ef01a6af9c \
-    (&afw_self_v_zz__04ef01a6af9c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__04ef01a6af9c */
-#define afw_self_s_zz__04ef01a6af9c \
-    (afw_self_v_zz__04ef01a6af9c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__04ef01a6af9c */
-extern const afw_value_string_t \
-    afw_self_v_zz__04ef01a6af9c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__04ef01a6af9c */
-#define afw_z_zz__04ef01a6af9c \
-    (afw_self_v_zz__04ef01a6af9c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__04ef01a6af9c */
-#define afw_v_zz__04ef01a6af9c \
-    (&afw_self_v_zz__04ef01a6af9c.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__05281925d3a6 \
     "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes."
 
@@ -2053,32 +2027,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__088048fdd914 */
 #define afw_v_zz__088048fdd914 \
     (&afw_self_v_zz__088048fdd914.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__088218291030 \
-    "This object contains some of properties from the associated conf object plus other runtime properties."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__088218291030 */
-#define afw_s_zz__088218291030 \
-    (&afw_self_v_zz__088218291030.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__088218291030 */
-#define afw_self_s_zz__088218291030 \
-    (afw_self_v_zz__088218291030.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__088218291030 */
-extern const afw_value_string_t \
-    afw_self_v_zz__088218291030;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__088218291030 */
-#define afw_z_zz__088218291030 \
-    (afw_self_v_zz__088218291030.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__088218291030 */
-#define afw_v_zz__088218291030 \
-    (&afw_self_v_zz__088218291030.pub)
 
 
 
@@ -14325,6 +14273,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3b7ea3ee15b9 */
 #define afw_v_zz__3b7ea3ee15b9 \
     (&afw_self_v_zz__3b7ea3ee15b9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__3bb64dc2874d \
+    "Managed snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3bb64dc2874d */
+#define afw_s_zz__3bb64dc2874d \
+    (&afw_self_v_zz__3bb64dc2874d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3bb64dc2874d */
+#define afw_self_s_zz__3bb64dc2874d \
+    (afw_self_v_zz__3bb64dc2874d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3bb64dc2874d */
+extern const afw_value_string_t \
+    afw_self_v_zz__3bb64dc2874d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3bb64dc2874d */
+#define afw_z_zz__3bb64dc2874d \
+    (afw_self_v_zz__3bb64dc2874d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3bb64dc2874d */
+#define afw_v_zz__3bb64dc2874d \
+    (&afw_self_v_zz__3bb64dc2874d.pub)
 
 
 
@@ -145703,6 +145677,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__eb1523b5ba25 */
 #define afw_v_zz__eb1523b5ba25 \
     (&afw_self_v_zz__eb1523b5ba25.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__eb6620896c37 \
+    "Managed snapshot of this handler's properties (valueAccessor authorization_handler_properties). The handler is referenced across the copy, then released. The handler itself still reads its properties directly."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__eb6620896c37 */
+#define afw_s_zz__eb6620896c37 \
+    (&afw_self_v_zz__eb6620896c37.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__eb6620896c37 */
+#define afw_self_s_zz__eb6620896c37 \
+    (afw_self_v_zz__eb6620896c37.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__eb6620896c37 */
+extern const afw_value_string_t \
+    afw_self_v_zz__eb6620896c37;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__eb6620896c37 */
+#define afw_z_zz__eb6620896c37 \
+    (afw_self_v_zz__eb6620896c37.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__eb6620896c37 */
+#define afw_v_zz__eb6620896c37 \
+    (&afw_self_v_zz__eb6620896c37.pub)
 
 
 

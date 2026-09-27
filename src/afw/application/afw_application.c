@@ -612,6 +612,13 @@ afw_application_internal_application_conf_type_create_cede_p(
             xctx->thread->memory_region,
             env->memory_region_free_list_max_bytes, xctx);
     }
+    if (env->multithreaded_memory_region) {
+        afw_memory_region_lock(env->multithreaded_memory_region, xctx);
+        afw_memory_region_set_free_list_max_bytes(
+            env->multithreaded_memory_region,
+            env->memory_region_free_list_max_bytes, xctx);
+        afw_memory_region_unlock(env->multithreaded_memory_region, xctx);
+    }
 
     /* If extensions specified, load them. */
     value = afw_object_get_property(env->application_object,

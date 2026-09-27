@@ -1,0 +1,68 @@
+# Three restarts back to back for each stoppable service in this leaf:
+# file, model, vfs, and a standard log. adapter-afw and adapter-conf
+# are not restarted. LMDB is left out; its additional stats stuck in
+# mdb_txn_begin. LDAP needs a directory server.
+# Opt-in: afwdev test -T src/afw/tests-extra/stress-type-restarts
+
+version: 1
+description: Restart file, model, vfs, and a log three times each
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 180
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: restart-types
+    sourceType: script
+    source: |
+      function restart3(serviceId) {
+          let done = 0;
+          let tries = 0;
+          while (done < 3 && tries < 12) {
+              tries = tries + 1;
+              try {
+                  const svc = service_restart(serviceId);
+                  assert(svc.serviceId === serviceId,
+                      serviceId + " id=" + string(svc.serviceId));
+                  assert(svc.status !== "error",
+                      serviceId + " " + string(svc.statusMessage)
+                      + " " + string(svc.statusDebug));
+                  done = done + 1;
+              }
+              catch (e) {
+                  if (!includes<string>(e.message, "cannot be restarted")) {
+                      throw e.message;
+                  }
+              }
+          }
+          assert(done === 3, serviceId + " completed " + string(done));
+          return true;
+      }
+
+      restart3("adapter-data");
+      const file = get_object("data", "Demo", "seed");
+      assert(file.msg === "seed");
+
+      restart3("adapter-model");
+      const viaModel = get_object("model", "Demo", "any");
+      assert(viaModel.msg === "from-model");
+
+      restart3("adapter-vfs");
+      const f = get_object("vfs", "_AdaptiveFile_vfs", "hello.txt");
+      assert(f.data === "hello\n");
+
+      restart3("log-standard");
+      const log = service_get("log-standard");
+      assert(log.serviceId === "log-standard");
+      assert(log.status !== "error");
+
+      const adapter = get_object("afw", "_AdaptiveAdapter_", "data");
+      assert(adapter.adapterId === "data");
+      assert(adapter.properties.adapterId === "data");
+      assert(adapter.metrics !== null && adapter.metrics !== undefined);
+      return true;
+    expect: true

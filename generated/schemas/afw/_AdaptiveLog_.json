@@ -20,8 +20,8 @@
                     "type": "string"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Managed snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly.",
+                    "markdownDescription": "**Properties**\n\nManaged snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly.",
                     "title": "Properties",
                     "type": "object"
                 },
@@ -50,8 +50,8 @@
                     "type": "string"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Managed snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly.",
+                    "markdownDescription": "**Properties**\n\nManaged snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly.",
                     "title": "Properties",
                     "type": "object"
                 },
@@ -90,8 +90,8 @@
             "type": "string"
         },
         "properties": {
-            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-            "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+            "description": "Managed snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly.",
+            "markdownDescription": "**Properties**\n\nManaged snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly.",
             "title": "Properties",
             "type": "object"
         },

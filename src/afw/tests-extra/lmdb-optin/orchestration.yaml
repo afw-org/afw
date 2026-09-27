@@ -1,0 +1,156 @@
+# Opt-in LMDB examples for the orchestration runner.
+#   afwdev test -T src/afw/tests-extra/lmdb-optin
+#
+# Jeremy: LMDB is yours. These are small on purpose.
+#
+# restart-three
+#   One request. Three service_restart("adapter-lmdb") calls, then one
+#   add/get/delete. No metrics. Change the "done < 3" bound for more
+#   restarts in a row. "cannot be restarted" means the service is not
+#   running yet; that message is swallowed and retried.
+#
+# read-write
+#   One add/get/delete. The id is "rw-" plus generate_uuid(), so
+#   concurrent requests do not share a row. The firehose below runs
+#   this together with restarts.
+#
+# restart-once
+#   One service_restart for the firehose. Same swallow of
+#   "cannot be restarted". A status of "error" still fails the leaf.
+#
+# metrics-additional
+#   One read of adapter "lmdb" metrics.additional.
+#   That property calls afw_adapter_get_additional_metrics() in
+#   src/afw_lmdb/afw_lmdb_adapter.c. After mdb_env_stat / mdb_env_info
+#   it takes self->dbLock and then:
+#       mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
+#   Flags 0 is a write transaction, used only to list database names.
+#   A quiet single read of this property has returned. With the
+#   firehose below (16 threads, concurrency 32, restarts plus
+#   read-write plus this metrics read) afwfcgi died with signal 11
+#   during the mix, after several "successfully restarted" lines.
+#   The faulting thread was inside mdb_txn_begin at that line, on
+#   the way through the shared metrics snapshot:
+#       afw_runtime_value_accessor_adapter_metrics
+#       -> managed snapshot walks the "additional" property
+#       -> afw_runtime_value_accessor_adapter_additional_metrics
+#       -> impl_afw_adapter_get_additional_metrics line 611
+#   The mutex being locked sits in memory that a restart can close
+#   with the LMDB env. To chase that, keep metrics-additional in
+#   fromTests. To try restart without that call, remove it.
+#
+# Knobs, top to bottom:
+#   afwfcgi.threads     server threads. 4 is the quiet example.
+#                       16 is the cranked mix below.
+#   timeout_s           whole leaf. Must be longer than duration_s.
+#   firehose.duration_s how long the mix runs.
+#   concurrency         requests in flight.
+#   clientProcesses     client processes.
+#   fromTests           which scripts are mixed. Seed 1 keeps the
+#                       random mix the same from run to run.
+#   stopOnError         true fails the leaf on the first real error.
+#   conf/.../adapter-lmdb.json
+#                       env.maxreaders (126), mapsize, path "lmdb/".
+#                       The lmdb/ directory must exist (lmdb/.keep).
+
+version: 1
+description: LMDB restart under read/write and additional metrics
+host: afwfcgi
+afwfcgi:
+  threads: 16
+timeout_s: 280
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: restart-three
+    sourceType: script
+    source: |
+      let done = 0;
+      let tries = 0;
+      while (done < 3 && tries < 12) {
+          tries = tries + 1;
+          try {
+              const svc = service_restart("adapter-lmdb");
+              assert(svc.serviceId === "adapter-lmdb",
+                  "id=" + string(svc.serviceId)
+                  + " status=" + string(svc.status)
+                  + " " + string(svc.statusMessage));
+              assert(svc.status !== "error",
+                  string(svc.statusMessage) + " "
+                  + string(svc.statusDebug));
+              done = done + 1;
+          }
+          catch (e) {
+              if (!includes<string>(e.message, "cannot be restarted")) {
+                  throw e.message;
+              }
+          }
+      }
+      assert(done === 3, "completed " + string(done));
+      const id = "restart-row";
+      add_object("lmdb", "_AdaptiveObject_", {
+          "name": "Ada"
+      }, id);
+      const row = get_object("lmdb", "_AdaptiveObject_", id);
+      assert(row.name === "Ada");
+      delete_object("lmdb", "_AdaptiveObject_", id);
+      return true;
+
+  - name: read-write
+    sourceType: script
+    source: |
+      const id = "rw-" + generate_uuid();
+      add_object("lmdb", "_AdaptiveObject_", {
+          "name": "Ada",
+          "city": "Dallas"
+      }, id);
+      const o = get_object("lmdb", "_AdaptiveObject_", id);
+      assert(o.name === "Ada");
+      assert(o.city === "Dallas");
+      delete_object("lmdb", "_AdaptiveObject_", id);
+      return true;
+
+  - name: restart-once
+    sourceType: script
+    source: |
+      try {
+          const svc = service_restart("adapter-lmdb");
+          assert(svc.serviceId === "adapter-lmdb",
+              "id=" + string(svc.serviceId)
+              + " status=" + string(svc.status));
+          assert(svc.status !== "error",
+              string(svc.statusMessage) + " "
+              + string(svc.statusDebug));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "cannot be restarted")) {
+              return "not-running";
+          }
+          throw e.message;
+      }
+
+  - name: metrics-additional
+    sourceType: script
+    source: |
+      const a = get_object("afw", "_AdaptiveAdapter_", "lmdb");
+      assert(a.adapterId === "lmdb");
+      assert(a.metrics !== null && a.metrics !== undefined);
+      const extra = a.metrics.additional;
+      assert(extra !== null && extra !== undefined,
+          "lmdb additional metrics missing");
+      return true;
+
+schedule:
+  - sequential: [restart-three]
+  - firehose:
+      duration_s: 240
+      concurrency: 32
+      clientProcesses: 4
+      fromTests: [restart-once, read-write, metrics-additional]
+      policy: random
+      seed: 1
+      stopOnError: true

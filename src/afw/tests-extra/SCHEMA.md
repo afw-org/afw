@@ -236,9 +236,9 @@ schedule:
 ```
 
 `concurrency` and `clientProcesses` take the same integer-or-percent form.
-A percent on `concurrency` is of the server thread count (so `"100%"` is one
-request in flight per server thread). A percent on `clientProcesses` is of
-online CPUs. Omitted `clientProcesses` is 1, which is the single-process
+A percent is 1 through 400. A percent on `concurrency` is of the server
+thread count (so `"100%"` is one request in flight per server thread, and
+`"200%"` is two). A percent on `clientProcesses` is of online CPUs. Omitted `clientProcesses` is 1, which is the single-process
 thread pool. Above 1, the firehose feeds `afwfcgi` from that many Python
 processes so the GIL does not leave server threads sitting in accept.
 `_AdaptiveServer_/current.maxConcurrent` is recorded on the firehose summary.

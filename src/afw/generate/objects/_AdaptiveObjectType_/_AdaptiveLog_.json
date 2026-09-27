@@ -34,8 +34,12 @@
             "allowQuery": false,
             "brief": "Properties associated with this log",
             "dataType": "object",
-            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-            "label": "Properties"
+            "description": "Managed snapshot of this log's properties (valueAccessor log_properties). Copied while the log is still registered. The log itself still reads its properties directly.",
+            "label": "Properties",
+            "runtime": {
+                "memberName": "properties",
+                "valueAccessor": "log_properties"
+            }
         },
         "serviceId": {
             "allowQuery": true,

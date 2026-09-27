@@ -1,0 +1,11 @@
+{
+    "serviceId": "authorizationHandler-permit",
+    "startup": "immediate",
+    "conf": {
+        "type": "authorizationHandler",
+        "authorizationHandlerType": "script",
+        "authorizationHandlerId": "permit",
+        "priority": 1,
+        "authorizationCheck": "return { decisionId: \"permit\" };"
+    }
+}

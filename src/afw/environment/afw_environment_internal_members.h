@@ -166,6 +166,14 @@
      */
     afw_size_t memory_region_free_list_max_bytes;
 
+    /**
+     * @brief Chunk list for every multithreaded pool.
+     *
+     * Process lifetime. Single-threaded pools use
+     * thread->memory_region instead.
+     */
+    const afw_memory_region_t *multithreaded_memory_region;
+
     /** @brief Copy of director log's mask for short circuit tests. */
     afw_log_priority_mask_t log_mask;
 
@@ -211,8 +219,27 @@
 
     /*---------- LOCKS ----------*/
 
-    /** @brief Lock for whole environment. */
+    /**
+     * @brief Lock for whole environment.
+     *
+     * Recursive. Service stop and restart hold it only while changing
+     * status or the service registry pointer, using AFW_LOCK_BEGIN /
+     * AFW_LOCK_END. That section calls get_service and register_service,
+     * which lock it again. It must not call adapter or conf code.
+     * Those paths already hold this lock while they register and
+     * publish a runtime object. get and foreach of an indirect runtime
+     * object with no callback hold it across the managed clone. A
+     * service keeps its own lock for work inside the service.
+     */
     const afw_lock_t *environment_lock;
+
+    /**
+     * @brief Lock for the service registry and service reference counts.
+     *
+     * Not recursive. Take environment_lock first, then this lock.
+     * Do not hold it across adapter, log, or authorization work.
+     */
+    const afw_lock_t *service_lock;
 
     /** @brief Lock for protecting changes to adapter id anchors. */
     const afw_lock_t *adapter_id_anchor_lock;

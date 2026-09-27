@@ -171,7 +171,10 @@ afw_adapter_impl_push_qualifiers(
     const afw_adapter_t *adapter,
     afw_xctx_t *xctx)
 {
-    /* Object-push owns adapter:: (properties + fixed contribute_cb). */
+    /*
+     * adapter:: is the live properties object. The caller already
+     * holds the adapter (a model session). Do not snapshot here.
+     */
     afw_xctx_qualifier_stack_qualifier_object_push(afw_s_adapter,
         adapter->properties, true, xctx->p, xctx);
 }
@@ -353,7 +356,7 @@ afw_adapter_impl_create_cede_p(
      */
     impl->metrics_object = afw_runtime_object_create_indirect(
         afw_s__AdaptiveAdapterMetrics_,
-        &adapter->adapter_id, impl, p, xctx);
+        &adapter->adapter_id, impl, afw_adapter_get_metrics_object, p, xctx);
 
     /* If this is layout adapter id, allow layout object type. */
     if (xctx->env->layout_adapter_id &&
@@ -605,7 +608,7 @@ afw_adapter_impl_set_supported_core_object_type(
             afw_adapter_impl_core_object_type_t, xctx);
         e->object_type_id = object_type_id;
         e->object = afw_runtime_get_object(afw_s__AdaptiveObjectType_,
-            object_type_id, xctx);
+            object_type_id, p, xctx);
         if (!e->object) {
             AFW_THROW_ERROR_Z(general, "Invalid object type id", xctx);
         }
@@ -1235,7 +1238,7 @@ impl_afw_adapter_session_get_object(
 
         /* Return /afw/_AdaptiveObjectType_/<objectId> asis. */
         object_type_object = afw_runtime_get_object(
-            object_type_id, object_id, xctx);
+            object_type_id, object_id, p, xctx);
         if (object_type_object) {
             impl_setup_object_delivery_callbacks(&ctx, impl,
                 callback, context,
