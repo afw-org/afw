@@ -11,6 +11,7 @@ RUN apt-get update && \
     libicu-dev libunwind-setjmp0-dev elfutils libdw-dev cmake \
     libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev \
     libyaml-dev libfcgi-dev libedit-dev nginx gdb valgrind lsof default-jre doxygen \
+    libldap2-dev slapd \
     nodejs npm tmux vim locales bash-completion docker.io && \
     apt-get clean
 
