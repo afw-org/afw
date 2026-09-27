@@ -3,7 +3,8 @@
 # service_restart can load it again. adapter-afw is not touched.
 # Opt-in: afwdev test -T src/afw/tests-extra/stress-model-restart
 #
-# The leaf fails if afwfcgi exits. Request errors are counted.
+# The leaf fails if afwfcgi exits. Overlap the service layer already
+# reports returns success. maxFail 0: any other request error fails.
 
 version: 1
 description: Restart adapter-model under concurrent reads
@@ -20,24 +21,61 @@ tests:
   - name: read-model
     sourceType: script
     source: |
-      const o = get_object("model", "Demo", "seed");
-      assert(o.msg === "from-eval");
-      assert(o.tag === "soak");
-      return true;
+      try {
+          const o = get_object("model", "Demo", "seed");
+          assert(o.msg === "from-eval");
+          assert(o.tag === "soak");
+          return true;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "is not available")
+              || includes<string>(e.message, "is not running")) {
+              return "down";
+          }
+          throw e.message;
+      }
 
   - name: restart-model
     sourceType: script
     source: |
-      const svc = service_restart("adapter-model");
-      assert(svc.serviceId === "adapter-model");
-      return svc.status;
+      try {
+          const svc = service_restart("adapter-model");
+          assert(svc.serviceId === "adapter-model");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "cannot be restarted")
+              || includes<string>(e.message, "is not running")) {
+              return "restarting";
+          }
+          throw e.message;
+      }
 
   - name: stop-start-model
     sourceType: script
     source: |
-      service_stop("adapter-model");
-      const svc = service_start("adapter-model");
-      return svc.status;
+      try {
+          service_stop("adapter-model");
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "can not be stopped")
+              && !includes<string>(e.message, "is not running")) {
+              throw e.message;
+          }
+      }
+      try {
+          const svc = service_start("adapter-model");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "can not be started")
+              || includes<string>(e.message, "is not running")) {
+              return "busy";
+          }
+          throw e.message;
+      }
 
 schedule:
   - firehose:
@@ -48,3 +86,4 @@ schedule:
       policy: random
       seed: 1
       stopOnError: false
+      maxFail: 0

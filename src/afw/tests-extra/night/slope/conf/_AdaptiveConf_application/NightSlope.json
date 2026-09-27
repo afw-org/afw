@@ -1,0 +1,11 @@
+{
+    "title": "NightSlope",
+    "description": "Busy afwfcgi leak watch. Metrics append via rootFilePaths logs.",
+    "defaultAdapterId": "model",
+    "extensions": [
+        "afw_curl"
+    ],
+    "rootFilePaths": {
+        "logs": "/tmp/afw-night-slope-metrics"
+    }
+}

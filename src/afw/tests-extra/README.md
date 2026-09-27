@@ -115,6 +115,8 @@ src/afw/tests-extra/
 | **issue-2/01-rss-hard-loops** | #2 hard-loop lab: RSS vs `pool_bytes_in_use`; gdb + `debug:pool` |
 | **issue-2/02-pool-eval-soak** | #2 afwfcgi object/array/nested-eval soak (heap wrap) |
 | **test262** | Copies of BMP comment sweeps (`comments-bmp-*.as`); default `test -j` also runs `src/afw/tests/test262/comments-bmp-*.as` |
+| **night/slope** | Leak watch: firehose mix plus #379 cheap/catalog/metrics, no restarts, RSS cap |
+| **night/restart** | File, model, VFS, log, handler restarts; expected overlap is success; `maxFail` 0 |
 
 **Gate smokes** (default `test -j`, not this tree):
 

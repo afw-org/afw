@@ -7,7 +7,8 @@
 # not touched.
 # Opt-in: afwdev test -T src/afw/tests-extra/stress-file-restart
 #
-# The leaf fails if afwfcgi exits. Request errors are counted.
+# The leaf fails if afwfcgi exits. Overlap the service layer already
+# reports returns success. maxFail 0: any other request error fails.
 # Threads are 3 per CPU, with two requests in flight per thread.
 # A percent may be over 100. One per CPU left this leaf near idle.
 
@@ -26,9 +27,18 @@ tests:
   - name: read-file
     sourceType: script
     source: |
-      const o = get_object("filebox", "Demo", "seed");
-      assert(o.msg === "from-file");
-      return true;
+      try {
+          const o = get_object("filebox", "Demo", "seed");
+          assert(o.msg === "from-file");
+          return true;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "is not available")
+              || includes<string>(e.message, "is not running")) {
+              return "down";
+          }
+          throw e.message;
+      }
 
   - name: restart-file
     sourceType: script
@@ -76,3 +86,4 @@ schedule:
       policy: random
       seed: 1
       stopOnError: false
+      maxFail: 0

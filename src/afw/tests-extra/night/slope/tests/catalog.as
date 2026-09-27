@@ -1,0 +1,1 @@
+../../../firehose/tests/catalog.as

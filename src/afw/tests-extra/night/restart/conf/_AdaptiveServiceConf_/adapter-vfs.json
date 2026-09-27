@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-vfs",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "vfs",
+        "adapterId": "vfs",
+        "vfsMap": [
+            "=vfs/"
+        ]
+    }
+}

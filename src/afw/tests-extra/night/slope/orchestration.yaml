@@ -1,0 +1,151 @@
+# One afwfcgi, no adapter restarts. This is the leak watch.
+#
+# The pool is the busy firehose (file, model, LMDB use, VFS, an LDAP
+# read, catalog, HTTP) plus the #379 shapes (cheap loop, catalog
+# touch, adapter metrics) and a process:: / pool sample. rss-check
+# fails if process::rss grew 64 MiB from the first sample.
+#
+# Check-in is 90s at half the CPUs. The overnight script raises
+# duration_s and timeout_s. Do not put service_restart in this pool.
+# Opt-in: afwdev test -T src/afw/tests-extra/night/slope
+
+version: 1
+description: Busy afwfcgi leak watch, no restarts, RSS capped at 64 MiB
+host: afwfcgi
+afwfcgi:
+  threads: "50%"
+  http:
+    maps:
+      - prefix: /apps
+        root: build/js/apps
+      - prefix: /docs
+        root: build/docs
+      - prefix: /tests-extra
+        root: src/afw/tests-extra
+      - prefix: /work
+        root: .
+timeout_s: 240
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: generate
+    sourceType: script
+    source: <<< tests/generate.as
+    expect: true
+
+  - name: metrics-sample
+    sourceType: script
+    source: <<< tests/metrics_sample.as
+    expect: true
+
+  - name: rss-check
+    sourceType: script
+    source: <<< tests/rss_check.as
+
+  - name: read-person
+    sourceType: script
+    source: <<< tests/read_person.as
+    expect: true
+
+  - name: read-note
+    sourceType: script
+    source: <<< tests/read_note.as
+    expect: true
+
+  - name: read-roster
+    sourceType: script
+    source: <<< tests/read_roster.as
+    expect: true
+
+  - name: read-generated
+    sourceType: script
+    source: <<< tests/read_generated.as
+    expect: true
+
+  - name: churn-note
+    sourceType: script
+    source: <<< tests/churn_note.as
+    expect: true
+
+  - name: churn-model
+    sourceType: script
+    source: <<< tests/churn_model.as
+    expect: true
+
+  - name: catalog
+    sourceType: script
+    source: <<< tests/catalog.as
+    expect: true
+
+  - name: churn-lmdb
+    sourceType: script
+    source: <<< tests/churn_lmdb.as
+    expect: true
+
+  - name: read-vfs
+    sourceType: script
+    source: <<< tests/read_vfs.as
+    expect: true
+
+  - name: churn-vfs
+    sourceType: script
+    source: <<< tests/churn_vfs.as
+    expect: true
+
+  - name: read-ldap
+    sourceType: script
+    source: <<< tests/read_ldap.as
+    expect: true
+
+  - name: http-get-hello
+    sourceType: script
+    source: <<< tests/http_get_hello.as
+    expect: true
+
+  - name: cheap-loop
+    sourceType: script
+    source: <<< tests/cheap_loop.as
+
+  - name: catalog-touch
+    sourceType: script
+    source: <<< tests/catalog_touch.as
+
+  - name: adapter-metrics
+    sourceType: script
+    source: <<< tests/adapter_metrics.as
+    expect: true
+
+schedule:
+  - sequential:
+      - metrics-sample
+      - generate
+  - firehose:
+      duration_s: 90
+      concurrency: "100%"
+      clientProcesses: "50%"
+      fromTests:
+        - read-person
+        - read-note
+        - read-roster
+        - read-generated
+        - churn-note
+        - churn-model
+        - catalog
+        - churn-lmdb
+        - read-vfs
+        - churn-vfs
+        - read-ldap
+        - http-get-hello
+        - cheap-loop
+        - catalog-touch
+        - adapter-metrics
+        - metrics-sample
+      policy: roundRobin
+      seed: 1
+      stopOnError: false
+      maxFail: 0
+  - sequential:
+      - rss-check

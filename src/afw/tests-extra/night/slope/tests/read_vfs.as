@@ -1,0 +1,1 @@
+../../../firehose/tests/read_vfs.as

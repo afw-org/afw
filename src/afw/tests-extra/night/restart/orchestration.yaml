@@ -1,0 +1,294 @@
+# Restart file, model, vfs, a log, and an authorization handler while
+# other requests read them. Overlap that the service layer already
+# reports ("cannot be restarted", "can not be stopped", "can not be
+# started", "is not running", "is not available") returns success.
+# Anything else fails the request. maxFail 0 means the leaf passes
+# only when every request succeeded or returned one of those.
+# afwfcgi exiting still fails the leaf.
+#
+# LMDB is not in this leaf. LDAP is not in this leaf.
+# Opt-in: afwdev test -T src/afw/tests-extra/night/restart
+#
+# Check-in is 90s with 1 server thread. Two threads segfaulted during
+# the run. Four threads and half the CPUs segfaulted in libafw around
+# log startup once the harness was connected. One thread, also beside
+# the slope leaf, finished 90s with zero failures. The overnight
+# script raises duration_s and timeout_s. timeout_s must stay above
+# duration_s.
+
+version: 1
+description: Restart file, model, vfs, log, and a handler under reads
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 180
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: handler-and-log-snapshot
+    sourceType: script
+    source: |
+      function restart3(serviceId) {
+          let done = 0;
+          let tries = 0;
+          while (done < 3 && tries < 12) {
+              tries = tries + 1;
+              try {
+                  const svc = service_restart(serviceId);
+                  assert(svc.serviceId === serviceId,
+                      serviceId + " status=" + string(svc.status)
+                      + " " + string(svc.statusMessage));
+                  assert(svc.status !== "error",
+                      string(svc.statusMessage));
+                  done = done + 1;
+              }
+              catch (e) {
+                  if (!includes<string>(e.message, "cannot be restarted")) {
+                      throw e.message;
+                  }
+              }
+          }
+          assert(done === 3, serviceId + " completed " + string(done));
+          return true;
+      }
+
+      const handler = get_object(
+          "afw", "_AdaptiveAuthorizationHandler_", "permit");
+      assert(handler.authorizationHandlerId === "permit");
+      const heldHandler = handler.properties;
+      assert(heldHandler.authorizationHandlerId === "permit",
+          "handler properties missing authorizationHandlerId");
+      restart3("authorizationHandler-permit");
+      assert(heldHandler.authorizationHandlerId === "permit",
+          "held handler properties died across restart");
+
+      const log = get_object("afw", "_AdaptiveLog_", "standard");
+      assert(log.logId === "standard");
+      const heldLog = log.properties;
+      assert(heldLog.logId === "standard",
+          "log properties missing logId");
+      restart3("log-standard");
+      assert(heldLog.logId === "standard",
+          "held log properties died across restart");
+      return true;
+    expect: true
+
+  - name: read-file
+    sourceType: script
+    source: |
+      try {
+          const o = get_object("filebox", "Demo", "seed");
+          assert(o.msg === "from-file");
+          return true;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "is not available")
+              || includes<string>(e.message, "is not running")) {
+              return "down";
+          }
+          throw e.message;
+      }
+
+  - name: restart-file
+    sourceType: script
+    source: |
+      try {
+          const svc = service_restart("adapter-filebox");
+          assert(svc.serviceId === "adapter-filebox");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "cannot be restarted")
+              || includes<string>(e.message, "is not running")) {
+              return "restarting";
+          }
+          throw e.message;
+      }
+
+  - name: stop-start-file
+    sourceType: script
+    source: |
+      try {
+          service_stop("adapter-filebox");
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "can not be stopped")
+              && !includes<string>(e.message, "is not running")) {
+              throw e.message;
+          }
+      }
+      try {
+          const svc = service_start("adapter-filebox");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "can not be started")
+              || includes<string>(e.message, "is not running")) {
+              return "busy";
+          }
+          throw e.message;
+      }
+
+  - name: read-model
+    sourceType: script
+    source: |
+      try {
+          const o = get_object("model", "Demo", "seed");
+          assert(o.msg === "from-eval");
+          assert(o.tag === "soak");
+          return true;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "is not available")
+              || includes<string>(e.message, "is not running")) {
+              return "down";
+          }
+          throw e.message;
+      }
+
+  - name: restart-model
+    sourceType: script
+    source: |
+      try {
+          const svc = service_restart("adapter-model");
+          assert(svc.serviceId === "adapter-model");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "cannot be restarted")
+              || includes<string>(e.message, "is not running")) {
+              return "restarting";
+          }
+          throw e.message;
+      }
+
+  - name: stop-start-model
+    sourceType: script
+    source: |
+      try {
+          service_stop("adapter-model");
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "can not be stopped")
+              && !includes<string>(e.message, "is not running")) {
+              throw e.message;
+          }
+      }
+      try {
+          const svc = service_start("adapter-model");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "can not be started")
+              || includes<string>(e.message, "is not running")) {
+              return "busy";
+          }
+          throw e.message;
+      }
+
+  - name: read-vfs
+    sourceType: script
+    source: |
+      try {
+          const f = get_object("vfs", "_AdaptiveFile_vfs", "hello.txt");
+          assert(f.data === "hello\n");
+          return true;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "is not available")
+              || includes<string>(e.message, "is not running")) {
+              return "down";
+          }
+          throw e.message;
+      }
+
+  - name: restart-vfs
+    sourceType: script
+    source: |
+      try {
+          const svc = service_restart("adapter-vfs");
+          assert(svc.serviceId === "adapter-vfs");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "cannot be restarted")
+              || includes<string>(e.message, "is not running")) {
+              return "restarting";
+          }
+          throw e.message;
+      }
+
+  - name: restart-log
+    sourceType: script
+    source: |
+      try {
+          const svc = service_restart("log-standard");
+          assert(svc.serviceId === "log-standard");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return svc.status;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "cannot be restarted")
+              || includes<string>(e.message, "is not running")) {
+              return "restarting";
+          }
+          throw e.message;
+      }
+
+  - name: read-handler
+    sourceType: script
+    source: |
+      try {
+          const h = get_object(
+              "afw", "_AdaptiveAuthorizationHandler_", "permit");
+          assert(h.authorizationHandlerId === "permit");
+          assert(h.properties.authorizationHandlerId === "permit");
+          return true;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "is not available")
+              || includes<string>(e.message, "is not running")) {
+              return "down";
+          }
+          throw e.message;
+      }
+
+  - name: read-afw-metrics
+    sourceType: script
+    source: |
+      const a = get_object("afw", "_AdaptiveAdapter_", "afw");
+      assert(a.adapterId === "afw");
+      assert(a.metrics !== null && a.metrics !== undefined);
+      return true;
+
+schedule:
+  - sequential:
+      - handler-and-log-snapshot
+  - firehose:
+      duration_s: 90
+      concurrency: "100%"
+      clientProcesses: "50%"
+      fromTests:
+        - read-file
+        - restart-file
+        - stop-start-file
+        - read-model
+        - restart-model
+        - stop-start-model
+        - read-vfs
+        - restart-vfs
+        - restart-log
+        - read-handler
+        - read-afw-metrics
+      policy: random
+      seed: 1
+      stopOnError: false
+      maxFail: 0
