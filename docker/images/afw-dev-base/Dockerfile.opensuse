@@ -12,6 +12,7 @@ RUN zypper ref -s && \
     FastCGI FastCGI-devel libmysqlclient-devel \
     libdb-4_8 libdb-4_8-devel libcurl-devel git \
     lmdb lmdb-devel libedit-devel doxygen rpm-build valgrind lato-fonts \
+    openldap2-devel openldap2 \
     python3 python3-pip java-9-openjdk nodejs18 npm18 && \
     zypper cc -a
 

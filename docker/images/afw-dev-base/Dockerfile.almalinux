@@ -18,6 +18,7 @@ RUN dnf install -y epel-release && \
     python3-pip python3-devel \
     fcgi fcgi-devel wget git \
     rpm-build npm \
+    openldap-devel openldap-servers \
     openssl openssl-devel doxygen && \
     dnf clean all && rm -rf /var/cache/*
 
