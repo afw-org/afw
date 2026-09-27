@@ -540,8 +540,15 @@ impl_make_property_type_and_handler_hash_tables(
             AFW_THROW_ERROR_Z(general,
                 "LDAP attribute type object is missing objectId", xctx);
         }
+        /*
+         * NAME aliases share one schema object. Its object id is the
+         * last alias, so property_name is this hash key. The key bytes
+         * live on metadata->p for the life of the attribute type.
+         */
         attribute_type->property_name.inf = &afw_value_unmanaged_string_inf;
-        attribute_type->property_name.internal = *id;
+        attribute_type->property_name.internal.s =
+            (const afw_utf8_octet_t *)key;
+        attribute_type->property_name.internal.len = klen;
 
         /*
          * Use syntax to determine datatype and handler.  Add handler to
