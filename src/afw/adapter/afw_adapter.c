@@ -43,6 +43,11 @@ afw_adapter_internal_get_cache(afw_xctx_t *xctx)
  * new access to this id.
  */
 static void
+impl_adapter_release_reference(
+    const afw_adapter_t *instance, afw_xctx_t *xctx);
+
+
+static void
 impl_set_instance_active(
     const afw_utf8_t *adapter_id,
     const afw_adapter_t *adapter,
@@ -109,9 +114,12 @@ impl_set_instance_active(
 
     AFW_LOCK_END;
 
-    /* If there was a previously active adapter, release it. */
+    /*
+     * Drop the generation's own count. That count was not a
+     * get_reference(), so it has no cleanup to remove.
+     */
     if (stopping) {
-        afw_adapter_release(stopping->adapter, xctx);
+        impl_adapter_release_reference(stopping->adapter, xctx);
     }
 }
 
@@ -224,6 +232,7 @@ afw_adapter_get_metrics_object(
         return NULL;
     }
     AFW_TRY {
+        afw_adapter_internal_reference_cleanup(held, xctx->p, xctx);
         snapshot = afw_object_managed_clone_for_caller(object, p, xctx);
     }
     AFW_FINALLY {
@@ -262,6 +271,18 @@ afw_adapter_get_reference(
         }
     }
 
+    /*
+     * One cleanup per reference. Several for one adapter are
+     * allowed. afw_adapter_release() removes one of them.
+     */
+    AFW_TRY {
+        afw_adapter_internal_reference_cleanup(instance, xctx->p, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        impl_adapter_release_reference(instance, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
     return instance;
 }
 
@@ -362,9 +383,15 @@ afw_adapter_get_properties_object(
 
 
 
-/* Release an adapter accessed by afw_adapter_get_reference(). */
-AFW_DEFINE(void)
-afw_adapter_release(const afw_adapter_t *instance, afw_xctx_t *xctx)
+/*
+ * Drop one reference count. Does not remove a pool cleanup.
+ * afw_adapter_release() removes one cleanup, then calls this.
+ * A pool callback calls this directly so one owed release
+ * cannot remove a different reference's cleanup.
+ */
+static void
+impl_adapter_release_reference(
+    const afw_adapter_t *instance, afw_xctx_t *xctx)
 {
     afw_adapter_id_anchor_t *anchor;
     afw_adapter_id_anchor_t *previous_anchor;
@@ -403,6 +430,61 @@ afw_adapter_release(const afw_adapter_t *instance, afw_xctx_t *xctx)
     if (destroy) {
         afw_adapter_destroy(instance, xctx);
     }
+}
+
+
+/*
+ * One owed release. data is the adapter. Many entries may name
+ * the same adapter. Must not throw out of a pool cleanup.
+ */
+static void
+impl_adapter_reference_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    if (!data) {
+        return;
+    }
+    AFW_TRY {
+        impl_adapter_release_reference(
+            (const afw_adapter_t *)data, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Leave the rest of this pool's cleanups to run. */
+    }
+    AFW_ENDTRY;
+}
+
+
+void
+afw_adapter_internal_reference_cleanup(
+    const afw_adapter_t *adapter,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!adapter || !p) {
+        return;
+    }
+    afw_pool_register_cleanup(p, (void *)adapter, NULL,
+        impl_adapter_reference_cleanup, xctx);
+}
+
+
+/* Release an adapter accessed by afw_adapter_get_reference(). */
+AFW_DEFINE(void)
+afw_adapter_release(const afw_adapter_t *instance, afw_xctx_t *xctx)
+{
+    /*
+     * Remove one cleanup for this adapter. Entries are
+     * interchangeable. A release with no cleanup still drops
+     * the count.
+     */
+    if (instance && xctx->p) {
+        afw_pool_deregister_cleanup(xctx->p, (void *)instance, NULL,
+            impl_adapter_reference_cleanup, xctx);
+    }
+    impl_adapter_release_reference(instance, xctx);
 }
 
 
@@ -447,7 +529,10 @@ afw_adapter_session_release(
         }
     }
 
-    /* Destroy session and release adapter. */
+    /*
+     * Destroy first. A throw there skips the release below.
+     * The get_reference() cleanup on xctx->p still drops it.
+     */
     afw_adapter_session_destroy(session, xctx);
     afw_adapter_release(adapter, xctx);
 }

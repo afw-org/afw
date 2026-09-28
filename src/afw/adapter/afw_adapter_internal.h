@@ -100,6 +100,20 @@ afw_adapter_internal_cache_t *
 afw_adapter_internal_get_cache(afw_xctx_t *xctx);
 
 
+/**
+ * @internal
+ * Remember one afw_adapter_release() for adapter when p is destroyed.
+ * The same adapter may be registered more than once.
+ * afw_adapter_release() removes one matching entry on xctx->p only.
+ * A cleanup registered on another pool stays until that pool dies.
+ */
+void
+afw_adapter_internal_reference_cleanup(
+    const afw_adapter_t *adapter,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 
 /**
  * @internal
