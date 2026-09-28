@@ -1013,6 +1013,7 @@ afw_runtime_value_accessor_adapter_metrics(
         return NULL;
     }
     AFW_TRY {
+        afw_adapter_internal_reference_cleanup(held, xctx->p, xctx);
         metrics_object = afw_object_managed_clone_for_caller(
             metrics_object, p, xctx);
     }
@@ -1547,6 +1548,7 @@ afw_runtime_value_accessor_adapter_additional_metrics(
      * get_additional_metrics returns, so the pin covers the call only. */
     obj = NULL;
     AFW_TRY {
+        afw_adapter_internal_reference_cleanup(held, xctx->p, xctx);
         obj = afw_adapter_get_additional_metrics(held, p, xctx);
     }
     AFW_FINALLY {

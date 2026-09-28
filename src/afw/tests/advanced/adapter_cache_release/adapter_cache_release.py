@@ -64,10 +64,19 @@ def run():
                 "abort from inside an in-flight error releases "
                 "and leaves that error in place",
             ),
+            (
+                "reference_many",
+                "two get_reference cleanups, each release removes one",
+            ),
+            (
+                "reference_pool_drops_rest",
+                "identical cleanups left on a pool each release once",
+            ),
         ],
         extra_cflags=(
             "-I", os.path.join(afw, "xctx"),
             "-I", os.path.join(afw, "adapter"),
+            "-I", os.path.join(afw, "pool"),
             "-DAFW_XCTX_INTERNAL_MEMBERS",
         ),
     )

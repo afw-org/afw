@@ -9,6 +9,7 @@
 /* Compiled with -DAFW_XCTX_INTERNAL_MEMBERS so xctx->cache is visible. */
 #include "afw.h"
 #include "afw_adapter_internal.h"
+#include "afw_pool_internal.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -530,6 +531,124 @@ impl_quiet_inside_catch(afw_xctx_t *xctx)
 }
 
 
+static void
+impl_reference_destroy(const afw_adapter_t *instance, afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+}
+
+
+static const afw_adapter_t *
+impl_reference_install(afw_xctx_t *xctx)
+{
+    static afw_adapter_inf_t inf;
+    static afw_adapter_t adapter;
+    static afw_adapter_id_anchor_t anchor;
+    static const afw_utf8_t id = AFW_UTF8_LITERAL("pinprobe");
+
+    memset(&inf, 0, sizeof(inf));
+    inf.destroy = impl_reference_destroy;
+    memset(&adapter, 0, sizeof(adapter));
+    adapter.inf = &inf;
+    adapter.adapter_id = id;
+    adapter.p = xctx->p;
+    memset(&anchor, 0, sizeof(anchor));
+    anchor.adapter_id = &adapter.adapter_id;
+    anchor.adapter = &adapter;
+    anchor.reference_count = 1;
+    afw_environment_register_adapter_id(
+        &adapter.adapter_id, &anchor, xctx);
+    return &adapter;
+}
+
+
+static int
+impl_reference_cleanups(const afw_adapter_t *adapter, afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *pool;
+    afw_pool_cleanup_t *entry;
+    int n;
+
+    n = 0;
+    pool = (afw_pool_internal_self_t *)xctx->p;
+    for (entry = pool->first_cleanup; entry; entry = entry->next_cleanup) {
+        if (entry->data == (void *)adapter) {
+            n++;
+        }
+    }
+    return n;
+}
+
+
+static int
+impl_reference_many(afw_xctx_t *xctx)
+{
+    const afw_adapter_t *adapter;
+    afw_adapter_id_anchor_t *anchor;
+    afw_integer_t before;
+    int cleanups;
+
+    adapter = impl_reference_install(xctx);
+    anchor = (afw_adapter_id_anchor_t *)
+        afw_environment_get_adapter_id(&adapter->adapter_id, xctx);
+    before = anchor->reference_count;
+    cleanups = impl_reference_cleanups(adapter, xctx);
+    adapter = afw_adapter_get_reference(&adapter->adapter_id, xctx);
+    afw_adapter_get_reference(&adapter->adapter_id, xctx);
+    if (anchor->reference_count != before + 2 ||
+        impl_reference_cleanups(adapter, xctx) != cleanups + 2)
+    {
+        return impl_fail("reference_many", "two references");
+    }
+    afw_adapter_release(adapter, xctx);
+    if (anchor->reference_count != before + 1 ||
+        impl_reference_cleanups(adapter, xctx) != cleanups + 1)
+    {
+        fprintf(stderr, "reference_many: count %ld cleanups %d\n",
+            (long)anchor->reference_count,
+            impl_reference_cleanups(adapter, xctx));
+        return 1;
+    }
+    afw_adapter_release(adapter, xctx);
+    if (anchor->reference_count != before ||
+        impl_reference_cleanups(adapter, xctx) != cleanups)
+    {
+        fprintf(stderr, "reference_many: count %ld after two releases\n",
+            (long)anchor->reference_count);
+        return 1;
+    }
+    return 0;
+}
+
+
+static int
+impl_reference_pool_drops_rest(afw_xctx_t *xctx)
+{
+    const afw_adapter_t *adapter;
+    afw_adapter_id_anchor_t *anchor;
+    const afw_pool_t *p;
+    afw_integer_t before;
+
+    adapter = impl_reference_install(xctx);
+    anchor = (afw_adapter_id_anchor_t *)
+        afw_environment_get_adapter_id(&adapter->adapter_id, xctx);
+    before = anchor->reference_count;
+    /* Two debts that release will not see. They live only on p. */
+    anchor->reference_count += 2;
+    p = afw_pool_create(xctx->p, xctx);
+    afw_adapter_internal_reference_cleanup(adapter, p, xctx);
+    afw_adapter_internal_reference_cleanup(adapter, p, xctx);
+    afw_pool_release(p, xctx);
+    if (anchor->reference_count != before) {
+        fprintf(stderr, "reference_pool_drops_rest: count %ld before %ld\n",
+            (long)anchor->reference_count, (long)before);
+        return 1;
+    }
+    return 0;
+}
+
+
 static int
 impl_no_cache(afw_xctx_t *xctx)
 {
@@ -587,6 +706,12 @@ main(int argc, char **argv)
     }
     else if (strcmp(case_name, "quiet_inside_catch") == 0) {
         rc = impl_quiet_inside_catch(xctx);
+    }
+    else if (strcmp(case_name, "reference_many") == 0) {
+        rc = impl_reference_many(xctx);
+    }
+    else if (strcmp(case_name, "reference_pool_drops_rest") == 0) {
+        rc = impl_reference_pool_drops_rest(xctx);
     }
     else {
         fprintf(stderr, "unknown case '%s'\n", case_name);
