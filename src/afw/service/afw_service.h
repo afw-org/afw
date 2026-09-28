@@ -29,16 +29,6 @@
 AFW_BEGIN_DECLARES
 
 /**
- * @brief Service create callback that takes over p.
- */
-typedef void (*afw_service_create_cede_p_t)(
-    afw_service_t *service,
-    void *data,
-    const afw_object_t *properties,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-/**
  * @brief Runtime service struct.
  *
  * There is one of these for each service that is registered.
@@ -110,9 +100,6 @@ struct afw_service_s {
 
     /** @brief Mutex used when changing status. */
     afw_thread_mutex_t *mutex;
-
-    /** @fixme Might go away. */
-    void *data;
 
     /** @brief Has a service conf object. */
     afw_boolean_t has_service_conf;
