@@ -767,22 +767,19 @@ impl_debug_free_poisons_user(afw_xctx_t *xctx)
 
 
 static int
-impl_double_free_throws(afw_xctx_t *xctx)
+impl_expect_already_freed(
+    const afw_pool_t *heap,
+    void *address,
+    const char *label,
+    afw_xctx_t *xctx)
 {
-    const afw_pool_t *heap;
-    void *a;
     int threw;
     int unexpected;
-
-    heap = afw_pool_heap_create(xctx->p, 0, xctx);
-    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
-    memset(a, 0x77, IMPL_SIZE_MEDIUM);
-    afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
 
     threw = 0;
     unexpected = 0;
     AFW_TRY {
-        afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+        afw_pool_free_memory(heap, address, IMPL_SIZE_MEDIUM, xctx);
     }
     AFW_CATCH_UNHANDLED {
         if (AFW_ERROR_THROWN->code == afw_error_code_general &&
@@ -793,21 +790,101 @@ impl_double_free_throws(afw_xctx_t *xctx)
         }
         else {
             unexpected = 1;
-            fprintf(stderr, "double_free_throws: threw %s\n",
+            fprintf(stderr, "%s: threw %s\n", label,
                 AFW_ERROR_THROWN->message_z
                     ? AFW_ERROR_THROWN->message_z : "?");
         }
     }
     AFW_ENDTRY;
 
-    afw_pool_release(heap, xctx);
-
     if (unexpected) {
         return 1;
     }
     if (!threw) {
-        return impl_fail("double_free_throws", "did not throw");
+        return impl_fail(label, "did not throw");
     }
+    return 0;
+}
+
+/*
+ * Second free of a heap block throws "already freed" and leaves
+ * in_use alone. Also after the block was coalesced into the block
+ * before it: the absorbed header keeps its free bit.
+ */
+static int
+impl_double_free_throws(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    void *a;
+    void *b;
+    afw_size_t before;
+    int rc;
+
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
+    before = impl_in_use(xctx);
+    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    memset(a, 0x77, IMPL_SIZE_MEDIUM);
+    afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+    rc = impl_expect_already_freed(heap, a,
+        "double_free_throws", xctx);
+    if (!rc) {
+        rc = impl_expect_in_use(xctx, before,
+            "double_free_throws in_use");
+    }
+
+    if (!rc) {
+        a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+        b = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+        (void)afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+        afw_pool_free_memory(heap, b, IMPL_SIZE_MEDIUM, xctx);
+        afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+        rc = impl_expect_already_freed(heap, b,
+            "double_free_throws after coalesce", xctx);
+    }
+
+    afw_pool_release(heap, xctx);
+    return rc;
+}
+
+/*
+ * Blocks a tracker returns to the heap carry a NULL chunk. The
+ * tracker list link is not a chunk, so it must not land in the
+ * free node's chunk word.
+ */
+static int
+impl_tracker_return_chunk(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    const afw_pool_t *tracker;
+    afw_pool_heap_internal_self_t *h;
+    afw_pool_heap_internal_free_node_t *n;
+    afw_pool_heap_internal_chunk_t *chunk;
+    int i;
+
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
+    h = impl_heap(heap);
+    tracker = afw_pool_tracker_create(heap, xctx);
+    for (i = 0; i < 3; i++) {
+        (void)afw_pool_malloc(tracker, IMPL_SIZE_MEDIUM, xctx);
+    }
+    afw_pool_release(tracker, xctx);
+
+    for (i = 0, n = h->free_memory_head->first;
+        n && i < IMPL_FREE_WALK_CAP;
+        n = n->next, i++)
+    {
+        chunk = (afw_pool_heap_internal_chunk_t *)
+            ((uintptr_t)n->chunk & ~(uintptr_t)1);
+        if (chunk && chunk != h->current_chunk) {
+            fprintf(stderr, "tracker_return_chunk: free node %p "
+                "chunk word %p is not the chunk %p\n",
+                (void *)n, (void *)n->chunk,
+                (void *)h->current_chunk);
+            afw_pool_release(heap, xctx);
+            return 1;
+        }
+    }
+    afw_pool_release(heap, xctx);
     return 0;
 }
 
@@ -1307,6 +1384,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "double_free_throws") == 0) {
         rc = impl_double_free_throws(xctx);
     }
+    else if (strcmp(case_name, "tracker_return_chunk") == 0) {
+        rc = impl_tracker_return_chunk(xctx);
+    }
 #ifdef AFW_DEBUG_POOL
     else if (strcmp(case_name, "debug_free_wrong_size") == 0) {
         rc = impl_debug_free_wrong_size(xctx);
@@ -1329,7 +1409,7 @@ main(int argc, char **argv)
             "nonadjacent_reuse|"
             "for_clone_churn|create_child_of_heap|leftover_child_heap|"
             "thread_parent_hold|"
-            "double_free_throws"
+            "double_free_throws|tracker_return_chunk"
 #ifdef AFW_DEBUG_POOL
             "|debug_free_wrong_size|debug_free_wrong_pool"
             "|debug_free_poisons_user"

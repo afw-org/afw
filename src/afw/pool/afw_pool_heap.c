@@ -472,6 +472,7 @@ afw_pool_heap_internal_add_to_free_list(
     afw_pool_heap_internal_self_t *heap,
     void *start,
     afw_size_t total,
+    afw_pool_heap_internal_chunk_t *chunk,
     afw_xctx_t *xctx);
 
 void *
@@ -596,9 +597,8 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     if (heap->current_chunk &&
         heap->remaining >= sizeof(afw_pool_heap_internal_free_node_t))
     {
-        impl_block_set_chunk(heap->bump, heap->current_chunk);
         afw_pool_heap_internal_add_to_free_list(heap, heap->bump,
-            heap->remaining, xctx);
+            heap->remaining, heap->current_chunk, xctx);
     }
     heap->bump = NULL;
     heap->remaining = 0;
@@ -666,6 +666,7 @@ afw_pool_heap_internal_add_to_free_list(
     afw_pool_heap_internal_self_t *heap,
     void *start,
     afw_size_t total,
+    afw_pool_heap_internal_chunk_t *chunk,
     afw_xctx_t *xctx)
 {
     afw_pool_heap_internal_free_node_t *freeing;
@@ -679,14 +680,13 @@ afw_pool_heap_internal_add_to_free_list(
 
     freeing = (afw_pool_heap_internal_free_node_t *)start;
     freeing->total = total;
+    impl_block_set_chunk(freeing, chunk);
     impl_block_mark_free(freeing);
 
     {
         char *nstart;
-        afw_pool_heap_internal_chunk_t *chunk;
         afw_pool_heap_internal_free_node_t *nxt;
 
-        chunk = impl_block_chunk(freeing);
         nstart = ((char *)freeing) + freeing->total;
         /*
          * Unused bump in the current chunk is not a block header.
@@ -946,6 +946,19 @@ impl_heap_free_internal(
         AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
+    start = AFW_POOL_HEAP_INTERNAL_ALLOC_START(address);
+    /*
+     * Before the debug prefix check: the free overlay covers
+     * [size][pool], so a second free would report the wrong pool.
+     */
+    if (impl_block_is_free(start)) {
+        if (no_throw) {
+            return;
+        }
+        AFW_THROW_ERROR_Z(general,
+            "afw_pool_free_memory: already freed",
+            xctx);
+    }
     if (no_throw) {
         if (!afw_pool_internal_debug_prefix_ok(self, address, size)) {
             return;
@@ -960,12 +973,12 @@ impl_heap_free_internal(
     if (no_throw && total == 0) {
         return;
     }
-    start = AFW_POOL_HEAP_INTERNAL_ALLOC_START(address);
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, total);
     afw_pool_internal_account_free(self, total, xctx);
-    afw_pool_heap_internal_add_to_free_list(afw_pool_heap_internal_as_heap(self), start, total, xctx);
+    afw_pool_heap_internal_add_to_free_list(afw_pool_heap_internal_as_heap(self),
+        start, total, impl_block_chunk(start), xctx);
 }
 
 void

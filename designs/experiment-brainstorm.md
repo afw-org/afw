@@ -35,7 +35,7 @@ Literal slot fill stayed pre-#277 after intern. The mixed-size concat + integer 
 
 **Later (not this loop):** heap free-list mixed sizes if a *new* long-running pattern shows first-fit walking a growing list. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
 
-**Not the scoreboard.** How close / remaining soaks: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) *Live status (2026-09-19)* and [`src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md`](../src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md). Isolate sitting [PR #340](https://github.com/afw-org/afw/pull/340). `function_return` **flat**. `try_catch` **flat** ([#341](https://github.com/afw-org/afw/issues/341) / [PR #354](https://github.com/afw-org/afw/pull/354)). Managed compiled_value + dest `p` + evaluate pin [PR #355](https://github.com/afw-org/afw/pull/355). Parked **#277** residuals (Adaptive `clone()`, `qualifier("current")` snapshot, skip `double_free_throws`) — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
+**Not the scoreboard.** How close / remaining soaks: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) *Live status (2026-09-19)* and [`src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md`](../src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md). Isolate sitting [PR #340](https://github.com/afw-org/afw/pull/340). `function_return` **flat**. `try_catch` **flat** ([#341](https://github.com/afw-org/afw/issues/341) / [PR #354](https://github.com/afw-org/afw/pull/354)). Managed compiled_value + dest `p` + evaluate pin [PR #355](https://github.com/afw-org/afw/pull/355). Parked **#277** residuals (Adaptive `clone()`, `qualifier("current")` snapshot) — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
 
 When **evaluation of a compiled_value is done**, the result is **pinned on dest `p`** (`release_value_at_cleanup`) and returned as-is. Permanents stay permanents. Functions/closures as the result still alias the unit (the unit is a managed `compiled_value`).
 
@@ -81,7 +81,7 @@ Separate inf (`memory_managed`), alloc in dest `p->managed_p`, RC 1. Slots: new 
 - Functions/closures as an eval result still alias the unit.
 - Adaptive `clone()` still the old function.
 - `qualifier("current")` snapshot list tail.
-- `double_free_throws` still skipped (prefix overlay).
+- `double_free_throws` runs ([#408](https://github.com/afw-org/afw/issues/408)): heap free checks the block's free bit first. Tracker-returned blocks do not coalesce yet ([#415](https://github.com/afw-org/afw/issues/415)).
 - Heap free-list mixed sizes: **not** the remaining eval win. After #287 the 14k concat + `n` nest is ~0.05s (timings above). Revisit only if a new pattern shows first-fit walking a growing list.
 
 `AFW_DEBUG_POOL` fills freed USER with `0x0BADF00D0BADF00D` so a dangling `inf` faults on any vtable access.

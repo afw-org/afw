@@ -23,10 +23,13 @@
  * delay.
  *
  * Heap live: [chunk][USER] or, if AFW_DEBUG_POOL,
- * [chunk…][size][pool][USER]. `chunk` is the posix_memalign
- * chunk so free coalescing does not walk first_chunk.
+ * [chunk…][size][pool][USER]. `chunk` is the chunk that holds the
+ * block so free coalescing does not walk first_chunk. Its low bit
+ * marks a freed block.
  * Freed heap blocks overlay afw_pool_heap_internal_free_node_t at the block start.
  * Tracker gets blocks from this store (`afw_pool_heap_internal_reservoir_heap`).
+ * A tracker block's first word is its list link, not `chunk`, so
+ * blocks a tracker returns carry a NULL chunk.
  */
 
 AFW_BEGIN_DECLARES
@@ -61,7 +64,8 @@ struct afw_pool_heap_internal_free_node_s {
 
 /*
  * Heap debug prefix is at least a free node so overlay on free does
- * not touch USER. [size][pool] stay immediately before USER.
+ * not touch USER. [size][pool] stay immediately before USER while
+ * the block is live. The free overlay covers them.
  */
 #ifdef AFW_DEBUG_POOL
 #define AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES \
@@ -188,11 +192,16 @@ afw_pool_heap_internal_block_bytes(
     afw_xctx_t *xctx,
     afw_boolean_t unhandled);
 
+/*
+ * chunk is the chunk that holds start, or NULL if the caller does
+ * not know it. A NULL chunk block never coalesces.
+ */
 void
 afw_pool_heap_internal_add_to_free_list(
     afw_pool_heap_internal_self_t *heap,
     void *start,
     afw_size_t total,
+    afw_pool_heap_internal_chunk_t *chunk,
     afw_xctx_t *xctx);
 
 void *
