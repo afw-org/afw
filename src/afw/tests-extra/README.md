@@ -118,6 +118,7 @@ src/afw/tests-extra/
 | **test262** | Copies of BMP comment sweeps (`comments-bmp-*.as`); default `test -j` also runs `src/afw/tests/test262/comments-bmp-*.as` |
 | **night/slope** | Leak watch: firehose mix plus #379 cheap/catalog/metrics, no restarts, RSS cap |
 | **night/restart** | File, model, VFS, log, handler restarts; expected overlap is success; `maxFail` 0 |
+| **stress-campaign** | Maintainer loop: `run-cycle.sh` rotates night practice, stress restarts, issue-2 RSS, 07/07b firehoses |
 
 **Gate smokes** (default `test -j`, not this tree):
 
