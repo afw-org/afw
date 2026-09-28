@@ -9,18 +9,18 @@
 # LMDB is not in this leaf. LDAP is not in this leaf.
 # Opt-in: afwdev test -T src/afw/tests-extra/night/restart
 #
-# Check-in is 90s with 1 server thread. Two threads segfaulted during
-# the run. Four threads and half the CPUs segfaulted in libafw around
-# log startup once the harness was connected. One thread, also beside
-# the slope leaf, finished 90s with zero failures. The overnight
-# script raises duration_s and timeout_s. timeout_s must stay above
-# duration_s.
+# Check-in is 90s with 4 server threads, so restarts overlap reads and
+# each other. One thread never overlaps them. A read that finds the
+# adapter stopped starts it, and another start or stop in flight makes
+# that throw "can not be started". The reads count it as down. The
+# overnight script raises duration_s and timeout_s. timeout_s must
+# stay above duration_s.
 
 version: 1
 description: Restart file, model, vfs, log, and a handler under reads
 host: afwfcgi
 afwfcgi:
-  threads: 1
+  threads: 4
 timeout_s: 180
 
 feed:
@@ -86,7 +86,8 @@ tests:
       }
       catch (e) {
           if (includes<string>(e.message, "is not available")
-              || includes<string>(e.message, "is not running")) {
+              || includes<string>(e.message, "is not running")
+              || includes<string>(e.message, "can not be started")) {
               return "down";
           }
           throw e.message;
@@ -145,7 +146,8 @@ tests:
       }
       catch (e) {
           if (includes<string>(e.message, "is not available")
-              || includes<string>(e.message, "is not running")) {
+              || includes<string>(e.message, "is not running")
+              || includes<string>(e.message, "can not be started")) {
               return "down";
           }
           throw e.message;
@@ -203,7 +205,8 @@ tests:
       }
       catch (e) {
           if (includes<string>(e.message, "is not available")
-              || includes<string>(e.message, "is not running")) {
+              || includes<string>(e.message, "is not running")
+              || includes<string>(e.message, "can not be started")) {
               return "down";
           }
           throw e.message;
@@ -255,7 +258,8 @@ tests:
       }
       catch (e) {
           if (includes<string>(e.message, "is not available")
-              || includes<string>(e.message, "is not running")) {
+              || includes<string>(e.message, "is not running")
+              || includes<string>(e.message, "can not be started")) {
               return "down";
           }
           throw e.message;
