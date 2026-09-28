@@ -32,8 +32,29 @@ afw_stream_fd_self_s {
     afw_boolean_t allow_write;
     afw_boolean_t auto_flush;
     afw_boolean_t close_on_release;
+    /* Last direction on an update ("+") stream; see impl_switch_to. */
+    enum { impl_last_none, impl_last_read, impl_last_write } last;
 } afw_stream_fd_self_t;
 
+
+
+/*
+ * C requires an fseek/fflush between a read and a following write (and
+ * the reverse) on an update stream. glibc tolerates skipping it; musl
+ * writes at its buffered read position instead (r+ read 2 then write
+ * lands at EOF). fseek(fd, 0, SEEK_CUR) is the portable no-op reposition.
+ * Failure (pipe, tty) is ignored: those have no position to keep.
+ */
+static void
+impl_switch_to(afw_stream_fd_self_t *self, int next)
+{
+    if (self->allow_read && self->allow_write &&
+        self->last != impl_last_none && self->last != next)
+    {
+        (void)fseek(self->fd, 0, SEEK_CUR);
+    }
+    self->last = next;
+}
 
 
 /*
@@ -82,6 +103,7 @@ impl_afw_stream_fd_write_cb(
             "Stream is not open for write", xctx);
     }
 
+    impl_switch_to(self, impl_last_write);
     ptr = (const afw_octet_t *)buffer;
     remaining = size;
     while (remaining > 0) {
@@ -173,6 +195,7 @@ impl_afw_stream_read(
         return 0;
     }
 
+    impl_switch_to(self, impl_last_read);
     clearerr(self->fd);
     n = fread(buffer, 1, size, self->fd);
     if (n == 0 && ferror(self->fd)) {
@@ -254,6 +277,13 @@ afw_stream_fd_open_and_create(
 
     path_z = afw_utf8_to_utf8_z(path, p, xctx);
     mode_z = afw_utf8_to_utf8_z(mode, p, xctx);
+
+    /* musl's fopen accepts "" (opens write-only), so check here. */
+    if (*mode_z != 'r' && *mode_z != 'w' && *mode_z != 'a') {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "streamId '%ku' invalid mode '%s'", streamId, mode_z);
+    }
+
     fd = fopen(path_z, mode_z);
     if (!fd) {
         err = errno;

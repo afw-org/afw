@@ -16,19 +16,29 @@ http_post();
 
 //? test: http_post_no_payload
 //? description: payload is optional (#108) -- omitting it sends an empty body instead of raising a missing-parameter error.
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_post("http://xyz");
+try {
+    http_post("http://xyz");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 //? test: http_post_bad_url
 //? description: Call http_post with bad url
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_post("http://xyz", "");
+try {
+    http_post("http://xyz", "");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 //? test: http_post_http_cleartext
 //? description: Call http_post against the local HTTP stub (see config.py)

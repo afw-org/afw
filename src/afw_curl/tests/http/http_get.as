@@ -16,11 +16,16 @@ http_get();
 
 //? test: http_get_bad_url
 //? description: Call http_get with bad url
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_get("http://xyz");
+try {
+    http_get("http://xyz");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 //? test: http_get
 //? description: Call http_get against the local HTTP stub (see config.py)

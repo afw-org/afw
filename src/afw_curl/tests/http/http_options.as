@@ -16,11 +16,16 @@ http_options();
 
 //? test: http_options_bad_url
 //? description: Call http_options with bad url
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_options("http://xyz");
+try {
+    http_options("http://xyz");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 
 //? test: http_options

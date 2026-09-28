@@ -26,6 +26,8 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <sys/resource.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 
 
 struct afw_os_mutex_s {
@@ -302,10 +304,39 @@ afw_os_thread_create(
     afw_xctx_t *xctx)
 {
     afw_os_thread_t *self;
+    pthread_attr_t attr;
+    size_t stack_size;
+    size_t want;
+    struct rlimit rl;
     int err;
 
     self = afw_pool_calloc_type(p, afw_os_thread_t, xctx);
-    err = pthread_create(&self->tid, NULL, start, arg);
+
+    /*
+     * Give every thread at least the main thread's stack budget.
+     * glibc already defaults to RLIMIT_STACK; musl defaults to
+     * ~128KiB, which the C stack headroom check trips on right away.
+     */
+    err = pthread_attr_init(&attr);
+    if (err != 0) {
+        AFW_THROW_ERROR_RV_Z(general, errno, err,
+            "pthread_attr_init() failed", xctx);
+    }
+    want = 8 * 1024 * 1024;
+    if (getrlimit(RLIMIT_STACK, &rl) == 0 &&
+        rl.rlim_cur != RLIM_INFINITY &&
+        (size_t)rl.rlim_cur > want)
+    {
+        want = (size_t)rl.rlim_cur;
+    }
+    if (pthread_attr_getstacksize(&attr, &stack_size) == 0 &&
+        stack_size < want)
+    {
+        (void)pthread_attr_setstacksize(&attr, want);
+    }
+
+    err = pthread_create(&self->tid, &attr, start, arg);
+    pthread_attr_destroy(&attr);
     if (err != 0) {
         AFW_THROW_ERROR_RV_Z(general, errno, err,
             "pthread_create() failed", xctx);
@@ -375,8 +406,14 @@ afw_os_c_stack_bounds(void **base, afw_size_t *size)
      * its high end (addr + nbytes) tracks actual usage closely. When
      * the process stack limit is bigger, keep that high end but
      * rebase the low end on RLIMIT_STACK instead of musl's size.
+     *
+     * Main thread only. RLIMIT_STACK sizes the main thread's stack;
+     * other threads have their real pthread size (musl's default is
+     * ~128KiB), and rebasing those would put the low bound below the
+     * actual stack so the headroom check could never trip.
      */
-    if (getrlimit(RLIMIT_STACK, &rl) == 0 &&
+    if (getpid() == (pid_t)syscall(SYS_gettid) &&
+        getrlimit(RLIMIT_STACK, &rl) == 0 &&
         rl.rlim_cur != RLIM_INFINITY &&
         (afw_size_t)rl.rlim_cur > (afw_size_t)nbytes)
     {

@@ -1,36 +1,28 @@
-FROM opensuse/leap:15.5
+FROM opensuse/leap:16.0
 
 LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # Install packages
 RUN zypper ref -s && \
-    zypper -n --non-interactive in gcc9 gcc9-c++ \
+    zypper -n in --force-resolution gcc gcc-c++ \
     libtool apache2-devel cmake clang-tools \
     libxml2 libxml2-devel \
-    icu libicu-devel libunwind libunwind-devel \
+    icu libicu-devel libunwind-devel \
     elfutils libdw1 libdw-devel libyaml-devel \
     FastCGI FastCGI-devel libmysqlclient-devel \
     libdb-4_8 libdb-4_8-devel libcurl-devel git \
     lmdb lmdb-devel libedit-devel doxygen rpm-build valgrind lato-fonts \
-    openldap2-devel openldap2 \
-    python3 python3-pip java-9-openjdk nodejs18 npm18 && \
+    openldap2-devel openldap2 libcurl4 \
+    python3 python3-pip python3-devel \
+    java-21-openjdk-headless nodejs22 npm22 && \
     zypper cc -a
 
 RUN npm install -g npm-upgrade && npm install -g n && n 24
 RUN npm install -g npm@10 eclint cspell
 
-# change compiler symlinks
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 && \
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 20 && \
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/gcc-9 20 && \
-    update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30 && \
-    update-alternatives --set cc /usr/bin/gcc && \
-    update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30 && \
-    update-alternatives --set c++ /usr/bin/g++
-
 # install python packages
 COPY python-requirements.txt /tmp/python-requirements.txt
-RUN pip3 install -r /tmp/python-requirements.txt
+RUN pip3 install --break-system-packages -r /tmp/python-requirements.txt
 
 # install railroad ebnf syntax diagram generator
 ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war

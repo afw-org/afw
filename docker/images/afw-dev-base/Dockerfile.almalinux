@@ -20,6 +20,7 @@ RUN dnf install -y epel-release && \
     rpm-build npm \
     openldap-devel openldap-servers \
     openssl openssl-devel doxygen && \
+    dnf install -y --allowerasing libcurl && \
     dnf clean all && rm -rf /var/cache/*
 
 RUN npm install -g npm-upgrade && npm install -g n && n 24

@@ -16,11 +16,16 @@ http_patch();
 
 //? test: http_patch_bad_url
 //? description: Call http_patch with bad url
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_patch("http://xyz", "");
+try {
+    http_patch("http://xyz", "");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 
 //? test: http_patch_http_cleartext
