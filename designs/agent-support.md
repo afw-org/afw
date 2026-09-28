@@ -215,8 +215,13 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 | Symptom | `afwfcgi exited (-11)` in a restart or stress leaf; only at 2+ server threads; the report's numbers are from an older commit |
 | Layer | Service lifecycle (`afw_service.c` start / stop / restart) when requests overlap; the catch lists in the leaf's `orchestration.yaml` |
 | Probe | Copy the leaf, raise `afwfcgi.threads`, short `--tmpdir`. For a backtrace, put a `gdb` wrapper named `afwfcgi` first on `PATH`. For an old commit, use a private install prefix (below) |
-| Entry | `src/afw/tests-extra/night/README.md`; #403 (fixed by #389), #411; `afw-server-fcgi` |
+| Entry | `src/afw/tests-extra/night/README.md`; #403 (fixed by #389), #411 (fixed by #413); `afw-server-fcgi` |
 | Status | **Filled (2026-09)** |
+
+**Not crashes, but the same layer.** Before #413 (`c27794c4`):
+
+- A read could fail with `can not be started.  Service is running` when another request's start finished first (#411).
+- A `service_restart` whose edited conf had `startup` other than `immediate` or `manual`, or a conf error before the new service registered, returned without an error. The service then stayed `restarting`, and stop, start, and restart were refused until the process restarted. If an older build shows a service stuck in `restarting` after a conf edit, that is this bug. Now the restart throws `was not restarted` and the service keeps running on its old conf. Check: `src/afw/tests-extra/service-restart-conf`.
 
 **Rebuild before trusting a crash.** The install can be older than `HEAD`. Run `./afwdev build --cdev`, then repeat the leaf.
 

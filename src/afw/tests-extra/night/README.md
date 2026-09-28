@@ -79,6 +79,10 @@ success: `cannot be restarted`, `can not be stopped`, `can not be
 started`, `is not running`, `is not available`. A read that finds its
 adapter stopped starts it. When another start or stop is in flight,
 that throws `can not be started`, and the read counts it as down.
+Since #413, a read whose start lost the race to another start uses
+the running adapter. It no longer throws `can not be started.  Service
+is running` (#411). The other statuses (`starting`, `finishing active
+work`, `restarting`) still throw and still count as down.
 Anything else fails the request. `maxFail` is 0, and the leaf still fails if `afwfcgi` exits.
 LMDB is not in this leaf. LDAP is not in this leaf. `lmdb-optin` stays
 out.
@@ -106,6 +110,11 @@ down, each 90s:
 | 2 | 230,475 requests, 0 failures. Passed. |
 | 4 | 235,903 requests, 0 failures. Passed. |
 | 16 | 193,996 requests, 0 failures. Passed. |
+
+On develop `c27794c4` (#413), `restart` at 4 threads passed with
+222,796 requests and 0 failures. Probe copies of `stress-model-restart`
+(16 threads) and `stress-file-restart` (96 threads) whose reads fail on
+`Service is running` went from 53 and 172 failures before #413 to 0.
 
 `afwfcgi.stderr.log` ending at `Service 'log-standard' starting.` is
 not a crash. After that log starts, the server logs to stdout.
@@ -148,4 +157,6 @@ as down.
 `stress-file-restart-only` still expects a read to succeed across a
 restart that swaps the instance in place. `stress-type-restarts` and
 `handler-log-properties` are the short sequential checks.
+`service-restart-conf` checks that a restart whose new conf can not be
+used throws and leaves the service running (#413).
 `lmdb-optin` is Jeremy's crash and is not part of this set.
