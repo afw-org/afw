@@ -10,19 +10,15 @@
 set -euo pipefail
 
 HERE=$(cd "$(dirname "$0")" && pwd)
+TESTS_EXTRA=$(cd "$HERE/.." && pwd)
 ROOT=$(cd "$HERE/../../../.." && pwd)
 DURATION="${1:-}"
 STAGE=""
 
-stage_leaf() {
-    local name="$1"
-    local src="$HERE/$name"
-    local dst="$STAGE/$name"
-    rm -rf "$dst"
-    mkdir -p "$dst"
-    cp -aL "$src"/. "$dst"/
-    if [ -n "$DURATION" ]; then
-        python3 - "$dst/orchestration.yaml" "$DURATION" <<'PY'
+patch_orchestration_duration() {
+    local path="$1"
+    local duration="$2"
+    python3 - "$path" "$duration" <<'PY'
 import sys
 path, duration = sys.argv[1], int(sys.argv[2])
 timeout = duration + 150
@@ -42,15 +38,17 @@ open(path, "w").write("".join(text2))
 if not seen_duration or not seen_timeout:
     sys.exit("did not find duration_s and timeout_s in " + path)
 PY
-    fi
 }
 
 if [ -n "$DURATION" ]; then
     STAGE=$(mktemp -d /tmp/afw-night-stage-XXXX)
-    stage_leaf slope
-    stage_leaf restart
-    SLOPE="$STAGE/slope"
-    RESTART="$STAGE/restart"
+    cp -a "$TESTS_EXTRA" "$STAGE/tests-extra"
+    patch_orchestration_duration \
+        "$STAGE/tests-extra/night/slope/orchestration.yaml" "$DURATION"
+    patch_orchestration_duration \
+        "$STAGE/tests-extra/night/restart/orchestration.yaml" "$DURATION"
+    SLOPE="$STAGE/tests-extra/night/slope"
+    RESTART="$STAGE/tests-extra/night/restart"
 else
     SLOPE="$HERE/slope"
     RESTART="$HERE/restart"
@@ -79,7 +77,7 @@ echo "restart pid $RESTART_PID"
     while kill -0 "$SLOPE_PID" 2>/dev/null || kill -0 "$RESTART_PID" 2>/dev/null; do
         date -u +%H:%M:%S
         ps -C afwfcgi -o pid=,etime=,pcpu=,nlwp= \
-            | awk 'NR==FNR { next } { print }' 
+            | awk 'NR==FNR { next } { print }'
         ps -C afwfcgi -o pid=,pcpu=,nlwp=,cmd= | grep 'afw-night' || true
         sleep 15
     done
