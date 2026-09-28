@@ -9,7 +9,7 @@
 #ifndef __AFW_SERVICE_H__
 #define __AFW_SERVICE_H__
 
-/** @fixme Can be afw_minimal.h instead if not part of it's #includes. Keep simple. */
+/** @fixme Can be afw_minimal.h instead if not part of its #includes. Keep simple. */
 #include "afw_interface.h"
 
 /**
@@ -27,16 +27,6 @@
  */
 
 AFW_BEGIN_DECLARES
-
-/**
- * @brief Function passed to afw_service_start_cede_p.
- */
-typedef void (*afw_service_create_cede_p_t)(
-    afw_service_t *service,
-    void *data,
-    const afw_object_t *properties,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
 
 /**
  * @brief Runtime service struct.
@@ -111,18 +101,15 @@ struct afw_service_s {
     /** @brief Mutex used when changing status. */
     afw_thread_mutex_t *mutex;
 
-    /** @fixme Might go away. */
-    void *data;
-
     /** @brief Has a service conf object. */
     afw_boolean_t has_service_conf;
 
     /**
-     * @brief Registry hold plus in-flight users.
+     * @brief One reference for the registry plus one per in-flight user.
      *
      * Starts at 1 for the registry. impl_register_service drops that
-     * hold on the previous generation. The pool is released only when
-     * this hits 0, and only under environment_lock.
+     * reference on the previous generation. The pool is released only
+     * when this hits 0, after environment_lock is released.
      */
     afw_integer_t reference_count;
 };
@@ -133,7 +120,6 @@ struct afw_service_s {
  * @param service for which the request is being made.
  * @param p used for result.
  * @param xctx of caller.
- * @param _AdaptiveAuthorizationResult_ object.
  */
 AFW_DECLARE(void)
 afw_service_context_prepare(
@@ -180,8 +166,8 @@ afw_service_startup_description_as_value(afw_service_startup_t startup);
 
 /**
  * @brief Convert utf8 to corresponding afw_service_startup_t enum.
- * @param startup utf8.
- * @return corresponding utf8.
+ * @param s startup as utf8.
+ * @return corresponding enum, or afw_service_startup_invalid.
  */
 AFW_DECLARE(afw_service_startup_t)
 afw_service_startup_as_enum(const afw_utf8_t *s);
@@ -225,14 +211,20 @@ afw_service_status_description_as_value(afw_service_status_t status);
 
 /**
  * @brief Convert utf8 to corresponding afw_service_status_t enum.
- * @param status utf8.
- * @return corresponding utf8.
+ * @param s status as utf8.
+ * @return corresponding enum, or afw_service_status_invalid.
  */
 AFW_DECLARE(afw_service_status_t)
 afw_service_status_as_enum(const afw_utf8_t *s);
 
 
-/** @brief Get a service object. */
+/**
+ * @brief Get a service object.
+ * @param service_id of service.
+ * @param p for result.
+ * @param xctx of caller.
+ * @return _AdaptiveService_ object, or NULL if not found.
+ */
 AFW_DECLARE(const afw_object_t *)
 afw_service_get_object(
     const afw_utf8_t *service_id,
@@ -243,7 +235,7 @@ afw_service_get_object(
 /**
  * @brief Start a service using _AdaptiveConf_ object and cede p.
  * @param conf is compiled _AdaptiveConf_ derived object.
- * @param source_location of where service defined
+ * @param source_location of where service defined.
  * @param p to cede control to create function.
  * @param xctx of caller.
  *
@@ -252,7 +244,7 @@ afw_service_get_object(
  */
 AFW_DECLARE(void)
 afw_service_start_using_AdaptiveConf_cede_p(
-    const afw_object_t *properties,
+    const afw_object_t *conf,
     const afw_utf8_t *source_location,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -266,6 +258,10 @@ afw_service_start_using_AdaptiveConf_cede_p(
  * Start service if it is not already started.  Services with
  * startup immediate and permanent can be started.  If
  * manual_start is true, startup manual can also be started.
+ *
+ * If manual_start is false and the service is already running,
+ * this returns without an error.  A manual start of a running
+ * service throws.
  */
 AFW_DECLARE(void)
 afw_service_start(
@@ -277,8 +273,10 @@ afw_service_start(
 
 /**
  * @brief Stop a service.
- * @param service_id to start.
+ * @param service_id to stop.
  * @param xctx of caller.
+ *
+ * Throws if the service is not running.
  */
 AFW_DECLARE(void)
 afw_service_stop(
@@ -289,8 +287,14 @@ afw_service_stop(
 
 /**
  * @brief Restart a service.
- * @param service_id to start.
+ * @param service_id to restart.
  * @param xctx of caller.
+ *
+ * Reads the service conf again and starts a new generation of the
+ * service. Throws if the service is not running, or if the conf is
+ * not restartable (for example startup is disabled) or fails before
+ * the new generation is registered. In those cases the running
+ * service is left as it was.
  */
 AFW_DECLARE(void)
 afw_service_restart(
@@ -301,6 +305,6 @@ afw_service_restart(
 
 AFW_END_DECLARES
 
-/** @} */  // end of @addtogroup @addtogroup
+/** @} */  // end of @addtogroup afw_service
 
 #endif /* __AFW_SERVICE_H__ */

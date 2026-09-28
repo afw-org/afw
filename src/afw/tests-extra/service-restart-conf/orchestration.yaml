@@ -1,0 +1,73 @@
+# A restart whose new conf can not be used leaves the service running
+# on its old conf and throws. It used to return and leave the service
+# in restarting, so stop, start, and restart were refused after that.
+# Also checks confPropertyObjectType on _AdaptiveService_.
+# The conf and objects are the stress-file-restart ones. The harness
+# copies the leaf, so the conf edits here do not touch the tree.
+# Opt-in: afwdev test -T src/afw/tests-extra/service-restart-conf
+
+version: 1
+description: Restart with an unusable conf leaves the service running
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: conf property object type
+    sourceType: script
+    source: |
+      const svc = service_get("adapter-filebox");
+      assert(svc.confPropertyObjectType === "_AdaptiveConf_adapter_file",
+          string(svc.confPropertyObjectType));
+      return true;
+
+  - name: restart with startup disabled
+    sourceType: script
+    source: |
+      modify_object("conf", "_AdaptiveServiceConf_", "adapter-filebox",
+          [["set_property", "startup", "disabled"]]);
+      let message = "returned";
+      try {
+          service_restart("adapter-filebox");
+      }
+      catch (e) {
+          message = e.message;
+      }
+      assert(includes<string>(message, "was not restarted"), message);
+      const svc = service_get("adapter-filebox");
+      assert(svc.status === "running", string(svc.status));
+      assert(get_object("filebox", "Demo", "seed").msg === "from-file");
+      return true;
+
+  - name: stop and start after the refused restart
+    sourceType: script
+    source: |
+      modify_object("conf", "_AdaptiveServiceConf_", "adapter-filebox",
+          [["set_property", "startup", "immediate"]]);
+      service_stop("adapter-filebox");
+      const svc = service_start("adapter-filebox");
+      assert(svc.status === "running", string(svc.status));
+      assert(get_object("filebox", "Demo", "seed").msg === "from-file");
+      return true;
+
+  - name: restart with an invalid service type
+    sourceType: script
+    source: |
+      modify_object("conf", "_AdaptiveServiceConf_", "adapter-filebox",
+          [["set_property", "conf", {type: "nope", adapterId: "filebox"}]]);
+      let message = "returned";
+      try {
+          service_restart("adapter-filebox");
+      }
+      catch (e) {
+          message = e.message;
+      }
+      assert(includes<string>(message, "was not restarted"), message);
+      assert(get_object("filebox", "Demo", "seed").msg === "from-file");
+      service_stop("adapter-filebox");
+      return true;

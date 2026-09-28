@@ -112,6 +112,7 @@ src/afw/tests-extra/
 | **10-catalog-value-accessors** | Port of catalog-value-accessors |
 | **11-mixed-accept-json-and-x-afw** | Document feed + per-test Accept |
 | **adapter-lifecycle** | #149 stop/start disposable adapter (ex tests_special) |
+| **service-restart-conf** | #411 restart with an unusable conf throws and leaves the service running |
 | **issue-2/01-rss-hard-loops** | #2 hard-loop lab: RSS vs `pool_bytes_in_use`; gdb + `debug:pool` |
 | **issue-2/02-pool-eval-soak** | #2 afwfcgi object/array/nested-eval soak (heap wrap) |
 | **test262** | Copies of BMP comment sweeps (`comments-bmp-*.as`); default `test -j` also runs `src/afw/tests/test262/comments-bmp-*.as` |

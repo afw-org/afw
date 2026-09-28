@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-filebox",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "filebox",
+        "root": "objects/",
+        "filenameSuffix": ".json",
+        "contentType": "json"
+    }
+}

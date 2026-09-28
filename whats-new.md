@@ -152,6 +152,19 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Compiler literals**](#compiler-literals-issue-106) ([#106](https://github.com/afw-org/afw/issues/106)) | `#doubleMax`, `#integerMax`, `#pi`, `#infinity`, and related `#` names fold to those values at compile |
 | [**`maxNumberOfParameters`**](#maxnumberofparameters-issue-125) ([#125](https://github.com/afw-org/afw/issues/125)) | Function metadata property renamed from `maximumNumberOfParameters` |
 | [**LDAP `sn` on add**](#ldap-inetorgperson-add-issue-384) ([#384](https://github.com/afw-org/afw/issues/384)) | An `inetOrgPerson` or `person` add sends `sn`. A get of `sn` or `cn` is an array when the directory attribute is not single-value |
+| [**Service start and restart**](#service-start-and-restart-issue-411) ([#411](https://github.com/afw-org/afw/issues/411)) | A read no longer fails when another request just started its adapter. A restart that does not happen throws and leaves the service running. `confPropertyObjectType` uses `_` before the subtype |
+
+---
+
+## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
+
+A get or retrieve on an adapter that is not running starts it. When another request finished that start first, the read threw `can not be started.  Service is running`. It now uses the running adapter. A manual `service_start()` of a running service still throws.
+
+`service_restart()` used to return, and leave the service in `restarting`, when the new conf could not be used: `startup` not `immediate` or `manual`, or a conf error before the new service registered. `service_stop()`, `service_start()`, and `service_restart()` then refused it until the process restarted. Now the service stays `running` on its old conf, and the restart throws `Service '…' was not restarted`. The conf error, if any, is in the log.
+
+On an `_AdaptiveService_` object, `confPropertyObjectType` was `_AdaptiveConf_adapter.file`. It is now `_AdaptiveConf_adapter_file`, the object type of the `conf` property.
+
+[↑ Highlights](#highlights)
 
 ---
 
