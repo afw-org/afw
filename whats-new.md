@@ -81,6 +81,7 @@ Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / 
 | `afw_pool_scope_get_assignable_for_lifetime` | **`get_assignable_for_scope_lifetime`** (current `{ }`). Script return uses **`get_assignable_for_p_lifetime`** on the caller. |
 | `afw_pool_register_cleanup_before` | **`afw_pool_register_cleanup`**. Callbacks must not throw uncaught (that stops the rest of the list). |
 | `afw_pool_destroy` that ran cleanup callbacks | **`destroy` is storage-only** (must not fail). **`afw_pool_run_cleanups`** first if callbacks must run (`xctx_release` does both). Last-`release` (RC 0) still runs callbacks then teardown. |
+| A second `afw_pool_free_memory` of the same heap block (silent in a non-debug build) | Throws **`general`** `afw_pool_free_memory: already freed` in every build, same as a tracker; `afw_pool_free_memory_no_throw` returns. Free each block once ([#408](https://github.com/afw-org/afw/issues/408)). |
 
 ### Updating another repository (pre-mgg-develop)
 
