@@ -47,6 +47,19 @@ if [ -n "$DURATION" ]; then
         "$STAGE/tests-extra/night/slope/orchestration.yaml" "$DURATION"
     patch_orchestration_duration \
         "$STAGE/tests-extra/night/restart/orchestration.yaml" "$DURATION"
+    PATCH="$HERE/../stress-campaign/patch-orchestration.py"
+    if [ -f "$PATCH" ]; then
+        slope_threads="${AFW_STRESS_SLOPE_THREADS:-${AFW_STRESS_SERVER_THREADS:-50%}}"
+        restart_threads="${AFW_STRESS_RESTART_THREADS:-8}"
+        client="${AFW_STRESS_CLIENT_CPUS:-50%}"
+        conc="${AFW_STRESS_FIREHOSE_CONCURRENCY:-100%}"
+        python3 "$PATCH" "$STAGE/tests-extra/night/slope/orchestration.yaml" \
+            --server-threads "$slope_threads" \
+            --concurrency "$conc" --client-processes "$client"
+        python3 "$PATCH" "$STAGE/tests-extra/night/restart/orchestration.yaml" \
+            --server-threads "$restart_threads" \
+            --concurrency "$conc" --client-processes "$client"
+    fi
     SLOPE="$STAGE/tests-extra/night/slope"
     RESTART="$STAGE/tests-extra/night/restart"
 else
