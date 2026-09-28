@@ -26,7 +26,7 @@ delete each other's server.
 | Leaf | `--tmpdir` | Server |
 |------|------------|--------|
 | `slope` | `/tmp/afw-night-slope` | Half the CPUs. No `service_restart`. |
-| `restart` | `/tmp/afw-night-restart` | 1 thread. Restarts file, model, VFS, a log, and a handler. |
+| `restart` | `/tmp/afw-night-restart` | 4 threads. Restarts file, model, VFS, a log, and a handler. |
 
 Logs:
 
@@ -76,8 +76,10 @@ a different mix.
 across three restarts, then the firehose restarts file, model, VFS, the
 log, and reads them. Overlap the service layer already reports returns
 success: `cannot be restarted`, `can not be stopped`, `can not be
-started`, `is not running`, `is not available`. Anything else fails the
-request. `maxFail` is 0, and the leaf still fails if `afwfcgi` exits.
+started`, `is not running`, `is not available`. A read that finds its
+adapter stopped starts it. When another start or stop is in flight,
+that throws `can not be started`, and the read counts it as down.
+Anything else fails the request. `maxFail` is 0, and the leaf still fails if `afwfcgi` exits.
 LMDB is not in this leaf. LDAP is not in this leaf. `lmdb-optin` stays
 out.
 
@@ -86,26 +88,29 @@ out.
 `slope` is `threads: "50%"`. On the 2026-09-27 practice that was 16
 threads on a 32-CPU machine.
 
-`restart` is `threads: 1`. Do not raise it for an overnight until the
-crash below is understood.
+`restart` is `threads: 4`. With one server thread, firehose
+concurrency is 100% of that thread, so it drops to 1. Restarts and
+reads then never overlap, and the leaf cannot find a timing crash.
 
-On that practice, develop `d79b6365`:
+On the 2026-09-27 practice, develop `d79b6365` segfaulted at 2 threads
+and more. A start published the new service before it held a
+reference, so a stop or restart on another thread could free it
+first. #389 (`263c4426`) holds the reference before publishing. Its
+parent still segfaulted at 16 threads. #389 did not. See #403.
+
+On develop `2d6098cb`, with the reads counting `can not be started` as
+down, each 90s:
 
 | Restart threads | Result |
 |-----------------|--------|
-| 1, beside slope | 90.0s, 123,652 requests, 0 failures. Passed. |
-| 1, alone | 90.0s, 150,058 requests, 0 failures. Passed. |
-| 2 | Segfault during the run. |
-| 4 and 16 | Segfault in `libafw` once the harness was connected. The server log stopped flushing around `log-standard` starting. |
+| 2 | 230,475 requests, 0 failures. Passed. |
+| 4 | 235,903 requests, 0 failures. Passed. |
+| 16 | 193,996 requests, 0 failures. Passed. |
 
-A plain `afwfcgi -n 16` with no client stayed up through startup.
-`stress-model-restart` has stayed up at 16 threads. The crash is this
-combined leaf with two or more server threads. With one server thread,
-firehose concurrency is 100% of that thread, so it drops to 1. The
-green run restarts and reads, and it does not overlap them. That is
-the open question before an overnight of `restart`.
+`afwfcgi.stderr.log` ending at `Service 'log-standard' starting.` is
+not a crash. After that log starts, the server logs to stdout.
 
-`slope` beside that one-thread restart, same 90s:
+`slope` beside a one-thread restart, same 90s, on `d79b6365`:
 
 | | |
 |--|--|
@@ -138,7 +143,8 @@ pass does not.
 ## Focused leaves, not this pair
 
 `stress-model-restart` and `stress-file-restart` use the same overlap
-returns and `maxFail: 0`. They were not re-run after that edit.
+returns and `maxFail: 0`. Their reads also count `can not be started`
+as down.
 `stress-file-restart-only` still expects a read to succeed across a
 restart that swaps the instance in place. `stress-type-restarts` and
 `handler-log-properties` are the short sequential checks.

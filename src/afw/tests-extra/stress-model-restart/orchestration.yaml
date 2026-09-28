@@ -29,7 +29,8 @@ tests:
       }
       catch (e) {
           if (includes<string>(e.message, "is not available")
-              || includes<string>(e.message, "is not running")) {
+              || includes<string>(e.message, "is not running")
+              || includes<string>(e.message, "can not be started")) {
               return "down";
           }
           throw e.message;
