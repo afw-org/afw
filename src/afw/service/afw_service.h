@@ -266,6 +266,10 @@ afw_service_start_using_AdaptiveConf_cede_p(
  * Start service if it is not already started.  Services with
  * startup immediate and permanent can be started.  If
  * manual_start is true, startup manual can also be started.
+ *
+ * If manual_start is false and the service is already running,
+ * this returns without an error.  A manual start of a running
+ * service throws.
  */
 AFW_DECLARE(void)
 afw_service_start(

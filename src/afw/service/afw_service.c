@@ -1424,6 +1424,17 @@ afw_service_start(
 
     service = impl_service_retain(service_id, xctx);
 
+    /*
+     * Another thread may have finished the start first. A lazy start
+     * returns and the caller looks up the instance again.
+     */
+    if (service && !manual_start &&
+        service->status == afw_service_status_running)
+    {
+        impl_service_release((afw_service_t *)service, xctx);
+        return;
+    }
+
     /* If service already registered, allow error status to retry. */
     if (service &&
         service->status != afw_service_status_ready_to_start &&
