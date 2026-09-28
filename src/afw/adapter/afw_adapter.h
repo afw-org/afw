@@ -198,9 +198,13 @@ afw_adapter_release(const afw_adapter_t *adapter, afw_xctx_t *xctx);
  *
  * See afw_adapter_session_get_cached().
  *
- * This function will call the commit() method of all active transactions in
- * the reverse order they began, then close all sessions in no particular
- * order.
+ * Calls commit() on each active transaction in the reverse order they
+ * began, unless abort is true, then releases that transaction. Then
+ * releases every cached session, including the runtime adapter session.
+ *
+ * A throw from commit or release does not skip the rest. The first
+ * error is rethrown after every release has been attempted and
+ * xctx->cache has been cleared.
  */
 AFW_DECLARE(void)
 afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
