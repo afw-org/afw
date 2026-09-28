@@ -133,11 +133,8 @@ impl_restart_service(
 
 
 /*
- * Register service, replacing any previous afw_service_t for this id.
- * service_lock covers the pointer swap and the reference count.
- * Take environment_lock first. The previous generation pool is
- * released after both locks, and only when its count hits 0.
- * A permanent service lives in env->p, which is not released.
+ * Get the registered service and add a reference, or return NULL.
+ * The caller releases it with impl_service_release().
  */
 static afw_service_t *
 impl_service_retain(
@@ -213,6 +210,13 @@ impl_service_release(
 
 
 
+/*
+ * Register service, replacing any previous afw_service_t for this id.
+ * service_lock covers the pointer swap and the reference count.
+ * Take environment_lock first. The previous generation pool is
+ * released after both locks, and only when its count hits 0.
+ * A permanent service lives in env->p, which is not released.
+ */
 static void
 impl_register_service(
     afw_service_t *service,
@@ -333,7 +337,7 @@ afw_service_startup_description_as_value(afw_service_startup_t startup)
 
 
 /* Convert utf8 to corresponding afw_service_startup_t enum. */
-AFW_DECLARE(afw_service_startup_t)
+AFW_DEFINE(afw_service_startup_t)
 afw_service_startup_as_enum(const afw_utf8_t *s)
 {
     afw_service_startup_t result;
@@ -378,7 +382,7 @@ afw_service_status_as_value(afw_service_status_t status)
 
 
 /* Get description of a afw_service_status_t enum. */
-AFW_DECLARE(const afw_utf8_t *)
+AFW_DEFINE(const afw_utf8_t *)
 afw_service_status_description(afw_service_status_t status)
 {
     afw_service_status_t i;
@@ -393,7 +397,7 @@ afw_service_status_description(afw_service_status_t status)
 
 
 /* Get description as value of a afw_service_status_t enum. */
-AFW_DECLARE(const afw_value_t *)
+AFW_DEFINE(const afw_value_t *)
 afw_service_status_description_as_value(afw_service_status_t status)
 {
     afw_service_status_t i;
@@ -837,7 +841,7 @@ impl_add_runtime_service_info_to_object(
 
     if (subtype) {
         conf_object_type_id = afw_utf8_printf(p, xctx,
-            "_AdaptiveConf_%ku.%ku",
+            "_AdaptiveConf_%ku_%ku",
             type, subtype);
 
     } else {
@@ -881,6 +885,7 @@ impl_add_runtime_service_info_to_object(
                 case afw_service_status_running:
                     can_restart = true;
                     can_stop = true;
+                    break;
 
                 case afw_service_status_disabled:
                 case afw_service_status_starting:
@@ -1216,7 +1221,7 @@ afw_service_internal_AdaptiveService_retrieve_objects (
 
 
     /* Call with a NULL object. */
-    callback(NULL, context, xctx); 
+    callback(NULL, context, xctx);
 }
 
 
@@ -1239,14 +1244,14 @@ afw_service_internal_AdaptiveService_get_object (
 
     /* Get result. */
     result = afw_service_get_object(object_id, p, xctx);
- 
+
     /* Callback with result. */
     callback(result, context, xctx);
 }
 
 
-/** @brief Get a service object by service id. */
-AFW_DECLARE(const afw_object_t *)
+/* Get a service object by service id. */
+AFW_DEFINE(const afw_object_t *)
 afw_service_get_object(
     const afw_utf8_t *service_id,
     const afw_pool_t *p,
@@ -1262,7 +1267,7 @@ afw_service_get_object(
     memset(&ctx, 0, sizeof(ctx));
     ctx.p = p;
 
-    /* Get service. Hold it across the conf read. */
+    /* Get service. Keep a reference across the conf read. */
     service = impl_service_retain(service_id, xctx);
 
     /*
@@ -1318,11 +1323,11 @@ afw_service_get_object(
     }
 
 
-    /* If not available in services conf, return result based on registered service. */
+    /* If not in the services conf, build the result from the registry. */
     if (!result) {
         if (service) {
             result = afw_object_create_unmanaged_new_p(p, xctx);
-            impl_add_runtime_service_info_to_object(result, 
+            impl_add_runtime_service_info_to_object(result,
                 service, NULL, service->properties,
                 service_id, service->type, service->conf_id,
                 xctx);
@@ -1370,10 +1375,10 @@ impl_start_service(
     afw_xctx_t *xctx)
 {
     /*
-     * In-flight hold, same as stop. Unpublished until register, so the
-     * bump is visible before another thread can replace this generation
-     * and free it. The finally drops it. A throw leaves the pool to
-     * the caller, which frees an unregistered generation.
+     * In-flight reference, same as stop. Unpublished until register, so
+     * the bump is visible before another thread can replace this
+     * generation and free it. The finally drops it. A throw leaves the
+     * pool to the caller, which frees an unregistered generation.
      */
     service->reference_count++;
     AFW_TRY {
@@ -1400,7 +1405,7 @@ impl_start_service(
 
 
 
-/* Insure service is started. */
+/* Ensure service is started. */
 AFW_DEFINE(void)
 afw_service_start(
     const afw_utf8_t *service_id,
@@ -1526,36 +1531,41 @@ afw_service_stop(
     }
     AFW_LOCK_END;
 
-    AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
-    {
-        AFW_TRY {
-            AFW_LOG_FZ(debug, xctx, "Service '%ku' stopping.",
-                &service->service_id);
-            afw_service_type_stop(service->service_type,
-                service->conf_id, xctx);
-            AFW_LOG_FZ(info, xctx, "Service '%ku' successfully stopped.",
-                &service->service_id);
-            service->status = afw_service_status_stopped;
-        }
+    /* The mutex is in service->p, so release after the unlock. */
+    AFW_TRY {
+        AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
+        {
+            AFW_TRY {
+                AFW_LOG_FZ(debug, xctx, "Service '%ku' stopping.",
+                    &service->service_id);
+                afw_service_type_stop(service->service_type,
+                    service->conf_id, xctx);
+                AFW_LOG_FZ(info, xctx,
+                    "Service '%ku' successfully stopped.",
+                    &service->service_id);
+                service->status = afw_service_status_stopped;
+            }
 
-        AFW_CATCH_UNHANDLED{
-            AFW_LOG_Z(err, AFW_ERROR_THROWN->message_z, xctx);
-            service->status =
-                (afw_service_type_related_instance_count(
-                    service->service_type, service->conf_id, xctx) > 0)
-                ? afw_service_status_running
-                : afw_service_status_stopped;
-            impl_service_release(service, xctx);
-            service = NULL;
-            AFW_ERROR_RETHROW;
-        }
+            AFW_CATCH_UNHANDLED {
+                AFW_LOG_Z(err, AFW_ERROR_THROWN->message_z, xctx);
+                service->status =
+                    (afw_service_type_related_instance_count(
+                        service->service_type, service->conf_id, xctx) > 0)
+                    ? afw_service_status_running
+                    : afw_service_status_stopped;
+                AFW_ERROR_RETHROW;
+            }
 
-        AFW_ENDTRY;
+            AFW_ENDTRY;
+        }
+        AFW_THREAD_MUTEX_UNLOCK();
     }
-    AFW_THREAD_MUTEX_UNLOCK();
 
-    impl_service_release(service, xctx);
+    AFW_FINALLY {
+        impl_service_release(service, xctx);
+    }
 
+    AFW_ENDTRY;
 }
 
 
@@ -1567,7 +1577,7 @@ impl_restart_service(
     const afw_object_t *conf,
     afw_xctx_t *xctx)
 {
-    /* Same in-flight hold as start and stop. See impl_start_service. */
+    /* Same in-flight reference as start and stop. See impl_start_service. */
     service->reference_count++;
     AFW_TRY {
         AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
@@ -1592,7 +1602,7 @@ impl_restart_service(
 }
 
 
-/* Get _AdaptiveServiceConf_ objects start initial callback. */
+/* Get _AdaptiveServiceConf_ object restart callback. */
 static afw_boolean_t
 impl_restart_get_cb(
     const afw_object_t *object,
@@ -1680,7 +1690,7 @@ impl_restart_get_cb(
 
     AFW_CATCH_UNHANDLED {
         afw_error_write_log(afw_log_priority_err, AFW_ERROR_THROWN, xctx);
-        AFW_LOG_FZ(err, xctx, "Service '%ku' failed to start.",
+        AFW_LOG_FZ(err, xctx, "Service '%ku' failed to restart.",
             (service && service->service_id.s)
                 ? &service->service_id
                 : service_id);
@@ -1725,6 +1735,7 @@ afw_service_restart(
     const afw_service_t *current;
     const afw_adapter_session_t *session;
     afw_boolean_t error;
+    afw_boolean_t restarted;
     const afw_pool_t *p;
     impl_start_context_t ctx;
 
@@ -1797,20 +1808,37 @@ afw_service_restart(
         }
     }
     AFW_ENDTRY;
-    if (error) {
+
+    /*
+     * A restart registers a new generation. If this one is still
+     * registered, the conf startup was not restartable, or the conf
+     * failed before register and impl_restart_get_cb logged it. This
+     * generation was not touched, so it is running again.
+     */
+    restarted = true;
+    {
         AFW_LOCK_BEGIN(xctx->env->environment_lock) {
             current = afw_environment_get_service(service_id, xctx);
-            if (current == service &&
-                service->status == afw_service_status_restarting)
-            {
-                service->status = afw_service_status_running;
+            if (current == service) {
+                restarted = false;
+                if (service->status == afw_service_status_restarting) {
+                    service->status = afw_service_status_running;
+                }
             }
         }
         AFW_LOCK_END;
-        impl_service_release(service, xctx);
+    }
+    impl_service_release(service, xctx);
+
+    if (error) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Error starting service '%ku'",
             service_id);
     }
-    impl_service_release(service, xctx);
+    if (!restarted) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Service '%ku' was not restarted.  Its conf startup must be "
+            "immediate or manual, and a conf error is logged",
+            service_id);
+    }
 }
