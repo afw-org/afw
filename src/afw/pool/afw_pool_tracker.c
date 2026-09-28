@@ -123,7 +123,7 @@ impl_tracker_return_leftovers(
         afw_pool_heap_internal_add_to_free_list(heap, curr,
             afw_pool_heap_internal_block_bytes(AFW_POOL_TRACKER_INTERNAL_PREFIX_BYTES,
                 AFW_POOL_TRACKER_INTERNAL_USER_SIZE(curr), xctx, false),
-            xctx);
+            NULL, xctx);
         curr = next;
     }
 }
@@ -409,7 +409,7 @@ afw_pool_internal_tracker_garbage_collect(
             afw_pool_heap_internal_add_to_free_list(heap, curr,
                 afw_pool_heap_internal_block_bytes(AFW_POOL_TRACKER_INTERNAL_PREFIX_BYTES,
                     AFW_POOL_TRACKER_INTERNAL_USER_SIZE(curr), xctx, false),
-                xctx);
+                NULL, xctx);
         }
         else {
             prev = curr;

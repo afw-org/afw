@@ -154,6 +154,16 @@ def run():
                 "thread pool holds its parent once; get_reference "
                 "does not pin that parent",
             ),
+            (
+                "double_free_throws",
+                "second free_memory throws already freed, also after "
+                "the block coalesced; in_use unchanged",
+            ),
+            (
+                "tracker_return_chunk",
+                "blocks a tracker returns to the heap carry a NULL "
+                "chunk, not the tracker list link",
+            ),
     ]
     if debug_pool:
         cases.extend([
@@ -180,13 +190,6 @@ def run():
     if not isinstance(tests, list):
         tests = []
         result["tests"] = tests
-    tests.append({
-        "test": "double_free_throws",
-        "description": "second free_memory throws on the running xctx",
-        "passed": True,
-        "skip": True,
-        "skipReason": "FIXME_GET_IT_WORKING",
-    })
     if not debug_pool:
         tests.append({
             "test": "debug_free_wrong_size",
