@@ -208,6 +208,65 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 
 ---
 
+### Crash under restart load (orchestrated `afwfcgi`)
+
+| Field | Notes |
+|-------|--------|
+| Symptom | `afwfcgi exited (-11)` in a restart or stress leaf; only at 2+ server threads; the report's numbers are from an older commit |
+| Layer | Service lifecycle (`afw_service.c` start / stop / restart) when requests overlap; the catch lists in the leaf's `orchestration.yaml` |
+| Probe | Copy the leaf, raise `afwfcgi.threads`, short `--tmpdir`. For a backtrace, put a `gdb` wrapper named `afwfcgi` first on `PATH`. For an old commit, use a private install prefix (below) |
+| Entry | `src/afw/tests-extra/night/README.md`; #403 (fixed by #389), #411; `afw-server-fcgi` |
+| Status | **Filled (2026-09)** |
+
+**Rebuild before trusting a crash.** The install can be older than `HEAD`. Run `./afwdev build --cdev`, then repeat the leaf.
+
+**Reproduce on the commit the report used.** Build it in a worktree into its own prefix, and run the **current** harness against it. The harness runs the first `afwfcgi` on `PATH`, and that `afwfcgi` loads `libafw` and extensions from its own prefix. Name `/usr/local/bin/afwdev` explicitly: the prefix has its own old `afwdev`, and the harness changes between commits.
+
+```bash
+git worktree add --detach /tmp/old <commit>
+cd /tmp/old
+cmake -S . -B build/cmake -DCMAKE_INSTALL_PREFIX=/tmp/old-install \
+    "-DAFWDEV_C_DEFINES=AFW_DEBUG_EVALUATION;AFW_DEBUG_LOCK;AFW_DEBUG_POOL"
+cmake --build build/cmake --parallel && cmake --install build/cmake
+cd -
+PATH=/tmp/old-install/bin:$PATH /usr/local/bin/afwdev test \
+    --tmpdir /tmp/qold -T /tmp/copied-leaf
+```
+
+Check `/proc/<pid>/maps` of the running `afwfcgi` once, to confirm it loaded the old libraries. Then build the fixing commit and its parent the same way. A crash on the parent and none on the fix, twice each, is the proof.
+
+**Backtrace:** a small `afwfcgi` shell script first on `PATH` that runs `exec gdb -batch -ex run -ex bt -ex 'thread apply all bt' --args <real afwfcgi> "$@"`. The output goes to `afwfcgi.stdout.log`.
+
+**Traps**
+
+- `afwfcgi.stderr.log` ending at `Service 'log-standard' starting.` is normal. After that log starts, the server writes to stdout (`afwfcgi.stdout.log`).
+- The Unix socket path `<tmpdir>/afwdev_test_output/<leaf>/afw.sock` has a limit of about 107 bytes. A long `--tmpdir` makes `afwfcgi` exit during startup ("Listening socket's path name is too long"), or the client fails ("AF_UNIX path too long"). Keep `--tmpdir` short.
+- One server thread never overlaps a restart with a read. A leaf meant to find timing crashes needs 2 or more threads.
+
+**Expected errors are caught, not counted.** A read of a stopped adapter fails, and that is correct. A restart has no gap. A stop has one until the next start. Reads count `is not available`, `is not running`, and `can not be started` as down. Restart, stop, and start calls catch their own overlap messages. Anything else fails the request, `maxFail` is 0, and the leaf fails if `afwfcgi` exits.
+
+**Shape learned: publish before reference.** A start registered the new service before it held a reference, so a stop or restart on another thread could free it first (#389). Take the in-flight reference before other threads can see the object.
+
+**Wrong path:** lowering threads, or widening a catch to any error, to make a leaf green. Blaming current code for a results table from an older commit without rebuilding and re-running.
+
+---
+
+### Git push from an agent shell (dev container)
+
+| Field | Notes |
+|-------|--------|
+| Symptom | `git push` in an agent shell: `could not read Username for 'https://github.com'`, while the same push works in an editor terminal |
+| Layer | Credentials, not the repo. Editor terminals get the editor's git askpass relay. An agent shell may not. The Dev Containers helper in `/etc/gitconfig` needs `REMOTE_CONTAINERS_IPC`, which only VS Code sets |
+| Probe | `printf 'protocol=https\nhost=github.com\n\n' \| git credential fill` (do not print the password); `git push --dry-run origin develop` |
+| Entry | `gh auth setup-git`; #410 (current `gh` in the Ubuntu dev image) |
+| Status | **Filled (2026-09)** |
+
+`gh auth setup-git` sets `gh` as the credential helper for `https://github.com` and `https://gist.github.com` only. Every shell can then push, and VS Code's helper still handles other hosts. It needs a current `gh`: Ubuntu 22.04's `2.4.0` helper returns nothing.
+
+**Never:** copy a terminal's askpass token into another shell.
+
+---
+
 ### Disclosure-sensitive C review (private board → public issue)
 
 | Field | Notes |
@@ -249,6 +308,8 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 | Two doors | GET `/afw/…` CRUD vs POST `/afw` actions (Fiddle) | atlas §16; this playbook |
 | Type vs instance | Factory registered ≠ adapter started | this playbook |
 | Stale afwfcgi | Long-lived process after install maps deleted libs | this playbook |
+| Old-commit repro | Build the old commit into its own prefix; run the current harness with that `afwfcgi` first on `PATH` | this playbook *Crash under restart load* |
+| Publish before reference | Hold the in-flight reference before another thread can see the object (#389) | this playbook *Crash under restart load* |
 | Values first | Script/eval/memory hang on `afw_value` policy, then pools | value-memory; #2 |
 | Gate vs lab | `test -j` is correctness; blast/lab is separate | recipe pad |
 | Beta | Quality campaign, not partnership end date | `AGENTS.md` mission |

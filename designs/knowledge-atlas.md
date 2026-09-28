@@ -279,6 +279,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`c-probes.md`](c-probes.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; handbook `guide/developer/writing-tests.xml` |
 | **Probe** | See recipe commands below |
 | **Open** | #13 stress knobs/stats on `test` (Jeremy); attach mode not fully built |
+| **Also** | Restart-load crash, old-commit repro, socket path limit, expected-error catches: [`agent-support.md`](agent-support.md) *Crash under restart load* |
 | **Gap** | MEMORY testing split → **in recipe + playbook**; drop duplicating full MEMORY novel after promote |
 
 **Intent split**
