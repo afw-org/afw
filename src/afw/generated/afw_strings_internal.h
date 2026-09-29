@@ -2473,6 +2473,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__0a19d1591b55 \
+    "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 × limitCStackHeadroomBytes. 0 uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0a19d1591b55 */
+#define afw_s_zz__0a19d1591b55 \
+    (&afw_self_v_zz__0a19d1591b55.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0a19d1591b55 */
+#define afw_self_s_zz__0a19d1591b55 \
+    (afw_self_v_zz__0a19d1591b55.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__0a19d1591b55 */
+extern const afw_value_string_t \
+    afw_self_v_zz__0a19d1591b55;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0a19d1591b55 */
+#define afw_z_zz__0a19d1591b55 \
+    (afw_self_v_zz__0a19d1591b55.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__0a19d1591b55 */
+#define afw_v_zz__0a19d1591b55 \
+    (&afw_self_v_zz__0a19d1591b55.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__0a2203b6897a \
     "/afw/_AdaptiveFunction_/convert_AdaptiveQueryCriteria_to_query_string"
 
@@ -131667,32 +131693,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__b7b2daac889e \
-    "Optional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 × limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread (that stack is ulimit -s)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b7b2daac889e */
-#define afw_s_zz__b7b2daac889e \
-    (&afw_self_v_zz__b7b2daac889e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b7b2daac889e */
-#define afw_self_s_zz__b7b2daac889e \
-    (afw_self_v_zz__b7b2daac889e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b7b2daac889e */
-extern const afw_value_string_t \
-    afw_self_v_zz__b7b2daac889e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b7b2daac889e */
-#define afw_z_zz__b7b2daac889e \
-    (afw_self_v_zz__b7b2daac889e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b7b2daac889e */
-#define afw_v_zz__b7b2daac889e \
-    (&afw_self_v_zz__b7b2daac889e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__b891406e2caf \
     "function decode_to_string<base64Binary> (\n    value: base64Binary\n): string;\n"
 
@@ -144823,32 +144823,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e5c2a1e14ca4 \
-    "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 × limitCStackHeadroomBytes. 0 uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e5c2a1e14ca4 */
-#define afw_s_zz__e5c2a1e14ca4 \
-    (&afw_self_v_zz__e5c2a1e14ca4.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e5c2a1e14ca4 */
-#define afw_self_s_zz__e5c2a1e14ca4 \
-    (afw_self_v_zz__e5c2a1e14ca4.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e5c2a1e14ca4 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e5c2a1e14ca4;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e5c2a1e14ca4 */
-#define afw_z_zz__e5c2a1e14ca4 \
-    (afw_self_v_zz__e5c2a1e14ca4.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e5c2a1e14ca4 */
-#define afw_v_zz__e5c2a1e14ca4 \
-    (&afw_self_v_zz__e5c2a1e14ca4.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e5d0247c84fb \
     "Adapter id used as the default backend for map-and-forward (default get/retrieve/add/modify/replace/delete, transactions, model_default_* actions, and when an on* hook returns current::useDefaultProcessing). Also exposed as current::mappedAdapterId in model scripts. Optional: pure-script models that implement every used operation in on* hooks may omit this property. When set, it must not equal this model adapter's own adapterId. If omitted and default processing is needed for an operation, an error is thrown."
 
@@ -151371,6 +151345,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f9a93fffc09b */
 #define afw_v_zz__f9a93fffc09b \
     (&afw_self_v_zz__f9a93fffc09b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__f9c46d4540c4 \
+    "Optional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 × limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_s_zz__f9c46d4540c4 \
+    (&afw_self_v_zz__f9c46d4540c4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_self_s_zz__f9c46d4540c4 \
+    (afw_self_v_zz__f9c46d4540c4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f9c46d4540c4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f9c46d4540c4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_z_zz__f9c46d4540c4 \
+    (afw_self_v_zz__f9c46d4540c4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_v_zz__f9c46d4540c4 \
+    (&afw_self_v_zz__f9c46d4540c4.pub)
 
 
 

@@ -177,8 +177,8 @@
                     "type": "string"
                 },
                 "threadStackBytes": {
-                    "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread.",
-                    "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread.",
+                    "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+                    "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
                     "title": "Thread Stack Bytes",
                     "type": "integer"
                 },
@@ -358,8 +358,8 @@
                     "type": "string"
                 },
                 "threadStackBytes": {
-                    "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread.",
-                    "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread.",
+                    "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+                    "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
                     "title": "Thread Stack Bytes",
                     "type": "integer"
                 },
@@ -549,8 +549,8 @@
             "type": "string"
         },
         "threadStackBytes": {
-            "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread.",
-            "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread.",
+            "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+            "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
             "title": "Thread Stack Bytes",
             "type": "integer"
         },
