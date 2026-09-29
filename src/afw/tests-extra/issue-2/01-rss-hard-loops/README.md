@@ -128,8 +128,8 @@ scalar on purpose.
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
-| `splice_assign` | splice copy-out then assign | **under bar** (2026-09-28; was ~185 MiB/s). 15 s 2026-09-29: ~0.42 MiB/s RSS / ~0.21 MiB/s in_use. 60 s 2026-09-28: ~0.23 / ~0.12 | — |
-| `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **over in_use bar** (2026-09-29, 15 s): ~2.58 MiB/s RSS / ~2.59 MiB/s in_use | — |
+| `splice_assign` | splice copy-out then assign | **flat / flat** (2026-09-29, 15 s after managed remove). Was **under bar** 2026-09-28 (~0.42 / ~0.21); leftover RC ~185 MiB/s before extra-hold-only | — |
+| `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s). Was ~2.58 / ~2.59 until managed `remove_value_by_index` last-released the source slot | — |
 | `unassigned_temps` | unmanaged `add()` (last stmt isolates a scalar) | **flat / flat** (2026-09-28) | — |
 | `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28). 60 s: ~0.40 MiB/s RSS / ~0.04 MiB/s in_use | — |
 | `managed_create_assign` | extra-hold create_managed then assign (reverse/slice/filter/map/sort/bag/intersection/split/union/keys/values/entries) | **under bar** (2026-09-28). 60 s ~0.16 MiB/s RSS / ~0.09 MiB/s in_use; 180 s slope fell to ~0.09 / ~0.05 | — |
@@ -176,8 +176,9 @@ Remeasured **2026-09-17** on `develop` after [PR #354](https://github.com/afw-or
 (`[i]` compiles to it). Do not `get_assignable_for_lifetime` on the
 pop result. `splice_assign` / `splice_unassigned` are the same extra-hold on the
 removed array (not `get_assignable_for_scope_lifetime` after `create_managed`).
-`splice_unassigned` is **over the in_use bar** (~2.6 MiB/s, 15 s 2026-09-29);
-`splice_assign` stays under. Assigned soaks are `slot_store` / leftover RC
+Managed `remove_value_by_index` last-releases the source slot hold; without
+that, unlink left the occupant on `a` and `splice_unassigned` climbed
+(~2.6 MiB/s). Both soaks are **flat** (2026-09-29). Assigned soaks are `slot_store` / leftover RC
 after a bump; unassigned soaks are extra-hold / body last-release. Unassigned
 loops whose result is managed end with `add(0, 0)` so deactivate does not
 `slot_store` that result into `script_result`. `managed_create_assign` /
