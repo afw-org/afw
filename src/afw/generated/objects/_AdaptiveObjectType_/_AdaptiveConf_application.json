@@ -166,6 +166,14 @@
             "label": "Small Chunk Min",
             "required": false
         },
+        "threadStackBytes": {
+            "allowQuery": true,
+            "brief": "Override request-thread C stack size",
+            "dataType": "integer",
+            "description": "Optional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 × limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). Does not change the process main/base thread (that stack is ulimit -s).",
+            "label": "Thread Stack Bytes",
+            "required": false
+        },
         "title": {
             "allowQuery": true,
             "brief": "The title of the application",

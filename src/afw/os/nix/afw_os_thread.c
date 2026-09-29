@@ -308,23 +308,21 @@ afw_os_thread_create(
     size_t stack_size;
     size_t want;
     afw_size_t headroom;
+    afw_size_t configured;
     struct rlimit rl;
     int err;
 
     self = afw_pool_calloc_type(p, afw_os_thread_t, xctx);
 
     /*
-     * Size thread stacks to max(2MiB, 4 x limitCStackHeadroomBytes,
-     * RLIMIT_STACK). glibc already defaults to RLIMIT_STACK (2MiB on
-     * x86_64 when unlimited); musl defaults to ~128KiB, which the C
-     * stack headroom check trips on right away.
+     * Default stack is max(2MiB, RLIMIT_STACK). musl's ~128KiB
+     * trips C stack headroom at once; glibc already uses
+     * RLIMIT_STACK (2MiB on x86_64 when unlimited).
      *
-     * The floor only applies when ulimit -s is lower or unlimited.
-     * A full default evaluation stack (500) used ~500KiB of C stack
-     * unoptimized, so with the 256KiB default headroom 2MiB leaves
-     * ~3x margin for sanitizers and deeper non-eval recursion. The
-     * headroom term keeps a raised limitCStackHeadroomBytes from
-     * tripping on every check. Raise ulimit -s for more.
+     * threadStackBytes, if non-zero, is that size instead of the
+     * 2MiB/RLIMIT_STACK default. 4 × limitCStackHeadroomBytes is
+     * always a floor so a raised headroom still fits. The base
+     * thread is the process stack (ulimit -s), not this path.
      */
     err = pthread_attr_init(&attr);
     if (err != 0) {
@@ -332,16 +330,24 @@ afw_os_thread_create(
             "pthread_attr_init() failed", xctx);
     }
     want = 2 * 1024 * 1024;
-    headroom = (xctx && xctx->env)
-        ? xctx->env->limit_c_stack_headroom_bytes : 0;
-    if (headroom <= AFW_SIZE_T_MAX / 4 && headroom * 4 > want) {
-        want = (size_t)(headroom * 4);
+    headroom = 0;
+    configured = 0;
+    if (xctx && xctx->env) {
+        headroom = xctx->env->limit_c_stack_headroom_bytes;
+        configured = xctx->env->thread_stack_bytes;
+        if (configured != 0) {
+            want = (size_t)configured;
+        }
     }
-    if (getrlimit(RLIMIT_STACK, &rl) == 0 &&
+    if (configured == 0 &&
+        getrlimit(RLIMIT_STACK, &rl) == 0 &&
         rl.rlim_cur != RLIM_INFINITY &&
         (size_t)rl.rlim_cur > want)
     {
         want = (size_t)rl.rlim_cur;
+    }
+    if (headroom <= AFW_SIZE_T_MAX / 4 && headroom * 4 > want) {
+        want = (size_t)(headroom * 4);
     }
     if (pthread_attr_getstacksize(&attr, &stack_size) != 0 ||
         stack_size < want)

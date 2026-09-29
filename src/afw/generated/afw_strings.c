@@ -21717,9 +21717,21 @@ afw_self_v_threadCount = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_threadStackBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_threadStackBytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_thread_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_thread_count)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_thread_stack_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_thread_stack_bytes)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -39219,6 +39231,12 @@ afw_self_v_zz__Override_default_heap_chunk_min = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Override_request_thread_C_stack_size = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_request_thread_C_stack_size)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Override_request_thread_ST_asked_for_cap = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Override_request_thread_ST_asked_for_cap)
@@ -40098,6 +40116,12 @@ const afw_value_string_t
 afw_self_v_zz__Request_subject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Request_subject_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Request_thread_C_stack_size_override = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Request_thread_C_stack_size_override)
 };
 
 const afw_value_string_t
@@ -43458,6 +43482,12 @@ const afw_value_string_t
 afw_self_v_zz__Thread_Count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Thread_Count)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Thread_Stack_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Thread_Stack_Bytes)
 };
 
 const afw_value_string_t
@@ -53577,6 +53607,12 @@ afw_self_v_zz__b7a5ce01fc04 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__b7b2daac889e = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__b7b2daac889e)
+};
+
+const afw_value_string_t
 afw_self_v_zz__b891406e2caf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__b891406e2caf)
@@ -56604,6 +56640,12 @@ const afw_value_string_t
 afw_self_v_zz__e581d6ac088d = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__e581d6ac088d)
+};
+
+const afw_value_string_t
+afw_self_v_zz__e5c2a1e14ca4 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__e5c2a1e14ca4)
 };
 
 const afw_value_string_t
@@ -65575,7 +65617,9 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_then,
     &afw_self_v_this,
     &afw_self_v_threadCount,
+    &afw_self_v_threadStackBytes,
     &afw_self_v_thread_count,
+    &afw_self_v_thread_stack_bytes,
     &afw_self_v_throw,
     &afw_self_v_time,
     &afw_self_v_times,

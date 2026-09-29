@@ -16,6 +16,7 @@ assert(process::defaultChunkMin === 4096);
 assert(process::smallChunkMin === 4096);
 assert(process::xctxChunkMin === 8192);
 assert(process::memoryRegionFreeListMaxBytes === 4096);
+assert(process::threadStackBytes === 4194304);
 return 0;
 
 //?

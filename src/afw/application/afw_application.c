@@ -592,6 +592,10 @@ afw_application_internal_application_conf_type_create_cede_p(
         &env->limit_c_stack_headroom_bytes, NULL,
         IMPL_KNOB_LIMIT_BYTES, source_location, xctx);
     impl_apply_optional_size_limit(properties,
+        afw_v_threadStackBytes,
+        &env->thread_stack_bytes, NULL,
+        IMPL_KNOB_AS_IS, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
         afw_v_defaultChunkMin,
         &env->default_chunk_min, NULL,
         IMPL_KNOB_CHUNK_MIN, source_location, xctx);
