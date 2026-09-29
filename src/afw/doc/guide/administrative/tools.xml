@@ -146,7 +146,7 @@
                 <row>
                     <column>-n</column>
                     <column>threads</column>
-                    <column>Specifies the number of threads to startup.</column>
+                    <column>Specifies the number of request threads to start. Stack size follows application configuration threadStackBytes when set; otherwise the larger of 2MiB, four times limitCStackHeadroomBytes, and the process stack limit (ulimit -s). A typical 8MiB process stack limit yields 8MiB per thread. The afw command uses the process stack.</column>
                 </row>
                 <row>
                     <column>-e</column>

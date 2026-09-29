@@ -23,6 +23,7 @@
 #include "afw_internal.h"
 #include <pthread.h>
 #include <errno.h>
+#include <limits.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <sys/resource.h>
@@ -307,6 +308,8 @@ afw_os_thread_create(
     pthread_attr_t attr;
     size_t stack_size;
     size_t want;
+    size_t page;
+    long page_l;
     afw_size_t headroom;
     afw_size_t configured;
     struct rlimit rl;
@@ -321,7 +324,9 @@ afw_os_thread_create(
      *
      * threadStackBytes, if non-zero, is that size instead of the
      * 2MiB/RLIMIT_STACK default. 4 × limitCStackHeadroomBytes is
-     * always a floor so a raised headroom still fits. The base
+     * always a floor so a raised headroom still fits. Then want
+     * is at least PTHREAD_STACK_MIN and rounded up to the OS
+     * page (Linux setstacksize EINVAL otherwise). The base
      * thread is the process stack (ulimit -s), not this path.
      */
     err = pthread_attr_init(&attr);
@@ -329,7 +334,7 @@ afw_os_thread_create(
         AFW_THROW_ERROR_RV_Z(general, errno, err,
             "pthread_attr_init() failed", xctx);
     }
-    want = 2 * 1024 * 1024;
+    want = (size_t)AFW_ENVIRONMENT_DEFAULT_THREAD_STACK_BYTES;
     headroom = xctx->env->limit_c_stack_headroom_bytes;
     configured = xctx->env->thread_stack_bytes;
     if (configured != 0) {
@@ -344,6 +349,16 @@ afw_os_thread_create(
     }
     if (headroom <= AFW_SIZE_T_MAX / 4 && headroom * 4 > want) {
         want = (size_t)(headroom * 4);
+    }
+#ifdef PTHREAD_STACK_MIN
+    if (want < (size_t)PTHREAD_STACK_MIN) {
+        want = (size_t)PTHREAD_STACK_MIN;
+    }
+#endif
+    page_l = sysconf(_SC_PAGESIZE);
+    page = (page_l > 0) ? (size_t)page_l : 4096;
+    if (page > 1 && want <= AFW_SIZE_T_MAX - (page - 1)) {
+        want = ((want + page - 1) / page) * page;
     }
     if (pthread_attr_getstacksize(&attr, &stack_size) != 0 ||
         stack_size < want)
