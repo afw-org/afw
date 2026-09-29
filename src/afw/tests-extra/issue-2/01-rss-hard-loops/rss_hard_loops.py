@@ -153,6 +153,18 @@ WORKLOADS = [
         "needs_readln_conf": True,
     },
     {
+        "name": "managed_create_assign",
+        "description": "create_managed extra-hold then assign (reverse/slice/filter/map/sort/bag/keys/entries/…)",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "managed_create_unassigned",
+        "description": "create_managed extra-hold never assigned",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
         "name": "array_append",
         "description": "unbounded push (harness: RSS and in_use must grow)",
         "expect_rss_growth": True,

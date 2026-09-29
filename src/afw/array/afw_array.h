@@ -83,6 +83,10 @@ afw_array_create_with_options(
  * dies with that `{ }` unless a slot `get_assignable_value`s it.
  * Do not `get_assignable_for_scope_lifetime` on the pop result — that
  * extra-bumps on top of the transfer.
+ *
+ * This create starts at RC 1. Extra-hold the new array with
+ * `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in
+ * `get_assignable_for_scope_lifetime` (same extra bump as on pop).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed(

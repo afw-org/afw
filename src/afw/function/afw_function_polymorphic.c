@@ -193,6 +193,7 @@ afw_function_execute_bag(
         return x->data_type->empty_array_value;
     }
 
+    /* New array: RC 1. Extra-hold only. Do not get_assignable. */
     array = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
@@ -300,6 +301,7 @@ afw_function_execute_clone(
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
+    /* clone() is not create_managed. get_assignable may promote. */
     result = afw_value_clone(value, x->p, x->xctx);
     return afw_pool_scope_get_assignable_for_scope_lifetime(result, x->xctx);
 }
@@ -3147,9 +3149,10 @@ afw_function_execute_freeze(
     }
 
     /*
-     * Hold first (mutable overlay over a compiled/permanent base), then
-     * freeze that handle. Assign later bumps the frozen face instead of
-     * wrapping a raw immutable instance into a mutable overlay.
+     * Hold the input first (bump + extra-hold), then freeze that
+     * handle. Not a fresh create_managed. Assign later bumps the
+     * frozen face instead of wrapping a raw immutable instance into
+     * a mutable overlay.
      */
     value = afw_pool_scope_get_assignable_for_scope_lifetime(value, x->xctx);
 

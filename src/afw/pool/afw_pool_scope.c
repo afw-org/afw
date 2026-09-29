@@ -828,6 +828,7 @@ afw_pool_scope_get_assignable_for_p_lifetime(
     {
         return value;
     }
+    /* Bumps managed. Do not use after create_managed (already RC 1). */
     value = afw_value_get_assignable(value,
         scope ? scope->p : xctx->p, xctx);
     if (scope) {

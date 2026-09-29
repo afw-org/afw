@@ -111,9 +111,11 @@ Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
-| `splice_assign` | splice copy-out then assign | **under bar** (2026-09-28; was ~185 MiB/s) | — |
+| `splice_assign` | splice copy-out then assign | **under bar** (2026-09-28; was ~185 MiB/s). 60 s 2026-09-28: ~0.23 MiB/s RSS / ~0.12 MiB/s in_use | — |
 | `unassigned_temps` | unmanaged `add()` never assigned | **flat / flat** (2026-09-28) | — |
-| `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28) | — |
+| `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28). 60 s: ~0.40 MiB/s RSS / ~0.04 MiB/s in_use | — |
+| `managed_create_assign` | extra-hold create_managed then assign (reverse/slice/filter/map/sort/bag/intersection/split/union/keys/values/entries) | **under bar** (2026-09-28). 60 s ~0.16 MiB/s RSS / ~0.09 MiB/s in_use; 180 s slope fell to ~0.09 / ~0.05 | — |
+| `managed_create_unassigned` | same calls, never assigned | **under bar** (2026-09-28). 60 s ~0.17 MiB/s RSS / ~0.14 MiB/s in_use | — |
 | `array_append` | unbounded `push` | **must grow** (~3 MiB/s both) | must grow (~2.8 MiB/s) |
 
 `function_return` is **flat** on this branch (managed `closure_binding`;
@@ -150,7 +152,10 @@ Remeasured **2026-09-17** on `develop` after [PR #354](https://github.com/afw-or
 (`[i]` compiles to it). Do not `get_assignable_for_lifetime` on the
 pop result. `splice_assign` is the same extra-hold on the removed
 array (not `get_assignable_for_scope_lifetime` after `create_managed`).
-`readln_loop` needs a temp application conf (`rootFilePaths`); the
+`managed_create_assign` / `managed_create_unassigned` cover the other
+create_managed extra-hold sites (reverse, slice, filter, map, sort,
+bag, intersection, split, union, keys, values, entries). `readln_loop`
+needs a temp application conf (`rootFilePaths`); the
 Python harness writes that for the spawn only.
 
 Unbraced assign: compile wraps a 0-symbol `{ }`; temps die with the trip.

@@ -383,8 +383,10 @@ impl_afw_value_optional_evaluate(
 
         /*
          * Pin a real occupant on the caller while this frame is still
-         * alive. No Adaptive caller: get_assignable only (managed
-         * lives in xctx->p).
+         * alive. get_assignable because the result may be unmanaged;
+         * extra-hold on the caller. Not a fresh create_managed.
+         * No Adaptive caller: get_assignable only (managed lives in
+         * xctx->p).
          */
         if (result &&
             !afw_value_is_undefined(result) &&

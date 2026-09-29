@@ -767,6 +767,10 @@ afw_object_create_with_options(
  * and replace. Last object release releases remaining names and
  * values then free_memorys the header. Unmanaged creates are
  * unchanged.
+ *
+ * Starts at RC 1. Extra-hold a new object with
+ * `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in
+ * `get_assignable_for_scope_lifetime` (extra bump; same as arrays).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed(

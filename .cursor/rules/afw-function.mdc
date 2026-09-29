@@ -21,20 +21,23 @@ Metadata → generated bindings → env `function` registry → call nodes → `
 
 Caller context: `x->xctx`, allocate results in `x->p` or current `scope->p` (long-running: `afw-value-memory`).
 
-## Result lifetime ([PR #308](https://github.com/afw-org/afw/pull/308))
+## Result lifetime ([PR #308](https://github.com/afw-org/afw/pull/308) / splice leftover RC)
 
-Most execute bodies mint temps in `x->p`. Those die when the current scope’s pool is released. Do **not** wrap those at the return with `get_assignable_for_lifetime` (compiler `test_*` / `qualifier()` / `parse_uri` are this class).
+Most execute bodies mint temps in `x->p`. Those die when the current scope’s pool is released. Do **not** wrap those at the return with `get_assignable_for_scope_lifetime` (compiler `test_*` / `qualifier()` / `parse_uri` are this class).
 
-When the result must be an **assignable** that lives until the current scope ends:
+`get_assignable_for_scope_lifetime` always **bumps** a managed value, then extra-holds. `create_managed` is already RC 1. Using that helper on a fresh create leaves RC 1 after scope cleanup (splice **#405**, ~185 MiB/s). Two jobs, two functions — do not copy one onto the other.
+
+When the result must live until the current scope ends (or be assignable):
 
 | Case | Do |
 |------|----|
-| Mutate an input instance (`push`, `unshift`, `add_entries`, `add_properties`, `freeze`, `splice` source) | `get_assignable_for_lifetime` **first**, write that `internal`, return that value. |
-| New array/object the script may keep (`bag`, `filter`, `map`, `sort`, `slice`, `reverse`, …) | `create_managed`, hold, fill **that** `internal`, return it. Stay **mutable** unless the function is `freeze`. |
+| Mutate an input (`push`, `pop`, `shift`, `unshift`, `add_entries`, `add_properties`, `freeze`, splice **target**) | `afw_pool_scope_get_assignable_for_scope_lifetime` **first**, write that `internal`, return that value. |
+| New array/object the script may keep (`bag`, `filter`, `map`, `sort`, `slice`, `reverse`, splice **removed**, `keys` / `values` / `entries`, …) | `create_managed` (RC 1), **`afw_pool_scope_release_value_at_cleanup` only**, fill that `internal`, return it. Stay **mutable** unless the function is `freeze`. Do **not** `get_assignable_for_scope_lifetime` on the new value. |
 | Language constructors `array()` / `create_array()` | `create_script_wrapper` in `x->p`. `[i]` compiles to `array()`. Do **not** `create_managed` here (`array_rebind` climbed when we did). |
-| `pop` / `shift` | Return the occupant (or undefined). Do **not** extra-hold the occupant. |
+| `pop` / `shift` occupant | `pop_value` / `shift_value` extra-holds the occupant on the current scope. Return it (or undefined). Do **not** `get_assignable_for_scope_lifetime` on the occupant (extra bump on top of the transfer). |
+| Script `return` onto the caller | `afw_pool_scope_get_assignable_for_p_lifetime` on the **caller** scope (same bump; result may be unmanaged). |
 
-`afw_pool_scope_get_assignable_for_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_pool_scope_set_last_result_for_lifetime`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md).
+`afw_pool_scope_get_assignable_for_scope_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_pool_scope_set_last_result_for_lifetime`. Headers: `afw_pool_scope_internal.h`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md). Lab: `managed_create_assign` / `splice_assign` in `src/afw/tests-extra/issue-2/01-rss-hard-loops/`.
 
 ## Optional defaults and returned mutables
 
