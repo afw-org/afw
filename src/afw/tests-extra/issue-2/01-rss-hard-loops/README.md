@@ -18,8 +18,7 @@ Do not mix these:
    in the current block first, so `for (let x of []) let x` still
    clashes). Temps die with that frame. **Flat** (was ~80–131 MiB/s
    after #306).
-4. **`function_return`** (`i = f()` inside `{ }`) is **flat** (2026-09-16
-   on this branch). There is **no** leftover function-return wrapper type
+4. **`function_return`** (`i = f()` inside `{ }`) is **flat**. There is **no** leftover function-return wrapper type
    ([PR #326](https://github.com/afw-org/afw/pull/326)). Do not add one
    back. Unbraced `while (true) i = f();` is wrapped the same way.
 5. **`array_push_pop`** is **flat**: `pop`/`shift` extra-hold is a temp
@@ -142,7 +141,7 @@ scalar on purpose.
 | `compile_listing_unassigned` | compile listing last-releases unit (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s) | — |
 | `array_append` | unbounded `push` | **must grow** (~3 MiB/s both) | must grow (~2.8 MiB/s) |
 
-`function_return` is **flat** on this branch (managed `closure_binding`;
+`function_return` is **flat** (managed `closure_binding`;
 0-param call does not isolate enclosing last). No `function_return_value`
 wrapper. Pin is on the caller.
 

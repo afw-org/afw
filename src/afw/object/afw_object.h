@@ -838,6 +838,24 @@ afw_object_create_managed_snapshot(
 
 
 /**
+ * @brief Copy path, ids, and meta delta onto a managed object.
+ * @param to must be a managed memory object (empty meta).
+ * @param from source (face, view, unmanaged, or managed).
+ * @param xctx of caller.
+ *
+ * Sideband only (reconcilable, parentPaths, object_uri, …). Does
+ * not copy properties. Adaptive `clone()` uses this so a
+ * reconcilable get stays reconcilable after an always-copy.
+ * Snapshot uses it too.
+ */
+AFW_DECLARE(void)
+afw_object_copy_meta_into_managed(
+    const afw_object_t *to,
+    const afw_object_t *from,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Throw if p is env->p or the base xctx pool.
  * @param p pool a release would be registered on.
  * @param xctx of caller.

@@ -305,9 +305,10 @@ impl_script_clone(
 
     /*
      * Always-copy create_managed (RC 1), extra-hold the container.
-     * Nested scalars get_assignable (parent holds). Snapshot shares
-     * already-managed children. create_managed_clone of a managed
-     * source also shares. afw_value_clone is unmanaged in dest p.
+     * Copy meta (reconcilable, path, ids) — not a property walk.
+     * Nested objects recurse (snapshot would share managed children).
+     * Nested scalars get_assignable (parent holds). afw_value_clone
+     * of a container is unmanaged in dest p.
      */
     if (afw_value_is_object(value)) {
         const afw_object_t *from;
@@ -321,6 +322,7 @@ impl_script_clone(
             afw_pool_scope_release_value_at_cleanup(
                 afw_object_create_managed(x->p, x->xctx)->value,
                 x->xctx))->internal;
+        afw_object_copy_meta_into_managed(to, from, x->xctx);
         for (iterator = NULL;;) {
             name = NULL;
             prop = afw_object_get_next_property(from, &iterator, &name,
@@ -358,7 +360,8 @@ impl_script_clone(
         return to->value;
     }
 
-    /* Nested scalar in a managed container must be assignable. */
+    /* Nested scalar: unmanaged clone then isolate so the parent
+     * can last-release. Not Adaptive clone() of a container. */
     result = afw_value_clone(value, x->p, x->xctx);
     return afw_value_get_assignable(result, x->p, x->xctx);
 }

@@ -877,6 +877,8 @@ afw_function_execute_splice(
         if (value) {
             afw_array_push_value(removed, value, x->xctx);
         }
+        /* Managed source last-releases the slot hold. Peek then
+         * push then remove: removed holds, source drops. */
         afw_array_remove_value_by_index(array->internal, start, x->xctx);
     }
 

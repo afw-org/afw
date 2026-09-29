@@ -70,8 +70,10 @@ afw_array_create_with_options(
  * @return instance (reference count 1).
  *
  * The array owns stored values. Push/set/insert `slot_store`
- * (`get_assignable_value`). Replace, remove, and last array release
- * `release` occupants, then last-release `free_memory`s the header.
+ * (`get_assignable_value`). Replace, `remove` / `remove_value_by_index`,
+ * and last array release `release` occupants, then last-release
+ * `free_memory`s the header. Unmanaged non-wrapper memory arrays
+ * store a raw pointer and do not release on remove.
  *
  * Get / `at` peek: the array still holds, so the occupant only has to
  * last for this scope's evaluation. `get_assignable_value` if keeping
@@ -188,8 +190,9 @@ afw_array_is_memory_wrapper(const afw_array_t *array);
  * @brief True if array is a generic memory array (face or not).
  * @param array to test (may be NULL).
  *
- * Custom infs (metas views, from_values) are false. Used so clone_or_reference
- * wraps compiled memory arrays (mutable overlay) but not immutable arrays.
+ * Custom infs (metas views, from_values) are false. Used so
+ * `get_assignable` wraps compiled memory arrays (mutable overlay)
+ * but not immutable arrays.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory(const afw_array_t *array);
@@ -703,6 +706,10 @@ afw_array_set_value(
  * @param instance Pointer to this value array instance.
  * @param index Zero-based or negative from end.
  * @param xctx of caller.
+ *
+ * Managed arrays `release` the occupant. `pop` / `shift` transfer
+ * instead (extra-hold on the current scope). Unmanaged non-wrapper
+ * memory arrays unlink the pointer and do not release.
  */
 AFW_DECLARE(void)
 afw_array_remove_value_by_index(

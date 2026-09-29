@@ -42,6 +42,8 @@ assert(result->bag_size() === 0, "reconcile_object with no changes failed!");
 
 // now change the property
 obj2 = clone(obj);
+assert(meta(obj2).reconcilable !== undefined,
+    "clone keeps reconcilable meta");
 obj2.MyTestString1 = "A new value";
 
 // now reconcile it (test mode), with no changes

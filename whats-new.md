@@ -48,7 +48,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
 | `create_managed` | Frame in **`p->managed_p`** (pass the evaluation `p`). |
 | `get_assignable` | Isolate into a slot (`value, p, xctx`). Promote/clone uses `p->managed_p`. |
-| `afw_pool_scope_get_assignable_for_scope_lifetime` | Core only (`afw_pool_scope_internal.h`). `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
+| `afw_pool_scope_get_assignable_for_scope_lifetime` | Core only (`afw_pool_scope_internal.h`). `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first. New array results `create_managed` then extra-hold only (`release_value_at_cleanup`); do not wrap a fresh create in this helper. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
 | `afw_pool_scope_get_assignable_for_p_lifetime` | Core only. Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, `create_managed`, `get_assignable` / `slot_store`, or extra allocation (iterator / meta). **Not** on value getters or `get_reference`. |
@@ -1007,7 +1007,7 @@ C object/array creates:
 
 Unmanaged object/array **values** do not take `get_reference` / `release` (they throw). Use **`get_assignable`** to isolate into a slot. Instance `get_reference` on the object still pins its pool (adapters, faces). Rebuild out-of-tree C against this line ([C rebuild](#c-programmers)).
 
-When a compiled unit finishes evaluating, the result is a **managed** value pinned on dest `p` (that pool’s last-release is the matching `release`; `get_reference` to keep it). Permanents stay as-is. Adaptive **`clone()`** is still a deep independent copy (including nested objects).
+When a compiled unit finishes evaluating, the result is a **managed** value pinned on dest `p` (that pool’s last-release is the matching `release`; `get_reference` to keep it). Permanents stay as-is. Adaptive **`clone()`** of object/array is always-copy `create_managed` (deep independent copy, including nested objects). It is not the C `clone_unmanaged` / `clone_managed` pair.
 
 ### Script running result ([#62](https://github.com/afw-org/afw/issues/62))
 

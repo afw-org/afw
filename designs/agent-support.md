@@ -88,7 +88,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 |-------|--------|
 | Symptom | Leak under long run; use-after-free; wrong lifetime; decompile mismatch; scope/closure surprise |
 | Layer | Pools, managed values, `compiled_value`, scope stack, `statement_flow`, value inf policy |
-| Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j`. Hard-loop RSS + gdb: `src/afw/tests-extra/issue-2/01-rss-hard-loops/` (`afwdev test -T src/afw/tests-extra/issue-2 --show-all`) |
+| Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j`. Hard-loop RSS + gdb: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Assigned vs unassigned pairs (leftover RC vs extra-hold). `nasty-eval-soak` is request success only — request-end bulk-free hides leftover RC. |
 | Entry | `afw-value-memory`, `afw-script-eval`, `afw-compile`, `afw-runtime-model`; **#2** live maps: `issue-2-hold-in-inf.md`, `experiment-brainstorm.md`, `experiment-eval-p.md`; philosophy pad; atlas §3–4 |
 | Status | **Filled (pointer-heavy)** — deep work stays in the live #2 maps, not `memory-management.md` |
 
@@ -101,10 +101,10 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 **Shapes that keep coming back (learn these, not ticket lists)**
 
-- **Create vs evaluate** — do not mix (`afw-script-eval`). `argv[0]` at create is the callee expression; `x->function` is harvest at evaluate.  
+- **Create vs evaluate** — do not mix (`afw-script-eval`). `argv[0]` at create is the callee expression; `x->function` is harvest at evaluate.
 - **New get, old delete** — look-through / face / view added on read; mutate/count still the old impl. A face `property_delete` / `set_property(name, NULL)` stores `afw_value_undefined` and the name stays, so the base is not revived. `afw_object_get_property()` returns C NULL only when the name is absent. `afw_object_remove_property()` unlinks (`issue-17`, PR **#372**).
-- **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs metrics snapshots (metrics/properties pin the instance under the lock, copy into the caller pool outside it, and release the pin after the copy; `metrics.additional` pins only across `get_additional_metrics`).  
-- **Two impls of one interface** — memory array index uses `>= count`; C-array view used `> count` (gate: `tests/advanced/array_view_index/`).  
+- **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs metrics snapshots (metrics/properties pin the instance under the lock, copy into the caller pool outside it, and release the pin after the copy; `metrics.additional` pins only across `get_additional_metrics`).
+- **Two impls of one interface** — memory array index uses `>= count`; C-array view used `> count` (gate: `tests/advanced/array_view_index/`). Managed vs unmanaged setter: `remove_value_by_index` on a managed array must `release` the occupant; the unmanaged setter only drops a wrapper face. `splice` assigned hid the leak; unassigned did not.  
 - **Script integer → malloc / spin / C stack** — APR pools often abort on huge alloc; empty match + “replace all” never advances; type and destructure parse have a nesting limit (`AFW_COMPILE_PARSE_NESTING_MAX`); other grammars may not.  
 - **Type names are declared before use** — like script values, not hoisted. Self-ref in the same `type` / `interface` body is allowed. Unknown names are a compile error even with typeCheck off.  
 - **Evaluate twice, first result sizes a buffer** — call-site `...expr` (#181, fixed). Same class: Pattern rest keys.

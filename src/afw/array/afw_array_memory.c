@@ -1074,6 +1074,9 @@ impl_afw_array_setter_set_value(
 
 /*
  * Implementation of method remove_value_by_index for interface afw_array_setter.
+ *
+ * Wrapper face only. Managed arrays use the managed setter, which
+ * last-releases the occupant.
  */
 void
 impl_afw_array_setter_remove_value_by_index(
