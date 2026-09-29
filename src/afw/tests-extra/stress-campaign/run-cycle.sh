@@ -91,12 +91,14 @@ run_leaf() {
     local log="$4"
     mkdir -p "$tmpdir"
     rm -rf "$tmpdir/afwdev_test_output"
-    echo "--- $name $(date -u +%Y-%m-%dT%H:%M:%SZ) ---" | tee -a "$log"
-    set +e
-    afwdev test --tmpdir "$tmpdir" -T "$tests_path" >> "$log" 2>&1
-    local rc=$?
-    set -e
-    echo "exit $rc" | tee -a "$log"
+    {
+        echo "--- $name $(date -u +%Y-%m-%dT%H:%M:%SZ) ---"
+        set +e
+        afwdev test --tmpdir "$tmpdir" -T "$tests_path"
+        local rc=$?
+        set -e
+        echo "exit $rc"
+    } >> "$log" 2>&1
     return "$rc"
 }
 
@@ -109,7 +111,7 @@ run_leaf_bg() {
     (
         run_leaf "$name" "$tests_path" "$tmpdir" "$log"
         echo $? > "$rcfile"
-    ) &
+    ) >> "$log" 2>&1 &
     echo $!
 }
 
@@ -199,7 +201,7 @@ while true; do
         fh7=$(stage_leaf 07-firehose-blast-style "$FIREHOSE_S" "50%")
         fh7b=$(stage_leaf 07b-firehose-catalog-pool "$FIREHOSE_S" "50%" 1)
         sfcgi=$(stage_leaf stress-fcgi "$FIREHOSE_S" "50%")
-        i2=$(stage_leaf issue-2/01-rss-hard-loops "" "$SERVER_THREADS")
+        issue2_path="$ROOT/src/afw/tests-extra/issue-2/01-rss-hard-loops"
         launch_bg() {
             local name="$1" relpath="$2" tpath="$3"
             local tmp slot
@@ -217,7 +219,7 @@ while true; do
         launch_bg 07-firehose-blast-style 07-firehose-blast-style "$fh7"
         launch_bg 07b-firehose-catalog-pool 07b-firehose-catalog-pool "$fh7b"
         launch_bg stress-fcgi stress-fcgi "$sfcgi"
-        launch_bg issue-2-rss issue-2/01-rss-hard-loops "$i2"
+        launch_bg issue-2-rss issue-2/01-rss-hard-loops "$issue2_path"
 
         wait "$pr_pid"
         prc=$?
