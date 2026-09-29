@@ -312,6 +312,7 @@ afw_os_thread_create(
     long page_l;
     afw_size_t headroom;
     afw_size_t configured;
+    afw_boolean_t set_stack;
     struct rlimit rl;
     int err;
 
@@ -323,11 +324,13 @@ afw_os_thread_create(
      * RLIMIT_STACK (2MiB on x86_64 when unlimited).
      *
      * threadStackBytes, if non-zero, is that size instead of the
-     * 2MiB/RLIMIT_STACK default. 4 × limitCStackHeadroomBytes is
-     * always a floor so a raised headroom still fits. Then want
-     * is at least PTHREAD_STACK_MIN and rounded up to the OS
-     * page (Linux setstacksize EINVAL otherwise). The base
-     * thread is the process stack (ulimit -s), not this path.
+     * 2MiB/RLIMIT_STACK default. glibc's fresh pthread_attr_t
+     * already reports RLIMIT_STACK, so a smaller conf must still
+     * call setstacksize. 4 × limitCStackHeadroomBytes is always a
+     * floor so a raised headroom still fits. Then want is at
+     * least PTHREAD_STACK_MIN and rounded up to the OS page
+     * (Linux setstacksize EINVAL otherwise). The base thread is
+     * the process stack (ulimit -s), not this path.
      */
     err = pthread_attr_init(&attr);
     if (err != 0) {
@@ -360,9 +363,20 @@ afw_os_thread_create(
     if (page > 1 && want <= AFW_SIZE_T_MAX - (page - 1)) {
         want = ((want + page - 1) / page) * page;
     }
-    if (pthread_attr_getstacksize(&attr, &stack_size) != 0 ||
-        stack_size < want)
-    {
+    /*
+     * Configured size always replaces the pthread default, even
+     * when that is larger (glibc reports RLIMIT_STACK, often
+     * 8MiB). The formula only raises a too-small default.
+     */
+    set_stack = (configured != 0);
+    if (!set_stack) {
+        if (pthread_attr_getstacksize(&attr, &stack_size) != 0 ||
+            stack_size < want)
+        {
+            set_stack = true;
+        }
+    }
+    if (set_stack) {
         err = pthread_attr_setstacksize(&attr, want);
         if (err != 0) {
             pthread_attr_destroy(&attr);
