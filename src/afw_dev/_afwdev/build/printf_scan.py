@@ -10,6 +10,7 @@
 #
 
 import ctypes
+import glob
 import json
 import os
 import shlex
@@ -85,6 +86,17 @@ def _load_libclang():
         "libclang-17.so.1",
         "libclang-18.so.1",
     )
+    # Then any versioned libclang on disk, newest LLVM first, so a
+    # distro LLVM bump past the list above still works.
+    found = []
+    for pattern in ("/usr/lib/*/libclang-*.so.1",
+                    "/usr/lib/llvm-*/lib/libclang-*.so.1",
+                    "/usr/lib*/libclang-*.so.1"):
+        for path in glob.glob(pattern):
+            major = os.path.basename(path)[len("libclang-"):].split(".")[0]
+            if major.isdigit():
+                found.append((int(major), path))
+    names += tuple(path for _, path in sorted(found, reverse=True))
     last = None
     for name in names:
         try:

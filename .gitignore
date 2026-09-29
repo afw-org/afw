@@ -338,3 +338,7 @@ core
 vgcore.*
 cachegrind.out.*
 !core/
+
+# local Python virtual environments (afw-dev-base images use /opt/afw-venv)
+.venv/
+venv/

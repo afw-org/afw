@@ -3,6 +3,8 @@ FROM rockylinux/rockylinux:10
 LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # Install packages
+# Includes AddressSanitizer/UBSan runtimes for gcc and clang plus
+# llvm-symbolizer, for sanitizer runs; afwdev test does not use them yet.
 RUN dnf install -y epel-release && \
     dnf install -y 'dnf-command(config-manager)' && \
     dnf install -y glibc-langpack-en && \
@@ -19,6 +21,7 @@ RUN dnf install -y epel-release && \
     fcgi fcgi-devel wget git \
     rpm-build npm \
     openldap-devel openldap-servers \
+    libasan libubsan compiler-rt llvm \
     openssl openssl-devel doxygen && \
     dnf install -y --allowerasing libcurl && \
     dnf clean all && rm -rf /var/cache/*
@@ -26,9 +29,13 @@ RUN dnf install -y epel-release && \
 RUN npm install -g npm-upgrade && npm install -g n && n 24
 RUN npm install -g npm@10 eclint cspell
 
-# install python packages
+# Python tools live in a venv on PATH, not the system site-packages
+# (PEP 668). afwdev and its tests find python3/pip through PATH.
+ENV VIRTUAL_ENV=/opt/afw-venv
+ENV PATH=/opt/afw-venv/bin:$PATH
 COPY python-requirements.txt /tmp/python-requirements.txt
-RUN pip3 install -r /tmp/python-requirements.txt
+RUN python3 -m venv /opt/afw-venv && \
+    pip install -r /tmp/python-requirements.txt
 
 # install railroad ebnf syntax diagram generator
 ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war

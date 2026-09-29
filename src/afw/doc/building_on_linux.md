@@ -1,5 +1,5 @@
 # Building for Ubuntu Linux
-(tested on Ubuntu 22.04 LTS, 64-bit)
+(tested on Ubuntu 24.04 LTS, 64-bit)
 
 ## Source Build Dependencies
 

@@ -10,8 +10,16 @@ RUN apk add --no-cache build-base libtool clang-analyzer py3-clang \
     db-dev lmdb-dev libedit-dev git alpine-sdk sudo \
     openldap-dev openldap openldap-back-mdb nodejs npm
 
+# No AddressSanitizer here: neither gcc nor clang ships an ASan runtime
+# for musl. Use the glibc afw-dev-base images for sanitizer runs.
+
+# Python tools live in a venv on PATH, not the system site-packages
+# (PEP 668). afwdev and its tests find python3/pip through PATH.
+ENV VIRTUAL_ENV=/opt/afw-venv
+ENV PATH=/opt/afw-venv/bin:$PATH
 COPY python-requirements.txt /tmp/python-requirements.txt
-RUN pip3 install --break-system-packages -r /tmp/python-requirements.txt
+RUN python3 -m venv /opt/afw-venv && \
+    pip install -r /tmp/python-requirements.txt
 
 # install railroad ebnf syntax diagram generator
 ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war

@@ -3,6 +3,8 @@ FROM opensuse/leap:16.0
 LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # Install packages
+# Includes AddressSanitizer/UBSan runtimes for gcc and clang plus
+# llvm-symbolizer, for sanitizer runs; afwdev test does not use them yet.
 RUN zypper ref -s && \
     zypper -n in --force-resolution gcc gcc-c++ \
     libtool apache2-devel cmake clang-tools \
@@ -13,6 +15,7 @@ RUN zypper ref -s && \
     libdb-4_8 libdb-4_8-devel libcurl-devel git \
     lmdb lmdb-devel libedit-devel doxygen rpm-build valgrind lato-fonts \
     openldap2-devel openldap2 libcurl4 \
+    libasan8 libubsan1 llvm \
     python3 python3-pip python3-devel \
     java-21-openjdk-headless nodejs22 npm22 && \
     zypper cc -a
@@ -20,9 +23,13 @@ RUN zypper ref -s && \
 RUN npm install -g npm-upgrade && npm install -g n && n 24
 RUN npm install -g npm@10 eclint cspell
 
-# install python packages
+# Python tools live in a venv on PATH, not the system site-packages
+# (PEP 668). afwdev and its tests find python3/pip through PATH.
+ENV VIRTUAL_ENV=/opt/afw-venv
+ENV PATH=/opt/afw-venv/bin:$PATH
 COPY python-requirements.txt /tmp/python-requirements.txt
-RUN pip3 install --break-system-packages -r /tmp/python-requirements.txt
+RUN python3 -m venv /opt/afw-venv && \
+    pip install -r /tmp/python-requirements.txt
 
 # install railroad ebnf syntax diagram generator
 ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war

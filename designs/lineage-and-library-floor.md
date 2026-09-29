@@ -36,17 +36,19 @@ Any other AFW package next to this repo uses the same sibling layout. To drop th
 
 Develop against the **published image bases**, not against “whatever this workstation or this one container happens to have.” The in-tree `docker/images/afw-dev-base/` files are the matrix:
 
-| Dockerfile | Base | ICU | APR |
-|------------|------|-----|-----|
-| `Dockerfile.alpine` | Alpine 3.16 | 71.1 | 1.7.2 |
-| `Dockerfile.ubuntu` | Ubuntu 22.04 | 70.1 | 1.7.0 |
-| `Dockerfile.rockylinux` | Rocky Linux **9** (bumped from 8.9 — [`docker-cross-platform-builds.md`](docker-cross-platform-builds.md) *RockyLinux base bumped*) | 67.1 | 1.7.0 |
-| `Dockerfile.opensuse` | openSUSE Leap 15.5 | 65.1 | 1.6.3 |
-| `Dockerfile.almalinux` | AlmaLinux 9 | 67.1 | — | not wired into `docker.py`'s build list and not published to `ghcr.io` (local-only image); see the docker pad |
+| Dockerfile | Base | ICU | APR | GCC | libcurl | libxml2 | Python |
+|------------|------|-----|-----|-----|---------|---------|--------|
+| `Dockerfile.almalinux` | AlmaLinux 9 | 67.1 | 1.7.0 | 11.5 | 7.76.1 | 2.9.13 | 3.9 |
+| `Dockerfile.ubuntu` | Ubuntu 24.04 | 74.2 | 1.7.2 | 13.3 | 8.5.0 | 2.9.14 | 3.12 |
+| `Dockerfile.rockylinux` | Rocky Linux 10 | 74.2 | 1.7.5 | 14.3 | 8.12.1 | 2.12.5 | 3.12 |
+| `Dockerfile.opensuse` | openSUSE Leap 16.0 | 77.1 | 1.7.5 | 15.3 | 8.14.1 | 2.13.8 | 3.13 |
+| `Dockerfile.alpine` | Alpine 3.24 | 78.1 | 1.7.6 | 15.2 | 8.22.0 | 2.13.9 | 3.14 |
 
-Versions verified live (`pkg-config --modversion icu-uc`, `apr-1-config --version` inside each `afw-dev-base` image) as of 2026-09-10, after the Rocky 8→9 bump.
+Versions verified live (`pkg-config --modversion`, `apr-1-config --version`, `gcc -dumpfullversion` inside each `afw-dev-base` image) as of 2026-09-28, after the distro bumps in [`docker-cross-platform-builds.md`](docker-cross-platform-builds.md) (*2026-09-28 base bumps*).
 
-This development container is **Ubuntu 22.04** (ICU 70.1, APR 1.7). That is **not** the oldest base. **openSUSE Leap 15.5 is now the conservative end** on both axes (ICU 65.1, APR 1.6.3) — Rocky moved off that spot when it bumped to 9 (ICU 67.1, same family as AlmaLinux 9). An ICU or APR API that exists only on Ubuntu 22.04 can still fail the openSUSE or Alpine image.
+**AlmaLinux 9 is now the conservative end on every axis** (ICU 67.1, APR 1.7.0, GCC 11, libcurl 7.76, libxml2 2.9, Python 3.9) — Leap 15.5 and Alpine 3.16 held that spot until they were bumped. The development container is **Ubuntu 24.04**, in the middle of the matrix; Alpine and Leap carry the newest toolchains (GCC 15, libxml2 2.13) and catch new warnings and API removals first. An API that exists on Ubuntu 24.04 can still fail the AlmaLinux image; one that works there can still trip a new-compiler warning on Alpine or Leap.
+
+Ubuntu stays on an LTS that is one release back (24.04, not 26.04) on purpose: the builder's `.deb` is built on this base, and a 26.04 build needs glibc 2.43, so it would not install on 24.04.
 
 `U8_NEXT` / `U8_APPEND` (the bounded ICU macros used in `afw_utf8`) are old enough for this matrix. “A newer ICU call” means **present on the oldest base**, not present on this container.
 
