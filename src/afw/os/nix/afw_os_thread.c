@@ -330,14 +330,10 @@ afw_os_thread_create(
             "pthread_attr_init() failed", xctx);
     }
     want = 2 * 1024 * 1024;
-    headroom = 0;
-    configured = 0;
-    if (xctx && xctx->env) {
-        headroom = xctx->env->limit_c_stack_headroom_bytes;
-        configured = xctx->env->thread_stack_bytes;
-        if (configured != 0) {
-            want = (size_t)configured;
-        }
+    headroom = xctx->env->limit_c_stack_headroom_bytes;
+    configured = xctx->env->thread_stack_bytes;
+    if (configured != 0) {
+        want = (size_t)configured;
     }
     if (configured == 0 &&
         getrlimit(RLIMIT_STACK, &rl) == 0 &&
