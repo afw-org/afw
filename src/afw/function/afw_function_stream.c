@@ -755,11 +755,10 @@ afw_function_execute_readln(
 {
     const afw_value_integer_t *streamNumber;
     const afw_stream_t *stream;
+    const afw_memory_writer_t *writer;
+    const afw_memory_t *raw;
     afw_octet_t ch;
     afw_size_t got;
-    afw_size_t capacity;
-    afw_size_t len;
-    afw_octet_t *buffer;
     afw_utf8_t s;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(streamNumber,
@@ -768,13 +767,11 @@ afw_function_execute_readln(
     stream = impl_require_stream(streamNumber->internal, x);
 
     /*
-     * @fixme #2: do not grow in x->p. Use afw_memory_create_writer
-     * (retrieve_and_release) or afw_vector like compile_args so scratch
-     * can copy-out and release. A max line is a separate resource policy.
+     * Scratch grows in a tracker child of x->p. retrieve_and_release
+     * copies one result into x->p and drops the tracker, so a long
+     * line does not leave doubled buffers in dest p.
      */
-    capacity = 256;
-    len = 0;
-    buffer = afw_pool_malloc(x->p, capacity, x->xctx);
+    writer = afw_memory_create_writer(x->p, x->xctx);
 
     for (;;) {
         got = afw_stream_read(stream, &ch, 1, x->xctx);
@@ -788,19 +785,16 @@ afw_function_execute_readln(
             /* Optional CRLF: peek not available; treat CR as line end. */
             continue;
         }
-        if (len + 1 > capacity) {
-            afw_octet_t *nb;
-            capacity *= 2;
-            nb = afw_pool_malloc(x->p, capacity, x->xctx);
-            memcpy(nb, buffer, len);
-            buffer = nb;
-        }
-        buffer[len++] = ch;
+        writer->callback(writer->context, &ch, 1, x->p, x->xctx);
     }
 
-    s.s = (const afw_utf8_octet_t *)buffer;
-    s.len = len;
-    if (len > 0 && !afw_utf8_is_valid(s.s, s.len, x->xctx)) {
+    raw = afw_memory_writer_retrieve_and_release(writer, x->xctx);
+    if (raw->size == 0) {
+        return afw_v_a_empty_string;
+    }
+    s.s = (const afw_utf8_octet_t *)raw->ptr;
+    s.len = raw->size;
+    if (!afw_utf8_is_valid(s.s, s.len, x->xctx)) {
         AFW_THROW_ERROR_Z(general,
             "readln() result is not valid UTF-8", x->xctx);
     }

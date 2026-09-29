@@ -194,7 +194,7 @@ afw_function_execute_bag(
     }
 
     array = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
             x->xctx);
 
@@ -1061,7 +1061,7 @@ afw_function_execute_intersection(
             x->xctx);
     }
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
 
@@ -2297,7 +2297,7 @@ afw_function_execute_split(
         limit = limit_value->internal;
     }
 
-    result = afw_pool_scope_get_assignable_for_scope_lifetime(
+    result = afw_pool_scope_release_value_at_cleanup(
         afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
         x->xctx);
     array = ((const afw_value_array_t *)result)->internal;
@@ -2669,7 +2669,7 @@ afw_function_execute_union(
     }
 
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
     impl_add_nondups_to_array(data_type, array1->internal,

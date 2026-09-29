@@ -848,6 +848,24 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
 
 
 const afw_value_t *
+afw_pool_scope_release_value_at_cleanup(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_scope_t *scope;
+
+    if (!value) {
+        return value;
+    }
+    scope = afw_pool_scope_internal_current(xctx);
+    if (scope) {
+        afw_pool_release_value_at_cleanup(value, scope->p, xctx);
+    }
+    return value;
+}
+
+
+const afw_value_t *
 afw_pool_scope_set_last_result_for_lifetime(
     const afw_value_t *value,
     afw_xctx_t *xctx)

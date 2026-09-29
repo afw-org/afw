@@ -132,11 +132,29 @@ afw_pool_scope_clear_last_result(
  * @return assignable value, or void/NULL unchanged.
  *
  * get_assignable plus pool-cleanup on current scope->p. Does not
- * store last_result. Built-ins that return an input or a managed
- * result use this.
+ * store last_result. Built-ins that return an input, or that need
+ * unmanaged promoted to managed, use this. After create_managed,
+ * use afw_pool_scope_release_value_at_cleanup() instead: that does
+ * not bump, so assign plus scope cleanup cannot leave RC 1.
  */
 const afw_value_t *
 afw_pool_scope_get_assignable_for_scope_lifetime(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Extra-hold a value until the current scope ends.
+ * @param value to keep. NULL is returned unchanged.
+ * @param xctx of caller.
+ * @return value unchanged.
+ *
+ * Registers afw_pool_release_value_at_cleanup on current scope->p.
+ * Does not get_assignable (no RC bump). Use after create_managed so
+ * RC 1 plus this cleanup is a temp (same as managed pop/shift).
+ */
+const afw_value_t *
+afw_pool_scope_release_value_at_cleanup(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
