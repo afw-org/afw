@@ -12,7 +12,7 @@ alwaysApply: false
 
 | Implementation | Path | Role |
 |----------------|------|------|
-| **fcgi** | `src/afw_server_fcgi` | Production HTTP via **FastCGI** (nginx/Apache). Details: **`afw-server-fcgi`** |
+| **fcgi** | `src/afw_server_fcgi` | Production HTTP via **FastCGI** (nginx/Apache). `-n` is request-thread count; stack size is `threadStackBytes` / `max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK)`, not `-n`. Details: **`afw-server-fcgi`** |
 | **afw_command_local** | `src/afw_command` | `afw --local` — local server/request (evaluate, action, **http-like**, …). Details: **`afw-command`** |
 | **Future** | e.g. native HTTP srcdir | Same interfaces; core stays unchanged |
 

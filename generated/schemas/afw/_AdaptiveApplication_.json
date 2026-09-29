@@ -169,6 +169,12 @@
                     "title": "Source Location",
                     "type": "string"
                 },
+                "threadStackBytes": {
+                    "description": "Optional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s).",
+                    "markdownDescription": "**Thread Stack Bytes**\n\nOptional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s).",
+                    "title": "Thread Stack Bytes",
+                    "type": "integer"
+                },
                 "title": {
                     "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
                     "markdownDescription": "**Title**\n\nThe title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
@@ -454,6 +460,12 @@
                     "title": "Small Chunk Min",
                     "type": "integer"
                 },
+                "threadStackBytes": {
+                    "description": "Optional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s).",
+                    "markdownDescription": "**Thread Stack Bytes**\n\nOptional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s).",
+                    "title": "Thread Stack Bytes",
+                    "type": "integer"
+                },
                 "title": {
                     "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
                     "markdownDescription": "**Title**\n\nThe title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
@@ -714,6 +726,12 @@
             "markdownDescription": "**Source Location**\n\nThis is a contextual string added when this configuration object is processed.",
             "title": "Source Location",
             "type": "string"
+        },
+        "threadStackBytes": {
+            "description": "Optional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s).",
+            "markdownDescription": "**Thread Stack Bytes**\n\nOptional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s).",
+            "title": "Thread Stack Bytes",
+            "type": "integer"
         },
         "title": {
             "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",

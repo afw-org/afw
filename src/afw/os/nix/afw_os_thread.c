@@ -23,6 +23,7 @@
 #include "afw_internal.h"
 #include <pthread.h>
 #include <errno.h>
+#include <limits.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <sys/resource.h>
@@ -307,46 +308,81 @@ afw_os_thread_create(
     pthread_attr_t attr;
     size_t stack_size;
     size_t want;
+    size_t page;
+    long page_l;
     afw_size_t headroom;
+    afw_size_t configured;
+    afw_boolean_t set_stack;
     struct rlimit rl;
     int err;
 
     self = afw_pool_calloc_type(p, afw_os_thread_t, xctx);
 
     /*
-     * Size thread stacks to max(2MiB, 4 x limitCStackHeadroomBytes,
-     * RLIMIT_STACK). glibc already defaults to RLIMIT_STACK (2MiB on
-     * x86_64 when unlimited); musl defaults to ~128KiB, which the C
-     * stack headroom check trips on right away.
+     * Default stack is max(2MiB, RLIMIT_STACK). musl's ~128KiB
+     * trips C stack headroom at once; glibc already uses
+     * RLIMIT_STACK (2MiB on x86_64 when unlimited).
      *
-     * The floor only applies when ulimit -s is lower or unlimited.
-     * A full default evaluation stack (500) used ~500KiB of C stack
-     * unoptimized, so with the 256KiB default headroom 2MiB leaves
-     * ~3x margin for sanitizers and deeper non-eval recursion. The
-     * headroom term keeps a raised limitCStackHeadroomBytes from
-     * tripping on every check. Raise ulimit -s for more.
+     * threadStackBytes, if non-zero, is that size instead of the
+     * 2MiB/RLIMIT_STACK default. glibc's fresh pthread_attr_t
+     * already reports RLIMIT_STACK, so a smaller conf must still
+     * call setstacksize. 4 × limitCStackHeadroomBytes is always a
+     * floor so a raised headroom still fits. Then want is at
+     * least PTHREAD_STACK_MIN and rounded up to the OS page
+     * (Linux setstacksize EINVAL otherwise). The base thread is
+     * the process stack (ulimit -s), not this path.
      */
     err = pthread_attr_init(&attr);
     if (err != 0) {
         AFW_THROW_ERROR_RV_Z(general, errno, err,
             "pthread_attr_init() failed", xctx);
     }
-    want = 2 * 1024 * 1024;
-    headroom = (xctx && xctx->env)
-        ? xctx->env->limit_c_stack_headroom_bytes : 0;
-    if (headroom <= AFW_SIZE_T_MAX / 4 && headroom * 4 > want) {
-        want = (size_t)(headroom * 4);
+    want = (size_t)AFW_ENVIRONMENT_DEFAULT_THREAD_STACK_BYTES;
+    headroom = xctx->env->limit_c_stack_headroom_bytes;
+    configured = xctx->env->thread_stack_bytes;
+    if (configured != 0) {
+        want = (size_t)configured;
     }
-    if (getrlimit(RLIMIT_STACK, &rl) == 0 &&
+    if (configured == 0 &&
+        getrlimit(RLIMIT_STACK, &rl) == 0 &&
         rl.rlim_cur != RLIM_INFINITY &&
         (size_t)rl.rlim_cur > want)
     {
         want = (size_t)rl.rlim_cur;
     }
-    if (pthread_attr_getstacksize(&attr, &stack_size) == 0 &&
-        stack_size < want)
-    {
-        (void)pthread_attr_setstacksize(&attr, want);
+    if (headroom <= AFW_SIZE_T_MAX / 4 && headroom * 4 > want) {
+        want = (size_t)(headroom * 4);
+    }
+#ifdef PTHREAD_STACK_MIN
+    if (want < (size_t)PTHREAD_STACK_MIN) {
+        want = (size_t)PTHREAD_STACK_MIN;
+    }
+#endif
+    page_l = sysconf(_SC_PAGESIZE);
+    page = (page_l > 0) ? (size_t)page_l : 4096;
+    if (page > 1 && want <= AFW_SIZE_T_MAX - (page - 1)) {
+        want = ((want + page - 1) / page) * page;
+    }
+    /*
+     * Configured size always replaces the pthread default, even
+     * when that is larger (glibc reports RLIMIT_STACK, often
+     * 8MiB). The formula only raises a too-small default.
+     */
+    set_stack = (configured != 0);
+    if (!set_stack) {
+        if (pthread_attr_getstacksize(&attr, &stack_size) != 0 ||
+            stack_size < want)
+        {
+            set_stack = true;
+        }
+    }
+    if (set_stack) {
+        err = pthread_attr_setstacksize(&attr, want);
+        if (err != 0) {
+            pthread_attr_destroy(&attr);
+            AFW_THROW_ERROR_RV_Z(general, errno, err,
+                "pthread_attr_setstacksize() failed", xctx);
+        }
     }
 
     err = pthread_create(&self->tid, &attr, start, arg);

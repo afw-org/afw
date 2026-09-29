@@ -293,6 +293,17 @@
                 "valueAccessor": "indirect"
             }
         },
+        "threadStackBytes": {
+            "allowQuery": true,
+            "brief": "Request-thread C stack size override",
+            "dataType": "integer",
+            "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 × limitCStackHeadroomBytes. 0 uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+            "label": "Thread Stack Bytes",
+            "runtime": {
+                "memberName": "thread_stack_bytes",
+                "valueAccessor": "size"
+            }
+        },
         "xctxChunkMin": {
             "allowQuery": true,
             "brief": "xctx/thread heap chunk min",

@@ -67,7 +67,7 @@ FCGI quirks: HTTP status via **`Status: code reason`** header; first body write 
 
 ## CLI / socket
 
-- `-f` conf, `-p` socket path (Unix `/path.sock` or TCP `:port`; default **`:9345`** if omitted), `-n` threads, `-e` extension, `-t` conf content type.
+- `-f` conf, `-p` socket path (Unix `/path.sock` or TCP `:port`; default **`:9345`** if omitted), `-n` threads, `-e` extension, `-t` conf content type. `-n` is thread count. Each request pthread stack is `threadStackBytes` when set, else `max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK)`. A typical 8MiB `ulimit -s` yields 8MiB per thread. CLI `afw` stays on the process stack.
 - Deploy samples often use Unix socket + nginx `fastcgi_pass` (`src/afw/doc/guide/administrative/nginx.conf`, `afwfcgi.service`).
 - Links **libfcgi** separately (`cmake/afw_fcgi-config.cmake`).
 

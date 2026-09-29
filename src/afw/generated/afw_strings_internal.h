@@ -2473,6 +2473,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__0a19d1591b55 \
+    "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 × limitCStackHeadroomBytes. 0 uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0a19d1591b55 */
+#define afw_s_zz__0a19d1591b55 \
+    (&afw_self_v_zz__0a19d1591b55.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0a19d1591b55 */
+#define afw_self_s_zz__0a19d1591b55 \
+    (afw_self_v_zz__0a19d1591b55.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__0a19d1591b55 */
+extern const afw_value_string_t \
+    afw_self_v_zz__0a19d1591b55;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0a19d1591b55 */
+#define afw_z_zz__0a19d1591b55 \
+    (afw_self_v_zz__0a19d1591b55.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__0a19d1591b55 */
+#define afw_v_zz__0a19d1591b55 \
+    (&afw_self_v_zz__0a19d1591b55.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__0a2203b6897a \
     "/afw/_AdaptiveFunction_/convert_AdaptiveQueryCriteria_to_query_string"
 
@@ -69371,6 +69397,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_request_thread_C_stack_size \
+    "Override request-thread C stack size"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_request_thread_C_stack_size */
+#define afw_s_zz__Override_request_thread_C_stack_size \
+    (&afw_self_v_zz__Override_request_thread_C_stack_size.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_request_thread_C_stack_size */
+#define afw_self_s_zz__Override_request_thread_C_stack_size \
+    (afw_self_v_zz__Override_request_thread_C_stack_size.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_request_thread_C_stack_size */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_request_thread_C_stack_size;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_request_thread_C_stack_size */
+#define afw_z_zz__Override_request_thread_C_stack_size \
+    (afw_self_v_zz__Override_request_thread_C_stack_size.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_request_thread_C_stack_size */
+#define afw_v_zz__Override_request_thread_C_stack_size \
+    (&afw_self_v_zz__Override_request_thread_C_stack_size.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Override_request_thread_ST_asked_for_cap \
     "Override request/thread ST asked-for cap"
 
@@ -73189,6 +73241,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Request_subject_ */
 #define afw_v_zz__Request_subject_ \
     (&afw_self_v_zz__Request_subject_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Request_thread_C_stack_size_override \
+    "Request-thread C stack size override"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Request_thread_C_stack_size_override */
+#define afw_s_zz__Request_thread_C_stack_size_override \
+    (&afw_self_v_zz__Request_thread_C_stack_size_override.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Request_thread_C_stack_size_override */
+#define afw_self_s_zz__Request_thread_C_stack_size_override \
+    (afw_self_v_zz__Request_thread_C_stack_size_override.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Request_thread_C_stack_size_override */
+extern const afw_value_string_t \
+    afw_self_v_zz__Request_thread_C_stack_size_override;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Request_thread_C_stack_size_override */
+#define afw_z_zz__Request_thread_C_stack_size_override \
+    (afw_self_v_zz__Request_thread_C_stack_size_override.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Request_thread_C_stack_size_override */
+#define afw_v_zz__Request_thread_C_stack_size_override \
+    (&afw_self_v_zz__Request_thread_C_stack_size_override.pub)
 
 
 
@@ -87749,6 +87827,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Thread_Count */
 #define afw_v_zz__Thread_Count \
     (&afw_self_v_zz__Thread_Count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Thread_Stack_Bytes \
+    "Thread Stack Bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Thread_Stack_Bytes */
+#define afw_s_zz__Thread_Stack_Bytes \
+    (&afw_self_v_zz__Thread_Stack_Bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Thread_Stack_Bytes */
+#define afw_self_s_zz__Thread_Stack_Bytes \
+    (afw_self_v_zz__Thread_Stack_Bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Thread_Stack_Bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__Thread_Stack_Bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Thread_Stack_Bytes */
+#define afw_z_zz__Thread_Stack_Bytes \
+    (afw_self_v_zz__Thread_Stack_Bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Thread_Stack_Bytes */
+#define afw_v_zz__Thread_Stack_Bytes \
+    (&afw_self_v_zz__Thread_Stack_Bytes.pub)
 
 
 
@@ -151241,6 +151345,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f9a93fffc09b */
 #define afw_v_zz__f9a93fffc09b \
     (&afw_self_v_zz__f9a93fffc09b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__f9c46d4540c4 \
+    "Optional. If present and non-zero, sizes each afw_thread_create pthread (afwfcgi request threads) to this many bytes, raised to 4 × limitCStackHeadroomBytes so the headroom tripwire still fits. 0 or omitted uses max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; process::threadStackBytes stays 0 until you set this. Does not change the process main/base thread (that stack is ulimit -s)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_s_zz__f9c46d4540c4 \
+    (&afw_self_v_zz__f9c46d4540c4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_self_s_zz__f9c46d4540c4 \
+    (afw_self_v_zz__f9c46d4540c4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f9c46d4540c4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f9c46d4540c4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_z_zz__f9c46d4540c4 \
+    (afw_self_v_zz__f9c46d4540c4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f9c46d4540c4 */
+#define afw_v_zz__f9c46d4540c4 \
+    (&afw_self_v_zz__f9c46d4540c4.pub)
 
 
 

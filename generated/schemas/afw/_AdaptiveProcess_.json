@@ -176,6 +176,12 @@
                     "title": "Start Time",
                     "type": "string"
                 },
+                "threadStackBytes": {
+                    "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+                    "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+                    "title": "Thread Stack Bytes",
+                    "type": "integer"
+                },
                 "xctxChunkMin": {
                     "description": "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
                     "markdownDescription": "**Xctx Chunk Min**\n\nProcess default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
@@ -350,6 +356,12 @@
                     "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
                     "title": "Start Time",
                     "type": "string"
+                },
+                "threadStackBytes": {
+                    "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+                    "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+                    "title": "Thread Stack Bytes",
+                    "type": "integer"
                 },
                 "xctxChunkMin": {
                     "description": "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
@@ -535,6 +547,12 @@
             "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
             "title": "Start Time",
             "type": "string"
+        },
+        "threadStackBytes": {
+            "description": "If non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+            "markdownDescription": "**Thread Stack Bytes**\n\nIf non-zero, each afw_thread_create pthread (afwfcgi request threads) is sized to this many bytes, raised to 4 \u00d7 limitCStackHeadroomBytes. 0 uses max(2MiB, 4 \u00d7 limitCStackHeadroomBytes, RLIMIT_STACK). 0 means that formula; a typical 8MiB ulimit -s yields 8MiB workers; this property stays 0 until application conf sets threadStackBytes. Does not change the process main/base thread (ulimit -s).",
+            "title": "Thread Stack Bytes",
+            "type": "integer"
         },
         "xctxChunkMin": {
             "description": "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",

@@ -137,6 +137,15 @@
     afw_size_t limit_c_stack_headroom_bytes;
 
     /**
+     * @brief Request-thread pthread stack size. 0 = default formula.
+     *
+     * Non-zero: `afw_os_thread_create` uses this many bytes, raised
+     * to 4 × limit_c_stack_headroom_bytes. 0: max(2MiB,
+     * 4 × headroom, RLIMIT_STACK). Base/main thread is unchanged.
+     */
+    afw_size_t thread_stack_bytes;
+
+    /**
      * @brief Default heap chunk min when create passes 0.
      *
      * Default `AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN`. Align and packing stay

@@ -94019,6 +94019,32 @@ afw_self_v_threadCount;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_threadStackBytes \
+    "threadStackBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_threadStackBytes */
+#define afw_s_threadStackBytes \
+    (&afw_self_v_threadStackBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_threadStackBytes */
+#define afw_self_s_threadStackBytes \
+    (afw_self_v_threadStackBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_threadStackBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_threadStackBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_threadStackBytes */
+#define afw_z_threadStackBytes \
+    (afw_self_v_threadStackBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_threadStackBytes */
+#define afw_v_threadStackBytes \
+    (&afw_self_v_threadStackBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_thread_count \
     "thread_count"
 
@@ -94041,6 +94067,32 @@ afw_self_v_thread_count;
 /** @brief 'const afw_value_t *' for AFW_Q_thread_count */
 #define afw_v_thread_count \
     (&afw_self_v_thread_count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_thread_stack_bytes \
+    "thread_stack_bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_thread_stack_bytes */
+#define afw_s_thread_stack_bytes \
+    (&afw_self_v_thread_stack_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_thread_stack_bytes */
+#define afw_self_s_thread_stack_bytes \
+    (afw_self_v_thread_stack_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_thread_stack_bytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_thread_stack_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_thread_stack_bytes */
+#define afw_z_thread_stack_bytes \
+    (afw_self_v_thread_stack_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_thread_stack_bytes */
+#define afw_v_thread_stack_bytes \
+    (&afw_self_v_thread_stack_bytes.pub)
 
 
 

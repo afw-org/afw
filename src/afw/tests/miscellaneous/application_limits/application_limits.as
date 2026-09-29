@@ -16,6 +16,10 @@ assert(process::defaultChunkMin === 4096);
 assert(process::smallChunkMin === 4096);
 assert(process::xctxChunkMin === 8192);
 assert(process::memoryRegionFreeListMaxBytes === 4096);
+/* Conf setting only, not the live pthread size. glibc's attr
+ * default is RLIMIT_STACK, so this 4MiB value is below a typical
+ * 8MiB ulimit -s; afw_os_thread_create still setstacksize. */
+assert(process::threadStackBytes === 4194304);
 return 0;
 
 //?
