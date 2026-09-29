@@ -20,7 +20,7 @@
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
-#include "afw.h"
+#include "afw_internal.h"
 #include <pthread.h>
 #include <errno.h>
 #include <signal.h>
@@ -307,22 +307,36 @@ afw_os_thread_create(
     pthread_attr_t attr;
     size_t stack_size;
     size_t want;
+    afw_size_t headroom;
     struct rlimit rl;
     int err;
 
     self = afw_pool_calloc_type(p, afw_os_thread_t, xctx);
 
     /*
-     * Give every thread at least the main thread's stack budget.
-     * glibc already defaults to RLIMIT_STACK; musl defaults to
-     * ~128KiB, which the C stack headroom check trips on right away.
+     * Size thread stacks to max(2MiB, 4 x limitCStackHeadroomBytes,
+     * RLIMIT_STACK). glibc already defaults to RLIMIT_STACK (2MiB on
+     * x86_64 when unlimited); musl defaults to ~128KiB, which the C
+     * stack headroom check trips on right away.
+     *
+     * The floor only applies when ulimit -s is lower or unlimited.
+     * A full default evaluation stack (500) used ~500KiB of C stack
+     * unoptimized, so with the 256KiB default headroom 2MiB leaves
+     * ~3x margin for sanitizers and deeper non-eval recursion. The
+     * headroom term keeps a raised limitCStackHeadroomBytes from
+     * tripping on every check. Raise ulimit -s for more.
      */
     err = pthread_attr_init(&attr);
     if (err != 0) {
         AFW_THROW_ERROR_RV_Z(general, errno, err,
             "pthread_attr_init() failed", xctx);
     }
-    want = 8 * 1024 * 1024;
+    want = 2 * 1024 * 1024;
+    headroom = (xctx && xctx->env)
+        ? xctx->env->limit_c_stack_headroom_bytes : 0;
+    if (headroom <= AFW_SIZE_T_MAX / 4 && headroom * 4 > want) {
+        want = (size_t)(headroom * 4);
+    }
     if (getrlimit(RLIMIT_STACK, &rl) == 0 &&
         rl.rlim_cur != RLIM_INFINITY &&
         (size_t)rl.rlim_cur > want)
