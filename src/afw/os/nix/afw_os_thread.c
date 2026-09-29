@@ -343,10 +343,15 @@ afw_os_thread_create(
     {
         want = (size_t)rl.rlim_cur;
     }
-    if (pthread_attr_getstacksize(&attr, &stack_size) == 0 &&
+    if (pthread_attr_getstacksize(&attr, &stack_size) != 0 ||
         stack_size < want)
     {
-        (void)pthread_attr_setstacksize(&attr, want);
+        err = pthread_attr_setstacksize(&attr, want);
+        if (err != 0) {
+            pthread_attr_destroy(&attr);
+            AFW_THROW_ERROR_RV_Z(general, errno, err,
+                "pthread_attr_setstacksize() failed", xctx);
+        }
     }
 
     err = pthread_create(&self->tid, &attr, start, arg);

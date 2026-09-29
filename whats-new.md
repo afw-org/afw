@@ -18,6 +18,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 |-------------|----|
 | `throw "…" { … }` | `throw "…" data { … }` (optional `id "not_found"`). A variable also named `data` is `throw "…" data data`. [Error codes](#error-codes-trycatch-and-http-issue-33) |
 | `open_file` / `stream` return `-1`; `get_stream_error` | They **throw**. `get_stream_error`, `open_uri`, and `open_response` are **gone**. [File streams](#file-streams-open_file-and-friends) |
+| `open_file(..., "")` | Throws **`general`** invalid mode. The mode must start with **`r`**, **`w`**, or **`a`**. [File streams](#file-streams-open_file-and-friends) |
 | `retrieve_objects` / `…_with_uri` with no cap | Default **`maxObjects` is 0** (unlimited). Pass a **positive** `maxObjects` only when you want a cardinality fail-closed (`payload_too_large` if the pool still has room to throw). Server memory is **`limitRequestPoolBytes`** (`payload_too_large` or a **`memory`** error). [Retrieve](#materializing-retrieve-maxobjects-issue-49) |
 | `stringify` for Adaptive-looking text (`date("…")`, …) | **`stringify` is pure JSON**. Use **`decompile`** for Adaptive compiled form. [stringify / decompile](#stringify-decompile-compiler-listing-and-binary-text) |
 | `e.id` names `cast_error`, `arg_error`, `undefined`, `code`, … | `conversion_error`, `argument_error`, `undefined_value`, `coding_error`, … Some HTTP statuses changed (syntax **400**, missing adapter **404**). Prefer **`e.id`**. [Error codes](#error-codes-trycatch-and-http-issue-33) |
@@ -116,7 +117,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Retrieve arrays**](#materializing-retrieve-maxobjects-issue-49) ([#49](https://github.com/afw-org/afw/issues/49)) | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **0** = unlimited; positive cap → **`payload_too_large`** if the pool still has room). Request memory is **`limitRequestPoolBytes`** |
 | [**Progressive retrieve release**](#progressive-retrieve-release-issue-127) ([#127](https://github.com/afw-org/afw/issues/127)) | Write-only progressive paths **release each object after encode/flush** (`to_response` / `to_stream` / HTTP collection list) so large sets do not hold every adapter object until the request ends |
 | [**Adapter auth**](#adapter-getretrieve-authorization-issue-90) ([#90](https://github.com/afw-org/afw/issues/90)) | `checkIndividualObjectReadAccess` wiring fixed + tests (action **`read`** as well as **`query`**) |
-| [**File streams**](#file-streams-open_file-and-friends) ([#103](https://github.com/afw-org/afw/issues/103)) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
+| [**File streams**](#file-streams-open_file-and-friends) ([#103](https://github.com/afw-org/afw/issues/103)) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`); empty mode throws; `r+` keeps the current offset |
 | [**Conf path templates**](#conf-path-templates-issue-15) ([#15](https://github.com/afw-org/afw/issues/15)) | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
 | [**VFS adapter**](#vfs-adapter-afw_vfs) ([#79](https://github.com/afw-org/afw/issues/79)) | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
 | [**Model adapters**](#pure-script-model-adapters) ([#109](https://github.com/afw-org/afw/issues/109)) | `mappedAdapterId` is **optional** for pure-script models; `onGetObject` can `throw` … `id "not_found"` for HTTP **404** |
@@ -124,7 +125,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**JSON Schema**](#json-schema-for-adaptive-object-types) ([#3](https://github.com/afw-org/afw/issues/3)) | Cleaner editor schemas for Adaptive object types |
 | [**Process env**](#process-environment-variables-issue-71) ([#71](https://github.com/afw-org/afw/issues/71)) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
 | [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime`; live pool telemetry (see [#329](#process-telemetry-and-request-caps-issue-329)) |
-| [**Process telemetry / request caps**](#process-telemetry-and-request-caps-issue-329) ([#329](https://github.com/afw-org/afw/issues/329)) | `peak*` highs; `limit*` tripwires (`payload_too_large`); optional application conf; `response:metrics`; `afwdev test --history` / `--compare` / `--trend` |
+| [**Process telemetry / request caps**](#process-telemetry-and-request-caps-issue-329) ([#329](https://github.com/afw-org/afw/issues/329)) | `peak*` highs; `limit*` tripwires (`payload_too_large`); worker thread C stack at least 2MiB; optional application conf; `response:metrics`; `afwdev test --history` / `--compare` / `--trend` |
 | [**`afw_crypto`**](#crypto-extension-afw_crypto-issue-74-partial) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
 | [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` compile, `${…}` on get, function from `#{…}` on **call**; `compile()` is a unit; log conf **`custom`** removed; path conf at configure; `on*` / log filter are scripts |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
@@ -1445,6 +1446,8 @@ Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool b
 
 A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** when there is still room to build the error. If allocation itself fails, the error is **`memory`**. Either is OK; the worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI. A positive retrieve **`maxObjects`** is a separate cardinality throw (`payload_too_large`) and is not the request memory cap.
 
+Worker threads (`afwfcgi` request threads and other `afw_os_thread_create` threads) get a C stack of **max(2MiB, 4 × `limitCStackHeadroomBytes`, `RLIMIT_STACK`)** ([PR #421](https://github.com/afw-org/afw/pull/421)). musl’s default (~128KiB) was below the headroom tripwire. The 2MiB floor applies when `ulimit -s` is lower or unlimited; raise `ulimit -s` for a larger stack. If that size cannot be set, thread create throws **`general`**.
+
 `afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs mapped chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes. **`--clear-history`** removes ordinary runs for this mode and keeps reference baselines. **`--trend --history-ref LABEL`** charts that baseline and ordinary runs after it. **`--clear-failures`** removes this mode's logs under `~/.afw/test-failures/`.
 
 [↑ Highlights](#highlights)
@@ -1650,7 +1653,9 @@ close(sn2);
 - **`get_stream_error` was removed.** Use `try` / `catch` and the thrown `_AdaptiveError_` (`e.message`, and where applicable `e.rv` / `e.rvDecoded` for errno-based I/O failures).
 - Unfinished APIs were removed from the public surface for a leaner beta: **`open_uri`**, **`open_response`**.
 
-Modes cover text and binary (`r`, `w`, `a`, `r+`, … and `rb`, `wb`, …). `open_file` requires execute access.
+Modes cover text and binary (`r`, `w`, `a`, `r+`, … and `rb`, `wb`, …). The mode must start with `r`, `w`, or `a`; an empty mode throws **`general`**. `open_file` requires execute access.
+
+On an update stream (`+` in the mode), switching between read and write keeps the current offset ([PR #421](https://github.com/afw-org/afw/pull/421)). C requires a reposition there so a following write stays at that offset.
 
 [↑ Highlights](#highlights)
 
