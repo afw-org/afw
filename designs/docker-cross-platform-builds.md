@@ -34,6 +34,13 @@ But `.github/workflows/` only has `builds.yml`, `docs.yml`, `integration.yml` �
 
 **Verify a base before pushing — building the image is not enough.** Stream a clean source tar into the image and run the real loop (`./afwdev build --cdev && afwdev test -j`). The 2026-09-28 round found a dozen real failures (next section) in images that built cleanly. The daemon is on the host, so bind-mounting a devcontainer path does not work — pipe the tar over stdin (`docker run -i … bash -c 'mkdir /src && tar -x -C /src && …' < src.tar`).
 
+Two traps from the 2026-09-29 push round, both harness artifacts rather than image bugs:
+
+- **`git init` the extracted tree.** `git archive` has no `.git`, so afwdev's `git rev-parse` writes `fatal: not a git repository` to stderr. `prime_test_c_probe` reads stderr before stdout, so its three "refuses-…" checks fail on every image. `git init -q && git add -A && git commit -qm verify` (with a throwaway `-c user.name/email`) inside the container before `./afwdev build --cdev` fixes it.
+- **On Apple Silicon Docker Desktop the host is arm64, so `--platform linux/amd64` runs are emulated.** Verify on native **arm64** (all five bases: 0 failures). Emulated amd64 is still a useful smoke test, but valgrind segfaults under emulation on musl — even `valgrind /bin/true` in stock `alpine:3.21`/`3.24` — so `c_probe/helper.py`'s `valgrind-*` cases fail on Alpine amd64 only. Emulated amd64 glibc bases run valgrind fine. Check the host with `docker info --format '{{.Architecture}}'`.
+
+For LDAP ([#391](https://github.com/afw-org/afw/issues/391)), also run the opt-in leaf `afwdev test -T src/afw/tests-extra/ldap-add` in each base: it starts a private `slapd` seeded with `slapadd`, so one pass covers the headers, `libldap`, `slapd`, and schema (`/etc/ldap/schema` on Ubuntu, `/etc/openldap/schema` elsewhere).
+
 Also, as of 2026-09-10: both `builds.yml` and `integration.yml` show **zero recorded runs ever** (`gh api repos/afw-org/afw/actions/workflows/<id>/runs` → `"total_count":0` for both). `integration.yml` only triggers on PRs targeting `main` + manual dispatch; `builds.yml` is manual-dispatch-only. Neither is actively exercised today — don't assume CI will catch a Dockerfile regression.
 
 ## Fetch clean source before building — the working tree is not a safe build context
