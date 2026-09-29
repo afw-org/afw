@@ -10,19 +10,15 @@
 set -euo pipefail
 
 HERE=$(cd "$(dirname "$0")" && pwd)
+TESTS_EXTRA=$(cd "$HERE/.." && pwd)
 ROOT=$(cd "$HERE/../../../.." && pwd)
 DURATION="${1:-}"
 STAGE=""
 
-stage_leaf() {
-    local name="$1"
-    local src="$HERE/$name"
-    local dst="$STAGE/$name"
-    rm -rf "$dst"
-    mkdir -p "$dst"
-    cp -aL "$src"/. "$dst"/
-    if [ -n "$DURATION" ]; then
-        python3 - "$dst/orchestration.yaml" "$DURATION" <<'PY'
+patch_orchestration_duration() {
+    local path="$1"
+    local duration="$2"
+    python3 - "$path" "$duration" <<'PY'
 import sys
 path, duration = sys.argv[1], int(sys.argv[2])
 timeout = duration + 150
@@ -42,31 +38,50 @@ open(path, "w").write("".join(text2))
 if not seen_duration or not seen_timeout:
     sys.exit("did not find duration_s and timeout_s in " + path)
 PY
-    fi
 }
 
 if [ -n "$DURATION" ]; then
-    STAGE=$(mktemp -d /tmp/afw-night-stage-XXXX)
-    stage_leaf slope
-    stage_leaf restart
-    SLOPE="$STAGE/slope"
-    RESTART="$STAGE/restart"
+    # Short paths: afwfcgi Unix socket lives under work_dir derived from -T.
+    STAGE=$(mktemp -d /tmp/n-XXXX)
+    cp -a "$TESTS_EXTRA" "$STAGE/e"
+    patch_orchestration_duration \
+        "$STAGE/e/night/slope/orchestration.yaml" "$DURATION"
+    patch_orchestration_duration \
+        "$STAGE/e/night/restart/orchestration.yaml" "$DURATION"
+    PATCH="$HERE/../stress-campaign/patch-orchestration.py"
+    if [ -f "$PATCH" ]; then
+        slope_threads="${AFW_STRESS_SLOPE_THREADS:-${AFW_STRESS_SERVER_THREADS:-50%}}"
+        restart_threads="${AFW_STRESS_RESTART_THREADS:-8}"
+        client="${AFW_STRESS_CLIENT_CPUS:-50%}"
+        conc="${AFW_STRESS_FIREHOSE_CONCURRENCY:-100%}"
+        python3 "$PATCH" "$STAGE/e/night/slope/orchestration.yaml" \
+            --server-threads "$slope_threads" \
+            --concurrency "$conc" --client-processes "$client"
+        python3 "$PATCH" "$STAGE/e/night/restart/orchestration.yaml" \
+            --server-threads "$restart_threads" \
+            --concurrency "$conc" --client-processes "$client"
+    fi
+    SLOPE="$STAGE/e/night/slope"
+    RESTART="$STAGE/e/night/restart"
 else
     SLOPE="$HERE/slope"
     RESTART="$HERE/restart"
 fi
 
-mkdir -p /tmp/afw-night-slope /tmp/afw-night-restart
+SLOPE_TMP="${AFW_NIGHT_SLOPE_TMPDIR:-/tmp/w/ns}"
+RESTART_TMP="${AFW_NIGHT_RESTART_TMPDIR:-/tmp/w/nr}"
+mkdir -p "$SLOPE_TMP" "$RESTART_TMP" /tmp/afw-night-slope /tmp/afw-night-restart
+rm -rf "$SLOPE_TMP/afwdev_test_output" "$RESTART_TMP/afwdev_test_output"
 rm -f /tmp/afw-night-slope/practice.log /tmp/afw-night-restart/practice.log
 
-echo "slope   $SLOPE  tmpdir /tmp/afw-night-slope"
-echo "restart $RESTART  tmpdir /tmp/afw-night-restart"
+echo "slope   $SLOPE  tmpdir $SLOPE_TMP"
+echo "restart $RESTART  tmpdir $RESTART_TMP"
 
 set +e
-afwdev test --tmpdir /tmp/afw-night-slope -T "$SLOPE" \
+afwdev test --tmpdir "$SLOPE_TMP" -T "$SLOPE" \
     > /tmp/afw-night-slope/practice.log 2>&1 &
 SLOPE_PID=$!
-afwdev test --tmpdir /tmp/afw-night-restart -T "$RESTART" \
+afwdev test --tmpdir "$RESTART_TMP" -T "$RESTART" \
     > /tmp/afw-night-restart/practice.log 2>&1 &
 RESTART_PID=$!
 
@@ -79,8 +94,8 @@ echo "restart pid $RESTART_PID"
     while kill -0 "$SLOPE_PID" 2>/dev/null || kill -0 "$RESTART_PID" 2>/dev/null; do
         date -u +%H:%M:%S
         ps -C afwfcgi -o pid=,etime=,pcpu=,nlwp= \
-            | awk 'NR==FNR { next } { print }' 
-        ps -C afwfcgi -o pid=,pcpu=,nlwp=,cmd= | grep 'afw-night' || true
+            | awk 'NR==FNR { next } { print }'
+        ps -C afwfcgi -o pid=,pcpu=,nlwp=,cmd= 2>/dev/null | head -8 || true
         sleep 15
     done
 ) >> /tmp/afw-night-cpu.log 2>&1 &
