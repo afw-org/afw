@@ -206,6 +206,22 @@ afw_os_get_rss()
 }
 
 
+AFW_DEFINE(void *)
+afw_os_map_pages(afw_size_t size)
+{
+    (void)size;
+    return NULL;
+}
+
+
+AFW_DEFINE(void)
+afw_os_unmap_pages(void *ptr, afw_size_t size)
+{
+    (void)ptr;
+    (void)size;
+}
+
+
 /* Return the suffix appended to dso file names for this system. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_os_get_dso_suffix()

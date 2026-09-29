@@ -25,6 +25,7 @@
 #include <signal.h>
 #include <dlfcn.h>
 #include <fnmatch.h>
+#include <sys/mman.h>
 #ifdef __linux__
 #include <sys/random.h>
 #endif
@@ -706,6 +707,37 @@ afw_os_get_rss()
 #else
     return 0;
 #endif
+}
+
+
+/*
+ * Anonymous pages so unused chunks leave RSS. glibc free() of a
+ * 64 KiB aligned block stays in the arena.
+ */
+AFW_DEFINE(void *)
+afw_os_map_pages(afw_size_t size)
+{
+    void *mem;
+
+    if (size == 0) {
+        return NULL;
+    }
+    mem = mmap(NULL, size, PROT_READ | PROT_WRITE,
+        MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (mem == MAP_FAILED) {
+        return NULL;
+    }
+    return mem;
+}
+
+
+AFW_DEFINE(void)
+afw_os_unmap_pages(void *ptr, afw_size_t size)
+{
+    if (!ptr || size == 0) {
+        return;
+    }
+    (void)munmap(ptr, size);
 }
 
 

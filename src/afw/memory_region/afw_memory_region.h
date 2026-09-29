@@ -21,9 +21,9 @@
  * @brief Thread-owned reuse of page-aligned heap chunks.
  *
  * See the @ref afw_memory_region group. Not a pool. The instance is
- * allocated with C calloc; release() frees it. Chunks are mmap'd
- * (page aligned, 4096). munmap returns pages the free list does
- * not keep.
+ * allocated with C calloc; release() frees it. Chunks are mapped
+ * pages (page aligned, 4096) via afw_os_map_pages(). Unmap returns
+ * pages the free list does not keep.
  */
 
 AFW_BEGIN_DECLARES
@@ -33,7 +33,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @brief Default cap on free_list_bytes. 0 on create() is still
- * passthrough (mmap/munmap every get/free).
+ * passthrough (map/unmap every get/free).
  */
 #define AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES \
     ((afw_size_t)(256 * 1024))

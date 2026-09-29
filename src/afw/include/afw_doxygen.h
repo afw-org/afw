@@ -108,7 +108,7 @@
  *
  * Thread-owned reuse of page-aligned regions for heap chunks.
  * Not a pool. Create with afw_memory_region_create(); the instance
- * is C calloc and release() frees it. Cap 0 is mmap/munmap
+ * is C calloc and release() frees it. Cap 0 is OS map/unmap
  * on every get/free. Thread holds the pointer; release is thread
  * death. Call methods via afw_memory_region_get() /
  * afw_memory_region_free() / afw_memory_region_cleanup() /

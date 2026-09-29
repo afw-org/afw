@@ -61,6 +61,26 @@ afw_os_get_rss();
 
 
 /**
+ * @brief Anonymous page mapping. Does not throw.
+ * @param size bytes to map. Caller rounds to a page multiple.
+ * @return page-aligned pointer, or NULL on failure or size 0.
+ *
+ * Pair with afw_os_unmap_pages() using the same size. Nix is
+ * mmap MAP_PRIVATE | MAP_ANONYMOUS. Win stubs NULL.
+ */
+AFW_DECLARE(void *)
+afw_os_map_pages(afw_size_t size);
+
+/**
+ * @brief Return pages from afw_os_map_pages. Does not throw.
+ * @param ptr from map_pages. NULL is a no-op.
+ * @param size the size passed to map_pages.
+ */
+AFW_DECLARE(void)
+afw_os_unmap_pages(void *ptr, afw_size_t size);
+
+
+/**
  * @brief Return the suffix appended to dso file names for this system. 
  * @return suffix such as ".so" or ".dll".
  */

@@ -8,21 +8,20 @@
 
 /**
  * @file afw_memory_region.c
- * @brief Default afw_memory_region: capped free list of mmap pages
- *    for heaps.
+ * @brief Default afw_memory_region: capped free list of mapped
+ *    pages for heaps.
  *
- * The instance is C calloc; release() frees it. Chunks are mmap'd
- * and munmap'd so RSS drops when a chunk does not stay on the free
- * list. get and free do not lock. The caller holds the right
- * lock: a multithreaded pool holds the multithreaded region's
- * mutex, and a single-threaded pool is the only caller of its
- * thread's region. Cap 0 is mmap/munmap on every get/free
- * (metrics still update).
+ * The instance is C calloc; release() frees it. Chunks come from
+ * afw_os_map_pages() / afw_os_unmap_pages() so RSS drops when a
+ * chunk does not stay on the free list. get and free do not lock.
+ * The caller holds the right lock: a multithreaded pool holds the
+ * multithreaded region's mutex, and a single-threaded pool is the
+ * only caller of its thread's region. Cap 0 is map/unmap on every
+ * get/free (metrics still update).
  */
 
 #include "afw_internal.h"
 #include <stdlib.h>
-#include <sys/mman.h>
 
 
 typedef struct impl_free_node_s impl_free_node_t;
@@ -212,25 +211,6 @@ impl_unlock(impl_afw_memory_region_self_t *self, afw_xctx_t *xctx)
 
 
 /*
- * mmap, not posix_memalign. free() of a 64 KiB aligned block stays
- * in the glibc heap, so RSS climbed on every miss/over-cap pair.
- * munmap gives the pages back. The pointer is still page aligned.
- */
-static void *
-impl_map_chunk(afw_size_t size)
-{
-    void *mem;
-
-    mem = mmap(NULL, size, PROT_READ | PROT_WRITE,
-        MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (mem == MAP_FAILED) {
-        return NULL;
-    }
-    return mem;
-}
-
-
-/*
  * Implementation of method get for interface afw_memory_region.
  */
 void
@@ -280,7 +260,7 @@ impl_afw_memory_region_get(
         }
     }
 
-    mem = impl_map_chunk(need);
+    mem = afw_os_map_pages(need);
     if (!mem) {
         *size = 0;
         return;
@@ -316,7 +296,7 @@ impl_afw_memory_region_free(
     /*
      * Keep this chunk when it fits the cap. If the list is full of
      * other sizes, drop the oldest until it fits. Otherwise a later
-     * get of this size misses and mmap grows RSS for one swap.
+     * get of this size misses and a new map grows RSS for one swap.
      */
     if (pub->free_list_max_bytes != 0 &&
         size <= pub->free_list_max_bytes)
@@ -336,7 +316,7 @@ impl_afw_memory_region_free(
                     env->memory_region_free_over_cap += 1;
                 }
             }
-            munmap(node, node->size);
+            afw_os_unmap_pages(node, node->size);
         }
         if (pub->free_list_bytes + size <= pub->free_list_max_bytes)
         {
@@ -356,7 +336,7 @@ impl_afw_memory_region_free(
 
     pub->free_over_cap += 1;
     impl_env_over_cap(xctx, size);
-    munmap(region, size);
+    afw_os_unmap_pages(region, size);
 }
 
 
@@ -382,7 +362,7 @@ impl_afw_memory_region_cleanup(
     impl_env_drain_list(xctx, bytes, count);
     while (node) {
         next = node->next;
-        munmap(node, node->size);
+        afw_os_unmap_pages(node, node->size);
         node = next;
     }
 }
