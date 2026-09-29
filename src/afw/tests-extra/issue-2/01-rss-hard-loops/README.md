@@ -93,6 +93,23 @@ workload.
 
 Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 
+Assigned / unassigned pairs (same call, two leak classes):
+
+| assigned (`slot_store` leftover RC) | unassigned (extra-hold / last-release) |
+|-------------------------------------|----------------------------------------|
+| `splice_assign` | `splice_unassigned` (last stmt `add(0, 0)`) |
+| `managed_create_assign` | `managed_create_unassigned` (last stmt `add(0, 0)`) |
+| `clone_assign` | `clone_unassigned` (last stmt `add(0, 0)`) |
+| `test_script_assign` | `test_script_unassigned` (last stmt `add(0, 0)`) |
+| `compile_listing_assign` | `compile_listing_unassigned` (last stmt `add(0, 0)`) |
+
+Unassigned loops whose last statement is a managed create would
+`slot_store` that result into `xctx->script_result` on deactivate.
+That is an isolate, not a missing extra-hold. Those loops end with a
+scalar so the create is a pure temp. `unassigned_temps` is the other
+class: unmanaged `add(1, 1)` as last statement, so the isolate is a
+scalar on purpose.
+
 | name | what | RSS / in_use (2026-09-16) | was (2026-09-15) |
 |------|------|---------------------------|------------------|
 | `empty_stmt` | `while (true);` | **flat / flat** | **flat / flat** |
@@ -111,11 +128,18 @@ Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
-| `splice_assign` | splice copy-out then assign | **under bar** (2026-09-28; was ~185 MiB/s). 60 s 2026-09-28: ~0.23 MiB/s RSS / ~0.12 MiB/s in_use | — |
-| `unassigned_temps` | unmanaged `add()` never assigned | **flat / flat** (2026-09-28) | — |
+| `splice_assign` | splice copy-out then assign | **under bar** (2026-09-28; was ~185 MiB/s). 15 s 2026-09-29: ~0.42 MiB/s RSS / ~0.21 MiB/s in_use. 60 s 2026-09-28: ~0.23 / ~0.12 | — |
+| `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **over in_use bar** (2026-09-29, 15 s): ~2.58 MiB/s RSS / ~2.59 MiB/s in_use | — |
+| `unassigned_temps` | unmanaged `add()` (last stmt isolates a scalar) | **flat / flat** (2026-09-28) | — |
 | `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28). 60 s: ~0.40 MiB/s RSS / ~0.04 MiB/s in_use | — |
 | `managed_create_assign` | extra-hold create_managed then assign (reverse/slice/filter/map/sort/bag/intersection/split/union/keys/values/entries) | **under bar** (2026-09-28). 60 s ~0.16 MiB/s RSS / ~0.09 MiB/s in_use; 180 s slope fell to ~0.09 / ~0.05 | — |
-| `managed_create_unassigned` | same calls, never assigned | **under bar** (2026-09-28). 60 s ~0.17 MiB/s RSS / ~0.14 MiB/s in_use | — |
+| `managed_create_unassigned` | same calls, never assigned (last stmt `add()`) | **under bar**. 15 s 2026-09-29: ~0.30 MiB/s RSS / ~0.28 MiB/s in_use. 60 s 2026-09-28: ~0.17 / ~0.14 | — |
+| `clone_assign` | `clone` array/object then assign | **under bar** (2026-09-29, 15 s) | — |
+| `clone_unassigned` | `clone` never assigned (last stmt `add()`) | **under bar** (2026-09-29, 15 s): ~0.40 MiB/s RSS / ~0.35 MiB/s in_use | ~3.3 MiB/s in_use with `afw_value_clone` unmanaged |
+| `test_script_assign` | `test_script` clone extra-hold then assign | **under bar** (2026-09-29, 15 s): ~0.55 MiB/s RSS / ~0.56 MiB/s in_use | — |
+| `test_script_unassigned` | `test_script` clone extra-hold (last stmt `add()`) | **under bar** (2026-09-29, 15 s): ~0.70 MiB/s RSS / ~0.71 MiB/s in_use | — |
+| `compile_listing_assign` | compile listing assigned | **flat / flat** (2026-09-29, 15 s) | — |
+| `compile_listing_unassigned` | compile listing last-releases unit (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s) | — |
 | `array_append` | unbounded `push` | **must grow** (~3 MiB/s both) | must grow (~2.8 MiB/s) |
 
 `function_return` is **flat** on this branch (managed `closure_binding`;
@@ -150,11 +174,22 @@ Remeasured **2026-09-17** on `develop` after [PR #354](https://github.com/afw-or
 `afw_pool_release_value_at_cleanup` on the current scope (see
 `afw_array_create_managed`). Do not `create_managed` in `array()`
 (`[i]` compiles to it). Do not `get_assignable_for_lifetime` on the
-pop result. `splice_assign` is the same extra-hold on the removed
-array (not `get_assignable_for_scope_lifetime` after `create_managed`).
-`managed_create_assign` / `managed_create_unassigned` cover the other
-create_managed extra-hold sites (reverse, slice, filter, map, sort,
-bag, intersection, split, union, keys, values, entries). `readln_loop`
+pop result. `splice_assign` / `splice_unassigned` are the same extra-hold on the
+removed array (not `get_assignable_for_scope_lifetime` after `create_managed`).
+`splice_unassigned` is **over the in_use bar** (~2.6 MiB/s, 15 s 2026-09-29);
+`splice_assign` stays under. Assigned soaks are `slot_store` / leftover RC
+after a bump; unassigned soaks are extra-hold / body last-release. Unassigned
+loops whose result is managed end with `add(0, 0)` so deactivate does not
+`slot_store` that result into `script_result`. `managed_create_assign` /
+`managed_create_unassigned` cover the other create_managed extra-hold sites
+(reverse, slice, filter, map, sort, bag, intersection, split, union, keys,
+values, entries). `test_script_assign` / `test_script_unassigned` are the same
+extra-hold on `create_managed_clone` of the result object.
+`clone_assign` / `clone_unassigned` always-copy create_managed then extra-hold
+the container (not `afw_value_clone`; nested scalars get_assignable).
+`compile_listing_assign` / `compile_listing_unassigned` last-release the unit
+after the dump; do **not** extra-hold `compile()` of a unit (`evaluate(compile())`
+/ closures still need that heap). `readln_loop`
 needs a temp application conf (`rootFilePaths`); the
 Python harness writes that for the spawn only.
 

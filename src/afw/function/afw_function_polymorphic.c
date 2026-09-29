@@ -292,18 +292,86 @@ afw_function_execute_bag_size(
  *
  *   (``<Type>``) The cloned `<dataType>` value.
  */
+static const afw_value_t *
+impl_script_clone(
+    const afw_value_t *value,
+    afw_function_execute_t *x)
+{
+    const afw_value_t *result;
+
+    if (!value || afw_value_is_nullish(value)) {
+        return value;
+    }
+
+    /*
+     * Always-copy create_managed (RC 1), extra-hold the container.
+     * Nested scalars get_assignable (parent holds). Snapshot shares
+     * already-managed children. create_managed_clone of a managed
+     * source also shares. afw_value_clone is unmanaged in dest p.
+     */
+    if (afw_value_is_object(value)) {
+        const afw_object_t *from;
+        const afw_object_t *to;
+        const afw_iterator_old_t *iterator;
+        const afw_value_t *name;
+        const afw_value_t *prop;
+
+        from = ((const afw_value_object_t *)value)->internal;
+        to = ((const afw_value_object_t *)
+            afw_pool_scope_release_value_at_cleanup(
+                afw_object_create_managed(x->p, x->xctx)->value,
+                x->xctx))->internal;
+        for (iterator = NULL;;) {
+            name = NULL;
+            prop = afw_object_get_next_property(from, &iterator, &name,
+                x->xctx);
+            if (!prop) {
+                break;
+            }
+            afw_object_set_property(to, name,
+                impl_script_clone(prop, x), x->xctx);
+        }
+        return to->value;
+    }
+
+    if (afw_value_is_array(value)) {
+        const afw_array_t *from;
+        const afw_array_t *to;
+        const afw_data_type_t *data_type;
+        const afw_iterator_old_t *iterator;
+        const afw_value_t *entry;
+
+        from = ((const afw_value_array_t *)value)->internal;
+        data_type = afw_array_get_data_type(from, x->xctx);
+        to = ((const afw_value_array_t *)
+            afw_pool_scope_release_value_at_cleanup(
+                afw_array_create_managed(data_type, x->p, x->xctx)->value,
+                x->xctx))->internal;
+        for (iterator = NULL;;) {
+            entry = afw_array_get_next_value(from, &iterator, x->xctx);
+            if (!entry) {
+                break;
+            }
+            afw_array_push_value(to, impl_script_clone(entry, x),
+                x->xctx);
+        }
+        return to->value;
+    }
+
+    /* Nested scalar in a managed container must be assignable. */
+    result = afw_value_clone(value, x->p, x->xctx);
+    return afw_value_get_assignable(result, x->p, x->xctx);
+}
+
+
 const afw_value_t *
 afw_function_execute_clone(
     afw_function_execute_t *x)
 {
     const afw_value_t *value;
-    const afw_value_t *result;
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
-
-    /* clone() is not create_managed. get_assignable may promote. */
-    result = afw_value_clone(value, x->p, x->xctx);
-    return afw_pool_scope_get_assignable_for_scope_lifetime(result, x->xctx);
+    return impl_script_clone(value, x);
 }
 
 
@@ -344,6 +412,7 @@ afw_function_execute_compile(
 {
     const afw_value_t *source;
     const afw_value_t *result;
+    const afw_value_t *compiled;
     const afw_utf8_t *listing;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(source, 1);
@@ -353,12 +422,29 @@ afw_function_execute_compile(
         source, afw_s_a_empty_string, x->xctx->p, x->xctx);
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
+        compiled = result;
         result = afw_value_create_unmanaged_string(
-            afw_value_compiler_listing_to_string(result, listing,
+            afw_value_compiler_listing_to_string(compiled, listing,
                 x->p, x->xctx),
             x->p, x->xctx);
+        /*
+         * Listing is a copy in dest p. Last-release the unit (RC 1)
+         * so compile(..., listing) in a loop does not keep heaps.
+         * Do not extra-hold a unit returned as the compile result:
+         * evaluate(compile()) and closures from that unit still
+         * need the heap (eval-pin tests).
+         */
+        if (afw_value_is_compiled_value(compiled)) {
+            afw_value_release(compiled, x->xctx);
+        }
+        return result;
     }
 
+    /*
+     * Managed compiled_value starts RC 1. Do not extra-hold: that
+     * would last-release the unit at the caller `{ }` while
+     * evaluate(compile()) and closures from the unit still need it.
+     */
     return result;
 }
 

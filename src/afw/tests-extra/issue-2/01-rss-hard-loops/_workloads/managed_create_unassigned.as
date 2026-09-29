@@ -27,5 +27,7 @@ while (true) {
     keys(o);
     values(o);
     entries(o);
+    /* Not the last statement: deactivate would slot_store entries(). */
+    add(0, 0);
 }
 return 0;
