@@ -2,7 +2,7 @@
 
 **Audience:** maintainers. **Not** handbook.
 
-libafw no longer uses APR. Heap store is 64k-min, 4k-aligned `posix_memalign` chunks. `get_apr_pool` and `apr_initialize` are gone. Do **not** mix leftover docs with FRV leftover.
+libafw no longer uses APR. Heap store is 64k-min, 4k-aligned mapped chunks. `get_apr_pool` and `apr_initialize` are gone. Do **not** mix leftover docs with FRV leftover.
 
 Containers, strings, files, threads, getopt, curl body, LDAP setup, and the pool store are **off APR**.
 
@@ -67,6 +67,6 @@ C API notes: `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_
 | LDAP setup | OpenLDAP `ldap_*` |
 | Dead time | `from_apr_time` gone |
 | Unhandled alloc | `malloc_no_throw` / `calloc_no_throw` on the inf; helpers still dispatch |
-| Reservoir | 64k-min, 4k-aligned `posix_memalign` chunks; destroy walks `first_chunk` |
+| Reservoir | 64k-min, 4k-aligned mapped chunks; destroy walks `first_chunk` |
 
 `afwfcgi` argv is still a strcmp loop (never APR getopt).

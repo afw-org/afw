@@ -111,6 +111,9 @@ Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
+| `splice_assign` | splice copy-out then assign | **under bar** (2026-09-28; was ~185 MiB/s) | — |
+| `unassigned_temps` | unmanaged `add()` never assigned | **flat / flat** (2026-09-28) | — |
+| `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28) | — |
 | `array_append` | unbounded `push` | **must grow** (~3 MiB/s both) | must grow (~2.8 MiB/s) |
 
 `function_return` is **flat** on this branch (managed `closure_binding`;
@@ -145,7 +148,10 @@ Remeasured **2026-09-17** on `develop` after [PR #354](https://github.com/afw-or
 `afw_pool_release_value_at_cleanup` on the current scope (see
 `afw_array_create_managed`). Do not `create_managed` in `array()`
 (`[i]` compiles to it). Do not `get_assignable_for_lifetime` on the
-pop result.
+pop result. `splice_assign` is the same extra-hold on the removed
+array (not `get_assignable_for_scope_lifetime` after `create_managed`).
+`readln_loop` needs a temp application conf (`rootFilePaths`); the
+Python harness writes that for the spawn only.
 
 Unbraced assign: compile wraps a 0-symbol `{ }`; temps die with the trip.
 

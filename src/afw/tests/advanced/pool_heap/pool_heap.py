@@ -131,7 +131,7 @@ def run():
             ),
             (
                 "heap_chunks",
-                "heap store is 64k-min, 4k-aligned posix_memalign "
+                "heap store is 64k-min, 4k-aligned mapped "
                 "chunks; large alloc adds a chunk; release walks "
                 "the list",
             ),

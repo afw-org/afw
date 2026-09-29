@@ -15,7 +15,7 @@
  * @file afw_pool_heap_internal.h
  * @brief Heap store internals (`afw_pool_heap.c`).
  *
- * The heap owns the free list and posix_memalign chunks (4k-aligned).
+ * The heap owns the free list and mapped chunks (4k-aligned).
  * chunk_min 0 is the 64k floor. Destroy returns chunks to this
  * heap's memory_region. A single-threaded heap uses its thread's
  * region. A multithreaded heap uses the environment's region.
@@ -59,7 +59,7 @@ struct afw_pool_heap_internal_free_node_s {
 #define AFW_POOL_HEAP_INTERNAL_ALIGN ((afw_size_t)16)
 #define AFW_POOL_HEAP_INTERNAL_ALIGN_UP(_n) \
     (((_n) + (AFW_POOL_HEAP_INTERNAL_ALIGN - 1)) & ~(AFW_POOL_HEAP_INTERNAL_ALIGN - 1))
-/** posix_memalign alignment (page). Not an env knob. */
+/** Page alignment for mapped chunks. Not an env knob. */
 #define AFW_POOL_HEAP_INTERNAL_CHUNK_ALIGN ((afw_size_t)4096)
 
 /*
@@ -123,7 +123,7 @@ struct afw_pool_heap_internal_self_s {
     afw_size_t remaining;
 
     /**
-     * @brief posix_memalign bytes still held.
+     * @brief Mapped chunk bytes still held.
      *
      * Not asked-for malloc.
      */
@@ -132,7 +132,7 @@ struct afw_pool_heap_internal_self_s {
     /** @brief Number of chunks on first_chunk. */
     afw_size_t chunk_count;
 
-    /** @brief Minimum posix_memalign size (0 = default). */
+    /** @brief Minimum mapped chunk size (0 = default). */
     afw_size_t chunk_min;
 
     /** @brief Heap-owned free list head. */

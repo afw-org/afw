@@ -19660,7 +19660,7 @@ impl_189_property_dataType = {
 static const afw_runtime_property_t
 impl_189_property_description = {
     afw_v_description,
-    &afw_self_v_zz__6890dc3a418f.pub
+    &afw_self_v_zz__b6f5810feb68.pub
 };
 
 static const afw_runtime_property_t
@@ -104438,7 +104438,7 @@ impl_1007_property_dataType = {
 static const afw_runtime_property_t
 impl_1007_property_description = {
     afw_v_description,
-    &afw_self_v_zz__f078b9b13903.pub
+    &afw_self_v_zz__4b449720463a.pub
 };
 
 static const afw_runtime_property_t
@@ -104616,7 +104616,7 @@ impl_1009_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1009_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__Region_free___that_called_free___over_cap.pub
+    &afw_self_v_zz__Region_free___that_munmap_d_over_cap.pub
 };
 
 static const afw_runtime_property_t
@@ -104628,7 +104628,7 @@ impl_1009_property_dataType = {
 static const afw_runtime_property_t
 impl_1009_property_description = {
     afw_v_description,
-    &afw_self_v_zz__6fdcb3efc538.pub
+    &afw_self_v_zz__f718052bf1b9.pub
 };
 
 static const afw_runtime_property_t
@@ -104996,7 +104996,7 @@ impl_1013_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1013_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__Region_get___that_called_posix_memalign.pub
+    &afw_self_v_zz__Region_get___that_mapped_a_chunk.pub
 };
 
 static const afw_runtime_property_t
@@ -105008,7 +105008,7 @@ impl_1013_property_dataType = {
 static const afw_runtime_property_t
 impl_1013_property_description = {
     afw_v_description,
-    &afw_self_v_zz__eecb4c9cc76a.pub
+    &afw_self_v_zz__875ee325aeef.pub
 };
 
 static const afw_runtime_property_t
@@ -105946,7 +105946,7 @@ impl_1023_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1023_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes.pub
+    &afw_self_v_zz__High_water_of_mapped_chunk_bytes.pub
 };
 
 static const afw_runtime_property_t
@@ -106509,7 +106509,7 @@ impl_1029_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1029_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__posix_memalign_chunk_bytes_held.pub
+    &afw_self_v_zz__Mapped_chunk_bytes_held.pub
 };
 
 static const afw_runtime_property_t
@@ -106521,7 +106521,7 @@ impl_1029_property_dataType = {
 static const afw_runtime_property_t
 impl_1029_property_description = {
     afw_v_description,
-    &afw_self_v_zz__b22e2671b198.pub
+    &afw_self_v_zz__1d9afdbc8584.pub
 };
 
 static const afw_runtime_property_t
@@ -107464,7 +107464,7 @@ impl_1039_property_dataType = {
 static const afw_runtime_property_t
 impl_1039_property_description = {
     afw_v_description,
-    &afw_self_v_zz__f5fe889ee902.pub
+    &afw_self_v_zz__d8d53086b631.pub
 };
 
 static const afw_runtime_property_t
@@ -118259,7 +118259,7 @@ impl_1143_property_dataType = {
 static const afw_runtime_property_t
 impl_1143_property_description = {
     afw_v_description,
-    &afw_self_v_zz__94eb67969147.pub
+    &afw_self_v_zz__1b3a10b036cf.pub
 };
 
 static const afw_runtime_property_t
@@ -125683,7 +125683,7 @@ impl_1215_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1215_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__Region_free___that_called_free___over_cap.pub
+    &afw_self_v_zz__Region_free___that_munmap_d_over_cap.pub
 };
 
 static const afw_runtime_property_t
@@ -125695,7 +125695,7 @@ impl_1215_property_dataType = {
 static const afw_runtime_property_t
 impl_1215_property_description = {
     afw_v_description,
-    &afw_self_v_zz__5008c6397324.pub
+    &afw_self_v_zz__33156152db7a.pub
 };
 
 static const afw_runtime_property_t
@@ -126063,7 +126063,7 @@ impl_1219_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1219_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__Region_get___that_called_posix_memalign.pub
+    &afw_self_v_zz__Region_get___that_mapped_a_chunk.pub
 };
 
 static const afw_runtime_property_t
@@ -126075,7 +126075,7 @@ impl_1219_property_dataType = {
 static const afw_runtime_property_t
 impl_1219_property_description = {
     afw_v_description,
-    &afw_self_v_zz__9dfa0c939f50.pub
+    &afw_self_v_zz__c249d142bd7b.pub
 };
 
 static const afw_runtime_property_t
@@ -127013,7 +127013,7 @@ impl_1229_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1229_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes.pub
+    &afw_self_v_zz__High_water_of_mapped_chunk_bytes.pub
 };
 
 static const afw_runtime_property_t
@@ -127583,7 +127583,7 @@ impl_1235_property_allowQuery = {
 static const afw_runtime_property_t
 impl_1235_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__posix_memalign_chunk_bytes_held.pub
+    &afw_self_v_zz__Mapped_chunk_bytes_held.pub
 };
 
 static const afw_runtime_property_t
@@ -127595,7 +127595,7 @@ impl_1235_property_dataType = {
 static const afw_runtime_property_t
 impl_1235_property_description = {
     afw_v_description,
-    &afw_self_v_zz__8ec7cd8b3998.pub
+    &afw_self_v_zz__97942907291f.pub
 };
 
 static const afw_runtime_property_t
@@ -136447,7 +136447,7 @@ impl_1320_property_dataType = {
 static const afw_runtime_property_t
 impl_1320_property_description = {
     afw_v_description,
-    &afw_self_v_zz__7d9604c533d3.pub
+    &afw_self_v_zz__604b2b57dd9a.pub
 };
 
 static const afw_runtime_property_t

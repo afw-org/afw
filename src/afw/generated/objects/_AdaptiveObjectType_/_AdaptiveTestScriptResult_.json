@@ -46,7 +46,7 @@
         "poolChunkBytes": {
             "brief": "This-eval ST chunk bytes",
             "dataType": "integer",
-            "description": "File-level xctx ST posix_memalign chunk bytes (thread current minus snap) after all cases. Not process-wide. afwdev test harvests this next to poolBytesInUse.",
+            "description": "File-level xctx ST mapped chunk bytes (thread current minus snap) after all cases. Not process-wide. afwdev test harvests this next to poolBytesInUse.",
             "label": "Pool Chunk Bytes"
         },
         "tests": {

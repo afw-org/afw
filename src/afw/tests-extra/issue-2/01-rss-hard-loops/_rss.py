@@ -116,13 +116,18 @@ def sample_afw_script(
         duration_s=8.0,
         interval_s=2.0,
         warmup_s=2.0,
-        afw="afw"):
+        afw="afw",
+        extra_argv=None):
     """Spawn afw, sample RSS, kill. Returns a dict with samples and slope."""
 
+    cmd = [afw]
+    if extra_argv:
+        cmd.extend(list(extra_argv))
+    cmd.extend(["-s", "script", script_path])
     stderr = subprocess.PIPE
     try:
         proc = subprocess.Popen(
-            [afw, "-s", "script", script_path],
+            cmd,
             stdin=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL,
             stderr=stderr,

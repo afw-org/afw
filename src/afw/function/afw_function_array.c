@@ -819,7 +819,9 @@ afw_function_execute_splice(
     const afw_value_array_t *array;
     const afw_value_integer_t *integer;
     const afw_array_t *removed;
+    const afw_value_t *removed_value;
     const afw_value_t *value;
+    const afw_pool_scope_t *scope;
     afw_integer_t start;
     afw_integer_t delete_count;
     afw_integer_t count;
@@ -858,10 +860,19 @@ afw_function_execute_splice(
         delete_count = count - start;
     }
 
-    removed = ((const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(NULL, x->p, x->xctx)->value,
-            x->xctx))->internal;
+    /*
+     * New managed array: RC 1 from create. Extra-hold on the current
+     * scope as a temp (same as managed pop/shift). Do not
+     * get_assignable_for_scope_lifetime here: that bumps, and a later
+     * assign plus scope cleanup leaves RC 1 with nobody holding it.
+     */
+    removed_value = afw_array_create_managed(NULL, x->p, x->xctx)->value;
+    scope = afw_pool_scope_internal_current(x->xctx);
+    if (scope) {
+        afw_pool_release_value_at_cleanup(removed_value, scope->p,
+            x->xctx);
+    }
+    removed = ((const afw_value_array_t *)removed_value)->internal;
     for (i = 0; i < delete_count; i++) {
         value = afw_array_get_entry_value(array->internal, start, x->xctx);
         if (value) {

@@ -309,7 +309,7 @@ afw_application_internal_register_basic_application_context_type(
         afw_s_poolChunkBytes, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
         "Pool Chunk Bytes",
-        "posix_memalign chunk bytes still held.",
+        "mapped chunk bytes still held.",
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,

@@ -1402,17 +1402,17 @@ Process environment variables and invocation info are created at **environment c
 | **`startTime`** | Local dateTime when the Adaptive environment was created |
 | **`poolBytesInUse`** | Outstanding AFW malloc/calloc (asked-for). Live. |
 | **`peakPoolBytesInUse`** | High-water of `poolBytesInUse` (was `maxPoolBytesInUse`) |
-| **`poolChunkBytes`** | posix_memalign chunk bytes still held. Live. |
+| **`poolChunkBytes`** | Mapped chunk bytes still held. Live. |
 | **`peakPoolChunkBytes`** | High-water of `poolChunkBytes` (was `maxPoolChunkBytes`) |
 | **`rss`** | Live process RSS in **bytes** (`process_rss()` is still KB) |
 | **`limitEvaluationStackCount`** | Adaptive eval-stack cap per xctx (default 500; **0** = unlimited) |
 | **`limitRequestPoolBytes`** | Request-thread ST asked-for cap (default 64MiB; **0** = unlimited). CLI is uncapped unless application conf sets this |
 | **`limitCStackHeadroomBytes`** | Minimum remaining C stack before `payload_too_large` (default 256KiB; **0** = unlimited) |
 | **`defaultChunkMin` / `smallChunkMin` / `xctxChunkMin`** | Heap chunk minima (rounded up to 4k). `defaultChunkMin` is what create `chunk_min` 0 uses (64k). `smallChunkMin` is compile, scope, service, adapter, log, and conf (4k). `xctxChunkMin` is the request/thread heap |
-| **`memoryRegionFreeListMaxBytes`** | Cap on the thread heap-chunk reuse list (default 256KiB; **0** = posix_memalign/free every get/free) |
+| **`memoryRegionFreeListMaxBytes`** | Cap on the thread heap-chunk reuse list (default 256KiB; **0** = mmap/munmap every get/free) |
 | **`memoryRegionBytesInUse` / `memoryRegionRegionsInUse`** | Live region bytes/count handed out to heaps (process-wide) |
 | **`memoryRegionFreeListBytes` / `memoryRegionFreeListCount`** | Live reuse-list bytes/count (not in a heap) |
-| **`memoryRegionGetHits` / `memoryRegionGetMisses` / `memoryRegionFreeOverCap`** | Counts since env create (reuse vs posix_memalign vs over-cap `free()`) |
+| **`memoryRegionGetHits` / `memoryRegionGetMisses` / `memoryRegionFreeOverCap`** | Counts since env create (reuse vs mmap vs over-cap `munmap`) |
 | **`memoryRegionPeakBytesInUse` / `memoryRegionPeakFreeListBytes`** | High-water of the live region bytes |
 
 Example:
@@ -1445,7 +1445,7 @@ Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool b
 
 A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** when there is still room to build the error. If allocation itself fails, the error is **`memory`**. Either is OK; the worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI. A positive retrieve **`maxObjects`** is a separate cardinality throw (`payload_too_large`) and is not the request memory cap.
 
-`afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs posix_memalign chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes. **`--clear-history`** removes ordinary runs for this mode and keeps reference baselines. **`--trend --history-ref LABEL`** charts that baseline and ordinary runs after it. **`--clear-failures`** removes this mode's logs under `~/.afw/test-failures/`.
+`afwdev test` prints `(Nms, max N xctx, N chunk)` on file lines and `Memory: max N xctx, N chunk` on the run summary (asked-for vs mapped chunks). **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path; **`--trend-metric chunk`** for chunk bytes. **`--clear-history`** removes ordinary runs for this mode and keeps reference baselines. **`--trend --history-ref LABEL`** charts that baseline and ordinary runs after it. **`--clear-failures`** removes this mode's logs under `~/.afw/test-failures/`.
 
 [↑ Highlights](#highlights)
 

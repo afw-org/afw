@@ -5890,12 +5890,12 @@ AFW_DEFINE(const afw_request_handler_t *)
     </variable>
 
     <variable name="get_misses" type="afw_size_t">
-      <description>get() that called posix_memalign.</description>
+      <description>get() that mapped a chunk (missed the free list).</description>
     </variable>
 
     <variable name="free_over_cap" type="afw_size_t">
       <description>
-        free() that called free() because the list was at cap
+        free() that munmap'd because the list was at cap
         (including cap 0).
       </description>
     </variable>
@@ -5911,7 +5911,7 @@ AFW_DEFINE(const afw_request_handler_t *)
     <variable name="free_list_max_bytes" type="afw_size_t">
       <description>
         Cap on free_list_bytes. 0 means every free() goes to the
-        system (today's posix_memalign/free).
+        system (mmap/munmap).
       </description>
     </variable>
 
@@ -5921,7 +5921,7 @@ AFW_DEFINE(const afw_request_handler_t *)
         Write a page-aligned region through *region and its actual
         size through *size. *size is the requested size on entry and
         the rounded size actually returned on success. From the free
-        list on a hit, or posix_memalign on a miss. On size 0,
+        list on a hit, or mmap on a miss. On size 0,
         missing pointers, or allocation failure, *region is NULL and
         *size is 0. xctx may be NULL (environment create).
       </description>

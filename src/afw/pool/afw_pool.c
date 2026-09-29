@@ -29,13 +29,13 @@
  *   scope — heap used for `{ }`. Smaller chunk_min (4k), plus
  *   last-release delay on throw.
  *
- *   chunk — `afw_pool_heap_internal_chunk_t`. One posix_memalign allocation the
+ *   chunk — `afw_pool_heap_internal_chunk_t`. One mapped allocation the
  *   heap holds. Linked from first_chunk. Typical sizes: 4k (scope)
  *   or 64k (`xctx->p`).
  *   region — the `void *` from `afw_memory_region_get()`. The heap
  *   uses that pointer as a chunk. Same bytes, two names: region at
  *   the thread, chunk once the heap owns it.
- *   page — hardware MMU page, or the 4096 posix_memalign alignment
+ *   page — hardware MMU page, or the 4096 chunk alignment
  *   (`AFW_POOL_HEAP_INTERNAL_CHUNK_ALIGN`). Not a type name. Not a chunk or a
  *   region.
  *

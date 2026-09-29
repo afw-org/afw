@@ -6867,6 +6867,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__1b3a10b036cf \
+    "Thread ST mapped chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1b3a10b036cf */
+#define afw_s_zz__1b3a10b036cf \
+    (&afw_self_v_zz__1b3a10b036cf.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1b3a10b036cf */
+#define afw_self_s_zz__1b3a10b036cf \
+    (afw_self_v_zz__1b3a10b036cf.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1b3a10b036cf */
+extern const afw_value_string_t \
+    afw_self_v_zz__1b3a10b036cf;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1b3a10b036cf */
+#define afw_z_zz__1b3a10b036cf \
+    (afw_self_v_zz__1b3a10b036cf.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1b3a10b036cf */
+#define afw_v_zz__1b3a10b036cf \
+    (&afw_self_v_zz__1b3a10b036cf.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__1b563bcd257f \
     "<dataType>(value: dataType, separator?: string, limit?: integer): array"
 
@@ -7669,6 +7695,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1d98a831e1e9 */
 #define afw_v_zz__1d98a831e1e9 \
     (&afw_self_v_zz__1d98a831e1e9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__1d9afdbc8584 \
+    "Sum of heap mapped chunks still held. Store mapped, not asked-for."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1d9afdbc8584 */
+#define afw_s_zz__1d9afdbc8584 \
+    (&afw_self_v_zz__1d9afdbc8584.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1d9afdbc8584 */
+#define afw_self_s_zz__1d9afdbc8584 \
+    (afw_self_v_zz__1d9afdbc8584.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1d9afdbc8584 */
+extern const afw_value_string_t \
+    afw_self_v_zz__1d9afdbc8584;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1d9afdbc8584 */
+#define afw_z_zz__1d9afdbc8584 \
+    (afw_self_v_zz__1d9afdbc8584.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1d9afdbc8584 */
+#define afw_v_zz__1d9afdbc8584 \
+    (&afw_self_v_zz__1d9afdbc8584.pub)
 
 
 
@@ -12297,6 +12349,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__331518425559 */
 #define afw_v_zz__331518425559 \
     (&afw_self_v_zz__331518425559.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__33156152db7a \
+    "Process-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__33156152db7a */
+#define afw_s_zz__33156152db7a \
+    (&afw_self_v_zz__33156152db7a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__33156152db7a */
+#define afw_self_s_zz__33156152db7a \
+    (afw_self_v_zz__33156152db7a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__33156152db7a */
+extern const afw_value_string_t \
+    afw_self_v_zz__33156152db7a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__33156152db7a */
+#define afw_z_zz__33156152db7a \
+    (afw_self_v_zz__33156152db7a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__33156152db7a */
+#define afw_v_zz__33156152db7a \
+    (&afw_self_v_zz__33156152db7a.pub)
 
 
 
@@ -17683,6 +17761,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__4b449720463a \
+    "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4b449720463a */
+#define afw_s_zz__4b449720463a \
+    (&afw_self_v_zz__4b449720463a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4b449720463a */
+#define afw_self_s_zz__4b449720463a \
+    (afw_self_v_zz__4b449720463a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__4b449720463a */
+extern const afw_value_string_t \
+    afw_self_v_zz__4b449720463a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4b449720463a */
+#define afw_z_zz__4b449720463a \
+    (afw_self_v_zz__4b449720463a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__4b449720463a */
+#define afw_v_zz__4b449720463a \
+    (&afw_self_v_zz__4b449720463a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__4b4e7446bd9a \
     "The result of evaluating 'then' or 'else'. Also the ternary operator. If the condition is false and else is omitted, does not complete (void)."
 
@@ -18667,32 +18771,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4fcb7d0e6fb0 */
 #define afw_v_zz__4fcb7d0e6fb0 \
     (&afw_self_v_zz__4fcb7d0e6fb0.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5008c6397324 \
-    "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5008c6397324 */
-#define afw_s_zz__5008c6397324 \
-    (&afw_self_v_zz__5008c6397324.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5008c6397324 */
-#define afw_self_s_zz__5008c6397324 \
-    (afw_self_v_zz__5008c6397324.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5008c6397324 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5008c6397324;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5008c6397324 */
-#define afw_z_zz__5008c6397324 \
-    (afw_self_v_zz__5008c6397324.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5008c6397324 */
-#define afw_v_zz__5008c6397324 \
-    (&afw_self_v_zz__5008c6397324.pub)
 
 
 
@@ -22857,6 +22935,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__604b2b57dd9a \
+    "File-level xctx ST mapped chunk bytes (thread current minus snap) after all cases. Not process-wide. afwdev test harvests this next to poolBytesInUse."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__604b2b57dd9a */
+#define afw_s_zz__604b2b57dd9a \
+    (&afw_self_v_zz__604b2b57dd9a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__604b2b57dd9a */
+#define afw_self_s_zz__604b2b57dd9a \
+    (afw_self_v_zz__604b2b57dd9a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__604b2b57dd9a */
+extern const afw_value_string_t \
+    afw_self_v_zz__604b2b57dd9a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__604b2b57dd9a */
+#define afw_z_zz__604b2b57dd9a \
+    (afw_self_v_zz__604b2b57dd9a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__604b2b57dd9a */
+#define afw_v_zz__604b2b57dd9a \
+    (&afw_self_v_zz__604b2b57dd9a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__604da6af93f1 \
     "Adapter requests to get and retrieve objects always do an action 'query' authorization check before any objects are retrieved. If this property is 'true', an additional action 'read' authorization check is made for each individual object. This is useful if the properties of an object are needed to make an authorization decision."
 
@@ -25197,32 +25301,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__6890dc3a418f \
-    "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6890dc3a418f */
-#define afw_s_zz__6890dc3a418f \
-    (&afw_self_v_zz__6890dc3a418f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6890dc3a418f */
-#define afw_self_s_zz__6890dc3a418f \
-    (afw_self_v_zz__6890dc3a418f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__6890dc3a418f */
-extern const afw_value_string_t \
-    afw_self_v_zz__6890dc3a418f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6890dc3a418f */
-#define afw_z_zz__6890dc3a418f \
-    (afw_self_v_zz__6890dc3a418f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__6890dc3a418f */
-#define afw_v_zz__6890dc3a418f \
-    (&afw_self_v_zz__6890dc3a418f.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__68a004f57589 \
     "Determine if for regexp arg1 is not equal to the value or data type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be converted to the data type of arg1 before comparison."
 
@@ -27065,32 +27143,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6fdb4d743b60 */
 #define afw_v_zz__6fdb4d743b60 \
     (&afw_self_v_zz__6fdb4d743b60.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__6fdcb3efc538 \
-    "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6fdcb3efc538 */
-#define afw_s_zz__6fdcb3efc538 \
-    (&afw_self_v_zz__6fdcb3efc538.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6fdcb3efc538 */
-#define afw_self_s_zz__6fdcb3efc538 \
-    (afw_self_v_zz__6fdcb3efc538.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__6fdcb3efc538 */
-extern const afw_value_string_t \
-    afw_self_v_zz__6fdcb3efc538;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6fdcb3efc538 */
-#define afw_z_zz__6fdcb3efc538 \
-    (afw_self_v_zz__6fdcb3efc538.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__6fdcb3efc538 */
-#define afw_v_zz__6fdcb3efc538 \
-    (&afw_self_v_zz__6fdcb3efc538.pub)
 
 
 
@@ -29929,32 +29981,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__7d9604c533d3 \
-    "File-level xctx ST posix_memalign chunk bytes (thread current minus snap) after all cases. Not process-wide. afwdev test harvests this next to poolBytesInUse."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7d9604c533d3 */
-#define afw_s_zz__7d9604c533d3 \
-    (&afw_self_v_zz__7d9604c533d3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7d9604c533d3 */
-#define afw_self_s_zz__7d9604c533d3 \
-    (afw_self_v_zz__7d9604c533d3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7d9604c533d3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__7d9604c533d3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7d9604c533d3 */
-#define afw_z_zz__7d9604c533d3 \
-    (afw_self_v_zz__7d9604c533d3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7d9604c533d3 */
-#define afw_v_zz__7d9604c533d3 \
-    (&afw_self_v_zz__7d9604c533d3.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__7da16cee43b4 \
     "function ge<script> (\n    arg1: script,\n    arg2: script\n): boolean;\n"
 
@@ -32425,6 +32451,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__875ee325aeef \
+    "Process-wide count of memory_region get() that mapped a chunk since environment create."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__875ee325aeef */
+#define afw_s_zz__875ee325aeef \
+    (&afw_self_v_zz__875ee325aeef.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__875ee325aeef */
+#define afw_self_s_zz__875ee325aeef \
+    (afw_self_v_zz__875ee325aeef.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__875ee325aeef */
+extern const afw_value_string_t \
+    afw_self_v_zz__875ee325aeef;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__875ee325aeef */
+#define afw_z_zz__875ee325aeef \
+    (afw_self_v_zz__875ee325aeef.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__875ee325aeef */
+#define afw_v_zz__875ee325aeef \
+    (&afw_self_v_zz__875ee325aeef.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__876778dfbc8b \
     "function splice (\n    array: array,\n    startIndex: integer,\n    deleteCount?: integer,\n    ...values: any[]\n): array;\n"
 
@@ -34427,32 +34479,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8ec7cd8b3998 \
-    "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8ec7cd8b3998 */
-#define afw_s_zz__8ec7cd8b3998 \
-    (&afw_self_v_zz__8ec7cd8b3998.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8ec7cd8b3998 */
-#define afw_self_s_zz__8ec7cd8b3998 \
-    (afw_self_v_zz__8ec7cd8b3998.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8ec7cd8b3998 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8ec7cd8b3998;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8ec7cd8b3998 */
-#define afw_z_zz__8ec7cd8b3998 \
-    (afw_self_v_zz__8ec7cd8b3998.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8ec7cd8b3998 */
-#define afw_v_zz__8ec7cd8b3998 \
-    (&afw_self_v_zz__8ec7cd8b3998.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8edb64bf3537 \
     "function service_start (\n    serviceId: string\n): object; // _AdaptiveService_\n"
 
@@ -35701,32 +35727,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__94eb67969147 \
-    "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__94eb67969147 */
-#define afw_s_zz__94eb67969147 \
-    (&afw_self_v_zz__94eb67969147.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__94eb67969147 */
-#define afw_self_s_zz__94eb67969147 \
-    (afw_self_v_zz__94eb67969147.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__94eb67969147 */
-extern const afw_value_string_t \
-    afw_self_v_zz__94eb67969147;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__94eb67969147 */
-#define afw_z_zz__94eb67969147 \
-    (afw_self_v_zz__94eb67969147.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__94eb67969147 */
-#define afw_v_zz__94eb67969147 \
-    (&afw_self_v_zz__94eb67969147.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__950454c7b823 \
     "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThis function is only allowed when called during a request with content type 'application/x-afw'. An '_AdaptiveResponse_' object is written to the request's response as each object is retrieved. This '_AdaptiveResponse_' object has a 'result' property containing the retrieved object and a 'intermediate' property set to true.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied."
 
@@ -36217,6 +36217,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__978344cfcd8f */
 #define afw_v_zz__978344cfcd8f \
     (&afw_self_v_zz__978344cfcd8f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__97942907291f \
+    "Sum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__97942907291f */
+#define afw_s_zz__97942907291f \
+    (&afw_self_v_zz__97942907291f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__97942907291f */
+#define afw_self_s_zz__97942907291f \
+    (afw_self_v_zz__97942907291f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__97942907291f */
+extern const afw_value_string_t \
+    afw_self_v_zz__97942907291f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__97942907291f */
+#define afw_z_zz__97942907291f \
+    (afw_self_v_zz__97942907291f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__97942907291f */
+#define afw_v_zz__97942907291f \
+    (&afw_self_v_zz__97942907291f.pub)
 
 
 
@@ -37985,32 +38011,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9df195a4ad95 */
 #define afw_v_zz__9df195a4ad95 \
     (&afw_self_v_zz__9df195a4ad95.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__9dfa0c939f50 \
-    "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9dfa0c939f50 */
-#define afw_s_zz__9dfa0c939f50 \
-    (&afw_self_v_zz__9dfa0c939f50.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9dfa0c939f50 */
-#define afw_self_s_zz__9dfa0c939f50 \
-    (afw_self_v_zz__9dfa0c939f50.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9dfa0c939f50 */
-extern const afw_value_string_t \
-    afw_self_v_zz__9dfa0c939f50;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9dfa0c939f50 */
-#define afw_z_zz__9dfa0c939f50 \
-    (afw_self_v_zz__9dfa0c939f50.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9dfa0c939f50 */
-#define afw_v_zz__9dfa0c939f50 \
-    (&afw_self_v_zz__9dfa0c939f50.pub)
 
 
 
@@ -57853,28 +57853,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__High_water_of_posix_memalign_chunk_bytes \
-    "High-water of posix_memalign chunk bytes"
+#define AFW_Q_zz__High_water_of_mapped_chunk_bytes \
+    "High-water of mapped chunk bytes"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__High_water_of_posix_memalign_chunk_bytes */
-#define afw_s_zz__High_water_of_posix_memalign_chunk_bytes \
-    (&afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__High_water_of_mapped_chunk_bytes */
+#define afw_s_zz__High_water_of_mapped_chunk_bytes \
+    (&afw_self_v_zz__High_water_of_mapped_chunk_bytes.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__High_water_of_posix_memalign_chunk_bytes */
-#define afw_self_s_zz__High_water_of_posix_memalign_chunk_bytes \
-    (afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__High_water_of_mapped_chunk_bytes */
+#define afw_self_s_zz__High_water_of_mapped_chunk_bytes \
+    (afw_self_v_zz__High_water_of_mapped_chunk_bytes.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__High_water_of_posix_memalign_chunk_bytes */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__High_water_of_mapped_chunk_bytes */
 extern const afw_value_string_t \
-    afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes;
+    afw_self_v_zz__High_water_of_mapped_chunk_bytes;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__High_water_of_posix_memalign_chunk_bytes */
-#define afw_z_zz__High_water_of_posix_memalign_chunk_bytes \
-    (afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__High_water_of_mapped_chunk_bytes */
+#define afw_z_zz__High_water_of_mapped_chunk_bytes \
+    (afw_self_v_zz__High_water_of_mapped_chunk_bytes.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__High_water_of_posix_memalign_chunk_bytes */
-#define afw_v_zz__High_water_of_posix_memalign_chunk_bytes \
-    (&afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__High_water_of_mapped_chunk_bytes */
+#define afw_v_zz__High_water_of_mapped_chunk_bytes \
+    (&afw_self_v_zz__High_water_of_mapped_chunk_bytes.pub)
 
 
 
@@ -64323,6 +64323,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Mapped_Value */
 #define afw_v_zz__Mapped_Value \
     (&afw_self_v_zz__Mapped_Value.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Mapped_chunk_bytes_held \
+    "Mapped chunk bytes held"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Mapped_chunk_bytes_held */
+#define afw_s_zz__Mapped_chunk_bytes_held \
+    (&afw_self_v_zz__Mapped_chunk_bytes_held.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Mapped_chunk_bytes_held */
+#define afw_self_s_zz__Mapped_chunk_bytes_held \
+    (afw_self_v_zz__Mapped_chunk_bytes_held.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Mapped_chunk_bytes_held */
+extern const afw_value_string_t \
+    afw_self_v_zz__Mapped_chunk_bytes_held;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Mapped_chunk_bytes_held */
+#define afw_z_zz__Mapped_chunk_bytes_held \
+    (afw_self_v_zz__Mapped_chunk_bytes_held.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Mapped_chunk_bytes_held */
+#define afw_v_zz__Mapped_chunk_bytes_held \
+    (&afw_self_v_zz__Mapped_chunk_bytes_held.pub)
 
 
 
@@ -72283,28 +72309,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Region_free___that_called_free___over_cap \
-    "Region free() that called free() over cap"
+#define AFW_Q_zz__Region_free___that_munmap_d_over_cap \
+    "Region free() that munmap'd over cap"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_free___that_called_free___over_cap */
-#define afw_s_zz__Region_free___that_called_free___over_cap \
-    (&afw_self_v_zz__Region_free___that_called_free___over_cap.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_free___that_munmap_d_over_cap */
+#define afw_s_zz__Region_free___that_munmap_d_over_cap \
+    (&afw_self_v_zz__Region_free___that_munmap_d_over_cap.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_free___that_called_free___over_cap */
-#define afw_self_s_zz__Region_free___that_called_free___over_cap \
-    (afw_self_v_zz__Region_free___that_called_free___over_cap.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_free___that_munmap_d_over_cap */
+#define afw_self_s_zz__Region_free___that_munmap_d_over_cap \
+    (afw_self_v_zz__Region_free___that_munmap_d_over_cap.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Region_free___that_called_free___over_cap */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Region_free___that_munmap_d_over_cap */
 extern const afw_value_string_t \
-    afw_self_v_zz__Region_free___that_called_free___over_cap;
+    afw_self_v_zz__Region_free___that_munmap_d_over_cap;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Region_free___that_called_free___over_cap */
-#define afw_z_zz__Region_free___that_called_free___over_cap \
-    (afw_self_v_zz__Region_free___that_called_free___over_cap.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Region_free___that_munmap_d_over_cap */
+#define afw_z_zz__Region_free___that_munmap_d_over_cap \
+    (afw_self_v_zz__Region_free___that_munmap_d_over_cap.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Region_free___that_called_free___over_cap */
-#define afw_v_zz__Region_free___that_called_free___over_cap \
-    (&afw_self_v_zz__Region_free___that_called_free___over_cap.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Region_free___that_munmap_d_over_cap */
+#define afw_v_zz__Region_free___that_munmap_d_over_cap \
+    (&afw_self_v_zz__Region_free___that_munmap_d_over_cap.pub)
 
 
 
@@ -72335,28 +72361,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Region_get___that_called_posix_memalign \
-    "Region get() that called posix_memalign"
+#define AFW_Q_zz__Region_get___that_mapped_a_chunk \
+    "Region get() that mapped a chunk"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_get___that_called_posix_memalign */
-#define afw_s_zz__Region_get___that_called_posix_memalign \
-    (&afw_self_v_zz__Region_get___that_called_posix_memalign.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_get___that_mapped_a_chunk */
+#define afw_s_zz__Region_get___that_mapped_a_chunk \
+    (&afw_self_v_zz__Region_get___that_mapped_a_chunk.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_get___that_called_posix_memalign */
-#define afw_self_s_zz__Region_get___that_called_posix_memalign \
-    (afw_self_v_zz__Region_get___that_called_posix_memalign.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Region_get___that_mapped_a_chunk */
+#define afw_self_s_zz__Region_get___that_mapped_a_chunk \
+    (afw_self_v_zz__Region_get___that_mapped_a_chunk.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Region_get___that_called_posix_memalign */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Region_get___that_mapped_a_chunk */
 extern const afw_value_string_t \
-    afw_self_v_zz__Region_get___that_called_posix_memalign;
+    afw_self_v_zz__Region_get___that_mapped_a_chunk;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Region_get___that_called_posix_memalign */
-#define afw_z_zz__Region_get___that_called_posix_memalign \
-    (afw_self_v_zz__Region_get___that_called_posix_memalign.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Region_get___that_mapped_a_chunk */
+#define afw_z_zz__Region_get___that_mapped_a_chunk \
+    (afw_self_v_zz__Region_get___that_mapped_a_chunk.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Region_get___that_called_posix_memalign */
-#define afw_v_zz__Region_get___that_called_posix_memalign \
-    (&afw_self_v_zz__Region_get___that_called_posix_memalign.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Region_get___that_mapped_a_chunk */
+#define afw_v_zz__Region_get___that_mapped_a_chunk \
+    (&afw_self_v_zz__Region_get___that_mapped_a_chunk.pub)
 
 
 
@@ -130159,32 +130185,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__b22e2671b198 \
-    "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b22e2671b198 */
-#define afw_s_zz__b22e2671b198 \
-    (&afw_self_v_zz__b22e2671b198.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b22e2671b198 */
-#define afw_self_s_zz__b22e2671b198 \
-    (afw_self_v_zz__b22e2671b198.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b22e2671b198 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b22e2671b198;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b22e2671b198 */
-#define afw_z_zz__b22e2671b198 \
-    (afw_self_v_zz__b22e2671b198.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b22e2671b198 */
-#define afw_v_zz__b22e2671b198 \
-    (&afw_self_v_zz__b22e2671b198.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__b230d4e76656 \
     "(string: string, values_1: any, ...values_rest: any[]): string"
 
@@ -131351,6 +131351,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b6c6adf459af */
 #define afw_v_zz__b6c6adf459af \
     (&afw_self_v_zz__b6c6adf459af.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b6f5810feb68 \
+    "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = mmap/munmap on every get/free."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b6f5810feb68 */
+#define afw_s_zz__b6f5810feb68 \
+    (&afw_self_v_zz__b6f5810feb68.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b6f5810feb68 */
+#define afw_self_s_zz__b6f5810feb68 \
+    (afw_self_v_zz__b6f5810feb68.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b6f5810feb68 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b6f5810feb68;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b6f5810feb68 */
+#define afw_z_zz__b6f5810feb68 \
+    (afw_self_v_zz__b6f5810feb68.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b6f5810feb68 */
+#define afw_v_zz__b6f5810feb68 \
+    (&afw_self_v_zz__b6f5810feb68.pub)
 
 
 
@@ -135251,6 +135277,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c244b70eb3b6 */
 #define afw_v_zz__c244b70eb3b6 \
     (&afw_self_v_zz__c244b70eb3b6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__c249d142bd7b \
+    "Process-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c249d142bd7b */
+#define afw_s_zz__c249d142bd7b \
+    (&afw_self_v_zz__c249d142bd7b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c249d142bd7b */
+#define afw_self_s_zz__c249d142bd7b \
+    (afw_self_v_zz__c249d142bd7b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c249d142bd7b */
+extern const afw_value_string_t \
+    afw_self_v_zz__c249d142bd7b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c249d142bd7b */
+#define afw_z_zz__c249d142bd7b \
+    (afw_self_v_zz__c249d142bd7b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c249d142bd7b */
+#define afw_v_zz__c249d142bd7b \
+    (&afw_self_v_zz__c249d142bd7b.pub)
 
 
 
@@ -141417,6 +141469,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__d8d53086b631 \
+    "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d8d53086b631 */
+#define afw_s_zz__d8d53086b631 \
+    (&afw_self_v_zz__d8d53086b631.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d8d53086b631 */
+#define afw_self_s_zz__d8d53086b631 \
+    (afw_self_v_zz__d8d53086b631.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d8d53086b631 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d8d53086b631;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d8d53086b631 */
+#define afw_z_zz__d8d53086b631 \
+    (afw_self_v_zz__d8d53086b631.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d8d53086b631 */
+#define afw_v_zz__d8d53086b631 \
+    (&afw_self_v_zz__d8d53086b631.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__d8e90d16103d \
     "Get journal entry specified by entry_cursor parameter.\n\nThis option will set response properties 'entry' and 'entryCursor' if there is an entry to retrieve. If an entry with the supplied cursor does not exist, a not_found error is thrown."
 
@@ -146565,32 +146643,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__eecb4c9cc76a \
-    "Process-wide count of memory_region get() that called posix_memalign since environment create."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eecb4c9cc76a */
-#define afw_s_zz__eecb4c9cc76a \
-    (&afw_self_v_zz__eecb4c9cc76a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eecb4c9cc76a */
-#define afw_self_s_zz__eecb4c9cc76a \
-    (afw_self_v_zz__eecb4c9cc76a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__eecb4c9cc76a */
-extern const afw_value_string_t \
-    afw_self_v_zz__eecb4c9cc76a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__eecb4c9cc76a */
-#define afw_z_zz__eecb4c9cc76a \
-    (afw_self_v_zz__eecb4c9cc76a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__eecb4c9cc76a */
-#define afw_v_zz__eecb4c9cc76a \
-    (&afw_self_v_zz__eecb4c9cc76a.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__eeda370462e6 \
     "Get the next journal entry for a consumer referenced by the consumer_id parameter. The entry_cursor parameter is ignored. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\n This option will set response properties 'entry' and 'entryCursor' if an applicable entry is retrieved. Property 'reissue' will be set as described below.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nIf consumeCursor property exists, return that entry at that cursor again immediately with a 'reissue' property added and set to true.\n\nJournal entries are scanned beginning at the entry at the cursor in the advanceCursor property. If the advanceCursor property is not present, the scan begins after the cursor in currentCursor. If neither are present, the scan begins at the start of the journal.\n\nIf an applicable entry is found, properties consumeStart and consumeCursor are set, advanceCursor is removed, and the entry is returned. Method mark_entry_consumed() will remove these properties.\n\nIf no applicable entry is found, advanceCursor is set to the last entry scanned."
 
@@ -148697,32 +148749,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f078b9b13903 \
-    "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f078b9b13903 */
-#define afw_s_zz__f078b9b13903 \
-    (&afw_self_v_zz__f078b9b13903.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f078b9b13903 */
-#define afw_self_s_zz__f078b9b13903 \
-    (afw_self_v_zz__f078b9b13903.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f078b9b13903 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f078b9b13903;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f078b9b13903 */
-#define afw_z_zz__f078b9b13903 \
-    (afw_self_v_zz__f078b9b13903.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f078b9b13903 */
-#define afw_v_zz__f078b9b13903 \
-    (&afw_self_v_zz__f078b9b13903.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f07f74b55302 \
     "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects."
 
@@ -150179,32 +150205,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f5fe889ee902 \
-    "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f5fe889ee902 */
-#define afw_s_zz__f5fe889ee902 \
-    (&afw_self_v_zz__f5fe889ee902.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f5fe889ee902 */
-#define afw_self_s_zz__f5fe889ee902 \
-    (afw_self_v_zz__f5fe889ee902.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f5fe889ee902 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f5fe889ee902;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f5fe889ee902 */
-#define afw_z_zz__f5fe889ee902 \
-    (afw_self_v_zz__f5fe889ee902.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f5fe889ee902 */
-#define afw_v_zz__f5fe889ee902 \
-    (&afw_self_v_zz__f5fe889ee902.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f61a8e12c123 \
     "Truncate double value to a whole number and returns integer result."
 
@@ -150435,6 +150435,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f70848adbf3f */
 #define afw_v_zz__f70848adbf3f \
     (&afw_self_v_zz__f70848adbf3f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__f718052bf1b9 \
+    "Process-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f718052bf1b9 */
+#define afw_s_zz__f718052bf1b9 \
+    (&afw_self_v_zz__f718052bf1b9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f718052bf1b9 */
+#define afw_self_s_zz__f718052bf1b9 \
+    (afw_self_v_zz__f718052bf1b9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f718052bf1b9 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f718052bf1b9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f718052bf1b9 */
+#define afw_z_zz__f718052bf1b9 \
+    (afw_self_v_zz__f718052bf1b9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f718052bf1b9 */
+#define afw_v_zz__f718052bf1b9 \
+    (&afw_self_v_zz__f718052bf1b9.pub)
 
 
 
@@ -164345,32 +164371,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_yearMonthDuration_ */
 #define afw_v_zz__one_and_only_yearMonthDuration_ \
     (&afw_self_v_zz__one_and_only_yearMonthDuration_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__posix_memalign_chunk_bytes_held \
-    "posix_memalign chunk bytes held"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__posix_memalign_chunk_bytes_held */
-#define afw_s_zz__posix_memalign_chunk_bytes_held \
-    (&afw_self_v_zz__posix_memalign_chunk_bytes_held.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__posix_memalign_chunk_bytes_held */
-#define afw_self_s_zz__posix_memalign_chunk_bytes_held \
-    (afw_self_v_zz__posix_memalign_chunk_bytes_held.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__posix_memalign_chunk_bytes_held */
-extern const afw_value_string_t \
-    afw_self_v_zz__posix_memalign_chunk_bytes_held;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__posix_memalign_chunk_bytes_held */
-#define afw_z_zz__posix_memalign_chunk_bytes_held \
-    (afw_self_v_zz__posix_memalign_chunk_bytes_held.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__posix_memalign_chunk_bytes_held */
-#define afw_v_zz__posix_memalign_chunk_bytes_held \
-    (&afw_self_v_zz__posix_memalign_chunk_bytes_held.pub)
 
 
 
