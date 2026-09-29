@@ -187,6 +187,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-vfs.mdc` | VFS adapter (`afw_vfs`): vfsMap, whole-file data, multi-map, tests (#79) |
 | `.cursor/rules/afw-extensions.mdc` | Loadable extensions (curl/ldap/lmdb/ubjson/vfs/yaml) |
 | `.cursor/rules/afw-adapter-index.mdc` | Adapter indexes (core + LMDB): definitions in DB, `current::` eval (#54), create/txn residuals (#57) |
+| `.cursor/rules/afw-model-adapter.mdc` | Model adapter: `_AdaptiveModel_`, `on*` scripts, optional `mappedAdapterId` (#109) |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
 | `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / shared mutables / long-running escape |
 | `.cursor/rules/afw-script-eval.mdc` | Compile/eval pipeline, scopes, statement_flow |
@@ -194,6 +195,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-compiler-ebnf.mdc` | EBNF-in-comments harvest |
 | `.cursor/rules/afw-function.mdc` | Built-in execute_*, polymorphic, compiler_*, default-clone |
 | `.cursor/rules/afw-adaptive-script.mdc` | Adaptive Script authoring (equality, nullish, defaults, probes) |
+| `.cursor/rules/afw-script-errors.mdc` | `try` / `catch` and `_AdaptiveError_` from C throws |
 | `.cursor/rules/afw-qualified-variables.mdc` | Qualifier stack, get vs `qualifier()`/`qualifiers()` snapshots (#9), `current::`/`custom::`, `variable_get`, includeUntrusted |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
