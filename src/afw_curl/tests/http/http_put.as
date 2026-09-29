@@ -16,11 +16,16 @@ http_put();
 
 //? test: http_put_bad_url
 //? description: Call http_put with bad url
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_put("http://xyz", "");
+try {
+    http_put("http://xyz", "");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 
 //? test: http_put_http_cleartext

@@ -885,7 +885,7 @@ impl_afw_adapter_session_retrieve_objects(
     const impl_ht_object_entry *entry;
 
     /* If this is a custom handled object type, call its function and return. */
-    if (&self->pub) {
+    if (self) {
         custom = afw_environment_get_runtime_custom(object_type_id, xctx);
         if (custom) {
             custom->retrieve_objects(&self->pub, impl_request,

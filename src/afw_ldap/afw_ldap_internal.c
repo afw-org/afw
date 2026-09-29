@@ -301,7 +301,7 @@ afw_ldap_internal_create_object_from_entry(
 #define AFW_QUERY_CRITERIA_CONTINUE(x) \
     (x != AFW_QUERY_CRITERIA_FALSE && x != AFW_QUERY_CRITERIA_TRUE)
 
-static const char impl_filter_hex[16] = "0123456789ABCDEF";
+static const char impl_filter_hex[] = "0123456789ABCDEF";
 
 static afw_boolean_t
 impl_is_alpha(afw_octet_t c)

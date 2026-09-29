@@ -40,7 +40,8 @@ __invented_by__ = "Grok (xAI)"
 __invented_for__ = "https://github.com/afw-org/afw/issues/207"
 
 _DEFAULT_INCLUDE = "/usr/local/include/afw"
-_DEFAULT_LIBDIR = "/usr/local/lib/afw"
+# CMake GNUInstallDirs picks lib64 on RHEL-family distros, lib elsewhere.
+_DEFAULT_LIBDIRS = ("/usr/local/lib/afw", "/usr/local/lib64/afw")
 _DEFAULT_TIMEOUT_S = 60
 _VALGRIND_TIMEOUT_S = 300
 
@@ -72,7 +73,13 @@ def _caller_dir():
 
 def _include_and_libdir():
     include_afw = os.environ.get("AFW_INCLUDE_DIR", _DEFAULT_INCLUDE)
-    libdir = os.environ.get("AFW_LIB_DIR", _DEFAULT_LIBDIR)
+    libdir = os.environ.get("AFW_LIB_DIR")
+    if not libdir:
+        libdir = _DEFAULT_LIBDIRS[0]
+        for d in _DEFAULT_LIBDIRS:
+            if os.path.exists(os.path.join(d, "libafw.so")):
+                libdir = d
+                break
     return include_afw, libdir
 
 

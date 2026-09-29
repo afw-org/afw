@@ -16,11 +16,16 @@ http_delete();
 
 //? test: http_delete_bad_url
 //? description: Call http_delete with bad url
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_delete("http://xyz");
+try {
+    http_delete("http://xyz");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 
 //? test: http_delete_http_cleartext

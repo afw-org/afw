@@ -16,11 +16,16 @@ http_head();
 
 //? test: http_head_bad_url
 //? description: Call http_head with bad url
-//? expect: error:Could not resolve host: xyz
+//? expect: true
 //? source: ...
 #!/usr/bin/env afw
 
-http_head("http://xyz");
+try {
+    http_head("http://xyz");
+} catch (e) {
+    return starts_with(e.message, "Could not resolve host: xyz");
+}
+return false;
 
 
 //? test: http_head

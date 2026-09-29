@@ -10,7 +10,7 @@ and the `afw-org` prefix:
 
 | Folder | Image Name | Tag(s) |
 |------------|--------------------------------|------|
-| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `alpine`, `ubuntu`, `alpine3.16.9`, `ubuntu22.04` |
+| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `ubuntu`, `ubuntu24.04`, `alpine`, `alpine3.24`, `rockylinux`, `rockylinux10`, `almalinux`, `almalinux9`, `opensuse`, `opensuse16.0` |
 | `afw-base`     | `ghcr.io/afw-org/afw-base`     | `latest`, `alpine`, `ubuntu`, `alpine3.16.9`, `ubuntu22.04` |
 | `afw-dev`      | `ghcr.io/afw-org/afw-dev`      | `latest`, `alpine3.16.9-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
 | `afw-admin`    | `ghcr.io/afw-org/afw-admin`    | `latest`, `nginx1.23.1-0.9.0-0`                            |

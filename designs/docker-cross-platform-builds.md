@@ -30,6 +30,10 @@ To actually build (until `os.system(cmd)` is wired back in), run `docker buildx 
 
 But `.github/workflows/` only has `builds.yml`, `docs.yml`, `integration.yml` — **none of them build or push `afw-dev-base`/`afw-base`**. That publish step happens somewhere outside this repo's tracked workflows. Practical implication: editing an `afw-dev-base/Dockerfile.*` (as with the RockyLinux bump below) does not take effect for CI, or for anyone pulling the tag, until someone rebuilds and pushes it through whatever that external process is.
 
+**How it was actually done (2026-09-27/28):** by hand from the devcontainer, which talks to Docker Desktop's daemon (containerd image store, QEMU built in). The container needs the buildx CLI plugin (`~/.docker/cli-plugins/docker-buildx`); the default `docker` driver is fine here because the base Dockerfiles have no shared `$BUILDPLATFORM` stage. Per flavor: `docker buildx build --platform linux/amd64,linux/arm64 -f docker/images/afw-dev-base/Dockerfile.<os> -t …:<os> -t …:<os><version> --load .` (ubuntu also gets `:latest`), then `docker push` each tag after `docker login ghcr.io` with a **classic** PAT (`write:packages`). Tag pattern is `<os><base version>`: `ubuntu24.04`, `alpine3.24`, `rockylinux10`, `almalinux9`, `opensuse16.0` — not `docker.py`'s `get_tags()` (`<os>-<afw version>`), which is only right for `afw-dev`.
+
+**Verify a base before pushing — building the image is not enough.** Stream a clean source tar into the image and run the real loop (`./afwdev build --cdev && afwdev test -j`). The 2026-09-28 round found a dozen real failures (next section) in images that built cleanly. The daemon is on the host, so bind-mounting a devcontainer path does not work — pipe the tar over stdin (`docker run -i … bash -c 'mkdir /src && tar -x -C /src && …' < src.tar`).
+
 Also, as of 2026-09-10: both `builds.yml` and `integration.yml` show **zero recorded runs ever** (`gh api repos/afw-org/afw/actions/workflows/<id>/runs` → `"total_count":0` for both). `integration.yml` only triggers on PRs targeting `main` + manual dispatch; `builds.yml` is manual-dispatch-only. Neither is actively exercised today — don't assume CI will catch a Dockerfile regression.
 
 ## Fetch clean source before building — the working tree is not a safe build context
@@ -39,7 +43,7 @@ Also, as of 2026-09-10: both `builds.yml` and `integration.yml` show **zero reco
 - **`build/`** — local CMake output (can be ~1GB). Worse than bloat: if `build/cmake/CMakeCache.txt` already exists (from an ordinary local `afwdev build`), CMake **refuses to reconfigure** inside the container, because the cache was generated for a different absolute source path (`/workspaces/afw` vs `/src`). Hard error, not just slower.
 - **`node_modules/`** (~900MB) — not needed for the C build stage at all.
 
-There's no `.dockerignore` in the repo, so nothing strips these automatically.
+The repo-root `.dockerignore` now excludes `build/` and `node_modules` (plus `linux_amd64`/`linux_arm64`), which covers the context for `-f … .` builds; the notes below still apply to any other context directory.
 
 The tempting fix — `git archive HEAD` into a scratch directory as the build context — backfires: it strips `.git`, and the builder scripts (`docker/images/builder/builder-*.sh`) call `./afwdev --version-string`, which shells out to `git rev-parse`. Outside a git repo that prints `fatal: not a git repository` to **stdout**, and the script captures it via *unquoted* command substitution (`DEB_VERSION=${DEB_VERSION:=\`./afwdev --version-string\`}`). The diagnostic text ends up inside `$DEB_VERSION`, gets word-split on the later unquoted use, and corrupts the following command — this concretely surfaced as `cp: unrecognized option '--abbrev-ref'`, many build steps away from the real cause, which made it a confusing one to trace back.
 
@@ -78,7 +82,27 @@ AlmaLinux's Dockerfile (`afw-dev-base/Dockerfile.almalinux`, `FROM almalinux:9`)
 
 Verified end-to-end, not just by inspection: rebuilt `afw-dev-base:rockylinux` (both platforms), confirmed curl 7.76.1 inside it, ran the full C build including `afw_curl` (`Build successful`), built `afw-dev:rockylinux` multi-platform, and ran `afw --version` inside the result.
 
-**Not yet done / known gaps surfaced along the way:**
-- `docker.py`'s `_docker_afw_dev_image_info` list doesn't include AlmaLinux at all, even though `Dockerfile.almalinux` exists — so AlmaLinux is built by nothing today (and wouldn't be even if `afwdev build --docker` were un-stubbed).
-- AlmaLinux isn't published to `ghcr.io` either — the local image used for verification here (`ghcr.io/afw-org/afw-dev-base:almalinux`) only exists because it was built locally at some point; `docker pull` for that tag returns "not found."
-- The RockyLinux base-image fix itself isn't live anywhere until someone pushes a new `ghcr.io/afw-org/afw-dev-base:rockylinux` (see "No base-image publish workflow" above).
+Rocky 9 and AlmaLinux 9 bases were published 2026-09-28 (first AlmaLinux publish). `docker.py`'s `_docker_afw_dev_image_info` still has no AlmaLinux entry, so `afw-dev:almalinux` is built by nothing.
+
+## 2026-09-28 base bumps: Ubuntu 24.04, Alpine 3.24, openSUSE Leap 16.0, Rocky 10
+
+Why: Alpine 3.16 and Leap 15.5/15.6 are EOL and could no longer install `python-requirements.txt` (Sphinx/`build` added in #283). Leap 15.6's repos are frozen out of sync with its image (zypper solver conflict on `libxml2-devel`/`libncurses6`) — go to 16.0, don't patch 15.x. Alpine went to 3.24 rather than 3.21 because 3.23 is the first Alpine whose `nodejs` is 24 (3.21/3.22 ship 22); `n 24` cannot install on musl, so Alpine takes Node from apk, not `n`. Ubuntu went to **24.04, not 26.04**: 26.04 passed everything too, but the builder's `.deb` is built on this base and a 26.04 build needs glibc 2.43, so it would not install on 24.04 (the package has no `Depends`, so it fails at run time, not install time). Rocky moved 9 → 10 (`FROM rockylinux/rockylinux:10`; the Docker Hub `rockylinux` library image has no 10). RHEL 10 clones need **x86-64-v3** (AVX2) for amd64.
+
+Found only by running the test suite inside each base (all are real, none environmental):
+
+- **musl thread stacks** — musl defaults new threads to ~128KiB; the C stack headroom check tripped on every `afwfcgi` worker. `afw_os_thread_create` now sizes threads to `max(2MiB, 4 × limitCStackHeadroomBytes, RLIMIT_STACK)` — the floor only matters when `ulimit -s` is lower or unlimited; raise `ulimit -s` for bigger stacks. (A full default 500-slot eval stack measured ~500KiB of C stack unoptimized; main-thread crossover from eval-limit to headroom trip was ~700KiB with the 256KiB default headroom.) Separately, musl's `pthread_attr_getstack` under-reports the **main** thread; the `RLIMIT_STACK` rebase in `afw_os_c_stack_bounds` is main-thread only (`getpid() == gettid`) — applying it to workers would put their low bound below the real stack.
+- **musl `r+` streams** — switching read→write on an update stream without `fseek`/`fflush` is UB; glibc tolerates it, musl writes at its buffered position (EOF). `afw_stream_fd` repositions on direction change.
+- **musl `fopen(path, "")`** succeeds (opens write-only). `open_file` validates the mode first.
+- **minimal libcurl** — Rocky/Alma (`libcurl-minimal`) and Leap 16 (`libcurl-mini4`) ship curl without SMTP; the curl SMTP upload tests fail with `Error in curl_easy_setopt()`. Dockerfiles install full `libcurl` / `libcurl4`.
+- **`lib64`** — RHEL-family `GNUInstallDirs` installs to `/usr/local/lib64/afw`; `c_probe.py` hard-coded `lib`.
+- **Leap 16 `fcgi.pc`** says `-I/usr/include` but headers are in `/usr/include/fastcgi`; `afw_fcgi-config.cmake` now `find_path`s `fcgiapp.h` even when pkg-config succeeds.
+- **libcurl error text drifts** — 8.22 + c-ares says `Could not resolve host: xyz (Domain name not found)`; the `afw_curl` bad-URL tests matched the whole message (`expect: error:<msg>` is exact). They now `try`/`catch` and check `starts_with`.
+- **GCC 15** `-Werror=unterminated-string-initialization` on a 16-char hex table in `afw_ldap`.
+- **Hard-coded LLVM 14** — `afwdev build --scan` ran `analyze-build-14` and the printf scan looked for `libclang-14..18`. Ubuntu ships clang tools only as `<tool>-<llvm major>` (plain `analyze-build` is a broken symlink on 22.04, absent on 24.04). `cmake.py` now picks the highest `/usr/bin/analyze-build-N`; `printf_scan.py` falls back to any `libclang-*.so.1` on disk, newest first.
+
+Also in this round, all five images:
+
+- **Python in a venv** at `/opt/afw-venv`, first on `PATH` (`ENV VIRTUAL_ENV`/`PATH`), instead of `pip --break-system-packages`. PEP 668 exists because pip can clobber distro-managed packages (Alpine 3.16's `Cannot uninstall 'packaging'`); the venv avoids that rather than silencing it. `afwdev` and its test runner reach Python only through `PATH` (`#!/usr/bin/env python3`, `subprocess.run(['python3', …])`), so nothing else changed. Anything that hard-codes `/usr/bin/python3` would bypass it. `.venv/`/`venv/` are git- and docker-ignored for local venvs.
+- **Sanitizer packages** in each main install: ASan/UBSan runtimes for gcc and clang plus `llvm-symbolizer` (Ubuntu adds `clang llvm libasan8 libubsan1`; RHEL-family `libasan libubsan compiler-rt llvm`; Leap `libasan8 libubsan1 llvm`). Verified with a deliberate heap overflow under `-fsanitize=address` for both compilers. **Alpine has none**: neither gcc nor clang ships an ASan runtime for musl. `afwdev` has no sanitizer build/test mode yet (would need `-fsanitize` on compile+link and its own env mode — ASan and valgrind don't mix, and ASan's stack use may interact with the C stack headroom check).
+
+Result: 4548 passed / 0 failed on Ubuntu 24.04, Alpine 3.24, Rocky 10, AlmaLinux 9, openSUSE 16.0 (arm64 native; amd64 images built under QEMU but not test-run).

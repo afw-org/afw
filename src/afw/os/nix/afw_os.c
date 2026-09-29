@@ -28,9 +28,10 @@
 #ifdef __linux__
 #include <sys/random.h>
 #endif
-#include <execinfo.h>
 
-#ifndef __MACH__
+#ifdef __MACH__
+#include <execinfo.h>
+#else
 #define UNW_LOCAL_ONLY
 #include <libunwind.h>
 #include <elfutils/libdwfl.h>

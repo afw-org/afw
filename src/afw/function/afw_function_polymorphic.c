@@ -12,6 +12,7 @@
  */
 
 #include "afw_internal.h"
+#include <libxml/xmlerror.h>
 #include <libxml/xmlregexp.h>
 
 
@@ -1891,7 +1892,7 @@ afw_function_execute_regexp_match(
     const xmlChar * s_z;
     const xmlChar * regexp_z;
     const afw_utf8_t *err_message;
-    xmlErrorPtr err;
+    const xmlError *err;
     const afw_value_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
@@ -1906,7 +1907,7 @@ afw_function_execute_regexp_match(
         err = xmlGetLastError();
         err_message = afw_utf8_create(err->message, AFW_UTF8_Z_LEN,
             x->p, x->xctx);
-        xmlResetError(err);
+        xmlResetLastError();
         xmlRegFreeRegexp(rx);
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             "%ku",

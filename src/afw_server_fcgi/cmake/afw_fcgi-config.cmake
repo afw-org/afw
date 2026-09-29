@@ -30,8 +30,17 @@ if (NOT AFW_FCGI_INCLUDE_DIRS OR
     if (AFW_FCGI_PKG_FOUND)
         afw_msg("fcgi found by pkg-config")
 
+        # Some fcgi.pc files (openSUSE Leap 16) point at /usr/include
+        # while the headers live in /usr/include/fastcgi, so locate
+        # fcgiapp.h instead of trusting the Cflags.
         if (NOT AFW_FCGI_INCLUDE_DIRS)
-            set(AFW_FCGI_INCLUDE_DIRS ${AFW_FCGI_PKG_INCLUDE_DIRS})
+            find_path(AFW_FCGI_PKG_HEADER_DIR
+                NAMES fcgiapp.h
+                HINTS ${AFW_FCGI_PKG_INCLUDE_DIRS}
+                PATH_SUFFIXES fastcgi
+                REQUIRED)
+            mark_as_advanced(AFW_FCGI_PKG_HEADER_DIR)
+            set(AFW_FCGI_INCLUDE_DIRS ${AFW_FCGI_PKG_HEADER_DIR})
         endif()
 
         if (NOT AFW_FCGI_LIBRARIES)

@@ -17,11 +17,6 @@
  */
 
     /**
-     * Error function for libxml2.
-     */
-    void *libxml2_error_func;
-
-    /**
      * OS backtrace session for this xctx. NULL until the first
      * afw_os_backtrace() here. The OS code owns the bytes. Released
      * by afw_os_backtrace_cleanup() before this xctx's pool is

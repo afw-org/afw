@@ -1,25 +1,44 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Includes AddressSanitizer/UBSan runtimes for gcc and clang plus
+# llvm-symbolizer, for sanitizer runs; afwdev test does not use them yet.
 RUN apt-get update && \
     apt-get install -y git libtool pkg-config clang-tools clangd \
     apache2-dev libxml2 libxml2-dev \
-    python3-pip python3-lxml \
+    python3-venv \
     libicu-dev libunwind-setjmp0-dev elfutils libdw-dev cmake \
     libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev \
     libyaml-dev libfcgi-dev libedit-dev nginx gdb valgrind lsof default-jre doxygen \
     libldap2-dev slapd \
+    clang llvm libasan8 libubsan1 \
     curl nodejs npm tmux vim locales bash-completion docker.io && \
+    apt-get clean
+
+# GitHub CLI from its own apt repo; Ubuntu's own gh (2.45.0 on 24.04) lacks
+# `gh auth token` and a working git-credential helper (#410).
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        -o /usr/share/keyrings/githubcli-archive-keyring.gpg && \
+    chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+        > /etc/apt/sources.list.d/github-cli.list && \
+    apt-get update && \
+    apt-get install -y gh && \
     apt-get clean
 
 RUN npm install -g npm-upgrade && npm install -g n && n 24
 RUN npm install -g npm@10 eclint cspell
 
+# Python tools live in a venv on PATH, not the system site-packages
+# (PEP 668). afwdev and its tests find python3/pip through PATH.
+ENV VIRTUAL_ENV=/opt/afw-venv
+ENV PATH=/opt/afw-venv/bin:$PATH
 COPY python-requirements.txt /tmp/python-requirements.txt
-RUN pip install -r /tmp/python-requirements.txt
+RUN python3 -m venv /opt/afw-venv && \
+    pip install -r /tmp/python-requirements.txt
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen

@@ -12,6 +12,7 @@
  */
 
 #include "afw_internal.h"
+#include <libxml/xmlerror.h>
 #include <libxml/xmlregexp.h>
 
 
@@ -124,8 +125,7 @@ afw_xctx_internal_create_initialize(
      * Set libxml2 error func to suppress error print. Use
      * xmlGetLastError() instead.
      */
-    self->libxml2_error_func = (void *)impl_suppress_libxml2_message;
-    initGenericErrorDefaultFunc((xmlGenericErrorFunc *)&self->libxml2_error_func);
+    xmlSetGenericErrorFunc(NULL, impl_suppress_libxml2_message);
 
     /* Make qualifier and evaluation stacks (fixed vectors). */
     impl_set_qualifier_stack(self);

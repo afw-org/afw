@@ -10,12 +10,23 @@
 #          (--scan), and install.
 #
 
+import glob
 import subprocess
 import os
 import sys
 import re
 from _afwdev.common import msg, package
 from _afwdev.build import printf_scan
+
+
+def _highest_versioned(prefix):
+    """Return the prefix-<N> path with the largest N, or None."""
+    best = None
+    for path in glob.glob(prefix + '-[0-9]*'):
+        suffix = path[len(prefix) + 1:]
+        if suffix.isdigit() and (best is None or int(suffix) > best[0]):
+            best = (int(suffix), path)
+    return best[1] if best else None
 
 _C_DEFINE_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*(?:=[A-Za-z0-9_]+)?$')
 _CDEV_DEBUG_DEFINES = (
@@ -207,11 +218,12 @@ def build(options):
         printf_scan.run_printf_scan(options)
 
     if options.get('build_scan') is True:
-        # on Ubuntu, the analyze-build symlink is broken, so
-        # we need to check if analyze-build-14 exists first
-        _analyze_command = ['analyze-build']
-        if os.path.exists('/usr/bin/analyze-build-14'):
-            _analyze_command = ['analyze-build-14']
+        # Ubuntu ships analyze-build only as analyze-build-<llvm major>
+        # (the plain name is a broken symlink on 22.04, absent on 24.04),
+        # so prefer the highest versioned one; other distros use the
+        # plain name.
+        _analyze_command = [_highest_versioned('/usr/bin/analyze-build')
+            or 'analyze-build']
 
         _analyze_command.extend(['--cdb', 
             'build/cmake/compile_commands.json', 
