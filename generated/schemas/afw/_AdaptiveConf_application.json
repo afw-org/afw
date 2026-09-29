@@ -227,8 +227,8 @@
                     "type": "integer"
                 },
                 "memoryRegionFreeListMaxBytes": {
-                    "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
-                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+                    "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = mmap/munmap on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = mmap/munmap on every get/free.",
                     "title": "Memory Region Free List Max Bytes",
                     "type": "integer"
                 },
@@ -410,8 +410,8 @@
                     "type": "integer"
                 },
                 "memoryRegionFreeListMaxBytes": {
-                    "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
-                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+                    "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = mmap/munmap on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = mmap/munmap on every get/free.",
                     "title": "Memory Region Free List Max Bytes",
                     "type": "integer"
                 },
@@ -665,8 +665,8 @@
             "type": "integer"
         },
         "memoryRegionFreeListMaxBytes": {
-            "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
-            "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+            "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = mmap/munmap on every get/free.",
+            "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = mmap/munmap on every get/free.",
             "title": "Memory Region Free List Max Bytes",
             "type": "integer"
         },

@@ -58,6 +58,16 @@ static void
 impl_afw_array_managed_setter_remove_all_values(
     const afw_array_setter_t *self,
     afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_remove_value_by_index(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_remove_value(
+    const afw_array_setter_t *self,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 static const afw_value_t *
 impl_afw_array_managed_setter_pop_value(
     const afw_array_setter_t *self,
@@ -90,6 +100,10 @@ impl_afw_array_managed_setter_shift_value(
     impl_afw_array_managed_setter_insert_value
 #define impl_afw_array_setter_remove_all_values \
     impl_afw_array_managed_setter_remove_all_values
+#define impl_afw_array_setter_remove_value_by_index \
+    impl_afw_array_managed_setter_remove_value_by_index
+#define impl_afw_array_setter_remove_value \
+    impl_afw_array_managed_setter_remove_value
 #define impl_afw_array_setter_pop_value \
     impl_afw_array_managed_setter_pop_value
 #define impl_afw_array_setter_shift_value \
@@ -100,6 +114,8 @@ impl_afw_array_managed_setter_shift_value(
 #undef impl_afw_array_setter_set_value
 #undef impl_afw_array_setter_insert_value
 #undef impl_afw_array_setter_remove_all_values
+#undef impl_afw_array_setter_remove_value_by_index
+#undef impl_afw_array_setter_remove_value
 #undef impl_afw_array_setter_pop_value
 #undef impl_afw_array_setter_shift_value
 #undef AFW_IMPLEMENTATION_INF_LABEL
@@ -1058,6 +1074,9 @@ impl_afw_array_setter_set_value(
 
 /*
  * Implementation of method remove_value_by_index for interface afw_array_setter.
+ *
+ * Wrapper face only. Managed arrays use the managed setter, which
+ * last-releases the occupant.
  */
 void
 impl_afw_array_setter_remove_value_by_index(
@@ -1327,6 +1346,60 @@ impl_afw_array_managed_setter_shift_value(
     afw_vector_remove(array_self->values, 0, xctx);
     impl_maybe_clear_generic_data_type(array_self);
     return impl_register_transferred_temp(value, xctx);
+}
+
+
+void
+impl_afw_array_managed_setter_remove_value_by_index(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    const afw_value_t **slot;
+    afw_size_t at;
+
+    at = impl_resolve_element_index(index,
+        array_self->values->count, xctx);
+    slot = impl_slot_at(array_self, at);
+    if (!slot) {
+        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+    }
+    /* Managed array holds occupants. Unmanaged remove_by_index
+     * only drops a wrapper face; splice would leak the slot hold. */
+    afw_value_release(*slot, xctx);
+    *slot = NULL;
+    afw_vector_remove(array_self->values, at, xctx);
+    impl_maybe_clear_generic_data_type(array_self);
+}
+
+
+void
+impl_afw_array_managed_setter_remove_value(
+    const afw_array_setter_t *self,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    const afw_value_t **entries;
+    afw_size_t i;
+    afw_size_t count;
+
+    count = array_self->values->count;
+    entries = array_self->values->entries;
+    for (i = 0; i < count; i++) {
+        if (afw_value_equal(value, entries[i], xctx)) {
+            afw_value_release(entries[i], xctx);
+            entries[i] = NULL;
+            afw_vector_remove(array_self->values, i, xctx);
+            impl_maybe_clear_generic_data_type(array_self);
+            return;
+        }
+    }
+
+    AFW_THROW_ERROR_Z(general, "Value not in array", xctx);
 }
 
 

@@ -825,7 +825,8 @@ afw_function_execute_test_script(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    return result->value;
+    /* Clone is create_managed RC 1. Extra-hold only (not get_assignable). */
+    return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
 }
 
 
@@ -961,7 +962,8 @@ afw_function_execute_test_template(
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    return result->value;
+    /* Clone is create_managed RC 1. Extra-hold only (not get_assignable). */
+    return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
 }
 
 

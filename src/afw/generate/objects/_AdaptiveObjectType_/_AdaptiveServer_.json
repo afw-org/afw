@@ -75,7 +75,7 @@
         },
         "peakPoolChunkBytes": {
             "allowQuery": true,
-            "brief": "High-water of posix_memalign chunk bytes",
+            "brief": "High-water of mapped chunk bytes",
             "dataType": "integer",
             "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
             "label": "Peak Pool Chunk Bytes",
@@ -109,9 +109,9 @@
         },
         "poolChunkBytes": {
             "allowQuery": true,
-            "brief": "posix_memalign chunk bytes held",
+            "brief": "Mapped chunk bytes held",
             "dataType": "integer",
-            "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "description": "Sum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
             "label": "Pool Chunk Bytes",
             "runtime": {
                 "zeroOffset": true,
@@ -175,9 +175,9 @@
         },
         "memoryRegionGetMisses": {
             "allowQuery": true,
-            "brief": "Region get() that called posix_memalign",
+            "brief": "Region get() that mapped a chunk",
             "dataType": "integer",
-            "description": "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+            "description": "Process-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current.",
             "label": "Memory Region Get Misses",
             "runtime": {
                 "zeroOffset": true,
@@ -186,9 +186,9 @@
         },
         "memoryRegionFreeOverCap": {
             "allowQuery": true,
-            "brief": "Region free() that called free() over cap",
+            "brief": "Region free() that munmap'd over cap",
             "dataType": "integer",
-            "description": "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+            "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
             "label": "Memory Region Free Over Cap",
             "runtime": {
                 "zeroOffset": true,

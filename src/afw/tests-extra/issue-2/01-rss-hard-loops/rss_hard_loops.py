@@ -15,7 +15,9 @@ README.md. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
 from __future__ import print_function
 
 import os
+import shutil
 import sys
+import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 if HERE not in sys.path:
@@ -132,12 +134,105 @@ WORKLOADS = [
         "expect_in_use_growth": False,
     },
     {
+        "name": "splice_assign",
+        "description": "splice copy-out then assign (length-stable)",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "splice_unassigned",
+        "description": "splice copy-out never assigned (last stmt add())",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "unassigned_temps",
+        "description": "unmanaged add() temps (last stmt isolates a scalar)",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "readln_loop",
+        "description": "readln loop (short lines plus one that grows the buffer)",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+        "needs_readln_conf": True,
+    },
+    {
+        "name": "managed_create_assign",
+        "description": "create_managed extra-hold then assign (reverse/slice/filter/map/sort/bag/keys/entries/…)",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "managed_create_unassigned",
+        "description": "create_managed extra-hold never assigned (last stmt add())",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "clone_assign",
+        "description": "clone array/object then assign (create_managed extra-hold, slot_store)",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "clone_unassigned",
+        "description": "clone array/object never assigned (last stmt add() so not script_result)",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "test_script_assign",
+        "description": "test_script create_managed_clone extra-hold then assign",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "test_script_unassigned",
+        "description": "test_script create_managed_clone extra-hold never assigned (last stmt add())",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "compile_listing_assign",
+        "description": "compile listing assigned; unit last-released after the dump",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
+        "name": "compile_listing_unassigned",
+        "description": "compile listing last-releases the unit (last stmt add())",
+        "expect_rss_growth": False,
+        "expect_in_use_growth": False,
+    },
+    {
         "name": "array_append",
         "description": "unbounded push (harness: RSS and in_use must grow)",
         "expect_rss_growth": True,
         "expect_in_use_growth": True,
     },
 ]
+
+
+def _prepare_readln_conf():
+    """Temp application conf + lines file so readln can open_file."""
+    tmp = tempfile.mkdtemp(prefix="afw-issue2-readln-")
+    files = os.path.join(tmp, "files")
+    os.makedirs(files)
+    with open(os.path.join(files, "lines.txt"), "w") as f:
+        for i in range(50):
+            f.write("line-%d\n" % i)
+        f.write(("x" * 2000) + "\n")
+    conf_path = os.path.join(tmp, "afw.conf")
+    with open(conf_path, "w") as f:
+        f.write(
+            "[\n  {\n    type: \"application\",\n"
+            "    applicationId: \"issue2-readln\",\n"
+            "    rootFilePaths: { \"data\": \"%s\" }\n"
+            "  }\n]\n" % files.replace("\\", "\\\\").replace("\"", "\\\"")
+        )
+    return tmp, ["--conf", conf_path]
 
 
 def _env_float(name, default):
@@ -267,12 +362,21 @@ def run():
 
     for w in selected:
         path = workload_path(w["name"])
-        result = sample_afw_script(
-            path,
-            duration_s=duration_s,
-            interval_s=interval_s,
-            warmup_s=warmup_s,
-        )
+        extra_argv = None
+        readln_tmp = None
+        if w.get("needs_readln_conf"):
+            readln_tmp, extra_argv = _prepare_readln_conf()
+        try:
+            result = sample_afw_script(
+                path,
+                duration_s=duration_s,
+                interval_s=interval_s,
+                warmup_s=warmup_s,
+                extra_argv=extra_argv,
+            )
+        finally:
+            if readln_tmp:
+                shutil.rmtree(readln_tmp, ignore_errors=True)
         passed, error = _judge(w, result, assert_on)
         tests.append({
             "test": w["name"],

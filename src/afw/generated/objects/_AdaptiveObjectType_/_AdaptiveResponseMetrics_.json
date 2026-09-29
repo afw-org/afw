@@ -25,7 +25,7 @@
         "poolChunkBytes": {
             "brief": "This-request ST chunk bytes",
             "dataType": "integer",
-            "description": "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+            "description": "Thread ST mapped chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
             "label": "Pool Chunk Bytes"
         }
     }

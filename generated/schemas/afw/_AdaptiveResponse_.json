@@ -380,8 +380,8 @@
                     "type": "integer"
                 },
                 "poolChunkBytes": {
-                    "description": "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
-                    "markdownDescription": "**Pool Chunk Bytes**\n\nThread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "description": "Thread ST mapped chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nThread ST mapped chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 }
@@ -404,8 +404,8 @@
                     "type": "integer"
                 },
                 "poolChunkBytes": {
-                    "description": "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
-                    "markdownDescription": "**Pool Chunk Bytes**\n\nThread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "description": "Thread ST mapped chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nThread ST mapped chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 }

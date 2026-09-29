@@ -94,7 +94,7 @@ struct afw_thread_s {
     /** @brief High-water of pool_bytes_in_use. */
     afw_size_t peak_pool_bytes_in_use;
 
-    /** @brief ST posix_memalign chunk bytes on thread-owned heaps. */
+    /** @brief ST mapped chunk bytes on thread-owned heaps. */
     afw_size_t pool_chunk_bytes;
 
     /** @brief High-water of pool_chunk_bytes. */

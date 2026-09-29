@@ -68,6 +68,7 @@ afw_function_execute_compile_script(
 {
     const afw_value_script_t *script;
     const afw_value_t *result;
+    const afw_value_t *compiled;
     const afw_utf8_t *listing;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script, 1, script);
@@ -79,12 +80,19 @@ afw_function_execute_compile_script(
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
+        compiled = result;
         result = afw_value_create_unmanaged_string(
-            afw_value_compiler_listing_to_string(result, listing,
+            afw_value_compiler_listing_to_string(compiled, listing,
                 x->p, x->xctx),
             x->p, x->xctx);
+        /* Listing copied out. Last-release the unit. See compile(). */
+        if (afw_value_is_compiled_value(compiled)) {
+            afw_value_release(compiled, x->xctx);
+        }
+        return result;
     }
 
+    /* RC 1 unit pin. Do not extra-hold (evaluate(compile()) / closures). */
     return result;
 }
 

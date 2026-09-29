@@ -1242,6 +1242,9 @@ afw_value_get_assignable(
  *
  * Does not evaluate. Does not release the source. Throws if value is
  * NULL, not evaluated, or has no clone.
+ *
+ * Adaptive `clone()` of object/array is always-copy
+ * `create_managed`, not this (see `afw_function_execute_clone`).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_unmanaged(
@@ -1259,6 +1262,9 @@ afw_value_clone_unmanaged(
  *
  * Permanents as-is. Does not release the source. Throws if
  * value is NULL, not evaluated, or has no clone.
+ *
+ * Adaptive `clone()` of object/array is always-copy
+ * `create_managed`, not this (see `afw_function_execute_clone`).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_managed(
@@ -1644,6 +1650,10 @@ afw_value_convert_to_casted_utf8(
  * @return cloned value.
  *
  * Non-evaluated values will be evaluated as part of clone.
+ *
+ * Unmanaged copy into dest p. Adaptive `clone()` of object/array is
+ * always-copy `create_managed`, not this (see
+ * `afw_function_execute_clone`).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone(

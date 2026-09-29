@@ -657,8 +657,9 @@ afw_function_execute_filter(
     impl_filter_data_t data;
     const afw_value_array_t *result;
 
+    /* New array: RC 1. Extra-hold only. Do not get_assignable. */
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     data.filtered_array = result->internal;
@@ -823,8 +824,9 @@ afw_function_execute_map(
     impl_map_data_t data;
     const afw_value_array_t *result;
 
+    /* New array: RC 1. Extra-hold only. Same as filter. */
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     data.mapped_array = result->internal;
@@ -1039,9 +1041,9 @@ afw_function_execute_sort(
     afw_sort((const void **)ctx.values, ctx.count,
         impl_sort_compare, &ctx);
 
-    /* Return sorted array. */
+    /* New array: RC 1. Extra-hold only. Same as filter. */
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, ctx.p, ctx.xctx)->value,
             ctx.xctx);
     for (i = 0; i < ctx.count; i++) {

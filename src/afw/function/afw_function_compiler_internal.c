@@ -171,6 +171,7 @@ impl_try_keep_return(afw_xctx_t *xctx)
         return;
     }
     v = afw_xctx_script_result_get(xctx);
+    /* Existing occupant, not create_managed. Bump + extra-hold. */
     v = afw_pool_scope_get_assignable_for_scope_lifetime(v, xctx);
     afw_pool_scope_set_last_result(v, xctx);
 }

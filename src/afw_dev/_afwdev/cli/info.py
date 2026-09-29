@@ -1168,7 +1168,7 @@ _info_test_trend_metric = {
     "noprompt": True,
     "help":
         "Metric for --trend movers: bytes (default, xctx asked-for), "
-        "chunk (posix_memalign), or ms."
+        "chunk (mapped), or ms."
 }
 
 _info_test_capture_goldens = {

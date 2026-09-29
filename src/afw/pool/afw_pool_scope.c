@@ -828,6 +828,7 @@ afw_pool_scope_get_assignable_for_p_lifetime(
     {
         return value;
     }
+    /* Bumps managed. Do not use after create_managed (already RC 1). */
     value = afw_value_get_assignable(value,
         scope ? scope->p : xctx->p, xctx);
     if (scope) {
@@ -844,6 +845,24 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
 {
     return afw_pool_scope_get_assignable_for_p_lifetime(
         value, afw_pool_scope_internal_current(xctx), xctx);
+}
+
+
+const afw_value_t *
+afw_pool_scope_release_value_at_cleanup(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_scope_t *scope;
+
+    if (!value) {
+        return value;
+    }
+    scope = afw_pool_scope_internal_current(xctx);
+    if (scope) {
+        afw_pool_release_value_at_cleanup(value, scope->p, xctx);
+    }
+    return value;
 }
 
 

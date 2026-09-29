@@ -309,20 +309,26 @@ impl_copy_property_into_managed(
 }
 
 
-static void
-impl_copy_into_managed(
+AFW_DEFINE(void)
+afw_object_copy_meta_into_managed(
     const afw_object_t *to,
     const afw_object_t *from,
     afw_xctx_t *xctx)
 {
     afw_object_t *self = (afw_object_t *)to;
-    const afw_pool_t *p = to->p;
-    const afw_object_internal_memory_object_t *from_mem;
-    afw_object_internal_name_value_entry_t *e;
-    afw_object_internal_name_value_entry_t *next;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *name;
-    const afw_value_t *value;
+    const afw_pool_t *p;
+
+    if (!to || !from) {
+        AFW_THROW_ERROR_Z(general,
+            "copy_meta_into_managed requires to and from",
+            xctx);
+    }
+    if (!afw_object_is_memory_managed(to)) {
+        AFW_THROW_ERROR_Z(general,
+            "copy_meta_into_managed requires a managed object",
+            xctx);
+    }
+    p = to->p;
 
     if (!self->meta.object_uri && from->meta.object_uri &&
         !self->meta.embedding_object)
@@ -350,6 +356,23 @@ impl_copy_into_managed(
     else {
         impl_copy_meta_delta_into_managed(to, from, xctx);
     }
+}
+
+
+static void
+impl_copy_into_managed(
+    const afw_object_t *to,
+    const afw_object_t *from,
+    afw_xctx_t *xctx)
+{
+    const afw_object_internal_memory_object_t *from_mem;
+    afw_object_internal_name_value_entry_t *e;
+    afw_object_internal_name_value_entry_t *next;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *name;
+    const afw_value_t *value;
+
+    afw_object_copy_meta_into_managed(to, from, xctx);
 
     if (impl_is_memory_property_list(from)) {
         from_mem = (const afw_object_internal_memory_object_t *)from;

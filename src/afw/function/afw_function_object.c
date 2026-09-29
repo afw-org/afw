@@ -69,6 +69,7 @@ afw_function_execute_add_properties(
         target = (const afw_value_object_t *)
             afw_object_as_value(created, x->p, x->xctx);
     }
+    /* Mutate-input, or promote a new script wrapper. Not create_managed. */
     target = (const afw_value_object_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &target->pub, x->xctx);
@@ -555,7 +556,7 @@ afw_function_execute_entries(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL;;) {
@@ -566,7 +567,7 @@ afw_function_execute_entries(
         }
         name_value = property_name;
         pair = ((const afw_value_array_t *)
-            afw_pool_scope_get_assignable_for_scope_lifetime(
+            afw_pool_scope_release_value_at_cleanup(
                 afw_array_create_managed(NULL, x->p, x->xctx)->value,
                 x->xctx))->internal;
         afw_array_push_value(pair, name_value, x->xctx);
@@ -621,8 +622,9 @@ afw_function_execute_keys(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
+    /* New array: RC 1. Extra-hold only. Same as entries/values. */
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL;;) {
@@ -684,7 +686,7 @@ afw_function_execute_values(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL;;) {

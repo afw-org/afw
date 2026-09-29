@@ -52,7 +52,7 @@ Options: `0` = live in `p`; `new_p` and `cede_p` are the two flags. All three na
 
 Wrappers: `create_wrapper_unmanaged`, `_unmanaged_new_p`, `_unmanaged_cede_p`.
 
-Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (dest `p`, uses `p->managed_p`). Adaptive `clone()` is still `afw_value_clone()`.
+Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (dest `p`, uses `p->managed_p`). Adaptive `clone()` of object/array is always-copy `create_managed` + extra-hold of the container (not those C helpers; [#424](https://github.com/afw-org/afw/issues/424)).
 
 **Value `get_reference` / `release`:** only permanent (as-is) and `memory_managed` (bump / last-release). Unmanaged object/array **value** infs throw. Isolate with `get_assignable_value`. Do not stamp `afw_value_managed_*_inf` on a pool-world header.
 
@@ -79,7 +79,7 @@ Separate inf (`memory_managed`), alloc in dest `p->managed_p`, RC 1. Slots: new 
 - Adapter clones (held).
 - Clone-of-unmanaged object meta.
 - Functions/closures as an eval result still alias the unit.
-- Adaptive `clone()` still the old function.
+- Adaptive `clone()` of object/array is always-copy `create_managed`. C clone helpers are [#424](https://github.com/afw-org/afw/issues/424).
 - `qualifier("current")` snapshot list tail.
 - `double_free_throws` runs ([#408](https://github.com/afw-org/afw/issues/408)): heap free checks the block's free bit first. Tracker-returned blocks do not coalesce yet ([#415](https://github.com/afw-org/afw/issues/415)).
 - Heap free-list mixed sizes: **not** the remaining eval win. After #287 the 14k concat + `n` nest is ~0.05s (timings above). Revisit only if a new pattern shows first-fit walking a growing list.

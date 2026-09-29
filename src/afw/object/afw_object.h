@@ -767,6 +767,10 @@ afw_object_create_with_options(
  * and replace. Last object release releases remaining names and
  * values then free_memorys the header. Unmanaged creates are
  * unchanged.
+ *
+ * Starts at RC 1. Extra-hold a new object with
+ * `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in
+ * `get_assignable_for_scope_lifetime` (extra bump; same as arrays).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed(
@@ -830,6 +834,24 @@ AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed_snapshot(
     const afw_object_t *from,
     const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Copy path, ids, and meta delta onto a managed object.
+ * @param to must be a managed memory object (empty meta).
+ * @param from source (face, view, unmanaged, or managed).
+ * @param xctx of caller.
+ *
+ * Sideband only (reconcilable, parentPaths, object_uri, …). Does
+ * not copy properties. Adaptive `clone()` uses this so a
+ * reconcilable get stays reconcilable after an always-copy.
+ * Snapshot uses it too.
+ */
+AFW_DECLARE(void)
+afw_object_copy_meta_into_managed(
+    const afw_object_t *to,
+    const afw_object_t *from,
     afw_xctx_t *xctx);
 
 

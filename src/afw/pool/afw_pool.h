@@ -27,7 +27,7 @@
  *   from a heap and tracks it. Destroy returns the chain to the
  *   ancestor heap. free_memory on a tracker marks; it does not
  *   return the block until destroy or garbage_collect.
- *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
+ *   Multithreaded heap is lock wrappers. The heap owns mapped
  *   chunks (4k-aligned; default floor 64k when chunk_min is 0).
  *   Not a third AFW pool kind.
  * - Parent/child is lifetime only. Store is the ancestor heap.
@@ -87,7 +87,7 @@
 AFW_BEGIN_DECLARES
 
 /**
- * @brief Round a byte size up to the heap posix_memalign page.
+ * @brief Round a byte size up to the heap page.
  * @param size bytes. 0 is unchanged (unlimited or "use default").
  * @return 0 if size is 0; otherwise at least one page, multiple of
  *    the page.
@@ -144,7 +144,7 @@ afw_pool_create(
 /**
  * @brief Create a single-thread heap that inherits managed_p.
  * @param parent of new pool (may be multithreaded env/base).
- * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
+ * @param chunk_min minimum chunk size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -165,7 +165,7 @@ afw_pool_heap_create(
 /**
  * @brief Create a single-thread heap with managed_p = self.
  * @param parent of new pool (may be multithreaded env/base).
- * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
+ * @param chunk_min minimum chunk size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -187,7 +187,7 @@ afw_pool_heap_create_as_managed_p(
 /**
  * @brief Create a multithreaded heap that inherits managed_p.
  * @param parent must be a multithreaded heap (usually env->p).
- * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
+ * @param chunk_min minimum chunk size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -206,7 +206,7 @@ afw_pool_multithread_create(
 /**
  * @brief Create a multithreaded heap with managed_p = self.
  * @param parent must be a multithreaded heap (usually env->p).
- * @param chunk_min minimum posix_memalign size; 0 = env->default_chunk_min.
+ * @param chunk_min minimum chunk size; 0 = env->default_chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
@@ -262,13 +262,15 @@ afw_pool_scope_allocate(
  * @brief Outstanding malloc/calloc on this pool (asked-for).
  *
  * Trackers and heaps each count their own allocs. Not chunk RSS.
+ * On a tracker this excludes blocks free_memory has marked; those
+ * bytes stay in the tracker until destroy or garbage_collect.
  */
 AFW_DECLARE(afw_size_t)
 afw_pool_bytes_allocated(const afw_pool_t *instance);
 
 
 /**
- * @brief posix_memalign bytes still held (heap only; 0 on a tracker).
+ * @brief Mapped chunk bytes still held (heap only; 0 on a tracker).
  */
 AFW_DECLARE(afw_size_t)
 afw_pool_chunk_bytes(const afw_pool_t *instance);

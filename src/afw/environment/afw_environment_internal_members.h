@@ -192,7 +192,7 @@
     AFW_ATOMIC afw_size_t peak_pool_bytes_in_use;
 
     /**
-     * @brief Sum of every heap's chunk_bytes (posix_memalign held).
+     * @brief Sum of every heap's chunk_bytes (mapped chunks held).
      *
      * Asked-for is pool_bytes_in_use. This is store still mapped.
      * Atomic; multithreaded heaps update it.

@@ -90,7 +90,7 @@
             "allowQuery": true,
             "brief": "Cap on thread memory_region free list",
             "dataType": "integer",
-            "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+            "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free.",
             "label": "Memory Region Free List Max Bytes",
             "runtime": {
                 "memberName": "memory_region_free_list_max_bytes",
@@ -154,9 +154,9 @@
         },
         "memoryRegionGetMisses": {
             "allowQuery": true,
-            "brief": "Region get() that called posix_memalign",
+            "brief": "Region get() that mapped a chunk",
             "dataType": "integer",
-            "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
+            "description": "Process-wide count of memory_region get() that mapped a chunk since environment create.",
             "label": "Memory Region Get Misses",
             "runtime": {
                 "zeroOffset": true,
@@ -165,9 +165,9 @@
         },
         "memoryRegionFreeOverCap": {
             "allowQuery": true,
-            "brief": "Region free() that called free() over cap",
+            "brief": "Region free() that munmap'd over cap",
             "dataType": "integer",
-            "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+            "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0).",
             "label": "Memory Region Free Over Cap",
             "runtime": {
                 "zeroOffset": true,
@@ -209,7 +209,7 @@
         },
         "peakPoolChunkBytes": {
             "allowQuery": true,
-            "brief": "High-water of posix_memalign chunk bytes",
+            "brief": "High-water of mapped chunk bytes",
             "dataType": "integer",
             "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
             "label": "Peak Pool Chunk Bytes",
@@ -241,9 +241,9 @@
         },
         "poolChunkBytes": {
             "allowQuery": true,
-            "brief": "posix_memalign chunk bytes held",
+            "brief": "Mapped chunk bytes held",
             "dataType": "integer",
-            "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+            "description": "Sum of heap mapped chunks still held. Store mapped, not asked-for.",
             "label": "Pool Chunk Bytes",
             "runtime": {
                 "zeroOffset": true,
@@ -297,7 +297,7 @@
             "allowQuery": true,
             "brief": "xctx/thread heap chunk min",
             "dataType": "integer",
-            "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+            "description": "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
             "label": "Xctx Chunk Min",
             "runtime": {
                 "memberName": "xctx_chunk_min",

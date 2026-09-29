@@ -131,12 +131,44 @@ afw_pool_scope_clear_last_result(
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
- * get_assignable plus pool-cleanup on current scope->p. Does not
- * store last_result. Built-ins that return an input or a managed
- * result use this.
+ * Two different jobs. This function is only the first:
+ *
+ * 1. A value you did not just create_managed: mutate an input
+ *    (`push` / `pop` / `freeze`), pin a script return, or promote
+ *    unmanaged that already has optional_release. get_assignable
+ *    bumps a managed value; extra-hold drops that bump if nobody
+ *    assigns. Unmanaged with no optional_release is returned as-is
+ *    (clone() cannot use this; get_assignable then extra-hold).
+ *
+ * 2. Fresh create_managed (already RC 1): use
+ *    afw_pool_scope_release_value_at_cleanup() only. Calling this
+ *    function there bumps again; scope cleanup drops one; RC 1 is
+ *    left (splice #405).
+ *
+ * Does not store last_result. See for_p_lifetime for the same bump
+ * onto a chosen scope (script return onto the caller).
  */
 const afw_value_t *
 afw_pool_scope_get_assignable_for_scope_lifetime(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Extra-hold a value until the current scope ends.
+ * @param value to keep. NULL is returned unchanged.
+ * @param xctx of caller.
+ * @return value unchanged.
+ *
+ * Registers afw_pool_release_value_at_cleanup on current scope->p.
+ * Does not get_assignable (no RC bump). Use after create_managed so
+ * RC 1 plus this cleanup is a temp (same as managed pop/shift).
+ * Also after create_managed_clone of test_script / test_template.
+ * Do not get_assignable first. Do not use on compile() of a unit
+ * (evaluate(compile()) / closures still need that heap).
+ */
+const afw_value_t *
+afw_pool_scope_release_value_at_cleanup(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -149,10 +181,13 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
- * get_assignable (self-reference if managed, often clone_managed if
- * unmanaged) then cleanup release on scope->p. Managed values
- * (including closures) may use any scope: RC keeps them alive; the
- * callback drops the extra hold when that p ends.
+ * Same bump as get_assignable_for_scope_lifetime; caller picks the
+ * scope (script return pins onto the caller while the callee frame
+ * is alive). get_assignable (self-reference if managed, often
+ * clone_managed if unmanaged) then cleanup release on scope->p.
+ * Not for a fresh create_managed — that is already RC 1; extra-hold
+ * only. Permanents and a value already registered on this p are
+ * returned unchanged (no second bump).
  */
 const afw_value_t *
 afw_pool_scope_get_assignable_for_p_lifetime(

@@ -60,6 +60,7 @@ afw_function_execute_add_entries(
     afw_size_t count;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(target, 1, array);
+    /* Mutate-input: bump + extra-hold the array already in a slot. */
     target = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &target->pub, x->xctx);
@@ -448,9 +449,10 @@ afw_function_execute_reverse(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
 
+    /* New array: RC 1. Extra-hold only. Do not get_assignable. */
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
     setter = afw_array_get_setter(result->internal, x->xctx);
@@ -550,10 +552,10 @@ afw_function_execute_slice(
         }
     }
 
-    /* Create and return an array with slice. Stay mutable. */
+    /* New array: RC 1. Extra-hold only. Stay mutable. */
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
@@ -658,6 +660,7 @@ afw_function_execute_pop(
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    /* Mutate-input: bump + extra-hold the array already in a slot. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
@@ -710,6 +713,7 @@ afw_function_execute_push(
     afw_size_t i;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    /* Mutate-input: bump + extra-hold the array already in a slot. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
@@ -761,6 +765,7 @@ afw_function_execute_shift(
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    /* Mutate-input: bump + extra-hold the array already in a slot. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
@@ -827,6 +832,7 @@ afw_function_execute_splice(
     afw_size_t arg;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    /* Mutate-input: bump + extra-hold the array already in a slot. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
@@ -858,8 +864,12 @@ afw_function_execute_splice(
         delete_count = count - start;
     }
 
+    /*
+     * New array: RC 1 from create. Extra-hold only (no get_assignable
+     * bump). Same as reverse/slice.
+     */
     removed = ((const afw_value_array_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
+        afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx))->internal;
     for (i = 0; i < delete_count; i++) {
@@ -867,6 +877,8 @@ afw_function_execute_splice(
         if (value) {
             afw_array_push_value(removed, value, x->xctx);
         }
+        /* Managed source last-releases the slot hold. Peek then
+         * push then remove: removed holds, source drops. */
         afw_array_remove_value_by_index(array->internal, start, x->xctx);
     }
 
@@ -923,6 +935,7 @@ afw_function_execute_unshift(
     afw_integer_t insert_at;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    /* Mutate-input: bump + extra-hold the array already in a slot. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);

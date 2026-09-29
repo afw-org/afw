@@ -18,8 +18,7 @@ Do not mix these:
    in the current block first, so `for (let x of []) let x` still
    clashes). Temps die with that frame. **Flat** (was ~80–131 MiB/s
    after #306).
-4. **`function_return`** (`i = f()` inside `{ }`) is **flat** (2026-09-16
-   on this branch). There is **no** leftover function-return wrapper type
+4. **`function_return`** (`i = f()` inside `{ }`) is **flat**. There is **no** leftover function-return wrapper type
    ([PR #326](https://github.com/afw-org/afw/pull/326)). Do not add one
    back. Unbraced `while (true) i = f();` is wrapped the same way.
 5. **`array_push_pop`** is **flat**: `pop`/`shift` extra-hold is a temp
@@ -93,6 +92,23 @@ workload.
 
 Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 
+Assigned / unassigned pairs (same call, two leak classes):
+
+| assigned (`slot_store` leftover RC) | unassigned (extra-hold / last-release) |
+|-------------------------------------|----------------------------------------|
+| `splice_assign` | `splice_unassigned` (last stmt `add(0, 0)`) |
+| `managed_create_assign` | `managed_create_unassigned` (last stmt `add(0, 0)`) |
+| `clone_assign` | `clone_unassigned` (last stmt `add(0, 0)`) |
+| `test_script_assign` | `test_script_unassigned` (last stmt `add(0, 0)`) |
+| `compile_listing_assign` | `compile_listing_unassigned` (last stmt `add(0, 0)`) |
+
+Unassigned loops whose last statement is a managed create would
+`slot_store` that result into `xctx->script_result` on deactivate.
+That is an isolate, not a missing extra-hold. Those loops end with a
+scalar so the create is a pure temp. `unassigned_temps` is the other
+class: unmanaged `add(1, 1)` as last statement, so the isolate is a
+scalar on purpose.
+
 | name | what | RSS / in_use (2026-09-16) | was (2026-09-15) |
 |------|------|---------------------------|------------------|
 | `empty_stmt` | `while (true);` | **flat / flat** | **flat / flat** |
@@ -111,9 +127,21 @@ Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
+| `splice_assign` | splice copy-out then assign | **flat / flat** (2026-09-29, 15 s after managed remove). Was **under bar** 2026-09-28 (~0.42 / ~0.21); leftover RC ~185 MiB/s before extra-hold-only | — |
+| `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s). Was ~2.58 / ~2.59 until managed `remove_value_by_index` last-released the source slot | — |
+| `unassigned_temps` | unmanaged `add()` (last stmt isolates a scalar) | **flat / flat** (2026-09-28) | — |
+| `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28). 60 s: ~0.40 MiB/s RSS / ~0.04 MiB/s in_use | — |
+| `managed_create_assign` | extra-hold create_managed then assign (reverse/slice/filter/map/sort/bag/intersection/split/union/keys/values/entries) | **under bar** (2026-09-28). 60 s ~0.16 MiB/s RSS / ~0.09 MiB/s in_use; 180 s slope fell to ~0.09 / ~0.05 | — |
+| `managed_create_unassigned` | same calls, never assigned (last stmt `add()`) | **under bar**. 15 s 2026-09-29: ~0.30 MiB/s RSS / ~0.28 MiB/s in_use. 60 s 2026-09-28: ~0.17 / ~0.14 | — |
+| `clone_assign` | `clone` array/object then assign | **under bar** (2026-09-29, 15 s) | — |
+| `clone_unassigned` | `clone` never assigned (last stmt `add()`) | **under bar** (2026-09-29, 15 s): ~0.40 MiB/s RSS / ~0.35 MiB/s in_use | ~3.3 MiB/s in_use with `afw_value_clone` unmanaged |
+| `test_script_assign` | `test_script` clone extra-hold then assign | **under bar** (2026-09-29, 15 s): ~0.55 MiB/s RSS / ~0.56 MiB/s in_use | — |
+| `test_script_unassigned` | `test_script` clone extra-hold (last stmt `add()`) | **under bar** (2026-09-29, 15 s): ~0.70 MiB/s RSS / ~0.71 MiB/s in_use | — |
+| `compile_listing_assign` | compile listing assigned | **flat / flat** (2026-09-29, 15 s) | — |
+| `compile_listing_unassigned` | compile listing last-releases unit (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s) | — |
 | `array_append` | unbounded `push` | **must grow** (~3 MiB/s both) | must grow (~2.8 MiB/s) |
 
-`function_return` is **flat** on this branch (managed `closure_binding`;
+`function_return` is **flat** (managed `closure_binding`;
 0-param call does not isolate enclosing last). No `function_return_value`
 wrapper. Pin is on the caller.
 
@@ -145,7 +173,25 @@ Remeasured **2026-09-17** on `develop` after [PR #354](https://github.com/afw-or
 `afw_pool_release_value_at_cleanup` on the current scope (see
 `afw_array_create_managed`). Do not `create_managed` in `array()`
 (`[i]` compiles to it). Do not `get_assignable_for_lifetime` on the
-pop result.
+pop result. `splice_assign` / `splice_unassigned` are the same extra-hold on the
+removed array (not `get_assignable_for_scope_lifetime` after `create_managed`).
+Managed `remove_value_by_index` last-releases the source slot hold; without
+that, unlink left the occupant on `a` and `splice_unassigned` climbed
+(~2.6 MiB/s). Both soaks are **flat** (2026-09-29). Assigned soaks are `slot_store` / leftover RC
+after a bump; unassigned soaks are extra-hold / body last-release. Unassigned
+loops whose result is managed end with `add(0, 0)` so deactivate does not
+`slot_store` that result into `script_result`. `managed_create_assign` /
+`managed_create_unassigned` cover the other create_managed extra-hold sites
+(reverse, slice, filter, map, sort, bag, intersection, split, union, keys,
+values, entries). `test_script_assign` / `test_script_unassigned` are the same
+extra-hold on `create_managed_clone` of the result object.
+`clone_assign` / `clone_unassigned` always-copy create_managed then extra-hold
+the container (not `afw_value_clone`; nested scalars get_assignable).
+`compile_listing_assign` / `compile_listing_unassigned` last-release the unit
+after the dump; do **not** extra-hold `compile()` of a unit (`evaluate(compile())`
+/ closures still need that heap). `readln_loop`
+needs a temp application conf (`rootFilePaths`); the
+Python harness writes that for the spawn only.
 
 Unbraced assign: compile wraps a 0-symbol `{ }`; temps die with the trip.
 

@@ -80,14 +80,14 @@
                     "type": "integer"
                 },
                 "memoryRegionFreeListMaxBytes": {
-                    "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
-                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+                    "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free.",
                     "title": "Memory Region Free List Max Bytes",
                     "type": "integer"
                 },
                 "memoryRegionFreeOverCap": {
-                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
-                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+                    "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0).",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0).",
                     "title": "Memory Region Free Over Cap",
                     "type": "integer"
                 },
@@ -98,8 +98,8 @@
                     "type": "integer"
                 },
                 "memoryRegionGetMisses": {
-                    "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
-                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign since environment create.",
+                    "description": "Process-wide count of memory_region get() that mapped a chunk since environment create.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that mapped a chunk since environment create.",
                     "title": "Memory Region Get Misses",
                     "type": "integer"
                 },
@@ -146,8 +146,8 @@
                     "type": "integer"
                 },
                 "poolChunkBytes": {
-                    "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
-                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+                    "description": "Sum of heap mapped chunks still held. Store mapped, not asked-for.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap mapped chunks still held. Store mapped, not asked-for.",
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
@@ -177,8 +177,8 @@
                     "type": "string"
                 },
                 "xctxChunkMin": {
-                    "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
-                    "markdownDescription": "**Xctx Chunk Min**\n\nProcess default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+                    "description": "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
+                    "markdownDescription": "**Xctx Chunk Min**\n\nProcess default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
                     "title": "Xctx Chunk Min",
                     "type": "integer"
                 }
@@ -255,14 +255,14 @@
                     "type": "integer"
                 },
                 "memoryRegionFreeListMaxBytes": {
-                    "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
-                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+                    "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free.",
                     "title": "Memory Region Free List Max Bytes",
                     "type": "integer"
                 },
                 "memoryRegionFreeOverCap": {
-                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
-                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+                    "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0).",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0).",
                     "title": "Memory Region Free Over Cap",
                     "type": "integer"
                 },
@@ -273,8 +273,8 @@
                     "type": "integer"
                 },
                 "memoryRegionGetMisses": {
-                    "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
-                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign since environment create.",
+                    "description": "Process-wide count of memory_region get() that mapped a chunk since environment create.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that mapped a chunk since environment create.",
                     "title": "Memory Region Get Misses",
                     "type": "integer"
                 },
@@ -321,8 +321,8 @@
                     "type": "integer"
                 },
                 "poolChunkBytes": {
-                    "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
-                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+                    "description": "Sum of heap mapped chunks still held. Store mapped, not asked-for.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap mapped chunks still held. Store mapped, not asked-for.",
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
@@ -352,8 +352,8 @@
                     "type": "string"
                 },
                 "xctxChunkMin": {
-                    "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
-                    "markdownDescription": "**Xctx Chunk Min**\n\nProcess default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+                    "description": "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
+                    "markdownDescription": "**Xctx Chunk Min**\n\nProcess default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
                     "title": "Xctx Chunk Min",
                     "type": "integer"
                 }
@@ -440,14 +440,14 @@
             "type": "integer"
         },
         "memoryRegionFreeListMaxBytes": {
-            "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
-            "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+            "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free.",
+            "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = mmap/munmap on every get/free.",
             "title": "Memory Region Free List Max Bytes",
             "type": "integer"
         },
         "memoryRegionFreeOverCap": {
-            "description": "Process-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
-            "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap (including cap 0).",
+            "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0).",
+            "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that munmap'd because the list was at cap (including cap 0).",
             "title": "Memory Region Free Over Cap",
             "type": "integer"
         },
@@ -458,8 +458,8 @@
             "type": "integer"
         },
         "memoryRegionGetMisses": {
-            "description": "Process-wide count of memory_region get() that called posix_memalign since environment create.",
-            "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign since environment create.",
+            "description": "Process-wide count of memory_region get() that mapped a chunk since environment create.",
+            "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that mapped a chunk since environment create.",
             "title": "Memory Region Get Misses",
             "type": "integer"
         },
@@ -506,8 +506,8 @@
             "type": "integer"
         },
         "poolChunkBytes": {
-            "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
-            "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+            "description": "Sum of heap mapped chunks still held. Store mapped, not asked-for.",
+            "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap mapped chunks still held. Store mapped, not asked-for.",
             "title": "Pool Chunk Bytes",
             "type": "integer"
         },
@@ -537,8 +537,8 @@
             "type": "string"
         },
         "xctxChunkMin": {
-            "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
-            "markdownDescription": "**Xctx Chunk Min**\n\nProcess default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+            "description": "Process default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
+            "markdownDescription": "**Xctx Chunk Min**\n\nProcess default mapped-chunk minimum for each xctx/thread heap. Every thread starts from this.",
             "title": "Xctx Chunk Min",
             "type": "integer"
         }

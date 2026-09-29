@@ -7205,12 +7205,12 @@ struct afw_memory_region_s {
     afw_size_t get_hits;
 
     /**
-     * get() that called posix_memalign.
+     * get() that mapped a chunk (missed the free list).
      */
     afw_size_t get_misses;
 
     /**
-     * free() that called free() because the list was at cap
+     * free() that munmap'd because the list was at cap
      * (including cap 0).
      */
     afw_size_t free_over_cap;
@@ -7227,7 +7227,7 @@ struct afw_memory_region_s {
 
     /**
      * Cap on free_list_bytes. 0 means every free() goes to the
-     * system (today's posix_memalign/free).
+     * system (mmap/munmap).
      */
     afw_size_t free_list_max_bytes;
 };
@@ -7298,7 +7298,7 @@ struct afw_memory_region_inf_s {
  * Write a page-aligned region through *region and its actual
  * size through *size. *size is the requested size on entry and
  * the rounded size actually returned on success. From the free
- * list on a hit, or posix_memalign on a miss. On size 0,
+ * list on a hit, or mmap on a miss. On size 0,
  * missing pointers, or allocation failure, *region is NULL and
  * *size is 0. xctx may be NULL (environment create).
  * @param instance Pointer to this memory_region instance.

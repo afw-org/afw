@@ -56,8 +56,8 @@
                     "type": "integer"
                 },
                 "memoryRegionFreeOverCap": {
-                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Free Over Cap",
                     "type": "integer"
                 },
@@ -68,8 +68,8 @@
                     "type": "integer"
                 },
                 "memoryRegionGetMisses": {
-                    "description": "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+                    "description": "Process-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Get Misses",
                     "type": "integer"
                 },
@@ -116,8 +116,8 @@
                     "type": "integer"
                 },
                 "poolChunkBytes": {
-                    "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "description": "Sum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
@@ -226,8 +226,8 @@
                     "type": "integer"
                 },
                 "memoryRegionFreeOverCap": {
-                    "description": "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Free Over Cap",
                     "type": "integer"
                 },
@@ -238,8 +238,8 @@
                     "type": "integer"
                 },
                 "memoryRegionGetMisses": {
-                    "description": "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+                    "description": "Process-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Get Misses",
                     "type": "integer"
                 },
@@ -286,8 +286,8 @@
                     "type": "integer"
                 },
                 "poolChunkBytes": {
-                    "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "description": "Sum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
@@ -399,8 +399,8 @@
             "type": "integer"
         },
         "memoryRegionFreeOverCap": {
-            "description": "Process-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
-            "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that called free() because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+            "description": "Process-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Free Over Cap**\n\nProcess-wide count of memory_region free() that munmap'd because the list was at cap. Same as /afw/_AdaptiveProcess_/current.",
             "title": "Memory Region Free Over Cap",
             "type": "integer"
         },
@@ -411,8 +411,8 @@
             "type": "integer"
         },
         "memoryRegionGetMisses": {
-            "description": "Process-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
-            "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that called posix_memalign. Same as /afw/_AdaptiveProcess_/current.",
+            "description": "Process-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Get Misses**\n\nProcess-wide count of memory_region get() that mapped a chunk. Same as /afw/_AdaptiveProcess_/current.",
             "title": "Memory Region Get Misses",
             "type": "integer"
         },
@@ -459,8 +459,8 @@
             "type": "integer"
         },
         "poolChunkBytes": {
-            "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-            "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "description": "Sum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap mapped chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
             "title": "Pool Chunk Bytes",
             "type": "integer"
         },
