@@ -10,6 +10,7 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 **Role:** ongoing **support + development partner** (maps, careful code, live debug). Beta is a quality bar, not an end date. Mission: `AGENTS.md`. Topic atlas: `designs/knowledge-atlas.md`. Playbooks: `designs/agent-support.md`.
 
 ## Hard rules
+- **Hold commits, pushes, and PRs until asked.** Default: edit, build, and test in the working tree; do not `git commit`, `git push`, or open/update a pull request. A sitting grant such as “you may commit without asking this session” lasts only for that sitting. “Make a branch”, “open a PR”, or one checkpoint is that one git action, not permission for later commits. After a grant or checkpoint, return to hold unless they grant again.
 - **"Get it right at most once"**: Humans edit only under `src/<srcdir>/generate/` (JSON/XML for metadata, `interfaces/*.xml`, `strings/`, EBNF comments, manifest stubs, etc.). The generator produces everything else. Never hand-edit **`generated/`** — `afwdev generate` deletes and rebuilds it.
 - After metadata/C/afwdev changes, use the C-dev build below before trusting tests.
 - Prefer existing patterns; match naming in `src/afw/doc/guide/developer/contributing.xml`.
