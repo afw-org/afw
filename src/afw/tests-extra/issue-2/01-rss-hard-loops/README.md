@@ -42,9 +42,10 @@ afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
 ```
 
 Each workload is one `afw -s script` process, sampled from `/proc/<pid>/status`.
-Default: 8s run, 2s warmup, 2s interval. Fail if a “should stay flat” loop
-grows faster than 8 MiB/s after warmup. `array_append` is the opposite
-control: it **must** grow, so a broken sampler cannot silently pass.
+Default: **15 s** run, **5 s** warmup, **5 s** interval. Each workload has a
+class (`flat` / `climb` / `grow`) and its own `in_use` ceiling. Disaster RSS
+is still 8 MiB/s. `array_append` **must** grow, so a broken sampler cannot
+silently pass. The slope line is on the case name (no `--verbose` needed).
 
 ```bash
 # one or a few workloads, longer window
@@ -59,10 +60,18 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 | env | default | meaning |
 |-----|---------|---------|
 | `AFW_ISSUE2_WORKLOAD` | all | comma list of names |
-| `AFW_ISSUE2_DURATION_S` | `8` | wall time of each `afw` |
-| `AFW_ISSUE2_INTERVAL_S` | `2` | sample period |
-| `AFW_ISSUE2_WARMUP_S` | `2` | ignore samples before this for slope |
+| `AFW_ISSUE2_DURATION_S` | `15` | wall time of each `afw` |
+| `AFW_ISSUE2_INTERVAL_S` | `5` | sample period |
+| `AFW_ISSUE2_WARMUP_S` | `5` | ignore samples before this for slope |
 | `AFW_ISSUE2_RSS_ASSERT` | `1` | `0` = report only |
+
+| class | `in_use` fail | examples |
+|-------|----------------|----------|
+| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing |
+| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | `clone_*`, `test_script_*` |
+| **grow** | must grow ≥ 256 KiB/s | `array_append` |
+
+60 s is the night / finish-pass window (`AFW_ISSUE2_DURATION_S=60`).
 
 One workload without the test runner:
 
@@ -87,10 +96,12 @@ Measured **2026-09-16**; isolate sitting on `develop` as
 `in_use` is `env->pool_bytes_in_use` (AFW malloc not given
 back). Valgrind on `afwdev test -j` does **not** catch these —
 request-end bulk-free hides them. gdb `in_use` can occasionally return
-garbage; if RSS is flat and `in_use` is huge or ~0, rerun that one
-workload.
+garbage (first or last sample 0). The lab then skips the `in_use`
+slope for that run; RSS still gates. If RSS is flat and `in_use` is
+huge or ~0, rerun that one workload.
 
-Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
+Disaster RSS: **8 MiB/s**. Per-workload `in_use` ceilings are the leak gate
+(`flat` 64 KiB/s; `climb` ~2× last 15 s). `array_append` must grow.
 
 Assigned / unassigned pairs (same call, two leak classes):
 

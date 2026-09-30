@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 """Opt-in RSS / in_use soaks for issue #2 hard-loop Adaptive Scripts.
 
-Not in default `afwdev test -j`. Assign / overlay / rebind / unbraced
-loop body / array_push_pop soaks are flat. function_return still
-climbs (~1.5 MiB/s, under the 2 MiB/s in_use bar). Live table:
-README.md. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
+Not in default `afwdev test -j`. Each workload has a class: flat
+(tight in_use), climb (known leftover, fail at ~2x last 15s), or
+grow (array_append; sampler must see growth). Disaster RSS bar is
+still 8 MiB/s. Live table: README.md. Measure-only:
+AFW_ISSUE2_RSS_ASSERT=0.
 
     afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
     AFW_ISSUE2_WORKLOAD=empty_stmt,empty_loop,integer_assign_no_brace \\
@@ -26,191 +27,100 @@ if HERE not in sys.path:
 from _rss import format_report, sample_afw_script, workload_path  # noqa: E402
 
 
-# After warmup, RSS above this rate is "still leaking".
+# Disaster RSS. Kernel wander with flat in_use does not use this.
 STABLE_MAX_KIB_S = 8 * 1024  # 8 MiB/s
-# in_use bytes/s. empty `{ }` / assign / array_push_pop ~0;
-# remaining climb is function_return (~1.5 MiB/s).
-STABLE_MAX_IN_USE_B_S = 2 * 1024 * 1024  # 2 MiB/s
-
+# Flat class: leftover RC at 0.15 MiB/s must fail; gdb noise is B/s.
+FLAT_MAX_IN_USE_B_S = 64 * 1024  # 64 KiB/s
 GROWTH_MIN_KIB_S = 256  # harness RSS
 GROWTH_MIN_IN_USE_B_S = 256 * 1024  # harness in_use
 
 
+def _mib_s(n):
+    """n MiB/s as integer bytes/s."""
+    return int(n * 1024 * 1024)
+
+
+def _flat(name, description, **extra):
+    w = {
+        "name": name,
+        "description": description,
+        "kind": "flat",
+    }
+    w.update(extra)
+    return w
+
+
+def _climb(name, description, max_in_use_mib_s, **extra):
+    w = {
+        "name": name,
+        "description": description,
+        "kind": "climb",
+        # ~2x last 15s in_use so a jump (clone 0.2 -> 2.3) fails.
+        "max_in_use_b_s": _mib_s(max_in_use_mib_s),
+    }
+    w.update(extra)
+    return w
+
+
 WORKLOADS = [
-    {
-        "name": "empty_stmt",
-        "description": "while (true);  no block, no assign (flat control)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "empty_loop",
-        "description": "while (true) {}  empty body frame last-releases",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "integer_assign_no_brace",
-        "description": "unbraced i = i + 1",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "integer_assign",
-        "description": "braced i = i + 1",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "object_prop_assign_no_brace",
-        "description": "unbraced o.x = i overlay set",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "object_prop_assign",
-        "description": "braced o.x = i overlay set",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "array_index_assign_no_brace",
-        "description": "unbraced a[0] = i",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "array_index_assign",
-        "description": "braced a[0] = i",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "object_rebind",
-        "description": "o = { n: i } each iteration",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "array_rebind",
-        "description": "a = [i] each iteration",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "string_same_size",
-        "description": "overwrite a string with another same-length literal",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "function_return",
-        "description": "i = f() (still climbs ~1.5 MiB/s, under bar; no leftover wrapper)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "try_catch",
-        "description": "throw and catch every iteration",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "closure_rebind",
-        "description": "rebind a closure that captures a per-iteration let",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "compile_once_eval",
-        "description": "compile once, evaluate in a loop (inner heap wrap)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "array_push_pop",
-        "description": "push then pop (temp on current scope)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "splice_assign",
-        "description": "splice copy-out then assign (length-stable)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "splice_unassigned",
-        "description": "splice copy-out never assigned (last stmt add())",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "unassigned_temps",
-        "description": "unmanaged add() temps (last stmt isolates a scalar)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "readln_loop",
-        "description": "readln loop (short lines plus one that grows the buffer)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-        "needs_readln_conf": True,
-    },
-    {
-        "name": "managed_create_assign",
-        "description": "create_managed extra-hold then assign (reverse/slice/filter/map/sort/bag/keys/entries/…)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "managed_create_unassigned",
-        "description": "create_managed extra-hold never assigned (last stmt add())",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "clone_assign",
-        "description": "clone array/object then assign (create_managed extra-hold, slot_store)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "clone_unassigned",
-        "description": "clone array/object never assigned (last stmt add() so not script_result)",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "test_script_assign",
-        "description": "test_script create_managed_clone extra-hold then assign",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "test_script_unassigned",
-        "description": "test_script create_managed_clone extra-hold never assigned (last stmt add())",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "compile_listing_assign",
-        "description": "compile listing assigned; unit last-released after the dump",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
-    {
-        "name": "compile_listing_unassigned",
-        "description": "compile listing last-releases the unit (last stmt add())",
-        "expect_rss_growth": False,
-        "expect_in_use_growth": False,
-    },
+    _flat("empty_stmt",
+          "while (true);  no block, no assign (flat control)"),
+    _flat("empty_loop",
+          "while (true) {}  empty body frame last-releases"),
+    _flat("integer_assign_no_brace", "unbraced i = i + 1"),
+    _flat("integer_assign", "braced i = i + 1"),
+    _flat("object_prop_assign_no_brace", "unbraced o.x = i overlay set"),
+    _flat("object_prop_assign", "braced o.x = i overlay set"),
+    _flat("array_index_assign_no_brace", "unbraced a[0] = i"),
+    _flat("array_index_assign", "braced a[0] = i"),
+    _flat("object_rebind", "o = { n: i } each iteration"),
+    _flat("array_rebind", "a = [i] each iteration"),
+    _flat("string_same_size",
+          "overwrite a string with another same-length literal"),
+    _flat("function_return", "i = f() (flat; leftover wrapper gone)"),
+    _flat("try_catch", "throw and catch every iteration"),
+    _flat("closure_rebind",
+          "rebind a closure that captures a per-iteration let"),
+    _flat("compile_once_eval",
+          "compile once, evaluate in a loop (inner heap wrap)"),
+    _flat("array_push_pop", "push then pop (temp on current scope)"),
+    _flat("splice_assign", "splice copy-out then assign (length-stable)"),
+    _flat("splice_unassigned",
+          "splice copy-out never assigned (last stmt add())"),
+    _flat("unassigned_temps",
+          "unmanaged add() temps (last stmt isolates a scalar)"),
+    _flat("readln_loop",
+          "readln loop (short lines plus one that grows the buffer)",
+          needs_readln_conf=True,
+          max_in_use_b_s=128 * 1024),
+    _flat("managed_create_assign",
+          "create_managed extra-hold then assign "
+          "(reverse/slice/filter/map/sort/bag/keys/entries/…)"),
+    _flat("managed_create_unassigned",
+          "create_managed extra-hold never assigned (last stmt add())"),
+    _climb("clone_assign",
+           "clone array/object then assign "
+           "(create_managed extra-hold, slot_store)",
+           1.20),
+    _climb("clone_unassigned",
+           "clone array/object never assigned "
+           "(last stmt add() so not script_result)",
+           0.80),
+    _climb("test_script_assign",
+           "test_script create_managed_clone extra-hold then assign",
+           1.20),
+    _climb("test_script_unassigned",
+           "test_script create_managed_clone extra-hold never assigned "
+           "(last stmt add())",
+           1.50),
+    _flat("compile_listing_assign",
+          "compile listing assigned; unit last-released after the dump"),
+    _flat("compile_listing_unassigned",
+          "compile listing last-releases the unit (last stmt add())"),
     {
         "name": "array_append",
         "description": "unbounded push (harness: RSS and in_use must grow)",
-        "expect_rss_growth": True,
-        "expect_in_use_growth": True,
+        "kind": "grow",
     },
 ]
 
@@ -283,10 +193,22 @@ def _one_line(result):
     return rss + "  " + in_use
 
 
-def _expect_rss_growth(workload):
-    if "expect_rss_growth" in workload:
-        return workload["expect_rss_growth"]
-    return bool(workload.get("expect_growth"))
+def _kind(workload):
+    kind = workload.get("kind")
+    if kind in ("flat", "climb", "grow"):
+        return kind
+    if workload.get("expect_rss_growth") or workload.get("expect_growth"):
+        return "grow"
+    return "flat"
+
+
+def _max_in_use_b_s(workload):
+    if "max_in_use_b_s" in workload:
+        return workload["max_in_use_b_s"]
+    kind = _kind(workload)
+    if kind == "flat":
+        return FLAT_MAX_IN_USE_B_S
+    return None
 
 
 def _judge(workload, result, assert_on):
@@ -305,34 +227,33 @@ def _judge(workload, result, assert_on):
         return True, summary + " (assert off)"
 
     problems = []
-    want_rss = _expect_rss_growth(workload)
-    if want_rss:
+    kind = _kind(workload)
+    iu = result.get("in_use_slope_b_s")
+
+    if kind == "grow":
         if slope < GROWTH_MIN_KIB_S:
             problems.append(
                 "RSS expected to grow >= %.0f KiB/s, got %.1f"
                 % (GROWTH_MIN_KIB_S, slope))
-    elif slope > STABLE_MAX_KIB_S:
-        iu0 = result.get("in_use_slope_b_s")
-        if iu0 is not None and iu0 <= STABLE_MAX_IN_USE_B_S:
-            why = "APR; in_use flat"
-        else:
-            why = "APR and/or asked-for"
-        problems.append(
-            "RSS leak %.1f KiB/s > %.0f (%s)"
-            % (slope, STABLE_MAX_KIB_S, why))
-
-    iu = result.get("in_use_slope_b_s")
-    want_iu = workload.get("expect_in_use_growth")
-    if iu is not None and want_iu is not None:
-        if want_iu:
-            if iu < GROWTH_MIN_IN_USE_B_S:
-                problems.append(
-                    "in_use expected to grow >= %.0f B/s, got %.0f"
-                    % (GROWTH_MIN_IN_USE_B_S, iu))
-        elif iu > STABLE_MAX_IN_USE_B_S:
+        if iu is not None and iu < GROWTH_MIN_IN_USE_B_S:
             problems.append(
-                "in_use leak %.0f B/s > %.0f (AFW malloc not given back)"
-                % (iu, STABLE_MAX_IN_USE_B_S))
+                "in_use expected to grow >= %.0f B/s, got %.0f"
+                % (GROWTH_MIN_IN_USE_B_S, iu))
+    else:
+        if slope > STABLE_MAX_KIB_S:
+            problems.append(
+                "RSS leak %.1f KiB/s > %.0f"
+                % (slope, STABLE_MAX_KIB_S))
+        max_iu = _max_in_use_b_s(workload)
+        # gdb miss: first or last in_use 0 while the process ran.
+        first_iu = result.get("in_use_first")
+        last_iu = result.get("in_use_last")
+        if first_iu == 0 or last_iu == 0:
+            iu = None
+        if iu is not None and max_iu is not None and iu > max_iu:
+            problems.append(
+                "in_use leak %.0f B/s > %.0f (%s)"
+                % (iu, max_iu, kind))
 
     if problems:
         return False, report + " (" + "; ".join(problems) + ")"
@@ -340,9 +261,9 @@ def _judge(workload, result, assert_on):
 
 
 def run():
-    duration_s = _env_float("AFW_ISSUE2_DURATION_S", 8.0)
-    interval_s = _env_float("AFW_ISSUE2_INTERVAL_S", 2.0)
-    warmup_s = _env_float("AFW_ISSUE2_WARMUP_S", 2.0)
+    duration_s = _env_float("AFW_ISSUE2_DURATION_S", 15.0)
+    interval_s = _env_float("AFW_ISSUE2_INTERVAL_S", 5.0)
+    warmup_s = _env_float("AFW_ISSUE2_WARMUP_S", 5.0)
     assert_on = _env_bool("AFW_ISSUE2_RSS_ASSERT", True)
 
     tests = []
@@ -378,14 +299,18 @@ def run():
             if readln_tmp:
                 shutil.rmtree(readln_tmp, ignore_errors=True)
         passed, error = _judge(w, result, assert_on)
+        # Slope on the case name so the runner prints it without --verbose.
         tests.append({
-            "test": w["name"],
+            "test": w["name"] + "  " + (
+                error if passed else _one_line(result)),
             "description": w["description"],
             "passed": bool(passed),
             "skip": False,
             "error": None if passed else error,
         })
-        # Always keep the numbers in error-or-description for --show-all.
+        print("%s  %s" % (w["name"], error if passed else _one_line(result)),
+              file=sys.stderr)
+        sys.stderr.flush()
         if passed:
             tests[-1]["description"] = w["description"] + " — " + error
 
