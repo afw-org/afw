@@ -2,8 +2,8 @@
   "private": true,
   "description": "Adaptive Framework UI Apps and Libraries",
   "engines": {
-    "npm": ">=8.0.0",
-    "node": ">=16.0.0"
+    "npm": ">=10.0.0",
+    "node": ">=22.12.0"
   },
   "repository": {
     "type": "git",
@@ -56,11 +56,10 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^9.4.0",
     "@mui/material": "^9.4.0",
-    "@mui/x-date-pickers": "^9.13.0",
-    "@mui/x-tree-view": "^9.13.0",
+    "@mui/x-date-pickers": "^9.14.0",
+    "@mui/x-tree-view": "^9.14.0",
     "@types/react-dom": "^18.3.1",
     "cross-env": "^10.1.0",
-    "esm": "^3.2.25",
     "jspreadsheet-ce": "^5.0.4",
     "material-design-icons-iconfont": "^6.1.0",
     "mdi-material-ui": "^8.0.0",
@@ -75,7 +74,6 @@
     "typeface-roboto": "^1.1.13",
     "typeface-roboto-mono": "^1.1.13",
     "typescript": "^5.9.3",
-    "util": "^0.12.4",
     "vis-data": "^8.0.5",
     "vis-network": "^10.1.2",
     "vis-util": "^6.0.2",
@@ -104,10 +102,7 @@
   "overrides": {
     "react-is": "^18.3.1",
     "monaco-editor": "^0.33.0",
-    "@types/node": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "8.55.0",
-    "@typescript-eslint/utils": "8.55.0",
-    "@typescript-eslint/visitor-keys": "8.55.0"
+    "@types/node": "^20.0.0"
   },
   "browserslist": {
     "production": [
