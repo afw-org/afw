@@ -101,17 +101,17 @@ Examples
 5) Generate afwdev maintained files for "mypackage" after changes:
 
     cd ~/mypackage
-    afwdev generate --srcdir-pattern \*
+    afwdev generate --srcdir-pattern \\*
 
 6) Run tests defined in "mypackage":
 
     cd ~/mypackage
-    afwdev test --srcdir-pattern \*
+    afwdev test --srcdir-pattern \\*
 
 7) Run tests defined in "mypackage" and show only errors:
 
     cd ~/mypackage
-    afwdev test --errors --srcdir-pattern \*
+    afwdev test --errors --srcdir-pattern \\*
 
 """
 }
@@ -274,7 +274,7 @@ _info_srcdir_pattern = {
     "optionName": "srcdir_pattern",
     "arg": "--srcdir-pattern",
     "short": "-p",
-    "default": "\*",
+    "default": "\\*",
     "noprompt": True,
     "help": "<SRCDIR> name pattern"
 }
@@ -515,7 +515,7 @@ _info_build_generate = {
     "arg": "--generate",     
     "action": "store_true",    
     "default": False,
-    "help": "Call afwdev generate --srcdir-pattern \* before build."
+    "help": "Call afwdev generate --srcdir-pattern \\* before build."
 }
 
 _info_build_install = {

@@ -14,6 +14,11 @@ import json
 
 from _afwdev.common import msg, package
 
+def _app_name(srcdir_path):
+    # package.py appends a trailing slash to srcdirPath. The last
+    # split segment is then empty; the directory name is the one before it.
+    return srcdir_path.rstrip('/').split('/')[-1]
+
 ##
 # @brief Builds javascript modules and apps.
 # @param options The options dictionary.
@@ -91,7 +96,7 @@ def build(options):
     # now run the modules builds
     msg.highlighted_info('Building javascript apps')
     for app in js_apps:
-        app_name = app.split('/')[-2]
+        app_name = _app_name(app)
         msg.highlighted_info('  Building ' + app_name)
         # For the admin app's Vite build, we need to set a few environment variables
         os.environ['PUBLIC_URL'] = '/apps/' + afwPackageId + '/' + app_name
@@ -158,7 +163,7 @@ def build(options):
     
     # copy apps to build/js/apps/${afwPackageId}/
     for app in js_apps:
-        app_name = app.split('/')[-2]
+        app_name = _app_name(app)
         app_location = 'build/js/apps/' + afwPackageId + '/' + app_name
 
         msg.highlighted_info('  Copying ' + app_name + ' to build/js/apps/')
@@ -181,7 +186,7 @@ def build(options):
         # for each app, delete the target, if it exists and replace it with
         # the one from build/js/apps
         for app in js_apps:
-            app_name = app.split('/')[-1]
+            app_name = _app_name(app)
             app_location = 'build/js/apps/' + afwPackageId + '/' + app_name
 
             if os.path.exists(web_root + '/apps/' + afwPackageId + '/' + app_name):
