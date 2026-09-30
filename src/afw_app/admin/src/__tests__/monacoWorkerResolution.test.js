@@ -26,7 +26,7 @@
  */
 import {resolveMonacoPath, getWorks} from "vite-plugin-monaco-editor/dist/index.js";
 
-// keep in sync with the monacoEditorPlugin(...) call in vite.config.js
+// keep in sync with the monacoEditorPlugin(...) call in vite.config.mjs
 const languageWorkers = ["editorWorkerService", "json"];
 
 describe("Monaco worker resolution (vite-plugin-monaco-editor)", () => {

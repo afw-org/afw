@@ -12,9 +12,10 @@ import "@testing-library/jest-dom";
  * spec-compliant globals here, with a genuine ReadableStream body, so they
  * are left alone rather than shadowed with a polyfill.
  *
- * The same goes for ReadableStream itself (and AbortController/AbortSignal -
- * see vitestEnvironment.js): undici 7 (Node 24+) brand checks them, so a
- * polyfill or jsdom copy handed to fetch/Response throws. Use Node's own.
+ * The same goes for ReadableStream itself (and AbortController/AbortSignal,
+ * which Vitest's jsdom environment leaves as Node's own): undici 7 (Node 24+)
+ * brand checks them, so a polyfill or jsdom copy handed to fetch/Response
+ * throws. Use Node's own.
  */
 
 /*
