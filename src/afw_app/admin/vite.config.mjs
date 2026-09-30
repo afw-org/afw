@@ -2,13 +2,7 @@
 import {defineConfig, transformWithOxc} from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import monacoEditorPluginModule from "vite-plugin-monaco-editor";
 import {visualizer} from "rollup-plugin-visualizer";
-
-// vite-plugin-monaco-editor is CommonJS with an `exports.default` - from an
-// ES module config its default import is that exports object, not the
-// function.
-const monacoEditorPlugin = monacoEditorPluginModule.default ?? monacoEditorPluginModule;
 
 // Sibling workspace packages (@afw/react, @afw/client, etc.) are consumed
 // as source, not a prebuilt dist - the dev server needs permission to read
@@ -71,12 +65,15 @@ export default defineConfig({
     build: {
         outDir: "build"
     },
+    // Monaco starts its workers with `new Worker(new URL(...,
+    // import.meta.url), {type: "module"})` (see @afw/react-monaco's
+    // src/monaco.js). Vite bundles each as its own chunk, and they
+    // code-split, which the default "iife" worker format can't do.
+    worker: {
+        format: "es"
+    },
     plugins: [
         jsxInJsForBuild(),
-        // Handles Monaco's web worker bundling (language services, e.g. the
-        // CodeEditor's JSON schema validation) - our custom languages are
-        // Monarch-only, so only the base editor worker and JSON are needed.
-        monacoEditorPlugin({languageWorkers: ["editorWorkerService", "json"]}),
         // The codebase uses JSX in plain .js files (a CRA/babel convention)
         // instead of .jsx - the plugin only parses .jsx/.tsx/.ts/.mts/.mdx as
         // JSX-aware by default, so .js/.mjs need to be added explicitly.

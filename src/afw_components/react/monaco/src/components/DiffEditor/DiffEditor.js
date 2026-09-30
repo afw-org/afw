@@ -26,7 +26,6 @@ export const DiffEditor = (props) => {
 
     const containerRef = useRef();
     const [editor, setEditor] = useState();
-    const [navigator, setNavigator] = useState();
 
     const {monaco, theme} = useMonaco();
 
@@ -68,17 +67,6 @@ export const DiffEditor = (props) => {
         } 
     }, [editor, showLineNumbers, showMinimap]);
 
-    useEffect(() => {
-        if (monaco && editor) {
-            const navigator = monaco.editor.createDiffNavigator(editor, {
-                followsCaret: true,
-                ignoreCharChanges: true
-            });
-
-            setNavigator(navigator);
-        }
-    }, [monaco, editor]);
-
     return (
         <div style={style}>
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -87,16 +75,16 @@ export const DiffEditor = (props) => {
                     label="Previous Change"
                     icon="navigate_before" 
                     tooltip="Previous Change"
-                    disabled={!navigator}
-                    onClick={() => navigator.previous()} 
+                    disabled={!editor}
+                    onClick={() => editor.goToDiff("previous")} 
                 />
                 <Button 
                     type="icon"
                     label="Next Change"
                     icon="navigate_next" 
                     tooltip="Next Change"
-                    disabled={!navigator}
-                    onClick={() => navigator.next()} 
+                    disabled={!editor}
+                    onClick={() => editor.goToDiff("next")} 
                 />
             </div>
             <div ref={containerRef} style={{ width: "100%", height: "100%" }} />

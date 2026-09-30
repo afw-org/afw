@@ -22,7 +22,7 @@ In order to build the web application, you must have NodeJS and NPM installed on
 
 #### Design
 
-ReactJS is a Javascript-based framework that also supports ES6 (ECMAScript 6).  This app is built with [Vite](https://vitejs.dev), which handles the underlying web packaging complexities for us - dev server, esbuild/Rollup-based bundling and transpilation - along with a default browser service worker in order to create a modern Progressive Web App (PWA).
+ReactJS is a Javascript-based framework that also supports ES6 (ECMAScript 6).  This app is built with [Vite](https://vitejs.dev), which handles the underlying web packaging complexities for us - dev server, Rolldown-based bundling and Oxc transpilation - along with a default browser service worker in order to create a modern Progressive Web App (PWA).
 
 The sibling workspace packages this app depends on (`@afw/client`, `@afw/react`, `@afw/react-material-ui`, `@afw/react-monaco`) are consumed directly as source - they have no separate build step of their own. Vite compiles them as part of this app's own build/dev graph, the same way it compiles the app's own source, so editing a sibling package's source hot-reloads here without a rebuild.
 
@@ -93,7 +93,7 @@ The directory structure is laid out as follows:
 * vite.config.mjs
   * Vite's dev server / production build configuration.
 * vitest.config.js
-  * Test-only configuration, kept separate from vite.config.mjs so build-time-only plugins (Monaco's worker bundling) aren't pulled into test runs.
+  * Test-only configuration, kept separate from vite.config.mjs so build-time-only plugins (the JSX-in-.js build transform, the bundle visualizer) aren't pulled into test runs.
 
 
 ### Building

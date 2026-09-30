@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 // Deliberately separate from vite.config.mjs (used for the dev server/build) -
-// this stays a plain, test-only config so build-time-only plugins (Monaco's
-// worker bundling, the JSX-in-.js build workaround) don't get pulled into
+// this stays a plain, test-only config so build-time-only plugins (the
+// JSX-in-.js build workaround, the bundle visualizer) don't get pulled into
 // test runs, where they're unnecessary.
 import {defineConfig} from "vitest/config";
 import {transformWithOxc} from "vite";
@@ -33,17 +33,27 @@ function jsxInJs() {
 export default defineConfig({
     plugins: [jsxInJs()],
     resolve: {
-        alias: {
+        alias: [
             // Real Monaco needs a browser (Canvas, Web Workers, real layout)
-            // jsdom can't provide, and its package.json only declares a
-            // "module" field - Vite's browser-target dev/build resolution
-            // tolerates that, but Vitest's Node-target resolution can't find
-            // a usable entry point at all. Every admin test mounts
-            // MonacoProvider (via test-utils.js's AllTheProviders), which
-            // eagerly imports "monaco-editor" on mount, so this needs a
-            // stand-in regardless.
-            "monaco-editor": path.resolve(__dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor.js")
-        },
+            // jsdom can't provide. Every admin test mounts MonacoProvider
+            // (via test-utils.js's AllTheProviders), which eagerly imports
+            // @afw/react-monaco's monaco-editor entry points on mount (see
+            // its src/monaco.js), so these need stand-ins regardless. First
+            // match wins: the JSON language service, the editor worker, then
+            // everything else.
+            {
+                find: /^monaco-editor\/languages\/features\/json\/register$/,
+                replacement: path.resolve(__dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor-json.js")
+            },
+            {
+                find: /^monaco-editor\/.*\?worker$/,
+                replacement: path.resolve(__dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor-worker.js")
+            },
+            {
+                find: /^monaco-editor(\/.*)?$/,
+                replacement: path.resolve(__dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor.js")
+            }
+        ],
         // Workspace packages (inlined below) and the app itself must resolve
         // to the exact same react/react-dom instance, or hooks break
         // ("Cannot read properties of null (reading 'useContext')") across

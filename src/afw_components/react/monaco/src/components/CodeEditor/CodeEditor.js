@@ -106,7 +106,7 @@ export const CodeEditor = React.forwardRef((props, ref) => {
                     model = monaco.editor.createModel(source, language ? language : "json", modelUri);                                       
                 }                                                         
 
-                monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+                monaco.json.jsonDefaults.setDiagnosticsOptions({
                     validate: true,                    
                     schemas: [{
                         uri: schemaUri,
@@ -224,7 +224,7 @@ export const CodeEditor = React.forwardRef((props, ref) => {
                 model = monaco.editor.createModel(editorRef.current.getValue(), "json", modelUri);   
                 model.setEOL(monaco.editor.EndOfLineSequence.LF);                         
             }
-            monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+            monaco.json.jsonDefaults.setDiagnosticsOptions({
                 validate: true,                    
                 schemas: [{
                     uri: schemaUri,
