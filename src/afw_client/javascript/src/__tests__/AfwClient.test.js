@@ -229,9 +229,10 @@ describe("AfwClient Tests", () => {
              * msw 2.x's fetch interceptor consults request.signal and rejects
              * with a real AbortError, unlike msw 1.x which resolved a matched
              * request straight from the mock handler regardless of the
-             * signal's state.
+             * signal's state. Checked by name, not instanceof DOMException:
+             * the rejection is Node's DOMException, while the test's global
+             * DOMException is jsdom's.
              */
-            expect(thrownError).toBeInstanceOf(DOMException);
             expect(thrownError.name).toBe("AbortError");
         });
         

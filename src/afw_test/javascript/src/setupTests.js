@@ -2,16 +2,7 @@
 import {vi} from "vitest";
 import {configure} from "@testing-library/dom";
 import {server} from "@afw/test";
-import {ReadableStream} from "web-streams-polyfill";
 import "@testing-library/jest-dom";
-
-/*
- * Vitest's jsdom environment doesn't reliably pick up plain `global.X = Y`
- * assignments made from a setup file (the test file's own global scope can
- * end up resolving a different, jsdom-provided binding) - vi.stubGlobal is
- * Vitest's own API for this and reaches the right realm.
- */
-vi.stubGlobal("ReadableStream", ReadableStream);
 
 /*
  * AfwClient calls the bare global `fetch()`. MSW's setupServer() patches
@@ -20,6 +11,10 @@ vi.stubGlobal("ReadableStream", ReadableStream);
  * native fetch/Response/Headers/Request (undici-based) are already real,
  * spec-compliant globals here, with a genuine ReadableStream body, so they
  * are left alone rather than shadowed with a polyfill.
+ *
+ * The same goes for ReadableStream itself (and AbortController/AbortSignal -
+ * see vitestEnvironment.js): undici 7 (Node 24+) brand checks them, so a
+ * polyfill or jsdom copy handed to fetch/Response throws. Use Node's own.
  */
 
 /*
