@@ -279,7 +279,7 @@ export const CodeEditor = forwardRef((props, ref) => {
         }
         
         if (onSaveSource)
-            onSaveSourceRef.current = editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, onSaveSource);
+            onSaveSourceRef.current = editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, onSaveSource);
     };
 
     return (

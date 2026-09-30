@@ -1,10 +1,11 @@
 // See the 'COPYING' file in the project root for licensing information.
 /**
- * Stub for "monaco-editor" in tests. Real Monaco needs a browser (Canvas,
- * Web Workers, real layout) jsdom can't provide, and no test should be
- * instantiating a real editor instance - this only needs to cover the API
- * surface @afw/react-monaco touches during a normal render, so components
- * that use it don't crash mounting/unmounting.
+ * Stub for "monaco-editor" and its monaco-editor/... entry points (other
+ * than the JSON language service - see monaco-editor-json.js) in tests.
+ * Real Monaco needs a browser (Canvas, Web Workers, real layout) jsdom can't
+ * provide, and no test should be instantiating a real editor instance - this
+ * only needs to cover the API surface @afw/react-monaco touches during a
+ * normal render, so components that use it don't crash mounting/unmounting.
  */
 import {vi} from "vitest";
 
@@ -20,12 +21,7 @@ export const languages = {
     registerHoverProvider: disposable,
     CompletionItemKind: new Proxy({}, {get: () => 0}),
     CompletionItemInsertTextRule: new Proxy({}, {get: () => 0}),
-    IndentAction: new Proxy({}, {get: () => 0}),
-    json: {
-        jsonDefaults: {
-            setDiagnosticsOptions: noop
-        }
-    }
+    IndentAction: new Proxy({}, {get: () => 0})
 };
 
 const model = {
@@ -88,11 +84,11 @@ export const editor = {
     createDiffEditor: vi.fn(() => ({
         setModel: noop,
         updateOptions: noop,
+        goToDiff: noop,
         dispose: noop
     })),
     createModel: () => model,
     getModel: () => null,
-    createDiffNavigator: () => ({next: noop, previous: noop}),
     defineTheme: noop,
     setModelLanguage: noop,
     EndOfLineSequence: {LF: 0, CRLF: 1}
@@ -101,10 +97,19 @@ export const editor = {
 export const Uri = {parse: (uri) => ({toString: () => uri})};
 
 // TabbedCodeEditor combines these with a bitwise OR to build a keybinding
-// (e.g. `KeyMod.CtrlCmd | KeyCode.KEY_S`) for editor.addCommand() - any
-// numeric value round-trips through that fine for test purposes.
-export const KeyMod = new Proxy({}, {get: () => 0});
-export const KeyCode = new Proxy({}, {get: () => 0});
+// (e.g. `KeyMod.CtrlCmd | KeyCode.KeyS`) for editor.addCommand(). Only the
+// real names in use are defined (values from monaco-editor), so a misspelled
+// or renamed one - KEY_S became KeyS - fails a test instead of silently
+// binding nothing.
+const strict = (name, values) => new Proxy(values, {
+    get: (target, key) => {
+        if (typeof key === "string" && !(key in target))
+            throw new Error(`monaco-editor mock: ${name}.${key} is not defined`);
+        return target[key];
+    }
+});
+export const KeyMod = strict("KeyMod", {CtrlCmd: 2048});
+export const KeyCode = strict("KeyCode", {KeyS: 49});
 
 export class Range {
     constructor(startLineNumber, startColumn, endLineNumber, endColumn) {
