@@ -1,25 +1,23 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {defineConfig} from "vitest/config";
-import {transform as esbuildTransform} from "esbuild";
+import {transformWithOxc} from "vite";
 
 // The codebase uses JSX in plain .js files (a CRA/babel convention, instead
-// of .jsx) - esbuild's default loader for .js doesn't enable JSX. Vite's
-// top-level `esbuild` option only accepts a single loader for every matched
-// file, and a sibling workspace package consumed here (@afw/client) has
-// real .ts source using things like `enum`, so a single blanket "jsx" loader
-// can't cover both without breaking the other - this only transforms .js
-// files specifically, leaving Vite's normal .ts/.tsx handling untouched.
+// of .jsx) - Vite's Oxc transform picks the language from the file
+// extension, so .js never gets JSX, and Vite's `oxc` option has no `lang`
+// override. A sibling workspace package consumed here (@afw/client) has real
+// .ts source using things like `enum`, so .js has to be handled on its own -
+// this only transforms .js files, leaving Vite's normal .ts/.tsx handling
+// untouched.
 function jsxInJs() {
     return {
         name: "jsx-in-js",
         enforce: "pre",
         async transform(code, id) {
             if (!id.endsWith(".js")) return;
-            const result = await esbuildTransform(code, {
-                loader: "jsx",
-                jsx: "automatic",
-                jsxImportSource: "react",
-                sourcefile: id,
+            const result = await transformWithOxc(code, id, {
+                lang: "jsx",
+                jsx: {runtime: "automatic", importSource: "react"},
                 sourcemap: true
             });
             return {code: result.code, map: result.map};
@@ -31,7 +29,7 @@ export default defineConfig({
     plugins: [jsxInJs()],
     test: {
         globals: true,
-        environment: "../../../afw_test/javascript/src/vitestEnvironment.js",
+        environment: "jsdom",
         // Forked child processes are killed reliably by the OS even when
         // Node's own event loop doesn't naturally end (worker_threads, the
         // default pool, can leave the test run stuck at teardown - "Failed

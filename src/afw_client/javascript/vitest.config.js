@@ -4,7 +4,7 @@ import {defineConfig} from "vitest/config";
 export default defineConfig({
     test: {
         globals: true,
-        environment: "../../afw_test/javascript/src/vitestEnvironment.js",
+        environment: "jsdom",
         // Forked child processes are killed reliably by the OS even when
         // Node's own event loop doesn't naturally end (worker_threads, the
         // default pool, can leave the test run stuck at teardown - "Failed

@@ -1,15 +1,19 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {defineConfig} from "vite";
+import {defineConfig, transformWithOxc} from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import {transform as esbuildTransform} from "esbuild";
-import monacoEditorPlugin from "vite-plugin-monaco-editor";
+import monacoEditorPluginModule from "vite-plugin-monaco-editor";
 import {visualizer} from "rollup-plugin-visualizer";
+
+// vite-plugin-monaco-editor is CommonJS with an `exports.default` - from an
+// ES module config its default import is that exports object, not the
+// function.
+const monacoEditorPlugin = monacoEditorPluginModule.default ?? monacoEditorPluginModule;
 
 // Sibling workspace packages (@afw/react, @afw/client, etc.) are consumed
 // as source, not a prebuilt dist - the dev server needs permission to read
 // outside this package's own directory.
-const monorepoRoot = path.resolve(__dirname, "../../..");
+const monorepoRoot = path.resolve(import.meta.dirname, "../../..");
 
 // `afwdev build` sets PUBLIC_URL to the app's real install path
 // (/apps/<afwPackageId>/admin) before invoking this build - see
@@ -19,7 +23,7 @@ const publicUrl = process.env.PUBLIC_URL;
 const base = publicUrl ? (publicUrl.endsWith("/") ? publicUrl : publicUrl + "/") : "./";
 
 // These packages are workspace source (plain .js files containing JSX), not
-// prebuilt dependencies - excluding them from esbuild's dependency-scan/
+// prebuilt dependencies - excluding them from Rolldown's dependency-scan/
 // pre-bundle step avoids "JSX syntax extension is not enabled" errors there
 // (that scanner doesn't go through @vitejs/plugin-react-swc's transform).
 // They still get transformed normally as part of the regular module graph.
@@ -33,14 +37,14 @@ const workspaceSourcePackages = [
 // The codebase uses JSX in plain .js files (a CRA/babel convention, instead
 // of .jsx). @vitejs/plugin-react-swc's `parserConfig` option (used below)
 // only takes effect in dev - in production builds (without custom swc
-// plugins configured) it delegates entirely to Vite's own esbuild transform,
-// which infers a loader from the file extension and never enables JSX for
-// plain .js. Vite's esbuild config only accepts a single loader for every
-// matched file, and this codebase's .ts files (e.g. @afw/client) use
+// plugins configured) it delegates entirely to Vite's own Oxc transform,
+// which picks the language from the file extension and never enables JSX
+// for plain .js. Vite's `oxc` option has no `lang` override, and this
+// codebase's .ts files (e.g. @afw/client) use
 // old-style `<Type>value` angle-bracket casts that are ambiguous with JSX -
 // so a single blanket loader can't correctly cover both. This plugin runs
 // only for the production build and strips JSX from .js files specifically,
-// before Vite's own esbuild transform (which handles every other extension
+// before Vite's own Oxc transform (which handles every other extension
 // exactly as it already did) ever sees them.
 function jsxInJsForBuild() {
     return {
@@ -49,11 +53,9 @@ function jsxInJsForBuild() {
         enforce: "pre",
         async transform(code, id) {
             if (!id.endsWith(".js")) return;
-            const result = await esbuildTransform(code, {
-                loader: "jsx",
-                jsx: "automatic",
-                jsxImportSource: "react",
-                sourcefile: id,
+            const result = await transformWithOxc(code, id, {
+                lang: "jsx",
+                jsx: {runtime: "automatic", importSource: "react"},
                 sourcemap: true
             });
             return {code: result.code, map: result.map};
@@ -102,8 +104,8 @@ export default defineConfig({
     ].filter(Boolean),
     optimizeDeps: {
         exclude: workspaceSourcePackages,
-        esbuildOptions: {
-            loader: {".js": "jsx"}
+        rolldownOptions: {
+            moduleTypes: {".js": "jsx"}
         }
     },
     // Workspace packages (excluded from optimizeDeps above) and the app

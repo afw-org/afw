@@ -67,7 +67,7 @@ The directory structure is laid out as follows:
     |-- index.html
     |-- package.json    
     |-- prestart.sh
-    |-- vite.config.js
+    |-- vite.config.mjs
     |-- vitest.config.js
 ```
 
@@ -90,10 +90,10 @@ The directory structure is laid out as follows:
   * The app's entry point (Vite convention - references `src/index.js` directly via a `<script type="module">` tag).
 * package.json
   * Configuration file for the app, specifying all required dependencies and build/test/run targets.
-* vite.config.js
+* vite.config.mjs
   * Vite's dev server / production build configuration.
 * vitest.config.js
-  * Test-only configuration, kept separate from vite.config.js so build-time-only plugins (Monaco's worker bundling) aren't pulled into test runs.
+  * Test-only configuration, kept separate from vite.config.mjs so build-time-only plugins (Monaco's worker bundling) aren't pulled into test runs.
 
 
 ### Building
