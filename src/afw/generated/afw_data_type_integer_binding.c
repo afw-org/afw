@@ -306,18 +306,22 @@ afw_object_set_property_as_integer_internal(
 
     if (internal == 0) {
         v = afw_integer_v_zero;
+        afw_object_set_property(object, property_name, v, xctx);
     }
     else if (internal == 1) {
         v = afw_integer_v_one;
+        afw_object_set_property(object, property_name, v, xctx);
     }
-    else if (afw_object_is_memory_managed(object) ||
-        afw_object_is_memory_wrapper(object)) {
+    else if (afw_object_is_managed(object)) {
         v = afw_value_integer_create_managed(internal, object->p, xctx);
+        afw_object_set_property(object, property_name, v, xctx);
+        /* slot_store bumped; drop the create RC. */
+        afw_value_release(v, xctx);
     }
     else {
         v = afw_value_integer_create(internal, object->p, xctx);
+        afw_object_set_property(object, property_name, v, xctx);
     }
-    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated integer value. */
@@ -793,18 +797,22 @@ afw_array_of_integer_add_internal(
 
     if (*value == 0) {
         v = afw_integer_v_zero;
+        afw_array_push_value(instance, v, xctx);
     }
     else if (*value == 1) {
         v = afw_integer_v_one;
+        afw_array_push_value(instance, v, xctx);
     }
-    else if (afw_array_is_memory_managed(instance) ||
-        afw_array_is_memory_wrapper(instance)) {
+    else if (afw_array_is_managed(instance)) {
         v = afw_value_integer_create_managed(*value, instance->p, xctx);
+        afw_array_push_value(instance, v, xctx);
+        /* slot_store bumped; drop the create RC. */
+        afw_value_release(v, xctx);
     }
     else {
         v = afw_value_integer_create(*value, instance->p, xctx);
+        afw_array_push_value(instance, v, xctx);
     }
-    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a integer value from array of integer. */

@@ -1016,6 +1016,13 @@ afw_object_is_memory_managed(const afw_object_t *object);
 
 
 /**
+ * @brief True if this object's inf is the managed world (`inf->is_managed`).
+ */
+#define afw_object_is_managed(_object) \
+    ((_object) && (_object)->inf->is_managed)
+
+
+/**
  * @brief Base object under a memory face, or object itself if not a face.
  * @param object may be NULL.
  * @return wrapped base if create_wrapper_* face; else object; NULL if object NULL.

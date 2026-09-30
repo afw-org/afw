@@ -53,6 +53,10 @@ AFW_BEGIN_DECLARES
  *       The const is not required and normally should not be specified. It is
  *       the default for historical reasons.
  *
+ * - AFW_IMPLEMENTATION_INF_VARIABLES - (optional) this will be added at the end of
+ *       the inf initializer and should represent the inf_variable
+ *       defined in interface.
+ *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
  *
@@ -234,6 +238,10 @@ impl_afw_array_inf = {
     impl_afw_array_initialize_iterator,
     (afw_array_get_setter_t)
     impl_afw_array_get_setter
+#ifdef AFW_IMPLEMENTATION_INF_VARIABLES
+    ,AFW_IMPLEMENTATION_INF_VARIABLES
+#endif
+
 };
 
 #undef _AFW_IMPLEMENTATION_ID_

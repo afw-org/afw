@@ -3099,6 +3099,16 @@ const afw_content_type_t *
       macros. See group afw_array.
     </description>
 
+    <inf_variable name="is_managed" type="afw_boolean_t">
+      <description>
+        True if this implementation is the managed world: instance RC in
+        p->managed_p, slot_store of occupants. False for pool-lifetime
+        memory, runtime, adapter, and const. Occupant create-then-store
+        helpers check this flag and release the create RC after store.
+        Omitted in an inf initializer is false.
+      </description>
+    </inf_variable>
+
 
     <variable name="p" type="const afw_pool_t *">
       <description>
@@ -3740,6 +3750,16 @@ AFW_DEFINE(const afw_log_t *)
       Objects may be const (permanent) or mutable (often via sessions).
       Meta (afw_object_meta) drives validation and UI; see group afw_object.
     </description>
+
+    <inf_variable name="is_managed" type="afw_boolean_t">
+      <description>
+        True if this implementation is the managed world: instance RC in
+        p->managed_p, slot_store of occupants. False for pool-lifetime
+        memory, runtime, adapter, and const. Occupant create-then-store
+        helpers check this flag and release the create RC after store.
+        Omitted in an inf initializer is false.
+      </description>
+    </inf_variable>
 
 
     <variable name="p" type="const afw_pool_t *">

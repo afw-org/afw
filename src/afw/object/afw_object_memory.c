@@ -50,12 +50,14 @@ impl_afw_object_managed_setter_remove_property(
 #undef AFW_IMPLEMENTATION_ID
 #define AFW_IMPLEMENTATION_ID "memory_managed"
 #define AFW_IMPLEMENTATION_INF_LABEL impl_afw_object_managed_inf
+#define AFW_IMPLEMENTATION_INF_VARIABLES true
 #define AFW_OBJECT_INF_ONLY
 #define impl_afw_object_release impl_afw_object_managed_release
 #define impl_afw_object_get_reference impl_afw_object_managed_get_reference
 #include "afw_object_impl_declares.h"
 #undef AFW_OBJECT_INF_ONLY
 #undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
 #undef impl_afw_object_release
 #undef impl_afw_object_get_reference
 #define AFW_IMPLEMENTATION_INF_LABEL impl_afw_object_managed_setter_inf

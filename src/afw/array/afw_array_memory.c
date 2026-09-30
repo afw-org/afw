@@ -82,12 +82,14 @@ impl_afw_array_managed_setter_shift_value(
 #undef AFW_IMPLEMENTATION_ID
 #define AFW_IMPLEMENTATION_ID "memory_managed"
 #define AFW_IMPLEMENTATION_INF_LABEL impl_afw_array_managed_inf
+#define AFW_IMPLEMENTATION_INF_VARIABLES true
 #define AFW_ARRAY_INF_ONLY
 #define impl_afw_array_release impl_afw_array_managed_release
 #define impl_afw_array_get_reference impl_afw_array_managed_get_reference
 #include "afw_array_impl_declares.h"
 #undef AFW_ARRAY_INF_ONLY
 #undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
 #undef impl_afw_array_release
 #undef impl_afw_array_get_reference
 #define AFW_IMPLEMENTATION_INF_LABEL impl_afw_array_managed_setter_inf
@@ -392,6 +394,42 @@ afw_array_create_wrapper_with_options(
 }
 
 
+AFW_DEFINE(const afw_array_t *)
+afw_array_create_wrapper_managed(
+    const afw_array_t *wrapped,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *self;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *value;
+    const afw_data_type_t *data_type;
+
+    if (!wrapped) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_array_create_wrapper_managed requires a wrapped array",
+            xctx);
+    }
+    if (afw_array_is_memory_managed(wrapped)) {
+        afw_array_get_reference(wrapped, xctx);
+        return wrapped;
+    }
+    data_type = afw_array_get_data_type(wrapped, xctx);
+    self = (afw_memory_internal_array_t *)
+        afw_array_create_managed(data_type, p, xctx);
+    self->wrapped = wrapped;
+    afw_array_get_reference(wrapped, xctx);
+    for (iterator = NULL;;) {
+        value = afw_array_get_next_value(wrapped, &iterator, xctx);
+        if (!value) {
+            break;
+        }
+        afw_array_push_value((const afw_array_t *)self, value, xctx);
+    }
+    return (const afw_array_t *)self;
+}
+
+
 
 /* True if array is a generic memory array (face or not). */
 AFW_DEFINE(afw_boolean_t)
@@ -407,7 +445,10 @@ afw_array_is_memory_wrapper(const afw_array_t *array)
 {
     const afw_memory_internal_array_t *self;
 
-    if (!afw_array_is_memory(array)) {
+    if (!array ||
+        (array->inf != &impl_afw_array_inf &&
+            array->inf != &impl_afw_array_managed_inf))
+    {
         return false;
     }
     self = (const afw_memory_internal_array_t *)array;
@@ -437,7 +478,9 @@ afw_array_memory_wrapper_base(const afw_array_t *array)
     if (!array) {
         return NULL;
     }
-    if (array->inf != &impl_afw_array_inf) {
+    if (array->inf != &impl_afw_array_inf &&
+        array->inf != &impl_afw_array_managed_inf)
+    {
         return array;
     }
     self = (const afw_memory_internal_array_t *)array;
