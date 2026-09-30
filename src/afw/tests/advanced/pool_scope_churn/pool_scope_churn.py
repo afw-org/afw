@@ -5,8 +5,10 @@ Short-lived pool churn: tracker vs inherit-heap (scope-shaped).
 
 Prints METRICS (poolBytesInUse, peakPoolBytesInUse, poolChunkBytes,
 peakPoolChunkBytes, elapsed_ns) using the same names as thread/xctx
-counters so a later harvest or flag can reuse them. Pass/fail is leak
-only; heap vs tracker speed is not a gate.
+counters so a later harvest or flag can reuse them. Pass/fail is
+live poolBytesInUse. The tracker may retain a poolChunkBytes
+high-water chunk on xctx->p. heap_4k and heap_64k must return
+both counters. Speed is not a gate.
 """
 
 import os

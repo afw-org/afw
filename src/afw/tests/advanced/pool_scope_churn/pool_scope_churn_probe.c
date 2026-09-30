@@ -22,6 +22,11 @@
  * (poolBytesInUse, peakPoolBytesInUse, poolChunkBytes,
  * peakPoolChunkBytes) so test runs and a later flag can harvest
  * the same fields.
+ *
+ * poolBytesInUse must return to the baseline. The tracker case
+ * may keep a poolChunkBytes high-water chunk: its blocks come
+ * from xctx->p, and that heap stays alive. heap_4k and heap_64k
+ * destroy their heaps, so poolChunkBytes must return too.
  */
 
 #define IMPL_ITERS     ((afw_size_t)3000)
@@ -68,7 +73,8 @@ impl_churn(
     const char *kind,
     const afw_pool_t *(*make)(
         const afw_pool_t *parent, afw_size_t chunk_min, afw_xctx_t *xctx),
-    afw_size_t chunk_min)
+    afw_size_t chunk_min,
+    afw_boolean_t chunks_must_return)
 {
     afw_size_t i;
     afw_size_t a;
@@ -121,7 +127,7 @@ impl_churn(
             kind, bytes1 - bytes0);
         return 1;
     }
-    if (chunks1 > chunks0) {
+    if (chunks_must_return && chunks1 > chunks0) {
         fprintf(stderr, "%s: poolChunkBytes leaked " AFW_SIZE_T_FMT "\n",
             kind, chunks1 - chunks0);
         return 1;
@@ -162,13 +168,14 @@ main(int argc, char **argv)
     case_name = (argc > 1) ? argv[1] : "";
     rc = 0;
     if (strcmp(case_name, "tracker") == 0) {
-        rc = impl_churn(xctx, "tracker", impl_make_tracker, 0);
+        rc = impl_churn(xctx, "tracker", impl_make_tracker, 0, false);
     }
     else if (strcmp(case_name, "heap_4k") == 0) {
-        rc = impl_churn(xctx, "heap_4k", impl_make_heap, IMPL_CHUNK_4K);
+        rc = impl_churn(xctx, "heap_4k", impl_make_heap, IMPL_CHUNK_4K,
+            true);
     }
     else if (strcmp(case_name, "heap_64k") == 0) {
-        rc = impl_churn(xctx, "heap_64k", impl_make_heap, 0);
+        rc = impl_churn(xctx, "heap_64k", impl_make_heap, 0, true);
     }
     else {
         fprintf(stderr, "usage: pool_scope_churn_probe "
