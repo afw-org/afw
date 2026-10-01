@@ -17,7 +17,7 @@ This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **clo
 - Unmanaged scalar `get_assignable_value`: **promote** (`create_managed` in dest `p->managed_p`, RC 1).
 - Compile-unit scalar literals (integer / double / string): `compile_literal_*` inf — **as-is** in slots; `clone_*` **copies**. `true` / `null` / `undefined` / `0` / `1` / `""` stay process permanents. Eval temps stay unmanaged-promote. Compiler-only `afw_compile_literal_<dt>_create()`.
 - **#280 landed:** lexer mints token payloads as values; parse-word strings (`name == value`, identifier-like) register as environment registry type `string_literal` (key-only, `const afw_value_string_t *`). Say **environment registry**, not “catalog”. `get_string_literal` hits that first. Keywords pointer-compare interned `afw_v_*`. Symbol names, script function `param->name`, loop labels, type/interface declaration names are interned string values.
-- `afw_pool_release_value_at_cleanup`: register last-release of a managed hold on dest `p` when the caller expected a pool temp. Not a slot. Story: [`lifetime-principles.md`](lifetime-principles.md).
+- `afw_pool_release_value_at_cleanup`: register last-release of a managed hold on dest `p` when the contract is **caller does not release**. Not a slot. Story: [`lifetime-principles.md`](lifetime-principles.md).
 
 Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`). `concat` is `hex[i1]+hex[i2]+hex[i3]+hex[i4]`. Wall time of `afw -s script` (median of 3) on `develop` `52d8efe3` after `--cdev` (post-#287):
 

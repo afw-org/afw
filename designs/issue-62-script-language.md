@@ -5,6 +5,8 @@
 **Branch:** `issue-#62-script-language` (deleted after merge).  
 **Status:** **Closed** 2026-08-13 — [PR #174](https://github.com/afw-org/afw/pull/174) merged to `mgg-develop`. Index 1–5 plus void / running-result / `expect: success`.
 
+Lifetime story (later `last_result` / `script_result`): [`lifetime-principles.md`](lifetime-principles.md). This pad is the #62 language landing.
+
 Jeremy still wants the index items. Many of the ideas come from TypeScript / ECMAScript. They were not originally planned, so several productions (especially assignment and `for` init) have to change rather than grow a flag.
 
 ## How we got here (decision context)

@@ -30,8 +30,9 @@ bodies are `{ }` at compile. The Python judge uses
 `pool_bytes_in_use()` and `process_rss()`. `debug:pool` names call sites
 on a **short** run — not on soaks.
 
-Live maps: [`designs/issue-2-hold-in-inf.md`](../../../designs/issue-2-hold-in-inf.md)
-(rails), [`designs/experiment-brainstorm.md`](../../../designs/experiment-brainstorm.md)
+Live maps: [`designs/lifetime-principles.md`](../../../designs/lifetime-principles.md)
+(story), [`designs/issue-2-hold-in-inf.md`](../../../designs/issue-2-hold-in-inf.md)
+(rails + implementation order), [`designs/experiment-brainstorm.md`](../../../designs/experiment-brainstorm.md)
 (two worlds), [`designs/experiment-eval-p.md`](../../../designs/experiment-eval-p.md).
 The 08-21 story is history: [`designs/issue-2-lifetime.md`](../../../designs/issue-2-lifetime.md).
 

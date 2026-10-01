@@ -5,7 +5,7 @@
 **Landed:** [PR #150](https://github.com/afw-org/afw/pull/150) → `mgg-develop` (2026-08-06, merge `dd318e4f`).  
 **User-facing framing:** [`whats-new.md`](../whats-new.md) — *Mutable object faces (issue #17)*.
 
-**#2 follow-on:** overlay store is a slot (landed with script-evaluation-aware wrapper holds). Isolation stays this pad. Lifetime live maps: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), [`experiment-brainstorm.md`](experiment-brainstorm.md).
+**#2 follow-on:** overlay store is a slot. Isolation stays this pad. A face overlay is a container (one reference to each local overlay value). Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Two worlds: [`experiment-brainstorm.md`](experiment-brainstorm.md).
 
 ---
 

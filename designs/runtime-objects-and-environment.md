@@ -3,7 +3,7 @@
 **Audience:** maintainers and AI assistants; useful secondary reading for extension/command authors.  
 **Not** published handbook or end-user docs.  
 **Status:** architecture reference for **[#149](https://github.com/afw-org/afw/issues/149)** (child of **[#2 Memory management](https://github.com/afw-org/afw/issues/2)**). Phases 1–3 shipped (accessor registry, lock+copy `referenceCount`, objectOptions pool fix, live metrics/properties). Since [PR #386](https://github.com/afw-org/afw/pull/386), shared metrics counters and properties are managed snapshots in the caller pool; the pin is released after the copy. `metrics.additional` pins only across `get_additional_metrics` ([#381](https://github.com/afw-org/afw/issues/381)). Pad remains the map for #2-adjacent follow-on.  
-**Related pads:** [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes; may be superseded by this file for architecture), [`memory-management.md`](memory-management.md) (#2 umbrella).  
+**Related pads:** [`lifetime-principles.md`](lifetime-principles.md) (value lifetime story), [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes; may be superseded by this file for architecture), [`memory-management.md`](memory-management.md) (#2 archaeology).  
 **Related issues (separate tracks):** [#49](https://github.com/afw-org/afw/issues/49) `maxObjects`, [#127](https://github.com/afw-org/afw/issues/127) progressive retrieve release, [#17](https://github.com/afw-org/afw/issues/17) faces (different lifetime problem).
 
 **Source of truth:** Adaptive **metadata** (object types, functions, data types, generate JSON). This document is the **map** of how that metadata becomes C runtime views of the environment—not a second registry of every field.

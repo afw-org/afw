@@ -4,7 +4,7 @@
 **Status:** discovery notes. **#149 closed** (2026-08-09, PRs #160–#162). Product map is the architecture pad. **Not** blocking #17 (mutable faces; closed).  
 **Architecture (preferred map):** [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) — generate → maps → accessors → env registration → #149 checklist.  
 **Value accessor catalog snapshot:** [`runtime-value-accessors.md`](runtime-value-accessors.md) (from live `afw -x` retrieve).  
-**Parent / umbrella:** GitHub **[#2 Memory management](https://github.com/afw-org/afw/issues/2)** and [`memory-management.md`](memory-management.md).  
+**Parent / umbrella:** GitHub **[#2](https://github.com/afw-org/afw/issues/2)**. Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). Archaeology: [`memory-management.md`](memory-management.md).  
 **Related:** [#49](https://github.com/afw-org/afw/issues/49) `maxObjects` (default **0** = unlimited), [#127](https://github.com/afw-org/afw/issues/127) progressive release. Request memory is `limitRequestPoolBytes`.  
 **GitHub tracking issue:** [#149](https://github.com/afw-org/afw/issues/149) (parent pointer on [#2](https://github.com/afw-org/afw/issues/2)).
 
