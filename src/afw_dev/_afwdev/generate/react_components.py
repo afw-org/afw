@@ -816,36 +816,24 @@ def generate_prop_types(fd, objectTypes, objectType, componentType, implementati
     fd.write('\n')
     fd.write('export default propTypes;\n')
 
-def generate_typescript(fd, objectTypes, objectType, componentType, implementationId, copyright, layoutComponentType):    
+def generate_typescript_declaration(fd, objectTypes, objectType, componentType, implementationId, layoutComponentType):
+    """Write <implementationId>.d.ts: the props interface plus a declaration
+    of the component, the same shape as @afw/react's own
+    src/components/<Name>/<Name>.d.ts (the component itself is the .js)."""
 
-    category = layoutComponentType.get('category')
     description = layoutComponentType.get('description')
     brief = layoutComponentType.get('brief')
     propsInterface = 'I' + implementationId + 'Props'
 
-    # write out the license
-    c.write_copyright(fd, 'React Component definition for ' + implementationId, copyright)   
-
+    fd.write("// See the 'COPYING' file in the project root for licensing information.\n")
+    fd.write('import * as React from "react";\n')
     fd.write('\n')
-    fd.write('import React from "react";\n') 
-    fd.write('import {propTypes, defaultProps} from "./' + implementationId + '.propTypes";\n')
-    fd.write('import {' + propsInterface + '} from "./' + implementationId + '.types";\n')
-    fd.write('import fallback from "./' + implementationId + '.fallback";\n')
-    fd.write('\n')
-    # Relative, not "@afw/react" - self-importing the package's own public
-    # name creates a Rollup circular-chunk dependency (the component is
-    # itself re-exported through that same barrel).
-    fd.write('import {AdaptiveComponent} from "../AdaptiveComponent";\n')
-    fd.write('import {ctx} from "../../utils/utils";\n')
     fd.write('\n')
 
-    #generate_typescript_types(fd, objectTypes, objectType, componentType, implementationId, layoutComponentType)
+    generate_typescript_types(fd, objectTypes, objectType, componentType, implementationId, layoutComponentType)
 
-    fd.write('\n')
     fd.write('/**\n')
-    fd.write(' * Implementation Id : ' + implementationId + '\n')
-    fd.write(' * Category          : ' + category + '\n')
-    fd.write(' * \n')
+    fd.write(' *\n')
 
     if brief != None:
         # don't let lines go beyond 80 chars
@@ -858,30 +846,7 @@ def generate_typescript(fd, objectTypes, objectType, componentType, implementati
         fd.write(' * \n')
 
     fd.write(' */\n')
-    fd.write('export const ' + implementationId + ' : React.FunctionComponent<' + propsInterface + '> = (props) => {\n')
-    fd.write('\n')
-    fd.write('    props = {...defaultProps, ...props};\n')
-    fd.write('\n')
-    fd.write('    return (\n')
-    fd.write('        <AdaptiveComponent \n')
-    fd.write('            {...props} \n')
-    fd.write('            data-component-type={ctx(props, "' + implementationId + '")}\n')
-    fd.write('            fallback={fallback}\n')
-    fd.write('            layoutComponent={{\n')
-    fd.write('                componentType: "' + implementationId + '",\n')
-    fd.write('                parameters: props\n')
-    fd.write('            }}\n')
-    fd.write('        />\n')    
-    fd.write('    );\n')
-    fd.write('};\n')
-    fd.write('\n')
-    fd.write('\n')
-
-    fd.write(implementationId + '.propTypes = propTypes;\n')
-    fd.write(implementationId + '.displayName = "' + implementationId + '";\n')
-
-    fd.write('\n')
-    fd.write('export default React.memo(' + implementationId + ');\n')
+    fd.write('export default function ' + implementationId + '(props: ' + propsInterface + '): JSX.Element;\n')
 
 def generate_javascript(fd, objectTypes, objectType, componentType, implementationId, copyright, layoutComponentType):  
 
@@ -1022,17 +987,11 @@ def generate(generated_by, options):
             # Generate React propTypes from the property type definitions
             generate_prop_types(fd, objectTypesHash, objectTypesHash[instanceObjectType], componentType, implementationId)
 
-        msg.info('  Generating React Component in Typescript..')
-        with nfc.open(closet_dir + componentType + '.tsx', mode='w') as fd:
-            # Generate React propTypes from the property type definitions
-            generate_typescript(fd, objectTypesHash, objectTypesHash[instanceObjectType], 
-                                componentType, implementationId, copyright, layoutComponentType)
-
-        msg.info('  Generating typescript type definition..')
-        with nfc.open(closet_dir + componentType + '.types.ts', mode='w') as fd:
-            # Generate React typescript interface definitions from the property type definitions
-            generate_typescript_types(fd, objectTypesHash, objectTypesHash[instanceObjectType], 
-                                      componentType, implementationId, layoutComponentType)
+        msg.info('  Generating typescript declaration..')
+        with nfc.open(closet_dir + componentType + '.d.ts', mode='w') as fd:
+            # The props interface and component declaration for the .js above
+            generate_typescript_declaration(fd, objectTypesHash, objectTypesHash[instanceObjectType],
+                                            componentType, implementationId, layoutComponentType)
 
         msg.info('  Generating index..')
         with nfc.open(closet_dir + 'index.js', mode='w') as fd:
