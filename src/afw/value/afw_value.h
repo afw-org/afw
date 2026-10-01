@@ -1180,11 +1180,12 @@ afw_value_contains(
  * @param xctx of caller.
  * @return evaluated value.
  *
- * For a compiled script or template, evaluated results are
- * isolated as managed in p->managed_p (unit-backed literals are
- * copied) and pinned on p. Permanents stay as-is. Store on a C
- * struct that outlives p: get_reference. Replace that field:
- * release the old occupant (or slot_store).
+ * For a compiled script or template, unit-backed literals are
+ * copied managed into p->managed_p, then pinned on p.
+ * Already-managed results keep a single reference (pin on p).
+ * Permanents stay as-is. Store on a C struct that outlives p:
+ * get_reference. Replace that field: release the old occupant
+ * (or slot_store).
  */
 #define afw_value_evaluate(_value, _p, _xctx) \
     afw_value_evaluate_impl(_value, _p, _xctx)
