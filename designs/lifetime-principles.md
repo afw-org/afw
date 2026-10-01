@@ -38,7 +38,7 @@ Do not name that contract unmanaged, managed, temp, extra-hold, pin, or “expec
 | | Unmanaged | Managed |
 |---|---|---|
 | Where | dest `p` (evaluation `{ }` is `scope->p`) | dest `p->managed_p` |
-| Death | that pool bulk-frees | last RC: last-release every occupant and reference this value obtained, then `free_memory` every block it allocated, via the stored p |
+| Death | that pool bulk-frees | last RC: `release` every reference this value holds, `free_memory` every block it allocated |
 | Role | values that live in dest `p`; compile-unit payloads; snapshots | anything a slot, managed property, or managed element **holds** |
 
 Pass dest `p`. Unmanaged values live in `p`. Managed create / clone / promote use `p->managed_p`. Do not treat `xctx->p` as an implicit dest.
@@ -53,12 +53,11 @@ Last RC is not “free the header.” A managed string’s one block may be head
 
 ## Dual face
 
-An object or array **instance** has an `afw_value` as an instance variable (the dual face). Script sees values.
+An object or array **instance** has an `afw_value` as an instance variable (the dual face). Script sees values. For a managed object/array, **instance RC is the managed lifetime**. The embedded value is not a second counter. Value `get_reference` / `release` bump and last-release **the instance**. Last RC of the instance is the one walk (held values, names, every block).
 
-- Managed instance: value `get_reference` / `release` bump and last-release **the instance**. Last RC of the instance last-releases occupants, names, and every block that instance allocated.
-- Unmanaged instance: value `get_reference` / `release` **throw**. Isolate with `get_assignable_value`. Instance `get_reference` / `release` still reference `object->p` / `array->p`. The instance still dies with its pool if nothing else references it.
+Unmanaged instance: value `get_reference` / `release` **throw**. Use `get_assignable_value`. Instance `get_reference` / `release` still reference `object->p` / `array->p`. The instance dies with its pool if nothing else references it.
 
-A heap wrapper around an instance is itself a managed value. Last RC of the wrapper last-releases the instance **and** `free_memory`s the wrapper. (The tree still fails this for `afw_value_object_create_managed`: wrapper RC starts at 0 and last-release at 0 returns without `free_memory`.)
+A **separate wrapper** around an instance is another managed value that **references** the instance. Last RC of the wrapper `release`s the instance and `free_memory`s the wrapper. Do not treat wrapper RC 0 as “hold is on the instance.” That is the tree failing this story (`afw_value_object_create_managed` / array twin). Dual face (`create_managed()->value`) does not allocate a wrapper.
 
 ---
 
@@ -122,15 +121,17 @@ Read a slot: the pointer. Keep a value alive: `get_reference` (matching `release
 
 How-to of that walk: object/array `release` each held property/element and name, free entries/index/vector/header; `compiled_value` last-releases the compile pool; closure binding `release`s the enclosing scope (and a kept unit) and frees the binding; slice `release`s the containing value and frees the slice header; heap wrapper `release`s the instance and frees the wrapper.
 
-**One rule for managed object properties and managed array elements.** A managed container holds **one reference** to each value it holds and `release`s those references when it goes. The values are ordinary managed values. The same value can be held by more than one container; RC counts. No second story for “nested” or for arrays vs objects.
+**One rule for managed object properties and managed array elements.** A managed container holds **one reference** to each value it holds and `release`s those references when it goes. The values are ordinary managed values. The same value can be held by more than one container; RC counts. No second story for “nested” or for arrays vs objects. Unmanaged object/array is the other inf: pointers in dest `p`, bulk-free.
 
 Methods that return a held value (`get_property`, get entry, Adaptive `.child` / `[i]`, `pop`, `shift`, …) are **caller does not release**. The caller does not special-case. If they want that value to outlive the dest `p` they called with, they `get_reference` / `get_assignable_value`. That is what `get_assignable_value` is for: hide how the value is stored.
 
 What the method does inside (leave the container’s reference in place, unlink, `remove` `release`s) is how-to. The caller still sees caller does not release, or they take their own reference.
 
+A **face** overlay is a container too: it holds references to local overlay values and last-releases them. GET is still caller does not release. A **scope** last-releases `frame_slots` the same way (one reference each).
+
 **`compiled_value`** owns a **pool**. Script / template / test_script compile returns it managed (RC 1). Last RC last-releases that compile pool; everything allocated in the unit dies with the pool. `compile()` is caller releases (the unit). Evaluate does not last-release the unit. Evaluate is caller does not release, dest `p`: if the result is managed, register last-release on dest `p`. Closures from that unit keep the unit alive through the binding.
 
-**Closure binding** is minted at RC 0; the first `get_reference` (slot or overlay) pins the enclosing scope. Last RC last-releases that scope, last-releases a kept compile unit if present, and `free_memory`s the binding. That is the container rule. Birth at 0 is because the binding exists before a slot owns it (`o.fn = function…`).
+**Closure binding** is minted at RC 0 until the first `get_reference` (slot or overlay) takes it to 1. That first `get_reference` is the birth (the binding exists before a slot owns it: `o.fn = function…`). Last RC `release`s the enclosing scope, `release`s a kept compile unit if present, and `free_memory`s the binding. Same walk.
 
 **Managed slice** (`utf8` / `memory`): last RC last-releases the containing value and `free_memory`s the slice header.
 
@@ -162,7 +163,7 @@ If the answer is a new register last-release, a new flag, or a helper around ass
 
 ---
 
-## Holes the tree still has (use this list; do not invent pins)
+## Holes the tree still has (use this list; do not invent a new register last-release)
 
 These fail the story. A leak sitting or a full review starts here.
 
