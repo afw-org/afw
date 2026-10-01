@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {render, act /*, fireEvent*/} from "@testing-library/react";
+import {render, /*fireEvent*/} from "@testing-library/react";
 
 const Test = (wrapper, SpinButton) => {
 
@@ -35,7 +35,7 @@ const Test = (wrapper, SpinButton) => {
             
             /*
             const btn = queryByLabelText("Spin Button");
-            act(() => btn.focus());
+            btn.focus();
 
             fireEvent.keyDown(document.activeElement, { key: "ArrowUp" });
             expect(onChanged).toHaveBeenLastCalledWith(26); 
@@ -57,7 +57,7 @@ const Test = (wrapper, SpinButton) => {
             
             /*
             const btn = queryByLabelText("Spin Button");
-            act(() => btn.focus());
+            btn.focus();
 
             fireEvent.keyDown(document.activeElement, { key: "ArrowDown" });
             expect(onChanged).toHaveBeenLastCalledWith(24);   
