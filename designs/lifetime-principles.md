@@ -94,7 +94,7 @@ If the function calls **`get_assignable_value`** or **`create_managed`**, it now
 2. `release` in the function.
 3. Returning it to a caller that **does not release**, and registering last-release of that one hold on dest `p`.
 
-Do not register last-release on GET of an occupant the container still owns. Do not register nested children of a value already being returned. Do not register twice. Nested occupants are the container’s last-RC walk.
+Do not register last-release on a method that returns a held value (caller does not release). Do not register nested children of a value already being returned. Do not register twice. The container’s last RC `release`s its references.
 
 **Evaluate of a compiled value** is caller does not release, dest `p` = the `p` passed to evaluate. If the result is managed, register last-release on that dest `p`. Do not isolate the result into `xctx->p`. `xctx->p` is the job heap for internals (evaluation stack, and similar). `xctx->script_result` is an internal slot for nested evaluate: save, restore, unwind. It is not the dest for the value evaluate returns.
 
@@ -121,14 +121,11 @@ Last RC always does both of these, as applicable:
 1. **Last-release** every occupant and every `get_reference` / `get_assignable_value` this value did in order to keep something.
 2. **`free_memory`** every block this value allocated (header, trailing bytes, property entries, name index, element vector, wrapper allocation, binding header, …) via the stored p. If it owns a pool, last-release that pool (the pool bulk-frees what was allocated there).
 
-A managed **container** (object, array, and anything later that holds children) is that rule with occupants. Object and array are the same:
+**One rule for managed object properties and managed array elements.** A managed container holds **one reference** to each value it holds and `release`s those references when it goes. The values are ordinary managed values. The same value can be held by more than one container; RC counts. No second story for “nested” or for arrays vs objects.
 
-- Occupants it `slot_store`d or `slot_take`d (properties, elements)
-- Property names it `get_assignable`d (once, when the name is minted)
-- A wrapped instance, if it has one
-- Every block listed above
+Methods that return a held value (`get_property`, get entry, Adaptive `.child` / `[i]`, `pop`, `shift`, …) are **caller does not release**. The caller does not special-case. If they want that value to outlive the dest `p` they called with, they `get_reference` / `get_assignable_value`. That is what `get_assignable_value` is for: hide how the value is stored.
 
-GET of an occupant is **identity** while the container still holds it. Keeping that occupant after the container dies is `get_assignable_value` into the dest slot. `pop` / `shift` transfer: the array no longer owns the occupant. Contract is caller does not release; inf is managed; register last-release of that hold on dest `p`. `remove` last-releases the occupant the array still owned.
+What the method does inside (leave the container’s reference in place, unlink, `remove` `release`s) is how-to. The caller still sees caller does not release, or they take their own reference.
 
 **`compiled_value`** owns a **pool**. Script / template / test_script compile returns it managed (RC 1). Last RC last-releases that compile pool; everything allocated in the unit dies with the pool. `compile()` is caller releases (the unit). Evaluate does not last-release the unit. Evaluate is caller does not release, dest `p`: if the result is managed, register last-release on dest `p`. Closures from that unit keep the unit alive through the binding.
 
@@ -142,11 +139,11 @@ If a later managed kind holds children, it follows this same last-RC walk. No pe
 
 ## Clone (Adaptive `clone()` of object/array)
 
-Structural copy: `create_managed` the tree. Nested containers are `create_managed` then **take** into the parent (the parent owns those births). Nested scalars `get_assignable` of the source then take. Copy meta.
+Structural copy: `create_managed` the tree. Nested objects/arrays are `create_managed` then **take** (the parent holds one reference). Nested scalars `get_assignable_value` of the source then take. Copy meta.
 
-The value `clone()` **returns** is the root. Contract is caller does not release; inf is managed; register last-release of that one hold on dest `p`, at the execute result. Nested occupants are slots of the root. Recurse does not register last-release. GET of `clone(o).child` / `clone(o).arr` is identity. Assign of that occupant is `get_assignable_value` into the dest slot. Last RC of the root last-releases nested (occupants, names, and every block those nested containers allocated).
+`clone()` is Adaptive `execute_*`: **caller does not release**. The root is managed (`create_managed` RC 1), so register last-release of **that one hold** on dest `p` at the execute result. That is the return contract. Nested values are ordinary managed values the root references (same rule as any managed container). `.child` / `.arr` are methods that return a held value (caller does not release). Assign of that value is `get_assignable_value` if the caller wants their own reference. Last RC of the root `release`s the root’s references.
 
-Product tests: `src/afw/tests/additional_test_scripts/clone.as`, `src/afw/tests/language/script/nested_occupant_share.as`. The recurse `is_root` flag in the tree is leftover naming of “this is the execute result.” Register last-release at `execute_clone` after the copy; drop the flag when touching that code.
+Product tests: `src/afw/tests/additional_test_scripts/clone.as`, `src/afw/tests/language/script/nested_occupant_share.as`. The recurse `is_root` flag is leftover naming of “this is the execute result.” Register last-release at `execute_clone` after the copy; drop the flag when touching that code. `.child` is caller does not release.
 
 ---
 
@@ -156,7 +153,7 @@ Work the story, in this order:
 
 1. Did last RC last-release every occupant and reference, and `free_memory` every block this value allocated (or last-release a pool it owns)?
 2. Was `get_assignable_value` called on a fresh `create_managed` (second own)?
-3. Was GET treated as isolate (the container still owns the occupant)?
+3. Did a method that returns a held value expect the caller to `release` (it must not)? If the caller needs it past dest `p`, they `get_assignable_value`.
 4. Did a callee honor **caller does not release** with managed and forget to register last-release on dest `p`? Or register twice, or on the wrong `p` (including `xctx->p` when dest `p` is the caller)?
 5. Did a callee return unmanaged on a **caller releases** contract?
 
