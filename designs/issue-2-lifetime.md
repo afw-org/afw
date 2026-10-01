@@ -8,6 +8,8 @@
 
 **Current two worlds (2026-09):** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) closed / PR **#278**). Unmanaged = dest `p` / tracker; managed = this `xctx->p` + RC; frames `create_managed` (no pool). Eval `p` = `scope->p` when `{ }` has a frame: [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). Compile-literal + intern **#280**. Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). **This file is the 2026-08-21 story.** Where it says managed object/array **own a general pool**, or scalars are **not** a managed/unmanaged inf pair, **#277 wins**.
 
+**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md). This file is **history** (2026-08-21). Live maps: story pad + rails + two worlds + eval-p.
+
 **This file was the campaign map.** Live maps are rails + two worlds + eval-p. Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md).
 
 **Lab probes (opt-in, not `test -j`):** [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — `01-rss-hard-loops` (RSS vs `pool_bytes_in_use`) and `02-pool-eval-soak` (fcgi heap wrap). `afwdev test -T src/afw/tests-extra/issue-2 --show-all`. **Live soak table** is the lab README (`array_push_pop` **flat**; `function_return` under the bar). This file is **history**; live rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) + [`remaining-apr.md`](remaining-apr.md).

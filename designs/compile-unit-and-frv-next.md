@@ -2,6 +2,8 @@
 
 **Audience:** maintainers. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
+Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). This pad is landed history (compile unit, leave, isolate-at-clone, builtin lifetime, pop, FRV dropped). Extra-hold in this file means register last-release on dest `p` as it landed then.
+
 **Landed on `develop`:**
 - [PR #305](https://github.com/afw-org/afw/pull/305) (`0fc0f2b8`, 2026-09-09) — `compile()` is a unit; `app::` get of compiled templates.
 - [PR #306](https://github.com/afw-org/afw/pull/306) (`5d5b0096`, 2026-09-10) — every `{ }` is a scope; `last_result` on the running frame; leave path.

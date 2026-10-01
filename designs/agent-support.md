@@ -88,8 +88,8 @@ Shape: **symptom → layer → probe → code / doc entry**.
 |-------|--------|
 | Symptom | Leak under long run; use-after-free; wrong lifetime; decompile mismatch; scope/closure surprise |
 | Layer | Pools, managed values, `compiled_value`, scope stack, `statement_flow`, value inf policy |
-| Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j`. Hard-loop RSS + gdb: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Assigned vs unassigned pairs (leftover RC vs extra-hold). `nasty-eval-soak` is request success only — request-end bulk-free hides leftover RC. |
-| Entry | `afw-value-memory`, `afw-script-eval`, `afw-compile`, `afw-runtime-model`; **#2** live maps: `issue-2-hold-in-inf.md`, `experiment-brainstorm.md`, `experiment-eval-p.md`; philosophy pad; atlas §3–4 |
+| Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j`. Hard-loop RSS + gdb: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Assigned vs unassigned pairs (leftover RC vs register last-release on dest `p`). `nasty-eval-soak` is request success only — request-end bulk-free hides leftover RC. |
+| Entry | `afw-value-memory`, `afw-script-eval`, `afw-compile`, `afw-runtime-model`; **#2** story: `lifetime-principles.md`; rails `issue-2-hold-in-inf.md`; two worlds `experiment-brainstorm.md`; eval `p` `experiment-eval-p.md`; philosophy pad; atlas §3 |
 | Status | **Filled (pointer-heavy)** — deep work stays in the live #2 maps, not `memory-management.md` |
 
 **First questions**

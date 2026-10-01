@@ -2,6 +2,8 @@
 
 **Audience:** maintainers. **Not** handbook.
 
+**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md). This pad is pool doors.
+
 libafw no longer uses APR. Heap store is 64k-min, 4k-aligned mapped chunks. `get_apr_pool` and `apr_initialize` are gone. Do **not** mix leftover docs with FRV leftover.
 
 Containers, strings, files, threads, getopt, curl body, LDAP setup, and the pool store are **off APR**.
@@ -35,7 +37,7 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 | `afw_pool_scope_create(parent)` | Evaluation `{ }`. ST heap, 4k chunks, inherits `managed_p`; last-release delayed while `error_processing_count` > 0. |
 | `malloc_no_throw` / `calloc_no_throw` / `free_memory_no_throw` | Same as malloc/calloc/free; NULL / no-op instead of throw. |
 
-One ST heap per xctx (`xctx->p`, created `*_as_managed_p`). Evaluation `{ }` uses `afw_pool_scope_create` of that heap (closures pin the inner scope). No `evaluation_heap`. Managed values allocate in dest `p->managed_p` (follow the pointer; pool code does not look up `xctx->p`). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` / `clone_managed` / `get_assignable` / `slot_store` take dest `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value **pins `script_result` on dest `p`** (`afw_pool_release_value_at_cleanup`) and returns it as-is — no `clone_unmanaged`.
+One ST heap per xctx (`xctx->p`, created `*_as_managed_p`). Evaluation `{ }` uses `afw_pool_scope_create` of that heap (closures pin the inner scope). No `evaluation_heap`. Managed values allocate in dest `p->managed_p` (follow the pointer; pool code does not look up `xctx->p`). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` / `clone_managed` / `get_assignable` / `slot_store` take dest `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value is **caller does not release**; if the result is managed, register last-release on dest `p` (`afw_pool_release_value_at_cleanup`). Tree still `slot_store`s `script_result` with dest `xctx->p` ([#446](https://github.com/afw-org/afw/issues/446)).
 
 Process/server runtime objects expose live `poolBytesInUse` / `peakPoolBytesInUse` / `poolChunkBytes` / `peakPoolChunkBytes` (`env_pool_stat`). `process::rss` is bytes.
 

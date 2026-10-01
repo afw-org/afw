@@ -18,6 +18,7 @@ This file preloads `AGENTS.md` and `designs/knowledge-atlas.md` (via the `@`-imp
 | Support playbooks | `designs/agent-support.md` |
 | Optional AI partnering lessons | `designs/ai-partner-lessons.md` |
 | Design philosophy / mantras | `designs/afw-philosophy-and-core-model.md`, `designs/mantras-and-working-style.md` |
+| Value lifetime | `designs/lifetime-principles.md`; order: `designs/issue-2-hold-in-inf.md` table at top |
 
 ## Hard rules (short)
 

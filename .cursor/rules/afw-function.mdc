@@ -23,9 +23,9 @@ Caller context: `x->xctx`, allocate results in `x->p` or current `scope->p` (lon
 
 ## Result lifetime ([PR #308](https://github.com/afw-org/afw/pull/308) / splice leftover RC)
 
-Most execute bodies mint temps in `x->p`. Those die when the current scope’s pool is released. Do **not** wrap those at the return with `get_assignable_for_scope_lifetime` (`test_value` / `qualifier()` / `parse_uri` are this class). `test_script` / `test_template` copy-out is **`create_managed_clone` + extra-hold only** (managed result object, not a compile unit).
+Story: [`designs/lifetime-principles.md`](../../designs/lifetime-principles.md). Adaptive `execute_*` is **caller does not release**. Most bodies mint unmanaged values in dest `p` (`x->p` / `scope->p`); they die with that pool. Do **not** `get_assignable_value` those at return (`test_value` / `qualifier()` / `parse_uri`). `test_script` / `test_template` copy-out is **`create_managed_clone`** then register last-release of that one hold on dest `p`.
 
-`get_assignable_for_scope_lifetime` always **bumps** a managed value, then extra-holds. `create_managed` is already RC 1. Using that helper on a fresh create leaves RC 1 after scope cleanup (splice **#405**, ~185 MiB/s). Two jobs, two functions — do not copy one onto the other.
+`get_assignable_for_scope_lifetime` is `get_assignable_value` (must-release) then register last-release on dest `p`. `create_managed` is already must-release (RC 1). Calling that helper on a fresh create is a second must-release.
 
 When the result must live until the current scope ends (or be assignable):
 
@@ -33,14 +33,14 @@ When the result must live until the current scope ends (or be assignable):
 |------|----|
 | Mutate an input (`push`, `pop`, `shift`, `unshift`, `add_entries`, `add_properties`, `freeze`, splice **target**) | `afw_pool_scope_get_assignable_for_scope_lifetime` **first**, write that `internal`, return that value. |
 | New array/object the script may keep (`bag`, `filter`, `map`, `sort`, `slice`, `reverse`, splice **removed**, `keys` / `values` / `entries`, `test_script` / `test_template` clone) | `create_managed` (RC 1), **`afw_pool_scope_release_value_at_cleanup` only**, fill that `internal`, return it. Stay **mutable** unless the function is `freeze`. Do **not** `get_assignable_for_scope_lifetime` on the new value. |
-| `clone()` of object/array | Always-copy **`create_managed`** (RC 1), extra-hold the **root** container only. Nested objects recurse without extra-hold; parent **`set_property_take` / `push_value_take`**. Nested scalars **`get_assignable` of the source** then take. Do **not** `afw_value_clone` unmanaged into `x->p`. Copy **meta**. Do **not** snapshot / `create_managed_clone` of a managed source (those share nested managed children). |
-| `compile()` / `compile<script>` / `compile<template>` **unit** | Managed `compiled_value` RC 1. **Do not extra-hold.** Evaluate does not last-release the unit; `evaluate(compile())` and closures from that unit still need the heap. Compile-in-a-loop climbs; `compile_once_eval` is the lab. |
+| `clone()` of object/array | Always-copy **`create_managed`** (RC 1). Nested containers recurse then parent **take**. Nested scalars **`get_assignable_value` of the source** then take. Register last-release of the **execute result** on dest `p`. Nested are ordinary held values. Drop `is_root` ([#445](https://github.com/afw-org/afw/issues/445)). Do **not** `afw_value_clone` unmanaged into `x->p`. Copy **meta**. Do **not** snapshot / `create_managed_clone` of a managed source (those share nested managed children). |
+| `compile()` / `compile<script>` / `compile<template>` **unit** | Managed `compiled_value` RC 1. **Caller releases.** Do not register last-release of the unit. Evaluate does not last-release the unit; `evaluate(compile())` and closures from that unit still need the heap. Compile-in-a-loop climbs; `compile_once_eval` is the lab. |
 | `compile(..., listing)` | Listing is a copy in dest `p`. **`afw_value_release` the unit** after the dump. |
 | Language constructors `array()` / `create_array()` | `create_script_wrapper` in `x->p`. `[i]` compiles to `array()`. Do **not** `create_managed` here (`array_rebind` climbed when we did). |
-| `pop` / `shift` occupant | `pop_value` / `shift_value` extra-holds the occupant on the current scope. Return it (or undefined). Do **not** `get_assignable_for_scope_lifetime` on the occupant (extra bump on top of the transfer). |
+| `pop` / `shift` occupant | Array no longer owns it. Register last-release of that birth on the current scope. Return it (or undefined). Do **not** `get_assignable_for_scope_lifetime` on the occupant (second own on top of the transfer). |
 | Script `return` onto the caller | `afw_pool_scope_get_assignable_for_p_lifetime` on the **caller** scope (same bump; result may be unmanaged). |
 
-`create_managed` then `set_property_take` / `push_value_take` (`afw_value_slot_take`): one managed value, slot takes the birth hold. No `get_assignable` bump. Helpers use `inf->is_managed`. Extra-hold is only the delayed create RC for a value returned to script.
+`create_managed` then `set_property_take` / `push_value_take` (`afw_value_slot_take`): one managed value, slot takes the birth hold. No `get_assignable` bump. Helpers use `inf->is_managed`. Register last-release on dest `p` only for a managed value returned on a **caller does not release** contract.
 
 `afw_pool_scope_get_assignable_for_scope_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_pool_scope_set_last_result_for_lifetime`. Headers: `afw_pool_scope_internal.h`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md). Lab pairs in `src/afw/tests-extra/issue-2/01-rss-hard-loops/` (`splice_assign` / `splice_unassigned`, `managed_create_*`, `clone_assign` / `clone_unassigned`, `clone_nested_*`). Splice **source** `remove_value_by_index` last-releases the managed occupant (not a wrapper-only unlink).
 

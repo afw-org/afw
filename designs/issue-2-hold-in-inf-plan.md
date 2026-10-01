@@ -1,6 +1,6 @@
 # Implementation plan: two methods + assignable inf
 
-**Dated plan — do not execute again.** V1–V7 already landed on `develop`. Current two worlds / create names / last_return: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) closed). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)).
+**Dated plan — do not execute again.** Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). V1–V7 already landed on `develop`. Current two worlds / create names / last_return: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) closed). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)).
 
 Present-tense “today `slot_store` → `add_reference`” below is the **before** state. V6’s Adaptive `clone()` line (structural copy then `get_assignable_value`) was a plan snapshot. On the tree, Adaptive `clone()` of object/array is always-copy `create_managed` (see the rails pad). C `clone_unmanaged` / `clone_managed` / `clone()` is [#424](https://github.com/afw-org/afw/issues/424).
 

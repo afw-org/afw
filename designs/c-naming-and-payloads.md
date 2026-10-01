@@ -3,7 +3,7 @@
 **Audience:** maintainers and assistants.  
 **Not user docs.** User-facing rename map: [`whats-new.md`](../whats-new.md) (UTF-8 create / set / ks).  
 **Code:** `src/afw/utf8/afw_utf8.h`, `src/afw/memory/afw_memory.h`, `src/afw/value/afw_value.h`, generated data-type bindings.  
-**#2** still owns value `managed` / `unmanaged` / `permanent`. The value methods are `get_reference` (bump) and `get_assignable_value` (slot occupant). `clone_or_reference` is a compatibility name for `get_reference`.
+**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md). **#2** still owns value `managed` / `unmanaged` / `permanent`. The value methods are `get_reference` (bump) and `get_assignable_value` (always returns a value that method’s caller must release). `clone_or_reference` is a compatibility name for `get_reference`.
 
 ## Three layers (do not share adjectives)
 
