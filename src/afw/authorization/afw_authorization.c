@@ -440,14 +440,14 @@ afw_authorization_check(
     }
 
     ctx.actionId = action_id_value;
-    action_id = afw_value_as_string_internal(action_id_value, xctx);
-    request_id = afw_value_as_string_internal(request_id_value, xctx);
+    action_id = afw_value_as_string_internal(action_id_value, p, xctx);
+    request_id = afw_value_as_string_internal(request_id_value, p, xctx);
     final_result = false;
     result = NULL;
     ctx.object = object_value;
     ctx.requestId = request_id_value;
     ctx.resourceId = resource_id_value;
-    resource_id = afw_value_as_string_internal(resource_id_value, xctx);
+    resource_id = afw_value_as_string_internal(resource_id_value, p, xctx);
     current_decider = afw_s_none;
     final_decider = afw_s_none;
 
@@ -723,8 +723,8 @@ afw_authorization_check(
                 request_id_value, xctx);
             result = afw_value_create_unmanaged_object(obj, p, xctx);
 
-            s = afw_value_as_string_internal(action_id_value, xctx);
-            s2 = afw_value_as_string_internal(resource_id_value, xctx);
+            s = afw_value_as_string_internal(action_id_value, p, xctx);
+            s2 = afw_value_as_string_internal(resource_id_value, p, xctx);
             AFW_THROW_ERROR_WITH_DATA_FZ(denied, result, xctx,
                 "Access '%ku' to '%ku' is not permitted",
                 s, s2);

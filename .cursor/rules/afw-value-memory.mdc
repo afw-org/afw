@@ -48,7 +48,7 @@ Do not invent new lifetime paths; match existing create_* patterns.
 ## Source of truth and producers
 
 - Metadata: `generate/objects/_AdaptiveDataTypeGenerate_/*.json` (`cType`, `special`, `scalar`, `directReturn`, …).
-- Generator of infs + create APIs: `_afwdev/generate/data_type_bindings.py`.
+- Generator of infs + create APIs: `_afwdev/generate/data_type_bindings.py`. `afw_value_as_*` / `as_*_internal` evaluate into dest `p`. Typed `array_of_*_remove` / `_remove_internal` wrap the search key in dest `p`.
 - **Type × lifetime matrix (phase 0a):** living table and generator decision tree in [`designs/memory-management.md`](../../designs/memory-management.md) under **Phase 0 — 0a** (35 types; families special / utf8 / memory / struct / small-direct / pointer-direct). Use that before changing create/release behavior. Live maps: rails [`designs/issue-2-hold-in-inf.md`](../../designs/issue-2-hold-in-inf.md). 08-21 story is history: [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md).
 - Const permanent instances: `strings.py` (scalar `self_v_*` for supported types), `const_objects.py` (objects + scalar/array props), bindings (ids/empty arrays), `function_bindings.py` (function object wrappers).
 - Runtime: core `.so` and extensions call generated `create_managed_*` / `create_unmanaged_*` and reuse permanent pointers (`afw_v_*`, null, empty arrays).

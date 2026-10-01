@@ -239,6 +239,8 @@ struct afw_value_hexBinary_managed_slice_s {
 /**
  * @brief Typesafe cast to evaluated hexBinary value.
  * @param value (const afw_value_t *). Evaluated if needed.
+ * @param p dest pool for evaluate.
+ * @param xctx of caller.
  * @return (const afw_value_hexBinary_t *)
  *
  * Throws if missing or wrong type. Use ->internal for the C
@@ -247,16 +249,20 @@ struct afw_value_hexBinary_managed_slice_s {
 AFW_DECLARE(const afw_value_hexBinary_t *)
 afw_value_as_hexBinary(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
  * @brief Typesafe peel of data type hexBinary internal.
  * @param value (const afw_value_t *).
+ * @param p dest pool for evaluate.
+ * @param xctx of caller.
  * @return (const afw_memory_t *)
  */
 AFW_DECLARE(const afw_memory_t *)
 afw_value_as_hexBinary_internal(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
@@ -598,24 +604,28 @@ afw_array_of_hexBinary_add_internal(
  * @brief Remove a hexBinary value from array of hexBinary.
  * @param instance of array.
  * @param value to remove.
+ * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_hexBinary_remove(
     const afw_array_t *instance,
     const afw_value_hexBinary_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
  * @brief Remove a hexBinary internal from array of hexBinary.
  * @param instance of array.
  * @param value to remove.
+ * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_hexBinary_remove_internal(
     const afw_array_t *instance,
     const afw_memory_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**

@@ -288,9 +288,10 @@ afw_object_set_property_as_null_internal(
 
 /* Typesafe cast to evaluated null value. */
 AFW_DEFINE(const afw_value_null_t *)
-afw_value_as_null(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_null(const afw_value_t *value, const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    value = afw_value_evaluate(value, xctx->p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, null))
     {
         const afw_utf8_t *data_type_id;
@@ -313,9 +314,10 @@ afw_value_as_null(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Typesafe peel of data type null internal. */
 AFW_DEFINE(void *)
-afw_value_as_null_internal(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_null_internal(const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return afw_value_as_null(value, xctx)->internal;
+    return afw_value_as_null(value, p, xctx)->internal;
 }
 
 /* Allocate function for data type null values. */
@@ -729,9 +731,10 @@ AFW_DEFINE(void)
 afw_array_of_null_remove(
     const afw_array_t *instance,
     const afw_value_null_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_null_remove_internal(instance, value->internal, xctx);
+    afw_array_of_null_remove_internal(instance, value->internal, p, xctx);
 }
 
 /* Remove a null internal from array of null. */
@@ -739,10 +742,12 @@ AFW_DEFINE(void)
 afw_array_of_null_remove_internal(
     const afw_array_t *instance,
     const void *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
+    (void)p;
     v = afw_value_null;
     afw_array_remove_value(instance, v, xctx);
 }

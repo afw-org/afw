@@ -200,7 +200,7 @@ impl_afw_value_optional_evaluate(
         if (!value) {
             break;
         }
-        test = afw_value_as_object_internal(value, xctx);
+        test = afw_value_as_object_internal(value, p, xctx);
         /*
          * Array GET may have promoted a face. Result flags belong on the
          * test definition object so a later parent wrap/JSON look-through
@@ -564,7 +564,7 @@ impl_afw_value_produce_compiler_listing(
         test_begin = false;
         AFW_TRY{
 
-            test = afw_value_as_object_internal(test_object_value, xctx);
+            test = afw_value_as_object_internal(test_object_value, p, xctx);
 
             test_name = afw_object_get_property_as_string_internal(
                 test, afw_v_test, xctx);

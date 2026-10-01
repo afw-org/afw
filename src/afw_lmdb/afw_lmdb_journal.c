@@ -170,7 +170,7 @@ afw_lmdb_adapter_journal_get_peer_object(
             xctx->p, xctx);
 
         if (value && afw_value_is_object(value)) {
-            object = afw_value_as_object_internal(value, xctx);
+            object = afw_value_as_object_internal(value, xctx->p, xctx);
         }
     } else {
         /* no entry found */
@@ -229,7 +229,7 @@ afw_lmdb_adapter_journal_get_entry_object(
             xctx->p, xctx);
 
         if (value && afw_value_is_object(value)) {
-            object = afw_value_as_object_internal(value, xctx);
+            object = afw_value_as_object_internal(value, xctx->p, xctx);
         }
     } else {
         /* no entry found */

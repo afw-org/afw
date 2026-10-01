@@ -118,7 +118,7 @@ impl_as_type(afw_xctx_t *xctx)
     const afw_value_integer_t *typed;
 
     v = afw_value_create_unmanaged_integer(7, xctx->p, xctx);
-    typed = afw_value_as_integer(v, xctx);
+    typed = afw_value_as_integer(v, xctx->p, xctx);
     if (typed != (const afw_value_integer_t *)v) {
         fprintf(stderr, "as_integer did not return same pointer\n");
         return 1;
@@ -127,7 +127,7 @@ impl_as_type(afw_xctx_t *xctx)
         fprintf(stderr, "as_integer internal\n");
         return 1;
     }
-    if (afw_value_as_integer_internal(v, xctx) != 7) {
+    if (afw_value_as_integer_internal(v, xctx->p, xctx) != 7) {
         fprintf(stderr, "as_integer_internal\n");
         return 1;
     }

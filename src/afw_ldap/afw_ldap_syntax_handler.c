@@ -385,7 +385,7 @@ impl_syntax_handler_single_boolean_to_ber(
     const struct berval *ber;
     afw_boolean_t b;
 
-    b = afw_value_as_boolean_internal(value, xctx);
+    b = afw_value_as_boolean_internal(value, p, xctx);
     ber = (b)
         ? &impl_ber_true
         : &impl_ber_false;

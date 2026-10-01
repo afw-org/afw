@@ -331,9 +331,10 @@ afw_object_set_property_as_object_internal(
 
 /* Typesafe cast to evaluated object value. */
 AFW_DEFINE(const afw_value_object_t *)
-afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_object(const afw_value_t *value, const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    value = afw_value_evaluate(value, xctx->p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object))
     {
         const afw_utf8_t *data_type_id;
@@ -356,9 +357,10 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Typesafe peel of data type object internal. */
 AFW_DEFINE(const afw_object_t *)
-afw_value_as_object_internal(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_object_internal(const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return afw_value_as_object(value, xctx)->internal;
+    return afw_value_as_object(value, p, xctx)->internal;
 }
 
 /* Allocate function for data type object values. */
@@ -882,9 +884,10 @@ AFW_DEFINE(void)
 afw_array_of_object_remove(
     const afw_array_t *instance,
     const afw_value_object_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_object_remove_internal(instance, value->internal, xctx);
+    afw_array_of_object_remove_internal(instance, value->internal, p, xctx);
 }
 
 /* Remove a object internal from array of object. */
@@ -892,10 +895,11 @@ AFW_DEFINE(void)
 afw_array_of_object_remove_internal(
     const afw_array_t *instance,
     const afw_object_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
-    v = afw_value_object_create(value, xctx->p, xctx);
+    v = afw_value_object_create(value, p, xctx);
     afw_array_remove_value(instance, v, xctx);
 }

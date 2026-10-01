@@ -378,7 +378,7 @@ afw_compile_json_to_object(
         value = afw_compile_parse_Object(parser, false, false);
         afw_compile_check_for_residual(parser);
         if (value) {
-            result = afw_value_as_object_internal(value, xctx);
+            result = afw_value_as_object_internal(value, parser_p, xctx);
             if (adapter_id) {
                 afw_object_meta_set_ids(result,
                     adapter_id, object_type_id, object_id, xctx);

@@ -289,7 +289,7 @@ afw_boolean_t afw_adapter_impl_index_filter_applicable(
 
     eval = afw_value_evaluate(filterValue, object->p, xctx);
     if (afw_value_is_boolean(eval)) {
-        if (afw_value_as_boolean_internal(eval, xctx)) {
+        if (afw_value_as_boolean_internal(eval, object->p, xctx)) {
             /* the filter expression evaluated to true */
             return true;
         }
@@ -460,12 +460,12 @@ impl_index_value_as_key_utf8(
 {
     if (afw_value_is_integer(value)) {
         return impl_index_integer_as_sortable_utf8(
-            afw_value_as_integer_internal(value, xctx), p, xctx);
+            afw_value_as_integer_internal(value, p, xctx), p, xctx);
     }
 
     if (afw_value_is_double(value)) {
         return impl_index_double_as_sortable_utf8(
-            afw_value_as_double_internal(value, xctx), p, xctx);
+            afw_value_as_double_internal(value, p, xctx), p, xctx);
     }
 
     return afw_value_convert_to_utf8(value, p, xctx);

@@ -90,7 +90,8 @@ afw_curl_internal_write_response_headers_cb(
         return_value = afw_value_evaluate(header->call, 
             appdata->pool, appdata->xctx);
 
-        realsize = afw_value_as_integer_internal(return_value, appdata->xctx);
+        realsize = afw_value_as_integer_internal(
+            return_value, appdata->pool, appdata->xctx);
     }
 
     else 
@@ -157,7 +158,8 @@ afw_curl_internal_response_cb(
         }
         return_value = afw_value_evaluate(writer->call, 
             appdata->pool, appdata->xctx);
-        realsize = afw_value_as_integer_internal(return_value, appdata->xctx);
+        realsize = afw_value_as_integer_internal(
+            return_value, appdata->pool, appdata->xctx);
     }
 
     else 
@@ -246,7 +248,8 @@ afw_curl_internal_request_cb(
                 return 0;
             }
 
-            payload = afw_value_as_hexBinary_internal(return_value, appdata->xctx);
+            payload = afw_value_as_hexBinary_internal(
+                return_value, appdata->pool, appdata->xctx);
             if (payload->size == 0) {
                 return 0;
             }

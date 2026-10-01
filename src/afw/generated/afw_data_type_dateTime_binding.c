@@ -294,9 +294,10 @@ afw_object_set_property_as_dateTime_internal(
 
 /* Typesafe cast to evaluated dateTime value. */
 AFW_DEFINE(const afw_value_dateTime_t *)
-afw_value_as_dateTime(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_dateTime(const afw_value_t *value, const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    value = afw_value_evaluate(value, xctx->p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, dateTime))
     {
         const afw_utf8_t *data_type_id;
@@ -319,9 +320,10 @@ afw_value_as_dateTime(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Typesafe peel of data type dateTime internal. */
 AFW_DEFINE(const afw_dateTime_t *)
-afw_value_as_dateTime_internal(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_dateTime_internal(const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return &afw_value_as_dateTime(value, xctx)->internal;
+    return &afw_value_as_dateTime(value, p, xctx)->internal;
 }
 
 /* Allocate function for data type dateTime values. */
@@ -759,9 +761,10 @@ AFW_DEFINE(void)
 afw_array_of_dateTime_remove(
     const afw_array_t *instance,
     const afw_value_dateTime_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_dateTime_remove_internal(instance, &value->internal, xctx);
+    afw_array_of_dateTime_remove_internal(instance, &value->internal, p, xctx);
 }
 
 /* Remove a dateTime internal from array of dateTime. */
@@ -769,10 +772,11 @@ AFW_DEFINE(void)
 afw_array_of_dateTime_remove_internal(
     const afw_array_t *instance,
     const afw_dateTime_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
-    v = afw_value_dateTime_create(value, xctx->p, xctx);
+    v = afw_value_dateTime_create(value, p, xctx);
     afw_array_remove_value(instance, v, xctx);
 }

@@ -250,6 +250,8 @@ struct afw_value_string_managed_slice_s {
 /**
  * @brief Typesafe cast to evaluated string value.
  * @param value (const afw_value_t *). Evaluated if needed.
+ * @param p dest pool for evaluate.
+ * @param xctx of caller.
  * @return (const afw_value_string_t *)
  *
  * Throws if missing or wrong type. Use ->internal for the C
@@ -258,16 +260,20 @@ struct afw_value_string_managed_slice_s {
 AFW_DECLARE(const afw_value_string_t *)
 afw_value_as_string(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
  * @brief Typesafe peel of data type string internal.
  * @param value (const afw_value_t *).
+ * @param p dest pool for evaluate.
+ * @param xctx of caller.
  * @return (const afw_utf8_t *)
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_value_as_string_internal(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
@@ -624,24 +630,28 @@ afw_array_of_string_add_internal(
  * @brief Remove a string value from array of string.
  * @param instance of array.
  * @param value to remove.
+ * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_string_remove(
     const afw_array_t *instance,
     const afw_value_string_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
  * @brief Remove a string internal from array of string.
  * @param instance of array.
  * @param value to remove.
+ * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_string_remove_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**

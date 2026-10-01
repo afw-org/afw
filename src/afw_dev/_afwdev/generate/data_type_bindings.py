@@ -65,8 +65,9 @@
 # Inf symbols: afw_value_{permanent,managed,managed_slice,unmanaged}_<dataType>_inf
 # (managed_slice only for utf8/memory cTypes; special types get permanent only).
 #
-# Also generated: type-check macros, afw_value_as_* (typed value pointer),
-# afw_value_as_*_internal (C payload), object/array helpers, and
+# Also generated: type-check macros, afw_value_as_* (typed value pointer;
+# evaluates into dest p), afw_value_as_*_internal (C payload),
+# object/array helpers (remove wraps a search key in dest p), and
 # afw_data_type_<dataType>_to_internal / to_utf8. Permanent const instances from
 # strings.py / const_objects.py / this module use permanent_*_inf; there is no
 # create_permanent_* API.
@@ -430,21 +431,31 @@ def write_h_section(fd, prefix, obj):
         fd.write('\n/**\n')
         fd.write(' * @brief Typesafe cast to evaluated ' + id + ' value.\n')
         fd.write(' * @param value (const afw_value_t *). Evaluated if needed.\n')
+        fd.write(' * @param p dest pool for evaluate.\n')
+        fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return (const afw_value_' + id + '_t *)\n')
         fd.write(' *\n')
         fd.write(' * Throws if missing or wrong type. Use ->internal for the C\n')
         fd.write(' * payload, or afw_value_as_' + id + '_internal().\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_' + id + '_t *)\n')
-        fd.write('afw_value_as_' + id + '(\n    const afw_value_t *value,\n    afw_xctx_t *xctx);\n')
+        fd.write('afw_value_as_' + id + '(\n')
+        fd.write('    const afw_value_t *value,\n')
+        fd.write('    const afw_pool_t *p,\n')
+        fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Typesafe peel of data type ' + id + ' internal.\n')
         fd.write(' * @param value (const afw_value_t *).\n')
+        fd.write(' * @param p dest pool for evaluate.\n')
+        fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return (' + return_type + ')\n')
         fd.write(' */\n')
         fd.write(declare + '(' + return_type + ')\n')
-        fd.write('afw_value_as_' + id + '_internal(\n    const afw_value_t *value,\n    afw_xctx_t *xctx);\n')
+        fd.write('afw_value_as_' + id + '_internal(\n')
+        fd.write('    const afw_value_t *value,\n')
+        fd.write('    const afw_pool_t *p,\n')
+        fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Allocate function for data type ' + id + ' value.\n')
@@ -921,24 +932,28 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @brief Remove a ' + id + ' value from array of ' + id + '.\n')
         fd.write(' * @param instance of array.\n')
         fd.write(' * @param value to remove.\n')
+        fd.write(' * @param p dest pool for search-key wrap.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' */\n')
         fd.write(declare + '(void)\n')
         fd.write(prefix + 'array_of_' + id + '_remove(\n')
         fd.write('    const afw_array_t *instance,\n')
         fd.write('    const afw_value_' + id + '_t *value,\n')
+        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Remove a ' + id + ' internal from array of ' + id + '.\n')
         fd.write(' * @param instance of array.\n')
         fd.write(' * @param value to remove.\n')
+        fd.write(' * @param p dest pool for search-key wrap.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' */\n')
         fd.write(declare + '(void)\n')
         fd.write(prefix + 'array_of_' + id + '_remove_internal(\n')
         fd.write('    const afw_array_t *instance,\n')
         fd.write('    ' + parameter_ctype + 'value,\n')
+        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx);\n')
 
     # Data type direct (public: extensions use afw_data_type_*_direct in statics).
@@ -1534,9 +1549,12 @@ def write_c_section(fd, prefix, obj):
 
         fd.write('\n/* Typesafe cast to evaluated ' + id + ' value. */\n')
         fd.write(define + '(const afw_value_' + id + '_t *)\n')
-        fd.write('afw_value_as_' + id + '(const afw_value_t *value, afw_xctx_t *xctx)\n')
+        fd.write('afw_value_as_' + id +
+                 '(const afw_value_t *value, const afw_pool_t *p,\n')
+        fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    value = afw_value_evaluate(value, xctx->p, xctx);\n')
+        fd.write('    value = afw_value_evaluate(value, p, xctx);\n')
+
         fd.write('    if (!AFW_VALUE_IS_DATA_TYPE(value, ' + id + '))\n')
         fd.write('    {\n')
         fd.write('        const afw_utf8_t *data_type_id;\n')
@@ -1559,10 +1577,12 @@ def write_c_section(fd, prefix, obj):
 
         fd.write('\n/* Typesafe peel of data type ' + id + ' internal. */\n')
         fd.write(define + '(' + return_type + ')\n')
-        fd.write('afw_value_as_' + id + '_internal(const afw_value_t *value, afw_xctx_t *xctx)\n')
+        fd.write('afw_value_as_' + id +
+                 '_internal(const afw_value_t *value,\n')
+        fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
         fd.write('{\n')
         fd.write('    return ' + amp_if_needed +
-                 'afw_value_as_' + id + '(value, xctx)->internal;\n')
+                 'afw_value_as_' + id + '(value, p, xctx)->internal;\n')
         fd.write('}\n')
 
         fd.write('\n/* Allocate function for data type ' + id + ' values. */\n')
@@ -2685,14 +2705,15 @@ def write_c_section(fd, prefix, obj):
         fd.write(prefix + 'array_of_' + id + '_remove(\n')
         fd.write('    const afw_array_t *instance,\n')
         fd.write('    const afw_value_' + id + '_t *value,\n')
+        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
         if ctype.endswith('*'):
             fd.write('    ' + prefix + 'array_of_' + id +
-                     '_remove_internal(instance, value->internal, xctx);\n')
+                     '_remove_internal(instance, value->internal, p, xctx);\n')
         else:
             fd.write('    ' + prefix + 'array_of_' + id +
-                     '_remove_internal(instance, &value->internal, xctx);\n')
+                     '_remove_internal(instance, &value->internal, p, xctx);\n')
         fd.write('}\n')
 
         fd.write('\n/* Remove a ' + id + ' internal from array of ' + id + '. */\n')
@@ -2700,13 +2721,16 @@ def write_c_section(fd, prefix, obj):
         fd.write(prefix + 'array_of_' + id + '_remove_internal(\n')
         fd.write('    const afw_array_t *instance,\n')
         fd.write('    ' + parameter_ctype + 'value,\n')
+        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
         fd.write('    const afw_value_t *v;\n')
         fd.write('\n')
         if id == 'boolean':
+            fd.write('    (void)p;\n')
             fd.write('    v = afw_value_for_boolean(*value);\n')
         elif id == 'null':
+            fd.write('    (void)p;\n')
             fd.write('    v = afw_value_null;\n')
         elif id == 'integer':
             fd.write('    if (*value == 0) {\n')
@@ -2717,16 +2741,16 @@ def write_c_section(fd, prefix, obj):
             fd.write('    }\n')
             fd.write('    else {\n')
             fd.write('        v = ' + _unmanaged_create_fn(id) +
-                     '(*value, xctx->p, xctx);\n')
+                     '(*value, p, xctx);\n')
             fd.write('    }\n')
         elif _scalar_holdable_create(id):
             payload = '*value' if (
                 direct_return and not ctype.endswith('*')) else 'value'
             fd.write('    v = ' + _unmanaged_create_fn(id) +
-                     '(' + payload + ', xctx->p, xctx);\n')
+                     '(' + payload + ', p, xctx);\n')
         else:
             fd.write('    v = ' + _unmanaged_create_fn(id) +
-                     '(value, xctx->p, xctx);\n')
+                     '(value, p, xctx);\n')
         fd.write('    afw_array_remove_value(instance, v, xctx);\n')
         fd.write('}\n')
 
