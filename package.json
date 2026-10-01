@@ -73,7 +73,6 @@
     "rimraf": "^6.0.0",
     "typeface-roboto": "^1.1.13",
     "typeface-roboto-mono": "^1.1.13",
-    "typescript": "^5.9.3",
     "vis-data": "^8.0.5",
     "vis-network": "^10.1.2",
     "vis-util": "^6.0.2",
@@ -97,6 +96,7 @@
     "msw": "2.11.1",
     "react-is": "^18.3.1",
     "typedoc": "^0.28.20",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.55.0",
     "vite": "^8.3.1",
     "vitest": "^5.0.3"
