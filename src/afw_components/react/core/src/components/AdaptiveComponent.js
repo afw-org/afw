@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {forwardRef, isValidElement, cloneElement, createElement} from "react";
+import {forwardRef, isValidElement, cloneElement, createElement, Fragment} from "react";
 import {useComponents} from "../hooks";
 import {cls} from "../utils/utils";
 
@@ -18,6 +18,12 @@ export const render = (componentDefinitions, layoutComponent, fallback, props) =
 
     // check for native React elements
     if (isValidElement(layoutComponent)) {         
+        /* A Fragment takes no props but key and children: cloning in
+           className/ref would only trip React 19's Fragment prop check
+           (React 18 dropped them silently), so render it as is. */
+        if (layoutComponent.type === Fragment)
+            return layoutComponent;
+
         return cloneElement(layoutComponent, props);
     }
 

@@ -51,4 +51,4 @@ export interface IDateTimePickerProps {
  * precision.
  * 
  */
-export default function DateTimePicker(props: IDateTimePickerProps): JSX.Element;
+export default function DateTimePicker(props: IDateTimePickerProps): React.JSX.Element;

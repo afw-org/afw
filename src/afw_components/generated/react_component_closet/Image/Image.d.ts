@@ -22,4 +22,4 @@ export interface IImageProps {
  * This component displays an image from a variety of sources and formats.
  * 
  */
-export default function Image(props: IImageProps): JSX.Element;
+export default function Image(props: IImageProps): React.JSX.Element;

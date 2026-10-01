@@ -76,4 +76,4 @@ export interface IAutocompleteProps {
  * user the ability to enter a new value, if allowed.
  * 
  */
-export default function Autocomplete(props: IAutocompleteProps): JSX.Element;
+export default function Autocomplete(props: IAutocompleteProps): React.JSX.Element;

@@ -50,4 +50,4 @@ export interface IMessageProps {
  * user to additional information, errors or warnings.
  * 
  */
-export default function Message(props: IMessageProps): JSX.Element;
+export default function Message(props: IMessageProps): React.JSX.Element;

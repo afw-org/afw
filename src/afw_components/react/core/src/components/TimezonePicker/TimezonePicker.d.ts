@@ -29,4 +29,4 @@ export interface ITimezonePickerProps {
  * of timezones, or from a world map.
  * 
  */
-export default function TimezonePicker(props: ITimezonePickerProps): JSX.Element;
+export default function TimezonePicker(props: ITimezonePickerProps): React.JSX.Element;

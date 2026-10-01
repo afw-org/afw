@@ -33,4 +33,4 @@ export interface IMenuProps {
  * understand and select from.
  * 
  */
-export default function Menu(props: IMenuProps): JSX.Element;
+export default function Menu(props: IMenuProps): React.JSX.Element;

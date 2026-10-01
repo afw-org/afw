@@ -52,4 +52,4 @@ export interface IChoiceGroupProps {
  * radio buttons, that may be selected.
  * 
  */
-export default function ChoiceGroup(props: IChoiceGroupProps): JSX.Element;
+export default function ChoiceGroup(props: IChoiceGroupProps): React.JSX.Element;

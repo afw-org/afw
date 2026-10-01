@@ -61,4 +61,4 @@ export interface IToolbarProps {
  * to view or change data that is presented in the layout below.
  * 
  */
-export default function Toolbar(props: IToolbarProps): JSX.Element;
+export default function Toolbar(props: IToolbarProps): React.JSX.Element;

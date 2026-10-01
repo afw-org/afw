@@ -29,4 +29,4 @@ export interface ISpinnerProps {
  * to wait for processing to complete.
  * 
  */
-export default function Spinner(props: ISpinnerProps): JSX.Element;
+export default function Spinner(props: ISpinnerProps): React.JSX.Element;

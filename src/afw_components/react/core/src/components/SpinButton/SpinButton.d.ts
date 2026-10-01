@@ -58,4 +58,4 @@ export interface ISpinButtonProps {
  * decremented.
  * 
  */
-export default function SpinButton(props: ISpinButtonProps): JSX.Element;
+export default function SpinButton(props: ISpinButtonProps): React.JSX.Element;

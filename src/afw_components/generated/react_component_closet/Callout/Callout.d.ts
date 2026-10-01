@@ -47,4 +47,4 @@ export interface ICalloutProps {
  * dismissed.
  * 
  */
-export default function Callout(props: ICalloutProps): JSX.Element;
+export default function Callout(props: ICalloutProps): React.JSX.Element;

@@ -58,4 +58,4 @@ export interface IBoxProps {
  * allowing items to be added in a flexible way.
  * 
  */
-export default function Box(props: IBoxProps): JSX.Element;
+export default function Box(props: IBoxProps): React.JSX.Element;

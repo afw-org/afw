@@ -38,4 +38,4 @@ export interface ILinkProps {
  * another component within this same application.
  * 
  */
-export default function Link(props: ILinkProps): JSX.Element;
+export default function Link(props: ILinkProps): React.JSX.Element;

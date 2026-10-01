@@ -39,4 +39,4 @@ export interface IPaperProps {
  * section of data from its surrounding contents.
  * 
  */
-export default function Paper(props: IPaperProps): JSX.Element;
+export default function Paper(props: IPaperProps): React.JSX.Element;

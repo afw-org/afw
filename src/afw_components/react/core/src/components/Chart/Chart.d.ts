@@ -45,4 +45,4 @@ export interface IChartProps {
  * provided data.
  * 
  */
-export default function Chart(props: IChartProps): JSX.Element;
+export default function Chart(props: IChartProps): React.JSX.Element;

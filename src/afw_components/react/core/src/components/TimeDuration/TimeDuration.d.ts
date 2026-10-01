@@ -58,4 +58,4 @@ export interface ITimeDurationProps {
  * convenient way to select a duration of time.
  * 
  */
-export default function TimeDuration(props: ITimeDurationProps): JSX.Element;
+export default function TimeDuration(props: ITimeDurationProps): React.JSX.Element;

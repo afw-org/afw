@@ -44,4 +44,4 @@ export interface IToggleButtonsProps {
  * be toggled on or off.  They may be inclusive or exclusive.
  * 
  */
-export default function ToggleButtons(props: IToggleButtonsProps): JSX.Element;
+export default function ToggleButtons(props: IToggleButtonsProps): React.JSX.Element;

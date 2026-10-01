@@ -51,4 +51,4 @@ export interface ICheckboxProps {
  * or disable its value.
  * 
  */
-export default function Checkbox(props: ICheckboxProps): JSX.Element;
+export default function Checkbox(props: ICheckboxProps): React.JSX.Element;

@@ -45,4 +45,4 @@ export interface ITooltipProps {
  * explain to the user what they are looking at.
  * 
  */
-export default function Tooltip(props: ITooltipProps): JSX.Element;
+export default function Tooltip(props: ITooltipProps): React.JSX.Element;

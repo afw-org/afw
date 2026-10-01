@@ -52,4 +52,4 @@ export interface IToggleProps {
  * labels to interpret its meaning.
  * 
  */
-export default function Toggle(props: IToggleProps): JSX.Element;
+export default function Toggle(props: IToggleProps): React.JSX.Element;

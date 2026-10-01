@@ -72,4 +72,4 @@ export interface ISliderProps {
  * manually.
  * 
  */
-export default function Slider(props: ISliderProps): JSX.Element;
+export default function Slider(props: ISliderProps): React.JSX.Element;

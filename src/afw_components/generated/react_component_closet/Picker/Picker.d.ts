@@ -39,4 +39,4 @@ export interface IPickerProps {
  * also be later removed.
  * 
  */
-export default function Picker(props: IPickerProps): JSX.Element;
+export default function Picker(props: IPickerProps): React.JSX.Element;

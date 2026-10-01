@@ -58,4 +58,4 @@ export interface IDrawerProps {
  * action occurs, but can be optionally docked, or permanent.
  * 
  */
-export default function Drawer(props: IDrawerProps): JSX.Element;
+export default function Drawer(props: IDrawerProps): React.JSX.Element;

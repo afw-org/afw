@@ -37,4 +37,4 @@ export interface IDiffEditorProps {
  * This component displays the differences between two objects.
  * 
  */
-export default function DiffEditor(props: IDiffEditorProps): JSX.Element;
+export default function DiffEditor(props: IDiffEditorProps): React.JSX.Element;

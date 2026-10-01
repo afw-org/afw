@@ -31,4 +31,4 @@ export interface IListProps {
  * a sequential, scrollable list.
  * 
  */
-export default function List(props: IListProps): JSX.Element;
+export default function List(props: IListProps): React.JSX.Element;

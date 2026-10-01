@@ -39,4 +39,4 @@ export interface IEditableLabelProps {
  * component changes from a static label to an editable TextField component.
  * 
  */
-export default function EditableLabel(props: IEditableLabelProps): JSX.Element;
+export default function EditableLabel(props: IEditableLabelProps): React.JSX.Element;

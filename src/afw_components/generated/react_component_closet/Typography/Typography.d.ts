@@ -54,4 +54,4 @@ export interface ITypographyProps {
  * with specified color, size or style.
  * 
  */
-export default function Typography(props: ITypographyProps): JSX.Element;
+export default function Typography(props: ITypographyProps): React.JSX.Element;

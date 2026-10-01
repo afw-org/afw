@@ -56,4 +56,4 @@ export interface IResponsiveProps {
  * chunks.
  * 
  */
-export default function Responsive(props: IResponsiveProps): JSX.Element;
+export default function Responsive(props: IResponsiveProps): React.JSX.Element;

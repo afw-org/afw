@@ -61,4 +61,4 @@ export interface IDropdownProps {
  * the appropriate value from a list.
  * 
  */
-export default function Dropdown(props: IDropdownProps): JSX.Element;
+export default function Dropdown(props: IDropdownProps): React.JSX.Element;

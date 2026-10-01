@@ -846,7 +846,7 @@ def generate_typescript_declaration(fd, objectTypes, objectType, componentType, 
         fd.write(' * \n')
 
     fd.write(' */\n')
-    fd.write('export default function ' + implementationId + '(props: ' + propsInterface + '): JSX.Element;\n')
+    fd.write('export default function ' + implementationId + '(props: ' + propsInterface + '): React.JSX.Element;\n')
 
 def generate_javascript(fd, objectTypes, objectType, componentType, implementationId, copyright, layoutComponentType):  
 

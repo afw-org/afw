@@ -40,4 +40,4 @@ export interface IModalProps {
  * dismissed.
  * 
  */
-export default function Modal(props: IModalProps): JSX.Element;
+export default function Modal(props: IModalProps): React.JSX.Element;

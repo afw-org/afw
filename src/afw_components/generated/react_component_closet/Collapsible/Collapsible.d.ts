@@ -48,4 +48,4 @@ export interface ICollapsibleProps {
  * the end user with information.
  * 
  */
-export default function Collapsible(props: ICollapsibleProps): JSX.Element;
+export default function Collapsible(props: ICollapsibleProps): React.JSX.Element;

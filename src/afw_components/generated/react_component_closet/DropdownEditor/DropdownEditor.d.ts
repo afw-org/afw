@@ -60,4 +60,4 @@ export interface IDropdownEditorProps {
  * dropdown icon and selecting the appropriate value and button from a list.
  * 
  */
-export default function DropdownEditor(props: IDropdownEditorProps): JSX.Element;
+export default function DropdownEditor(props: IDropdownEditorProps): React.JSX.Element;
