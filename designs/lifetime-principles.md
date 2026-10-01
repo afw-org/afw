@@ -20,7 +20,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 **Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`, `object_hold`, `is_root`) are leftovers in the tree, not a second protocol.
 
-**Smell:** extra-hold, special case, extra bump, `is_root`, helpers around assign/GET/clone as a leak fix, **`afw_xctx_*alloc`/`free` for a value**. If a leak needs a new flag or a third way to keep a value alive, stop.
+**Smell:** extra-hold, special case, extra bump, `is_root`, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest. If a leak needs a new flag or a third way to keep a value alive, stop.
 
 ---
 
@@ -31,7 +31,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 | Where | dest `p` (evaluation `{ }` is `scope->p`) | dest `p->managed_p` |
 | Death | that pool bulk-frees | last RC: `release` every reference this value holds, `free_memory` every block it allocated (or last-release a pool it owns) |
 
-Pass dest `p`. Do not treat `xctx->p` as an implicit dest. `afw_xctx_*alloc`/`free` allocate in `xctx->p`; that matched an older world where `xctx->p` was `managed_p`. **Delete those macros** ([#443](https://github.com/afw-org/afw/issues/443)): each site gets an explicit dest `p` (managed values: `p->managed_p`). Job-scoped internals still allocate from `xctx->p` via `afw_pool_*`, not via xctx macros.
+Pass dest `p`. Do not treat `xctx->p` as an implicit dest. `afw_xctx_*alloc`/`free` used to allocate in `xctx->p` (an older world where `xctx->p` was `managed_p`). Those macros are **gone** ([#443](https://github.com/afw-org/afw/issues/443) on `fix-443-xctx-alloc-dest-p`): `afw_pool_*` with dest `p` (managed values: `p->managed_p`; env-lifetime: `env->p`; stored on the xctx: `xctx->p`). Do not reintroduce them. `set_property_as_string_from_utf8_z` stores the pointer; the bytes must outlive the object.
 
 ---
 

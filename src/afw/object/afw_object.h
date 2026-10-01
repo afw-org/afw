@@ -448,7 +448,7 @@ afw_object_set_property_as_yearMonthDuration_from_parts(
  * @brief Set an string property from utf8_z.
  * @param instance of object.
  * @param property_name of property to set.
- * @param string_z zero terminate string.
+ * @param string_z zero terminate string. Stored as-is; must outlive the object.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)

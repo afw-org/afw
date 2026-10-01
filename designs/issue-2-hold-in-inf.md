@@ -15,9 +15,9 @@ Say **let’s talk about the next *n*** (or the issue id). Story: [`lifetime-pri
 
 | n | Status | What |
 |---|--------|------|
-| 0 | **this branch** (`fix-clone-nested-leftover`) | Land the story pad on `develop`. |
-| 1 | [#443](https://github.com/afw-org/afw/issues/443) | **Next session.** Find every `afw_xctx_*alloc`/`free` site. Give each a dest `p` (managed values: `p->managed_p`). **Delete those macros.** |
-| 2 | [#445](https://github.com/afw-org/afw/issues/445) | Last RC of managed containers; drop `is_root`. Probe: unused `clone({ child: { x: 1 } })` / lab `clone_nested_*`. |
+| 0 | landed | Story pad on `develop` ([PR #447](https://github.com/afw-org/afw/pull/447)). |
+| 1 | **this branch** (`fix-443-xctx-alloc-dest-p`) | [#443](https://github.com/afw-org/afw/issues/443). Every former `afw_xctx_*alloc`/`free` site has dest `p` via `afw_pool_*`. Macros deleted. Managed wrappers RC 1. |
+| 2 | [#445](https://github.com/afw-org/afw/issues/445) | **Next session.** Last RC of managed containers; drop `is_root`. Probe: unused `clone({ child: { x: 1 } })` / lab `clone_nested_*`. |
 | 3 | [#446](https://github.com/afw-org/afw/issues/446) | Evaluate dest `p`: `script_result` must not isolate into `xctx->p`. |
 | 4 | lab **climb** | Remaining RSS climbs against the story (`test_script_*`, then whatever the lab still names). Five-question list in the story pad. |
 | 5 | sweep | Full review of `create_managed` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup`. #2 stays open. |
@@ -54,7 +54,7 @@ Hard-loop soaks remeasured **2026-09-16**; isolate sitting landed on `develop` a
 - Occupant mint from C internals ([PR #437](https://github.com/afw-org/afw/pull/437), `42321273` on `develop`): `create_managed` then `set_property_take` / `push_value_take` (`afw_value_slot_take`). Slot takes the birth hold. Object and array infs have `is_managed`. Lab per-workload `in_use` ceilings. `managed_create` pair **flat**.
 - `compile_once_eval` ([PR #439](https://github.com/afw-org/afw/pull/439)): `evaluate` of a `compiled_value` in a loop. `clone_managed` of an already-managed `script_result` isolate was leftover RC (~50–65 MiB/s). Copy unit-backed literals only; already-managed keeps the store reference, then pin dest `p`. 15 s 2026-10-01: RSS 0, `in_use` 0. Full lab suite passed.
 - Adaptive `clone()` leftover RC: register last-release of the **execute result** only; take nested (parent holds one reference). Do not `afw_value_clone` unmanaged into `x->p`. Drop `is_root` ([#445](https://github.com/afw-org/afw/issues/445)). Managed object last-release `release`s held values and `free_memory`s property entries. 15 s 2026-10-01: whole-container `clone_*` **flat**. `clone_nested_*` still **climbs** (last RC of nested object properties). `test_script_*` remains **climb**.
-- Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). Tree vs that story: [#443](https://github.com/afw-org/afw/issues/443) (`afw_xctx_*alloc` for values), [#445](https://github.com/afw-org/afw/issues/445) (last RC of managed containers; drop `is_root`), [#446](https://github.com/afw-org/afw/issues/446) (`script_result` dest `p`).
+- Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). Tree vs that story: [#443](https://github.com/afw-org/afw/issues/443) (`afw_xctx_*alloc` gone on this branch), [#445](https://github.com/afw-org/afw/issues/445) (last RC of managed containers; drop `is_root`), [#446](https://github.com/afw-org/afw/issues/446) (`script_result` dest `p`).
 
 Complementary, not this close bar: request caps / `process::` telemetry ([#329](https://github.com/afw-org/afw/issues/329) / [PR #330](https://github.com/afw-org/afw/pull/330)); retrieve `maxObjects` ([#49](https://github.com/afw-org/afw/issues/49)); progressive release ([#127](https://github.com/afw-org/afw/issues/127)); qualifier snapshots ([#9](https://github.com/afw-org/afw/issues/9)).
 
