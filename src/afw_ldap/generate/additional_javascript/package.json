@@ -11,7 +11,7 @@
   "typings": "build/esm/index.d.ts",  
   "dependencies": {},
   "devDependencies": {    
-    "@swc/cli": "^0.1.51",
+    "@swc/cli": "^0.8.1",
     "@swc/core": "^1.2.103",
     "cross-env": "^7.0.3",
     "rimraf": "^3.0.0",
@@ -21,8 +21,8 @@
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm && npm run build:types",    
     "build-p": "npm-run-all --parallel --aggregate-output build:cjs build:esm && npm run build:types",    
-    "build:lib": "rimraf build/cjs && cross-env NODE_ENV=production swc src -d build/cjs -s --config-file ../../../../.swcrc",    
-    "build:esm": "rimraf build/esm && cross-env NODE_ENV=production swc src -d build/esm -s -C module.type=es6 --config-file ../../../../.swcrc",
+    "build:lib": "rimraf build/cjs && cross-env NODE_ENV=production swc src -d build/cjs --strip-leading-paths -s --config-file ../../../../.swcrc",    
+    "build:esm": "rimraf build/esm && cross-env NODE_ENV=production swc src -d build/esm --strip-leading-paths -s -C module.type=es6 --config-file ../../../../.swcrc",
     "build:types": "tsc --build --listEmittedFiles tsconfig.json"
   }
 }
