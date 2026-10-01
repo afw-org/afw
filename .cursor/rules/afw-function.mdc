@@ -40,6 +40,8 @@ When the result must live until the current scope ends (or be assignable):
 | `pop` / `shift` occupant | `pop_value` / `shift_value` extra-holds the occupant on the current scope. Return it (or undefined). Do **not** `get_assignable_for_scope_lifetime` on the occupant (extra bump on top of the transfer). |
 | Script `return` onto the caller | `afw_pool_scope_get_assignable_for_p_lifetime` on the **caller** scope (same bump; result may be unmanaged). |
 
+`create_managed` then `set_property_take` / `push_value_take` (`afw_value_slot_take`): one managed value, slot takes the birth hold. No `get_assignable` bump. Helpers use `inf->is_managed`. Extra-hold is only the delayed create RC for a value returned to script.
+
 `afw_pool_scope_get_assignable_for_scope_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_pool_scope_set_last_result_for_lifetime`. Headers: `afw_pool_scope_internal.h`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md). Lab pairs in `src/afw/tests-extra/issue-2/01-rss-hard-loops/` (`splice_assign` / `splice_unassigned`, `managed_create_*`, `clone_*`). Splice **source** `remove_value_by_index` last-releases the managed occupant (not a wrapper-only unlink).
 
 ## Optional defaults and returned mutables

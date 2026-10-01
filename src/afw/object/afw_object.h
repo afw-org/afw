@@ -280,6 +280,24 @@ afw_object_set_property(
 
 
 /**
+ * @brief Set a property; slot takes an already-managed value.
+ * @param instance managed object.
+ * @param property_name of property to set.
+ * @param value managed or permanent (NULL is undefined).
+ * @param xctx of caller.
+ *
+ * Requires `afw_object_is_managed`. No get_assignable of value.
+ * Caller does not release value after.
+ */
+AFW_DECLARE(void)
+afw_object_set_property_take(
+    const afw_object_t *instance,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Remove a property from an object.
  * @param instance of object.
  * @param property_name of property to remove.
@@ -1013,6 +1031,13 @@ afw_object_is_memory_wrapper(const afw_object_t *object);
  */
 AFW_DECLARE(afw_boolean_t)
 afw_object_is_memory_managed(const afw_object_t *object);
+
+
+/**
+ * @brief True if this object's inf is the managed world (`inf->is_managed`).
+ */
+#define afw_object_is_managed(_object) \
+    ((_object) && (_object)->inf->is_managed)
 
 
 /**

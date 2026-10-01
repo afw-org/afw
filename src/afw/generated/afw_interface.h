@@ -3749,6 +3749,15 @@ struct afw_array_inf_s {
     afw_array_get_next_value_t get_next_value;
     afw_array_initialize_iterator_t initialize_iterator;
     afw_array_get_setter_t get_setter;
+
+    /**
+     * True if this implementation is the managed world: instance RC in
+     * p->managed_p, slot_store of occupants. False for pool-lifetime
+     * memory, runtime, adapter, and const. Occupant create-then-store
+     * helpers check this flag and release the create RC after store.
+     * Omitted in an inf initializer is false.
+     */
+    afw_boolean_t is_managed;
 };
 
 /**
@@ -4530,6 +4539,15 @@ struct afw_object_inf_s {
     afw_object_get_next_property_meta_t get_next_property_meta;
     afw_object_has_property_t has_property;
     afw_object_get_setter_t get_setter;
+
+    /**
+     * True if this implementation is the managed world: instance RC in
+     * p->managed_p, slot_store of occupants. False for pool-lifetime
+     * memory, runtime, adapter, and const. Occupant create-then-store
+     * helpers check this flag and release the create RC after store.
+     * Omitted in an inf initializer is false.
+     */
+    afw_boolean_t is_managed;
 };
 
 /**

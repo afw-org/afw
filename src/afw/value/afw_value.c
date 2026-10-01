@@ -146,6 +146,31 @@ afw_value_slot_store(
 }
 
 
+/* Store already-managed; slot takes the caller's hold. */
+AFW_DEFINE(void)
+afw_value_slot_take(
+    const afw_value_t **slot,
+    const afw_value_t *incoming,
+    afw_xctx_t *xctx)
+{
+    if (!incoming) {
+        incoming = afw_value_undefined;
+    }
+    if (*slot == incoming) {
+        return;
+    }
+    if (incoming->inf && incoming->inf->optional_release &&
+        !incoming->inf->is_managed)
+    {
+        AFW_THROW_ERROR_Z(general,
+            "afw_value_slot_take requires a managed or permanent value",
+            xctx);
+    }
+    afw_value_release(*slot, xctx);
+    *slot = incoming;
+}
+
+
 static const afw_value_void_t
 impl_value_void = {
     {&afw_value_permanent_void_inf},

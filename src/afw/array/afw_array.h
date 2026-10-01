@@ -121,6 +121,13 @@ AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory_managed(const afw_array_t *array);
 
 
+/**
+ * @brief True if this array's inf is the managed world (`inf->is_managed`).
+ */
+#define afw_array_is_managed(_array) \
+    ((_array) && (_array)->inf->is_managed)
+
+
 
 /**
  * @brief Create a memory array that wraps another array (mutable face).
@@ -161,6 +168,24 @@ afw_array_create_wrapper_with_options(
 #define afw_array_create_wrapper_unmanaged(_wrapped, _p, _xctx) \
     afw_array_create_wrapper_with_options( \
         0, _wrapped, _p, _xctx)
+
+
+/**
+ * @brief Managed wrapper over another array (p->managed_p, RC 1).
+ * @param wrapped base. Required.
+ * @param p dest pool (uses p->managed_p).
+ * @param xctx of caller.
+ * @return managed array (reference count 1), or wrapped if already
+ *     this managed implementation (get_reference).
+ *
+ * Uses the managed array inf (`is_managed`). Occupants are
+ * slot_store'd. Unmanaged create_wrapper_* stays on the unmanaged inf.
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_wrapper_managed(
+    const afw_array_t *wrapped,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -614,6 +639,22 @@ afw_array_determine_data_type_and_set_immutable(
  */
 AFW_DECLARE(void)
 afw_array_push_value(
+    const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Append an already-managed value; slot takes the hold.
+ * @param instance managed array.
+ * @param value managed or permanent.
+ * @param xctx of caller.
+ *
+ * Requires `afw_array_is_managed`. No get_assignable of value.
+ * Caller does not release value after.
+ */
+AFW_DECLARE(void)
+afw_array_push_value_take(
     const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx);

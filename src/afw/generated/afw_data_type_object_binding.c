@@ -319,14 +319,14 @@ afw_object_set_property_as_object_internal(
 {
     const afw_value_t *v;
 
-    if (afw_object_is_memory_managed(object) ||
-        afw_object_is_memory_wrapper(object)) {
-        v = afw_value_object_create(internal, xctx->p, xctx);
+    if (afw_object_is_managed(object)) {
+        v = afw_value_object_create_managed(internal, object->p, xctx);
+        afw_object_set_property_take(object, property_name, v, xctx);
     }
     else {
         v = afw_value_object_create(internal, object->p, xctx);
+        afw_object_set_property(object, property_name, v, xctx);
     }
-    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated object value. */
@@ -629,7 +629,7 @@ impl_afw_value_get_assignable_value(
     const afw_object_t *obj;
 
     obj = ((const afw_value_object_t *)instance)->internal;
-    if (afw_object_is_memory_managed(obj)) {
+    if (afw_object_is_managed(obj)) {
         afw_object_get_reference(obj, xctx);
         return obj->value;
     }
@@ -654,7 +654,7 @@ impl_afw_value_permanent_get_assignable_value(
     if (!obj) {
         return instance;
     }
-    if (afw_object_is_memory_managed(obj)) {
+    if (afw_object_is_managed(obj)) {
         afw_object_get_reference(obj, xctx);
         return obj->value;
     }
@@ -867,14 +867,14 @@ afw_array_of_object_add_internal(
 {
     const afw_value_t *v;
 
-    if (afw_array_is_memory_managed(instance) ||
-        afw_array_is_memory_wrapper(instance)) {
-        v = afw_value_object_create(value, xctx->p, xctx);
+    if (afw_array_is_managed(instance)) {
+        v = afw_value_object_create_managed(value, instance->p, xctx);
+        afw_array_push_value_take(instance, v, xctx);
     }
     else {
         v = afw_value_object_create(value, instance->p, xctx);
+        afw_array_push_value(instance, v, xctx);
     }
-    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a object value from array of object. */

@@ -1337,6 +1337,23 @@ afw_value_slot_store(
 
 
 /**
+ * @brief Store an already-managed (or permanent) value; slot takes the hold.
+ * @param slot address of the stored pointer.
+ * @param incoming managed or permanent (NULL becomes undefined).
+ * @param xctx of caller.
+ *
+ * No get_assignable. Unmanaged throws. Caller does not release after.
+ * Same pointer is a no-op.
+ */
+AFW_DECLARE(void)
+afw_value_slot_take(
+    const afw_value_t **slot,
+    const afw_value_t *incoming,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Get the optimized version of this value.
  * @param value to optimize.
  * @param p to use (currently unused by implementation).

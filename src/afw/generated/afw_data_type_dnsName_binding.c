@@ -312,14 +312,14 @@ afw_object_set_property_as_dnsName_internal(
 {
     const afw_value_t *v;
 
-    if (afw_object_is_memory_managed(object) ||
-        afw_object_is_memory_wrapper(object)) {
+    if (afw_object_is_managed(object)) {
         v = afw_value_dnsName_create_managed(internal, object->p, xctx);
+        afw_object_set_property_take(object, property_name, v, xctx);
     }
     else {
         v = afw_value_dnsName_create(internal, object->p, xctx);
+        afw_object_set_property(object, property_name, v, xctx);
     }
-    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated dnsName value. */
@@ -865,14 +865,14 @@ afw_array_of_dnsName_add_internal(
 {
     const afw_value_t *v;
 
-    if (afw_array_is_memory_managed(instance) ||
-        afw_array_is_memory_wrapper(instance)) {
+    if (afw_array_is_managed(instance)) {
         v = afw_value_dnsName_create_managed(value, instance->p, xctx);
+        afw_array_push_value_take(instance, v, xctx);
     }
     else {
         v = afw_value_dnsName_create(value, instance->p, xctx);
+        afw_array_push_value(instance, v, xctx);
     }
-    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a dnsName value from array of dnsName. */
