@@ -67,8 +67,8 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 
 | class | `in_use` fail | examples |
 |-------|----------------|----------|
-| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing |
-| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | `clone_*`, `test_script_*` |
+| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_assign` / `clone_unassigned` |
+| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | `clone_nested_*`, `test_script_*` |
 | **grow** | must grow ≥ 256 KiB/s | `array_append` |
 
 60 s is the night / finish-pass window (`AFW_ISSUE2_DURATION_S=60`).
@@ -110,6 +110,7 @@ Assigned / unassigned pairs (same call, two leak classes):
 | `splice_assign` | `splice_unassigned` (last stmt `add(0, 0)`) |
 | `managed_create_assign` | `managed_create_unassigned` (last stmt `add(0, 0)`) |
 | `clone_assign` | `clone_unassigned` (last stmt `add(0, 0)`) |
+| `clone_nested_assign` | `clone_nested_unassigned` (last stmt `add(0, 0)`) |
 | `test_script_assign` | `test_script_unassigned` (last stmt `add(0, 0)`) |
 | `compile_listing_assign` | `compile_listing_unassigned` (last stmt `add(0, 0)`) |
 
@@ -144,8 +145,10 @@ scalar on purpose.
 | `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28). 60 s: ~0.40 MiB/s RSS / ~0.04 MiB/s in_use | — |
 | `managed_create_assign` | extra-hold create_managed then assign (reverse/slice/filter/map/sort/bag/intersection/split/union/keys/values/entries) | **under bar** (2026-09-28). 60 s ~0.16 MiB/s RSS / ~0.09 MiB/s in_use; 180 s slope fell to ~0.09 / ~0.05 | — |
 | `managed_create_unassigned` | same calls, never assigned (last stmt `add()`) | **under bar**. 15 s 2026-09-29: ~0.30 MiB/s RSS / ~0.28 MiB/s in_use. 60 s 2026-09-28: ~0.17 / ~0.14 | — |
-| `clone_assign` | `clone` array/object then assign | **under bar** (2026-09-29, 15 s) | — |
-| `clone_unassigned` | `clone` never assigned (last stmt `add()`) | **under bar** (2026-09-29, 15 s): ~0.40 MiB/s RSS / ~0.35 MiB/s in_use | ~3.3 MiB/s in_use with `afw_value_clone` unmanaged |
+| `clone_assign` | `clone` array/object then assign | **flat / flat** (2026-10-01, 15 s: `in_use` 0; 60 s RSS wander ~0.21 MiB/s, `in_use` 0). Was **climb** ~0.76 MiB/s | leftover nested isolate + property entries |
+| `clone_unassigned` | `clone` never assigned (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s and 60 s: RSS 0 / `in_use` 0). Was **climb** ~0.37 MiB/s | ~3.3 MiB/s in_use with `afw_value_clone` unmanaged |
+| `clone_nested_assign` | `v = clone(o).child` / `e = clone(o).arr` then mutate | **climb** (2026-10-01, 15 s): ~0.38 MiB/s RSS / ~0.28 MiB/s in_use | — |
+| `clone_nested_unassigned` | `discard(clone(o).child)` never assigned (last stmt `add()`) | **climb** (2026-10-01, 15 s): ~0.28 MiB/s RSS / ~0.23 MiB/s in_use | — |
 | `test_script_assign` | `test_script` clone extra-hold then assign | **under bar** (2026-09-29, 15 s): ~0.55 MiB/s RSS / ~0.56 MiB/s in_use | — |
 | `test_script_unassigned` | `test_script` clone extra-hold (last stmt `add()`) | **under bar** (2026-09-29, 15 s): ~0.70 MiB/s RSS / ~0.71 MiB/s in_use | — |
 | `compile_listing_assign` | compile listing assigned | **flat / flat** (2026-09-29, 15 s) | — |
@@ -196,8 +199,13 @@ loops whose result is managed end with `add(0, 0)` so deactivate does not
 (reverse, slice, filter, map, sort, bag, intersection, split, union, keys,
 values, entries). `test_script_assign` / `test_script_unassigned` are the same
 extra-hold on `create_managed_clone` of the result object.
-`clone_assign` / `clone_unassigned` always-copy create_managed then extra-hold
-the container (not `afw_value_clone`; nested scalars get_assignable).
+`clone_assign` / `clone_unassigned` always-copy create_managed, extra-hold the
+root only, take nested (not `afw_value_clone` into `x->p`; nested scalars
+`get_assignable` of the source). Managed object last-release free_memorys
+property entries and the name index. `clone_nested_assign` /
+`clone_nested_unassigned` take a nested object/array occupant of a clone
+(`clone(o).child`, `clone(o).arr`, `clone(o.child)`). Whole-container
+`clone_*` is **flat**; this nested-occupant pair still **climbs**.
 `compile_listing_assign` / `compile_listing_unassigned` last-release the unit
 after the dump; do **not** extra-hold `compile()` of a unit (`evaluate(compile())`
 / closures still need that heap). `readln_loop`

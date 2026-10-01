@@ -98,14 +98,20 @@ WORKLOADS = [
           "(reverse/slice/filter/map/sort/bag/keys/entries/…)"),
     _flat("managed_create_unassigned",
           "create_managed extra-hold never assigned (last stmt add())"),
-    _climb("clone_assign",
-           "clone array/object then assign "
-           "(create_managed extra-hold, slot_store)",
-           1.20),
-    _climb("clone_unassigned",
-           "clone array/object never assigned "
-           "(last stmt add() so not script_result)",
-           0.80),
+    _flat("clone_assign",
+          "clone array/object then assign "
+          "(create_managed extra-hold root, take nested)"),
+    _flat("clone_unassigned",
+          "clone array/object never assigned "
+          "(last stmt add() so not script_result)"),
+    _climb("clone_nested_assign",
+           "clone nested object/array then assign and mutate "
+           "(clone(o).child / clone(o).arr)",
+           0.60),
+    _climb("clone_nested_unassigned",
+           "clone nested object/array never assigned "
+           "(discard(clone(o).child); last stmt add())",
+           0.50),
     _climb("test_script_assign",
            "test_script create_managed_clone extra-hold then assign",
            1.20),
