@@ -783,8 +783,9 @@ afw_object_create_with_options(
  * Slot protocol: a new property name is get_assignable_value once
  * (the name does not change later). The value is slot_store on set
  * and replace. Last object release releases remaining names and
- * values, free_memorys the property entries and name index, then
- * the header. Unmanaged creates are unchanged.
+ * values, free_memorys the property entries, name index, and
+ * copy_meta utf8 (`id` / uri / object_type_uri), then the header.
+ * Unmanaged creates are unchanged.
  *
  * Starts at RC 1. Extra-hold a new object with
  * `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in

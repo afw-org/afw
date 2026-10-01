@@ -104,14 +104,12 @@ WORKLOADS = [
     _flat("clone_unassigned",
           "clone array/object never assigned "
           "(last stmt add() so not script_result)"),
-    _climb("clone_nested_assign",
-           "clone nested object/array then assign and mutate "
-           "(clone(o).child / clone(o).arr)",
-           0.60),
-    _climb("clone_nested_unassigned",
-           "clone nested object/array never assigned "
-           "(discard(clone(o).child); last stmt add())",
-           0.50),
+    _flat("clone_nested_assign",
+          "clone nested object/array then assign and mutate "
+          "(clone(o).child / clone(o).arr)"),
+    _flat("clone_nested_unassigned",
+          "clone nested object/array never assigned "
+          "(discard(clone(o).child); last stmt add())"),
     _climb("test_script_assign",
            "test_script create_managed_clone extra-hold then assign",
            1.20),
