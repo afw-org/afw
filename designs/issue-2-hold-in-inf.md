@@ -7,7 +7,7 @@
 
 **On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `p->managed_p`) **[#277](https://github.com/afw-org/afw/issues/277) closed** (PR **#278**) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone. Dest `p` on `get_assignable` / `slot_store` / `create_managed` / evaluate pin: [PR #355](https://github.com/afw-org/afw/pull/355).
 
-**This pad is the rails for inf methods** (`get_reference` / `get_assignable_value`, faces, MUST NOT). **Two worlds, create names, last_return slot:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). Pool doors: [`remaining-apr.md`](remaining-apr.md). The 2026-08-21 story is [`issue-2-lifetime.md`](issue-2-lifetime.md) (history — do not copy wording). If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**.
+**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md) (two worlds, dest `p`, caller verbs, birth, register last-release on the caller pool, containers). This pad is the rails for inf methods (`get_reference` / `get_assignable_value`, faces, MUST NOT). **Two worlds, create names, last_return slot:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). Pool doors: [`remaining-apr.md`](remaining-apr.md). The 2026-08-21 story is [`issue-2-lifetime.md`](issue-2-lifetime.md) (history — do not copy wording). If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**. Words like extra-hold and special case: see the smell section of the lifetime story.
 
 ---
 
@@ -66,7 +66,7 @@ C `clone_unmanaged` / `clone_managed` / dropping `clone()` and the `clone_or_ref
 | Kind | Open |
 |------|------|
 | **This scoreboard** | This section |
-| **Live maps** | This pad (rails); [`experiment-brainstorm.md`](experiment-brainstorm.md); [`experiment-eval-p.md`](experiment-eval-p.md); [`remaining-apr.md`](remaining-apr.md) |
+| **Live maps** | **Story** [`lifetime-principles.md`](lifetime-principles.md); this pad (rails); [`experiment-brainstorm.md`](experiment-brainstorm.md); [`experiment-eval-p.md`](experiment-eval-p.md); [`remaining-apr.md`](remaining-apr.md) |
 | **Lab** | [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — table in `01-rss-hard-loops/README.md` (pairs 2026-09-29) |
 | **History — do not copy wording** | [`issue-2-lifetime.md`](issue-2-lifetime.md), [`issue-2-hold-in-inf-plan.md`](issue-2-hold-in-inf-plan.md), [`memory-management.md`](memory-management.md) |
 | **Code / tests** | Ground truth. When they disagree with a pad, fix the pad. |

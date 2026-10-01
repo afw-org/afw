@@ -3,7 +3,7 @@
 **Audience:** maintainers / assistants. **Not** handbook.  
 **GitHub:** [#277](https://github.com/afw-org/afw/issues/277) (part of [#2](https://github.com/afw-org/afw/issues/2)). Last_return contract: [#62](https://github.com/afw-org/afw/issues/62) / `src/afw/tests/language/script/script_result.as`.
 
-This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **closed**, PR **#278**). Rails for holds remain [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md). GitHub #277’s issue body still says eval `p` is caller `p` — that sentence is stale; this pad and the eval-p pad win.
+This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **closed**, PR **#278**). Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). Rails for inf methods remain [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md). GitHub #277’s issue body still says eval `p` is caller `p` — that sentence is stale; this pad and the eval-p pad win.
 
 ## Two worlds
 
@@ -17,7 +17,7 @@ This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **clo
 - Unmanaged scalar `get_assignable_value`: **promote** (`create_managed` in dest `p->managed_p`, RC 1).
 - Compile-unit scalar literals (integer / double / string): `compile_literal_*` inf — **as-is** in slots; `clone_*` **copies**. `true` / `null` / `undefined` / `0` / `1` / `""` stay process permanents. Eval temps stay unmanaged-promote. Compiler-only `afw_compile_literal_<dt>_create()`.
 - **#280 landed:** lexer mints token payloads as values; parse-word strings (`name == value`, identifier-like) register as environment registry type `string_literal` (key-only, `const afw_value_string_t *`). Say **environment registry**, not “catalog”. `get_string_literal` hits that first. Keywords pointer-compare interned `afw_v_*`. Symbol names, script function `param->name`, loop labels, type/interface declaration names are interned string values.
-- `afw_pool_release_value_at_cleanup`: extra pin that is not a slot.
+- `afw_pool_release_value_at_cleanup`: register last-release of a managed hold on dest `p` when the caller expected a pool temp. Not a slot. Story: [`lifetime-principles.md`](lifetime-principles.md).
 
 Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`). `concat` is `hex[i1]+hex[i2]+hex[i3]+hex[i4]`. Wall time of `afw -s script` (median of 3) on `develop` `52d8efe3` after `--cdev` (post-#287):
 
@@ -52,7 +52,7 @@ Options: `0` = live in `p`; `new_p` and `cede_p` are the two flags. All three na
 
 Wrappers: `create_wrapper_unmanaged`, `_unmanaged_new_p`, `_unmanaged_cede_p`.
 
-Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (dest `p`, uses `p->managed_p`). Adaptive `clone()` of object/array is always-copy `create_managed` + extra-hold of the container (not those C helpers; [#424](https://github.com/afw-org/afw/issues/424)).
+Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (dest `p`, uses `p->managed_p`). Adaptive `clone()` of object/array is always-copy `create_managed`, take nested, register last-release of the returned root on dest `p` (not those C helpers; [#424](https://github.com/afw-org/afw/issues/424)). Story: [`lifetime-principles.md`](lifetime-principles.md).
 
 **Value `get_reference` / `release`:** only permanent (as-is) and `memory_managed` (bump / last-release). Unmanaged object/array **value** infs throw. Isolate with `get_assignable_value`. Do not stamp `afw_value_managed_*_inf` on a pool-world header.
 
@@ -79,7 +79,7 @@ Separate inf (`memory_managed`), alloc in dest `p->managed_p`, RC 1. Slots: new 
 - Adapter clones (held).
 - Clone-of-unmanaged object meta.
 - Functions/closures as an eval result still alias the unit.
-- Adaptive `clone()` of object/array is always-copy `create_managed`. C clone helpers are [#424](https://github.com/afw-org/afw/issues/424).
+- Adaptive `clone()` of object/array is always-copy `create_managed`, take nested, register last-release of the returned root on dest `p`. C clone helpers are [#424](https://github.com/afw-org/afw/issues/424).
 - `qualifier("current")` snapshot list tail.
 - `double_free_throws` runs ([#408](https://github.com/afw-org/afw/issues/408)): heap free checks the block's free bit first. Tracker-returned blocks do not coalesce yet ([#415](https://github.com/afw-org/afw/issues/415)).
 - Heap free-list mixed sizes: **not** the remaining eval win. After #287 the 14k concat + `n` nest is ~0.05s (timings above). Revisit only if a new pattern shows first-fit walking a growing list.
