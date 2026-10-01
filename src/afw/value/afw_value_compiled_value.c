@@ -312,15 +312,20 @@ impl_afw_value_optional_evaluate(
             const afw_data_type_t *dt;
 
             /*
-             * Compile-literal / unit-backed evaluated values have no
-             * optional_release and still live in the unit. Isolate as
-             * managed in dest p so eval<script> can last-release the
-             * unit. Already-managed is a bump. Then pin on dest p.
+             * Unit-backed compile-literals have no optional_release
+             * and still live in the unit. Copy them managed into
+             * dest p so eval<script> can last-release the unit.
+             * Already-managed was isolated by script_result_set /
+             * create_managed: that store is the reference. Do not
+             * bump. Pin on dest p (cleanup takes the store
+             * reference when this result is script_result).
              */
             dt = result->inf
                 ? result->inf->is_evaluated_of_data_type
                 : NULL;
-            if (dt && dt->clone_value_managed) {
+            if (dt && dt->clone_value_managed &&
+                !result->inf->is_managed)
+            {
                 result = afw_value_clone_managed(result, p, xctx);
             }
             afw_pool_release_value_at_cleanup(result, p, xctx);

@@ -136,7 +136,7 @@ scalar on purpose.
 | `function_return` | `i = f()` inside `{ }` | **flat / flat** | **~1.5 MiB/s both** (under bar) |
 | `try_catch` | throw/catch each iter | **flat / flat** (2026-09-17) | RSS wander / ~0.25 MiB/s in_use |
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
-| `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
+| `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** (2026-10-01, 15 s on `fix-compile-once-eval`: RSS 0 / `in_use` 0 after skipping `clone_managed` bump of already-managed). Was ~50–65 MiB/s both on `develop` `42321273` | **flat / flat** |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
 | `splice_assign` | splice copy-out then assign | **flat / flat** (2026-09-29, 15 s after managed remove). Was **under bar** 2026-09-28 (~0.42 / ~0.21); leftover RC ~185 MiB/s before extra-hold-only | — |
 | `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s). Was ~2.58 / ~2.59 until managed `remove_value_by_index` last-released the source slot | — |
