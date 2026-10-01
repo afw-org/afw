@@ -54,73 +54,63 @@ Last RC is not “free the header.” A managed string’s one block may be head
 An object or array **instance** has an `afw_value` as an instance variable (the dual face). Script sees values.
 
 - Managed instance: value `get_reference` / `release` bump and last-release **the instance**. Last RC of the instance last-releases occupants, names, and every block that instance allocated.
-- Unmanaged instance: value `get_reference` / `release` **throw**. Isolate with `get_assignable_value`. Instance `get_reference` / `release` still pin `object->p` / `array->p`. The instance still dies with its pool if nothing else references it.
+- Unmanaged instance: value `get_reference` / `release` **throw**. Isolate with `get_assignable_value`. Instance `get_reference` / `release` still reference `object->p` / `array->p`. The instance still dies with its pool if nothing else references it.
 
 A heap wrapper around an instance is itself a managed value. Last RC of the wrapper last-releases the instance **and** `free_memory`s the wrapper. (The tree still fails this for `afw_value_object_create_managed`: wrapper RC starts at 0 and last-release at 0 returns without `free_memory`.)
 
 ---
 
-## What a caller does
+## Return contract
 
-| Intent | Call |
-|--------|------|
-| Read a slot | the pointer |
-| Keep this value alive | `get_reference` (matching `release`). `xctx` only. |
-| Fill a slot (assign, param, overlay, a result that must move to another scope) | `get_assignable_value` / `slot_store`, dest `p` |
+Every C function that returns an `afw_value_t *` (or a managed object/array instance) states one of:
 
-`get_assignable_value` exists so a value can move to a different scope with RC correct. Managed bump self. Unmanaged scalar promote into `p->managed_p`. Unmanaged object/array: already-managed dual-face bump; generic memory not a wrapper → `clone_managed`; else managed look-through wrapper. Permanent scalar as-is. Graph infs evaluate first.
-
-`slot_store` = `get_assignable_value(incoming)` then `release` the previous occupant then store. Same-pointer skip stays.
-
----
-
-## Birth
-
-`create_managed` starts at RC 1. The creator owns that hold.
-
-- **`slot_take`** (`set_property_take` / `push_value_take`): the slot takes the birth hold. No `get_assignable` bump.
-- **`slot_store`**: isolate incoming, last-release the previous occupant, store.
-- `get_assignable_value` of a value you **just** `create_managed` is a second own. Scope cleanup of that second own leaves RC 1 (splice **#405**).
-
-Two jobs, two calls:
-
-1. You created it (`create_managed`, RC 1): you own the birth.
-2. You did not create it: `get_assignable_value` (bump or promote) if you need a hold you can give away.
-
-Do not mix them (`get_assignable_value` of a fresh create is a second own).
-
----
-
-## Return contract: does the caller release?
-
-Do not describe a return as managed or unmanaged. That is the **inf** of the value, not what the caller does.
-
-Every C function that returns an `afw_value_t *` (or a managed object/array instance) has one of two contracts:
-
-| Contract | Meaning | Typical callers |
+| Contract | Meaning | Examples |
 |---|---|---|
 | **Caller does not release** | Caller must not `release` the result. | Adaptive `execute_*`, `evaluate()`, unmanaged `create_*` |
-| **Caller releases** | Caller owns RC 1 and must `release`. | `create_managed`, `compile()` of a unit |
+| **Caller releases** | Caller must `release` the result. That one `release` last-releases everything the value obtained. | `create_managed`, `compile()` of a unit |
 
-Adaptive built-ins are **caller does not release**. That is why `scope->p` exists.
+Do not describe the contract as managed, unmanaged, or temp. That is inf, not what the caller does. Adaptive built-ins are **caller does not release**.
 
-**Inf** (how the value is built) is separate:
+What the function does **inside** is its business. It must deal with every lifetime it starts so the return matches the contract.
 
-- Unmanaged lives in a `p` and dies with that `p`. No RC.
-- Managed needs RC at least 1. Last RC last-releases what it obtained and `free_memory`s what it allocated.
+---
 
-**How the callee honors the contract**
+## How a function honors the contract
 
-- **Caller does not release** + unmanaged: create in dest `p`. Done.
-- **Caller does not release** + managed: return managed **and** register last-release of **that one hold** on dest `p` (`afw_pool_release_value_at_cleanup`). The caller never `release`s. A later `get_assignable_value` (assign, param) can add a reference so the value outlives that registered last-release.
-- **Caller releases** + managed: return managed at RC 1. Do not register last-release. The caller `release`s.
-- **Caller releases** + unmanaged: do not do this. Unmanaged has no `release`.
+**Inf** (how a value is built): unmanaged lives in a `p` and dies with it (no RC). Managed needs RC at least 1.
 
-The register lives where the managed value is created and returned. Nested occupants stay on the container’s last-RC walk. Do not register last-release on GET of an occupant the container still owns. Do not register twice.
+Standard patterns:
 
-**Evaluate of a compiled value** is **caller does not release**, dest `p` = the `p` passed to evaluate. If the result is managed, register last-release on that dest `p`. Do not isolate the result into `xctx->p`. `xctx->p` is the job heap for internals (evaluation stack, and similar). `xctx->script_result` is an internal slot for nested evaluate: save, restore, unwind. Nested evaluate deals with that slot as the stack unwinds. It is not the dest for the value the caller of evaluate receives.
+| Contract | Pattern |
+|---|---|
+| Caller does not release | Unmanaged in dest `p`. |
+| Caller does not release | Managed, and register last-release of **that one hold** on dest `p` (`afw_pool_release_value_at_cleanup`). |
+| Caller releases | Managed at RC 1. Do not register last-release. |
+| Caller releases | Do not return unmanaged. |
 
-The tree still `slot_store`s `script_result` with dest `xctx->p`. That is a hole against this rule, not a second dest.
+If the function calls **`get_assignable_value`** or **`create_managed`**, it now owns a value it must release. It honors that **inside** the function by one of:
+
+1. Returning it to a caller that **releases**.
+2. `release` in the function.
+3. Returning it to a caller that **does not release**, and registering last-release of that one hold on dest `p`.
+
+Do not register last-release on GET of an occupant the container still owns. Do not register nested children of a value already being returned. Do not register twice. Nested occupants are the container’s last-RC walk.
+
+**Evaluate of a compiled value** is caller does not release, dest `p` = the `p` passed to evaluate. If the result is managed, register last-release on that dest `p`. Do not isolate the result into `xctx->p`. `xctx->p` is the job heap for internals (evaluation stack, and similar). `xctx->script_result` is an internal slot for nested evaluate: save, restore, unwind. It is not the dest for the value evaluate returns.
+
+The tree still `slot_store`s `script_result` with dest `xctx->p`. That is a hole against this rule.
+
+---
+
+## `get_assignable_value`
+
+Always returns a value the caller of **this method** must release. That result’s `get_reference` / `get_assignable_value` / `release` work for moving it to other `p` / `scope->p`. How the inf does that is up to the implementation.
+
+Typical (not required): managed returns `get_reference` of self; unmanaged creates a managed value (often a clone) in dest `p->managed_p`; permanent scalar as-is (`release` is a no-op). Graph infs evaluate first, then `get_assignable_value` of the result.
+
+Read a slot: the pointer. Keep a value alive: `get_reference` (matching `release`). `slot_store` = `get_assignable_value(incoming)` then `release` the previous occupant then store. `slot_take` takes a must-release hold you already have (no `get_assignable_value`).
+
+`create_managed` is already must-release (RC 1). `get_assignable_value` of it is a **second** must-release. Handle both, or leftover RC 1 (splice **#405**).
 
 ---
 
@@ -140,7 +130,7 @@ A managed **container** (object, array, and anything later that holds children) 
 
 GET of an occupant is **identity** while the container still holds it. Keeping that occupant after the container dies is `get_assignable_value` into the dest slot. `pop` / `shift` transfer: the array no longer owns the occupant. Contract is caller does not release; inf is managed; register last-release of that hold on dest `p`. `remove` last-releases the occupant the array still owned.
 
-**`compiled_value`** owns a **pool**. Script / template / test_script compile returns it managed (RC 1). Last RC last-releases that compile pool; everything allocated in the unit dies with the pool. Compile does not register the unit as a temp. Evaluate does not last-release the unit. Evaluate is caller does not release, dest `p`: if the result is managed, register last-release on dest `p`. Closures from that unit keep the unit alive through the binding.
+**`compiled_value`** owns a **pool**. Script / template / test_script compile returns it managed (RC 1). Last RC last-releases that compile pool; everything allocated in the unit dies with the pool. `compile()` is caller releases (the unit). Evaluate does not last-release the unit. Evaluate is caller does not release, dest `p`: if the result is managed, register last-release on dest `p`. Closures from that unit keep the unit alive through the binding.
 
 **Closure binding** is minted at RC 0; the first `get_reference` (slot or overlay) pins the enclosing scope. Last RC last-releases that scope, last-releases a kept compile unit if present, and `free_memory`s the binding. That is the container rule. Birth at 0 is because the binding exists before a slot owns it (`o.fn = function…`).
 
@@ -156,7 +146,7 @@ Structural copy: `create_managed` the tree. Nested containers are `create_manage
 
 The value `clone()` **returns** is the root. Contract is caller does not release; inf is managed; register last-release of that one hold on dest `p`, at the execute result. Nested occupants are slots of the root. Recurse does not register last-release. GET of `clone(o).child` / `clone(o).arr` is identity. Assign of that occupant is `get_assignable_value` into the dest slot. Last RC of the root last-releases nested (occupants, names, and every block those nested containers allocated).
 
-Product tests: `src/afw/tests/additional_test_scripts/clone.as`, `src/afw/tests/language/script/nested_occupant_share.as`. The recurse `is_root` flag in the tree is leftover naming of “this is the execute result.” Pin at `execute_clone` after the copy; drop the flag when touching that code.
+Product tests: `src/afw/tests/additional_test_scripts/clone.as`, `src/afw/tests/language/script/nested_occupant_share.as`. The recurse `is_root` flag in the tree is leftover naming of “this is the execute result.” Register last-release at `execute_clone` after the copy; drop the flag when touching that code.
 
 ---
 
@@ -170,7 +160,7 @@ Work the story, in this order:
 4. Did a callee honor **caller does not release** with managed and forget to register last-release on dest `p`? Or register twice, or on the wrong `p` (including `xctx->p` when dest `p` is the caller)?
 5. Did a callee return unmanaged on a **caller releases** contract?
 
-If the answer is a new pin, a new flag, or a helper around assign, stop and ask.
+If the answer is a new register last-release, a new flag, or a helper around assign, stop and ask.
 
 ---
 
@@ -179,10 +169,10 @@ If the answer is a new pin, a new flag, or a helper around assign, stop and ask.
 These fail the story. A leak sitting or a full review starts here.
 
 - **Heap wrapper last RC** (`afw_value_object_create_managed` and the array twin): wrapper RC starts at 0; last-release at 0 returns without `free_memory` of the wrapper. Last RC must last-release the instance **and** free the wrapper allocation.
-- **Unused Adaptive `clone()` of nested object properties:** `clone({ child: { x: 1 } })` leftover; `clone({ a: 1 })` and `clone([{ n: 1 }])` flat. Parent last-release of the nested occupant runs at RC 1. Something that nested object obtained is not on the last-RC walk, or a side allocation is not `free_memory`d. Lab: `clone_nested_*`. Do not pin GET of `.child`.
-- **`is_root` on clone recurse:** pin belongs on the execute result only.
+- **Unused Adaptive `clone()` of nested object properties:** `clone({ child: { x: 1 } })` leftover; `clone({ a: 1 })` and `clone([{ n: 1 }])` flat. Parent last-release of the nested occupant runs at RC 1. Something that nested object obtained is not on the last-RC walk, or a side allocation is not `free_memory`d. Lab: `clone_nested_*`. Do not register last-release on GET of `.child`.
+- **`is_root` on clone recurse:** register last-release of the execute result only.
 - **`afw_xctx_malloc` for managed wrappers:** dest is `xctx->p`, not dest `p->managed_p`. Conflicts with “do not treat `xctx->p` as implicit dest.”
-- **`script_result` dest `p`:** `afw_xctx_script_result_set_value` `slot_store`s with dest `xctx->p`. Evaluate’s result is a temp in the caller’s dest `p`. `script_result` is internal nested-evaluate unwind, not the job-heap dest for that value.
+- **`script_result` dest `p`:** `afw_xctx_script_result_set_value` `slot_store`s with dest `xctx->p`. Evaluate is caller does not release, dest `p` of evaluate. `script_result` is internal nested-evaluate unwind, not the job-heap dest for that value.
 
 A full AFW review is: every `create_managed` / `get_reference` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup` site against this story. Pool bulk-free is the unmanaged world. Dual face couples value RC and instance RC; reviewing only one misses leftover.
 
