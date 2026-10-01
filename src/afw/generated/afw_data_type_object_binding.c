@@ -320,12 +320,13 @@ afw_object_set_property_as_object_internal(
     const afw_value_t *v;
 
     if (afw_object_is_managed(object)) {
-        v = afw_value_object_create(internal, xctx->p, xctx);
+        v = afw_value_object_create_managed(internal, object->p, xctx);
+        afw_object_set_property_take(object, property_name, v, xctx);
     }
     else {
         v = afw_value_object_create(internal, object->p, xctx);
+        afw_object_set_property(object, property_name, v, xctx);
     }
-    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated object value. */
@@ -867,12 +868,13 @@ afw_array_of_object_add_internal(
     const afw_value_t *v;
 
     if (afw_array_is_managed(instance)) {
-        v = afw_value_object_create(value, xctx->p, xctx);
+        v = afw_value_object_create_managed(value, instance->p, xctx);
+        afw_array_push_value_take(instance, v, xctx);
     }
     else {
         v = afw_value_object_create(value, instance->p, xctx);
+        afw_array_push_value(instance, v, xctx);
     }
-    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a object value from array of object. */

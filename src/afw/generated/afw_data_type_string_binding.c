@@ -336,9 +336,7 @@ afw_object_set_property_as_string_internal(
 
     if (afw_object_is_managed(object)) {
         v = afw_value_string_create_managed(internal, object->p, xctx);
-        afw_object_set_property(object, property_name, v, xctx);
-        /* slot_store bumped; drop the create RC. */
-        afw_value_release(v, xctx);
+        afw_object_set_property_take(object, property_name, v, xctx);
     }
     else {
         v = afw_value_string_create(internal, object->p, xctx);
@@ -907,9 +905,7 @@ afw_array_of_string_add_internal(
 
     if (afw_array_is_managed(instance)) {
         v = afw_value_string_create_managed(value, instance->p, xctx);
-        afw_array_push_value(instance, v, xctx);
-        /* slot_store bumped; drop the create RC. */
-        afw_value_release(v, xctx);
+        afw_array_push_value_take(instance, v, xctx);
     }
     else {
         v = afw_value_string_create(value, instance->p, xctx);

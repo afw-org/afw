@@ -1266,6 +1266,32 @@ impl_afw_array_managed_setter_push_value(
 }
 
 
+AFW_DEFINE(void)
+afw_array_push_value_take(
+    const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *self;
+    const afw_value_t **slot;
+    afw_boolean_t was_empty;
+
+    if (!afw_array_is_managed(instance)) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_array_push_value_take requires a managed array",
+            xctx);
+    }
+    self = (afw_memory_internal_array_t *)instance;
+    if (self->immutable) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+    was_empty = (self->values->count == 0);
+    impl_note_value_data_type(self, value, was_empty, xctx);
+    slot = impl_new_slot(self, self->values->count, xctx);
+    afw_value_slot_take(slot, value, xctx);
+}
+
+
 void
 impl_afw_array_managed_setter_insert_value(
     const afw_array_setter_t *self,

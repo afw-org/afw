@@ -644,6 +644,22 @@ afw_array_push_value(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Append an already-managed value; slot takes the hold.
+ * @param instance managed array.
+ * @param value managed or permanent.
+ * @param xctx of caller.
+ *
+ * Requires `afw_array_is_managed`. No get_assignable of value.
+ * Caller does not release value after.
+ */
+AFW_DECLARE(void)
+afw_array_push_value_take(
+    const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
 
 /**
  * @brief Remove and return last value (pop back).

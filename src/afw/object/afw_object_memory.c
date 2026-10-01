@@ -1396,6 +1396,44 @@ impl_afw_object_managed_setter_set_property(
 }
 
 
+AFW_DEFINE(void)
+afw_object_set_property_take(
+    const afw_object_t *instance,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_memory_object_t *self;
+    afw_object_internal_name_value_entry_t *e;
+
+    if (!afw_object_is_managed(instance)) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_object_set_property_take requires a managed object",
+            xctx);
+    }
+    self = (afw_object_internal_memory_object_t *)instance;
+    do { if (self->immutable) { AFW_OBJECT_ERROR_OBJECT_IMMUTABLE; } } while (0);
+
+    if (!value) {
+        value = afw_value_undefined;
+    }
+    e = impl_find_entry(self, property_name, xctx);
+    if (e) {
+        afw_value_slot_take(&e->value, value, xctx);
+        return;
+    }
+    e = afw_pool_calloc_type(instance->p,
+        afw_object_internal_name_value_entry_t, xctx);
+    if (!property_name) {
+        property_name = afw_v_a_empty_string;
+    }
+    e->name = afw_value_get_assignable(property_name,
+        instance->p, xctx);
+    afw_value_slot_take(&e->value, value, xctx);
+    impl_link_new(self, e, xctx);
+}
+
+
 /*
  * Implementation of method remove_property of interface afw_object_setter.
  */
