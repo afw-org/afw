@@ -163,7 +163,7 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
  * Registers afw_pool_release_value_at_cleanup on current scope->p.
  * Does not get_assignable (no RC bump). Use after create_managed so
  * RC 1 plus this cleanup is a temp (same as managed pop/shift).
- * Also after create_managed_clone of test_script / test_template.
+ * Also after create_managed of test_script / test_template.
  * Do not get_assignable first. Do not use on compile() of a unit
  * (evaluate(compile()) / closures still need that heap).
  */

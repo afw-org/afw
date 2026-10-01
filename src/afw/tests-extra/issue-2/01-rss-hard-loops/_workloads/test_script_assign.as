@@ -1,5 +1,5 @@
-/* #2 lab: test_script copy-out assigned. create_managed_clone is
- * RC 1; extra-hold only, then slot_store get_assignable. Pair with
+/* #2 lab: test_script copy-out assigned. create_managed is RC 1;
+ * extra-hold only, then slot_store get_assignable. Pair with
  * test_script_unassigned.
  */
 let r = {};

@@ -68,8 +68,8 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 
 | class | `in_use` fail | examples |
 |-------|----------------|----------|
-| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_*` |
-| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | `test_script_*` |
+| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_*` / `test_script_*` |
+| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | *(none right now)* |
 | **grow** | must grow ≥ 256 KiB/s | `array_append` |
 
 60 s is the night / finish-pass window (`AFW_ISSUE2_DURATION_S=60`).
@@ -150,8 +150,8 @@ scalar on purpose.
 | `clone_unassigned` | `clone` never assigned (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s and 60 s: RSS 0 / `in_use` 0). Was **climb** ~0.37 MiB/s | ~3.3 MiB/s in_use with `afw_value_clone` unmanaged |
 | `clone_nested_assign` | `v = clone(o).child` / `e = clone(o).arr` then mutate | **flat / flat** (2026-10-01, 15 s: `in_use` 0). Was **climb** ~0.28 MiB/s | last RC of `copy_meta` `id` utf8 |
 | `clone_nested_unassigned` | `discard(clone(o).child)` never assigned (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~0.23 MiB/s | last RC of `copy_meta` `id` utf8 |
-| `test_script_assign` | `test_script` clone extra-hold then assign | **under bar** (2026-09-29, 15 s): ~0.55 MiB/s RSS / ~0.56 MiB/s in_use | — |
-| `test_script_unassigned` | `test_script` clone extra-hold (last stmt `add()`) | **under bar** (2026-09-29, 15 s): ~0.70 MiB/s RSS / ~0.71 MiB/s in_use | — |
+| `test_script_assign` | `test_script` create_managed extra-hold then assign | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~0.56 MiB/s | `unmanaged_new_p` child of `managed_p` |
+| `test_script_unassigned` | `test_script` create_managed extra-hold (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~0.71 MiB/s | `unmanaged_new_p` child of `managed_p` |
 | `compile_listing_assign` | compile listing assigned | **flat / flat** (2026-09-29, 15 s) | — |
 | `compile_listing_unassigned` | compile listing last-releases unit (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s) | — |
 | `array_append` | unbounded `push` | **must grow** (~3 MiB/s both) | must grow (~2.8 MiB/s) |
@@ -198,8 +198,10 @@ loops whose result is managed end with `add(0, 0)` so deactivate does not
 `slot_store` that result into `script_result`. `managed_create_assign` /
 `managed_create_unassigned` cover the other create_managed extra-hold sites
 (reverse, slice, filter, map, sort, bag, intersection, split, union, keys,
-values, entries). `test_script_assign` / `test_script_unassigned` are the same
-extra-hold on `create_managed_clone` of the result object.
+values, entries). `test_script_assign` / `test_script_unassigned` extra-hold
+`create_managed` of the result object. `unmanaged_new_p` was a child of
+`p->managed_p` that last RC never walked; the clone-out copied properties
+and left that child. `test_value` is unmanaged in dest `p` (not `new_p`).
 `clone_assign` / `clone_unassigned` always-copy create_managed, register
 last-release of the execute result after the copy, take nested (not
 `afw_value_clone` into `x->p`; nested scalars `get_assignable` of the

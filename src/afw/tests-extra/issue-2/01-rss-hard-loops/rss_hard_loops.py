@@ -110,13 +110,11 @@ WORKLOADS = [
     _flat("clone_nested_unassigned",
           "clone nested object/array never assigned "
           "(discard(clone(o).child); last stmt add())"),
-    _climb("test_script_assign",
-           "test_script create_managed_clone extra-hold then assign",
-           1.20),
-    _climb("test_script_unassigned",
-           "test_script create_managed_clone extra-hold never assigned "
-           "(last stmt add())",
-           1.50),
+    _flat("test_script_assign",
+          "test_script create_managed extra-hold then assign"),
+    _flat("test_script_unassigned",
+          "test_script create_managed extra-hold never assigned "
+          "(last stmt add())"),
     _flat("compile_listing_assign",
           "compile listing assigned; unit last-released after the dump"),
     _flat("compile_listing_unassigned",

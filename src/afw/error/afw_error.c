@@ -1008,25 +1008,42 @@ impl_utf8_ks_value(
 }
 
 
-static const afw_utf8_t *
-impl_utf8_z_value_for_error(
+static void
+impl_set_error_string_from_utf8_z(
+    const afw_object_t *object,
+    const afw_value_t *name,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    afw_utf8_t view;
     const afw_utf8_t *encoded;
 
     if (!s_z) {
-        return afw_s_a_empty_string;
+        afw_object_set_property_as_string_internal(
+            object, name, afw_s_a_empty_string, xctx);
+        return;
     }
     /* FZ already encoded; do not ks-encode again (`^` → `^^`). */
     if (afw_utf8_is_valid(
         (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, xctx))
     {
-        return afw_utf8_create(s_z, AFW_UTF8_Z_LEN, p, xctx);
+        if (afw_object_is_managed(object)) {
+            /* create_managed copies; skip a dest-p utf8 leftover.
+             * AFW_UTF8_Z_LEN is the create sentinel, not a byte count. */
+            view.s = (const afw_utf8_octet_t *)s_z;
+            view.len = strlen(s_z);
+            afw_object_set_property_as_string_internal(
+                object, name, &view, xctx);
+            return;
+        }
+        encoded = afw_utf8_create(s_z, AFW_UTF8_Z_LEN, p, xctx);
+        afw_object_set_property_as_string_internal(
+            object, name, encoded, xctx);
+        return;
     }
     encoded = afw_utf8_z_create_ks(s_z, p, xctx);
-    return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+    afw_object_set_property_as_string_internal(object, name, encoded, xctx);
 }
 
 
@@ -1037,7 +1054,8 @@ afw_error_add_to_object(
     const afw_error_t *error,
     afw_xctx_t *xctx)
 {
-    const afw_pool_t *p = xctx->p;
+    /* Dest is the object's pool. Do not treat xctx->p as dest. */
+    const afw_pool_t *p = object->p;
     const afw_utf8_t *evaluation_backtrace;
     afw_size_t source_line;
     afw_size_t source_column;
@@ -1064,12 +1082,8 @@ afw_error_add_to_object(
             impl_add_contextual(object, error->contextual,
                 p, xctx);
         }
-        afw_object_set_property_as_string_internal(object,
-            afw_v_errorSource,
-            afw_utf8_create(
-                afw_error_source_file(error),
-                AFW_UTF8_Z_LEN, p, xctx),
-            xctx);
+        impl_set_error_string_from_utf8_z(object, afw_v_errorSource,
+            afw_error_source_file(error), p, xctx);
     }
 
 
@@ -1148,18 +1162,12 @@ afw_error_add_to_object(
             xctx);
     }
 
-    afw_object_set_property_as_string_internal(object,
-        afw_v_id,
-        afw_utf8_create(afw_error_code_id_z(error),
-            AFW_UTF8_Z_LEN, p, xctx),
-        xctx);
+    impl_set_error_string_from_utf8_z(object, afw_v_id,
+        afw_error_code_id_z(error), p, xctx);
 
     if (error->rv_source_id_z) {
-        afw_object_set_property_as_string_internal(object,
-            afw_v_rvSourceId,
-            afw_utf8_create(error->rv_source_id_z,
-                AFW_UTF8_Z_LEN, p, xctx),
-            xctx);
+        impl_set_error_string_from_utf8_z(object, afw_v_rvSourceId,
+            error->rv_source_id_z, p, xctx);
     }
 
     if (error->rv) {
@@ -1168,18 +1176,12 @@ afw_error_add_to_object(
     }
 
     if (error->rv_decoded_z) {
-        afw_object_set_property_as_string_internal(object,
-            afw_v_rvDecoded,
-            impl_utf8_z_value_for_error(
-                error->rv_decoded_z, p, xctx),
-            xctx);
+        impl_set_error_string_from_utf8_z(object, afw_v_rvDecoded,
+            error->rv_decoded_z, p, xctx);
     }
 
-    afw_object_set_property_as_string_internal(object,
-        afw_v_message,
-        impl_utf8_z_value_for_error(
-            error->message_z, p, xctx),
-        xctx);
+    impl_set_error_string_from_utf8_z(object, afw_v_message,
+        error->message_z, p, xctx);
 
     afw_object_set_property_as_string_internal(object,
         afw_v_xctxUUID, xctx->uuid, xctx);
@@ -1194,7 +1196,9 @@ afw_error_to_object(
 {
     const afw_object_t *result;
 
-    result = afw_object_create_unmanaged_new_p(p, xctx);
+    /* Unmanaged in dest p. unmanaged_new_p is a child of p->managed_p
+     * that nobody last-releases. */
+    result = afw_object_create_unmanaged(p, xctx);
     afw_error_add_to_object(result, error, xctx);
 
     return result;

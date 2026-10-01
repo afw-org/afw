@@ -759,7 +759,11 @@ afw_function_execute_test_script(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression, 3, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create_unmanaged_new_p(x->p, xctx);
+    /* create_managed from the start. unmanaged_new_p is a child of
+     * dest p->managed_p that nobody last-releases; the clone-out
+     * copied properties and left that child heap. Strings and the
+     * evaluate result already live in dest p, not the inner unit. */
+    result = afw_object_create_managed(x->p, xctx);
     afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string_internal(result,
         afw_v_id, &id->internal, xctx);
@@ -810,14 +814,20 @@ afw_function_execute_test_script(
                     xctx);
             }
 
-            /* Set error property. */
-            afw_object_set_property_as_object_internal(result, afw_v_error,
-                afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
+            /* create_managed RC 1. Take the birth hold. error_to_object
+             * is unmanaged in dest p; wrapping that instance is a
+             * dest-p lifetime mismatch. */
+            {
+                const afw_object_t *err;
+
+                err = afw_object_create_managed(x->p, xctx);
+                afw_error_add_to_object(err, AFW_ERROR_THROWN, xctx);
+                afw_object_set_property_take(result, afw_v_error,
+                    err->value, xctx);
+            }
     }
 
     AFW_FINALLY {
-        /* Copy out of the unit pool before last-release of compiled. */
-        result = afw_object_create_managed_clone(result, x->p, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }
@@ -825,7 +835,7 @@ afw_function_execute_test_script(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    /* Clone is create_managed RC 1. Extra-hold only (not get_assignable). */
+    /* create_managed RC 1. Register last-release of the execute result. */
     return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
 }
 
@@ -896,7 +906,8 @@ afw_function_execute_test_template(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 3, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create_unmanaged_new_p(x->p, xctx);
+    /* create_managed from the start. See test_script. */
+    result = afw_object_create_managed(x->p, xctx);
     afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string_internal(result,
         afw_v_id, &id->internal, xctx);
@@ -947,14 +958,18 @@ afw_function_execute_test_template(
                 xctx);
         }
 
-        /* Set error property. */
-        afw_object_set_property_as_object_internal(result, afw_v_error,
-            afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
+        /* create_managed RC 1. Take the birth hold. See test_script. */
+        {
+            const afw_object_t *err;
+
+            err = afw_object_create_managed(x->p, xctx);
+            afw_error_add_to_object(err, AFW_ERROR_THROWN, xctx);
+            afw_object_set_property_take(result, afw_v_error,
+                err->value, xctx);
+        }
     }
 
     AFW_FINALLY {
-        /* Copy out of the unit pool before last-release of compiled. */
-        result = afw_object_create_managed_clone(result, x->p, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }
@@ -962,7 +977,7 @@ afw_function_execute_test_template(
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    /* Clone is create_managed RC 1. Extra-hold only (not get_assignable). */
+    /* create_managed RC 1. Register last-release of the execute result. */
     return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
 }
 
@@ -1032,7 +1047,9 @@ afw_function_execute_test_value(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 3);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create_unmanaged_new_p(x->p, xctx);
+    /* Temp in dest p. unmanaged_new_p is a child of p->managed_p
+     * that nobody last-releases. */
+    result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string_internal(result,
         afw_v_id, &id->internal, xctx);

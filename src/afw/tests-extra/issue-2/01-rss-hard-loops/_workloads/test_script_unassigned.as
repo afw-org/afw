@@ -1,6 +1,6 @@
-/* #2 lab: test_script copy-out is create_managed_clone. Extra-hold
- * only on the result object. The compile unit is last-released in
- * FINALLY. Missing extra-hold on the clone is leftover RC 1.
+/* #2 lab: test_script copy-out is create_managed. Extra-hold only
+ * on the result object. The compile unit is last-released in
+ * FINALLY. unmanaged_new_p left a child heap of managed_p.
  */
 while (true) {
     test_script("t", "d", "return 1;", 1);
