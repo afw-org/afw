@@ -181,7 +181,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **Natural lifetime:** allocate in the current frame; **assign** if it must outlive this frame; deactivate / last-release when the frame is unreferenced. Inner `{ i = i + 1 }` does not last-release outer `i` (different frame). Loop: replace last_return → previous in_pool hold drops → previous frame can die.
 
-**`compiled_value` evaluate:** park `script_result`. Outermost sets `script_result_p` to dest `p`; nested `evaluate(compile())` leaves it. If `script_result` is set, that is the result (already assignable into that dest `p->managed_p`). Register `afw_pool_release_value_at_cleanup` on this evaluate dest `p` and return as-is. No `clone_unmanaged`. Permanents skip the register.
+**`compiled_value` evaluate:** caller does not release. Park `script_result`. Outermost sets `script_result_p` to dest `p`; nested `evaluate(compile())` leaves it. If `script_result` is set, that is the result (managed in that dest `p->managed_p`). Register last-release of that one hold on this evaluate dest `p` and return as-is. No `clone_unmanaged`. Permanents skip the register.
 
 **Function return:** pin on the caller (`get_assignable_for_p_lifetime`). No wrapper inf. Parameter args are a **frame** (replace into param slots); rewind = deactivate that frame.
 

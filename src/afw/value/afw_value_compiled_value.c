@@ -261,9 +261,11 @@ impl_afw_value_optional_evaluate(
     saved_script_result = xctx->script_result;
     xctx->script_result = afw_value_undefined;
     /*
-     * Isolate dest is the outermost compiled-unit evaluate dest p.
-     * Nested evaluate(compile()) parks script_result (the value) and
-     * leaves script_result_p so last lands in that dest p->managed_p.
+     * Evaluate is caller does not release. Dest p is the p passed
+     * to this evaluate. script_result isolate dest is dest p of
+     * the outermost compiled-unit evaluate so a managed result
+     * lives in that dest p->managed_p. Nested evaluate(compile())
+     * parks script_result and leaves script_result_p.
      */
     if (!xctx->script_result_p) {
         xctx->script_result_p = p;
@@ -329,12 +331,13 @@ impl_afw_value_optional_evaluate(
             const afw_pool_t *isolate_p;
 
             /*
-             * Isolate at script_result_set already used dest
-             * script_result_p. Already-managed is that store hold.
-             * Unit-backed compile-literals that never hit the slot
-             * still live in the unit: copy managed into
-             * script_result_p, not this evaluate dest p, so a nested
-             * evaluate(compile()) does not clone into the inner frame.
+             * Caller does not release. If the result is managed,
+             * register last-release of that one hold on dest p.
+             * script_result_set already isolated into
+             * script_result_p (outermost dest p->managed_p).
+             * Unit-backed compile-literals that missed the slot
+             * still live in the unit: clone_managed into
+             * script_result_p, then register that hold on dest p.
              */
             isolate_p = xctx->script_result_p ? xctx->script_result_p : p;
             dt = result->inf
