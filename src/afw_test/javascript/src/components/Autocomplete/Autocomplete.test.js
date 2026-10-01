@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {render, fireEvent, screen} from "@testing-library/react";
+import {render, fireEvent, screen, act} from "@testing-library/react";
 
 const Test = (wrapper, Autocomplete) => {
 
@@ -55,7 +55,7 @@ const Test = (wrapper, Autocomplete) => {
             const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "You Complete Me!" } });
             expect(input.value).toBe("You Complete Me!");
 
@@ -91,13 +91,13 @@ const Test = (wrapper, Autocomplete) => {
             const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "This is option 2!" } });
 
             expect(input.value).toBe("This is option 2!");
 
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).toHaveBeenCalledWith(options[1]);
         });
@@ -135,12 +135,12 @@ const Test = (wrapper, Autocomplete) => {
             const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "This is option 2!" } });
             expect(input.value).toBe("This is option 2!");
 
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).toHaveBeenCalledWith(options[1]);
         });
@@ -182,42 +182,42 @@ const Test = (wrapper, Autocomplete) => {
             let input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "This is option 2!" } });
             expect(input.value).toBe("This is option 2!");
             
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).toHaveBeenLastCalledWith(options[1]);            
 
             input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "This is option 3!" } });
             expect(input.value).toBe("This is option 3!");
 
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).toHaveBeenLastCalledWith(options[2]);
 
             input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "This is option 4!" } });
             expect(input.value).toBe("This is option 4!");
 
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).toHaveBeenLastCalledWith(options[3]);
             
             input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "This is option 2!" } });
             expect(input.value).toBe("This is option 2!");
 
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).toHaveBeenLastCalledWith(options[1]);
             
@@ -256,12 +256,12 @@ const Test = (wrapper, Autocomplete) => {
             const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
-            input.focus();
+            act(() => input.focus());
             fireEvent.change(document.activeElement, { target: { value: "This is new!" } });
             expect(input.value).toBe("This is new!");
 
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).not.toHaveBeenCalled();
             expect(onCreateOption).toHaveBeenCalledWith("This is new!");
@@ -299,14 +299,14 @@ const Test = (wrapper, Autocomplete) => {
             
             const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
-            input.focus();
+            act(() => input.focus());
 
             fireEvent.keyDown(document.activeElement, { key: "ArrowDown" });
             fireEvent.keyDown(document.activeElement, { key: "ArrowDown" });
             fireEvent.keyDown(document.activeElement, { key: "Enter" });
 
-            input.focus();
-            input.blur();
+            act(() => input.focus());
+            act(() => input.blur());
 
             expect(onChanged).toHaveBeenCalledWith(options[1]);
         });
