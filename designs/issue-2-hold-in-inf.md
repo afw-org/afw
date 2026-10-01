@@ -16,8 +16,8 @@ Say **let’s talk about the next *n*** (or the issue id). Story: [`lifetime-pri
 | n | Status | What |
 |---|--------|------|
 | 0 | **this branch** (`fix-clone-nested-leftover`) | Land the story pad on `develop`. |
-| 1 | [#445](https://github.com/afw-org/afw/issues/445) | Last RC of managed containers; drop `is_root`. Probe: unused `clone({ child: { x: 1 } })` / lab `clone_nested_*`. |
-| 2 | [#443](https://github.com/afw-org/afw/issues/443) | Dest `p`: `afw_xctx_*alloc` for values (wrapper RC 0 is this). |
+| 1 | [#443](https://github.com/afw-org/afw/issues/443) | **Next session.** Find every `afw_xctx_*alloc`/`free` site. Give each a dest `p` (managed values: `p->managed_p`). **Delete those macros.** |
+| 2 | [#445](https://github.com/afw-org/afw/issues/445) | Last RC of managed containers; drop `is_root`. Probe: unused `clone({ child: { x: 1 } })` / lab `clone_nested_*`. |
 | 3 | [#446](https://github.com/afw-org/afw/issues/446) | Evaluate dest `p`: `script_result` must not isolate into `xctx->p`. |
 | 4 | lab **climb** | Remaining RSS climbs against the story (`test_script_*`, then whatever the lab still names). Five-question list in the story pad. |
 | 5 | sweep | Full review of `create_managed` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup`. #2 stays open. |

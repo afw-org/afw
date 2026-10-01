@@ -31,7 +31,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 | Where | dest `p` (evaluation `{ }` is `scope->p`) | dest `p->managed_p` |
 | Death | that pool bulk-frees | last RC: `release` every reference this value holds, `free_memory` every block it allocated (or last-release a pool it owns) |
 
-Pass dest `p`. Do not treat `xctx->p` as an implicit dest. `afw_xctx_*alloc`/`free` allocate in `xctx->p`; that matched an older world where `xctx->p` was `managed_p`. Never use them for a value. Job-scoped internals (evaluation stack) may stay on `xctx->p` until those macros retire ([#443](https://github.com/afw-org/afw/issues/443)).
+Pass dest `p`. Do not treat `xctx->p` as an implicit dest. `afw_xctx_*alloc`/`free` allocate in `xctx->p`; that matched an older world where `xctx->p` was `managed_p`. **Delete those macros** ([#443](https://github.com/afw-org/afw/issues/443)): each site gets an explicit dest `p` (managed values: `p->managed_p`). Job-scoped internals still allocate from `xctx->p` via `afw_pool_*`, not via xctx macros.
 
 ---
 

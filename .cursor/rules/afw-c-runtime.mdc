@@ -19,7 +19,7 @@ alwaysApply: false
 - Platform code: edit matching files under `os/nix/` and `os/win/` (cmake selects one).
 
 ## Memory and errors
-- Allocate with pools: `afw_pool_calloc` / `afw_pool_calloc_type`. Pass dest `p`. Unmanaged values live in dest `p`; managed in `p->managed_p`. Be suspicious of **`afw_xctx_*alloc`/`free`** for a **value** ([#443](https://github.com/afw-org/afw/issues/443)); those macros allocate in `xctx->p`. Job-scoped internals (evaluation stack) may use `xctx->p`. No raw `malloc`/`free`.
+- Allocate with pools: `afw_pool_calloc` / `afw_pool_calloc_type`. Pass dest `p`. Unmanaged values live in dest `p`; managed in `p->managed_p`. **Delete `afw_xctx_*alloc`/`free`** ([#443](https://github.com/afw-org/afw/issues/443)). Job-scoped internals allocate from `xctx->p` with `afw_pool_*`. No raw `malloc`/`free`.
 - Pass `p` (pool) and `xctx` through call chains. Throws need `xctx`.
 - Errors: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / related macros and memory helpers from `error/afw_error.h`. Prefer these for invariant failures, API misuse, and unexpected conditions—not `assert` / `AFW_ASSERT` / raw `abort()`.
 - **Never abort the process from library/request paths.** Do **not** use `AFW_ASSERT`, C `assert()`, `abort()`, or invent an `AFW_ABORT`-style wrapper. `AFW_ASSERT` is a thin wrapper around `assert()` (`afw_common.h`); it can kill a server worker mid-request and does **not** participate in `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY`. Fail with throws: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ`, or compiler domain `AFW_COMPILE_THROW_ERROR_*`. Legacy `AFW_ASSERT` call sites should be converted when touched (`@fixme` remove the macro when unused). Macro comment on `AFW_ASSERT` in `afw_common.h` repeats this.
