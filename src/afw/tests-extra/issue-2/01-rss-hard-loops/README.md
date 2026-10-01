@@ -67,7 +67,7 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 
 | class | `in_use` fail | examples |
 |-------|----------------|----------|
-| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_*` |
+| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_assign` / `clone_unassigned` |
 | **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | `clone_nested_*`, `test_script_*` |
 | **grow** | must grow ≥ 256 KiB/s | `array_append` |
 

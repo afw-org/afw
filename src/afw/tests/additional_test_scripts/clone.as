@@ -2,7 +2,10 @@
 //?
 //? testScript: clone.as
 //? customPurpose: Part of custom tests
-//? description: Test the clone function.
+//? description: ...
+Clone object and array. Nested occupants assigned to a variable share
+with the clone, not the source. let v = clone(orig).child leaves the
+clone root as a temp.
 //? sourceType: script
 //?
 //? test: clone_object

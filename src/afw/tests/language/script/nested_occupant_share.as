@@ -39,7 +39,7 @@ return 0;
 
 //?
 //? test: nested-array-property-to-variable
-//? description: let a = o.arr; a[0] = … and push are mutations of o.arr
+//? description: let a = o.arr; index set and push mutate o.arr
 //? skip: false
 //? expect: 0
 //? source: ...

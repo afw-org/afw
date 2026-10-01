@@ -297,7 +297,7 @@ static const afw_value_t *
 impl_script_clone(
     const afw_value_t *value,
     afw_function_execute_t *x,
-    afw_boolean_t extra_hold)
+    afw_boolean_t is_root)
 {
     const afw_value_t *result;
 
@@ -306,12 +306,13 @@ impl_script_clone(
     }
 
     /*
-     * Always-copy create_managed (RC 1). Extra-hold the root only;
-     * nested containers are taken by the parent (no second isolate).
-     * Copy meta (reconcilable, path, ids) — not a property walk.
-     * Nested objects recurse (snapshot would share managed children).
-     * Nested scalars get_assignable of the source (parent takes).
-     * Do not afw_value_clone unmanaged into x->p.
+     * Always-copy create_managed (RC 1). Extra-hold the root only
+     * (at create, before fill, so a throw still last-releases).
+     * Nested containers recurse with is_root false; parent take.
+     * Nested scalars get_assignable of the source; parent take.
+     * Copy meta (reconcilable, path, ids). Snapshot of a managed
+     * source would share nested children. Do not afw_value_clone
+     * unmanaged into x->p.
      */
     if (afw_value_is_object(value)) {
         const afw_object_t *from;
@@ -322,7 +323,7 @@ impl_script_clone(
 
         from = ((const afw_value_object_t *)value)->internal;
         result = afw_object_create_managed(x->p, x->xctx)->value;
-        if (extra_hold) {
+        if (is_root) {
             result = afw_pool_scope_release_value_at_cleanup(result,
                 x->xctx);
         }
@@ -351,7 +352,7 @@ impl_script_clone(
         from = ((const afw_value_array_t *)value)->internal;
         data_type = afw_array_get_data_type(from, x->xctx);
         result = afw_array_create_managed(data_type, x->p, x->xctx)->value;
-        if (extra_hold) {
+        if (is_root) {
             result = afw_pool_scope_release_value_at_cleanup(result,
                 x->xctx);
         }

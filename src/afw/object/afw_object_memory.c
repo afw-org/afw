@@ -716,6 +716,7 @@ impl_unlink_property(
          * Wrapped and managed objects slot_store it, so they own it.
          * Managed names are assignable and owned the same way.
          * Drop the hash key before the name bytes are released.
+         * Managed entries live in managed_p; free them here.
          */
         if (managed || self->wrapped) {
             afw_value_release(e->value, xctx);
