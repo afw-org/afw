@@ -500,11 +500,8 @@ const reducer = (state, action) => {
         
     case "PROPERTIES_DELETE": {
 
-        state.selectedProperties.forEach(selectedProperty => {
-            if (selectedProperty.getAllowWrite() !== false)
-                selectedProperty.remove();
-        });
-
+        /* the properties were already removed from the object - see
+           onDeleteSelectedProperties(); this only updates the lists */
         const visibleProperties = state.visibleProperties.filter( p => {
             for (const selectedProperty of state.selectedProperties) {
                 /* can't remove properties that don't allow write */
@@ -519,8 +516,8 @@ const reducer = (state, action) => {
         });
 
         const addedProperties = state.addedProperties.filter( p => {
-            for (const addedProperty of state.addedProperties) {
-                if (addedProperty.getName() === p.getName())
+            for (const selectedProperty of state.selectedProperties) {
+                if (selectedProperty.getName() === p.getName())
                     return false;
             }
 
@@ -921,6 +918,17 @@ export const ObjectResponsive = (props) => {
         Delete icon.  We need to go through each of our selected properties and remove them one by one.
      */
     const onDeleteSelectedProperties = () => {
+        /*
+         * Remove from the object here, not in the reducer: remove() fires
+         * the object's change events, and listeners (e.g. ObjectEditor's)
+         * update their own state - which must not happen while React is
+         * rendering this component, as it does when it runs the reducer.
+         */
+        selectedProperties.forEach(selectedProperty => {
+            if (selectedProperty.getAllowWrite() !== false)
+                selectedProperty.remove();
+        });
+
         dispatch({ type: "PROPERTIES_DELETE" });        
     };
 
