@@ -24,4 +24,4 @@ export interface INavProps {
  * clickable links into a vertical panel.
  * 
  */
-export default function Nav(props: INavProps): JSX.Element;
+export default function Nav(props: INavProps): React.JSX.Element;

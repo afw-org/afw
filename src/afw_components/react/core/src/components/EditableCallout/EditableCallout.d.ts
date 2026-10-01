@@ -52,4 +52,4 @@ export interface IEditableCalloutProps {
  * component that it displays may be a multiline text field.
  * 
  */
-export default function EditableCallout(props: IEditableCalloutProps): JSX.Element;
+export default function EditableCallout(props: IEditableCalloutProps): React.JSX.Element;

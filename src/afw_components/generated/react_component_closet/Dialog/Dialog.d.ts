@@ -85,4 +85,4 @@ export interface IDialogProps {
  * dismissed by confirming or cancelling via buttons.
  * 
  */
-export default function Dialog(props: IDialogProps): JSX.Element;
+export default function Dialog(props: IDialogProps): React.JSX.Element;

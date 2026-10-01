@@ -46,4 +46,4 @@ export interface ISnackbarProps {
  * following an action that was taken by the user.
  * 
  */
-export default function Snackbar(props: ISnackbarProps): JSX.Element;
+export default function Snackbar(props: ISnackbarProps): React.JSX.Element;

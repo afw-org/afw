@@ -40,4 +40,4 @@ export interface ISkeletonProps {
  * placeholder, which often animates or shimmers.
  * 
  */
-export default function Skeleton(props: ISkeletonProps): JSX.Element;
+export default function Skeleton(props: ISkeletonProps): React.JSX.Element;

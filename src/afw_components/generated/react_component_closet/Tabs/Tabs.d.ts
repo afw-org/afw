@@ -32,4 +32,4 @@ export interface ITabsProps {
  * which when clicked, will switch the content to the desired component.
  * 
  */
-export default function Tabs(props: ITabsProps): JSX.Element;
+export default function Tabs(props: ITabsProps): React.JSX.Element;

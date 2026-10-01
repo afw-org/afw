@@ -29,4 +29,4 @@ export interface ITimePickerProps {
  * buttons.
  * 
  */
-export default function TimePicker(props: ITimePickerProps): JSX.Element;
+export default function TimePicker(props: ITimePickerProps): React.JSX.Element;

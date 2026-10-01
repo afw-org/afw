@@ -51,4 +51,4 @@ export interface ITableProps {
  * optionally sorted, selected and edited through actions.
  * 
  */
-export default function Table(props: ITableProps): JSX.Element;
+export default function Table(props: ITableProps): React.JSX.Element;

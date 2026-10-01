@@ -73,4 +73,4 @@ export interface IButtonProps {
  * dropdown of selected actions to perform when clicked.
  * 
  */
-export default function Button(props: IButtonProps): JSX.Element;
+export default function Button(props: IButtonProps): React.JSX.Element;

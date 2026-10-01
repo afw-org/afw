@@ -46,4 +46,4 @@ export interface ITreeProps {
  * complex nested data or component structures.
  * 
  */
-export default function Tree(props: ITreeProps): JSX.Element;
+export default function Tree(props: ITreeProps): React.JSX.Element;

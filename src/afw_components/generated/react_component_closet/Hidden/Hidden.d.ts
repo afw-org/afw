@@ -68,4 +68,4 @@ export interface IHiddenProps {
  * a variety of screen devices.
  * 
  */
-export default function Hidden(props: IHiddenProps): JSX.Element;
+export default function Hidden(props: IHiddenProps): React.JSX.Element;

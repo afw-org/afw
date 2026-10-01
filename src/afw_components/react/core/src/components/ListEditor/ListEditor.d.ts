@@ -30,4 +30,4 @@ export interface IListEditorProps {
  * which allows the user to add, edit or delete items from the list.
  * 
  */
-export default function ListEditor(props: IListEditorProps): JSX.Element;
+export default function ListEditor(props: IListEditorProps): React.JSX.Element;

@@ -31,4 +31,4 @@ export interface IStepperProps {
  * providing a title, its contents, and a Next button to get to the next step.
  * 
  */
-export default function Stepper(props: IStepperProps): JSX.Element;
+export default function Stepper(props: IStepperProps): React.JSX.Element;

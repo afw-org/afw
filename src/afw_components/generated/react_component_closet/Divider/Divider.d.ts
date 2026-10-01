@@ -16,4 +16,4 @@ export interface IDividerProps {
  * of a dividing line.
  * 
  */
-export default function Divider(props: IDividerProps): JSX.Element;
+export default function Divider(props: IDividerProps): React.JSX.Element;

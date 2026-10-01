@@ -24,4 +24,4 @@ export interface IIconProps {
  * clickable.
  * 
  */
-export default function Icon(props: IIconProps): JSX.Element;
+export default function Icon(props: IIconProps): React.JSX.Element;

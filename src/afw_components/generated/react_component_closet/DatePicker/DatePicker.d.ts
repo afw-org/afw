@@ -51,4 +51,4 @@ export interface IDatePickerProps {
  * from a calendar, or enter it in the appropriate format.
  * 
  */
-export default function DatePicker(props: IDatePickerProps): JSX.Element;
+export default function DatePicker(props: IDatePickerProps): React.JSX.Element;

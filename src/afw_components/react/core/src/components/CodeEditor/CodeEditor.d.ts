@@ -53,4 +53,4 @@ export interface ICodeEditorProps {
  * manually edit the source code for a particular piece of data.
  * 
  */
-export default function CodeEditor(props: ICodeEditorProps): JSX.Element;
+export default function CodeEditor(props: ICodeEditorProps): React.JSX.Element;

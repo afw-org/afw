@@ -23,4 +23,4 @@ export interface INativeProps {
  * library.
  * 
  */
-export default function Native(props: INativeProps): JSX.Element;
+export default function Native(props: INativeProps): React.JSX.Element;

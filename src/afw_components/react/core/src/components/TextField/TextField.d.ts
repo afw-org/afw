@@ -72,4 +72,4 @@ export interface ITextFieldProps {
  * display a label and description to help the user understand its contents.
  * 
  */
-export default function TextField(props: ITextFieldProps): JSX.Element;
+export default function TextField(props: ITextFieldProps): React.JSX.Element;

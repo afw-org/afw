@@ -24,4 +24,4 @@ export interface IBreadcrumbProps {
  * navigate at any point within an application.
  * 
  */
-export default function Breadcrumb(props: IBreadcrumbProps): JSX.Element;
+export default function Breadcrumb(props: IBreadcrumbProps): React.JSX.Element;

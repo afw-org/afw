@@ -59,4 +59,4 @@ export interface ISpinButtonProps {
  * increment or decrement its value, in addition to entering a value manually.
  * 
  */
-export default function SpinButton(props: ISpinButtonProps): JSX.Element;
+export default function SpinButton(props: ISpinButtonProps): React.JSX.Element;

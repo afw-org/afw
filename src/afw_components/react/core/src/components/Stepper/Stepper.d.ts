@@ -31,4 +31,4 @@ export interface IStepperProps {
  * step.
  * 
  */
-export default function Stepper(props: IStepperProps): JSX.Element;
+export default function Stepper(props: IStepperProps): React.JSX.Element;
