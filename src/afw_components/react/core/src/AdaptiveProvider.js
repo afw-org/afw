@@ -5,9 +5,11 @@ import {
     ComponentsContext,
     QualifiersContext,
     ClipboardContext,
+    NavigationContext,
 } from "./context";
 
 import {AdaptiveLayoutRegistry} from "./layouts";
+import {defaultNavigation} from "./navigation";
 import {ModelProvider} from "./ModelProvider";
 import {isArray} from "./utils/utils";
 
@@ -46,6 +48,9 @@ export const combineComponentRegistries = (implementationId, registries) => {
  *   1.  componentRegistry (component registries)
  *   2.  model (AfwModel instance)
  *   3.  children to provide this adaptive instance for.
+ *   4.  navigation (optional) - the app's router adapter, {Link,
+ *       useNavigate, NavigationBlocker}; see navigation.js. Any part left
+ *       out falls back to the router-free default.
  */
 export const AdaptiveProvider = ({ 
     componentRegistry, 
@@ -54,9 +59,14 @@ export const AdaptiveProvider = ({
     children, 
     qualifiers = [], 
     onCopy, 
-    clipboard 
+    clipboard,
+    navigation
 }) => {
     const AfwLayoutRegistry = useMemo(() => new AdaptiveLayoutRegistry(), []);
+    const navigationValue = useMemo(
+        () => ({ ...defaultNavigation, ...navigation }),
+        [navigation]
+    );
 
     /*
      *  export the layout registry to the global window object, so third-party extensions
@@ -71,7 +81,9 @@ export const AdaptiveProvider = ({
             <ClipboardContext.Provider value={{ onCopy, clipboard }}>                
                 <ModelProvider client={client} debounce={debounce}>
                     <QualifiersContext.Provider value={qualifiers}>
-                        { children }                    
+                        <NavigationContext.Provider value={navigationValue}>
+                            { children }
+                        </NavigationContext.Provider>
                     </QualifiersContext.Provider>
                 </ModelProvider>
             </ClipboardContext.Provider>

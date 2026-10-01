@@ -18,6 +18,7 @@ import {
     OperationalContext,
     QualifiersContext,
     RouteBasePathContext,
+    NavigationContext,
     ClipboardContext,
     ObjectEditorContext,
 } from "./context";
@@ -147,6 +148,16 @@ export const useOperational = (props = {}) => {
  */
 export const useRouteBasePath = () => {
     return useContext(RouteBasePathContext);
+};
+
+/**
+ * useNavigation()
+ *
+ * Hook to get the application's navigation adapter: {Link, useNavigate,
+ * NavigationBlocker}. See navigation.js.
+ */
+export const useNavigation = () => {
+    return useContext(NavigationContext);
 };
 
 /**

@@ -9,8 +9,6 @@
 
 import {useState, useEffect, useReducer, useMemo} from "react";
 import PropTypes from "prop-types";
-import {useHistory} from "react-router";
-import {Prompt} from "react-router-dom";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -24,7 +22,7 @@ import {Typography} from "../../components/Typography/Typography";
 import {ObjectDifferences} from "../ObjectDifferences/ObjectDifferences";
 import {OperationalContext} from "../../context";
 import {AdaptiveLayoutMergeProviders} from "../../layouts/AdaptiveLayout/AdaptiveLayout";
-import {useEventId, useModel, useIsMounted, useTheme} from "../../hooks";
+import {useEventId, useModel, useIsMounted, useTheme, useNavigation} from "../../hooks";
 
 import {AfwObject, objectGet} from "@afw/client";
 
@@ -53,7 +51,8 @@ export const ObjectEditorHeader = (props) => {
 
     const [moreOptionsTarget, setMoreOptionsTarget] = useState();
 
-    const history = useHistory();
+    const {useNavigate} = useNavigation();
+    const navigate = useNavigate();
     const theme = useTheme();
 
     useEffect(() => {
@@ -189,7 +188,7 @@ export const ObjectEditorHeader = (props) => {
                                 setMoreOptionsTarget();
 
                                 const path = object.getPath();
-                                history.push("/Objects" + path);
+                                navigate("/Objects" + path);
                             }
                         }
                     ]}
@@ -330,6 +329,7 @@ export const ObjectEditor = (props) => {
     const [error, setError] = useState();    
     const [object, setObject] = useState();
     const isMounted = useIsMounted();
+    const {NavigationBlocker} = useNavigation();
 
     const {
         displaySaveButton, 
@@ -646,7 +646,7 @@ export const ObjectEditor = (props) => {
                     />                    
                     {
                         (warnNavigateAway !== false) &&
-                        <Prompt 
+                        <NavigationBlocker 
                             when={(savable && savable.value) ? true : false}
                             message={() => "You have unsaved changes.  Are you sure you want to leave?"}
                         />

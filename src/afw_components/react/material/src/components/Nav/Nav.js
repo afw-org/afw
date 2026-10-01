@@ -10,8 +10,7 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import MuiLink from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-import {Link as RouterLink} from "react-router-dom";
-import {useClasses} from "@afw/react";
+import {useClasses, useNavigation} from "@afw/react";
 
 const Styles = (theme) => ({
     ListItems: {
@@ -62,6 +61,8 @@ const Styles = (theme) => ({
 
 
 export const Nav = (props) => {
+
+    const {Link: NavigationLink} = useNavigation();
     const classes = useClasses(Styles);    
     
     return (
@@ -108,7 +109,7 @@ export const Nav = (props) => {
                                     }
                                     <div className={(item.inset === false) ? classes.Link : item.icon ? classes.Link : classes.InsetLink}>
                                         <MuiLink                                         
-                                            component={item.external ? undefined : RouterLink}                                            
+                                            component={item.external ? undefined : NavigationLink}                                            
                                             href={item.url ? item.url : item.label}
                                             to={item.url ? item.url : item.label}
                                             underline="none"

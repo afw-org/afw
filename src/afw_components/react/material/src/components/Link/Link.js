@@ -9,7 +9,7 @@
 import {memo} from "react";
 import PropTypes from "prop-types";
 
-import {Link as RouterLink} from "react-router-dom";
+import {useNavigation} from "@afw/react";
 import MuiLink from "@mui/material/Link";
 
 
@@ -26,6 +26,7 @@ import MuiLink from "@mui/material/Link";
  */
 export const Link = (props) => {       
     const {"aria-label": ariaLabel, uriComponents, text, disabled, style, onClick, external} = props;
+    const {Link: NavigationLink} = useNavigation();
 
     let url;               
     if (uriComponents)
@@ -41,7 +42,7 @@ export const Link = (props) => {
                 aria-label={ariaLabel}
                 underline="hover"
                 style={style}
-                component={RouterLink}
+                component={NavigationLink}
                 to={url}                
                 onClick={onClick}
             >{text}</MuiLink> 

@@ -9,6 +9,7 @@ import monacoComponentRegistry, {MonacoProvider} from "@afw/react-monaco";
 
 import {AppCoreProvider} from "./App/AppCoreProvider";
 import {AppContext} from "./context";
+import {reactRouterNavigation} from "./navigation";
 
 import {vi} from "vitest";
 // `rest`/`server`/`mswPostCallback`/`mswGetCallback` must come from this same
@@ -60,6 +61,7 @@ const AllTheProviders = ({ children }) => {
                         componentRegistry={combineComponentRegistries("admin", [ muiComponentRegistry, monacoComponentRegistry ])}
                         onCopy={onCopy}
                         clipboard={clipboard}
+                        navigation={reactRouterNavigation}
                     >
                         <AppCoreProvider>
                             <MonacoProvider theme="dark">
