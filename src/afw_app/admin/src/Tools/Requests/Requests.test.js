@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {editor as monacoEditorMock} from "monaco-editor";
-import {render, waitFor, within, fireEvent, screen, waitForSpinner, server, http, HttpResponse, mswPostCallback, mswGetCallback} from "../../test-utils";
+import {render, waitFor, within, fireEvent, screen, waitForSpinner, server, http, HttpResponse, mswPostCallback, mswGetCallback, act} from "../../test-utils";
 import Requests from "./Requests";
 
 /*
@@ -57,7 +57,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(methodDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         let opts = screen.getAllByRole("option");
-        opts[1].click();
+        fireEvent.click(opts[1]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.change(screen.getByLabelText("URI"), { target: { value: "/afw/_AdaptiveObjectType_/_AdaptiveObjectType_" } });        
@@ -67,7 +67,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         opts = screen.getAllByRole("option");
-        opts[0].click();
+        fireEvent.click(opts[0]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.click(screen.getByLabelText("Send"));
@@ -107,7 +107,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(methodDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         let opts = screen.getAllByRole("option");
-        opts[1].click();
+        fireEvent.click(opts[1]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.change(screen.getByLabelText("URI"), { target: { value: "/afw/_AdaptiveObjectType_/_AdaptiveObjectType_" } });        
@@ -117,7 +117,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         opts = screen.getAllByRole("option");
-        opts[1].click();
+        fireEvent.click(opts[1]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.click(screen.getByLabelText("Send"));
@@ -152,19 +152,21 @@ describe("Requests Tests", () => {
         });
 
         // "Request" is the default active tab, so this is that tab's editor
-        getLatestMonacoEditorInstance().__setValueAndFireChange(value);
+        await act(async () => {
+            getLatestMonacoEditorInstance().__setValueAndFireChange(value);
 
-        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
-        // real 100ms debounce wrapper around onSourceChanged - give it a
-        // moment to fire and land in Requests' tab state before Send reads it
-        await new Promise(resolve => setTimeout(resolve, 150));
+            // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+            // real 100ms debounce wrapper around onSourceChanged - give it a
+            // moment to fire and land in Requests' tab state before Send reads it
+            await new Promise(resolve => setTimeout(resolve, 150));
+        });
 
         // select JSON
         const contentTypeDropdown = within(screen.getByTestId("requests-accept"));
         fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         const opts = screen.getAllByRole("option");
-        opts[0].click();
+        fireEvent.click(opts[0]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
         
         fireEvent.click(screen.getByLabelText("Send"));

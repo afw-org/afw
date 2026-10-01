@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {render, fireEvent} from "@testing-library/react";
+import {render, fireEvent, act} from "@testing-library/react";
 
 const Test = (wrapper, Slider) => {
 
@@ -39,7 +39,7 @@ const Test = (wrapper, Slider) => {
             );   
             
             const slider = queryByLabelText("Slider");
-            slider.focus();
+            act(() => slider.focus());
 
             fireEvent.keyDown(document.activeElement, { key: "ArrowUp" });
             //expect(onChanged).toHaveBeenLastCalledWith(60);
@@ -62,7 +62,7 @@ const Test = (wrapper, Slider) => {
             );   
             
             const slider = queryByLabelText("Slider");
-            slider.focus();
+            act(() => slider.focus());
 
             fireEvent.keyDown(document.activeElement, { key: "ArrowUp" });
             //expect(onChanged).toHaveBeenLastCalledWith(100);
@@ -84,7 +84,7 @@ const Test = (wrapper, Slider) => {
             );   
             
             const slider = queryByLabelText("Slider");
-            slider.focus();
+            act(() => slider.focus());
 
             fireEvent.keyDown(document.activeElement, { key: "ArrowDown" });
             //expect(onChanged).toHaveBeenLastCalledWith(10);
@@ -107,7 +107,7 @@ const Test = (wrapper, Slider) => {
             );   
             
             const slider = queryByLabelText("Slider");
-            slider.focus();
+            act(() => slider.focus());
 
             fireEvent.keyDown(document.activeElement, { key: "ArrowUp" });
             //expect(onChanged).not.toHaveBeenCalled();            

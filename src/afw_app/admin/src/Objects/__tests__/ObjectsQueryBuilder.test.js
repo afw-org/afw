@@ -62,7 +62,7 @@ describe("ObjectsQueryBuilder Tests", () => {
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         const typeOpt = screen.getByRole("option", { name: "_AdaptiveAdapter_" });        
         // select '_AdaptiveAdapter_'
-        typeOpt.click();
+        fireEvent.click(typeOpt);
         // wait options to disappear
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0)); 
 
@@ -86,7 +86,7 @@ describe("ObjectsQueryBuilder Tests", () => {
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         const propertyOpt = screen.getByRole("option", { name: "Service Id" });        
         // select 'Service Id'
-        propertyOpt.click();
+        fireEvent.click(propertyOpt);
         // wait options to disappear
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0)); 
 
@@ -94,7 +94,7 @@ describe("ObjectsQueryBuilder Tests", () => {
         fireEvent.mouseDown(screen.getByLabelText("Operator"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         const operatorOpts = screen.getAllByRole("option");
-        operatorOpts[0].click();        
+        fireEvent.click(operatorOpts[0]);        
         // wait options to disappear
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0)); 
 

@@ -78,7 +78,7 @@ const Test = (wrapper) => {
         });
 
         /* click the second option */
-        options[1].click();                        
+        fireEvent.click(options[1]);                        
                
         await waitFor(() => expect(onChanged).toHaveBeenCalled());                
 

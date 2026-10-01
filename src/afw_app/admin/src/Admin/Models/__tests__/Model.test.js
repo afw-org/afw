@@ -7,7 +7,8 @@ import {
     waitFor,
     screen,
     mswPostCallback,
-    waitForSpinner
+    waitForSpinner,
+    act
 } from "../../test-utils";
 import {Router} from "react-router-dom";
 import {createMemoryHistory} from "history";
@@ -78,19 +79,19 @@ describe("Model Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
 
-        history.push("/Admin/Models/models/test1#overview");
+        act(() => history.push("/Admin/Models/models/test1#overview"));
         await screen.findByTestId("admin-admin-models-overview");
 
-        history.push("/Admin/Models/models/test1#spreadsheet");
+        act(() => history.push("/Admin/Models/models/test1#spreadsheet"));
         await screen.findByTestId("admin-admin-models-spreadsheet");
 
-        history.push("/Admin/Models/models/test1#mappings");
+        act(() => history.push("/Admin/Models/models/test1#mappings"));
         await screen.findByTestId("admin-admin-models-mappings");
 
-        history.push("/Admin/Models/models/test1#source");
+        act(() => history.push("/Admin/Models/models/test1#source"));
         await screen.findByTestId("admin-admin-models-source");
         
-        history.push("/Admin/Models/models/test1#tree");
+        act(() => history.push("/Admin/Models/models/test1#tree"));
         await screen.findByTestId("admin-admin-models-tree");
     });
 

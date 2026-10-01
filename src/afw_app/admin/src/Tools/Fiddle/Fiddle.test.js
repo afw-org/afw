@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {editor as monacoEditorMock} from "monaco-editor";
-import {server, http, HttpResponse, render, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
+import {server, http, HttpResponse, render, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback, act} from "../../test-utils";
 import Fiddle from "./Fiddle";
 
 /*
@@ -46,11 +46,13 @@ describe("Fiddle Tests", () => {
         fireEvent.click(screen.getByLabelText("New Source Window"));
 
         await waitFor(() => expect(getLatestMonacoEditorInstance()).toBeDefined());
-        getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
-        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
-        // real 100ms debounce wrapper - give it a moment to fire before
-        // interacting further
-        await new Promise(resolve => setTimeout(resolve, 150));
+        await act(async () => {
+            getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
+            // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+            // real 100ms debounce wrapper - give it a moment to fire before
+            // interacting further
+            await new Promise(resolve => setTimeout(resolve, 150));
+        });
 
         mswPostCallback.mockClear();
 
@@ -89,11 +91,13 @@ describe("Fiddle Tests", () => {
         fireEvent.click(screen.getByLabelText("New Source Window"));
 
         await waitFor(() => expect(getLatestMonacoEditorInstance()).toBeDefined());
-        getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
-        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
-        // real 100ms debounce wrapper - give it a moment to fire before
-        // interacting further
-        await new Promise(resolve => setTimeout(resolve, 150));
+        await act(async () => {
+            getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
+            // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+            // real 100ms debounce wrapper - give it a moment to fire before
+            // interacting further
+            await new Promise(resolve => setTimeout(resolve, 150));
+        });
 
         mswPostCallback.mockClear();
 
@@ -173,11 +177,13 @@ describe("Fiddle Tests", () => {
         fireEvent.click(screen.getByLabelText("New Source Window"));
 
         await waitFor(() => expect(getLatestMonacoEditorInstance()).toBeDefined());
-        getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
-        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
-        // real 100ms debounce wrapper - give it a moment to fire before
-        // interacting further
-        await new Promise(resolve => setTimeout(resolve, 150));
+        await act(async () => {
+            getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
+            // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+            // real 100ms debounce wrapper - give it a moment to fire before
+            // interacting further
+            await new Promise(resolve => setTimeout(resolve, 150));
+        });
 
         mswPostCallback.mockClear();
 

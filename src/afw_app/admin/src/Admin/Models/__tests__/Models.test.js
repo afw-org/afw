@@ -9,7 +9,8 @@ import {
     screen,
     fireEvent,
     mswPostCallback,
-    waitForSpinner
+    waitForSpinner,
+    act
 } from "../../test-utils";
 import {Router} from "react-router-dom";
 import {createMemoryHistory} from "history";
@@ -44,7 +45,7 @@ describe("Models Tests", () => {
         expect(within(list).queryByRole("link", { name: "models" })).not.toBeInTheDocument();
 
         /* push /Admin/Models/models onto the history route */
-        history.push("/Admin/Models/models");
+        act(() => history.push("/Admin/Models/models"));
 
         within(list).getByRole("link", { name: "Admin" });
         within(list).getByRole("link", { name: "Models" });
@@ -77,7 +78,7 @@ describe("Models Tests", () => {
         );
 
         /* push /Admin/Models/models/test onto the history route */        
-        history.push("/Admin/Models/models/test");
+        act(() => history.push("/Admin/Models/models/test"));
         
         await within(list).findByRole("link", { name: "Admin" });
         await within(list).findByRole("link", { name: "Models" });

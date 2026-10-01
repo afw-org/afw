@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {MemoryRouter} from "react-router-dom";
-import {render, waitFor, within, fireEvent, screen, waitForElementToBeRemoved, mswPostCallback, waitForSpinner, server, http, HttpResponse} from "../test-utils";
+import {render, waitFor, within, fireEvent, screen, waitForElementToBeRemoved, mswPostCallback, waitForSpinner, server, http, HttpResponse, act} from "../test-utils";
 import Services from "./Services";
 
 import serviceMeta from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveObjectType_/_AdaptiveService_.json";
@@ -365,7 +365,7 @@ describe("Services Tests", () => {
             let authHandlerOpts;
             fireEvent.mouseDown(authHandler);                                   
             await waitFor(() => expect(authHandlerOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            authHandlerOpts[0].click();
+            fireEvent.click(authHandlerOpts[0]);
 
             fireEvent.click(screen.getByLabelText("Next"));
 
@@ -380,7 +380,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(contentType);   
             let contentTypeOpts;                                
             await waitFor(() => expect(contentTypeOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                    
-            contentTypeOpts[0].click();
+            fireEvent.click(contentTypeOpts[0]);
 
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));                        
@@ -459,7 +459,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(authHandler);           
             let authHandlerOpts;                        
             await waitFor(() => expect(authHandlerOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            authHandlerOpts[0].click();
+            fireEvent.click(authHandlerOpts[0]);
 
             const nextBtn = screen.getByLabelText("Next");
             fireEvent.click(nextBtn);
@@ -473,7 +473,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(modelAdapter.getByRole("combobox"));   
             let modelAdapterOpts;                  
             await waitFor(() => expect(modelAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            modelAdapterOpts[0].click();
+            fireEvent.click(modelAdapterOpts[0]);
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));                        
 
@@ -486,7 +486,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(models.getByRole("combobox"));                                               
             let modelOpts;
             await waitFor(() => expect(modelOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            modelOpts[0].click();
+            fireEvent.click(modelOpts[0]);
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));    
             
@@ -495,7 +495,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(mappedAdapter.getByRole("combobox"));  
             let mappedAdapterOpts;                                                          
             await waitFor(() => expect(mappedAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                      
-            mappedAdapterOpts[7].click();
+            fireEvent.click(mappedAdapterOpts[7]);
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));  
 
@@ -766,6 +766,10 @@ describe("Services Tests", () => {
 
             await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit Object"));
+            // wait for edit mode: entering it re-renders the tabs, and MUI
+            // Tabs' MutationObserver indicator update must land inside act()
+            // (waitForSpinner() returns at once when no spinner is showing)
+            await waitFor(() => expect(screen.getByLabelText("Save")).toBeInTheDocument());
             
             await waitForSpinner(); 
 
@@ -1094,7 +1098,9 @@ describe("Services Tests", () => {
             // simulate the stray Escape keyup Monaco's own key handling can
             // produce while the user is typing - document.body is the
             // srcElement ObjectEditorHeader's shortcut listener checks for
-            document.body.dispatchEvent(new KeyboardEvent("keyup", { code: "Escape", key: "Escape", bubbles: true }));
+            act(() => {
+                document.body.dispatchEvent(new KeyboardEvent("keyup", { code: "Escape", key: "Escape", bubbles: true }));
+            });
 
             // it should prompt to discard, not exit outright
             await waitFor(() => expect(screen.getByText("Discard Changes")).toBeInTheDocument());

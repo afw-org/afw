@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {render, fireEvent} from "@testing-library/react";
+import {render, fireEvent, act} from "@testing-library/react";
 
 const Test = (wrapper, ChoiceGroup) => {
 
@@ -97,7 +97,8 @@ const Test = (wrapper, ChoiceGroup) => {
             fireEvent.click(queryByLabelText("Choice 1"));
             expect(onChanged).toHaveBeenLastCalledWith({ key: "1" });
 
-            queryByLabelText("Choice 2").click();            
+            /* native click, not fireEvent: like a real one, it honors disabled */
+            act(() => queryByLabelText("Choice 2").click());
             expect(onChanged).not.toHaveBeenLastCalledWith({ key: "2" });
 
             fireEvent.click(queryByLabelText("Choice 3"));
