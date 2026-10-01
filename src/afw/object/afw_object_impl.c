@@ -34,7 +34,8 @@ afw_object_as_value(
 
 AFW_DEFINE(const afw_utf8_t * const *)
 afw_object_impl_get_parent_paths_from_parents(
-    const afw_object_t * const *parents, afw_xctx_t *xctx)
+    const afw_object_t * const *parents,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_size_t count;
     const afw_object_t * const *c;
@@ -43,8 +44,8 @@ afw_object_impl_get_parent_paths_from_parents(
 
     for (count = 0, c = parents; *c; count++, c++);
 
-    o = afw_xctx_malloc(
-        sizeof(afw_utf8_t *) * (count + 1), xctx);
+    o = afw_pool_malloc(
+        p, sizeof(afw_utf8_t *) * (count + 1), xctx);
     result = o;
     for (c = parents; *c; c++, o++) {
         *o = afw_object_meta_get_path(*c, xctx);

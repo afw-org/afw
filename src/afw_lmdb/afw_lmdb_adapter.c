@@ -75,7 +75,7 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
     afw_lmdb_env_t *env;
     const afw_value_t *value;
 
-    env = afw_xctx_calloc_type(afw_lmdb_env_t, xctx);
+    env = afw_pool_calloc_type(p, afw_lmdb_env_t, xctx);
 
     /* path is a template evaluated at adapter start; full path (#15). */
     value = afw_object_get_property(envObject, afw_lmdb_v_path, xctx);
@@ -129,48 +129,48 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
 }
 
 const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
-    const afw_object_t *lim, afw_xctx_t *xctx)
+    const afw_object_t *lim, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_lmdb_limits_t *limits;
     const afw_object_t *obj;
     const afw_value_t *value;
 
-    limits = afw_xctx_calloc_type(afw_lmdb_limits_t, xctx);
+    limits = afw_pool_calloc_type(p, afw_lmdb_limits_t, xctx);
 
     value = afw_object_get_property(lim, afw_lmdb_v_size, xctx);
     if (value) {
-        obj = afw_value_as_object_internal(value, xctx->p, xctx);
+        obj = afw_value_as_object_internal(value, p, xctx);
 
         value = afw_object_get_property(obj, afw_lmdb_v_soft, xctx);
         if (value)
             limits->size_soft = afw_safe_cast_integer_to_int(
-                afw_value_as_integer_internal(value, xctx->p, xctx), xctx);
+                afw_value_as_integer_internal(value, p, xctx), xctx);
         else
             limits->size_soft = 500;
 
         value = afw_object_get_property(obj, afw_lmdb_v_hard, xctx);
         if (value)
             limits->size_hard = afw_safe_cast_integer_to_int(
-                afw_value_as_integer_internal(value, xctx->p, xctx), xctx);
+                afw_value_as_integer_internal(value, p, xctx), xctx);
         else
             limits->size_hard = 1000;
     }
 
     value = afw_object_get_property(lim, afw_lmdb_v_time, xctx);
     if (value) {
-        obj = afw_value_as_object_internal(value, xctx->p, xctx);
+        obj = afw_value_as_object_internal(value, p, xctx);
 
         value = afw_object_get_property(obj, afw_lmdb_v_soft, xctx);
         if (value)
             limits->time_soft = afw_safe_cast_integer_to_int(
-                afw_value_as_integer_internal(value, xctx->p, xctx), xctx);
+                afw_value_as_integer_internal(value, p, xctx), xctx);
         else
             limits->time_soft = 3600;
 
         value = afw_object_get_property(obj, afw_lmdb_v_hard, xctx);
         if (value)
             limits->time_hard = afw_safe_cast_integer_to_int(
-                afw_value_as_integer_internal(value, xctx->p, xctx), xctx);
+                afw_value_as_integer_internal(value, p, xctx), xctx);
         else
             limits->time_hard = 14400;
     }
@@ -184,18 +184,18 @@ const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
  * internal adapter-index cursor behavior, an unrelated concern.
  */
 const afw_lmdb_index_conf_t * afw_lmdb_adapter_parse_index_conf(
-    const afw_object_t *idx, afw_xctx_t *xctx)
+    const afw_object_t *idx, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_lmdb_index_conf_t *index_conf;
     const afw_value_t *value;
     const afw_utf8_t *strategy_str;
 
-    index_conf = afw_xctx_calloc_type(afw_lmdb_index_conf_t, xctx);
+    index_conf = afw_pool_calloc_type(p, afw_lmdb_index_conf_t, xctx);
 
     value = afw_object_get_property(idx, afw_lmdb_v_cardinalityProbeCap, xctx);
     if (value)
         index_conf->cardinality_probe_cap = afw_safe_cast_integer_to_int(
-            afw_value_as_integer_internal(value, xctx->p, xctx), xctx);
+            afw_value_as_integer_internal(value, p, xctx), xctx);
     else
         index_conf->cardinality_probe_cap = AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
 
@@ -203,7 +203,7 @@ const afw_lmdb_index_conf_t * afw_lmdb_adapter_parse_index_conf(
     if (!value) {
         index_conf->cardinality_strategy = AFW_LMDB_DEFAULT_CARDINALITY_STRATEGY;
     } else {
-        strategy_str = afw_value_as_string_internal(value, xctx->p, xctx);
+        strategy_str = afw_value_as_string_internal(value, p, xctx);
 
         if (afw_utf8_equal_utf8_z(strategy_str, "totalEntries"))
             index_conf->cardinality_strategy = afw_lmdb_cardinality_strategy_total_entries;
@@ -487,13 +487,13 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     value = afw_object_get_property(properties, afw_lmdb_v_limits, xctx);
     if (value) {
         limits = afw_value_as_object_internal(value, p, xctx);
-        self->limits = afw_lmdb_adapter_parse_limits(limits, xctx);
+        self->limits = afw_lmdb_adapter_parse_limits(limits, p, xctx);
     }
 
     value = afw_object_get_property(properties, afw_lmdb_v_index, xctx);
     if (value) {
         index_conf_obj = afw_value_as_object_internal(value, p, xctx);
-        self->index_conf = afw_lmdb_adapter_parse_index_conf(index_conf_obj, xctx);
+        self->index_conf = afw_lmdb_adapter_parse_index_conf(index_conf_obj, p, xctx);
     }
 
     /* Load metadata. */

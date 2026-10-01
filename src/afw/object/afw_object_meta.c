@@ -1011,7 +1011,7 @@ impl_afw_object_get_next_property(
     impl_get_next_property_iterator_t *i;
 
     if (!*iterator) {
-        *iterator = (afw_iterator_old_t *)afw_xctx_calloc_type(
+        *iterator = (afw_iterator_old_t *)afw_pool_calloc_type(xctx->p,
             impl_get_next_property_iterator_t, xctx);
         if (!self->object_type || !self->object_type->object_type_object)
         {

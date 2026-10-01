@@ -69,6 +69,7 @@ do { \
 /**
  * @brief Get list of parent paths from list of parents.
  * @param parents is NULL terminated list of parent object pointers.
+ * @param p dest pool for the path pointer list.
  * @param xctx of caller.
  * @return NULL terminated list of parent paths.
  *
@@ -77,7 +78,8 @@ do { \
  */
 AFW_DECLARE(const afw_utf8_t * const *)
 afw_object_impl_get_parent_paths_from_parents(
-    const afw_object_t * const *parents, afw_xctx_t *xctx);
+    const afw_object_t * const *parents,
+    const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 

@@ -228,7 +228,7 @@ impl_open_and_retrieve_peer_object(
     AFW_ERROR_FOOTPRINT("read()");
     buffer.size = afw_safe_cast_off_to_size(info.size, xctx);
     len = buffer.size;
-    memory = afw_xctx_calloc(len, xctx);
+    memory = afw_pool_calloc(p, len, xctx);
     buffer.ptr = memory;
     len = afw_file_read(*peer_fd, memory, buffer.size, xctx);
     if (len != (afw_size_t)info.size) goto error_peer;
@@ -768,7 +768,7 @@ impl_afw_adapter_journal_get_entry_internal(
         if (!skip_first_entry) {
   
             /* Read journal entry. */
-            memory = afw_xctx_calloc(len, xctx);
+            memory = afw_pool_calloc(p, len, xctx);
             buffer.size = len;
             buffer.ptr = memory;
             AFW_ERROR_FOOTPRINT("read()");

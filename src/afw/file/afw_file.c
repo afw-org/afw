@@ -120,7 +120,7 @@ afw_file_from_memory(
      * Make afw_u8_z copy of name with '\' changed to '/'.  Remember location
      * of last slash.
      */
-    file_path_z = afw_xctx_calloc(file_path->len + 1, xctx);
+    file_path_z = afw_pool_calloc(xctx->p, file_path->len + 1, xctx);
     last_slash = NULL;
     for (i = file_path->s, o = file_path_z, count = file_path->len;
         count > 0;

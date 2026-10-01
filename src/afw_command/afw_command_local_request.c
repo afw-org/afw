@@ -260,7 +260,7 @@ afw_command_local_request_create(
     const afw_value_t *value;
 
     /* Allocate memory for self. */
-    self = afw_xctx_calloc_type(afw_command_local_request_self_t, xctx);
+    self = afw_pool_calloc_type(p, afw_command_local_request_self_t, xctx);
 
     /* Initialize Self. */
     self->pub.inf = &impl_afw_request_inf;

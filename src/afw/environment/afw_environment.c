@@ -481,7 +481,7 @@ afw_environment_create(
 
     /* Set xctx name to program name or default. */
     if (argc > 0) {
-        name = afw_xctx_calloc_type(afw_utf8_t, xctx);
+        name = afw_pool_calloc_type(xctx->p, afw_utf8_t, xctx);
         /* Name is after last forward or back slash. */
         for (s = name->s = argv[0]; *s; s++) {
             if (*s == '/' || *s == '\\') {
@@ -1414,7 +1414,7 @@ afw_environment_register_data_type(
 
         /* If data_type number unassigned, make copy and assign it. */
         if (data_type->data_type_number == 0) {
-            dt = afw_xctx_calloc(sizeof(afw_data_type_t), xctx);
+            dt = afw_pool_calloc(xctx->env->p, sizeof(afw_data_type_t), xctx);
             memcpy(dt, data_type, sizeof(afw_data_type_t));
             dt->data_type_number = (int)env->data_type_methods->count;
             data_type = dt;
@@ -1571,8 +1571,8 @@ afw_environment_register_function(
             function->dataType->internal.len > 0 &&
             !function->data_type)
         {
-            f = afw_xctx_calloc(sizeof(afw_value_function_definition_t),
-                xctx);
+            f = afw_pool_calloc(xctx->env->p,
+                sizeof(afw_value_function_definition_t), xctx);
             memcpy(f, function, sizeof(afw_value_function_definition_t));
             function = f;
             f->data_type = afw_environment_get_data_type(

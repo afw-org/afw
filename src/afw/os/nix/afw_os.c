@@ -549,7 +549,7 @@ static const afw_object_t *
 impl_create_general_object(afw_xctx_t *xctx)
 {
     const afw_object_t *result;
-    struct utsname *uname_s;
+    struct utsname uname_s;
     int rc;
 
     /* Construct system specific object. */
@@ -564,39 +564,39 @@ impl_create_general_object(afw_xctx_t *xctx)
     afw_object_meta_set_read_only(result, xctx);
 
     /* use uname() to gather system name information */
-    uname_s = afw_xctx_calloc_type(struct utsname, xctx);
-    rc = uname(uname_s);
+    memset(&uname_s, 0, sizeof(uname_s));
+    rc = uname(&uname_s);
     if (rc > -1) {
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_v_sysname.pub, uname_s->sysname, xctx);
+            &impl_v_sysname.pub, uname_s.sysname, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_sysname.pub, afw_v_label, "System Name", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_sysname.pub, afw_v_description, "This is the name of the operating system in use.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_v_nodename.pub, uname_s->nodename, xctx);
+            &impl_v_nodename.pub, uname_s.nodename, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_nodename.pub, afw_v_label, "Node Name", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_nodename.pub, afw_v_description, "This is the host name of this particular computer. In the GNU C Library, the value is the same as that returned by gethostname.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_v_release.pub, uname_s->release, xctx);
+            &impl_v_release.pub, uname_s.release, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_release.pub, afw_v_label, "Release", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_release.pub, afw_v_description, "This is the current release level of the operating system implementation.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            afw_v_version, uname_s->version, xctx);
+            afw_v_version, uname_s.version, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             afw_v_version, afw_v_label, "Version", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             afw_v_version, afw_v_description, "This is the current version level within the release of the operating system.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_v_machine.pub, uname_s->machine, xctx);
+            &impl_v_machine.pub, uname_s.machine, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_machine.pub, afw_v_label, "Machine", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
@@ -610,7 +610,7 @@ impl_create_general_object(afw_xctx_t *xctx)
          * non-portable code.
          * 
          * afw_object_set_property_as_string_from_utf8_z(result,
-         *    &impl_s_domainname, uname_s->domainname, xctx);
+         *    &impl_s_domainname, uname_s.domainname, xctx);
          */
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_domainname.pub, afw_v_label, "Domain Name", xctx);

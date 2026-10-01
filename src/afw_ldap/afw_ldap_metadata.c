@@ -147,7 +147,7 @@ impl_create_lexical_analyzer(const afw_utf8_t *s,
 {
     impl_lexical_t *self;
 
-    self = afw_xctx_calloc_type(impl_lexical_t, xctx);
+    self = afw_pool_calloc_type(p, impl_lexical_t, xctx);
 
     self->start = s->s;
     self->c = s->s;

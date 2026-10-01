@@ -35,7 +35,7 @@ impl_insure_flags_mutable(afw_xctx_t *xctx)
         xctx->env->flags_count_allocated != xctx->flags_count)
     {
         count = xctx->env->flags_count_allocated;
-        flags = afw_xctx_malloc(count * sizeof(afw_boolean_t), xctx);
+        flags = afw_pool_malloc(xctx->p, count * sizeof(afw_boolean_t), xctx);
         memcpy(flags, (void *)xctx->env->default_flags, count * sizeof(afw_boolean_t));
         xctx->flags = flags;
         xctx->flags_count = count;
@@ -956,7 +956,7 @@ afw_flag_set_to_defaults_plus_array(
     afw_size_t flags_count;
 
     flags_count = xctx->env->flags_count_allocated;
-    flags = afw_xctx_malloc(flags_count * sizeof(afw_boolean_t), xctx);
+    flags = afw_pool_malloc(xctx->p, flags_count * sizeof(afw_boolean_t), xctx);
     memcpy(flags, (void *)xctx->env->default_flags,
         flags_count * sizeof(afw_boolean_t));
     xctx->flags = flags;

@@ -229,7 +229,7 @@ int main(int argc, const char * const *argv)
     AFW_TRY {
 
         /* Allocate and initialize self. */
-        self = afw_xctx_calloc_type(impl_<afwdev {srcdir}>_self_t, xctx);
+        self = afw_pool_calloc_type(xctx->p, impl_<afwdev {srcdir}>_self_t, xctx);
         self->xctx = xctx;
 
         /* Process arguments. */

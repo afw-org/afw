@@ -872,7 +872,7 @@ afw_lmdb_key_value_t * afw_lmdb_key_value_create(
 {
     afw_lmdb_key_value_t *self;
 
-    self = afw_xctx_calloc_type(afw_lmdb_key_value_t, xctx);
+    self = afw_pool_calloc_type(xctx->p, afw_lmdb_key_value_t, xctx);
     self->pub.inf = &impl_afw_adapter_key_value_inf;
 
     self->session = (afw_adapter_session_t *)session;
@@ -1071,7 +1071,7 @@ impl_afw_adapter_key_value_get (
 
     /* allocate a new afw_memory_t * to return */
     //value->size = existing.size;
-    //value->ptr = afw_xctx_calloc(existing.size, xctx);
+    //value->ptr = afw_pool_calloc(xctx->p, existing.size, xctx);
     //memcpy(value->ptr, existing.ptr, value->size);
     /** @fixme*/return NULL;
     return value;
@@ -1226,7 +1226,7 @@ afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
     MDB_dbi dbi;
     MDB_txn *txn = session->currTxn;
 
-    self = afw_xctx_calloc_type(impl_afw_adapter_impl_index_cursor_self_t, xctx);
+    self = afw_pool_calloc_type(xctx->p, impl_afw_adapter_impl_index_cursor_self_t, xctx);
     self->pub.inf = &impl_afw_adapter_impl_index_cursor_inf;
 
     self->session = session;
@@ -1671,7 +1671,7 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     afw_lmdb_transaction_t *self;
     int rc;
 
-    self = afw_xctx_calloc_type(afw_lmdb_transaction_t, xctx);
+    self = afw_pool_calloc_type(xctx->p, afw_lmdb_transaction_t, xctx);
     self->pub.inf = &impl_afw_adapter_transaction_inf;
 
     self->session = (afw_adapter_session_t *)session;

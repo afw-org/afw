@@ -25,7 +25,7 @@ afw_adapter_internal_get_cache(afw_xctx_t *xctx)
     afw_adapter_internal_cache_t *cache;
 
     if (!xctx->cache) {
-        cache = afw_xctx_calloc_type(afw_adapter_internal_cache_t, xctx);
+        cache = afw_pool_calloc_type(xctx->p, afw_adapter_internal_cache_t, xctx);
         cache->session_cache = afw_hash_table_create(
             afw_void_hash_table_t, xctx->p, xctx);
         cache->transactions = afw_vector_create(
@@ -557,7 +557,7 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
 
     /* If there is not already one, create one. */
     if (!session_cache) {
-        session_cache = afw_xctx_calloc_type(
+        session_cache = afw_pool_calloc_type(xctx->p,
             afw_adapter_internal_session_cache_t, xctx);
         session_cache->session = afw_adapter_session_create(adapter_id, xctx);
         if (session_cache->session) {
@@ -587,7 +587,7 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
                 session_cache->session,
                 xctx);
             if (new_transaction) {
-                transaction = afw_xctx_calloc_type(
+                transaction = afw_pool_calloc_type(xctx->p,
                     afw_adapter_internal_transaction_t, xctx);
                 transaction->adapter_id =
                     &session_cache->session->adapter->adapter_id;
@@ -986,7 +986,7 @@ afw_adapter_internal_register_service_type(afw_xctx_t *xctx)
 {
     afw_service_type_t *self;
 
-    self = afw_xctx_calloc_type(afw_service_type_t, xctx);
+    self = afw_pool_calloc_type(xctx->env->p, afw_service_type_t, xctx);
     self->inf = &impl_afw_service_type_inf;
     afw_memory_copy(&self->service_type_id, afw_s_adapter);
     self->conf_type = afw_environment_get_conf_type(afw_s_adapter, xctx);

@@ -47,7 +47,7 @@ struct afw_adapter_xctx_internal_s {
     ((_xctx)->adapter_xctx_internal \
     ? (_xctx)->adapter_xctx_internal \
     : ((_xctx)->adapter_xctx_internal = \
-        afw_xctx_calloc_type(afw_adapter_xctx_internal_t, _xctx)))
+        afw_pool_calloc_type((_xctx)->p, afw_adapter_xctx_internal_t, _xctx)))
 
 
 struct afw_adapter_internal_session_cache_s {

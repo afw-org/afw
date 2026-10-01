@@ -393,7 +393,7 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
         log_factory, xctx);
 
     /* Register special handler for _AdaptiveService_ objects. */
-    runtime_custom = afw_xctx_calloc_type(afw_runtime_custom_t, xctx);
+    runtime_custom = afw_pool_calloc_type(xctx->env->p, afw_runtime_custom_t, xctx);
     runtime_custom->retrieve_objects =
         afw_service_internal_AdaptiveService_retrieve_objects;
     runtime_custom->get_object =
@@ -403,7 +403,7 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
         runtime_custom, xctx);
 
     /* Register special handler for _AdaptiveLayoutComponentType_ objects. */
-    runtime_custom = afw_xctx_calloc_type(afw_runtime_custom_t, xctx);
+    runtime_custom = afw_pool_calloc_type(xctx->env->p, afw_runtime_custom_t, xctx);
     runtime_custom->retrieve_objects =
         impl_AdaptiveLayoutComponentType_retrieve_objects;
     runtime_custom->get_object =

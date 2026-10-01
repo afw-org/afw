@@ -391,13 +391,13 @@ afw_value_object_create_managed(
             xctx);
     }
     afw_object_get_reference(internal, xctx);
-    (void)p;
-    v = afw_xctx_malloc(
+    p = p->managed_p;
+    v = afw_pool_calloc(p,
         sizeof(afw_value_object_managed_t), xctx);
     v->inf = &afw_value_managed_object_inf;
     v->internal = internal;
-    /* Container hold is on object/array, not value RC. */
-    v->reference_count = 0;
+    v->p = p;
+    v->reference_count = 1;
 
     return &v->pub;
 }
@@ -596,6 +596,10 @@ impl_afw_value_managed_optional_release(
             return;
         }
         managed->reference_count--;
+        if (managed->reference_count == 0) {
+            afw_pool_free_memory(managed->p, managed,
+                sizeof(afw_value_object_managed_t), xctx);
+        }
     }
 }
 

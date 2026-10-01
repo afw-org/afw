@@ -86,7 +86,6 @@
  * afw_pool_internal_calloc_unhandled(), afw_pool_internal_malloc_unhandled(),
  * afw_pool_free_memory(), afw_pool_free_memory_no_throw(),
  * afw_pool_garbage_collect(),
- * afw_xctx_malloc() / afw_xctx_free(),
  * afw_pool_release_value_at_cleanup().
  * `afw_memory_malloc` / `calloc` / `free` (`p, xctx` last) live in
  * `afw_memory.h`. Heap chunks come from @ref afw_memory_region.

@@ -174,7 +174,7 @@ afw_command_local_parse_request(
 
         /* Second end of line starts payload. */
         if (x.token_type == afw_command_local_parse_token_type_end_of_line) {
-            payload = afw_xctx_malloc_type(afw_memory_t, xctx);
+            payload = afw_pool_malloc_type(x.p, afw_memory_t, xctx);
             payload->ptr = (const afw_octet_t *)x.cursor;
             payload->size = x.end - x.cursor;
             return payload;

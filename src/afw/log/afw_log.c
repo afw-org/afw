@@ -268,17 +268,17 @@ afw_log_internal_create_environment_log(
     impl_afw_log_self_t *self;
     const afw_log_t *log;
 
-    self = afw_xctx_calloc_type(impl_afw_log_self_t, xctx);
+    self = afw_pool_calloc_type(xctx->env->p, impl_afw_log_self_t, xctx);
     self->pub.inf = &impl_afw_log_inf;
     log = (const afw_log_t *)self;
 
     /* Log id to log_type (implementation_id). */
     afw_memory_copy(&self->pub.log_id, &impl_afw_log_inf.rti.implementation_id);
-    self->pub.p = xctx->p;
-    self->pub.impl = afw_xctx_calloc_type(afw_log_impl_t, xctx);
+    self->pub.p = xctx->env->p;
+    self->pub.impl = afw_pool_calloc_type(xctx->env->p, afw_log_impl_t, xctx);
 
     /* Allocate log head and register its singleton. */
-    self->head = afw_xctx_calloc_type(impl_log_head_t, xctx);
+    self->head = afw_pool_calloc_type(xctx->env->p, impl_log_head_t, xctx);
 
     /* Return log implementation. */
     return log;
@@ -692,7 +692,7 @@ afw_log_internal_register_service_type(afw_xctx_t *xctx)
 {
     afw_service_type_t *self;
 
-    self = afw_xctx_calloc_type(afw_service_type_t, xctx);
+    self = afw_pool_calloc_type(xctx->env->p, afw_service_type_t, xctx);
     self->inf = &impl_afw_service_type_inf;
     afw_memory_copy(&self->service_type_id, afw_s_log);
     self->conf_type = afw_environment_get_conf_type(afw_s_log, xctx);

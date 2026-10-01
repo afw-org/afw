@@ -44,7 +44,7 @@ afw_lmdb_adapter_session_t *afw_lmdb_adapter_session_create(
 {
     afw_lmdb_adapter_session_t *self;
 
-    self = afw_xctx_calloc_type(afw_lmdb_adapter_session_t, xctx);
+    self = afw_pool_calloc_type(xctx->p, afw_lmdb_adapter_session_t, xctx);
     self->pub.inf = &impl_afw_adapter_session_inf;
     self->pub.adapter = (afw_adapter_t *)adapter;
     self->pub.p = xctx->p;

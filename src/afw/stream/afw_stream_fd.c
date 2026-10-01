@@ -240,7 +240,8 @@ afw_stream_fd_create(
 {
     afw_stream_fd_self_t *self;
 
-    self = afw_xctx_calloc_type(afw_stream_fd_self_t, xctx);
+    /* Instance lives on the xctx job: the stream table keeps it past dest p. */
+    self = afw_pool_calloc_type(xctx->p, afw_stream_fd_self_t, xctx);
     self->pub.inf = &impl_afw_stream_inf;
     self->pub.p = p;
     self->pub.streamId = streamId;

@@ -299,7 +299,7 @@ afw_curl_internal_register_response_callbacks(
     CURLcode res;
     afw_curl_internal_write_cb_t *appdata;
     
-    appdata = afw_xctx_calloc_type(afw_curl_internal_write_cb_t, xctx);
+    appdata = afw_pool_calloc_type(pool, afw_curl_internal_write_cb_t, xctx);
     appdata->pool = pool;
     appdata->xctx = xctx;
     appdata->headers = afw_array_create_unmanaged(pool, xctx);
@@ -339,7 +339,7 @@ afw_curl_internal_register_request_callbacks(
     CURLcode res;
     afw_curl_internal_read_cb_t *appdata;
 
-    appdata = afw_xctx_calloc_type(afw_curl_internal_read_cb_t, xctx);
+    appdata = afw_pool_calloc_type(pool, afw_curl_internal_read_cb_t, xctx);
     appdata->pool = pool;
     appdata->xctx = xctx;
     appdata->payload = payload;
