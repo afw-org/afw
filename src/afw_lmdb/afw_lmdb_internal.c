@@ -672,7 +672,7 @@ const afw_object_t * afw_lmdb_internal_create_object_from_entry(
     value = afw_lmdb_internal_create_value_from_entry(self, 
         object_type_id, object_id, dbi, xctx);
 
-    return afw_value_as_object_internal(value, xctx);
+    return afw_value_as_object_internal(value, xctx->p, xctx);
 }
 
 /*
@@ -717,7 +717,7 @@ const afw_value_t * afw_lmdb_internal_create_value_from_entry(
     v = afw_content_type_raw_to_value(
         adapter->ubjson, &raw, NULL, xctx->p, xctx);
 
-    object = afw_value_as_object_internal(v, xctx);
+    object = afw_value_as_object_internal(v, xctx->p, xctx);
 
     afw_object_meta_set_ids(object, &adapter->pub.adapter_id, 
         object_type_id, object_id, xctx);
@@ -848,7 +848,7 @@ const afw_object_t * afw_lmdb_internal_get_config(
         value = afw_content_type_raw_to_value(
             self->ubjson, &raw, NULL, p, xctx);
 
-        config = afw_value_as_object_internal(value, xctx);
+        config = afw_value_as_object_internal(value, p, xctx);
         afw_object_meta_set_ids(config, &self->pub.adapter_id, object_type_id,
             object_id, xctx);
     } else {
@@ -1426,7 +1426,7 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
         value = afw_content_type_raw_to_value(
             adapter->ubjson, &from_raw, NULL, pool, xctx);
 
-        object = afw_value_as_object_internal(value, xctx);
+        object = afw_value_as_object_internal(value, pool, xctx);
 
         afw_object_meta_set_ids(object, &adapter->pub.adapter_id,
             self->object_type_id, object_id, xctx);

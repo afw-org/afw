@@ -72,7 +72,8 @@ Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / 
 | `afw_dateTime_set_from_apr_time` / `create_from_apr_time` | **`afw_dateTime_set_from_os_time`**. No in-tree callers after file I/O. |
 | `apr_initialize` / `afw_pool_get_apr_pool` / linking `apr-1` / APR as the AFW pool | **libafw does not use APR.** Heap store is AFW 64k-min, 4k-aligned chunks (`afw_pool_heap_create` can use a smaller `chunk_min`; compile units use 4k). `find_package(afw)` and `afw.pc` no longer require APR. Do not pass an APR pool. You may still link APR **in your own tree** if you use it yourself — AFW will not provide it. |
 | Object `property_name` as `const afw_utf8_t *` | **`const afw_value_t *`** on object get/set/has/remove, create_embedded, meta, `throw_property_*`. `afw_s_foo` → **`afw_v_foo`** (or your package `*_v_*`). See the [checklist](#object-property-names-as-values-issue-2) if you maintain another repo that links this libafw. |
-| `get_property_as_string` / `afw_value_as_string` as a utf8 peel; dest `p` on those getters | **`_as_<type>`** is a typed value pointer (`const afw_value_string_t *`). C payload is **`_internal`**. Convert is **`convert_to_*`**. Getters do **not** evaluate and do **not** take dest `p`. [Typed values](#typed-value-pointers-vs-c-internals) |
+| `get_property_as_string` as a utf8 peel; dest `p` on those getters | **`_as_<type>`** is a typed value pointer (`const afw_value_string_t *`). C payload is **`_internal`**. Convert is **`convert_to_*`**. Getters do **not** evaluate and do **not** take dest `p`. [Typed values](#typed-value-pointers-vs-c-internals) |
+| `afw_value_as_string(v, xctx)` / `array_of_<type>_remove(..., xctx)` | **`afw_value_as_string(v, p, xctx)`** (evaluates if needed). Peel: **`as_string_internal(v, p, xctx)`**. Typed `array_of_<type>_remove` / `_remove_internal` take dest `p` for the search-key wrap. [Typed values](#typed-value-pointers-vs-c-internals) |
 | `afw_array_get_next_value(..., p, xctx)` / `push_internal` / `get_next_internal` | Drop dest `p` on `get_next_value` / `get_entry_value`. Gone: `push_internal`, `insert_internal`, `remove_internal`, `get_next_internal`, `get_entry_internal`. Use **`push_value`** / **`get_next_value`** or typed `array_of_<type>_add` / `_add_internal`. [Typed values](#typed-value-pointers-vs-c-internals) |
 | `afw_value_as_assignable` / `compile_and_evaluate_as` | **`afw_value_get_assignable`**. **`afw_value_compile_and_evaluate_using`**. [Typed values](#typed-value-pointers-vs-c-internals) |
 | Object/array create that “owns a pool” as `create_managed` | **`create_unmanaged`** (live in `p`), **`create_unmanaged_new_p`**, **`create_unmanaged_cede_p`**. **`create_managed(p, xctx)`** is a **frame** (slots + RC in **`p->managed_p`**). Isolate with **`get_assignable`**. Unmanaged object/array **value** `get_reference` / `release` **throw**. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta) |
@@ -888,7 +889,7 @@ This section is for **someone supporting another repository that uses this one**
 
 Arrays and objects **store values**, not C payloads. Helpers that take or return a C payload are named **`_internal`**. Helpers that take or return a typed Adaptive value pointer are named **`_as_<type>`** (no `_internal`). Conversion to another representation is **`convert_to_*`**, not `as_`.
 
-Getters **do not evaluate**. Dest `p` is only for evaluate, clone, or extra allocation (iterator / meta).
+Getters **do not evaluate**. Dest `p` is only for evaluate, clone, or extra allocation (iterator / meta). **`afw_value_as_*`** evaluates if needed and takes dest `p`. Typed **`array_of_<type>_remove`** / **`_remove_internal`** take dest `p` for the search-key wrap.
 
 ### Names
 
@@ -925,7 +926,7 @@ Iterator `get_next` / `get_by_index` and array **entry-meta** getters still take
 
 | In the other repo you have | Change to |
 |----------------------------|-----------|
-| `afw_value_as_string(v, xctx)` as utf8 | **`afw_value_as_string`** → `const afw_value_string_t *`. Utf8 peel: **`as_string_internal`**. Convert: **`convert_to_utf8`** |
+| `afw_value_as_string(v, xctx)` as utf8 | **`afw_value_as_string(v, p, xctx)`** → `const afw_value_string_t *`. Utf8 peel: **`as_string_internal(v, p, xctx)`**. Convert: **`convert_to_utf8`** |
 | `afw_value_as_assignable` | **`afw_value_get_assignable`** |
 | `afw_value_compile_and_evaluate_as` | **`afw_value_compile_and_evaluate_using`** |
 
@@ -933,7 +934,7 @@ Iterator `get_next` / `get_by_index` and array **entry-meta** getters still take
 
 ### Compile errors look like
 
-Too many arguments to `get_next_value` / `get_entry_value` / `get_property_as_*`; unknown `push_internal` / `get_next_internal`; assigning a getter to `const afw_utf8_t *` (`incompatible pointer type`); unknown `as_assignable` / `compile_and_evaluate_as`.
+Too many arguments to `get_next_value` / `get_entry_value` / `get_property_as_*`; too few arguments to `afw_value_as_*` / `array_of_<type>_remove`; unknown `push_internal` / `get_next_internal`; assigning a getter to `const afw_utf8_t *` (`incompatible pointer type`); unknown `as_assignable` / `compile_and_evaluate_as`.
 
 Grep in the other tree (not generated):
 

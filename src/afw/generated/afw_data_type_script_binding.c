@@ -324,9 +324,10 @@ afw_object_set_property_as_script_internal(
 
 /* Typesafe cast to evaluated script value. */
 AFW_DEFINE(const afw_value_script_t *)
-afw_value_as_script(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_script(const afw_value_t *value, const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    value = afw_value_evaluate(value, xctx->p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, script))
     {
         const afw_utf8_t *data_type_id;
@@ -349,9 +350,10 @@ afw_value_as_script(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Typesafe peel of data type script internal. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_script_internal(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_script_internal(const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return &afw_value_as_script(value, xctx)->internal;
+    return &afw_value_as_script(value, p, xctx)->internal;
 }
 
 /* Allocate function for data type script values. */
@@ -880,9 +882,10 @@ AFW_DEFINE(void)
 afw_array_of_script_remove(
     const afw_array_t *instance,
     const afw_value_script_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_script_remove_internal(instance, &value->internal, xctx);
+    afw_array_of_script_remove_internal(instance, &value->internal, p, xctx);
 }
 
 /* Remove a script internal from array of script. */
@@ -890,10 +893,11 @@ AFW_DEFINE(void)
 afw_array_of_script_remove_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
-    v = afw_value_script_create(value, xctx->p, xctx);
+    v = afw_value_script_create(value, p, xctx);
     afw_array_remove_value(instance, v, xctx);
 }

@@ -324,9 +324,10 @@ afw_object_set_property_as_hexBinary_internal(
 
 /* Typesafe cast to evaluated hexBinary value. */
 AFW_DEFINE(const afw_value_hexBinary_t *)
-afw_value_as_hexBinary(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_hexBinary(const afw_value_t *value, const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    value = afw_value_evaluate(value, xctx->p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, hexBinary))
     {
         const afw_utf8_t *data_type_id;
@@ -349,9 +350,10 @@ afw_value_as_hexBinary(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Typesafe peel of data type hexBinary internal. */
 AFW_DEFINE(const afw_memory_t *)
-afw_value_as_hexBinary_internal(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_hexBinary_internal(const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return &afw_value_as_hexBinary(value, xctx)->internal;
+    return &afw_value_as_hexBinary(value, p, xctx)->internal;
 }
 
 /* Allocate function for data type hexBinary values. */
@@ -880,9 +882,10 @@ AFW_DEFINE(void)
 afw_array_of_hexBinary_remove(
     const afw_array_t *instance,
     const afw_value_hexBinary_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_hexBinary_remove_internal(instance, &value->internal, xctx);
+    afw_array_of_hexBinary_remove_internal(instance, &value->internal, p, xctx);
 }
 
 /* Remove a hexBinary internal from array of hexBinary. */
@@ -890,10 +893,11 @@ AFW_DEFINE(void)
 afw_array_of_hexBinary_remove_internal(
     const afw_array_t *instance,
     const afw_memory_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
-    v = afw_value_hexBinary_create(value, xctx->p, xctx);
+    v = afw_value_hexBinary_create(value, p, xctx);
     afw_array_remove_value(instance, v, xctx);
 }

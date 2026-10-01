@@ -362,7 +362,8 @@ afw_context_qualifier_definitions_merge(
         if (variable_definitions)
         {
             variable_definitions_to_add =
-                afw_value_as_object_internal(value, xctx);
+                afw_value_as_object_internal(
+                    value, qualifier_definitions->p, xctx);
             afw_context_variable_definitions_add(
                 variable_definitions, variable_definitions_to_add,
                 replace_duplicates, xctx);

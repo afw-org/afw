@@ -324,9 +324,10 @@ afw_object_set_property_as_template_internal(
 
 /* Typesafe cast to evaluated template value. */
 AFW_DEFINE(const afw_value_template_t *)
-afw_value_as_template(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_template(const afw_value_t *value, const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    value = afw_value_evaluate(value, xctx->p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, template))
     {
         const afw_utf8_t *data_type_id;
@@ -349,9 +350,10 @@ afw_value_as_template(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Typesafe peel of data type template internal. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_template_internal(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_template_internal(const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return &afw_value_as_template(value, xctx)->internal;
+    return &afw_value_as_template(value, p, xctx)->internal;
 }
 
 /* Allocate function for data type template values. */
@@ -880,9 +882,10 @@ AFW_DEFINE(void)
 afw_array_of_template_remove(
     const afw_array_t *instance,
     const afw_value_template_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_template_remove_internal(instance, &value->internal, xctx);
+    afw_array_of_template_remove_internal(instance, &value->internal, p, xctx);
 }
 
 /* Remove a template internal from array of template. */
@@ -890,10 +893,11 @@ AFW_DEFINE(void)
 afw_array_of_template_remove_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
-    v = afw_value_template_create(value, xctx->p, xctx);
+    v = afw_value_template_create(value, p, xctx);
     afw_array_remove_value(instance, v, xctx);
 }

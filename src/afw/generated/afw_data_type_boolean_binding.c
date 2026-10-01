@@ -288,9 +288,10 @@ afw_object_set_property_as_boolean_internal(
 
 /* Typesafe cast to evaluated boolean value. */
 AFW_DEFINE(const afw_value_boolean_t *)
-afw_value_as_boolean(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_boolean(const afw_value_t *value, const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    value = afw_value_evaluate(value, xctx->p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, boolean))
     {
         const afw_utf8_t *data_type_id;
@@ -313,9 +314,10 @@ afw_value_as_boolean(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Typesafe peel of data type boolean internal. */
 AFW_DEFINE(afw_boolean_t)
-afw_value_as_boolean_internal(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_boolean_internal(const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return afw_value_as_boolean(value, xctx)->internal;
+    return afw_value_as_boolean(value, p, xctx)->internal;
 }
 
 /* Allocate function for data type boolean values. */
@@ -738,9 +740,10 @@ AFW_DEFINE(void)
 afw_array_of_boolean_remove(
     const afw_array_t *instance,
     const afw_value_boolean_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_boolean_remove_internal(instance, &value->internal, xctx);
+    afw_array_of_boolean_remove_internal(instance, &value->internal, p, xctx);
 }
 
 /* Remove a boolean internal from array of boolean. */
@@ -748,10 +751,12 @@ AFW_DEFINE(void)
 afw_array_of_boolean_remove_internal(
     const afw_array_t *instance,
     const afw_boolean_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
+    (void)p;
     v = afw_value_for_boolean(*value);
     afw_array_remove_value(instance, v, xctx);
 }

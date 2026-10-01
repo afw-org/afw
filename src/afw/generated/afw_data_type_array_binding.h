@@ -214,6 +214,8 @@ struct afw_value_array_managed_s {
 /**
  * @brief Typesafe cast to evaluated array value.
  * @param value (const afw_value_t *). Evaluated if needed.
+ * @param p dest pool for evaluate.
+ * @param xctx of caller.
  * @return (const afw_value_array_t *)
  *
  * Throws if missing or wrong type. Use ->internal for the C
@@ -222,16 +224,20 @@ struct afw_value_array_managed_s {
 AFW_DECLARE(const afw_value_array_t *)
 afw_value_as_array(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
  * @brief Typesafe peel of data type array internal.
  * @param value (const afw_value_t *).
+ * @param p dest pool for evaluate.
+ * @param xctx of caller.
  * @return (const afw_array_t *)
  */
 AFW_DECLARE(const afw_array_t *)
 afw_value_as_array_internal(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
@@ -553,24 +559,28 @@ afw_array_of_array_add_internal(
  * @brief Remove a array value from array of array.
  * @param instance of array.
  * @param value to remove.
+ * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_array_remove(
     const afw_array_t *instance,
     const afw_value_array_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
  * @brief Remove a array internal from array of array.
  * @param instance of array.
  * @param value to remove.
+ * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_array_remove_internal(
     const afw_array_t *instance,
     const afw_array_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**

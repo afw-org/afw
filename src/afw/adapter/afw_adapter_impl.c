@@ -542,7 +542,8 @@ afw_adapter_impl_is_journal_entry_applicable(
                         "consumeFilter did not evaluate to a boolean result",
                         xctx);
                 }
-                is_applicable = afw_value_as_boolean_internal(eval, xctx);
+                is_applicable = afw_value_as_boolean_internal(
+                    eval, xctx->p, xctx);
             }
             AFW_FINALLY{
                 afw_xctx_qualifier_stack_top_set(top, xctx);

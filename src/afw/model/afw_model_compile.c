@@ -653,7 +653,7 @@ impl_object_type_compile(
         afw_v_mappedObjectType, xctx);
     if (ot->mapped_object_type_id_value) {
         ot->mapped_object_type_id = afw_value_as_string_internal(
-            ot->mapped_object_type_id_value, xctx);
+            ot->mapped_object_type_id_value, p, xctx);
     }
     else {
         ot->mapped_object_type_id_value = ot->object_type_id_value;
@@ -665,7 +665,7 @@ impl_object_type_compile(
         afw_v_descriptionPropertyName, xctx);
     if (ot->description_property_name_value) {
         ot->description_property_name = afw_value_as_string_internal(
-            ot->description_property_name_value, xctx);
+            ot->description_property_name_value, p, xctx);
     }
 
     /* objectIdPropertyName */
@@ -673,7 +673,7 @@ impl_object_type_compile(
         afw_v_objectIdPropertyName, xctx);
     if (ot->object_id_property_name_value) {
         ot->object_id_property_name = afw_value_as_string_internal(
-            ot->object_id_property_name_value, xctx);
+            ot->object_id_property_name_value, p, xctx);
     }
 
     /* Count the number of properties. */

@@ -387,7 +387,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
 
                 /* If old value is a list, just add new value to it. */
                 if (afw_value_is_array(old_value)) {
-                    list = afw_value_as_array_internal(old_value, xctx);
+                    list = afw_value_as_array_internal(old_value, p, xctx);
                     afw_array_push_value(list, value, xctx);
                 }
 
