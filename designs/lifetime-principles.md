@@ -29,7 +29,7 @@ Do not name that contract unmanaged, managed, temp, extra-hold, pin, or “expec
 
 **Obsolete for new writing** (older pads, comments, and this sitting’s drafts used them for the return contract): extra-hold, extra bump, temp (as the name of the contract), pin (as the name of the contract), bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`, `object_hold`, `is_root`) are leftovers in the tree, not a second protocol.
 
-**Smell:** extra-hold, special case, extra bump, `is_root`, helpers *around* assign, GET, or clone as a leak fix. If a leak needs a new flag or a third way to keep a value alive, stop.
+**Smell:** extra-hold, special case, extra bump, `is_root`, helpers *around* assign, GET, or clone as a leak fix, **`afw_xctx_*alloc`/`free` for a value**. If a leak needs a new flag or a third way to keep a value alive, stop.
 
 ---
 
@@ -42,6 +42,8 @@ Do not name that contract unmanaged, managed, temp, extra-hold, pin, or “expec
 | Role | values that live in dest `p`; compile-unit payloads; snapshots | anything a slot, managed property, or managed element **holds** |
 
 Pass dest `p`. Unmanaged values live in `p`. Managed create / clone / promote use `p->managed_p`. Do not treat `xctx->p` as an implicit dest.
+
+Be suspicious of **`afw_xctx_malloc` / `calloc` / `free`**. Those allocate in `xctx->p`. That matched an older world where `xctx->p` was always `p->managed_p`. It lets the wrong dest in now. A managed wrapper (or any managed value) must not use them; use dest `p` / `p->managed_p`. Internals that are truly job-scoped (evaluation stack) still live on `xctx->p` until a sitting retires the macros.
 
 Last RC is not “free the header.” A managed string’s one block may be header plus bytes. A managed object’s blocks are the header, property entries, name index, and anything else it allocated. A compile unit last-releases the **pool** it owns; that pool bulk-frees the unit. Same rule: last RC drops everything this value obtained.
 
@@ -167,7 +169,7 @@ These fail the story. A leak sitting or a full review starts here.
 - **Heap wrapper last RC** (`afw_value_object_create_managed` and the array twin): wrapper RC starts at 0; last-release at 0 returns without `free_memory` of the wrapper. Last RC must last-release the instance **and** free the wrapper allocation.
 - **Unused Adaptive `clone()` of nested object properties:** `clone({ child: { x: 1 } })` leftover; `clone({ a: 1 })` and `clone([{ n: 1 }])` flat. Parent last-release of the nested occupant runs at RC 1. Something that nested object obtained is not on the last-RC walk, or a side allocation is not `free_memory`d. Lab: `clone_nested_*`. Do not register last-release on GET of `.child`.
 - **`is_root` on clone recurse:** register last-release of the execute result only.
-- **`afw_xctx_malloc` for managed wrappers:** dest is `xctx->p`, not dest `p->managed_p`. Conflicts with “do not treat `xctx->p` as implicit dest.”
+- **`afw_xctx_malloc` for a managed wrapper (or any value):** wrong dest. Use dest `p` / `p->managed_p`. Wrapper last RC is the usual container walk (`release` the instance, `free_memory` the wrapper), RC 1 at create. The tree still starts wrapper RC at 0 and `xctx_malloc`s. That is failing this dest-`p` rule, not a new protocol. Leak-elimination pass: [#443](https://github.com/afw-org/afw/issues/443).
 - **`script_result` dest `p`:** `afw_xctx_script_result_set_value` `slot_store`s with dest `xctx->p`. Evaluate is caller does not release, dest `p` of evaluate. `script_result` is internal nested-evaluate unwind, not the job-heap dest for that value.
 
 A full AFW review is: every `create_managed` / `get_reference` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup` site against this story. Pool bulk-free is the unmanaged world. Dual face couples value RC and instance RC; reviewing only one misses leftover.
