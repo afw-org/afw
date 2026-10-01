@@ -104,3 +104,11 @@
      * this pointer and restores it.
      */
     const afw_value_t *script_result;
+
+    /**
+     * Dest p of the outermost compiled-unit evaluate. script_result
+     * slot_store isolates into this p (p->managed_p). Nested
+     * evaluate(compile()) parks script_result and leaves this
+     * pointer. NULL when no compiled-unit evaluate is active.
+     */
+    const afw_pool_t *script_result_p;

@@ -421,7 +421,8 @@ AFW_ENDTRY
  *
  * Scope deactivate writes last_result here (not void). Nested
  * evaluate that must not change the caller's last saves and restores
- * the pointer.
+ * the pointer. Isolate dest is xctx->script_result_p (dest p of
+ * the outermost compiled-unit evaluate).
  */
 #define afw_xctx_script_result_set(_v, _xctx) \
     afw_xctx_script_result_set_value((_v), (_xctx))
@@ -433,6 +434,7 @@ AFW_ENDTRY
  * @param xctx of caller.
  *
  * Same protocol as a named slot (`get_assignable` new, `release` old).
+ * Dest p is xctx->script_result_p, not xctx->p.
  */
 AFW_DECLARE(void)
 afw_xctx_script_result_set_value(
