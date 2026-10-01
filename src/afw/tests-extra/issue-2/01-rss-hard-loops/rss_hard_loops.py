@@ -115,6 +115,11 @@ WORKLOADS = [
     _flat("test_script_unassigned",
           "test_script create_managed extra-hold never assigned "
           "(last stmt add())"),
+    _flat("object_rest_assign",
+          "object pattern rest dest p unmanaged then assign"),
+    _flat("object_rest_unassigned",
+          "object pattern rest dest p unmanaged never assigned "
+          "(last stmt add())"),
     _flat("compile_listing_assign",
           "compile listing assigned; unit last-released after the dump"),
     _flat("compile_listing_unassigned",

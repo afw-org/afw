@@ -537,9 +537,10 @@ impl_object_destructure(
         }
     }
 
-    /* Add other properties to rest. */
+    /* Add other properties to rest. Dest p, like array rest.
+     * unmanaged_new_p left a child of p->managed_p. */
     if (od->rest) {
-        rest = afw_object_create_unmanaged_new_p(p, xctx);
+        rest = afw_object_create_unmanaged(p, xctx);
         for (iterator = NULL;;) {
             v = afw_object_get_next_property(object, &iterator, &property_name,
                 xctx);

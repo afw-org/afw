@@ -68,7 +68,7 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 
 | class | `in_use` fail | examples |
 |-------|----------------|----------|
-| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_*` / `test_script_*` |
+| **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_*` / `test_script_*` / `object_rest_*` |
 | **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | *(none right now)* |
 | **grow** | must grow ≥ 256 KiB/s | `array_append` |
 
@@ -113,6 +113,7 @@ Assigned / unassigned pairs (same call, two leak classes):
 | `clone_assign` | `clone_unassigned` (last stmt `add(0, 0)`) |
 | `clone_nested_assign` | `clone_nested_unassigned` (last stmt `add(0, 0)`) |
 | `test_script_assign` | `test_script_unassigned` (last stmt `add(0, 0)`) |
+| `object_rest_assign` | `object_rest_unassigned` (last stmt `add(0, 0)`) |
 | `compile_listing_assign` | `compile_listing_unassigned` (last stmt `add(0, 0)`) |
 
 Unassigned loops whose last statement is a managed create would
@@ -152,6 +153,8 @@ scalar on purpose.
 | `clone_nested_unassigned` | `discard(clone(o).child)` never assigned (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~0.23 MiB/s | last RC of `copy_meta` `id` utf8 |
 | `test_script_assign` | `test_script` create_managed extra-hold then assign | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~0.56 MiB/s | `unmanaged_new_p` child of `managed_p` |
 | `test_script_unassigned` | `test_script` create_managed extra-hold (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~0.71 MiB/s | `unmanaged_new_p` child of `managed_p` |
+| `object_rest_assign` | object pattern `{ a, ...rest }` dest p then assign | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~20 MiB/s | `unmanaged_new_p` child of `managed_p` |
+| `object_rest_unassigned` | object pattern rest dest p (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s: RSS 0 / `in_use` 0). Was **climb** ~0.60 MiB/s | `unmanaged_new_p` child of `managed_p` |
 | `compile_listing_assign` | compile listing assigned | **flat / flat** (2026-09-29, 15 s) | — |
 | `compile_listing_unassigned` | compile listing last-releases unit (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s) | — |
 | `array_append` | unbounded `push` | **must grow** (~3 MiB/s both) | must grow (~2.8 MiB/s) |

@@ -945,6 +945,17 @@ do {\
     break;
 
 /**
+ * @brief Release error->backtrace if set.
+ *
+ * Safe if backtrace is NULL or a permanent value.
+ */
+AFW_DECLARE(void)
+afw_error_release_backtrace(
+    afw_error_t *error,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Create an object with error info in specified pool.
  * @param error info.
  * @param p dest pool; the object is unmanaged in p.
@@ -958,17 +969,6 @@ do {\
  *
  * This function leaves xctx->error unchanged if it is successful.
  */
-/**
- * @brief Release error->backtrace if set.
- *
- * Safe if backtrace is NULL or a permanent value.
- */
-AFW_DECLARE(void)
-afw_error_release_backtrace(
-    afw_error_t *error,
-    afw_xctx_t *xctx);
-
-
 AFW_DECLARE(const afw_object_t *)
 afw_error_to_object(
     const afw_error_t *error,
