@@ -1321,6 +1321,23 @@ impl_afw_object_setter_remove_property(
 }
 
 
+/* copy_meta / wrapper / embedded clone these into object->p. */
+static void
+impl_free_cloned_utf8(
+    const afw_pool_t *p,
+    const afw_utf8_t *s,
+    afw_xctx_t *xctx)
+{
+    if (!s || s == afw_s_a_empty_string) {
+        return;
+    }
+    if (s->s && s->len > 0) {
+        afw_pool_free_memory(p, (void *)s->s, s->len, xctx);
+    }
+    afw_pool_free_memory_type(p, (void *)s, afw_utf8_t, xctx);
+}
+
+
 void
 impl_afw_object_managed_release(
     AFW_OBJECT_SELF_T *self,
@@ -1337,8 +1354,11 @@ impl_afw_object_managed_release(
         return;
     }
     /*
+     * One walk: release every held property (nested object/array
+     * the same as scalar), then names, then free_memory entries.
      * Hash keys are views into name bytes. Drop the table first.
-     * Entries live in managed_p; free them with the header.
+     * copy_meta clones id / uri / object_type_uri into this p
+     * (nested literals are embedded with meta.id).
      */
     if (self->property_index) {
         afw_hash_table_release(self->property_index, xctx);
@@ -1360,6 +1380,14 @@ impl_afw_object_managed_release(
     self->first_property = NULL;
     self->last_property = NULL;
     self->property_count = 0;
+    impl_free_cloned_utf8(self->pub.p, self->pub.meta.id, xctx);
+    self->pub.meta.id = NULL;
+    impl_free_cloned_utf8(self->pub.p, self->pub.meta.object_uri,
+        xctx);
+    self->pub.meta.object_uri = NULL;
+    impl_free_cloned_utf8(self->pub.p,
+        self->pub.meta.object_type_uri, xctx);
+    self->pub.meta.object_type_uri = NULL;
     if (self->wrapped) {
         afw_object_release(self->wrapped, xctx);
         self->wrapped = NULL;

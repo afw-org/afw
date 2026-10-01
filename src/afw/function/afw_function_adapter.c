@@ -24,6 +24,7 @@ impl_create_journal_entry(const afw_value_object_t *journal,
     const afw_value_t *value;
     const afw_value_t *property_name;
 
+    /* Child of p->managed_p. Returned as the execute result; sweep. */
     journal_entry = afw_object_create_unmanaged_new_p(p, xctx);
     if (journal) {
         for (iterator = NULL;;) {

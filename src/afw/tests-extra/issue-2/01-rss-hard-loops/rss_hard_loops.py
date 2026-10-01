@@ -104,21 +104,22 @@ WORKLOADS = [
     _flat("clone_unassigned",
           "clone array/object never assigned "
           "(last stmt add() so not script_result)"),
-    _climb("clone_nested_assign",
-           "clone nested object/array then assign and mutate "
-           "(clone(o).child / clone(o).arr)",
-           0.60),
-    _climb("clone_nested_unassigned",
-           "clone nested object/array never assigned "
-           "(discard(clone(o).child); last stmt add())",
-           0.50),
-    _climb("test_script_assign",
-           "test_script create_managed_clone extra-hold then assign",
-           1.20),
-    _climb("test_script_unassigned",
-           "test_script create_managed_clone extra-hold never assigned "
-           "(last stmt add())",
-           1.50),
+    _flat("clone_nested_assign",
+          "clone nested object/array then assign and mutate "
+          "(clone(o).child / clone(o).arr)"),
+    _flat("clone_nested_unassigned",
+          "clone nested object/array never assigned "
+          "(discard(clone(o).child); last stmt add())"),
+    _flat("test_script_assign",
+          "test_script create_managed extra-hold then assign"),
+    _flat("test_script_unassigned",
+          "test_script create_managed extra-hold never assigned "
+          "(last stmt add())"),
+    _flat("object_rest_assign",
+          "object pattern rest dest p unmanaged then assign"),
+    _flat("object_rest_unassigned",
+          "object pattern rest dest p unmanaged never assigned "
+          "(last stmt add())"),
     _flat("compile_listing_assign",
           "compile listing assigned; unit last-released after the dump"),
     _flat("compile_listing_unassigned",
@@ -251,11 +252,19 @@ def _judge(workload, result, assert_on):
                 "RSS leak %.1f KiB/s > %.0f"
                 % (slope, STABLE_MAX_KIB_S))
         max_iu = _max_in_use_b_s(workload)
-        # gdb miss: first or last in_use 0 while the process ran.
+        # gdb miss: first or last in_use 0, or a huge pointer as size_t.
         first_iu = result.get("in_use_first")
         last_iu = result.get("in_use_last")
         if first_iu == 0 or last_iu == 0:
             iu = None
+        elif first_iu is not None and last_iu is not None:
+            samples = result.get("samples") or []
+            last = samples[-1] if samples else {}
+            rss_kib = last.get("VmRSS")
+            if rss_kib:
+                cap = rss_kib * 1024 * 8
+                if first_iu > cap or last_iu > cap:
+                    iu = None
         if iu is not None and max_iu is not None and iu > max_iu:
             problems.append(
                 "in_use leak %.0f B/s > %.0f (%s)"

@@ -1221,6 +1221,10 @@ impl_afw_array_managed_release(
     if (self->reference_count != 0) {
         return;
     }
+    /*
+     * One walk: release every held element (nested object/array
+     * the same as scalar), then the vector, then the header.
+     */
     if (self->values) {
         count = self->values->count;
         entries = self->values->entries;

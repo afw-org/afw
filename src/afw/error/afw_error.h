@@ -945,15 +945,6 @@ do {\
     break;
 
 /**
- * @brief Create an object with error info in specified pool.
- * @param error info.
- * @param p to use for object.
- * @param xctx of caller.
- * @return object with error.
- *
- * This function leaves xctx->error unchanged if it is successful.
- */
-/**
  * @brief Release error->backtrace if set.
  *
  * Safe if backtrace is NULL or a permanent value.
@@ -964,6 +955,20 @@ afw_error_release_backtrace(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Create an object with error info in specified pool.
+ * @param error info.
+ * @param p dest pool; the object is unmanaged in p.
+ * @param xctx of caller.
+ * @return object with error.
+ *
+ * Unmanaged in dest p. Do not wrap this instance in a managed
+ * value unless the referent outlives that value. For a managed
+ * parent, create_managed then afw_error_add_to_object and take
+ * the dual face.
+ *
+ * This function leaves xctx->error unchanged if it is successful.
+ */
 AFW_DECLARE(const afw_object_t *)
 afw_error_to_object(
     const afw_error_t *error,
@@ -971,8 +976,8 @@ afw_error_to_object(
 
 
 /**
- * @brief Add error info to existing object using specified pool.
- * @param object to set error properties in.
+ * @brief Add error info to existing object.
+ * @param object to set error properties in (uses object->p).
  * @param error info.
  * @param xctx of caller.
  *

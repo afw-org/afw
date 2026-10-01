@@ -18,9 +18,9 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 **Inf:** **unmanaged** lives in a `p` and dies with that `p` (no RC). **Managed** needs RC at least 1. **Permanent** has no RC; `release` is a no-op.
 
-**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`, `object_hold`, `is_root`) are leftovers in the tree, not a second protocol.
+**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`, `object_hold`) are leftovers in the tree, not a second protocol.
 
-**Smell:** extra-hold, special case, extra bump, `is_root`, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest. If a leak needs a new flag or a third way to keep a value alive, stop.
+**Smell:** extra-hold, special case, extra bump, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest. If a leak needs a new flag or a third way to keep a value alive, stop.
 
 ---
 
@@ -105,6 +105,6 @@ If the answer is a new register last-release, a new flag, or a helper around ass
 
 ## Using this pad
 
-C sittings make the tree match this file. Until last RC of every managed value completes the walk, a fix in one place can show leftover in another. That is expected. Do not add extra-hold, `is_root`, or register last-release on a method that returns a held value to hide it. Re-measure the RSS lab after each vertical. #2 stays open.
+C sittings make the tree match this file. Until last RC of every managed value completes the walk, a fix in one place can show leftover in another. That is expected. Do not add extra-hold or register last-release on a method that returns a held value to hide it. Re-measure the RSS lab after each vertical. #2 stays open.
 
 Not the #2 scoreboard. Not the RSS lab table. Not a license to rewrite heap free lists.
