@@ -144,7 +144,7 @@ Structural copy: `create_managed` the tree. Nested objects/arrays are `create_ma
 
 `clone()` is Adaptive `execute_*`: **caller does not release**. The root is managed (`create_managed` RC 1), so register last-release of **that one hold** on dest `p` at the execute result. That is the return contract. Nested values are ordinary managed values the root references (same rule as any managed container). `.child` / `.arr` are methods that return a held value (caller does not release). Assign of that value is `get_assignable_value` if the caller wants their own reference. Last RC of the root `release`s the root’s references.
 
-Product tests: `src/afw/tests/additional_test_scripts/clone.as`, `src/afw/tests/language/script/nested_occupant_share.as`. The recurse `is_root` flag is leftover naming of “this is the execute result.” Register last-release at `execute_clone` after the copy; drop the flag when touching that code. `.child` is caller does not release.
+Product tests: `src/afw/tests/additional_test_scripts/clone.as`, `src/afw/tests/language/script/nested_occupant_share.as`. **Drop `is_root`.** Register last-release of the execute result after the copy. Recurse fill does not register. Unused leftover of nested object properties is last RC of the root (or of the child) not completing the walk, not a missing flag. `.child` is caller does not release.
 
 ---
 
@@ -167,12 +167,17 @@ If the answer is a new register last-release, a new flag, or a helper around ass
 These fail the story. A leak sitting or a full review starts here.
 
 - **Heap wrapper last RC** (`afw_value_object_create_managed` and the array twin): wrapper RC starts at 0; last-release at 0 returns without `free_memory` of the wrapper. Last RC must last-release the instance **and** free the wrapper allocation.
-- **Unused Adaptive `clone()` of nested object properties:** `clone({ child: { x: 1 } })` leftover; `clone({ a: 1 })` and `clone([{ n: 1 }])` flat. Parent last-release of the nested occupant runs at RC 1. Something that nested object obtained is not on the last-RC walk, or a side allocation is not `free_memory`d. Lab: `clone_nested_*`. Do not register last-release on GET of `.child`.
-- **`is_root` on clone recurse:** register last-release of the execute result only.
+- **Unused Adaptive `clone()` of nested object properties:** `clone({ child: { x: 1 } })` leftover; `clone({ a: 1 })` and `clone([{ n: 1 }])` flat. Last RC of the root (or of the child) is not completing the walk. Lab: `clone_nested_*`. `.child` is caller does not release. Do not extra-hold nested then take. **Drop `is_root`** (register last-release only on the execute result).
 - **`afw_xctx_malloc` for a managed wrapper (or any value):** wrong dest. Use dest `p` / `p->managed_p`. Wrapper last RC is the usual container walk (`release` the instance, `free_memory` the wrapper), RC 1 at create. The tree still starts wrapper RC at 0 and `xctx_malloc`s. That is failing this dest-`p` rule, not a new protocol. Leak-elimination pass: [#443](https://github.com/afw-org/afw/issues/443).
 - **`script_result` dest `p`:** `afw_xctx_script_result_set_value` `slot_store`s with dest `xctx->p`. Evaluate is caller does not release, dest `p` of evaluate. `script_result` is internal nested-evaluate unwind, not the job-heap dest for that value.
 
 A full AFW review is: every `create_managed` / `get_reference` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup` site against this story. Pool bulk-free is the unmanaged world. Dual face couples value RC and instance RC; reviewing only one misses leftover.
+
+---
+
+## Using this pad
+
+This file is the story. C sittings make the tree match it. Until last RC of every managed value completes the walk, a fix in one place can show leftover in another. That is expected. Do not add extra-hold, `is_root`, or register last-release on a method that returns a held value to hide it. Re-measure the RSS lab after each vertical. #2 stays open.
 
 ---
 
