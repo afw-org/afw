@@ -27,7 +27,7 @@ const Test = (wrapper, DateTimePicker) => {
             //input.focus();
             //fireEvent.change(document.activeElement, { target: { value: "08/13/1981 00:00 pm"}});          
             
-            userEvent.type(input, "08/13/1981 01:00 pm");            
+            await userEvent.type(input, "08/13/1981 01:00 pm");            
 
         });
         

@@ -62,7 +62,7 @@ describe("ModelsNew Tests", () => {
 
         const {modelIdTextField, dialog} = await newModel();
 
-        userEvent.type(modelIdTextField, "test1");
+        await userEvent.type(modelIdTextField, "test1");
         expect(within(dialog).getByRole("button", { name: "Next" })).toBeEnabled();
 
         /* Cancel changes */
@@ -76,8 +76,8 @@ describe("ModelsNew Tests", () => {
 
         const {modelIdTextField, descriptionTextField, nextBtn, createBtn} = await newModel();
 
-        userEvent.type(modelIdTextField, "test1");
-        userEvent.type(descriptionTextField, "this is a test model");
+        await userEvent.type(modelIdTextField, "test1");
+        await userEvent.type(descriptionTextField, "this is a test model");
 
         expect(nextBtn).toBeEnabled();
 
@@ -97,8 +97,8 @@ describe("ModelsNew Tests", () => {
 
         const {modelIdTextField, descriptionTextField, nextBtn} = await newModel();
 
-        userEvent.type(modelIdTextField, "test1");
-        userEvent.type(descriptionTextField, "this is a test model");
+        await userEvent.type(modelIdTextField, "test1");
+        await userEvent.type(descriptionTextField, "this is a test model");
 
         expect(nextBtn).toBeEnabled();
 
@@ -122,8 +122,8 @@ describe("ModelsNew Tests", () => {
 
         const {modelIdTextField, descriptionTextField, nextBtn} = await newModel();
 
-        userEvent.type(modelIdTextField, "test1");
-        userEvent.type(descriptionTextField, "this is a test model");
+        await userEvent.type(modelIdTextField, "test1");
+        await userEvent.type(descriptionTextField, "this is a test model");
 
         expect(nextBtn).toBeEnabled();
 

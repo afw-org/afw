@@ -91,8 +91,7 @@ describe("ModelTreeContextMenu Tests", () => {
         const test1 = within(tree).getByText("test1");
         
         /* right-click context menu */        
-        userEvent.click(test1, { ctrlKey: true });
-        userEvent.click(test1, { button: 2 });
+        await userEvent.pointer({keys: "[MouseRight]", target: test1});
 
         const menu = await screen.findByRole("menu");
         await within(menu).findByRole("menuitem", { name: "New Object Type" });
@@ -158,8 +157,7 @@ describe("ModelTreeContextMenu Tests", () => {
         const test1 = within(tree).getByText("test1");
         
         /* right-click context menu */        
-        userEvent.click(test1, { ctrlKey: true });
-        userEvent.click(test1, { button: 2 });
+        await userEvent.pointer({keys: "[MouseRight]", target: test1});
 
         const menu = await screen.findByRole("menu");
         const newObjType = await within(menu).findByRole("menuitem", { name: "New Object Type" });
@@ -233,8 +231,7 @@ describe("ModelTreeContextMenu Tests", () => {
         const test1 = within(tree).getByText("test1");
         
         /* right-click context menu */        
-        userEvent.click(test1, { ctrlKey: true });
-        userEvent.click(test1, { button: 2 });
+        await userEvent.pointer({keys: "[MouseRight]", target: test1});
 
         const menu = await screen.findByRole("menu");
         const newObjType = await within(menu).findByRole("menuitem", { name: "New Property Type" });
@@ -308,8 +305,7 @@ describe("ModelTreeContextMenu Tests", () => {
         const test1 = within(tree).getByText("test1");
         
         /* right-click context menu */        
-        userEvent.click(test1, { ctrlKey: true });
-        userEvent.click(test1, { button: 2 });
+        await userEvent.pointer({keys: "[MouseRight]", target: test1});
 
         const menu = await screen.findByRole("menu");
         const newObjType = await within(menu).findByRole("menuitem", { name: "New Custom Variable" });
