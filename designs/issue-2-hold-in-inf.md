@@ -3,11 +3,26 @@
 **Audience:** maintainers / assistants. **Not** handbook.
 
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
-**How close (scoreboard):** [Live status](#live-status-2026-09-25--how-close-is-2) below. If this pad’s older “Order / Parked” lists, the RSS lab README, the two-worlds pad, or the GitHub issue body disagree with that section, **the live status wins** until someone updates it.
+**How close (scoreboard):** [Live status](#live-status-2026-09-25--how-close-is-2) below. **What to do next (lifetime story):** [implementation order](#lifetime-story--implementation-order). If this pad’s older “Order / Parked” lists, the RSS lab README, the two-worlds pad, or the GitHub issue body disagree with that section, **the live status wins** until someone updates it.
 
 **On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `p->managed_p`) **[#277](https://github.com/afw-org/afw/issues/277) closed** (PR **#278**) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone. Dest `p` on `get_assignable` / `slot_store` / `create_managed` / evaluate pin: [PR #355](https://github.com/afw-org/afw/pull/355).
 
-**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md) (two worlds, dest `p`, caller verbs, birth, register last-release on the caller pool, containers). This pad is the rails for inf methods (`get_reference` / `get_assignable_value`, faces, MUST NOT). **Two worlds, create names, last_return slot:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). Pool doors: [`remaining-apr.md`](remaining-apr.md). The 2026-08-21 story is [`issue-2-lifetime.md`](issue-2-lifetime.md) (history — do not copy wording). If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**. Words like extra-hold and special case: see the smell section of the lifetime story.
+**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md). This pad is the rails for inf methods. **Two worlds:** [`experiment-brainstorm.md`](experiment-brainstorm.md). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md). Pool doors: [`remaining-apr.md`](remaining-apr.md). History: [`issue-2-lifetime.md`](issue-2-lifetime.md). If a leak tempts a helper *around* assign — **stop and ask**.
+
+### Lifetime story — implementation order
+
+Say **let’s talk about the next *n*** (or the issue id). Story: [`lifetime-principles.md`](lifetime-principles.md). Lab: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. C sittings will churn leftover until last RC completes the walk. Do not extra-hold / `is_root` / register last-release on a method that returns a held value.
+
+| n | Status | What |
+|---|--------|------|
+| 0 | **this branch** (`fix-clone-nested-leftover`) | Land the story pad on `develop`. |
+| 1 | [#445](https://github.com/afw-org/afw/issues/445) | Last RC of managed containers; drop `is_root`. Probe: unused `clone({ child: { x: 1 } })` / lab `clone_nested_*`. |
+| 2 | [#443](https://github.com/afw-org/afw/issues/443) | Dest `p`: `afw_xctx_*alloc` for values (wrapper RC 0 is this). |
+| 3 | [#446](https://github.com/afw-org/afw/issues/446) | Evaluate dest `p`: `script_result` must not isolate into `xctx->p`. |
+| 4 | lab **climb** | Remaining RSS climbs against the story (`test_script_*`, then whatever the lab still names). Five-question list in the story pad. |
+| 5 | sweep | Full review of `create_managed` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup`. #2 stays open. |
+
+[#379](https://github.com/afw-org/afw/issues/379) (server soak) and [#404](https://github.com/afw-org/afw/issues/404) (overnight) stay complementary, not this sequence.
 
 ---
 
