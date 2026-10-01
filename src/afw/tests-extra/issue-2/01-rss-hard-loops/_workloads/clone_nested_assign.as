@@ -1,6 +1,7 @@
 /* #2 lab: clone nested object/array, assign to a variable, mutate
- * a property/element, clone that occupant. Extra-hold root, take
- * nested, then slot_store of the child.
+ * a property/element, clone that occupant. Last-release of the
+ * execute result after the copy, take nested, then slot_store of
+ * the child. Member get is caller does not release.
  */
 let o = { child: { x: 1, inner: { y: 2 } }, arr: [0, 1, 2, 3, 4] };
 let v = {};

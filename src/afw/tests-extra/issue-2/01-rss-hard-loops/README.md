@@ -200,13 +200,14 @@ loops whose result is managed end with `add(0, 0)` so deactivate does not
 (reverse, slice, filter, map, sort, bag, intersection, split, union, keys,
 values, entries). `test_script_assign` / `test_script_unassigned` are the same
 extra-hold on `create_managed_clone` of the result object.
-`clone_assign` / `clone_unassigned` always-copy create_managed, extra-hold the
-root only, take nested (not `afw_value_clone` into `x->p`; nested scalars
-`get_assignable` of the source). Managed object last-release free_memorys
-property entries and the name index. `clone_nested_assign` /
-`clone_nested_unassigned` take a nested object/array occupant of a clone
-(`clone(o).child`, `clone(o).arr`, `clone(o.child)`). Whole-container
-`clone_*` is **flat**; this nested-occupant pair still **climbs**.
+`clone_assign` / `clone_unassigned` always-copy create_managed, register
+last-release of the execute result after the copy, take nested (not
+`afw_value_clone` into `x->p`; nested scalars `get_assignable` of the
+source). Managed object last-release free_memorys property entries and
+the name index. `clone_nested_assign` / `clone_nested_unassigned` take a
+nested object/array occupant of a clone (`clone(o).child`, `clone(o).arr`,
+`clone(o.child)`). Whole-container `clone_*` is **flat**; this nested-occupant
+pair still **climbs** until last RC of nested object properties completes.
 `compile_listing_assign` / `compile_listing_unassigned` last-release the unit
 after the dump; do **not** extra-hold `compile()` of a unit (`evaluate(compile())`
 / closures still need that heap). `readln_loop`

@@ -296,8 +296,7 @@ afw_function_execute_bag_size(
 static const afw_value_t *
 impl_script_clone(
     const afw_value_t *value,
-    afw_function_execute_t *x,
-    afw_boolean_t is_root)
+    afw_function_execute_t *x)
 {
     const afw_value_t *result;
 
@@ -306,13 +305,12 @@ impl_script_clone(
     }
 
     /*
-     * Always-copy create_managed (RC 1). Extra-hold the root only
-     * (at create, before fill, so a throw still last-releases).
-     * Nested containers recurse with is_root false; parent take.
-     * Nested scalars get_assignable of the source; parent take.
-     * Copy meta (reconcilable, path, ids). Snapshot of a managed
-     * source would share nested children. Do not afw_value_clone
-     * unmanaged into x->p.
+     * Always-copy create_managed (RC 1). Nested containers recurse
+     * then parent take. Nested scalars get_assignable of the source
+     * then take. Copy meta (reconcilable, path, ids). Snapshot of a
+     * managed source would share nested children. Do not
+     * afw_value_clone unmanaged into x->p. Recurse fill does not
+     * register last-release; execute registers the returned root.
      */
     if (afw_value_is_object(value)) {
         const afw_object_t *from;
@@ -323,10 +321,6 @@ impl_script_clone(
 
         from = ((const afw_value_object_t *)value)->internal;
         result = afw_object_create_managed(x->p, x->xctx)->value;
-        if (is_root) {
-            result = afw_pool_scope_release_value_at_cleanup(result,
-                x->xctx);
-        }
         to = ((const afw_value_object_t *)result)->internal;
         afw_object_copy_meta_into_managed(to, from, x->xctx);
         for (iterator = NULL;;) {
@@ -337,7 +331,7 @@ impl_script_clone(
                 break;
             }
             afw_object_set_property_take(to, name,
-                impl_script_clone(prop, x, false), x->xctx);
+                impl_script_clone(prop, x), x->xctx);
         }
         return result;
     }
@@ -352,10 +346,6 @@ impl_script_clone(
         from = ((const afw_value_array_t *)value)->internal;
         data_type = afw_array_get_data_type(from, x->xctx);
         result = afw_array_create_managed(data_type, x->p, x->xctx)->value;
-        if (is_root) {
-            result = afw_pool_scope_release_value_at_cleanup(result,
-                x->xctx);
-        }
         to = ((const afw_value_array_t *)result)->internal;
         for (iterator = NULL;;) {
             entry = afw_array_get_next_value(from, &iterator, x->xctx);
@@ -363,7 +353,7 @@ impl_script_clone(
                 break;
             }
             afw_array_push_value_take(to,
-                impl_script_clone(entry, x, false), x->xctx);
+                impl_script_clone(entry, x), x->xctx);
         }
         return result;
     }
@@ -379,9 +369,11 @@ afw_function_execute_clone(
     afw_function_execute_t *x)
 {
     const afw_value_t *value;
+    const afw_value_t *result;
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
-    return impl_script_clone(value, x, true);
+    result = impl_script_clone(value, x);
+    return afw_pool_scope_release_value_at_cleanup(result, x->xctx);
 }
 
 

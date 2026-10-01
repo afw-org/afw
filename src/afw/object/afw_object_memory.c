@@ -1337,8 +1337,9 @@ impl_afw_object_managed_release(
         return;
     }
     /*
+     * One walk: release every held property (nested object/array
+     * the same as scalar), then names, then free_memory entries.
      * Hash keys are views into name bytes. Drop the table first.
-     * Entries live in managed_p; free them with the header.
      */
     if (self->property_index) {
         afw_hash_table_release(self->property_index, xctx);
