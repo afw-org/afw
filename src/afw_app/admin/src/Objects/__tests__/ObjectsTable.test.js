@@ -38,7 +38,7 @@ describe("ObjectsTable Tests", () => {
         act(() => {
             const filesOpt = screen.getByRole("option", { name: "files" });                 
             // select 'files'        
-            filesOpt.click();
+            fireEvent.click(filesOpt);
         });
         
         // wait options to disappear
@@ -64,7 +64,7 @@ describe("ObjectsTable Tests", () => {
         const typeOpt = screen.getByRole("option", { name: "_AdaptiveObjectType_" });        
         // select '_AdaptiveObjectType_'
         fireEvent.mouseDown(typeOpt);
-        typeOpt.click();
+        fireEvent.click(typeOpt);
         // wait options to disappear
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));         
         

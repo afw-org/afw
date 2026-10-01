@@ -100,13 +100,13 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const sourceBtn = screen.getByLabelText("Show Object Source");
-            sourceBtn.click();
+            fireEvent.click(sourceBtn);
 
             await waitFor(() => expect(screen.getByDisplayValue(/"prop1": "value1"/)).toBeInTheDocument());      
             
             
             const layoutBtn = screen.getByLabelText("Show Object in Layout");
-            layoutBtn.click();
+            fireEvent.click(layoutBtn);
 
             await waitFor(() => expect(screen.getByText("Prop 1")).toBeInTheDocument());            
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
@@ -148,13 +148,13 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            fireEvent.click(editBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toBeInTheDocument());   
 
             
             const cancelBtn = screen.getByLabelText("Cancel");
-            cancelBtn.click();
+            fireEvent.click(cancelBtn);
             
             expect(onChildChanged).not.toHaveBeenCalled();
             await waitFor(() => expect(screen.getByText("Prop 1")).toBeInTheDocument());            
@@ -197,7 +197,7 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            fireEvent.click(editBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toBeInTheDocument());        
             
@@ -242,7 +242,7 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            fireEvent.click(editBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toBeInTheDocument());        
             
@@ -250,7 +250,7 @@ const Test = (wrapper) => {
             fireEvent.change(prop1, { target: { value: "value2" }});
 
             const sourceBtn = screen.getByLabelText("Show Object Source");
-            sourceBtn.click();
+            fireEvent.click(sourceBtn);
 
             await waitFor(() => expect(screen.getByDisplayValue(/"prop1": "value2"/)).toBeInTheDocument());    
             await waitFor(() => expect(screen.getByRole("button", { name: "Save" })).toBeEnabled());
@@ -289,12 +289,12 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            fireEvent.click(editBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toBeInTheDocument());   
             
             const sourceBtn = screen.getByLabelText("Show Object Source");
-            sourceBtn.click();            
+            fireEvent.click(sourceBtn);            
 
             await waitFor(() => expect(screen.getByDisplayValue(/"prop1": "value1"/)).toBeInTheDocument());    
 
@@ -302,7 +302,7 @@ const Test = (wrapper) => {
             fireEvent.change(textarea, { target: { value: "{ \"prop1\": \"value2\" }" } });
 
             const layoutBtn = screen.getByLabelText("Show Object in Layout");
-            layoutBtn.click();
+            fireEvent.click(layoutBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toHaveValue("value2"));
             
@@ -344,7 +344,7 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            fireEvent.click(editBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toBeInTheDocument());        
             
@@ -356,13 +356,13 @@ const Test = (wrapper) => {
             ));
 
             const cancelBtn = screen.getByLabelText("Cancel");
-            cancelBtn.click();
+            fireEvent.click(cancelBtn);
              
             await waitFor(() => expect(screen.getByText(/Discard the changes?/)).toBeInTheDocument());
 
 
             const yesBtn = screen.getByLabelText("Yes");
-            yesBtn.click();
+            fireEvent.click(yesBtn);
 
             await waitForElementToBeRemoved(() => screen.queryByText(/Discard the changes?/));            
 
@@ -408,7 +408,7 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            fireEvent.click(editBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toBeInTheDocument());        
             
@@ -420,12 +420,12 @@ const Test = (wrapper) => {
             ));
 
             const cancelBtn = screen.getByLabelText("Cancel");
-            cancelBtn.click();
+            fireEvent.click(cancelBtn);
             
             await waitFor(() => expect(screen.getByText(/Discard the changes?/)).toBeInTheDocument());            
 
             const noBtn = screen.getByLabelText("No");
-            noBtn.click();
+            fireEvent.click(noBtn);
 
             await waitForElementToBeRemoved(() => screen.queryByText(/Discard the changes?/));            
 
@@ -469,7 +469,7 @@ const Test = (wrapper) => {
             await waitFor(() => expect(screen.getByText("value1")).toBeInTheDocument());   
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            fireEvent.click(editBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Prop 1")).toBeInTheDocument());        
             
@@ -477,7 +477,7 @@ const Test = (wrapper) => {
             fireEvent.change(prop1, { target: { value: "value2" }});
 
             const saveBtn = screen.getByLabelText("Save");
-            saveBtn.click();                               
+            fireEvent.click(saveBtn);                               
             
             await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());
 
@@ -531,12 +531,12 @@ const Test = (wrapper) => {
             
             const editBtn = screen.getByLabelText("Edit Object");
             act(() => {
-                editBtn.click();
+                fireEvent.click(editBtn);
             });
 
             const cancelBtn = await screen.findByLabelText("Cancel");
             act(() => {
-                cancelBtn.click();
+                fireEvent.click(cancelBtn);
             });
 
             await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());

@@ -150,7 +150,7 @@ describe("ModelsTable Tests", () => {
         const cell = await screen.findByRole("cell", { name: /select table row/i });        
         const checkbox = within(cell).getByRole("checkbox");        
 
-        checkbox.click();
+        fireEvent.click(checkbox);
 
         deleteBtn = await screen.findByRole("button", { name: "Delete Model" });
         await waitFor(() => expect(deleteBtn).toBeEnabled());
@@ -207,7 +207,7 @@ describe("ModelsTable Tests", () => {
         const cell = await screen.findByRole("cell", { name: /select table row/i });        
         const checkbox = within(cell).getByRole("checkbox");        
 
-        checkbox.click();
+        fireEvent.click(checkbox);
 
         deleteBtn = await screen.findByRole("button", { name: "Delete Model" });
         await waitFor(() => expect(deleteBtn).toBeEnabled());

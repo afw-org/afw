@@ -57,7 +57,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(methodDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         let opts = screen.getAllByRole("option");
-        opts[1].click();
+        fireEvent.click(opts[1]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.change(screen.getByLabelText("URI"), { target: { value: "/afw/_AdaptiveObjectType_/_AdaptiveObjectType_" } });        
@@ -67,7 +67,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         opts = screen.getAllByRole("option");
-        opts[0].click();
+        fireEvent.click(opts[0]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.click(screen.getByLabelText("Send"));
@@ -107,7 +107,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(methodDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         let opts = screen.getAllByRole("option");
-        opts[1].click();
+        fireEvent.click(opts[1]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.change(screen.getByLabelText("URI"), { target: { value: "/afw/_AdaptiveObjectType_/_AdaptiveObjectType_" } });        
@@ -117,7 +117,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         opts = screen.getAllByRole("option");
-        opts[1].click();
+        fireEvent.click(opts[1]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         fireEvent.click(screen.getByLabelText("Send"));
@@ -164,7 +164,7 @@ describe("Requests Tests", () => {
         fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         const opts = screen.getAllByRole("option");
-        opts[0].click();
+        fireEvent.click(opts[0]);
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
         
         fireEvent.click(screen.getByLabelText("Send"));

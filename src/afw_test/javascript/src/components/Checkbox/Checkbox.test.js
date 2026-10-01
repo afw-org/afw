@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {render} from "@testing-library/react";
+import {render, fireEvent, act} from "@testing-library/react";
 
 const Test = (wrapper, Checkbox) => {
 
@@ -34,7 +34,7 @@ const Test = (wrapper, Checkbox) => {
             
             expect(queryByText(/This is a Checkbox!/)).toBeInTheDocument();        
             
-            queryByRole("checkbox").click();          
+            fireEvent.click(queryByRole("checkbox"));          
 
             expect(onChanged).toHaveBeenCalled();
         });
@@ -53,7 +53,8 @@ const Test = (wrapper, Checkbox) => {
             
             expect(queryByText(/This is a Checkbox!/)).toBeInTheDocument();        
                    
-            queryByRole("checkbox").click();
+            /* native click, not fireEvent: like a real one, it honors disabled */
+            act(() => queryByRole("checkbox").click());
 
             expect(onChanged).not.toHaveBeenCalled();
         });

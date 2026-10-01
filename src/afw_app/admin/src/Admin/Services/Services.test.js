@@ -365,7 +365,7 @@ describe("Services Tests", () => {
             let authHandlerOpts;
             fireEvent.mouseDown(authHandler);                                   
             await waitFor(() => expect(authHandlerOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            authHandlerOpts[0].click();
+            fireEvent.click(authHandlerOpts[0]);
 
             fireEvent.click(screen.getByLabelText("Next"));
 
@@ -380,7 +380,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(contentType);   
             let contentTypeOpts;                                
             await waitFor(() => expect(contentTypeOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                    
-            contentTypeOpts[0].click();
+            fireEvent.click(contentTypeOpts[0]);
 
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));                        
@@ -459,7 +459,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(authHandler);           
             let authHandlerOpts;                        
             await waitFor(() => expect(authHandlerOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            authHandlerOpts[0].click();
+            fireEvent.click(authHandlerOpts[0]);
 
             const nextBtn = screen.getByLabelText("Next");
             fireEvent.click(nextBtn);
@@ -473,7 +473,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(modelAdapter.getByRole("combobox"));   
             let modelAdapterOpts;                  
             await waitFor(() => expect(modelAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            modelAdapterOpts[0].click();
+            fireEvent.click(modelAdapterOpts[0]);
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));                        
 
@@ -486,7 +486,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(models.getByRole("combobox"));                                               
             let modelOpts;
             await waitFor(() => expect(modelOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            modelOpts[0].click();
+            fireEvent.click(modelOpts[0]);
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));    
             
@@ -495,7 +495,7 @@ describe("Services Tests", () => {
             fireEvent.mouseDown(mappedAdapter.getByRole("combobox"));  
             let mappedAdapterOpts;                                                          
             await waitFor(() => expect(mappedAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                      
-            mappedAdapterOpts[7].click();
+            fireEvent.click(mappedAdapterOpts[7]);
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));  
 
