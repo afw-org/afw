@@ -116,10 +116,9 @@ Read a slot: the pointer. Keep a value alive: `get_reference` (matching `release
 
 ## Last RC of any managed value
 
-Last RC always does both of these, as applicable:
+**One walk:** `release` every reference this value holds, `free_memory` every block it allocated (not only the header), and if it owns a pool, last-release that pool (the pool bulk-frees the rest). No per-kind leftover helper.
 
-1. **Last-release** every occupant and every `get_reference` / `get_assignable_value` this value did in order to keep something.
-2. **`free_memory`** every block this value allocated (header, trailing bytes, property entries, name index, element vector, wrapper allocation, binding header, …) via the stored p. If it owns a pool, last-release that pool (the pool bulk-frees what was allocated there).
+How-to of that walk: object/array `release` each held property/element and name, free entries/index/vector/header; `compiled_value` last-releases the compile pool; closure binding `release`s the enclosing scope (and a kept unit) and frees the binding; slice `release`s the containing value and frees the slice header; heap wrapper `release`s the instance and frees the wrapper.
 
 **One rule for managed object properties and managed array elements.** A managed container holds **one reference** to each value it holds and `release`s those references when it goes. The values are ordinary managed values. The same value can be held by more than one container; RC counts. No second story for “nested” or for arrays vs objects.
 
@@ -133,7 +132,7 @@ What the method does inside (leave the container’s reference in place, unlink,
 
 **Managed slice** (`utf8` / `memory`): last RC last-releases the containing value and `free_memory`s the slice header.
 
-If a later managed kind holds children, it follows this same last-RC walk. No per-kind leftover helper.
+If a later managed kind holds children, it is this same walk.
 
 ---
 
