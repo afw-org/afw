@@ -1,5 +1,4 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {Link as RouterLink} from "react-router-dom";
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import MuiLink from "@mui/material/Link";
@@ -7,8 +6,11 @@ import {useTheme} from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
+import {useNavigation} from "@afw/react";
 
 export const Breadcrumb = ({ items, separator, ...rest }) => {    
+
+    const {Link: NavigationLink} = useNavigation();
     const theme = useTheme();
     
     const small = useMediaQuery(theme.breakpoints.down("md"));
@@ -25,7 +27,7 @@ export const Breadcrumb = ({ items, separator, ...rest }) => {
                         return (
                             <MuiLink 
                                 key={index}
-                                component={RouterLink}
+                                component={NavigationLink}
                                 to={item.link}
                                 underline="hover"
                             >{item.text}</MuiLink>                        

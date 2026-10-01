@@ -1,5 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {createContext} from "react";
+import {defaultNavigation} from "./navigation";
 
 /**
  * AFW React Core Context
@@ -56,6 +57,13 @@ export const AdaptiveLayoutContext = createContext({ data: {}, layoutParameters:
  * navigate within the application properly.
  */
 export const RouteBasePathContext = createContext();
+
+/**
+ * The application's navigation adapter (Link, useNavigate,
+ * NavigationBlocker) - see navigation.js. Set through AdaptiveProvider's
+ * `navigation` prop; read with useNavigation().
+ */
+export const NavigationContext = createContext(defaultNavigation);
 
 
 /**

@@ -1,23 +1,25 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {Link as RouterLink} from "react-router-dom";
+import {useNavigation} from "../../hooks";
 
 export const Link = ({ url, uriComponents, text, onClick }) => {
 
-    let _url;               
+    const {Link: NavigationLink} = useNavigation();
+
+    let _url;
     if (uriComponents)
-        _url = "/" + uriComponents.map(uriComponent => encodeURIComponent(uriComponent)).join("/");            
-    else 
+        _url = "/" + uriComponents.map(uriComponent => encodeURIComponent(uriComponent)).join("/");
+    else
         _url = url;
 
     if (!_url || !text)
         return null;
-        
+
     return (
-        url.startsWith("/") ?
-            <RouterLink
-                to={_url}                
+        _url.startsWith("/") ?
+            <NavigationLink
+                to={_url}
                 onClick={onClick}
-            >{text}</RouterLink>  :            
+            >{text}</NavigationLink>  :
             <a href={_url}>{text}</a>
     );
 

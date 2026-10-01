@@ -6,7 +6,7 @@ import "@testing-library/jest-dom";
  * component libraries to import and use for full end-to-end component library testing.
  */
 
-import {MemoryRouter} from "react-router-dom";
+import {forwardRef} from "react";
 import {ThemeProvider, createTheme} from "@mui/material/styles";
 
 import Box from "./components/Box/Box.test";
@@ -153,19 +153,38 @@ export const LayoutTestRunners = {
 };
                                   
 
+/*
+ * A router-free navigation adapter (see @afw/react's navigation.js) for
+ * component tests: links run their onClick, then cancel the navigation
+ * jsdom can't perform, and nothing blocks.
+ */
+const TestLink = forwardRef(({ to, onClick, children, ...rest }, ref) =>
+    <a ref={ref} {...rest} href={to} onClick={(event) => {
+        if (onClick)
+            onClick(event);
+        event.preventDefault();
+    }}>{children}</a>
+);
+TestLink.displayName = "TestLink";
+
+export const testNavigation = {
+    Link: TestLink,
+    useNavigate: () => () => undefined,
+    NavigationBlocker: () => null,
+};
+
 export const Providers = (componentRegistry) => ({ children }) => {
     const client = new AfwClient({ url: "/afw" });
 
     return (        
         <ThemeProvider theme={createTheme({})}>
-            <MemoryRouter>
-                <AdaptiveProvider 
-                    client={client} 
-                    componentRegistry={componentRegistry}
-                >
-                    { children }
-                </AdaptiveProvider>
-            </MemoryRouter>
+            <AdaptiveProvider 
+                client={client} 
+                componentRegistry={componentRegistry}
+                navigation={testNavigation}
+            >
+                { children }
+            </AdaptiveProvider>
         </ThemeProvider>
     );
 };
