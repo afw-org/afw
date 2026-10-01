@@ -270,6 +270,12 @@ afw_array_as_value(
 
 /**
  * @brief Create a pool-world memory array (new child of p->managed_p).
+ * @param p parent; the array gets a child of p->managed_p.
+ * @param xctx of caller.
+ *
+ * Unmanaged array (pool world). Instance get_reference / release pin
+ * the child pool. Value get_reference / release throw. Last RC of a
+ * value wrapper does not drop this child.
  */
 #define afw_array_create_unmanaged_new_p(_p, _xctx) \
     afw_array_create_with_options( \

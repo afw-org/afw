@@ -252,11 +252,19 @@ def _judge(workload, result, assert_on):
                 "RSS leak %.1f KiB/s > %.0f"
                 % (slope, STABLE_MAX_KIB_S))
         max_iu = _max_in_use_b_s(workload)
-        # gdb miss: first or last in_use 0 while the process ran.
+        # gdb miss: first or last in_use 0, or a huge pointer as size_t.
         first_iu = result.get("in_use_first")
         last_iu = result.get("in_use_last")
         if first_iu == 0 or last_iu == 0:
             iu = None
+        elif first_iu is not None and last_iu is not None:
+            samples = result.get("samples") or []
+            last = samples[-1] if samples else {}
+            rss_kib = last.get("VmRSS")
+            if rss_kib:
+                cap = rss_kib * 1024 * 8
+                if first_iu > cap or last_iu > cap:
+                    iu = None
         if iu is not None and max_iu is not None and iu > max_iu:
             problems.append(
                 "in_use leak %.0f B/s > %.0f (%s)"

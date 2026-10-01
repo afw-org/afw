@@ -1094,8 +1094,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * @param xctx of caller.
  * @return instance of new object.
  *
- * Unmanaged bag (pool world). Instance get_reference / release pin
- * the child pool. Value get_reference / release throw.
+ * Unmanaged object (pool world). Instance get_reference / release pin
+ * the child pool. Value get_reference / release throw. Last RC of a
+ * value wrapper does not drop this child.
  */
 #define afw_object_create_unmanaged_new_p(_p, _xctx) \
     afw_object_create_with_options( \

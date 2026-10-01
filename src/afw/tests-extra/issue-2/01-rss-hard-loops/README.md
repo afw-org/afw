@@ -97,9 +97,9 @@ Measured **2026-09-16**; isolate sitting on `develop` as
 `in_use` is `env->pool_bytes_in_use` (AFW malloc not given
 back). Valgrind on `afwdev test -j` does **not** catch these —
 request-end bulk-free hides them. gdb `in_use` can occasionally return
-garbage (first or last sample 0). The lab then skips the `in_use`
-slope for that run; RSS still gates. If RSS is flat and `in_use` is
-huge or ~0, rerun that one workload.
+garbage (first or last sample 0, or a huge pointer as size_t). The lab
+then skips the `in_use` slope for that run; RSS still gates. If RSS is
+flat and `in_use` is huge or ~0, rerun that one workload.
 
 Disaster RSS: **8 MiB/s**. Per-workload `in_use` ceilings are the leak gate
 (`flat` 64 KiB/s; `climb` ~2× last 15 s). `array_append` must grow.

@@ -93,6 +93,11 @@ afw_function_execute_index_create(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(key, 2, string);
 
+    /*
+     * value is still NULL; param 3 is evaluated below. This CATCH
+     * does not run. Do not dest-p it as leftover until that eval
+     * moves up and the compile result is last-released.
+     */
     if (value) {
         AFW_TRY {
             /* go ahead and parse the value to make sure it's valid */

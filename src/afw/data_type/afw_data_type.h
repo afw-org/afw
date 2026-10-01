@@ -101,8 +101,8 @@ do { \
  * @param scalar_only true if only scalar properties should be listed.
  * @param xctx of caller.
  *
- * This will use afw_object_create_unmanaged_new_p() to create the
- * cloned object.
+ * Walks object properties and writes a compiler listing. Does not
+ * clone the object.
  */
 AFW_DECLARE(void)
 afw_data_type_object_value_compiler_listing(
