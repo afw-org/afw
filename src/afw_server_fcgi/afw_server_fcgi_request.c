@@ -123,7 +123,7 @@ afw_server_fcgi_internal_create_request(
     afw_size_t len;
 
     /* Allocate memory for self. */
-    self = afw_xctx_calloc_type(afw_server_fcgi_internal_request_t, xctx);
+    self = afw_pool_calloc_type(xctx->p, afw_server_fcgi_internal_request_t, xctx);
 
     /* Initialize Self. */
     self->pub.inf = &impl_afw_request_inf;

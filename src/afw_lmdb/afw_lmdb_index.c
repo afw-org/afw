@@ -38,7 +38,7 @@ afw_adapter_impl_index_t * afw_lmdb_adapter_impl_index_create(
      * You may want to create a new pool for instance, but will just use
      * xctx's pool in this example.
      */
-    self = afw_xctx_calloc_type(afw_lmdb_adapter_impl_index_t, xctx);
+    self = afw_pool_calloc_type(xctx->p, afw_lmdb_adapter_impl_index_t, xctx);
 
     self->pub.inf = &impl_afw_adapter_impl_index_inf;
     self->session = session;

@@ -108,7 +108,7 @@ afw_server_fcgi_internal_create_properties_object(
         AFW_UTF8_LITERAL("/afw/_AdaptiveRequestProperties_/current");
 
     /* Allocate memory for self and initialize. */
-    self = afw_xctx_calloc_type(impl_self_t, request->pub.xctx);
+    self = afw_pool_calloc_type(xctx->p, impl_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.meta.id = afw_s_current;
     self->pub.meta.object_type_uri = afw_s__AdaptiveRequestProperties_;

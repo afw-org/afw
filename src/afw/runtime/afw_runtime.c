@@ -304,7 +304,7 @@ afw_runtime_xctx_set_object(
     runtime_objects = (afw_runtime_objects_t *)xctx->runtime_objects;
 
     if (!runtime_objects) {
-        runtime_objects = afw_xctx_calloc_type(afw_runtime_objects_t, xctx);
+        runtime_objects = afw_pool_calloc_type(xctx->p, afw_runtime_objects_t, xctx);
         xctx->runtime_objects = runtime_objects;
     }
 
@@ -1375,7 +1375,7 @@ afw_runtime_object_get_next_own_property(
         i = (impl_runtime_iterator_t *)*iterator;
     }
     else {
-        i = afw_xctx_calloc_type(impl_runtime_iterator_t, xctx);
+        i = afw_pool_calloc_type(xctx->p, impl_runtime_iterator_t, xctx);
         *iterator = (afw_iterator_old_t *)i;
         i->map_entry = (meta->property_map) 
             ? meta->property_map->properties

@@ -27,10 +27,11 @@
 #                 slots do not share immortal objects/arrays.
 #   managed       Start-at-1. Header + copied internals in
 #                 p->managed_p, RC 1 (caller must release). get_reference /
-#                 get_assignable_value bump. Scalar last-release
-#                 free_memorys the header via the stored p.
-#                 Object/array: instance last-release (embedded dual-face
-#                 has no extra header).
+#                 get_assignable_value bump. Last-release free_memorys
+#                 the header via the stored p. Object/array heap
+#                 wrapper also holds the instance; last RC of the
+#                 wrapper releases the instance then free_memorys the
+#                 wrapper. Embedded dual-face has no extra header.
 #   managed_slice View into a containing managed utf8/memory value. Holds
 #                 containing at create. Header in p->managed_p, RC 1.
 #                 get_reference bumps the slice. Last release of the
@@ -1674,41 +1675,26 @@ def write_c_section(fd, prefix, obj):
                     fd.write('            "managed array value",\n')
                     fd.write('            xctx);\n')
                     fd.write('    }\n')
-                if _scalar_holdable_create(id):
-                    fd.write('    p = p->managed_p;\n')
-                    fd.write('    v = afw_pool_calloc(p,\n')
-                    fd.write('        sizeof(afw_value_' + id +
-                             '_managed_t), xctx);\n')
-                else:
-                    fd.write('    (void)p;\n')
-                    fd.write('    v = afw_xctx_malloc(\n')
-                    fd.write('        sizeof(afw_value_' + id +
-                             '_managed_t), xctx);\n')
+                    fd.write('    afw_array_get_reference(internal, xctx);\n')
+                fd.write('    p = p->managed_p;\n')
+                fd.write('    v = afw_pool_calloc(p,\n')
+                fd.write('        sizeof(afw_value_' + id +
+                         '_managed_t), xctx);\n')
                 fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
                 fd.write('    v->internal = internal;\n')
-                if id == 'object' or id == 'array':
-                    fd.write('    /* Container hold is on object/array, not value RC. */\n')
-                    fd.write('    v->reference_count = 0;\n')
             else:
                 fd.write('\n')
-                if _scalar_holdable_create(id):
-                    fd.write('    p = p->managed_p;\n')
-                    fd.write('    v = afw_pool_calloc(p,\n')
-                    fd.write('        sizeof(afw_value_' + id +
-                             '_managed_t), xctx);\n')
-                else:
-                    fd.write('    (void)p;\n')
-                    fd.write('    v = afw_xctx_calloc(\n')
-                    fd.write('        sizeof(afw_value_' + id +
-                             '_managed_t), xctx);\n')
+                fd.write('    p = p->managed_p;\n')
+                fd.write('    v = afw_pool_calloc(p,\n')
+                fd.write('        sizeof(afw_value_' + id +
+                         '_managed_t), xctx);\n')
                 fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
                 fd.write('    if (internal) {\n')
                 fd.write('        memcpy(&v->internal, internal, '
                          'sizeof(' + ctype + '));\n')
                 fd.write('    }\n')
-            if _scalar_holdable_create(id):
-                fd.write('    v->p = p;\n')
-                fd.write('    v->reference_count = 1;\n')
+            fd.write('    v->p = p;\n')
+            fd.write('    v->reference_count = 1;\n')
             fd.write('\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
@@ -2131,8 +2117,8 @@ def write_c_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
         if id == 'object':
-            # Container-aware: object RC is the hold; heap wrappers still
-            # use value reference_count only to free the header (multi-ref).
+            # Heap wrapper holds the instance; last RC of the wrapper
+            # releases the instance and free_memorys the header.
             # Never free an embedded dual-face value (no managed header).
             fd.write('    const afw_value_object_t *self =\n')
             fd.write('        (const afw_value_object_t *)instance;\n')
@@ -2155,11 +2141,14 @@ def write_c_section(fd, prefix, obj):
             fd.write('            return;\n')
             fd.write('        }\n')
             fd.write('        managed->reference_count--;\n')
+            fd.write('        if (managed->reference_count == 0) {\n')
+            fd.write('            afw_pool_free_memory(managed->p, managed,\n')
+            fd.write('                sizeof(afw_value_object_managed_t), xctx);\n')
+            fd.write('        }\n')
             fd.write('    }\n')
         elif id == 'array':
-            # Arrays often have no get_reference; release is often a no-op.
-            # Never free an embedded dual-face value. Heap wrappers use RC
-            # only for header free (same multi-ref rule as other managed).
+            # Heap wrapper holds the instance; last RC of the wrapper
+            # releases the instance and free_memorys the header.
             fd.write('    const afw_value_array_t *self =\n')
             fd.write('        (const afw_value_array_t *)instance;\n')
             fd.write('    const afw_array_t *arr = self->internal;\n')
@@ -2178,6 +2167,10 @@ def write_c_section(fd, prefix, obj):
             fd.write('            return;\n')
             fd.write('        }\n')
             fd.write('        managed->reference_count--;\n')
+            fd.write('        if (managed->reference_count == 0) {\n')
+            fd.write('            afw_pool_free_memory(managed->p, managed,\n')
+            fd.write('                sizeof(afw_value_array_managed_t), xctx);\n')
+            fd.write('        }\n')
             fd.write('    }\n')
         else:
             fd.write('    afw_value_' + id + '_managed_t *self =\n')

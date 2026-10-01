@@ -559,7 +559,7 @@ afw_vfs_adapter_internal_session_create(
 {
     afw_vfs_adapter_internal_session_t *self;
 
-    self = afw_xctx_calloc_type(
+    self = afw_pool_calloc_type(xctx->p,
         afw_vfs_adapter_internal_session_t, xctx);
     self->pub.inf = &impl_afw_adapter_session_inf;
     self->pub.adapter = (const afw_adapter_t *)adapter;

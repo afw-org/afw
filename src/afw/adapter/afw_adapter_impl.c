@@ -795,7 +795,7 @@ impl_afw_adapter_create_adapter_session(
     AFW_ADAPTER_SESSION_SELF_T *session;
 
     /* Create session self. */
-    session = afw_xctx_calloc_type(AFW_ADAPTER_SESSION_SELF_T, xctx);
+    session = afw_pool_calloc_type(xctx->p, AFW_ADAPTER_SESSION_SELF_T, xctx);
     session->pub.adapter = self;
     session->pub.inf = &impl_afw_adapter_session_inf;
     session->pub.p = xctx->p;

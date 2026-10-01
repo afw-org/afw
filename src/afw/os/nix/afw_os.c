@@ -563,8 +563,12 @@ impl_create_general_object(afw_xctx_t *xctx)
         string, &impl_s_general_description, xctx);
     afw_object_meta_set_read_only(result, xctx);
 
-    /* use uname() to gather system name information */
-    uname_s = afw_xctx_calloc_type(struct utsname, xctx);
+    /*
+     * set_property_as_string_from_utf8_z stores the pointer. Keep
+     * utsname in the object's pool so sysname/nodename/… outlive this
+     * frame (request threads clone this object).
+     */
+    uname_s = afw_pool_calloc_type(xctx->p, struct utsname, xctx);
     rc = uname(uname_s);
     if (rc > -1) {
         afw_object_set_property_as_string_from_utf8_z(result,

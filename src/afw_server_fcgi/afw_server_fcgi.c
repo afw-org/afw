@@ -138,7 +138,7 @@ afw_server_fcgi_internal_create(const char *path,
     atexit(&FCGX_Finish);
 
     /* Allocate and initialize self. */
-    self = afw_xctx_calloc_type(afw_server_fcgi_internal_t, xctx);
+    self = afw_pool_calloc_type(xctx->env->p, afw_server_fcgi_internal_t, xctx);
     self->pub.inf = &impl_afw_server_inf;
     self->pub.xctx = xctx;
     self->pub.properties = afw_object_create_unmanaged_new_p(xctx->p, xctx);
@@ -309,7 +309,7 @@ impl_afw_server_request_thread_start(const afw_thread_t *thread,
     afw_integer_t max_concurrent;    
 
     /* Initialize a FCGX_Request for this thread. */
-    server_thread->fcgx_request = afw_xctx_calloc_type(FCGX_Request, xctx);
+    server_thread->fcgx_request = afw_pool_calloc_type(xctx->p, FCGX_Request, xctx);
     FCGX_InitRequest(server_thread->fcgx_request, server->sock,
         FCGI_FAIL_ACCEPT_ON_INTR);
 
@@ -383,7 +383,7 @@ impl_afw_server_run(
 
     server->director = handler;
     server->xctx = xctx;
-    server->threads = afw_xctx_calloc(
+    server->threads = afw_pool_calloc(xctx->env->p,
         sizeof(afw_server_fcgi_internal_server_thread_t) *
         (afw_size_t)server->pub.thread_count,
         xctx);

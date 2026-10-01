@@ -115,7 +115,7 @@ impl_local_get_input(
     }
 
     /* Return result. */
-    result = afw_xctx_malloc_type(afw_memory_t, xctx);
+    result = afw_pool_malloc_type(xctx->p, afw_memory_t, xctx);
     result->ptr = (const afw_octet_t *)self->input_buffer->entries;
     result->size = self->input_buffer->count;
     return result;

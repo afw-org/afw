@@ -35,7 +35,7 @@ afw_function_internal_prepare_environment(afw_xctx_t *xctx)
 {
     afw_function_environment_t *e;
 
-    e = afw_xctx_calloc_type(afw_function_environment_t, xctx);
+    e = afw_pool_calloc_type(xctx->env->p, afw_function_environment_t, xctx);
     ((afw_environment_t *)xctx->env)->function_environment = e;
 
     e->add_operator_function =

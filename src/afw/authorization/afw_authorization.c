@@ -1277,7 +1277,7 @@ afw_authorization_internal_register_service_and_conf(
         xctx);
 
     /* Create and register service type. */
-    self = afw_xctx_calloc_type(afw_service_type_t, xctx);
+    self = afw_pool_calloc_type(xctx->env->p, afw_service_type_t, xctx);
     self->inf = &impl_afw_service_type_inf;
     afw_memory_copy(&self->service_type_id, afw_s_authorizationHandler);
     self->conf_type = afw_environment_get_conf_type(

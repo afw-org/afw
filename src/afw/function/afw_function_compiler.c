@@ -1344,7 +1344,7 @@ afw_function_execute_compile_from_file(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(file_value, 1, string);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(compile_type_value, 2, string);
 
-    self = afw_xctx_calloc_type(afw_include_self_t, xctx);    
+    self = afw_pool_calloc_type(p, afw_include_self_t, xctx); 
 
     if (compile_type_value) {
         compile_type_string = &compile_type_value->internal;

@@ -125,7 +125,7 @@ from_value_wa_t * create_from_value_wa(
 {
     from_value_wa_t *wa;
 
-    wa = afw_xctx_calloc_type(from_value_wa_t, xctx);
+    wa = afw_pool_calloc_type(p, from_value_wa_t, xctx);
     wa->xctx = xctx;
     wa->p = p;
 

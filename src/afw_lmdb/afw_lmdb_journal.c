@@ -45,7 +45,7 @@ afw_lmdb_journal_create(
 {
     afw_lmdb_journal_t *self;
 
-    self = afw_xctx_calloc_type(afw_lmdb_journal_t, xctx);
+    self = afw_pool_calloc_type(xctx->p, afw_lmdb_journal_t, xctx);
 
     self->pub.inf = &impl_afw_adapter_journal_inf;
     self->session = (afw_adapter_session_t *)session;
