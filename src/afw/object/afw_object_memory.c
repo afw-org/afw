@@ -725,6 +725,10 @@ impl_unlink_property(
         }
         e->value = NULL;
         e->name = NULL;
+        if (managed) {
+            afw_pool_free_memory_type(self->pub.p, e,
+                afw_object_internal_name_value_entry_t, xctx);
+        }
         return;
     }
 }
@@ -1322,6 +1326,7 @@ impl_afw_object_managed_release(
     afw_xctx_t *xctx)
 {
     afw_object_internal_name_value_entry_t *e;
+    afw_object_internal_name_value_entry_t *next;
 
     if (self->reference_count <= 0) {
         return;
@@ -1330,7 +1335,16 @@ impl_afw_object_managed_release(
     if (self->reference_count != 0) {
         return;
     }
-    for (e = self->first_property; e; e = e->next) {
+    /*
+     * Hash keys are views into name bytes. Drop the table first.
+     * Entries live in managed_p; free them with the header.
+     */
+    if (self->property_index) {
+        afw_hash_table_release(self->property_index, xctx);
+        self->property_index = NULL;
+    }
+    for (e = self->first_property; e; e = next) {
+        next = e->next;
         if (e->value) {
             afw_value_release(e->value, xctx);
             e->value = NULL;
@@ -1339,7 +1353,12 @@ impl_afw_object_managed_release(
             afw_value_release(e->name, xctx);
             e->name = NULL;
         }
+        afw_pool_free_memory_type(self->pub.p, e,
+            afw_object_internal_name_value_entry_t, xctx);
     }
+    self->first_property = NULL;
+    self->last_property = NULL;
+    self->property_count = 0;
     if (self->wrapped) {
         afw_object_release(self->wrapped, xctx);
         self->wrapped = NULL;
