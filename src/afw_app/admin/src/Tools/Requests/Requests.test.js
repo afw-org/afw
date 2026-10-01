@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {editor as monacoEditorMock} from "monaco-editor";
-import {render, waitFor, within, fireEvent, screen, waitForSpinner, server, http, HttpResponse, mswPostCallback, mswGetCallback} from "../../test-utils";
+import {render, waitFor, within, fireEvent, screen, waitForSpinner, server, http, HttpResponse, mswPostCallback, mswGetCallback, act} from "../../test-utils";
 import Requests from "./Requests";
 
 /*
@@ -152,12 +152,14 @@ describe("Requests Tests", () => {
         });
 
         // "Request" is the default active tab, so this is that tab's editor
-        getLatestMonacoEditorInstance().__setValueAndFireChange(value);
+        await act(async () => {
+            getLatestMonacoEditorInstance().__setValueAndFireChange(value);
 
-        // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
-        // real 100ms debounce wrapper around onSourceChanged - give it a
-        // moment to fire and land in Requests' tab state before Send reads it
-        await new Promise(resolve => setTimeout(resolve, 150));
+            // the mock editor's onDidChangeModelContent handler is CodeEditor.js's
+            // real 100ms debounce wrapper around onSourceChanged - give it a
+            // moment to fire and land in Requests' tab state before Send reads it
+            await new Promise(resolve => setTimeout(resolve, 150));
+        });
 
         // select JSON
         const contentTypeDropdown = within(screen.getByTestId("requests-accept"));
