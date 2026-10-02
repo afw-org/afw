@@ -82,7 +82,9 @@ afw_array_create_with_options(
  * `pop` / `shift` transfer the occupant (array no longer holds).
  * Last-release of that hold is registered on the current scope pool
  * (`afw_pool_release_value_at_cleanup`) so it dies with that `{ }`
- * unless a slot `get_assignable_value`s it. Do not
+ * unless a slot `get_assignable_value`s it. Adaptive execute_pop /
+ * execute_shift last-release dest p when there is no current scope
+ * (second register on the same p is a no-op). Do not
  * `get_assignable_for_scope_lifetime` on the pop result — that is a
  * second must-release on top of the transfer.
  *
@@ -678,7 +680,9 @@ afw_array_push_value_take(
  * Empty is found==false; a removed NULL/undefined slot is found==true.
  *
  * Managed arrays: see `afw_array_create_managed`. Transfer, then
- * last-release of that hold on the current scope pool. Not a get/peek.
+ * last-release of that hold on the current scope pool. Adaptive
+ * execute last-releases dest p when there is no current scope. Not a
+ * get/peek.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_array_pop_value(

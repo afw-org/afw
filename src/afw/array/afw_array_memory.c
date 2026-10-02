@@ -1349,7 +1349,9 @@ impl_afw_array_managed_setter_set_value(
 
 
 /* Transferred occupant last-release on the current scope, like a temp.
- * See afw_array_create_managed. */
+ * Adaptive execute_pop / execute_shift last-release dest p when there
+ * is no current scope. C calling pop_value without a current scope
+ * still leftover. See afw_array_create_managed. */
 static const afw_value_t *
 impl_register_transferred_temp(
     const afw_value_t *value,
