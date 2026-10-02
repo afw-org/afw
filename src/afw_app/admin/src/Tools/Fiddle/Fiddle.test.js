@@ -1,7 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {editor as monacoEditorMock} from "monaco-editor";
-import {server, http, HttpResponse, render, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback, act} from "../../test-utils";
-import Fiddle from "./Fiddle";
+import {server, http, HttpResponse, renderRoute, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback, act} from "../../test-utils";
 
 /*
  * jsdom can't drive Monaco's real DOM/canvas editing surface, so the fiddle
@@ -25,7 +24,7 @@ describe("Fiddle Tests", () => {
 
     test("Fiddle renders", async () => {
 
-        render( <Fiddle /> );        
+        renderRoute("/Tools/Fiddle");        
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());     
         await waitForSpinner();                   
@@ -35,7 +34,7 @@ describe("Fiddle Tests", () => {
 
     test("Create new fiddle input, evaluate it", async () => {        
 
-        render( <Fiddle /> );        
+        renderRoute("/Tools/Fiddle");        
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();    
@@ -80,7 +79,7 @@ describe("Fiddle Tests", () => {
 
     test("Create new fiddle input, show listing", async () => {
 
-        render( <Fiddle /> );        
+        renderRoute("/Tools/Fiddle");        
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());      
         await waitForSpinner();
@@ -125,7 +124,7 @@ describe("Fiddle Tests", () => {
 
     test("Closing an inactive dirty tab targets that tab, not the active one (issue #114)", async () => {
 
-        render( <Fiddle /> );
+        renderRoute("/Tools/Fiddle");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -164,7 +163,7 @@ describe("Fiddle Tests", () => {
 
     test("Create new fiddle input, set trace flag, execute", async () => {
 
-        render( <Fiddle /> );        
+        renderRoute("/Tools/Fiddle");        
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();

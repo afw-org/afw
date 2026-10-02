@@ -25,9 +25,6 @@ const LoadableDocumentation = Loadable(lazy(() =>
 ));
 
 
-const LoadableTools = Loadable(lazy(() =>
-    import("../Tools/Tools")
-));
 
 
 /*
@@ -48,9 +45,6 @@ export const AppRoutes = () => {
             </Route>
             <Route path="/Documentation">
                 <LoadableDocumentation />
-            </Route>
-            <Route path="/Tools">
-                <LoadableTools />
             </Route>
             <Route path="/Versions">
                 <Versions />
