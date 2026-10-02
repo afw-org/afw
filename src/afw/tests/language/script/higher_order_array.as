@@ -363,7 +363,7 @@ return 0;
 
 //?
 //? test: returned-closure-as-functor
-//? description: map and filter evaluate a factory once and call the returned closure
+//? description: map, filter, reduce, and sort evaluate a factory once and call the returned closure
 //? expect: 0
 //? source: ...
 
@@ -371,7 +371,7 @@ return 0;
  * Companion to function.as function_return_closure_as_argument, which
  * passes a returned closure into a regular function. High-level array
  * functions evaluate the functor parameter once, then call that value
- * per entry.
+ * per entry. reduce and sort use their own execute paths.
  */
 let makes = 0;
 
@@ -390,6 +390,19 @@ function makeGt() {
     };
 }
 
+function makeSum() {
+    let extra = 10;
+    return function (acc, v) {
+        return acc + v + extra;
+    };
+}
+
+function makeBefore() {
+    return function (a, b) {
+        return a < b;
+    };
+}
+
 let mapped = map(makeAdder(), [1, 2, 3]);
 assert(makes === 1, "functor factory runs once");
 assert(length(mapped) === 3);
@@ -398,4 +411,11 @@ assert(mapped[0] === 6 && mapped[1] === 7 && mapped[2] === 8);
 let kept = filter(makeGt(), [1, 2, 3, 4]);
 assert(length(kept) === 2);
 assert(kept[0] === 3 && kept[1] === 4);
+
+let summed = reduce(makeSum(), 0, [1, 2, 3]);
+assert(summed === 36);
+
+let sorted = sort(makeBefore(), [3, 1, 2]);
+assert(length(sorted) === 3);
+assert(sorted[0] === 1 && sorted[1] === 2 && sorted[2] === 3);
 return 0;

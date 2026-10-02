@@ -367,3 +367,33 @@ for (i = 0; i < 40; i = i + 1) {
 }
 assert(o.func1());
 return 0;
+
+//?
+//? test: eval-closure-as-map-functor
+//? description: map functor from eval<script> / eval<string> capturing closures (#342)
+//? expect: 0
+//? source: ...
+
+/*
+ * keep_unit transfers a top-level eval closure, then a high-level
+ * array function evaluates that factory-or-value once and calls it
+ * per entry. Companion to higher_order_array returned-closure-as-functor.
+ */
+const f = eval<script>(script(
+    "let n = 5; return function (v) { return v + n; };"));
+let out1 = map(f, [1, 2, 3]);
+assert(length(out1) === 3);
+assert(out1[0] === 6 && out1[1] === 7 && out1[2] === 8);
+
+let out2 = map(eval<string>(
+    "let n = 5; return function (v) { return v + n; };"), [1, 2, 3]);
+assert(length(out2) === 3);
+assert(out2[0] === 6 && out2[1] === 7 && out2[2] === 8);
+
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    let out = map(eval<string>(
+        "let n = 5; return function (v) { return v + n; };"), [1, 2, 3]);
+    assert(out[0] === 6 && out[2] === 8);
+}
+return 0;
