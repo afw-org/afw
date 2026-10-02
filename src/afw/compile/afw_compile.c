@@ -89,7 +89,9 @@ afw_compile_and_evaluate(
     }
     AFW_FINALLY {
         if (result) {
-            result = afw_value_get_assignable(result, p, xctx);
+            /* Evaluate already registered last-release on dest p. */
+            result = afw_pool_scope_get_assignable_for_p_lifetime(
+                result, p, xctx);
         }
         if (afw_value_is_compiled_value(compiled_value)) {
             afw_value_release(compiled_value, xctx);

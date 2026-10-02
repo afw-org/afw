@@ -488,7 +488,9 @@ afw_function_execute_eval_string(
         }
         AFW_FINALLY {
             if (value) {
-                value = afw_value_get_assignable(value, x->p, xctx);
+                /* Evaluate already registered last-release on dest p. */
+                value = afw_pool_scope_get_assignable_for_p_lifetime(
+                    value, x->p, xctx);
             }
             afw_value_release(compiled, xctx);
         }
