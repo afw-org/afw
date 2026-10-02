@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useMemo} from "react";
-import {Route, Switch, useRouteMatch} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import {
     Link,
@@ -40,9 +40,8 @@ const objectOptions = {
 export const ObjectTypes = () => {
 
     const theme = useTheme();
-    const match = useRouteMatch();
-
-    const {adapterId} = match.params;
+    /* the route's optional params (see ../routes.js) */
+    const {adapterId, objectType, propertyName} = useParams({ strict: false });
     const {adapters} = useAppCore();
 
     const {objects: objectTypeObjects, isLoading} = useRetrieveObjects({ 
@@ -71,187 +70,193 @@ export const ObjectTypes = () => {
         );
     }
 
-    return (
-        <Switch>
-            <Route exact path="/Documentation/Reference/Schema" render={() => {
-                return (
-                    <>            
-                        <Message 
-                            message="Adapters provide Object Type and Property Type definitions, used to create Adaptive Object instances from.  Select an adapter
-                            to view the Object Type references."
-                        />
-                        <div style={{ height: theme.spacing(4) }} />
-                        <Table 
-                            columns={[
-                                {
-                                    key: "Adapter",
-                                    name: "Adapter",
-                                    minWidth: 100,
-                                    maxWidth: 200,
-                                    isResizable: true,
-                                    style: { wordWrap: "break-word" },
-                                    onRender: (adapter) => {
-                                        const adapterId = adapter.adapterId;
-                                        return (
-                                            <Link 
-                                                url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId)}
-                                                text={adapterId}
-                                            />
-                                        );
-                                    }
-                                },
-                                {
-                                    key: "Description",
-                                    name: "Description",  
-                                    minWidth: 200,
-                                    maxWidth: 400,
-                                    isResizable: true,      
-                                    isMultiline: true,            
-                                    style: { wordWrap: "break-word" },                        
-                                    onRender: (adapter) => {
-                                        return (adapter.properties.description);
-                                    }
-                                }
-                            ]}
-                            rows={adapters}
-                            selectionMode="none"                                    
-                        />
-                    </>
-                ); 
-            }} />
-            <Route exact path="/Documentation/Reference/Schema/:adapterId" render={() => {
-
-                if (!adapterId || !objectTypeObjects || !objectTypesHash)
-                    return null;
-                
-                return (
-                    <Tabs 
-                        style={{ height: "100%" }}
-                        gapSpace={20}
-                        tabs={[
-                            {
-                                text: "Reference",
-                                contains: 
-                                    <div>
-                                        <Table 
-                                            columns={[
-                                                {
-                                                    key: "ObjectType",
-                                                    name: "Object Type",
-                                                    fieldName: "objectType",
-                                                    minWidth: 100,
-                                                    maxWidth: 200,
-                                                    isResizable: true,
-                                                    style: { wordWrap: "break-word" },
-                                                    onRender: (item) => {
-                                                        return (
-                                                            <Link 
-                                                                url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(item.objectType)} 
-                                                                text={item.objectType} 
-                                                            />
-                                                        );
-                                                    }
-                                                },
-                                                {
-                                                    key: "Description",
-                                                    name: "Description",
-                                                    fieldName: "description",
-                                                    minWidth: 200,
-                                                    maxWidth: 400,
-                                                    isResizable: true,
-                                                    isMultiline: true,
-                                                    style: { wordWrap: "break-word" },
-                                                }
-                                            ]}
-                                            rows={
-                                                objectTypeObjects.map((objectTypeObject, index) => {
-                                                    return ({
-                                                        key: index,
-                                                        objectType: objectTypeObject.getObjectId(),
-                                                        description: objectTypeObject.getPropertyValue("description"),
-                                                    });
-                                                }).sort((A, B) => {
-                                                    return A.objectType.toLowerCase().localeCompare(B.objectType.toLowerCase());
-                                                })
-                                            }
-                                            selectionMode="none"
-                                            compact={true}
-                                        />   
-                                    </div>
-                            },
-                            {
-                                text: "Diagram",
-                                style: {height: "100%"},
-                                contains: 
-                                    <SchemaDiagram 
-                                        adapterId={adapterId}
-                                        objectTypeObjects={objectTypesHash}                                            
+    /* the Schema overview */
+    const renderSchemaIndex = () => {
+        return (
+            <>            
+                <Message 
+                    message="Adapters provide Object Type and Property Type definitions, used to create Adaptive Object instances from.  Select an adapter
+                    to view the Object Type references."
+                />
+                <div style={{ height: theme.spacing(4) }} />
+                <Table 
+                    columns={[
+                        {
+                            key: "Adapter",
+                            name: "Adapter",
+                            minWidth: 100,
+                            maxWidth: 200,
+                            isResizable: true,
+                            style: { wordWrap: "break-word" },
+                            onRender: (adapter) => {
+                                const adapterId = adapter.adapterId;
+                                return (
+                                    <Link 
+                                        url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId)}
+                                        text={adapterId}
                                     />
-                                    
-                            },
-                            {
-                                text: "API",
-                                contains:
-                                    <SchemaApi 
-                                        adapterId={adapterId}
-                                        objectTypeObjects={objectTypesHash}
-                                    />
+                                );
                             }
-                        ]}
+                        },
+                        {
+                            key: "Description",
+                            name: "Description",  
+                            minWidth: 200,
+                            maxWidth: 400,
+                            isResizable: true,      
+                            isMultiline: true,            
+                            style: { wordWrap: "break-word" },                        
+                            onRender: (adapter) => {
+                                return (adapter.properties.description);
+                            }
+                        }
+                    ]}
+                    rows={adapters}
+                    selectionMode="none"                                    
+                />
+            </>
+        ); 
+    };
+
+    /* one adapter's Object Types */
+    const renderAdapter = () => {
+
+        if (!adapterId || !objectTypeObjects || !objectTypesHash)
+            return null;
+        
+        return (
+            <Tabs 
+                style={{ height: "100%" }}
+                gapSpace={20}
+                tabs={[
+                    {
+                        text: "Reference",
+                        contains: 
+                            <div>
+                                <Table 
+                                    columns={[
+                                        {
+                                            key: "ObjectType",
+                                            name: "Object Type",
+                                            fieldName: "objectType",
+                                            minWidth: 100,
+                                            maxWidth: 200,
+                                            isResizable: true,
+                                            style: { wordWrap: "break-word" },
+                                            onRender: (item) => {
+                                                return (
+                                                    <Link 
+                                                        url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(item.objectType)} 
+                                                        text={item.objectType} 
+                                                    />
+                                                );
+                                            }
+                                        },
+                                        {
+                                            key: "Description",
+                                            name: "Description",
+                                            fieldName: "description",
+                                            minWidth: 200,
+                                            maxWidth: 400,
+                                            isResizable: true,
+                                            isMultiline: true,
+                                            style: { wordWrap: "break-word" },
+                                        }
+                                    ]}
+                                    rows={
+                                        objectTypeObjects.map((objectTypeObject, index) => {
+                                            return ({
+                                                key: index,
+                                                objectType: objectTypeObject.getObjectId(),
+                                                description: objectTypeObject.getPropertyValue("description"),
+                                            });
+                                        }).sort((A, B) => {
+                                            return A.objectType.toLowerCase().localeCompare(B.objectType.toLowerCase());
+                                        })
+                                    }
+                                    selectionMode="none"
+                                    compact={true}
+                                />   
+                            </div>
+                    },
+                    {
+                        text: "Diagram",
+                        style: {height: "100%"},
+                        contains: 
+                            <SchemaDiagram 
+                                adapterId={adapterId}
+                                objectTypeObjects={objectTypesHash}                                            
+                            />
+                            
+                    },
+                    {
+                        text: "API",
+                        contains:
+                            <SchemaApi 
+                                adapterId={adapterId}
+                                objectTypeObjects={objectTypesHash}
+                            />
+                    }
+                ]}
+            />
+        );
+    };
+
+    /* one Object Type */
+    const renderObjectType = () => {
+
+        if (!adapterId || !objectTypeObjects)
+            return null;
+
+        for (const objectTypeObject of objectTypeObjects) {
+            if (objectTypeObject.getObjectId() === objectType) {
+                return (
+                    <ObjectType 
+                        adapterId={adapterId}
+                        objectTypeObjects={objectTypeObjects}
+                        objectTypeObject={objectTypeObject}
                     />
                 );
-            }} />
-            <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType" render={(props) => {
-                const objectType = decodeURIComponent(props.match.params["objectType"]);
-                const adapterId = decodeURIComponent(props.match.params["adapterId"]);                 
+            }
+        }
+        
+        return <Typography text={"Object Type " + objectType + " not found."} />;
 
-                if (!adapterId || !objectTypeObjects)
-                    return null;
+    };
 
-                for (const objectTypeObject of objectTypeObjects) {
-                    if (objectTypeObject.getObjectId() === objectType) {
-                        return (
-                            <ObjectType 
-                                adapterId={adapterId}
-                                objectTypeObjects={objectTypeObjects}
-                                objectTypeObject={objectTypeObject}
-                            />
-                        );
-                    }
+    /* one Property Type */
+    const renderPropertyType = () => {
+
+        if (!adapterId || !objectTypeObjects || !propertyName)
+            return null;
+
+        for (let objectTypeObject of objectTypeObjects) {
+            if (objectTypeObject.getObjectId() === objectType) {
+                let propertyTypes = objectTypeObject.getPropertyValue("propertyTypes");
+                if (propertyTypes && propertyTypes.getPropertyValue(propertyName)) {
+                    return (
+                        <PropertyType 
+                            adapterId={adapterId}
+                            objectTypeObject={objectTypeObject}
+                            propertyName={propertyName}
+                            propertyType={propertyTypes.getPropertyValue(propertyName)}
+                        />
+                    );
                 }
-                
-                return <Typography text={"Object Type " + objectType + " not found."} />;
+            }
+        }
 
-            }} />
-            <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType/:propertyName" render={(props) => {
-                const objectType = decodeURIComponent(props.match.params.objectType);
-                const adapterId = decodeURIComponent(props.match.params.adapterId);
-                const propertyName = decodeURIComponent(props.match.params.propertyName);                   
+        return <Typography text={"Property " + propertyName + " not found."} />;
+    };
 
-                if (!adapterId || !objectTypeObjects || !propertyName)
-                    return null;
-
-                for (let objectTypeObject of objectTypeObjects) {
-                    if (objectTypeObject.getObjectId() === objectType) {
-                        let propertyTypes = objectTypeObject.getPropertyValue("propertyTypes");
-                        if (propertyTypes && propertyTypes.getPropertyValue(propertyName)) {
-                            return (
-                                <PropertyType 
-                                    adapterId={adapterId}
-                                    objectTypeObject={objectTypeObject}
-                                    propertyName={propertyName}
-                                    propertyType={propertyTypes.getPropertyValue(propertyName)}
-                                />
-                            );
-                        }
-                    }
-                }
-
-                return <Typography text={"Property " + propertyName + " not found."} />;
-            }} />                
-
-        </Switch>            
-    );
+    /* the route's optional params pick the view (see ../routes.js) */
+    if (propertyName)
+        return renderPropertyType();
+    if (objectType)
+        return renderObjectType();
+    if (adapterId)
+        return renderAdapter();
+    return renderSchemaIndex();
 };
 
 export default ObjectTypes;

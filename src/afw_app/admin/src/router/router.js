@@ -9,6 +9,7 @@ import Loading from "../common/Loading";
 import {createAdminRoutes} from "../Admin/routes";
 import {createObjectsRoutes} from "../Objects/routes";
 import {createToolsRoutes} from "../Tools/routes";
+import {createDocumentationRoutes} from "../Documentation/routes";
 
 /**
  * The admin app's TanStack Router, mid-migration from React Router 5 (see
@@ -63,6 +64,7 @@ export const routeTree = rootRoute.addChildren([
     createAdminRoutes(rootRoute),
     createObjectsRoutes(rootRoute),
     createToolsRoutes(rootRoute),
+    createDocumentationRoutes(rootRoute),
     legacyRoute,
 ]);
 

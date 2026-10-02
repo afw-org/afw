@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useRouteMatch} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import {
     Checkbox,
@@ -65,11 +65,12 @@ export const DataType = (props) => {
     const theme = useTheme();
     const {dataTypes} = useDataTypes();
     const {functions} = useFunctions();
-    const match = useRouteMatch();
+    /* the route's param, unless a dataTypeId prop names one (see ../routes.js) */
+    const {dataTypeId: routeDataTypeId} = useParams({ strict: false });
 
     let dataTypeId = props.dataTypeId;
 
-    if (!dataTypeId) dataTypeId = decodeURIComponent(match.params.dataTypeId);
+    if (!dataTypeId) dataTypeId = routeDataTypeId;
 
     let dataType = null;
     if (!dataTypes || !functions) 

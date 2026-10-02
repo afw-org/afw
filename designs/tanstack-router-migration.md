@@ -1,6 +1,6 @@
 # Admin app: React Router 5 → TanStack Router
 
-**Status (2026-10-02):** on `feat/tanstack-router`: steps 1-4 (bridge + shell, `/Admin` + Schema, Objects, Admin/Models) and Tools committed; the Services group (Services, Adapters, Logs, AuthHandlers) in review. Lessons are under *Patterns*; known issues under *Open questions*.
+**Status (2026-10-02):** on `feat/tanstack-router`: bridge + shell, `/Admin` + Schema, Objects, Admin/Models, Tools and the Services group committed; Documentation in review. Left: the rest of `/Admin` (Status, Server, Application, Extensions, Provisioning, Authorization, RequestHandlers), Home, the app shell (`App/`), `common`, then removing the bridge. Lessons are under *Patterns*; known issues under *Open questions* and in `beta-backlog.md`.
 
 **Scope:** `src/afw_app/admin` only. Since #451 the component libraries (`@afw/react`, `@afw/react-material-ui`) import no router: they go through the navigation contract (`useNavigation()` → `Link`, `useNavigate`, `NavigationBlocker`), and the app adapts its router in one file, `admin/src/navigation.js`.
 

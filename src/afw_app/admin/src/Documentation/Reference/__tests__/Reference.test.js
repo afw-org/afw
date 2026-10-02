@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {render, screen, waitForSpinner, mswPostCallback} from "../../../test-utils";
-import Reference from "../Reference";
+import {renderRoute, screen, waitForSpinner, mswPostCallback} from "../../../test-utils";
 
 describe("Reference Tests", () => {    
 
@@ -12,7 +11,7 @@ describe("Reference Tests", () => {
 
         window.scrollTo = jest.fn();
 
-        render( <Reference /> );        
+        renderRoute("/Documentation/Reference");        
   
         await waitForSpinner();                     
 

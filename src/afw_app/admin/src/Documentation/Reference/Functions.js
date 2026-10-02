@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React, {useMemo, useState} from "react";
-import {Switch, Route, useRouteMatch, useHistory} from "react-router";
+import {useParams, useNavigate} from "@tanstack/react-router";
 
 import {    
     Autocomplete,
@@ -292,7 +292,8 @@ export const Function = (props) => {
 
     const {functions} = useAppCore();
     const theme = useTheme();
-    const match = useRouteMatch();
+    /* the route's param, unless a functionId prop names one (see ../routes.js) */
+    const {functionId: routeFunctionId} = useParams({ strict: false });
 
     let functionId = props.functionId;    
 
@@ -300,7 +301,7 @@ export const Function = (props) => {
         return null;
 
     if (!functionId)
-        functionId = decodeURIComponent(match.params.functionId);
+        functionId = routeFunctionId;
     
     let func;
     functions.forEach(f => {
@@ -414,9 +415,9 @@ export const Function = (props) => {
 
 };
 
-const FunctionCategory = (props) => {
+const FunctionCategory = () => {
 
-    let category = decodeURIComponent(props.match.params.category);
+    const {category} = useParams({ strict: false });
 
     const {categories} = useFunctionCategories();
     const {functions} = useFunctions();
@@ -482,7 +483,9 @@ export const Functions = () => {
 
     const theme = useTheme();
 
-    const history = useHistory();
+    const navigate = useNavigate();
+    /* the route's optional params (see ../routes.js) */
+    const {category, functionId} = useParams({ strict: false });
     const {functions} = useFunctions();
     const {categories} = useFunctionCategories();    
     const [selectedFunction, setSelectedFunction] = useState();    
@@ -514,85 +517,86 @@ export const Functions = () => {
     if (!categories || !functions)
         return <Spinner text="Loading Functions and Categories.." size="large" fullScreen />;
 
+    /* one function, a category's functions, or the overview */
+    if (functionId)
+        return <Function />;
+
+    if (category)
+        return <FunctionCategory />;
+
     return (
-        <Switch>
-            <Route exact path="/Documentation/Reference/Functions" render={() =>
-                <>                                
-                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <div style={{ minWidth: "225px", alignItems: "center", marginRight: theme.spacing(1) }}>
-                            <Autocomplete 
-                                placeholder="Find Function..."
-                                noOptionsText="No Function"                                        
-                                options={functionOptions}
-                                onChanged={setSelectedFunction}
-                            />
-                        </div>
-                        <div>
-                            <Button                                  
-                                type="icon"
-                                label="Goto Function"
-                                tooltip="Goto Function"
-                                icon="keyboard_arrow_right"
-                                disabled={!selectedFunction}
-                                onClick={() => history.push("/Documentation/Reference/Functions/" + selectedFunction.category + "/" + selectedFunction.text)}
-                            />
-                        </div>
-                    </div>
-                    <div style={{ height: theme.spacing(3) }} />                            
-                    <Typography size="7" text="Function Categories" />                            
-                    <div style={{ height: theme.spacing(3) }} />
-                    <Message 
-                        message="Function Categories organize Adaptive Functions together in groups, according to their functionality."
+        <>                                
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <div style={{ minWidth: "225px", alignItems: "center", marginRight: theme.spacing(1) }}>
+                    <Autocomplete 
+                        placeholder="Find Function..."
+                        noOptionsText="No Function"                                        
+                        options={functionOptions}
+                        onChanged={setSelectedFunction}
                     />
-                    <FunctionCategoriesTable />
-                    <div style={{ height: theme.spacing(3) }} />                                  
-                    <Typography size="7" text="Data Type Categories" />                            
-                    <div style={{ height: theme.spacing(3) }} />
-                    <Message 
-                        message="Each Data Type also has Adaptive Functions which can perform operations on their data."
+                </div>
+                <div>
+                    <Button                                  
+                        type="icon"
+                        label="Goto Function"
+                        tooltip="Goto Function"
+                        icon="keyboard_arrow_right"
+                        disabled={!selectedFunction}
+                        onClick={() => navigate({ href: "/Documentation/Reference/Functions/" + encodeURIComponent(selectedFunction.category) + "/" + encodeURIComponent(selectedFunction.text) })}
                     />
-                    <Table 
-                        columns={[
-                            {
-                                key: "Category",
-                                name: "Category",
-                                minWidth: 150,
-                                maxWidth: 200,
-                                isResizable: true,
-                                style: { wordWrap: "break-word" },
-                                onRender: (c) => {
-                                    const {category} = c;
-                                    return (
-                                        <Link 
-                                            url={"/Documentation/Reference/Functions/" + encodeURIComponent(category)} 
-                                            text={category} 
-                                        />
-                                    );
-                                }
-                            },
-                            {
-                                key: "Description",
-                                name: "Description",
-                                minWidth: 200,
-                                isResizable: true,
-                                isMultiline: true,
-                                style: { wordWrap: "break-word" },
-                                onRender: (category) => {
-                                    return (
-                                        <Typography text={category.brief} />
-                                    );
-                                }
-                            },
-                        ]}
-                        rows={sortedCategories.filter(category => category.dataTypeCategory === true)}
-                        selectionMode="none"
-                        compact={true}
-                    />                              
-                </>
-            } />
-            <Route exact path="/Documentation/Reference/Functions/:category" component={FunctionCategory} />    
-            <Route exact path="/Documentation/Reference/Functions/:category/:functionId" component={Function} />                        
-        </Switch>
+                </div>
+            </div>
+            <div style={{ height: theme.spacing(3) }} />                            
+            <Typography size="7" text="Function Categories" />                            
+            <div style={{ height: theme.spacing(3) }} />
+            <Message 
+                message="Function Categories organize Adaptive Functions together in groups, according to their functionality."
+            />
+            <FunctionCategoriesTable />
+            <div style={{ height: theme.spacing(3) }} />                                  
+            <Typography size="7" text="Data Type Categories" />                            
+            <div style={{ height: theme.spacing(3) }} />
+            <Message 
+                message="Each Data Type also has Adaptive Functions which can perform operations on their data."
+            />
+            <Table 
+                columns={[
+                    {
+                        key: "Category",
+                        name: "Category",
+                        minWidth: 150,
+                        maxWidth: 200,
+                        isResizable: true,
+                        style: { wordWrap: "break-word" },
+                        onRender: (c) => {
+                            const {category} = c;
+                            return (
+                                <Link 
+                                    url={"/Documentation/Reference/Functions/" + encodeURIComponent(category)} 
+                                    text={category} 
+                                />
+                            );
+                        }
+                    },
+                    {
+                        key: "Description",
+                        name: "Description",
+                        minWidth: 200,
+                        isResizable: true,
+                        isMultiline: true,
+                        style: { wordWrap: "break-word" },
+                        onRender: (category) => {
+                            return (
+                                <Typography text={category.brief} />
+                            );
+                        }
+                    },
+                ]}
+                rows={sortedCategories.filter(category => category.dataTypeCategory === true)}
+                selectionMode="none"
+                compact={true}
+            />                              
+        </>
     );
 };
 
