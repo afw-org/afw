@@ -397,3 +397,29 @@ for (i = 0; i < 40; i = i + 1) {
     assert(out[0] === 6 && out[2] === 8);
 }
 return 0;
+
+//?
+//? test: evaluate-compile-closure-as-map-functor
+//? description: map functor from evaluate(compile()) capturing closure
+//? expect: 0
+//? source: ...
+
+/*
+ * Adaptive compile() does not last-release the unit (evaluate(compile())
+ * and closures still need that heap). evaluate() of that unit returns
+ * the capturing closure; map evaluates the functor once and calls it.
+ */
+const f = evaluate(compile<script>(script(
+    "let n = 5; return function (v) { return v + n; };")));
+let out = map(f, [1, 2, 3]);
+assert(length(out) === 3);
+assert(out[0] === 6 && out[1] === 7 && out[2] === 8);
+
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    let g = evaluate(compile<script>(script(
+        "let n = 5; return function (v) { return v + n; };")));
+    let mapped = map(g, [1, 2, 3]);
+    assert(mapped[0] === 6 && mapped[2] === 8);
+}
+return 0;

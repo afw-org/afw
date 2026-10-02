@@ -101,6 +101,36 @@ switch ("abc") using fn {
         break;
 }
 
+//?
+//? test: switch-using-returned-closure
+//? description: switch using a factory-returned capturing predicate
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function make() {
+    let want = 2;
+    return function (a, b) {
+        return a === want && a === b;
+    };
+}
+
+const pred = make();
+let r = 0;
+switch (2) using pred {
+    case 1:
+        r = 10;
+        break;
+    case 2:
+        r = 20;
+        break;
+    default:
+        r = 0;
+        break;
+}
+assert(r === 20);
+return 0;
+
 // Issue #50 — return/leave from switch must reach the function.
 // Permanent statement_flow regression; keep green under #2.
 // (Plain // lines above are still inside this case's source body.)

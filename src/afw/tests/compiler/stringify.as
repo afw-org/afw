@@ -310,6 +310,27 @@ assert(root == "6");
 return 0;
 
 
+//? test: stringify-replacer-returned-closure
+//? description: stringify replacer from a factory that returns a capturing closure
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function make() {
+    let skip = "b";
+    return function (key, value) {
+        if (key == skip) {
+            return undefined;
+        }
+        return value;
+    };
+}
+
+const obj = { "a": 1, "b": 2, "c": 3 };
+assert(stringify(obj, make()) == "{\"a\":1,\"c\":3}");
+return 0;
+
+
 //? test: stringify-replacer-property-names
 //? description: array of property names keeps only those keys
 //? skip: false
