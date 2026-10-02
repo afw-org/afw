@@ -4,9 +4,12 @@
 //? customPurpose: Part of language/script tests
 //? description: ...
 Compiled-value heap wrap and slot-protocol lifetime (issue #2 pool split).
-Inner evaluate(compile) clones onto the caller; eval-created objects/arrays
-and scalars must still be usable after the inner heap is released. Throw-path
-scope rewind and nested-eval closures: language/script/throw_rewind.as (#35).
+Inner evaluate(compile) is caller does not release. A managed result lives
+in the outermost dest p->managed_p (script_result isolate dest); this
+evaluate registers last-release of that one hold on dest p. Nested pools
+are shorter. Eval-created objects/arrays and scalars must still be usable
+after the inner heap is released. Throw-path scope rewind and nested-eval
+closures: language/script/throw_rewind.as (#35).
 //? sourceType: script
 //?
 //? test: nested-eval-scalar
@@ -20,14 +23,14 @@ return 0;
 
 //?
 //? test: nested-eval-object
-//? description: object returned from inner evaluate is cloned to the caller
+//? description: object returned from inner evaluate is usable after the inner heap is released
 //? expect: 0
 //? source: ...
 
 const o = evaluate(compile<script>(script(
     "let x = { a: 1, b: \"z\" }; x.a = 2; return x;")));
-assert(o.a === 2, "cloned object a");
-assert(o.b === "z", "cloned object b");
+assert(o.a === 2, "returned object a");
+assert(o.b === "z", "returned object b");
 o.a = 9;
 assert(o.a === 9, "caller can still set after inner heap gone");
 return 0;
@@ -46,7 +49,7 @@ return 0;
 
 //?
 //? test: compile-once-eval-twice
-//? description: one compiled_value, two evaluate wraps (two heaps)
+//? description: one compiled_value, two evaluate (each caller does not release)
 //? expect: 0
 //? source: ...
 
@@ -82,7 +85,7 @@ return 0;
 
 //?
 //? test: nested-eval-inside-eval
-//? description: inner script itself calls evaluate (nested compiled-value wrap)
+//? description: inner script itself calls evaluate (nested compiled-value; isolate dest stays outermost)
 //? expect: 0
 //? source: ...
 
