@@ -8,7 +8,8 @@ import {
     screen,
     mswPostCallback,
     waitForSpinner,
-    fireEvent
+    fireEvent,
+    within
 } from "../../../test-utils";
 
 describe("ModelMappings Tests", () => {    
@@ -79,6 +80,63 @@ describe("ModelMappings Tests", () => {
         await waitForSpinner();
 
         await screen.findByTestId("admin-admin-models-mappings");
+    });
+
+    test("View Mappings with a mapped adapter", async () => {
+
+        server.use(
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, adapterId, uri} = body;
+
+                if (functionId === "retrieve_objects" && adapterId === "models")
+                    return HttpResponse.json({ status: "success", result: [ test1Model ] });
+
+                if (functionId === "get_object_with_uri" && uri === "/models/_AdaptiveModel_/test1")
+                    return HttpResponse.json({ status: "success", result: test1Model });
+            })
+        );
+
+        renderRoute("/Admin/Models/models/test1#mappings");
+        await waitForSpinner();
+        await screen.findByTestId("admin-admin-models-mappings");
+
+        /* map the model onto the afw adapter: its object types load as adaptive objects */
+        mswPostCallback.mockClear();
+        fireEvent.click(await screen.findByRole("button", { name: "More Options" }));
+        fireEvent.click(within(await screen.findByRole("menu")).getByRole("menuitem", { name: "Set Mapped Adapter" }));
+        fireEvent.click(await screen.findByRole("menuitem", { name: "afw" }));
+
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWith("/afw", expect.objectContaining({
+            body: expect.objectContaining({ function: "retrieve_objects", adapterId: "afw", objectType: "_AdaptiveObjectType_" }),
+        })));
+        await waitForSpinner();
+
+        expect(await screen.findByTestId("admin-admin-models-mappings")).toBeInTheDocument();
+        expect(screen.queryByText(/Something went wrong/)).not.toBeInTheDocument();
+    });
+
+    test("An object type's mappings list its property types", async () => {
+
+        server.use(
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, adapterId, uri} = body;
+
+                if (functionId === "retrieve_objects" && adapterId === "models")
+                    return HttpResponse.json({ status: "success", result: [ test1Model ] });
+
+                if (functionId === "get_object_with_uri" && uri === "/models/_AdaptiveModel_/test1")
+                    return HttpResponse.json({ status: "success", result: test1Model });
+            })
+        );
+
+        renderRoute("/Admin/Models/models/test1/objectTypes/obj1#mappings");
+        await waitForSpinner();
+
+        /* read-only: its name, and its (unmapped) name as the mapped value */
+        expect(await screen.findAllByText("prop1")).toHaveLength(2);
+        expect(screen.queryByText(/Something went wrong/)).not.toBeInTheDocument();
     });
 
     test("View Mappings (editable)", async () => {

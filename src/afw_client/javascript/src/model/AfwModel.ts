@@ -500,17 +500,19 @@ export class AfwModel {
      * 
      * @param {string} uri
      * @param {object} objectOptions
-     * @param {object} modelOptions
+     * @param {object} modelOptions   adaptiveObject (default true); options left out keep their defaults
      */
     getObjectWithUri({ 
         uri, 
         objectOptions = {}, 
-        modelOptions = { adaptiveObject: true } 
+        modelOptions = {} 
     } : IGetObjectParams) : IGetObjectResponse
     {
+        const {adaptiveObject = true} = modelOptions;
+
         /* default objectOptions, if using the model wrapper */
         const options: IObjectOptions = { ...objectOptions };
-        if (modelOptions.adaptiveObject) {            
+        if (adaptiveObject) {            
             options.objectId = true;
             options.path = true;
             options.objectType = true;
@@ -528,7 +530,7 @@ export class AfwModel {
         const {result, ...rest} = this.client.perform(action);
         const object : Promise<IAnyObject|AfwObject> = new Promise((resolve, reject) => {
             result().then(res => {
-                if (modelOptions.adaptiveObject) {                    
+                if (adaptiveObject) {                    
                     new AfwObject({ 
                         model: this, object: res, path: uri,
                     }).initialize().then(o => resolve(o));
@@ -546,14 +548,14 @@ export class AfwModel {
      * @param {string} objectId
      * @param {string} adapterId
      * @param {object} objectOptions
-     * @param {object} modelOptions 
+     * @param {object} modelOptions   see getObjectWithUri()
      */
     getObject({ 
         objectTypeId, 
         objectId, 
         adapterId, 
         objectOptions = {}, 
-        modelOptions = { adaptiveObject: true } 
+        modelOptions = {} 
     } : IGetObjectParams) : IGetObjectResponse
     {
 
@@ -593,16 +595,17 @@ export class AfwModel {
      * @param {string} adapterId
      * @param {string} queryCriteria
      * @param {object} objectOptions  
-     * @param {object} modelOptions
+     * @param {object} modelOptions   adaptiveObject and initialize (both default true); options left out keep their defaults
      */
     retrieveObjects({ 
         objectTypeId, 
         adapterId, 
         queryCriteria, 
         objectOptions = {}, 
-        modelOptions = { adaptiveObject: true, initialize: true }
+        modelOptions = {}
     } : IRetrieveObjectsParams) : IRetrieveObjectsResponse
     {
+        const {adaptiveObject = true, initialize = true} = modelOptions;
 
         if (!adapterId)
             throw new Error("This operation requires an adapterId.");
@@ -629,11 +632,11 @@ export class AfwModel {
         const {result, ...rest} = this.client.perform(action);
         const objects : Promise<AfwObject[]|IAnyObject[]> = new Promise((resolve, reject) => {
             result().then((res : IAnyObject[]) => {
-                if (modelOptions.adaptiveObject) {                                        
+                if (adaptiveObject) {                                        
                     const resolvedObjects = res.map(object => new AfwObject({ 
                         model: this, object, objectTypeId, adapterId
                     }));
-                    if (modelOptions.initialize) {
+                    if (initialize) {
                         Promise.all(resolvedObjects.map(obj => obj.initialize())).then(
                             (initializedObjects : AfwObject[]) => resolve(initializedObjects)
                         );

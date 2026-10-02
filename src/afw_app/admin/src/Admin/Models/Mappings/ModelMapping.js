@@ -212,10 +212,6 @@ const objectOptions = {
     objectType: true 
 };
 
-const modelOptions = { 
-    loadObjectTypes: false,  
-};
-
 /**
  * ModelMapping
  * 
@@ -242,8 +238,8 @@ export const ModelMapping = (props) => {
     } = useRetrieveObjects({
         adapterId: mappedAdapterId,
         objectTypeId: "_AdaptiveObjectType_",
-        objectOptions, 
-        modelOptions,
+        /* default modelOptions: getObjectId() needs initialized adaptive objects */
+        objectOptions,
     });
 
     const mappedObjectTypesDropdownOptions = mappedObjectTypeObjects.map(

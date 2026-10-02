@@ -75,7 +75,7 @@ export const ModelObjectTypes = (props) => {
             <PropertyTypeModelMapping
                 {...props}
                 objectTypeObject={objectTypeObject}
-                propertyTypes={objectTypeObject.getPropertyValues()}
+                propertyTypes={objectTypeObject.getPropertyValue("propertyTypes")}
             />
         );
 

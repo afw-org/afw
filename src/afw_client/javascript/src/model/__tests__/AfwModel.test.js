@@ -27,6 +27,47 @@ describe("AfwModel Tests", () => {
         }
     });
 
+    test("Retrieve objects with partial modelOptions keeps the other defaults", async () => {
+        const model = new AfwModel({ client });
+
+        /* only initialize is given: adaptiveObject stays true */
+        const response = model.retrieveObjects({
+            adapterId: "afw", objectTypeId: "_AdaptiveObjectType_", modelOptions: { initialize: false }
+        });
+        const objects = await response.objects;
+
+        /* (getObjectId() and friends need an initialized object) */
+        expect(objects.length).toBeGreaterThan(0);
+        for (const obj of objects) {
+            expect(obj).toBeInstanceOf(AfwObject);
+            expect(obj.initialized).toBe(false);
+        }
+    });
+
+    test("Retrieve objects without adaptive objects", async () => {
+        const model = new AfwModel({ client });
+
+        const response = model.retrieveObjects({
+            adapterId: "afw", objectTypeId: "_AdaptiveObjectType_", modelOptions: { adaptiveObject: false }
+        });
+        const objects = await response.objects;
+
+        expect(objects.length).toBeGreaterThan(0);
+        for (const obj of objects) {
+            expect(obj).not.toBeInstanceOf(AfwObject);
+        }
+    });
+
+    test("Get object with partial modelOptions is still adaptive", async () => {
+        const model = new AfwModel({ client });
+
+        const response = model.getObject({
+            adapterId: "afw", objectTypeId: "_AdaptiveObjectType_", objectId: "_AdaptiveObject_", modelOptions: {}
+        });
+
+        expect(await response.object).toBeInstanceOf(AfwObject);
+    });
+
     test("Get object", async () => {
         const model = new AfwModel({ client });
 
