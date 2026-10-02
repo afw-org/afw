@@ -1,6 +1,6 @@
 # Admin app: React Router 5 → TanStack Router
 
-**Status (2026-10-02):** on `feat/tanstack-router`: everything under `/Admin`, `/Objects`, `/Tools` and `/Documentation` is on TanStack Router (the `/Admin` catch-all is gone; `NoRoute` is the router's not-found page). Left: Home, Versions, the app shell (`App/`: AppBar, AppNav, AppSearch, AppRoutes), `common` (`useBreadcrumbs`, ContextualHelp), then removing the bridge. Lessons are under *Patterns*; known issues under *Open questions* and in `beta-backlog.md`.
+**Status (2026-10-02):** on `feat/tanstack-router`: every page and the app shell are on TanStack Router (the root and `/Admin` catch-alls and `AppRoutes` are gone; `NoRoute` is the router's not-found page; Home, Versions, AppBar, AppNav, AppSearch, `useBreadcrumbs` and ContextualHelp use TanStack hooks). Left: the last step, moving `navigation.js` to TanStack and removing the bridge, React Router 5, and the tests' `MemoryRouter`. Lessons are under *Patterns*; known issues under *Open questions* and in `beta-backlog.md`.
 
 **Scope:** `src/afw_app/admin` only. Since #451 the component libraries (`@afw/react`, `@afw/react-material-ui`) import no router: they go through the navigation contract (`useNavigation()` → `Link`, `useNavigate`, `NavigationBlocker`), and the app adapts its router in one file, `admin/src/navigation.js`.
 
@@ -69,6 +69,7 @@ From step 4 (Admin/Models):
 - **Grammar-heavy sections keep their patterns.** The model editor's URL grammar (17 exact patterns in three views, ~15 more in its context menu, positional parsing in `Models`) stays as written: one route `Admin/Models/{-$adapterId}/{-$modelId}/$`, and `router/matchPath.js` - React Router 5's `matchPath` semantics (`{ path, exact }`, arrays, `:params`, case- and trailing-slash-insensitive) - applied to TanStack's decoded pathname. `ModelEditor`'s `<Switch>` became the first matching pattern list (`modelPaths`, `objectTypePaths`, `propertyTypePaths`).
 - **`useLocationHash()`** (`router/hooks.js`) returns the hash in React Router 5's form (`"#tree"` or `""`) for code that appends it to links. Import `router/matchPath` and `router/hooks` directly, not `router/index` (that pulls in the route tree).
 - **Tests reading `history.location`** after render switch to `router.state.location` (from `renderRoute`); hashes there have no `#`. With the local `history` gone, a leftover `history.location` silently reads `window.history` (no `.location`).
+- **Tests that render a bare page** (`render(<Extensions />)`) break once anything the page calls uses a TanStack hook - even indirectly, as `useBreadcrumbs` in `hooks.js` does. With no router the hook throws, React unmounts the root, and the test only reports a `find*` timeout on an empty `<body><div /></body>` (no stderr). Render such pages through `renderRoute("/Admin/Extensions")`.
 
 From Tools and the Services group:
 

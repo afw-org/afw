@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect} from "react";
-import {useLocation, useHistory} from "react-router";
+import {useLocation, useNavigate} from "@tanstack/react-router";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Drawer from "@mui/material/Drawer";
@@ -86,7 +86,7 @@ const AppNavMini = (props) => {
     const classes = useClasses(styles);
     const theme = useTheme();
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const {className, onCollapse} = props;
 
@@ -98,7 +98,7 @@ const AppNavMini = (props) => {
     };
 
     const handleLink = (url) => {
-        history.push(url);
+        navigate({ href: url });
 
         if (window.innerWidth < theme.breakpoints.values.md)
             onCollapse(true);
@@ -188,7 +188,7 @@ const AppNav = (props) => {
     const {menuExpanded} = useApplication();
     const {application} = useAppCore();
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
     const {className, onCollapse} = props;
 
     const smDown = useMediaQuery(theme => theme.breakpoints.down("sm"));
@@ -196,7 +196,7 @@ const AppNav = (props) => {
     const mdUp = useMediaQuery(theme => theme.breakpoints.up("md"));
 
     const handleLink = (url) => {        
-        history.push(url);
+        navigate({ href: url });
 
         if (window.innerWidth < theme.breakpoints.values.md)
             props.onCollapse(true);

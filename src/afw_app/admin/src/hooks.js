@@ -4,7 +4,7 @@
  */
 
 import {useContext, useEffect, useState, useCallback, useLayoutEffect, useMemo} from "react";
-import {useLocation} from "react-router";
+import {useLocation} from "@tanstack/react-router";
 import {css} from "@emotion/css";
 import {useTheme} from "@mui/material/styles";
 
@@ -63,10 +63,11 @@ export const useBreadcrumbs = (root, reducer) => {
             breadcrumbItems = reducer(breadcrumbItems);
 
         else {
+            /* TanStack's pathname is decoded: show parts as is, encode links */
             const parts = pathname.split("/");
             let link = root ? root.link : "";
             for (let i = 2; i < parts.length; i++) {
-                link += "/" + parts[i];
+                link += "/" + encodeURIComponent(parts[i]);
                 breadcrumbItems.push({
                     text: parts[i],
                     link

@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {server, http, HttpResponse, render, waitFor, within, screen, fireEvent, mswPostCallback, waitForSpinner, waitForElementToBeRemoved} from "../test-utils";
-import Extensions from "./Extensions";
+import {server, http, HttpResponse, renderRoute, waitFor, within, screen, fireEvent, mswPostCallback, waitForSpinner, waitForElementToBeRemoved} from "../test-utils";
 
 import environmentRegistry from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveEnvironmentRegistry_/current.json";
 import manifest from "@afw/test/build/cjs/__mocks__/retrieve_objects/afw/_AdaptiveManifest_.json";
@@ -16,7 +15,7 @@ describe("Extensions Tests", () => {
 
     test("Extensions renders", async () => {
 
-        render( <Extensions /> );                  
+        renderRoute("/Admin/Extensions");                  
 
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -30,7 +29,7 @@ describe("Extensions Tests", () => {
 
     test("Table lists all extensions", async () => {
 
-        render( <Extensions /> );        
+        renderRoute("/Admin/Extensions");        
 
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -70,7 +69,7 @@ describe("Extensions Tests", () => {
 
     test("View details of each extension", async () => {
 
-        render( <Extensions /> );        
+        renderRoute("/Admin/Extensions");        
 
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -124,7 +123,7 @@ describe("Extensions Tests", () => {
 
     test("Refresh extensions", async () => {
 
-        render( <Extensions /> );        
+        renderRoute("/Admin/Extensions");        
 
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -146,7 +145,7 @@ describe("Extensions Tests", () => {
 
     test("Loads an extension", async () => {        
 
-        render( <Extensions /> );        
+        renderRoute("/Admin/Extensions");        
 
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -197,7 +196,7 @@ describe("Extensions Tests", () => {
 
     test("Loads an extension and adds it to startup", async () => {
 
-        render( <Extensions /> );        
+        renderRoute("/Admin/Extensions");        
 
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -278,7 +277,7 @@ describe("Extensions Tests", () => {
     });
 
     test("Loads multiple extensions at once", async () => {
-        render( <Extensions /> );        
+        renderRoute("/Admin/Extensions");        
 
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -358,7 +357,7 @@ describe("Extensions Tests", () => {
 
     test("Add an Extension", async () => {
 
-        render( <Extensions /> );        
+        renderRoute("/Admin/Extensions");        
         
         server.use(
             http.post("/afw", async ({request}) => {
@@ -406,7 +405,7 @@ describe("Extensions Tests", () => {
 
     test("Add an Extension - Add button enables after entering a module path", async () => {
 
-        render( <Extensions /> );
+        renderRoute("/Admin/Extensions");
 
         server.use(
             http.post("/afw", async ({request}) => {

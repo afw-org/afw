@@ -1,6 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useEffect, useState} from "react";
-import {matchPath, useLocation} from "react-router";
+import {useLocation} from "@tanstack/react-router";
+import {matchPath} from "../router/matchPath";
 
 import Drawer from "@mui/material/Drawer";
 import useMediaQuery from "@mui/material/useMediaQuery";

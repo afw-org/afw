@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState} from "react";
-import {useLocation} from "react-router";
+import {useLocation} from "@tanstack/react-router";
 
 import MuiAppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
@@ -55,7 +55,8 @@ const AppBar = () => {
     if (pathname === "/")
         pathname = "/Home";
 
-    const title = decodeURIComponent((rest.length > 0) ? rest[rest.length-1] : pathname);
+    /* TanStack's pathname is already decoded */
+    const title = (rest.length > 0) ? rest[rest.length-1] : pathname;
     const className = menuExpanded ? classes.appBarExpanded : classes.appBarCollapsed;
 
     const [settingsOpen, setSettingsOpen] = useState(false);

@@ -1,10 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {createContext, useContext, useMemo} from "react";
 import {Router as LegacyRouter} from "react-router";
-import {createRootRoute, createRoute, createRouter, Outlet, useRouter} from "@tanstack/react-router";
+import {createRootRoute, createRoute, createRouter, lazyRouteComponent, Outlet, useRouter} from "@tanstack/react-router";
 
 import {createLegacyHistory} from "./legacyHistory";
-import AppRoutes from "../App/AppRoutes";
 import Loading from "../common/Loading";
 import NoRoute from "../common/NoRoute";
 import {createAdminRoutes} from "../Admin/routes";
@@ -16,14 +15,13 @@ import {createDocumentationRoutes} from "../Documentation/routes";
  * The admin app's TanStack Router, mid-migration from React Router 5 (see
  * designs/tanstack-router-migration.md).
  *
- * TanStack Router owns the browser history. The root route renders the app
- * shell inside React Router 5's <Router>, driven by an adapter over that
- * same history (legacyHistory.js), so every React Router 5 hook, <Link>
- * and <Prompt> - in the shell, in sections not yet migrated, and in
- * navigation.js - keeps working. The shell renders <Outlet/> for its main
- * area; the catch-all route below sends everything not yet migrated to the
- * React Router 5 routes in AppRoutes. Migrated sections become TanStack
- * routes, matched before the catch-all.
+ * TanStack Router owns the browser history, and every page is a TanStack
+ * route. The root route renders the app shell (whose main area is an
+ * <Outlet/>) inside React Router 5's <Router>, driven by an adapter over
+ * that same history (legacyHistory.js), for the one remaining React Router
+ * 5 consumer: navigation.js, the @afw/react navigation adapter (Link,
+ * Prompt, useHistory). The last migration step moves it to TanStack and
+ * removes this bridge.
  */
 
 /*
@@ -53,20 +51,24 @@ const rootRoute = createRootRoute({
     component: RootLayout,
 });
 
-/* everything not migrated yet: React Router 5's routes */
-const legacyRoute = createRoute({
+/* top-level pages: Home (also the index) and Versions */
+const page = (path, load) => createRoute({
     getParentRoute: () => rootRoute,
-    path: "$",
-    component: AppRoutes,
+    path,
+    component: lazyRouteComponent(load),
 });
 
-/* migrated sections (each module builds its own subtree), then the catch-all */
+const homeLoad = () => import("../Home/Home");
+
+/* each section module builds its own subtree */
 export const routeTree = rootRoute.addChildren([
+    page("/", homeLoad),
+    page("Home", homeLoad),
+    page("Versions", () => import("../Admin/Versions")),
     createAdminRoutes(rootRoute),
     createObjectsRoutes(rootRoute),
     createToolsRoutes(rootRoute),
     createDocumentationRoutes(rootRoute),
-    legacyRoute,
 ]);
 
 /*

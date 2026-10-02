@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect, useRef, useMemo} from "react";
-import {useHistory} from "react-router";
+import {useNavigate} from "@tanstack/react-router";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -334,7 +334,7 @@ const AppSearch = () => {
     const theme = useTheme();
 
     const {services, extensions, dataTypes, functions, objectTypeObjects} = useAppCore();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         
@@ -456,7 +456,7 @@ const AppSearch = () => {
             searchTextField.current.value = "";
         setSearchText("");
 
-        history.push(result.url);
+        navigate({ href: result.url });
     };
 
     const filteredGeneralTopics = generalSearchTopics.filter(result => result.text.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
