@@ -666,7 +666,12 @@ afw_function_execute_pop(
             &array->pub, x->p, x->xctx);
 
     value = afw_array_pop_value(array->internal, NULL, x->xctx);
-    return value ? value : afw_value_undefined;
+    if (!value) {
+        return afw_value_undefined;
+    }
+    /* Transfer last-released on current scope if any; dest p when
+     * there is no Adaptive caller. */
+    return afw_pool_scope_release_value_at_cleanup(value, x->p, x->xctx);
 }
 
 
@@ -771,7 +776,12 @@ afw_function_execute_shift(
             &array->pub, x->p, x->xctx);
 
     value = afw_array_shift_value(array->internal, NULL, x->xctx);
-    return value ? value : afw_value_undefined;
+    if (!value) {
+        return afw_value_undefined;
+    }
+    /* Transfer last-released on current scope if any; dest p when
+     * there is no Adaptive caller. */
+    return afw_pool_scope_release_value_at_cleanup(value, x->p, x->xctx);
 }
 
 
