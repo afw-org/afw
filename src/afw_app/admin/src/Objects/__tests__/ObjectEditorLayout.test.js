@@ -1,12 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {createMemoryHistory} from "history";
-import {Router} from "react-router-dom";
 import {editor as monacoEditorMock} from "monaco-editor";
 
-import {render, waitFor, within, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
+import {renderRoute, waitFor, within, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
 
 import objectTypeObject from "@afw/test/build/cjs/__mocks__/get_object/files/_AdaptiveObjectType_/_AdaptiveObjectType_.json";
-import Objects from "../Objects";
 
 /*
  * jsdom can't drive Monaco's real DOM/canvas editing surface, so the "View
@@ -25,14 +22,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("View individual object", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -43,14 +33,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("Verify non-editable object", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -104,14 +87,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("View non-editable object in different perspectives", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        const {router} = renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -138,18 +114,14 @@ describe("ObjectsEditorLayout Tests", () => {
         fireEvent.click(treeButton);
         fireEvent.click(sourceButton);
 
+        /* each click navigates to the view's hash; let them land */
+        await waitFor(() => expect(router.state.location.hash).toBe("source"));
+
     });
 
     test("Verify editable object", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -218,14 +190,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("View editable object in different perspectives", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        const {router} = renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));
@@ -261,18 +226,14 @@ describe("ObjectsEditorLayout Tests", () => {
         fireEvent.click(flattenedButton);
         fireEvent.click(treeButton);
         fireEvent.click(sourceButton); 
+
+        /* each click navigates to the view's hash; let them land */
+        await waitFor(() => expect(router.state.location.hash).toBe("source"));
     });
 
     test("Edit object and save the changes", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -317,14 +278,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("Edit object then cancel the changes", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -366,14 +320,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("Edit object source, then save the changes", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -420,14 +367,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("Edit object source, then switch to View Object in Responsive View", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        const {router} = renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -463,19 +403,15 @@ describe("ObjectsEditorLayout Tests", () => {
         fireEvent.click(screen.getByRole("button", { name: "View object in Responsive View" }));
 
         expect(screen.getByLabelText("Allow Add")).not.toBeChecked();
+
+        /* the switch navigates to the view's hash; let it land */
+        await waitFor(() => expect(router.state.location.hash).toBe("responsive"));
         
     });
 
     test("Edit object source, then cancel the changes", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -520,14 +456,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("Edit object then cancel the changes, but don't confirm discarding changes", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  
@@ -569,14 +498,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("Edit object then add a new property and save", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_")); 
@@ -618,14 +540,7 @@ describe("ObjectsEditorLayout Tests", () => {
 
     test("Edit object then remove a new property and save", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"));  

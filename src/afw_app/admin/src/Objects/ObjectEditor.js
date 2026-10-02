@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect, useCallback, useMemo, useRef} from "react";
-import {Prompt, useRouteMatch, useLocation} from "react-router";
+import {useParams, useBlocker} from "@tanstack/react-router";
 
 import ObjectEditorLayout from "./ObjectEditorLayout";
 import ObjectDifferencesModal from "./ObjectDifferencesModal";
@@ -44,32 +44,22 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
     const [editMode, setEditMode] = useState();
     const [isProcessing, setIsProcessing] = useState();
 
-    const match = useRouteMatch();
-    const location = useLocation();
-
-    const {adapterId, objectTypeId, objectId, embeddedObject} = useMemo(() => {
-        if (match.params) {
-            const {adapterId, objectTypeId, objectId} = match.params;
-
-            let embeddedObject;
-            if (!match.isExact) {
-                /* we must have requested an embeddedObject */
-                const embeddedObjectPath = location.pathname.split("/" + adapterId + "/" + objectTypeId + "/" + objectId + "/")[1];
-                embeddedObject = embeddedObjectPath.split("/");
-            }
-
-            return {
-                adapterId: decodeURIComponent(adapterId),
-                objectTypeId: decodeURIComponent(objectTypeId),
-                objectId: decodeURIComponent(objectId),
-                embeddedObject,
-            };
-        }
-
-        return {};
-    }, [match, location]);
+    /* the route's params (see routes.js); a path after the objectId requests an embedded object */
+    const {adapterId, objectTypeId, objectId, _splat} = useParams({ strict: false });
+    const embeddedObject = useMemo(() => (_splat ? _splat.split("/") : undefined), [_splat]);
 
     const {object, isLoading, error, savable} = useGetObject({ adapterId, objectTypeId, objectId, objectOptions });
+
+    /*
+     * With unsaved changes, confirm before leaving this object. Moving within
+     * it (an embedded object, or a layout hash) needs no confirmation.
+     */
+    useBlocker({
+        disabled: !(savable || sourceChanged),
+        shouldBlockFn: ({next}) =>
+            !next.pathname.startsWith("/Objects/" + adapterId + "/" + objectTypeId + "/" + objectId) &&
+            !window.confirm("This Object has unsaved changes.  Are you sure you want to leave?"),
+    });
     const {notification} = useApplication();
     const theme = useTheme();
     const isMounted = useIsMounted();
@@ -346,12 +336,6 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
                 isProcessing &&
                     <Spinner size="large" label="Processing..." fullScreen={true} />
             }
-            <Prompt
-                when={(savable || sourceChanged) ? true : false}
-                message={location => 
-                    location.pathname.startsWith("/Objects/" + adapterId + "/" + objectTypeId + "/" + objectId) ? true : 
-                        "This Object has unsaved changes.  Are you sure you want to leave?" }
-            />            
         </>
     );
 };

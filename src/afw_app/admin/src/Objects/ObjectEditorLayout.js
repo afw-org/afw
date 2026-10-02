@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useReducer, useEffect, useImperativeHandle, forwardRef} from "react";
-import {useLocation, useHistory} from "react-router";
+import {useLocation, useNavigate} from "@tanstack/react-router";
 import PropTypes from "prop-types";
 
 import {
@@ -801,14 +801,15 @@ const ObjectEditorLayout = (props, ref) => {
     const model = useModel();
     const {onCopy, notification, isMobile} = useApplication();
     const theme = useTheme();
-    const {pathname, hash} = useLocation();
-    const history = useHistory();
+    /* TanStack's location.hash has no leading "#" */
+    const {hash} = useLocation();
+    const navigate = useNavigate();
 
     const changesDiscarded = useEventId({ object, eventId: "onDiscardChanges" });
 
     useEffect(() => {
         if (hash)
-            dispatch({ type: "LAYOUT_CHANGE", layout: hash.substring(1), object });
+            dispatch({ type: "LAYOUT_CHANGE", layout: hash, object });
     }, [hash, object]);
 
     /*
@@ -994,7 +995,8 @@ const ObjectEditorLayout = (props, ref) => {
                                         }
                                     }
   
-                                    history.push(pathname + "#" + newLayout);
+                                    /* same path, new layout hash */
+                                    navigate({ hash: newLayout });
                                     dispatch({ type: "LAYOUT_CHANGE", layout: newLayout });
                                     dispatch({ type: "OBJECT_JSON", json });
                                 }}

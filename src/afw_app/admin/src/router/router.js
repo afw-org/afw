@@ -7,6 +7,7 @@ import {createLegacyHistory} from "./legacyHistory";
 import AppRoutes from "../App/AppRoutes";
 import Loading from "../common/Loading";
 import {createAdminRoutes} from "../Admin/routes";
+import {createObjectsRoutes} from "../Objects/routes";
 
 /**
  * The admin app's TanStack Router, mid-migration from React Router 5 (see
@@ -59,6 +60,7 @@ const legacyRoute = createRoute({
 /* migrated sections (each module builds its own subtree), then the catch-all */
 export const routeTree = rootRoute.addChildren([
     createAdminRoutes(rootRoute),
+    createObjectsRoutes(rootRoute),
     legacyRoute,
 ]);
 
@@ -73,11 +75,28 @@ export const getBasepath = () => {
     return (base && base.startsWith("/")) ? (base.replace(/\/+$/, "") || "/") : "/";
 };
 
+/*
+ * Search strings stay exactly as written. TanStack's default parses them as
+ * key=value pairs and re-serializes them, which mangles the criteria the
+ * app puts there (RQL such as ?eq(a,b)&sort(+objectId) - the "+" becomes a
+ * space). Components read the raw string with useLocation().searchStr (or
+ * search.raw); sections that want pairs can use URLSearchParams on it.
+ */
+export const parseSearch = (searchStr) => {
+    const raw = searchStr.replace(/^\?/, "");
+    return raw ? { raw } : {};
+};
+
+export const stringifySearch = (search) =>
+    (search && search.raw) ? "?" + search.raw : "";
+
 export const createAppRouter = (options = {}) =>
     createRouter({
         routeTree,
         basepath: getBasepath(),
         /* shown while a lazy route component loads */
         defaultPendingComponent: Loading,
+        parseSearch,
+        stringifySearch,
         ...options,
     });

@@ -1,6 +1,6 @@
 # Admin app: React Router 5 → TanStack Router
 
-**Status (2026-10-02):** step 1 (bridge + shell) landed on `feat/tanstack-router`; step 2 (the `/Admin` layout route + Admin/Schema) in review. Patterns from step 2 are under *Patterns*.
+**Status (2026-10-02):** on `feat/tanstack-router`: step 1 (bridge + shell) and step 2 (`/Admin` layout route + Admin/Schema) committed; step 3 (Objects, first guard) in review. Lessons are under *Patterns*.
 
 **Scope:** `src/afw_app/admin` only. Since #451 the component libraries (`@afw/react`, `@afw/react-material-ui`) import no router: they go through the navigation contract (`useNavigation()` → `Link`, `useNavigate`, `NavigationBlocker`), and the app adapts its router in one file, `admin/src/navigation.js`.
 
@@ -47,13 +47,22 @@ Each router normally owns the browser history, so two routers at once would drif
 
 The adapter is the riskiest piece — prove it in the first slice (link clicks, back/forward, a `<Prompt>` through `block`, the base path) before converting sections.
 
-## Patterns (from step 2)
+## Patterns
 
 - **Layout route + per-level catch-all.** A section whose parent wraps every page (Admin.js: config loading, `ConfigContext`, `Container`, `RouteBasePathContext`) becomes a TanStack layout route rendering that wrapper around `<Outlet/>`. Its children are the migrated pages plus a `$` catch-all that renders the parent's remaining React Router 5 `<Route>`s - here `AdminLayout` / `AdminLegacyRoutes` in Admin.js, wired in `Admin/routes.js`. The root catch-all stays for top-level sections.
 - **Drill-down views: one route with optional params.** Schema (adapter > object type > property) passed data loaded at each level to the next through RR5 `render` props, which `<Outlet/>` can't do. One route, `Schema/{-$adapterId}/{-$objectTypeId}/{-$propertyName}`, with each component reading `useParams({ strict: false })` and rendering its list or its child, keeps that data flow and turns each `<Switch>` into a conditional.
 - **Lazy components.** Route components load with `lazyRouteComponent(() => import(...), "ExportName")`, keeping section chunks; `defaultPendingComponent: Loading` replaces the old `Suspense` fallback.
 - **Links need no change.** `@afw/react`'s `Link` goes through `navigation.js` (still RR5), whose pushes reach TanStack through the bridge.
 - **Tests.** `renderRoute(path)` in `src/test-utils.js` renders the real route tree on a memory history (`router.navigate()` moves it), so tests of migrated sections also cover the layout route and params.
+
+From step 3 (Objects):
+
+- **Search strings stay raw.** TanStack's default search handling parses `?a=b` pairs and re-serializes them, mangling the criteria AFW puts there (RQL: `?eq(a,b)&sort(+objectId)` - the `+` became a space, `=` got appended). `router.js` sets `parseSearch`/`stringifySearch` that keep the string as `{ raw }`; read it with `useLocation().searchStr` (includes the `?`). The history itself was never rewritten, so RR5 code reading it through the bridge was unaffected.
+- **Params and pathname arrive decoded**, without the basepath (TanStack applies `basepath` as a rewrite). Drop the old `decodeURIComponent(match.params.x)`; `encodeURIComponent` each segment when building an href; compare against decoded values (the Objects guard does).
+- **`location.hash` has no leading `#`** (RR5's did). Navigate with `navigate({ hash })` rather than rebuilding `pathname + "#" + x` from a decoded pathname.
+- **Drill-down with a tail:** `Objects/{-$adapterId}/{-$objectTypeId}/{-$objectId}/$` - the splat (`_splat`, decoded) is the embedded object path. An encoded `/` inside it decodes to a real one; fine for property names.
+- **Guards:** `<Prompt when message>` becomes `useBlocker({ disabled: !dirty, shouldBlockFn: ({next}) => !stayingInside(next.pathname) && !window.confirm(message) })`, called at the top of the component (before early returns). It sits on the same TanStack history as RR5 `<Prompt>`s going through the bridge.
+- **Navigation is async.** A TanStack navigation commits after the click's `act()` returns, so a test whose last step navigates must wait on the result (`await waitFor(() => expect(router.state.location.hash).toBe("source"))`) or React warns about updates outside `act()`. And a navigation a guard **blocks never resolves `router.navigate()`'s promise** - tests start it inside `act()` without awaiting it, then wait on what they expect (see `Objects/__tests__/ObjectEditorGuard.test.js`).
 
 ## Inventory (admin `src/`, excluding tests unless noted)
 
