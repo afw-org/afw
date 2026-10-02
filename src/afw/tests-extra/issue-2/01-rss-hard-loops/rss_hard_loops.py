@@ -19,6 +19,8 @@ import os
 import shutil
 import sys
 import tempfile
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 if HERE not in sys.path:
@@ -166,6 +168,13 @@ def _env_bool(name, default):
     return raw.strip().lower() not in ("0", "false", "no", "off")
 
 
+def _env_int(name, default):
+    raw = os.environ.get(name)
+    if raw is None or raw == "":
+        return default
+    return int(raw)
+
+
 def _selected():
     raw = os.environ.get("AFW_ISSUE2_WORKLOAD") or ""
     raw = raw.strip()
@@ -252,7 +261,9 @@ def _judge(workload, result, assert_on):
                 "RSS leak %.1f KiB/s > %.0f"
                 % (slope, STABLE_MAX_KIB_S))
         max_iu = _max_in_use_b_s(workload)
-        # gdb miss: first or last in_use 0, or a huge pointer as size_t.
+        # gdb miss: first or last in_use 0, a huge pointer as size_t,
+        # or a warmup sample far below last while RSS is not climbing
+        # (60s object_rest_unassigned: 262144 -> ~4 MiB, RSS 0).
         first_iu = result.get("in_use_first")
         last_iu = result.get("in_use_last")
         if first_iu == 0 or last_iu == 0:
@@ -265,6 +276,9 @@ def _judge(workload, result, assert_on):
                 cap = rss_kib * 1024 * 8
                 if first_iu > cap or last_iu > cap:
                     iu = None
+            if iu is not None and first_iu * 4 < last_iu and (
+                    slope is None or slope < 64):
+                iu = None
         if iu is not None and max_iu is not None and iu > max_iu:
             problems.append(
                 "in_use leak %.0f B/s > %.0f (%s)"
@@ -275,13 +289,47 @@ def _judge(workload, result, assert_on):
     return True, summary
 
 
+def _run_one(w, duration_s, interval_s, warmup_s, assert_on, print_lock):
+    path = workload_path(w["name"])
+    extra_argv = None
+    readln_tmp = None
+    if w.get("needs_readln_conf"):
+        readln_tmp, extra_argv = _prepare_readln_conf()
+    try:
+        result = sample_afw_script(
+            path,
+            duration_s=duration_s,
+            interval_s=interval_s,
+            warmup_s=warmup_s,
+            extra_argv=extra_argv,
+        )
+    finally:
+        if readln_tmp:
+            shutil.rmtree(readln_tmp, ignore_errors=True)
+    passed, error = _judge(w, result, assert_on)
+    summary = error if passed else _one_line(result)
+    with print_lock:
+        print("%s  %s" % (w["name"], summary), file=sys.stderr)
+        sys.stderr.flush()
+    rec = {
+        "test": w["name"] + "  " + summary,
+        "description": w["description"],
+        "passed": bool(passed),
+        "skip": False,
+        "error": None if passed else error,
+    }
+    if passed:
+        rec["description"] = w["description"] + " — " + error
+    return rec
+
+
 def run():
     duration_s = _env_float("AFW_ISSUE2_DURATION_S", 15.0)
     interval_s = _env_float("AFW_ISSUE2_INTERVAL_S", 5.0)
     warmup_s = _env_float("AFW_ISSUE2_WARMUP_S", 5.0)
     assert_on = _env_bool("AFW_ISSUE2_RSS_ASSERT", True)
+    jobs = max(1, _env_int("AFW_ISSUE2_JOBS", 1))
 
-    tests = []
     try:
         selected = _selected()
     except ValueError as e:
@@ -296,44 +344,31 @@ def run():
             }],
         }
 
-    for w in selected:
-        path = workload_path(w["name"])
-        extra_argv = None
-        readln_tmp = None
-        if w.get("needs_readln_conf"):
-            readln_tmp, extra_argv = _prepare_readln_conf()
-        try:
-            result = sample_afw_script(
-                path,
-                duration_s=duration_s,
-                interval_s=interval_s,
-                warmup_s=warmup_s,
-                extra_argv=extra_argv,
-            )
-        finally:
-            if readln_tmp:
-                shutil.rmtree(readln_tmp, ignore_errors=True)
-        passed, error = _judge(w, result, assert_on)
-        # Slope on the case name so the runner prints it without --verbose.
-        tests.append({
-            "test": w["name"] + "  " + (
-                error if passed else _one_line(result)),
-            "description": w["description"],
-            "passed": bool(passed),
-            "skip": False,
-            "error": None if passed else error,
-        })
-        print("%s  %s" % (w["name"], error if passed else _one_line(result)),
-              file=sys.stderr)
-        sys.stderr.flush()
-        if passed:
-            tests[-1]["description"] = w["description"] + " — " + error
+    print_lock = threading.Lock()
+    if jobs == 1 or len(selected) == 1:
+        tests = [
+            _run_one(w, duration_s, interval_s, warmup_s, assert_on,
+                     print_lock)
+            for w in selected
+        ]
+    else:
+        tests = [None] * len(selected)
+        workers = min(jobs, len(selected))
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futs = {
+                pool.submit(
+                    _run_one, w, duration_s, interval_s, warmup_s,
+                    assert_on, print_lock): i
+                for i, w in enumerate(selected)
+            }
+            for fut in as_completed(futs):
+                tests[futs[fut]] = fut.result()
 
     return {
         "description": (
             "issue #2 hard-loop RSS lab "
-            "(duration=%.1fs interval=%.1fs warmup=%.1fs assert=%s)"
-            % (duration_s, interval_s, warmup_s, assert_on)
+            "(duration=%.1fs interval=%.1fs warmup=%.1fs assert=%s jobs=%s)"
+            % (duration_s, interval_s, warmup_s, assert_on, jobs)
         ),
         "tests": tests,
     }
