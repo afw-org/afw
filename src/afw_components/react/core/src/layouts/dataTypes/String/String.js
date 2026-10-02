@@ -20,9 +20,9 @@ import propTypes from "../dataTypes.propTypes";
 /**
  * StringReadOnly
  * 
- * Handles dataType=string in editable=false mode.
+ * Handles dataType=string in editable=false mode (Template uses it, too).
  */
-const StringReadOnly = (props) => {
+export const StringReadOnly = (props) => {
 
     const [expanded, setExpanded] = useState(false);
 
