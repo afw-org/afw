@@ -300,6 +300,8 @@ impl_afw_value_optional_evaluate(
 
     }
     AFW_FINALLY {
+        const afw_value_t *slot;
+        const afw_pool_t *isolate_p;
 
         /* Pop off the NULL compiled value indicator on scope stack. */
         if (xctx->scope_stack->count != count + 1) {
@@ -314,21 +316,32 @@ impl_afw_value_optional_evaluate(
         }
         afw_vector_pop(xctx->scope_stack, xctx);
 
-        if (xctx->script_result &&
-            !afw_value_is_undefined(xctx->script_result) &&
-            !afw_value_is_void(xctx->script_result))
+        slot = xctx->script_result;
+        isolate_p = xctx->script_result_p ? xctx->script_result_p : p;
+        if (slot &&
+            !afw_value_is_undefined(slot) &&
+            !afw_value_is_void(slot))
         {
-            result = xctx->script_result;
+            result = slot;
         }
         if (!result || afw_value_is_void(result)) {
             result = afw_value_undefined;
         }
+
+        /*
+         * Restore before clone/register so a throw in FINALLY cannot
+         * leave nested evaluate dest p or last on the xctx.
+         */
+        xctx->script_result = saved_script_result;
+        if (set_script_result_p) {
+            xctx->script_result_p = NULL;
+        }
+
         if (result &&
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
             const afw_data_type_t *dt;
-            const afw_pool_t *isolate_p;
 
             /*
              * Caller does not release. If the result is managed,
@@ -337,9 +350,8 @@ impl_afw_value_optional_evaluate(
              * script_result_p (outermost dest p->managed_p).
              * Unit-backed compile-literals that missed the slot
              * still live in the unit: clone_managed into
-             * script_result_p, then register that hold on dest p.
+             * isolate_p, then register that hold on dest p.
              */
-            isolate_p = xctx->script_result_p ? xctx->script_result_p : p;
             dt = result->inf
                 ? result->inf->is_evaluated_of_data_type
                 : NULL;
@@ -351,17 +363,13 @@ impl_afw_value_optional_evaluate(
             afw_pool_release_value_at_cleanup(result, p, xctx);
         }
 
-        if (xctx->script_result &&
-            xctx->script_result != saved_script_result &&
-            xctx->script_result != result &&
-            !afw_value_is_undefined(xctx->script_result) &&
-            !afw_value_is_void(xctx->script_result))
+        if (slot &&
+            slot != saved_script_result &&
+            slot != result &&
+            !afw_value_is_undefined(slot) &&
+            !afw_value_is_void(slot))
         {
-            afw_value_release(xctx->script_result, xctx);
-        }
-        xctx->script_result = saved_script_result;
-        if (set_script_result_p) {
-            xctx->script_result_p = NULL;
+            afw_value_release(slot, xctx);
         }
 
     }
