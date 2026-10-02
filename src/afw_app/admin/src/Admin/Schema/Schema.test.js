@@ -1,5 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {renderRoute, screen, waitFor, waitForSpinner, mswPostCallback} from "../test-utils";
+import {renderRoute, screen, waitFor, waitForSpinner, mswPostCallback, server, http, HttpResponse} from "../test-utils";
+
+import filesObjectTypes from "@afw/test/build/cjs/__mocks__/retrieve_objects/files/_AdaptiveObjectType_.json";
 
 /*
  * Schema is on TanStack Router: these render the app's real routes, so they
@@ -33,6 +35,48 @@ describe("Schema Tests", () => {
         expect(await screen.findByText(/Object Types found/)).toBeInTheDocument();
         /* the adapterId param reaches the breadcrumbs */
         expect(screen.getByText("files")).toBeInTheDocument();
+
+    });
+
+    /* the adapter's _AdaptiveObjectType_ object type says what it allows */
+    test("An adapter that allows managing Object Types offers New", async () => {
+
+        renderRoute("/Admin/Schema/files");
+
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
+
+        expect(await screen.findByRole("button", { name: "New" })).toBeEnabled();
+        expect(screen.queryByText("Object Types cannot be managed directly through this adapter.")).not.toBeInTheDocument();
+
+    });
+
+    test("An adapter that does not allow managing Object Types says so", async () => {
+
+        /* files' object types, with _AdaptiveObjectType_ allowing nothing */
+        server.use(
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                if (body.function === "retrieve_objects" && body.adapterId === "files" && body.objectType === "_AdaptiveObjectType_") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
+
+                    return HttpResponse.json({
+                        ...filesObjectTypes,
+                        result: filesObjectTypes.result.map(o => (o.objectType === "_AdaptiveObjectType_") ?
+                            { ...o, allowAdd: false, allowChange: false, allowDelete: false } : o
+                        ),
+                    });
+                }
+            })
+        );
+
+        renderRoute("/Admin/Schema/files");
+
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
+
+        expect(await screen.findByText("Object Types cannot be managed directly through this adapter.")).toBeInTheDocument();
+        expect(screen.queryByRole("button", { name: "New" })).not.toBeInTheDocument();
 
     });
 
