@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useReducer, useEffect} from "react";
-import {useLocation, useHistory} from "react-router";
+import {useLocation, useNavigate} from "@tanstack/react-router";
 
 import {Tree, useOperational} from "@afw/react";
 import {debounce} from "@afw/client";
@@ -535,7 +535,7 @@ export const ModelTree = ({ model, reload }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     
     const {pathname} = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
     const {editable} = useOperational();
 
@@ -712,7 +712,7 @@ export const ModelTree = ({ model, reload }) => {
 
         /* When the user selects a node, we need to keep the route and breadcrumbs in sync */
         if (node.uri)
-            history.push(node.uri);
+            navigate({ href: node.uri });
     };
 
 

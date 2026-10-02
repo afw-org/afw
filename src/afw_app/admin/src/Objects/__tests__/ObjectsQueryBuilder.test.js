@@ -1,24 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {createMemoryHistory} from "history";
-import {Router} from "react-router-dom";
 
-import {render, waitFor, within, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
+import {renderRoute, waitFor, within, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
 
-import Objects from "../Objects";
 
 
 describe("ObjectsQueryBuilder Tests", () => {    
 
     test("Build Query Criteria, renders", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();
@@ -38,14 +28,7 @@ describe("ObjectsQueryBuilder Tests", () => {
 
     test("Build Query Criteria, build simple condition", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();

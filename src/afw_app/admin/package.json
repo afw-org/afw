@@ -15,6 +15,7 @@
     "@mui/material": "^9.4.0",
     "@mui/x-date-pickers": "^9.14.0",
     "@mui/x-tree-view": "^9.14.0",
+    "@tanstack/react-router": "^1.170.41",
     "cross-env": "^10.1.0",
     "material-design-icons-iconfont": "^6.1.0",
     "mdi-material-ui": "^8.0.0",
@@ -22,8 +23,6 @@
     "moment-timezone": "^0.6.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
     "typeface-roboto": "^1.1.13",
     "typeface-roboto-mono": "^1.1.13",
     "vis-network": "^10.1.2"

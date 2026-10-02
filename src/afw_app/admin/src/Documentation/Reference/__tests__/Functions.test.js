@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {render, screen, waitFor, waitForSpinner, mswPostCallback} from "../../../test-utils";
-import Functions, {Function} from "../Functions";
+import {renderRoute, screen, waitFor, waitForSpinner, mswPostCallback} from "../../../test-utils";
 
 describe("Functions Tests", () => {    
 
@@ -12,7 +11,7 @@ describe("Functions Tests", () => {
 
         window.scrollTo = jest.fn();
 
-        render( <Functions /> );        
+        renderRoute("/Documentation/Reference/Functions");        
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());                        
         await waitForSpinner();
@@ -23,7 +22,7 @@ describe("Functions Tests", () => {
 
         window.scrollTo = jest.fn();
 
-        render( <Function functionId="add" /> );        
+        renderRoute("/Documentation/Reference/Functions/polymorphic/add");        
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();                    

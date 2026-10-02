@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {Route, Switch} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import {
     Link,
@@ -13,11 +13,11 @@ import {
  
 import {useTheme} from "../../hooks";
 
-const Component = (props) => {
+const Component = () => {
 
     const {layoutComponentTypes} = useLayoutComponentTypes();
     const theme = useTheme();
-    const component = props.match.params.component;
+    const {component} = useParams({ strict: false });
 
     if (!layoutComponentTypes)
         return <Spinner size="large" label="Loading Component Types..." fullScreen={true} />;
@@ -51,10 +51,10 @@ const Component = (props) => {
     );
 };
 
-const ComponentCategory = (props) => {
+const ComponentCategory = () => {
 
     const {layoutComponentTypes} = useLayoutComponentTypes();
-    const category = props.match.params.category;
+    const {category} = useParams({ strict: false });
     
     if (!layoutComponentTypes)
         return <Spinner size="large" label="Loading Component Types..." fullScreen={true} />;
@@ -129,29 +129,32 @@ const ComponentCategories = () => {
 export const Components = () => {   
     
     const theme = useTheme();
+    /* the route's optional params (see ../routes.js) */
+    const {category, component} = useParams({ strict: false });
+
+    /* one component, a category's components, or the categories */
+    if (component)
+        return (
+            <div>                    
+                <Component />
+            </div>
+        );
+
+    if (category)
+        return (
+            <div>
+                <Typography size="8" text="Components" />
+                <div style={{ height: theme.spacing(3) }} />
+                <ComponentCategory />
+            </div>
+        );
 
     return (
-        <Switch>
-            <Route exact path="/Documentation/Reference/Components" render={(props) => 
-                <div>
-                    <Typography size="8" text="Component Categories" />
-                    <div style={{ height: theme.spacing(3) }} />
-                    <ComponentCategories {...props} />
-                </div>
-            } />
-            <Route exact path="/Documentation/Reference/Components/:category" render={(props) => 
-                <div>
-                    <Typography size="8" text="Components" />
-                    <div style={{ height: theme.spacing(3) }} />
-                    <ComponentCategory {...props} />
-                </div>
-            } />
-            <Route exact path="/Documentation/Reference/Components/:category/:component" render={(props) => 
-                <div>                    
-                    <Component {...props} />
-                </div>
-            } />
-        </Switch>
+        <div>
+            <Typography size="8" text="Component Categories" />
+            <div style={{ height: theme.spacing(3) }} />
+            <ComponentCategories />
+        </div>
     );
 };
 

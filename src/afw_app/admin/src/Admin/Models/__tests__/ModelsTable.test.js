@@ -1,9 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     fireEvent,
     waitFor,
     waitForElementToBeRemoved,
@@ -12,9 +12,6 @@ import {
     mswPostCallback,
     waitForSpinner
 } from "../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import Models from "../Models";
 
 describe("ModelsTable Tests", () => {
 
@@ -35,9 +32,6 @@ describe("ModelsTable Tests", () => {
    
     test("No models found", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models");
-
         /* respond to the retrieve_objects with no models */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -55,11 +49,7 @@ describe("ModelsTable Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -69,9 +59,6 @@ describe("ModelsTable Tests", () => {
     });
 
     test("One model listed in table", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models");
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
@@ -90,11 +77,7 @@ describe("ModelsTable Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -110,9 +93,6 @@ describe("ModelsTable Tests", () => {
 
     test("Delete a model, cancel", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models");
-
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -130,11 +110,7 @@ describe("ModelsTable Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -167,9 +143,6 @@ describe("ModelsTable Tests", () => {
 
     test("Delete a model", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models");
-
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -187,11 +160,7 @@ describe("ModelsTable Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -231,14 +200,7 @@ describe("ModelsTable Tests", () => {
 
     test("Import Model, cancel", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models");
-
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();

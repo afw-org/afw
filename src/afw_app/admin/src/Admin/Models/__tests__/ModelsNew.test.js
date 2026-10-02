@@ -1,18 +1,15 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
-    render, 
-    waitFor, 
+    renderRoute,
+    waitFor,
     waitForElementToBeRemoved,
-    fireEvent, 
-    userEvent, 
-    within, 
-    screen, 
-    mswPostCallback, 
+    fireEvent,
+    userEvent,
+    within,
+    screen,
+    mswPostCallback,
     waitForSpinner
 } from "../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import Models from "../Models";
 
 describe("ModelsNew Tests", () => {
 
@@ -22,14 +19,7 @@ describe("ModelsNew Tests", () => {
 
     const newModel = async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models");
-
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();

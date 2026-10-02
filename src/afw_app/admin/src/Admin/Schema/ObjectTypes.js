@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useMemo} from "react";
-import {Route, Switch} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import {
     Button,
@@ -82,6 +82,7 @@ export const ObjectTypes = (props) => {
     const [allowDelete, setAllowDelete] = useState();
 
     const {adapterId} = props;
+    const {objectTypeId} = useParams({ strict: false });
     
     /* use the useRetrieveObjects() hook to retrieve all Object Types from this adapter */
     const {objects, isLoading, error} = useRetrieveObjects({ 
@@ -129,108 +130,105 @@ export const ObjectTypes = (props) => {
         return <ObjectTypesNone />;
     }
 
-    /* Return the Table with routable links to manage these Object Types */
-    return (
-        <Switch>
-            <Route exact path="/Admin/Schema/:adapterId" render={() => 
-                <div style={{ display: "flex", flexDirection: "column", padding: theme.spacing(1), height: "100%" }}>
-                    { (allowAdd || allowDelete) ? (
-                        <div>
-                            <div style={{ display: "inline-block" }}>
-                                <Button 
-                                    label="New"
-                                    variant="text"
-                                    color="primary"
-                                    size="small"
-                                    icon="add"
-                                    disabled={!allowAdd}
-                                />
-                            </div>
-                            <div style={{ display: "inline-block", marginLeft: theme.spacing(1) }}>
-                                <Button 
-                                    label="Remove"
-                                    variant="text"
-                                    size="small"
-                                    icon="remove"
-                                    disabled={selected.length === 0 || !allowDelete}
-                                />
-                            </div>
-                            <div style={{ height: theme.spacing(2) }} />
-                        </div>
-                    ) : (
-                        <div>
-                            <Message 
-                                message="Object Types cannot be managed directly through this adapter." 
-                            />
-                            <div style={{ height: theme.spacing(2) }} />
-                        </div>
-                    )}
-                    <div style={{ flex: 1, overflow: "auto" }}>
-                        <Table 
-                            rows={objectTypeObjects}
-                            columns={[
-                                {
-                                    key: "objectTypeId", 
-                                    name: "Object Type", 
-                                    isResizable: true, 
-                                    minWidth: 120, 
-                                    maxWidth: 200,
-                                    width: "20%", 
-                                    style: { wordWrap: "break-word" },
-                                    onRender: objectTypeObject => {
-                                        const objectTypeId = objectTypeObject.getObjectId();
+    /* one Object Type, chosen by the route's objectTypeId */
+    if (objectTypeId) {
+        let objectTypeObject;
 
-                                        return (
-                                            <Link 
-                                                text={objectTypeId}
-                                                uriComponents={["Admin", "Schema", adapterId, objectTypeId]}
-                                            />
-                                        );
-                                    }
-                                },
-                                {
-                                    key: "description", 
-                                    name: "Description", 
-                                    isResizable: true, 
-                                    minWidth: 100, 
-                                    maxWidth: 400,
-                                    isMultiline: true,
-                                    width: "80%", 
-                                    style: { wordWrap: "break-word" },
-                                    onRender: objectTypeObject => objectTypeObject.getPropertyValue("description")?.replaceAll("\\n", "\n")
-                                }
-                            ]}
-                            selectionMode="multiple"
-                            onSelectionChanged={selected => setSelected(selected)}
+        if (objectTypeId && objectTypeObjects) {
+            objectTypeObjects.forEach(o => {
+                if (o.getObjectId() === objectTypeId)
+                    objectTypeObject = o;
+            });
+
+            if (!objectTypeObject)
+                return <Typography text="Object Type not found." />;    
+
+            return (
+                <ObjectType 
+                    {...props}
+                    objectTypeId={objectTypeId}
+                    objectTypeObject={objectTypeObject}
+                    allowChange={allowChange}
+                />
+            );
+        } else return null;
+    }
+
+    /* otherwise, the Table with routable links to manage these Object Types */
+    return (
+        <div style={{ display: "flex", flexDirection: "column", padding: theme.spacing(1), height: "100%" }}>
+            { (allowAdd || allowDelete) ? (
+                <div>
+                    <div style={{ display: "inline-block" }}>
+                        <Button 
+                            label="New"
+                            variant="text"
+                            color="primary"
+                            size="small"
+                            icon="add"
+                            disabled={!allowAdd}
                         />
                     </div>
-                    <Typography size="1" color="textSecondary" text={objectTypeObjects.length + " Object Types found."} />
-                </div>
-            } />
-            <Route path="/Admin/Schema/:adapterId/:objectTypeId" render={(routeProps) => {
-                let objectTypeObject;
-                const objectTypeId = routeProps.match.params.objectTypeId;
-
-                if (objectTypeId && objectTypeObjects) {
-                    objectTypeObjects.forEach(o => {
-                        if (o.getObjectId() === objectTypeId)
-                            objectTypeObject = o;
-                    });
-
-                    if (!objectTypeObject)
-                        return <Typography text="Object Type not found." />;    
-
-                    return (
-                        <ObjectType 
-                            {...props}
-                            objectTypeId={objectTypeId}
-                            objectTypeObject={objectTypeObject}
-                            allowChange={allowChange}
+                    <div style={{ display: "inline-block", marginLeft: theme.spacing(1) }}>
+                        <Button 
+                            label="Remove"
+                            variant="text"
+                            size="small"
+                            icon="remove"
+                            disabled={selected.length === 0 || !allowDelete}
                         />
-                    );
-                } else return null;
-            }} />
-        </Switch>
+                    </div>
+                    <div style={{ height: theme.spacing(2) }} />
+                </div>
+            ) : (
+                <div>
+                    <Message 
+                        message="Object Types cannot be managed directly through this adapter." 
+                    />
+                    <div style={{ height: theme.spacing(2) }} />
+                </div>
+            )}
+            <div style={{ flex: 1, overflow: "auto" }}>
+                <Table 
+                    rows={objectTypeObjects}
+                    columns={[
+                        {
+                            key: "objectTypeId", 
+                            name: "Object Type", 
+                            isResizable: true, 
+                            minWidth: 120, 
+                            maxWidth: 200,
+                            width: "20%", 
+                            style: { wordWrap: "break-word" },
+                            onRender: objectTypeObject => {
+                                const objectTypeId = objectTypeObject.getObjectId();
+
+                                return (
+                                    <Link 
+                                        text={objectTypeId}
+                                        uriComponents={["Admin", "Schema", adapterId, objectTypeId]}
+                                    />
+                                );
+                            }
+                        },
+                        {
+                            key: "description", 
+                            name: "Description", 
+                            isResizable: true, 
+                            minWidth: 100, 
+                            maxWidth: 400,
+                            isMultiline: true,
+                            width: "80%", 
+                            style: { wordWrap: "break-word" },
+                            onRender: objectTypeObject => objectTypeObject.getPropertyValue("description")?.replaceAll("\\n", "\n")
+                        }
+                    ]}
+                    selectionMode="multiple"
+                    onSelectionChanged={selected => setSelected(selected)}
+                />
+            </div>
+            <Typography size="1" color="textSecondary" text={objectTypeObjects.length + " Object Types found."} />
+        </div>
     );
 };
 

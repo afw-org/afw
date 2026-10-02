@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useHistory} from "react-router";
+import {useNavigate} from "@tanstack/react-router";
 import Container from "../common/Container";
 
 import {
@@ -56,7 +56,7 @@ const HomeHeader = () => {
 const HomeSection = ({ title, iconName, description, linkText, linkUrl }) => {
 
     const theme = useTheme();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     return (
         <div style={{ backgroundColor: theme.palette.background.paper, padding: theme.spacing(2.5) }}>
@@ -74,7 +74,7 @@ const HomeSection = ({ title, iconName, description, linkText, linkUrl }) => {
                 color="primary"
                 label={linkText}
                 variant="text" 
-                onClick={() => history.push(linkUrl)} 
+                onClick={() => navigate({ href: linkUrl })} 
                 endIcon="chevron_right"
             />
         </div>

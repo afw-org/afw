@@ -1,18 +1,15 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     screen,
     mswPostCallback,
     waitForSpinner,
-    fireEvent,
+    fireEvent
 } from "../../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../../Models";
 
 describe("ModelSpreadsheet Tests", () => {
 
@@ -44,9 +41,6 @@ describe("ModelSpreadsheet Tests", () => {
 
     test("View spreadsheet", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#spreadsheet");
-
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -81,11 +75,7 @@ describe("ModelSpreadsheet Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#spreadsheet");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -95,9 +85,6 @@ describe("ModelSpreadsheet Tests", () => {
 
     test("View spreadsheet (editable)", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#spreadsheet");
-
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -132,11 +119,7 @@ describe("ModelSpreadsheet Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#spreadsheet");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();

@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
-import {BrowserRouter} from "react-router-dom";
+import {RouterProvider, Outlet} from "@tanstack/react-router";
 
 import {createTheme, responsiveFontSizes} from "@mui/material/styles";
 import {ThemeProvider} from "@mui/material/styles";
@@ -12,7 +12,6 @@ import {AppCoreProvider} from "./AppCoreProvider";
 import AppNav from "./AppNav";
 import AppBar from "./AppBar";
 import AppError from "./AppError";
-import AppRoutes from "./AppRoutes";
 import AppKeyboardShortcuts from "./AppKeyboardShortcuts";
 import {withMediaQuery, lightTheme, darkTheme} from "./AppTheme";
 
@@ -25,7 +24,8 @@ import {Snackbar} from "@afw/react";
 import {AppContext, NotificationContext} from "../context";
 
 import {AdaptiveProvider, combineComponentRegistries} from "@afw/react";
-import {reactRouterNavigation} from "../navigation";
+import {appNavigation} from "../navigation";
+import {createAppRouter, AppShellContext} from "../router";
 import muiComponentRegistry from "@afw/react-material-ui";
 import monacoComponentRegistry, {MonacoProvider} from "@afw/react-monaco";
 
@@ -48,6 +48,9 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
+
+        /* TanStack Router owns the browser history (see ../router) */
+        this.router = createAppRouter();
 
         const client = new AfwClient({
             url: "/afw"
@@ -409,46 +412,49 @@ class App extends React.Component {
         }
 
         else {
-            /* No errors, so process the normal App routes */
-            component = (
-                <BrowserRouter                 
-                    basename={import.meta.env.BASE_URL}
-                    getUserConfirmation={(payload, callback) => {          
-                        const allowTransition = window.confirm(payload);
-                        callback(allowTransition);                        
-                    }}
-                >
-                    <div id="admin" style={{ width: "100%", zIndex: 1, overflow: "hidden", position: "relative" }}>
-                        <AppBar
-                            menuExpanded={menuExpanded}
-                            onToggleMenu={() => this.setState({ menuExpanded: !menuExpanded })}
-                        />
-                        <AppNav
-                            menuExpanded={menuExpanded}
-                            onCollapse={(collapsed) => this.setState({ menuExpanded: !collapsed })}
-                        />
-                        <div 
-                            id="admin-main"                            
-                            role="main" 
-                            style={{
-                                marginLeft: (menuExpanded === true && !isMobile) ? "250px" : (isMobile ? "0px" : "64px"), 
-                                paddingTop: (isMobile ? "64px" : "80px"), 
-                                paddingBottom: (isMobile) ? "64px": "0px",
-                            }}
-                        >
-                            <AppRoutes {...this.props} />
-                        </div>
-                        <Snackbar
-                            id="admin-notification"                            
-                            open={snackbarOpen}
-                            message={snackbarMessage}
-                            type={snackbarType}
-                            showClose={!snackbarDuration}
-                            duration={snackbarDuration}
-                            onClose={() => this.setState({ snackbarOpen: false })}
-                        />
+            /*
+             * No errors, so process the normal App routes. The shell renders
+             * inside the router's root route (which wraps it in React Router
+             * 5's <Router> for the routes not yet migrated); <Outlet/> is
+             * where the matched route renders.
+             */
+            const shell = (
+                <div id="admin" style={{ width: "100%", zIndex: 1, overflow: "hidden", position: "relative" }}>
+                    <AppBar
+                        menuExpanded={menuExpanded}
+                        onToggleMenu={() => this.setState({ menuExpanded: !menuExpanded })}
+                    />
+                    <AppNav
+                        menuExpanded={menuExpanded}
+                        onCollapse={(collapsed) => this.setState({ menuExpanded: !collapsed })}
+                    />
+                    <div 
+                        id="admin-main"                            
+                        role="main" 
+                        style={{
+                            marginLeft: (menuExpanded === true && !isMobile) ? "250px" : (isMobile ? "0px" : "64px"), 
+                            paddingTop: (isMobile ? "64px" : "80px"), 
+                            paddingBottom: (isMobile) ? "64px": "0px",
+                        }}
+                    >
+                        <Outlet />
                     </div>
-                </BrowserRouter>
+                    <Snackbar
+                        id="admin-notification"                            
+                        open={snackbarOpen}
+                        message={snackbarMessage}
+                        type={snackbarType}
+                        showClose={!snackbarDuration}
+                        duration={snackbarDuration}
+                        onClose={() => this.setState({ snackbarOpen: false })}
+                    />
+                </div>
+            );
+
+            component = (
+                <AppShellContext.Provider value={shell}>
+                    <RouterProvider router={this.router} />
+                </AppShellContext.Provider>
             );
         }
 
@@ -462,7 +468,7 @@ class App extends React.Component {
                             componentRegistry={componentRegistry} 
                             onCopy={this.onCopy} 
                             clipboard={clipboard}
-                            navigation={reactRouterNavigation}
+                            navigation={appNavigation}
                         >
                             <AppCoreProvider>
                                 <MonacoProvider theme={monacoTheme}>

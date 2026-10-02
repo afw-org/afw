@@ -1,6 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useMemo} from "react";
-import {useLocation, matchPath} from "react-router";
+import {useLocation} from "@tanstack/react-router";
+import {matchPath} from "../../router/matchPath";
 
 import {
     PropertyResponsive,

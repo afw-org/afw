@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useMemo} from "react";
-import {useLocation} from "react-router-dom";
+import {useLocationHash} from "../../../router/hooks";
 
 import {
     Button,
@@ -488,7 +488,7 @@ export const ModelObjectTypesTable = (props) => {
     const modelId = model.getPropertyValue("modelId");   
 
     const changed = useEventId({ object: objectTypes, eventId: "onChildChanged" });
-    const {hash} = useLocation();
+    const hash = useLocationHash();
     const theme = useTheme();
 
     const objectTypePropertyNames = useMemo(() => {

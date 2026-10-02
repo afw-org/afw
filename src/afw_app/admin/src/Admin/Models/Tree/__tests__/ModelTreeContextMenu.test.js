@@ -1,20 +1,17 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     screen,
     mswPostCallback,
     waitForSpinner,
     fireEvent,
     userEvent,
-    within,
+    within
 } from "../../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../../Models";
 
 describe("ModelTreeContextMenu Tests", () => {    
 
@@ -34,9 +31,6 @@ describe("ModelTreeContextMenu Tests", () => {
     });    
 
     test("ContextMenu at model level", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#tree");
 
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
@@ -72,11 +66,7 @@ describe("ModelTreeContextMenu Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#tree");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -101,9 +91,6 @@ describe("ModelTreeContextMenu Tests", () => {
 
     test("Model create object type, cancel", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#tree");
-
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -138,11 +125,7 @@ describe("ModelTreeContextMenu Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#tree");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -175,9 +158,6 @@ describe("ModelTreeContextMenu Tests", () => {
 
     test("Model create property type, cancel", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#tree");
-
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -212,11 +192,7 @@ describe("ModelTreeContextMenu Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#tree");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -249,9 +225,6 @@ describe("ModelTreeContextMenu Tests", () => {
 
     test("Model create custom variable, cancel", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#tree");
-
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -286,11 +259,7 @@ describe("ModelTreeContextMenu Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#tree");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();

@@ -1,11 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {createMemoryHistory} from "history";
-import {Router} from "react-router-dom";
 
-import {act, render, waitFor, within, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
+import {renderRoute, act, waitFor, within, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
 
 import objectTypes from "@afw/test/build/cjs/__mocks__/retrieve_objects/files/_AdaptiveObjectType_.json";
-import Objects from "../Objects";
 
 
 describe("ObjectsTable Tests", () => { 
@@ -13,14 +10,7 @@ describe("ObjectsTable Tests", () => {
     // \fixme There is a timing issue here that needs investigation.  Sometimes selecting adapterId doesn't work
     // eslint-disable-next-line jest/no-disabled-tests -- deliberately skipped pending the timing fix above, not unimplemented
     test.skip("Retrieve _AdaptiveObjectType_ objects", async () => {
-        const history = createMemoryHistory();
-        history.push("/Objects");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();        
@@ -98,14 +88,7 @@ describe("ObjectsTable Tests", () => {
     });
 
     test("View objects", async () => {
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
 

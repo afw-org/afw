@@ -1,11 +1,10 @@
 // See the 'COPYING' file in the project root for licensing information.
  
 import {useState, useMemo, useRef} from "react";
-import {Route, Switch, useRouteMatch} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import AdapterDetails from "./AdapterDetails";
 import AdapterDetailsLmdb from "./AdapterDetailsLmdb";
-import NoRoute from "../../../common/NoRoute";
 
 import {useAppCore, useTheme} from "../../../hooks";
 
@@ -280,100 +279,102 @@ const Adapters = () => {
 
     const theme = useTheme();
     const {adapters} = useAppCore();
-    const match = useRouteMatch();
+    /* the route's optional param (see ../../routes.js) */
+    const {adapterId: routeAdapterId} = useParams({ strict: false });
     
     if (!adapters)
         return null;
 
-    return (        
-        <Switch>
-            <Route exact path="/Admin/Adapters/" render={(props) => 
-                <div style={{ height: "100%" }}>                            
-                    <Message
-                        contains={
-                            <div>
-                                <span>To create a new Adapter, add a new Adapter Type Service </span>
-                                <Link style={{ display: "inline-block" }} url="/Admin/Services/" text="here" />
-                                <span>.</span>
-                            </div>
-                        }
-                    /> 
-                    <div style={{ height: theme.spacing(5) }} />
-                    <Tabs                         
-                        gapSpace={20}
-                        tabs={[
-                            {
-                                text: "List",
-                                contains: 
-                                    <Table                                           
-                                        rows={adapters}
-                                        columns={[
-                                            { 
-                                                key: "adapterId", name: "Adapter Id", minWidth: 150, maxWidth: 200, isResizable: true,
-                                                onRender: (adapter) => {                                            
-                                                    let adapterId = adapter.adapterId;                                            
-                                                    let url = match.url + "/" + encodeURIComponent(adapterId);
-        
-                                                    return (
-                                                        <Link url={url} text={adapterId} />
-                                                    );
-                                                }
-                                            },
-                                            {
-                                                key: "adapterType", name: "Adapter Type", minWidth: 125, maxWidth: 175, isResizable: true,
-                                                onRender: (adapter) => {
-                                                    return <span>{adapter.properties.adapterType}</span>;
-                                                }
-                                            },
-                                            {
-                                                key: "description", name: "Description", isResizable: true, isMultiline: true,
-                                                onRender: (adapter) => {
-                                                    return <span>{adapter.properties.description}</span>;
-                                                }
-                                            }                                   
-                                        ]}                                
-                                        selectionMode="none"
-                                    />
-                            },
-                            {
-                                text: "Diagram",
-                                style: { height: "calc(100% - 140px)" },
-                                contains: 
-                                    <AdaptersDiagram 
-                                        {...props}
-                                    />
+    /* one adapter, chosen by the route's adapterId */
+    const renderAdapter = () => {
+        let selectedAdapter;
+
+        if (!adapters)
+            return null;
+
+        adapters.forEach((adapter) => {
+            if (adapter.adapterId === routeAdapterId)
+                selectedAdapter = adapter;
+        });
+
+        if (!selectedAdapter)
+            return null;
+
+        return (
+            <div>         
+                {
+                    (selectedAdapter.properties.adapterType === "lmdb") ?
+                        <AdapterDetailsLmdb adapter={selectedAdapter} />
+                        :
+                        <AdapterDetails adapter={selectedAdapter} />
+                }                                                       
+            </div>
+        );
+    };
+    return (
+        <>
+            {
+            /* one adapter (by the route's adapterId), or the list */
+                routeAdapterId ? renderAdapter() : (
+                    <div style={{ height: "100%" }}>                            
+                        <Message
+                            contains={
+                                <div>
+                                    <span>To create a new Adapter, add a new Adapter Type Service </span>
+                                    <Link style={{ display: "inline-block" }} url="/Admin/Services/" text="here" />
+                                    <span>.</span>
+                                </div>
                             }
-                        ]}
-                    />    
-                </div>
-            }/>
-            <Route path="/Admin/Adapters/:adapterId" render={(props) => {
-                let selectedAdapter;
-
-                if (!adapters)
-                    return null;
-
-                adapters.forEach((adapter) => {
-                    if (adapter.adapterId === decodeURIComponent(props.match.params.adapterId))
-                        selectedAdapter = adapter;
-                });
-
-                if (!selectedAdapter)
-                    return null;
-
-                return (
-                    <div>         
-                        {
-                            (selectedAdapter.properties.adapterType === "lmdb") ?
-                                <AdapterDetailsLmdb adapter={selectedAdapter} />
-                                :
-                                <AdapterDetails adapter={selectedAdapter} />
-                        }                                                       
+                        /> 
+                        <div style={{ height: theme.spacing(5) }} />
+                        <Tabs                         
+                            gapSpace={20}
+                            tabs={[
+                                {
+                                    text: "List",
+                                    contains: 
+                                        <Table                                           
+                                            rows={adapters}
+                                            columns={[
+                                                { 
+                                                    key: "adapterId", name: "Adapter Id", minWidth: 150, maxWidth: 200, isResizable: true,
+                                                    onRender: (adapter) => {                                            
+                                                        let adapterId = adapter.adapterId;                                            
+                                                        let url = "/Admin/Adapters/" + encodeURIComponent(adapterId);
+        
+                                                        return (
+                                                            <Link url={url} text={adapterId} />
+                                                        );
+                                                    }
+                                                },
+                                                {
+                                                    key: "adapterType", name: "Adapter Type", minWidth: 125, maxWidth: 175, isResizable: true,
+                                                    onRender: (adapter) => {
+                                                        return <span>{adapter.properties.adapterType}</span>;
+                                                    }
+                                                },
+                                                {
+                                                    key: "description", name: "Description", isResizable: true, isMultiline: true,
+                                                    onRender: (adapter) => {
+                                                        return <span>{adapter.properties.description}</span>;
+                                                    }
+                                                }                                   
+                                            ]}                                
+                                            selectionMode="none"
+                                        />
+                                },
+                                {
+                                    text: "Diagram",
+                                    style: { height: "calc(100% - 140px)" },
+                                    contains: 
+                                        <AdaptersDiagram />
+                                }
+                            ]}
+                        />    
                     </div>
-                );
-            }} />
-            <Route component={NoRoute} />
-        </Switch>        
+                )
+            }
+        </>
     );
 };
 

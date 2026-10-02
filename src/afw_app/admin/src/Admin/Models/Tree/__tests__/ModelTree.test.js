@@ -1,19 +1,16 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     screen,
     mswPostCallback,
     waitForSpinner,
     fireEvent,
-    within,
+    within
 } from "../../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../../Models";
 
 describe("ModelTree Tests", () => {    
 
@@ -42,9 +39,6 @@ describe("ModelTree Tests", () => {
     });    
 
     test("Each level produces the correct route and breadcrumbs", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#tree");
 
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
@@ -80,11 +74,7 @@ describe("ModelTree Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        const {router} = renderRoute("/Admin/Models/models/test1#tree");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -100,7 +90,7 @@ describe("ModelTree Tests", () => {
         
         fireEvent.click(test1);
 
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1"));
 
         await screen.findByRole("heading", { name: "test1" });
         await screen.findByText(test1Model.description);
@@ -108,61 +98,61 @@ describe("ModelTree Tests", () => {
         /* look for "Custom Variables" at top-level */
         let custom = within(tree).getByTestId("test1.custom");
         fireEvent.click(within(custom).getByText("Custom Variables"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/custom"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/custom"));
 
         /* look for Property Types at the top-level */        
         tree = await screen.findByRole("tree", { name: "test1" });        
         let propertyTypes = within(tree).getByTestId("test1.propertyTypes");
         fireEvent.click(within(propertyTypes).getByText("Property Types"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/propertyTypes"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/propertyTypes"));
 
         /* look for Object Types at the top-level */
         tree = await screen.findByRole("tree", { name: "test1" });        
         const objectTypes = within(tree).getByTestId("test1.objectTypes");
         fireEvent.click(within(objectTypes).getByText("Object Types"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes"));
 
         /* look for obj1 under Object Types */   
         tree = await screen.findByRole("tree", { name: "test1" });        
         const obj1 = within(tree).getByTestId("test1.objectTypes.obj1");        
         fireEvent.click(within(obj1).getByText("obj1"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1"));      
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1"));      
 
         /* look for On Functions under obj1 */
         tree = await screen.findByRole("tree", { name: "test1" });        
         let onFunctions = within(tree).getByTestId("test1.objectTypes.obj1.onFunctions");
         fireEvent.click(within(onFunctions).getByText("On Functions"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/onFunctions"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/onFunctions"));
 
         /* look for Custom Variables under obj1 */
         tree = await screen.findByRole("tree", { name: "test1" });        
         custom = within(tree).getByTestId("test1.objectTypes.obj1.custom");
         fireEvent.click(within(custom).getByText("Custom Variables"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/custom"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/custom"));
 
         /* look for Property Types under obj1 */
         tree = await screen.findByRole("tree", { name: "test1" });        
         propertyTypes = within(tree).getByTestId("test1.objectTypes.obj1.propertyTypes");
         fireEvent.click(within(propertyTypes).getByText("Property Types"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes"));
 
         /* look for prop1 under Property Types */
         tree = await screen.findByRole("tree", { name: "test1" });        
         const prop1 = within(tree).getByTestId("test1.objectTypes.obj1.propertyTypes.prop1");
         fireEvent.click(within(prop1).getByText("prop1"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes/prop1"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes/prop1"));
 
         /* look for On Functions under prop1 */
         tree = await screen.findByRole("tree", { name: "test1" });        
         onFunctions = within(tree).getByTestId("test1.objectTypes.obj1.propertyTypes.prop1.onFunctions");
         fireEvent.click(within(onFunctions).getByText("On Functions"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes/prop1/onFunctions"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes/prop1/onFunctions"));
 
         /* look for Custom Variables under prop1 */
         tree = await screen.findByRole("tree", { name: "test1" });        
         custom = within(tree).getByTestId("test1.objectTypes.obj1.propertyTypes.prop1.custom");
         fireEvent.click(within(custom).getByText("Custom Variables"));
-        await waitFor(() => expect(history.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes/prop1/custom"));
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Admin/Models/models/test1/objectTypes/obj1/propertyTypes/prop1/custom"));
     });
 
 });

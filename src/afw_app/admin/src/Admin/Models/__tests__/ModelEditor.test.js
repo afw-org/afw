@@ -1,9 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     within,
     screen,
@@ -11,9 +11,6 @@ import {
     mswPostCallback,
     waitForSpinner
 } from "../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../Models";
 
 describe("ModelEditor Tests", () => {    
 
@@ -34,9 +31,6 @@ describe("ModelEditor Tests", () => {
 
 
     test("Displays a model with buttons and menus", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1");
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
@@ -72,11 +66,7 @@ describe("ModelEditor Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -107,9 +97,6 @@ describe("ModelEditor Tests", () => {
     });
 
     test("Displays no such model", async () => {
-        
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1");
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
@@ -133,11 +120,7 @@ describe("ModelEditor Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -148,9 +131,6 @@ describe("ModelEditor Tests", () => {
     });
 
     test("Edit Mode displays additional buttons", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1");
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
@@ -186,11 +166,7 @@ describe("ModelEditor Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -217,9 +193,6 @@ describe("ModelEditor Tests", () => {
 
     test("Clicking through perspectives updates the route", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1");
-
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -254,11 +227,7 @@ describe("ModelEditor Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        const {router} = renderRoute("/Admin/Models/models/test1");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -271,19 +240,19 @@ describe("ModelEditor Tests", () => {
         await waitFor(() => expect(overviewBtn).toHaveAttribute("aria-pressed", "false"));
 
         fireEvent.click(overviewBtn);
-        await waitFor(() => expect(history.location.hash).toBe("#overview"));
+        await waitFor(() => expect(router.state.location.hash).toBe("overview"));
 
         const spreadsheetBtn = await screen.findByRole("button", { name: "Show Spreadsheet" });
         fireEvent.click(spreadsheetBtn);
-        await waitFor(() => expect(history.location.hash).toBe("#spreadsheet"));        
+        await waitFor(() => expect(router.state.location.hash).toBe("spreadsheet"));        
 
         const mappingsBtn = await screen.findByRole("button", { name: "Show Data Mappings" });
         fireEvent.click(mappingsBtn);
-        await waitFor(() => expect(history.location.hash).toBe("#mappings"));    
+        await waitFor(() => expect(router.state.location.hash).toBe("mappings"));    
 
         const sourceBtn = await screen.findByRole("button", { name: "Show Source" });
         fireEvent.click(sourceBtn);
-        await waitFor(() => expect(history.location.hash).toBe("#source"));    
+        await waitFor(() => expect(router.state.location.hash).toBe("source"));    
     });
 
 });

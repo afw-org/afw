@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useHistory} from "react-router";
+import {useNavigate} from "@tanstack/react-router";
 import LinearProgress from "@mui/material/LinearProgress";
 
 import Database from "mdi-material-ui/Database";
@@ -20,7 +20,7 @@ import {useAppCore, useTheme} from "../hooks";
 
 const StatusSection = ({ route, title, content }) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
 
     return (
@@ -30,8 +30,8 @@ const StatusSection = ({ route, title, content }) => {
                     <div
                         role="button"
                         tabIndex="0"
-                        onKeyPress={() => history.push(route)}
-                        onClick={() => history.push(route)}
+                        onKeyPress={() => navigate({ href: route })}
+                        onClick={() => navigate({ href: route })}
                         style={{ cursor: "pointer" }}
                     >   
                         <Typography color="primary" size="6" text={title} />                                                    
@@ -43,7 +43,7 @@ const StatusSection = ({ route, title, content }) => {
                         variant="text" 
                         label="Application" 
                         endIcon="chevron_right"
-                        onClick={() => history.push("/Admin/Application")} 
+                        onClick={() => navigate({ href: "/Admin/Application" })} 
                     />
                 </div>
             }
@@ -55,7 +55,7 @@ const Status = () => {
     const {application, extensions, adapters, services, logs} = useAppCore();
     const {server} = useServer();
     const {systemInfo} = useSystemInfo();
-    const history = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
 
     const {startTime, concurrent, maxConcurrent, threadCount, serverVersion} = server ? server : {};
@@ -117,8 +117,8 @@ const Status = () => {
                                         <div
                                             role="button"
                                             tabIndex="0"
-                                            onKeyPress={() => history.push("/Admin/Server")}
-                                            onClick={() => history.push("/Admin/Server")}
+                                            onKeyPress={() => navigate({ href: "/Admin/Server" })}
+                                            onClick={() => navigate({ href: "/Admin/Server" })}
                                             style={{ cursor: "pointer" }}
                                         >
                                             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -148,7 +148,7 @@ const Status = () => {
                                             color="primary"
                                             variant="text" 
                                             label="Server" 
-                                            onClick={() => history.push("/Admin/Server")} 
+                                            onClick={() => navigate({ href: "/Admin/Server" })} 
                                             endIcon="chevron_right"
                                         />
                                     </div>
@@ -238,8 +238,8 @@ const Status = () => {
                                         <div
                                             role="button"
                                             tabIndex="0"
-                                            onKeyPress={() => history.push("/Admin/Extensions")}
-                                            onClick={() => history.push("/Admin/Extensions")}
+                                            onKeyPress={() => navigate({ href: "/Admin/Extensions" })}
+                                            onClick={() => navigate({ href: "/Admin/Extensions" })}
                                             style={{ display: "flex", justifyContent: "space-between", minWidth: "150px", cursor: "pointer" }}
                                         >
                                             <div>
@@ -265,7 +265,7 @@ const Status = () => {
                                             color="primary"
                                             variant="text" 
                                             label="Extensions" 
-                                            onClick={() => history.push("/Admin/Extensions")} 
+                                            onClick={() => navigate({ href: "/Admin/Extensions" })} 
                                             endIcon="chevron_right"
                                         />
                                     </div>
@@ -285,8 +285,8 @@ const Status = () => {
                                         <div
                                             role="button"
                                             tabIndex="0"
-                                            onKeyPress={() => history.push("/Admin/Services")}
-                                            onClick={() => history.push("/Admin/Services")}
+                                            onKeyPress={() => navigate({ href: "/Admin/Services" })}
+                                            onClick={() => navigate({ href: "/Admin/Services" })}
                                             style={{ display: "flex", justifyContent: "space-between", minWidth: "150px", cursor: "pointer" }}
                                         >
                                             <div>
@@ -315,7 +315,7 @@ const Status = () => {
                                             color="primary"
                                             variant="text" 
                                             label="Services" 
-                                            onClick={() => history.push("/Admin/Services")} 
+                                            onClick={() => navigate({ href: "/Admin/Services" })} 
                                             endIcon="chevron_right"
                                         />
                                     </div>
@@ -335,8 +335,8 @@ const Status = () => {
                                         <div
                                             role="button"
                                             tabIndex="0"
-                                            onKeyPress={() => history.push("/Admin/Adapters")}
-                                            onClick={() => history.push("/Admin/Adapters")}
+                                            onKeyPress={() => navigate({ href: "/Admin/Adapters" })}
+                                            onClick={() => navigate({ href: "/Admin/Adapters" })}
                                             style={{ display: "flex", justifyContent: "space-between", minWidth: "150px", cursor: "pointer" }}
                                         >
                                             <div>
@@ -365,7 +365,7 @@ const Status = () => {
                                             color="primary"
                                             variant="text" 
                                             label="Adapters" 
-                                            onClick={() => history.push("/Admin/Adapters")} 
+                                            onClick={() => navigate({ href: "/Admin/Adapters" })} 
                                             endIcon="chevron_right"
                                         />
                                     </div>
@@ -385,8 +385,8 @@ const Status = () => {
                                         <div
                                             role="button"
                                             tabIndex="0"
-                                            onKeyPress={() => history.push("/Admin/Logs")}
-                                            onClick={() => history.push("/Admin/Logs")}
+                                            onKeyPress={() => navigate({ href: "/Admin/Logs" })}
+                                            onClick={() => navigate({ href: "/Admin/Logs" })}
                                             style={{ display: "flex", justifyContent: "space-between", minWidth: "150px", cursor: "pointer" }}
                                         >
                                             <div>
@@ -415,7 +415,7 @@ const Status = () => {
                                             color="primary"
                                             variant="text" 
                                             label="Logs" 
-                                            onClick={() => history.push("/Admin/Logs")} 
+                                            onClick={() => navigate({ href: "/Admin/Logs" })} 
                                             endIcon="chevron_right"
                                         />
                                     </div>

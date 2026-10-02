@@ -1,7 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {MemoryRouter} from "react-router-dom";
-import {render, waitFor, fireEvent, screen, waitForSpinner} from "../test-utils";
-import Server from "./Server";
+import {renderRoute, waitFor, fireEvent, screen, waitForSpinner} from "../test-utils";
 
 import server from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveServer_/current.json";
 import serverMeta from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveObjectType_/_AdaptiveServer_.json";
@@ -11,11 +9,7 @@ describe("Server Tests", () => {
 
     test("Server renders", async () => {
 
-        render(
-            <MemoryRouter initialEntries={[ "/Admin/Server" ]}>
-                <Server /> 
-            </MemoryRouter>
-        );
+        renderRoute("/Admin/Server");
         
         await waitForSpinner();
 
@@ -31,11 +25,7 @@ describe("Server Tests", () => {
 
     test("Tabs display server data", async () => {
 
-        render(
-            <MemoryRouter initialEntries={[ "/Admin/Server" ]}>
-                <Server /> 
-            </MemoryRouter>
-        );   
+        renderRoute("/Admin/Server");   
 
         await waitForSpinner();
 

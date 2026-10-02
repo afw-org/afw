@@ -1,9 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     within,
     screen,
@@ -11,9 +11,6 @@ import {
     mswPostCallback,
     waitForSpinner
 } from "../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../Models";
 
 describe("ModelDeploy Tests", () => {    
 
@@ -33,9 +30,6 @@ describe("ModelDeploy Tests", () => {
     });    
 
     test("Step 1 Cancel", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1");
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
@@ -71,11 +65,7 @@ describe("ModelDeploy Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -103,9 +93,6 @@ describe("ModelDeploy Tests", () => {
 
     test("Step 3 Deploy", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1");
-
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -140,11 +127,7 @@ describe("ModelDeploy Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();

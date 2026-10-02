@@ -1,11 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {createMemoryHistory} from "history";
-import {Router} from "react-router-dom";
 
 
-import {render, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
+import {renderRoute, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
 
-import Objects from "../Objects";
 
 
 describe("ObjectsBatchEdit Tests", () => {    
@@ -16,14 +13,7 @@ describe("ObjectsBatchEdit Tests", () => {
 
     test("ObjectsBatchEdit renders", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Objects/files/_AdaptiveObjectType_");
-
-        render(
-            <Router history={history}>
-                <Objects /> 
-            </Router>
-        );
+        renderRoute("/Objects/files/_AdaptiveObjectType_");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         

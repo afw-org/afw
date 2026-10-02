@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect} from "react";
-import {useHistory} from "react-router";
+import {useNavigate} from "@tanstack/react-router";
 import Container from "../../../common/Container";
 
 import {
@@ -74,7 +74,7 @@ const commentWrapped = (s) => {
 const ObjectTypesMainContent = ({ model, propertyName, onReloadTree }) => {
 
     const [showAdd, setShowAdd] = useState();
-    const history = useHistory();
+    const navigate = useNavigate();
     const {editable} = useOperational();
 
     const objectTypes = model.getPropertyValue(propertyName);
@@ -121,7 +121,7 @@ const ObjectTypesMainContent = ({ model, propertyName, onReloadTree }) => {
                     setShowAdd(false);
                     onReloadTree();
 
-                    history.push("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectTypeId + treeHash);
+                    navigate({ href: "/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectTypeId + treeHash });
                 }}
             />
         </Container>
@@ -139,7 +139,7 @@ const ObjectTypesMainContent = ({ model, propertyName, onReloadTree }) => {
 const PropertyTypesMainContent = ({ model, objectType, propertyName, onReloadTree }) => {
 
     const [showAdd, setShowAdd] = useState();    
-    const history = useHistory();
+    const navigate = useNavigate();
     const {editable} = useOperational();
 
     const propertyTypes = model.getPropertyValue(propertyName);
@@ -191,9 +191,9 @@ const PropertyTypesMainContent = ({ model, objectType, propertyName, onReloadTre
                         onReloadTree();
 
                         if (objectType)
-                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyTypeName + treeHash);
+                            navigate({ href: "/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyTypeName + treeHash });
                         else
-                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/propertyTypes/" + propertyTypeName + treeHash);
+                            navigate({ href: "/Admin/Models/" + adapterId + "/" + modelId + "/propertyTypes/" + propertyTypeName + treeHash });
                     }}
                 />
             }
@@ -212,7 +212,7 @@ const PropertyTypesMainContent = ({ model, objectType, propertyName, onReloadTre
 const ObjectTypeMainContent = ({ property, objectType, model, onReloadTree }) => {
 
     const {editable} = useOperational();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [showAddProperty, setShowAddProperty] = useState();
     const [, setShowAddCustom] = useState();
 
@@ -293,9 +293,9 @@ const ObjectTypeMainContent = ({ property, objectType, model, onReloadTree }) =>
                         onReloadTree();
 
                         if (objectType)
-                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyName + treeHash);
+                            navigate({ href: "/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyName + treeHash });
                         else
-                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/propertyTypes/" + propertyName + treeHash);
+                            navigate({ href: "/Admin/Models/" + adapterId + "/" + modelId + "/propertyTypes/" + propertyName + treeHash });
                     }}
                 />
             }

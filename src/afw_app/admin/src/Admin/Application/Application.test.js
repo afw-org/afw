@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {render, waitFor, fireEvent, mswPostCallback, screen, waitForSpinner} from "../test-utils";
-import Application from "./Application";
+import {renderRoute, waitFor, fireEvent, mswPostCallback, screen, waitForSpinner} from "../test-utils";
 
 import applicationConf from "@afw/test/build/cjs/__mocks__/get_object/conf/_AdaptiveConf_application/AFWDev.json";
 
@@ -19,7 +18,7 @@ describe("Application Tests", () => {
 
     test("Tabs display application configuration data", async () => {
 
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();            
         expect(await screen.findByLabelText("Show Object in Layout")).toBeInTheDocument();   
@@ -61,7 +60,7 @@ describe("Application Tests", () => {
 
     test("Switch between source and layout", async () => {
 
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
         
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         expect(await screen.findByLabelText("Show Object Source")).toBeInTheDocument();
@@ -72,7 +71,7 @@ describe("Application Tests", () => {
 
     test("Edit mode", async () => {
 
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();
         fireEvent.click(screen.getByLabelText("Edit Object"));
@@ -109,7 +108,7 @@ describe("Application Tests", () => {
 
     test("Change Title and make sure it saves properly", async () => {
 
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();
 
@@ -133,7 +132,7 @@ describe("Application Tests", () => {
 
     test("Change General fields, make sure they all save properly", async () => {
         
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();
 
@@ -183,7 +182,7 @@ describe("Application Tests", () => {
 
     test("Change Extension fields, make sure they all save properly", async () => {
         
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();
 
@@ -219,7 +218,7 @@ describe("Application Tests", () => {
 
     test("Change Flag fields, make sure they all save properly", async () => {
         
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();
 
@@ -254,7 +253,7 @@ describe("Application Tests", () => {
 
     test("Change Authorization fields, make sure they all save properly", async () => {
         
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();
 
@@ -291,7 +290,7 @@ describe("Application Tests", () => {
 
     test("Change Variables fields, make sure they all save properly", async () => {
         
-        render( <Application /> );        
+        renderRoute("/Admin/Application");        
 
         expect(await screen.findByLabelText("Edit Object")).toBeInTheDocument();
 

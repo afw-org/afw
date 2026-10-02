@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {Route, Switch} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import LogDetails from "./LogDetails";
 import {useAppCore} from "../../../hooks";
@@ -13,14 +13,36 @@ import {
 const Logs = () => {
 
     const {logs} = useAppCore();
+    /* the route's optional param (see ../../routes.js) */
+    const {logId: routeLogId} = useParams({ strict: false });
 
     if (!logs)
         return null;
 
+    /* one log, chosen by the route's logId */
+    const renderLog = () => {
+        let selectedLog;
+
+        if (!logs)
+            return <div />;
+
+        logs.forEach((log) => {
+            if (log.logId === routeLogId)
+                selectedLog = log;
+        });
+            
+        return (
+            <div>                                
+                <LogDetails log={selectedLog} />
+            </div>
+        );
+    };
+
     return (
         <div>                
-            <Switch>
-                <Route exact path="/Admin/Logs/" render={(props) => 
+            {
+                /* one log (by the route's logId), or the list */
+                routeLogId ? renderLog() : (
                     <div>                               
                         <Message
                             contains={
@@ -38,7 +60,7 @@ const Logs = () => {
                                     key: "LogId", name: "Id", minWidth: 150, maxWidth: 200, isResizable: true,
                                     onRender: (log) => {                                            
                                         let logId = log.logId;
-                                        let url = props.match.url + "/" + encodeURIComponent(logId);
+                                        let url = "/Admin/Logs/" + encodeURIComponent(logId);
 
                                         return (
                                             <Link url={url} text={logId} />
@@ -61,25 +83,8 @@ const Logs = () => {
                             selectionMode="none"
                         />
                     </div>
-                }/>
-                <Route path="/Admin/Logs/:logId" render={(props) => {
-                    let selectedLog;
-
-                    if (!logs)
-                        return <div />;
-
-                    logs.forEach((log) => {
-                        if (log.logId === decodeURIComponent(props.match.params.logId))
-                            selectedLog = log;
-                    });
-                    
-                    return (
-                        <div>                                
-                            <LogDetails log={selectedLog} />
-                        </div>
-                    );
-                }} />
-            </Switch>
+                )
+            }
         </div>
     );
 };

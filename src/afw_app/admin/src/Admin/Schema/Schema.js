@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useMemo} from "react";
-import {Route, Switch, useLocation} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import {
     Breadcrumb,
@@ -19,7 +19,7 @@ import {ContextualHelpRoutes} from "./ContextualHelp";
  * Schema
  *
  * Main component for routing Schema parts of the App.  It 
- * parses the React Router pathname and generates the Breadcrumb
+ * reads the route's params and generates the Breadcrumb
  * items, then displays a Table of adapters to select from.  Object 
  * Type requests are routed to ObjectTypes component.
  */
@@ -28,39 +28,28 @@ const Schema = () => {
     const [showHelp, setShowHelp] = useState(false);
 
     const theme = useTheme();
-    const {pathname} = useLocation();
     const {adapters} = useAppCore();
 
-    /* parse the pathname and break it into Breadcrumbs */
-    const {adapterId, breadcrumbItems} = useMemo(() => {
-        let [, adapterId, objectType, propertyType] = pathname.split("/").splice(2);
+    /* the route's optional params: adapter > object type > property */
+    const {adapterId, objectTypeId, propertyName} = useParams({ strict: false });
 
-        let breadcrumbItems = [
+    /* break them into Breadcrumbs */
+    const breadcrumbItems = useMemo(() => {
+        const items = [
             { text: "Admin", key: "Admin", link: "/Admin" },
             { text: "Schema", key: "Schema", link: "/Admin/Schema" }
         ];
 
-        /* construct our breadcrumb trail from the matching path */
-        if (adapterId)
-            breadcrumbItems.push({
-                text: adapterId, key: adapterId,
-                link: "/Admin/Schema/" + adapterId
-            });
+        let link = "/Admin/Schema";
+        for (const segment of [adapterId, objectTypeId, propertyName]) {
+            if (!segment)
+                break;
+            link += "/" + encodeURIComponent(segment);
+            items.push({ text: segment, key: segment, link });
+        }
 
-        if (objectType)
-            breadcrumbItems.push({
-                text: objectType, key: objectType,
-                link: "/Admin/Schema/" + adapterId + "/" + objectType
-            });
-
-        if (propertyType)
-            breadcrumbItems.push({
-                text: propertyType, key: propertyType,
-                link: "/Admin/Schema/" + adapterId + "/" + objectType + "/" + propertyType
-            });
-
-        return {adapterId, breadcrumbItems};
-    }, [pathname]);
+        return items;
+    }, [adapterId, objectTypeId, propertyName]);
 
     const {adapter, error} = useMemo(() => {
         if (adapters && adapterId) {
@@ -89,8 +78,11 @@ const Schema = () => {
                 </div>                     
             </div>
             <div style={{ flex: 1, overflow: "auto" }}>
-                <Switch>
-                    <Route exact path="/Admin/Schema/" render={() => 
+                {
+                    /* an adapter's Object Types, or the list of adapters */
+                    adapterId ? (
+                        adapter ? <ObjectTypes adapterId={adapterId} adapter={adapter} /> : null
+                    ) : (
                         <Table 
                             rows={adapters ? adapters : []}
                             columns={[
@@ -120,19 +112,8 @@ const Schema = () => {
                             ]}
                             selectionMode="none"
                         />
-                    } />
-
-                    <Route path="/Admin/Schema/:adapterId" render={() => {
-                        if (adapterId && adapter) {
-                            return (
-                                <ObjectTypes 
-                                    adapterId={adapterId}
-                                    adapter={adapter}                            
-                                />
-                            );
-                        } else return null;
-                    }} />
-                </Switch> 
+                    )
+                }
             </div>
             <ContextualHelp 
                 open={showHelp}

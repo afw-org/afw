@@ -1,47 +1,47 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {createMemoryHistory} from "history";
-import {Router} from "react-router-dom";
 import {waitForSpinner, mswPostCallback, mswGetCallback, screen, server, http, HttpResponse} from "../../test-utils";
 
-import {render, waitFor} from "../../test-utils";
+import {renderRoute, waitFor} from "../../test-utils";
+import userEvent from "@testing-library/user-event";
 
-import Home from "../Home";
-
-describe("Home Tests", () => {    
+describe("Home Tests", () => {
 
     beforeEach(() => {
         mswPostCallback.mockClear();
-    });    
+    });
 
     test("Home renders", async () => {
 
-        render( <Home /> );        
+        renderRoute("/");
 
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());  
-        await waitForSpinner();                      
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
 
-        expect(await screen.findByTestId("admin-home")).toBeInTheDocument();              
+        expect(await screen.findByTestId("admin-home")).toBeInTheDocument();
     });
 
     test("Home page shows appropriate content", async () => {
-        const history = createMemoryHistory();
-        history.push("/Home");
 
-        render(
-            <Router history={history}>
-                <Home /> 
-            </Router>
-        );
+        renderRoute("/Home");
 
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
-        await waitForSpinner();        
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
 
         expect(await screen.findByTestId("admin-home")).toBeInTheDocument();
-    });    
-    
+    });
+
+    test("A section's button navigates to it", async () => {
+        const user = userEvent.setup();
+
+        const {router} = renderRoute("/Home");
+        await waitForSpinner();
+
+        await user.click(await screen.findByRole("button", { name: "Tools" }));
+
+        await waitFor(() => expect(router.state.location.pathname).toBe("/Tools"));
+    });
+
     test("Home page error when unable to fetch data", async () => {
-        const history = createMemoryHistory();
-        history.push("/Home");
 
         server.use(
             http.post("/afw", ({request}) => {
@@ -53,15 +53,11 @@ describe("Home Tests", () => {
                 return HttpResponse.text("Bad Gateway", {status: 502, statusText: "Bad Gateway"});
             })
         );
-        
-        render(
-            <Router history={history}>
-                <Home /> 
-            </Router>
-        );
-        
-        await waitForSpinner();               
-        
+
+        renderRoute("/Home");
+
+        await waitForSpinner();
+
         await waitFor(() => expect(screen.getByText("Error Loading Application Data")).toBeInTheDocument());
-    });    
+    });
 });

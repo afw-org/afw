@@ -1,18 +1,15 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     screen,
     mswPostCallback,
     waitForSpinner,
-    fireEvent,
+    fireEvent
 } from "../../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../../Models";
 
 describe("ModelSource Tests", () => {    
 
@@ -42,9 +39,6 @@ describe("ModelSource Tests", () => {
 
     test("View source", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#source");
-
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -79,11 +73,7 @@ describe("ModelSource Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#source");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -93,9 +83,6 @@ describe("ModelSource Tests", () => {
 
     test("View source (editable)", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1#source");
-
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
             http.post("/afw", async ({request}) => {
@@ -130,11 +117,7 @@ describe("ModelSource Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/test1#source");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();

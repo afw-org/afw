@@ -1,7 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {MemoryRouter} from "react-router-dom";
-import {render, screen, waitFor, mswPostCallback, waitForSpinner} from "../test-utils";
-import Provisioning from "./Provisioning";
+import {renderRoute, screen, waitFor, mswPostCallback, waitForSpinner} from "../test-utils";
 
 
 describe("Provisioning Tests", () => {    
@@ -12,11 +10,7 @@ describe("Provisioning Tests", () => {
 
     test("Provisioning renders", async () => {
  
-        render(
-            <MemoryRouter initialEntries={[ "/Admin/Provisioning" ]}>
-                <Provisioning /> 
-            </MemoryRouter>
-        );  
+        renderRoute("/Admin/Provisioning");  
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());                        
         await waitForSpinner();

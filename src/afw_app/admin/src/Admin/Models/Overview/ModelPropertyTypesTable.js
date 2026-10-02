@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useMemo} from "react";
-import {useLocation} from "react-router-dom";
+import {useLocationHash} from "../../../router/hooks";
 
 import {
     Button,
@@ -337,7 +337,7 @@ export const ModelPropertyTypeCopy = (props) => {
  */
 export const ModelPropertyTypesTable = (props) => {
 
-    const {hash} = useLocation();
+    const hash = useLocationHash();
     const [selectedPropertyTypes, setSelectedPropertyTypes] = useState([]);
     const [createOption, setCreateOption] = useState();
     const [showNewPropertyType, setShowNewPropertyType] = useState(false);

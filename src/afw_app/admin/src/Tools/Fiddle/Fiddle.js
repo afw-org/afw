@@ -5,7 +5,7 @@ import {
     useRef, 
     useCallback,     
 } from "react";
-import {Prompt} from "react-router";
+import {useBlocker} from "@tanstack/react-router";
 
 import {
     Button,
@@ -606,6 +606,12 @@ export const Fiddle = () => {
     const {storage, onChanged: onStorageChanged}        = useLocalJSONStorage("fiddle", fiddleLocalStorageDefault);             
     const [state, dispatch]                             = useReducer(reducer, initialState);    
 
+    /* with unsaved changes, confirm before leaving Fiddle */
+    useBlocker({
+        disabled: !state.dirty,
+        shouldBlockFn: () => !window.confirm("You have unsaved changes.  Are you sure you want to leave?"),
+    });
+
     const activeTabContent = (state.tabs.length > 0) ? state.tabs[state.activeTab] : undefined;
     const activeTabLabel = activeTabContent?.label;
     const input = activeTabContent?.source;
@@ -1189,10 +1195,6 @@ export const Fiddle = () => {
                         onSaveVfsFile(fileName, node.path);                    
                 }}
             />
-            <Prompt 
-                when={state.dirty ? true : false}
-                message={() => "You have unsaved changes.  Are you sure you want to leave?"}
-            />   
         </>
     );
 };

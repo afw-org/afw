@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect} from "react";
-import {Switch, Route, useHistory, useLocation} from "react-router";
+import {useParams, useNavigate} from "@tanstack/react-router";
 import Container from "../common/Container";
 
 import {
@@ -50,8 +50,9 @@ const Objects = () => {
     const breadcrumbItems = useBreadcrumbs(breadcrumbsRoot);
     const {application} = useAppCore();
     const {notification, marginHeight} = useApplication();
-    const history = useHistory();
-    const {pathname} = useLocation();
+    const navigate = useNavigate();
+    /* the route's optional params (see routes.js) */
+    const {adapterId, objectTypeId} = useParams({ strict: false });
     const theme = useTheme();
     
 
@@ -64,15 +65,15 @@ const Objects = () => {
      */
     useEffect(() => {
         /* eslint-disable react-hooks/set-state-in-effect -- selectedAdapterId is also imperatively set by onSelectAdapterId below, so it can't be a pure useMemo derivation */
-        if (pathname && pathname.split("/").length > 2)
-            setSelectedAdapterId(pathname.split("/")[2]);
+        if (adapterId)
+            setSelectedAdapterId(adapterId);
         else if (application)
             setSelectedAdapterId(application.getPropertyValue("defaultAdapterId"));
         else
             // default to afw, if path and application do not specify
             setSelectedAdapterId("afw");
         /* eslint-enable react-hooks/set-state-in-effect */
-    }, [pathname, application]);
+    }, [adapterId, application]);
 
     /**
      * Callbacks fired when the user selects an adapterId or an objectType.  For now, we
@@ -96,7 +97,7 @@ const Objects = () => {
      * the React Router code will be leveraged to retrieve the list of objects.
      */
     const onRetrieve = () => {
-        history.push("/Objects/" + selectedAdapterId + "/" + selectedObjectTypeId + "?" + queryCriteria);
+        navigate({ href: "/Objects/" + encodeURIComponent(selectedAdapterId) + "/" + encodeURIComponent(selectedObjectTypeId) + "?" + queryCriteria });
     };
     
     /**
@@ -106,7 +107,7 @@ const Objects = () => {
      * the React Router code will be leveraged to get the object to be edited.
      */
     const onGet = () => {
-        history.push("/Objects/" + selectedAdapterId + "/" + selectedObjectTypeId + "/" + objectId);
+        navigate({ href: "/Objects/" + encodeURIComponent(selectedAdapterId) + "/" + encodeURIComponent(selectedObjectTypeId) + "/" + encodeURIComponent(objectId) });
     };
     
     /**
@@ -161,215 +162,206 @@ const Objects = () => {
                     <ContextualHelpButton showHelp={setShowHelp} />                                         
                 </div>
                 <div style={{ flex: 1, overflow: "auto" }}>
-                    <Switch>                       
-                        <Route path={"/Objects/:adapterId/:objectTypeId"} render={(props) => {                            
-                            let {adapterId, objectTypeId} = props.match.params;
-
-                            adapterId = decodeURIComponent(adapterId);
-                            objectTypeId = decodeURIComponent(objectTypeId);
-
-                            return (
-                                <ObjectsTable
-                                    adapterId={adapterId}
-                                    objectTypeId={objectTypeId}     
-                                    objectTypeObject={selectedObjectTypeObject}     
-                                    onSelectObject={setSelectedObject}                  
-                                />
-                            );
-                        }} />
-                        <Route render={() => {                            
-                            return (
-                                <div style={{ padding: theme.spacing(1) }}>       
-                                    <Responsive 
-                                        items={[
-                                            {       
-                                                breakpoints: {
-                                                    small: 12,
-                                                    medium: 9,
-                                                    large: 6,
-                                                    xl: 4,
-                                                    xxl: 3
-                                                },                                  
-                                                contains: 
-                                                    <Tooltip 
-                                                        content={selectedAdapter?.properties?.description || ""}
-                                                        delay={2000}
-                                                        target={
-                                                            <div>
-                                                                <AdapterDropdown 
-                                                                    id="admin-objects-adapter-dropdown"
-                                                                    value={selectedAdapterId}
-                                                                    onChanged={onSelectAdapterId}
-                                                                />                                                                
-                                                            </div>
-                                                        }
-                                                    />  
-                                            }
-                                        ]}
-                                    />  
-                                    <Responsive 
-                                        items={[
-                                            {       
-                                                breakpoints: {
-                                                    small: 12,
-                                                    medium: 9,
-                                                    large: 6,
-                                                    xl: 4,
-                                                    xxl: 3
-                                                },                                  
-                                                contains: 
-                                                    <Tooltip 
-                                                        content={selectedObjectTypeObject?.getPropertyValue("description") || ""}
-                                                        delay={2000}
-                                                        target={
-                                                            <div>
-                                                                <ObjectTypeDropdown      
-                                                                    id="admin-objects-objectType-dropdown"                                                                 
-                                                                    adapterId={selectedAdapterId}
-                                                                    label="Object Type"
-                                                                    description="Select an Object Type Id."                                
-                                                                    value={selectedObjectTypeId}
-                                                                    onChanged={onSelectObjectType}        
-                                                                    requireEntity={true}     
-                                                                    onError={(error) => notification({ message: error, type: "error" })}    
-                                                                    defaultFirstNonAdaptive={(selectedAdapterId !== "afw")}                                                   
-                                                                />                                                                
-                                                            </div>
-                                                        }
-                                                    />   
-                                            }
-                                        ]}
-                                    />                                    
-                                    <Responsive 
-                                        items={[
-                                            {
-                                                breakpoints: {
-                                                    small: 12,
-                                                    medium: 9,
-                                                    large: 8,
-                                                    xl: 6,
-                                                    xxl: 4,
-                                                },
-                                                contains:
-                                                    operation === "retrieve" ? (     
-                                                        <div style={{ width: "calc(100% - 16px)", display: "flex", alignItems: "center" }}>                                                                                                       
-                                                            <TextField             
-                                                                label="Query Criteria"
-                                                                placeholder="property=value"
-                                                                description="Enter the Query Criteria."
-                                                                value={queryCriteria}
-                                                                onChanged={setQueryCriteria}
-                                                                onEnter={onRetrieve}                                                            
-                                                            />
-                                                            <Button   
-                                                                label="Build Query Criteria"            
-                                                                tooltip="Build Query Criteria"
-                                                                type="icon"
-                                                                icon="code"
-                                                                onClick={() => setBuildQueryCriteria(true)}
-                                                            />
-                                                            <Checkbox                                                                                                
-                                                                label="Retrieve"
-                                                                value={operation === "retrieve" ? true : false}
-                                                                onChanged={checked => setOperation(checked ? "retrieve" : "get")}
-                                                            />
-                                                        </div>                                                    
-                                                    ) :
-                                                        <div style={{ display: "flex", alignItems: "center" }}>
-                                                            <TextField 
-                                                                style={{ flex: 1 }}                                             
-                                                                label="Object Id"
-                                                                description="Enter the Object Id of the object to be returned."
-                                                                value={objectId}                                                            
-                                                                onChanged={setObjectId}
-                                                            />
-                                                            <Checkbox             
-                                                                style={{ marginLeft: theme.spacing(2) }}                                                                                      
-                                                                label="Retrieve"
-                                                                value={operation === "retrieve" ? true : false}
-                                                                onChanged={checked => setOperation(checked ? "retrieve" : "get")}
-                                                            />
+                    {
+                        /* a type's objects (or one object, see ObjectsTable), or the selection view */
+                        (adapterId && objectTypeId) ? (
+                            <ObjectsTable
+                                adapterId={adapterId}
+                                objectTypeId={objectTypeId}     
+                                objectTypeObject={selectedObjectTypeObject}     
+                                onSelectObject={setSelectedObject}                  
+                            />
+                        ) : (
+                            <div style={{ padding: theme.spacing(1) }}>       
+                                <Responsive 
+                                    items={[
+                                        {       
+                                            breakpoints: {
+                                                small: 12,
+                                                medium: 9,
+                                                large: 6,
+                                                xl: 4,
+                                                xxl: 3
+                                            },                                  
+                                            contains: 
+                                                <Tooltip 
+                                                    content={selectedAdapter?.properties?.description || ""}
+                                                    delay={2000}
+                                                    target={
+                                                        <div>
+                                                            <AdapterDropdown 
+                                                                id="admin-objects-adapter-dropdown"
+                                                                value={selectedAdapterId}
+                                                                onChanged={onSelectAdapterId}
+                                                            />                                                                
                                                         </div>
-                                            }
-                                        ]}
-                                    />
-                                    <Responsive 
-                                        items={[
-                                            {
-                                                breakpoints: {
-                                                    small: 12,
-                                                    medium: 6,
-                                                    large: 6,
-                                                    xl: 4,
-                                                    xxl: 3,
-                                                },
-                                                contains: 
-                                                    <div style={{ display: "flex", marginTop: theme.spacing(4) }}>                                                        
-                                                        <div>                                                            
-                                                            {
-                                                                operation === "retrieve" ?                                                                                                                                                    
-                                                                    <Button                                          
-                                                                        color="primary"
-                                                                        variant="contained"
-                                                                        label="Retrieve"
-                                                                        aria-label="Retrieve Objects"
-                                                                        icon="search"
-                                                                        size="small"
-                                                                        onClick={onRetrieve}
-                                                                        disabled={!(selectedAdapterId && selectedObjectTypeId)}
-                                                                        tooltip="Retrieve Objects"
-                                                                    /> :
-                                                                    <Button                                             
-                                                                        color="primary"
-                                                                        variant="contained"
-                                                                        label="Get"
-                                                                        aria-label="Get Object"
-                                                                        icon="search"
-                                                                        size="small"
-                                                                        onClick={onGet}     
-                                                                        disabled={!(selectedAdapterId && selectedObjectTypeId && objectId)}       
-                                                                        tooltip="Get Object"                                                            
-                                                                    />
-                                                            }                                                            
+                                                    }
+                                                />  
+                                        }
+                                    ]}
+                                />  
+                                <Responsive 
+                                    items={[
+                                        {       
+                                            breakpoints: {
+                                                small: 12,
+                                                medium: 9,
+                                                large: 6,
+                                                xl: 4,
+                                                xxl: 3
+                                            },                                  
+                                            contains: 
+                                                <Tooltip 
+                                                    content={selectedObjectTypeObject?.getPropertyValue("description") || ""}
+                                                    delay={2000}
+                                                    target={
+                                                        <div>
+                                                            <ObjectTypeDropdown      
+                                                                id="admin-objects-objectType-dropdown"                                                                 
+                                                                adapterId={selectedAdapterId}
+                                                                label="Object Type"
+                                                                description="Select an Object Type Id."                                
+                                                                value={selectedObjectTypeId}
+                                                                onChanged={onSelectObjectType}        
+                                                                requireEntity={true}     
+                                                                onError={(error) => notification({ message: error, type: "error" })}    
+                                                                defaultFirstNonAdaptive={(selectedAdapterId !== "afw")}                                                   
+                                                            />                                                                
                                                         </div>
-                                                        <div style={{ marginLeft: theme.spacing(2) }}>         
-                                                            <Button                                                                                              
-                                                                label="New Object"
-                                                                variant="contained"
-                                                                icon="add"
-                                                                size="small"
-                                                                onClick={() => setShowNewObject(true)}        
-                                                                tooltip={canAdd ? "Create New Object" : "Can't Create These Objects"}
-                                                            />                                                                                                                                                                                                                                        
-                                                        </div>
+                                                    }
+                                                />   
+                                        }
+                                    ]}
+                                />                                    
+                                <Responsive 
+                                    items={[
+                                        {
+                                            breakpoints: {
+                                                small: 12,
+                                                medium: 9,
+                                                large: 8,
+                                                xl: 6,
+                                                xxl: 4,
+                                            },
+                                            contains:
+                                                operation === "retrieve" ? (     
+                                                    <div style={{ width: "calc(100% - 16px)", display: "flex", alignItems: "center" }}>                                                                                                       
+                                                        <TextField             
+                                                            label="Query Criteria"
+                                                            placeholder="property=value"
+                                                            description="Enter the Query Criteria."
+                                                            value={queryCriteria}
+                                                            onChanged={setQueryCriteria}
+                                                            onEnter={onRetrieve}                                                            
+                                                        />
+                                                        <Button   
+                                                            label="Build Query Criteria"            
+                                                            tooltip="Build Query Criteria"
+                                                            type="icon"
+                                                            icon="code"
+                                                            onClick={() => setBuildQueryCriteria(true)}
+                                                        />
+                                                        <Checkbox                                                                                                
+                                                            label="Retrieve"
+                                                            value={operation === "retrieve" ? true : false}
+                                                            onChanged={checked => setOperation(checked ? "retrieve" : "get")}
+                                                        />
+                                                    </div>                                                    
+                                                ) :
+                                                    <div style={{ display: "flex", alignItems: "center" }}>
+                                                        <TextField 
+                                                            style={{ flex: 1 }}                                             
+                                                            label="Object Id"
+                                                            description="Enter the Object Id of the object to be returned."
+                                                            value={objectId}                                                            
+                                                            onChanged={setObjectId}
+                                                        />
+                                                        <Checkbox             
+                                                            style={{ marginLeft: theme.spacing(2) }}                                                                                      
+                                                            label="Retrieve"
+                                                            value={operation === "retrieve" ? true : false}
+                                                            onChanged={checked => setOperation(checked ? "retrieve" : "get")}
+                                                        />
                                                     </div>
-                                            }  
-                                        ]}
-                                    />
-                                    <ObjectsQueryBuilder 
-                                        open={buildQueryCriteria}
-                                        disabled={selectedObjectTypeObject ? false : true}
-                                        objectTypeObject={selectedObjectTypeObject}
-                                        onDismiss={() => setBuildQueryCriteria(false)}                             
-                                        adapterId={selectedAdapterId}
-                                        objectTypeId={selectedObjectTypeId ? selectedObjectTypeId : ""}
-                                        queryCriteria={queryCriteria}
-                                        onApply={(queryCriteria) => {
-                                            setQueryCriteria(queryCriteria);
-                                            setBuildQueryCriteria(false);
-                                        }}
-                                    />
-                                    <ObjectNew 
-                                        open={showNewObject}
-                                        adapterId={selectedAdapterId}
-                                        objectTypeId={selectedObjectTypeId ? selectedObjectTypeId : ""}
-                                        onAddObject={onAddObject}
-                                        onDismiss={() => setShowNewObject(false)}
-                                    />  
-                                </div>
-                            );
-                        }} />
-                    </Switch>
+                                        }
+                                    ]}
+                                />
+                                <Responsive 
+                                    items={[
+                                        {
+                                            breakpoints: {
+                                                small: 12,
+                                                medium: 6,
+                                                large: 6,
+                                                xl: 4,
+                                                xxl: 3,
+                                            },
+                                            contains: 
+                                                <div style={{ display: "flex", marginTop: theme.spacing(4) }}>                                                        
+                                                    <div>                                                            
+                                                        {
+                                                            operation === "retrieve" ?                                                                                                                                                    
+                                                                <Button                                          
+                                                                    color="primary"
+                                                                    variant="contained"
+                                                                    label="Retrieve"
+                                                                    aria-label="Retrieve Objects"
+                                                                    icon="search"
+                                                                    size="small"
+                                                                    onClick={onRetrieve}
+                                                                    disabled={!(selectedAdapterId && selectedObjectTypeId)}
+                                                                    tooltip="Retrieve Objects"
+                                                                /> :
+                                                                <Button                                             
+                                                                    color="primary"
+                                                                    variant="contained"
+                                                                    label="Get"
+                                                                    aria-label="Get Object"
+                                                                    icon="search"
+                                                                    size="small"
+                                                                    onClick={onGet}     
+                                                                    disabled={!(selectedAdapterId && selectedObjectTypeId && objectId)}       
+                                                                    tooltip="Get Object"                                                            
+                                                                />
+                                                        }                                                            
+                                                    </div>
+                                                    <div style={{ marginLeft: theme.spacing(2) }}>         
+                                                        <Button                                                                                              
+                                                            label="New Object"
+                                                            variant="contained"
+                                                            icon="add"
+                                                            size="small"
+                                                            onClick={() => setShowNewObject(true)}        
+                                                            tooltip={canAdd ? "Create New Object" : "Can't Create These Objects"}
+                                                        />                                                                                                                                                                                                                                        
+                                                    </div>
+                                                </div>
+                                        }  
+                                    ]}
+                                />
+                                <ObjectsQueryBuilder 
+                                    open={buildQueryCriteria}
+                                    disabled={selectedObjectTypeObject ? false : true}
+                                    objectTypeObject={selectedObjectTypeObject}
+                                    onDismiss={() => setBuildQueryCriteria(false)}                             
+                                    adapterId={selectedAdapterId}
+                                    objectTypeId={selectedObjectTypeId ? selectedObjectTypeId : ""}
+                                    queryCriteria={queryCriteria}
+                                    onApply={(queryCriteria) => {
+                                        setQueryCriteria(queryCriteria);
+                                        setBuildQueryCriteria(false);
+                                    }}
+                                />
+                                <ObjectNew 
+                                    open={showNewObject}
+                                    adapterId={selectedAdapterId}
+                                    objectTypeId={selectedObjectTypeId ? selectedObjectTypeId : ""}
+                                    onAddObject={onAddObject}
+                                    onDismiss={() => setShowNewObject(false)}
+                                />  
+                            </div>
+                        )
+                    }
                 </div>
                 <ContextualHelp 
                     open={showHelp}

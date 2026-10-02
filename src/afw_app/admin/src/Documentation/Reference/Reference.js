@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useMemo, useEffect} from "react";
-import {Route, Switch, useLocation} from "react-router";
+import {Outlet, useLocation, useParams} from "@tanstack/react-router";
 
 import Container from "../../common/Container";
 
@@ -19,9 +19,6 @@ import {
 import {useTheme} from "../../hooks";
 
 import DataTypes, {DataType} from "./DataTypes";
-import Functions from "./Functions";
-import ObjectTypes from "./ObjectTypes";
-import Components from "./Components";
 
 const getBreadcrumbs = (pathname) => {
 
@@ -137,6 +134,122 @@ const getBreadcrumbs = (pathname) => {
 
 };
 
+/*
+ * ReferenceHome
+ *
+ * The Reference index (see ../routes.js).
+ */
+export const ReferenceHome = () => {
+
+    const theme = useTheme();
+
+    return (
+        <div style={{ padding: theme.spacing(3) }}>
+            <div>
+                <Typography size="10" text="Reference" />          
+                <div style={{ height: theme.spacing(5) }} />
+                <Typography text="This reference helps you locate specific features provided by the Adaptive Framework core, as well as those provided by extensions and user-defined objects." />
+                <div style={{ height: theme.spacing(5) }} />
+                <Divider />
+                <div style={{ height: theme.spacing(5) }} />
+            </div>
+            <div>                                                                            
+                <Responsive                                         
+                    rows={[
+                        {
+                            spacing: 1,
+                            style: {
+                                paddingBottom: theme.spacing(3)
+                            },                                                                    
+                            columns: [
+                                {                                                                            
+                                    breakpoints: {
+                                        small: 12,
+                                        large: 6,
+                                    },
+                                    contains:                                                      
+                                            <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
+                                                <div style={{ paddingBottom: theme.spacing(1) }}>
+                                                    <Link url="/Documentation/Reference/DataTypes/" text="Data Types"/>
+                                                </div>
+                                                <Typography text="Adaptive Framework provides Data Types, which can be referenced by properties,
+                                                    functions, and expressions.  These data types govern how values are represented in various content types 
+                                                    and how they are converted from one data type to another." />                                                                
+                                            </div> 
+                                },
+                                {                                                                            
+                                    breakpoints: {
+                                        small: 12,
+                                        large: 6,
+                                    },
+                                    contains:                                                      
+                                            <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
+                                                <div>                                                   
+                                                    <div style={{ paddingBottom: theme.spacing(1) }}>
+                                                        <Link url="/Documentation/Reference/Functions/" text="Functions" />
+                                                    </div>                                             
+                                                    <Typography text="Adaptive Framework provides Functions, which may be referenced by properties or
+                                                        expressions and evaluated by the Adaptive Framework core to produce values." />                                                                    
+                                                </div>
+                                            </div>     
+                                        
+                                },
+                                {                                                                            
+                                    breakpoints: {
+                                        small: 12,
+                                        large: 6,
+                                    },
+                                    contains:                                                       
+                                            <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
+                                                <div style={{ paddingBottom: theme.spacing(1) }}>
+                                                    <Link url="/Documentation/Reference/Schema/" text="Schema"/>
+                                                </div>
+                                                <Typography text="An Adaptive Schema may be provided by an adapter, or created through a model.  They
+                                                    provide a sets of properties which are used to describe Adaptive Objects.  Object Types may use
+                                                    inheritance to factor common properties and provide data validation and computed values." />                                                                
+                                            </div> 
+                                },
+                                {                                                                            
+                                    breakpoints: {
+                                        small: 12,
+                                        large: 6,
+                                    },
+                                    contains:                                                       
+                                            <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
+                                                <div style={{ paddingBottom: theme.spacing(1) }}>
+                                                    <Link url="/Documentation/Reference/Components/" text="Components"/>
+                                                </div>
+                                                <Typography text="Adaptive Components are the building blocks for Adaptive User Interfaces.  They
+                                                    provide simple or complex logic for transforming data and rendering a UI to allow the user
+                                                    to interact with data." />                                                                
+                                            </div> 
+                                }
+                            ]
+                                
+                        }
+                    ]}
+                />
+            </div>
+        </div>
+    );
+};
+
+/*
+ * ReferenceDataTypes
+ *
+ * DataTypes/{-$dataTypeId} (see ../routes.js): one data type, or the list.
+ */
+export const ReferenceDataTypes = () => {
+    const {dataTypeId} = useParams({ strict: false });
+    return dataTypeId ? <DataType /> : <DataTypes />;
+};
+
+/*
+ * Reference
+ *
+ * The Reference layout route's component (see ../routes.js): loads what
+ * every reference page needs, with breadcrumbs, around the matched page.
+ */
 export const Reference = () => {
         
     const {functions, error} = useFunctions();
@@ -173,108 +286,7 @@ export const Reference = () => {
         <Container id="admin-documentation-reference" data-testid="admin-documentation-reference" maxWidth="lg">
             <Breadcrumb items={breadcrumbItems} />
             <div style={{ height: theme.spacing(2) }} />
-            <Switch>
-                <Route exact path="/Documentation/Reference" render={() => {
-                    return (
-                        <div style={{ padding: theme.spacing(3) }}>
-                            <div>
-                                <Typography size="10" text="Reference" />          
-                                <div style={{ height: theme.spacing(5) }} />
-                                <Typography text="This reference helps you locate specific features provided by the Adaptive Framework core, as well as those provided by extensions and user-defined objects." />
-                                <div style={{ height: theme.spacing(5) }} />
-                                <Divider />
-                                <div style={{ height: theme.spacing(5) }} />
-                            </div>
-                            <div>                                                                            
-                                <Responsive                                         
-                                    rows={[
-                                        {
-                                            spacing: 1,
-                                            style: {
-                                                paddingBottom: theme.spacing(3)
-                                            },                                                                    
-                                            columns: [
-                                                {                                                                            
-                                                    breakpoints: {
-                                                        small: 12,
-                                                        large: 6,
-                                                    },
-                                                    contains:                                                      
-                                                        <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
-                                                            <div style={{ paddingBottom: theme.spacing(1) }}>
-                                                                <Link url="/Documentation/Reference/DataTypes/" text="Data Types"/>
-                                                            </div>
-                                                            <Typography text="Adaptive Framework provides Data Types, which can be referenced by properties,
-                                                                functions, and expressions.  These data types govern how values are represented in various content types 
-                                                                and how they are converted from one data type to another." />                                                                
-                                                        </div> 
-                                                },
-                                                {                                                                            
-                                                    breakpoints: {
-                                                        small: 12,
-                                                        large: 6,
-                                                    },
-                                                    contains:                                                      
-                                                        <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
-                                                            <div>                                                   
-                                                                <div style={{ paddingBottom: theme.spacing(1) }}>
-                                                                    <Link url="/Documentation/Reference/Functions/" text="Functions" />
-                                                                </div>                                             
-                                                                <Typography text="Adaptive Framework provides Functions, which may be referenced by properties or
-                                                                    expressions and evaluated by the Adaptive Framework core to produce values." />                                                                    
-                                                            </div>
-                                                        </div>     
-                                                    
-                                                },
-                                                {                                                                            
-                                                    breakpoints: {
-                                                        small: 12,
-                                                        large: 6,
-                                                    },
-                                                    contains:                                                       
-                                                        <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
-                                                            <div style={{ paddingBottom: theme.spacing(1) }}>
-                                                                <Link url="/Documentation/Reference/Schema/" text="Schema"/>
-                                                            </div>
-                                                            <Typography text="An Adaptive Schema may be provided by an adapter, or created through a model.  They
-                                                                provide a sets of properties which are used to describe Adaptive Objects.  Object Types may use
-                                                                inheritance to factor common properties and provide data validation and computed values." />                                                                
-                                                        </div> 
-                                                },
-                                                {                                                                            
-                                                    breakpoints: {
-                                                        small: 12,
-                                                        large: 6,
-                                                    },
-                                                    contains:                                                       
-                                                        <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper, minHeight: "300px" }}>
-                                                            <div style={{ paddingBottom: theme.spacing(1) }}>
-                                                                <Link url="/Documentation/Reference/Components/" text="Components"/>
-                                                            </div>
-                                                            <Typography text="Adaptive Components are the building blocks for Adaptive User Interfaces.  They
-                                                                provide simple or complex logic for transforming data and rendering a UI to allow the user
-                                                                to interact with data." />                                                                
-                                                        </div> 
-                                                }
-                                            ]
-                                            
-                                        }
-                                    ]}
-                                />
-                            </div>
-                        </div>
-                    );
-                }} />                             
-                
-                <Route exact path="/Documentation/Reference/DataTypes" component={DataTypes} />                        
-                <Route path="/Documentation/Reference/DataTypes/:dataTypeId" component={DataType} />                        
-                <Route exact path="/Documentation/Reference/Schema" component={ObjectTypes} />
-                <Route exact path="/Documentation/Reference/Schema/:adapterId" component={ObjectTypes} />
-                <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType" component={ObjectTypes} />
-                <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType/:propertyName" component={ObjectTypes} />
-                <Route path="/Documentation/Reference/Components" component={Components} />
-                <Route path="/Documentation/Reference/Functions" component={Functions} />
-            </Switch>
+            <Outlet />
         </Container>
     );
 };

@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useEffect, useCallback, useRef, useReducer} from "react";
-import {Switch, Route, useHistory, useLocation, useRouteMatch} from "react-router";
+import {useParams, useNavigate, useLocation} from "@tanstack/react-router";
 
 import {    
     Link,
@@ -272,9 +272,10 @@ const ObjectsTable = ({ onSelectObject }) => {
     } = state;
             
     const theme = useTheme();
-    const match = useRouteMatch();
-    const history = useHistory();
-    const location = useLocation();
+    const navigate = useNavigate();
+    /* the route's params (see routes.js); objectId is set while one object is open */
+    const {adapterId: routeAdapterId, objectTypeId: routeObjectTypeId, objectId: routeObjectId} = useParams({ strict: false });
+    const {searchStr} = useLocation();
     const model = useModel();
     const {notification} = useApplication();    
     const {object: objectTypeObject, isLoading: objectTypeLoading} = useGetObject({ 
@@ -329,19 +330,17 @@ const ObjectsTable = ({ onSelectObject }) => {
         };
 
         /* only retrieve objects, if we're on the URI that requests them.  otherwise, we're looking for a specific object */
-        if (model && match.isExact && !retrieved) {     
-            let adapterId = match.params.adapterId;
-            let objectTypeId = match.params.objectTypeId;            
-            let queryCriteria = location.search;
-
-            adapterId = decodeURIComponent(adapterId);
-            objectTypeId = decodeURIComponent(objectTypeId);
+        if (model && !routeObjectId && !retrieved) {     
+            const adapterId = routeAdapterId;
+            const objectTypeId = routeObjectTypeId;            
+            /* the raw search string (see parseSearch in ../router) */
+            const queryCriteria = searchStr;
 
             dispatch({ type: "RETRIEVING", adapterId, objectTypeId, queryCriteria });            
 
             retrieve(adapterId, objectTypeId, queryCriteria);            
         }
-    }, [model, location.search, match.isExact, match.params.adapterId, match.params.objectTypeId, notification, retrieved]);
+    }, [model, searchStr, routeObjectId, routeAdapterId, routeObjectTypeId, notification, retrieved]);
 
     let sortableProperties = [];
     if (objectTypeObject) {
@@ -446,8 +445,8 @@ const ObjectsTable = ({ onSelectObject }) => {
     const onObjectInvoked = useCallback((item) => {
         const objectId = item.getObjectId();        
 
-        history.push("/Objects/" + adapterId + "/" + objectTypeId + "/" + objectId);
-    }, [adapterId, history, objectTypeId]);
+        navigate({ href: "/Objects/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(objectTypeId) + "/" + encodeURIComponent(objectId) });
+    }, [adapterId, navigate, objectTypeId]);
 
     /**
      * onDelete()
@@ -607,13 +606,13 @@ const ObjectsTable = ({ onSelectObject }) => {
      */
     const onNextObject = () => {
         if (objects) {
-            let [, , , ,objectId] = location.pathname.split("/");
+            const objectId = routeObjectId;
 
             /* select the next object in the array and push it onto history */
             for (let i = 0; i < objects.length; i++) {                
                 if (objects[i].getObjectId() === objectId) {                    
                     let nextObject = objects[(i + 1) % objects.length];
-                    history.push("/Objects/" + adapterId + "/" + objectTypeId + "/" + nextObject.getObjectId());
+                    navigate({ href: "/Objects/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(objectTypeId) + "/" + encodeURIComponent(nextObject.getObjectId()) });
                 }
             }
         }
@@ -626,14 +625,14 @@ const ObjectsTable = ({ onSelectObject }) => {
      */
     const onPreviousObject = () => {
         if (objects) {
-            let [,,,,objectId] = location.pathname.split("/");
+            const objectId = routeObjectId;
 
             /* select the previous object in the array and push it onto history */
             for (let i = 0; i < objects.length; i++) {                
                 if (objects[i].getObjectId() === objectId) {
                     let prev = (i - 1) < 0 ? objects.length - 1 : (i - 1);
                     let nextObject = objects[prev];
-                    history.push("/Objects/" + adapterId + "/" + objectTypeId + "/" + nextObject.getObjectId());
+                    navigate({ href: "/Objects/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(objectTypeId) + "/" + encodeURIComponent(nextObject.getObjectId()) });
                 }
             }
 
@@ -705,148 +704,138 @@ const ObjectsTable = ({ onSelectObject }) => {
         
     return (
         <OperationalContext.Provider value={OperationalMode.NotEditable}>
-            <Switch>
-                <Route path="/Objects/:adapterId/:objectTypeId/:objectId" render={routerProps => {
-                    let {adapterId, objectTypeId, objectId} = routerProps.match.params;
-                    
-                    adapterId = decodeURIComponent(adapterId);
-                    objectTypeId = decodeURIComponent(objectTypeId);
-                    objectId = decodeURIComponent(objectId);
-
-                    return (
-                        <ObjectEditor 
+            {
+                /* one object (by the route's objectId), or the type's objects */
+                routeObjectId ? (
+                    <ObjectEditor 
+                        adapterId={routeAdapterId}
+                        objectTypeId={routeObjectTypeId}
+                        objectId={routeObjectId}
+                        onNextObject={objects?.length ? onNextObject : undefined}
+                        onPreviousObject={objects?.length ? onPreviousObject : undefined}
+                        onSelectObject={onSelectObject}
+                    />
+                ) : (
+                    <div style={{ display: "flex", flexDirection: "column", height: "100%", marginRight: theme.spacing(1) }}>
+                        <ObjectsTableToolbar 
+                            sortableProperties={sortableProperties}  
+                            setShowNewObject={() => dispatch({ type: "ADD_OBJECT" })}
+                            onBatchEdit={() => dispatch({ type: "BATCH_EDIT" })}
+                            onDelete={onDelete}
+                            onUpload={() => dispatch({ type: "UPLOAD" })}
+                            onDownload={onDownload}
+                            onRefresh={onRefresh}
+                            onSortBy={onSortBy}
+                            objectTypeObject={objectTypeObject}
+                            selectedObjects={selectedObjects}
+                            viewPropertyMenu={viewPropertyMenu}                                
+                        />
+                        {
+                            (objects?.length > 0) ?
+                                <div style={{ flex: 1, width: "100%", overflow: "auto" }}>
+                                    <Table 
+                                        rows={objects}
+                                        columns={[
+                                            {
+                                                key: "objectId",
+                                                name: "Object Id",
+                                                minWidth: 100,
+                                                maxWidth: 250,
+                                                isResizable: true,
+                                                getValue: (item) => item.getObjectId() ? item.getObjectId().toLowerCase() : "",
+                                                onRender: (item) => {
+                                                    return (
+                                                        <Link 
+                                                            uriComponents={[ "Objects", item.getAdapterId(), item.getObjectTypeId(), item.getObjectId() ]}                            
+                                                            text={item.getObjectId()}
+                                                        />
+                                                    );
+                                                }
+                                            },
+                                            ...((columns.length > 0) ? columns : [({
+                                                key: "description",
+                                                name: "Description",
+                                                isMultiline: true,
+                                                minWidth: 100,
+                                                maxWidth: 400,
+                                                isResizable: true, 
+                                                getValue: () => getValue("description"),                                    
+                                                onRender: onRenderDescription,                   
+                                            })])
+                                        ]}
+                                        onSelectionChanged={onSelectionChanged}
+                                        onRowInvoked={onObjectInvoked}
+                                        pagination={false}
+                                    />                    
+                                </div> :
+                                <div>
+                                    <div style={{ height: "10vh" }} />
+                                    <div style={{ textAlign: "center" }}>
+                                        <Typography size="5" text="No Objects Returned" />
+                                    </div>
+                                </div>
+                        }                
+                        <div style={{ marginTop: theme.spacing(1), marginBottom: theme.spacing(1) }} >
+                            { (objects?.length > 0) &&
+                                <Typography 
+                                    size="1"
+                                    text={
+                                        selectedObjects.length > 0 ? 
+                                            selectedObjects.length + " of " + objects.length + " objects selected." : 
+                                            objects.length + " objects returned."
+                                    }
+                                />
+                            }
+                        </div>
+                        <ObjectNew                         
+                            open={showNewObject}
                             adapterId={adapterId}
                             objectTypeId={objectTypeId}
-                            objectId={objectId}
-                            onNextObject={objects?.length ? onNextObject : undefined}
-                            onPreviousObject={objects?.length ? onPreviousObject : undefined}
-                            onSelectObject={onSelectObject}
+                            objectTypeObject={objectTypeObject}
+                            onAddObject={onAdd}
+                            onDismiss={() => dispatch({ type: "CANCEL_ADD" })}
+                        />  
+                        <ObjectUploadModal 
+                            adapterId={adapterId}
+                            objectTypeId={objectTypeId}
+                            objectTypeObject={objectTypeObject}                    
+                            open={showUpload}
+                            onDismiss={() => dispatch({ type: "CANCEL_UPLOAD" })}
                         />
-                    );
-                }} />
-                <Route path="/Objects/:adapterId/:objectTypeId" render={() => {
-                    return (
-                        <div style={{ display: "flex", flexDirection: "column", height: "100%", marginRight: theme.spacing(1) }}>
-                            <ObjectsTableToolbar 
-                                sortableProperties={sortableProperties}  
-                                setShowNewObject={() => dispatch({ type: "ADD_OBJECT" })}
-                                onBatchEdit={() => dispatch({ type: "BATCH_EDIT" })}
-                                onDelete={onDelete}
-                                onUpload={() => dispatch({ type: "UPLOAD" })}
-                                onDownload={onDownload}
-                                onRefresh={onRefresh}
-                                onSortBy={onSortBy}
-                                objectTypeObject={objectTypeObject}
-                                selectedObjects={selectedObjects}
-                                viewPropertyMenu={viewPropertyMenu}                                
-                            />
-                            {
-                                (objects?.length > 0) ?
-                                    <div style={{ flex: 1, width: "100%", overflow: "auto" }}>
-                                        <Table 
-                                            rows={objects}
-                                            columns={[
-                                                {
-                                                    key: "objectId",
-                                                    name: "Object Id",
-                                                    minWidth: 100,
-                                                    maxWidth: 250,
-                                                    isResizable: true,
-                                                    getValue: (item) => item.getObjectId() ? item.getObjectId().toLowerCase() : "",
-                                                    onRender: (item) => {
-                                                        return (
-                                                            <Link 
-                                                                uriComponents={[ "Objects", item.getAdapterId(), item.getObjectTypeId(), item.getObjectId() ]}                            
-                                                                text={item.getObjectId()}
-                                                            />
-                                                        );
-                                                    }
-                                                },
-                                                ...((columns.length > 0) ? columns : [({
-                                                    key: "description",
-                                                    name: "Description",
-                                                    isMultiline: true,
-                                                    minWidth: 100,
-                                                    maxWidth: 400,
-                                                    isResizable: true, 
-                                                    getValue: () => getValue("description"),                                    
-                                                    onRender: onRenderDescription,                   
-                                                })])
-                                            ]}
-                                            onSelectionChanged={onSelectionChanged}
-                                            onRowInvoked={onObjectInvoked}
-                                            pagination={false}
-                                        />                    
-                                    </div> :
-                                    <div>
-                                        <div style={{ height: "10vh" }} />
-                                        <div style={{ textAlign: "center" }}>
-                                            <Typography size="5" text="No Objects Returned" />
-                                        </div>
-                                    </div>
-                            }                
-                            <div style={{ marginTop: theme.spacing(1), marginBottom: theme.spacing(1) }} >
-                                { (objects?.length > 0) &&
-                                    <Typography 
-                                        size="1"
-                                        text={
-                                            selectedObjects.length > 0 ? 
-                                                selectedObjects.length + " of " + objects.length + " objects selected." : 
-                                                objects.length + " objects returned."
-                                        }
+                        <ObjectsBatchModifyModal 
+                            open={showBatchEdit}
+                            onDismiss={() => dispatch({ type: "CANCEL_BATCH_EDIT" })}
+                            objects={selectedObjects}
+                            objectTypeObject={objectTypeObject}
+                        />
+                        <Dialog 
+                            open={showConfirmDeleteDialog}
+                            title="Delete Objects"
+                            subText="Are you sure you want to delete the selected object(s)?"
+                            isBlocking={true}
+                            footer={
+                                <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+                                    <Button                                       
+                                        style={{ marginRight: theme.spacing(1) }}
+                                        label="Cancel"
+                                        onClick={() => dispatch({ type: "CANCEL_DELETE" })}
                                     />
-                                }
-                            </div>
-                            <ObjectNew                         
-                                open={showNewObject}
-                                adapterId={adapterId}
-                                objectTypeId={objectTypeId}
-                                objectTypeObject={objectTypeObject}
-                                onAddObject={onAdd}
-                                onDismiss={() => dispatch({ type: "CANCEL_ADD" })}
-                            />  
-                            <ObjectUploadModal 
-                                adapterId={adapterId}
-                                objectTypeId={objectTypeId}
-                                objectTypeObject={objectTypeObject}                    
-                                open={showUpload}
-                                onDismiss={() => dispatch({ type: "CANCEL_UPLOAD" })}
-                            />
-                            <ObjectsBatchModifyModal 
-                                open={showBatchEdit}
-                                onDismiss={() => dispatch({ type: "CANCEL_BATCH_EDIT" })}
-                                objects={selectedObjects}
-                                objectTypeObject={objectTypeObject}
-                            />
-                            <Dialog 
-                                open={showConfirmDeleteDialog}
-                                title="Delete Objects"
-                                subText="Are you sure you want to delete the selected object(s)?"
-                                isBlocking={true}
-                                footer={
-                                    <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-                                        <Button                                       
-                                            style={{ marginRight: theme.spacing(1) }}
-                                            label="Cancel"
-                                            onClick={() => dispatch({ type: "CANCEL_DELETE" })}
-                                        />
-                                        <Button 
-                                            color="primary"
-                                            variant="contained"
-                                            label="Delete"                                        
-                                            onClick={onConfirmDelete}
-                                        />                                        
-                                    </div>
-                                }
-                            />
-                            <ErrorDialog 
-                                error={error}
-                                onDismiss={() => dispatch({ type: "ERROR" })}
-                            />                        
-                        </div>
-                    );
-                }} />
-            </Switch>
+                                    <Button 
+                                        color="primary"
+                                        variant="contained"
+                                        label="Delete"                                        
+                                        onClick={onConfirmDelete}
+                                    />                                        
+                                </div>
+                            }
+                        />
+                        <ErrorDialog 
+                            error={error}
+                            onDismiss={() => dispatch({ type: "ERROR" })}
+                        />                        
+                    </div>
+                )
+            }
         </OperationalContext.Provider>
     );  
 };

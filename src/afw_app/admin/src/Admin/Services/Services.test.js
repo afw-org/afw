@@ -1,7 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {MemoryRouter} from "react-router-dom";
-import {render, waitFor, within, fireEvent, screen, waitForElementToBeRemoved, mswPostCallback, waitForSpinner, server, http, HttpResponse, act} from "../test-utils";
-import Services from "./Services";
+import {renderRoute, waitFor, within, fireEvent, screen, waitForElementToBeRemoved, mswPostCallback, waitForSpinner, server, http, HttpResponse, act} from "../test-utils";
 
 import serviceMeta from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveObjectType_/_AdaptiveService_.json";
 import services from "@afw/test/build/cjs/__mocks__/retrieve_objects/afw/_AdaptiveService_.json";
@@ -34,11 +32,7 @@ describe("Services Tests", () => {
 
     test("Services renders", async () => {
 
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services /> 
-            </MemoryRouter>
-        );  
+        renderRoute("/Admin/Services");  
 
         await waitForServiceConfigs();        
         await screen.findByTestId("admin-admin-services");
@@ -65,11 +59,7 @@ describe("Services Tests", () => {
             })
         );
 
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services checkError /> 
-            </MemoryRouter>
-        );  
+        renderRoute("/Admin/Services");  
 
         await screen.findByTestId("admin-admin-services");
         await waitForSpinner();      
@@ -79,11 +69,7 @@ describe("Services Tests", () => {
 
     test("Table lists all services", async () => {
 
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services /> 
-            </MemoryRouter>
-        );        
+        renderRoute("/Admin/Services");        
 
         await waitForServiceConfigs();        
         await screen.findByTestId("admin-admin-services");
@@ -103,11 +89,7 @@ describe("Services Tests", () => {
 
     test("Start a service", async () => {
 
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services /> 
-            </MemoryRouter>
-        );        
+        renderRoute("/Admin/Services");        
 
         await waitForServiceConfigs();        
         await screen.findByTestId("admin-admin-services");
@@ -139,11 +121,7 @@ describe("Services Tests", () => {
 
     test("Stop a running service", async () => {
 
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services /> 
-            </MemoryRouter>
-        );        
+        renderRoute("/Admin/Services");        
 
         await waitForServiceConfigs();        
         await screen.findByTestId("admin-admin-services");
@@ -175,11 +153,7 @@ describe("Services Tests", () => {
 
     test("Restart a running service", async () => {
 
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services /> 
-            </MemoryRouter>
-        );        
+        renderRoute("/Admin/Services");        
 
         await waitForServiceConfigs();        
         await waitForSpinner();         
@@ -213,11 +187,7 @@ describe("Services Tests", () => {
 
     test("Start, then stop a service", async () => {
         
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services /> 
-            </MemoryRouter>
-        );        
+        renderRoute("/Admin/Services");        
 
         await waitForServiceConfigs();        
         await waitForSpinner();         
@@ -277,11 +247,7 @@ describe("Services Tests", () => {
 
     test("Delete a service", async () => {
         
-        render( 
-            <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                <Services /> 
-            </MemoryRouter>
-        );        
+        renderRoute("/Admin/Services");        
         
         await waitForServiceConfigs();        
         await waitForSpinner();         
@@ -320,11 +286,7 @@ describe("Services Tests", () => {
 
         test("Create a new adapter/file service", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -413,11 +375,7 @@ describe("Services Tests", () => {
 
             let utils;
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services debug /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
                 
             await waitForServiceConfigs();                    
             await waitForSpinner(); 
@@ -518,11 +476,7 @@ describe("Services Tests", () => {
 
         test("Create a new log/syslog service", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -622,11 +576,7 @@ describe("Services Tests", () => {
 
             let utils;
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -700,11 +650,7 @@ describe("Services Tests", () => {
 
         test("View adapter/file service tabs", async () => {
            
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -745,11 +691,7 @@ describe("Services Tests", () => {
 
         test("Edit an adapter/file service", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -803,11 +745,7 @@ describe("Services Tests", () => {
 
         test("View adapter/model service tabs", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitFor(() => expect(screen.getByText("models")).toBeInTheDocument());
@@ -840,11 +778,7 @@ describe("Services Tests", () => {
     
         test("Edit a adapter/model service", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -889,11 +823,7 @@ describe("Services Tests", () => {
 
         test("View log/syslog service tabs", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -928,11 +858,7 @@ describe("Services Tests", () => {
         });
 
         test("Edit a log/syslog service", async () => {
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -974,11 +900,7 @@ describe("Services Tests", () => {
 
         test("View authorizationHandler/script service tabs", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -1013,11 +935,7 @@ describe("Services Tests", () => {
 
         test("Edit a authorizationHandler/script service", async () => {
 
-            render( 
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services /> 
-                </MemoryRouter>
-            );        
+            renderRoute("/Admin/Services");        
     
             await waitForServiceConfigs();        
             await waitForSpinner(); 
@@ -1067,11 +985,7 @@ describe("Services Tests", () => {
         // discarded the whole in-progress edit. See ObjectEditor.js.
         test("Escape while editing an authorizationHandler/script service prompts to discard, not silently close", async () => {
 
-            render(
-                <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
-                    <Services />
-                </MemoryRouter>
-            );
+            renderRoute("/Admin/Services");
 
             await waitForServiceConfigs();
             await waitForSpinner();

@@ -1,7 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useEffect, useReducer} from "react";
 import PropTypes from "prop-types";
-import {Switch, Route, Prompt, useLocation, useHistory} from "react-router";
+import {useLocation, useNavigate, useBlocker} from "@tanstack/react-router";
+import {useLocationHash} from "../../router/hooks";
+import {matchPath} from "../../router/matchPath";
 
 import {
     Button,
@@ -268,6 +270,36 @@ const mobileOptions = [
     },                                    
 ];
 
+/*
+ * The model editor's URL grammar: which view each path below a model shows.
+ * Matched exactly against the location (see ../../router/matchPath.js).
+ */
+const modelPaths = [
+    "/Admin/Models/:adapterId/:modelId",
+    "/Admin/Models/:adapterId/:modelId/custom",
+    "/Admin/Models/:adapterId/:modelId/custom/:variable",
+    "/Admin/Models/:adapterId/:modelId/objectTypes",
+    "/Admin/Models/:adapterId/:modelId/propertyTypes",
+];
+
+const objectTypePaths = [
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/onFunctions",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/onFunctions/:onFunctionId",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom/:variable",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/methods",
+];
+
+const propertyTypePaths = [
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions/:onFunctions",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom",
+    "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom/:variable",
+];
+
 /**
  * ModelEditor
  * 
@@ -287,8 +319,9 @@ export const ModelEditor = (props) => {
     const savable = useEventId({ object: props.model, eventId: "onSavable" });
     const {notification, isMobile, client} = useApplication();
     const {adapters} = useAppCore();
-    const {pathname, hash} = useLocation();
-    const history = useHistory();
+    const {pathname} = useLocation();
+    const hash = useLocationHash();
+    const navigate = useNavigate();
     const theme = useTheme();
 
     const {
@@ -405,7 +438,7 @@ export const ModelEditor = (props) => {
         if (perspective) {
             dispatch({ type: "PERSPECTIVE", perspective });
 
-            history.push( pathname + "#" + perspective );
+            navigate({ hash: perspective });
         }
     };
 
@@ -423,6 +456,18 @@ export const ModelEditor = (props) => {
     };
 
     const {models, model, adapterId, objectType, propertyType} = props;
+
+    /*
+     * With unsaved changes, confirm before leaving the adapter's models.
+     * Moving within them (another view, another part of a model) needs no
+     * confirmation.
+     */
+    useBlocker({
+        disabled: !(savable && savable.value),
+        shouldBlockFn: ({next}) =>
+            !next.pathname.startsWith("/Admin/Models/" + adapterId + "/") &&
+            !window.confirm("This Model has unsaved changes.  Are you sure you want to leave?"),
+    });
     if (!model)
         return null;
     
@@ -466,16 +511,10 @@ export const ModelEditor = (props) => {
                     }          
                 </div>                      
                 <div style={{ flex: 1, overflow: "auto" }}>
-                    <Switch>
-                        <Route exact path={[ 
-                            "/Admin/Models/:adapterId/:modelId", 
-                            "/Admin/Models/:adapterId/:modelId/custom", 
-                            "/Admin/Models/:adapterId/:modelId/custom/:variable", 
-                            "/Admin/Models/:adapterId/:modelId/objectTypes", 
-                            "/Admin/Models/:adapterId/:modelId/propertyTypes" 
-                        ]} render={(props) => 
+                    {
+                        /* the view this path asks for */
+                        matchPath(pathname, { path: modelPaths, exact: true }) ? (
                             <Model 
-                                {...props}                                 
                                 perspective={perspective}
                                 hash={hash}
                                 mappedAdapterId={mappedAdapterId}
@@ -484,19 +523,8 @@ export const ModelEditor = (props) => {
                                 model={model}
                                 reload={reload}
                             />
-                        } />
-
-                        <Route exact path={[ 
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/onFunctions",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/onFunctions/:onFunctionId",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom/:variable",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/methods",                            
-                        ]} render={(props) => 
+                        ) : matchPath(pathname, { path: objectTypePaths, exact: true }) ? (
                             <ModelObjectTypes
-                                {...props}
                                 perspective={perspective}
                                 hash={hash}
                                 mappedAdapterId={mappedAdapterId}
@@ -506,17 +534,8 @@ export const ModelEditor = (props) => {
                                 objectType={objectType}
                                 reload={reload}
                             />
-                        } />
-
-                        <Route exact path={[
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions/:onFunctions",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom",
-                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom/:variable",
-                        ]} render={(props) => 
+                        ) : matchPath(pathname, { path: propertyTypePaths, exact: true }) ? (
                             <ModelPropertyTypes 
-                                {...props}
                                 perspective={perspective}
                                 hash={hash}
                                 mappedAdapterId={mappedAdapterId}
@@ -527,10 +546,10 @@ export const ModelEditor = (props) => {
                                 propertyType={propertyType}
                                 reload={reload}
                             />
-                        } />
-
-                        <Route component={NoRoute} />
-                    </Switch>
+                        ) : (
+                            <NoRoute />
+                        )
+                    }
                 </div>   
                 {                    
                     editable &&                                    
@@ -652,15 +671,6 @@ export const ModelEditor = (props) => {
                 spinnerMessage && 
                     <Spinner size="large" label={spinnerMessage} fullScreen={true} />
             }
-            <Prompt 
-                when={(savable && savable.value) ? true : false}
-                message={(location) => {                    
-                    return (
-                        location.pathname.startsWith("/Admin/Models/" + adapterId + "/") ? true : 
-                            "This Model has unsaved changes.  Are you sure you want to leave?"
-                    );
-                }}
-            />   
         </OperationalContext.Provider>
     );
 };

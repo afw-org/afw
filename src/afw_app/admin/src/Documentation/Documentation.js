@@ -1,9 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {Route, Switch} from "react-router";
+import {Outlet} from "@tanstack/react-router";
 
 import Container from "../common/Container";
-
-import {Reference} from "./Reference";
 
 import {
     Divider,   
@@ -13,45 +11,34 @@ import {
 import {useTheme} from "../hooks";
 
 
-const Documentation = () => {
+/*
+ * DocumentationHome
+ *
+ * The /Documentation index (see routes.js).
+ */
+export const DocumentationHome = () => {
 
     const theme = useTheme();
-   
+
     return (
-        <Container style={{ height: "100%" }}>
-            <Switch>
-                <Route exact path="/Documentation" render={() => {
-                    return (
-                        <>
-                            <Typography size="10" text="Documentation" />
-                            <div style={{ height: theme.spacing(5) }} />
-                            <Typography text="The Documentation provides Reference material for the objects that are available in the currently running instance of Adaptive Framework." />
-                            <div style={{ height: theme.spacing(5) }} />
-                            <Divider />                            
-                        </>
-                    );
-                }} />                                
-                <Route path="/Documentation/Reference/:doc" render={(props) => {                    
-                    const doc = props.match.params.doc;                    
-
-                    if (["DataTypes", "Functions", "Schema", "Components"].includes(doc))
-                        return <Reference doc={doc} />;
-                    else
-                        return null;
-                }} />
-                <Route path="/Documentation/:category" render={(props) => {
-                    const category = props.match.params.category;
-
-                    /* Reference is handled specially, as it involves fetching live objects */
-                    if (category === "Reference")
-                        return <Reference />;
-
-                    else
-                        return null;
-                }} />
-            </Switch>
-        </Container>
+        <>
+            <Typography size="10" text="Documentation" />
+            <div style={{ height: theme.spacing(5) }} />
+            <Typography text="The Documentation provides Reference material for the objects that are available in the currently running instance of Adaptive Framework." />
+            <div style={{ height: theme.spacing(5) }} />
+            <Divider />                            
+        </>
     );
 };
+
+/*
+ * Documentation
+ *
+ * The /Documentation layout route's component (see routes.js).
+ */
+const Documentation = () =>
+    <Container style={{ height: "100%" }}>
+        <Outlet />
+    </Container>;
 
 export default Documentation;

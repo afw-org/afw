@@ -1,18 +1,15 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     screen,
     mswPostCallback,
     waitForSpinner,
     act
 } from "../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../Models";
 
 describe("Model Tests", () => {    
 
@@ -32,9 +29,6 @@ describe("Model Tests", () => {
     });    
 
     test("Url route hashes navigate to appropriate perspective", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/test1");
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
@@ -70,28 +64,24 @@ describe("Model Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        const {router} = renderRoute("/Admin/Models/models/test1");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
 
-        act(() => history.push("/Admin/Models/models/test1#overview"));
+        act(() => { router.navigate({ href: "/Admin/Models/models/test1#overview" }); });
         await screen.findByTestId("admin-admin-models-overview");
 
-        act(() => history.push("/Admin/Models/models/test1#spreadsheet"));
+        act(() => { router.navigate({ href: "/Admin/Models/models/test1#spreadsheet" }); });
         await screen.findByTestId("admin-admin-models-spreadsheet");
 
-        act(() => history.push("/Admin/Models/models/test1#mappings"));
+        act(() => { router.navigate({ href: "/Admin/Models/models/test1#mappings" }); });
         await screen.findByTestId("admin-admin-models-mappings");
 
-        act(() => history.push("/Admin/Models/models/test1#source"));
+        act(() => { router.navigate({ href: "/Admin/Models/models/test1#source" }); });
         await screen.findByTestId("admin-admin-models-source");
         
-        act(() => history.push("/Admin/Models/models/test1#tree"));
+        act(() => { router.navigate({ href: "/Admin/Models/models/test1#tree" }); });
         await screen.findByTestId("admin-admin-models-tree");
     });
 
