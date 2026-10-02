@@ -55,6 +55,12 @@ if (global.document) {
     global.document.elementFromPoint = function() {
         return null;
     };
+
+    /*
+     * jsdom does not implement scrolling and logs "Not implemented" for each
+     * call; TanStack Router scrolls to the top after every navigation.
+     */
+    global.window.scrollTo = function() {};
 }
 
 Date.now = function() {    

@@ -57,7 +57,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-62-script-language.md`](issue-62-script-language.md) | **#62 closed** (PR **#174**) — Adaptive Script language index (multi `let`/`const`, `for` init, assignment chain, result value, labels) |
 | [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md) | libafw header layers (`afw.h` / internal / minimal / common), install public-only goal, Doxygen public vs internal |
 | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; Docker ICU/APR floor; ICU in `utf8/` + `code_point/` |
-| [`tanstack-router-migration.md`](tanstack-router-migration.md) | Admin app React Router 5 → TanStack Router: why, mapping, history bridge for one-section-at-a-time migration, inventory, order |
+| [`tanstack-router-migration.md`](tanstack-router-migration.md) | Admin app React Router 5 → TanStack Router: why, mapping, history bridge for one-section-at-a-time migration (done), patterns, inventory, order |
 | [`docker-cross-platform-builds.md`](docker-cross-platform-builds.md) | `afwdev build --docker` is a no-op stub; no base-image publish workflow in-repo; buildx `docker-container` driver vs a real multi-platform race; clean-context gotchas; RockyLinux 8→9 bump |
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
 | [`vscode-extension-proposal.md`](vscode-extension-proposal.md) | **Design-only, no issue yet** — native `.as` VS Code extension: TextMate grammar port, hybrid offline/live IntelliSense, `afwdev` integration; debugging framed via TS/V8/DAP analogy as a future core-runtime initiative |

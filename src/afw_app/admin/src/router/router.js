@@ -1,9 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {createContext, useContext, useMemo} from "react";
-import {Router as LegacyRouter} from "react-router";
-import {createRootRoute, createRoute, createRouter, lazyRouteComponent, Outlet, useRouter} from "@tanstack/react-router";
+import {createContext, useContext} from "react";
+import {createRootRoute, createRoute, createRouter, lazyRouteComponent, Outlet} from "@tanstack/react-router";
 
-import {createLegacyHistory} from "./legacyHistory";
 import Loading from "../common/Loading";
 import NoRoute from "../common/NoRoute";
 import {createAdminRoutes} from "../Admin/routes";
@@ -12,16 +10,11 @@ import {createToolsRoutes} from "../Tools/routes";
 import {createDocumentationRoutes} from "../Documentation/routes";
 
 /**
- * The admin app's TanStack Router, mid-migration from React Router 5 (see
- * designs/tanstack-router-migration.md).
+ * The admin app's TanStack Router (see designs/tanstack-router-migration.md).
  *
- * TanStack Router owns the browser history, and every page is a TanStack
- * route. The root route renders the app shell (whose main area is an
- * <Outlet/>) inside React Router 5's <Router>, driven by an adapter over
- * that same history (legacyHistory.js), for the one remaining React Router
- * 5 consumer: navigation.js, the @afw/react navigation adapter (Link,
- * Prompt, useHistory). The last migration step moves it to TanStack and
- * removes this bridge.
+ * The root route renders the app shell, whose main area is an <Outlet/>;
+ * each section module (Admin, Objects, Tools, Documentation) builds its own
+ * subtree. Adaptive Components reach the router only through navigation.js.
  */
 
 /*
@@ -31,20 +24,9 @@ import {createDocumentationRoutes} from "../Documentation/routes";
 export const AppShellContext = createContext(null);
 
 const RootLayout = () => {
-    const router = useRouter();
     const shell = useContext(AppShellContext);
 
-    /* one adapter per router: <Router> must keep the same history */
-    const legacyHistory = useMemo(
-        () => createLegacyHistory(router.history, router.basepath),
-        [router]
-    );
-
-    return (
-        <LegacyRouter history={legacyHistory}>
-            { shell ?? <Outlet /> }
-        </LegacyRouter>
-    );
+    return shell ?? <Outlet />;
 };
 
 const rootRoute = createRootRoute({
@@ -103,7 +85,7 @@ export const createAppRouter = (options = {}) =>
         basepath: getBasepath(),
         /* shown while a lazy route component loads */
         defaultPendingComponent: Loading,
-        /* a path no route matches (inside a migrated section) */
+        /* a path no route matches */
         defaultNotFoundComponent: NoRoute,
         parseSearch,
         stringifySearch,

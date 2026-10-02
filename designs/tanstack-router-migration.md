@@ -1,6 +1,6 @@
 # Admin app: React Router 5 → TanStack Router
 
-**Status (2026-10-02):** on `feat/tanstack-router`: every page and the app shell are on TanStack Router (the root and `/Admin` catch-alls and `AppRoutes` are gone; `NoRoute` is the router's not-found page; Home, Versions, AppBar, AppNav, AppSearch, `useBreadcrumbs` and ContextualHelp use TanStack hooks). Left: the last step, moving `navigation.js` to TanStack and removing the bridge, React Router 5, and the tests' `MemoryRouter`. Lessons are under *Patterns*; known issues under *Open questions* and in `beta-backlog.md`.
+**Status (2026-10-02):** done on `feat/tanstack-router`. The admin app runs on TanStack Router alone: every page and the app shell are TanStack routes, `navigation.js` adapts the @afw/react navigation contract to TanStack, and the bridge, `react-router`, `react-router-dom` and the tests' `MemoryRouter` are gone. Lessons are under *Patterns*; known issues under *Open questions* and in `beta-backlog.md`.
 
 **Scope:** `src/afw_app/admin` only. Since #451 the component libraries (`@afw/react`, `@afw/react-material-ui`) import no router: they go through the navigation contract (`useNavigation()` → `Link`, `useNavigate`, `NavigationBlocker`), and the app adapts its router in one file, `admin/src/navigation.js`.
 
@@ -36,6 +36,8 @@ Exports used: `createRootRoute`, `createRoute`, `createRouter`, `RouterProvider`
 
 ## The bridge: migrate one section at a time
 
+*History: the bridge (`router/legacyHistory.js`) carried the migration and was removed with React Router 5 in the last step.*
+
 Each router normally owns the browser history, so two routers at once would drift. The bridge avoids that:
 
 - TanStack Router owns the real history (`createBrowserHistory`).
@@ -54,6 +56,12 @@ The adapter is the riskiest piece — prove it in the first slice (link clicks, 
 - **Lazy components.** Route components load with `lazyRouteComponent(() => import(...), "ExportName")`, keeping section chunks; `defaultPendingComponent: Loading` replaces the old `Suspense` fallback.
 - **Links need no change.** `@afw/react`'s `Link` goes through `navigation.js` (still RR5), whose pushes reach TanStack through the bridge.
 - **Tests.** `renderRoute(path)` in `src/test-utils.js` renders the real route tree on a memory history (`router.navigate()` moves it), so tests of migrated sections also cover the layout route and params.
+
+From the last step (navigation contract):
+
+- **`navigation.js` over TanStack.** The contract's `Link` takes an app href (`/Objects/a%20b?eq(x,1)#tree`); the adapter splits it into TanStack's `to` / `search` (raw, via `parseSearch`) / `hash` (TanStack's own `href` option is not in its Link memo deps). TanStack keeps `%XX` in `to` as is (`encodePathLikeUrl` only encodes whitespace and non-ASCII), so encoded ids survive. `activeProps={{}}` drops the default `active` class (RR5's Link added none); `activeOptions={{ exact: true }}` keeps `aria-current="page"` to the current page's own link. `useNavigate` is `navigate({ href })`. `NavigationBlocker` is `useBlocker` with `window.confirm(message)` (`message` may be a function, as @afw/react's ObjectEditor passes); beforeunload stays on, as the bridge's `block` had it. Tests: `src/navigation.test.js` on a router of its own.
+- **`render()` has no router any more.** A component test that renders a page, a `Link`, or anything calling a TanStack hook goes through `renderRoute`.
+- **jsdom and scrolling.** TanStack scrolls to the top after each navigation; jsdom logs "Not implemented: window.scrollTo" for each. The shared `afw_test/javascript/src/setupTests.js` stubs it.
 
 From step 3 (Objects):
 

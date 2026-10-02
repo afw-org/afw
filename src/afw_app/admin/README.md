@@ -26,7 +26,7 @@ ReactJS is a Javascript-based framework that also supports ES6 (ECMAScript 6).  
 
 The sibling workspace packages this app depends on (`@afw/client`, `@afw/react`, `@afw/react-material-ui`, `@afw/react-monaco`) are consumed directly as source - they have no separate build step of their own. Vite compiles them as part of this app's own build/dev graph, the same way it compiles the app's own source, so editing a sibling package's source hot-reloads here without a rebuild.
 
-The app itself may be compiled with a prefix (defaulted to "/apps/afw/admin/"), which allows a web server to identify requests for the app to separate it's URI from the RESTful ones provided by the adapters.  Using this prefix, the app leverages React Router to break apart its major layouts into the following URI's:
+The app itself may be compiled with a prefix (defaulted to "/apps/afw/admin/"), which allows a web server to identify requests for the app to separate it's URI from the RESTful ones provided by the adapters.  Using this prefix, the app uses TanStack Router to break apart its major layouts into the following URI's:
 
   * /apps/afw/admin/Home
   * /apps/afw/admin/Objects

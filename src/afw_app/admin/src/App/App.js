@@ -24,7 +24,7 @@ import {Snackbar} from "@afw/react";
 import {AppContext, NotificationContext} from "../context";
 
 import {AdaptiveProvider, combineComponentRegistries} from "@afw/react";
-import {reactRouterNavigation} from "../navigation";
+import {appNavigation} from "../navigation";
 import {createAppRouter, AppShellContext} from "../router";
 import muiComponentRegistry from "@afw/react-material-ui";
 import monacoComponentRegistry, {MonacoProvider} from "@afw/react-monaco";
@@ -468,7 +468,7 @@ class App extends React.Component {
                             componentRegistry={componentRegistry} 
                             onCopy={this.onCopy} 
                             clipboard={clipboard}
-                            navigation={reactRouterNavigation}
+                            navigation={appNavigation}
                         >
                             <AppCoreProvider>
                                 <MonacoProvider theme={monacoTheme}>

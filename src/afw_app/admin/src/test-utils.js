@@ -1,5 +1,4 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {MemoryRouter} from "react-router-dom";
 import {ThemeProvider, createTheme} from "@mui/material/styles";
 
 import {AdaptiveProvider, combineComponentRegistries} from "@afw/react";
@@ -9,7 +8,7 @@ import monacoComponentRegistry, {MonacoProvider} from "@afw/react-monaco";
 
 import {AppCoreProvider} from "./App/AppCoreProvider";
 import {AppContext} from "./context";
-import {reactRouterNavigation} from "./navigation";
+import {appNavigation} from "./navigation";
 import {RouterProvider, createMemoryHistory} from "@tanstack/react-router";
 import {createAppRouter} from "./router";
 
@@ -57,21 +56,19 @@ const AllTheProviders = ({ children }) => {
     return (        
         <ThemeProvider theme={createTheme({})}>
             <AppContext.Provider value={applicationProps}>
-                <MemoryRouter>
-                    <AdaptiveProvider
-                        client={client}
-                        componentRegistry={combineComponentRegistries("admin", [ muiComponentRegistry, monacoComponentRegistry ])}
-                        onCopy={onCopy}
-                        clipboard={clipboard}
-                        navigation={reactRouterNavigation}
-                    >
-                        <AppCoreProvider>
-                            <MonacoProvider theme="dark">
-                                { children }
-                            </MonacoProvider>                                
-                        </AppCoreProvider>                        
-                    </AdaptiveProvider>
-                </MemoryRouter>
+                <AdaptiveProvider
+                    client={client}
+                    componentRegistry={combineComponentRegistries("admin", [ muiComponentRegistry, monacoComponentRegistry ])}
+                    onCopy={onCopy}
+                    clipboard={clipboard}
+                    navigation={appNavigation}
+                >
+                    <AppCoreProvider>
+                        <MonacoProvider theme="dark">
+                            { children }
+                        </MonacoProvider>                                
+                    </AppCoreProvider>                        
+                </AdaptiveProvider>
             </AppContext.Provider>
         </ThemeProvider>
     );
@@ -81,8 +78,8 @@ const AllTheProviders = ({ children }) => {
  * renderRoute(path, options)
  *
  * Renders the app's real route tree (TanStack Router, see ./router) at
- * `path`, on a memory history, inside the usual providers - for sections
- * migrated to TanStack Router, whose components need its route context.
+ * `path`, on a memory history, inside the usual providers - for pages,
+ * whose components need its route context (render() has no router).
  * Returns the render result plus the `router` (router.navigate() moves
  * it on).
  */

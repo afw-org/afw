@@ -23,8 +23,6 @@
     "moment-timezone": "^0.6.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
     "typeface-roboto": "^1.1.13",
     "typeface-roboto-mono": "^1.1.13",
     "vis-network": "^10.1.2"
