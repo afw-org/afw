@@ -92,7 +92,8 @@ afw_function_execute_compile_script(
         return result;
     }
 
-    /* RC 1 unit pin. Do not extra-hold (evaluate(compile()) / closures). */
+    /* compile() is caller-releases (RC 1). Do not register last-release
+     * (evaluate(compile()) / closures still need the heap). */
     return result;
 }
 
@@ -169,6 +170,9 @@ afw_function_execute_eval_script(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script, 1, script);
 
+    /* compile() of a unit: dest is the job heap (caller releases).
+     * Evaluate dest is x->p. Keep_unit transfers the unit onto a
+     * closure binding. */
     compiled = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,

@@ -134,9 +134,9 @@ afw_value_slot_store(
         return;
     }
     /*
-     * Unmanaged compiled_value get_assignable_value extra-holds the unit
-     * pool and stamps the assignable face (same pointer). Release the
-     * original to drop the birth hold.
+     * Unmanaged compiled_value get_assignable_value last-releases the
+     * unit pool and stamps the assignable face (same pointer). Release
+     * the original to drop the birth hold.
      */
     if (unmanaged_compiled_value) {
         afw_value_release(incoming, xctx);

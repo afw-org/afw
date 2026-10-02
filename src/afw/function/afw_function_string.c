@@ -469,6 +469,8 @@ afw_function_execute_eval_string(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script, 1, string);
 
+    /* compile() of a unit: dest is the job heap (caller releases in
+     * FINALLY). Evaluate dest is x->p. */
     compiled = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,

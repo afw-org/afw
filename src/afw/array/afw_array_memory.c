@@ -1348,7 +1348,7 @@ impl_afw_array_managed_setter_set_value(
 }
 
 
-/* Transferred extra-hold dies with the current scope, like a temp.
+/* Transferred occupant last-release on the current scope, like a temp.
  * See afw_array_create_managed. */
 static const afw_value_t *
 impl_register_transferred_temp(

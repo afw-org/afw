@@ -352,7 +352,8 @@ impl_afw_value_optional_evaluate(
                  * freed string (0x0BADF00D).
                  */
                 afw_object_set_property(test, afw_v_result,
-                    afw_value_get_assignable(evaluated_value, p, xctx),
+                    afw_pool_scope_get_assignable_for_p_lifetime(
+                        evaluated_value, p, xctx),
                     xctx);
 
                 passed_value =

@@ -622,7 +622,7 @@ afw_function_execute_keys(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    /* New array: RC 1. Extra-hold only. Same as entries/values. */
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,

@@ -194,7 +194,7 @@ afw_function_execute_bag(
         return x->data_type->empty_array_value;
     }
 
-    /* New array: RC 1. Extra-hold only. Do not get_assignable. */
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
@@ -432,9 +432,9 @@ afw_function_execute_compile(
         /*
          * Listing is a copy in dest p. Last-release the unit (RC 1)
          * so compile(..., listing) in a loop does not keep heaps.
-         * Do not extra-hold a unit returned as the compile result:
-         * evaluate(compile()) and closures from that unit still
-         * need the heap (eval-pin tests).
+         * Do not register last-release of a unit returned as the
+         * compile result: evaluate(compile()) and closures from that
+         * unit still need the heap (eval-pin tests).
          */
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, x->xctx);
@@ -443,9 +443,9 @@ afw_function_execute_compile(
     }
 
     /*
-     * Managed compiled_value starts RC 1. Do not extra-hold: that
-     * would last-release the unit at the caller `{ }` while
-     * evaluate(compile()) and closures from the unit still need it.
+     * compile() is caller-releases (RC 1). Do not register
+     * last-release: that would last-release the unit at the caller
+     * `{ }` while evaluate(compile()) and closures still need it.
      */
     return result;
 }
@@ -3237,10 +3237,10 @@ afw_function_execute_freeze(
     }
 
     /*
-     * Hold the input first (bump + extra-hold), then freeze that
-     * handle. Not a fresh create_managed. Assign later bumps the
-     * frozen face instead of wrapping a raw immutable instance into
-     * a mutable overlay.
+     * Hold the input first (get_assignable; last-release of that
+     * hold on dest p), then freeze that handle. Not a fresh
+     * create_managed. Assign later bumps the frozen face instead of
+     * wrapping a raw immutable instance into a mutable overlay.
      */
     value = afw_pool_scope_get_assignable_for_scope_lifetime(
         value, x->p, x->xctx);
