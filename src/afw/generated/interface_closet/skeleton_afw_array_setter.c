@@ -62,6 +62,7 @@ const afw_value_t *
 impl_afw_array_setter_pop_value(
     AFW_ARRAY_SETTER_SELF_T *self,
     afw_boolean_t * found,
+    const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */
@@ -75,6 +76,7 @@ const afw_value_t *
 impl_afw_array_setter_shift_value(
     AFW_ARRAY_SETTER_SELF_T *self,
     afw_boolean_t * found,
+    const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */

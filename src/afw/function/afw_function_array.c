@@ -665,13 +665,12 @@ afw_function_execute_pop(
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->p, x->xctx);
 
-    value = afw_array_pop_value(array->internal, NULL, x->xctx);
+    value = afw_array_pop_value(array->internal, NULL, x->p, x->xctx);
     if (!value) {
         return afw_value_undefined;
     }
-    /* Transfer last-released on current scope if any; dest p when
-     * there is no Adaptive caller. */
-    return afw_pool_scope_release_value_at_cleanup(value, x->p, x->xctx);
+    /* Transfer last-released dest p inside pop_value. */
+    return value;
 }
 
 
@@ -775,13 +774,12 @@ afw_function_execute_shift(
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->p, x->xctx);
 
-    value = afw_array_shift_value(array->internal, NULL, x->xctx);
+    value = afw_array_shift_value(array->internal, NULL, x->p, x->xctx);
     if (!value) {
         return afw_value_undefined;
     }
-    /* Transfer last-released on current scope if any; dest p when
-     * there is no Adaptive caller. */
-    return afw_pool_scope_release_value_at_cleanup(value, x->p, x->xctx);
+    /* Transfer last-released dest p inside shift_value. */
+    return value;
 }
 
 
