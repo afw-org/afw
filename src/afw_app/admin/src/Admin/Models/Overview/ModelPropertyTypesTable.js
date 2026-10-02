@@ -479,10 +479,10 @@ export const ModelPropertyTypesTable = (props) => {
                         onRender: (propertyType) => {
                             return (
                                 <Link      
-                                    uriComponents={[
+                                    url={"/" + [
                                         "Admin", "Models", adapterId, modelId, "objectTypes", 
-                                        objectType, "propertyTypes", propertyType, hash
-                                    ]}                             
+                                        objectType, "propertyTypes", propertyType
+                                    ].map(encodeURIComponent).join("/") + hash}                             
                                     text={propertyType}
                                 />
                             );

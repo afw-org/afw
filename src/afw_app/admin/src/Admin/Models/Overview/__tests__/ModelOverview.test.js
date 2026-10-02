@@ -7,7 +7,8 @@ import {
     waitFor,
     screen,
     mswPostCallback,
-    waitForSpinner
+    waitForSpinner,
+    fireEvent
 } from "../../../test-utils";
 
 describe("ModelOverview Tests", () => {    
@@ -34,9 +35,6 @@ describe("ModelOverview Tests", () => {
 
     beforeEach(() => {
         mswPostCallback.mockClear();
-    }); 
-
-    test("Readonly Overview", async () => {
 
         /* return a model for /models/_AdaptiveModel_/test1 */
         server.use(
@@ -71,6 +69,9 @@ describe("ModelOverview Tests", () => {
                 }
             })
         );
+    }); 
+
+    test("Readonly Overview", async () => {
 
         renderRoute("/Admin/Models/models/test1#overview");
 
@@ -81,6 +82,38 @@ describe("ModelOverview Tests", () => {
         await screen.findByText(test1Model.description);
 
         await screen.findByRole("table", { name: "Object Types" });
+
+        expect(await screen.findByRole("link", { name: "obj1" }))
+            .toHaveAttribute("href", "/Admin/Models/models/test1/objectTypes/obj1#overview");
+    });
+
+    /* editing shows the tables whose links append the view hash */
+    const editModel = async (path) => {
+        renderRoute(path);
+
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
+
+        fireEvent.click(await screen.findByRole("button", { name: "Edit Model" }));
+        await waitFor(() => expect(screen.queryByRole("button", { name: "Edit Model" })).not.toBeInTheDocument());
+    };
+
+    test("Editable overview links its object types, hash after the path", async () => {
+
+        await editModel("/Admin/Models/models/test1#overview");
+        fireEvent.click(await screen.findByRole("tab", { name: /Object Types/ }));
+
+        expect(await screen.findByRole("link", { name: "obj1" }))
+            .toHaveAttribute("href", "/Admin/Models/models/test1/objectTypes/obj1#overview");
+    });
+
+    test("Editable object type overview links its property types, hash after the path", async () => {
+
+        await editModel("/Admin/Models/models/test1/objectTypes/obj1#overview");
+        fireEvent.click(await screen.findByRole("tab", { name: /Properties/ }));
+
+        expect(await screen.findByRole("link", { name: "prop1" }))
+            .toHaveAttribute("href", "/Admin/Models/models/test1/objectTypes/obj1/propertyTypes/prop1#overview");
     });
 
 });

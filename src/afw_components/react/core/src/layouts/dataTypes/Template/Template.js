@@ -12,9 +12,11 @@ import {Typography} from "../../../components/Typography/Typography";
 import {useOperational, useTheme} from "../../../hooks";
 
 import {ExpandableComponent} from "../../../utils";
+import {StringReadOnly} from "../String/String";
 
 /*
- * Handles dataType=template
+ * Handles dataType=template: an expandable text field while editing, the
+ * template's text otherwise.
  */
 export const Template = (props) => {
 
@@ -23,6 +25,9 @@ export const Template = (props) => {
                
     const {id, value, valueMeta = {}, autoFocus, onChanged} = props;
     const {label, brief} = valueMeta;
+
+    if (!editable)
+        return <StringReadOnly {...props} value={value || ""} multiline />;
 
     return (
         <ExpandableComponent

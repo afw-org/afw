@@ -77,9 +77,6 @@ export const ObjectTypes = (props) => {
     const theme = useTheme();
 
     const [selected, setSelected] = useState([]);
-    const [allowAdd, setAllowAdd] = useState();
-    const [allowChange, setAllowChange] = useState();
-    const [allowDelete, setAllowDelete] = useState();
 
     const {adapterId} = props;
     const {objectTypeId} = useParams({ strict: false });
@@ -95,25 +92,19 @@ export const ObjectTypes = (props) => {
      * Once the Object Type objects are retrieved, read the _AdaptiveObjectType_ object
      * to determine if Object Types can be created or deleted in this adapter.
      */
-    const objectTypeObjects = useMemo(() => {
+    const {objectTypeObjects, allowAdd, allowChange, allowDelete} = useMemo(() => {
+        if (!objects)
+            return { objectTypeObjects: [] };
+
+        const objectTypeObjectType = objects.find(o => o.getObjectId() === "_AdaptiveObjectType_");
+        const {allowAdd, allowChange, allowDelete} = objectTypeObjectType ? objectTypeObjectType.getPropertyValues() : {};
+
         /* filter out the _AdaptiveObjectType_ object type */
-        if (objects) {
-            const objectTypeObjects = objects.filter(o => {
-                if (o.getObjectId() === "_AdaptiveObjectType_") {
-                    const {allowAdd, allowChange, allowDelete} = o.getPropertyValues();
+        const objectTypeObjects = objects.filter(o => o !== objectTypeObjectType).sort((A, B) => {
+            return (A.getObjectId().toLowerCase().localeCompare(B.getObjectId().toLowerCase()));
+        });
 
-                    setAllowAdd(allowAdd);
-                    setAllowChange(allowChange);
-                    setAllowDelete(allowDelete);
-
-                    return false;
-                } else return true;
-            }).sort((A, B) => {
-                return (A.getObjectId().toLowerCase().localeCompare(B.getObjectId().toLowerCase()));
-            });
-
-            return objectTypeObjects;
-        } else return [];
+        return { objectTypeObjects, allowAdd, allowChange, allowDelete };
     }, [objects]);
 
     /* Return a progress indicator while the fetch is loading */

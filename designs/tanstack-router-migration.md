@@ -116,4 +116,4 @@ From Tools and the Services group:
 - **Guard UX.** Today `<Prompt>` goes through `BrowserRouter`'s `getUserConfirmation` (`window.confirm`). `useBlocker` with `withResolver` would allow an in-app dialog later; keep `window.confirm` for parity first.
 - **Tests.** 19 test files build `Router` + `createMemoryHistory` from the `history` package and call `history.push` (some after render, wrapped in `act()` since #454). The harness should let unmigrated tests keep that shape until their section moves.
 - **Query** stays out of scope (see above).
-- **Known issue (pre-existing, kept as is):** the model overview tables put the hash into `uriComponents` (`[..., objectType, hash]`), so with a view hash set the link becomes `.../objectTypes/<type>/%23tree` - the `#` encoded into the path. Fix separately (append the hash to the URL instead).
+- **Known issue (pre-existing; fixed on `fix/admin-backlog-bugs`):** the model overview tables put the hash into `uriComponents` (`[..., objectType, hash]`), so with a view hash set the link became `.../objectTypes/<type>/%23tree` - the `#` encoded into the path. They now append the hash to the URL.

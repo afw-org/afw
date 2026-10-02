@@ -87,13 +87,23 @@ const Test = (wrapper) => {
     
                 test("dataType=" + dataType, async () => {
                     const ValueLayoutWithProfiler = withProfiler(ValueLayout);
-    
-                    render(                
+
+                    render(
                         <ValueLayoutWithProfiler valueMeta={propertyType} value={testValues[0]} />,
                         { wrapper }
-                    ); 
+                    );
                 });
-            });       
+            });
+
+            test("dataType=template shows its text, not a text field", async () => {
+                render(
+                    <ValueLayout valueMeta={{ dataType: "template", label: "Root" }} value={"${afw::root}/files"} />,
+                    { wrapper }
+                );
+
+                expect(screen.getByText("${afw::root}/files")).toBeInTheDocument();
+                expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+            });
         });
 
         describe("Editable", () => {
