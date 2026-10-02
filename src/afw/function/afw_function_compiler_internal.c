@@ -163,7 +163,7 @@ impl_keep_if_return(
  * Hold it on this frame so a later finally isolate does not drop it.
  */
 static void
-impl_try_keep_return(afw_xctx_t *xctx)
+impl_try_keep_return(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *v;
 
@@ -171,8 +171,8 @@ impl_try_keep_return(afw_xctx_t *xctx)
         return;
     }
     v = afw_xctx_script_result_get(xctx);
-    /* Existing occupant, not create_managed. Bump + extra-hold. */
-    v = afw_pool_scope_get_assignable_for_scope_lifetime(v, xctx);
+    /* Existing occupant, not create_managed. */
+    v = afw_pool_scope_get_assignable_for_scope_lifetime(v, p, xctx);
     afw_pool_scope_set_last_result(v, xctx);
 }
 
@@ -2111,7 +2111,7 @@ afw_function_execute_try(
         afw_value_block_evaluate_statement(
             x, x->argv[1], p, xctx);
         use_type = afw_xctx_statement_flow_get(xctx);
-        impl_try_keep_return(xctx);
+        impl_try_keep_return(p, xctx);
     }
 
     AFW_CATCH_UNHANDLED {
@@ -2229,7 +2229,7 @@ afw_function_execute_try(
                     x, x->argv[3], p, xctx);
             }
             use_type = afw_xctx_statement_flow_get(xctx);
-            impl_try_keep_return(xctx);
+            impl_try_keep_return(p, xctx);
             if (afw_xctx_statement_flow_is_type(rethrow, xctx)) {
                 AFW_ERROR_RETHROW;
             }
@@ -2265,7 +2265,7 @@ afw_function_execute_try(
                 afw_xctx_statement_flow_is_type(return, xctx))
             {
                 use_type = afw_xctx_statement_flow_get(xctx);
-                impl_try_keep_return(xctx);
+                impl_try_keep_return(p, xctx);
                 AFW_ERROR_MARK_CAUGHT;
             }
             else if (afw_xctx_statement_flow_is_type(rethrow, xctx))

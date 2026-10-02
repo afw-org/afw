@@ -473,6 +473,41 @@ afw_function_evaluate_required_parameter(
     const afw_data_type_t *data_type);
 
 
+/**
+ * @brief After evaluate of a compile unit, get_reference an escaped
+ *    function onto that unit.
+ * @param compiled compile() result (caller does not release; dest p
+ *    already last-releases the birth hold).
+ * @param value evaluate result, or NULL.
+ * @param unexpected caller buffer; [0] stays 0 unless an internal error.
+ * @param unexpected_size size of unexpected.
+ * @param label for internal-error text (`eval<script>`, `eval<string>`,
+ *    `eval<template>`, `eval_from_file`).
+ * @param p dest p of the evaluate.
+ * @param xctx of caller.
+ * @return value, possibly a new closure_binding that keeps the unit.
+ *
+ * Call from AFW_FINALLY. Dest p of compile last-releases the birth
+ * hold. If a function from that unit escaped in the result,
+ * get_reference the unit onto the binding (top-level closure
+ * transfers the inner evaluate result's scope reference and a
+ * get_reference of the unit onto a new binding, unlinks the inner
+ * from enclosing-scope frame slots and last_result; a nested
+ * function in an object or array get_references the unit onto that
+ * binding). Throw delay keeps dest p so CATCH can still read error
+ * contextual. Do not throw here. After ENDTRY, throw if
+ * unexpected[0] is set.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_function_eval_reference_escaped_unit(
+    const afw_value_t *compiled,
+    const afw_value_t *value,
+    char *unexpected,
+    afw_size_t unexpected_size,
+    const char *label,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 
 AFW_END_DECLARES
 

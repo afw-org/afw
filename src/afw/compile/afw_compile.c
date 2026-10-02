@@ -89,10 +89,9 @@ afw_compile_and_evaluate(
     }
     AFW_FINALLY {
         if (result) {
-            result = afw_value_get_assignable(result, p, xctx);
-        }
-        if (afw_value_is_compiled_value(compiled_value)) {
-            afw_value_release(compiled_value, xctx);
+            /* Evaluate already registered last-release on dest p. */
+            result = afw_pool_scope_get_assignable_for_p_lifetime(
+                result, p, xctx);
         }
     }
     AFW_ENDTRY;
@@ -166,6 +165,7 @@ impl_compile_to_value_with_callback(
     const afw_utf8_octet_t *cursor;
     const afw_value_block_t *block;
     const afw_value_t **block_argv;
+    const afw_pool_t *dest_p;
     afw_size_t count;
 
     if (compile_type == afw_compile_type_regexp) {
@@ -179,6 +179,10 @@ impl_compile_to_value_with_callback(
             xctx);
     }
 
+    dest_p = p;
+    if (!dest_p && shared) {
+        dest_p = shared->p;
+    }
     if (p) {
         p = p->managed_p;
     }
@@ -194,6 +198,11 @@ impl_compile_to_value_with_callback(
         parser->compiled_value->inf =
             &afw_value_managed_compiled_value_inf;
         parser->compiled_value->reference_count = 1;
+        /* Caller does not release. Result lasts for dest p. */
+        if (dest_p) {
+            afw_pool_release_value_at_cleanup(
+                &parser->compiled_value->pub, dest_p, xctx);
+        }
     }
 
     /* Parse. */

@@ -116,6 +116,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_array_pop_value(
     const afw_array_t *instance,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_array_setter_t *setter;
@@ -126,7 +127,7 @@ afw_array_pop_value(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    return afw_array_setter_pop_value(setter, found, xctx);
+    return afw_array_setter_pop_value(setter, found, p, xctx);
 }
 
 
@@ -135,6 +136,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_array_shift_value(
     const afw_array_t *instance,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_array_setter_t *setter;
@@ -145,7 +147,7 @@ afw_array_shift_value(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    return afw_array_setter_shift_value(setter, found, xctx);
+    return afw_array_setter_shift_value(setter, found, p, xctx);
 }
 
 

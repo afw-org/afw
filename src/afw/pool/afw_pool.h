@@ -388,6 +388,20 @@ afw_pool_release_value_at_cleanup(
 
 
 /**
+ * @brief Remove a release registered by
+ *    afw_pool_release_value_at_cleanup().
+ *
+ * No-op if this value is not registered on p. After this, the
+ * caller owns that hold again.
+ */
+AFW_DECLARE(void)
+afw_pool_deregister_value_at_cleanup(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief True if this value already has a cleanup release on p.
  */
 AFW_DECLARE(afw_boolean_t)

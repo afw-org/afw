@@ -134,9 +134,9 @@ afw_value_slot_store(
         return;
     }
     /*
-     * Unmanaged compiled_value get_assignable_value extra-holds the unit
-     * pool and stamps the assignable face (same pointer). Release the
-     * original to drop the birth hold.
+     * Unmanaged compiled_value get_assignable_value last-releases the
+     * unit pool and stamps the assignable face (same pointer). Release
+     * the original to drop the birth hold.
      */
     if (unmanaged_compiled_value) {
         afw_value_release(incoming, xctx);
@@ -424,10 +424,9 @@ afw_value_compile_and_evaluate(
     }
     AFW_FINALLY {
         if (result) {
-            result = afw_value_get_assignable(result, p, xctx);
-        }
-        if (afw_value_is_compiled_value(compiled_value)) {
-            afw_value_release(compiled_value, xctx);
+            /* Evaluate already registered last-release on dest p. */
+            result = afw_pool_scope_get_assignable_for_p_lifetime(
+                result, p, xctx);
         }
     }
     AFW_ENDTRY;
@@ -458,10 +457,9 @@ afw_value_compile_and_evaluate_using(
     }
     AFW_FINALLY {
         if (result) {
-            result = afw_value_get_assignable(result, p, xctx);
-        }
-        if (afw_value_is_compiled_value(compiled_value)) {
-            afw_value_release(compiled_value, xctx);
+            /* Evaluate already registered last-release on dest p. */
+            result = afw_pool_scope_get_assignable_for_p_lifetime(
+                result, p, xctx);
         }
     }
     AFW_ENDTRY;

@@ -4,8 +4,7 @@
 //? customPurpose: Part of language/script tests
 //? description: ...
 Managed array push slot_stores. pop/shift transfer the occupant and
-register release on the current scope pool so it acts like a temp.
-Assign still slot_stores.
+last-release dest p so it acts like a temp. Assign still slot_stores.
 //? sourceType: script
 //?
 //? test: push-pop-discard-loop

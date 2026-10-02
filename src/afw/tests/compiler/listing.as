@@ -92,3 +92,33 @@ assert(includes(L, "string"));
 assert(includes(L, "function_definition add") || includes(L, "add"));
 
 return 0;
+
+//?
+//? test: listing-json-typed
+//? description: compile<json> listing copies out then last-releases the unit
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const L = compile<json>(json("{\"a\":1}"), 2);
+assert(is_string(L));
+assert(includes(L, "a"));
+
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    const s = compile<json>(json("[1,2,3]"), 1);
+    assert(is_string(s));
+}
+return 0;
+
+//?
+//? test: listing-relaxed-json-typed
+//? description: compile<relaxed_json> listing last-releases the unit
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const L = compile<relaxed_json>(relaxed_json("[1, 2,]"), 2);
+assert(is_string(L));
+assert(includes(L, "1"));
+return 0;

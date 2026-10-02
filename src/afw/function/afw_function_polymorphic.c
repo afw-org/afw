@@ -194,11 +194,11 @@ afw_function_execute_bag(
         return x->data_type->empty_array_value;
     }
 
-    /* New array: RC 1. Extra-hold only. Do not get_assignable. */
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
@@ -373,7 +373,7 @@ afw_function_execute_clone(
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
     result = impl_script_clone(value, x);
-    return afw_pool_scope_release_value_at_cleanup(result, x->xctx);
+    return afw_pool_scope_release_value_at_cleanup(result, x->p, x->xctx);
 }
 
 
@@ -421,7 +421,7 @@ afw_function_execute_compile(
 
     /** @fixme Need a way to get source location */
     result = afw_value_compile(
-        source, afw_s_a_empty_string, x->xctx->p, x->xctx);
+        source, afw_s_a_empty_string, x->p, x->xctx);
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
         compiled = result;
@@ -429,24 +429,10 @@ afw_function_execute_compile(
             afw_value_compiler_listing_to_string(compiled, listing,
                 x->p, x->xctx),
             x->p, x->xctx);
-        /*
-         * Listing is a copy in dest p. Last-release the unit (RC 1)
-         * so compile(..., listing) in a loop does not keep heaps.
-         * Do not extra-hold a unit returned as the compile result:
-         * evaluate(compile()) and closures from that unit still
-         * need the heap (eval-pin tests).
-         */
-        if (afw_value_is_compiled_value(compiled)) {
-            afw_value_release(compiled, x->xctx);
-        }
+        /* Listing is a copy in dest p. The unit lasts for dest p. */
         return result;
     }
 
-    /*
-     * Managed compiled_value starts RC 1. Do not extra-hold: that
-     * would last-release the unit at the caller `{ }` while
-     * evaluate(compile()) and closures from the unit still need it.
-     */
     return result;
 }
 
@@ -1153,7 +1139,7 @@ afw_function_execute_intersection(
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
 
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(array1->internal, &iterator, x->xctx);
@@ -2389,7 +2375,7 @@ afw_function_execute_split(
 
     result = afw_pool_scope_release_value_at_cleanup(
         afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
-        x->xctx);
+        x->p, x->xctx);
     array = ((const afw_value_array_t *)result)->internal;
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
@@ -2761,7 +2747,7 @@ afw_function_execute_union(
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
     impl_add_nondups_to_array(data_type, array1->internal,
         result->internal, x->xctx);
     for (i = 2; i <= x->argc; i++) {
@@ -3237,12 +3223,13 @@ afw_function_execute_freeze(
     }
 
     /*
-     * Hold the input first (bump + extra-hold), then freeze that
-     * handle. Not a fresh create_managed. Assign later bumps the
-     * frozen face instead of wrapping a raw immutable instance into
-     * a mutable overlay.
+     * Hold the input first (get_assignable; last-release of that
+     * hold on dest p), then freeze that handle. Not a fresh
+     * create_managed. Assign later bumps the frozen face instead of
+     * wrapping a raw immutable instance into a mutable overlay.
      */
-    value = afw_pool_scope_get_assignable_for_scope_lifetime(value, x->xctx);
+    value = afw_pool_scope_get_assignable_for_scope_lifetime(
+        value, x->p, x->xctx);
 
     if (afw_value_is_object(value)) {
         object = (const afw_value_object_t *)value;

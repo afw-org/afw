@@ -464,12 +464,12 @@ struct afw_value_closure_binding_s {
     const afw_value_script_function_definition_t *script_function_definition;
     const afw_pool_scope_t *enclosing_lexical_scope;
     /*
-     * Compile unit this binding keeps, or NULL. eval<script> transfers
-     * its compile-unit reference onto a new binding it returns when the
-     * result's script_function_definition was defined in that unit. The
-     * binding's last release drops it, so a later call still sees the
-     * body and the literals. Such a binding is also handed its scope
-     * reference, so its first get_reference does not take another.
+     * Compile unit this binding keeps, or NULL. eval* of a top-level
+     * closure transfers the inner evaluate result's scope pin and a
+     * get_reference of the unit onto a new binding. Nested closures
+     * get_reference the unit onto the occupant binding. Last-release
+     * of the binding drops the unit. First get_reference of a binding
+     * that already keeps a unit does not take another scope pin.
      */
     const afw_value_t *compiled_value;
     afw_size_t reference_count;

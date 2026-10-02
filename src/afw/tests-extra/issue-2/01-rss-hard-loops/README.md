@@ -70,7 +70,7 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 | class | `in_use` fail | examples |
 |-------|----------------|----------|
 | **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_*` / `test_script_*` / `object_rest_*` |
-| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | *(none right now)* |
+| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | `eval_object_rebind` (15 s ~5.16 MiB/s in_use; 60 s ~3.05 MiB/s; #458) |
 | **grow** | must grow ≥ 256 KiB/s | `array_append` |
 
 60 s is the night / finish-pass window (`AFW_ISSUE2_DURATION_S=60`).
@@ -86,7 +86,8 @@ python3 src/afw/tests-extra/issue-2/01-rss-hard-loops/_rss.py integer_assign --d
 
 ## Workloads (`_workloads/`)
 
-Underscore dir on purpose: `afwdev test` must not evaluate these as tests
+Underscore dir on purpose: `afwdev test` must not evaluate these as tests.
+`eval_scalar_rebind.as` is a no-escaped-function diagnostic (not in `WORKLOADS`).
 (they do not return).
 
 Measured **2026-09-16**; isolate sitting on `develop` as
@@ -141,6 +142,8 @@ scalar on purpose.
 | `try_catch` | throw/catch each iter | **flat / flat** (2026-09-17) | RSS wander / ~0.25 MiB/s in_use |
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** ([PR #439](https://github.com/afw-org/afw/pull/439), 2026-10-01 15 s: RSS 0 / `in_use` 0). Was ~50–65 MiB/s (`clone_managed` bump of already-managed isolate) | **flat / flat** |
+| `eval_closure_rebind` | `eval<script>` closure overwrite | **flat / flat** (escaped-unit get_reference, 2026-10-02 15 s and 60 s `JOBS=16`: RSS 0 / `in_use` 0) | — |
+| `eval_object_rebind` | `eval<script>` object of functions overwrite | **climb** 15 s 14.45 MiB/s RSS / 5.16 MiB/s in_use; 60 s `JOBS=16` ~8.5 MiB/s RSS / 3.05 MiB/s in_use (nested leftover, 2026-10-02). Follow-up [#458](https://github.com/afw-org/afw/issues/458) | — |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
 | `splice_assign` | splice copy-out then assign | **flat / flat** (2026-09-29, 15 s after managed remove). Was **under bar** 2026-09-28 (~0.42 / ~0.21); leftover RC ~185 MiB/s before extra-hold-only | — |
 | `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s). Was ~2.58 / ~2.59 until managed `remove_value_by_index` last-released the source slot | — |

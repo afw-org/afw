@@ -782,7 +782,7 @@ afw_function_execute_test_script(
         compiled = afw_compile_to_value(
             &expression->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_script,
-            NULL, xctx->p, xctx);
+            NULL, x->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -827,16 +827,11 @@ afw_function_execute_test_script(
             }
     }
 
-    AFW_FINALLY {
-        if (afw_value_is_compiled_value(compiled)) {
-            afw_value_release(compiled, xctx);
-        }
-    }
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     /* create_managed RC 1. Register last-release of the execute result. */
-    return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
+    return afw_pool_scope_release_value_at_cleanup(result->value, x->p, xctx);
 }
 
 
@@ -926,7 +921,7 @@ afw_function_execute_test_template(
         compiled = afw_compile_to_value(
             &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_template,
-            NULL, xctx->p, xctx);
+            NULL, x->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -969,16 +964,11 @@ afw_function_execute_test_template(
         }
     }
 
-    AFW_FINALLY {
-        if (afw_value_is_compiled_value(compiled)) {
-            afw_value_release(compiled, xctx);
-        }
-    }
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     /* create_managed RC 1. Register last-release of the execute result. */
-    return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
+    return afw_pool_scope_release_value_at_cleanup(result->value, x->p, xctx);
 }
 
 
@@ -1399,7 +1389,7 @@ afw_function_execute_compile_from_file(
         result = afw_compile_to_value_with_callback(NULL,
             impl_octet_get_cb, self, file, compile_type, 
             afw_compile_residual_check_to_full,
-            NULL, xctx->p, xctx
+            NULL, p, xctx
         );
     }
     AFW_FINALLY {
@@ -1464,9 +1454,30 @@ const afw_value_t *
 afw_function_execute_eval_from_file(
     afw_function_execute_t *x)
 {
-    const afw_value_t *result;
+    const afw_value_t *compiled;
+    const afw_value_t *value = NULL;
+    char unexpected[192];
+    afw_xctx_t *xctx = x->xctx;
 
-    /* This is the same as compile except it also calls evalaute. */
-    result = afw_function_execute_compile_from_file(x);
-    return afw_value_evaluate(result, x->p, x->xctx);
+    /* compile dest is x->p (last-releases dest p). Evaluate dest is
+     * x->p. After evaluate, get_reference the unit onto an escaped
+     * function. */
+    compiled = afw_function_execute_compile_from_file(x);
+
+    AFW_TRY {
+        value = afw_value_evaluate(compiled, x->p, xctx);
+    }
+    AFW_FINALLY {
+        value = afw_function_eval_reference_escaped_unit(
+            compiled, value, unexpected, sizeof(unexpected),
+            "eval_from_file", x->p, xctx);
+    }
+    AFW_ENDTRY;
+
+    if (unexpected[0]) {
+        AFW_THROW_ERROR_FZ(general, xctx, "%s", unexpected);
+    }
+
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
+    return value;
 }

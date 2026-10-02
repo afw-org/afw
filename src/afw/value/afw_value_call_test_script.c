@@ -352,7 +352,8 @@ impl_afw_value_optional_evaluate(
                  * freed string (0x0BADF00D).
                  */
                 afw_object_set_property(test, afw_v_result,
-                    afw_value_get_assignable(evaluated_value, p, xctx),
+                    afw_pool_scope_get_assignable_for_p_lifetime(
+                        evaluated_value, p, xctx),
                     xctx);
 
                 passed_value =
@@ -428,14 +429,20 @@ impl_afw_value_optional_evaluate(
             afw_object_set_property_as_string_internal(test,
                 afw_v_errorReason, errorReason, xctx);
 
-            /* Set error property. Isolate: object is compile-unit. */
-            afw_object_set_property(test, afw_v_error,
-                afw_value_get_assignable(
-                    afw_value_create_unmanaged_object(
-                        afw_error_to_object(AFW_ERROR_THROWN, p, xctx),
-                        p, xctx),
-                    p, xctx),
-                xctx);
+            /* create_managed RC 1. error_to_object is unmanaged in dest
+             * p; wrapping that instance is a dest-p lifetime mismatch.
+             * Unmanaged test objects store the pointer; last-release of
+             * that hold is dest p. */
+            {
+                const afw_object_t *err;
+
+                err = afw_object_create_managed(p, xctx);
+                afw_error_add_to_object(err, AFW_ERROR_THROWN, xctx);
+                afw_object_set_property(test, afw_v_error,
+                    afw_pool_scope_release_value_at_cleanup(
+                        err->value, p, xctx),
+                    xctx);
+            }
         }
 
         AFW_ENDTRY;

@@ -72,7 +72,7 @@ afw_function_execute_add_properties(
     /* Mutate-input, or promote a new script wrapper. Not create_managed. */
     target = (const afw_value_object_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
-            &target->pub, x->xctx);
+            &target->pub, x->p, x->xctx);
 
     for (count = 2; count <= x->argc; count++)
     {
@@ -558,7 +558,7 @@ afw_function_execute_entries(
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
@@ -569,7 +569,7 @@ afw_function_execute_entries(
         pair = ((const afw_value_array_t *)
             afw_pool_scope_release_value_at_cleanup(
                 afw_array_create_managed(NULL, x->p, x->xctx)->value,
-                x->xctx))->internal;
+                x->p, x->xctx))->internal;
         afw_array_push_value(pair, name_value, x->xctx);
         afw_array_push_value(pair, value, x->xctx);
         afw_array_push_value(result->internal, pair->value, x->xctx);
@@ -622,11 +622,11 @@ afw_function_execute_keys(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    /* New array: RC 1. Extra-hold only. Same as entries/values. */
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
@@ -688,7 +688,7 @@ afw_function_execute_values(
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);

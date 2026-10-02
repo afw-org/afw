@@ -6,7 +6,7 @@ This is the **value lifetime story**. Inf-method rails, two worlds, eval `p`, an
 
 Code and tests remain ground truth. If the tree and this story disagree, fix the tree or this story; do not add a third protocol.
 
-**Related:** inf rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (**implementation order** at the top). Two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md); eval `p` [`experiment-eval-p.md`](experiment-eval-p.md); pool doors [`remaining-apr.md`](remaining-apr.md). Lab: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Tree vs this story: [#443](https://github.com/afw-org/afw/issues/443), [#445](https://github.com/afw-org/afw/issues/445), [#446](https://github.com/afw-org/afw/issues/446).
+**Related:** inf rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (**implementation order** at the top). Two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md); eval `p` [`experiment-eval-p.md`](experiment-eval-p.md); pool doors [`remaining-apr.md`](remaining-apr.md). Lab: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Tree vs this story: [#443](https://github.com/afw-org/afw/issues/443), [#445](https://github.com/afw-org/afw/issues/445), [#446](https://github.com/afw-org/afw/issues/446). n=5 dest-p honor (compile caller does not release) is **this branch** (`sweep-5-lifetime`).
 
 ---
 
@@ -49,10 +49,12 @@ Every C function that returns an `afw_value_t *` (or a managed object/array inst
 
 | Contract | Meaning | Examples |
 |---|---|---|
-| **Caller does not release** | Caller must not `release` the result. | Adaptive `execute_*`, `evaluate()`, unmanaged `create_*` |
-| **Caller releases** | Caller must `release` the result. That one `release` last-releases everything the value obtained. | `create_managed`, `compile()` of a unit |
+| **Caller does not release** | Caller must not `release` the result. Result lasts for the lifetime of dest `p`. | Adaptive `execute_*`, `evaluate()`, `afw_compile_*` (value / object / array), unmanaged `create_*` |
+| **Caller releases** | Caller must `release` the result. Result lasts until released. That one `release` last-releases everything the value obtained. | `create_managed`, `get_assignable_value`, `get_reference` |
 
 Adaptive built-ins are **caller does not release**. What the function does inside is its business. It must deal with every lifetime it starts so the return matches the contract.
+
+`afw_compile_*` is that contract. Script / template / test_script return a **managed** `compiled_value` so `get_assignable_value` references self; compile registers last-release of the birth hold on dest `p`. JSON / relaxed_json return evaluated data in dest `p`. The caller of compile does not inspect the inf to decide whether to `release`. Inf managed is not the return contract.
 
 ---
 
@@ -89,7 +91,7 @@ Read a slot: the pointer. Keep a value alive: `get_reference` (matching `release
 
 A **managed container** holds **one reference** to each value it holds (object property and array element the same) and `release`s those when it goes. Those values are ordinary managed values. The same value can be held by more than one container. Unmanaged object/array is pointers in dest `p`, bulk-free.
 
-Methods that return a held value are **caller does not release**. If the caller wants that value past dest `p`, they `get_reference` / `get_assignable_value`. The caller does not special-case object vs array or get vs pop. Internals (unlink, leave the reference, `remove` `release`s) are how-to.
+Methods that return a held value are **caller does not release**. If the caller wants that value past dest `p`, they `get_reference` / `get_assignable_value`. The caller does not special-case object vs array or get vs pop. Internals (unlink, leave the reference, `remove` `release`s, `pop` / `shift` last-release dest `p`) are how-to.
 
 ---
 

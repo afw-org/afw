@@ -60,10 +60,10 @@ afw_function_execute_add_entries(
     afw_size_t count;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(target, 1, array);
-    /* Mutate-input: bump + extra-hold the array already in a slot. */
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
     target = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
-            &target->pub, x->xctx);
+            &target->pub, x->p, x->xctx);
 
     for (count = 2; count <= x->argc; count++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(source, count, array);
@@ -449,12 +449,12 @@ afw_function_execute_reverse(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
 
-    /* New array: RC 1. Extra-hold only. Do not get_assignable. */
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
     setter = afw_array_get_setter(result->internal, x->xctx);
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
@@ -552,12 +552,12 @@ afw_function_execute_slice(
         }
     }
 
-    /* New array: RC 1. Extra-hold only. Stay mutable. */
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
         value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
         if (!value) {
@@ -660,13 +660,17 @@ afw_function_execute_pop(
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    /* Mutate-input: bump + extra-hold the array already in a slot. */
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
-            &array->pub, x->xctx);
+            &array->pub, x->p, x->xctx);
 
-    value = afw_array_pop_value(array->internal, NULL, x->xctx);
-    return value ? value : afw_value_undefined;
+    value = afw_array_pop_value(array->internal, NULL, x->p, x->xctx);
+    if (!value) {
+        return afw_value_undefined;
+    }
+    /* Transfer last-released dest p inside pop_value. */
+    return value;
 }
 
 
@@ -713,10 +717,10 @@ afw_function_execute_push(
     afw_size_t i;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    /* Mutate-input: bump + extra-hold the array already in a slot. */
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
-            &array->pub, x->xctx);
+            &array->pub, x->p, x->xctx);
 
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_PARAMETER(value, i);
@@ -765,13 +769,17 @@ afw_function_execute_shift(
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    /* Mutate-input: bump + extra-hold the array already in a slot. */
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
-            &array->pub, x->xctx);
+            &array->pub, x->p, x->xctx);
 
-    value = afw_array_shift_value(array->internal, NULL, x->xctx);
-    return value ? value : afw_value_undefined;
+    value = afw_array_shift_value(array->internal, NULL, x->p, x->xctx);
+    if (!value) {
+        return afw_value_undefined;
+    }
+    /* Transfer last-released dest p inside shift_value. */
+    return value;
 }
 
 
@@ -832,10 +840,10 @@ afw_function_execute_splice(
     afw_size_t arg;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    /* Mutate-input: bump + extra-hold the array already in a slot. */
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
-            &array->pub, x->xctx);
+            &array->pub, x->p, x->xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 2, integer);
 
     count = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
@@ -865,13 +873,13 @@ afw_function_execute_splice(
     }
 
     /*
-     * New array: RC 1 from create. Extra-hold only (no get_assignable
-     * bump). Same as reverse/slice.
+     * New array: create_managed RC 1. Last-release of that hold on
+     * dest p. Do not get_assignable. Same as reverse/slice.
      */
     removed = ((const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
-            x->xctx))->internal;
+            x->p, x->xctx))->internal;
     for (i = 0; i < delete_count; i++) {
         value = afw_array_get_entry_value(array->internal, start, x->xctx);
         if (value) {
@@ -935,10 +943,10 @@ afw_function_execute_unshift(
     afw_integer_t insert_at;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    /* Mutate-input: bump + extra-hold the array already in a slot. */
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
-            &array->pub, x->xctx);
+            &array->pub, x->p, x->xctx);
 
     /* Insert in order at 0, 1, 2, ... so relative order is preserved. */
     insert_at = 0;

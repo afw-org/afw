@@ -1423,7 +1423,8 @@ if (!AFW_VALUE_DATA_TYPES_EQUAL(_value1, _value2, _xctx)) \
  * @param source_location to associate with compiled value or NULL.
  * @param p to use for result.
  * @param xctx of caller.
- * @return result of compiling the value.
+ * @return result of compiling the value. Caller does not release.
+ *     Result lasts for dest p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_compile(
@@ -1441,7 +1442,8 @@ afw_value_compile(
  * @param compile_type (set afw_compile_type_t)
  * @param p to use for result.
  * @param xctx of caller.
- * @return result of compiling the value.
+ * @return result of compiling the value. Caller does not release.
+ *     Result lasts for dest p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_compile_as(
@@ -1460,7 +1462,8 @@ afw_value_compile_as(
  * @param compile_type
  * @param p to use for result.
  * @param xctx of caller.
- * @return result of compiling and evaluating the value.
+ * @return result of compiling and evaluating the value. Caller does
+ *     not release. Result lasts for dest p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_compile_and_evaluate(
@@ -1478,7 +1481,8 @@ afw_value_compile_and_evaluate(
  * @param compile_type
  * @param p to use for result.
  * @param xctx of caller.
- * @return result of compiling and evaluating the value.
+ * @return result of compiling and evaluating the value. Caller does
+ *     not release. Result lasts for dest p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_compile_and_evaluate_using(

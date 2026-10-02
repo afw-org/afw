@@ -70,6 +70,7 @@ afw_function_execute_compile_json(
 {
     const afw_value_string_t *json;
     const afw_value_t *result;
+    const afw_value_t *compiled;
     const afw_utf8_t *listing;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(json, 1, string);
@@ -77,14 +78,17 @@ afw_function_execute_compile_json(
     result = afw_compile_to_value(
         &json->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_json,
-        NULL, x->xctx->p, x->xctx);
+        NULL, x->p, x->xctx);
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
+        compiled = result;
         result = afw_value_create_unmanaged_string(
-            afw_value_compiler_listing_to_string(result, listing,
+            afw_value_compiler_listing_to_string(compiled, listing,
                 x->p, x->xctx),
             x->p, x->xctx);
+        /* Listing is a copy in dest p. Compile result lasts for dest p. */
+        return result;
     }
 
     return result;

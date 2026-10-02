@@ -79,16 +79,17 @@ afw_array_create_with_options(
  * last for this scope's evaluation. `get_assignable_value` if keeping
  * it past that.
  *
- * `pop` / `shift` give the extra-hold away (array no longer holds).
- * The transferred occupant is registered on the current scope pool
- * (`afw_pool_release_value_at_cleanup`) so it acts like a temp: it
- * dies with that `{ }` unless a slot `get_assignable_value`s it.
- * Do not `get_assignable_for_scope_lifetime` on the pop result — that
- * extra-bumps on top of the transfer.
+ * `pop` / `shift` transfer the occupant (array no longer holds).
+ * Last-release of that hold is registered on dest p
+ * (`afw_pool_release_value_at_cleanup`). Caller does not release.
+ * Keep past dest p with `get_assignable_value`. Do not
+ * `get_assignable_for_scope_lifetime` on the pop result — that is a
+ * second must-release on top of the transfer. Unmanaged pop ignores
+ * dest p.
  *
- * This create starts at RC 1. Extra-hold the new array with
- * `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in
- * `get_assignable_for_scope_lifetime` (same extra bump as on pop).
+ * This create starts at RC 1. Register last-release of that one hold
+ * with `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in
+ * `get_assignable_for_scope_lifetime` (second must-release).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed(
@@ -671,19 +672,23 @@ afw_array_push_value_take(
  * @brief Remove and return last value (pop back).
  * @param instance Pointer to this value array instance.
  * @param found Optional; if non-NULL, true if an element was removed.
+ * @param p dest pool. Last-release of the transferred hold for a
+ *    managed array is registered on this p.
  * @param xctx of caller.
  * @return Removed value (not cloned), or NULL if empty (or stored NULL).
  *
  * Pass found=NULL when empty vs removed-NULL need not be distinguished.
  * Empty is found==false; a removed NULL/undefined slot is found==true.
  *
- * Managed arrays: see `afw_array_create_managed`. Transfer, then the
- * extra-hold is a temp on the current scope pool. Not a get/peek.
+ * Managed arrays: see `afw_array_create_managed`. Transfer, then
+ * last-release of that hold on dest p. Caller does not release. Not
+ * a get/peek.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_array_pop_value(
     const afw_array_t *instance,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -692,6 +697,8 @@ afw_array_pop_value(
  * @brief Remove and return first value (shift / dequeue).
  * @param instance Pointer to this value array instance.
  * @param found Optional; if non-NULL, true if an element was removed.
+ * @param p dest pool. Last-release of the transferred hold for a
+ *    managed array is registered on this p.
  * @param xctx of caller.
  * @return Removed value (not cloned), or NULL if empty (or stored NULL).
  *
@@ -705,6 +712,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_array_shift_value(
     const afw_array_t *instance,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -755,8 +763,8 @@ afw_array_set_value(
  * @param xctx of caller.
  *
  * Managed arrays `release` the occupant. `pop` / `shift` transfer
- * instead (extra-hold on the current scope). Unmanaged non-wrapper
- * memory arrays unlink the pointer and do not release.
+ * instead (last-release of that hold on the current scope). Unmanaged
+ * non-wrapper memory arrays unlink the pointer and do not release.
  */
 AFW_DECLARE(void)
 afw_array_remove_value_by_index(

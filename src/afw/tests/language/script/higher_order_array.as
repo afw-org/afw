@@ -5,8 +5,9 @@
 //? description: ...
 Edge cases for higher-order array functions (map, filter, find, reduce,
 every/some, all_of/any_of, sort): empty arrays, undefined entries, omitted
-literal elements, identity map on homogeneous strings, mixed types, and
-sort of already-sorted / reverse / duplicate input.
+literal elements, identity map on homogeneous strings, mixed types,
+sort of already-sorted / reverse / duplicate input, and a returned
+closure as the functor.
 //? sourceType: script
 //?
 //? test: map-empty
@@ -358,4 +359,63 @@ assert(all_of(isPos, [1, 2, 3]) === true);
 assert(all_of(isPos, [1, 0, 3]) === false);
 assert(any_of(isPos, [-1, 0, 2]) === true);
 assert(any_of(isPos, [-1, 0, -2]) === false);
+return 0;
+
+//?
+//? test: returned-closure-as-functor
+//? description: map, filter, reduce, and sort evaluate a factory once and call the returned closure
+//? expect: 0
+//? source: ...
+
+/*
+ * Companion to function.as function_return_closure_as_argument, which
+ * passes a returned closure into a regular function. High-level array
+ * functions evaluate the functor parameter once, then call that value
+ * per entry. reduce and sort use their own execute paths.
+ */
+let makes = 0;
+
+function makeAdder() {
+    makes = makes + 1;
+    let n = 5;
+    return function (v) {
+        return v + n;
+    };
+}
+
+function makeGt() {
+    let min = 2;
+    return function (v) {
+        return v > min;
+    };
+}
+
+function makeSum() {
+    let extra = 10;
+    return function (acc, v) {
+        return acc + v + extra;
+    };
+}
+
+function makeBefore() {
+    return function (a, b) {
+        return a < b;
+    };
+}
+
+let mapped = map(makeAdder(), [1, 2, 3]);
+assert(makes === 1, "functor factory runs once");
+assert(length(mapped) === 3);
+assert(mapped[0] === 6 && mapped[1] === 7 && mapped[2] === 8);
+
+let kept = filter(makeGt(), [1, 2, 3, 4]);
+assert(length(kept) === 2);
+assert(kept[0] === 3 && kept[1] === 4);
+
+let summed = reduce(makeSum(), 0, [1, 2, 3]);
+assert(summed === 36);
+
+let sorted = sort(makeBefore(), [3, 1, 2]);
+assert(length(sorted) === 3);
+assert(sorted[0] === 1 && sorted[1] === 2 && sorted[2] === 3);
 return 0;

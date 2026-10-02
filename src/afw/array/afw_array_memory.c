@@ -72,11 +72,13 @@ static const afw_value_t *
 impl_afw_array_managed_setter_pop_value(
     const afw_array_setter_t *self,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 static const afw_value_t *
 impl_afw_array_managed_setter_shift_value(
     const afw_array_setter_t *self,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 #undef AFW_IMPLEMENTATION_ID
@@ -990,11 +992,15 @@ const afw_value_t *
 impl_afw_array_setter_pop_value(
     const afw_array_setter_t * self,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t *value;
+
+    /* Unmanaged: store a raw pointer; dest p unused. */
+    (void)p;
 
     /* Empty: NULL; optional found=false (undefined in script if ignored). */
     if (array_self->values->count == 0) {
@@ -1022,11 +1028,15 @@ const afw_value_t *
 impl_afw_array_setter_shift_value(
     const afw_array_setter_t * self,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t *value;
+
+    /* Unmanaged: store a raw pointer; dest p unused. */
+    (void)p;
 
     /* Empty: NULL; optional found=false (undefined in script if ignored). */
     if (array_self->values->count == 0) {
@@ -1348,22 +1358,21 @@ impl_afw_array_managed_setter_set_value(
 }
 
 
-/* Transferred extra-hold dies with the current scope, like a temp.
- * See afw_array_create_managed. */
+/* Transferred occupant last-release on dest p. Caller does not
+ * release. See afw_array_create_managed. */
 static const afw_value_t *
 impl_register_transferred_temp(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_pool_scope_t *scope;
-
     if (!value) {
         return NULL;
     }
-    scope = afw_pool_scope_internal_current(xctx);
-    if (scope) {
-        afw_pool_release_value_at_cleanup(value, scope->p, xctx);
+    if (!p) {
+        AFW_THROW_ERROR_Z(general, "pop/shift with no dest p", xctx);
     }
+    afw_pool_release_value_at_cleanup(value, p, xctx);
     return value;
 }
 
@@ -1372,6 +1381,7 @@ const afw_value_t *
 impl_afw_array_managed_setter_pop_value(
     const afw_array_setter_t *self,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_t *array_self =
@@ -1391,7 +1401,7 @@ impl_afw_array_managed_setter_pop_value(
     value = afw_vector_last(array_self->values);
     afw_vector_pop(array_self->values, xctx);
     impl_maybe_clear_generic_data_type(array_self);
-    return impl_register_transferred_temp(value, xctx);
+    return impl_register_transferred_temp(value, p, xctx);
 }
 
 
@@ -1399,6 +1409,7 @@ const afw_value_t *
 impl_afw_array_managed_setter_shift_value(
     const afw_array_setter_t *self,
     afw_boolean_t *found,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_t *array_self =
@@ -1418,7 +1429,7 @@ impl_afw_array_managed_setter_shift_value(
     value = array_self->values->entries[0];
     afw_vector_remove(array_self->values, 0, xctx);
     impl_maybe_clear_generic_data_type(array_self);
-    return impl_register_transferred_temp(value, xctx);
+    return impl_register_transferred_temp(value, p, xctx);
 }
 
 

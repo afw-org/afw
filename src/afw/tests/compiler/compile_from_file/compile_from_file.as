@@ -88,3 +88,29 @@ return 0;
 compile_from_file("includes/bad.as");
 
 return 0;
+
+
+//? test: eval_from_file-script-object-of-functions
+//? description: eval_from_file of an object of functions keeps the unit (#342)
+//? expect: 0
+//? source: ...
+
+const {func1, func2} = eval_from_file("includes/good.as");
+
+assert(func1());
+assert(!func2());
+
+return 0;
+
+
+//? test: eval_from_file-script-object-of-functions-2
+//? description: eval_from_file object property functions keep the unit (#342)
+//? expect: 0
+//? source: ...
+
+const obj = eval_from_file("includes/good.as");
+
+assert(obj.func1());
+assert(!obj.func2());
+
+return 0;

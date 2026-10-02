@@ -3263,6 +3263,7 @@ typedef const afw_value_t *
 (*afw_array_setter_pop_value_t)(
     const afw_array_setter_t * instance,
     afw_boolean_t * found,
+    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_array_setter_shift_value() */
@@ -3270,6 +3271,7 @@ typedef const afw_value_t *
 (*afw_array_setter_shift_value_t)(
     const afw_array_setter_t * instance,
     afw_boolean_t * found,
+    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_array_setter_insert_value() */
@@ -3420,11 +3422,15 @@ struct afw_array_setter_inf_s {
  * implementations (memory ring).
  * 
  * When an element is removed, the returned pointer is the value that
- * was stored; it is not cloned. Its lifetime remains that of the value
- * and its pool; the array no longer retains that slot.
+ * was stored; it is not cloned. The array no longer retains that slot
+ * (transfer). For a managed array, last-release of that hold is
+ * registered on dest p. Caller does not release. Keep past dest p
+ * with get_assignable_value. Unmanaged arrays ignore p.
  * @param instance Pointer to this array setter instance.
  * @param found Optional. If non-NULL, set true if an element was removed, false
  * if the array was empty. May be NULL when the caller does not need this.
+ * @param p Dest pool. Last-release of the transferred hold for a managed array
+ * is registered on this p. Unmanaged arrays ignore p.
  * @param xctx This is the caller's xctx.
  * @return The value removed from the end, or NULL if the array was empty (or if
  * a NULL value pointer was stored and removed).
@@ -3434,11 +3440,13 @@ struct afw_array_setter_inf_s {
 #define afw_array_setter_pop_value( \
     _instance, \
     _found, \
+    _p, \
     _xctx \
 ) \
 (_instance)->inf->pop_value( \
     (_instance), \
     (_found), \
+    (_p), \
     (_xctx) \
 )
 
@@ -3458,11 +3466,15 @@ struct afw_array_setter_inf_s {
  * get_count() as an empty guard.
  * 
  * When an element is removed, the returned pointer is the value that
- * was stored; it is not cloned. Its lifetime remains that of the value
- * and its pool; the array no longer retains that slot.
+ * was stored; it is not cloned. The array no longer retains that slot
+ * (transfer). For a managed array, last-release of that hold is
+ * registered on dest p. Caller does not release. Keep past dest p
+ * with get_assignable_value. Unmanaged arrays ignore p.
  * @param instance Pointer to this array setter instance.
  * @param found Optional. If non-NULL, set true if an element was removed, false
  * if the array was empty. May be NULL when the caller does not need this.
+ * @param p Dest pool. Last-release of the transferred hold for a managed array
+ * is registered on this p. Unmanaged arrays ignore p.
  * @param xctx This is the caller's xctx.
  * @return The value removed from the front, or NULL if the array was empty (or
  * if a NULL value pointer was stored and removed).
@@ -3472,11 +3484,13 @@ struct afw_array_setter_inf_s {
 #define afw_array_setter_shift_value( \
     _instance, \
     _found, \
+    _p, \
     _xctx \
 ) \
 (_instance)->inf->shift_value( \
     (_instance), \
     (_found), \
+    (_p), \
     (_xctx) \
 )
 

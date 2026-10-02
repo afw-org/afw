@@ -126,79 +126,86 @@ afw_pool_scope_clear_last_result(
 
 
 /**
- * @brief Get an assignable and keep it until the current scope ends.
+ * @brief Get an assignable and register last-release on dest p.
  * @param value to keep. Void and NULL are returned unchanged.
+ * @param p dest pool. Current scope->p when there is a current
+ *    scope, else this p. Required when there is no current scope.
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
  * Two different jobs. This function is only the first:
  *
  * 1. A value you did not just create_managed: mutate an input
- *    (`push` / `pop` / `freeze`), pin a script return, or promote
- *    unmanaged that already has optional_release. get_assignable
- *    bumps a managed value; extra-hold drops that bump if nobody
- *    assigns. Unmanaged with no optional_release is returned as-is
- *    (clone() cannot use this; get_assignable then extra-hold).
+ *    (`push` / `pop` / `freeze`), or promote unmanaged that already
+ *    has optional_release. get_assignable of unmanaged;
+ *    already-managed registered on dest p is returned as-is.
+ *    Register last-release of that one hold on dest p.
  *
  * 2. Fresh create_managed (already RC 1): use
  *    afw_pool_scope_release_value_at_cleanup() only. Calling this
- *    function there bumps again; scope cleanup drops one; RC 1 is
- *    left (splice #405).
+ *    function there is a second must-release; dest p cleanup drops
+ *    one; RC 1 is left (splice #405).
  *
- * Does not store last_result. See for_p_lifetime for the same bump
- * onto a chosen scope (script return onto the caller).
+ * Does not store last_result. See for_p_lifetime to pick dest p
+ * (script return onto the caller, or evaluate dest p when there is
+ * no Adaptive caller).
  */
 const afw_value_t *
 afw_pool_scope_get_assignable_for_scope_lifetime(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Extra-hold a value until the current scope ends.
+ * @brief Register last-release of a must-release hold on dest p.
  * @param value to keep. NULL is returned unchanged.
+ * @param p dest pool. Current scope->p when there is a current
+ *    scope, else this p. Required when there is no current scope.
  * @param xctx of caller.
  * @return value unchanged.
  *
- * Registers afw_pool_release_value_at_cleanup on current scope->p.
  * Does not get_assignable (no RC bump). Use after create_managed so
- * RC 1 plus this cleanup is a temp (same as managed pop/shift).
- * Also after create_managed of test_script / test_template.
- * Do not get_assignable first. Do not use on compile() of a unit
- * (evaluate(compile()) / closures still need that heap).
+ * RC 1 plus this cleanup is caller does not release. Managed
+ * pop/shift last-release dest p themselves. Also after
+ * create_managed of test_script / test_template. Do not
+ * get_assignable first. afw_compile_* registers this itself for
+ * a managed compiled_value.
  */
 const afw_value_t *
 afw_pool_scope_release_value_at_cleanup(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Get an assignable and keep it until this scope ends.
+ * @brief Get an assignable and register last-release on dest p.
  * @param value to keep. Void and NULL are returned unchanged.
- * @param scope whose p last-release drops the hold, or NULL for
- *    get_assignable only.
+ * @param p dest pool last-release drops the hold. Required.
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
- * Same bump as get_assignable_for_scope_lifetime; caller picks the
- * scope (script return pins onto the caller while the callee frame
- * is alive). get_assignable (self-reference if managed, often
- * clone_managed if unmanaged) then cleanup release on scope->p.
- * Not for a fresh create_managed — that is already RC 1; extra-hold
- * only. Permanents and a value already registered on this p are
- * returned unchanged (no second bump).
+ * Same as get_assignable_for_scope_lifetime; caller picks dest p
+ * (script return onto caller->p while the callee frame is alive,
+ * or evaluate dest p when there is no Adaptive caller).
+ * get_assignable of unmanaged; already-managed registered on that
+ * p is returned as-is. Register last-release of that one hold on
+ * dest p. Not for a fresh create_managed — that is already RC 1.
+ * Permanents and a value already registered on this p are returned
+ * unchanged (no second bump). Do not dest xctx->p.
  */
 const afw_value_t *
 afw_pool_scope_get_assignable_for_p_lifetime(
     const afw_value_t *value,
-    const afw_pool_scope_t *scope,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Set last_result to an assignable held until this scope ends.
+ * @brief Set last_result to an assignable held until dest p ends.
  * @param value to keep. Void and NULL are returned unchanged.
+ * @param p dest pool fallback when there is no current scope.
  * @param xctx of caller.
  * @return held value, or void/NULL unchanged.
  *
@@ -208,6 +215,7 @@ afw_pool_scope_get_assignable_for_p_lifetime(
 const afw_value_t *
 afw_pool_scope_set_last_result_for_lifetime(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

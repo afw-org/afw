@@ -382,11 +382,11 @@ impl_afw_value_optional_evaluate(
         }
 
         /*
-         * Pin a real occupant on the caller while this frame is still
-         * alive. get_assignable because the result may be unmanaged;
-         * extra-hold on the caller. Not a fresh create_managed.
-         * No Adaptive caller: get_assignable only (managed lives in
-         * xctx->p).
+         * Caller does not release. Isolate dest is dest p of this
+         * evaluate (caller scope->p, or p when there is no Adaptive
+         * caller). get_assignable of unmanaged; already-managed
+         * registered on that p is returned as-is. Register last-release
+         * of that one hold on dest p.
          */
         if (result &&
             !afw_value_is_undefined(result) &&
@@ -395,13 +395,8 @@ impl_afw_value_optional_evaluate(
             const afw_pool_scope_t *caller;
 
             caller = afw_pool_scope_internal_of_caller(xctx);
-            if (caller) {
-                result = afw_pool_scope_get_assignable_for_p_lifetime(
-                    result, caller, xctx);
-            }
-            else {
-                result = afw_value_get_assignable(result, xctx->p, xctx);
-            }
+            result = afw_pool_scope_get_assignable_for_p_lifetime(
+                result, caller ? caller->p : p, xctx);
         }
     }
 

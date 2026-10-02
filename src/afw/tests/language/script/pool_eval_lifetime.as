@@ -214,3 +214,213 @@ for (i = 0; i < 40; i = i + 1) {
 }
 assert(g() === 4);
 return 0;
+
+//?
+//? test: eval-string-returns-closure
+//? description: eval<string> closure keeps its compile unit after the call (#342)
+//? expect: 0
+//? source: ...
+
+const g = eval<string>("let n = 4; return function() { return n; };");
+assert(g() === 4);
+assert(g() === 4);
+return 0;
+
+//?
+//? test: eval-string-factory-returns-closure
+//? description: eval<string> factory returns an inner closure over a local (#342)
+//? expect: 0
+//? source: ...
+
+const g = eval<string>(
+    "function make() { let n = 11; return function() { return n; }; }" +
+    "return make();");
+assert(g() === 11);
+return 0;
+
+//?
+//? test: eval-string-named-function-return
+//? description: eval<string> named function then return a (slot held inner)
+//? expect: 0
+//? source: ...
+
+const g = eval<string>("function a() { return 7; } return a;");
+assert(g() === 7);
+assert(g() === 7);
+return 0;
+
+//?
+//? test: eval-string-named-function-overwrite-in-loop
+//? description: overwriting eval<string> named-then-return drops the previous unit
+//? expect: 0
+//? source: ...
+
+let g = function() { return -1; };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    g = eval<string>("function a() { return 7; } return a;");
+    assert(g() === 7);
+}
+assert(g() === 7);
+return 0;
+
+//?
+//? test: eval-string-closure-overwrite-in-loop
+//? description: overwriting an eval<string> closure drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let g = function() { return -1; };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    g = eval<string>("let n = 4; return function() { return n; };");
+    assert(g() === 4);
+}
+assert(g() === 4);
+return 0;
+
+//?
+//? test: eval-script-object-of-functions
+//? description: eval<script> object of functions keeps the unit (#342)
+//? expect: 0
+//? source: ...
+
+const o = eval<script>(script(
+    "function func1() { return true; }" +
+    "function func2() { return false; }" +
+    "return { func1: func1, func2: func2, nest: { func1: func1 } };"));
+assert(o.func1());
+assert(!o.func2());
+assert(o.nest.func1());
+return 0;
+
+//?
+//? test: eval-script-array-of-functions
+//? description: eval<script> array of functions keeps the unit (#342)
+//? expect: 0
+//? source: ...
+
+const a = eval<script>(script(
+    "function f() { return 3; } return [f];"));
+assert(a[0]() === 3);
+return 0;
+
+//?
+//? test: eval-string-object-of-functions
+//? description: eval<string> object of functions keeps the unit (#342)
+//? expect: 0
+//? source: ...
+
+const o = eval<string>(
+    "function func1() { return true; }" +
+    "function func2() { return false; }" +
+    "return { func1: func1, func2: func2 };");
+assert(o.func1());
+assert(!o.func2());
+return 0;
+
+//?
+//? test: eval-script-object-of-functions-overwrite-in-loop
+//? description: overwriting an eval<script> object of functions drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let o = { func1: function() { return false; } };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    o = eval<script>(script(
+        "function func1() { return true; }" +
+        "return { func1: func1 };"));
+    assert(o.func1());
+}
+assert(o.func1());
+return 0;
+
+//?
+//? test: eval-script-array-of-functions-overwrite-in-loop
+//? description: overwriting an eval<script> array of functions drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let a = [function() { return -1; }];
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    a = eval<script>(script(
+        "function f() { return 3; } return [f];"));
+    assert(a[0]() === 3);
+}
+assert(a[0]() === 3);
+return 0;
+
+//?
+//? test: eval-string-object-of-functions-overwrite-in-loop
+//? description: overwriting an eval<string> object of functions drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let o = { func1: function() { return false; } };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    o = eval<string>(
+        "function func1() { return true; } return { func1: func1 };");
+    assert(o.func1());
+}
+assert(o.func1());
+return 0;
+
+//?
+//? test: eval-closure-as-map-functor
+//? description: map functor from eval<script> / eval<string> capturing closures (#342)
+//? expect: 0
+//? source: ...
+
+/*
+ * eval<script> transfers a top-level closure (unit get_reference on
+ * the binding), then a high-level array function evaluates that
+ * factory-or-value once and calls it per entry. Companion to
+ * higher_order_array returned-closure-as-functor.
+ */
+const f = eval<script>(script(
+    "let n = 5; return function (v) { return v + n; };"));
+let out1 = map(f, [1, 2, 3]);
+assert(length(out1) === 3);
+assert(out1[0] === 6 && out1[1] === 7 && out1[2] === 8);
+
+let out2 = map(eval<string>(
+    "let n = 5; return function (v) { return v + n; };"), [1, 2, 3]);
+assert(length(out2) === 3);
+assert(out2[0] === 6 && out2[1] === 7 && out2[2] === 8);
+
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    let out = map(eval<string>(
+        "let n = 5; return function (v) { return v + n; };"), [1, 2, 3]);
+    assert(out[0] === 6 && out[2] === 8);
+}
+return 0;
+
+//?
+//? test: evaluate-compile-closure-as-map-functor
+//? description: map functor from evaluate(compile()) capturing closure
+//? expect: 0
+//? source: ...
+
+/*
+ * Adaptive compile() does not last-release the unit (evaluate(compile())
+ * and closures still need that heap). evaluate() of that unit returns
+ * the capturing closure; map evaluates the functor once and calls it.
+ */
+const f = evaluate(compile<script>(script(
+    "let n = 5; return function (v) { return v + n; };")));
+let out = map(f, [1, 2, 3]);
+assert(length(out) === 3);
+assert(out[0] === 6 && out[1] === 7 && out[2] === 8);
+
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    let g = evaluate(compile<script>(script(
+        "let n = 5; return function (v) { return v + n; };")));
+    let mapped = map(g, [1, 2, 3]);
+    assert(mapped[0] === 6 && mapped[2] === 8);
+}
+return 0;
