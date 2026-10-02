@@ -3,8 +3,8 @@ import {renderRoute, screen, waitFor, waitForSpinner, mswPostCallback} from "../
 
 /*
  * Schema is on TanStack Router: these render the app's real routes, so they
- * also cover the /Admin layout route, Schema's optional params, and the
- * /Admin catch-all for sections still on React Router 5.
+ * also cover the /Admin layout route, Schema's optional params, the /Admin
+ * index, and the not-found page.
  */
 describe("Schema Tests", () => {
 
@@ -63,11 +63,19 @@ describe("Schema Tests", () => {
 
     });
 
-    test("Admin sections still on React Router 5 render through the /Admin catch-all", async () => {
+    test("/Admin shows the Status page", async () => {
 
-        renderRoute("/Admin/Status");
+        renderRoute("/Admin");
 
         expect(await screen.findByText("Administration")).toBeInTheDocument();
+
+    });
+
+    test("An unknown /Admin path shows the Invalid Route page", async () => {
+
+        renderRoute("/Admin/NoSuchPage");
+
+        expect(await screen.findByText("Invalid Route")).toBeInTheDocument();
 
     });
 });

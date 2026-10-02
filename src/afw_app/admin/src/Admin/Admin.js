@@ -1,16 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect} from "react";
-import {Route} from "react-router";
 import {Outlet} from "@tanstack/react-router";
 
 import Container from "../common/Container";
-import Application from "./Application/Application";
-import Server from "./Server/Server";
-import Status from "./Status";
-import Provisioning from "./Provisioning/Provisioning";
-import Authorization from "./Authorization/Authorization";
-import RequestHandlers from "./RequestHandlers/RequestHandlers";
-import Extensions from "./Extensions/Extensions";
 
 import {useModel, useValues} from "@afw/react";
 import {useApplication, useAppCore} from "../hooks";
@@ -92,23 +84,5 @@ export const AdminLayout = () =>
             <Outlet />
         </RouteBasePathContext.Provider>
     </Admin>;
-
-/*
- * AdminLegacyRoutes
- *
- * The admin sections not yet migrated to TanStack Router (routes.js sends
- * everything else under /Admin here), still on React Router 5.
- */
-export const AdminLegacyRoutes = () =>
-    <>
-        <Route exact path="/Admin/Status" component={Status} />
-        <Route path="/Admin/Server" component={Server} />
-        <Route path="/Admin/Application" component={Application} />
-        <Route path="/Admin/Extensions" component={Extensions} />
-        <Route path="/Admin/Provisioning" component={Provisioning} />
-        <Route path="/Admin/Authorization" component={Authorization} />
-        <Route path="/Admin/RequestHandlers" component={RequestHandlers} />
-        <Route exact path="/Admin" component={Status} />
-    </>;
 
 export default AdminLayout;

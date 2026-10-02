@@ -1,7 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {MemoryRouter} from "react-router-dom";
-import {render, screen, waitFor, waitForSpinner, mswPostCallback} from "../test-utils";
-import RequestHandlers from "./RequestHandlers";
+import {renderRoute, screen, waitFor, waitForSpinner, mswPostCallback} from "../test-utils";
 
 describe("RequestHandlers Tests", () => {    
 
@@ -11,11 +9,7 @@ describe("RequestHandlers Tests", () => {
 
     test("RequestHandlers renders", async () => {
 
-        render(
-            <MemoryRouter initialEntries={[ "/Admin/RequestHandlers" ]}>
-                <RequestHandlers /> 
-            </MemoryRouter>
-        );
+        renderRoute("/Admin/RequestHandlers");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());                        
         await waitForSpinner();

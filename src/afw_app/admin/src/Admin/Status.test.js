@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {render, screen, waitForSpinner} from "./test-utils";
-import Status from "./Status";
+import {renderRoute, screen, waitForSpinner} from "./test-utils";
 
 //import server from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveServer_/current.json";
 import systemInfo from "@afw/test/build/cjs/__mocks__/retrieve_objects/afw/_AdaptiveSystemInfo_.json";
@@ -19,7 +18,7 @@ describe("Status Tests", () => {
 
     test("Show Status", async () => {
 
-        render( <Status /> );        
+        renderRoute("/Admin/Status");        
         
         await waitForSpinner();
 

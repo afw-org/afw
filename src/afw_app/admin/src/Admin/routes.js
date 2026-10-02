@@ -50,12 +50,17 @@ export const createAdminRoutes = (parentRoute) => {
     const authHandlersRoute = listDetailRoute("AuthHandlers/{-$authorizationHandlerId}",
         () => import("./Services/AuthorizationHandlers/AuthorizationHandlers"));
 
-    /* admin sections not migrated yet: React Router 5's routes */
-    const adminLegacyRoute = createRoute({
+    const requestHandlersRoute = listDetailRoute("RequestHandlers/{-$requestHandlerId}",
+        () => import("./RequestHandlers/RequestHandlers"));
+
+    /* sections with no routes of their own; /Admin itself shows Status */
+    const page = (path, load) => createRoute({
         getParentRoute: () => adminRoute,
-        path: "$",
-        component: lazyRouteComponent(() => import("./Admin"), "AdminLegacyRoutes"),
+        path,
+        component: lazyRouteComponent(load),
     });
+
+    const statusLoad = () => import("./Status");
 
     return adminRoute.addChildren([
         schemaRoute,
@@ -64,7 +69,14 @@ export const createAdminRoutes = (parentRoute) => {
         adaptersRoute,
         logsRoute,
         authHandlersRoute,
-        adminLegacyRoute,
+        requestHandlersRoute,
+        page("/", statusLoad),
+        page("Status", statusLoad),
+        page("Server", () => import("./Server/Server")),
+        page("Application", () => import("./Application/Application")),
+        page("Extensions", () => import("./Extensions/Extensions")),
+        page("Provisioning", () => import("./Provisioning/Provisioning")),
+        page("Authorization", () => import("./Authorization/Authorization")),
     ]);
 };
 

@@ -6,6 +6,7 @@ import {createRootRoute, createRoute, createRouter, Outlet, useRouter} from "@ta
 import {createLegacyHistory} from "./legacyHistory";
 import AppRoutes from "../App/AppRoutes";
 import Loading from "../common/Loading";
+import NoRoute from "../common/NoRoute";
 import {createAdminRoutes} from "../Admin/routes";
 import {createObjectsRoutes} from "../Objects/routes";
 import {createToolsRoutes} from "../Tools/routes";
@@ -100,6 +101,8 @@ export const createAppRouter = (options = {}) =>
         basepath: getBasepath(),
         /* shown while a lazy route component loads */
         defaultPendingComponent: Loading,
+        /* a path no route matches (inside a migrated section) */
+        defaultNotFoundComponent: NoRoute,
         parseSearch,
         stringifySearch,
         ...options,
