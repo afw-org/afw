@@ -6,7 +6,7 @@
  * tree-shakeable entry points (monaco-editor/editor, .../features/
  * register.all, the JSON language service, ...) - see its src/monaco.js.
  * Those only load in a real browser: Vitest's jsdom config aliases every
- * monaco-editor import to a stub (see vitest.config.js), so nothing else in
+ * monaco-editor import to a stub (see vitest.config.mjs), so nothing else in
  * this suite exercises them.
  *
  * A monaco-editor release that moves an entry point or changes its

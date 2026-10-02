@@ -22,7 +22,7 @@ import {vi} from "vitest";
 // so server.use()/mock assertions here would silently talk to a server
 // nothing is actually listening on. Named imports of these specifically fail
 // once this file (a plain .js, not .jsx) has gone through its own esbuild
-// JSX transform (see jsxInJs() in vitest.config.js) - Vite's static
+// JSX transform (see jsxInJs() in vitest.config.mjs) - Vite's static
 // named-export detection doesn't reliably survive that, so a namespace
 // import/destructure is used instead.
 import * as afwTest from "@afw/test";

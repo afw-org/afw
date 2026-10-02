@@ -43,15 +43,15 @@ export default defineConfig({
             // everything else.
             {
                 find: /^monaco-editor\/languages\/features\/json\/register$/,
-                replacement: path.resolve(__dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor-json.js")
+                replacement: path.resolve(import.meta.dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor-json.js")
             },
             {
                 find: /^monaco-editor\/.*\?worker$/,
-                replacement: path.resolve(__dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor-worker.js")
+                replacement: path.resolve(import.meta.dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor-worker.js")
             },
             {
                 find: /^monaco-editor(\/.*)?$/,
-                replacement: path.resolve(__dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor.js")
+                replacement: path.resolve(import.meta.dirname, "../../afw_test/javascript/src/__mocks__/monaco-editor.js")
             }
         ],
         // Workspace packages (inlined below) and the app itself must resolve

@@ -68,7 +68,7 @@ The directory structure is laid out as follows:
     |-- package.json    
     |-- prestart.sh
     |-- vite.config.mjs
-    |-- vitest.config.js
+    |-- vitest.config.mjs
 ```
 
 * public
@@ -92,7 +92,7 @@ The directory structure is laid out as follows:
   * Configuration file for the app, specifying all required dependencies and build/test/run targets.
 * vite.config.mjs
   * Vite's dev server / production build configuration.
-* vitest.config.js
+* vitest.config.mjs
   * Test-only configuration, kept separate from vite.config.mjs so build-time-only plugins (the JSX-in-.js build transform, the bundle visualizer) aren't pulled into test runs.
 
 
