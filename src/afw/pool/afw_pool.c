@@ -856,3 +856,20 @@ afw_pool_release_value_at_cleanup(
     afw_pool_register_cleanup(p, (void *)value, NULL,
         impl_release_value_at_cleanup, xctx);
 }
+
+
+AFW_DEFINE(void)
+afw_pool_deregister_value_at_cleanup(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value || !p) {
+        return;
+    }
+    if (!value->inf || !value->inf->optional_release) {
+        return;
+    }
+    afw_pool_deregister_cleanup(p, (void *)value, NULL,
+        impl_release_value_at_cleanup, xctx);
+}

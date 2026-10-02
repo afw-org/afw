@@ -214,3 +214,156 @@ for (i = 0; i < 40; i = i + 1) {
 }
 assert(g() === 4);
 return 0;
+
+//?
+//? test: eval-string-returns-closure
+//? description: eval<string> closure keeps its compile unit after the call (#342)
+//? expect: 0
+//? source: ...
+
+const g = eval<string>("let n = 4; return function() { return n; };");
+assert(g() === 4);
+assert(g() === 4);
+return 0;
+
+//?
+//? test: eval-string-factory-returns-closure
+//? description: eval<string> factory returns an inner closure over a local (#342)
+//? expect: 0
+//? source: ...
+
+const g = eval<string>(
+    "function make() { let n = 11; return function() { return n; }; }" +
+    "return make();");
+assert(g() === 11);
+return 0;
+
+//?
+//? test: eval-string-named-function-return
+//? description: eval<string> named function then return a (slot held inner)
+//? expect: 0
+//? source: ...
+
+const g = eval<string>("function a() { return 7; } return a;");
+assert(g() === 7);
+assert(g() === 7);
+return 0;
+
+//?
+//? test: eval-string-named-function-overwrite-in-loop
+//? description: overwriting eval<string> named-then-return drops the previous unit
+//? expect: 0
+//? source: ...
+
+let g = function() { return -1; };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    g = eval<string>("function a() { return 7; } return a;");
+    assert(g() === 7);
+}
+assert(g() === 7);
+return 0;
+
+//?
+//? test: eval-string-closure-overwrite-in-loop
+//? description: overwriting an eval<string> closure drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let g = function() { return -1; };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    g = eval<string>("let n = 4; return function() { return n; };");
+    assert(g() === 4);
+}
+assert(g() === 4);
+return 0;
+
+//?
+//? test: eval-script-object-of-functions
+//? description: eval<script> object of functions keeps the unit (#342)
+//? expect: 0
+//? source: ...
+
+const o = eval<script>(script(
+    "function func1() { return true; }" +
+    "function func2() { return false; }" +
+    "return { func1: func1, func2: func2, nest: { func1: func1 } };"));
+assert(o.func1());
+assert(!o.func2());
+assert(o.nest.func1());
+return 0;
+
+//?
+//? test: eval-script-array-of-functions
+//? description: eval<script> array of functions keeps the unit (#342)
+//? expect: 0
+//? source: ...
+
+const a = eval<script>(script(
+    "function f() { return 3; } return [f];"));
+assert(a[0]() === 3);
+return 0;
+
+//?
+//? test: eval-string-object-of-functions
+//? description: eval<string> object of functions keeps the unit (#342)
+//? expect: 0
+//? source: ...
+
+const o = eval<string>(
+    "function func1() { return true; }" +
+    "function func2() { return false; }" +
+    "return { func1: func1, func2: func2 };");
+assert(o.func1());
+assert(!o.func2());
+return 0;
+
+//?
+//? test: eval-script-object-of-functions-overwrite-in-loop
+//? description: overwriting an eval<script> object of functions drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let o = { func1: function() { return false; } };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    o = eval<script>(script(
+        "function func1() { return true; }" +
+        "return { func1: func1 };"));
+    assert(o.func1());
+}
+assert(o.func1());
+return 0;
+
+//?
+//? test: eval-script-array-of-functions-overwrite-in-loop
+//? description: overwriting an eval<script> array of functions drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let a = [function() { return -1; }];
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    a = eval<script>(script(
+        "function f() { return 3; } return [f];"));
+    assert(a[0]() === 3);
+}
+assert(a[0]() === 3);
+return 0;
+
+//?
+//? test: eval-string-object-of-functions-overwrite-in-loop
+//? description: overwriting an eval<string> object of functions drops the previous unit (#342)
+//? expect: 0
+//? source: ...
+
+let o = { func1: function() { return false; } };
+let i = 0;
+for (i = 0; i < 40; i = i + 1) {
+    o = eval<string>(
+        "function func1() { return true; } return { func1: func1 };");
+    assert(o.func1());
+}
+assert(o.func1());
+return 0;

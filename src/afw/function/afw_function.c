@@ -16,6 +16,7 @@
  */
 
 #include "afw_internal.h"
+#include <stdio.h>
 
 /*
  * Call-site contextual for nested call_create from execute_*. Public so
@@ -358,6 +359,362 @@ afw_function_evaluate_required_parameter(
 
     /* Return result that will not be NULL. */
     return result;
+}
+
+
+#define IMPL_EVAL_UNIT_SEEN_MAX 64
+
+
+static afw_boolean_t
+impl_function_defined_in_unit(
+    const afw_value_script_function_definition_t *function,
+    const afw_value_compiled_value_t *unit)
+{
+    const afw_value_block_t *block;
+
+    if (!function || !unit) {
+        return false;
+    }
+    for (block = function->enclosing_block; block;
+        block = block->parent_block)
+    {
+        if (block == unit->top_block) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+/* 0 add and walk, 1 already seen skip, 2 list full keep. */
+static int
+impl_eval_unit_seen_add(
+    const void **seen,
+    afw_size_t *count,
+    const void *p)
+{
+    afw_size_t i;
+
+    for (i = 0; i < *count; i++) {
+        if (seen[i] == p) {
+            return 1;
+        }
+    }
+    if (*count >= IMPL_EVAL_UNIT_SEEN_MAX) {
+        return 2;
+    }
+    seen[(*count)++] = p;
+    return 0;
+}
+
+
+static void
+impl_eval_unit_set_unexpected(
+    char *unexpected,
+    afw_size_t unexpected_size,
+    const char *label,
+    const char *detail)
+{
+    if (!unexpected || unexpected_size == 0) {
+        return;
+    }
+    snprintf(unexpected, unexpected_size,
+        "Internal error: %s %s", label, detail);
+}
+
+
+/*
+ * Named `function a(); return a` leaves inner in a frame slot of
+ * the eval unit root. Factory return last-releases on caller->p
+ * and may leave last_result pointing at inner. Unlink those
+ * pointers without release (the slot hold is stolen with the
+ * pin) so free of the inner header is not a later UAF.
+ */
+static void
+impl_eval_unlink_inner_from_scopes(
+    afw_value_closure_binding_t *inner,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_scope_t *s;
+    afw_pool_scope_t *mut;
+    afw_size_t i;
+
+    (void)xctx;
+    for (s = inner->enclosing_lexical_scope; s;
+        s = s->parent_lexical_scope)
+    {
+        mut = (afw_pool_scope_t *)s;
+        for (i = 0; i < mut->symbol_count; i++) {
+            if (mut->frame_slots[i] == &inner->pub) {
+                mut->frame_slots[i] = afw_value_undefined;
+            }
+        }
+        if (mut->last_result == &inner->pub) {
+            mut->last_result = afw_value_void;
+        }
+    }
+}
+
+
+/* 0 pinned or nothing, 2 keep compile() birth RC. */
+static int
+impl_eval_pin_binding(
+    afw_value_closure_binding_t *binding,
+    const afw_value_t *compiled,
+    char *unexpected,
+    afw_size_t unexpected_size,
+    const char *label,
+    afw_xctx_t *xctx)
+{
+    if (binding->compiled_value == compiled) {
+        return 0;
+    }
+    if (binding->compiled_value) {
+        impl_eval_unit_set_unexpected(unexpected, unexpected_size,
+            label, "closure_binding already keeps a compiled value");
+        return 2;
+    }
+    afw_value_get_reference(compiled, xctx);
+    binding->compiled_value = compiled;
+    return 0;
+}
+
+
+/*
+ * Walk a nested result. Pin each closure from this unit. 0 means the
+ * caller may last-release the compile() birth RC (pins hold extra
+ * RCs). 2 means keep that birth RC (unbound definition, seen-list
+ * full, or a binding that already keeps another unit).
+ */
+static int
+impl_value_pin_nested_unit(
+    const afw_value_t *value,
+    const afw_value_t *compiled,
+    const afw_value_compiled_value_t *unit,
+    const void **seen,
+    afw_size_t *seen_count,
+    char *unexpected,
+    afw_size_t unexpected_size,
+    const char *label,
+    afw_xctx_t *xctx)
+{
+    int seen_st;
+    int st;
+    int child_st;
+
+    if (!value || afw_value_is_undefined(value) || afw_value_is_void(value)) {
+        return 0;
+    }
+    if (afw_value_is_closure_binding(value)) {
+        afw_value_closure_binding_t *binding;
+
+        binding = (afw_value_closure_binding_t *)value;
+        if (!impl_function_defined_in_unit(
+            binding->script_function_definition, unit))
+        {
+            return 0;
+        }
+        return impl_eval_pin_binding(binding, compiled, unexpected,
+            unexpected_size, label, xctx);
+    }
+    if (afw_value_is_script_function_definition(value)) {
+        if (impl_function_defined_in_unit(
+            (const afw_value_script_function_definition_t *)value,
+            unit))
+        {
+            return 2;
+        }
+        return 0;
+    }
+    st = 0;
+    if (afw_value_is_object(value)) {
+        const afw_object_t *obj;
+        const afw_iterator_old_t *iterator;
+        const afw_value_t *name;
+        const afw_value_t *prop;
+
+        obj = ((const afw_value_object_t *)value)->internal;
+        if (!obj) {
+            return 0;
+        }
+        seen_st = impl_eval_unit_seen_add(seen, seen_count, obj);
+        if (seen_st == 1) {
+            return 0;
+        }
+        if (seen_st == 2) {
+            return 2;
+        }
+        for (iterator = NULL;;) {
+            prop = afw_object_get_next_property(obj, &iterator, &name, xctx);
+            if (!prop) {
+                break;
+            }
+            child_st = impl_value_pin_nested_unit(prop, compiled, unit,
+                seen, seen_count, unexpected, unexpected_size, label,
+                xctx);
+            if (child_st == 2) {
+                st = 2;
+            }
+        }
+        return st;
+    }
+    if (afw_value_is_array(value)) {
+        const afw_array_t *list;
+        const afw_iterator_old_t *iterator;
+        const afw_value_t *entry;
+
+        list = ((const afw_value_array_t *)value)->internal;
+        if (!list) {
+            return 0;
+        }
+        seen_st = impl_eval_unit_seen_add(seen, seen_count, list);
+        if (seen_st == 1) {
+            return 0;
+        }
+        if (seen_st == 2) {
+            return 2;
+        }
+        for (iterator = NULL;;) {
+            entry = afw_array_get_next_value(list, &iterator, xctx);
+            if (!entry) {
+                break;
+            }
+            child_st = impl_value_pin_nested_unit(entry, compiled, unit,
+                seen, seen_count, unexpected, unexpected_size, label,
+                xctx);
+            if (child_st == 2) {
+                st = 2;
+            }
+        }
+        return st;
+    }
+    return 0;
+}
+
+
+AFW_DEFINE(const afw_value_t *)
+afw_function_eval_release_or_keep_unit(
+    const afw_value_t *compiled,
+    const afw_value_t *value,
+    char *unexpected,
+    afw_size_t unexpected_size,
+    const char *label,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_compiled_value_t *unit;
+    afw_value_closure_binding_t *binding;
+    afw_value_closure_binding_t *inner;
+    const void *seen[IMPL_EVAL_UNIT_SEEN_MAX];
+    afw_size_t seen_count;
+    afw_boolean_t keep_unit;
+    afw_boolean_t transferred;
+
+    if (unexpected && unexpected_size > 0) {
+        unexpected[0] = 0;
+    }
+    keep_unit = false;
+    transferred = false;
+    if (value && xctx->error_processing_count == 0 &&
+        afw_value_is_compiled_value(compiled))
+    {
+        unit = (const afw_value_compiled_value_t *)compiled;
+        if (afw_value_is_closure_binding(value)) {
+            binding = (afw_value_closure_binding_t *)value;
+            if (impl_function_defined_in_unit(
+                binding->script_function_definition, unit))
+            {
+                if (binding->compiled_value) {
+                    impl_eval_unit_set_unexpected(unexpected,
+                        unexpected_size, label,
+                        "closure_binding already keeps a compiled value");
+                    keep_unit = true;
+                }
+                else if (binding->reference_count == 0) {
+                    impl_eval_unit_set_unexpected(unexpected,
+                        unexpected_size, label,
+                        "closure_binding has no scope reference to transfer");
+                    keep_unit = true;
+                }
+                else {
+                    /*
+                     * Return a new binding at RC 0 that keeps the
+                     * unit. The inner evaluate result pins a child
+                     * of dest p, so dest-p last-release of that
+                     * inner cannot run until the pin drops. Hand
+                     * the pin and the unit to the new header, drop
+                     * dest-p last-release of the inner, and free
+                     * the inner header.
+                     */
+                    inner = binding;
+                    binding = (afw_value_closure_binding_t *)
+                        afw_value_closure_binding_create(
+                            inner->script_function_definition,
+                            inner->enclosing_lexical_scope,
+                            p, xctx);
+                    afw_value_get_reference(compiled, xctx);
+                    binding->compiled_value = compiled;
+                    /*
+                     * compiled_value evaluate last-releases dest p.
+                     * A script-function return also last-releases
+                     * caller->p (eval unit root or make()'s caller).
+                     * Named `function a(); return a` still holds
+                     * inner in a frame slot: unlink then free.
+                     */
+                    afw_pool_deregister_value_at_cleanup(
+                        &inner->pub, p, xctx);
+                    {
+                        const afw_pool_scope_t *s;
+
+                        for (s = inner->enclosing_lexical_scope; s;
+                            s = s->parent_lexical_scope)
+                        {
+                            if (s->p && s->p != p) {
+                                afw_pool_deregister_value_at_cleanup(
+                                    &inner->pub, s->p, xctx);
+                            }
+                        }
+                    }
+                    impl_eval_unlink_inner_from_scopes(inner, xctx);
+                    afw_pool_free_memory_type(inner->p, inner,
+                        afw_value_closure_binding_t, xctx);
+                    value = &binding->pub;
+                    transferred = true;
+                }
+            }
+        }
+        else if (afw_value_is_script_function_definition(value) &&
+            impl_function_defined_in_unit(
+                (const afw_value_script_function_definition_t *)
+                value, unit))
+        {
+            impl_eval_unit_set_unexpected(unexpected, unexpected_size,
+                label,
+                "result is an unbound script function in its compile unit");
+            keep_unit = true;
+        }
+        else {
+            seen_count = 0;
+            if (impl_value_pin_nested_unit(value, compiled, unit,
+                seen, &seen_count, unexpected, unexpected_size,
+                label, xctx) == 2)
+            {
+                /* Unbound definition, seen-list full, or a binding
+                 * that already keeps another unit. Keep birth RC. */
+                keep_unit = true;
+            }
+            /* Nested pins hold extra RCs. Last-release birth below. */
+        }
+    }
+    if (value && !transferred) {
+        /* Evaluate already registered last-release on dest p. */
+        value = afw_pool_scope_get_assignable_for_p_lifetime(
+            value, p, xctx);
+    }
+    if (xctx->error_processing_count == 0 && !keep_unit) {
+        afw_value_release(compiled, xctx);
+    }
+    return value;
 }
 
 

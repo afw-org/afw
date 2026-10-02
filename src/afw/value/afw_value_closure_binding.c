@@ -136,7 +136,11 @@ impl_afw_value_get_reference(
     afw_xctx_t * xctx)
 {
     self->reference_count++;
-    /* A binding that keeps a unit was handed its scope reference. */
+    /*
+     * A binding that keeps a compile unit was handed its scope
+     * pin (eval* keep_unit transfers the inner evaluate result's
+     * pin onto this header). First bump must not take another.
+     */
     if (self->reference_count == 1 && !self->compiled_value) {
         afw_pool_scope_get_reference(self->enclosing_lexical_scope, xctx);
     }

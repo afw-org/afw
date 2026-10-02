@@ -466,11 +466,13 @@ afw_function_execute_eval_string(
     const afw_value_string_t *script;
     const afw_value_t *compiled;
     const afw_value_t *value = NULL;
+    char unexpected[192];
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script, 1, string);
 
-    /* compile() of a unit: dest is the job heap (caller releases in
-     * FINALLY). Evaluate dest is x->p. */
+    /* compile() of a unit: dest is the job heap (caller releases).
+     * Evaluate dest is x->p. After evaluate, last-release or keep
+     * the unit (afw_function_eval_release_or_keep_unit). */
     compiled = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,
@@ -489,14 +491,15 @@ afw_function_execute_eval_string(
             }
         }
         AFW_FINALLY {
-            if (value) {
-                /* Evaluate already registered last-release on dest p. */
-                value = afw_pool_scope_get_assignable_for_p_lifetime(
-                    value, x->p, xctx);
-            }
-            afw_value_release(compiled, xctx);
+            value = afw_function_eval_release_or_keep_unit(
+                compiled, value, unexpected, sizeof(unexpected),
+                "eval<string>", x->p, xctx);
         }
         AFW_ENDTRY;
+
+        if (unexpected[0]) {
+            AFW_THROW_ERROR_FZ(general, xctx, "%s", unexpected);
+        }
     }
     
     afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);

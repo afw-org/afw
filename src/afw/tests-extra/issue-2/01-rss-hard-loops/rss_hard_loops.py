@@ -85,6 +85,11 @@ WORKLOADS = [
           "rebind a closure that captures a per-iteration let"),
     _flat("compile_once_eval",
           "compile once, evaluate in a loop (inner heap wrap)"),
+    _flat("eval_closure_rebind",
+          "eval<script> closure overwrite (keep_unit transfer)"),
+    _climb("eval_object_rebind",
+           "eval<script> object-of-functions overwrite (nested pin leftover; #458)",
+           12),
     _flat("array_push_pop", "push then pop (temp on current scope)"),
     _flat("splice_assign", "splice copy-out then assign (length-stable)"),
     _flat("splice_unassigned",
@@ -256,7 +261,9 @@ def _judge(workload, result, assert_on):
                 "in_use expected to grow >= %.0f B/s, got %.0f"
                 % (GROWTH_MIN_IN_USE_B_S, iu))
     else:
-        if slope > STABLE_MAX_KIB_S:
+        # Climb leftover is judged by in_use cap (~2x last 15s).
+        # Disaster RSS is the flat/grow backstop.
+        if kind == "flat" and slope > STABLE_MAX_KIB_S:
             problems.append(
                 "RSS leak %.1f KiB/s > %.0f"
                 % (slope, STABLE_MAX_KIB_S))

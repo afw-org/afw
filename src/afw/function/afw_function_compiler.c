@@ -1460,106 +1460,32 @@ afw_function_execute_compile_from_file(
  *
  *   syntax - file contents could not be compiled
  */
-static afw_boolean_t
-impl_eval_from_file_function_defined_in_unit(
-    const afw_value_script_function_definition_t *function,
-    const afw_value_compiled_value_t *unit)
-{
-    const afw_value_block_t *block;
-
-    for (block = function->enclosing_block; block;
-        block = block->parent_block)
-    {
-        if (block == unit->top_block) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
 const afw_value_t *
 afw_function_execute_eval_from_file(
     afw_function_execute_t *x)
 {
     const afw_value_t *compiled;
     const afw_value_t *value = NULL;
-    const afw_value_compiled_value_t *unit;
-    afw_value_closure_binding_t *binding;
-    afw_value_closure_binding_t *inner;
-    afw_boolean_t keep_unit;
-    afw_boolean_t transferred;
-    const char *unexpected = NULL;
+    char unexpected[192];
     afw_xctx_t *xctx = x->xctx;
 
     /* compile() of a unit: dest is the job heap (caller releases).
-     * Evaluate dest is x->p. Keep_unit transfers the unit onto a
-     * closure binding. Same as eval<script>. */
+     * Evaluate dest is x->p. After evaluate, last-release or keep
+     * the unit (afw_function_eval_release_or_keep_unit). */
     compiled = afw_function_execute_compile_from_file(x);
 
     AFW_TRY {
         value = afw_value_evaluate(compiled, x->p, xctx);
     }
     AFW_FINALLY {
-        keep_unit = false;
-        transferred = false;
-        if (value && xctx->error_processing_count == 0 &&
-            afw_value_is_compiled_value(compiled))
-        {
-            unit = (const afw_value_compiled_value_t *)compiled;
-            if (afw_value_is_closure_binding(value)) {
-                binding = (afw_value_closure_binding_t *)value;
-                if (impl_eval_from_file_function_defined_in_unit(
-                    binding->script_function_definition, unit))
-                {
-                    if (binding->compiled_value) {
-                        unexpected = "Internal error: eval_from_file "
-                            "closure_binding already keeps a "
-                            "compiled value";
-                    }
-                    else if (binding->reference_count == 0) {
-                        unexpected = "Internal error: eval_from_file "
-                            "closure_binding has no scope reference "
-                            "to transfer";
-                    }
-                    else {
-                        inner = binding;
-                        binding = (afw_value_closure_binding_t *)
-                            afw_value_closure_binding_create(
-                                inner->script_function_definition,
-                                inner->enclosing_lexical_scope,
-                                x->p, xctx);
-                        binding->compiled_value = compiled;
-                        inner->reference_count = 0;
-                        value = &binding->pub;
-                        transferred = true;
-                    }
-                    keep_unit = true;
-                }
-            }
-            else if (afw_value_is_script_function_definition(value) &&
-                impl_eval_from_file_function_defined_in_unit(
-                    (const afw_value_script_function_definition_t *)
-                    value, unit))
-            {
-                unexpected = "Internal error: eval_from_file result is "
-                    "an unbound script function in its compile unit";
-                keep_unit = true;
-            }
-        }
-        if (value && !transferred) {
-            /* Evaluate already registered last-release on dest p. */
-            value = afw_pool_scope_get_assignable_for_p_lifetime(
-                value, x->p, xctx);
-        }
-        if (xctx->error_processing_count == 0 && !keep_unit) {
-            afw_value_release(compiled, xctx);
-        }
+        value = afw_function_eval_release_or_keep_unit(
+            compiled, value, unexpected, sizeof(unexpected),
+            "eval_from_file", x->p, xctx);
     }
     AFW_ENDTRY;
 
-    if (unexpected) {
-        AFW_THROW_ERROR_Z(general, unexpected, xctx);
+    if (unexpected[0]) {
+        AFW_THROW_ERROR_FZ(general, xctx, "%s", unexpected);
     }
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
