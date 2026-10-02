@@ -10,6 +10,8 @@ import monacoComponentRegistry, {MonacoProvider} from "@afw/react-monaco";
 import {AppCoreProvider} from "./App/AppCoreProvider";
 import {AppContext} from "./context";
 import {reactRouterNavigation} from "./navigation";
+import {RouterProvider, createMemoryHistory} from "@tanstack/react-router";
+import {createAppRouter} from "./router";
 
 import {vi} from "vitest";
 // `rest`/`server`/`mswPostCallback`/`mswGetCallback` must come from this same
@@ -73,6 +75,23 @@ const AllTheProviders = ({ children }) => {
             </AppContext.Provider>
         </ThemeProvider>
     );
+};
+
+/*
+ * renderRoute(path, options)
+ *
+ * Renders the app's real route tree (TanStack Router, see ./router) at
+ * `path`, on a memory history, inside the usual providers - for sections
+ * migrated to TanStack Router, whose components need its route context.
+ * Returns the render result plus the `router` (router.navigate() moves
+ * it on).
+ */
+export const renderRoute = (path, options) => {
+    const router = createAppRouter({
+        history: createMemoryHistory({ initialEntries: [path] }),
+    });
+
+    return { router, ...render(<RouterProvider router={router} />, { wrapper: AllTheProviders, ...options }) };
 };
 
 const customRender = (ui, options) =>

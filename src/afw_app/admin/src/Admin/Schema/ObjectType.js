@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState} from "react";
-import {Route, Switch} from "react-router";
+import {useParams} from "@tanstack/react-router";
 
 import {
     Button,
@@ -96,6 +96,7 @@ export const PropertiesTable = (props) => {
 export const ObjectType = (props) => {
 
     const {adapterId, objectTypeId, objectTypeObject, allowChange} = props;
+    const {propertyName} = useParams({ strict: false });
 
     let properties;
     if (objectTypeObject && objectTypeObject.getPropertyValue("propertyTypes"))
@@ -106,61 +107,55 @@ export const ObjectType = (props) => {
             return A.getName().toLowerCase().localeCompare(B.getName().toLowerCase());
         });
 
+    /* one Property Type, chosen by the route's propertyName */
+    let propertyTypeObject;
+    if (propertyName && objectTypeObject.getPropertyValue("propertyTypes")) {
+        objectTypeObject.getPropertyValue("propertyTypes").getProperties().forEach(p => {
+            if (p.getName() === propertyName)
+                propertyTypeObject = p.getValue();
+        });
+    }
+
     return (
         <ObjectEditor 
             object={objectTypeObject}
             displayHeader={allowChange}
             layout={
-                <Switch>
-                    <Route exact path="/Admin/Schema/:adapterId/:objectTypeId" render={() => 
-                        <Tabs 
-                            gapSpace={20}
-                            tabs={[
-                                {
-                                    text: "General",
-                                    contains: 
-                                        <ObjectResponsive 
-                                            filterOptions={{
-                                                filterValuedProperties: true,
-                                                filterExcludeProperties: [
-                                                    "propertyTypes"
-                                                ]
-                                            }}
-                                        />
-                                },
-                                {
-                                    text: "Properties",
-                                    contains: 
-                                        <PropertiesTable 
-                                            allowChange={allowChange}
-                                            adapterId={adapterId}
-                                            objectTypeId={objectTypeId}
-                                            properties={properties}
-                                        />
-                                }
-                            ]}
-                        />
-                    } />
-                    <Route path="/Admin/Schema/:adapterId/:objectTypeId/:propertyName" render={(routeProps) => {
-                        const propertyName = routeProps.match.params.propertyName;
-                        let propertyTypeObject;
-
-                        if (objectTypeObject.getPropertyValue("propertyTypes")) {
-                            objectTypeObject.getPropertyValue("propertyTypes").getProperties().forEach(p => {
-                                if (p.getName() === propertyName)
-                                    propertyTypeObject = p.getValue();
-                            });
-                        }
-
-                        return (
-                            <PropertyType 
-                                {...props}
-                                propertyName={propertyName}
-                                propertyTypeObject={propertyTypeObject}
-                            />
-                        );
-                    }} />
-                </Switch>
+                propertyName ? (
+                    <PropertyType 
+                        {...props}
+                        propertyName={propertyName}
+                        propertyTypeObject={propertyTypeObject}
+                    />
+                ) : (
+                    <Tabs 
+                        gapSpace={20}
+                        tabs={[
+                            {
+                                text: "General",
+                                contains: 
+                                    <ObjectResponsive 
+                                        filterOptions={{
+                                            filterValuedProperties: true,
+                                            filterExcludeProperties: [
+                                                "propertyTypes"
+                                            ]
+                                        }}
+                                    />
+                            },
+                            {
+                                text: "Properties",
+                                contains: 
+                                    <PropertiesTable 
+                                        allowChange={allowChange}
+                                        adapterId={adapterId}
+                                        objectTypeId={objectTypeId}
+                                        properties={properties}
+                                    />
+                            }
+                        ]}
+                    />
+                )
             }
         />
     );

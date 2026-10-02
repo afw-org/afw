@@ -5,6 +5,8 @@ import {createRootRoute, createRoute, createRouter, Outlet, useRouter} from "@ta
 
 import {createLegacyHistory} from "./legacyHistory";
 import AppRoutes from "../App/AppRoutes";
+import Loading from "../common/Loading";
+import {createAdminRoutes} from "../Admin/routes";
 
 /**
  * The admin app's TanStack Router, mid-migration from React Router 5 (see
@@ -54,7 +56,9 @@ const legacyRoute = createRoute({
     component: AppRoutes,
 });
 
+/* migrated sections (each module builds its own subtree), then the catch-all */
 export const routeTree = rootRoute.addChildren([
+    createAdminRoutes(rootRoute),
     legacyRoute,
 ]);
 
@@ -73,5 +77,7 @@ export const createAppRouter = (options = {}) =>
     createRouter({
         routeTree,
         basepath: getBasepath(),
+        /* shown while a lazy route component loads */
+        defaultPendingComponent: Loading,
         ...options,
     });

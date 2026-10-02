@@ -19,9 +19,6 @@ const LoadableHome = Loadable(lazy(() =>
     import("../Home/Home")
 ));
 
-const LoadableAdmin = Loadable(lazy(() =>
-    import("../Admin/Admin")
-));
 
 const LoadableDocumentation = Loadable(lazy(() =>
     import("../Documentation/Documentation")
@@ -51,9 +48,6 @@ export const AppRoutes = () => {
             </Route>
             <Route path="/Home">
                 <LoadableHome />
-            </Route>
-            <Route path="/Admin">
-                <LoadableAdmin />
             </Route>
             <Route path="/Documentation">
                 <LoadableDocumentation />

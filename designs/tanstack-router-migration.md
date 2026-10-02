@@ -1,6 +1,6 @@
 # Admin app: React Router 5 → TanStack Router
 
-**Status (2026-10-01):** decided to move the admin app to TanStack Router; nothing migrated yet. Next: the bridge + app shell slice (below).
+**Status (2026-10-02):** step 1 (bridge + shell) landed on `feat/tanstack-router`; step 2 (the `/Admin` layout route + Admin/Schema) in review. Patterns from step 2 are under *Patterns*.
 
 **Scope:** `src/afw_app/admin` only. Since #451 the component libraries (`@afw/react`, `@afw/react-material-ui`) import no router: they go through the navigation contract (`useNavigation()` → `Link`, `useNavigate`, `NavigationBlocker`), and the app adapts its router in one file, `admin/src/navigation.js`.
 
@@ -46,6 +46,14 @@ Each router normally owns the browser history, so two routers at once would drif
 - A section migrates by moving its routes into the TanStack tree (matched before the catch-all) and replacing its RR5 hooks. Legacy sections keep working meanwhile; `navigation.js` keeps adapting RR5 until the end.
 
 The adapter is the riskiest piece — prove it in the first slice (link clicks, back/forward, a `<Prompt>` through `block`, the base path) before converting sections.
+
+## Patterns (from step 2)
+
+- **Layout route + per-level catch-all.** A section whose parent wraps every page (Admin.js: config loading, `ConfigContext`, `Container`, `RouteBasePathContext`) becomes a TanStack layout route rendering that wrapper around `<Outlet/>`. Its children are the migrated pages plus a `$` catch-all that renders the parent's remaining React Router 5 `<Route>`s - here `AdminLayout` / `AdminLegacyRoutes` in Admin.js, wired in `Admin/routes.js`. The root catch-all stays for top-level sections.
+- **Drill-down views: one route with optional params.** Schema (adapter > object type > property) passed data loaded at each level to the next through RR5 `render` props, which `<Outlet/>` can't do. One route, `Schema/{-$adapterId}/{-$objectTypeId}/{-$propertyName}`, with each component reading `useParams({ strict: false })` and rendering its list or its child, keeps that data flow and turns each `<Switch>` into a conditional.
+- **Lazy components.** Route components load with `lazyRouteComponent(() => import(...), "ExportName")`, keeping section chunks; `defaultPendingComponent: Loading` replaces the old `Suspense` fallback.
+- **Links need no change.** `@afw/react`'s `Link` goes through `navigation.js` (still RR5), whose pushes reach TanStack through the bridge.
+- **Tests.** `renderRoute(path)` in `src/test-utils.js` renders the real route tree on a memory history (`router.navigate()` moves it), so tests of migrated sections also cover the layout route and params.
 
 ## Inventory (admin `src/`, excluding tests unless noted)
 
