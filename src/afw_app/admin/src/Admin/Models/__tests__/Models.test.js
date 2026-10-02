@@ -1,9 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
+    renderRoute,
     server,
     http,
     HttpResponse,
-    render,
     waitFor,
     within,
     screen,
@@ -12,9 +12,6 @@ import {
     waitForSpinner,
     act
 } from "../../test-utils";
-import {Router} from "react-router-dom";
-import {createMemoryHistory} from "history";
-import {Models} from "../Models";
 
 describe("Models Tests", () => {
 
@@ -24,14 +21,7 @@ describe("Models Tests", () => {
 
     test("Breadcrumbs with different routes", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models");
-
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        const {router} = renderRoute("/Admin/Models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -45,7 +35,7 @@ describe("Models Tests", () => {
         expect(within(list).queryByRole("link", { name: "models" })).not.toBeInTheDocument();
 
         /* push /Admin/Models/models onto the history route */
-        act(() => history.push("/Admin/Models/models"));
+        act(() => { router.navigate({ href: "/Admin/Models/models" }); });
 
         within(list).getByRole("link", { name: "Admin" });
         within(list).getByRole("link", { name: "Models" });
@@ -78,7 +68,7 @@ describe("Models Tests", () => {
         );
 
         /* push /Admin/Models/models/test onto the history route */        
-        act(() => history.push("/Admin/Models/models/test"));
+        act(() => { router.navigate({ href: "/Admin/Models/models/test" }); });
         
         await within(list).findByRole("link", { name: "Admin" });
         await within(list).findByRole("link", { name: "Models" });
@@ -89,14 +79,7 @@ describe("Models Tests", () => {
 
     test("ContextualHelp", async () => {
 
-        const history = createMemoryHistory();
-        history.push("/Admin/Models");
-
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -115,9 +98,6 @@ describe("Models Tests", () => {
     });
 
     test("Error message when unable to load models", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/xyz");
 
         server.use(
             http.post("/afw", async ({request}) => {
@@ -138,11 +118,7 @@ describe("Models Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/xyz");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();
@@ -153,9 +129,6 @@ describe("Models Tests", () => {
     });
 
     test("Error message when unable to load model", async () => {
-
-        const history = createMemoryHistory();
-        history.push("/Admin/Models/models/xyz");
 
         server.use(
             http.post("/afw", async ({request}) => {
@@ -176,11 +149,7 @@ describe("Models Tests", () => {
             })
         );
 
-        render(
-            <Router history={history}>
-                <Models />
-            </Router>
-        );
+        renderRoute("/Admin/Models/models/xyz");
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         await waitForSpinner();

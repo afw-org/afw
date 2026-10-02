@@ -27,6 +27,16 @@ export const createAdminRoutes = (parentRoute) => {
         component: lazyRouteComponent(() => import("./Schema/Schema")),
     });
 
+    /*
+     * one route for the model editor too: adapter > model, then a path the
+     * editor and its context menu interpret (objectTypes/..., custom/...)
+     */
+    const modelsRoute = createRoute({
+        getParentRoute: () => adminRoute,
+        path: "Models/{-$adapterId}/{-$modelId}/$",
+        component: lazyRouteComponent(() => import("./Models/Models")),
+    });
+
     /* admin sections not migrated yet: React Router 5's routes */
     const adminLegacyRoute = createRoute({
         getParentRoute: () => adminRoute,
@@ -36,6 +46,7 @@ export const createAdminRoutes = (parentRoute) => {
 
     return adminRoute.addChildren([
         schemaRoute,
+        modelsRoute,
         adminLegacyRoute,
     ]);
 };

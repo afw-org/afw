@@ -1,6 +1,6 @@
 # Admin app: React Router 5 → TanStack Router
 
-**Status (2026-10-02):** on `feat/tanstack-router`: step 1 (bridge + shell) and step 2 (`/Admin` layout route + Admin/Schema) committed; step 3 (Objects, first guard) in review. Lessons are under *Patterns*.
+**Status (2026-10-02):** on `feat/tanstack-router`: steps 1-3 (bridge + shell, `/Admin` + Schema, Objects) committed; step 4 (Admin/Models) in review. Lessons are under *Patterns*; known issues found on the way under *Open questions*.
 
 **Scope:** `src/afw_app/admin` only. Since #451 the component libraries (`@afw/react`, `@afw/react-material-ui`) import no router: they go through the navigation contract (`useNavigation()` → `Link`, `useNavigate`, `NavigationBlocker`), and the app adapts its router in one file, `admin/src/navigation.js`.
 
@@ -64,6 +64,12 @@ From step 3 (Objects):
 - **Guards:** `<Prompt when message>` becomes `useBlocker({ disabled: !dirty, shouldBlockFn: ({next}) => !stayingInside(next.pathname) && !window.confirm(message) })`, called at the top of the component (before early returns). It sits on the same TanStack history as RR5 `<Prompt>`s going through the bridge.
 - **Navigation is async.** A TanStack navigation commits after the click's `act()` returns, so a test whose last step navigates must wait on the result (`await waitFor(() => expect(router.state.location.hash).toBe("source"))`) or React warns about updates outside `act()`. And a navigation a guard **blocks never resolves `router.navigate()`'s promise** - tests start it inside `act()` without awaiting it, then wait on what they expect (see `Objects/__tests__/ObjectEditorGuard.test.js`).
 
+From step 4 (Admin/Models):
+
+- **Grammar-heavy sections keep their patterns.** The model editor's URL grammar (17 exact patterns in three views, ~15 more in its context menu, positional parsing in `Models`) stays as written: one route `Admin/Models/{-$adapterId}/{-$modelId}/$`, and `router/matchPath.js` - React Router 5's `matchPath` semantics (`{ path, exact }`, arrays, `:params`, case- and trailing-slash-insensitive) - applied to TanStack's decoded pathname. `ModelEditor`'s `<Switch>` became the first matching pattern list (`modelPaths`, `objectTypePaths`, `propertyTypePaths`).
+- **`useLocationHash()`** (`router/hooks.js`) returns the hash in React Router 5's form (`"#tree"` or `""`) for code that appends it to links. Import `router/matchPath` and `router/hooks` directly, not `router/index` (that pulls in the route tree).
+- **Tests reading `history.location`** after render switch to `router.state.location` (from `renderRoute`); hashes there have no `#`. With the local `history` gone, a leftover `history.location` silently reads `window.history` (no `.location`).
+
 ## Inventory (admin `src/`, excluding tests unless noted)
 
 | Section | Files using RR | `<Route>` | RR hooks | `matchPath` | `<Prompt>` | Test files (memory history) |
@@ -95,3 +101,4 @@ From step 3 (Objects):
 - **Guard UX.** Today `<Prompt>` goes through `BrowserRouter`'s `getUserConfirmation` (`window.confirm`). `useBlocker` with `withResolver` would allow an in-app dialog later; keep `window.confirm` for parity first.
 - **Tests.** 19 test files build `Router` + `createMemoryHistory` from the `history` package and call `history.push` (some after render, wrapped in `act()` since #454). The harness should let unmigrated tests keep that shape until their section moves.
 - **Query** stays out of scope (see above).
+- **Known issue (pre-existing, kept as is):** the model overview tables put the hash into `uriComponents` (`[..., objectType, hash]`), so with a view hash set the link becomes `.../objectTypes/<type>/%23tree` - the `#` encoded into the path. Fix separately (append the hash to the URL instead).

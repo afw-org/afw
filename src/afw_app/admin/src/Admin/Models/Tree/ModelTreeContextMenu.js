@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useReducer, useEffect} from "react";
-import {useHistory} from "react-router";
+import {useNavigate} from "@tanstack/react-router";
 
 import {PropertyResponsive, Menu} from "@afw/react";
 import {useOperational, useValues} from "@afw/react";
@@ -106,7 +106,7 @@ export const ModelTreeContextMenu = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const {editable} = useOperational(props);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const {contextMenuNode, contextMenuClientX, contextMenuClientY, onReloadTree, model, onClose} = props;
         
@@ -370,7 +370,7 @@ export const ModelTreeContextMenu = (props) => {
                         if (node.propertyType)
                             uri += "/propertyTypes/" + node.propertyType;
 
-                        history.push(uri + "/custom/" + propertyName + treeHash);
+                        navigate({ href: uri + "/custom/" + propertyName + treeHash });
                     }}
                 />
             }
@@ -391,7 +391,7 @@ export const ModelTreeContextMenu = (props) => {
 
                             let uri = "/Admin/Models/" + adapterId + "/" + modelId;
 
-                            history.push(uri + "/objectTypes/" + objectTypeId + treeHash);
+                            navigate({ href: uri + "/objectTypes/" + objectTypeId + treeHash });
                         }}
                     />
             }
@@ -414,7 +414,7 @@ export const ModelTreeContextMenu = (props) => {
                             if (node.objectType)
                                 uri += "/objectTypes/" + node.objectType;
 
-                            history.push(uri + "/propertyTypes/" + propertyName + treeHash);
+                            navigate({ href: uri + "/propertyTypes/" + propertyName + treeHash });
                         }}
                     />
             }            

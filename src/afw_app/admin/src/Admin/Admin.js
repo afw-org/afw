@@ -14,7 +14,6 @@ import Adapters from "./Services/Adapters/Adapters";
 import AuthorizationHandlers from "./Services/AuthorizationHandlers/AuthorizationHandlers";
 import RequestHandlers from "./RequestHandlers/RequestHandlers";
 import Logs from "./Services/Logs/Logs";
-import Models from "./Models/Models";
 import Extensions from "./Extensions/Extensions";
 
 import {useModel, useValues} from "@afw/react";
@@ -110,7 +109,6 @@ export const AdminLegacyRoutes = () =>
         <Route path="/Admin/Server" component={Server} />
         <Route path="/Admin/Application" component={Application} />
         <Route path="/Admin/Extensions" component={Extensions} />
-        <Route path="/Admin/Models" component={Models} />
         <Route path="/Admin/Provisioning" component={Provisioning} />
         <Route path="/Admin/Authorization" component={Authorization} />
         <Route path="/Admin/Services" component={Services} />

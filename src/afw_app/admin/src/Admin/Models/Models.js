@@ -1,6 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useReducer, useState, useEffect} from "react";
-import {Route, Switch, useLocation} from "react-router";
+import {useLocation, useParams} from "@tanstack/react-router";
+import {useLocationHash} from "../../router/hooks";
 
 import {
     Breadcrumb,
@@ -12,7 +13,6 @@ import {
 
 import {useTheme, useAppCore} from "../../hooks";
 import {ContextualHelpButton, ContextualHelp} from "../../common/ContextualHelp";
-import NoRoute from "../../common/NoRoute";
 
 import {ContextualHelpRoutes} from "./ContextualHelp";
 import ModelsTable from "./ModelsTable";
@@ -148,7 +148,10 @@ const Loading = ({ message }) =>
 export const Models = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const {pathname, hash} = useLocation();
+    const {pathname} = useLocation();
+    const hash = useLocationHash();
+    /* the route's optional params (see ../routes.js) */
+    const {modelId: routeModelId} = useParams({ strict: false });
     const {application} = useAppCore();    
 
     const {
@@ -202,37 +205,25 @@ export const Models = () => {
                 { isLoadingModel && <Loading message={"Loading " + state.modelId} /> }
                 { errorModels && <Error message="Error occurred while loading models." /> }
                 { errorModel && <Error message={"Error occurred while loading the model " + state.modelId} /> }
-                <Switch>
-                    <Route exact path="/Admin/Models/" render={props =>
-                        modelsReady ? <ModelsTable
-                            {...props} 
-                            {...state}                             
-                            models={models} 
-                            onSelectAdapterId={onSelectAdapterId}
-                            reloadModels={onRefresh} 
-                        /> : null
-                    } />
-                    <Route exact path="/Admin/Models/:adapterId" render={props =>
-                        modelsReady ? <ModelsTable
-                            {...props} 
-                            {...state}                             
-                            models={models} 
-                            onSelectAdapterId={onSelectAdapterId}
-                            reloadModels={onRefresh} 
-                        /> : null
-                    } />
-                    <Route path="/Admin/Models/:adapterId/:modelId" render={props =>                    
+                {
+                    /* a model (and the path within it), or the adapter's models */
+                    routeModelId ? (
                         (!isLoadingModel && model) ? 
                             <ModelEditor 
-                                {...props} 
                                 {...state} 
                                 models={models} 
                                 model={model} 
                                 reloadModels={onRefresh}  
                             /> : null
-                    } />
-                    <Route component={NoRoute} />
-                </Switch>
+                    ) : (
+                        modelsReady ? <ModelsTable
+                            {...state}                             
+                            models={models} 
+                            onSelectAdapterId={onSelectAdapterId}
+                            reloadModels={onRefresh} 
+                        /> : null
+                    )
+                }
             </div>
         </div>
     );
