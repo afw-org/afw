@@ -19,8 +19,8 @@ Say **let’s talk about the next *n*** (or the issue id). Story: [`lifetime-pri
 | 1 | landed | [#443](https://github.com/afw-org/afw/issues/443) / [PR #448](https://github.com/afw-org/afw/pull/448). Every former `afw_xctx_*alloc`/`free` site has dest `p` via `afw_pool_*`. Macros deleted. Managed wrappers RC 1. |
 | 2 | landed | [#445](https://github.com/afw-org/afw/issues/445) / [PR #452](https://github.com/afw-org/afw/pull/452) `f5927219`. Last RC of managed containers; drop `is_root`. |
 | 3 | landed | [#446](https://github.com/afw-org/afw/issues/446) / [PR #456](https://github.com/afw-org/afw/pull/456) `03046439`. Evaluate dest `p`: `script_result` isolates into `xctx->script_result_p` (dest `p` of the outermost compiled-unit evaluate), not `xctx->p`. Nested `evaluate(compile())` parks `script_result` and leaves `script_result_p`. |
-| 4 | **this branch** (`lab-4-rss-climb`) | Remaining RSS climbs against the story. 60s finish-pass **2026-10-02**: climb class empty. Sequential 60s: one gdb warmup miss on `object_rest_unassigned` (RSS 0); re-run and `AFW_ISSUE2_JOBS=16` 60s both 33 passed. Five-question list in the story pad. |
-| 5 | sweep | Full review of `create_managed` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup`. #2 stays open. |
+| 4 | landed | [PR #457](https://github.com/afw-org/afw/pull/457) `58e1c952`. 60s RSS finish-pass. Climb class empty. `AFW_ISSUE2_JOBS` parallel soaks; gdb miss judge. |
+| 5 | **this branch** (`sweep-5-lifetime`) | Full review of `create_managed` / `get_assignable_value` / `slot_store` / `slot_take` / `optional_release` / `release_value_at_cleanup`. First vertical: script-function return with no Adaptive caller isolates dest evaluate dest `p`, not `xctx->p`. #2 stays open. |
 
 [#379](https://github.com/afw-org/afw/issues/379) (server soak) and [#404](https://github.com/afw-org/afw/issues/404) (overnight) stay complementary, not this sequence.
 
