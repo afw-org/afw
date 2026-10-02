@@ -1,6 +1,6 @@
 /* #2 lab: eval<script> returning a closure, overwrite each iteration.
- * keep_unit transfers the inner pin onto a new binding; slot overwrite
- * last-releases the previous binding then the unit.
+ * Escaped closure get_references the unit onto a new binding; slot
+ * overwrite last-releases the previous binding then the unit.
  */
 let i = 0;
 let f = function() { return -1; };

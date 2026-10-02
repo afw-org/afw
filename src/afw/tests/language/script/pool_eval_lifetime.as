@@ -375,9 +375,10 @@ return 0;
 //? source: ...
 
 /*
- * keep_unit transfers a top-level eval closure, then a high-level
- * array function evaluates that factory-or-value once and calls it
- * per entry. Companion to higher_order_array returned-closure-as-functor.
+ * eval<script> transfers a top-level closure (unit get_reference on
+ * the binding), then a high-level array function evaluates that
+ * factory-or-value once and calls it per entry. Companion to
+ * higher_order_array returned-closure-as-functor.
  */
 const f = eval<script>(script(
     "let n = 5; return function (v) { return v + n; };"));

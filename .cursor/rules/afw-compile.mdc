@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Compile API (`compile/afw_compile.h`)
 
-Public entry for Adaptive syntaxes. Output is an **`afw_value_t`** (usually `compiled_value`; JSON returns the value directly). Eval: `afw-script-eval`. EBNF harvest: `afw-compiler-ebnf`. Bootstrap needs functions registered first: `afw-environment` / `register_core`.
+Public entry for Adaptive syntaxes. Output is an **`afw_value_t`** (usually `compiled_value`; JSON returns the value directly). Caller does not release: result lasts for dest `p`. Compiled units are managed so `get_assignable_value` references self. Eval: `afw-script-eval`. EBNF harvest: `afw-compiler-ebnf`. Bootstrap needs functions registered first: `afw-environment` / `register_core`.
 
 ## Entry points
 

@@ -421,7 +421,7 @@ afw_function_execute_compile(
 
     /** @fixme Need a way to get source location */
     result = afw_value_compile(
-        source, afw_s_a_empty_string, x->xctx->p, x->xctx);
+        source, afw_s_a_empty_string, x->p, x->xctx);
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
         compiled = result;
@@ -429,24 +429,10 @@ afw_function_execute_compile(
             afw_value_compiler_listing_to_string(compiled, listing,
                 x->p, x->xctx),
             x->p, x->xctx);
-        /*
-         * Listing is a copy in dest p. Last-release the unit (RC 1)
-         * so compile(..., listing) in a loop does not keep heaps.
-         * Do not register last-release of a unit returned as the
-         * compile result: evaluate(compile()) and closures from that
-         * unit still need the heap (eval-pin tests).
-         */
-        if (afw_value_is_compiled_value(compiled)) {
-            afw_value_release(compiled, x->xctx);
-        }
+        /* Listing is a copy in dest p. The unit lasts for dest p. */
         return result;
     }
 
-    /*
-     * compile() is caller-releases (RC 1). Do not register
-     * last-release: that would last-release the unit at the caller
-     * `{ }` while evaluate(compile()) and closures still need it.
-     */
     return result;
 }
 

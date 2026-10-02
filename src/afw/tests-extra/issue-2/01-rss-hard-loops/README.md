@@ -87,7 +87,7 @@ python3 src/afw/tests-extra/issue-2/01-rss-hard-loops/_rss.py integer_assign --d
 ## Workloads (`_workloads/`)
 
 Underscore dir on purpose: `afwdev test` must not evaluate these as tests.
-`eval_scalar_rebind.as` is a keep_unit-negative diagnostic (not in `WORKLOADS`).
+`eval_scalar_rebind.as` is a no-escaped-function diagnostic (not in `WORKLOADS`).
 (they do not return).
 
 Measured **2026-09-16**; isolate sitting on `develop` as
@@ -142,7 +142,7 @@ scalar on purpose.
 | `try_catch` | throw/catch each iter | **flat / flat** (2026-09-17) | RSS wander / ~0.25 MiB/s in_use |
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** ([PR #439](https://github.com/afw-org/afw/pull/439), 2026-10-01 15 s: RSS 0 / `in_use` 0). Was ~50–65 MiB/s (`clone_managed` bump of already-managed isolate) | **flat / flat** |
-| `eval_closure_rebind` | `eval<script>` closure overwrite | **flat / flat** (keep_unit transfer, 2026-10-02 15 s) | — |
+| `eval_closure_rebind` | `eval<script>` closure overwrite | **flat / flat** (escaped-unit get_reference, 2026-10-02 15 s) | — |
 | `eval_object_rebind` | `eval<script>` object of functions overwrite | **climb** 14.45 MiB/s RSS / 5.16 MiB/s in_use (nested pin leftover, 2026-10-02 15 s). Follow-up [#458](https://github.com/afw-org/afw/issues/458) | — |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
 | `splice_assign` | splice copy-out then assign | **flat / flat** (2026-09-29, 15 s after managed remove). Was **under bar** 2026-09-28 (~0.42 / ~0.21); leftover RC ~185 MiB/s before extra-hold-only | — |

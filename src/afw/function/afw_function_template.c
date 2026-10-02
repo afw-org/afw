@@ -76,7 +76,7 @@ afw_function_execute_compile_template(
     result = afw_compile_to_value(
         &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_template,
-        NULL, x->xctx->p, x->xctx);
+        NULL, x->p, x->xctx);
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
@@ -85,15 +85,10 @@ afw_function_execute_compile_template(
             afw_value_compiler_listing_to_string(compiled, listing,
                 x->p, x->xctx),
             x->p, x->xctx);
-        /* Listing copied out. Last-release the unit. See compile(). */
-        if (afw_value_is_compiled_value(compiled)) {
-            afw_value_release(compiled, x->xctx);
-        }
+        /* Listing is a copy in dest p. The unit lasts for dest p. */
         return result;
     }
 
-    /* compile() is caller-releases (RC 1). Do not register last-release
-     * (evaluate(compile()) / closures still need the heap). */
     return result;
 }
 
@@ -147,13 +142,13 @@ afw_function_execute_eval_template(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 1, string);
 
-    /* compile() of a unit: dest is the job heap (caller releases).
-     * Evaluate dest is x->p. After evaluate, last-release or keep
-     * the unit (afw_function_eval_release_or_keep_unit). */
+    /* compile dest is x->p (last-releases dest p). Evaluate dest is
+     * x->p. After evaluate, get_reference the unit onto an escaped
+     * function. */
     compiled = afw_compile_to_value(
         &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_template,
-        NULL, x->xctx->p, x->xctx);
+        NULL, x->p, x->xctx);
 
     {
         afw_xctx_t *xctx = x->xctx;
@@ -168,7 +163,7 @@ afw_function_execute_eval_template(
             }
         }
         AFW_FINALLY {
-            value = afw_function_eval_release_or_keep_unit(
+            value = afw_function_eval_reference_escaped_unit(
                 compiled, value, unexpected, sizeof(unexpected),
                 "eval<template>", x->p, xctx);
         }

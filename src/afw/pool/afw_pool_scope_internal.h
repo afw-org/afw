@@ -169,8 +169,8 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
  * RC 1 plus this cleanup is caller does not release. Managed
  * pop/shift last-release dest p themselves. Also after
  * create_managed of test_script / test_template. Do not
- * get_assignable first. Do not use on compile() of a unit
- * (evaluate(compile()) / closures still need that heap).
+ * get_assignable first. afw_compile_* registers this itself for
+ * a managed compiled_value.
  */
 const afw_value_t *
 afw_pool_scope_release_value_at_cleanup(

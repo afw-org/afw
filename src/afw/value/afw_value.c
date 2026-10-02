@@ -428,9 +428,6 @@ afw_value_compile_and_evaluate(
             result = afw_pool_scope_get_assignable_for_p_lifetime(
                 result, p, xctx);
         }
-        if (afw_value_is_compiled_value(compiled_value)) {
-            afw_value_release(compiled_value, xctx);
-        }
     }
     AFW_ENDTRY;
 
@@ -463,9 +460,6 @@ afw_value_compile_and_evaluate_using(
             /* Evaluate already registered last-release on dest p. */
             result = afw_pool_scope_get_assignable_for_p_lifetime(
                 result, p, xctx);
-        }
-        if (afw_value_is_compiled_value(compiled_value)) {
-            afw_value_release(compiled_value, xctx);
         }
     }
     AFW_ENDTRY;

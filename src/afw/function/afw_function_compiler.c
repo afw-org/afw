@@ -782,7 +782,7 @@ afw_function_execute_test_script(
         compiled = afw_compile_to_value(
             &expression->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_script,
-            NULL, xctx->p, xctx);
+            NULL, x->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -827,11 +827,6 @@ afw_function_execute_test_script(
             }
     }
 
-    AFW_FINALLY {
-        if (afw_value_is_compiled_value(compiled)) {
-            afw_value_release(compiled, xctx);
-        }
-    }
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
@@ -926,7 +921,7 @@ afw_function_execute_test_template(
         compiled = afw_compile_to_value(
             &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_template,
-            NULL, xctx->p, xctx);
+            NULL, x->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -969,11 +964,6 @@ afw_function_execute_test_template(
         }
     }
 
-    AFW_FINALLY {
-        if (afw_value_is_compiled_value(compiled)) {
-            afw_value_release(compiled, xctx);
-        }
-    }
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
@@ -1399,7 +1389,7 @@ afw_function_execute_compile_from_file(
         result = afw_compile_to_value_with_callback(NULL,
             impl_octet_get_cb, self, file, compile_type, 
             afw_compile_residual_check_to_full,
-            NULL, xctx->p, xctx
+            NULL, p, xctx
         );
     }
     AFW_FINALLY {
@@ -1469,16 +1459,16 @@ afw_function_execute_eval_from_file(
     char unexpected[192];
     afw_xctx_t *xctx = x->xctx;
 
-    /* compile() of a unit: dest is the job heap (caller releases).
-     * Evaluate dest is x->p. After evaluate, last-release or keep
-     * the unit (afw_function_eval_release_or_keep_unit). */
+    /* compile dest is x->p (last-releases dest p). Evaluate dest is
+     * x->p. After evaluate, get_reference the unit onto an escaped
+     * function. */
     compiled = afw_function_execute_compile_from_file(x);
 
     AFW_TRY {
         value = afw_value_evaluate(compiled, x->p, xctx);
     }
     AFW_FINALLY {
-        value = afw_function_eval_release_or_keep_unit(
+        value = afw_function_eval_reference_escaped_unit(
             compiled, value, unexpected, sizeof(unexpected),
             "eval_from_file", x->p, xctx);
     }

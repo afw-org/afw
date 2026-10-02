@@ -1,6 +1,6 @@
 /* #2 lab: eval<script> returning an object of functions, overwrite
- * each iteration. Nested keep_unit get_references the unit onto those
- * bindings; slot overwrite last-releases the previous object then
+ * each iteration. Nested escaped functions get_reference the unit onto
+ * those bindings; slot overwrite last-releases the previous object then
  * the unit.
  */
 let i = 0;

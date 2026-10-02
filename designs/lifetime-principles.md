@@ -49,10 +49,12 @@ Every C function that returns an `afw_value_t *` (or a managed object/array inst
 
 | Contract | Meaning | Examples |
 |---|---|---|
-| **Caller does not release** | Caller must not `release` the result. | Adaptive `execute_*`, `evaluate()`, unmanaged `create_*` |
-| **Caller releases** | Caller must `release` the result. That one `release` last-releases everything the value obtained. | `create_managed`, `compile()` of a unit |
+| **Caller does not release** | Caller must not `release` the result. Result lasts for the lifetime of dest `p`. | Adaptive `execute_*`, `evaluate()`, `afw_compile_*` (value / object / array), unmanaged `create_*` |
+| **Caller releases** | Caller must `release` the result. Result lasts until released. That one `release` last-releases everything the value obtained. | `create_managed`, `get_assignable_value`, `get_reference` |
 
 Adaptive built-ins are **caller does not release**. What the function does inside is its business. It must deal with every lifetime it starts so the return matches the contract.
+
+`afw_compile_*` is that contract. Script / template / test_script return a **managed** `compiled_value` so `get_assignable_value` references self; compile registers last-release of the birth hold on dest `p`. JSON / relaxed_json return evaluated data in dest `p`. The caller of compile does not inspect the inf to decide whether to `release`. Inf managed is not the return contract.
 
 ---
 

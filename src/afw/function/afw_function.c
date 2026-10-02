@@ -456,7 +456,7 @@ impl_eval_unlink_inner_from_scopes(
 }
 
 
-/* 0 pinned or nothing, 2 keep compile() birth RC. */
+/* 0 referenced or nothing, 2 could not (unexpected). */
 static int
 impl_eval_pin_binding(
     afw_value_closure_binding_t *binding,
@@ -481,10 +481,10 @@ impl_eval_pin_binding(
 
 
 /*
- * Walk a nested result. Pin each closure from this unit. 0 means the
- * caller may last-release the compile() birth RC (pins hold extra
- * RCs). 2 means keep that birth RC (unbound definition, seen-list
- * full, or a binding that already keeps another unit).
+ * Walk a nested result. get_reference each closure from this unit.
+ * 0 means dest p last-release of the compile birth hold is enough.
+ * 2 means an unbound definition, seen-list full, or a binding that
+ * already keeps another unit.
  */
 static int
 impl_value_pin_nested_unit(
@@ -593,7 +593,7 @@ impl_value_pin_nested_unit(
 
 
 AFW_DEFINE(const afw_value_t *)
-afw_function_eval_release_or_keep_unit(
+afw_function_eval_reference_escaped_unit(
     const afw_value_t *compiled,
     const afw_value_t *value,
     char *unexpected,
@@ -607,13 +607,11 @@ afw_function_eval_release_or_keep_unit(
     afw_value_closure_binding_t *inner;
     const void *seen[IMPL_EVAL_UNIT_SEEN_MAX];
     afw_size_t seen_count;
-    afw_boolean_t keep_unit;
     afw_boolean_t transferred;
 
     if (unexpected && unexpected_size > 0) {
         unexpected[0] = 0;
     }
-    keep_unit = false;
     transferred = false;
     if (value && xctx->error_processing_count == 0 &&
         afw_value_is_compiled_value(compiled))
@@ -628,13 +626,11 @@ afw_function_eval_release_or_keep_unit(
                     impl_eval_unit_set_unexpected(unexpected,
                         unexpected_size, label,
                         "closure_binding already keeps a compiled value");
-                    keep_unit = true;
                 }
                 else if (binding->reference_count == 0) {
                     impl_eval_unit_set_unexpected(unexpected,
                         unexpected_size, label,
                         "closure_binding has no scope reference to transfer");
-                    keep_unit = true;
                 }
                 else {
                     /*
@@ -691,28 +687,18 @@ afw_function_eval_release_or_keep_unit(
             impl_eval_unit_set_unexpected(unexpected, unexpected_size,
                 label,
                 "result is an unbound script function in its compile unit");
-            keep_unit = true;
         }
         else {
             seen_count = 0;
-            if (impl_value_pin_nested_unit(value, compiled, unit,
+            impl_value_pin_nested_unit(value, compiled, unit,
                 seen, &seen_count, unexpected, unexpected_size,
-                label, xctx) == 2)
-            {
-                /* Unbound definition, seen-list full, or a binding
-                 * that already keeps another unit. Keep birth RC. */
-                keep_unit = true;
-            }
-            /* Nested pins hold extra RCs. Last-release birth below. */
+                label, xctx);
         }
     }
     if (value && !transferred) {
         /* Evaluate already registered last-release on dest p. */
         value = afw_pool_scope_get_assignable_for_p_lifetime(
             value, p, xctx);
-    }
-    if (xctx->error_processing_count == 0 && !keep_unit) {
-        afw_value_release(compiled, xctx);
     }
     return value;
 }

@@ -1,5 +1,5 @@
 /* #2 lab: eval<script> scalar overwrite each iteration.
- * No keep_unit: last-release the compile unit after evaluate.
+ * No escaped function: dest p of compile last-releases the unit.
  */
 let i = 0;
 let r = 0;

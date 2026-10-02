@@ -137,7 +137,8 @@ afw_compile_shared_create(
  * @param compile_type Compile type.
  * @param p to use for result.
  * @param xctx of caller.
- * @return result of compiling and evaluating string.
+ * @return result of compiling and evaluating string. Caller does
+ *     not release. Result lasts for dest p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_compile_and_evaluate(
@@ -156,7 +157,8 @@ afw_compile_and_evaluate(
  * @param source_location to associate with compiled string or NULL.
  * @param p to use for result.
  * @param xctx of caller.
- * @return result of compiling and evaluating string.
+ * @return result of compiling and evaluating string. Caller does
+ *     not release. Result lasts for dest p.
  */
 #define afw_compile_and_evaluate_type(\
     compile_type, _string, _source_location, _p, _xctx) \
@@ -176,14 +178,16 @@ afw_compile_and_evaluate(
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return compiled or evaluated value.
+ * @return compiled or evaluated value. Caller does not release.
+ *     Result lasts for the lifetime of dest p.
  *
  * Either shared or p must be specified. The p used by the parser is
  * shared->p, else a child heap of p->managed_p. Compiled units (script,
- * template, test_script) are managed values (RC 1). JSON / relaxed_json
- * return evaluated data. Evaluate dest p is separate: pass the pool
- * where you want managed results of running the unit (see
- * afw_value_evaluate).
+ * template, test_script) are managed so get_assignable_value references
+ * self; compile registers last-release of the birth hold on dest p.
+ * JSON / relaxed_json return evaluated data in dest p. Evaluate dest p
+ * is separate: pass the pool where you want managed results of running
+ * the unit (see afw_value_evaluate).
  *
  * Either string or callback must be non-NULL.  If both are non-NULL, the
  * string will be processed first.
@@ -216,7 +220,7 @@ afw_compile_to_value_with_callback(
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return value
+ * @return value. Caller does not release. Result lasts for dest p.
  *
  * Either shared or p must be specified. See
  * afw_compile_to_value_with_callback().
@@ -243,7 +247,7 @@ afw_compile_to_value_with_callback(
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return value
+ * @return value. Caller does not release. Result lasts for dest p.
  *
  * Either shared or p must be specified.
  */
@@ -263,7 +267,7 @@ afw_compile_to_value_with_callback(
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return value
+ * @return value. Caller does not release. Result lasts for dest p.
  *
  * Either shared or p must be specified.
  */
@@ -285,7 +289,7 @@ afw_compile_script(
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return value
+ * @return value. Caller does not release. Result lasts for dest p.
  *
  * Either shared or p must be specified.
  */
@@ -305,7 +309,7 @@ afw_compile_script(
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return value
+ * @return value. Caller does not release. Result lasts for dest p.
  *
  * Either shared or p must be specified.
  */
@@ -328,7 +332,8 @@ afw_compile_template(
  * @param cede_p if true, cede control of p to the created object.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return unmanaged object instance.
+ * @return unmanaged object instance. Caller does not release.
+ *     Result lasts for dest p.
  *
  * Old JSON-compiler door: string of JSON syntax → unmanaged
  * `const afw_object_t *`. Callers (adapters, content-type raw_to_object)
