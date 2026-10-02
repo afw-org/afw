@@ -95,6 +95,7 @@ afw_xctx_internal_create_initialize(
     }
     self->p = p;
     self->script_result = afw_value_undefined;
+    self->script_result_p = NULL;
     self->mode = afw_authorization_mode_id_user_value;
     self->current_try = unhandled_error;
     self->error = error;
@@ -627,7 +628,13 @@ afw_xctx_script_result_set_value(
     if (!value || afw_value_is_void(value)) {
         return;
     }
-    afw_value_slot_store(&xctx->script_result, value, xctx->p, xctx);
+    if (!xctx->script_result_p) {
+        AFW_THROW_ERROR_Z(general,
+            "script_result_set with no compiled-unit evaluate dest p",
+            xctx);
+    }
+    afw_value_slot_store(&xctx->script_result, value,
+        xctx->script_result_p, xctx);
 }
 
 

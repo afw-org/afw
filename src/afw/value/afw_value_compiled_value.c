@@ -251,23 +251,39 @@ impl_afw_value_optional_evaluate(
 {
     const afw_value_t *result;
     const afw_value_t *saved_script_result;
+    afw_boolean_t set_script_result_p;
     afw_size_t count;
 
     result = NULL;
     count = xctx->scope_stack->count;
+    set_script_result_p = false;
 
     saved_script_result = xctx->script_result;
     xctx->script_result = afw_value_undefined;
+    /*
+     * Evaluate is caller does not release. Dest p is the p passed
+     * to this evaluate. script_result isolate dest is dest p of
+     * the outermost compiled-unit evaluate so a managed result
+     * lives in that dest p->managed_p. Nested evaluate(compile())
+     * parks script_result and leaves script_result_p.
+     */
+    if (!xctx->script_result_p) {
+        xctx->script_result_p = p;
+        set_script_result_p = true;
+    }
 
     AFW_TRY {
 
         /* Push a NULL onto the scope stack to indicate new compiled value. */
         afw_vector_push(xctx->scope_stack, xctx) = NULL;
 
-        /* Evaluate compiled value root value. */
-        if (self->full_source_type &&
-            afw_utf8_equal(self->full_source_type, afw_s_script) &&
-            self->root_value &&
+        /*
+         * Block root (script, and template/test_script wrapped in a
+         * block): as_value false so deactivate isolates last into
+         * script_result using dest script_result_p. Caller last is
+         * already parked.
+         */
+        if (self->root_value &&
             afw_value_is_block(self->root_value))
         {
             afw_function_execute_t exec;
@@ -284,27 +300,43 @@ impl_afw_value_optional_evaluate(
 
     }
     AFW_FINALLY {
+        const afw_value_t *slot;
+        const afw_pool_t *isolate_p;
 
-        /* Make sure all scopes were released during evaluate. */
+        /* Pop off the NULL compiled value indicator on scope stack. */
         if (xctx->scope_stack->count != count + 1) {
+            if (set_script_result_p) {
+                xctx->script_result_p = NULL;
+            }
+            xctx->script_result = saved_script_result;
             AFW_THROW_ERROR_Z(general,
                 "Scope stack still has active scopes at end after computed "
                 "value is evaluated",
                 xctx);
         }
-
-        /* Pop off the NULL compiled value indicator on scope stack. */
         afw_vector_pop(xctx->scope_stack, xctx);
 
-        if (xctx->script_result &&
-            !afw_value_is_undefined(xctx->script_result) &&
-            !afw_value_is_void(xctx->script_result))
+        slot = xctx->script_result;
+        isolate_p = xctx->script_result_p ? xctx->script_result_p : p;
+        if (slot &&
+            !afw_value_is_undefined(slot) &&
+            !afw_value_is_void(slot))
         {
-            result = xctx->script_result;
+            result = slot;
         }
         if (!result || afw_value_is_void(result)) {
             result = afw_value_undefined;
         }
+
+        /*
+         * Restore before clone/register so a throw in FINALLY cannot
+         * leave nested evaluate dest p or last on the xctx.
+         */
+        xctx->script_result = saved_script_result;
+        if (set_script_result_p) {
+            xctx->script_result_p = NULL;
+        }
+
         if (result &&
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
@@ -312,13 +344,13 @@ impl_afw_value_optional_evaluate(
             const afw_data_type_t *dt;
 
             /*
-             * Unit-backed compile-literals have no optional_release
-             * and still live in the unit. Copy them managed into
-             * dest p so eval<script> can last-release the unit.
-             * Already-managed was isolated by script_result_set /
-             * create_managed: that store is the reference. Do not
-             * bump. Pin on dest p (cleanup takes the store
-             * reference when this result is script_result).
+             * Caller does not release. If the result is managed,
+             * register last-release of that one hold on dest p.
+             * script_result_set already isolated into
+             * script_result_p (outermost dest p->managed_p).
+             * Unit-backed compile-literals that missed the slot
+             * still live in the unit: clone_managed into
+             * isolate_p, then register that hold on dest p.
              */
             dt = result->inf
                 ? result->inf->is_evaluated_of_data_type
@@ -326,20 +358,19 @@ impl_afw_value_optional_evaluate(
             if (dt && dt->clone_value_managed &&
                 !result->inf->is_managed)
             {
-                result = afw_value_clone_managed(result, p, xctx);
+                result = afw_value_clone_managed(result, isolate_p, xctx);
             }
             afw_pool_release_value_at_cleanup(result, p, xctx);
         }
 
-        if (xctx->script_result &&
-            xctx->script_result != saved_script_result &&
-            xctx->script_result != result &&
-            !afw_value_is_undefined(xctx->script_result) &&
-            !afw_value_is_void(xctx->script_result))
+        if (slot &&
+            slot != saved_script_result &&
+            slot != result &&
+            !afw_value_is_undefined(slot) &&
+            !afw_value_is_void(slot))
         {
-            afw_value_release(xctx->script_result, xctx);
+            afw_value_release(slot, xctx);
         }
-        xctx->script_result = saved_script_result;
 
     }
     AFW_ENDTRY;

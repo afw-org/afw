@@ -69,6 +69,8 @@ If the function calls `get_assignable_value` or `create_managed`, it owns a valu
 
 Register last-release of the **returned** value only. The container’s last RC `release`s what it holds.
 
+Evaluate of a compiled value is **caller does not release**. Dest `p` is the `p` passed to that evaluate. If the result is managed, register last-release of that one hold on that dest `p`. `script_result` isolate dest is dest `p` of the outermost compiled-unit evaluate (`xctx->script_result_p`) so the managed value lives in that dest `p->managed_p`. Nested `evaluate(compile())` parks `script_result` and leaves `script_result_p`. Do not isolate into `xctx->p`.
+
 ---
 
 ## `get_assignable_value`
