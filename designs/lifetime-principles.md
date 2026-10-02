@@ -6,7 +6,7 @@ This is the **value lifetime story**. Inf-method rails, two worlds, eval `p`, an
 
 Code and tests remain ground truth. If the tree and this story disagree, fix the tree or this story; do not add a third protocol.
 
-**Related:** inf rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (**implementation order** at the top). Two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md); eval `p` [`experiment-eval-p.md`](experiment-eval-p.md); pool doors [`remaining-apr.md`](remaining-apr.md). Lab: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Tree vs this story: [#443](https://github.com/afw-org/afw/issues/443), [#445](https://github.com/afw-org/afw/issues/445), [#446](https://github.com/afw-org/afw/issues/446). n=5 dest-p honor (compile caller does not release) is **this branch** (`sweep-5-lifetime`).
+**Related:** inf rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (**implementation order** at the top). Two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md); eval `p` [`experiment-eval-p.md`](experiment-eval-p.md); pool doors [`remaining-apr.md`](remaining-apr.md). Lab: `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Tree vs this story: [#443](https://github.com/afw-org/afw/issues/443), [#445](https://github.com/afw-org/afw/issues/445), [#446](https://github.com/afw-org/afw/issues/446). n=5 dest-p honor (compile caller does not release) landed [PR #460](https://github.com/afw-org/afw/pull/460) `3fdaabdd`.
 
 ---
 
