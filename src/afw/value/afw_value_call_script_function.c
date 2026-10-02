@@ -395,14 +395,8 @@ impl_afw_value_optional_evaluate(
             const afw_pool_scope_t *caller;
 
             caller = afw_pool_scope_internal_of_caller(xctx);
-            if (caller) {
-                result = afw_pool_scope_get_assignable_for_p_lifetime(
-                    result, caller, xctx);
-            }
-            else {
-                result = afw_value_get_assignable(result, p, xctx);
-                afw_pool_release_value_at_cleanup(result, p, xctx);
-            }
+            result = afw_pool_scope_get_assignable_for_p_lifetime(
+                result, caller ? caller->p : p, xctx);
         }
     }
 

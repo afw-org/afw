@@ -814,7 +814,7 @@ afw_pool_scope_clear_last_result(
 const afw_value_t *
 afw_pool_scope_get_assignable_for_p_lifetime(
     const afw_value_t *value,
-    const afw_pool_scope_t *scope,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (!value || afw_value_is_void(value)) {
@@ -823,17 +823,17 @@ afw_pool_scope_get_assignable_for_p_lifetime(
     if (!value->inf || !value->inf->optional_release) {
         return value;
     }
-    if (scope &&
-        afw_pool_is_value_release_registered(value, scope->p, xctx))
-    {
+    if (!p) {
+        AFW_THROW_ERROR_Z(general,
+            "get_assignable_for_p_lifetime with no dest p", xctx);
+    }
+    if (afw_pool_is_value_release_registered(value, p, xctx)) {
         return value;
     }
-    /* Bumps managed. Do not use after create_managed (already RC 1). */
-    value = afw_value_get_assignable(value,
-        scope ? scope->p : xctx->p, xctx);
-    if (scope) {
-        afw_pool_release_value_at_cleanup(value, scope->p, xctx);
-    }
+    /* get_assignable of unmanaged. Do not use after create_managed
+     * (already RC 1). */
+    value = afw_value_get_assignable(value, p, xctx);
+    afw_pool_release_value_at_cleanup(value, p, xctx);
     return value;
 }
 
@@ -841,16 +841,21 @@ afw_pool_scope_get_assignable_for_p_lifetime(
 const afw_value_t *
 afw_pool_scope_get_assignable_for_scope_lifetime(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    const afw_pool_scope_t *scope;
+
+    scope = afw_pool_scope_internal_current(xctx);
     return afw_pool_scope_get_assignable_for_p_lifetime(
-        value, afw_pool_scope_internal_current(xctx), xctx);
+        value, scope ? scope->p : p, xctx);
 }
 
 
 const afw_value_t *
 afw_pool_scope_release_value_at_cleanup(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_pool_scope_t *scope;
@@ -859,9 +864,12 @@ afw_pool_scope_release_value_at_cleanup(
         return value;
     }
     scope = afw_pool_scope_internal_current(xctx);
-    if (scope) {
-        afw_pool_release_value_at_cleanup(value, scope->p, xctx);
+    p = scope ? scope->p : p;
+    if (!p) {
+        AFW_THROW_ERROR_Z(general,
+            "release_value_at_cleanup with no dest p", xctx);
     }
+    afw_pool_release_value_at_cleanup(value, p, xctx);
     return value;
 }
 
@@ -869,9 +877,10 @@ afw_pool_scope_release_value_at_cleanup(
 const afw_value_t *
 afw_pool_scope_set_last_result_for_lifetime(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    value = afw_pool_scope_get_assignable_for_scope_lifetime(value, xctx);
+    value = afw_pool_scope_get_assignable_for_scope_lifetime(value, p, xctx);
     afw_pool_scope_set_last_result(value, xctx);
     return value;
 }

@@ -198,7 +198,7 @@ afw_function_execute_bag(
     array = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
@@ -373,7 +373,7 @@ afw_function_execute_clone(
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
     result = impl_script_clone(value, x);
-    return afw_pool_scope_release_value_at_cleanup(result, x->xctx);
+    return afw_pool_scope_release_value_at_cleanup(result, x->p, x->xctx);
 }
 
 
@@ -1153,7 +1153,7 @@ afw_function_execute_intersection(
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
 
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(array1->internal, &iterator, x->xctx);
@@ -2389,7 +2389,7 @@ afw_function_execute_split(
 
     result = afw_pool_scope_release_value_at_cleanup(
         afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
-        x->xctx);
+        x->p, x->xctx);
     array = ((const afw_value_array_t *)result)->internal;
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
@@ -2761,7 +2761,7 @@ afw_function_execute_union(
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
-            x->xctx);
+            x->p, x->xctx);
     impl_add_nondups_to_array(data_type, array1->internal,
         result->internal, x->xctx);
     for (i = 2; i <= x->argc; i++) {
@@ -3242,7 +3242,8 @@ afw_function_execute_freeze(
      * frozen face instead of wrapping a raw immutable instance into
      * a mutable overlay.
      */
-    value = afw_pool_scope_get_assignable_for_scope_lifetime(value, x->xctx);
+    value = afw_pool_scope_get_assignable_for_scope_lifetime(
+        value, x->p, x->xctx);
 
     if (afw_value_is_object(value)) {
         object = (const afw_value_object_t *)value;

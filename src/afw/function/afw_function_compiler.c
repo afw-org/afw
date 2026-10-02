@@ -836,7 +836,7 @@ afw_function_execute_test_script(
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     /* create_managed RC 1. Register last-release of the execute result. */
-    return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
+    return afw_pool_scope_release_value_at_cleanup(result->value, x->p, xctx);
 }
 
 
@@ -978,7 +978,7 @@ afw_function_execute_test_template(
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     /* create_managed RC 1. Register last-release of the execute result. */
-    return afw_pool_scope_release_value_at_cleanup(result->value, xctx);
+    return afw_pool_scope_release_value_at_cleanup(result->value, x->p, xctx);
 }
 
 

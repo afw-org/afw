@@ -49,8 +49,8 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
 | `create_managed` | Frame in **`p->managed_p`** (pass the evaluation `p`). |
 | `get_assignable` | Isolate into a slot (`value, p, xctx`). Promote/clone uses `p->managed_p`. |
-| `afw_pool_scope_get_assignable_for_scope_lifetime` | Core only (`afw_pool_scope_internal.h`). `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first. New array results `create_managed` then extra-hold only (`release_value_at_cleanup`); do not wrap a fresh create in this helper. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
-| `afw_pool_scope_get_assignable_for_p_lifetime` | Core only. Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
+| `afw_pool_scope_get_assignable_for_scope_lifetime` | Core only (`afw_pool_scope_internal.h`). `get_assignable` plus last-release on current `scope->p`, or dest `p` when there is no current scope. Does **not** write `last_result`. Mutating builtins hold the instance first. New array results `create_managed` then register last-release only (`release_value_at_cleanup`); do not wrap a fresh create in this helper. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
+| `afw_pool_scope_get_assignable_for_p_lifetime` | Core only. Same last-release on dest `p` (script function return uses caller `scope->p`, or evaluate dest `p` when there is no Adaptive caller). Do not dest `xctx->p`. |
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, `create_managed`, `get_assignable` / `slot_store`, or extra allocation (iterator / meta). **Not** on value getters or `get_reference`. |
 
