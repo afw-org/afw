@@ -65,6 +65,7 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 | `AFW_ISSUE2_INTERVAL_S` | `5` | sample period |
 | `AFW_ISSUE2_WARMUP_S` | `5` | ignore samples before this for slope |
 | `AFW_ISSUE2_RSS_ASSERT` | `1` | `0` = report only |
+| `AFW_ISSUE2_JOBS` | `1` | parallel soaks (one `afw` each). `16` is about half of 32 cores. Parallel gdb `in_use` can miss; RSS is still judged. |
 
 | class | `in_use` fail | examples |
 |-------|----------------|----------|
