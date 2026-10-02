@@ -37,6 +37,19 @@ export const createAdminRoutes = (parentRoute) => {
         component: lazyRouteComponent(() => import("./Models/Models")),
     });
 
+    /* list/detail sections: the list, or one item by its optional id */
+    const listDetailRoute = (path, load) => createRoute({
+        getParentRoute: () => adminRoute,
+        path,
+        component: lazyRouteComponent(load),
+    });
+
+    const servicesRoute = listDetailRoute("Services/{-$serviceId}", () => import("./Services/Services"));
+    const adaptersRoute = listDetailRoute("Adapters/{-$adapterId}", () => import("./Services/Adapters/Adapters"));
+    const logsRoute = listDetailRoute("Logs/{-$logId}", () => import("./Services/Logs/Logs"));
+    const authHandlersRoute = listDetailRoute("AuthHandlers/{-$authorizationHandlerId}",
+        () => import("./Services/AuthorizationHandlers/AuthorizationHandlers"));
+
     /* admin sections not migrated yet: React Router 5's routes */
     const adminLegacyRoute = createRoute({
         getParentRoute: () => adminRoute,
@@ -47,6 +60,10 @@ export const createAdminRoutes = (parentRoute) => {
     return adminRoute.addChildren([
         schemaRoute,
         modelsRoute,
+        servicesRoute,
+        adaptersRoute,
+        logsRoute,
+        authHandlersRoute,
         adminLegacyRoute,
     ]);
 };

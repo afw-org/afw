@@ -5,15 +5,11 @@ import {Outlet} from "@tanstack/react-router";
 
 import Container from "../common/Container";
 import Application from "./Application/Application";
-import Services from "./Services/Services";
 import Server from "./Server/Server";
 import Status from "./Status";
 import Provisioning from "./Provisioning/Provisioning";
 import Authorization from "./Authorization/Authorization";
-import Adapters from "./Services/Adapters/Adapters";
-import AuthorizationHandlers from "./Services/AuthorizationHandlers/AuthorizationHandlers";
 import RequestHandlers from "./RequestHandlers/RequestHandlers";
-import Logs from "./Services/Logs/Logs";
 import Extensions from "./Extensions/Extensions";
 
 import {useModel, useValues} from "@afw/react";
@@ -111,11 +107,7 @@ export const AdminLegacyRoutes = () =>
         <Route path="/Admin/Extensions" component={Extensions} />
         <Route path="/Admin/Provisioning" component={Provisioning} />
         <Route path="/Admin/Authorization" component={Authorization} />
-        <Route path="/Admin/Services" component={Services} />
         <Route path="/Admin/RequestHandlers" component={RequestHandlers} />
-        <Route path="/Admin/Adapters" component={Adapters} />
-        <Route path="/Admin/Logs" component={Logs} />
-        <Route path="/Admin/AuthHandlers" component={AuthorizationHandlers} />
         <Route exact path="/Admin" component={Status} />
     </>;
 

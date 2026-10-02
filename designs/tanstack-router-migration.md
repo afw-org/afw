@@ -1,6 +1,6 @@
 # Admin app: React Router 5 → TanStack Router
 
-**Status (2026-10-02):** on `feat/tanstack-router`: steps 1-3 (bridge + shell, `/Admin` + Schema, Objects) committed; step 4 (Admin/Models) in review. Lessons are under *Patterns*; known issues found on the way under *Open questions*.
+**Status (2026-10-02):** on `feat/tanstack-router`: steps 1-4 (bridge + shell, `/Admin` + Schema, Objects, Admin/Models) and Tools committed; the Services group (Services, Adapters, Logs, AuthHandlers) in review. Lessons are under *Patterns*; known issues under *Open questions*.
 
 **Scope:** `src/afw_app/admin` only. Since #451 the component libraries (`@afw/react`, `@afw/react-material-ui`) import no router: they go through the navigation contract (`useNavigation()` → `Link`, `useNavigate`, `NavigationBlocker`), and the app adapts its router in one file, `admin/src/navigation.js`.
 
@@ -69,6 +69,12 @@ From step 4 (Admin/Models):
 - **Grammar-heavy sections keep their patterns.** The model editor's URL grammar (17 exact patterns in three views, ~15 more in its context menu, positional parsing in `Models`) stays as written: one route `Admin/Models/{-$adapterId}/{-$modelId}/$`, and `router/matchPath.js` - React Router 5's `matchPath` semantics (`{ path, exact }`, arrays, `:params`, case- and trailing-slash-insensitive) - applied to TanStack's decoded pathname. `ModelEditor`'s `<Switch>` became the first matching pattern list (`modelPaths`, `objectTypePaths`, `propertyTypePaths`).
 - **`useLocationHash()`** (`router/hooks.js`) returns the hash in React Router 5's form (`"#tree"` or `""`) for code that appends it to links. Import `router/matchPath` and `router/hooks` directly, not `router/index` (that pulls in the route tree).
 - **Tests reading `history.location`** after render switch to `router.state.location` (from `renderRoute`); hashes there have no `#`. With the local `history` gone, a leftover `history.location` silently reads `window.history` (no `.location`).
+
+From Tools and the Services group:
+
+- **Layout + index:** a section whose page is a wrapper around its tools (`Tools.js`) is a layout route with an index child (`ToolsHome`) and one child per tool.
+- **List/detail pages** (`Services`, `Adapters`, `Logs`, `AuthHandlers`): one route with an optional id, `Services/{-$serviceId}`; the detail `render` callback becomes a local `renderX()` function, and `match.url + "/" + id` links become the literal base path plus `encodeURIComponent(id)`.
+- **Drop RR5 route props.** `render={(props) => <X {...props} />}` passed `match`/`location`/`history` along; nothing used them, so the spreads go (check the target for `props.match|location|history` first).
 
 ## Inventory (admin `src/`, excluding tests unless noted)
 

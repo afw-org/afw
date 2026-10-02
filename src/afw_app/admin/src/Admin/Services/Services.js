@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useMemo, useReducer} from "react";
-import {Switch, Route, useHistory} from "react-router";
+import {useParams, useNavigate} from "@tanstack/react-router";
 
 import {
     Breadcrumb,
@@ -253,7 +253,9 @@ export const Services = () => {
         onRefresh : reloadServiceConfigs, 
         error : serviceConfigError
     } = useServiceConfigurations({ adapterId: confAdapterId });
-    const history = useHistory();
+    const navigate = useNavigate();
+    /* the route's optional param (see ../routes.js) */
+    const {serviceId: routeServiceId} = useParams({ strict: false });
     const {serviceId, canStart, canStop, canRestart, uriServiceConf} = useValues(selectedService);    
     const breadcrumbItems = useBreadcrumbs(breadcrumbsRoot);
     
@@ -397,6 +399,32 @@ export const Services = () => {
     if (isLoading) 
         return <Spinner size="large" label="Loading Service Configurations.." fullScreen={true} />;          
 
+    /* one service, chosen by the route's serviceId */
+    const renderService = () => {
+        let selectedService;                        
+
+        filteredServices.forEach((service) => {
+            if (service.getPropertyValue("serviceId") === routeServiceId)
+                selectedService = service;
+        });
+            
+        /* select the appropriate service layout */
+        return (
+            <div style={{ display: "flex", height: "100%", flexDirection: "column" }}>
+                <div style={{ flex: 1, overflow: "auto" }}>
+                    <ServiceEditor 
+                        service={selectedService}
+                        startService={startService}
+                        restartService={restartService}
+                        stopService={stopService}
+                        reloadServices={reloadServices}
+                    />
+                </div>
+            </div>
+        );
+            
+    };
+
     return (
         <div id="admin-admin-services" data-testid="admin-admin-services"  style={{ display: "flex", flexDirection: "column", height: "100%" }}>
             <div style={{ display: "flex", alignItems: "center", paddingBottom: theme.spacing(2) }}>
@@ -413,8 +441,9 @@ export const Services = () => {
                     <Message status="error" message={serviceConfigError.message} />
             }
             <div style={{ flex: 1, overflow: "auto" }}>
-                <Switch>
-                    <Route exact path="/Admin/Services/" render={(props) => 
+                {
+                    /* one service (by the route's serviceId), or the list */
+                    routeServiceId ? renderService() : (
                         <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>                        
                             <div style={{ paddingBottom: theme.spacing(0.5) }}>
                                 <Toolbar
@@ -435,7 +464,7 @@ export const Services = () => {
                                             key="new" 
                                             icon="edit" 
                                             label="Edit" 
-                                            onClick={() => history.push("/Admin/Services/" + serviceId + "#edit")} 
+                                            onClick={() => navigate({ href: "/Admin/Services/" + encodeURIComponent(serviceId) + "#edit" })} 
                                             disabled={!selectedService || !selectedService.getPropertyValue("uriServiceConf")} 
                                         />,
                                         <Button 
@@ -501,7 +530,7 @@ export const Services = () => {
                                                     style: { wordWrap: "break-word" },
                                                     onRender: (service) => {
                                                         const {confId, serviceId, uriServiceConf} = service.getPropertyValues();                                                        
-                                                        let url = props.match.url + "/" + serviceId;                                                        
+                                                        let url = "/Admin/Services/" + encodeURIComponent(serviceId);                                                        
                                 
                                                         return (                            
                                                             uriServiceConf ?
@@ -565,11 +594,11 @@ export const Services = () => {
                                     </div>
                                     {
                                         showServiceNew &&
-                                            <ServiceNew
-                                                open={showServiceNew}
-                                                onDismiss={() => dispatch({ type: "SERVICE_NEW_DISMISS" })}
-                                                onSave={onNewService}
-                                            />         
+                                                <ServiceNew
+                                                    open={showServiceNew}
+                                                    onDismiss={() => dispatch({ type: "SERVICE_NEW_DISMISS" })}
+                                                    onSave={onNewService}
+                                                />         
                                     }               
                                     <Dialog 
                                         open={showConfirmDeleteDialog}
@@ -597,62 +626,38 @@ export const Services = () => {
                                     />              
                                     <div style={{ padding: theme.spacing(3) }}>
                                         { selectedService && 
-                                        <div style={{ display: "flex" }}>
-                                            <div>
-                                                <Button
-                                                    color="primary" 
-                                                    variant="contained"
-                                                    label="Start"
-                                                    disabled={!canStart}
-                                                    onClick={() => startService(selectedService)}
-                                                />
-                                            </div>
-                                            <div style={{ marginLeft: theme.spacing(1) }}>
-                                                <Button                            
-                                                    label="Stop"
-                                                    disabled={!canStop}
-                                                    onClick={() => stopService(selectedService)}
-                                                />
-                                            </div>
-                                            <div style={{ marginLeft: theme.spacing(1) }}>
-                                                <Button                               
-                                                    label="Restart"
-                                                    disabled={!canRestart}
-                                                    onClick={() => restartService(selectedService)}
-                                                />
-                                            </div>
-                                        </div>                            
+                                            <div style={{ display: "flex" }}>
+                                                <div>
+                                                    <Button
+                                                        color="primary" 
+                                                        variant="contained"
+                                                        label="Start"
+                                                        disabled={!canStart}
+                                                        onClick={() => startService(selectedService)}
+                                                    />
+                                                </div>
+                                                <div style={{ marginLeft: theme.spacing(1) }}>
+                                                    <Button                            
+                                                        label="Stop"
+                                                        disabled={!canStop}
+                                                        onClick={() => stopService(selectedService)}
+                                                    />
+                                                </div>
+                                                <div style={{ marginLeft: theme.spacing(1) }}>
+                                                    <Button                               
+                                                        label="Restart"
+                                                        disabled={!canRestart}
+                                                        onClick={() => restartService(selectedService)}
+                                                    />
+                                                </div>
+                                            </div>                            
                                         }
                                     </div>
                                 </div>                                
                             </div>                            
                         </div>
-                    } />
-                    <Route path="/Admin/Services/:serviceId" render={(props) => {                    
-                        let selectedService;                        
-
-                        filteredServices.forEach((service) => {
-                            if (service.getPropertyValue("serviceId") === decodeURIComponent(props.match.params.serviceId))
-                                selectedService = service;
-                        });
-                        
-                        /* select the appropriate service layout */
-                        return (
-                            <div style={{ display: "flex", height: "100%", flexDirection: "column" }}>
-                                <div style={{ flex: 1, overflow: "auto" }}>
-                                    <ServiceEditor 
-                                        service={selectedService}
-                                        startService={startService}
-                                        restartService={restartService}
-                                        stopService={stopService}
-                                        reloadServices={reloadServices}
-                                    />
-                                </div>
-                            </div>
-                        );
-                        
-                    }} />
-                </Switch>    
+                    )
+                }
                 <Dialog                     
                     open={serviceDetailsOpen}
                     blocking={false}
