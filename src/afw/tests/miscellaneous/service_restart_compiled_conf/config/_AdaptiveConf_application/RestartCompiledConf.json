@@ -1,0 +1,5 @@
+{
+    "title": "RestartCompiledConf",
+    "description": "service_restart of a file adapter with memoryRegionFreeListMaxBytes 0.",
+    "memoryRegionFreeListMaxBytes": 0
+}
