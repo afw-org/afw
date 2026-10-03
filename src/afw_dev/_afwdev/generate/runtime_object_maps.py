@@ -50,6 +50,21 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
 
     fd.write('\n\n/* Runtime object map properties for ' + id + ' objects. */\n')
 
+    # An onGetValueCFunctionName accessor is passed the indirect internal
+    # (afw_runtime.c impl_make_value_from_map_entry). Without "indirect"
+    # the meta reads the instance as the wrong struct, and without a
+    # "typedef" the const-instance default labels below still emit a
+    # properties list that get/iterate scan.
+    if runtime is not None and (runtime.get('indirect', False) != True or
+            not runtime.get('typedef')):
+        for name, pt in obj.get('propertyTypes', {}).items():
+            pt_runtime = pt.get('runtime') if isinstance(pt, dict) else None
+            if pt_runtime and pt_runtime.get('onGetValueCFunctionName'):
+                msg.error_exit('Object type ' + id + ' property ' + name +
+                    ' uses runtime onGetValueCFunctionName, so the object'
+                    ' type needs runtime "indirect": true and "typedef":'
+                    ' "<internal struct>" (like _AdaptiveAdapterMetrics_)')
+
     if runtime is not None:
         fd.write('\nstatic const afw_runtime_object_map_property_t\n')
         fd.write('impl_properties_' + id + '[] = {\n')

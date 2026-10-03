@@ -137179,32 +137179,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__c840cfdfbefd \
-    "Indicates that the runtime struct is a pointer. If a property of this object type has runtime.onGetValueCFunctionName specified, the is ignored and runtime structure is always indirect."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c840cfdfbefd */
-#define afw_s_zz__c840cfdfbefd \
-    (&afw_self_v_zz__c840cfdfbefd.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c840cfdfbefd */
-#define afw_self_s_zz__c840cfdfbefd \
-    (afw_self_v_zz__c840cfdfbefd.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c840cfdfbefd */
-extern const afw_value_string_t \
-    afw_self_v_zz__c840cfdfbefd;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c840cfdfbefd */
-#define afw_z_zz__c840cfdfbefd \
-    (afw_self_v_zz__c840cfdfbefd.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c840cfdfbefd */
-#define afw_v_zz__c840cfdfbefd \
-    (&afw_self_v_zz__c840cfdfbefd.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__c84a7aef01c9 \
     "Returns an array of dayTimeDuration contains all of the unique values in two or more array of dayTimeDuration values."
 
@@ -140321,6 +140295,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d2f4a5632088 */
 #define afw_v_zz__d2f4a5632088 \
     (&afw_self_v_zz__d2f4a5632088.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d2f96ed4414a \
+    "Indicates that the runtime struct is a pointer. If a property of this object type has runtime.onGetValueCFunctionName specified, this must be true and typedef must name the internal struct; afwdev generate fails otherwise."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d2f96ed4414a */
+#define afw_s_zz__d2f96ed4414a \
+    (&afw_self_v_zz__d2f96ed4414a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d2f96ed4414a */
+#define afw_self_s_zz__d2f96ed4414a \
+    (afw_self_v_zz__d2f96ed4414a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d2f96ed4414a */
+extern const afw_value_string_t \
+    afw_self_v_zz__d2f96ed4414a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d2f96ed4414a */
+#define afw_z_zz__d2f96ed4414a \
+    (afw_self_v_zz__d2f96ed4414a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d2f96ed4414a */
+#define afw_v_zz__d2f96ed4414a \
+    (&afw_self_v_zz__d2f96ed4414a.pub)
 
 
 
