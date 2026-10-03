@@ -778,18 +778,26 @@ afw_flag_environment_register_flag(
                 flags_count_allocated = flags_count_allocated * 2;
             }
 
-            /* env->flags */
+            /*
+             * env->flags. First growth has nothing to copy, and the
+             * old pointers are still NULL (memcpy from NULL is
+             * undefined even for 0 bytes).
+             */
             flags = afw_pool_calloc(p,
                 flags_count_allocated * sizeof(afw_boolean_t), xctx);
-            memcpy(flags, (void *)env->default_flags,
-                env->flags_count_allocated * sizeof(afw_boolean_t));
+            if (env->flags_count_allocated > 0) {
+                memcpy(flags, (void *)env->default_flags,
+                    env->flags_count_allocated * sizeof(afw_boolean_t));
+            }
             env->default_flags = (AFW_ATOMIC const afw_boolean_t *)flags;
 
             /* env->flag_by_index */
             flag_by_index = afw_pool_calloc(p,
                 flags_count_allocated * sizeof(afw_flag_t **), xctx);
-            memcpy(flag_by_index, (void *)env->flag_by_index,
-                env->flags_count_allocated * sizeof(afw_flag_t **));
+            if (env->flags_count_allocated > 0) {
+                memcpy(flag_by_index, (void *)env->flag_by_index,
+                    env->flags_count_allocated * sizeof(afw_flag_t **));
+            }
             env->flag_by_index = (const afw_flag_t * AFW_ATOMIC  *)flag_by_index;
 
             /* Set new allocated size now. */
