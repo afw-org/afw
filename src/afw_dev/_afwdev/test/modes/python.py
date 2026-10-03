@@ -73,6 +73,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     stdout_r = os.fdopen(stdout_p[0], 'r')
     stderr_r = os.fdopen(stderr_p[0], 'r')
+    t_out = t_err = None
 
     try:   
         msg.debug("Running python test: %s" % test)
@@ -146,15 +147,25 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
         error = wrap_exception(e)
 
     finally:
+        # Writers first so the drain threads see EOF. Closing a reader
+        # while its drain thread is still in read() blocks on that
+        # reader's lock: a run() that raised used to hang here. A child
+        # that still holds a writer keeps its thread alive; leave that
+        # reader open (the thread is a daemon).
         try:
-            stdout_r.close()
-            stderr_r.close()
-
             if not stdout_w_closed:
                 stdout_w.close()
             if not stderr_w_closed:
-                stderr_w.close()        
+                stderr_w.close()
         except Exception:
             pass
+        for t, r in ((t_out, stdout_r), (t_err, stderr_r)):
+            if t is not None:
+                t.join(timeout=5.0)
+            if t is None or not t.is_alive():
+                try:
+                    r.close()
+                except Exception:
+                    pass
 
     return response, error, debug
