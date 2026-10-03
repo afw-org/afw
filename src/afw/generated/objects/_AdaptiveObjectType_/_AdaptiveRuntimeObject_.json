@@ -12,7 +12,7 @@
         "indirect": {
             "brief": "The runtime struct is a pointer",
             "dataType": "boolean",
-            "description": "Indicates that the runtime struct is a pointer. If a property of this object type has runtime.onGetValueCFunctionName specified, the is ignored and runtime structure is always indirect.",
+            "description": "Indicates that the runtime struct is a pointer. If a property of this object type has runtime.onGetValueCFunctionName specified, this must be true and typedef must name the internal struct; afwdev generate fails otherwise.",
             "label": "Indirect"
         },
         "labels": {

@@ -122268,7 +122268,7 @@ impl_1180_property_dataType = {
 static const afw_runtime_property_t
 impl_1180_property_description = {
     afw_v_description,
-    &afw_self_v_zz__c840cfdfbefd.pub
+    &afw_self_v_zz__d2f96ed4414a.pub
 };
 
 static const afw_runtime_property_t
