@@ -66979,9 +66979,23 @@ impl_631;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnAddObject_/runtime
  */
 
+static const afw_runtime_property_t
+impl_631_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_631_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_631_properties[] = {
+    &impl_631_property_indirect,
+    &impl_631_property_typedef,
     NULL
 };
 
@@ -67027,7 +67041,7 @@ impl_631 = {
         }
     },
     &impl_631_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -68560,9 +68574,23 @@ impl_648;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnDeleteObject_/runtime
  */
 
+static const afw_runtime_property_t
+impl_648_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_648_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_648_properties[] = {
+    &impl_648_property_indirect,
+    &impl_648_property_typedef,
     NULL
 };
 
@@ -68608,7 +68636,7 @@ impl_648 = {
         }
     },
     &impl_648_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -71261,9 +71289,23 @@ impl_677;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetInitialObjectId_/runtime
  */
 
+static const afw_runtime_property_t
+impl_677_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_677_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_677_properties[] = {
+    &impl_677_property_indirect,
+    &impl_677_property_typedef,
     NULL
 };
 
@@ -71309,7 +71351,7 @@ impl_677 = {
         }
     },
     &impl_677_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -73962,9 +74004,23 @@ impl_706;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetInitialValue_/runtime
  */
 
+static const afw_runtime_property_t
+impl_706_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_706_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_706_properties[] = {
+    &impl_706_property_indirect,
+    &impl_706_property_typedef,
     NULL
 };
 
@@ -74010,7 +74066,7 @@ impl_706 = {
         }
     },
     &impl_706_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -75739,9 +75795,23 @@ impl_725;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetObject_/runtime
  */
 
+static const afw_runtime_property_t
+impl_725_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_725_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_725_properties[] = {
+    &impl_725_property_indirect,
+    &impl_725_property_typedef,
     NULL
 };
 
@@ -75787,7 +75857,7 @@ impl_725 = {
         }
     },
     &impl_725_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -77880,9 +77950,23 @@ impl_748;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetProperty_/runtime
  */
 
+static const afw_runtime_property_t
+impl_748_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_748_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_748_properties[] = {
+    &impl_748_property_indirect,
+    &impl_748_property_typedef,
     NULL
 };
 
@@ -77928,7 +78012,7 @@ impl_748 = {
         }
     },
     &impl_748_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -79650,9 +79734,23 @@ impl_767;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnModifyObject_/runtime
  */
 
+static const afw_runtime_property_t
+impl_767_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_767_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_767_properties[] = {
+    &impl_767_property_indirect,
+    &impl_767_property_typedef,
     NULL
 };
 
@@ -79698,7 +79796,7 @@ impl_767 = {
         }
     },
     &impl_767_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -81420,9 +81518,23 @@ impl_786;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnReplaceObject_/runtime
  */
 
+static const afw_runtime_property_t
+impl_786_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_786_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_786_properties[] = {
+    &impl_786_property_indirect,
+    &impl_786_property_typedef,
     NULL
 };
 
@@ -81468,7 +81580,7 @@ impl_786 = {
         }
     },
     &impl_786_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -83400,9 +83512,23 @@ impl_807;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnRetrieveObjects_/runtime
  */
 
+static const afw_runtime_property_t
+impl_807_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_807_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_807_properties[] = {
+    &impl_807_property_indirect,
+    &impl_807_property_typedef,
     NULL
 };
 
@@ -83448,7 +83574,7 @@ impl_807 = {
         }
     },
     &impl_807_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -85541,9 +85667,23 @@ impl_830;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnSetProperty_/runtime
  */
 
+static const afw_runtime_property_t
+impl_830_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_830_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_830_properties[] = {
+    &impl_830_property_indirect,
+    &impl_830_property_typedef,
     NULL
 };
 
@@ -85589,7 +85729,7 @@ impl_830 = {
         }
     },
     &impl_830_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t
@@ -86933,9 +87073,23 @@ impl_845;
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrent_/runtime
  */
 
+static const afw_runtime_property_t
+impl_845_property_indirect = {
+    afw_v_indirect,
+    &afw_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_845_property_typedef = {
+    afw_v_typedef,
+    &afw_self_v_afw_model_internal_context_t.pub
+};
+
 /* Sorted by name for afw_binary_search_by_name(). */
 static const afw_runtime_property_t *
 impl_845_properties[] = {
+    &impl_845_property_indirect,
+    &impl_845_property_typedef,
     NULL
 };
 
@@ -86981,7 +87135,7 @@ impl_845 = {
         }
     },
     &impl_845_properties[0],
-    0
+    2
 };
 
 static const afw_value_object_t

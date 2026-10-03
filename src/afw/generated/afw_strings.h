@@ -40147,6 +40147,32 @@ afw_self_v_afw_memory_t;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afw_model_internal_context_t \
+    "afw_model_internal_context_t"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afw_model_internal_context_t */
+#define afw_s_afw_model_internal_context_t \
+    (&afw_self_v_afw_model_internal_context_t.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afw_model_internal_context_t */
+#define afw_self_s_afw_model_internal_context_t \
+    (afw_self_v_afw_model_internal_context_t.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afw_model_internal_context_t */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afw_model_internal_context_t;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afw_model_internal_context_t */
+#define afw_z_afw_model_internal_context_t \
+    (afw_self_v_afw_model_internal_context_t.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afw_model_internal_context_t */
+#define afw_v_afw_model_internal_context_t \
+    (&afw_self_v_afw_model_internal_context_t.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afw_model_internal_get_current_adapterId \
     "afw_model_internal_get_current_adapterId"
 

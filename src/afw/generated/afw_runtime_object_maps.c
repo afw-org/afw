@@ -2468,9 +2468,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnAddObject_ = {
     &afw_self_s__AdaptiveModelCurrentOnAddObject_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnAddObject_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2565,9 +2565,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnDeleteObject_ = {
     &afw_self_s__AdaptiveModelCurrentOnDeleteObject_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnDeleteObject_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2722,9 +2722,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnGetInitialObjectId_ = {
     &afw_self_s__AdaptiveModelCurrentOnGetInitialObjectId_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetInitialObjectId_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2879,9 +2879,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnGetInitialValue_ = {
     &afw_self_s__AdaptiveModelCurrentOnGetInitialValue_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetInitialValue_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -2986,9 +2986,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnGetObject_ = {
     &afw_self_s__AdaptiveModelCurrentOnGetObject_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetObject_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3113,9 +3113,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnGetProperty_ = {
     &afw_self_s__AdaptiveModelCurrentOnGetProperty_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnGetProperty_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3220,9 +3220,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnModifyObject_ = {
     &afw_self_s__AdaptiveModelCurrentOnModifyObject_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnModifyObject_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3327,9 +3327,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnReplaceObject_ = {
     &afw_self_s__AdaptiveModelCurrentOnReplaceObject_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnReplaceObject_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3444,9 +3444,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnRetrieveObjects_ = {
     &afw_self_s__AdaptiveModelCurrentOnRetrieveObjects_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnRetrieveObjects_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3571,9 +3571,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrentOnSetProperty_ = {
     &afw_self_s__AdaptiveModelCurrentOnSetProperty_,
     &impl_runtime_object_map__AdaptiveModelCurrentOnSetProperty_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
@@ -3658,9 +3658,9 @@ static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveModelCurrent_ = {
     &afw_self_s__AdaptiveModelCurrent_,
     &impl_runtime_object_map__AdaptiveModelCurrent_,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-    offsetof(afw_runtime_const_object_instance_t, property_count),
+    -1,
+    true,
+    (size_t)-1,
 };
 
 AFW_RUNTIME_OBJECT_INF( 

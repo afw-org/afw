@@ -95,5 +95,7 @@
         }
     },
     "runtime": {
+        "indirect": true,
+        "typedef": "afw_model_internal_context_t"
     }
 }
