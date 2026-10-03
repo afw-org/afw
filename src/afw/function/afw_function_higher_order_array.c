@@ -997,7 +997,6 @@ afw_function_execute_sort(
     const afw_value_array_t *result;
     const afw_data_type_t *data_type;
     const afw_iterator_old_t *iterator;
-    const afw_value_t **value;
     afw_size_t i;
     impl_sort_ctx_t ctx;
 
@@ -1024,14 +1023,12 @@ afw_function_execute_sort(
         return data_type->empty_array_value;
     }
 
-    /* Make array of pointers to values. */
+    /* Make array of pointers to values. Exactly count; no NULL slot. */
     ctx.values = afw_pool_malloc(ctx.p,
         sizeof(const afw_value_t *) * ctx.count, ctx.xctx);
-    for (iterator = NULL, value = ctx.values;; value++) {
-        *value = afw_array_get_next_value(array->internal, &iterator, ctx.xctx);
-        if (!*value) {
-            break;
-        }
+    for (iterator = NULL, i = 0; i < ctx.count; i++) {
+        ctx.values[i] = afw_array_get_next_value(array->internal,
+            &iterator, ctx.xctx);
     }
 
     /*
