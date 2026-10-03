@@ -62,7 +62,7 @@ impl_front_door(afw_xctx_t *xctx)
     if (impl_expect_seven(result, "front_door") != 0) {
         return 1;
     }
-    afw_value_release(value, xctx);
+    /* Caller does not release: the unit's last-release is on xctx->p. */
     return 0;
 }
 
