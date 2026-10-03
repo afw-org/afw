@@ -1,0 +1,13 @@
+{
+    "serviceId": "adapter-files",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "root": "objects/",
+        "contentType": "json",
+        "filenameSuffix": ".json",
+        "description": "Its root compiles into the adapter pool.",
+        "adapterId": "files"
+    }
+}

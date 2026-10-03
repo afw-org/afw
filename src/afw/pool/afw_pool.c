@@ -492,17 +492,22 @@ afw_pool_internal_release_common(
             return NULL;
         }
         /*
+         * Callbacks before children: a callback may release a value
+         * that lives in an unreferenced child. A compile unit's pool
+         * is a child of dest p->managed_p, and its last-release is a
+         * callback on dest p.
+         *
          * Unreferenced children did not pin this pool. Destroy them
          * with it. A child that was get_referenced holds a pin, so it
          * cannot still be linked here.
          */
         afw_pool_internal_mark_destroying(self);
+        afw_pool_internal_run_cleanups(self, xctx);
         afw_pool_internal_destroy_children(self, xctx);
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
         }
-        afw_pool_internal_run_cleanups(self, xctx);
         teardown(self, xctx);
         return NULL;
     }
