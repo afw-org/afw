@@ -37,6 +37,7 @@ from _afwdev.test.common import (
     clip_detail, format_xctx_bytes)
 from _afwdev.test import failure_log
 from _afwdev.test import history as test_history
+from _afwdev.test import sanitize as test_sanitize
 
 
 ##
@@ -169,6 +170,13 @@ def run(options):
             if want_compare or want_trend:
                 _run_compare_trend(options)
             sys.exit(0)
+
+        # Sanitizer pairing: asan runs against build/asan/install;
+        # valgrind cannot run a sanitizer build.
+        if test_history.env_mode(options) == 'asan':
+            test_sanitize.prepare_asan_environment(options)
+        elif test_history.env_mode(options) == 'valgrind':
+            test_sanitize.refuse_sanitized_lib_for_valgrind()
 
         failure_log.begin(options)
         try:

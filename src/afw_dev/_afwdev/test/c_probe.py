@@ -28,6 +28,7 @@
 #
 
 import inspect
+import json
 import os
 import shutil
 import subprocess
@@ -103,6 +104,28 @@ def libafw_sanitizers(libdir=None):
     if b"__ubsan_handle_" in data:
         found.append("undefined")
     return tuple(found)
+
+
+def libafw_build_cache(libdir=None):
+    """CMakeCache.txt of the --sanitize build that made libafw, or None.
+
+    `afwdev build --sanitize` records its build directory in
+    afwdev-sanitize.json in the prefix (<prefix>/lib/afw/libafw.so). None
+    for a normal install; callers fall back to build/cmake/.
+    """
+    from _afwdev.build.cmake import SANITIZE_STAMP_NAME
+    if libdir is None:
+        _, libdir = _include_and_libdir()
+    prefix = os.path.dirname(os.path.dirname(os.path.normpath(libdir)))
+    try:
+        with open(os.path.join(prefix, SANITIZE_STAMP_NAME),
+                encoding="utf-8") as f:
+            build_dir = json.load(f).get("buildDirectory")
+    except (OSError, ValueError):
+        return None
+    if not build_dir:
+        return None
+    return os.path.join(build_dir, "CMakeCache.txt")
 
 
 def _resolve_source(source, caller_dir):

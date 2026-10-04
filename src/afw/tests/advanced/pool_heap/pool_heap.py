@@ -10,7 +10,8 @@ afw_pool_tracker_internal.h from the src tree (pulls heap + shared).
 
 import os
 
-from _afwdev.test.c_probe import libafw_sanitizers, run_c_probe
+from _afwdev.test.c_probe import (
+    libafw_build_cache, libafw_sanitizers, run_c_probe)
 
 # These read memory an ASAN libafw marks no-access (a freed USER, a
 # foreign block's prefix). ASAN reports that read before the debug
@@ -51,7 +52,9 @@ def _lib_has_debug_pool():
     way: throw cases run only when the lib was built with the prefix.
     """
     root = os.path.abspath(os.path.join(_pool_src(), "..", "..", ".."))
-    cache = os.path.join(root, "build", "cmake", "CMakeCache.txt")
+    # A --sanitize build (build/asan/...) names its own cmake dir.
+    cache = libafw_build_cache() or \
+        os.path.join(root, "build", "cmake", "CMakeCache.txt")
     if os.path.isfile(cache):
         with open(cache, encoding="utf-8", errors="replace") as f:
             for line in f:
