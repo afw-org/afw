@@ -83,6 +83,28 @@ def _include_and_libdir():
     return include_afw, libdir
 
 
+def libafw_sanitizers(libdir=None):
+    """Sanitizers the installed libafw was built with, e.g. ("address",).
+
+    Empty for a normal build. A probe against an ASAN libafw must be
+    built the same way: the ASAN runtime has to load first, and pool
+    internals widen the heap prefix under ASAN.
+    """
+    if libdir is None:
+        _, libdir = _include_and_libdir()
+    try:
+        with open(os.path.join(libdir, "libafw.so"), "rb") as f:
+            data = f.read()
+    except OSError:
+        return ()
+    found = []
+    if b"__asan_init" in data:
+        found.append("address")
+    if b"__ubsan_handle_" in data:
+        found.append("undefined")
+    return tuple(found)
+
+
 def _resolve_source(source, caller_dir):
     if os.path.isabs(source):
         return source
@@ -108,6 +130,12 @@ def compile_c_probe(
     # source-tree internal header; that path has to win.
     if extra_cflags:
         cmd.extend(list(extra_cflags))
+    sanitizers = libafw_sanitizers(libdir)
+    if sanitizers:
+        cmd.extend([
+            "-fsanitize=" + ",".join(sanitizers),
+            "-fno-omit-frame-pointer",
+        ])
     cmd.extend(["-I", include_afw])
     cmd.extend([
         "-o", dest, source,
