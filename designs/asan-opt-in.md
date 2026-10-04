@@ -78,11 +78,11 @@ Decided with the maintainer, 2026-10-04.
 
   The prefix is installed, not run from the build tree: binaries find their libraries through a relative rpath, and the baked-in install path makes `afw` load extensions from its own `lib/afw`.
 - **Install is implied:** `--sanitize` installs into its own prefix (`--prefix` overrides). It never touches `/usr/local`.
-- **Clean:** `afwdev build --clean` removes only `build/<context>/` for the contexts in that run (`build.py`), so `--cdev --clean` / `--fulldev` leave `build/asan/` alone. `--sanitize --clean` removes only `build/asan/`. A manual `rm -rf build` removes it too; the test mode then says how to rebuild.
-- **Refused with it:** `--docker`, `--package`, `--scan`.
-- **Never implied:** `--cdev`, `--fulldev` and `--all` do not add `--sanitize` (same rule as `--docker`). It combines with them: `./afwdev build --cdev --sanitize address` = generate, clean `build/asan/`, build, install.
+- **Clean:** `afwdev build --clean` removes only `build/<context>/` for the contexts in that run (`build.py`), so `--cdev --clean` / `--fulldev` leave `build/asan/` alone. `--sanitize --clean` removes only `build/asan/` (the cmake dir, and the install dir unless `--prefix` was given; a custom prefix is never removed). A manual `rm -rf build` removes it too; the test mode then says how to rebuild.
+- **Refused with it:** `--fulldev`, `--all`, `--docs`, `--js`, `--docker`, `--package`, `--scan`. It is the C (cmake) context only; `--fulldev` would also turn on `--scan` and every context.
+- **Never implied:** `--cdev`, `--fulldev` and `--all` do not add `--sanitize` (same rule as `--docker`). It combines with `--cdev`: `./afwdev build --cdev --sanitize address` = generate, clean `build/asan/`, build, install (about 50s).
 - **Flags reach cmake** as `-DAFWDEV_SANITIZE=address;undefined` (like `AFWDEV_C_DEFINES`); the root `CMakeLists.txt` adds the compile and link options plus `-fno-omit-frame-pointer`.
-- **Stamp file** in the prefix (sanitizers, source commit) so the test mode can refuse a missing or stale build with the exact command.
+- **Stamp file** `afwdev-sanitize.json` in the prefix (sanitizers, source commit, dirty, build time, build dir) so the test mode can refuse a missing or stale build with the exact command.
 - **No runtime:** fail before cmake when the compiler cannot link a `-fsanitize=address` program (Alpine/musl has no ASan runtime).
 - **Hard-coded `build/cmake` to fix:** the install-prefix helper and the header prune after install (must use the ASAN cache and prefix, never prune `/usr/local`); the clangd `compile_commands.json` symlink stays on `build/cmake/`; `pool_heap.py` `_lib_has_debug_pool()` (test mode, step 3).
 

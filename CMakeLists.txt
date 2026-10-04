@@ -20,6 +20,14 @@ if(DEFINED AFWDEV_C_DEFINES AND NOT AFWDEV_C_DEFINES STREQUAL "")
     add_compile_definitions(${AFWDEV_C_DEFINES})
 endif()
 
+# Sanitizers from `afwdev build --sanitize` (e.g. address;undefined). That
+# build has its own cmake dir and prefix; see designs/asan-opt-in.md.
+if(DEFINED AFWDEV_SANITIZE AND NOT AFWDEV_SANITIZE STREQUAL "")
+    list(JOIN AFWDEV_SANITIZE "," _afwdev_sanitize)
+    add_compile_options(-fsanitize=${_afwdev_sanitize} -fno-omit-frame-pointer)
+    add_link_options(-fsanitize=${_afwdev_sanitize})
+endif()
+
 # Core library afw is required by all Adaptive Framework commands and
 # extensions. Since it and its associated CMake Find*.cmake files are not
 # installed yet, src/afw/cmake is appended to the CMAKE_MODULE_PATH variable

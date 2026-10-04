@@ -565,6 +565,19 @@ _info_build_prefix = {
         "directories."
 }
 
+_info_build_sanitize = {
+    "optionName": "build_sanitize",
+    "arg": "--sanitize",
+    "nargs": 1,
+    "help": "Build the C (cmake) context with a sanitizer into its own "
+        "directory and prefix, never the normal build or /usr/local. "
+        "Only 'address' is accepted: AddressSanitizer plus "
+        "UndefinedBehaviorSanitizer into build/asan/cmake/, installed into "
+        "build/asan/install/ (--prefix overrides). Implies --install. "
+        "Combines with --cdev; not with --fulldev, --all, --docs, --js, "
+        "--docker, --package or --scan. See designs/asan-opt-in.md."
+}
+
 _info_build_sudo = {
     "optionName": "build_sudo",
     "arg": "--sudo",     
@@ -639,6 +652,7 @@ C preprocessor defines with --define NAME or --define NAME=VALUE.
         _info_build_maxloop,
         _info_build_package,
         _info_build_prefix,
+        _info_build_sanitize,
         _info_build_scan,
         _info_build_sudo,
         _info_build_web_root
