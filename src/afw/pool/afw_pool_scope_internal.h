@@ -128,8 +128,8 @@ afw_pool_scope_clear_last_result(
 /**
  * @brief Get an assignable and register last-release on dest p.
  * @param value to keep. Void and NULL are returned unchanged.
- * @param p dest pool. Current scope->p when there is a current
- *    scope, else this p. Required when there is no current scope.
+ * @param p dest pool. Walks pool parent to the nearest scope.
+ *    Throws if dest p is a job heap (p == p->managed_p).
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
@@ -160,8 +160,8 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
 /**
  * @brief Register last-release of a must-release hold on dest p.
  * @param value to keep. NULL is returned unchanged.
- * @param p dest pool. Current scope->p when there is a current
- *    scope, else this p. Required when there is no current scope.
+ * @param p dest pool. Walks pool parent to the nearest scope.
+ *    Throws if dest p is a job heap (p == p->managed_p).
  * @param xctx of caller.
  * @return value unchanged.
  *
@@ -186,9 +186,10 @@ afw_pool_scope_release_value_at_cleanup(
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
- * Same as get_assignable_for_scope_lifetime; caller picks dest p
- * (script return onto caller->p while the callee frame is alive,
- * or evaluate dest p when there is no Adaptive caller).
+ * Exact dest p. Script return onto caller->p while the callee
+ * frame is alive, or evaluate dest p when there is no Adaptive
+ * caller. for_scope_lifetime is this after resolving dest to a
+ * scope.
  * get_assignable of unmanaged; already-managed registered on that
  * p is returned as-is. Register last-release of that one hold on
  * dest p. Not for a fresh create_managed — that is already RC 1.
@@ -205,7 +206,7 @@ afw_pool_scope_get_assignable_for_p_lifetime(
 /**
  * @brief Set last_result to an assignable held until dest p ends.
  * @param value to keep. Void and NULL are returned unchanged.
- * @param p dest pool fallback when there is no current scope.
+ * @param p dest pool. Walks pool parent to the nearest scope.
  * @param xctx of caller.
  * @return held value, or void/NULL unchanged.
  *

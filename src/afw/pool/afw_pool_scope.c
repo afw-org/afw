@@ -812,6 +812,42 @@ afw_pool_scope_clear_last_result(
 }
 
 
+/*
+ * Nearest scope in dest p's pool-parent chain. Throw if dest p is a
+ * job heap (p == p->managed_p) or the chain ends with no scope.
+ * Probe: do not last-release on the job heap from these helpers.
+ */
+static const afw_pool_t *
+impl_scope_dest_p(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_pool_internal_self_t *self;
+
+    if (!p) {
+        AFW_THROW_ERROR_Z(general,
+            "for_scope_lifetime with no dest p",
+            xctx);
+    }
+    for (;;) {
+        if (afw_pool_internal_is_scope(p)) {
+            return p;
+        }
+        if (p->managed_p == p) {
+            AFW_THROW_ERROR_Z(general,
+                "for_scope_lifetime dest p reached job heap "
+                "(p == p->managed_p)",
+                xctx);
+        }
+        self = (const afw_pool_internal_self_t *)p;
+        if (!self->parent) {
+            AFW_THROW_ERROR_Z(general,
+                "for_scope_lifetime dest p has no scope in parent chain",
+                xctx);
+        }
+        p = &self->parent->pub;
+    }
+}
+
+
 const afw_value_t *
 afw_pool_scope_get_assignable_for_p_lifetime(
     const afw_value_t *value,
@@ -845,11 +881,8 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_pool_scope_t *scope;
-
-    scope = afw_pool_scope_internal_current(xctx);
     return afw_pool_scope_get_assignable_for_p_lifetime(
-        value, scope ? scope->p : p, xctx);
+        value, impl_scope_dest_p(p, xctx), xctx);
 }
 
 
@@ -859,17 +892,10 @@ afw_pool_scope_release_value_at_cleanup(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_pool_scope_t *scope;
-
     if (!value) {
         return value;
     }
-    scope = afw_pool_scope_internal_current(xctx);
-    p = scope ? scope->p : p;
-    if (!p) {
-        AFW_THROW_ERROR_Z(general,
-            "release_value_at_cleanup with no dest p", xctx);
-    }
+    p = impl_scope_dest_p(p, xctx);
     afw_pool_release_value_at_cleanup(value, p, xctx);
     return value;
 }

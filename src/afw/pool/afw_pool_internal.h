@@ -366,6 +366,9 @@ afw_pool_internal_is_heap(const afw_pool_t *p);
 afw_boolean_t
 afw_pool_internal_is_tracker(const afw_pool_t *p);
 
+afw_boolean_t
+afw_pool_internal_is_scope(const afw_pool_t *p);
+
 void
 afw_pool_internal_print_debug_info(
     int indent,
