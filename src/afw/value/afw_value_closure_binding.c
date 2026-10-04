@@ -30,7 +30,7 @@
 
 /* Create function closure binding value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_closure_binding_create(
+afw_value_closure_binding_create_managed(
     const afw_value_script_function_definition_t *script_function_definition,
     const afw_pool_scope_t *enclosing_lexical_scope,
     const afw_pool_t *p,
@@ -40,7 +40,8 @@ afw_value_closure_binding_create(
 
     /*
      * Header in dest p->managed_p. Create is RC 1 and pins
-     * enclosing_lexical_scope. Last RC 0 releases that scope.
+     * enclosing_lexical_scope. Caller releases. Last RC 0
+     * releases the scope.
      */
     p = p->managed_p;
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
@@ -91,7 +92,7 @@ afw_value_closure_binding_create_if_needed(
         AFW_THROW_ERROR_Z(general,
             "Internal error: scope not found", xctx);
     }
-    return afw_value_closure_binding_create(function, scope, p, xctx);
+    return afw_value_closure_binding_create_managed(function, scope, p, xctx);
 }
 
 
@@ -109,11 +110,6 @@ impl_afw_value_optional_release(
     if (self->reference_count == 1) {
         self->reference_count = 0;
         afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
-        /* After this, script_function_definition may be freed. */
-        if (self->compiled_value) {
-            afw_value_release(self->compiled_value, xctx);
-            self->compiled_value = NULL;
-        }
         afw_pool_free_memory_type(self->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }

@@ -1811,7 +1811,7 @@ afw_value_common_create(
 
 
 /**
- * @brief Create a closure binding value.
+ * @brief Create a managed closure binding value.
  * @param script_function_definition script function to enclose.
  * @param enclosing_lexical_scope for closure binding. Create pins it.
  * @param p dest pool (uses p->managed_p).
@@ -1819,7 +1819,7 @@ afw_value_common_create(
  * @return Created afw_value_t (RC 1; caller releases).
  */
 AFW_DEFINE(const afw_value_t *)
-afw_value_closure_binding_create(
+afw_value_closure_binding_create_managed(
     const afw_value_script_function_definition_t *script_function_definition,
     const afw_pool_scope_t *enclosing_lexical_scope,
     const afw_pool_t *p,

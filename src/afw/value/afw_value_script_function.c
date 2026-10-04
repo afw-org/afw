@@ -98,8 +98,8 @@ impl_afw_value_get_reference(
 
 
 /*
- * Store-time bind (#35): mint a closure_binding (RC 1). Caller of
- * this get_assignable releases. Do not add_reference after create.
+ * Store-time bind (#35): mint a closure_binding (create_managed RC 1).
+ * Caller of this get_assignable releases.
  */
 const afw_value_t *
 impl_afw_value_get_assignable_value(

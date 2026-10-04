@@ -1455,29 +1455,13 @@ afw_function_execute_eval_from_file(
     afw_function_execute_t *x)
 {
     const afw_value_t *compiled;
-    const afw_value_t *value = NULL;
-    char unexpected[192];
-    afw_xctx_t *xctx = x->xctx;
+    const afw_value_t *value;
 
     /* compile dest is x->p (last-releases dest p). Evaluate dest is
-     * x->p. After evaluate, get_reference the unit onto an escaped
-     * function. */
+     * x->p. Evaluate is caller does not release. */
     compiled = afw_function_execute_compile_from_file(x);
+    value = afw_value_evaluate(compiled, x->p, x->xctx);
 
-    AFW_TRY {
-        value = afw_value_evaluate(compiled, x->p, xctx);
-    }
-    AFW_FINALLY {
-        value = afw_function_eval_reference_escaped_unit(
-            compiled, value, unexpected, sizeof(unexpected),
-            "eval_from_file", x->p, xctx);
-    }
-    AFW_ENDTRY;
-
-    if (unexpected[0]) {
-        AFW_THROW_ERROR_FZ(general, xctx, "%s", unexpected);
-    }
-
-    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
+    afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return value;
 }

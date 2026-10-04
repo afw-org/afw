@@ -463,11 +463,6 @@ struct afw_value_closure_binding_s {
     const afw_pool_t *p;
     const afw_value_script_function_definition_t *script_function_definition;
     const afw_pool_scope_t *enclosing_lexical_scope;
-    /*
-     * Compile unit this binding may hold, or NULL. Last RC releases
-     * it when set.
-     */
-    const afw_value_t *compiled_value;
     afw_size_t reference_count;
 };
 
