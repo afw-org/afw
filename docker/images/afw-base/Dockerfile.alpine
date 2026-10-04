@@ -1,4 +1,7 @@
-ARG OS_VERSION=3.16.9
+# Keep OS_VERSION in step with afw-dev-base/Dockerfile.alpine: afw and
+# afwfcgi are compiled there and run here. Bump both together, then rebuild
+# and publish this image too.
+ARG OS_VERSION=3.24
 FROM alpine:${OS_VERSION}
 
 LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
