@@ -29,26 +29,22 @@ Deliberately left accessible: allocator headers, and a header that a coalesce ab
 
 **Probe:** `src/afw/tests/advanced/pool_asan/` asks ASAN which bytes are marked (`__asan_address_is_poisoned`), so it passes or fails without crashing. It skips every case against a normal `libafw`. `run_c_probe` now detects an ASAN / UBSan `libafw` (`libafw_sanitizers()`) and builds probes with the same `-fsanitize`, so any probe works against an ASAN prefix. `pool_heap` skips `debug_free_wrong_pool` and `debug_free_poisons_user` under ASAN (they read no-access memory on purpose; ASAN reports it first).
 
-## Manual recipe (until step 2 / 3)
+## How to run it
 
 ```bash
-S=/path/to/scratch   # anywhere outside the normal prefix
-./afwdev build --cdev    # generate + normal install as usual
-cmake -S . -B $S/cmake-asan \
-  -DAFWDEV_C_DEFINES="AFW_DEBUG_EVALUATION;AFW_DEBUG_LOCK;AFW_DEBUG_POOL" \
-  -DCMAKE_C_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g" \
-  -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined" \
-  -DCMAKE_SHARED_LINKER_FLAGS="-fsanitize=address,undefined" \
-  -DCMAKE_MODULE_LINKER_FLAGS="-fsanitize=address,undefined" \
-  -DCMAKE_INSTALL_PREFIX=$S/asan-prefix
-cmake --build $S/cmake-asan --parallel && cmake --install $S/cmake-asan
-
-# probes against the ASAN prefix
-AFW_LIB_DIR=$S/asan-prefix/lib/afw AFW_INCLUDE_DIR=$S/asan-prefix/include/afw \
-  ./afwdev test --test-pattern 'pool_asan|pool_heap|pool_alloc'
+./afwdev build --cdev --sanitize address      # build/asan/{cmake,install}, ~50s
+./afwdev test -j --env-mode asan              # ~6 min (normal run ~20s)
 ```
 
-Whole suite, rough: ASAN `afw` first on `PATH`, `ASAN_OPTIONS=detect_leaks=0:detect_odr_violation=0`. First run (2026-10-03): 4429 passed, 42 failed, about 350s against 20s. Failures were harness wiring (`afwfcgi` and `c_probe` self-tests start non-ASAN binaries against the ASAN lib) plus the real findings below.
+`--env-mode asan` (`_afwdev/test/sanitize.py`, `modes/asan.py`):
+
+- Needs `build/asan/install/` and its `afwdev-sanitize.json`; missing is an error with the build command. A stamp from another commit, or from a dirty tree, is a warning with the same command (docs-only commits should not force a rebuild).
+- Puts `build/asan/install/bin` first on `PATH` for the whole run, so `.as` tests, python tests, orchestrated `afwfcgi` and `afw --local` all use the ASan build. Sets `AFW_LIB_DIR` / `AFW_INCLUDE_DIR` so C probes build against it (`run_c_probe` adds the matching `-fsanitize`).
+- `ASAN_OPTIONS` adds `detect_odr_violation=0:detect_leaks=1`; `UBSAN_OPTIONS` adds `print_stacktrace=1:halt_on_error=1`. Keys you set yourself win. Every sanitizer report fails the process that hit it; `.as` failures show a short summary (report line plus top frames).
+- `afwfcgi` starts without `stdbuf` under asan: its `LD_PRELOAD` loads ahead of the ASan runtime.
+- `--env-mode valgrind` refuses a sanitizer `libafw`; the `c_probe` self-test skips its valgrind cases against one.
+- `pool_heap.py` finds the right `CMakeCache.txt` through the stamp (`libafw_build_cache()`).
+- History and failure logs use the mode name, so asan runs never mix with afw or valgrind baselines.
 
 ## Findings so far
 
@@ -101,9 +97,9 @@ Rules: the default test run never picks up a sanitizer build; a mode refuses a m
 Flexible order; one step, then re-decide.
 
 1. ~~Annotations~~ (this branch).
-2. **Build:** `afwdev build --sanitize address`. Decided 2026-10-04; see *Build design* below.
-3. **Test:** `afwdev test --env-mode asan` (`modes/asan.py`, like `valgrind.py`): ASAN prefix first on `PATH` / lib path, `ASAN_OPTIONS` / `UBSAN_OPTIONS`, short summary of `==ERROR: AddressSanitizer` / `runtime error:`, its own history mode suffix, a clear error if the ASAN build is missing. Must also cover `afwfcgi` orchestration and the `c_probe` self-tests (both started non-ASAN binaries in the first run).
-4. **Later / separate decisions:** a valgrind backing for the same header behind its own define (changes what the existing valgrind mode reports); a reuse delay (quarantine) for the heap free list so a same-size malloc does not hide a use-after-free; UBSan halt vs report.
+2. ~~Build:~~ `afwdev build --sanitize address` landed (2026-10-04); see *Build design*.
+3. ~~Test:~~ `afwdev test --env-mode asan` landed (2026-10-04); see *How to run it*. First full run: 4346 passed, 29 failed. The failures were harness gaps (since fixed), the known findings (#466, #467, the deferred compile-literal cases) and three new UBSan findings (backlog).
+4. **Later / separate decisions:** a valgrind backing for the same header behind its own define (changes what the existing valgrind mode reports); a reuse delay (quarantine) for the heap free list so a same-size malloc does not hide a use-after-free. (UBSan halts: decided with step 3.)
 
 ## Footguns
 
