@@ -58,7 +58,7 @@ Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (dest 
 
 ## Last_return
 
-`return` is `as_assignable` only (does not `slot_store`). Statement list starts void. Block finish stores a non-void last into `script_result` before deactivate. Nested eval save/restore the pointer. `let` / `const` do not write it. Nested assignment inside a loop **does**. Loops keep a body last only if it is already `script_result`; `try` stays void except `return` / `rethrow`.
+`return` is `as_assignable` only (does not `slot_store`). Statement list starts void. Block finish stores a non-void last into `script_result` before deactivate (`script_result_set`, dest `scope->p`). Nested eval save/restore the pointer. `let` / `const` do not write it. Nested assignment inside a loop **does**. Loops keep a body last only if it is already `script_result`; `try` stays void except `return` / `rethrow`.
 
 ## Managed frames
 

@@ -20,7 +20,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 **Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`, `object_hold`) are leftovers in the tree, not a second protocol.
 
-**Smell:** extra-hold, special case, extra bump, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest. If a leak needs a new flag or a third way to keep a value alive, stop.
+**Smell:** extra-hold, special case, extra bump, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest, caching dest `p` on the xctx (`script_result_p`). If a leak needs a new flag or a third way to keep a value alive, stop.
 
 ---
 
@@ -71,7 +71,7 @@ If the function calls `get_assignable_value` or `create_managed`, it owns a valu
 
 Register last-release of the **returned** value only. The container’s last RC `release`s what it holds.
 
-Evaluate of a compiled value is **caller does not release**. Dest `p` is the `p` passed to that evaluate. If the result is managed, register last-release of that one hold on that dest `p`. `script_result` isolate dest is dest `p` of the caller that writes the slot (`scope->p` at deactivate, `original_scope->p` at clone, evaluate dest `p` for a non-block script-function body). Nested `evaluate(compile())` parks `script_result`. Managed bytes follow that dest `p->managed_p`.
+Evaluate of a compiled value is **caller does not release**. Dest `p` is the `p` passed to that evaluate. If the result is managed, register last-release of that one hold on that dest `p`. `xctx->script_result` is the running last pointer (execution state, like the evaluation stack). Isolate dest is dest `p` of the caller that writes the slot (`script_result_set(value, p, xctx)`: `scope->p` at deactivate, `original_scope->p` at clone, evaluate dest `p` for a non-block script-function body). Nested `evaluate(compile())` parks `script_result`. Managed bytes follow that dest `p->managed_p`. There is no dest-pool field on the xctx.
 
 ---
 

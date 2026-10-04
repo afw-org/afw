@@ -2,7 +2,7 @@
 
 **Audience:** maintainers. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
-Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). This pad is landed history (compile unit, leave, isolate-at-clone, builtin lifetime, pop, FRV dropped). Extra-hold in this file means register last-release on dest `p` as it landed then.
+Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). This pad is landed history (compile unit, leave, isolate-at-clone, builtin lifetime, pop, FRV dropped). Extra-hold in this file means register last-release on dest `p` as it landed then. Current isolate dest: dest `p` passed to `script_result_set` (`scope->p` at deactivate, `original_scope->p` at clone). `xctx->script_result` is the running pointer. There is no dest-pool field on the xctx.
 
 **Landed on `develop`:**
 - [PR #305](https://github.com/afw-org/afw/pull/305) (`0fc0f2b8`, 2026-09-09) — `compile()` is a unit; `app::` get of compiled templates.
@@ -40,7 +40,7 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 **`last_result` lives on the scope**, not only on `xctx->script_result`. Pointer only (not a managed slot like `frame_slots[]`). Starts void. `afw_pool_scope_set_last_result` ignores void / NULL / no current scope.
 
-**Deactivate** `script_result_set`s `last_result` unless the scope was **cloned**. Isolate out of the frame is that slot_store. Nested `compiled_value` / script call / block-as-value still save/restore `script_result`.
+**Deactivate** `script_result_set`s `last_result` unless the scope was **cloned**. Isolate out of the frame is that slot_store, dest `scope->p`. Nested `compiled_value` / script call / block-as-value still save/restore `script_result`.
 
 **Extra-hold** (`afw_pool_scope_set_last_result_for_lifetime`): `get_assignable_for_lifetime` then store `last_result`. Use when an unmanaged occupant must survive a dying scope. Nested `{ }` adopt (child tracker already died) and `return()` (parameter can be an FRV leftover the eval stack would drop). Not at clone. Not a slot replace on every statement. `try`/`finally` extra-hold is a filtered `{ }` adopt, not the FRV door.
 
@@ -51,7 +51,7 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 **`for (let)` clone** is for closures, not a result stack:
 
 - First trip **is** the for-let `{ }` (not a template).
-- Next trip: sibling `scope_clone` (copy `frame_slots[]`; same `parent_lexical_scope`). `clone()` `script_result_set`s original last, then clone last stays void from create. Marks original **cloned** so deactivate does not write the slot. Increment / for-of assign run on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure `get_reference`s it.
+- Next trip: sibling `scope_clone` (copy `frame_slots[]`; same `parent_lexical_scope`). `clone()` `script_result_set`s original last, dest `original_scope->p`, then clone last stays void from create. Marks original **cloned** so deactivate does not write the slot. Increment / for-of assign run on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure `get_reference`s it.
 - Loop `{ }` bodies `evaluate_block` and only point last at the occupant already in `script_result` (no extra-hold on the clone). The slot is not rewritten until this clone is cloned or it deactivates.
 - Unbraced while / do / for / for-of bodies wrap as a 0-symbol `{ }` **after** parsing the Statement in the current block (`for (let x of []) let x` is still already defined). `if` is not wrapped.
 - Without closures, two frames: the `{ }` until `for` ends, plus the **current** clone.
@@ -59,7 +59,7 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 **Finally:** a **normal** finally `{ }` must not adopt last onto the parent (that overwrote `return 'try'` with `count.finally += 1`). Finally **return** still wins. Nested assignment in finally still writes last when try/catch did not return.
 
-**Rejected this wave:** dest `p` on deactivate; treating `last_result` like `frame_slots[]`; extra-hold “harder” on cloned-from last; extra-hold previous sibling last onto the clone (useless: isolate at clone, void last will not override the slot); wrap unbraced **before** parse (hides `let` clash); `for` C-return of last; clone-first as a template; `iter_p`; isolating FRV at `return()` `get_assignable`/`slot_store` as the design (that is a later slice).
+**Rejected this wave:** a dest `p` parameter on `deactivate` itself (hop dest — `deactivate` still takes `(scope, xctx)` and passes `scope->p` to `script_result_set`); treating `last_result` like `frame_slots[]`; extra-hold “harder” on cloned-from last; extra-hold previous sibling last onto the clone (useless: isolate at clone, void last will not override the slot); wrap unbraced **before** parse (hides `let` clash); `for` C-return of last; clone-first as a template; `iter_p`; isolating FRV at `return()` `get_assignable`/`slot_store` as the design (that is a later slice).
 
 ---
 
@@ -77,7 +77,7 @@ Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval
 
 **Branch off `reduce-apr-pool`**, not `develop`. Did **not** merge `issue-2-frv-leftover`.
 
-**Shipped:** no `function_return_value` type. Script function produce path is `get_assignable_for_p_lifetime` on `scope_of_caller` while the callee frame is alive. `return()` is `set_last_result` (pointer); isolate-up is last_result → `script_result`. Nested `{ }` that wrote `script_result` **clears** parent last (do not plant the occupant). Try `keep_return` extra-holds a real `return` so a normal finally does not drop it. Closures are managed (`inf->is_managed`); pin may register on any dest `p`. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Script/template/test_script compile returns a **managed** `compiled_value`. Evaluate **pins** `script_result` on dest `p` (no `clone_unmanaged`); the unit is not last-released at evaluate.
+**Shipped:** no `function_return_value` type. Script function produce path is `get_assignable_for_p_lifetime` on `scope_of_caller` while the callee frame is alive. `return()` is `set_last_result` (pointer); isolate-up is last_result → `script_result`. Nested `{ }` that wrote `script_result` **clears** parent last (do not plant the occupant). Try `keep_return` extra-holds a real `return` so a normal finally does not drop it. Closures are managed (`inf->is_managed`); pin may register on any dest `p`. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Script/template/test_script compile returns a **managed** `compiled_value`. Evaluate last-releases the result on dest `p` of that evaluate (no `clone_unmanaged`); isolate dest is dest `p` of the write. The unit is not last-released at evaluate.
 
 **Pool (this branch; also [`remaining-apr.md`](remaining-apr.md)):** last-`release` still runs callbacks then teardown. **`destroy` is storage-only.** **`run_cleanups`** first (`xctx_release` TRY cleanups, FINALLY destroy). Subtree marked destroying before callbacks; leftover/free after; cleanup list detached so re-entry is a no-op. `register_cleanup_before` → `register_cleanup` (do not throw uncaught in a callback).
 
@@ -115,10 +115,11 @@ What landed instead: unique `get_assignable_value` **transfers the occupant, set
 - Unique-consume **and** leave the same pointer on the eval stack (UAF if unique consume `free_memory`s). Unique consume and “still on the stack” cannot both be true of the same pointer.
 - `create_managed` in `array()` / `create_array()`. Extra-hold popped occupant in `execute_pop` (that is #309, done).
 
-**Open (not decided):**
+**Open (not decided) — leftover of the dropped FRV plan:**
 - Who pushes the FRV — callee just before return, or the caller once it has the wrapper.
-- Should `xctx->script_result` go back to a raw pointer with no `slot_store`.
 - Hosts (CLI, `test_script`) have no enclosing Adaptive call: `get_assignable` of the occupant, then `release` the wrapper — not a named `consume()` in `execute_*`.
+
+**Decided (isolate dest):** `xctx->script_result` stays a slot (`slot_store`). Dest `p` is passed to `script_result_set`. It is not a raw pointer and not a dest-pool field on the xctx.
 
 **Probes (of the dropped plan):** `language/script/return_temps.as`; RSS `function_return`; `script_result.as`. There is no `function_return_value.c` on this branch.
 

@@ -109,7 +109,7 @@ Callers:
 - **Keep alive** → `get_reference` (matching `release`).
 - **Fill a slot** (assign, param, overlay set, `return` / call result) → `get_assignable_value` (matching `release`).
 - **Operators / `+`** → pointer. Do not wrap at execute.
-- **Call / `return`:** isolate **before** the callee frame dies (`script_result_set` at deactivate). Everyday `evaluate()` is caller does not release. Script return is `get_assignable_for_p_lifetime` on the caller; no leftover wrapper inf.
+- **Call / `return`:** isolate **before** the callee frame dies (`script_result_set` at deactivate, dest `scope->p`). Everyday `evaluate()` is caller does not release. Script return is `get_assignable_for_p_lifetime` on the caller; no leftover wrapper inf.
 
 **Script return (no FRV wrapper):** `return()` is `set_last_result` (pointer). Pin is `get_assignable_for_p_lifetime` on the **caller** while the callee frame is alive. Do **not** reopen unique consume, eval-stack leftover, or `#function_return_value`. Parameter window: `evaluate_for_parameter` (raw eval) then park the **occupant** in the parameter-number slot (`pop_parameter_number(VALUE)` replaces `#`). `pop_value` / rewind `release` parked occupants. One live marker pair per function while that parameter is being evaluated; after pop, `[call]` + 0 or more returns to top. Do **not** extra-push while a marker is on top. Do **not** hop `compiled_value` on assign to `unevaluated`. `meta()` does not evaluate argv first (property `key`). Script `meta()` snapshots are immutable. Array look-through: not a goal. Model mapped modify tuples: hold. Map: [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md).
 
@@ -162,7 +162,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **last_result** (code: `scope->last_result` plus `xctx->script_result`, [#62](https://github.com/afw-org/afw/issues/62) / [PR #306](https://github.com/afw-org/afw/pull/306) / [PR #307](https://github.com/afw-org/afw/pull/307)). Pointer only — not a managed slot like `frame_slots[]`. Starts void. Nested `{ }` that wrote `script_result` is returned as a normal statement result so parent last is a **pointer** at that occupant (a prior parent last must not stomp it at deactivate). `return()` is `set_last_result` (pointer); pin is `get_assignable_for_p_lifetime` on the caller. Deactivate `script_result_set`s unless the scope was **cloned**. Nested `compiled_value` / script call / block-as-value save and restore `script_result`. Nested `evaluate(compile())` parks `script_result`. Isolate dest is dest `p` of the write (`scope->p` at deactivate, `original_scope->p` at clone). `let`/`const` do not write it. Nested assignment **does**. `for`/`while`/`try` are C-void except `return`/`rethrow`. Loop `{ }` bodies `evaluate_block`; if `script_result` changed, pointer last on the parent. A normal `finally` does not replace a pending try/catch return. **undefined is a value** and does replace. Tests: `script_result.as`, `for-let-break-keeps-previous-last`, `loop_unbraced_body.as`. `{ let x = 1; { add(1,1) } }` last is `2`; `{ add(1,1); let x = 1 }` stays `2`. Declared `: void` does not write.
 
-**`for (let)` clone:** first trip is the for-let `{ }`. Next trip sibling-clones (copy slots). While the original `p` is still alive, `script_result_set_value(original last)` (void is a no-op); clone last stays void; original is marked cloned so deactivate does not write the slot again. Increment runs on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure holds it. Without closures: wrapper until `for` ends + current clone. The never-cloned frame is the last iteration. Unbraced loop bodies wrap as a 0-symbol `{ }` after parse in the current block.
+**`for (let)` clone:** first trip is the for-let `{ }`. Next trip sibling-clones (copy slots). While the original `p` is still alive, `script_result_set_value(original last, original_scope->p)` (void is a no-op); clone last stays void; original is marked cloned so deactivate does not write the slot again. Increment runs on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure holds it. Without closures: wrapper until `for` ends + current clone. The never-cloned frame is the last iteration. Unbraced loop bodies wrap as a 0-symbol `{ }` after parse in the current block.
 
 **`get_reference` pairs with `release` where they exist.** Managed / assignable / wrappers: if you `get_reference`, you owe a `release`. Unmanaged object/array **value** infs **throw** on those methods ([#277](https://github.com/afw-org/afw/issues/277)); isolate with `get_assignable_value`. **Instance** `get_reference` / `release` still pin `object->p`. Unmanaged instances still **die with their pool** if nobody `get_reference`d them.
 
@@ -183,7 +183,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **Natural lifetime:** allocate in the current frame; **assign** if it must outlive this frame; deactivate / last-release when the frame is unreferenced. Inner `{ i = i + 1 }` does not last-release outer `i` (different frame). Loop: replace last_return → previous in_pool hold drops → previous frame can die.
 
-**`compiled_value` evaluate:** caller does not release. Park `script_result`. Nested `evaluate(compile())` parks `script_result`. If `script_result` is set, that is the result (managed in dest `p->managed_p` of the isolate write). Register last-release of that one hold on this evaluate dest `p` and return as-is. No `clone_unmanaged`. Permanents skip the register.
+**`compiled_value` evaluate:** caller does not release. Park `script_result`. Nested `evaluate(compile())` parks `script_result`. If `script_result` is set, that is the result (managed in dest `p->managed_p` of the isolate write: `scope->p` at deactivate). Register last-release of that one hold on this evaluate dest `p` and return as-is. No `clone_unmanaged`. Permanents skip the register.
 
 **Function return:** pin on the caller (`get_assignable_for_p_lifetime`). No wrapper inf. Parameter args are a **frame** (replace into param slots); rewind = deactivate that frame.
 
@@ -272,7 +272,7 @@ If a step gets clever, stop and ask.
 
 **Compiler `wrap_literal_*` emit:** removed. Isolation is `get_assignable_value` (clone or wrapper). Permanent scalars stay as-is. LHS `reference_by_key` `get_assignable_value`s, sets, releases. Face GET/array materialize/retrieve/journal `slot_store`. Donate list removed. Unmanaged memory object store is a raw pointer (like object set).
 
-**`compiled_value` evaluate:** pin `script_result` on dest `p` (`release_value_at_cleanup`); return as-is. Not FRV. `script_result` is **#62**.
+**`compiled_value` evaluate:** last-release of the result on dest `p` of this evaluate (`release_value_at_cleanup`); return as-is. Isolate dest is dest `p` of the write (`script_result_set`, `scope->p` at deactivate). Not FRV. `script_result` is **#62**.
 
 **Donate / extra slot:** removed. `slot_store` is `get_assignable_value` then release occupant.
 
