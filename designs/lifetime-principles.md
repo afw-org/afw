@@ -73,6 +73,8 @@ Register last-release of the **returned** value only. The container’s last RC 
 
 Evaluate of a compiled value is **caller does not release**. Dest `p` is the `p` passed to that evaluate. If the result is managed, register last-release of that one hold on that dest `p`. `last_statement_non_void_value` is a pointer at this frame’s last non-void statement; it requires `scope->p`. `xctx->script_result` is the managed isolate of the running script result; it does not require the current scope. Isolate dest is dest `p` of the caller that writes the slot (`script_result_set(value, p, xctx)`: `scope->p` at deactivate, `original_scope->p` at clone, evaluate dest `p` for a non-block script-function body). Nested `evaluate(compile())` parks `script_result`. Managed bytes follow that dest `p->managed_p`. There is no dest-pool field on the xctx.
 
+`for_p_lifetime` last-releases on exact dest `p` (evaluate return, script return onto the caller). `for_scope_lifetime` is that after resolving dest to the nearest scope in dest `p`’s pool-parent chain (walk parent, not `managed_p`). Throw if dest `p` is a job heap (`p == p->managed_p`). That throw is a probe. Do not take dest off the current xctx frame.
+
 ---
 
 ## `get_assignable_value`
