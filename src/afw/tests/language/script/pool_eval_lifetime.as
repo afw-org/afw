@@ -5,11 +5,11 @@
 //? description: ...
 Compiled-value heap wrap and slot-protocol lifetime (issue #2 pool split).
 Inner evaluate(compile) is caller does not release. A managed result lives
-in the outermost dest p->managed_p (script_result isolate dest); this
-evaluate registers last-release of that one hold on dest p. Nested pools
-are shorter. Eval-created objects/arrays and scalars must still be usable
-after the inner heap is released. Throw-path scope rewind and nested-eval
-closures: language/script/throw_rewind.as (#35).
+in dest p->managed_p of the isolate write (scope->p at deactivate);
+this evaluate registers last-release of that one hold on dest p. Nested
+pools are shorter. Eval-created objects/arrays and scalars must still be
+usable after the inner heap is released. Throw-path scope rewind and
+nested-eval closures: language/script/throw_rewind.as (#35).
 //? sourceType: script
 //?
 //? test: nested-eval-scalar

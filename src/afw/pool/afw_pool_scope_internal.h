@@ -103,8 +103,8 @@ AFW_VECTOR_STRUCT(afw_pool_scope_p_vector_s, const afw_pool_scope_t *);
  * @param xctx of caller.
  *
  * Pointer only. Void, NULL, and no current scope are ignored. Isolate
- * out of this frame is script_result_set_value at deactivate, or at
- * clone while this p is still alive.
+ * out of this frame is script_result_set_value at deactivate
+ * (scope->p), or at clone while original_scope->p is still alive.
  */
 void
 afw_pool_scope_set_last_result(
@@ -319,10 +319,11 @@ afw_pool_scope_find_for_block(
  *
  * This function calls afw_pool_scope_create() and stores a reference to
  * each original frame_slots[] occupant into the new scope (same protocol
- * as assign). script_result_set(original last_result) then clone
- * last_result stays void from create. Marks original cloned so its
- * deactivate does not script_result_set (it is not the running
- * iteration). The clone is a sibling (same parent_lexical_scope).
+ * as assign). script_result_set(original last_result,
+ * original_scope->p) then clone last_result stays void from
+ * create. Marks original cloned so its deactivate does not
+ * script_result_set (it is not the running iteration). The clone
+ * is a sibling (same parent_lexical_scope).
  *
  * for (let) clones so a closure from the body can hold that trip's
  * names. Next trip copies slots then releases the previous clone.
@@ -366,10 +367,10 @@ afw_pool_scope_get_reference(
  * @param scope to deactivate that must be the current scope.
  * @param xctx of caller.
  *
- * If this scope was not cloned, script_result_set(last_result).
- * Then pop and release the stack's reference. Pair with activate.
- * Does not drop the creator's reference. Return/break/continue only
- * set statement_flow.
+ * If this scope was not cloned, script_result_set(last_result,
+ * scope->p). Then pop and release the stack's reference. Pair
+ * with activate. Does not drop the creator's reference.
+ * Return/break/continue only set statement_flow.
  */
 void
 afw_pool_scope_deactivate(

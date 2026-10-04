@@ -345,7 +345,7 @@ impl_afw_value_optional_evaluate(
             result = afw_value_evaluate(script->body, p, xctx);
             afw_pool_scope_set_last_result(result, xctx);
             if (result && !afw_value_is_void(result)) {
-                afw_xctx_script_result_set(result, xctx);
+                afw_xctx_script_result_set(result, p, xctx);
                 result = afw_xctx_script_result_get(xctx);
             }
         }

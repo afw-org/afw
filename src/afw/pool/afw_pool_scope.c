@@ -654,7 +654,8 @@ afw_pool_scope_clone(
             original_scope->frame_slots[i], scope->p, xctx);
     }
 
-    afw_xctx_script_result_set_value(original_scope->last_result, xctx);
+    afw_xctx_script_result_set_value(original_scope->last_result,
+        original_scope->p, xctx);
     ((afw_pool_scope_t *)original_scope)->cloned = true;
 
     afw_pool_scope_debug(
@@ -714,7 +715,7 @@ afw_pool_scope_deactivate(
     }
 
     if (!scope->cloned) {
-        afw_xctx_script_result_set(scope->last_result, xctx);
+        afw_xctx_script_result_set(scope->last_result, scope->p, xctx);
     }
     afw_vector_pop(xctx->scope_stack, xctx);
     afw_pool_scope_release(scope, xctx);
