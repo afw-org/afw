@@ -87,12 +87,26 @@ def _git_head(root):
         return None
 
 
-def prepare_asan_environment(options):
+def _set_sanitizer_options():
+    os.environ['ASAN_OPTIONS'] = _merge_options(
+        os.environ.get('ASAN_OPTIONS'), _ASAN_OPTIONS_DEFAULT)
+    os.environ['UBSAN_OPTIONS'] = _merge_options(
+        os.environ.get('UBSAN_OPTIONS'), _UBSAN_OPTIONS_DEFAULT)
+
+
+def prepare_asan_environment(options, build_tree=False):
     """Point this process (and every child) at the ASan build, or exit.
 
     Missing build: error with the build command. Stale stamp (another
     commit, or built from a dirty tree): warning with the same command.
+    With build_tree, _afwdev.test.build_tree has already pointed the run
+    at build/asan/cmake/; only the sanitizer options are set here.
     """
+    if build_tree:
+        _set_sanitizer_options()
+        msg.highlighted_info('ASan options: ASAN_OPTIONS=' +
+            os.environ['ASAN_OPTIONS'])
+        return
     prefix = asan_prefix(options)
     stamp = read_stamp(prefix)
     lib_dir = _lib_dir(prefix)
@@ -121,10 +135,7 @@ def prepare_asan_environment(options):
         os.environ.get('PATH', '')
     os.environ['AFW_LIB_DIR'] = lib_dir
     os.environ['AFW_INCLUDE_DIR'] = os.path.join(prefix, 'include', 'afw')
-    os.environ['ASAN_OPTIONS'] = _merge_options(
-        os.environ.get('ASAN_OPTIONS'), _ASAN_OPTIONS_DEFAULT)
-    os.environ['UBSAN_OPTIONS'] = _merge_options(
-        os.environ.get('UBSAN_OPTIONS'), _UBSAN_OPTIONS_DEFAULT)
+    _set_sanitizer_options()
     msg.highlighted_info('ASan test environment: ' + prefix +
         ' (ASAN_OPTIONS=' + os.environ['ASAN_OPTIONS'] + ')')
 

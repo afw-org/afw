@@ -106,6 +106,22 @@ Decided with the maintainer, 2026-10-04.
 
 Rules: the default test run never picks up a sanitizer build; a mode refuses a mismatched build with one clear message; tests that are incompatible by design skip with a reason. Minimum builds for a full CI run: 2 (normal, ASan+UBSan); +1 each for TSan or a production-style build without the `AFW_DEBUG_*` defines.
 
+## Testing from the build tree (`afwdev test --build-tree`)
+
+Decided 2026-10-04. Tests normally run whatever was last installed (`/usr/local`), which can lag the source. `--build-tree` runs any `--env-mode` against a cmake build tree instead: `build/cmake/` for the default and valgrind modes, `build/asan/cmake/` for asan. Each mode is then tied to its own build and no install is needed to test.
+
+What it sets for the whole run (children inherit it):
+
+- `PATH`: the tree's directories holding `afw` / `afwfcgi`, plus a link to the repo's `./afwdev` (python tests run `afwdev` by name).
+- `LD_LIBRARY_PATH`: every tree directory holding a `lib*.so`. **Required**, not optional: `afw_environment_load_extension` tries a bare `dlopen` first and then the baked-in `AFW_CONFIG_INSTALL_FULL_LIBDIR`, so without it a build-tree `afw` silently loads extensions from the installed prefix (seen with `afw_lmdb`).
+- C probes: `AFW_LIB_DIR` (the tree's `libafw`), `AFW_LIB_DIRS` (every library dir, for `-l<extension>`), and `AFW_INCLUDE_DIRS` (the `-I` dirs from the tree's `compile_commands.json`; a tree has no flattened include dir).
+
+Landed 2026-10-04 (`_afwdev/test/build_tree.py`). Results: default mode 4591 passed, 0 failed, about 31s (same as the install); `--env-mode asan --build-tree` 4361 passed, 23 failed, about 357s, where the 23 are exactly the known findings; valgrind mode uses `build/cmake/` and passes. The tree must be a match for the mode: asan needs `AFWDEV_SANITIZE` with `address` in the tree's `CMakeCache.txt`; any other mode refuses a sanitizer tree.
+
+Gotcha: the repo's `./afwdev` only works from the repo root (it runs `src/afw_dev/afwdev.py` by relative path). Tests run `afwdev` from other directories (the `commands_test1.txt` group builds a throwaway package in `/tmp`), so `--build-tree` writes a wrapper, `build/<tree>/afwdev-bin/afwdev`, that runs `afwdev.py` by absolute path. A plain symlink to `./afwdev` made those commands fail and the parallel run hang.
+
+Open: whether the default `afwdev test` should run from the build tree; whether the asan mode should always use it (dropping `build/asan/install`). Both change everyday workflow; raise with Mike.
+
 ## Remaining plan
 
 Flexible order; one step, then re-decide.

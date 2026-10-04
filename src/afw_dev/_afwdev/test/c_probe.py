@@ -84,6 +84,12 @@ def _include_and_libdir():
     return include_afw, libdir
 
 
+def _env_dirs(name):
+    """os.pathsep list of existing directories in env var name."""
+    return [d for d in os.environ.get(name, "").split(os.pathsep)
+        if d and os.path.isdir(d)]
+
+
 def libafw_sanitizers(libdir=None):
     """Sanitizers the installed libafw was built with, e.g. ("address",).
 
@@ -107,16 +113,22 @@ def libafw_sanitizers(libdir=None):
 
 
 def libafw_build_cache(libdir=None):
-    """CMakeCache.txt of the --sanitize build that made libafw, or None.
+    """CMakeCache.txt of the build that made this libafw, or None.
 
-    `afwdev build --sanitize` records its build directory in
-    afwdev-sanitize.json in the prefix (<prefix>/lib/afw/libafw.so). None
-    for a normal install; callers fall back to build/cmake/.
+    A build-tree libafw (<tree>/src/afw) names its own tree. An
+    `afwdev build --sanitize` prefix records its build directory in
+    afwdev-sanitize.json (<prefix>/lib/afw/libafw.so). None for a normal
+    install; callers fall back to build/cmake/.
     """
     from _afwdev.build.cmake import SANITIZE_STAMP_NAME
     if libdir is None:
         _, libdir = _include_and_libdir()
-    prefix = os.path.dirname(os.path.dirname(os.path.normpath(libdir)))
+    # A build tree (afwdev test --build-tree): libafw sits in
+    # <tree>/src/afw, with CMakeCache.txt at <tree>.
+    tree = os.path.dirname(os.path.dirname(os.path.normpath(libdir)))
+    if os.path.isfile(os.path.join(tree, "CMakeCache.txt")):
+        return os.path.join(tree, "CMakeCache.txt")
+    prefix = tree
     try:
         with open(os.path.join(prefix, SANITIZE_STAMP_NAME),
                 encoding="utf-8") as f:
@@ -159,11 +171,14 @@ def compile_c_probe(
             "-fsanitize=" + ",".join(sanitizers),
             "-fno-omit-frame-pointer",
         ])
-    cmd.extend(["-I", include_afw])
-    cmd.extend([
-        "-o", dest, source,
-        "-L", libdir, "-Wl,-rpath," + libdir,
-    ])
+    # afwdev test --build-tree: the tree's -I dirs replace the install
+    # include dir, and every library dir is searched (one per extension).
+    include_dirs = _env_dirs("AFW_INCLUDE_DIRS") or [include_afw]
+    for d in include_dirs:
+        cmd.extend(["-I", d])
+    cmd.extend(["-o", dest, source])
+    for d in [libdir] + [d for d in _env_dirs("AFW_LIB_DIRS") if d != libdir]:
+        cmd.extend(["-L", d, "-Wl,-rpath," + d])
     if extra_ldflags:
         cmd.extend(list(extra_ldflags))
     for lib in libraries:

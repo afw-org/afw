@@ -985,6 +985,18 @@ _info_test_jobs = {
         "afwdev-settings.json file will be used if it exists."
 }
 
+_info_test_build_tree = {
+    "optionName": "build_tree",
+    "arg": "--build-tree",
+    "action": "store_true",
+    "default": False,
+    "help": "Run against the cmake build tree instead of the install: "
+        "build/cmake/ (default and valgrind modes) or build/asan/cmake/ "
+        "(--env-mode asan). Puts the tree's afw / afwfcgi and ./afwdev "
+        "first on PATH, every library dir on LD_LIBRARY_PATH, and points "
+        "C probes at the tree. See designs/asan-opt-in.md."
+}
+
 _info_test_env_mode = {
     "optionName": "mode",
     "arg": "--env-mode",
@@ -1229,6 +1241,7 @@ _info_test = {
         _info_test_trend_metric,
         _info_test_watch,
         _info_test_jobs,
+        _info_test_build_tree,
         _info_test_env_mode,
         _info_test_output,
         _info_test_output_format,

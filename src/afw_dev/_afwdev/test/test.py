@@ -38,6 +38,7 @@ from _afwdev.test.common import (
 from _afwdev.test import failure_log
 from _afwdev.test import history as test_history
 from _afwdev.test import sanitize as test_sanitize
+from _afwdev.test import build_tree as test_build_tree
 
 
 ##
@@ -171,10 +172,14 @@ def run(options):
                 _run_compare_trend(options)
             sys.exit(0)
 
-        # Sanitizer pairing: asan runs against build/asan/install;
+        # --build-tree: run against the mode's cmake tree, not the
+        # install. Sanitizer pairing: asan runs against build/asan;
         # valgrind cannot run a sanitizer build.
+        if options.get('build_tree'):
+            test_build_tree.prepare(options)
         if test_history.env_mode(options) == 'asan':
-            test_sanitize.prepare_asan_environment(options)
+            test_sanitize.prepare_asan_environment(
+                options, build_tree=bool(options.get('build_tree')))
         elif test_history.env_mode(options) == 'valgrind':
             test_sanitize.refuse_sanitized_lib_for_valgrind()
 
