@@ -10,7 +10,7 @@ ASAN is an **optional, intentional** testing method, not a default (maintainer c
 
 Heaps carve mapped chunks themselves (`afw_memory_region_get` → `afw_os_map_pages`). To ASAN (and to valgrind) a chunk is one valid block, so a read of freed pool memory, an overflow into the next block, or a read of a released pool's chunk is invisible. Proven on this branch: three deliberate pool bugs (read after free, one-byte overflow, read after `afw_pool_release`) give **no report** under plain ASAN, and a use-after-poison report on the exact line with the annotations.
 
-`AFW_DEBUG_POOL` (prefix check + fill on free) is the existing in-house net. It catches a bad free, not a bad read.
+`AFW_DEBUG_POOL` (prefix check + fill on free) is the existing in-house net. It catches a bad free, not a bad read. ASan complements it rather than replacing it; see *Relationship to `AFW_DEBUG_POOL`*.
 
 ## What landed (step 1 of the plan: annotations)
 
@@ -55,6 +55,20 @@ Recorded with cause and fix in [`beta-backlog.md`](../beta-backlog.md) → *ASAN
 ## Cheap check: region cache off (no ASAN)
 
 `memoryRegionFreeListMaxBytes = 0` makes every released heap chunk `munmap` at once, so reading a released pool faults on a normal build. Tried 2026-10-03 on `develop` with `AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES` set to 0 in a scratch build (it is a plain `#define`; no `--define` override today, and tests without an `afw.conf` cannot set it): full `test -j` in about 15s. It caught every read of a released pool the ASAN run found (pool cleanup order: both authorization tests plus `catalog-value-accessors` in `afwfcgi`; all three deferred compile-literal cases) and a stale double release in the `compiled_value_managed` probe. It cannot see an overflow inside a live chunk (`sort`), a global overread (model `current::`), or UBSan findings. Expected failures: `miscellaneous/process.as` asserts the default cap and region hits. Gotcha: `pool_heap.py` reads `build/cmake/CMakeCache.txt` of the tree it runs from to pick `AFW_DEBUG_POOL`; a scratch build needs that path to point at its cmake dir. Making this a real option (an `#ifndef` around the default, or a process-level override) is a separate decision.
+
+## Relationship to `AFW_DEBUG_POOL`
+
+Question (2026-10-04): does ASan replace `AFW_DEBUG_POOL`, so the macro and its code can go? Answer: **no, only one of its three features overlaps.** Keep it; ASan complements it.
+
+| `AFW_DEBUG_POOL` feature | ASan equivalent? |
+|---|---|
+| **1. `{size, pool}` prefix checked on every free** (`afw_pool_internal_debug_check_prefix`, `pool/afw_pool.c`): `afw_pool_free_memory` throws "pool does not match allocation" / "size does not match allocation", a catchable error in every `--cdev` run at normal speed | **No.** ASan does not know the size or pool passed to `afw_pool_free_memory`. A free into the wrong heap or with the wrong size corrupts free lists while every byte involved still looks valid to it. |
+| **2. Freed USER filled with `0x0BADF00D`**: a dangling `inf` faults on first use; the pattern is recognizable in gdb and core dumps | **Only in ASan runs**, where it is strictly better (exact read reported, plus slack and released chunks). ASan is opt-in and ~17× slower, so the fill is still the fast signal in everyday `--cdev` runs. |
+| **3. `debug:pool` / `debug:pool:detail` trace flags** (create / release / destroy, plus every alloc / free at `:detail`, with `in_use`, totals, RSS, refs, parent) | **No.** ASan finds errors; it does not trace pool lifetime or accounting. The #2 RSS lab depends on these lines (`tests-extra/issue-2/01-rss-hard-loops/README.md`, `_trace.py`). |
+
+The prefix also made ASan's reports usable. ASan reports a bad read in pool memory as `use-after-poison` with no allocation or free stack. Every diagnosis in *Findings so far* came from reading `[chunk][size][pool]` before the block in gdb: live or freed, and whether the owning heap had been released. Without `AFW_DEBUG_POOL` that would have been much harder.
+
+If anything is trimmed, only the fill (2) is a candidate, and only if ASan becomes routine rather than opt-in.
 
 ## Build design (`afwdev build --sanitize`)
 
