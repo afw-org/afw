@@ -173,7 +173,7 @@ impl_try_keep_return(const afw_pool_t *p, afw_xctx_t *xctx)
     v = afw_xctx_script_result_get(xctx);
     /* Existing occupant, not create_managed. */
     v = afw_pool_scope_get_assignable_for_scope_lifetime(v, p, xctx);
-    afw_pool_scope_set_last_result(v, xctx);
+    afw_pool_scope_set_last_statement_non_void_value(v, xctx);
 }
 
 
@@ -199,7 +199,7 @@ impl_evaluate_loop_body(
         afw_value_block_evaluate_block(x,
             (const afw_value_block_t *)body, p, xctx, false);
         if (xctx->script_result != saved_script_result) {
-            afw_pool_scope_clear_last_result(xctx);
+            afw_pool_scope_clear_last_statement_non_void_value(xctx);
         }
         return afw_value_void;
     }
@@ -1664,7 +1664,7 @@ afw_function_execute_return(
             result = afw_value_void;
         }
     }
-    afw_pool_scope_set_last_result(result, xctx);
+    afw_pool_scope_set_last_statement_non_void_value(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
     return result;
 }
@@ -1899,7 +1899,7 @@ afw_function_execute_switch(
                 }
                 result = afw_value_block_evaluate_statement(
                     x, statement, p, xctx);
-                afw_pool_scope_set_last_result(result, xctx);
+                afw_pool_scope_set_last_statement_non_void_value(result, xctx);
                 if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
                     break;
                 }
@@ -2282,8 +2282,8 @@ afw_function_execute_try(
 
     afw_xctx_statement_flow_set(use_type, xctx);
     scope = afw_pool_scope_internal_current(xctx);
-    if (scope && scope->last_result) {
-        return scope->last_result;
+    if (scope && scope->last_statement_non_void_value) {
+        return scope->last_statement_non_void_value;
     }
     return afw_value_void;
 }

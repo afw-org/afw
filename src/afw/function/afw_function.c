@@ -426,7 +426,7 @@ impl_eval_unit_set_unexpected(
 /*
  * Named `function a(); return a` leaves inner in a frame slot of
  * the eval unit root. Factory return last-releases on caller->p
- * and may leave last_result pointing at inner. Unlink those
+ * and may leave last_statement_non_void_value pointing at inner. Unlink those
  * pointers without release (the slot hold is stolen with the
  * pin) so free of the inner header is not a later UAF.
  */
@@ -449,8 +449,8 @@ impl_eval_unlink_inner_from_scopes(
                 mut->frame_slots[i] = afw_value_undefined;
             }
         }
-        if (mut->last_result == &inner->pub) {
-            mut->last_result = afw_value_void;
+        if (mut->last_statement_non_void_value == &inner->pub) {
+            mut->last_statement_non_void_value = afw_value_void;
         }
     }
 }

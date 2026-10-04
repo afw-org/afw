@@ -251,26 +251,19 @@ impl_afw_value_optional_evaluate(
 {
     const afw_value_t *result;
     const afw_value_t *saved_script_result;
-    afw_boolean_t set_script_result_p;
     afw_size_t count;
 
     result = NULL;
     count = xctx->scope_stack->count;
-    set_script_result_p = false;
 
     saved_script_result = xctx->script_result;
     xctx->script_result = afw_value_undefined;
     /*
      * Evaluate is caller does not release. Dest p is the p passed
-     * to this evaluate. script_result isolate dest is dest p of
-     * the outermost compiled-unit evaluate so a managed result
-     * lives in that dest p->managed_p. Nested evaluate(compile())
-     * parks script_result and leaves script_result_p.
+     * to this evaluate. Nested evaluate(compile()) parks
+     * script_result. Isolate dest is dest p of the caller that
+     * writes the slot (scope->p at deactivate).
      */
-    if (!xctx->script_result_p) {
-        xctx->script_result_p = p;
-        set_script_result_p = true;
-    }
 
     AFW_TRY {
 
@@ -280,7 +273,7 @@ impl_afw_value_optional_evaluate(
         /*
          * Block root (script, and template/test_script wrapped in a
          * block): as_value false so deactivate isolates last into
-         * script_result using dest script_result_p. Caller last is
+         * script_result using dest scope->p. Caller last is
          * already parked.
          */
         if (self->root_value &&
@@ -301,13 +294,9 @@ impl_afw_value_optional_evaluate(
     }
     AFW_FINALLY {
         const afw_value_t *slot;
-        const afw_pool_t *isolate_p;
 
         /* Pop off the NULL compiled value indicator on scope stack. */
         if (xctx->scope_stack->count != count + 1) {
-            if (set_script_result_p) {
-                xctx->script_result_p = NULL;
-            }
             xctx->script_result = saved_script_result;
             AFW_THROW_ERROR_Z(general,
                 "Scope stack still has active scopes at end after computed "
@@ -317,7 +306,6 @@ impl_afw_value_optional_evaluate(
         afw_vector_pop(xctx->scope_stack, xctx);
 
         slot = xctx->script_result;
-        isolate_p = xctx->script_result_p ? xctx->script_result_p : p;
         if (slot &&
             !afw_value_is_undefined(slot) &&
             !afw_value_is_void(slot))
@@ -330,12 +318,9 @@ impl_afw_value_optional_evaluate(
 
         /*
          * Restore before clone/register so a throw in FINALLY cannot
-         * leave nested evaluate dest p or last on the xctx.
+         * leave nested last on the xctx.
          */
         xctx->script_result = saved_script_result;
-        if (set_script_result_p) {
-            xctx->script_result_p = NULL;
-        }
 
         if (result &&
             !afw_value_is_undefined(result) &&
@@ -346,11 +331,11 @@ impl_afw_value_optional_evaluate(
             /*
              * Caller does not release. If the result is managed,
              * register last-release of that one hold on dest p.
-             * script_result_set already isolated into
-             * script_result_p (outermost dest p->managed_p).
-             * Unit-backed compile-literals that missed the slot
-             * still live in the unit: clone_managed into
-             * isolate_p, then register that hold on dest p.
+             * script_result_set already isolated into dest p of
+             * that write (p->managed_p). Unit-backed compile-
+             * literals that missed the slot still live in the
+             * unit: clone_managed into this evaluate dest p,
+             * then register that hold on dest p.
              */
             dt = result->inf
                 ? result->inf->is_evaluated_of_data_type
@@ -358,7 +343,7 @@ impl_afw_value_optional_evaluate(
             if (dt && dt->clone_value_managed &&
                 !result->inf->is_managed)
             {
-                result = afw_value_clone_managed(result, isolate_p, xctx);
+                result = afw_value_clone_managed(result, p, xctx);
             }
             afw_pool_release_value_at_cleanup(result, p, xctx);
         }

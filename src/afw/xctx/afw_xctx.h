@@ -417,28 +417,30 @@ AFW_ENDTRY
 /**
  * @brief Set the running Adaptive Script result.
  * @param v result value. Void and NULL are not stored.
+ * @param p dest pool. Isolate uses p->managed_p.
  * @param xctx of caller.
  *
- * Scope deactivate writes last_result here (not void). Nested
- * evaluate that must not change the caller's last saves and restores
- * the pointer. Isolate dest is xctx->script_result_p (dest p of
- * the outermost compiled-unit evaluate).
+ * Scope deactivate isolates last_statement_non_void_value here
+ * (not void), dest scope->p. Clone isolates original last, dest
+ * original_scope->p. Nested evaluate that must not change the
+ * caller's occupant parks and restores this slot.
  */
-#define afw_xctx_script_result_set(_v, _xctx) \
-    afw_xctx_script_result_set_value((_v), (_xctx))
+#define afw_xctx_script_result_set(_v, _p, _xctx) \
+    afw_xctx_script_result_set_value((_v), (_p), (_xctx))
 
 
 /**
  * @brief Assign into the current hidden result slot.
  * @param value to store. Void and NULL are not stored.
+ * @param p dest pool. Isolate uses p->managed_p.
  * @param xctx of caller.
  *
  * Same protocol as a named slot (`get_assignable` new, `release` old).
- * Dest p is xctx->script_result_p, not xctx->p.
  */
 AFW_DECLARE(void)
 afw_xctx_script_result_set_value(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

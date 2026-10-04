@@ -492,7 +492,7 @@ afw_function_evaluate_required_parameter(
  * get_reference the unit onto the binding (top-level closure
  * transfers the inner evaluate result's scope reference and a
  * get_reference of the unit onto a new binding, unlinks the inner
- * from enclosing-scope frame slots and last_result; a nested
+ * from enclosing-scope frame slots and last_statement_non_void_value; a nested
  * function in an object or array get_references the unit onto that
  * binding). Throw delay keeps dest p so CATCH can still read error
  * contextual. Do not throw here. After ENDTRY, throw if

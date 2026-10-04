@@ -42,8 +42,12 @@ struct afw_pool_scope_s {
 
     afw_size_t scope_number;
 
-    /** Last non-void statement. Starts void. */
-    const afw_value_t *last_result;
+    /**
+     * Last non-void statement of this frame. Pointer only. Valid
+     * while this scope->p is alive. Starts void. Isolate out of
+     * the frame is script_result_set into xctx->script_result.
+     */
+    const afw_value_t *last_statement_non_void_value;
 
     /**
      * Length of frame_slots. Copied from the block at create.
@@ -103,33 +107,34 @@ AFW_VECTOR_STRUCT(afw_pool_scope_p_vector_s, const afw_pool_scope_t *);
  * @param xctx of caller.
  *
  * Pointer only. Void, NULL, and no current scope are ignored. Isolate
- * out of this frame is script_result_set_value at deactivate, or at
- * clone while this p is still alive.
+ * out of this frame is script_result_set_value at deactivate
+ * (scope->p), or at clone while original_scope->p is still alive.
  */
 void
-afw_pool_scope_set_last_result(
+afw_pool_scope_set_last_statement_non_void_value(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Set current last_result to void.
+ * @brief Set current last_statement_non_void_value to void.
  * @param xctx of caller.
  *
- * set_last_result() ignores void so a prior last is sticky. Nested
- * `{ }` that already isolated into script_result uses this so parent
- * deactivate does not stomp. No-op if there is no current scope.
+ * set_last_statement_non_void_value() ignores void so a prior last
+ * is sticky. Nested `{ }` that already isolated into script_result
+ * uses this so parent deactivate does not stomp. No-op if there is
+ * no current scope.
  */
 void
-afw_pool_scope_clear_last_result(
+afw_pool_scope_clear_last_statement_non_void_value(
     afw_xctx_t *xctx);
 
 
 /**
  * @brief Get an assignable and register last-release on dest p.
  * @param value to keep. Void and NULL are returned unchanged.
- * @param p dest pool. Current scope->p when there is a current
- *    scope, else this p. Required when there is no current scope.
+ * @param p dest pool. Walks pool parent to the nearest scope.
+ *    Throws if dest p is a job heap (p == p->managed_p).
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
@@ -146,7 +151,7 @@ afw_pool_scope_clear_last_result(
  *    function there is a second must-release; dest p cleanup drops
  *    one; RC 1 is left (splice #405).
  *
- * Does not store last_result. See for_p_lifetime to pick dest p
+ * Does not store last_statement_non_void_value. See for_p_lifetime to pick dest p
  * (script return onto the caller, or evaluate dest p when there is
  * no Adaptive caller).
  */
@@ -160,8 +165,8 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
 /**
  * @brief Register last-release of a must-release hold on dest p.
  * @param value to keep. NULL is returned unchanged.
- * @param p dest pool. Current scope->p when there is a current
- *    scope, else this p. Required when there is no current scope.
+ * @param p dest pool. Walks pool parent to the nearest scope.
+ *    Throws if dest p is a job heap (p == p->managed_p).
  * @param xctx of caller.
  * @return value unchanged.
  *
@@ -186,9 +191,10 @@ afw_pool_scope_release_value_at_cleanup(
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
- * Same as get_assignable_for_scope_lifetime; caller picks dest p
- * (script return onto caller->p while the callee frame is alive,
- * or evaluate dest p when there is no Adaptive caller).
+ * Exact dest p. Script return onto caller->p while the callee
+ * frame is alive, or evaluate dest p when there is no Adaptive
+ * caller. for_scope_lifetime is this after resolving dest to a
+ * scope.
  * get_assignable of unmanaged; already-managed registered on that
  * p is returned as-is. Register last-release of that one hold on
  * dest p. Not for a fresh create_managed — that is already RC 1.
@@ -203,17 +209,17 @@ afw_pool_scope_get_assignable_for_p_lifetime(
 
 
 /**
- * @brief Set last_result to an assignable held until dest p ends.
+ * @brief Set last_statement_non_void_value to an assignable held until dest p ends.
  * @param value to keep. Void and NULL are returned unchanged.
- * @param p dest pool fallback when there is no current scope.
+ * @param p dest pool. Walks pool parent to the nearest scope.
  * @param xctx of caller.
  * @return held value, or void/NULL unchanged.
  *
  * afw_pool_scope_get_assignable_for_scope_lifetime() then
- * afw_pool_scope_set_last_result().
+ * afw_pool_scope_set_last_statement_non_void_value().
  */
 const afw_value_t *
-afw_pool_scope_set_last_result_for_lifetime(
+afw_pool_scope_set_last_statement_non_void_value_for_lifetime(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -230,7 +236,7 @@ afw_pool_scope_set_last_result_for_lifetime(
  * @return New xctx scope.
  *
  * Function afw_pool_scope_create() is used to create a new scope for the
- * supplied block. last_result starts as the void singleton. Each
+ * supplied block. last_statement_non_void_value starts as the void singleton. Each
  * frame_slots[] entry starts as the permanent
  * **afw_value_undefined** singleton (not C NULL) so a bound name always has a
  * value pointer; see afw_pool_scope_symbol_exists_by_name and issue #131.
@@ -319,10 +325,11 @@ afw_pool_scope_find_for_block(
  *
  * This function calls afw_pool_scope_create() and stores a reference to
  * each original frame_slots[] occupant into the new scope (same protocol
- * as assign). script_result_set(original last_result) then clone
- * last_result stays void from create. Marks original cloned so its
- * deactivate does not script_result_set (it is not the running
- * iteration). The clone is a sibling (same parent_lexical_scope).
+ * as assign). script_result_set(original last_statement_non_void_value,
+ * original_scope->p) then clone last_statement_non_void_value stays void from
+ * create. Marks original cloned so its deactivate does not
+ * script_result_set (it is not the running iteration). The clone
+ * is a sibling (same parent_lexical_scope).
  *
  * for (let) clones so a closure from the body can hold that trip's
  * names. Next trip copies slots then releases the previous clone.
@@ -366,10 +373,10 @@ afw_pool_scope_get_reference(
  * @param scope to deactivate that must be the current scope.
  * @param xctx of caller.
  *
- * If this scope was not cloned, script_result_set(last_result).
- * Then pop and release the stack's reference. Pair with activate.
- * Does not drop the creator's reference. Return/break/continue only
- * set statement_flow.
+ * If this scope was not cloned, script_result_set(last_statement_non_void_value,
+ * scope->p). Then pop and release the stack's reference. Pair
+ * with activate. Does not drop the creator's reference.
+ * Return/break/continue only set statement_flow.
  */
 void
 afw_pool_scope_deactivate(

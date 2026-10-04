@@ -63,7 +63,7 @@ Env / FCGI names: only three `create_property_name` callers. Documented in objec
 - Header is immutable. Object/array `internal` points at an instance that can mutate.
 - **`compiled_value`** keeps one `full_source`. Children store a **contextual** window. The backtrace is the evaluation stack, and each frame's source is that unit's `full_source`. Adaptive `compile()` at eval time passes `shared` NULL and `x->p`, so a compile-once script evaluated many times does not grow the script pool ([#212](https://github.com/afw-org/afw/issues/212)).
 
-Managed scalar headers live in dest `p->managed_p` and last-release `free_memory`s them via the stored p ([#277](https://github.com/afw-org/afw/issues/277)). Evaluate of a `compiled_value` **pins** the result on dest `p`.
+Managed scalar headers live in dest `p->managed_p` and last-release `free_memory`s them via the stored p ([#277](https://github.com/afw-org/afw/issues/277)). Evaluate of a `compiled_value` last-releases the result on dest `p` of that evaluate. Isolate dest is dest `p` of the write (`script_result_set`).
 
 Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>`. `afw_value_create_*` already means “new value” (graph nodes, `from_external`, `now_utc`). Most C uses `create_unmanaged_*`. Object/array: `create_unmanaged` / `_new_p` / `_cede_p` are pool-world; `create_managed` is a **frame** (no pool). `managed` stays extra words where a hold is real.
 

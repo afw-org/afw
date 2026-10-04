@@ -607,6 +607,20 @@ afw_pool_internal_is_heap(const afw_pool_t *p)
 }
 
 
+afw_boolean_t
+afw_pool_internal_is_scope(const afw_pool_t *p)
+{
+    const afw_utf8_t *id;
+
+    if (!p || !p->inf) {
+        return false;
+    }
+    id = &p->inf->rti.implementation_id;
+    return afw_utf8_equal_utf8_z(id, "scope") ||
+        afw_utf8_equal_utf8_z(id, "scope_multithreaded");
+}
+
+
 void *
 afw_pool_internal_malloc_unhandled(
     const afw_pool_t *instance,

@@ -5,7 +5,7 @@
 **Branch:** `issue-#62-script-language` (deleted after merge).  
 **Status:** **Closed** 2026-08-13 — [PR #174](https://github.com/afw-org/afw/pull/174) merged to `mgg-develop`. Index 1–5 plus void / running-result / `expect: success`.
 
-Lifetime story (later `last_result` / `script_result`): [`lifetime-principles.md`](lifetime-principles.md). This pad is the #62 language landing.
+Lifetime story (later `last_statement_non_void_value` / `script_result`): [`lifetime-principles.md`](lifetime-principles.md). This pad is the #62 language landing.
 
 Jeremy still wants the index items. Many of the ideas come from TypeScript / ECMAScript. They were not originally planned, so several productions (especially assignment and `for` init) have to change rather than grow a flag.
 
@@ -91,7 +91,7 @@ On this tree (after item 5): running result as in item 1. `x = y = 1;` works as 
 
 ## Item 1 (landed on this branch)
 
-After [PR #306](https://github.com/afw-org/afw/pull/306), each scope has **`last_result`**; `xctx->script_result` is the isolate at deactivate (unless cloned). Nested `{ }` last is void. `for`/`while`/`try` are C-void except `return`/`rethrow`. A normal `finally` does not replace a pending return.
+After [PR #306](https://github.com/afw-org/afw/pull/306), each scope has **`last_statement_non_void_value`** (pointer; requires `scope->p`). `xctx->script_result` is the managed isolate of the running script result (does not require the current scope). Isolate at deactivate is `script_result_set(last_statement_non_void_value, scope->p)` (unless cloned). Nested `{ }` last is void. `for`/`while`/`try` are C-void except `return`/`rethrow`. A normal `finally` does not replace a pending return.
 
 `xctx->script_result` is the running result for the current **script** compile (not test_script / template). `assign` and `return` write it. `evaluate_block` of a script body uses that slot; `break` / `continue` keep the prior value. Nested `evaluate(compile<script>)` and script-function calls save and restore the slot so `f();` does not adopt `f`’s result. A **#block as a value** (decompile / `evaluate(b)`) still uses last-statement. A script that is only one call or `#block(add(1,2))` yields that value so decompile of `1+2` stays `#block(add(1,2))`. test262 `expect: undefined` cases that only `throw` on failure got a trailing `return;`. `try.as` `cptn-*` / `S12.14_A6` / `scope-catch-*` rewritten to Adaptive throw/data/Pattern (not ES `var` / assignment-in-default).
 
