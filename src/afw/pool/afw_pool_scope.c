@@ -568,7 +568,7 @@ afw_pool_scope_create(
     scope->block = block;
     scope->symbol_count = block->symbol_count;
     scope->reference_count = 1;
-    scope->last_result = afw_value_void;
+    scope->last_statement_non_void_value = afw_value_void;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
 
@@ -654,7 +654,7 @@ afw_pool_scope_clone(
             original_scope->frame_slots[i], scope->p, xctx);
     }
 
-    afw_xctx_script_result_set_value(original_scope->last_result,
+    afw_xctx_script_result_set_value(original_scope->last_statement_non_void_value,
         original_scope->p, xctx);
     ((afw_pool_scope_t *)original_scope)->cloned = true;
 
@@ -715,7 +715,7 @@ afw_pool_scope_deactivate(
     }
 
     if (!scope->cloned) {
-        afw_xctx_script_result_set(scope->last_result, scope->p, xctx);
+        afw_xctx_script_result_set(scope->last_statement_non_void_value, scope->p, xctx);
     }
     afw_vector_pop(xctx->scope_stack, xctx);
     afw_pool_scope_release(scope, xctx);
@@ -783,7 +783,7 @@ afw_pool_scope_release(
 
 
 void
-afw_pool_scope_set_last_result(
+afw_pool_scope_set_last_statement_non_void_value(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -794,20 +794,20 @@ afw_pool_scope_set_last_result(
     }
     scope = afw_pool_scope_internal_current(xctx);
     if (scope) {
-        ((afw_pool_scope_t *)scope)->last_result = value;
+        ((afw_pool_scope_t *)scope)->last_statement_non_void_value = value;
     }
 }
 
 
 void
-afw_pool_scope_clear_last_result(
+afw_pool_scope_clear_last_statement_non_void_value(
     afw_xctx_t *xctx)
 {
     const afw_pool_scope_t *scope;
 
     scope = afw_pool_scope_internal_current(xctx);
     if (scope) {
-        ((afw_pool_scope_t *)scope)->last_result = afw_value_void;
+        ((afw_pool_scope_t *)scope)->last_statement_non_void_value = afw_value_void;
     }
 }
 
@@ -902,12 +902,12 @@ afw_pool_scope_release_value_at_cleanup(
 
 
 const afw_value_t *
-afw_pool_scope_set_last_result_for_lifetime(
+afw_pool_scope_set_last_statement_non_void_value_for_lifetime(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     value = afw_pool_scope_get_assignable_for_scope_lifetime(value, p, xctx);
-    afw_pool_scope_set_last_result(value, xctx);
+    afw_pool_scope_set_last_statement_non_void_value(value, xctx);
     return value;
 }

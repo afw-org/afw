@@ -62,7 +62,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Admin / Fiddle | atlas §16 (contract only) |
 | C vector / hash table | [`afw-vector.md`](afw-vector.md) (last `apr_array` [PR #310](https://github.com/afw-org/afw/pull/310)); [`afw-hash-table.md`](afw-hash-table.md) (last `apr_hash` converted) |
 | Remaining APR | [`remaining-apr.md`](remaining-apr.md) — APR gone from libafw. Campaign trail: [`afw-vector.md`](afw-vector.md) *Later*. Archaeology: [`memory-management.md`](memory-management.md) |
-| Compile unit / leave / FRV | [PR #305](https://github.com/afw-org/afw/pull/305) unit; [PR #306](https://github.com/afw-org/afw/pull/306) leave/`last_result`; leftover wrapping **dropped** ([PR #326](https://github.com/afw-org/afw/pull/326)); managed unit + evaluate pin [PR #355](https://github.com/afw-org/afw/pull/355) [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) |
+| Compile unit / leave / FRV | [PR #305](https://github.com/afw-org/afw/pull/305) unit; [PR #306](https://github.com/afw-org/afw/pull/306) leave/`last_statement_non_void_value`; leftover wrapping **dropped** ([PR #326](https://github.com/afw-org/afw/pull/326)); managed unit + evaluate pin [PR #355](https://github.com/afw-org/afw/pull/355) [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) |
 
 ---
 

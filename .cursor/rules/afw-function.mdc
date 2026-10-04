@@ -42,7 +42,7 @@ When the result must live until the current scope ends (or be assignable):
 
 `create_managed` then `set_property_take` / `push_value_take` (`afw_value_slot_take`): one managed value, slot takes the birth hold. No `get_assignable` bump. Helpers use `inf->is_managed`. Register last-release on dest `p` only for a managed value returned on a **caller does not release** contract.
 
-`afw_pool_scope_get_assignable_for_scope_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_pool_scope_set_last_result_for_lifetime`. Headers: `afw_pool_scope_internal.h`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md). Lab pairs in `src/afw/tests-extra/issue-2/01-rss-hard-loops/` (`splice_assign` / `splice_unassigned`, `managed_create_*`, `clone_assign` / `clone_unassigned`, `clone_nested_*`). Splice **source** `remove_value_by_index` last-releases the managed occupant (not a wrapper-only unlink).
+`afw_pool_scope_get_assignable_for_scope_lifetime` does **not** write `last_statement_non_void_value`. `return()` and nested `{ }` adopt use `afw_pool_scope_set_last_statement_non_void_value_for_lifetime`. Headers: `afw_pool_scope_internal.h`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md). Lab pairs in `src/afw/tests-extra/issue-2/01-rss-hard-loops/` (`splice_assign` / `splice_unassigned`, `managed_create_*`, `clone_assign` / `clone_unassigned`, `clone_nested_*`). Splice **source** `remove_value_by_index` last-releases the managed occupant (not a wrapper-only unlink).
 
 ## Optional defaults and returned mutables
 

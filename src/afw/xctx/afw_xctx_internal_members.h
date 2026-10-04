@@ -97,10 +97,10 @@
     const afw_value_t *statement_flow_label;
 
     /**
-     * Last non-void result promoted out of a dying scope (issue #62).
-     * Each frame keeps last_result; deactivate copies it here unless
-     * that scope was cloned (no longer the running iteration). Nested
-     * evaluate (compiled_value, script call, block as_value) saves
-     * this pointer and restores it.
+     * Managed isolate of the running script result (issue #62).
+     * Does not require the current scope. slot_store / get_assignable
+     * into dest p->managed_p. Deactivate writes last_statement_non_void_value
+     * here unless that scope was cloned. Nested evaluate parks and
+     * restores this occupant.
      */
     const afw_value_t *script_result;

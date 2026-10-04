@@ -420,10 +420,10 @@ AFW_ENDTRY
  * @param p dest pool. Isolate uses p->managed_p.
  * @param xctx of caller.
  *
- * Scope deactivate writes last_result here (not void), dest
- * scope->p. Clone writes original last, dest original_scope->p.
- * Nested evaluate that must not change the caller's last saves
- * and restores the pointer.
+ * Scope deactivate isolates last_statement_non_void_value here
+ * (not void), dest scope->p. Clone isolates original last, dest
+ * original_scope->p. Nested evaluate that must not change the
+ * caller's occupant parks and restores this slot.
  */
 #define afw_xctx_script_result_set(_v, _p, _xctx) \
     afw_xctx_script_result_set_value((_v), (_p), (_xctx))

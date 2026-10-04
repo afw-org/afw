@@ -64,7 +64,7 @@ afw_value_block_evaluate_statements(
     for (i = start; i < self->statement_count; i++) {
         last = afw_value_block_evaluate_statement(
             x, self->statements[i], p, xctx);
-        afw_pool_scope_set_last_result(last, xctx);
+        afw_pool_scope_set_last_statement_non_void_value(last, xctx);
         if (afw_xctx_statement_flow_is_type(return, xctx)) {
             result = (last && !afw_value_is_void(last))
                 ? last
@@ -126,7 +126,7 @@ afw_value_block_evaluate_block(
     AFW_FINALLY{
         /*
          * return/break/continue only set flow. This FINALLY leaves
-         * the `{ }`: promote last_result, then pop. Labeled
+         * the `{ }`: promote last_statement_non_void_value, then pop. Labeled
          * break/continue keep flowing until the matching loop
          * consumes them; each enclosing `{ }` still deactivates here.
          */
@@ -193,7 +193,7 @@ afw_value_block_evaluate_statement(
             x, (const afw_value_block_t *)statement, p, xctx,
             false);
         if (xctx->script_result != saved_script_result) {
-            afw_pool_scope_clear_last_result(xctx);
+            afw_pool_scope_clear_last_statement_non_void_value(xctx);
         }
         return afw_value_void;
     }
