@@ -572,8 +572,9 @@ _info_build_sanitize = {
     "help": "Build the C (cmake) context with a sanitizer into its own "
         "directory and prefix, never the normal build or /usr/local. "
         "Only 'address' is accepted: AddressSanitizer plus "
-        "UndefinedBehaviorSanitizer into build/asan/cmake/, installed into "
-        "build/asan/install/ (--prefix overrides). Implies --install. "
+        "UndefinedBehaviorSanitizer into build/asan/cmake/, which "
+        "--env-mode asan tests directly. Installs (into build/asan/install/, "
+        "or --prefix) only with an explicit --install. "
         "Combines with --cdev; not with --fulldev, --all, --docs, --js, "
         "--docker, --package or --scan. See designs/asan-opt-in.md."
 }
@@ -992,7 +993,8 @@ _info_test_build_tree = {
     "default": False,
     "help": "Run against the cmake build tree instead of the install: "
         "build/cmake/ (default and valgrind modes) or build/asan/cmake/ "
-        "(--env-mode asan). Puts the tree's afw / afwfcgi and ./afwdev "
+        "(--env-mode asan, which always uses its tree). Puts the tree's "
+        "afw / afwfcgi and ./afwdev "
         "first on PATH, every library dir on LD_LIBRARY_PATH, and points "
         "C probes at the tree. See designs/asan-opt-in.md."
 }

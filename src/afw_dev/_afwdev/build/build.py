@@ -128,7 +128,9 @@ def apply_sanitize_options(options):
 
     Sets build_sanitizers (e.g. ('address', 'undefined')) and
     build_sanitize_dir (e.g. 'asan'). Run after apply_build_profile_flags
-    so --fulldev / --all are already expanded.
+    so --fulldev / --all are already expanded. --env-mode asan tests the
+    build tree, so a sanitizer build installs only with an explicit
+    --install (not the one --cdev implies).
     """
     variant = options.get('build_sanitize')
     if not variant:
@@ -146,7 +148,7 @@ def apply_sanitize_options(options):
     options['build_sanitizers'], options['build_sanitize_dir'] = \
         _SANITIZE_VARIANTS[variant]
     options['build_cmake'] = True
-    options['build_install'] = True
+    options['build_install'] = bool(options.get('build_install_explicit'))
 
 
 ##
@@ -164,6 +166,7 @@ def run(options):
     if msg.is_verbose_mode() or msg.is_debug_mode():
         stdout_capture = None
 
+    options['build_install_explicit'] = bool(options.get('build_install'))
     apply_build_profile_flags(options)
     apply_sanitize_options(options)
 
@@ -178,7 +181,9 @@ def run(options):
             options['build_directory'] + build_type_context + '/'
 
     # --sanitize: build/<dir>/cmake/ and, unless --prefix, build/<dir>/install/.
-    # Siblings of build/cmake/, so a normal --clean never removes them.
+    # Siblings of build/cmake/, so a normal --clean never removes them. The
+    # prefix is configured even without --install: it is the baked-in
+    # fallback for extension loading, which must not be /usr/local.
     sanitize_install_default = None
     if options.get('build_sanitizers'):
         sanitize_rpath = options['build_directory_rpath'] + \

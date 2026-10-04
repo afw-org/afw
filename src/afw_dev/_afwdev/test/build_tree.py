@@ -11,12 +11,15 @@
 #          and a link to the repo's ./afwdev; LD_LIBRARY_PATH gets every
 #          library dir (required: afw_environment_load_extension falls
 #          back to the installed lib dir); C probes get the tree's libafw,
-#          library dirs and -I dirs. See designs/asan-opt-in.md.
+#          library dirs and -I dirs. --env-mode asan always uses this
+#          (the ASan build is never installed system-wide); other modes
+#          only with --build-tree. See designs/asan-opt-in.md.
 #
 
 import json
 import os
 import shlex
+import subprocess
 
 from _afwdev.common import msg
 
@@ -118,6 +121,31 @@ def _afwdev_link_dir(options, tree):
     return link_dir
 
 
+def _warn_if_stale(options, tree, command):
+    """Warn when the --sanitize stamp is from another commit or dirty."""
+    from _afwdev.build.cmake import SANITIZE_STAMP_NAME
+    try:
+        with open(os.path.join(tree, SANITIZE_STAMP_NAME),
+                encoding='utf-8') as f:
+            stamp = json.load(f)
+    except (OSError, ValueError):
+        return
+    root = (options or {}).get('afw_package_dir_path') or os.getcwd()
+    try:
+        head = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=root,
+            capture_output=True, text=True, check=True).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        head = None
+    if head and stamp.get('commit') and stamp['commit'] != head:
+        msg.warn('ASan build is from commit ' + stamp['commit'][:10] +
+            ', HEAD is ' + head[:10] + '. If C changed since, rebuild: ' +
+            command)
+    elif stamp.get('dirty'):
+        msg.warn('ASan build was made from a tree with uncommitted '
+            'changes (' + str(stamp.get('built')) + '). If C changed '
+            'since, rebuild: ' + command)
+
+
 def prepare(options):
     """Point this process (and every child) at the build tree, or exit."""
     tree = tree_dir(options)
@@ -137,6 +165,7 @@ def prepare(options):
         if 'address' not in sanitize.split(';'):
             msg.error_exit(tree + ' is not an AddressSanitizer build. '
                 'Rebuild: ' + command)
+        _warn_if_stale(options, tree, command)
     elif sanitize:
         msg.error_exit(tree + ' is a sanitizer build (' + sanitize + '); '
             'use --env-mode asan for it.')

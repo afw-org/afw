@@ -165,10 +165,11 @@ def check_sanitizer_runtime(sanitizers):
 
 
 def write_sanitize_stamp(options):
-    """Record the sanitizers and source commit in the --sanitize prefix."""
-    prefix = options.get('build_prefix')
-    if not prefix:
-        return
+    """Record the sanitizers and source commit in the --sanitize build tree.
+
+    --env-mode asan reads it to warn about a stale build.
+    """
+    stamp_dir = options['build_directory_cmake']
     root = options['afw_package_dir_path']
     commit = None
     dirty = None
@@ -187,8 +188,8 @@ def write_sanitize_stamp(options):
         'built': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'buildDirectory': options['build_directory_cmake'],
     }
-    os.makedirs(prefix, exist_ok=True)
-    with open(os.path.join(prefix, SANITIZE_STAMP_NAME), 'w') as f:
+    os.makedirs(stamp_dir, exist_ok=True)
+    with open(os.path.join(stamp_dir, SANITIZE_STAMP_NAME), 'w') as f:
         json.dump(stamp, f, indent=4)
         f.write('\n')
 
@@ -267,6 +268,9 @@ def build(options):
     if rc.returncode != 0:
         msg.error_exit("CMake build failed " + str(rc))
 
+    if options.get('build_sanitizers'):
+        write_sanitize_stamp(options)
+
     # cpack
     if options.get('build_package', False):
         _package_command = ['cpack']
@@ -328,5 +332,4 @@ def build(options):
         prune_leftover_installed_headers(
             installed_include_dir(options),
             sudo=bool(options.get('build_sudo')))
-        if options.get('build_sanitizers'):
-            write_sanitize_stamp(options)
+

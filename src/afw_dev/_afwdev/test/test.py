@@ -175,11 +175,12 @@ def run(options):
         # --build-tree: run against the mode's cmake tree, not the
         # install. Sanitizer pairing: asan runs against build/asan;
         # valgrind cannot run a sanitizer build.
-        if options.get('build_tree'):
+        # asan always uses its tree (it is never installed system-wide).
+        if options.get('build_tree') or \
+                test_history.env_mode(options) == 'asan':
             test_build_tree.prepare(options)
         if test_history.env_mode(options) == 'asan':
-            test_sanitize.prepare_asan_environment(
-                options, build_tree=bool(options.get('build_tree')))
+            test_sanitize.prepare_asan_environment(options)
         elif test_history.env_mode(options) == 'valgrind':
             test_sanitize.refuse_sanitized_lib_for_valgrind()
 

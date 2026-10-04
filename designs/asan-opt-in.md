@@ -32,14 +32,14 @@ Deliberately left accessible: allocator headers, and a header that a coalesce ab
 ## How to run it
 
 ```bash
-./afwdev build --cdev --sanitize address      # build/asan/{cmake,install}, ~50s
+./afwdev build --cdev --sanitize address      # build/asan/cmake/, ~50s
 ./afwdev test -j --env-mode asan              # ~6 min (normal run ~20s)
 ```
 
 `--env-mode asan` (`_afwdev/test/sanitize.py`, `modes/asan.py`):
 
-- Needs `build/asan/install/` and its `afwdev-sanitize.json`; missing is an error with the build command. A stamp from another commit, or from a dirty tree, is a warning with the same command (docs-only commits should not force a rebuild).
-- Puts `build/asan/install/bin` first on `PATH` for the whole run, so `.as` tests, python tests, orchestrated `afwfcgi` and `afw --local` all use the ASan build. Sets `AFW_LIB_DIR` / `AFW_INCLUDE_DIR` so C probes build against it (`run_c_probe` adds the matching `-fsanitize`).
+- Always runs against the build tree `build/asan/cmake/` (same setup as `--build-tree`, below): missing, or not an ASan build, is an error with the build command. A stamp from another commit, or from a dirty tree, is a warning with the same command (docs-only commits should not force a rebuild).
+- The tree's `afw` / `afwfcgi` come first on `PATH` and every library dir is on `LD_LIBRARY_PATH` for the whole run, so `.as` tests, python tests, orchestrated `afwfcgi` and `afw --local` all use the ASan build. C probes build against the tree (`run_c_probe` adds the matching `-fsanitize`).
 - `ASAN_OPTIONS` adds `detect_odr_violation=0:detect_leaks=1`; `UBSAN_OPTIONS` adds `print_stacktrace=1:halt_on_error=1`. Keys you set yourself win. Every sanitizer report fails the process that hit it; `.as` failures show a short summary (report line plus top frames).
 - `afwfcgi` starts without `stdbuf` under asan: its `LD_PRELOAD` loads ahead of the ASan runtime.
 - `--env-mode valgrind` refuses a sanitizer `libafw`; the `c_probe` self-test skips its valgrind cases against one.
@@ -83,16 +83,15 @@ Decided with the maintainer, 2026-10-04.
   ├── cmake/            normal build tree (--cdev); installs to /usr/local or --prefix
   └── asan/
       ├── cmake/        build tree
-      └── install/      prefix: bin/, lib/afw/, include/afw/, and the stamp file
+      └── install/      prefix, only with an explicit --install
   ```
 
-  The prefix is installed, not run from the build tree: binaries find their libraries through a relative rpath, and the baked-in install path makes `afw` load extensions from its own `lib/afw`.
-- **Install is implied:** `--sanitize` installs into its own prefix (`--prefix` overrides). It never touches `/usr/local`.
+- **No install by default** (changed 2026-10-04): `--env-mode asan` tests `build/asan/cmake/` directly, so `--sanitize` installs only with an explicit `--install` (not the one `--cdev` implies), into `build/asan/install/` or `--prefix`. It never touches `/usr/local`. The prefix is still configured: it is the baked-in fallback for extension loading, so a missing `LD_LIBRARY_PATH` entry fails loudly instead of loading a non-ASan extension from `/usr/local`.
 - **Clean:** `afwdev build --clean` removes only `build/<context>/` for the contexts in that run (`build.py`), so `--cdev --clean` / `--fulldev` leave `build/asan/` alone. `--sanitize --clean` removes only `build/asan/` (the cmake dir, and the install dir unless `--prefix` was given; a custom prefix is never removed). A manual `rm -rf build` removes it too; the test mode then says how to rebuild.
 - **Refused with it:** `--fulldev`, `--all`, `--docs`, `--js`, `--docker`, `--package`, `--scan`. It is the C (cmake) context only; `--fulldev` would also turn on `--scan` and every context.
 - **Never implied:** `--cdev`, `--fulldev` and `--all` do not add `--sanitize` (same rule as `--docker`). It combines with `--cdev`: `./afwdev build --cdev --sanitize address` = generate, clean `build/asan/`, build, install (about 50s).
 - **Flags reach cmake** as `-DAFWDEV_SANITIZE=address;undefined` (like `AFWDEV_C_DEFINES`); the root `CMakeLists.txt` adds the compile and link options plus `-fno-omit-frame-pointer`.
-- **Stamp file** `afwdev-sanitize.json` in the prefix (sanitizers, source commit, dirty, build time, build dir) so the test mode can refuse a missing or stale build with the exact command.
+- **Stamp file** `afwdev-sanitize.json` in `build/asan/cmake/` (sanitizers, source commit, dirty, build time, build dir); `--env-mode asan` warns when it is from another commit or a dirty tree.
 - **No runtime:** fail before cmake when the compiler cannot link a `-fsanitize=address` program (Alpine/musl has no ASan runtime).
 - **Hard-coded `build/cmake` to fix:** the install-prefix helper and the header prune after install (must use the ASAN cache and prefix, never prune `/usr/local`); the clangd `compile_commands.json` symlink stays on `build/cmake/`; `pool_heap.py` `_lib_has_debug_pool()` (test mode, step 3).
 
@@ -101,7 +100,7 @@ Decided with the maintainer, 2026-10-04.
 | Test run | Build it needs |
 |---|---|
 | `test -j` (default), `--env-mode valgrind` | normal (`build/cmake/`, `/usr/local`). Valgrind cannot run an ASan process (fails at start). |
-| `--env-mode asan` (step 3) | `build/asan/install/`, required to exist first; never built implicitly |
+| `--env-mode asan` | `build/asan/cmake/` (always the build tree), required to exist first; never built implicitly |
 | region cache off | normal build if it becomes a runtime switch; a separate build if it stays a compile-time default |
 
 Rules: the default test run never picks up a sanitizer build; a mode refuses a mismatched build with one clear message; tests that are incompatible by design skip with a reason. Minimum builds for a full CI run: 2 (normal, ASan+UBSan); +1 each for TSan or a production-style build without the `AFW_DEBUG_*` defines.
@@ -120,7 +119,7 @@ Landed 2026-10-04 (`_afwdev/test/build_tree.py`). Results: default mode 4591 pas
 
 Gotcha: the repo's `./afwdev` only works from the repo root (it runs `src/afw_dev/afwdev.py` by relative path). Tests run `afwdev` from other directories (the `commands_test1.txt` group builds a throwaway package in `/tmp`), so `--build-tree` writes a wrapper, `build/<tree>/afwdev-bin/afwdev`, that runs `afwdev.py` by absolute path. A plain symlink to `./afwdev` made those commands fail and the parallel run hang.
 
-**Decided (2026-10-04):** the default stays as before: `afwdev test` runs the installed binaries and libraries from the system path. `--build-tree` is opt-in only. Still open: whether the asan mode should always use the build tree (dropping `build/asan/install`); today it uses that prefix unless `--build-tree` is given.
+**Decided (2026-10-04):** the default stays as before: `afwdev test` runs the installed binaries and libraries from the system path. `--build-tree` is opt-in only. `--env-mode asan` always uses its build tree (decided 2026-10-04): the ASan build is never installed system-wide, so `build/asan/install` is no longer made by default.
 
 ## Remaining plan
 
