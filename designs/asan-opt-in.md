@@ -120,7 +120,7 @@ Landed 2026-10-04 (`_afwdev/test/build_tree.py`). Results: default mode 4591 pas
 
 Gotcha: the repo's `./afwdev` only works from the repo root (it runs `src/afw_dev/afwdev.py` by relative path). Tests run `afwdev` from other directories (the `commands_test1.txt` group builds a throwaway package in `/tmp`), so `--build-tree` writes a wrapper, `build/<tree>/afwdev-bin/afwdev`, that runs `afwdev.py` by absolute path. A plain symlink to `./afwdev` made those commands fail and the parallel run hang.
 
-Open: whether the default `afwdev test` should run from the build tree; whether the asan mode should always use it (dropping `build/asan/install`). Both change everyday workflow; raise with Mike.
+**Decided (2026-10-04):** the default stays as before: `afwdev test` runs the installed binaries and libraries from the system path. `--build-tree` is opt-in only. Still open: whether the asan mode should always use the build tree (dropping `build/asan/install`); today it uses that prefix unless `--build-tree` is given.
 
 ## Remaining plan
 
