@@ -85,7 +85,7 @@ return 0;
 
 //?
 //? test: nested-eval-inside-eval
-//? description: inner script itself calls evaluate (nested compiled-value; isolate dest stays outermost)
+//? description: inner script itself calls evaluate (nested compiled-value; parks script_result; isolate dest is dest p of the write)
 //? expect: 0
 //? source: ...
 
