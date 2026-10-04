@@ -251,6 +251,9 @@ impl_chunk_malloc(
     chunk = (afw_pool_heap_internal_chunk_t *)mem;
     chunk->next = NULL;
     chunk->size = need;
+    AFW_MEMORY_ANNOTATE_NOACCESS(impl_chunk_usable(chunk),
+        impl_chunk_end(chunk) - impl_chunk_usable(chunk));
+    AFW_MEMORY_ANNOTATE_ROOT(chunk, need);
     return chunk;
 }
 
@@ -283,6 +286,7 @@ afw_pool_heap_internal_allocate_self(
         return NULL;
     }
     usable = impl_chunk_usable(chunk);
+    AFW_MEMORY_ANNOTATE_ACCESS(usable, self_bytes);
     memset(usable, 0, self_bytes);
     heap = (afw_pool_heap_internal_self_t *)(void *)usable;
     self = &heap->common;
@@ -544,6 +548,7 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
         impl_heap_free_unlink(&head->first, curr);
         if (curr->total - total >= sizeof(afw_pool_heap_internal_free_node_t)) {
             rest = (afw_pool_heap_internal_free_node_t *)(((char *)curr) + total);
+            AFW_MEMORY_ANNOTATE_ACCESS(rest, sizeof(*rest));
             rest->total = curr->total - total;
             rest->chunk = impl_block_chunk(curr);
             impl_block_mark_free(rest);
@@ -580,6 +585,7 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
         else if (!head->first) {
             head->largest = 0;
         }
+        AFW_MEMORY_ANNOTATE_ACCESS(curr, total);
         impl_block_set_chunk(curr, impl_block_chunk(curr));
         *reused = true;
         return curr;
@@ -590,6 +596,7 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
         start = heap->bump;
         heap->bump += total;
         heap->remaining -= total;
+        AFW_MEMORY_ANNOTATE_ACCESS(start, total);
         impl_block_set_chunk(start, heap->current_chunk);
         return start;
     }
@@ -656,6 +663,7 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     start = heap->bump;
     heap->bump += total;
     heap->remaining -= total;
+    AFW_MEMORY_ANNOTATE_ACCESS(start, total);
     impl_block_set_chunk(start, chunk);
     return start;
 }
@@ -679,6 +687,14 @@ afw_pool_heap_internal_add_to_free_list(
     }
 
     freeing = (afw_pool_heap_internal_free_node_t *)start;
+    /*
+     * Header stays accessible for the list; the rest of this block is
+     * no-access. A header this block absorbs below stays accessible
+     * too: a second free of that block reads its free bit.
+     */
+    AFW_MEMORY_ANNOTATE_ACCESS(freeing, sizeof(*freeing));
+    AFW_MEMORY_ANNOTATE_NOACCESS((char *)freeing + sizeof(*freeing),
+        total - sizeof(*freeing));
     freeing->total = total;
     impl_block_set_chunk(freeing, chunk);
     impl_block_mark_free(freeing);
@@ -749,6 +765,7 @@ impl_heap_free_chunks(afw_pool_heap_internal_self_t *heap, afw_xctx_t *xctx)
     while (chunk) {
         next = chunk->next;
         size = chunk->size;
+        AFW_MEMORY_ANNOTATE_UNROOT(chunk, size);
         if (region) {
             afw_memory_region_free(region, chunk, size, xctx);
         }
@@ -872,6 +889,8 @@ impl_heap_malloc_internal(
         afw_pool_internal_account_alloc(self, total, xctx);
     }
     user = AFW_POOL_HEAP_INTERNAL_USER_FROM_START(start);
+    AFW_MEMORY_ANNOTATE_NOACCESS((char *)user + size,
+        ((char *)start + total) - ((char *)user + size));
     afw_pool_internal_debug_prefix_set(self, user, size);
     return user;
 }

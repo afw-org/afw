@@ -118,6 +118,9 @@ impl_tracker_return_leftovers(
     tracker->first_allocated_memory = NULL;
     while (curr) {
         next = AFW_POOL_TRACKER_INTERNAL_NEXT(curr);
+        /* A marked free left USER no-access. */
+        AFW_MEMORY_ANNOTATE_ACCESS(AFW_POOL_TRACKER_INTERNAL_TO_USER(curr),
+            AFW_POOL_TRACKER_INTERNAL_USER_SIZE(curr));
         afw_pool_internal_debug_poison_user(AFW_POOL_TRACKER_INTERNAL_TO_USER(curr),
             AFW_POOL_TRACKER_INTERNAL_USER_SIZE(curr));
         afw_pool_heap_internal_add_to_free_list(heap, curr,
@@ -258,6 +261,8 @@ impl_tracker_malloc_internal(
 #else
     node->size = size;
 #endif
+    AFW_MEMORY_ANNOTATE_NOACCESS((char *)user + size,
+        ((char *)start + total) - ((char *)user + size));
     if (xctx) {
         afw_pool_internal_account_alloc(self, total, xctx);
     }
@@ -358,6 +363,8 @@ impl_tracker_free_internal(
         address, total);
     afw_pool_internal_account_free(self, total, xctx);
     AFW_POOL_TRACKER_INTERNAL_MARK_FREED(node);
+    /* Stays on the tracker list until collect or destroy. */
+    AFW_MEMORY_ANNOTATE_NOACCESS(address, size);
 }
 
 void

@@ -52,6 +52,15 @@ impl_round_up(afw_size_t size)
 }
 
 
+/* Clear checker marks first so a later map of these pages is clean. */
+static void
+impl_unmap(void *mem, afw_size_t size)
+{
+    AFW_MEMORY_ANNOTATE_ACCESS(mem, size);
+    afw_os_unmap_pages(mem, size);
+}
+
+
 static void
 impl_account_in_use(afw_memory_region_t *pub, afw_size_t size)
 {
@@ -252,6 +261,7 @@ impl_afw_memory_region_get(
                 pub->get_hits += 1;
                 impl_account_in_use(pub, need);
                 impl_env_hit(xctx, need);
+                AFW_MEMORY_ANNOTATE_ACCESS(node, need);
                 *region = node;
                 *size = need;
                 return;
@@ -292,6 +302,8 @@ impl_afw_memory_region_free(
     pub = &self->pub;
     size = impl_round_up(size);
     impl_account_returned(pub, size);
+    /* The heap left its own marks. Start this chunk over. */
+    AFW_MEMORY_ANNOTATE_ACCESS(region, size);
 
     /*
      * Keep this chunk when it fits the cap. If the list is full of
@@ -316,7 +328,7 @@ impl_afw_memory_region_free(
                     env->memory_region_free_over_cap += 1;
                 }
             }
-            afw_os_unmap_pages(node, node->size);
+            impl_unmap(node, node->size);
         }
         if (pub->free_list_bytes + size <= pub->free_list_max_bytes)
         {
@@ -330,13 +342,16 @@ impl_afw_memory_region_free(
                 pub->peak_free_list_bytes = pub->free_list_bytes;
             }
             impl_env_to_list(xctx, size);
+            /* Cached pages are no-access past the node until get. */
+            AFW_MEMORY_ANNOTATE_NOACCESS((char *)node + sizeof(*node),
+                size - sizeof(*node));
             return;
         }
     }
 
     pub->free_over_cap += 1;
     impl_env_over_cap(xctx, size);
-    afw_os_unmap_pages(region, size);
+    impl_unmap(region, size);
 }
 
 
@@ -362,7 +377,7 @@ impl_afw_memory_region_cleanup(
     impl_env_drain_list(xctx, bytes, count);
     while (node) {
         next = node->next;
-        afw_os_unmap_pages(node, node->size);
+        impl_unmap(node, node->size);
         node = next;
     }
 }
