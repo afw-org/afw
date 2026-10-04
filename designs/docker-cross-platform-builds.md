@@ -73,6 +73,12 @@ Every retry succeeded with this driver, same Dockerfiles, same context, unmodifi
 
 **Gotcha:** the `docker-container` driver has its **own image store**, separate from the local `docker images` daemon store. A locally built-and-`--load`ed image (via the default driver) is invisible to it unless pushed through a registry. If testing against a locally-built, not-yet-published base image, use the default driver instead (it shares the daemon's store).
 
+## Bump `afw-base:alpine` with `afw-dev-base:alpine`
+
+`afw/Dockerfile.alpine` and `afwfcgi/Dockerfile.alpine` compile in `afw-dev-base:alpine` and copy the result onto `afw-base:alpine`. Both bases must be on the same Alpine: the binaries link against versioned sonames (ICU's `libicuuc.so.<major>`, `libedit.so.0`). The 2026-09-28 round (#421) bumped `afw-dev-base` to 3.24 but left `afw-base` on 3.16.9, so `afw:alpine` built cleanly on both platforms and then `afw --version` failed with `Error loading shared library libicuuc.so.78` (3.16 has ICU 71). The published `afw-base:alpine` (created 2025-10-08) was older still and had no `libedit`. Fixed on `fix/afw-base-alpine-3.24` (2026-10-04). `afw-base/Dockerfile.alpine` now carries a comment saying to bump it with `afw-dev-base`. A built image is not proof: run `afw --version` (and `afw -x "1+2"`) in each platform after any base bump.
+
+To test a base that is not published yet with the `docker-container` driver (it cannot see `--load`ed images), build the base to an OCI layout and substitute it with a named context: `--output type=oci,dest=<dir>,tar=false` for the base, then `--build-context ghcr.io/afw-org/afw-base:alpine=oci-layout://<dir>` on the `afw` build.
+
 ## Real Dockerfile bug found and fixed: `afwfcgi/Dockerfile.alpine`
 
 Globbed `/afw-*alpine*.tar` but `builder-alpine.sh` actually produces `afw-<ver>-alpine.<arch>.tar.gz` (note the `.gz`). Zero-match `COPY` silently no-ops (see the driver note above for why BuildKit doesn't error on this); the following `tar xvf` then fails with "no such file," unrelated-looking to the real cause. Fixed the glob and added the missing `--strip-components=1` (the tar has a top-level `afw-<ver>_<arch>/` directory that the sibling `.alpine` Dockerfiles already strip). Verified: image builds both platforms, `afw --version` runs inside it.
