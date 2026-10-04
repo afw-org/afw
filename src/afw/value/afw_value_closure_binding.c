@@ -39,11 +39,8 @@ afw_value_closure_binding_create(
     AFW_VALUE_SELF_T *self;
 
     /*
-     * Header in p->managed_p, not a scope leftover list. Capture still
-     * points at enclosing_lexical_scope. Named-call rebind of `f` mints
-     * a wrapper that last-release free_memorys; do not pile headers on
-     * the names-frame tracker. Loop clone / escape may still hold the
-     * pointer after the creating `{ }` dies.
+     * Header in dest p->managed_p. Create is RC 1 and pins
+     * enclosing_lexical_scope. Last RC 0 releases that scope.
      */
     p = p->managed_p;
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
@@ -51,12 +48,8 @@ afw_value_closure_binding_create(
     self->p = p;
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
-    /*
-     * Create at 0. First add_reference (slot or overlay set) pins the
-     * defining scope; matching last-release drops it. Do not pin here:
-     * `o.fn = function…` is not a named slot, but the wrapper's set is.
-     */
-    self->reference_count = 0;
+    afw_pool_scope_get_reference(enclosing_lexical_scope, xctx);
+    self->reference_count = 1;
 
     return &self->pub;
 }
@@ -135,15 +128,8 @@ impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
+    (void)xctx;
     self->reference_count++;
-    /*
-     * A binding that keeps a compile unit was handed its scope
-     * reference (eval* transfers the inner evaluate result's
-     * reference onto this header). First bump must not take another.
-     */
-    if (self->reference_count == 1 && !self->compiled_value) {
-        afw_pool_scope_get_reference(self->enclosing_lexical_scope, xctx);
-    }
     return &self->pub;
 }
 
