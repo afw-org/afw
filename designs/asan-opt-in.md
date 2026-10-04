@@ -60,12 +60,48 @@ Recorded with cause and fix in [`beta-backlog.md`](../beta-backlog.md) → *ASAN
 
 `memoryRegionFreeListMaxBytes = 0` makes every released heap chunk `munmap` at once, so reading a released pool faults on a normal build. Tried 2026-10-03 on `develop` with `AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES` set to 0 in a scratch build (it is a plain `#define`; no `--define` override today, and tests without an `afw.conf` cannot set it): full `test -j` in about 15s. It caught every read of a released pool the ASAN run found (pool cleanup order: both authorization tests plus `catalog-value-accessors` in `afwfcgi`; all three deferred compile-literal cases) and a stale double release in the `compiled_value_managed` probe. It cannot see an overflow inside a live chunk (`sort`), a global overread (model `current::`), or UBSan findings. Expected failures: `miscellaneous/process.as` asserts the default cap and region hits. Gotcha: `pool_heap.py` reads `build/cmake/CMakeCache.txt` of the tree it runs from to pick `AFW_DEBUG_POOL`; a scratch build needs that path to point at its cmake dir. Making this a real option (an `#ifndef` around the default, or a process-level override) is a separate decision.
 
+## Build design (`afwdev build --sanitize`)
+
+Decided with the maintainer, 2026-10-04.
+
+- **Flag:** `--sanitize <variant>`. `address` is the only value accepted now and builds `-fsanitize=address,undefined` (UBSan combines with any variant, so it always rides along; LeakSanitizer comes with `address` and is switched at run time). Other values are rejected with the reason. Accepting a value promises a working path (build, run, reports you can trust), not just compiler flags.
+- **Variants:** `thread` maybe later, after a trial run shows TSan is usable on AFW (its own `build/tsan/`). `memory` is not planned: MSan needs every dependency rebuilt with it, and AFW takes OpenSSL, ICU, libxml2, curl, LMDB, LDAP and yaml from the OS. Valgrind on the normal build already covers uninitialized reads. `address` works with uninstrumented OS libraries (no false reports; it just does not see bugs inside them).
+- **Layout** (one directory per variant, a sibling of `build/cmake/`):
+
+  ```
+  build/
+  ├── cmake/            normal build tree (--cdev); installs to /usr/local or --prefix
+  └── asan/
+      ├── cmake/        build tree
+      └── install/      prefix: bin/, lib/afw/, include/afw/, and the stamp file
+  ```
+
+  The prefix is installed, not run from the build tree: binaries find their libraries through a relative rpath, and the baked-in install path makes `afw` load extensions from its own `lib/afw`.
+- **Install is implied:** `--sanitize` installs into its own prefix (`--prefix` overrides). It never touches `/usr/local`.
+- **Clean:** `afwdev build --clean` removes only `build/<context>/` for the contexts in that run (`build.py`), so `--cdev --clean` / `--fulldev` leave `build/asan/` alone. `--sanitize --clean` removes only `build/asan/`. A manual `rm -rf build` removes it too; the test mode then says how to rebuild.
+- **Refused with it:** `--docker`, `--package`, `--scan`.
+- **Never implied:** `--cdev`, `--fulldev` and `--all` do not add `--sanitize` (same rule as `--docker`). It combines with them: `./afwdev build --cdev --sanitize address` = generate, clean `build/asan/`, build, install.
+- **Flags reach cmake** as `-DAFWDEV_SANITIZE=address;undefined` (like `AFWDEV_C_DEFINES`); the root `CMakeLists.txt` adds the compile and link options plus `-fno-omit-frame-pointer`.
+- **Stamp file** in the prefix (sanitizers, source commit) so the test mode can refuse a missing or stale build with the exact command.
+- **No runtime:** fail before cmake when the compiler cannot link a `-fsanitize=address` program (Alpine/musl has no ASan runtime).
+- **Hard-coded `build/cmake` to fix:** the install-prefix helper and the header prune after install (must use the ASAN cache and prefix, never prune `/usr/local`); the clangd `compile_commands.json` symlink stays on `build/cmake/`; `pool_heap.py` `_lib_has_debug_pool()` (test mode, step 3).
+
+## Build and test-mode compatibility
+
+| Test run | Build it needs |
+|---|---|
+| `test -j` (default), `--env-mode valgrind` | normal (`build/cmake/`, `/usr/local`). Valgrind cannot run an ASan process (fails at start). |
+| `--env-mode asan` (step 3) | `build/asan/install/`, required to exist first; never built implicitly |
+| region cache off | normal build if it becomes a runtime switch; a separate build if it stays a compile-time default |
+
+Rules: the default test run never picks up a sanitizer build; a mode refuses a mismatched build with one clear message; tests that are incompatible by design skip with a reason. Minimum builds for a full CI run: 2 (normal, ASan+UBSan); +1 each for TSan or a production-style build without the `AFW_DEBUG_*` defines.
+
 ## Remaining plan
 
 Flexible order; one step, then re-decide.
 
 1. ~~Annotations~~ (this branch).
-2. **Build:** `afwdev build --sanitize address[,undefined]` → its own cmake dir and its own prefix; never part of `--cdev` / `--fulldev` / `--all` (same rule as `--docker`). Open: how probes / the test mode find that prefix (today `AFW_LIB_DIR` / `AFW_INCLUDE_DIR`). `pool_heap.py` `_lib_has_debug_pool()` reads `build/cmake/CMakeCache.txt` and must follow the ASAN build dir.
+2. **Build:** `afwdev build --sanitize address`. Decided 2026-10-04; see *Build design* below.
 3. **Test:** `afwdev test --env-mode asan` (`modes/asan.py`, like `valgrind.py`): ASAN prefix first on `PATH` / lib path, `ASAN_OPTIONS` / `UBSAN_OPTIONS`, short summary of `==ERROR: AddressSanitizer` / `runtime error:`, its own history mode suffix, a clear error if the ASAN build is missing. Must also cover `afwfcgi` orchestration and the `c_probe` self-tests (both started non-ASAN binaries in the first run).
 4. **Later / separate decisions:** a valgrind backing for the same header behind its own define (changes what the existing valgrind mode reports); a reuse delay (quarantine) for the heap free list so a same-size malloc does not hide a use-after-free; UBSan halt vs report.
 
