@@ -159,8 +159,8 @@ jobs:
     # AddressSanitizer + UndefinedBehaviorSanitizer build and test (Ubuntu).
     # Builds build/asan/cmake/ and tests it directly (no install); see
     # designs/asan-opt-in.md. Non-blocking while known findings are open
-    # (#466, #467, compile literals deferred to #2, UBSan items in
-    # beta-backlog.md): remove continue-on-error once the run is clean.
+    # (three UBSan items in beta-backlog.md): remove continue-on-error once
+    # the run is clean.
     build_test_c_asan_ubuntu:
         name: Build and Test C with ASan on Ubuntu
         runs-on: ubuntu-latest
