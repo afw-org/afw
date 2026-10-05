@@ -1268,7 +1268,7 @@ impl_integer_literal(afw_compile_parser_t *parser, afw_integer_t n)
     case 9999: return (const afw_value_integer_t *)afw_integer_v_9999;
     default:
         return (const afw_value_integer_t *)
-            afw_compile_literal_integer_create(n, parser->p, parser->xctx);
+            afw_value_create_unmanaged_integer(n, parser->p, parser->xctx);
     }
 }
 
@@ -1288,7 +1288,7 @@ impl_double_literal(afw_compile_parser_t *parser, afw_double_t d)
             ? afw_value_minus_zero : afw_value_double_zero);
     }
     return (const afw_value_double_t *)
-        afw_compile_literal_double_create(d, parser->p, parser->xctx);
+        afw_value_create_unmanaged_double(d, parser->p, parser->xctx);
 }
 
 
@@ -2627,7 +2627,7 @@ afw_compile_get_string_literal(
     }
     utf8 = afw_utf8_create(s, len, parser->p, parser->xctx);
     result = (const afw_value_string_t *)
-        afw_compile_literal_string_create(utf8, parser->p, parser->xctx);
+        afw_value_create_unmanaged_string(utf8, parser->p, parser->xctx);
     afw_hash_table_set(parser->shared->string_literals,
         (const void *)utf8->s, utf8->len, (void *)result,
         parser->xctx);

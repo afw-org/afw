@@ -207,7 +207,7 @@ struct afw_compile_internal_shared_s {
     const afw_pool_t *temp_p;
 
     /*
-     * Interned string values (compile_literal or reusable env strings).
+     * Interned string values (unmanaged in the unit or reusable env strings).
      * Key is octets; value is const afw_value_string_t *. Use
      * afw_compile_get_string_literal().
      */
@@ -251,7 +251,7 @@ struct afw_compile_internal_token_s {
         /* If type is boolean, process permanent true/false. */
         const afw_value_boolean_t *boolean;
 
-        /* If type is integer, permanent or compile_literal. */
+        /* If type is integer, permanent or unmanaged in the unit. */
         const afw_value_integer_t *integer;
 
         /* If type is null, this is NULL. */
@@ -259,11 +259,11 @@ struct afw_compile_internal_token_s {
 
         /* If type is undefined, use identifier to hold 'undefined'. */
 
-        /* If type is number, permanent (Inf/NaN/-0) or compile_literal. */
+        /* If type is number, permanent (Inf/NaN/-0) or unmanaged in the unit. */
         const afw_value_double_t *number;
 
         /*
-         * If type is quoted string, interned compile_literal (or empty
+         * If type is quoted string, interned unmanaged in the unit (or empty
          * permanent) and quote character (single (') or double (")).
          */
         struct {
@@ -956,14 +956,14 @@ const afw_utf8_t *
 afw_compile_current_raw_token(
     afw_compile_parser_t *parser);
 
-/* Intern string: env reusable value, else compile_literal in parser->p. */
+/* Intern string: env reusable value, else unmanaged in parser->p. */
 const afw_value_string_t *
 afw_compile_get_string_literal(
     afw_compile_parser_t *parser,
     const afw_utf8_octet_t *s,
     afw_size_t len);
 
-/* Intern utf8 as a string value (env hit or compile_literal). */
+/* Intern utf8 as a string value (env hit or unmanaged in the unit). */
 #define afw_compile_intern_utf8_string(_utf8) \
     (afw_compile_get_string_literal((parser), (_utf8)->s, (_utf8)->len))
 

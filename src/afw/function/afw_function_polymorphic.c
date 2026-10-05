@@ -358,8 +358,9 @@ impl_script_clone(
         return result;
     }
 
-    /* Nested scalar: one isolate of the source. Permanent and
-     * compile_literal stay as-is; unmanaged promotes once. */
+    /* Nested scalar: one isolate of the source. Permanent stays
+     * as-is; unmanaged (including compile-unit literals) promotes
+     * once. */
     return afw_value_get_assignable(value, x->p, x->xctx);
 }
 
