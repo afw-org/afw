@@ -40,7 +40,7 @@ afw_value_closure_binding_create_managed(
 
     /*
      * Header in dest p->managed_p. Create is RC 1. Caller releases.
-     * Holds enclosing_lexical_scope and the compile unit the
+     * References enclosing_lexical_scope and the compile unit the
      * definition lives in. Last RC 0 releases the scope, then the
      * unit.
      */

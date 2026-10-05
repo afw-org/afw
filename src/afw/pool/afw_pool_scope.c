@@ -246,10 +246,10 @@ impl_scope_object_create(
     scope = (afw_pool_scope_t *)self;
     scope->p = &scope->pub;
     /*
-     * Hold the parent for the life of this scope pool. Pool count stays
-     * 1, so throw-path delay still sees a last release. A frame's parent
-     * is the job heap (see afw_pool_scope_create), so this hold never
-     * keeps a dest p alive.
+     * Reference the parent for the life of this scope pool. Pool count
+     * stays 1, so throw-path delay still sees a last release. A frame's
+     * parent is the job heap (see afw_pool_scope_create), so this
+     * reference never keeps a dest p alive.
      */
     if (self->parent && !self->parent->destroying) {
         afw_pool_get_reference(&self->parent->pub, xctx);
@@ -566,10 +566,11 @@ afw_pool_scope_create(
 
     /*
      * Scope pool parent is the job heap (p->managed_p), not dest p. A
-     * scope lives by its scope RC. Its create hold on the parent must
-     * not keep dest p alive: a closure whose last-release is registered
-     * on dest p holds this frame, so a frame that pins dest p is a
-     * cycle. Lexical parents are held by scope RC, not by the pool tree.
+     * scope lives by its scope RC. Its create reference on the parent
+     * must not keep dest p alive: a closure whose last-release is
+     * registered on dest p references this frame, so a frame that pins
+     * dest p is a cycle. Lexical parents live by scope RC, not by the
+     * pool tree.
      */
     self_bytes = offsetof(afw_pool_scope_t, frame_slots)
         + (block->symbol_count * sizeof(const afw_value_t *));

@@ -18,7 +18,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 **Inf:** **unmanaged** lives in a `p` and dies with that `p` (no RC). **Managed** needs RC at least 1. **Permanent** has no RC; `release` is a no-op.
 
-**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`, `object_hold`) are leftovers in the tree, not a second protocol.
+**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`) are leftovers in the tree, not a second protocol.
 
 **Smell:** extra-hold, special case, extra bump, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest, caching dest `p` on the xctx (`script_result_p`). If a leak needs a new flag or a third way to keep a value alive, stop.
 
