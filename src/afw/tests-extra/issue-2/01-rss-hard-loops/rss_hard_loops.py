@@ -147,6 +147,8 @@ WORKLOADS = [
           "const a = [0, ...pair] held in the body frame"),
     _flat("create_array_unassigned",
           "create_array(4) never assigned (last stmt add())"),
+    _flat("eval_object_literal",
+          "evaluate(compile()) with a constant object literal in the unit"),
     {
         "name": "array_append",
         "description": "unbounded push (harness: RSS and in_use must grow)",

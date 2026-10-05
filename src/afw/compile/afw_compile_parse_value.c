@@ -381,13 +381,23 @@ afw_compile_parse_Object(
         return NULL;
     }
 
-    /* Create new memory object.*/
-    AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED(
-        obj,
-        parser->embedding_object,
-        parser->property_name,
-        parser->doing_object_spread,
-        parser->cede_p, parser->p, parser->xctx);
+    /*
+     * Create new memory object. A top-level literal in a compile unit is
+     * unmanaged in the unit's pool and dies with the unit. Only
+     * afw_compile_json_to_object (cede_p) makes an entity that owns a
+     * pool.
+     */
+    if (!parser->cede_p && !parser->embedding_object) {
+        obj = afw_object_create_unmanaged(parser->p, parser->xctx);
+    }
+    else {
+        AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED(
+            obj,
+            parser->embedding_object,
+            parser->property_name,
+            parser->doing_object_spread,
+            parser->cede_p, parser->p, parser->xctx);
+    }
     _meta_ = NULL;
     args = NULL;
     result = NULL;
