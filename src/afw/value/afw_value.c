@@ -63,16 +63,25 @@ afw_value_evaluate_impl(
 }
 
 
-/* NULL-safe get_reference. */
+/* get_reference for values that are not counted. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_add_reference(
-    const afw_value_t *value,
+afw_value_not_counted_get_reference(
+    const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    if (!value || !value->inf || !value->inf->get_reference) {
-        return value;
-    }
-    return afw_value_get_reference(value, xctx);
+    (void)xctx;
+    return instance;
+}
+
+
+/* release for values that are not counted. */
+AFW_DEFINE(void)
+afw_value_not_counted_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
 }
 
 
@@ -87,21 +96,6 @@ afw_value_get_assignable(
         return value;
     }
     return afw_value_get_assignable_value(value, p, xctx);
-}
-
-
-/* NULL-safe optional_release. */
-AFW_DEFINE(void)
-afw_value_release(
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    if (!value || afw_value_is_undefined(value) ||
-        !value->inf || !value->inf->optional_release)
-    {
-        return;
-    }
-    afw_value_optional_release(value, xctx);
 }
 
 
@@ -159,7 +153,8 @@ afw_value_slot_take(
     if (*slot == incoming) {
         return;
     }
-    if (incoming->inf && incoming->inf->optional_release &&
+    /* #476 step 2 removes this check. */
+    if (!afw_value_is_not_counted(incoming) &&
         !incoming->inf->is_managed)
     {
         AFW_THROW_ERROR_Z(general,

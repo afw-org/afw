@@ -1199,7 +1199,7 @@ afw_runtime_object_release(
 /*
  * Implementation of method get_reference of interface afw_object.
  */
-void
+const afw_object_t *
 afw_runtime_object_get_reference (
     const afw_object_t * instance,
     afw_xctx_t *xctx)
@@ -1208,10 +1208,11 @@ afw_runtime_object_get_reference (
 
     indirect = impl_refcounted_indirect(instance);
     if (!indirect) {
-        return;
+        return (const afw_object_t *)instance;
     }
     indirect->reference_count++;
     afw_pool_get_reference(instance->p, xctx);
+    return (const afw_object_t *)instance;
 }
 
 

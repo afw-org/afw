@@ -549,8 +549,8 @@ _inf_ = {                                                                       
         AFW_UTF8_LITERAL("afw_runtime"),                                        \
         &_meta_                                                                  \
     },                                                                          \
-    afw_runtime_object_release,                                                 \
     afw_runtime_object_get_reference,                                           \
+    afw_runtime_object_release,                                                 \
     afw_runtime_object_get_count,                                           \
     afw_runtime_object_get_meta,                                                \
     afw_runtime_object_get_property,                                            \
@@ -575,7 +575,7 @@ afw_runtime_object_release(
 /**
  * @brief Method get_reference for runtime object.
  */
-void
+const afw_object_t *
 afw_runtime_object_get_reference(
     const afw_object_t * instance,
     afw_xctx_t *xctx);

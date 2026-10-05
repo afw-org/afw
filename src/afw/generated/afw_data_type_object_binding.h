@@ -260,8 +260,9 @@ afw_value_object_allocate(
  * referent. Caller must ensure the referent outlives this value (or
  * a future object/array path may special-case container RC).
  *
- * Kind: fully managed wrapper; the object instance is the
- * counted thing. Caller releases (RC 1).
+ * Kind: fully managed. Caller releases. For a fully managed
+ * object, returns its own value face (one count with the
+ * object); otherwise a wrapper that references it.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_object_create_managed(

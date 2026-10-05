@@ -96,11 +96,11 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label,
     # meta (object)
     fd.write('    {\n')
     if options['core']:
-        fd.write('        &afw_runtime_inf__AdaptiveFunctionParameter_,\n')
+        fd.write('        {&afw_runtime_inf__AdaptiveFunctionParameter_},\n')
         fd.write('        NULL,\n')
         fd.write('        (const afw_value_t *)&' + value_label + ',\n')
     else:
-        fd.write('        NULL,\n')
+        fd.write('        {NULL},\n')
         fd.write('        NULL,\n')
         fd.write('        NULL,\n')
 
@@ -753,9 +753,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('impl_object__' + label + ' = {\n') 
             fd.write('    {\n')
             if options['core']:
-                fd.write('        &afw_runtime_inf__AdaptiveFunction_,\n')
+                fd.write('        {&afw_runtime_inf__AdaptiveFunction_},\n')
             else:
-                fd.write('        NULL,\n')
+                fd.write('        {NULL},\n')
             fd.write('        NULL,\n')
             if options['core']:
                 fd.write('        (const afw_value_t *)&' + value_label + ',\n')

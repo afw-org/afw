@@ -32061,6 +32061,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__85d6cd80cff9 \
+    "Base interface for instances that can be referenced. An interface with\n      extends=\"afw_reference\" gets these methods first in its inf, so any of\n      its instances can also be used as an afw_reference_t (x->ref).\n\n      get_reference returns a pointer, typed as the interface it was called\n      through, that the caller owns one reference to. release gives that\n      reference back. Release through the same interface the reference was\n      taken through. Both methods are mandatory; instances that are not\n      counted (permanent values, compiler values) use shared no-op\n      implementations. See designs/lifetime-principles.md (Four kinds)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__85d6cd80cff9 */
+#define afw_s_zz__85d6cd80cff9 \
+    (&afw_self_v_zz__85d6cd80cff9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__85d6cd80cff9 */
+#define afw_self_s_zz__85d6cd80cff9 \
+    (afw_self_v_zz__85d6cd80cff9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__85d6cd80cff9 */
+extern const afw_value_string_t \
+    afw_self_v_zz__85d6cd80cff9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__85d6cd80cff9 */
+#define afw_z_zz__85d6cd80cff9 \
+    (afw_self_v_zz__85d6cd80cff9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__85d6cd80cff9 */
+#define afw_v_zz__85d6cd80cff9 \
+    (&afw_self_v_zz__85d6cd80cff9.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__85efcc14b8bc \
     "function local_object_meta_set_ids (\n    object: object,\n    adapterId: string,\n    objectType: string,\n    objectId: string\n): void;\n"
 

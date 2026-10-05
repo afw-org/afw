@@ -865,8 +865,8 @@ afw_pool_release_value_at_cleanup(
     if (!value) {
         return;
     }
-    /* Permanents / compile literals: nothing to release. */
-    if (!value->inf || !value->inf->optional_release) {
+    /* Not counted: nothing to release. #476 step 2 removes this check. */
+    if (afw_value_is_not_counted(value)) {
         return;
     }
     if (afw_pool_is_value_release_registered(value, p, xctx)) {
@@ -886,7 +886,8 @@ afw_pool_deregister_value_at_cleanup(
     if (!value || !p) {
         return;
     }
-    if (!value->inf || !value->inf->optional_release) {
+    /* #476 step 2 removes this check. */
+    if (afw_value_is_not_counted(value)) {
         return;
     }
     afw_pool_deregister_cleanup(p, (void *)value, NULL,

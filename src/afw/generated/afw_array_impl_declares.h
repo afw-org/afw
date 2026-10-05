@@ -108,18 +108,18 @@ AFW_BEGIN_DECLARES
 
 #ifndef AFW_ARRAY_INF_ONLY
 
-#ifndef impl_afw_array_release
-/* Declare method release */
-AFW_DECLARE_STATIC(void)
-impl_afw_array_release(
+#ifndef impl_afw_array_get_reference
+/* Declare method get_reference */
+AFW_DECLARE_STATIC(const afw_array_t *)
+impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_array_get_reference
-/* Declare method get_reference */
+#ifndef impl_afw_array_release
+/* Declare method release */
 AFW_DECLARE_STATIC(void)
-impl_afw_array_get_reference(
+impl_afw_array_release(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
@@ -218,10 +218,10 @@ impl_afw_array_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
-    (afw_array_release_t)
-    impl_afw_array_release,
     (afw_array_get_reference_t)
     impl_afw_array_get_reference,
+    (afw_array_release_t)
+    impl_afw_array_release,
     (afw_array_get_count_t)
     impl_afw_array_get_count,
     (afw_array_get_data_type_t)

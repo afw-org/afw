@@ -40,7 +40,7 @@ impl_object_path__curl_easy_options =
 static const afw_runtime_object_indirect_t
 impl_object__curl_easy_options = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -57,7 +57,7 @@ impl_object__curl_easy_options = {
 static const afw_value_function_parameter_t
 impl_curl_easy_options_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -138,7 +138,7 @@ impl_object_path__curl_version_info =
 static const afw_runtime_object_indirect_t
 impl_object__curl_version_info = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -155,7 +155,7 @@ impl_object__curl_version_info = {
 static const afw_value_function_parameter_t
 impl_curl_version_info_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -236,7 +236,7 @@ impl_object_path__http_delete =
 static const afw_runtime_object_indirect_t
 impl_object__http_delete = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -253,7 +253,7 @@ impl_object__http_delete = {
 static const afw_value_function_parameter_t
 impl_http_delete_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -281,7 +281,7 @@ impl_http_delete_returns = {
 static const afw_value_function_parameter_t
 impl_http_delete_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -309,7 +309,7 @@ impl_http_delete_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_http_delete_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -337,7 +337,7 @@ impl_http_delete_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_http_delete_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -421,7 +421,7 @@ impl_object_path__http_get =
 static const afw_runtime_object_indirect_t
 impl_object__http_get = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -438,7 +438,7 @@ impl_object__http_get = {
 static const afw_value_function_parameter_t
 impl_http_get_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -466,7 +466,7 @@ impl_http_get_returns = {
 static const afw_value_function_parameter_t
 impl_http_get_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -494,7 +494,7 @@ impl_http_get_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_http_get_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -522,7 +522,7 @@ impl_http_get_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_http_get_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -606,7 +606,7 @@ impl_object_path__http_head =
 static const afw_runtime_object_indirect_t
 impl_object__http_head = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -623,7 +623,7 @@ impl_object__http_head = {
 static const afw_value_function_parameter_t
 impl_http_head_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -651,7 +651,7 @@ impl_http_head_returns = {
 static const afw_value_function_parameter_t
 impl_http_head_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -679,7 +679,7 @@ impl_http_head_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_http_head_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -707,7 +707,7 @@ impl_http_head_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_http_head_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -791,7 +791,7 @@ impl_object_path__http_options =
 static const afw_runtime_object_indirect_t
 impl_object__http_options = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -808,7 +808,7 @@ impl_object__http_options = {
 static const afw_value_function_parameter_t
 impl_http_options_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -836,7 +836,7 @@ impl_http_options_returns = {
 static const afw_value_function_parameter_t
 impl_http_options_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -864,7 +864,7 @@ impl_http_options_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_http_options_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -892,7 +892,7 @@ impl_http_options_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_http_options_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -976,7 +976,7 @@ impl_object_path__http_patch =
 static const afw_runtime_object_indirect_t
 impl_object__http_patch = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -993,7 +993,7 @@ impl_object__http_patch = {
 static const afw_value_function_parameter_t
 impl_http_patch_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1021,7 +1021,7 @@ impl_http_patch_returns = {
 static const afw_value_function_parameter_t
 impl_http_patch_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1049,7 +1049,7 @@ impl_http_patch_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_http_patch_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1077,7 +1077,7 @@ impl_http_patch_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_http_patch_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1105,7 +1105,7 @@ impl_http_patch_parameter_3 = {
 static const afw_value_function_parameter_t
 impl_http_patch_parameter_4 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1190,7 +1190,7 @@ impl_object_path__http_post =
 static const afw_runtime_object_indirect_t
 impl_object__http_post = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1207,7 +1207,7 @@ impl_object__http_post = {
 static const afw_value_function_parameter_t
 impl_http_post_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1235,7 +1235,7 @@ impl_http_post_returns = {
 static const afw_value_function_parameter_t
 impl_http_post_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1263,7 +1263,7 @@ impl_http_post_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_http_post_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1291,7 +1291,7 @@ impl_http_post_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_http_post_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1319,7 +1319,7 @@ impl_http_post_parameter_3 = {
 static const afw_value_function_parameter_t
 impl_http_post_parameter_4 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1404,7 +1404,7 @@ impl_object_path__http_put =
 static const afw_runtime_object_indirect_t
 impl_object__http_put = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1421,7 +1421,7 @@ impl_object__http_put = {
 static const afw_value_function_parameter_t
 impl_http_put_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1449,7 +1449,7 @@ impl_http_put_returns = {
 static const afw_value_function_parameter_t
 impl_http_put_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1477,7 +1477,7 @@ impl_http_put_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_http_put_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1505,7 +1505,7 @@ impl_http_put_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_http_put_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1533,7 +1533,7 @@ impl_http_put_parameter_3 = {
 static const afw_value_function_parameter_t
 impl_http_put_parameter_4 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1618,7 +1618,7 @@ impl_object_path__smtp_send =
 static const afw_runtime_object_indirect_t
 impl_object__smtp_send = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1635,7 +1635,7 @@ impl_object__smtp_send = {
 static const afw_value_function_parameter_t
 impl_smtp_send_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1663,7 +1663,7 @@ impl_smtp_send_returns = {
 static const afw_value_function_parameter_t
 impl_smtp_send_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1691,7 +1691,7 @@ impl_smtp_send_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_smtp_send_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1719,7 +1719,7 @@ impl_smtp_send_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_smtp_send_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1747,7 +1747,7 @@ impl_smtp_send_parameter_3 = {
 static const afw_value_function_parameter_t
 impl_smtp_send_parameter_4 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1775,7 +1775,7 @@ impl_smtp_send_parameter_4 = {
 static const afw_value_function_parameter_t
 impl_smtp_send_parameter_5 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {

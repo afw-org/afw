@@ -1199,18 +1199,46 @@ afw_value_evaluate_impl(
 
 
 /**
- * @brief Hold a value (NULL-safe get_reference).
- * @param value to hold, or NULL.
+ * @brief get_reference for a value that is not counted.
+ * @param instance value.
  * @param xctx of caller.
- * @return value, or NULL if value is NULL.
+ * @return instance.
  *
- * Inf method `get_reference`. Missing method, NULL, and undefined are
- * no-ops. Assign to a slot should use `afw_value_slot_store()`.
+ * Shared by every value inf whose values are not counted: permanent
+ * values and compiler values in a compile unit. Use as
+ * `#define impl_afw_value_get_reference afw_value_not_counted_get_reference`.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_add_reference(
-    const afw_value_t *value,
+afw_value_not_counted_get_reference(
+    const afw_value_t *instance,
     afw_xctx_t *xctx);
+
+
+/**
+ * @brief release for a value that is not counted (no-op).
+ * @param instance value.
+ * @param xctx of caller.
+ *
+ * Shared by every value inf whose values are not counted. `release`
+ * is mandatory on every inf, so no caller checks for a missing one.
+ * Use as `#define impl_afw_value_release afw_value_not_counted_release`.
+ */
+AFW_DECLARE(void)
+afw_value_not_counted_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief True if value is not counted (permanent or compiler value).
+ * @param _value non-NULL value.
+ *
+ * Temporary (#476 step 1): keeps the meaning of the old "no
+ * optional_release" checks outside infs. Each use goes away in step 2,
+ * when get_reference does the right thing for every kind.
+ */
+#define afw_value_is_not_counted(_value) \
+    ((_value)->inf->release == afw_value_not_counted_release)
 
 
 /**
@@ -1274,20 +1302,6 @@ afw_value_clone_managed(
     afw_xctx_t *xctx);
 
 
-/**
- * @brief Drop a hold (NULL-safe `optional_release`).
- * @param value to release, or NULL.
- * @param xctx of caller.
- *
- * Missing method, NULL, and undefined are no-ops. Last RC of a
- * managed compiled_value last-releases the unit pool. If you
- * stored a result on a C struct and replace it, release the old
- * occupant (or use slot_store).
- */
-AFW_DECLARE(void)
-afw_value_release(
-    const afw_value_t *value,
-    afw_xctx_t *xctx);
 
 
 

@@ -15,7 +15,7 @@
 #include "afw_internal.h"
 
 
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_release afw_value_not_counted_release
 
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_function_direct

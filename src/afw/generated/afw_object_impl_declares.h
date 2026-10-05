@@ -108,18 +108,18 @@ AFW_BEGIN_DECLARES
 
 #ifndef AFW_OBJECT_INF_ONLY
 
-#ifndef impl_afw_object_release
-/* Declare method release */
-AFW_DECLARE_STATIC(void)
-impl_afw_object_release(
+#ifndef impl_afw_object_get_reference
+/* Declare method get_reference */
+AFW_DECLARE_STATIC(const afw_object_t *)
+impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_object_get_reference
-/* Declare method get_reference */
+#ifndef impl_afw_object_release
+/* Declare method release */
 AFW_DECLARE_STATIC(void)
-impl_afw_object_get_reference(
+impl_afw_object_release(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
@@ -221,10 +221,10 @@ impl_afw_object_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
-    (afw_object_release_t)
-    impl_afw_object_release,
     (afw_object_get_reference_t)
     impl_afw_object_get_reference,
+    (afw_object_release_t)
+    impl_afw_object_release,
     (afw_object_get_count_t)
     impl_afw_object_get_count,
     (afw_object_get_meta_t)

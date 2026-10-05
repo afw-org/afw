@@ -940,13 +940,14 @@ impl_afw_object_release(
 /*
  * Implementation of method get_reference for interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
 
     afw_object_get_reference(self->pub.meta.embedding_object, xctx);
+    return (const afw_object_t *)self;
 }
 
 /*

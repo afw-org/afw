@@ -1,0 +1,4 @@
+{
+    "name": "afw_reference",
+    "description": "Base interface for instances that can be referenced. An interface with\n      extends=\"afw_reference\" gets these methods first in its inf, so any of\n      its instances can also be used as an afw_reference_t (x->ref).\n\n      get_reference returns a pointer, typed as the interface it was called\n      through, that the caller owns one reference to. release gives that\n      reference back. Release through the same interface the reference was\n      taken through. Both methods are mandatory; instances that are not\n      counted (permanent values, compiler values) use shared no-op\n      implementations. See designs/lifetime-principles.md (Four kinds)."
+}

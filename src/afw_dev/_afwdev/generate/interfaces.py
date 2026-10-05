@@ -9,6 +9,7 @@ import os
 import fnmatch
 import json
 import xml.etree.ElementTree as ET
+import copy as copy_module
 from _afwdev.generate import c
 from _afwdev.common import msg, nfc
 
@@ -86,7 +87,19 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                 fd.write(' * See @ref afw_value.\n')
             fd.write(' */\n')
             fd.write('struct ' + interface_name + '_s {\n')
-            fd.write('    const ' + interface_name + '_inf_t *inf;\n')
+            base_name = interface.get('extends')
+            if base_name is not None:
+                member = root.find(
+                    "interface[@name='" + base_name + "']").get(
+                    'instance_member', base_name.split('_')[-1])
+                fd.write('    /** inf, also usable as `' + base_name +
+                         '_t` via `&x->' + member + '`. */\n')
+                fd.write('    union {\n')
+                fd.write('        const ' + interface_name + '_inf_t *inf;\n')
+                fd.write('        ' + base_name + '_t ' + member + ';\n')
+                fd.write('    };\n')
+            else:
+                fd.write('    const ' + interface_name + '_inf_t *inf;\n')
             for variable in interface.findall('variable'):
                 if variable.findall('description'):
                     fd.write('\n    /**\n')
@@ -241,7 +254,11 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                     fd.write('    ' +  prev + ' \\\n')
 
                 fd.write(') \\\n')
-                fd.write('(' + c.macro_param('instance') + ')->inf->' + method_name + '(')
+                null_safe = method.get('null_safe') == 'true'
+                inst = '(' + c.macro_param('instance') + ')'
+                if null_safe:
+                    fd.write('(' + inst + ' ? \\\n')
+                fd.write(inst + '->inf->' + method_name + '(')
 
                 prev = ''
                 for parameter in method.findall('parameter'):
@@ -257,7 +274,14 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                 if prev != '':
                     fd.write('    (' +  prev + ') \\\n')
 
-                fd.write(')\n')
+                if null_safe:
+                    ret_type = method.find('return').get('type')
+                    if ret_type == 'void':
+                        fd.write(') : (void)0)\n')
+                    else:
+                        fd.write(') : ' + inst + ')\n')
+                else:
+                    fd.write(')\n')
 
             fd.write('\n/** @} */\n\n')
 
@@ -846,6 +870,53 @@ def generate_objects(generated_by, prefix, name, tree, generated_dir_path):
     
 
 
+def resolve_extends(trees):
+    """Copy base interface methods to the front of each derived interface.
+
+    An interface with extends="<base>" gets the base's methods first, so its
+    inf starts with the base inf's layout. In copied parameter and return
+    types, "<base>_t" becomes "<derived>_t". Bases must come before derived
+    interfaces in the XML so the base instance struct is complete first.
+    """
+    interfaces = {}
+    for tree in trees:
+        for interface in tree.getroot().findall('interface'):
+            interfaces[interface.get('name')] = interface
+    for tree in trees:
+        for interface in tree.getroot().findall('interface'):
+            base_name = interface.get('extends')
+            if base_name is None:
+                continue
+            base = interfaces.get(base_name)
+            if base is None:
+                msg.error_exit(interface.get('name') + ' extends unknown '
+                    'interface ' + base_name)
+            if base.get('extends') is not None:
+                msg.error_exit('Only one level of extends is supported: ' +
+                    base_name)
+            own = set(m.get('name') for m in interface.findall('method'))
+            derived_t = interface.get('name') + '_t'
+            base_t = base_name + '_t'
+            insert_at = 0
+            for i, child in enumerate(list(interface)):
+                if child.tag == 'method':
+                    insert_at = i
+                    break
+                insert_at = i + 1
+            for method in base.findall('method'):
+                if method.get('name') in own:
+                    msg.error_exit(interface.get('name') + ' redefines '
+                        'inherited method ' + method.get('name'))
+                copy = copy_module.deepcopy(method)
+                copy.set('inherited_from', base_name)
+                for node in copy.iter():
+                    if node.tag in ('parameter', 'return') and node.get('type'):
+                        node.set('type', node.get('type').replace(
+                            base_t, derived_t))
+                interface.insert(insert_at, copy)
+                insert_at += 1
+
+
 def generate(generated_by, prefix, interfaces_dir_path, generated_dir_path, copyright):
 
     # Make sure generated/ directory structure exists
@@ -855,14 +926,16 @@ def generate(generated_by, prefix, interfaces_dir_path, generated_dir_path, copy
 
     # Process *.xml interface files in optional interfaces dir.
     if interfaces_dir_path is not None and os.path.exists(interfaces_dir_path):
+        trees = []
         for file in sorted(os.listdir(interfaces_dir_path)):
             if fnmatch.fnmatch(file, '*.xml'):
-                tree = ET.parse(interfaces_dir_path + file)
-                name = file[:-4]
-                generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright)
-                generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, copyright)
-                generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_path, copyright)
-                generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path, copyright)
-                generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path)
-                generate_skeleton_header(generated_by, prefix, generated_dir_path, copyright)
-                generate_objects(generated_by, prefix, name, tree, generated_dir_path)
+                trees.append((file[:-4], ET.parse(interfaces_dir_path + file)))
+        resolve_extends([tree for name, tree in trees])
+        for name, tree in trees:
+            generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright)
+            generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, copyright)
+            generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_path, copyright)
+            generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path, copyright)
+            generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path)
+            generate_skeleton_header(generated_by, prefix, generated_dir_path, copyright)
+            generate_objects(generated_by, prefix, name, tree, generated_dir_path)

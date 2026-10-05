@@ -37,7 +37,7 @@ impl_current_object__value;
 
 static const afw_object_t
 impl_current_object = {
-    &impl_afw_object_inf,
+    {&impl_afw_object_inf},
     NULL,
     (const afw_value_t *)&impl_current_object__value,
     {
@@ -81,12 +81,13 @@ impl_afw_object_release (
 /*
  * Implementation of method get_reference of interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference (
     const afw_object_t * self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
+    return (const afw_object_t *)self;
 }
 
 /*

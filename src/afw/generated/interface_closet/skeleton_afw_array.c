@@ -18,10 +18,10 @@
 #include "afw_array_impl_declares.h"
 
 /*
- * Implementation of method release for interface afw_array.
+ * Implementation of method get_reference for interface afw_array.
  */
-void
-impl_afw_array_release(
+const afw_array_t *
+impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
@@ -30,10 +30,10 @@ impl_afw_array_release(
 }
 
 /*
- * Implementation of method get_reference for interface afw_array.
+ * Implementation of method release for interface afw_array.
  */
 void
-impl_afw_array_get_reference(
+impl_afw_array_release(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {

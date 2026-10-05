@@ -492,8 +492,9 @@ def write_h_section(fd, prefix, obj):
         if id in ('null', 'boolean'):
             fd.write(' * Kind: permanent. Release is a no-op.\n')
         elif id in ('object', 'array'):
-            fd.write(' * Kind: fully managed wrapper; the ' + id + ' instance is the\n')
-            fd.write(' * counted thing. Caller releases (RC 1).\n')
+            fd.write(' * Kind: fully managed. Caller releases. For a fully managed\n')
+            fd.write(' * ' + id + ', returns its own value face (one count with the\n')
+            fd.write(' * ' + id + '); otherwise a wrapper that references it.\n')
         else:
             fd.write(' * Kind: fully managed. Caller releases (RC 1).\n')
         fd.write(' */\n')
@@ -1086,10 +1087,10 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_' + id + '_inf\n')
         if id in ('object', 'array') or obj.get('scalar', False):
-            fd.write('#define impl_afw_value_optional_release '
+            fd.write('#define impl_afw_value_release '
                      'impl_afw_value_unmanaged_optional_release\n')
         else:
-            fd.write('#define impl_afw_value_optional_release NULL\n')
+            fd.write('#define impl_afw_value_release afw_value_not_counted_release\n')
         fd.write('#define impl_afw_value_get_reference impl_afw_value_get_reference\n')
         if id in ('object', 'array') or obj.get('scalar', False):
             fd.write('#define impl_afw_value_get_assignable_value '
@@ -1102,7 +1103,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
-        fd.write('#undef impl_afw_value_optional_release\n')
+        fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
 
@@ -1113,7 +1114,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('/* get_reference / get_assignable_value bump. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "managed_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_' + id + '_inf\n')
-        fd.write('#define impl_afw_value_optional_release impl_afw_value_managed_optional_release\n')
+        fd.write('#define impl_afw_value_release impl_afw_value_managed_optional_release\n')
         fd.write('#define impl_afw_value_get_reference impl_afw_value_managed_get_reference\n')
         fd.write('#define impl_afw_value_get_assignable_value '
                  'impl_afw_value_get_assignable_via_reference\n')
@@ -1121,7 +1122,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
-        fd.write('#undef impl_afw_value_optional_release\n')
+        fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
@@ -1132,7 +1133,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('/* last release frees slice header via the stored p. */\n')
             fd.write('#define AFW_IMPLEMENTATION_ID "managed_slice_' + id + '"\n')
             fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_' + id + '_inf\n')
-            fd.write('#define impl_afw_value_optional_release '
+            fd.write('#define impl_afw_value_release '
                      'impl_afw_value_managed_slice_optional_release\n')
             fd.write('#define impl_afw_value_get_reference '
                      'impl_afw_value_managed_slice_get_reference\n')
@@ -1142,7 +1143,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('#include "afw_value_impl_declares.h"\n')
             fd.write('#undef AFW_IMPLEMENTATION_ID\n')
             fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
-            fd.write('#undef impl_afw_value_optional_release\n')
+            fd.write('#undef impl_afw_value_release\n')
             fd.write('#undef impl_afw_value_get_reference\n')
             fd.write('#undef impl_afw_value_get_assignable_value\n')
             fd.write('#undef AFW_VALUE_INF_ONLY\n')
@@ -1156,7 +1157,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('/* get_reference / get_assignable_value as-is. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "permanent_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
-        fd.write('#define impl_afw_value_optional_release NULL\n')
+        fd.write('#define impl_afw_value_release afw_value_not_counted_release\n')
         fd.write('#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference\n')
         if id in ('object', 'array'):
             fd.write('#define impl_afw_value_get_assignable_value '
@@ -1168,7 +1169,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
-        fd.write('#undef impl_afw_value_optional_release\n')
+        fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
@@ -1181,7 +1182,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define AFW_IMPLEMENTATION_ID "permanent_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
-        fd.write('#define impl_afw_value_optional_release NULL\n')
+        fd.write('#define impl_afw_value_release afw_value_not_counted_release\n')
         fd.write('#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference\n')
         fd.write('#define impl_afw_value_get_assignable_value '
                  'impl_afw_value_get_assignable_via_reference\n')
@@ -1189,7 +1190,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
-        fd.write('#undef impl_afw_value_optional_release\n')
+        fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
        
@@ -1217,7 +1218,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('static const afw_runtime_object_indirect_t\n')
     fd.write('impl_data_type_object_' + id + ' = {\n')
     fd.write('    {\n')
-    fd.write('        &afw_runtime_inf__AdaptiveDataType_,\n')
+    fd.write('        {&afw_runtime_inf__AdaptiveDataType_},\n')
     fd.write('        NULL,\n')
     fd.write('        (const afw_value_t *)&' + value_label + ',\n')
     fd.write('        {\n')
@@ -1370,7 +1371,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('const afw_array_from_values_self_t\n')
         fd.write('impl_empty_array_of_' + id + ' = {\n')
         fd.write('    {\n')
-        fd.write('        &afw_array_permanent_from_values_inf,\n')
+        fd.write('        {&afw_array_permanent_from_values_inf},\n')
         fd.write('        NULL,\n')
         fd.write('        (const afw_value_t *)&impl_value_empty_array_of_' + id + '\n')
         fd.write('    },\n')
@@ -1582,6 +1583,13 @@ def write_c_section(fd, prefix, obj):
                     fd.write('            "managed object value",\n')
                     fd.write('            xctx);\n')
                     fd.write('    }\n')
+                    fd.write('    /* One count: a fully managed object\'s own value face\n')
+                    fd.write('     * shares its count, so no separate wrapper. */\n')
+                    fd.write('    if (internal->value &&\n')
+                    fd.write('        internal->value->inf == &afw_value_managed_object_inf)\n')
+                    fd.write('    {\n')
+                    fd.write('        return afw_value_get_reference(internal->value, xctx);\n')
+                    fd.write('    }\n')
                     fd.write('    afw_object_get_reference(internal, xctx);\n')
                 elif id == 'array':
                     fd.write('    if (!internal) {\n')
@@ -1589,6 +1597,13 @@ def write_c_section(fd, prefix, obj):
                     fd.write('            "internal array required for "\n')
                     fd.write('            "managed array value",\n')
                     fd.write('            xctx);\n')
+                    fd.write('    }\n')
+                    fd.write('    /* One count: a fully managed array\'s own value face\n')
+                    fd.write('     * shares its count, so no separate wrapper. */\n')
+                    fd.write('    if (internal->value &&\n')
+                    fd.write('        internal->value->inf == &afw_value_managed_array_inf)\n')
+                    fd.write('    {\n')
+                    fd.write('        return afw_value_get_reference(internal->value, xctx);\n')
                     fd.write('    }\n')
                     fd.write('    afw_array_get_reference(internal, xctx);\n')
                 fd.write('    p = p->managed_p;\n')
@@ -1658,10 +1673,11 @@ def write_c_section(fd, prefix, obj):
             fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
             fd.write('    v->internal.s = base->s + offset;\n')
             fd.write('    v->internal.len = len;\n')
-            fd.write('    v->containing_value = containing;\n')
             fd.write('    v->p = p;\n')
             fd.write('    v->reference_count = 1;\n')
-            fd.write('    afw_value_add_reference(&containing->pub, xctx);\n')
+            fd.write('    v->containing_value = (const afw_value_' + id +
+                     '_managed_t *)\n')
+            fd.write('        afw_value_get_reference(&containing->pub, xctx);\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
         elif ctype == 'afw_memory_t':
@@ -1708,10 +1724,11 @@ def write_c_section(fd, prefix, obj):
             fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
             fd.write('    v->internal.ptr = base->ptr + offset;\n')
             fd.write('    v->internal.size = size;\n')
-            fd.write('    v->containing_value = containing;\n')
             fd.write('    v->p = p;\n')
             fd.write('    v->reference_count = 1;\n')
-            fd.write('    afw_value_add_reference(&containing->pub, xctx);\n')
+            fd.write('    v->containing_value = (const afw_value_' + id +
+                     '_managed_t *)\n')
+            fd.write('        afw_value_get_reference(&containing->pub, xctx);\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
 

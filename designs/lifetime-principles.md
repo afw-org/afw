@@ -39,6 +39,8 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 - **Mutable means `get_setter` returns a setter.** `set_immutable` turns it off. There is no other mutability mechanism.
 - **Hand-off.** A reference-counted object's builder fills it (properties, meta) and hands it to its consumer; after that it is immutable and the consumer releases it. Adapter results are handed off at the end of `afw_adapter_internal_process_object_from_adapter`.
 - **Owner.** `p->managed_p` is the owner of fully managed values: the job heap for a request, `adapter->p` when evaluating in adapter config. A fully managed value has one owner; counts are not atomic. Values crossing owners are copied, or borrowed when the owner outlives the borrower. (Temporary atomic counts or locks are acceptable as a bridge until worker threads, #343.)
+- **`afw_reference`.** `afw_value`, `afw_object`, and `afw_array` extend the `afw_reference` interface (`extends="afw_reference"` in `afw_interface.xml`): their infs start with `get_reference` and `release`, and an instance can be used as `afw_reference_t` (`&x->ref`). `get_reference` returns a pointer typed as the interface it was called through. Both methods are mandatory; values that are not counted (permanent, compiler values) share `afw_value_not_counted_get_reference` / `afw_value_not_counted_release`.
+- **One count, matching release.** An object value and its object share one count (the same for arrays): `afw_value_<object|array>_create_managed` of a fully managed instance returns its own value face. Still, **release through the interface you referenced through** (`afw_object_get_reference` → `afw_object_release`; value → value).
 - **No exceptions.** Each inf enforces its kind's rules. Code outside an inf does not inspect the inf or `is_managed` to decide what to do.
 - **Every create function's doc comment says which kind it makes and who releases.**
 
@@ -46,6 +48,8 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 
 - A pooled object or array still pins its pool on `get_reference` (runtime `set_object`, adapter results). Nothing releases those pins. To remove.
 - `get_reference` of a pooled scalar or object throws today; `get_assignable_value` is the copy. They fold into one `get_reference` (#476 step 2).
+- Outside checks marked "#476 step 2 removes this check" (`afw_value_is_not_counted` in `afw_pool.c`, `afw_pool_scope.c`, `afw_value_slot_take`) keep the old "no release method" meaning until then. Also `afw_runtime.c` compares an object's `release`.
+- A value wrapper over a pooled object or array (`afw_value_<object|array>_managed_t`) still has its own count; step 2 replaces it with a fully managed copy and deletes the wrapper type.
 - Reference-counted adapter results are not yet made immutable at hand-off (#476 S6 showed nothing changes them after).
 
 ---

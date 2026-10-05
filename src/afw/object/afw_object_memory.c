@@ -32,7 +32,7 @@
 static void
 impl_afw_object_managed_release(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
-static void
+static const afw_object_t *
 impl_afw_object_managed_get_reference(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
 static void
@@ -829,7 +829,7 @@ impl_afw_object_release(
 /*
  * Implementation of method get_reference of interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
@@ -842,7 +842,7 @@ impl_afw_object_get_reference(
         if (self->pub.p) {
             afw_pool_get_reference(self->pub.p, xctx);
         }
-        return;
+        return (const afw_object_t *)self;
     }
 
     /*
@@ -852,11 +852,12 @@ impl_afw_object_get_reference(
     if (self->managed_by_entity) {
         AFW_OBJECT_GET_ENTITY(entity, &self->pub);
         afw_object_get_reference(entity, xctx);
-        return;
+        return (const afw_object_t *)self;
     }
 
     /* new_p / cede_p: pin the pool. Value inf still throws. */
     afw_pool_get_reference(self->pub.p, xctx);
+    return (const afw_object_t *)self;
 }
 
 /*
@@ -1294,13 +1295,14 @@ impl_afw_object_managed_release(
 }
 
 
-void
+const afw_object_t *
 impl_afw_object_managed_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)xctx;
     self->reference_count++;
+    return (const afw_object_t *)self;
 }
 
 

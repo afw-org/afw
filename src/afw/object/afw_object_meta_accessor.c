@@ -94,13 +94,14 @@ impl_afw_object_release(
 /*
  * Implementation of method get_reference of interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is no intent to implement this method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+    return (const afw_object_t *)self;
 }
 
 /*

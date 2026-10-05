@@ -108,7 +108,7 @@ afw_value_closure_binding_create_if_needed(
  * Implementation of method optional_release for interface afw_value.
  */
 void
-impl_afw_value_optional_release(
+impl_afw_value_release(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {

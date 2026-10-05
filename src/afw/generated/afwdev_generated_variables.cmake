@@ -127,6 +127,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_object_impl_declares.h
     generated/afw_object_setter_impl_declares.h
     generated/afw_pool_impl_declares.h
+    generated/afw_reference_impl_declares.h
     generated/afw_request_handler_factory_impl_declares.h
     generated/afw_request_handler_impl_declares.h
     generated/afw_request_impl_declares.h

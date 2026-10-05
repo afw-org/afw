@@ -178,12 +178,13 @@ impl_afw_object_release(
 /*
  * Implementation of method get_reference for interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do? */
+    return (const afw_object_t *)self;
 }
 
 /*

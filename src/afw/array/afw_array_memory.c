@@ -34,7 +34,7 @@ typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
 static void
 impl_afw_array_managed_release(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
-static void
+static const afw_array_t *
 impl_afw_array_managed_get_reference(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
 static void
@@ -521,7 +521,7 @@ impl_afw_array_release(
 /*
  * Implementation of method get_reference of interface afw_array.
  */
-void
+const afw_array_t *
 impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
@@ -529,10 +529,11 @@ impl_afw_array_get_reference(
     if (self->unmanaged) {
         self->reference_count++;
         afw_pool_get_reference(self->pub.p, xctx);
-        return;
+        return (const afw_array_t *)self;
     }
     /* new_p / cede_p: pin the pool. Value inf still throws. */
     afw_pool_get_reference(self->pub.p, xctx);
+    return (const afw_array_t *)self;
 }
 
 
@@ -1181,13 +1182,14 @@ impl_afw_array_managed_release(
 }
 
 
-void
+const afw_array_t *
 impl_afw_array_managed_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)xctx;
     self->reference_count++;
+    return (const afw_array_t *)self;
 }
 
 

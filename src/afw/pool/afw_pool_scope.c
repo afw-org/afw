@@ -856,7 +856,8 @@ afw_pool_scope_get_assignable_for_p_lifetime(
     if (!value || afw_value_is_void(value)) {
         return value ? value : afw_value_void;
     }
-    if (!value->inf || !value->inf->optional_release) {
+    /* #476 step 2 removes this check. */
+    if (afw_value_is_not_counted(value)) {
         return value;
     }
     if (!p) {

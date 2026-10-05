@@ -111,14 +111,14 @@ impl_afw_value_get_assignable_value(
 #define AFW_IMPLEMENTATION_ID "x500Name"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_x500Name_inf
-#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
+#define impl_afw_value_release impl_afw_value_unmanaged_optional_release
 #define impl_afw_value_get_reference impl_afw_value_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 
@@ -133,14 +133,14 @@ impl_afw_value_get_assignable_value(
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_x500Name"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_x500Name_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
+#define impl_afw_value_release impl_afw_value_managed_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
@@ -150,14 +150,14 @@ impl_afw_value_get_assignable_value(
 /* last release frees slice header via the stored p. */
 #define AFW_IMPLEMENTATION_ID "managed_slice_x500Name"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_x500Name_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_slice_optional_release
+#define impl_afw_value_release impl_afw_value_managed_slice_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_slice_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
@@ -172,14 +172,14 @@ impl_afw_value_get_assignable_value(
 /* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_x500Name"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_x500Name_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_release afw_value_not_counted_release
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
@@ -207,7 +207,7 @@ impl_data_type_object_x500Name__value;
 static const afw_runtime_object_indirect_t
 impl_data_type_object_x500Name = {
     {
-        &afw_runtime_inf__AdaptiveDataType_,
+        {&afw_runtime_inf__AdaptiveDataType_},
         NULL,
         (const afw_value_t *)&impl_data_type_object_x500Name__value,
         {
@@ -269,7 +269,7 @@ afw_data_type_x500Name_direct = {
 const afw_array_from_values_self_t
 impl_empty_array_of_x500Name = {
     {
-        &afw_array_permanent_from_values_inf,
+        {&afw_array_permanent_from_values_inf},
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_x500Name
     },
@@ -437,10 +437,10 @@ afw_value_x500Name_create_managed_slice(
     v->inf = &afw_value_managed_slice_x500Name_inf;
     v->internal.s = base->s + offset;
     v->internal.len = len;
-    v->containing_value = containing;
     v->p = p;
     v->reference_count = 1;
-    afw_value_add_reference(&containing->pub, xctx);
+    v->containing_value = (const afw_value_x500Name_managed_t *)
+        afw_value_get_reference(&containing->pub, xctx);
     return &v->pub;
 }
 

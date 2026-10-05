@@ -13,8 +13,8 @@
 
 #include "afw_internal.h"
 
-#define impl_afw_value_optional_release NULL
-#define impl_afw_value_get_reference NULL
+#define impl_afw_value_release afw_value_not_counted_release
+#define impl_afw_value_get_reference afw_value_not_counted_get_reference
 #define impl_afw_value_get_assignable_value NULL
 
 #define impl_afw_value_get_evaluated_meta \

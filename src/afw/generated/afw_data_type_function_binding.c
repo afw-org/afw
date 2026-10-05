@@ -86,14 +86,14 @@ impl_afw_value_get_assignable_via_reference(
 #define AFW_IMPLEMENTATION_ID "function"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_function_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_release afw_value_not_counted_release
 #define impl_afw_value_get_reference impl_afw_value_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 
@@ -108,14 +108,14 @@ impl_afw_value_get_assignable_via_reference(
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_function"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_function_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
+#define impl_afw_value_release impl_afw_value_managed_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
@@ -130,14 +130,14 @@ impl_afw_value_get_assignable_via_reference(
 /* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_function"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_function_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_release afw_value_not_counted_release
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
@@ -165,7 +165,7 @@ impl_data_type_object_function__value;
 static const afw_runtime_object_indirect_t
 impl_data_type_object_function = {
     {
-        &afw_runtime_inf__AdaptiveDataType_,
+        {&afw_runtime_inf__AdaptiveDataType_},
         NULL,
         (const afw_value_t *)&impl_data_type_object_function__value,
         {
@@ -227,7 +227,7 @@ afw_data_type_function_direct = {
 const afw_array_from_values_self_t
 impl_empty_array_of_function = {
     {
-        &afw_array_permanent_from_values_inf,
+        {&afw_array_permanent_from_values_inf},
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_function
     },

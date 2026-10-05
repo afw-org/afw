@@ -18,10 +18,10 @@
 #include "afw_value_impl_declares.h"
 
 /*
- * Implementation of method optional_release for interface afw_value.
+ * Implementation of method get_reference for interface afw_value.
  */
-void
-impl_afw_value_optional_release(
+const afw_value_t *
+impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
@@ -30,10 +30,10 @@ impl_afw_value_optional_release(
 }
 
 /*
- * Implementation of method get_reference for interface afw_value.
+ * Implementation of method release for interface afw_value.
  */
-const afw_value_t *
-impl_afw_value_get_reference(
+void
+impl_afw_value_release(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {

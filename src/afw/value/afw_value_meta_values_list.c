@@ -43,13 +43,14 @@ impl_afw_array_release(
 }
 
 
-void
+const afw_array_t *
 impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)self;
     (void)xctx;
+    return (const afw_array_t *)self;
 }
 
 

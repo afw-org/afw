@@ -56,7 +56,7 @@ impl_assignable_get_assignable_value(
     NULL, \
     true
 #define AFW_VALUE_INF_ONLY
-#define impl_afw_value_optional_release impl_assignable_optional_release
+#define impl_afw_value_release impl_assignable_optional_release
 #define impl_afw_value_get_reference impl_assignable_get_reference
 #define impl_afw_value_get_assignable_value \
     impl_assignable_get_assignable_value
@@ -71,7 +71,7 @@ impl_assignable_get_assignable_value(
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef impl_afw_value_create_iterator
@@ -98,7 +98,7 @@ impl_managed_get_assignable_value(
     NULL, \
     true
 #define AFW_VALUE_INF_ONLY
-#define impl_afw_value_optional_release impl_managed_optional_release
+#define impl_afw_value_release impl_managed_optional_release
 #define impl_afw_value_get_reference impl_managed_get_reference
 #define impl_afw_value_get_assignable_value \
     impl_managed_get_assignable_value
@@ -113,7 +113,7 @@ impl_managed_get_assignable_value(
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef impl_afw_value_create_iterator
@@ -122,7 +122,7 @@ impl_managed_get_assignable_value(
 
 
 void
-impl_afw_value_optional_release(
+impl_afw_value_release(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {

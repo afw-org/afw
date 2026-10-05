@@ -18,10 +18,10 @@
 #include "afw_object_impl_declares.h"
 
 /*
- * Implementation of method release for interface afw_object.
+ * Implementation of method get_reference for interface afw_object.
  */
-void
-impl_afw_object_release(
+const afw_object_t *
+impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
@@ -30,10 +30,10 @@ impl_afw_object_release(
 }
 
 /*
- * Implementation of method get_reference for interface afw_object.
+ * Implementation of method release for interface afw_object.
  */
 void
-impl_afw_object_get_reference(
+impl_afw_object_release(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {

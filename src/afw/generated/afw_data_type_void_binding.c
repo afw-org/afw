@@ -65,14 +65,14 @@ impl_afw_value_get_assignable_via_reference(
 #define AFW_IMPLEMENTATION_ID "permanent_void"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_void_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_release afw_value_not_counted_release
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 
@@ -99,7 +99,7 @@ impl_data_type_object_void__value;
 static const afw_runtime_object_indirect_t
 impl_data_type_object_void = {
     {
-        &afw_runtime_inf__AdaptiveDataType_,
+        {&afw_runtime_inf__AdaptiveDataType_},
         NULL,
         (const afw_value_t *)&impl_data_type_object_void__value,
         {

@@ -24,7 +24,7 @@
 static void
 impl_afw_array_managed_from_values_release(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
-static void
+static const afw_array_t *
 impl_afw_array_managed_from_values_get_reference(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
 
@@ -475,13 +475,14 @@ impl_afw_array_release (
 }
 
 
-void
+const afw_array_t *
 impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)self;
     (void)xctx;
+    return (const afw_array_t *)self;
 }
 
 
@@ -515,13 +516,14 @@ impl_afw_array_managed_from_values_release(
 }
 
 
-void
+const afw_array_t *
 impl_afw_array_managed_from_values_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)xctx;
     self->reference_count++;
+    return (const afw_array_t *)self;
 }
 
 

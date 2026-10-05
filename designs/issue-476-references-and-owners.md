@@ -233,6 +233,14 @@ Learned for step 1:
 - **Extensions:** low priority. afwdev may keep the core XML (or a resolved form) so another package's interface can extend `afw_reference`.
 - **T1** (cross-thread release at `service_stop`) is fixed alongside step 1 or 2.
 
+**Step 1 status (2026-10-05, uncommitted on `issue-476-step1-reference`).**
+
+- 1a: `afw_reference` in `afw_interface.xml` (first interface, `instance_member="ref"`); `resolve_extends()` and NULL-safe macros in `interfaces.py`; `afw_value` extends it; `optional_release` → `release` (mandatory); 54 NULL `release` and 16 NULL `get_reference` slots now `afw_value_not_counted_*`. `afw_value_add_reference` removed (only the generated string slice used it; it now stores `get_reference`'s result). Hand-written NULL-safe `afw_value_release()` replaced by the generated macro.
+- 1b: `afw_object` and `afw_array` extend it; 23 `get_reference` implementations return their own pointer type. Hand-written positional infs (`AFW_RUNTIME_OBJECT_INF`, `afw_runtime_const_meta.c`) reordered. Static initializers of `afw_object_t` / `afw_array_t` need `{&inf}` now that `inf` is in a union (`const_objects.py`, `data_type_bindings.py`, `function_bindings.py`, `afw_environment_registry_object.c`).
+- 1c: `afw_value_<object|array>_create_managed` of a fully managed instance returns its own face (one count); wrappers remain only over pooled instances (step 2 removes them).
+- 1d (partial): the four outside "has a release method" checks become `afw_value_is_not_counted()` with "#476 step 2 removes this check"; `afw_value_slot_take` needed it immediately (permanents now have a `release`).
+- Gates: build clean (core and extensions), suite 4609 passed, region free list 0: 4609 passed.
+
 ### Steps (each a small branch off `develop`, merged when green)
 
 | # | Step | Touches pool? |
