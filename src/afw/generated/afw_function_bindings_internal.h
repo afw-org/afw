@@ -7048,9 +7048,10 @@ afw_function_definition_wrap_literal_array;
  * @brief Adaptive Function `wrap_literal_array`
  * @param x function execute parameter.
  *
- * Evaluate an array value and clone_or_reference it (array_hold: memory face
- * over the instance). Remaining explicit wrap_literal_array() calls; the
- * compiler no longer emits this. Not normal author surface.
+ * Evaluate an array value and return get_assignable_value of it (a managed copy
+ * of an unmanaged or permanent array, or the same managed array). Remaining
+ * explicit wrap_literal_array() calls; the compiler no longer emits this. Not
+ * normal author surface.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -7065,12 +7066,11 @@ afw_function_definition_wrap_literal_array;
  *
  * Parameters:
  *
- *   array - (array) Array to evaluate and hold (typically a constant array
- *       literal).
+ *   array - (array) Array to evaluate (typically a constant array literal).
  *
  * Returns:
  *
- *   (array) A holdable memory-wrapper array face over the evaluated base.
+ *   (array) An array that is safe to mutate and store. It lasts for the caller.
  */
 const afw_value_t *
 afw_function_execute_wrap_literal_array(
@@ -7084,8 +7084,9 @@ afw_function_definition_wrap_literal_object;
  * @brief Adaptive Function `wrap_literal_object`
  * @param x function execute parameter.
  *
- * Evaluate an object value and clone_or_reference it (object_hold: memory face
- * over the instance). Remaining explicit wrap_literal_object() calls; the
+ * Evaluate an object value and return get_assignable_value of it (a managed
+ * copy of an unmanaged object, the same managed object, or a managed wrapper
+ * over a permanent object). Remaining explicit wrap_literal_object() calls; the
  * compiler no longer emits this. Not normal author surface.
  *
  * This function is not pure, so it may return a different result
@@ -7101,12 +7102,12 @@ afw_function_definition_wrap_literal_object;
  *
  * Parameters:
  *
- *   object - (object) Object to evaluate and hold (typically a constant object
- *       literal).
+ *   object - (object) Object to evaluate (typically a constant object literal).
  *
  * Returns:
  *
- *   (object) A holdable memory-wrapper object face over the evaluated base.
+ *   (object) An object that is safe to mutate and store. It lasts for the
+ *       caller.
  */
 const afw_value_t *
 afw_function_execute_wrap_literal_object(

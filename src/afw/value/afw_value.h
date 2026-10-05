@@ -1275,32 +1275,6 @@ afw_value_clone_managed(
 
 
 /**
- * @brief `clone_or_reference` for an unmanaged or permanent object value.
- *
- * Already a memory face: hold the instance, return the same value.
- * Otherwise wrap (mutable overlay) and hold the face. Isolation lives
- * here, not compiler wrap_literal emit. See designs/issue-2-hold-in-inf.md.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_object_hold(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief `clone_or_reference` for an unmanaged array value.
- * @see afw_value_object_hold()
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_array_hold(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-
-/**
  * @brief Drop a hold (NULL-safe `optional_release`).
  * @param value to release, or NULL.
  * @param xctx of caller.

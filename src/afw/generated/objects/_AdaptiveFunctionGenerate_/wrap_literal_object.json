@@ -1,15 +1,15 @@
 {
     "afwCamelCaseFunctionLabel": "afwWrapLiteralObject",
-    "brief": "clone_or_reference an evaluated object (memory face)",
+    "brief": "Evaluate an object and return get_assignable_value of it",
     "camelCaseFunctionLabel": "wrapLiteralObject",
     "category": "compiler_internal",
-    "description": "Evaluate an object value and clone_or_reference it (object_hold: memory face over the instance). Remaining explicit wrap_literal_object() calls; the compiler no longer emits this. Not normal author surface.",
+    "description": "Evaluate an object value and return get_assignable_value of it (a managed copy of an unmanaged object, the same managed object, or a managed wrapper over a permanent object). Remaining explicit wrap_literal_object() calls; the compiler no longer emits this. Not normal author surface.",
     "functionId": "wrap_literal_object",
     "functionLabel": "wrap_literal_object",
     "parameters": [
         {
             "dataType": "object",
-            "description": "Object to evaluate and hold (typically a constant object literal).",
+            "description": "Object to evaluate (typically a constant object literal).",
             "name": "object",
             "optional": false
         }
@@ -17,7 +17,7 @@
     "pure": false,
     "returns": {
         "dataType": "object",
-        "description": "A holdable memory-wrapper object face over the evaluated base."
+        "description": "An object that is safe to mutate and store. It lasts for the caller."
     },
     "scriptSupport": true
 }

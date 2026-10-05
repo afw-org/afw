@@ -646,18 +646,19 @@ def while_(session, condition, body, label=None):
 
 def wrap_literal_array(session, array):
     """
-    clone_or_reference an evaluated array (memory face)
+    Evaluate an array and return get_assignable_value of it
 
-    Evaluate an array value and clone_or_reference it (array_hold: memory face
-    over the instance). Remaining explicit wrap_literal_array() calls; the
-    compiler no longer emits this. Not normal author surface.
+    Evaluate an array value and return get_assignable_value of it (a managed
+    copy of an unmanaged or permanent array, or the same managed array).
+    Remaining explicit wrap_literal_array() calls; the compiler no longer
+    emits this. Not normal author surface.
 
     Args:
-        array (list): Array to evaluate and hold (typically a constant array
-            literal).
+        array (list): Array to evaluate (typically a constant array literal).
 
     Returns:
-        list: A holdable memory-wrapper array face over the evaluated base.
+        list: An array that is safe to mutate and store. It lasts for the
+        caller.
     """
 
     request = session.Request()
@@ -677,18 +678,20 @@ def wrap_literal_array(session, array):
 
 def wrap_literal_object(session, object):
     """
-    clone_or_reference an evaluated object (memory face)
+    Evaluate an object and return get_assignable_value of it
 
-    Evaluate an object value and clone_or_reference it (object_hold: memory
-    face over the instance). Remaining explicit wrap_literal_object() calls;
+    Evaluate an object value and return get_assignable_value of it (a managed
+    copy of an unmanaged object, the same managed object, or a managed wrapper
+    over a permanent object). Remaining explicit wrap_literal_object() calls;
     the compiler no longer emits this. Not normal author surface.
 
     Args:
-        object (dict): Object to evaluate and hold (typically a constant
-            object literal).
+        object (dict): Object to evaluate (typically a constant object
+            literal).
 
     Returns:
-        dict: A holdable memory-wrapper object face over the evaluated base.
+        dict: An object that is safe to mutate and store. It lasts for the
+        caller.
     """
 
     request = session.Request()
