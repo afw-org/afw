@@ -16,7 +16,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 **Return contract:** **caller does not release** or **caller releases**. Do not name that contract unmanaged, managed, temp, extra-hold, pin, or “expects unmanaged.”
 
-**Inf:** **unmanaged** lives in a `p` and dies with that `p` (no RC). **Managed** needs RC at least 1. **Permanent** has no RC; `release` is a no-op.
+**Kind:** every value, object, and array is one of four kinds: **permanent**, **pooled**, **reference counted**, **fully managed** (next section). Code names still say **unmanaged** (= pooled) and **managed** (= fully managed); `create_unmanaged_new_p` / `create_unmanaged_cede_p` make **reference counted** objects despite the name. Names change when a #476 step touches them.
 
 **Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`) are leftovers in the tree, not a second protocol.
 
@@ -24,14 +24,42 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 ---
 
+## Four kinds
+
+Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-references-and-owners.md`](issue-476-references-and-owners.md)). A caller only needs to know whether it **owns a reference**: permanent and pooled are not counted; reference counted and fully managed are.
+
+| Kind | Lives in | `get_reference` | `release` | Mutable after hand-off | Cycle collector |
+|---|---|---|---|---|---|
+| **Permanent** | compiled in (object code), registered constants | no-op, returns self | no-op | no | never walked |
+| **Pooled** | a pool it does not own; dies with that pool | returns a fully managed **copy** | **error** | only while its builder holds it | never walked |
+| **Reference counted** | its own pool (`new_p` / `cede_p`); its count is that pool's count | count bump | last release destroys its pool and everything in it | **no** | dead end (holds only plain values in its own pool) |
+| **Fully managed** | the owner pool (`p->managed_p`); every value it holds is itself counted | count bump | last release releases each value it holds, then frees itself | yes (replaced values are released) | walked |
+
+- **Reference counted** vs **fully managed**: same caller contract; they differ in how deep the counting goes. Reference counted is for build, hand off, read, release (adapter results, journal entries, conf objects). Fully managed is for values that change or outlive a scope (script variables, script-built containers). A script that changes a reference-counted object gets a fully managed face (#17).
+- **Mutable means `get_setter` returns a setter.** `set_immutable` turns it off. There is no other mutability mechanism.
+- **Hand-off.** A reference-counted object's builder fills it (properties, meta) and hands it to its consumer; after that it is immutable and the consumer releases it. Adapter results are handed off at the end of `afw_adapter_internal_process_object_from_adapter`.
+- **Owner.** `p->managed_p` is the owner of fully managed values: the job heap for a request, `adapter->p` when evaluating in adapter config. A fully managed value has one owner; counts are not atomic. Values crossing owners are copied, or borrowed when the owner outlives the borrower. (Temporary atomic counts or locks are acceptable as a bridge until worker threads, #343.)
+- **No exceptions.** Each inf enforces its kind's rules. Code outside an inf does not inspect the inf or `is_managed` to decide what to do.
+- **Every create function's doc comment says which kind it makes and who releases.**
+
+**Tree catching up (#476):**
+
+- A pooled object or array still pins its pool on `get_reference` (runtime `set_object`, adapter results). Nothing releases those pins. To remove.
+- `get_reference` of a pooled scalar or object throws today; `get_assignable_value` is the copy. They fold into one `get_reference` (#476 step 2).
+- Reference-counted adapter results are not yet made immutable at hand-off (#476 S6 showed nothing changes them after).
+
+---
+
 ## Two worlds
 
-| | Unmanaged | Managed |
+| | Unmanaged (pooled) | Managed (fully managed) |
 |---|---|---|
 | Where | dest `p` (evaluation `{ }` is `scope->p`) | dest `p->managed_p` |
 | Death | that pool bulk-frees | last RC: `release` every reference this value holds, `free_memory` every block it allocated (or last-release a pool it owns) |
 
-**Unmanaged has no references.** An unmanaged instance lives and dies with its pool. Its `get_reference` / `release` never touch a pool's RC. Anything that needs it past that pool calls `get_assignable_value` and gets a managed value. **Legacy still in the tree:** unmanaged memory objects and arrays still pin their pool on `get_reference` for C callers (adapter results, runtime `set_object`, the associative-array object store). That is a #2 follow-up, not a protocol to copy.
+**Pooled has no references.** A pooled instance lives and dies with its pool. Its `get_reference` / `release` never touch a pool's RC. Anything that needs it past that pool calls `get_assignable_value` and gets a fully managed value. **Legacy still in the tree:** pooled memory objects and arrays still pin their pool on `get_reference` for C callers (adapter results, runtime `set_object`). #476 S5 found ~13k such pins in the suite and **no** releases; removing them breaks only the model adapter `returnObject` path, which needs a copy, not a pin. Not a protocol to copy.
+
+A **reference-counted** object (`new_p` / `cede_p`) is not pooled: its own pool is its lifetime, and `get_reference` / `release` on it are correct. Its pool's parent is `p->managed_p`, so a missing release keeps it until the owner dies (#476: `get_object` never released its `journal_entry`).
 
 Pass dest `p`. Do not treat `xctx->p` as an implicit dest. `afw_xctx_*alloc`/`free` used to allocate in `xctx->p` (an older world where `xctx->p` was `managed_p`). Those macros are **gone** ([#443](https://github.com/afw-org/afw/issues/443) on `fix-443-xctx-alloc-dest-p`): `afw_pool_*` with dest `p` (managed values: `p->managed_p`; env-lifetime: `env->p`; stored on the xctx: `xctx->p`). Do not reintroduce them. `set_property_as_string_from_utf8_z` stores the pointer; the bytes must outlive the object.
 
@@ -41,7 +69,7 @@ Pass dest `p`. Do not treat `xctx->p` as an implicit dest. `afw_xctx_*alloc`/`fr
 
 An object or array **instance** has an `afw_value` as an instance variable. Script sees values. For a managed object/array, **instance RC is the managed lifetime**. The embedded value is not a second counter. Value `get_reference` / `release` last-release **the instance**. Last RC of the instance is the one walk.
 
-Unmanaged instance: value `get_reference` / `release` throw. Use `get_assignable_value`. A separate wrapper around an instance is another managed value that references the instance.
+Pooled instance: value `get_reference` / `release` throw. Use `get_assignable_value`. A separate wrapper around an instance is another managed value that references the instance.
 
 ---
 
@@ -122,7 +150,7 @@ Methods that return a held value are **caller does not release**. If the caller 
 
 **The error owns references** to its data and backtrace (`afw_error_set_data`, `afw_error_release_references`). They move with the error struct (`AFW_ERROR_COPY` / `AFW_ERROR_CLEAR_PARTIAL`) and are released at a caught `ENDTRY`, a new error set, or xctx release.
 
-**Open: closure reference cycles ([#458](https://github.com/afw-org/afw/issues/458)).** A frame slot that holds a closure whose captured scope chain includes that frame is a cycle (frame → slot → binding → captured scope → … → frame). Reference counting cannot reclaim it; the frame lives until xctx teardown. Local helper functions, `const f = function…`, an object in the frame holding a closure, and an inner-block closure stored in an outer slot all do this. Decision pending in #458.
+**Open: reference cycles ([#458](https://github.com/afw-org/afw/issues/458)).** Any loop of references among counted values is never freed by reference counting; it lives until xctx teardown. Closures are the common, expensive case (frame → slot → binding → captured scope → … → frame: local helper functions, `const f = function…`, an object in the frame holding a closure, an inner-block closure stored in an outer slot). Objects do it too: `o.self = o`, `a → b → c → a`, object → closure → frame → object. Plan: cycle collection by trial deletion, per owner ([#476](https://github.com/afw-org/afw/issues/476) step 5). Only fully managed containers, closure bindings, and scopes are walked; permanent, pooled, reference-counted values and scalars are dead ends.
 
 ---
 
@@ -134,7 +162,7 @@ Methods that return a held value are **caller does not release**. If the caller 
 4. Did a callee honor caller does not release with managed and forget to register last-release on dest `p`, register twice, or use `xctx->p`?
 5. Did a callee return unmanaged on a caller-releases contract?
 6. Does a release registered on a pool keep that same pool alive (directly, through a scope, or through a child pool's create reference)?
-7. Does a frame slot hold a value that references that frame (a closure cycle)?
+7. Does a counted value reference itself through other values (a cycle: closure in its own frame, `o.self = o`, …)?
 8. Does a managed value point into memory (a unit, another pool) it does not reference?
 
 Probes that find these are in [`agent-support.md`](agent-support.md) (*Leftover RC / pool never dies*).

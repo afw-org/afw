@@ -239,6 +239,8 @@ afw_value_as_null_internal(
  * Prefer afw_value_null instead of allocate+fill. This API still
  * allocates a pool header for rare callers that need a writable
  * afw_value_null_t; that is not the permanent singleton.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(afw_value_null_t *)
 afw_value_null_allocate(
@@ -256,6 +258,8 @@ afw_value_null_allocate(
  * Returns the permanent singleton afw_value_null (address identity).
  * Does not allocate. Prefer afw_value_null at call sites.
  * internal is ignored (null has no payload).
+ *
+ * Kind: permanent. Release is a no-op.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_null_create_managed(
@@ -272,6 +276,9 @@ afw_value_null_create_managed(
  * @return unmanaged clone in p, or value if permanent.
  *
  * Copies utf8/memory octets into p. Does not release the source.
+ *
+ * Kind: pooled in p (a permanent value is returned as-is). Caller
+ * does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_null_unmanaged(
@@ -287,6 +294,9 @@ afw_value_clone_null_unmanaged(
  * @return managed value (bump if already managed).
  *
  * Permanents as-is. Does not release the source.
+ *
+ * Kind: fully managed (a permanent value is returned as-is).
+ * Caller releases.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_null_managed(
@@ -304,6 +314,8 @@ afw_value_clone_null_managed(
  * Returns the permanent singleton afw_value_null (address identity).
  * Does not allocate in p. Prefer afw_value_null at call sites.
  * internal is ignored (null has no payload).
+ *
+ * Kind: permanent. Release is a no-op.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_null_create(void * internal,

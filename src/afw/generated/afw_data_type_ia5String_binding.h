@@ -273,6 +273,8 @@ afw_value_as_ia5String_internal(
  *
  * Unmanaged: lifetime is pool p; no value refcount.
  * Caller fills internal after allocate.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(afw_value_ia5String_t *)
 afw_value_ia5String_allocate(
@@ -292,6 +294,8 @@ afw_value_ia5String_allocate(
  * get_assignable_value bump. Last-release
  * free_memorys the header via the stored p.
  * Copies bytes into storage following the header (value owns them).
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_ia5String_create_managed(
@@ -308,6 +312,9 @@ afw_value_ia5String_create_managed(
  * @return unmanaged clone in p, or value if permanent.
  *
  * Copies utf8/memory octets into p. Does not release the source.
+ *
+ * Kind: pooled in p (a permanent value is returned as-is). Caller
+ * does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_ia5String_unmanaged(
@@ -323,6 +330,9 @@ afw_value_clone_ia5String_unmanaged(
  * @return managed value (bump if already managed).
  *
  * Permanents as-is. Does not release the source.
+ *
+ * Kind: fully managed (a permanent value is returned as-is).
+ * Caller releases.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_ia5String_managed(
@@ -340,6 +350,9 @@ afw_value_clone_ia5String_managed(
  *
  * View of a managed string. get_reference on containing. Slice starts
  * at 1 (caller must release). Header allocated in p->managed_p.
+ *
+ * Kind: fully managed. Caller releases (RC 1). References
+ * containing_value.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_ia5String_create_managed_slice(
@@ -361,6 +374,8 @@ afw_value_ia5String_create_managed_slice(
  * Copies the utf8/memory header only, not the octets.
  * get_reference / release throw. get_assignable_value
  * creates a managed holdable in p->managed_p.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_ia5String_create(const afw_utf8_t * internal,

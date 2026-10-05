@@ -436,6 +436,8 @@ def write_h_section(fd, prefix, obj):
         else:
             fd.write(' * Unmanaged: lifetime is pool p; no value refcount.\n')
             fd.write(' * Caller fills internal after allocate.\n')
+        fd.write(' *\n')
+        fd.write(' * Kind: pooled in p. Caller does not release.\n')
         fd.write(' */\n')
         fd.write(declare + '(afw_value_' + id + '_t *)\n')
         fd.write(_allocate_fn(id) + '(\n    const afw_pool_t *p,\n    afw_xctx_t *xctx);\n')
@@ -486,6 +488,14 @@ def write_h_section(fd, prefix, obj):
                 fd.write(
                     ' * Copies *internal into the header when internal is '
                     'non-NULL.\n')
+        fd.write(' *\n')
+        if id in ('null', 'boolean'):
+            fd.write(' * Kind: permanent. Release is a no-op.\n')
+        elif id in ('object', 'array'):
+            fd.write(' * Kind: fully managed wrapper; the ' + id + ' instance is the\n')
+            fd.write(' * counted thing. Caller releases (RC 1).\n')
+        else:
+            fd.write(' * Kind: fully managed. Caller releases (RC 1).\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write(_managed_create_fn(id) + '(\n    ' + return_type + ' internal,\n')
@@ -502,6 +512,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return unmanaged clone in p, or value if permanent.\n')
         fd.write(' *\n')
         fd.write(' * Copies utf8/memory octets into p. Does not release the source.\n')
+        fd.write(' *\n')
+        fd.write(' * Kind: pooled in p (a permanent value is returned as-is). Caller\n')
+        fd.write(' * does not release.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write(_clone_unmanaged_fn(id) + '(\n')
@@ -517,6 +530,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return managed value (bump if already managed).\n')
         fd.write(' *\n')
         fd.write(' * Permanents as-is. Does not release the source.\n')
+        fd.write(' *\n')
+        fd.write(' * Kind: fully managed (a permanent value is returned as-is).\n')
+        fd.write(' * Caller releases.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write(_clone_managed_fn(id) + '(\n')
@@ -535,6 +551,9 @@ def write_h_section(fd, prefix, obj):
             fd.write(' *\n')
             fd.write(' * View of a managed string. get_reference on containing. Slice starts\n')
             fd.write(' * at 1 (caller must release). Header allocated in p->managed_p.\n')
+            fd.write(' *\n')
+            fd.write(' * Kind: fully managed. Caller releases (RC 1). References\n')
+            fd.write(' * containing_value.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write(_managed_slice_fn(id) + '(\n')
@@ -556,6 +575,9 @@ def write_h_section(fd, prefix, obj):
             fd.write(' *\n')
             fd.write(' * View of a managed memory value. get_reference on containing. Slice\n')
             fd.write(' * starts at 1 (caller must release). Header allocated in p->managed_p.\n')
+            fd.write(' *\n')
+            fd.write(' * Kind: fully managed. Caller releases (RC 1). References\n')
+            fd.write(' * containing_value.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write(_managed_slice_fn(id) + '(\n')
@@ -603,6 +625,11 @@ def write_h_section(fd, prefix, obj):
                 fd.write(
                     ' * Stores the pointer as-is; does not clone the '
                     'referent.\n')
+        fd.write(' *\n')
+        if id in ('null', 'boolean'):
+            fd.write(' * Kind: permanent. Release is a no-op.\n')
+        else:
+            fd.write(' * Kind: pooled in p. Caller does not release.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write(_unmanaged_create_fn(id) + '(' + return_type + ' internal,\n')

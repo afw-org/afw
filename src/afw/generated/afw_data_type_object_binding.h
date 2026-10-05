@@ -238,6 +238,8 @@ afw_value_as_object_internal(
  *
  * Unmanaged: lifetime is pool p; no value refcount.
  * Caller fills internal after allocate.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(afw_value_object_t *)
 afw_value_object_allocate(
@@ -257,6 +259,9 @@ afw_value_object_allocate(
  * Stores the pointer as-is; does not clone or take a reference on the
  * referent. Caller must ensure the referent outlives this value (or
  * a future object/array path may special-case container RC).
+ *
+ * Kind: fully managed wrapper; the object instance is the
+ * counted thing. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_object_create_managed(
@@ -273,6 +278,9 @@ afw_value_object_create_managed(
  * @return unmanaged clone in p, or value if permanent.
  *
  * Copies utf8/memory octets into p. Does not release the source.
+ *
+ * Kind: pooled in p (a permanent value is returned as-is). Caller
+ * does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_object_unmanaged(
@@ -288,6 +296,9 @@ afw_value_clone_object_unmanaged(
  * @return managed value (bump if already managed).
  *
  * Permanents as-is. Does not release the source.
+ *
+ * Kind: fully managed (a permanent value is returned as-is).
+ * Caller releases.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_object_managed(
@@ -306,6 +317,8 @@ afw_value_clone_object_managed(
  * get_reference / release throw. get_assignable_value
  * is managed dual-face or clone_managed.
  * Stores the pointer as-is; does not clone the referent.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_object_create(const afw_object_t * internal,

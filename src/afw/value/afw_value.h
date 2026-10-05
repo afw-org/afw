@@ -1650,6 +1650,9 @@ afw_value_convert_to_casted_utf8(
  * Unmanaged copy into dest p. Adaptive `clone()` of object/array is
  * always-copy `create_managed`, not this (see
  * `afw_function_execute_clone`).
+ *
+ * Kind: pooled in p (permanent values are returned as-is). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone(
@@ -1666,6 +1669,9 @@ afw_value_clone(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_assignment_target_create(
@@ -1685,6 +1691,9 @@ afw_value_assignment_target_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_type_declaration_create(
@@ -1774,6 +1783,8 @@ afw_value_common_allocate(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_common_create(
@@ -1791,6 +1802,9 @@ afw_value_common_create(
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return Created afw_value_t (RC 1; caller releases).
+ *
+ * Kind: fully managed. Caller releases (RC 1). References its captured
+ * scope and its compile unit.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create_managed(
@@ -1813,6 +1827,12 @@ afw_value_closure_binding_create_managed(
  * names must be declared before use. Non-script-function values are
  * returned unchanged. If the current scope is nested inside the defining
  * scope, the defining scope is the one held (not the inner block).
+ *
+ * Kind: fully managed closure binding (caller releases) when a binding
+ * is made. Otherwise returns value unchanged; with no current block
+ * scope that is the pooled definition itself, which breaks the caller
+ * releases contract of its only caller (get_assignable_value). #476
+ * step 2.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create_if_needed(
@@ -1838,6 +1858,9 @@ afw_value_closure_binding_create_if_needed(
  * The value can be a lambda definition (afw_value_script_function_definition_t *),
  * built-in function definition (afw_value_function_definition_t *) or
  * function thunk (afw_value_function_thunk_t *)
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_create(
@@ -1867,6 +1890,9 @@ afw_value_call_create(
  * 
  * Call this function instead of afw_value_call_create() when it's know that
  * argv[0] is a function definition to save a small amount of evaluation time.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_built_in_function_create(
@@ -1898,6 +1924,9 @@ afw_value_call_built_in_function_create(
  * 
  * Call this function instead of afw_value_call_create() when it's know that
  * argv[0] is a function definition to save a small amount of evaluation time.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_script_function_create(
@@ -1919,6 +1948,9 @@ afw_value_call_script_function_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_test_script_create(
@@ -1939,6 +1971,8 @@ afw_value_call_test_script_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_function_thunk_create_impl(
@@ -1981,6 +2015,9 @@ afw_value_function_thunk_create_impl( \
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_function_definition_create(
@@ -2003,6 +2040,9 @@ afw_value_script_function_definition_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_array_expression(
@@ -2019,6 +2059,9 @@ afw_value_create_array_expression(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_object_expression(
@@ -2036,6 +2079,9 @@ afw_value_create_object_expression(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_object_construct(
@@ -2054,6 +2100,9 @@ afw_value_create_object_construct(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_qualified_variable_reference_create(
@@ -2073,6 +2122,9 @@ afw_value_qualified_variable_reference_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_reference_by_key_create(
@@ -2097,6 +2149,9 @@ afw_value_reference_by_key_create(
  * of the result is the data type of the value.  If multiple values are
  * supplied, the result is a concatenation of the string values of all
  * the values with a data type is string.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_template_definition_create(
@@ -2115,6 +2170,9 @@ afw_value_template_definition_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_symbol_reference_create(
@@ -2139,6 +2197,8 @@ afw_value_symbol_reference_create(
  * string values from untrusted bytes any other way.
  *
  * Empty or NULL input yields an empty string value.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 /**
  * @brief Create a managed hexBinary without throwing.
@@ -2149,6 +2209,8 @@ afw_value_symbol_reference_create(
  *
  * Same layout and last-release as create_managed. calloc_no_throw on
  * p->managed_p. Last-release uses the stored p. For error-path code.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_value_hexBinary_t *)
 afw_value_hexBinary_create_no_throw(
@@ -2171,6 +2233,8 @@ afw_value_create_from_external_octets(
  * @param p pool for the value and any owned payload.
  * @param xctx of caller.
  * @return See afw_value_create_from_external_octets().
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_from_external_z(
@@ -2188,6 +2252,8 @@ afw_value_create_from_external_z(
  *
  * Throws if string_z is not valid UTF-8. For untrusted external bytes use
  * afw_value_create_from_external_octets() or afw_value_create_from_external_z().
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_string_from_u8z(
@@ -2209,6 +2275,8 @@ afw_value_string_from_internal(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_dateTime_now_utc(
@@ -2221,6 +2289,8 @@ afw_value_create_dateTime_now_utc(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_dateTime_now_local(

@@ -768,6 +768,9 @@ afw_object_memory_associative_array_create(
  * @param xctx of caller.
  * @return instance of new object.
  *
+ * Kind: pooled when options is 0 (lives in p; caller does not release).
+ * Reference counted with new_p or cede_p (owns its pool; caller
+ * releases with afw_object_release). See lifetime-principles.md.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_with_options(
@@ -791,6 +794,8 @@ afw_object_create_with_options(
  * `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in
  * `get_assignable_for_scope_lifetime` (second must-release; same as
  * arrays).
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed(
@@ -809,6 +814,8 @@ afw_object_create_managed(
  * Last release releases overlay names and values, free_memorys those
  * entries and the name index, then wrapped, then the header.
  * Use for get_assignable_value of a permanent object.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_wrapper_managed(
@@ -833,6 +840,9 @@ afw_object_create_wrapper_managed(
  * Meta delta (parentPaths, reconcilable, …) copies onto a fresh
  * delta — not afw_object_meta_clone_and_set. Already-managed source
  * is held.
+ *
+ * Kind: fully managed. Caller releases (RC 1, or one more reference
+ * when from is already fully managed).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed_clone(
@@ -850,6 +860,8 @@ afw_object_create_managed_clone(
  *
  * Unlike afw_object_create_managed_clone(), an already-managed source
  * is copied. The caller registers the release.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed_snapshot(
@@ -911,6 +923,8 @@ afw_object_register_caller_release(
  * @param p caller's pool.
  * @param xctx of caller.
  * @return managed snapshot, or NULL when from is NULL.
+ *
+ * Kind: fully managed. Caller does not release (release registered on p).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_managed_clone_for_caller(
@@ -928,6 +942,8 @@ afw_object_managed_clone_for_caller(
  *
  * Sets embedding_object and id so view pathEmbedded / parentPaths
  * compose. Does not copy properties.
+ *
+ * Kind: fully managed. Caller does not release (the parent holds it).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed_embedded(
@@ -1002,6 +1018,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * ... set properties and use object ...
  *
  * afw_object_release(object, xctx);
+ *
+ * Kind: reference counted (owns p). Caller releases. Immutable once
+ * handed to its consumer. "unmanaged" in the name is historical.
  */
 #define afw_object_create_unmanaged_cede_p(_p, _xctx) \
     afw_object_create_with_options( \
@@ -1014,9 +1033,14 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * @param xctx of caller.
  * @return instance of new object.
  *
- * Unmanaged object (pool world). Instance get_reference / release pin
- * the child pool. Value get_reference / release throw. Last RC of a
- * value wrapper does not drop this child.
+ * Instance get_reference / release are the child pool's count. Value
+ * get_reference / release throw. Last RC of a value wrapper does not
+ * drop this child.
+ *
+ * Kind: reference counted (owns its new pool). Caller releases. The
+ * pool's parent is p->managed_p, so a missing release keeps it until
+ * the owner dies. Immutable once handed to its consumer. "unmanaged"
+ * in the name is historical.
  */
 #define afw_object_create_unmanaged_new_p(_p, _xctx) \
     afw_object_create_with_options( \
@@ -1030,6 +1054,8 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * @return instance of new object.
  *
  * Start 0. Lifetime is p. Value get_reference / release throw.
+ *
+ * Kind: pooled (lives and dies with p). Caller does not release.
  */
 #define afw_object_create_unmanaged(_p, _xctx) \
     afw_object_create_with_options(0, _p, _xctx)
@@ -1045,6 +1071,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * The embedded object and its properties will use the embedding object's
  * pool, options, and reference counting.  The property_name property of the
  * embedding object will be set to the new embedding object.
+ *
+ * Kind: same as embedding_object (lives in its pool). Caller does not
+ * release (embedding_object holds it).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_embedded(
@@ -1146,6 +1175,8 @@ afw_object_as_value(
  * @param p used for cloned object.
  * @param xctx of caller.
  * @return cloned object.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_clone(
@@ -1162,6 +1193,11 @@ afw_object_create_clone(
  * @param p to use for the object.
  * @param xctx of caller.
  * @return Merged object.
+ *
+ * Kind: pooled in p. Caller does not release.
+ *
+ * Kind: pooled in p. Caller does not release. Does not reference the
+ * objects in object_list; they must outlive it.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_merged(
@@ -1219,6 +1255,8 @@ afw_object_aggregate_external_create(
  * @param p for object.
  * @param xctx of caller.
  * @return object.
+ *
+ * Kind: pooled in p, immutable. Caller does not release.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_const_from_key_value_strings_z(

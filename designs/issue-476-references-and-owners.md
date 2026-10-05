@@ -30,6 +30,24 @@ What is in place works well: a scope's pool (`scope->p`) holds temporary memory 
 
 Permanent values (compiled into object code, registered constants) are neither: `get_reference` and `release` are no-ops.
 
+### Four kinds (decided 2026-10-05)
+
+"Managed" / "unmanaged" described how memory is freed and covered two different things. These names describe what a caller needs to know.
+
+| Kind | Lives in | `get_reference` | `release` | Mutable after hand-off | Cycle collector |
+|---|---|---|---|---|---|
+| **Permanent** | compiled in, registered constants | no-op, returns self | no-op | no | never walked |
+| **Pooled** | a pool it does not own (dies with that pool) | returns a fully managed **copy** | **error** | only while its builder holds it | never walked |
+| **Reference counted** | its own pool (`new_p` / `cede_p`); count is the pool's count | count bump, returns self | last release destroys its pool and everything in it | **no** (immutable once handed to its consumer) | dead end: holds only plain values in its own pool |
+| **Fully managed** | owner pool (`managed_p`); every value inside is itself counted | count bump, returns self | last release releases each value it holds | yes (replaced values are released) | walked |
+
+- Reference counted and fully managed have the same caller contract. They differ in how deep the counting goes.
+- **Mutable means `get_setter` returns a setter.** `set_immutable` turns it off. No other mutability mechanism.
+- Typical uses. Reference counted: adapter results, journal entries, conf objects (build, set meta, hand off; the consumer releases). Fully managed: script variables, script-built containers, values that outlive a scope. A script that changes a reference-counted object gets a fully managed face (#17).
+- `create_unmanaged_new_p` / `create_unmanaged_cede_p` create **reference counted** objects despite the name. Renames happen in the step that touches each function.
+
+**No exceptions.** Once the rules are written, there are no per-kind special cases outside an inf. Each inf enforces its kind's rules (throw on `release` of pooled, no setter when immutable, copy on `get_reference` of pooled). Callers never inspect an inf or `is_managed`.
+
 ### `afw_reference`
 
 A base interface for **counted** things only.
@@ -64,7 +82,20 @@ Rule: **a managed value belongs to exactly one owner.** Counts are not atomic. T
 
 Future (thread work, #343): multithreaded pools go away. Work for an owner (an adapter) is scheduled onto the thread that owns it; `adapter->p` may become `adapter->xctx`. Structs shared across threads use the env mutexes (`AFW_LOCK_BEGIN` / `AFW_LOCK_END`, read/write variants via `xctx->env`) and `afw_atomic_*` for counters. Only where the owner comes from changes; the reference rules do not.
 
-Until then: a managed value in a multithreaded owner must be borrowed only across threads, or get an atomic count variant. S2 decides which. The interim path is deleted when multithreaded pools go away.
+Until then: a value in a multithreaded owner is borrowed across threads (S2 found no cross-thread references). Where that is not enough, **temporary atomic counts are acceptable** (user, 2026-10-05), as are temporary locks around the few cross-owner evaluates. Both are bridges, not the design, and are deleted when worker threads land.
+
+### Unmanaged = lifetime of p (decided 2026-10-05)
+
+- **`get_reference` of an unmanaged value returns a managed copy** (today's `get_assignable_value` behavior). The caller owns and releases the copy, never the unmanaged original.
+- **`release` of an unmanaged value is a caller bug.** Debug builds throw (generated scalars already do: "release of unmanaged scalar"). No `release` touches a pool's reference count on behalf of an unmanaged value.
+- **No pool pins from value references.** Today an unmanaged object pins its pool on `get_reference` (`afw_object_memory.c`, legacy C protocol for adapter results and runtime objects). That goes away.
+- **An object that owns its own pool** (`new_p` / `cede_p` style) is a managed object whose last release releases its pool. That is an implementation detail behind its inf, the same as `compiled_value` with `unit_owns_p`. The caller only knows "I own a reference; I release it."
+
+Callers never need to know which kind they hold: `get_reference` gives a pointer you own; `release` gives it back.
+
+### Threads in this plan
+
+The reference code is **single-owner only**: no atomics, no locks, no multithreaded cases. Values in multithreaded owners (conf, adapter) are borrowed across threads, never referenced. Where another thread must evaluate or tear down in a multithreaded owner (S2: `service_stop` from a request destroys the adapter), add a **temporary lock** around that evaluate. These are deleted when worker threads land (#343): work for an owner is scheduled onto the thread that owns it, and multithreaded pools go away.
 
 ### Cycle collection
 
@@ -99,12 +130,53 @@ Safe points: frame deactivate, end of evaluate, and possibly when the root list 
 | **S3** | Generator: `afw_value` extends `afw_reference` in `afw_interface.xml`; `interfaces.py` emits the nested inf and macros. | Is the inheritance and union layout workable with skeletons and macros? |
 | **S4** | Audit callers that ignore the pointer `get_reference` / `get_assignable_value` returns (14 `afw_object_get_reference` sites, …). No code. | How big is step 2 |
 
+| **S6** | Call `set_immutable` on each adapter result at the end of `afw_adapter_internal_process_object_from_adapter` (last pipeline step before the consumer). Run the suite. | Does anything change a result after hand-off? If not, that is the one enforcement point. |
+| **S5** | Make `get_reference` / `release` of an unmanaged object or array throw. Run the suite. | List every site that relies on the pool pin. For each: does it need a reference at all (it is within p's lifetime), should it take a managed copy, or should the creator make an object that owns its pool? |
+
 If any experiment fails, change the design here before writing the real code.
+
+**Thread track (alongside, not blocking):** T1 temporary locks around the cross-owner evaluates S2 found (and any S5 finds). T2 worker threads and owner scheduling (#343); delete T1 locks and multithreaded pools.
+
+### Results
+
+**S2 owner probe (2026-10-05).** Debug check in every managed `get_reference` / `release` (generated scalars and slices, object, array, closure binding, compiled_value); patch kept in `git stash` ("S2 owner probe"). Full suite 4609 passed with the probe on.
+
+- Managed values **do** live in multithreaded owners: strings, integers, objects, arrays, closure bindings and compiled values in conf / adapter pools. All of them were referenced and released on the owner thread (base, at startup).
+- **No request thread took a reference** to a value another thread owns.
+- **One cross-thread release path:** `service_stop` called from a request (afwfcgi orchestration `catalog-value-accessors`, `hold_metrics_across_stop.as`) destroys the adapter on the request thread. The adapter's multithreaded pool runs its cleanups there and releases managed strings and a compiled_value that the base thread owns (`afw_adapter.c` `impl_set_instance_active` → `impl_adapter_release_reference` → adapter destroy → pool cleanup `impl_release_value_at_cleanup`). The base thread is idle by then, so there is no concurrent count change, but it breaks the owner rule.
+- Coverage caveat: few multithreaded tests (one orchestration with one request thread).
+
+Decision proposed: **interim is borrow-only** across threads; no atomic count variant. Owner teardown (service stop) is the one exception until stop is scheduled onto the owner (#343). Step 1 adds a debug-build check (reference / release on a thread that does not own the value is an error, except during owner teardown).
+
+Also found while probing (special cases to list for step 1): unmanaged objects pin their pool on `get_reference` (`afw_object_memory.c`); embedded objects forward to their entity; `new_p` / `cede_p` object release is a pool release; associative arrays and object views use atomic counts while every other kind uses plain counts; `afw_value_slot_store` checks for `afw_value_compiled_value_inf`.
+
+**S5 unmanaged references (2026-10-05).** Log every `get_reference` / `release` of an unmanaged memory object or array, and every call to a no-op `get_reference` (const, aggregate, meta, from_values). Patch in `git stash` ("S5 unmanaged").
+
+| Site | Calls in full suite |
+|---|---|
+| unmanaged object `get_reference` (pins `object->p`) | 13138 |
+| — `afw_runtime_env_set_object` (runtime registry; released only by `afw_runtime_remove_object`) | ~13050 (env create, os env, conf types) |
+| — `afw_adapter_internal_process_object_from_adapter` (get / retrieve results; `@fixme Need to add releases`, never released) | 82 |
+| unmanaged object `release` | **0** |
+| unmanaged array `get_reference` / `release` | 0 |
+| `afw_object_const_key_value` no-op `get_reference` | 1619 |
+| `afw_object_aggregate_external` no-op `get_reference` | 15 |
+
+Every pin taken is held until the pool's parent dies; nothing gives one back.
+
+Remove both pins (unmanaged `get_reference` / `release` do nothing): full suite with the region free list at 0 is 4605 passed, **1 failed**: `model_adapter/onRetrieveObjects.as` SIGSEGV. The model adapter's `returnObject` thunk hands the adapter an object that lives in the `onRetrieveObjects` script's scope pool; the adapter pin was what kept that pool alive. Under the new rule the receiver takes `get_reference` (a managed copy for unmanaged). So the pin stands in for step 2's contract; nothing needs a pin.
+
+**Leak found:** `get_object` in a loop grows ~2.4 KiB/call on develop. ~0.5 KiB is the adapter pin; ~1.9 KiB is the `journal_entry` from `afw_object_create_unmanaged_new_p(x->p)` that is never released. A `new_p` object's own pool is a child of `p->managed_p` (the job heap), not `p`, so an unreleased one lives until the job ends. Releasing it plus dropping the pin: flat. 75 `new_p` / `cede_p` create sites need the same audit. The name `create_unmanaged_new_p` is misleading: that object owns its pool, so it is managed in this pad's terms.
+
+**S6 immutable adapter results (2026-10-05).** `afw_object_set_immutable(object)` at the end of `afw_adapter_internal_process_object_from_adapter`. Full suite: 4608 passed, 1 failed, `miscellaneous/process.as` (`assert(p.peakPoolBytesInUse >= p.poolBytesInUse)`). Not an S6 result: the assertion reads the peak before the live in-use count, and the allocation for the first read can raise in-use past the peak already read whenever usage is at its peak (reproduced in a loop: first read in-use − peak = +112). S6 only moved allocations. Test fix: read in-use first. **Nothing changes an adapter result after hand-off**, so `process_object_from_adapter` is the one enforcement point. Adapters change results only before hand-off (build, set meta, `impl_special_object_handling_cb` sets `conf` meta type). Patch in `git stash` ("S6 immutable results").
+
+**Step 0 status (2026-10-05, uncommitted on `issue-476-references`).** `lifetime-principles.md` has *Four kinds* plus updated *Two worlds*, cycles, and checklist. `Kind:` line on every create function in `afw_object.h`, `afw_array.h`, `afw_value.h`, `afw_compile.h`, and the generated `afw_value_<type>_*` (via `data_type_bindings.py`). Exceptions found while writing them (fix in step 2): `afw_value_closure_binding_create_if_needed` returns the pooled definition unchanged when there is no current block scope, but its only caller is `get_assignable_value` (caller releases); `afw_compile_json_to_object` said "caller does not release" even with `cede_p` (corrected in its doc).
 
 ### Steps (each a small branch off `develop`, merged when green)
 
 | # | Step | Touches pool? |
 |---|---|---|
+| 0 | **Docs first.** `lifetime-principles.md`: the four kinds (what each is, who frees it, `get_reference` / `release`, mutable after hand-off, collector). Doc comment on every create function saying which kind it makes and who releases: hand-written headers (`afw_object.h`, `afw_array.h`, `afw_value.h`, closure / compiled_value) and `data_type_bindings.py` for generated `afw_value_<type>_create_*`. No renames. | No |
 | 1 | `afw_reference` interface; `afw_value`, `afw_object`, `afw_array` adopt it. Decide object value vs object count. | No |
 | 2 | Fold `get_assignable_value` into `get_reference`; remove `is_managed` checks outside infs. | No |
 | 3 | `for_each_reference` + debug check (listed == released) for values, objects, arrays, closure bindings. | No |
