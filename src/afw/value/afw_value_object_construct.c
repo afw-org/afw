@@ -95,7 +95,7 @@ impl_afw_value_optional_evaluate(
     xctx->error->contextual = self->contextual;
     afw_xctx_evaluation_stack_push_value(&self->pub, xctx);
 
-    to = afw_object_create_script_wrapper(p, xctx);
+    to = afw_object_create_unmanaged(p, xctx);
 
     for (e = self->entries; e; e = e->next) {
         if (e->type == afw_value_object_construct_entry_spread) {

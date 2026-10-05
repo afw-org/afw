@@ -132,7 +132,7 @@ afw_function_execute_array(
     const afw_iterator_old_t *iterator;
 
     /* Construct a new array with elements passed as arguments. */
-    array = afw_array_create_script_wrapper(x->p, x->xctx);
+    array = afw_array_create_unmanaged(x->p, x->xctx);
     for (n = 1, arg = &x->argv[1]; n <= x->argc; n++, arg++) {
         value = afw_value_evaluate(*arg, x->p, x->xctx);
 
@@ -298,7 +298,7 @@ afw_function_execute_create_array(
             AFW_CREATE_ARRAY_MAX_LENGTH);
     }
 
-    array = afw_array_create_script_wrapper(x->p, x->xctx);
+    array = afw_array_create_unmanaged(x->p, x->xctx);
     for (i = 0; i < n; i++) {
         afw_array_push_value(array, afw_value_undefined, x->xctx);
     }

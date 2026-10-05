@@ -65,14 +65,17 @@ afw_function_execute_add_properties(
     if (!target) {
         const afw_object_t *created;
 
-        created = afw_object_create_script_wrapper(x->p, x->xctx);
+        /* New target is unmanaged in dest p. A store clones it. */
+        created = afw_object_create_unmanaged(x->p, x->xctx);
         target = (const afw_value_object_t *)
             afw_object_as_value(created, x->p, x->xctx);
     }
-    /* Mutate-input, or promote a new script wrapper. Not create_managed. */
-    target = (const afw_value_object_t *)
-        afw_pool_scope_get_assignable_for_scope_lifetime(
-            &target->pub, x->p, x->xctx);
+    else {
+        /* Mutate-input. */
+        target = (const afw_value_object_t *)
+            afw_pool_scope_get_assignable_for_scope_lifetime(
+                &target->pub, x->p, x->xctx);
+    }
 
     for (count = 2; count <= x->argc; count++)
     {
