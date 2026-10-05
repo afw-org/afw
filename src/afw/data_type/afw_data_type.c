@@ -84,20 +84,17 @@ impl_afw_data_type_raw_compare_internal(
 {
     const afw_memory_t *v1 = value1;
     const afw_memory_t *v2 = value2;
+    afw_size_t n;
     int result;
 
-    if (v1->size == v2->size) {
-        result = memcmp(v1->ptr, v2->ptr, v1->size);
-    }
-
-    else if (v1->size < v2->size) {
-        result = memcmp(v1->ptr, v2->ptr, v1->size);
-        if (result == 0) result = -1;
-    }
-
-    else {
-        result = memcmp(v1->ptr, v2->ptr, v2->size);
-        if (result == 0) result = 1;
+    /*
+     * An empty value may have a NULL ptr, and memcmp with a NULL
+     * pointer is undefined even for 0 bytes.
+     */
+    n = (v1->size < v2->size) ? v1->size : v2->size;
+    result = (n > 0) ? memcmp(v1->ptr, v2->ptr, n) : 0;
+    if (result == 0 && v1->size != v2->size) {
+        result = (v1->size < v2->size) ? -1 : 1;
     }
 
     return result;
