@@ -4,9 +4,9 @@
 
 ## Decision
 
-ASAN is an **optional, intentional** testing method, not a default (maintainer call, 2026-10). It never runs as part of `--cdev`, `--fulldev`, `--all` or the pre-PR gate; CI runs it as a non-blocking job (below). You get it only by asking for it, and an ASAN build must not change a normal build, a normal install, or the plain / valgrind test modes. Revisit only by consensus.
+ASAN is an **optional, intentional** testing method, not a default (maintainer call, 2026-10). It never runs as part of `--cdev`, `--fulldev`, `--all` or the pre-PR gate; CI runs it (below). You get it only by asking for it, and an ASAN build must not change a normal build, a normal install, or the plain / valgrind test modes. Revisit only by consensus.
 
-**CI (2026-10-05, maintainer request):** `integration.yml` has a `build_test_c_asan_ubuntu` job (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`). It is **non-blocking** (`continue-on-error: true`) while the known findings are open; remove that once the ASan run is clean. Ubuntu only (the `afw-dev-base` images carry the ASan/UBSan runtimes; Alpine has none). It is still never part of `--cdev`, `--fulldev` or `--all` locally.
+**CI (2026-10-05, maintainer request):** `integration.yml` has a `build_test_c_asan_ubuntu` job (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`). It is **blocking** (decided 2026-10-05): `integration.yml` gates PRs to `main`, not `develop`, so open findings block a release merge, not day-to-day work. The three open UBSan findings must be fixed before the next `develop` → `main` merge. Ubuntu only (the `afw-dev-base` images carry the ASan/UBSan runtimes; Alpine has none). It is still never part of `--cdev`, `--fulldev` or `--all` locally.
 
 ## Why the pools need annotations
 
@@ -131,6 +131,8 @@ Flexible order; one step, then re-decide.
 2. ~~Build:~~ `afwdev build --sanitize address` landed (2026-10-04); see *Build design*.
 3. ~~Test:~~ `afwdev test --env-mode asan` landed (2026-10-04); see *How to run it*. First full run: 4346 passed, 29 failed. The failures were harness gaps (since fixed), the known findings (#466, #467, the deferred compile-literal cases) and three new UBSan findings (backlog).
 4. **Later / separate decisions:** a valgrind backing for the same header behind its own define (changes what the existing valgrind mode reports); a reuse delay (quarantine) for the heap free list so a same-size malloc does not hide a use-after-free. (UBSan halts: decided with step 3.)
+
+**Also decided 2026-10-05:** a stale ASan build (stamp from another commit, or a dirty tree) stays a **warning**; LeakSanitizer stays **on** by default (`detect_leaks=1`).
 
 **Pre-PR verification (2026-10-05, rebased on `develop` `34f4eed9`):** `./afwdev build --fulldev` passed (generate, C, printf scan, `analyze-build` with no reports, install, Doxygen, Sphinx, TypeDoc, JS apps); `afwdev test -j --env-mode valgrind` 4607 passed, 0 failed (286s); `afwdev test -j` 4593 passed; `--env-mode asan` fails exactly the 7 tests of the three open UBSan findings.
 

@@ -158,13 +158,11 @@ jobs:
 
     # AddressSanitizer + UndefinedBehaviorSanitizer build and test (Ubuntu).
     # Builds build/asan/cmake/ and tests it directly (no install); see
-    # designs/asan-opt-in.md. Non-blocking while known findings are open
-    # (three UBSan items in beta-backlog.md): remove continue-on-error once
-    # the run is clean.
+    # designs/asan-opt-in.md. Blocking, like the other C jobs: this
+    # workflow gates PRs to main, not develop.
     build_test_c_asan_ubuntu:
         name: Build and Test C with ASan on Ubuntu
         runs-on: ubuntu-latest
-        continue-on-error: true
 
         container:
             image: ghcr.io/afw-org/afw-dev-base:ubuntu
