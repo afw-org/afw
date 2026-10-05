@@ -99,7 +99,8 @@ impl_afw_adapter_journal_add_entry(
             key.mv_data = (void *) &t;
             key.mv_size = sizeof(t);
         } else if (rc == 0) {
-            t = *((afw_uint64_t *)(key.mv_data));
+            /* LMDB does not align key data; copy, do not dereference. */
+            memcpy(&t, key.mv_data, sizeof(t));
             AFW_ENDIAN_BIG_TO_NATIVE_64(&t);
         }
 
