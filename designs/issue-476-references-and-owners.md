@@ -170,7 +170,68 @@ Remove both pins (unmanaged `get_reference` / `release` do nothing): full suite 
 
 **S6 immutable adapter results (2026-10-05).** `afw_object_set_immutable(object)` at the end of `afw_adapter_internal_process_object_from_adapter`. Full suite: 4608 passed, 1 failed, `miscellaneous/process.as` (`assert(p.peakPoolBytesInUse >= p.poolBytesInUse)`). Not an S6 result: the assertion reads the peak before the live in-use count, and the allocation for the first read can raise in-use past the peak already read whenever usage is at its peak (reproduced in a loop: first read in-use − peak = +112). S6 only moved allocations. Test fix: read in-use first. **Nothing changes an adapter result after hand-off**, so `process_object_from_adapter` is the one enforcement point. Adapters change results only before hand-off (build, set meta, `impl_special_object_handling_cb` sets `conf` meta type). Patch in `git stash` ("S6 immutable results").
 
+**S1 cycle collector (2026-10-05).** Hand-written synchronous trial deletion for managed objects, managed arrays, closure bindings and scopes (~650 lines; patch in `git stash`, "S1 cycle collector"). Possible root = a release that leaves the count above 0; collect at scope deactivate when the root set reaches `AFW_S1_CC`. A value wrapper (`afw_value_object_managed_t`) is treated as the object it wraps: each wrapper reference is one object reference.
+
+| Shape (max RSS 2000 → 8000 calls) | off | on (256) |
+|---|---|---|
+| local `function f(){}` | ~8.3 KiB/call | flat |
+| `const f = function…` | ~8.3 KiB/call | flat |
+| `o.f = function(){ return o; }` | ~8.6 KiB/call | flat |
+| `o.self = o` | ~0.4 KiB/call | flat |
+| `p = {o}; o.p = p` | ~0.8 KiB/call | flat |
+| `a → b → c → a` | ~1.0 KiB/call | flat |
+| `a.x.y.top = a` | ~1.2 KiB/call | flat |
+| inner-block closure into outer slot | ~12.5 KiB/call | flat |
+| no cycle (control) | flat | flat |
+
+Lab 15 s: `eval_object_rebind` off 11.46 MiB/s in_use, 708 MB RSS; on **flat**, 38 MB. `eval_closure_rebind`, `closure_rebind`, `object_rebind` unchanged.
+
+Correctness at threshold 1 (collect at almost every deactivate): full suite 4609 passed; with `AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES=0` 4609 passed; valgrind 4609 passed. **No negative trial count** anywhere: the listed edges matched real references for all four kinds.
+
+Cost (200k calls, best of 3): threshold 256 adds ~5–10 % to loops with no cycles (0.58 → 0.63 s, 0.40 → 0.43 s), ~35 % to a loop that makes and frees a cycle every call (0.52 → 0.70 s), and makes the local-function loop faster (2.21 → 2.06 s, less memory). Threshold 1 is ~10× slower, mostly clearing whole tables each round (an S1 artifact: clear cost is table capacity, not live entries).
+
+Learned for step 5:
+- **Roots belong to the owner.** S1 kept them per thread; afwfcgi request threads reuse the xctx address, so stale roots from the last request crashed the walk. Fixed by clearing at `afw_xctx_release`. In the real design the root buffer is an owner (xctx) field and dies with it.
+- A node must leave the root buffer when it is freed. Fully managed values are only freed by last release, so the hook is enough; anything freed in bulk by a pool must never be a root.
+- The wrapper-is-the-object rule works but is a wrinkle; step 1 should decide whether an object value and its object share one count.
+
+**S3 afw_reference inheritance (2026-10-05).** Works. Patch in `git stash` ("S3 afw_reference inheritance").
+
+- **XML:** new `afw_reference` interface (first in `afw_interface.xml`, `instance_member="ref"`) with `get_reference` (returns `const afw_reference_t *`) and `release`. `afw_value` has `extends="afw_reference"`; its own `get_reference` and `optional_release` methods are removed.
+- **Generator (`interfaces.py`):** `resolve_extends()` copies the base methods to the front of each derived interface in memory, replacing `afw_reference_t` with the derived `_t` in parameter and return types. Every existing emitter (inf struct, call macros, impl declares, skeletons, `_AdaptiveInterface_` objects) then works unchanged. The derived instance struct gets `union { const afw_value_inf_t *inf; afw_reference_t ref; }`. Methods marked `null_safe="true"` get a NULL-safe call macro (`optional="true"` also checks the slot; S3 only, since the design makes `release` mandatory).
+- **Result:** `afw_value_inf_t` starts `rti, get_reference, release, …`, the same layout as `afw_reference_inf_t`. Generic code `afw_reference_release(&v->ref, xctx)` and the derived `afw_value_release(v, xctx)` both compile with `-Wall -Wextra -Werror` (probe with a `_Static_assert` on the offsets). The hand-written NULL-safe `afw_value_release()` function is replaced by the generated macro.
+- **C fallout:** rename `optional_release` → `release` in 26 hand files and `data_type_bindings.py` (mechanical). Build clean (core and extensions), suite 4609 passed.
+
+Learned for step 1:
+- 54 value infs set `release` to NULL; making `release` mandatory means a no-op for permanent / IR values (one shared function), and drops the `optional` slot check.
+- Four places outside an inf test `inf->optional_release` to decide what to do (`afw_pool.c` ×2, `afw_pool_scope.c`, `afw_value_slot_take`). They go away with a mandatory `release`.
+- Only one level of `extends`, resolved within one package's XML. An extension interface extending `afw_reference` needs the core XML at generate time (later).
+- Data-type value structs (`afw_value_<type>_s`, union `inf` / `pub`) can add `afw_reference_t ref` to the same union in `data_type_bindings.py`.
+
+**S4 caller audit (2026-10-05, read only).** Step 2 is small.
+
+- **Values:** every caller of `afw_value_get_reference` (2) and `afw_value_get_assignable` / `get_assignable_value` (11) already uses the returned pointer. `afw_value_add_reference` has no callers.
+- **Objects / arrays:** `get_reference` returns `void`, so all 16 object and 4 array sites ignore the pointer by construction. With "returns a pointer you own (self or a copy)":
+  - store the returned pointer: associative-array object store (`afw_object_memory_associative_array.c` ×3), environment-variables object (holds `properties`), object view (holds `origin`), managed wrappers (`create_wrapper_managed` holds `wrapped`, object and array);
+  - forward inside an inf (no change): meta object → embedding object, embedded (`managed_by_entity`) → entity;
+  - bump-and-return-self paths in `create_managed_clone` (object, array): already use the same pointer;
+  - remove (S5): runtime registry pins (`afw_runtime.c` ×2), adapter result pin (`afw_adapter.c`); these borrow instead;
+  - test probes (2).
+- **Inf inspection outside an inf** (to remove in steps 1–2): `inf->optional_release` checks in `afw_pool.c` ×2, `afw_pool_scope.c`, `afw_value_slot_take`; `inf->is_managed` in `afw_value_slot_take`; `afw_object_is_managed` in `afw_error.c`; `afw_object_is_memory_managed` in `afw_object_meta.c`; `afw_value_slot_store`'s `afw_value_compiled_value_inf` check.
+
 **Step 0 status (2026-10-05, uncommitted on `issue-476-references`).** `lifetime-principles.md` has *Four kinds* plus updated *Two worlds*, cycles, and checklist. `Kind:` line on every create function in `afw_object.h`, `afw_array.h`, `afw_value.h`, `afw_compile.h`, and the generated `afw_value_<type>_*` (via `data_type_bindings.py`). Exceptions found while writing them (fix in step 2): `afw_value_closure_binding_create_if_needed` returns the pooled definition unchanged when there is no current block scope, but its only caller is `get_assignable_value` (caller releases); `afw_compile_json_to_object` said "caller does not release" even with `cede_p` (corrected in its doc).
+
+### Decisions after the experiments (2026-10-05)
+
+- **`release` is mandatory** on every `afw_reference` inf. Permanent and compiler-IR values share one no-op `release` and a `get_reference` that returns self. No NULL slot; no outside check for one.
+- **`get_reference` returns the interface it was called through:** `afw_object_get_reference` → `const afw_object_t *`, `afw_array_get_reference` → `const afw_array_t *`, `afw_value_get_reference` → `const afw_value_t *` (from S3's type substitution).
+- **One count** for an object value and its object (same for arrays), but **release through the interface you referenced through**. Documented on the methods and in `lifetime-principles.md`.
+- **`release` is `void` everywhere.** The pool's pointer-returning release is reconciled at step 4, ideally by removing the parent pins (step 6) at the same time. A different method with its own name only if something still needs "did this destroy it?".
+- **Clone names by intent.** `clone` = independent, changeable, fully managed copy (Adaptive `clone()` already is this; the C name matches it, one implementation). "Keep it safely" = `get_reference`. Pooled copy (today's `afw_value_clone`, `afw_object_create_clone`, `clone_*_unmanaged`, `afw_array_create_or_clone`) is renamed or removed after checking callers. `afw_pool_scope_clone`, `afw_utf8_clone`, `afw_object_meta_clone_and_set` are not value clones and stay.
+- **Closures stay simple:** one binding (definition, captured scope, unit), made in one place when a function value is stored. Fold away `create_if_needed` (and its exception) and extra closure paths in step 2.
+- **Built-in rule (unchanged):** anything a built-in creates that needs a release is released inside, usually by registering last-release on `x->p`.
+- **Extensions:** low priority. afwdev may keep the core XML (or a resolved form) so another package's interface can extend `afw_reference`.
+- **T1** (cross-thread release at `service_stop`) is fixed alongside step 1 or 2.
 
 ### Steps (each a small branch off `develop`, merged when green)
 
@@ -178,7 +239,8 @@ Remove both pins (unmanaged `get_reference` / `release` do nothing): full suite 
 |---|---|---|
 | 0 | **Docs first.** `lifetime-principles.md`: the four kinds (what each is, who frees it, `get_reference` / `release`, mutable after hand-off, collector). Doc comment on every create function saying which kind it makes and who releases: hand-written headers (`afw_object.h`, `afw_array.h`, `afw_value.h`, closure / compiled_value) and `data_type_bindings.py` for generated `afw_value_<type>_create_*`. No renames. | No |
 | 1 | `afw_reference` interface; `afw_value`, `afw_object`, `afw_array` adopt it. Decide object value vs object count. | No |
-| 2 | Fold `get_assignable_value` into `get_reference`; remove `is_managed` checks outside infs. | No |
+| 2 | Fold `get_assignable_value` into `get_reference`; remove `is_managed` checks outside infs; simplify closures. | No |
+| 2b | Clone names by intent: `clone` = independent copy (one implementation, shared with Adaptive `clone()`); rename or remove pooled copies after checking callers. | No |
 | 3 | `for_each_reference` + debug check (listed == released) for values, objects, arrays, closure bindings. | No |
 | 4 | Scope interface extends `afw_pool`; `afw_pool` adopts `afw_reference`; scope lists its frame slots. | **Yes** |
 | 5 | Cycle collector (from S1), per owner. Lab workloads for every #458 shape, all flat. Closes #458. | **Yes** (scope release hook) |
