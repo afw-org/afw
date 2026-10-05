@@ -323,8 +323,13 @@ afw_function_execute_subtract_integer(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2, integer);
 
 
-    if ((-arg2->internal < 0 && (arg1->internal < AFW_INTEGER_MIN - -arg2->internal)) ||
-        (-arg2->internal > 0 && (arg1->internal > AFW_INTEGER_MAX - -arg2->internal)))
+    /*
+     * Check without negating arg2: -AFW_INTEGER_MIN overflows, and
+     * signed overflow is undefined. MAX + a negative and MIN + a
+     * positive cannot overflow.
+     */
+    if ((arg2->internal < 0 && arg1->internal > AFW_INTEGER_MAX + arg2->internal) ||
+        (arg2->internal > 0 && arg1->internal < AFW_INTEGER_MIN + arg2->internal))
     {
         AFW_THROW_ERROR_Z(argument_error, "Integer subtract overflow", x->xctx);
     }
