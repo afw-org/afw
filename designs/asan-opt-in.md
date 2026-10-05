@@ -132,6 +132,8 @@ Flexible order; one step, then re-decide.
 3. ~~Test:~~ `afwdev test --env-mode asan` landed (2026-10-04); see *How to run it*. First full run: 4346 passed, 29 failed. The failures were harness gaps (since fixed), the known findings (#466, #467, the deferred compile-literal cases) and three new UBSan findings (backlog).
 4. **Later / separate decisions:** a valgrind backing for the same header behind its own define (changes what the existing valgrind mode reports); a reuse delay (quarantine) for the heap free list so a same-size malloc does not hide a use-after-free. (UBSan halts: decided with step 3.)
 
+**Pre-PR verification (2026-10-05, rebased on `develop` `34f4eed9`):** `./afwdev build --fulldev` passed (generate, C, printf scan, `analyze-build` with no reports, install, Doxygen, Sphinx, TypeDoc, JS apps); `afwdev test -j --env-mode valgrind` 4607 passed, 0 failed (286s); `afwdev test -j` 4593 passed; `--env-mode asan` fails exactly the 7 tests of the three open UBSan findings.
+
 ## Footguns
 
 - **ODR report on extension load:** every extension exports `afw_environment_extension_instance` and is opened `RTLD_NOW | RTLD_GLOBAL` (`os/nix/afw_os.c`); the loader finds it with `dlsym` on the handle, so it works, but ASAN's ODR check aborts. The test mode should set `detect_odr_violation=0` unless we change symbol visibility.
