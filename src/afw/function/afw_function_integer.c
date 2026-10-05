@@ -255,16 +255,25 @@ afw_function_execute_multiply_integer(
     afw_function_execute_t *x)
 {
     const afw_value_integer_t *arg;
-    afw_integer_t result, next;
+    afw_integer_t result, b;
     afw_size_t n;
 
-    for (result = 1, next = 1, n = 1; n <= x->argc; n++) {
+    for (result = 1, n = 1; n <= x->argc; n++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, n, integer);
-        next *= arg->internal;
-        if (result != 0 && next / result != arg->internal) {
+        b = arg->internal;
+        /*
+         * Check before multiplying: signed overflow is undefined, so
+         * a check after the multiply is not guaranteed to run.
+         */
+        if (result > 0 ?
+            (b > 0 ? result > AFW_INTEGER_MAX / b
+                : b < AFW_INTEGER_MIN / result) :
+            (b > 0 ? result < AFW_INTEGER_MIN / b
+                : (result != 0 && b < AFW_INTEGER_MAX / result)))
+        {
             AFW_THROW_ERROR_Z(argument_error, "Integer multiply overflow", x->xctx);
-        } 
-        result = next;       
+        }
+        result *= b;
     }
 
     return afw_value_create_unmanaged_integer(result, x->p, x->xctx);
