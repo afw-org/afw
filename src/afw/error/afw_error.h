@@ -75,7 +75,13 @@ struct afw_error_s {
     /** @brief Message */
     const afw_utf8_z_t *message_z;
 
-    /** @brief Set by one of the AFW_THROW_ERROR_WITH_DATA* macros.. */
+    /**
+     * @brief Data thrown with the error, or NULL.
+     *
+     * Set with afw_error_set_data() (the AFW_THROW_ERROR_WITH_DATA*
+     * macros and Adaptive throw). The error owns a reference;
+     * afw_error_release_references() releases it.
+     */
     const afw_value_t *data;
 
     /** @brief Contextual information or NULL. */
@@ -94,8 +100,8 @@ struct afw_error_s {
      * response:error:backtrace:all. Other codes need
      * response:error:backtrace. Not captured for a memory error.
      * Managed hexBinary of OS octets (not necessarily UTF-8).
-     * NULL if none. Caller of afw_os_backtrace() must
-     * afw_value_release() when finished.
+     * NULL if none. The error owns a reference;
+     * afw_error_release_references() releases it.
      */
     const afw_value_hexBinary_t *backtrace;
 
@@ -375,9 +381,9 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_Z(_code, _data, _message_z, _xctx) \
 do { \
-    _xctx->error->data = _data; \
     afw_error_set_z(afw_error_code_ ## _code, \
         AFW__FILE_LINE__, _message_z, _xctx); \
+    afw_error_set_data(_data, _xctx); \
     afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
@@ -415,10 +421,10 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_Z(_code, _data, \
         rv_source_id, _rv, _message_z, _xctx) \
 do { \
-    _xctx->error->data = _data; \
     afw_error_rv_set_z(afw_error_code_ ## _code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, _rv, \
         AFW__FILE_LINE__, _message_z, _xctx); \
+    afw_error_set_data(_data, _xctx); \
     afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
@@ -456,9 +462,9 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_FZ(_code, _data, _xctx, _format_z, ...) \
 do { \
-    _xctx->error->data = _data; \
     afw_error_set_fz(afw_error_code_ ## _code, \
         AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_set_data(_data, _xctx); \
     afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
@@ -498,10 +504,10 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_FZ(_code, _data, \
         rv_source_id, _rv, _xctx, _format_z, ...) \
 do { \
-    _xctx->error->data = _data; \
     afw_error_rv_set_fz(afw_error_code_ ## _code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, _rv, \
         AFW__FILE_LINE__, _xctx, _format_z, __VA_ARGS__); \
+    afw_error_set_data(_data, _xctx); \
     afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
@@ -535,9 +541,9 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_VZ(_code, _data, _format_z, _ap, _xctx) \
 do { \
-    _xctx->error->data = _data; \
     afw_error_set_vz(afw_error_code_ ## _code, \
         AFW__FILE_LINE__, _format_z, _ap, _xctx); \
+    afw_error_set_data(_data, _xctx); \
     afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
@@ -573,10 +579,10 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_VZ(_code, _data, \
         rv_source_id, _rv, _format_z, _ap, _xctx) \
 do { \
-    _xctx->error->data = _data; \
     afw_error_rv_set_vz(afw_error_code_ ## _code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, _rv, \
         AFW__FILE_LINE__, _format_z, _ap, _xctx); \
+    afw_error_set_data(_data, _xctx); \
     afw_error_processing_throw((_xctx), afw_error_code_ ## _code); \
 } while (0)
 
@@ -915,7 +921,7 @@ do {\
     afw_xctx_evaluation_stack_rewind(this_TOP_OFFSET, xctx); \
     if (this_ERROR_OCCURRED && this_ERROR_CAUGHT) { \
         afw_error_processing_handled(xctx); \
-        afw_error_release_backtrace(&this_THROWN_ERROR, xctx); \
+        afw_error_release_references(&this_THROWN_ERROR, xctx); \
     } \
 } while (0)
 
@@ -945,13 +951,30 @@ do {\
     break;
 
 /**
- * @brief Release error->backtrace if set.
+ * @brief Release the references an error owns (backtrace and data).
  *
- * Safe if backtrace is NULL or a permanent value.
+ * Safe if either is NULL. Ownership moves with the error struct
+ * (AFW_TRY copy then AFW_ERROR_CLEAR_PARTIAL); release where the
+ * error ends: caught ENDTRY, a new error set, xctx release.
  */
 AFW_DECLARE(void)
-afw_error_release_backtrace(
+afw_error_release_references(
     afw_error_t *error,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Set xctx->error->data; the error owns a reference to it.
+ * @param data (any value), or NULL.
+ * @param xctx of caller.
+ *
+ * The error stores get_assignable_value(data) in xctx->p (the error is
+ * stored on the xctx). Call after afw_error_set_*: setting a new error
+ * releases the previous references.
+ */
+AFW_DECLARE(void)
+afw_error_set_data(
+    const afw_value_t *data,
     afw_xctx_t *xctx);
 
 

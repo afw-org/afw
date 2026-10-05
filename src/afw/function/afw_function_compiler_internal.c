@@ -2025,7 +2025,7 @@ afw_function_execute_throw(
 
     afw_error_set_fz(code, AFW__FILE_LINE__, xctx,
         "%ku", (&message->internal));
-    xctx->error->data = data;
+    afw_error_set_data(data, xctx);
     afw_error_processing_throw(xctx, code);
 
     return afw_value_void;

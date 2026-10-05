@@ -710,7 +710,7 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
 
     if (have_error) {
         xctx->error_processing_count--;
-        afw_error_release_backtrace(xctx->error, xctx);
+        afw_error_release_references(xctx->error, xctx);
         AFW_ERROR_COPY(xctx->error, &first_error);
         afw_error_processing_throw(xctx, first_error.code);
     }
