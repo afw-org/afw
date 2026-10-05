@@ -5,6 +5,8 @@
 **Landed:** [PR #150](https://github.com/afw-org/afw/pull/150) → `mgg-develop` (2026-08-06, merge `dd318e4f`).  
 **User-facing framing:** [`whats-new.md`](../whats-new.md) — *Mutable object faces (issue #17)*.
 
+**Update (2026-10-05, [#458](https://github.com/afw-org/afw/issues/458) branch):** unmanaged faces are gone. Script-built containers (object literal with expressions, construct/spread, `add_properties` with no target, `array()`, `create_array()`) are plain unmanaged values in dest `p`; storing one copies it through `get_assignable_value`. Isolation for a shared base comes from `get_assignable_value` itself: unmanaged → managed copy; permanent object → **managed** wrapper (`afw_object_create_wrapper_managed`, so script can modify a copy); permanent array → managed copy. Deleted: `afw_*_create_script_wrapper`, `afw_*_create_wrapper_with_options` and the `*_wrapper_unmanaged*` macros, the overlay cleanup registered on the face's own pool, `afw_value_assignable_*_inf`, and `afw_value_object_hold` / `array_hold`. `wrap_literal_object` / `wrap_literal_array` return `get_assignable_value`. Sections below describe the 2026-08 design and are history where they mention unmanaged faces.
+
 **#2 follow-on:** overlay store is a slot. Isolation stays this pad. A face overlay is a container (one reference to each local overlay value). Lifetime story: [`lifetime-principles.md`](lifetime-principles.md). Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Two worlds: [`experiment-brainstorm.md`](experiment-brainstorm.md).
 
 ---

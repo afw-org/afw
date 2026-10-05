@@ -395,29 +395,31 @@ Optional loop label for break/continue Identifier (issue #62).
 
 =head3 wrap_literal_array
 
-Evaluate an array value and clone_or_reference it (array_hold: memory face
-over the instance). Remaining explicit wrap_literal_array() calls; the
-compiler no longer emits this. Not normal author surface.
-clone_or_reference an evaluated array (memory face)
+Evaluate an array value and return get_assignable_value of it (a managed copy
+of an unmanaged or permanent array, or the same managed array). Remaining
+explicit wrap_literal_array() calls; the compiler no longer emits this. Not
+normal author surface.
+Evaluate an array and return get_assignable_value of it
 
 =head4 Parameters
 
     $array
 
-Array to evaluate and hold (typically a constant array literal).
+Array to evaluate (typically a constant array literal).
 
 =head3 wrap_literal_object
 
-Evaluate an object value and clone_or_reference it (object_hold: memory face
-over the instance). Remaining explicit wrap_literal_object() calls; the
+Evaluate an object value and return get_assignable_value of it (a managed copy
+of an unmanaged object, the same managed object, or a managed wrapper over a
+permanent object). Remaining explicit wrap_literal_object() calls; the
 compiler no longer emits this. Not normal author surface.
-clone_or_reference an evaluated object (memory face)
+Evaluate an object and return get_assignable_value of it
 
 =head4 Parameters
 
     $object
 
-Object to evaluate and hold (typically a constant object literal).
+Object to evaluate (typically a constant object literal).
 
 =cut
 

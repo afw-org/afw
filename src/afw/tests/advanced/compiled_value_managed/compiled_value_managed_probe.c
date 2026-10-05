@@ -62,7 +62,7 @@ impl_front_door(afw_xctx_t *xctx)
     if (impl_expect_seven(result, "front_door") != 0) {
         return 1;
     }
-    afw_value_release(value, xctx);
+    /* Caller does not release: the unit's last-release is on xctx->p. */
     return 0;
 }
 
@@ -76,15 +76,14 @@ impl_job_heap(afw_xctx_t *xctx)
     afw_boolean_t threw;
 
     job = afw_pool_heap_create_as_managed_p(xctx->p, 0, xctx);
+    /* Caller does not release: the unit's last-release is on job. */
     value = afw_compile_to_value(&impl_source, NULL,
         afw_compile_type_script, NULL, job, xctx);
     result = afw_value_evaluate(value, xctx->p, xctx);
     if (impl_expect_seven(result, "job_heap") != 0) {
-        afw_value_release(value, xctx);
         afw_pool_release(job, xctx);
         return 1;
     }
-    afw_value_release(value, xctx);
     threw = false;
     AFW_TRY {
         afw_pool_release(job, xctx);

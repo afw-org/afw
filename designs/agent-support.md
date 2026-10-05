@@ -123,6 +123,38 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 ---
 
+### Leftover RC / pool never dies
+
+Probes that found the #458 branch bugs. Rules they check: [`lifetime-principles.md`](lifetime-principles.md) (*Pools, scopes, and cycles*, *When leftover RC appears*).
+
+| Field | Notes |
+|-------|--------|
+| Symptom | A loop climbs (RSS and `in_use`); a use-after-free that only shows when freed memory is unmapped; a crash at xctx teardown inside a cleanup |
+| Layer | A reference that is never released; a release registered on a pool the value keeps alive; a pointer into memory the holder does not reference; a frame ↔ closure cycle |
+| Probe | See the numbered list below |
+| Entry | `afw_pool*.c` (scope, release_common, cleanups), `afw_value_closure_binding.c`, `afw_object_memory.c` / `afw_array_memory.c`, `afw_compile_parse_value.c`, `afw_error.c` |
+| Status | **Filled** (2026-10-05, #458 branch) |
+
+**Probes (cheap first)**
+
+1. **Is it a leak at all?** Run the shape for N and 4N iterations and compare child max RSS (`resource.getrusage(RUSAGE_CHILDREN).ru_maxrss` around `afw -s script`). Flat means no leak. For `in_use` vs fragmentation, add a temporary workload to `src/afw/tests-extra/issue-2/01-rss-hard-loops/` (it samples both).
+2. **Baseline before blaming the branch.** `git stash` (or `git checkout --detach origin/develop`), `./afwdev build --cdev`, measure, then come back and rebuild. Several "new" failures here were old.
+3. **Unmap freed memory.** The region free list hides use-after-free from valgrind (chunks stay mapped). Set `memoryRegionFreeListMaxBytes: 0` in an application conf (`afw -f conf`), or for a whole suite temporarily `sed` `AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES` in `src/afw/memory_region/afw_memory_region.h` to `0`, `./afwdev build --cdev`, `afwdev test -j`, then `git checkout` the header and rebuild. `process.as` fails in that mode by design.
+4. **Reference trace in gdb.** Break on a value's create, `get_reference`, and the RC-0 line of `optional_release` (and `afw_pool_release_value_at_cleanup` filtered on its inf). Print `self->reference_count` and `bt 6`. A hold that is only released from `afw_xctx_release` → `run_child_cleanups` is the leftover.
+5. **Pool-side check.** A value can reach RC 0 while its pool survives. Break on `impl_managed_optional_release` / pool `release_common` and print the pool's own `reference_count`; break on `afw_pool_heap_internal_teardown_store` to see what is actually torn down.
+6. **Job-heap pairing.** For one steady-state iteration, break on `impl_heap_malloc_internal` and `afw_pool_heap_internal_free_memory` filtered on the job heap (`xctx->p`), `bt 6` on each alloc. An alloc with no matching free is the leak (that is how the per-literal tracker pool was found).
+7. **Minimize under the real harness.** Split a `test_script` file into its `//? test:` sections and run each, then drop statements one at a time while it still crashes (a short Python loop). Some crashes only reproduce under `-s test_script`.
+
+**Shapes found so far**
+
+- **Registered release on the pool it pins** — a scope pool parented on dest `p` pinned dest `p`; a closure registered on dest `p` referenced that frame. Fixed: scope pool parent is `p->managed_p`.
+- **Pointer into a unit without a reference** — compile literals "acted permanent"; a closure did not reference its unit. Fixed: literals unmanaged in the unit; binding references the unit.
+- **Per-literal pool under the job heap** — top-level object literals were `new_p` entities. Fixed: unmanaged in the unit.
+- **Error data as a raw pointer** — thrown data built from frame slots dangled after unwind. Fixed: the error owns references.
+- **Frame ↔ closure cycle** — open, [#458](https://github.com/afw-org/afw/issues/458).
+
+---
+
 ### afwdev test surfaces (gate vs lab)
 
 | Field | Notes |

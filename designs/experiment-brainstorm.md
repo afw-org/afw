@@ -15,7 +15,7 @@ This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **clo
 
 - Managed scalars: `get_reference` / `get_assignable_value` **bump self**.
 - Unmanaged scalar `get_assignable_value`: **promote** (`create_managed` in dest `p->managed_p`, RC 1).
-- Compile-unit scalar literals (integer / double / string): `compile_literal_*` inf — **as-is** in slots; `clone_*` **copies**. `true` / `null` / `undefined` / `0` / `1` / `""` stay process permanents. Eval temps stay unmanaged-promote. Compiler-only `afw_compile_literal_<dt>_create()`.
+- Compile-unit scalar literals (integer / double / string) are **unmanaged in the unit** (`afw_value_create_unmanaged_<dt>`): a slot or container copies them through `get_assignable_value`, so nothing keeps a pointer into a unit that can die. Literals whose text is a registered constant (`strings.txt` → environment string literals, common integers) and `true` / `null` / `undefined` / `""` stay process permanents. The old `compile_literal_*` inf acted permanent and was removed: it was only safe while no literal escaped the top-level evaluate.
 - **#280 landed:** lexer mints token payloads as values; parse-word strings (`name == value`, identifier-like) register as environment registry type `string_literal` (key-only, `const afw_value_string_t *`). Say **environment registry**, not “catalog”. `get_string_literal` hits that first. Keywords pointer-compare interned `afw_v_*`. Symbol names, script function `param->name`, loop labels, type/interface declaration names are interned string values.
 - `afw_pool_release_value_at_cleanup`: register last-release of a managed hold on dest `p` when the contract is **caller does not release**. Not a slot. Story: [`lifetime-principles.md`](lifetime-principles.md).
 

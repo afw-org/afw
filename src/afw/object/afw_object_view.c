@@ -1118,9 +1118,9 @@ impl_object_create(
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
     /*
-     * Unmanaged: slot fill get_assignable_value is object_hold (mutable
-     * overlay). Managed assignable is bump, which would leave script with
-     * this immutable view (skip-hold on reconcilable/path).
+     * Unmanaged: slot fill get_assignable_value is a managed copy
+     * (mutable). Managed assignable is a bump, which would leave script
+     * with this immutable view (reconcilable/path).
      */
     self->value.inf = &afw_value_unmanaged_object_inf;
     self->value.internal = (const afw_object_t *)self;

@@ -322,35 +322,22 @@ impl_afw_value_optional_evaluate(
          */
         xctx->script_result = saved_script_result;
 
+        /*
+         * Caller does not release: get_assignable_value of the result
+         * (unmanaged, including unit literals, is copied) with its last
+         * release registered on dest p.
+         */
         if (result &&
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
-            const afw_data_type_t *dt;
-
-            /*
-             * Caller does not release. If the result is managed,
-             * register last-release of that one hold on dest p.
-             * script_result_set already isolated into dest p of
-             * that write (p->managed_p). Unit-backed compile-
-             * literals that missed the slot still live in the
-             * unit: clone_managed into this evaluate dest p,
-             * then register that hold on dest p.
-             */
-            dt = result->inf
-                ? result->inf->is_evaluated_of_data_type
-                : NULL;
-            if (dt && dt->clone_value_managed &&
-                !result->inf->is_managed)
-            {
-                result = afw_value_clone_managed(result, p, xctx);
-            }
-            afw_pool_release_value_at_cleanup(result, p, xctx);
+            result = afw_pool_scope_get_assignable_for_p_lifetime(
+                result, p, xctx);
         }
 
+        /* Drop the script_result slot's own reference. */
         if (slot &&
             slot != saved_script_result &&
-            slot != result &&
             !afw_value_is_undefined(slot) &&
             !afw_value_is_void(slot))
         {

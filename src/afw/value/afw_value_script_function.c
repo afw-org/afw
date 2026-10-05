@@ -98,8 +98,8 @@ impl_afw_value_get_reference(
 
 
 /*
- * Store-time bind (#35): wrap as closure_binding and take the hold
- * the caller (slot_store) will release.
+ * Store-time bind (#35): mint a closure_binding (create_managed RC 1).
+ * Caller of this get_assignable releases.
  */
 const afw_value_t *
 impl_afw_value_get_assignable_value(
@@ -107,14 +107,8 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *binding;
-
-    binding = afw_value_closure_binding_create_if_needed(
+    return afw_value_closure_binding_create_if_needed(
         &self->pub, p, xctx);
-    if (binding == &self->pub) {
-        return &self->pub;
-    }
-    return afw_value_add_reference(binding, xctx);
 }
 
 

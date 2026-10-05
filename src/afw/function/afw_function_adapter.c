@@ -87,7 +87,7 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
             /*
              * Bound memory for materializing retrieve_objects /
              * retrieve_objects_with_uri only. Progressive paths leave array NULL.
-             * push slot_store clone_or_reference (object_hold).
+             * push slot_stores get_assignable_value of each object.
              */
             ctx->object_count++;
             if (ctx->max_objects > 0 &&

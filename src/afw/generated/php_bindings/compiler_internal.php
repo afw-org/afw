@@ -598,15 +598,16 @@ class compiler_internal
     /**
      * wrap_literal_array()
      *
-     * Evaluate an array value and clone_or_reference it (array_hold: memory
-     * face over the instance). Remaining explicit wrap_literal_array() calls;
-     * the compiler no longer emits this. Not normal author surface.
+     * Evaluate an array value and return get_assignable_value of it (a
+     * managed copy of an unmanaged or permanent array, or the same managed
+     * array). Remaining explicit wrap_literal_array() calls; the compiler no
+     * longer emits this. Not normal author surface.
      *
-     * @param array $array Array to evaluate and hold (typically a constant
-     *                     array literal).
+     * @param array $array Array to evaluate (typically a constant array
+     *                     literal).
      *
-     * @return array A holdable memory-wrapper array face over the evaluated
-     *               base.
+     * @return array An array that is safe to mutate and store. It lasts for
+     *               the caller.
      */
     public function wrap_literal_array(, $array)
     {
@@ -624,15 +625,17 @@ class compiler_internal
     /**
      * wrap_literal_object()
      *
-     * Evaluate an object value and clone_or_reference it (object_hold: memory
-     * face over the instance). Remaining explicit wrap_literal_object()
-     * calls; the compiler no longer emits this. Not normal author surface.
+     * Evaluate an object value and return get_assignable_value of it (a
+     * managed copy of an unmanaged object, the same managed object, or a
+     * managed wrapper over a permanent object). Remaining explicit
+     * wrap_literal_object() calls; the compiler no longer emits this. Not
+     * normal author surface.
      *
-     * @param object $object Object to evaluate and hold (typically a constant
-     *                       object literal).
+     * @param object $object Object to evaluate (typically a constant object
+     *                       literal).
      *
-     * @return object A holdable memory-wrapper object face over the evaluated
-     *                base.
+     * @return object An object that is safe to mutate and store. It lasts for
+     *                the caller.
      */
     public function wrap_literal_object(, $object)
     {

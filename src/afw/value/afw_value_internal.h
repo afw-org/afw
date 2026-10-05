@@ -463,14 +463,7 @@ struct afw_value_closure_binding_s {
     const afw_pool_t *p;
     const afw_value_script_function_definition_t *script_function_definition;
     const afw_pool_scope_t *enclosing_lexical_scope;
-    /*
-     * Compile unit this binding keeps, or NULL. eval* of a top-level
-     * closure transfers the inner evaluate result's scope pin and a
-     * get_reference of the unit onto a new binding. Nested closures
-     * get_reference the unit onto the occupant binding. Last-release
-     * of the binding drops the unit. First get_reference of a binding
-     * that already keeps a unit does not take another scope pin.
-     */
+    /* Compile unit the definition lives in, or NULL. Referenced. */
     const afw_value_t *compiled_value;
     afw_size_t reference_count;
 };

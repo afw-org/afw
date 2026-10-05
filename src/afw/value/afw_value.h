@@ -1275,32 +1275,6 @@ afw_value_clone_managed(
 
 
 /**
- * @brief `clone_or_reference` for an unmanaged or permanent object value.
- *
- * Already a memory face: hold the instance, return the same value.
- * Otherwise wrap (mutable overlay) and hold the face. Isolation lives
- * here, not compiler wrap_literal emit. See designs/issue-2-hold-in-inf.md.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_object_hold(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief `clone_or_reference` for an unmanaged array value.
- * @see afw_value_object_hold()
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_array_hold(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-
-/**
  * @brief Drop a hold (NULL-safe `optional_release`).
  * @param value to release, or NULL.
  * @param xctx of caller.
@@ -1811,15 +1785,15 @@ afw_value_common_create(
 
 
 /**
- * @brief Create a closure binding value.
+ * @brief Create a managed closure binding value.
  * @param script_function_definition script function to enclose.
- * @param enclosing_lexical_scope for closure binding.
+ * @param enclosing_lexical_scope for closure binding. Create pins it.
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
- * @return Created afw_value_t.
+ * @return Created afw_value_t (RC 1; caller releases).
  */
 AFW_DEFINE(const afw_value_t *)
-afw_value_closure_binding_create(
+afw_value_closure_binding_create_managed(
     const afw_value_script_function_definition_t *script_function_definition,
     const afw_pool_scope_t *enclosing_lexical_scope,
     const afw_pool_t *p,

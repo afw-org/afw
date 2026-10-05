@@ -1,15 +1,15 @@
 {
     "afwCamelCaseFunctionLabel": "afwWrapLiteralArray",
-    "brief": "clone_or_reference an evaluated array (memory face)",
+    "brief": "Evaluate an array and return get_assignable_value of it",
     "camelCaseFunctionLabel": "wrapLiteralArray",
     "category": "compiler_internal",
-    "description": "Evaluate an array value and clone_or_reference it (array_hold: memory face over the instance). Remaining explicit wrap_literal_array() calls; the compiler no longer emits this. Not normal author surface.",
+    "description": "Evaluate an array value and return get_assignable_value of it (a managed copy of an unmanaged or permanent array, or the same managed array). Remaining explicit wrap_literal_array() calls; the compiler no longer emits this. Not normal author surface.",
     "functionId": "wrap_literal_array",
     "functionLabel": "wrap_literal_array",
     "parameters": [
         {
             "dataType": "array",
-            "description": "Array to evaluate and hold (typically a constant array literal).",
+            "description": "Array to evaluate (typically a constant array literal).",
             "name": "array",
             "optional": false
         }
@@ -17,7 +17,7 @@
     "pure": false,
     "returns": {
         "dataType": "array",
-        "description": "A holdable memory-wrapper array face over the evaluated base."
+        "description": "An array that is safe to mutate and store. It lasts for the caller."
     },
     "scriptSupport": true
 }

@@ -30,7 +30,7 @@
 
 /* Create function closure binding value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_closure_binding_create(
+afw_value_closure_binding_create_managed(
     const afw_value_script_function_definition_t *script_function_definition,
     const afw_pool_scope_t *enclosing_lexical_scope,
     const afw_pool_t *p,
@@ -39,11 +39,10 @@ afw_value_closure_binding_create(
     AFW_VALUE_SELF_T *self;
 
     /*
-     * Header in p->managed_p, not a scope leftover list. Capture still
-     * points at enclosing_lexical_scope. Named-call rebind of `f` mints
-     * a wrapper that last-release free_memorys; do not pile headers on
-     * the names-frame tracker. Loop clone / escape may still hold the
-     * pointer after the creating `{ }` dies.
+     * Header in dest p->managed_p. Create is RC 1. Caller releases.
+     * References enclosing_lexical_scope and the compile unit the
+     * definition lives in. Last RC 0 releases the scope, then the
+     * unit.
      */
     p = p->managed_p;
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
@@ -51,12 +50,15 @@ afw_value_closure_binding_create(
     self->p = p;
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
-    /*
-     * Create at 0. First add_reference (slot or overlay set) pins the
-     * defining scope; matching last-release drops it. Do not pin here:
-     * `o.fn = function…` is not a named slot, but the wrapper's set is.
-     */
-    self->reference_count = 0;
+    afw_pool_scope_get_reference(enclosing_lexical_scope, xctx);
+    if (script_function_definition->contextual &&
+        script_function_definition->contextual->compiled_value)
+    {
+        self->compiled_value = afw_value_get_reference(
+            &script_function_definition->contextual->compiled_value->pub,
+            xctx);
+    }
+    self->reference_count = 1;
 
     return &self->pub;
 }
@@ -98,7 +100,7 @@ afw_value_closure_binding_create_if_needed(
         AFW_THROW_ERROR_Z(general,
             "Internal error: scope not found", xctx);
     }
-    return afw_value_closure_binding_create(function, scope, p, xctx);
+    return afw_value_closure_binding_create_managed(function, scope, p, xctx);
 }
 
 
@@ -117,10 +119,7 @@ impl_afw_value_optional_release(
         self->reference_count = 0;
         afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
         /* After this, script_function_definition may be freed. */
-        if (self->compiled_value) {
-            afw_value_release(self->compiled_value, xctx);
-            self->compiled_value = NULL;
-        }
+        afw_value_release(self->compiled_value, xctx);
         afw_pool_free_memory_type(self->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }
@@ -135,15 +134,8 @@ impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
+    (void)xctx;
     self->reference_count++;
-    /*
-     * A binding that keeps a compile unit was handed its scope
-     * reference (eval* transfers the inner evaluate result's
-     * reference onto this header). First bump must not take another.
-     */
-    if (self->reference_count == 1 && !self->compiled_value) {
-        afw_pool_scope_get_reference(self->enclosing_lexical_scope, xctx);
-    }
     return &self->pub;
 }
 

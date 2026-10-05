@@ -115,18 +115,37 @@ impl_trace_flag_active(
 
 
 AFW_DEFINE(void)
-afw_error_release_backtrace(
+afw_error_release_references(
     afw_error_t *error,
     afw_xctx_t *xctx)
 {
     const afw_value_hexBinary_t *bt;
+    const afw_value_t *data;
 
-    if (!error || !error->backtrace) {
+    if (!error) {
         return;
     }
     bt = error->backtrace;
     error->backtrace = NULL;
-    afw_value_release(&bt->pub, xctx);
+    data = error->data;
+    error->data = NULL;
+    if (bt) {
+        afw_value_release(&bt->pub, xctx);
+    }
+    afw_value_release(data, xctx);
+}
+
+
+AFW_DEFINE(void)
+afw_error_set_data(
+    const afw_value_t *data,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *previous;
+
+    previous = xctx->error->data;
+    xctx->error->data = afw_value_get_assignable(data, xctx->p, xctx);
+    afw_value_release(previous, xctx);
 }
 
 
@@ -149,7 +168,7 @@ afw_error_rv_set_z(
     xctx->error->source_z = source_z;
     xctx->error->message_z = message_z;
 
-    afw_error_release_backtrace(xctx->error, xctx);
+    afw_error_release_references(xctx->error, xctx);
     /*
      * Capture only if this xctx wants a code backtrace.
      * trace_all_only codes (script throw, syntax) need
