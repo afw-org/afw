@@ -228,18 +228,6 @@ def write_h_section(fd, prefix, obj):
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_unmanaged_' + id + '_inf;\n')
 
-        if id in ('object', 'array'):
-            fd.write('\n/**\n')
-            fd.write(' * @brief Assignable (script face) value inf for data type ' +
-                     id + '.\n')
-            fd.write(' *\n')
-            fd.write(' * Face overlay (view/wrapper hold). get_reference and\n')
-            fd.write(' * get_assignable_value bump the instance. Generic memory\n')
-            fd.write(' * bags clone_managed instead of this inf.\n')
-            fd.write(' */\n')
-            fd.write(declare_data + '(afw_value_inf_t)\n')
-            fd.write('afw_value_assignable_' + id + '_inf;\n')
-
         fd.write('\n/**\n')
         fd.write(' * @brief Managed evaluated value inf for data type ' + id + '.\n')
         fd.write(' *\n')
@@ -1056,16 +1044,6 @@ def write_c_section(fd, prefix, obj):
             fd.write('    const afw_value_t *instance,\n')
             fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
-        if id in ('object', 'array'):
-            fd.write('\nAFW_DECLARE_STATIC(const afw_value_t *)\n')
-            fd.write('impl_afw_value_assignable_get_reference(\n')
-            fd.write('    const afw_value_t *instance,\n')
-            fd.write('    afw_xctx_t *xctx);\n')
-            fd.write('\nAFW_DECLARE_STATIC(void)\n')
-            fd.write('impl_afw_value_assignable_optional_release(\n')
-            fd.write('    const afw_value_t *instance,\n')
-            fd.write('    afw_xctx_t *xctx);\n')
-
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
         if id in ('object', 'array'):
             fd.write('/* unmanaged ' + id + ': get_reference/release throw; */\n')
@@ -1168,27 +1146,6 @@ def write_c_section(fd, prefix, obj):
         fd.write('#undef impl_afw_value_get_assignable_value\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
-        if id in ('object', 'array'):
-            fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-            _write_value_inf_variables(fd, id, True)
-            fd.write('/* assignable ' + id + ': script face; pin the bag. */\n')
-            fd.write('#define AFW_IMPLEMENTATION_ID "assignable_' + id + '"\n')
-            fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_' +
-                     id + '_inf\n')
-            fd.write('#define impl_afw_value_optional_release '
-                     'impl_afw_value_assignable_optional_release\n')
-            fd.write('#define impl_afw_value_get_reference '
-                     'impl_afw_value_assignable_get_reference\n')
-            fd.write('#define impl_afw_value_get_assignable_value '
-                     'impl_afw_value_get_assignable_via_reference\n')
-            fd.write('#define AFW_VALUE_INF_ONLY 1\n')
-            fd.write('#include "afw_value_impl_declares.h"\n')
-            fd.write('#undef AFW_IMPLEMENTATION_ID\n')
-            fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
-            fd.write('#undef impl_afw_value_optional_release\n')
-            fd.write('#undef impl_afw_value_get_reference\n')
-            fd.write('#undef impl_afw_value_get_assignable_value\n')
-            fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
     else:
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
@@ -2202,51 +2159,6 @@ def write_c_section(fd, prefix, obj):
                 fd.write('    }\n')
                 fd.write('    to = afw_array_create_managed_clone(a, p, xctx);\n')
                 fd.write('    return to->value;\n')
-            fd.write('}\n')
-            fd.write('\n')
-            fd.write('/* Assignable face: bump instance. */\n')
-            fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
-            fd.write('impl_afw_value_assignable_get_reference(\n')
-            fd.write('    const afw_value_t *instance,\n')
-            fd.write('    afw_xctx_t *xctx)\n')
-            fd.write('{\n')
-            if id == 'object':
-                fd.write('    const afw_value_object_t *self =\n')
-                fd.write('        (const afw_value_object_t *)instance;\n')
-                fd.write('\n')
-                fd.write('    if (self->internal) {\n')
-                fd.write('        afw_object_get_reference(self->internal, xctx);\n')
-                fd.write('    }\n')
-            else:
-                fd.write('    const afw_value_array_t *self =\n')
-                fd.write('        (const afw_value_array_t *)instance;\n')
-                fd.write('\n')
-                fd.write('    if (self->internal) {\n')
-                fd.write('        afw_array_get_reference(self->internal, xctx);\n')
-                fd.write('    }\n')
-            fd.write('    return instance;\n')
-            fd.write('}\n')
-            fd.write('\n')
-            fd.write('/* Assignable face: drop the bag pin. */\n')
-            fd.write('AFW_DECLARE_STATIC(void)\n')
-            fd.write('impl_afw_value_assignable_optional_release(\n')
-            fd.write('    const afw_value_t *instance,\n')
-            fd.write('    afw_xctx_t *xctx)\n')
-            fd.write('{\n')
-            if id == 'object':
-                fd.write('    const afw_value_object_t *self =\n')
-                fd.write('        (const afw_value_object_t *)instance;\n')
-                fd.write('\n')
-                fd.write('    if (self->internal) {\n')
-                fd.write('        afw_object_release(self->internal, xctx);\n')
-                fd.write('    }\n')
-            else:
-                fd.write('    const afw_value_array_t *self =\n')
-                fd.write('        (const afw_value_array_t *)instance;\n')
-                fd.write('\n')
-                fd.write('    if (self->internal) {\n')
-                fd.write('        afw_array_release(self->internal, xctx);\n')
-                fd.write('    }\n')
             fd.write('}\n')
             fd.write('\n')
         elif obj.get('scalar', False):

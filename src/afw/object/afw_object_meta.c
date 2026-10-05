@@ -53,7 +53,7 @@ impl_set_meta_object(
     meta_self->pub.inf = &impl_afw_object_inf;
     /*
      * Meta is a normal dual-face object: value.internal is the meta
-     * instance itself (not the entity). Pool-owned, so unmanaged face
+     * instance itself (not the entity). Pool-owned, so unmanaged dual face
      * until container-aware managed release is used here.
      */
     meta_self->value.inf = &afw_value_unmanaged_object_inf;

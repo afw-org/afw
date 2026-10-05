@@ -131,47 +131,6 @@ afw_array_is_memory_managed(const afw_array_t *array);
 
 
 /**
- * @brief Create a memory array that wraps another array (mutable face).
- * @param options AFW_ARRAY_MEMORY_OPTION_* (unmanaged borrow vs managed pin).
- * @param wrapped base array for isolation. Required (non-NULL). Any
- *     afw_array implementation is allowed (memory, adapter-backed,
- *     from_values, …).
- * @param p to use for the face.
- * @param xctx of caller.
- * @return instance of new wrapper array.
- *
- * The face materializes entry value pointers into a local vector so mutators
- * only touch the face. Nested mutable objects/arrays are promoted to nested
- * faces on get. Sets never write to @p wrapped (issue #17).
- *
- * Not the same as afw_array_create_unmanaged_from_c_array (typed
- * from_values array copied from C internals).
- */
-AFW_DECLARE(const afw_array_t *)
-afw_array_create_wrapper_with_options(
-    int options,
-    const afw_array_t *wrapped,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Create a memory wrapper over another array (options 0).
- */
-#define afw_array_create_wrapper_unmanaged_new_p(_wrapped, _p, _xctx) \
-    afw_array_create_wrapper_with_options( \
-        AFW_ARRAY_MEMORY_OPTION_new_p, _wrapped, _p, _xctx)
-
-
-/**
- * @brief Create an unmanaged memory wrapper over another array.
- */
-#define afw_array_create_wrapper_unmanaged(_wrapped, _p, _xctx) \
-    afw_array_create_wrapper_with_options( \
-        0, _wrapped, _p, _xctx)
-
-
-/**
  * @brief Managed wrapper over another array (p->managed_p, RC 1).
  * @param wrapped base. Required.
  * @param p dest pool (uses p->managed_p).
@@ -185,18 +144,6 @@ afw_array_create_wrapper_with_options(
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_wrapper_managed(
     const afw_array_t *wrapped,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Empty script-evaluation-aware array (face over an empty base).
- * @param p pool for the face.
- * @param xctx of caller.
- * @return unmanaged memory wrapper; element store is overlay holds.
- */
-AFW_DECLARE(const afw_array_t *)
-afw_array_create_script_wrapper(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

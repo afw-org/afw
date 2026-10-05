@@ -144,9 +144,9 @@ struct afw_memory_internal_array_s {
      */
     afw_memory_internal_array_values_t *values;
     /*
-     * Optional base for create_wrapper_* faces (NULL for a normal memory
+     * Optional base for a managed wrapper (NULL for a normal memory
      * array). After materialize, entry values live on the local vector; sets
-     * never write to wrapped. See afw_array_create_wrapper_with_options().
+     * never write to wrapped. See afw_array_create_wrapper_managed().
      */
     const afw_array_t *wrapped;
     /*
@@ -347,55 +347,6 @@ afw_array_is_memory_managed(const afw_array_t *array)
 }
 
 
-/* Create memory array face that wraps another array (issue #17). */
-AFW_DEFINE(const afw_array_t *)
-afw_array_create_wrapper_with_options(
-    int options,
-    const afw_array_t *wrapped,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *self;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *value;
-    const afw_data_type_t *data_type;
-
-    if (!wrapped) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_array_create_wrapper_with_options requires a wrapped array",
-            xctx);
-    }
-
-    data_type = afw_array_get_data_type(wrapped, xctx);
-    self = (afw_memory_internal_array_t *)
-        afw_array_create_with_options(options, data_type, p, xctx);
-    self->wrapped = wrapped;
-    /* Face holds the array the same way for in_pool / and_pool / permanent. */
-    afw_array_get_reference(wrapped, xctx);
-    if (self->unmanaged) {
-        afw_pool_register_cleanup(self->pub.p, self, NULL,
-            impl_managed_array_elements_cleanup, xctx);
-    }
-
-    /*
-     * Materialize entries onto the face so mutators only touch local
-     * storage (base is not written). push_value slot_stores
-     * (get_assignable_value) so nested unmanaged arrays get a face; an
-     * already-assignable child is bumped, not peeled.
-     */
-    for (iterator = NULL;;) {
-        value = afw_array_get_next_value(wrapped, &iterator, xctx);
-        if (!value) {
-            break;
-        }
-        afw_array_push_value((const afw_array_t *)self, value, xctx);
-    }
-
-    self->value.inf = &afw_value_assignable_array_inf;
-    return (const afw_array_t *)self;
-}
-
-
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_wrapper_managed(
     const afw_array_t *wrapped,
@@ -456,19 +407,6 @@ afw_array_is_memory_wrapper(const afw_array_t *array)
     self = (const afw_memory_internal_array_t *)array;
     return self->wrapped != NULL;
 }
-
-
-AFW_DEFINE(const afw_array_t *)
-afw_array_create_script_wrapper(
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_array_t *base;
-
-    base = afw_array_create_unmanaged(p, xctx);
-    return afw_array_create_wrapper_unmanaged(base, p, xctx);
-}
-
 
 
 /* Base under a face, or array if not a face. */
@@ -559,22 +497,13 @@ impl_afw_array_release(
 {
     const afw_array_t *wrapped;
 
+    /*
+     * Unmanaged: a reference pins the pool it lives in. Legacy C
+     * protocol; unmanaged has no references in lifetime-principles.md.
+     * Follow-up under #2.
+     */
     if (self->unmanaged) {
         if (self->reference_count <= 0) {
-            return;
-        }
-        if (self->reference_count == 1) {
-            self->reference_count = 0;
-            /*
-             * Overlay walk is a pool cleanup (same as managed faces).
-             * Do not walk here: C-style for clones the current scope and
-             * last-release of the previous clone can drop this instance
-             * to zero while the array is still in use.
-             */
-            if (self->wrapped) {
-                afw_array_release(self->wrapped, xctx);
-            }
-            afw_pool_release(self->pub.p, xctx);
             return;
         }
         self->reference_count--;

@@ -73,16 +73,6 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_object_inf;
 
 /**
- * @brief Assignable (script face) value inf for data type object.
- *
- * Face overlay (view/wrapper hold). get_reference and
- * get_assignable_value bump the instance. Generic memory
- * bags clone_managed instead of this inf.
- */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_assignable_object_inf;
-
-/**
  * @brief Managed evaluated value inf for data type object.
  *
  * Start-at-1 holdable in p->managed_p (caller must release).

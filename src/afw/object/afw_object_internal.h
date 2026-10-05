@@ -68,14 +68,13 @@ struct afw_object_internal_memory_object_s {
     /*
      * Optional base for look-through gets (NULL for a normal memory object).
      * Local properties shadow this object; sets never write to it.
-     * See afw_object_create_wrapper_with_options().
+     * Only managed wrappers have one: afw_object_create_wrapper_managed().
      */
     const afw_object_t *wrapped;
 
     /*
-     * Unmanaged faces: extra holds from add_reference. Zero is idle
-     * (instance is not destroyed). Generic unmanaged objects leave this
-     * at 0 and keep a no-op get_reference/release.
+     * Managed: the instance reference count. Unmanaged: legacy count of
+     * references that pin the object's pool (see impl_afw_object_release).
      */
     afw_integer_t reference_count;
 

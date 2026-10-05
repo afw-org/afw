@@ -73,9 +73,6 @@ impl_afw_object_managed_setter_remove_property(
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_ID
 
-static void
-impl_managed_face_overlay_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 AFW_DEFINE(const afw_object_t *)
@@ -489,54 +486,6 @@ afw_object_create_managed_embedded(
 }
 
 
-/* Create memory object that looks through to a wrapped base. */
-AFW_DEFINE(const afw_object_t *)
-afw_object_create_wrapper_with_options(
-    int options,
-    const afw_object_t *wrapped,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_object_internal_memory_object_t *self;
-
-    if (!wrapped) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_object_create_wrapper_with_options requires a wrapped object",
-            xctx);
-    }
-
-    self = (afw_object_internal_memory_object_t *)
-        afw_object_create_with_options(options, p, xctx);
-    self->wrapped = wrapped;
-    /* Face holds the bag the same way for in_pool / and_pool / permanent. */
-    afw_object_get_reference(wrapped, xctx);
-    afw_pool_register_cleanup(self->pub.p, self, NULL,
-        impl_managed_face_overlay_cleanup, xctx);
-    /*
-     * Carry meta (path, objectId, reconcilable, …) onto the face so
-     * meta(face) matches the adapter entity. Property gets still look
-     * through to wrapped for bag content.
-     */
-    afw_object_meta_clone_and_set((const afw_object_t *)self, wrapped, xctx);
-    self->value.inf = &afw_value_assignable_object_inf;
-    return (const afw_object_t *)self;
-}
-
-
-/* Empty face for script-mutable creates (overlay holds, not generic set). */
-AFW_DEFINE(const afw_object_t *)
-afw_object_create_script_wrapper(
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *base;
-
-    base = afw_object_create_unmanaged(p, xctx);
-    return afw_object_create_wrapper_unmanaged(base, p, xctx);
-}
-
-
-
 /* True if object is a memory look-through wrapper (has wrapped base). */
 AFW_DEFINE(afw_boolean_t)
 afw_object_is_memory_wrapper(const afw_object_t *object)
@@ -825,34 +774,8 @@ afw_object_insure_embedded_exists(
 
 
 
-/* Release overlay values this face slot_store'd. Not look-through base. */
-static void
-impl_release_local_properties(
-    AFW_OBJECT_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    afw_object_internal_name_value_entry_t *e;
-
-    for (e = self->first_property; e; e = e->next) {
-        if (e->value) {
-            afw_value_release(e->value, xctx);
-            e->value = NULL;
-        }
-    }
-}
 
 
-/* Managed face: walk overlay while self is still in the pool. */
-static void
-impl_managed_face_overlay_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    AFW_OBJECT_SELF_T *self = (AFW_OBJECT_SELF_T *)data;
-
-    (void)data2;
-    (void)p;
-    impl_release_local_properties(self, xctx);
-}
 
 
 /*
@@ -867,40 +790,18 @@ impl_afw_object_release(
     const afw_object_t *wrapped;
 
     /*
-     * Unmanaged generic (in_pool bag): extra holds keep the pool/frame
-     * alive. Unmanaged face: extra holds; last extra hold walks overlay.
+     * Unmanaged: a reference pins the pool it lives in. Legacy C
+     * protocol (adapter results, runtime objects); unmanaged has no
+     * references in lifetime-principles.md. Follow-up under #2.
      */
     if (self->unmanaged) {
-        if (!self->wrapped) {
-            if (self->reference_count <= 0) {
-                return;
-            }
-            self->reference_count--;
-            if (self->pub.p) {
-                afw_pool_release(self->pub.p, xctx);
-            }
-            return;
-        }
         if (self->reference_count <= 0) {
             return;
         }
-        if (self->reference_count == 1) {
-            self->reference_count = 0;
-            /*
-             * Overlay walk is a pool cleanup. Do not walk here: C-style
-             * for clones the current scope and last-release of the
-             * previous clone can drop this instance to zero while the
-             * object is still in use.
-             */
-            wrapped = self->wrapped;
-            if (wrapped) {
-                afw_object_release(wrapped, xctx);
-            }
-            afw_pool_release(self->pub.p, xctx);
-            return;
-        }
         self->reference_count--;
-        afw_pool_release(self->pub.p, xctx);
+        if (self->pub.p) {
+            afw_pool_release(self->pub.p, xctx);
+        }
         return;
     }
 
@@ -935,16 +836,12 @@ impl_afw_object_get_reference(
 {
     const afw_object_t *entity;
 
+    /* Unmanaged: legacy pool pin. See impl_afw_object_release. */
     if (self->unmanaged) {
-        if (!self->wrapped) {
-            self->reference_count++;
-            if (self->pub.p) {
-                afw_pool_get_reference(self->pub.p, xctx);
-            }
-            return;
-        }
         self->reference_count++;
-        afw_pool_get_reference(self->pub.p, xctx);
+        if (self->pub.p) {
+            afw_pool_get_reference(self->pub.p, xctx);
+        }
         return;
     }
 
