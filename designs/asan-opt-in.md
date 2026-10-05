@@ -4,7 +4,9 @@
 
 ## Decision
 
-ASAN is an **optional, intentional** testing method, not a default (maintainer call, 2026-10). It never runs as part of `--cdev`, `--fulldev`, `--all`, the pre-PR gate, or CI. You get it only by asking for it, and an ASAN build must not change a normal build, a normal install, or the plain / valgrind test modes. Revisit only by consensus.
+ASAN is an **optional, intentional** testing method, not a default (maintainer call, 2026-10). It never runs as part of `--cdev`, `--fulldev`, `--all` or the pre-PR gate; CI runs it as a non-blocking job (below). You get it only by asking for it, and an ASAN build must not change a normal build, a normal install, or the plain / valgrind test modes. Revisit only by consensus.
+
+**CI (2026-10-05, maintainer request):** `integration.yml` has a `build_test_c_asan_ubuntu` job (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`). It is **non-blocking** (`continue-on-error: true`) while the known findings are open; remove that once the ASan run is clean. Ubuntu only (the `afw-dev-base` images carry the ASan/UBSan runtimes; Alpine has none). It is still never part of `--cdev`, `--fulldev` or `--all` locally.
 
 ## Why the pools need annotations
 

@@ -156,6 +156,36 @@ jobs:
                   ldconfig          
                   ./afwdev --debug test --env-mode valgrind --errors
 
+    # AddressSanitizer + UndefinedBehaviorSanitizer build and test (Ubuntu).
+    # Builds build/asan/cmake/ and tests it directly (no install); see
+    # designs/asan-opt-in.md. Non-blocking while known findings are open
+    # (#466, #467, compile literals deferred to #2, UBSan items in
+    # beta-backlog.md): remove continue-on-error once the run is clean.
+    build_test_c_asan_ubuntu:
+        name: Build and Test C with ASan on Ubuntu
+        runs-on: ubuntu-latest
+        continue-on-error: true
+
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:ubuntu
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Build with AddressSanitizer
+              run: |
+                  ./afwdev build --cdev --sanitize address
+
+            - name: Run Tests with Environment Mode ASan
+              run: |
+                  ./afwdev --debug test -j --env-mode asan --errors
+
     # This job builds and tests the C apps on RockyLinux
     build_test_c_rockylinux:
         name: Build and Test C on RockyLinux
