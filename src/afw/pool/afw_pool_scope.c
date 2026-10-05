@@ -246,8 +246,10 @@ impl_scope_object_create(
     scope = (afw_pool_scope_t *)self;
     scope->p = &scope->pub;
     /*
-     * Old link rule: hold the parent for the life of this scope pool.
-     * Pool count stays 1, so throw-path delay still sees a last release.
+     * Hold the parent for the life of this scope pool. Pool count stays
+     * 1, so throw-path delay still sees a last release. A frame's parent
+     * is the job heap (see afw_pool_scope_create), so this hold never
+     * keeps a dest p alive.
      */
     if (self->parent && !self->parent->destroying) {
         afw_pool_get_reference(&self->parent->pub, xctx);
@@ -562,9 +564,16 @@ afw_pool_scope_create(
             "afw_pool_scope_create(): p required", xctx);
     }
 
+    /*
+     * Scope pool parent is the job heap (p->managed_p), not dest p. A
+     * scope lives by its scope RC. Its create hold on the parent must
+     * not keep dest p alive: a closure whose last-release is registered
+     * on dest p holds this frame, so a frame that pins dest p is a
+     * cycle. Lexical parents are held by scope RC, not by the pool tree.
+     */
     self_bytes = offsetof(afw_pool_scope_t, frame_slots)
         + (block->symbol_count * sizeof(const afw_value_t *));
-    scope = impl_scope_object_create(p, self_bytes, xctx);
+    scope = impl_scope_object_create(p->managed_p, self_bytes, xctx);
     scope->block = block;
     scope->symbol_count = block->symbol_count;
     scope->reference_count = 1;
@@ -634,20 +643,9 @@ afw_pool_scope_clone(
     afw_pool_scope_t *scope;
     afw_size_t i;
 
-    {
-        const afw_pool_internal_self_t *parent_self;
-
-        parent_self = ((const afw_pool_internal_self_t *)
-            original_scope->p)->parent;
-        if (!parent_self) {
-            AFW_THROW_ERROR_Z(general,
-                "afw_pool_scope_clone(): original scope pool has no parent",
-                xctx);
-        }
-        scope = (afw_pool_scope_t *)afw_pool_scope_create(
-            original_scope->block, original_scope->parent_lexical_scope,
-            &parent_self->pub, xctx);
-    }
+    scope = (afw_pool_scope_t *)afw_pool_scope_create(
+        original_scope->block, original_scope->parent_lexical_scope,
+        original_scope->p, xctx);
 
     for (i = 0; i < scope->symbol_count; i++) {
         afw_value_slot_store(&scope->frame_slots[i],

@@ -39,9 +39,10 @@ afw_value_closure_binding_create_managed(
     AFW_VALUE_SELF_T *self;
 
     /*
-     * Header in dest p->managed_p. Create is RC 1 and pins
-     * enclosing_lexical_scope. Caller releases. Last RC 0
-     * releases the scope.
+     * Header in dest p->managed_p. Create is RC 1. Caller releases.
+     * Holds enclosing_lexical_scope and the compile unit the
+     * definition lives in. Last RC 0 releases the scope, then the
+     * unit.
      */
     p = p->managed_p;
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
@@ -50,6 +51,13 @@ afw_value_closure_binding_create_managed(
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
     afw_pool_scope_get_reference(enclosing_lexical_scope, xctx);
+    if (script_function_definition->contextual &&
+        script_function_definition->contextual->compiled_value)
+    {
+        self->compiled_value = afw_value_get_reference(
+            &script_function_definition->contextual->compiled_value->pub,
+            xctx);
+    }
     self->reference_count = 1;
 
     return &self->pub;
@@ -110,6 +118,8 @@ impl_afw_value_optional_release(
     if (self->reference_count == 1) {
         self->reference_count = 0;
         afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
+        /* After this, script_function_definition may be freed. */
+        afw_value_release(self->compiled_value, xctx);
         afw_pool_free_memory_type(self->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }
