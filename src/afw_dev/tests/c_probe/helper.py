@@ -8,7 +8,7 @@ import os
 import shutil
 import tempfile
 
-from _afwdev.test.c_probe import run_c_probe
+from _afwdev.test.c_probe import libafw_sanitizers, run_c_probe
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _FIXTURES = os.path.join(_HERE, "_fixtures")
@@ -141,20 +141,24 @@ def run():
     })
 
     have_valgrind = shutil.which("valgrind") is not None
-    if not have_valgrind:
+    # Valgrind cannot run a probe linked to a sanitizer libafw.
+    sanitized = libafw_sanitizers()
+    if not have_valgrind or sanitized:
+        reason = ("libafw built with " + ",".join(sanitized)
+            if sanitized else "valgrind not on PATH")
         tests.append({
             "test": "valgrind-throw",
             "description": "throwing probe under valgrind with suite suppressions",
             "passed": True,
             "skip": True,
-            "skipReason": "valgrind not on PATH",
+            "skipReason": reason,
         })
         tests.append({
             "test": "valgrind-ok",
             "description": "non-throwing probe under valgrind",
             "passed": True,
             "skip": True,
-            "skipReason": "valgrind not on PATH",
+            "skipReason": reason,
         })
     else:
         vg_throw = run_c_probe(

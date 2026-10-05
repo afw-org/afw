@@ -367,6 +367,10 @@ return 0;
                     <column>Runs <literal>.as</literal> files under valgrind. C probes compiled by <literal>run_c_probe()</literal> are also wrapped. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported. A fail prints valgrind <literal>kind</literal> and the top stack frames. <literal>--error-detail</literal> adds source/expect/backtrace. Full XML stays <literal>--debug</literal>. <literal>-j</literal> prints each test group as one block.</column>
                 </row>
                 <row>
+                    <column><literal>asan</literal></column>
+                    <column>Runs the suite against the AddressSanitizer + UndefinedBehaviorSanitizer build from <literal>./afwdev build --cdev --sanitize address</literal> (<literal>build/asan/cmake/</literal>, never installed). Python tests, C probes and orchestrated <literal>afwfcgi</literal> use the same build. Any sanitizer report fails the process that hit it, and a fail shows the report line and the top stack frames. Opt-in: about 6 minutes for the suite.</column>
+                </row>
+                <row>
                     <column><literal>afwfcgi</literal></column>
                     <column>Replays compatible <literal>.as</literal> files against a running stack. The default URL is <literal>http://localhost:8080/afw</literal>. Tests with their own <literal>afw.conf</literal> are skipped. Orchestrated tests are also skipped, because their conf does not apply to the running process.</column>
                 </row>
@@ -381,6 +385,14 @@ return 0;
             <literal>.py</literal> file uses the Python runner. A 
             <literal>commands_*.txt</literal> file uses the commands 
             runner.
+        </paragraph>
+        <paragraph>
+            By default, tests run the installed <literal>afw</literal>, 
+            <literal>afwfcgi</literal> and libraries. 
+            <literal>--build-tree</literal> runs them from the cmake 
+            build tree instead (<literal>build/cmake/</literal>), so no 
+            install is needed to test. The <literal>asan</literal> mode 
+            always uses its own tree.
         </paragraph>
     </section>
     <section>

@@ -42,6 +42,7 @@
 #include "afw_array_internal.h"
 #include "afw_lock_internal.h"
 #include "afw_log_internal.h"
+#include "afw_memory_annotate_internal.h"
 #include "afw_model_internal.h"
 #include "afw_model_location.h"
 #include "afw_object_internal.h"

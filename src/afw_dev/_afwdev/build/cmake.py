@@ -10,11 +10,14 @@
 #          (--scan), and install.
 #
 
+import datetime
 import glob
+import json
 import subprocess
 import os
 import sys
 import re
+import tempfile
 from _afwdev.common import msg, package
 from _afwdev.build import printf_scan
 
@@ -133,6 +136,64 @@ def prune_leftover_installed_headers(include_dir, sudo=False):
     return removed
 
 
+# Written into a --sanitize prefix so the sanitizer test mode can refuse a
+# missing or stale build.
+SANITIZE_STAMP_NAME = 'afwdev-sanitize.json'
+
+
+def check_sanitizer_runtime(sanitizers):
+    """Exit unless the C compiler can link a program with these sanitizers.
+
+    Catches a toolchain without the runtime (musl/Alpine has no ASan
+    runtime) before a long cmake run fails halfway.
+    """
+    cc = os.environ.get('CC', 'cc')
+    flag = '-fsanitize=' + ','.join(sanitizers)
+    with tempfile.TemporaryDirectory(prefix='afwdev_sanitize_') as d:
+        src = os.path.join(d, 'probe.c')
+        with open(src, 'w') as f:
+            f.write('int main(void) { return 0; }\n')
+        try:
+            rc = subprocess.run([cc, flag, '-o', os.path.join(d, 'probe'),
+                src], capture_output=True, text=True)
+        except OSError as e:
+            msg.error_exit('--sanitize: cannot run ' + cc + ': ' + str(e))
+    if rc.returncode != 0:
+        msg.error_exit('--sanitize: ' + cc + ' cannot link with ' + flag +
+            ' (no sanitizer runtime for this toolchain?)\n' +
+            (rc.stderr or '').strip())
+
+
+def write_sanitize_stamp(options):
+    """Record the sanitizers and source commit in the --sanitize build tree.
+
+    --env-mode asan reads it to warn about a stale build.
+    """
+    stamp_dir = options['build_directory_cmake']
+    root = options['afw_package_dir_path']
+    commit = None
+    dirty = None
+    try:
+        commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=root,
+            capture_output=True, text=True, check=True).stdout.strip()
+        dirty = bool(subprocess.run(['git', 'status', '--porcelain'],
+            cwd=root, capture_output=True, text=True,
+            check=True).stdout.strip())
+    except (OSError, subprocess.CalledProcessError):
+        pass
+    stamp = {
+        'sanitizers': list(options['build_sanitizers']),
+        'commit': commit,
+        'dirty': dirty,
+        'built': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'buildDirectory': options['build_directory_cmake'],
+    }
+    os.makedirs(stamp_dir, exist_ok=True)
+    with open(os.path.join(stamp_dir, SANITIZE_STAMP_NAME), 'w') as f:
+        json.dump(stamp, f, indent=4)
+        f.write('\n')
+
+
 ##
 # @brief The main entry point for the "cmake" build.
 # @param options The options dictionary.
@@ -144,6 +205,9 @@ def build(options):
     stdout_capture = subprocess.DEVNULL
     if msg.is_verbose_mode() or msg.is_debug_mode():
         stdout_capture = None
+
+    if options.get('build_sanitizers'):
+        check_sanitizer_runtime(options['build_sanitizers'])
 
     _configure_command = ['cmake']
     # if msg.is_verbose:
@@ -163,6 +227,10 @@ def build(options):
     if _c_defines:
         # Semicolon list: add_compile_definitions in the root CMakeLists.
         _configure_command.extend(['-DAFWDEV_C_DEFINES=' + ';'.join(_c_defines)])
+    if options.get('build_sanitizers'):
+        # Semicolon list: -fsanitize options in the root CMakeLists.
+        _configure_command.extend(['-DAFWDEV_SANITIZE=' +
+            ';'.join(options['build_sanitizers'])])
     if options.get('build_prefix') is not None:
         _configure_command.extend(['-DCMAKE_INSTALL_PREFIX=' + options.get('build_prefix')])
     if options.get('build_package', False) and options.get('build_prefix') is not None:
@@ -199,6 +267,9 @@ def build(options):
         stdout=stdout_capture)
     if rc.returncode != 0:
         msg.error_exit("CMake build failed " + str(rc))
+
+    if options.get('build_sanitizers'):
+        write_sanitize_stamp(options)
 
     # cpack
     if options.get('build_package', False):
@@ -261,3 +332,4 @@ def build(options):
         prune_leftover_installed_headers(
             installed_include_dir(options),
             sudo=bool(options.get('build_sudo')))
+

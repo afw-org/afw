@@ -229,4 +229,6 @@ afw -s script
 ## Other test styles
 - `src/afw_command/tests/` — Python-mode fixtures for `afw --local` (`local_test.py`), not `.as` test_script.
 - `afwdev test --env-mode afwfcgi` — HTTP against nginx+`afwfcgi` (see `afw-server-fcgi`); not the default.
+- `afwdev test --env-mode asan` — opt-in AddressSanitizer + UBSan run against `build/asan/cmake/` (`./afwdev build --cdev --sanitize address` first). Any sanitizer report fails the process. A test that reads freed / no-access memory on purpose skips under ASan with a reason (see `pool_heap.py`). Lab / soak leaves that judge RSS, `in_use` or throughput are not meaningful under ASan. Map: `designs/asan-opt-in.md`.
+- `afwdev test --build-tree` — run against the cmake tree (`build/cmake/`) instead of the installed afw/libs; sets `PATH`, `LD_LIBRARY_PATH` (required, or extensions load from the install) and the C probe dirs. Default stays the installed system path.
 - Valgrind / other env-modes wrap the same script runner with different process wrappers.

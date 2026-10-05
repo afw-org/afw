@@ -375,8 +375,11 @@ New limit/cap property ids should use a **`max…`** prefix (`maxReadBytes`, `ma
 | **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
 | **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_bytes` / `xctx_chunk_bytes`) |
 | **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx asked-for and chunk bytes optional so older `afw` still records timing. `--trend-metric bytes\|chunk\|ms`. `--clear-history` drops ordinary runs for this `--env-mode` and keeps `-ref-` baselines. `--trend --history-ref LABEL` uses that baseline plus later ordinary runs. `--clear-failures` deletes `~/.afw/test-failures/` logs for this mode. |
+| **`--sanitize address`** | `afwdev build` | Opt-in AddressSanitizer + UndefinedBehaviorSanitizer build into `build/asan/cmake/` (never installed, never part of `--cdev` / `--fulldev`). Use `./afwdev build --cdev --sanitize address`. |
+| **`--env-mode asan`** | `afwdev test` | Runs the suite (python tests, C probes and orchestrated `afwfcgi` included) against that ASan build; any sanitizer report fails the test with the report line and top frames. About 6 minutes. |
+| **`--build-tree`** | `afwdev test` | Runs any env-mode against the cmake build tree (`build/cmake/`) instead of the installed `afw` / libraries. The default is unchanged: the installed system path. |
 
-Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
+Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md). ASan: [`designs/asan-opt-in.md`](designs/asan-opt-in.md).
 
 [↑ Highlights](#highlights)
 

@@ -10,6 +10,7 @@
 #define __AFW_POOL_HEAP_INTERNAL_H__
 
 #include "afw_pool_internal.h"
+#include "afw_memory_annotate_internal.h"
 
 /**
  * @file afw_pool_heap_internal.h
@@ -23,7 +24,9 @@
  * delay.
  *
  * Heap live: [chunk][USER] or, if AFW_DEBUG_POOL,
- * [chunk…][size][pool][USER]. `chunk` is the chunk that holds the
+ * [chunk…][size][pool][USER]. An ASAN build without AFW_DEBUG_POOL
+ * widens the prefix to a free node (afw_memory_annotate_internal.h).
+ * `chunk` is the chunk that holds the
  * block so free coalescing does not walk first_chunk. Its low bit
  * marks a freed block.
  * Freed heap blocks overlay afw_pool_heap_internal_free_node_t at the block start.
@@ -72,6 +75,10 @@ struct afw_pool_heap_internal_free_node_s {
     ((sizeof(afw_pool_internal_debug_prefix_t) > sizeof(afw_pool_heap_internal_free_node_t)) \
         ? sizeof(afw_pool_internal_debug_prefix_t) \
         : sizeof(afw_pool_heap_internal_free_node_t))
+#elif AFW_MEMORY_ANNOTATE_ACTIVE
+/* Free overlay stays in the prefix so all of USER can be no-access. */
+#define AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES \
+    sizeof(afw_pool_heap_internal_free_node_t)
 #else
 #define AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES sizeof(afw_pool_heap_internal_chunk_t *)
 #endif

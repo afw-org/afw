@@ -45,6 +45,10 @@ A throw calls `afw_os_backtrace` only when **`response:error:backtrace`** is on 
 
 Standalone valgrind on the compiled binary, without that file, can still report the noise. Judge the probe by exit code and by the helper wrap.
 
+## ASAN
+
+`libafw_sanitizers()` reads the installed `libafw.so` for ASAN / UBSan symbols. When present, `compile_c_probe` adds the same `-fsanitize` (an ASAN runtime must load first). Point at an ASAN prefix with `AFW_LIB_DIR` / `AFW_INCLUDE_DIR`. Opt-in only: [`asan-opt-in.md`](asan-opt-in.md).
+
 **Decided not:** a compile-time `AFW_NO_BACKTRACE` skip-all. Capture follows the product flag. Error-object `backtrace` is `ks` then NFC ([#206](https://github.com/afw-org/afw/issues/206)).
 
 Python-mode files are loaded under a unique module name (not a shared `test`). Two `.py` files in one process no longer inherit `run()` from each other.

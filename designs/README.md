@@ -33,6 +33,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
 | [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Gate vs lab: `test -j`, `-T` / `tests-extra`, firehose, `--output`, valgrind notes |
 | [`c-probes.md`](c-probes.md) | **#207** — `run_c_probe()`; `prime-test-c-probe`; valgrind / libunwind |
+| [`asan-opt-in.md`](asan-opt-in.md) | AddressSanitizer as an **opt-in** check (never a default): pool annotations, manual recipe, findings, remaining plan |
 | [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) | **#149** discovery notes — live maps vs materialize cost (architecture pad is preferred map) |
 | [`secrets-and-afw-crypto.md`](secrets-and-afw-crypto.md) | **#74** / `afw_crypto` design |
 | [`issue-18-decompile-status.md`](issue-18-decompile-status.md) | **#18** decompile/recompile (stringify issue closed; pad still useful) |

@@ -10,7 +10,16 @@ afw_pool_tracker_internal.h from the src tree (pulls heap + shared).
 
 import os
 
-from _afwdev.test.c_probe import run_c_probe
+from _afwdev.test.c_probe import (
+    libafw_build_cache, libafw_sanitizers, run_c_probe)
+
+# These read memory an ASAN libafw marks no-access (a freed USER, a
+# foreign block's prefix). ASAN reports that read before the debug
+# check can throw.
+_ASAN_SKIP = (
+    "debug_free_wrong_pool",
+    "debug_free_poisons_user",
+)
 
 
 def _afw_src():
@@ -43,7 +52,9 @@ def _lib_has_debug_pool():
     way: throw cases run only when the lib was built with the prefix.
     """
     root = os.path.abspath(os.path.join(_pool_src(), "..", "..", ".."))
-    cache = os.path.join(root, "build", "cmake", "CMakeCache.txt")
+    # A --sanitize build (build/asan/...) names its own cmake dir.
+    cache = libafw_build_cache() or \
+        os.path.join(root, "build", "cmake", "CMakeCache.txt")
     if os.path.isfile(cache):
         with open(cache, encoding="utf-8", errors="replace") as f:
             for line in f:
@@ -59,8 +70,10 @@ def _lib_has_debug_pool():
 
 def run():
     debug_pool = _lib_has_debug_pool()
+    asan = "address" in libafw_sanitizers()
     extra = [
         "-I", _pool_src(),
+        "-I", os.path.join(_afw_src(), "memory"),
         "-I", os.path.join(_afw_src(), "environment"),
         "-DAFW_ENVIRONMENT_INTERNAL_MEMBERS",
     ]
@@ -180,6 +193,10 @@ def run():
                 "AFW_DEBUG_POOL: free fills USER with poison inf",
             ),
         ])
+    asan_skipped = []
+    if asan:
+        asan_skipped = [c for c in cases if c[0] in _ASAN_SKIP]
+        cases = [c for c in cases if c[0] not in _ASAN_SKIP]
     result = run_c_probe(
         "pool_heap_probe.c",
         "Heap and heap-tracker pool implementations",
@@ -211,5 +228,13 @@ def run():
             "passed": True,
             "skip": True,
             "skipReason": "libafw built without AFW_DEBUG_POOL",
+        })
+    for name, desc in asan_skipped:
+        tests.append({
+            "test": name,
+            "description": desc,
+            "passed": True,
+            "skip": True,
+            "skipReason": "ASAN reports this read of no-access memory",
         })
     return result

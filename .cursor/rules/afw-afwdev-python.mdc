@@ -25,6 +25,12 @@ alwaysApply: false
 - Optional per-srcdir hook: `generate/additional_generate/additional_generate.py`.
 - Doxygen (`@file` / `@brief` / `@details` / …) is used for afwdev docs. Keep it; do not add changelog or attribution comments.
 
+## Sanitizer build and test (opt-in)
+
+- `build --sanitize address`: `_afwdev/build/build.py` (`apply_sanitize_options`, refusals, `build/asan/cmake/`, no install unless explicit `--install`) and `build/cmake.py` (`AFWDEV_SANITIZE`, runtime check, `afwdev-sanitize.json` stamp). Root `CMakeLists.txt` turns `AFWDEV_SANITIZE` into `-fsanitize`.
+- `test --env-mode asan`: `test/modes/asan.py` + `test/sanitize.py` (options, report summary); always runs through `test/build_tree.py`, which also backs `test --build-tree`.
+- Tests: `src/afw_dev/tests/sanitize_build.py`, `build_tree_and_asan_mode.py`. Story and decisions: `designs/asan-opt-in.md`.
+
 ## Handbook XML (`build --docs` / `--fulldev`)
 
 - Source: `src/*/doc/**/*.xml`. Renderer: `_afwdev/build/docs/docs.py` + `docs_html.py`.

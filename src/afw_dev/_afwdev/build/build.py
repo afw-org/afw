@@ -51,6 +51,25 @@ _BUILD_TYPE_CONTEXTS_ALL = tuple(
     context for context in _BUILD_TYPE_CONTEXTS if context != 'docker'
 )
 
+# --sanitize <variant>: sanitizers it builds and its directory under build/.
+# Only address for now (thread / memory are not supported; see
+# designs/asan-opt-in.md). UBSan rides along with any variant.
+_SANITIZE_VARIANTS = {
+    'address': (('address', 'undefined'), 'asan'),
+}
+
+# Options --sanitize refuses: it is the C (cmake) context only, built into
+# its own directory and prefix.
+_SANITIZE_REFUSED = (
+    ('build_fulldev', '--fulldev'),
+    ('build_all', '--all'),
+    ('build_docs', '--docs'),
+    ('build_js', '--js'),
+    ('build_docker', '--docker'),
+    ('build_package', '--package'),
+    ('build_scan', '--scan'),
+)
+
 # --cdev and --fulldev both turn these on. --all does not.
 _BUILD_CONVENIENCE_SWITCHES = (
     'clean',
@@ -104,6 +123,34 @@ def apply_build_profile_flags(options):
         options['build_cmake'] = True
 
 
+def apply_sanitize_options(options):
+    """Validate --sanitize and imply its cmake context and install.
+
+    Sets build_sanitizers (e.g. ('address', 'undefined')) and
+    build_sanitize_dir (e.g. 'asan'). Run after apply_build_profile_flags
+    so --fulldev / --all are already expanded. --env-mode asan tests the
+    build tree, so a sanitizer build installs only with an explicit
+    --install (not the one --cdev implies).
+    """
+    variant = options.get('build_sanitize')
+    if not variant:
+        return
+    if variant not in _SANITIZE_VARIANTS:
+        msg.error_exit('--sanitize ' + str(variant) + ' is not supported. '
+            'Accepted: ' + ', '.join(sorted(_SANITIZE_VARIANTS)) +
+            '. thread and memory are not supported yet; see '
+            'designs/asan-opt-in.md.')
+    for option_name, flag in _SANITIZE_REFUSED:
+        if options.get(option_name, False):
+            msg.error_exit('--sanitize builds only the C (cmake) context '
+                'into its own directory; it cannot be combined with ' +
+                flag + '.')
+    options['build_sanitizers'], options['build_sanitize_dir'] = \
+        _SANITIZE_VARIANTS[variant]
+    options['build_cmake'] = True
+    options['build_install'] = bool(options.get('build_install_explicit'))
+
+
 ##
 # @brief The main entry point for the "build" subcommand
 # @details This routine is called during "afwdev build" in order to build
@@ -119,7 +166,9 @@ def run(options):
     if msg.is_verbose_mode() or msg.is_debug_mode():
         stdout_capture = None
 
+    options['build_install_explicit'] = bool(options.get('build_install'))
     apply_build_profile_flags(options)
+    apply_sanitize_options(options)
 
 
     # Set build directories:
@@ -131,6 +180,22 @@ def run(options):
         options['build_directory_' + build_type_context] = \
             options['build_directory'] + build_type_context + '/'
 
+    # --sanitize: build/<dir>/cmake/ and, unless --prefix, build/<dir>/install/.
+    # Siblings of build/cmake/, so a normal --clean never removes them. The
+    # prefix is configured even without --install: it is the baked-in
+    # fallback for extension loading, which must not be /usr/local.
+    sanitize_install_default = None
+    if options.get('build_sanitizers'):
+        sanitize_rpath = options['build_directory_rpath'] + \
+            options['build_sanitize_dir'] + '/'
+        options['build_directory_rpath_cmake'] = sanitize_rpath + 'cmake/'
+        options['build_directory_cmake'] = \
+            options['afw_package_dir_path'] + sanitize_rpath + 'cmake/'
+        if options.get('build_prefix') is None:
+            sanitize_install_default = \
+                options['afw_package_dir_path'] + sanitize_rpath + 'install'
+            options['build_prefix'] = sanitize_install_default
+
     # Remove build directories for all specified build contexts. 
     if options.get('build_clean', False):
         for build_type_context in _BUILD_TYPE_CONTEXTS:
@@ -139,6 +204,11 @@ def run(options):
                 if os.path.exists(_build_directory):
                     msg.highlighted_info("Removing " + _build_directory)
                     shutil.rmtree(_build_directory, ignore_errors=True)  
+        # The default sanitize prefix is ours to clean; a --prefix is not.
+        if sanitize_install_default and \
+                os.path.exists(sanitize_install_default):
+            msg.highlighted_info("Removing " + sanitize_install_default)
+            shutil.rmtree(sanitize_install_default, ignore_errors=True)
 
     # generate \*
     if options.get('build_generate', False):

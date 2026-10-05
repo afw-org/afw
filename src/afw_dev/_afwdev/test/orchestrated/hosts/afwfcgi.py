@@ -24,11 +24,14 @@ def build_afwfcgi_argv(
         socket_path,
         threads=1,
         under_valgrind=False,
-        valgrind_suppressions=None):
+        valgrind_suppressions=None,
+        line_buffer=True):
     """
     Build argv to start afwfcgi (optionally under valgrind).
 
-    Hook point for --env-mode valgrind and future flags.
+    Hook point for --env-mode valgrind and future flags. line_buffer
+    False skips stdbuf: its LD_PRELOAD would load ahead of the ASan
+    runtime, which an ASan afwfcgi refuses (--env-mode asan).
     """
     afwfcgi = "afwfcgi"
     server = [
@@ -38,7 +41,7 @@ def build_afwfcgi_argv(
         "-n", str(threads),
     ]
     if not under_valgrind:
-        return _line_buffer_stdio(server)
+        return _line_buffer_stdio(server) if line_buffer else server
 
     # stdbuf works by LD_PRELOAD. Leave valgrind's argv alone.
     vg = [
@@ -71,6 +74,14 @@ def _close_quiet(fd):
         fd.close()
     except Exception:
         pass
+
+
+def _env_mode(options):
+    """--env-mode from options, else from the running python test."""
+    if options:
+        return options.get("mode") or "afw"
+    from _afwdev.test import context as test_context
+    return test_context.options().get("mode") or "afw"
 
 
 def start_afwfcgi(
@@ -113,6 +124,7 @@ def start_afwfcgi(
         threads=threads,
         under_valgrind=under_valgrind,
         valgrind_suppressions=suppressions,
+        line_buffer=_env_mode(options) != "asan",
     )
 
     # log type standard writes stdout and flushes each line. stderr is
