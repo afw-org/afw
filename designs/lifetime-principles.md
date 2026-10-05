@@ -31,6 +31,8 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 | Where | dest `p` (evaluation `{ }` is `scope->p`) | dest `p->managed_p` |
 | Death | that pool bulk-frees | last RC: `release` every reference this value holds, `free_memory` every block it allocated (or last-release a pool it owns) |
 
+**Unmanaged has no references.** An unmanaged instance lives and dies with its pool. Its `get_reference` / `release` never touch a pool's RC. Anything that needs it past that pool calls `get_assignable_value` and gets a managed value. **Legacy still in the tree:** unmanaged memory objects and arrays still pin their pool on `get_reference` for C callers (adapter results, runtime `set_object`, the associative-array object store). That is a #2 follow-up, not a protocol to copy.
+
 Pass dest `p`. Do not treat `xctx->p` as an implicit dest. `afw_xctx_*alloc`/`free` used to allocate in `xctx->p` (an older world where `xctx->p` was `managed_p`). Those macros are **gone** ([#443](https://github.com/afw-org/afw/issues/443) on `fix-443-xctx-alloc-dest-p`): `afw_pool_*` with dest `p` (managed values: `p->managed_p`; env-lifetime: `env->p`; stored on the xctx: `xctx->p`). Do not reintroduce them. `set_property_as_string_from_utf8_z` stores the pointer; the bytes must outlive the object.
 
 ---
@@ -85,6 +87,19 @@ Read a slot: the pointer. Keep a value alive: `get_reference` (matching `release
 
 `create_managed` is already must-release (RC 1). `get_assignable_value` of it is a **second** must-release. Handle both.
 
+What `get_assignable_value` returns, by world:
+
+| Value | Result |
+|---|---|
+| Unmanaged (scope temp, unit literal, unmanaged object/array) | A **managed copy** in `p->managed_p`. A managed container copy references its managed members. |
+| Managed | The same value, RC bumped. |
+| Permanent scalar | Self (`get_reference` is ignored). |
+| Permanent object | A managed wrapper, so Adaptive Script can modify a copy (language semantics). Permanent array: a managed copy. |
+
+Compile-unit literals are **unmanaged in the unit** (not permanent): a store copies them, so nothing keeps a pointer into a unit that can die. Literals whose text is a registered constant (`strings.txt` → environment string literals, common integers) are permanent. A top-level object literal is unmanaged in the unit's pool, not an entity with its own pool (only `afw_compile_json_to_object` with `cede_p` makes one).
+
+Script-built containers (object literal with expressions, construct/spread, `add_properties` with no target, `array()`, `create_array()`) are plain unmanaged values in dest `p`. Temporaries die with the scope pool; a store copies them. There are no unmanaged faces.
+
 ---
 
 ## Last RC
@@ -97,6 +112,20 @@ Methods that return a held value are **caller does not release**. If the caller 
 
 ---
 
+## Pools, scopes, and cycles
+
+**A release registered on a pool must not keep that pool alive.** "Caller does not release" by registering last-release on dest `p` is sound only if the registered value does not, directly or through what it references, keep dest `p` alive. Otherwise the cleanup waits for the pool and the pool waits for the cleanup. The pool tree is for storage and the end-of-xctx backstop; lifetime between values is references.
+
+**A managed value references everything it points into that has its own lifetime.** A closure binding references its captured scope **and** the compile unit its definition lives in. Do not rely on some pool happening to outlive the pointer.
+
+**Scopes.** A scope lives by its scope RC. It references its lexical parent (scope RC), never dest `p`: the scope pool's parent is `p->managed_p` (the job heap). The scope pool is the frame's temporary memory, freed in one shot at last scope RC; frame slots hold only `get_assignable_value` results. Scopes are special in one way: Adaptive `try` / `catch` / `finally`. While a throw is handled (`error_processing_count > 0`) the last release of a scope pool is delayed until the catching `ENDTRY`, so catch code can still read what the frames allocated. That delay depends only on the scope pool's own count, not on its parent.
+
+**The error owns references** to its data and backtrace (`afw_error_set_data`, `afw_error_release_references`). They move with the error struct (`AFW_ERROR_COPY` / `AFW_ERROR_CLEAR_PARTIAL`) and are released at a caught `ENDTRY`, a new error set, or xctx release.
+
+**Open: closure reference cycles ([#458](https://github.com/afw-org/afw/issues/458)).** A frame slot that holds a closure whose captured scope chain includes that frame is a cycle (frame → slot → binding → captured scope → … → frame). Reference counting cannot reclaim it; the frame lives until xctx teardown. Local helper functions, `const f = function…`, an object in the frame holding a closure, and an inner-block closure stored in an outer slot all do this. Decision pending in #458.
+
+---
+
 ## When leftover RC appears
 
 1. Did last RC complete the walk?
@@ -104,6 +133,11 @@ Methods that return a held value are **caller does not release**. If the caller 
 3. Did a method that returns a held value expect the caller to `release`?
 4. Did a callee honor caller does not release with managed and forget to register last-release on dest `p`, register twice, or use `xctx->p`?
 5. Did a callee return unmanaged on a caller-releases contract?
+6. Does a release registered on a pool keep that same pool alive (directly, through a scope, or through a child pool's create reference)?
+7. Does a frame slot hold a value that references that frame (a closure cycle)?
+8. Does a managed value point into memory (a unit, another pool) it does not reference?
+
+Probes that find these are in [`agent-support.md`](agent-support.md) (*Leftover RC / pool never dies*).
 
 If the answer is a new register last-release, a new flag, or a helper around assign, stop.
 
