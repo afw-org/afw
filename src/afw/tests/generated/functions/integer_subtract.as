@@ -59,3 +59,24 @@ subtract<integer>(
     integer(x)
 )
 
+//?
+//? test: subtract<integer>-6
+//? description: Subtract the minimum integer from 0, which will overflow
+//? expect: error:Integer subtract overflow
+//? source: ...
+
+subtract<integer>(
+    integer(0),
+    integer("-9223372036854775808")
+)
+
+//?
+//? test: subtract<integer>-7
+//? description: Subtract the minimum integer from -1, which is the maximum integer (no overflow)
+//? expect: integer(9223372036854775807)
+//? source: ...
+
+subtract<integer>(
+    integer(-1),
+    integer("-9223372036854775808")
+)
