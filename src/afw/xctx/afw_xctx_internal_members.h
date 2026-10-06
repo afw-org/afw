@@ -51,6 +51,12 @@
     afw_size_t release_pending_cap;
 
     /**
+     * Number of try catch bodies being evaluated on this xctx. rethrow()
+     * outside of one is an error.
+     */
+    afw_size_t catch_depth;
+
+    /**
      * Runtime objects for xctx.
      */
     const afw_runtime_objects_t *runtime_objects;
