@@ -154,8 +154,8 @@ class _FirehoseSamples(object):
 def _diag_dir(work_dir):
     """Detail that is too noisy for the console.
 
-    Lives under the leaf work dir inside ``$tmpdir/afwdev_test_output``.
-    The next afwdev test run for that temp directory removes it.
+    Lives under the leaf work dir inside this run's directory
+    (``$tmpdir/afwdev-runs/<run>``), removed with the run (run_dir.py).
     """
     return os.path.join(work_dir, "diag")
 

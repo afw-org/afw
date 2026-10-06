@@ -1004,7 +1004,9 @@ _info_test_env_mode = {
     "arg": "--env-mode",
     "action": "store",
     "default": "afw",
-    "help": "The test environment mode to use."
+    "help":
+        "The test environment mode to use: afw, afwfcgi, actions, "
+        "valgrind, or asan."
 }
 
 _info_test_output = {
@@ -1094,17 +1096,19 @@ _info_test_history_ref = {
         "use the oldest reference."
 }
 
-_info_test_clear_failures = {
-    "optionName": "clear_failures",
-    "arg": "--clear-failures",
+_info_test_clear_temps = {
+    "optionName": "clear_temps",
+    "arg": "--clear-temps",
     "action": "store_true",
     "default": False,
     "noprompt": True,
     "help":
-        "Delete failure logs for this --env-mode under "
-        "~/.afw/test-failures/ (the .log and its .state.json). "
-        "Does not run tests unless --history or --history-ref is "
-        "also given."
+        "Delete every run directory under --tmpdir/afwdev-runs/ that "
+        "no live afwdev test holds, plus the old afwdev_test_output "
+        "and directories tests used to leave in --tmpdir (known "
+        "afw_* prefixes only). Otherwise each run keeps the newest "
+        "test_keep_runs run directories of its --env-mode "
+        "(afwdev-settings.json, default 10). Does not run tests."
 }
 
 _info_test_clear_history = {
@@ -1233,7 +1237,7 @@ _info_test = {
         _info_test_capture_goldens,
         _info_test_history,
         _info_test_history_ref,
-        _info_test_clear_failures,
+        _info_test_clear_temps,
         _info_test_clear_history,
         _info_test_list_history_refs,
         _info_test_delete_history_ref,

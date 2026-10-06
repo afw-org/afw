@@ -17,7 +17,10 @@
 afwdev test -j
 # Memory line: max N xctx, N chunk. History: --compare / --trend / --trend-metric chunk
 # --clear-history keeps -ref- baselines. --trend --history-ref LABEL
-# --clear-failures removes this mode's ~/.afw/test-failures logs
+# Each run has its own directory, /tmp/afwdev-runs/<MMDD-HHMMSS>-<mode>/
+# (latest links to the newest), last 10 per mode: leaf work dirs, failures.log,
+# and tmp/ (TMPDIR for tests). Parallel runs never collide.
+# --clear-temps removes run directories not in use and old leftovers
 
 # 2) Narrow product regression (example #149 catalog contracts)
 afwdev test --test-pattern catalog-value-accessors --show-all

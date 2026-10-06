@@ -3,10 +3,12 @@
 """History compare/trend: path match, optional bytes, thresholds."""
 
 import os
+import shutil
 import tempfile
+import time
 
 from _afwdev.test.common import format_test_timing, format_xctx_bytes
-from _afwdev.test.failure_log import clear_failures
+from _afwdev.test import run_dir
 from _afwdev.test.history import (
     compare_runs, file_record, trend_runs, _bytes_fatter, BYTES_FLOOR,
     history_filename, is_reference_name, select_trend_files,
@@ -279,35 +281,107 @@ def run():
             os.remove(os.path.join(house, name))
         os.rmdir(house)
 
-    fails = tempfile.mkdtemp()
+    root = tempfile.mkdtemp()
+    saved_tmpdir = (os.environ.get("TMPDIR"), tempfile.tempdir)
     try:
-        for name in (
-            "2026-01-01T000000000Z-afw.log",
-            "2026-01-01T000000000Z-afw.log.state.json",
-            "2026-01-01T000000000Z-valgrind.log",
-            "2026-01-01T000000000Z-valgrind.log.state.json",
-            "notes.txt",
-        ):
-            open(os.path.join(fails, name), "w").close()
-        nfail = clear_failures({"mode": "afw"}, directory=fails)
-        left = sorted(os.listdir(fails))
+        opts = {"tmpdir": root, "mode": "afw",
+                "afwdev_settings": {"test_keep_runs": 3}}
+        runs = run_dir.runs_root(opts)
+        os.makedirs(runs)
+        base_time = time.time() - 3600
+        for i, (name, locked) in enumerate((
+                ("0101-000000-afw", False),
+                ("0101-000001-afw", True),
+                ("0101-000002-afw", False),
+                ("0101-000003-afw", False),
+                ("0101-000004-valgrind", False))):
+            path = os.path.join(runs, name)
+            os.mkdir(path)
+            if locked:
+                with open(os.path.join(path, run_dir.LOCK_NAME), "w") as fd:
+                    fd.write(str(os.getpid()))
+            stamp = base_time + i
+            if name.endswith("valgrind"):
+                stamp = base_time - 100
+            os.utime(path, (stamp, stamp))
+        made = run_dir.create(opts, "afw")
+        left = sorted(os.listdir(runs))
+        latest = os.path.join(runs, run_dir.LATEST_NAME)
         tests.append({
-            "test": "clear-failures-one-mode",
-            "description": "afw logs and state go; valgrind and other files stay",
+            "test": "run-dir-create-and-prune",
+            "description":
+                "keeps the newest test_keep_runs of the mode, counting the "
+                "new one; a live run and other modes stay; new run has "
+                "lock, tmp/ as TMPDIR, and latest",
             "passed": (
-                nfail == 2
-                and left == [
-                    "2026-01-01T000000000Z-valgrind.log",
-                    "2026-01-01T000000000Z-valgrind.log.state.json",
-                    "notes.txt",
-                ]
+                "0101-000000-afw" not in left
+                and "0101-000001-afw" in left
+                and "0101-000002-afw" in left
+                and "0101-000003-afw" in left
+                and "0101-000004-valgrind" in left
+                and os.path.basename(made) in left
+                and run_dir.in_use(made)
+                and os.environ.get("TMPDIR") ==
+                    os.path.join(made, run_dir.SCRATCH_NAME)
+                and tempfile.gettempdir() ==
+                    os.path.join(made, run_dir.SCRATCH_NAME)
+                and os.path.realpath(latest) == os.path.realpath(made)
+            ),
+            "skip": False,
+        })
+        second = run_dir.create(dict(opts), "afw")
+        run_dir.release(opts)
+        tests.append({
+            "test": "run-dir-parallel-and-release",
+            "description":
+                "a second run gets its own directory; release drops the lock",
+            "passed": (
+                second != made
+                and not run_dir.in_use(made)
+                and os.path.isdir(made)
+            ),
+            "skip": False,
+        })
+        for name in ("afwdev_test_output", "afw_req_body_x1",
+                     "afw_vector_probe_x2", "afw-take-tests", "afw_subset"):
+            os.mkdir(os.path.join(root, name))
+        run_dir.clear(opts)
+        top = sorted(os.listdir(root))
+        left = sorted(os.listdir(runs))
+        tests.append({
+            "test": "clear-temps",
+            "description":
+                "unlocked runs and known leftovers go; live runs and "
+                "hand-made directories stay",
+            "passed": (
+                os.path.basename(made) not in left
+                and os.path.basename(second) in left
+                and "0101-000001-afw" in left
+                and "afwdev_test_output" not in top
+                and "afw_req_body_x1" not in top
+                and "afw_vector_probe_x2" not in top
+                and "afw-take-tests" in top
+                and "afw_subset" in top
+            ),
+            "skip": False,
+        })
+        tests.append({
+            "test": "socket-path-limit",
+            "description": "a socket path over 107 bytes is reported",
+            "passed": (
+                run_dir.socket_path_error("/tmp/" + "a" * 102) is None
+                and run_dir.socket_path_error("/tmp/" + "a" * 103)
+                is not None
             ),
             "skip": False,
         })
     finally:
-        for name in os.listdir(fails):
-            os.remove(os.path.join(fails, name))
-        os.rmdir(fails)
+        if saved_tmpdir[0] is None:
+            os.environ.pop("TMPDIR", None)
+        else:
+            os.environ["TMPDIR"] = saved_tmpdir[0]
+        tempfile.tempdir = saved_tmpdir[1]
+        shutil.rmtree(root, ignore_errors=True)
 
     return {
         "description": description,

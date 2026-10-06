@@ -283,7 +283,7 @@ def write_history(summary, options):
         os.symlink(os.path.basename(path), latest)
     except OSError:
         pass
-    msg.highlighted_info("Wrote test history to " + path)
+    msg.highlighted_info("History:       " + path)
     return path
 
 

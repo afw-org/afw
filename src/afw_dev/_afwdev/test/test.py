@@ -36,6 +36,7 @@ from _afwdev.test.common import (
     print_failure_digest, normalize_tests_paths, write_results_summary,
     clip_detail, format_xctx_bytes)
 from _afwdev.test import failure_log
+from _afwdev.test import run_dir
 from _afwdev.test import history as test_history
 from _afwdev.test import sanitize as test_sanitize
 from _afwdev.test import build_tree as test_build_tree
@@ -61,6 +62,10 @@ def _list_tests(options, srcdirs):
     sys.exit(0)
 
 
+# --env-mode values. python and commands are per-file modes, not these.
+ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan")
+
+
 ## 
 # @brief The main entry point for the "test" subcommand
 # @details This routine is the main entry point for the "test" subcommand. 
@@ -81,6 +86,12 @@ def _list_tests(options, srcdirs):
 # @param options The options dictionary.
 # 
 def run(options):
+
+    mode = test_history.env_mode(options)
+    if mode not in ENV_MODES:
+        msg.error_exit(
+            "Unknown --env-mode '{m}'. Use one of: {all}.".format(
+                m=mode, all=", ".join(ENV_MODES)))
 
     total_passed = 0
     total_failed = 0
@@ -184,6 +195,10 @@ def run(options):
         elif test_history.env_mode(options) == 'valgrind':
             test_sanitize.refuse_sanitized_lib_for_valgrind()
 
+        try:
+            run_dir.create(options, test_history.env_mode(options))
+        except OSError as e:
+            msg.error_exit("Can not create the run directory: " + str(e))
         failure_log.begin(options)
         try:
             start = time.time()
@@ -299,31 +314,38 @@ def run(options):
             if want_compare or want_trend:
                 _run_compare_trend(options)
 
-            if total_failed > 0:
-                failure_log.note(options)
-            # Machine summary (--output -) stays free of this hint.
+            # Machine summary (--output -) stays free of these lines.
             if not summary_to_stdout:
-                runner.note_kept_detail(
-                    options, had_errors=total_failed > 0)
+                _print_run_location(options)
             if total_failed > 0:
                 sys.exit(1)
             else:
                 sys.exit(0)
         finally:
             failure_log.finish(options)
+            run_dir.release(options)
+
+
+def _print_run_location(options):
+    msg.highlighted_info("Run:           {p}   (keeps the last {n} {m} runs)".format(
+        p=run_dir.current(options), n=run_dir.keep_runs(options),
+        m=test_history.env_mode(options)))
+    failures = failure_log.path_if_failed(options)
+    if failures:
+        msg.highlighted_info("Failures:      " + failures)
 
 
 def _wants_housekeeping(options):
     return bool(
-        options.get('clear_failures')
+        options.get('clear_temps')
         or options.get('clear_history')
         or options.get('list_history_refs')
         or options.get('delete_history_ref'))
 
 
 def _do_housekeeping(options):
-    if options.get('clear_failures'):
-        failure_log.clear_failures(options)
+    if options.get('clear_temps'):
+        run_dir.clear(options)
     if options.get('clear_history'):
         test_history.clear_history(options)
     if options.get('delete_history_ref'):

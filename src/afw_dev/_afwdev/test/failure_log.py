@@ -3,11 +3,11 @@
 # @file failure_log.py
 # @brief Append diagnostic records for test failures.
 #
-# One file per afwdev test invocation under ~/.afw/test-failures/.
+# failures.log in the run directory (run_dir.py), kept with the run.
 # Every failure is one line. The first few of each distinct error also
 # get the message body and, when present, a tail of afwfcgi stderr
-# and stdout. log type standard writes stdout.
-# The work directory is wiped on the next run; this directory is not.
+# and stdout. log type standard writes stdout. History keeps only a
+# one-line summary of each failure. A run with no failures has no log.
 #
 
 import json
@@ -17,9 +17,9 @@ import threading
 from datetime import datetime, timezone
 
 from _afwdev.common.errors import error_message, error_to_dict
-from _afwdev.test.history import _mode_suffix, env_mode, git_meta
+from _afwdev.test.history import env_mode, git_meta
+from _afwdev.test import run_dir
 
-DEFAULT_FAILURE_DIR = os.path.expanduser("~/.afw/test-failures")
 # Full snippet for this many occurrences of the same name+error.
 DETAIL_PER_SIGNATURE = 3
 # One-line message cap. The detail block keeps a longer copy.
@@ -28,13 +28,6 @@ DETAIL_MAX = 8000
 STDERR_TAIL = 4000
 
 _thread_lock = threading.Lock()
-
-
-def _stamp(when=None):
-    when = when or datetime.now(timezone.utc)
-    text = when.strftime("%Y-%m-%dT%H%M%S")
-    text += "{:03d}Z".format(when.microsecond // 1000)
-    return text
 
 
 def _now_iso():
@@ -96,12 +89,12 @@ def begin(options):
         return None
     if options.get("_failure_log"):
         return options.get("_failure_log")
-    directory = DEFAULT_FAILURE_DIR
+    directory = run_dir.current(options)
+    if not directory:
+        return None
     try:
-        os.makedirs(directory, exist_ok=True)
         mode = env_mode(options)
-        path = os.path.join(
-            directory, "{}-{}.log".format(_stamp(), _mode_suffix(mode)))
+        path = os.path.join(directory, run_dir.FAILURES_NAME)
         meta = git_meta()
         header = [
             "# afwdev test failures",
@@ -189,42 +182,18 @@ def _append(path, name, line, sig, err, detail, stderr_path,
             fcntl.flock(fd, fcntl.LOCK_UN)
 
 
-def note(options):
-    """Print the log path when this run recorded a failure."""
-    from _afwdev.common import msg
+def path_if_failed(options):
+    """This run's failures.log when it recorded a failure, else None."""
     path = (options or {}).get("_failure_log")
     if not path or not os.path.isfile(path + ".state.json"):
-        return
+        return None
     try:
         state = _load_state(path + ".state.json")
     except OSError:
-        return
+        return None
     if int(state.get("ordinal") or 0) > 0:
-        msg.highlighted_info("Failure log: " + path)
-
-
-def clear_failures(options, directory=None):
-    """Delete failure logs for this mode. Returns how many files were removed."""
-    from _afwdev.common import msg
-    directory = directory or DEFAULT_FAILURE_DIR
-    mode = _mode_suffix(env_mode(options))
-    suffixes = (
-        "-{}.log".format(mode),
-        "-{}.log.state.json".format(mode),
-    )
-    removed = 0
-    if os.path.isdir(directory):
-        for name in os.listdir(directory):
-            if not name.endswith(suffixes):
-                continue
-            path = os.path.join(directory, name)
-            if os.path.isfile(path) and not os.path.islink(path):
-                os.remove(path)
-                removed += 1
-    msg.highlighted_info(
-        "Removed {n} failure file(s) from {d}".format(
-            n=removed, d=directory))
-    return removed
+        return path
+    return None
 
 
 def finish(options):
