@@ -66,10 +66,14 @@ assert(meta(p.memoryRegionRegionsInUse).dataType === "integer");
 assert(p.memoryRegionRegionsInUse >= 0);
 assert(meta(p.memoryRegionFreeOverCap).dataType === "integer");
 assert(p.memoryRegionFreeOverCap >= 0);
+// afwdev test --env-mode asan and valgrind set this (keep freed chunks).
+const keepFreed = environment::AFW_MEMORY_REGION_KEEP_FREED_BYTES;
 assert(meta(p.memoryRegionKeepSmallCount).dataType === "integer");
-assert(p.memoryRegionKeepSmallCount === 8);
+assert(p.memoryRegionKeepSmallCount ===
+    (keepFreed === undefined ? 8 : 1000000));
 assert(meta(p.memoryRegionKeepLargeCount).dataType === "integer");
-assert(p.memoryRegionKeepLargeCount === 1);
+assert(p.memoryRegionKeepLargeCount ===
+    (keepFreed === undefined ? 1 : 1000000));
 assert(meta(p.memoryRegionFreeListDiscardedBytes).dataType === "integer");
 assert(p.memoryRegionFreeListDiscardedBytes >= 0);
 assert(p.memoryRegionFreeListDiscardedBytes <= p.memoryRegionFreeListBytes);
@@ -108,9 +112,14 @@ assert(process::rss >= 0);
 assert(process::limitEvaluationStackCount === 500);
 assert(process::threadStackBytes === 0);
 assert(process::defaultChunkMin === 65536);
-assert(process::memoryRegionFreeListMaxBytes === 262144);
-assert(process::memoryRegionKeepSmallCount === 8);
-assert(process::memoryRegionKeepLargeCount === 1);
+// afwdev test --env-mode asan and valgrind set this (keep freed chunks).
+const keepFreed = environment::AFW_MEMORY_REGION_KEEP_FREED_BYTES;
+assert(process::memoryRegionFreeListMaxBytes ===
+    (keepFreed === undefined ? 262144 : integer(keepFreed)));
+assert(process::memoryRegionKeepSmallCount ===
+    (keepFreed === undefined ? 8 : 1000000));
+assert(process::memoryRegionKeepLargeCount ===
+    (keepFreed === undefined ? 1 : 1000000));
 assert(meta(process::memoryRegionGetHits).dataType === "integer");
 assert(process::memoryRegionGetHits >= 0);
 assert(meta(process::memoryRegionGetMisses).dataType === "integer");
