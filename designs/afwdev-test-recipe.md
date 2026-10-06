@@ -34,6 +34,10 @@ afwdev test --test-pattern catalog-value-accessors --show-all
 # 3) Opt-in lifecycle / multi-request
 afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
 
+# 3b) Fuzz built-in functions (gate leaf runs in seconds; tests-extra runs 10 min)
+./afwdev test --env-mode asan -T src/afw/tests-extra/fuzz-function-calls
+# A failure names the requests: afwdev test -T <leaf> --replay SEED:FIRST-LAST
+
 # 4) Optional load thrash (firehose leaf; not the default gate)
 afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
 

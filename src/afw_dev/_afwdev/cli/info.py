@@ -1116,6 +1116,19 @@ _info_test_clear_temps = {
         "ones. Does not run tests."
 }
 
+_info_test_replay = {
+    "optionName": "replay",
+    "arg": "--replay",
+    "action": "store",
+    "default": "",
+    "noprompt": True,
+    "help":
+        "With -T on an orchestrated leaf whose firehose has fuzz:, send "
+        "only fuzz request SEED:INDEX (or SEED:FIRST-LAST), one at a "
+        "time, printing each. Failures and afwfcgi exits name the "
+        "requests to replay."
+}
+
 _info_test_clear_history = {
     "optionName": "clear_history",
     "arg": "--clear-history",
@@ -1177,6 +1190,7 @@ _info_test = {
         _info_test_baseline,
         _info_test_compare_to,
         _info_test_trend,
+        _info_test_replay,
         _info_test_clear_history,
         _info_test_clear_temps,
         _info_test_watch,
