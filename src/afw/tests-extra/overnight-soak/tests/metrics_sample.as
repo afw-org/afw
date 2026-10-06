@@ -13,6 +13,9 @@ const region_misses = process::memoryRegionGetMisses;
 const region_over = process::memoryRegionFreeOverCap;
 const region_peak_used = process::memoryRegionPeakBytesInUse;
 const region_peak_free = process::memoryRegionPeakFreeListBytes;
+const region_discarded = process::memoryRegionFreeListDiscardedBytes;
+const region_discards = process::memoryRegionDiscards;
+const region_trim_unmaps = process::memoryRegionTrimUnmaps;
 let concurrent = 0;
 let max_conc = 0;
 let requests = 0;
@@ -38,7 +41,9 @@ const line = generate_uuid() + "\t" +
     string(region_free_bytes) + "\t" + string(region_free_count) + "\t" +
     string(region_hits) + "\t" + string(region_misses) + "\t" +
     string(region_over) + "\t" +
-    string(region_peak_used) + "\t" + string(region_peak_free);
+    string(region_peak_used) + "\t" + string(region_peak_free) + "\t" +
+    string(region_discarded) + "\t" + string(region_discards) + "\t" +
+    string(region_trim_unmaps);
 const sn = open_file("metrics", "logs/metrics.tsv", "a", true);
 writeln(sn, line);
 close(sn);

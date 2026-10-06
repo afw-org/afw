@@ -128,6 +128,33 @@ afw_pool_heap_internal_reservoir_heap(afw_pool_internal_self_t *self)
 }
 
 
+void
+afw_pool_heap_internal_init_bins(afw_pool_heap_internal_self_t *heap)
+{
+    afw_size_t size;
+
+    if (heap->common.pub.managed_p != &heap->common.pub ||
+        !heap->free_memory_head ||
+        heap->current_chunk != heap->first_chunk)
+    {
+        return;
+    }
+    size = AFW_POOL_HEAP_INTERNAL_ALIGN_UP(
+        sizeof(afw_pool_heap_internal_free_node_t *) *
+        AFW_POOL_HEAP_INTERNAL_BIN_COUNT);
+    if (heap->remaining < size) {
+        return;
+    }
+    AFW_MEMORY_ANNOTATE_ACCESS(heap->bump, size);
+    memset(heap->bump, 0, size);
+    heap->free_memory_head->bins =
+        (afw_pool_heap_internal_free_node_t **)(void *)heap->bump;
+    heap->free_memory_head->bin_map = 0;
+    heap->bump += size;
+    heap->remaining -= size;
+}
+
+
 const afw_memory_region_t *
 afw_pool_internal_memory_region(const afw_pool_internal_self_t *self)
 {
@@ -154,12 +181,20 @@ afw_pool_internal_memory_region(const afw_pool_internal_self_t *self)
 #define impl_chunk_end(_chunk) \
     ((char *)(_chunk) + (_chunk)->size)
 
+/*
+ * Low bits of a block's chunk pointer (chunks are page aligned).
+ * FREE: on a free list or in a bin. BINNED: in a bin, so forward
+ * coalescing leaves it alone.
+ */
 #define AFW_POOL_BLOCK_FREE_BIT ((uintptr_t)1)
+#define AFW_POOL_BLOCK_BINNED_BIT ((uintptr_t)2)
+#define AFW_POOL_BLOCK_BITS \
+    (AFW_POOL_BLOCK_FREE_BIT | AFW_POOL_BLOCK_BINNED_BIT)
 
 #define impl_block_chunk(_start) \
     ((afw_pool_heap_internal_chunk_t *)(((uintptr_t) \
         ((afw_pool_heap_internal_free_node_t *)(_start))->chunk) & \
-        ~AFW_POOL_BLOCK_FREE_BIT))
+        ~AFW_POOL_BLOCK_BITS))
 
 #define impl_block_set_chunk(_start, _chunk) \
     (((afw_pool_heap_internal_free_node_t *)(_start))->chunk = (_chunk))
@@ -172,6 +207,15 @@ afw_pool_internal_memory_region(const afw_pool_internal_self_t *self)
 #define impl_block_is_free(_start) \
     ((((uintptr_t)((afw_pool_heap_internal_free_node_t *)(_start))->chunk) & \
         AFW_POOL_BLOCK_FREE_BIT) != 0)
+
+#define impl_block_mark_binned(_start) \
+    (((afw_pool_heap_internal_free_node_t *)(_start))->chunk = \
+        (afw_pool_heap_internal_chunk_t *)(((uintptr_t)impl_block_chunk(_start)) | \
+            AFW_POOL_BLOCK_BITS))
+
+#define impl_block_is_binned(_start) \
+    ((((uintptr_t)((afw_pool_heap_internal_free_node_t *)(_start))->chunk) & \
+        AFW_POOL_BLOCK_BINNED_BIT) != 0)
 
 #define impl_same_chunk(_a, _b) \
     (impl_block_chunk(_a) == impl_block_chunk(_b))
@@ -376,6 +420,7 @@ afw_pool_heap_internal_create_self(
             ? afw_parent->managed_p
             : afw_parent;
     }
+    afw_pool_heap_internal_init_bins(heap);
     self->thread = thread;
     afw_pool_internal_assign_pool_number(self);
 
@@ -398,9 +443,11 @@ afw_pool_heap_internal_create_self(
 }
 
 /*
- * First-fit on a LIFO free list. Overlay lives only on freed
- * blocks. Remainder too small to hold a free node is left on the
- * list so total is always recoverable as prefix + USER size.
+ * Free blocks: small bins (afw_pool_heap_internal.h) on a heap that
+ * has them, else first-fit on the LIFO list `first`. Overlay lives
+ * only on freed blocks. Remainder too small to hold a free node is
+ * left with the block so total is always recoverable as prefix +
+ * USER size.
  *
  * largest is an upper bound. A take of a max-sized node sets it to
  * AFW_SIZE_T_MAX until a full miss walk records the new maximum.
@@ -490,6 +537,97 @@ afw_pool_heap_internal_add_to_free_list(
     afw_pool_heap_internal_chunk_t *chunk,
     afw_xctx_t *xctx);
 
+/* Push a free block (FREE already set) on its bin. */
+static void
+impl_bin_push(
+    afw_pool_heap_internal_free_memory_head_t *head,
+    afw_pool_heap_internal_free_node_t *node)
+{
+    afw_size_t i;
+
+    i = AFW_POOL_HEAP_INTERNAL_BIN_INDEX(node->total);
+    impl_block_mark_binned(node);
+    node->prev = NULL;
+    node->next = head->bins[i];
+    head->bins[i] = node;
+    head->bin_map |= ((afw_uint32_t)1) << i;
+}
+
+
+static afw_pool_heap_internal_free_node_t *
+impl_bin_pop(
+    afw_pool_heap_internal_free_memory_head_t *head,
+    afw_size_t i)
+{
+    afw_pool_heap_internal_free_node_t *node;
+
+    node = head->bins[i];
+    head->bins[i] = node->next;
+    if (!node->next) {
+        head->bin_map &= ~(((afw_uint32_t)1) << i);
+    }
+    return node;
+}
+
+
+/* Lowest set bit. map is not 0. */
+static afw_size_t
+impl_lowest_bit(afw_uint32_t map)
+{
+#if defined(__GNUC__) || defined(__clang__)
+    return (afw_size_t)__builtin_ctz(map);
+#else
+    afw_size_t i;
+
+    for (i = 0; !(map & 1); i++) {
+        map >>= 1;
+    }
+    return i;
+#endif
+}
+
+
+/*
+ * Small request on a heap with bins: the exact bin, else the
+ * smallest bin at least a free node bigger, split, with the rest
+ * in its bin. NULL if no bin can serve it.
+ */
+static afw_pool_heap_internal_free_node_t *
+impl_take_from_bins(
+    afw_pool_heap_internal_free_memory_head_t *head,
+    afw_size_t total)
+{
+    afw_pool_heap_internal_free_node_t *node;
+    afw_pool_heap_internal_free_node_t *rest;
+    afw_size_t i;
+    afw_size_t skip;
+    afw_uint32_t map;
+
+    i = AFW_POOL_HEAP_INTERNAL_BIN_INDEX(total);
+    if (head->bins[i]) {
+        return impl_bin_pop(head, i);
+    }
+    /* A split must leave at least a free node. */
+    skip = i + AFW_POOL_HEAP_INTERNAL_BIN_MIN / AFW_POOL_HEAP_INTERNAL_ALIGN;
+    if (skip >= AFW_POOL_HEAP_INTERNAL_BIN_COUNT) {
+        return NULL;
+    }
+    map = head->bin_map & ~((((afw_uint32_t)1) << skip) - 1);
+    if (!map) {
+        return NULL;
+    }
+    node = impl_bin_pop(head, impl_lowest_bit(map));
+    rest = (afw_pool_heap_internal_free_node_t *)(((char *)node) + total);
+    AFW_MEMORY_ANNOTATE_ACCESS(rest, sizeof(*rest));
+    rest->total = node->total - total;
+    rest->chunk = impl_block_chunk(node);
+    impl_block_mark_free(rest);
+    impl_bin_push(head, rest);
+    node->total = total;
+    return node;
+}
+
+
 void *
 afw_pool_heap_internal_take_from_free_list_or_chunk(
     afw_pool_heap_internal_self_t *heap,
@@ -503,8 +641,9 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     afw_pool_heap_internal_free_node_t *prev;
     afw_pool_heap_internal_free_node_t *next;
     afw_pool_heap_internal_free_node_t *rest;
-    afw_pool_heap_internal_free_node_t *slow;
+#ifdef AFW_DEBUG_POOL
     afw_pool_heap_internal_free_node_t *fast;
+#endif
     afw_pool_heap_internal_chunk_t *chunk;
     const afw_memory_region_t *region;
     char *end;
@@ -513,15 +652,28 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
 
     head = heap->free_memory_head;
     curr = NULL;
+
+    if (head && head->bins && total <= AFW_POOL_HEAP_INTERNAL_BIN_MAX) {
+        curr = impl_take_from_bins(head, total);
+        if (curr) {
+            AFW_MEMORY_ANNOTATE_ACCESS(curr, total);
+            impl_block_set_chunk(curr, impl_block_chunk(curr));
+            *reused = true;
+            return curr;
+        }
+    }
+
     /*
      * largest < total means no free node can satisfy this request.
      * AFW_SIZE_T_MAX is unknown, so that still walks.
      */
     if (head && head->first && head->largest >= total) {
         seen_max = 0;
-        slow = head->first;
-        fast = slow;
-        for (curr = slow; curr; curr = curr->next) {
+#ifdef AFW_DEBUG_POOL
+        /* A cycle would loop forever. Debug builds check for one. */
+        fast = head->first;
+#endif
+        for (curr = head->first; curr; curr = curr->next) {
             if (curr->total > seen_max) {
                 seen_max = curr->total;
             }
@@ -531,6 +683,7 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
             {
                 break;
             }
+#ifdef AFW_DEBUG_POOL
             if (fast) {
                 fast = fast->next;
             }
@@ -545,6 +698,7 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
                     "heap free-list cycle",
                     xctx);
             }
+#endif
         }
         /* Full miss. seen_max is the exact maximum still on the list. */
         if (!curr) {
@@ -563,34 +717,45 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
             rest->total = curr->total - total;
             rest->chunk = impl_block_chunk(curr);
             impl_block_mark_free(rest);
-            rest->prev = prev;
-            rest->next = next;
-            if (prev) {
-                prev->next = rest;
-            }
-            else {
-                head->first = rest;
-            }
-            if (next) {
-                next->prev = rest;
-            }
-            if (next &&
-                ((char *)rest) + rest->total == (char *)next &&
-                impl_block_is_free(next) &&
-                impl_same_chunk(rest, next))
+            curr->total = total;
+            if (head->bins &&
+                rest->total <= AFW_POOL_HEAP_INTERNAL_BIN_MAX)
             {
-                impl_largest_before_unlink(head, next);
-                rest->total += next->total;
-                rest->next = next->next;
-                if (next->next) {
-                    next->next->prev = rest;
+                impl_bin_push(head, rest);
+                if (!head->first) {
+                    head->largest = 0;
                 }
             }
-            if (head->first == rest && rest->next == NULL) {
-                head->largest = rest->total;
-            }
             else {
-                impl_largest_note(head, rest->total);
+                rest->prev = prev;
+                rest->next = next;
+                if (prev) {
+                    prev->next = rest;
+                }
+                else {
+                    head->first = rest;
+                }
+                if (next) {
+                    next->prev = rest;
+                }
+                if (next &&
+                    ((char *)rest) + rest->total == (char *)next &&
+                    impl_block_is_free(next) &&
+                    impl_same_chunk(rest, next))
+                {
+                    impl_largest_before_unlink(head, next);
+                    rest->total += next->total;
+                    rest->next = next->next;
+                    if (next->next) {
+                        next->next->prev = rest;
+                    }
+                }
+                if (head->first == rest && rest->next == NULL) {
+                    head->largest = rest->total;
+                }
+                else {
+                    impl_largest_note(head, rest->total);
+                }
             }
         }
         else if (!head->first) {
@@ -621,26 +786,11 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     heap->bump = NULL;
     heap->remaining = 0;
 
+    /* Resource limits are checked once per chunk, not per malloc. */
     if (!unhandled && xctx->error_processing_count == 0) {
         afw_xctx_check_resource_limits(xctx, 0);
-        if (heap->common.thread &&
-            (heap->common.thread->type == afw_thread_type_request ||
-                (xctx->env->limit_request_pool_apply_to_base &&
-                    xctx != ((const afw_environment_internal_t *)
-                        xctx->env)->base_xctx)))
-        {
-            afw_size_t limit;
-            afw_size_t asked;
-
-            limit = xctx->env->limit_request_pool_bytes;
-            asked = heap->common.thread->pool_bytes_in_use;
-            if (limit != 0 &&
-                (asked >= limit || total > limit - asked))
-            {
-                AFW_THROW_ERROR_Z(payload_too_large,
-                    "Request pool limit exceeded.", xctx);
-            }
-        }
+        afw_xctx_internal_check_request_pool_bytes(xctx,
+            heap->common.thread, total);
     }
 
     region = heap->memory_region;
@@ -710,6 +860,11 @@ afw_pool_heap_internal_add_to_free_list(
     impl_block_set_chunk(freeing, chunk);
     impl_block_mark_free(freeing);
 
+    if (head->bins && total <= AFW_POOL_HEAP_INTERNAL_BIN_MAX) {
+        impl_bin_push(head, freeing);
+        return;
+    }
+
     {
         char *nstart;
         afw_pool_heap_internal_free_node_t *nxt;
@@ -725,6 +880,7 @@ afw_pool_heap_internal_add_to_free_list(
             impl_addr_in_chunk(nstart, chunk,
                 sizeof(afw_pool_heap_internal_free_node_t)) &&
             impl_block_is_free(nstart) &&
+            !impl_block_is_binned(nstart) &&
             impl_block_chunk(nstart) == chunk)
         {
             nxt = (afw_pool_heap_internal_free_node_t *)nstart;
@@ -1037,92 +1193,10 @@ afw_pool_heap_internal_garbage_collect(
     (void)xctx;
 }
 
-/*
- * Thread pool. Same parent rule as every pool (see holds_parent).
- */
-static void
-impl_thread_pool_teardown(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    afw_pool_heap_internal_teardown_store(self, xctx);
-}
-
-static void
-impl_thread_pool_get_reference(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    afw_pool_internal_get_reference(self, xctx);
-}
-
-static const afw_pool_t *
-impl_thread_pool_release(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    return afw_pool_internal_release_common(
-        self, xctx, impl_thread_pool_teardown);
-}
-
-static void
-impl_thread_pool_destroy(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
-    if (!self->destroying) {
-        afw_pool_internal_mark_destroying(self);
-    }
-    afw_pool_internal_destroy_children(self, xctx);
-    impl_thread_pool_teardown(self, xctx);
-}
-
 #undef impl_afw_pool_get_reference
-#undef impl_afw_pool_register_cleanup
-#undef impl_afw_pool_deregister_cleanup
-
-#define AFW_POOL_INF_ONLY 1
-#define AFW_IMPLEMENTATION_ID "thread"
-#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_thread_inf
-#define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
-#define impl_afw_pool_release impl_thread_pool_release
-#define impl_afw_pool_get_reference impl_thread_pool_get_reference
-#define impl_afw_pool_run_cleanups afw_pool_heap_internal_run_cleanups
-#define impl_afw_pool_destroy impl_thread_pool_destroy
-#define impl_afw_pool_calloc afw_pool_heap_internal_calloc
-#define impl_afw_pool_malloc afw_pool_heap_internal_malloc
-#define impl_afw_pool_free_memory afw_pool_heap_internal_free_memory
-#define impl_afw_pool_free_memory_no_throw \
-    afw_pool_heap_internal_free_memory_no_throw
-#define impl_afw_pool_calloc_no_throw afw_pool_heap_internal_calloc_no_throw
-#define impl_afw_pool_malloc_no_throw afw_pool_heap_internal_malloc_no_throw
-#define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
-#define impl_afw_pool_deregister_cleanup \
-    afw_pool_internal_deregister_cleanup
-#define impl_afw_pool_garbage_collect afw_pool_heap_internal_garbage_collect
-
-AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_2, impl_thread_pool_release, impl_thread_pool_get_reference)
-#undef impl_afw_pool_release
-#define impl_afw_pool_release impl_pool_ref_2_release
-#undef impl_afw_pool_get_reference
-#define impl_afw_pool_get_reference impl_pool_ref_2_get_reference
 #undef impl_afw_pool_get_reference_count
-#define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
 #undef impl_afw_pool_for_each_reference
-#define impl_afw_pool_for_each_reference afw_pool_internal_no_references_for_each
 #undef impl_afw_pool_release_references
-#define impl_afw_pool_release_references afw_pool_internal_no_references_release_references
-#include "afw_pool_impl_declares.h"
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef AFW_IMPLEMENTATION_SPECIFIC
-#undef AFW_POOL_INF_ONLY
-#undef impl_afw_pool_release
-#undef impl_afw_pool_get_reference
-#undef impl_afw_pool_run_cleanups
-#undef impl_afw_pool_destroy
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
@@ -1130,7 +1204,6 @@ AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_2, impl_thread_pool_release, 
 #undef impl_afw_pool_calloc_no_throw
 #undef impl_afw_pool_malloc_no_throw
 #undef impl_afw_pool_register_cleanup
-#undef impl_afw_pool_deregister_cleanup
 #undef impl_afw_pool_garbage_collect
 
 afw_boolean_t
@@ -1248,6 +1321,7 @@ afw_pool_heap_internal_create_base_pool(
     self->thread = thread;
     heap = afw_pool_heap_internal_as_heap(self);
     heap->memory_region = mt_region;
+    afw_pool_heap_internal_init_bins(heap);
     impl_base_pool_self = heap;
     return &self->pub;
 }
@@ -1284,10 +1358,11 @@ afw_pool_thread_create(
         AFW_THROW_ERROR_Z(memory,
             "Unable to allocate memory_region", xctx);
     }
+    afw_memory_region_configure(region, xctx->env, xctx);
     thread->memory_region = region;
     AFW_TRY {
         self = afw_pool_heap_internal_create_self(xctx->p,
-            &impl_afw_pool_thread_inf, true,
+            &impl_afw_pool_inf, true,
             xctx->env->xctx_chunk_min,
             sizeof(afw_pool_heap_internal_self_with_free_memory_head_t),
             thread, xctx);

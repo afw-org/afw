@@ -720,8 +720,10 @@ impl_description_env_memory_region_stat =
         "memoryRegionBytesInUse, memoryRegionRegionsInUse, "
         "memoryRegionFreeListBytes, memoryRegionFreeListCount, "
         "memoryRegionGetHits, memoryRegionGetMisses, "
-        "memoryRegionFreeOverCap, memoryRegionPeakBytesInUse, or "
-        "memoryRegionPeakFreeListBytes from xctx->env. Integer copy "
+        "memoryRegionFreeOverCap, memoryRegionPeakBytesInUse, "
+        "memoryRegionPeakFreeListBytes, "
+        "memoryRegionFreeListDiscardedBytes, memoryRegionDiscards, or "
+        "memoryRegionTrimUnmaps from xctx->env. Integer copy "
         "in the caller pool. Process-wide sum of per-thread regions.");
 
 static const afw_runtime_value_accessor_info_t
@@ -787,6 +789,21 @@ afw_runtime_value_accessor_env_memory_region_stat(
         afw_v_memoryRegionPeakFreeListBytes, xctx))
     {
         n = env->memory_region_peak_free_list_bytes;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionFreeListDiscardedBytes, xctx))
+    {
+        n = env->memory_region_free_list_discarded_bytes;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionDiscards, xctx))
+    {
+        n = env->memory_region_discards;
+    }
+    else if (afw_value_equal(prop->name,
+        afw_v_memoryRegionTrimUnmaps, xctx))
+    {
+        n = env->memory_region_trim_unmaps;
     }
     else {
         return NULL;

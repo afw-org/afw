@@ -79,6 +79,20 @@ afw_os_map_pages(afw_size_t size);
 AFW_DECLARE(void)
 afw_os_unmap_pages(void *ptr, afw_size_t size);
 
+/**
+ * @brief Give back the physical pages of a mapped range and keep
+ *    the mapping. Does not throw.
+ * @param ptr page aligned, inside a range from map_pages. NULL is a
+ *    no-op.
+ * @param size bytes. A page multiple.
+ *
+ * Nix is madvise MADV_DONTNEED: RSS drops now and the next touch
+ * reads zero pages. Contents are gone. Win is a no-op (map_pages
+ * stubs NULL there).
+ */
+AFW_DECLARE(void)
+afw_os_discard_pages(void *ptr, afw_size_t size);
+
 
 /**
  * @brief Return the suffix appended to dso file names for this system. 

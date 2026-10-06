@@ -5963,10 +5963,14 @@ AFW_DEFINE(const afw_request_handler_t *)
       Not a pool. get() writes a 4k-aligned region and its actual
       size through pointer parameters (size is requested on the way
       in, actual on the way out). free() returns a region to a capped
-      list or to the system. cleanup() drains the list and keeps this
-      instance. release() is last-release of this instance (thread
-      death): cleanup then free the instance. Call methods via
-      afw_memory_region_*() macros. See group afw_memory_region.
+      free list or to the system. The free list is three lists: one
+      for small_size, one for large_size, and one for every other
+      size. trim() keeps a few of the newest small and large regions
+      resident and gives back the pages of the rest. cleanup() drains
+      the lists and keeps this instance. release() is last-release
+      of this instance (thread death): cleanup then free the
+      instance. Call methods via afw_memory_region_*() macros. See
+      group afw_memory_region.
     </description>
 
     <variable name="bytes_in_use" type="afw_size_t">
@@ -6017,6 +6021,53 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
     </variable>
 
+    <variable name="free_list_discarded_bytes" type="afw_size_t">
+      <description>
+        Part of free_list_bytes whose pages trim() gave back. Still
+        mapped, not resident.
+      </description>
+    </variable>
+
+    <variable name="discards" type="afw_size_t">
+      <description>
+        Regions trim() kept on the free list after giving back their
+        pages (all but the first page).
+      </description>
+    </variable>
+
+    <variable name="trim_unmaps" type="afw_size_t">
+      <description>
+        Regions trim() unmapped. A one-page region has no pages to
+        give back besides the one holding its list node.
+      </description>
+    </variable>
+
+    <variable name="small_size" type="afw_size_t">
+      <description>
+        Region size of the small list (smallChunkMin). 0 means no
+        small list.
+      </description>
+    </variable>
+
+    <variable name="large_size" type="afw_size_t">
+      <description>
+        Region size of the large list (xctxChunkMin). 0 means no
+        large list.
+      </description>
+    </variable>
+
+    <variable name="keep_small_count" type="afw_size_t">
+      <description>
+        Newest small regions trim() keeps resident.
+      </description>
+    </variable>
+
+    <variable name="keep_large_count" type="afw_size_t">
+      <description>
+        Newest large regions trim() keeps resident.
+      </description>
+    </variable>
+
     <method name="get">
 
       <description>
@@ -6059,10 +6110,11 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="free">
 
       <description>
-        Return a region from get(). If the free list is under cap,
-        keep it for a later get(); otherwise call free(). No-op if
-        region is NULL. size must be the actual size written by
-        get(). xctx may be NULL.
+        Return a region from get(). Keep it at the head of its list
+        for a later get() when it fits the cap, unmapping the oldest
+        other, then small, then large regions to make room;
+        otherwise unmap it. No-op if region is NULL. size must be the
+        actual size written by get(). xctx may be NULL.
       </description>
 
       <parameter name="instance" type="const afw_memory_region_t *">
@@ -6087,13 +6139,37 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
+    <method name="trim">
+
+      <description>
+        Keep the newest keep_small_count small and keep_large_count
+        large regions resident. Give back the pages of every other
+        region on the free list except its first page, which holds
+        the list node; unmap a one-page region instead. Regions that
+        trim() already handled are skipped. afw_xctx_release() calls
+        this on the thread's region after the xctx pool is gone.
+        xctx may be NULL.
+      </description>
+
+      <parameter name="instance" type="const afw_memory_region_t *">
+        <description>Pointer to this memory_region instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx. May be NULL.
+        </description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
     <method name="cleanup">
 
       <description>
         Drain the free list to free() and keep this instance. Cap 0
-        is a no-op besides remaining available for metrics. Optional
-        trim at request/base xctx end; do not call on nested xctx
-        destroy.
+        is a no-op besides remaining available for metrics.
       </description>
 
       <parameter name="instance" type="const afw_memory_region_t *">

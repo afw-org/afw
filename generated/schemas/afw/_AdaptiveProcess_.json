@@ -67,6 +67,12 @@
                     "title": "Memory Region Bytes In Use",
                     "type": "integer"
                 },
+                "memoryRegionDiscards": {
+                    "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create.",
+                    "markdownDescription": "**Memory Region Discards**\n\nProcess-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create.",
+                    "title": "Memory Region Discards",
+                    "type": "integer"
+                },
                 "memoryRegionFreeListBytes": {
                     "description": "Process-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
                     "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
@@ -77,6 +83,12 @@
                     "description": "Process-wide count of memory_region allocations on thread free lists.",
                     "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists.",
                     "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListDiscardedBytes": {
+                    "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident.",
+                    "markdownDescription": "**Memory Region Free List Discarded Bytes**\n\nProcess-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident.",
+                    "title": "Memory Region Free List Discarded Bytes",
                     "type": "integer"
                 },
                 "memoryRegionFreeListMaxBytes": {
@@ -103,6 +115,18 @@
                     "title": "Memory Region Get Misses",
                     "type": "integer"
                 },
+                "memoryRegionKeepLargeCount": {
+                    "description": "When an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED).",
+                    "markdownDescription": "**Memory Region Keep Large Count**\n\nWhen an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED).",
+                    "title": "Memory Region Keep Large Count",
+                    "type": "integer"
+                },
+                "memoryRegionKeepSmallCount": {
+                    "description": "When an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped.",
+                    "markdownDescription": "**Memory Region Keep Small Count**\n\nWhen an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped.",
+                    "title": "Memory Region Keep Small Count",
+                    "type": "integer"
+                },
                 "memoryRegionPeakBytesInUse": {
                     "description": "High-water of memoryRegionBytesInUse since environment create.",
                     "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create.",
@@ -119,6 +143,12 @@
                     "description": "Process-wide count of memory_region allocations currently handed out to heaps.",
                     "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps.",
                     "title": "Memory Region Regions In Use",
+                    "type": "integer"
+                },
+                "memoryRegionTrimUnmaps": {
+                    "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create.",
+                    "markdownDescription": "**Memory Region Trim Unmaps**\n\nProcess-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create.",
+                    "title": "Memory Region Trim Unmaps",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -248,6 +278,12 @@
                     "title": "Memory Region Bytes In Use",
                     "type": "integer"
                 },
+                "memoryRegionDiscards": {
+                    "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create.",
+                    "markdownDescription": "**Memory Region Discards**\n\nProcess-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create.",
+                    "title": "Memory Region Discards",
+                    "type": "integer"
+                },
                 "memoryRegionFreeListBytes": {
                     "description": "Process-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
                     "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
@@ -258,6 +294,12 @@
                     "description": "Process-wide count of memory_region allocations on thread free lists.",
                     "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists.",
                     "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListDiscardedBytes": {
+                    "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident.",
+                    "markdownDescription": "**Memory Region Free List Discarded Bytes**\n\nProcess-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident.",
+                    "title": "Memory Region Free List Discarded Bytes",
                     "type": "integer"
                 },
                 "memoryRegionFreeListMaxBytes": {
@@ -284,6 +326,18 @@
                     "title": "Memory Region Get Misses",
                     "type": "integer"
                 },
+                "memoryRegionKeepLargeCount": {
+                    "description": "When an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED).",
+                    "markdownDescription": "**Memory Region Keep Large Count**\n\nWhen an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED).",
+                    "title": "Memory Region Keep Large Count",
+                    "type": "integer"
+                },
+                "memoryRegionKeepSmallCount": {
+                    "description": "When an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped.",
+                    "markdownDescription": "**Memory Region Keep Small Count**\n\nWhen an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped.",
+                    "title": "Memory Region Keep Small Count",
+                    "type": "integer"
+                },
                 "memoryRegionPeakBytesInUse": {
                     "description": "High-water of memoryRegionBytesInUse since environment create.",
                     "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create.",
@@ -300,6 +354,12 @@
                     "description": "Process-wide count of memory_region allocations currently handed out to heaps.",
                     "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps.",
                     "title": "Memory Region Regions In Use",
+                    "type": "integer"
+                },
+                "memoryRegionTrimUnmaps": {
+                    "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create.",
+                    "markdownDescription": "**Memory Region Trim Unmaps**\n\nProcess-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create.",
+                    "title": "Memory Region Trim Unmaps",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -439,6 +499,12 @@
             "title": "Memory Region Bytes In Use",
             "type": "integer"
         },
+        "memoryRegionDiscards": {
+            "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create.",
+            "markdownDescription": "**Memory Region Discards**\n\nProcess-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create.",
+            "title": "Memory Region Discards",
+            "type": "integer"
+        },
         "memoryRegionFreeListBytes": {
             "description": "Process-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
             "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists (reuse, not in a heap).",
@@ -449,6 +515,12 @@
             "description": "Process-wide count of memory_region allocations on thread free lists.",
             "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists.",
             "title": "Memory Region Free List Count",
+            "type": "integer"
+        },
+        "memoryRegionFreeListDiscardedBytes": {
+            "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident.",
+            "markdownDescription": "**Memory Region Free List Discarded Bytes**\n\nProcess-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident.",
+            "title": "Memory Region Free List Discarded Bytes",
             "type": "integer"
         },
         "memoryRegionFreeListMaxBytes": {
@@ -475,6 +547,18 @@
             "title": "Memory Region Get Misses",
             "type": "integer"
         },
+        "memoryRegionKeepLargeCount": {
+            "description": "When an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED).",
+            "markdownDescription": "**Memory Region Keep Large Count**\n\nWhen an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED).",
+            "title": "Memory Region Keep Large Count",
+            "type": "integer"
+        },
+        "memoryRegionKeepSmallCount": {
+            "description": "When an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped.",
+            "markdownDescription": "**Memory Region Keep Small Count**\n\nWhen an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped.",
+            "title": "Memory Region Keep Small Count",
+            "type": "integer"
+        },
         "memoryRegionPeakBytesInUse": {
             "description": "High-water of memoryRegionBytesInUse since environment create.",
             "markdownDescription": "**Memory Region Peak Bytes In Use**\n\nHigh-water of memoryRegionBytesInUse since environment create.",
@@ -491,6 +575,12 @@
             "description": "Process-wide count of memory_region allocations currently handed out to heaps.",
             "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps.",
             "title": "Memory Region Regions In Use",
+            "type": "integer"
+        },
+        "memoryRegionTrimUnmaps": {
+            "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create.",
+            "markdownDescription": "**Memory Region Trim Unmaps**\n\nProcess-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create.",
+            "title": "Memory Region Trim Unmaps",
             "type": "integer"
         },
         "peakPoolBytesInUse": {

@@ -51,6 +51,10 @@
  *   free list — two lists. (1) Heap `free_memory_head`: freed
  *   blocks inside live chunks. (2) memory_region: whole
  *   regions/chunks after the heap is destroyed.
+ *   bin — on a heap that is its own managed_p, one LIFO list per
+ *   exact small block size (up to AFW_POOL_HEAP_INTERNAL_BIN_MAX).
+ *   Pop to reuse, push to free; binned blocks do not coalesce.
+ *   Scopes and inherit heaps have no bins (thrown away whole).
  *   bump / remaining — unused tail of current_chunk. Not a block
  *   until malloc takes it or it is put on the heap free list.
  *   current_chunk — chunk the bump is carving.
@@ -67,6 +71,7 @@
  *   coalesce — merge two adjacent free blocks in the same chunk.
  *   first-fit — walk the heap free list; take the first block big
  *   enough. Skip the walk when largest is known to be too small.
+ *   With bins, only blocks over the bin max are on this list.
  *   LIFO — push at the list head. memory_region free() does this
  *   for regions. The heap free list is also LIFO.
  *

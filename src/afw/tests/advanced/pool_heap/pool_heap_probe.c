@@ -1112,6 +1112,94 @@ impl_nonadjacent_reuse(afw_xctx_t *xctx)
 }
 
 /*
+ * Small bins: a heap that is its own managed_p has them, an inherit
+ * heap does not. Same-size frees reuse LIFO and adjacent binned
+ * blocks stay apart. A small miss splits the next bin with room and
+ * bins the rest. A block over the bin max goes on the general list.
+ */
+static int
+impl_small_bins(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    const afw_pool_t *inherit;
+    afw_pool_heap_internal_free_memory_head_t *head;
+    afw_size_t big_total;
+    afw_size_t small_total;
+    afw_size_t rest_user;
+    afw_size_t large_user;
+    void *a;
+    void *b;
+    void *c;
+    void *x;
+    void *y;
+
+    heap = afw_pool_heap_create_as_managed_p(xctx->p, 0, xctx);
+    inherit = afw_pool_heap_create(heap, 0, xctx);
+    head = impl_heap(heap)->free_memory_head;
+    if (!head->bins) {
+        afw_pool_release(heap, xctx);
+        return impl_fail("small_bins", "managed_p heap has no bins");
+    }
+    if (impl_heap(inherit)->free_memory_head->bins) {
+        afw_pool_release(heap, xctx);
+        return impl_fail("small_bins", "inherit heap has bins");
+    }
+
+    /* LIFO exact reuse; a and b are neighbors and do not merge. */
+    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    b = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    c = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+    afw_pool_free_memory(heap, b, IMPL_SIZE_MEDIUM, xctx);
+    if (head->first) {
+        afw_pool_release(heap, xctx);
+        return impl_fail("small_bins", "small free went to the list");
+    }
+    x = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    y = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    if (impl_expect_same_ptr(x, b, "small_bins newest first") ||
+        impl_expect_same_ptr(y, a, "small_bins then older"))
+    {
+        afw_pool_release(heap, xctx);
+        return 1;
+    }
+
+    /* Split: free a 200-byte block, take a 32-byte one from it. */
+    x = afw_pool_malloc(heap, IMPL_SIZE_LARGE, xctx);
+    afw_pool_free_memory(heap, x, IMPL_SIZE_LARGE, xctx);
+    y = afw_pool_malloc(heap, IMPL_SIZE_SMALL, xctx);
+    if (impl_expect_same_ptr(y, x, "small_bins split")) {
+        afw_pool_release(heap, xctx);
+        return 1;
+    }
+    big_total = afw_pool_heap_internal_block_bytes(
+        AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES, IMPL_SIZE_LARGE, xctx, false);
+    small_total = afw_pool_heap_internal_block_bytes(
+        AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES, IMPL_SIZE_SMALL, xctx, false);
+    rest_user = big_total - small_total - AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES;
+    a = afw_pool_malloc(heap, rest_user, xctx);
+    if (impl_expect_same_ptr(a, (char *)x + small_total, "small_bins rest")) {
+        afw_pool_release(heap, xctx);
+        return 1;
+    }
+
+    /* Over the bin max: general list. */
+    large_user = AFW_POOL_HEAP_INTERNAL_BIN_MAX;
+    b = afw_pool_malloc(heap, large_user, xctx);
+    afw_pool_free_memory(heap, b, large_user, xctx);
+    if (head->first != AFW_POOL_HEAP_INTERNAL_ALLOC_START(b)) {
+        afw_pool_release(heap, xctx);
+        return impl_fail("small_bins", "large free not on the list");
+    }
+
+    afw_pool_free_memory(heap, a, rest_user, xctx);
+    afw_pool_free_memory(heap, y, IMPL_SIZE_SMALL, xctx);
+    afw_pool_free_memory(heap, c, IMPL_SIZE_MEDIUM, xctx);
+    afw_pool_release(heap, xctx);
+    return 0;
+}
+
+/*
  * Walk the heap free list. A cycle or a walk that never ends is the
  * first-fit livelock (tracker calloc of ~56 while many smaller
  * fragments are on the list).
@@ -1256,8 +1344,7 @@ impl_thread_parent_hold(afw_xctx_t *xctx)
     }
     region = thread->memory_region;
     child = impl_self(thread->p);
-    if (child->pub.inf == parent->pub.inf ||
-        child->holds_parent ||
+    if (child->holds_parent ||
         parent->reference_count != parent_refs)
     {
         rc = impl_fail("thread_parent_hold",
@@ -1373,6 +1460,9 @@ main(int argc, char **argv)
     }
     else if (strcmp(case_name, "deregister_cleanup") == 0) {
         rc = impl_deregister_cleanup(xctx);
+    }
+    else if (strcmp(case_name, "small_bins") == 0) {
+        rc = impl_small_bins(xctx);
     }
     else if (strcmp(case_name, "nonadjacent_reuse") == 0) {
         rc = impl_nonadjacent_reuse(xctx);

@@ -1426,6 +1426,8 @@ Process environment variables and invocation info are created at **environment c
 | **`memoryRegionFreeListBytes` / `memoryRegionFreeListCount`** | Live reuse-list bytes/count (not in a heap) |
 | **`memoryRegionGetHits` / `memoryRegionGetMisses` / `memoryRegionFreeOverCap`** | Counts since env create (reuse vs mmap vs over-cap `munmap`) |
 | **`memoryRegionPeakBytesInUse` / `memoryRegionPeakFreeListBytes`** | High-water of the live region bytes |
+| **`memoryRegionKeepSmallCount` / `memoryRegionKeepLargeCount`** | When an xctx ends (each `afwfcgi` request, each `afw` evaluation), its thread keeps this many of the newest `smallChunkMin` / `xctxChunkMin` chunks resident on its reuse list (defaults **8** / **1**). The rest stay mapped but give back their pages past the first (`MADV_DONTNEED`); extra one-page chunks are unmapped. [#477](https://github.com/afw-org/afw/issues/477) |
+| **`memoryRegionFreeListDiscardedBytes` / `memoryRegionDiscards` / `memoryRegionTrimUnmaps`** | Reuse-list bytes given back (mapped, not resident), and counts since env create of chunks given back or unmapped when an xctx ended |
 
 Example:
 
@@ -1435,7 +1437,7 @@ assert(length(process::args) >= 1);
 const home = environment::HOME;
 ```
 
-**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool **currents and peaks**, **memory_region live/peak/hit counts**, **`pid`**, **`programName`**, and **`rss`** also appear on **`_AdaptiveServer_/current`** (same process-wide numbers). Limits, chunk mins, and **`memoryRegionFreeListMaxBytes`** are on **`process::`**. Over-limit Adaptive eval throws **`payload_too_large`** (HTTP **413**). Optional **`type=application`** conf overrides any `limit*` / chunk min / `threadStackBytes` / this cap (`0` on a limit = unlimited; **`threadStackBytes` 0** = default formula). Flag **`response:metrics`** adds this-request `metrics` on `_AdaptiveResponse_` (off by default).
+**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool **currents and peaks**, **memory_region live/peak/hit counts**, **`pid`**, **`programName`**, and **`rss`** also appear on **`_AdaptiveServer_/current`** (same process-wide numbers). Limits, chunk mins, **`memoryRegionFreeListMaxBytes`**, and the **`memoryRegionKeep*Count`** knobs are on **`process::`**. Over-limit Adaptive eval throws **`payload_too_large`** (HTTP **413**). Optional **`type=application`** conf overrides any `limit*` / chunk min / `threadStackBytes` / this cap / the keep counts (`0` on a limit = unlimited; **`threadStackBytes` 0** = default formula). Flag **`response:metrics`** adds this-request `metrics` on `_AdaptiveResponse_` (off by default).
 
 See [Process telemetry](#process-telemetry-and-request-caps-issue-329).
 

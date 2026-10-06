@@ -217,6 +217,39 @@
                 "valueAccessor": "env_memory_region_stat"
             }
         },
+        "memoryRegionFreeListDiscardedBytes": {
+            "allowQuery": true,
+            "brief": "Free-list bytes given back to the system",
+            "dataType": "integer",
+            "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current.",
+            "label": "Memory Region Free List Discarded Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionDiscards": {
+            "allowQuery": true,
+            "brief": "Regions whose pages were given back",
+            "dataType": "integer",
+            "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "label": "Memory Region Discards",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionTrimUnmaps": {
+            "allowQuery": true,
+            "brief": "Regions unmapped when an xctx ended",
+            "dataType": "integer",
+            "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "label": "Memory Region Trim Unmaps",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
         "rss": {
             "allowQuery": true,
             "brief": "Current process resident memory in bytes",

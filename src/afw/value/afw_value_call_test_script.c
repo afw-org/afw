@@ -437,15 +437,15 @@ impl_afw_value_optional_evaluate(
             /* create_managed RC 1. error_to_object is unmanaged in dest
              * p; wrapping that instance is a dest-p lifetime mismatch.
              * Unmanaged test objects store the pointer; last-release of
-             * that hold is dest p. */
+             * that hold is dest p. Dest p can be a job heap (an action's
+             * eval<script>), so not the nearest-scope helper. */
             {
                 const afw_object_t *err;
 
                 err = afw_object_create_managed(p, xctx);
                 afw_error_add_to_object(err, AFW_ERROR_THROWN, xctx);
-                afw_object_set_property(test, afw_v_error,
-                    afw_pool_scope_release_value_at_cleanup(
-                        err->value, p, xctx),
+                afw_pool_release_value_at_cleanup(err->value, p, xctx);
+                afw_object_set_property(test, afw_v_error, err->value,
                     xctx);
             }
         }

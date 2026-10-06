@@ -63,6 +63,18 @@ afw_xctx_internal_create_thread_xctx(
     const afw_thread_t *thread, afw_xctx_t *xctx);
 
 
+/*
+ * Throw payload_too_large if thread's ST asked-for bytes plus
+ * extra_bytes would reach limitRequestPoolBytes. Applies to a request
+ * thread, or any xctx but the base one when application conf set the
+ * limit. A heap passes the block it is about to add a chunk for.
+ */
+void
+afw_xctx_internal_check_request_pool_bytes(
+    afw_xctx_t *xctx,
+    const afw_thread_t *thread,
+    afw_size_t extra_bytes);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

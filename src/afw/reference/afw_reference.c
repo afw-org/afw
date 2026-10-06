@@ -330,9 +330,13 @@ afw_reference_possible_root(
      * (and forget) always reaches this collector. Values owned by a
      * multithreaded pool (env->p, conf, adapter) can be last-released
      * on another thread and are not collected until worker threads
-     * give every owner one thread (#343).
+     * give every owner one thread (#343). An owner that is being
+     * destroyed takes every value it holds, cycles included, and
+     * afw_xctx_release() has already released this collector: a new
+     * one here would leak.
      */
     if (!instance || !xctx || owner != xctx->p ||
+        ((const afw_pool_internal_self_t *)owner)->destroying ||
         afw_pool_internal_is_multithreaded(owner) ||
         impl_collect_threshold() == 0)
     {

@@ -43,6 +43,12 @@
                     "title": "Memory Region Bytes In Use",
                     "type": "integer"
                 },
+                "memoryRegionDiscards": {
+                    "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Discards**\n\nProcess-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Discards",
+                    "type": "integer"
+                },
                 "memoryRegionFreeListBytes": {
                     "description": "Process-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
@@ -53,6 +59,12 @@
                     "description": "Process-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListDiscardedBytes": {
+                    "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free List Discarded Bytes**\n\nProcess-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free List Discarded Bytes",
                     "type": "integer"
                 },
                 "memoryRegionFreeOverCap": {
@@ -89,6 +101,12 @@
                     "description": "Process-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Regions In Use",
+                    "type": "integer"
+                },
+                "memoryRegionTrimUnmaps": {
+                    "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Trim Unmaps**\n\nProcess-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Trim Unmaps",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -213,6 +231,12 @@
                     "title": "Memory Region Bytes In Use",
                     "type": "integer"
                 },
+                "memoryRegionDiscards": {
+                    "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Discards**\n\nProcess-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Discards",
+                    "type": "integer"
+                },
                 "memoryRegionFreeListBytes": {
                     "description": "Process-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
@@ -223,6 +247,12 @@
                     "description": "Process-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Free List Count",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListDiscardedBytes": {
+                    "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Free List Discarded Bytes**\n\nProcess-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Free List Discarded Bytes",
                     "type": "integer"
                 },
                 "memoryRegionFreeOverCap": {
@@ -259,6 +289,12 @@
                     "description": "Process-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
                     "title": "Memory Region Regions In Use",
+                    "type": "integer"
+                },
+                "memoryRegionTrimUnmaps": {
+                    "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Memory Region Trim Unmaps**\n\nProcess-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Memory Region Trim Unmaps",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -386,6 +422,12 @@
             "title": "Memory Region Bytes In Use",
             "type": "integer"
         },
+        "memoryRegionDiscards": {
+            "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Discards**\n\nProcess-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Discards",
+            "type": "integer"
+        },
         "memoryRegionFreeListBytes": {
             "description": "Process-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
             "markdownDescription": "**Memory Region Free List Bytes**\n\nProcess-wide sum of bytes on thread memory_region free lists. Same as /afw/_AdaptiveProcess_/current.",
@@ -396,6 +438,12 @@
             "description": "Process-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
             "markdownDescription": "**Memory Region Free List Count**\n\nProcess-wide count of memory_region allocations on thread free lists. Same as /afw/_AdaptiveProcess_/current.",
             "title": "Memory Region Free List Count",
+            "type": "integer"
+        },
+        "memoryRegionFreeListDiscardedBytes": {
+            "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Free List Discarded Bytes**\n\nProcess-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Free List Discarded Bytes",
             "type": "integer"
         },
         "memoryRegionFreeOverCap": {
@@ -432,6 +480,12 @@
             "description": "Process-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
             "markdownDescription": "**Memory Region Regions In Use**\n\nProcess-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current.",
             "title": "Memory Region Regions In Use",
+            "type": "integer"
+        },
+        "memoryRegionTrimUnmaps": {
+            "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Memory Region Trim Unmaps**\n\nProcess-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Memory Region Trim Unmaps",
             "type": "integer"
         },
         "peakPoolBytesInUse": {

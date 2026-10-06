@@ -133,6 +133,22 @@
             "label": "Memory Region Free List Max Bytes",
             "required": false
         },
+        "memoryRegionKeepLargeCount": {
+            "allowQuery": true,
+            "brief": "Override large regions a thread keeps resident",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process memoryRegionKeepLargeCount.",
+            "label": "Memory Region Keep Large Count",
+            "required": false
+        },
+        "memoryRegionKeepSmallCount": {
+            "allowQuery": true,
+            "brief": "Override small regions a thread keeps resident",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process memoryRegionKeepSmallCount.",
+            "label": "Memory Region Keep Small Count",
+            "required": false
+        },
         "onApplicationStartupComplete": {
             "allowQuery": true,
             "brief": "Script to run when application startup completes",

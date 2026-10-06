@@ -97,6 +97,28 @@
                 "valueAccessor": "size"
             }
         },
+        "memoryRegionKeepSmallCount": {
+            "allowQuery": true,
+            "brief": "Small regions a thread keeps resident",
+            "dataType": "integer",
+            "description": "When an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped.",
+            "label": "Memory Region Keep Small Count",
+            "runtime": {
+                "memberName": "memory_region_keep_small_count",
+                "valueAccessor": "size"
+            }
+        },
+        "memoryRegionKeepLargeCount": {
+            "allowQuery": true,
+            "brief": "Large regions a thread keeps resident",
+            "dataType": "integer",
+            "description": "When an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED).",
+            "label": "Memory Region Keep Large Count",
+            "runtime": {
+                "memberName": "memory_region_keep_large_count",
+                "valueAccessor": "size"
+            }
+        },
         "memoryRegionBytesInUse": {
             "allowQuery": true,
             "brief": "Region bytes handed out to heaps",
@@ -191,6 +213,39 @@
             "dataType": "integer",
             "description": "High-water of memoryRegionFreeListBytes since environment create.",
             "label": "Memory Region Peak Free List Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionFreeListDiscardedBytes": {
+            "allowQuery": true,
+            "brief": "Free-list bytes given back to the system",
+            "dataType": "integer",
+            "description": "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident.",
+            "label": "Memory Region Free List Discarded Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionDiscards": {
+            "allowQuery": true,
+            "brief": "Regions whose pages were given back",
+            "dataType": "integer",
+            "description": "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create.",
+            "label": "Memory Region Discards",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_memory_region_stat"
+            }
+        },
+        "memoryRegionTrimUnmaps": {
+            "allowQuery": true,
+            "brief": "Regions unmapped when an xctx ended",
+            "dataType": "integer",
+            "description": "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create.",
+            "label": "Memory Region Trim Unmaps",
             "runtime": {
                 "zeroOffset": true,
                 "valueAccessor": "env_memory_region_stat"

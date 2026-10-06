@@ -611,16 +611,22 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_v_memoryRegionFreeListMaxBytes,
         &env->memory_region_free_list_max_bytes, NULL,
         IMPL_KNOB_LIMIT_BYTES, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_memoryRegionKeepSmallCount,
+        &env->memory_region_keep_small_count, NULL,
+        IMPL_KNOB_AS_IS, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_memoryRegionKeepLargeCount,
+        &env->memory_region_keep_large_count, NULL,
+        IMPL_KNOB_AS_IS, source_location, xctx);
     if (xctx->thread && xctx->thread->memory_region) {
-        afw_memory_region_set_free_list_max_bytes(
-            xctx->thread->memory_region,
-            env->memory_region_free_list_max_bytes, xctx);
+        afw_memory_region_configure(xctx->thread->memory_region,
+            env, xctx);
     }
     if (env->multithreaded_memory_region) {
         afw_memory_region_lock(env->multithreaded_memory_region, xctx);
-        afw_memory_region_set_free_list_max_bytes(
-            env->multithreaded_memory_region,
-            env->memory_region_free_list_max_bytes, xctx);
+        afw_memory_region_configure(env->multithreaded_memory_region,
+            env, xctx);
         afw_memory_region_unlock(env->multithreaded_memory_region, xctx);
     }
 
