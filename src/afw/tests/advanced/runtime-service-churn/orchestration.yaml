@@ -3,6 +3,8 @@
 # _AdaptiveAdapter_, _AdaptiveLog_), adapters, logs, and flags. The
 # runtime table, registry-backed objects, and adapter properties used
 # to be read after the registration they pointed to was released.
+# adapter-broken fails to start after it registers, so concurrent
+# starts replace a generation while another start records its error.
 # The region cap is large so freed chunks stay poisoned under
 # --env-mode asan. Longer: src/afw/tests-extra/runtime-service-churn.
 version: 1
@@ -51,6 +53,13 @@ tests:
     source: |
       try { service_stop("adapter-data"); } catch (e) { }
       try { service_start("adapter-data"); } catch (e) { }
+      return true;
+    expect: true
+  - name: start-broken
+    sourceType: script
+    source: |
+      try { service_start("adapter-broken"); } catch (e) { }
+      try { service_get("adapter-broken"); } catch (e) { }
       return true;
     expect: true
   - name: read-data
@@ -111,7 +120,7 @@ schedule:
   - firehose:
       maxRequests: 8000
       concurrency: 8
-      fromTests: [restart-data, restart-model, restart-vfs, restart-log, stop-start-model, stop-start-data, read-data, read-model, read-vfs, read-meta, logging, flags, write-data]
+      fromTests: [restart-data, restart-model, restart-vfs, restart-log, stop-start-model, stop-start-data, start-broken, read-data, read-model, read-vfs, read-meta, logging, flags, write-data]
       policy: random
       seed: 11
       stopOnError: true

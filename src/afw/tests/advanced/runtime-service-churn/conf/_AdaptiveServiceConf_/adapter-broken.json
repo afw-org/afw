@@ -1,0 +1,9 @@
+{
+    "serviceId": "adapter-broken",
+    "startup": "manual",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "notARegisteredAdapterType",
+        "adapterId": "broken"
+    }
+}
