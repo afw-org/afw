@@ -209,10 +209,12 @@ afw_array_create_with_options(
         !AFW_ARRAY_MEMORY_OPTION_IS(options, new_p) &&
         !AFW_ARRAY_MEMORY_OPTION_IS(options, cede_p);
     /*
-     * Pool-world dual face is always unmanaged (value get_reference
-     * throws).
+     * Face: pooled for a pooled array (get_reference throws); counted
+     * for an array that owns its pool (references are its pool's).
      */
-    self->value.inf = &afw_value_unmanaged_array_inf;
+    self->value.inf = (self->unmanaged)
+        ? &afw_value_unmanaged_array_inf
+        : &afw_value_counted_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->data_type = data_type;
@@ -508,18 +510,10 @@ impl_afw_array_release(
 {
     const afw_array_t *wrapped;
 
-    /*
-     * Unmanaged: a reference pins the pool it lives in. Legacy C
-     * protocol; unmanaged has no references in lifetime-principles.md.
-     * Follow-up under #2.
-     */
+    /* Pooled: no reference was ever taken, so a release is a bug. */
     if (self->unmanaged) {
-        if (self->reference_count <= 0) {
-            return;
-        }
-        self->reference_count--;
-        afw_pool_release(self->pub.p, xctx);
-        return;
+        AFW_THROW_ERROR_Z(general,
+            "release of a pooled array", xctx);
     }
 
     wrapped = self->wrapped;
@@ -537,10 +531,10 @@ impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
+    /* Pooled: nothing to reference (see the object equivalent). */
     if (self->unmanaged) {
-        self->reference_count++;
-        afw_pool_get_reference(self->pub.p, xctx);
-        return (const afw_array_t *)self;
+        AFW_THROW_ERROR_Z(general,
+            "get_reference of a pooled array", xctx);
     }
     /* new_p / cede_p: pin the pool. Value inf still throws. */
     afw_pool_get_reference(self->pub.p, xctx);

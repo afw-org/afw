@@ -107,8 +107,13 @@ afw_object_create_with_options(
     self->unmanaged =
         !AFW_OBJECT_MEMORY_OPTION_IS(options, new_p) &&
         !AFW_OBJECT_MEMORY_OPTION_IS(options, cede_p);
-    /* Pool-world dual face is always unmanaged (value get_reference throws). */
-    self->value.inf = &afw_value_unmanaged_object_inf;
+    /*
+     * Face: pooled for a pooled object (get_reference throws); counted
+     * for an object that owns its pool (references are its pool's).
+     */
+    self->value.inf = (self->unmanaged)
+        ? &afw_value_unmanaged_object_inf
+        : &afw_value_counted_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     /* clone_on_set: residual field; always false (no public option). */
@@ -743,7 +748,11 @@ afw_object_create_embedded(
     self = afw_pool_calloc_type(p, afw_object_internal_memory_object_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_unmanaged_object_inf;
+    /* Same kind as the embedder; references go to the embedder. */
+    self->unmanaged = embedder->unmanaged;
+    self->value.inf = (self->unmanaged)
+        ? &afw_value_unmanaged_object_inf
+        : &afw_value_counted_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.embedding_object = embedding_object;
@@ -801,20 +810,10 @@ impl_afw_object_release(
     const afw_object_t *entity;
     const afw_object_t *wrapped;
 
-    /*
-     * Unmanaged: a reference pins the pool it lives in. Legacy C
-     * protocol (adapter results, runtime objects); unmanaged has no
-     * references in lifetime-principles.md. Follow-up under #2.
-     */
+    /* Pooled: no reference was ever taken, so a release is a bug. */
     if (self->unmanaged) {
-        if (self->reference_count <= 0) {
-            return;
-        }
-        self->reference_count--;
-        if (self->pub.p) {
-            afw_pool_release(self->pub.p, xctx);
-        }
-        return;
+        AFW_THROW_ERROR_Z(general,
+            "release of a pooled object", xctx);
     }
 
     /*
@@ -848,13 +847,13 @@ impl_afw_object_get_reference(
 {
     const afw_object_t *entity;
 
-    /* Unmanaged: legacy pool pin. See impl_afw_object_release. */
+    /*
+     * Pooled: lives and dies with its pool; there is nothing to
+     * reference. Keep a copy with get_assignable_value of its value.
+     */
     if (self->unmanaged) {
-        self->reference_count++;
-        if (self->pub.p) {
-            afw_pool_get_reference(self->pub.p, xctx);
-        }
-        return (const afw_object_t *)self;
+        AFW_THROW_ERROR_Z(general,
+            "get_reference of a pooled object", xctx);
     }
 
     /*

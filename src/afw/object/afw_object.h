@@ -294,7 +294,8 @@ afw_object_set_property(
  * @param xctx of caller.
  *
  * Calls the setter's set_property_take, so each implementation keeps
- * the value its own way. Caller does not release value after.
+ * the value its own way. Takes ownership of the caller's reference: the caller must not
+ * release value after (see lifetime-principles.md, `_take`).
  */
 AFW_DECLARE(void)
 afw_object_set_property_take(

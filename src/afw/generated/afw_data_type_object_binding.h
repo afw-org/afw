@@ -85,6 +85,15 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_object_inf;
 
 /**
+ * @brief Value inf for the face of a counted object (owns its pool).
+ *
+ * get_reference / release go to the instance.
+ * get_assignable_value gives a fully managed face or copy.
+ */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_counted_object_inf;
+
+/**
  * @brief Permanent (life of afw environment) value inf for data type object.
  *
  * Lifetime is the afw environment / static const storage.

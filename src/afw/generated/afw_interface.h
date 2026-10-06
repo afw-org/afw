@@ -3514,9 +3514,10 @@ struct afw_array_setter_inf_s {
 /**
  * @brief Call method `push_value_take` of interface `afw_array_setter`.
  *
- * Append a value at the end of the array, taking the caller's reference
- * to value. The caller owns one reference to value and must not release
- * it after this call. A fully managed array stores it; an array whose
+ * Append a value at the end of the array, taking ownership of the
+ * caller's reference to value (the _take convention). The caller owns
+ * one reference to value and must not release it after this call. A fully
+ * managed array stores it; an array whose
  * values live in its pool keeps a value that lasts for that pool and
  * gives the caller's reference back. Otherwise the same as push_value.
  * @param instance Pointer to this array setter instance.
@@ -4531,9 +4532,10 @@ struct afw_object_setter_inf_s {
 /**
  * @brief Call method `set_property_take` of interface `afw_object_setter`.
  *
- * Set the value of a property, taking the caller's reference to value.
- * The caller owns one reference to value (for example a create_managed
- * result) and must not release it after this call. Each implementation
+ * Set the value of a property, taking ownership of the caller's
+ * reference to value (the _take convention). The caller owns one
+ * reference to value (for example a create_managed result) and must
+ * not release it after this call. Each implementation
  * keeps the value in its own way: a fully managed object stores it; an
  * object whose values live in its pool keeps a value that lasts for that
  * pool and gives the caller's reference back. Otherwise the same as

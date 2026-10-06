@@ -240,6 +240,17 @@ def write_h_section(fd, prefix, obj):
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_managed_' + id + '_inf;\n')
 
+        if id in ('object', 'array'):
+            fd.write('\n/**\n')
+            fd.write(' * @brief Value inf for the face of a counted ' + id +
+                     ' (owns its pool).\n')
+            fd.write(' *\n')
+            fd.write(' * get_reference / release go to the instance.\n')
+            fd.write(' * get_assignable_value gives a fully managed face or copy.\n')
+            fd.write(' */\n')
+            fd.write(declare_data + '(afw_value_inf_t)\n')
+            fd.write('afw_value_counted_' + id + '_inf;\n')
+
         if _supports_managed_slice(ctype):
             fd.write('\n/**\n')
             fd.write(' * @brief Managed slice value inf for data type ' + id + '.\n')
@@ -1136,6 +1147,29 @@ def write_c_section(fd, prefix, obj):
         fd.write('#undef impl_afw_value_get_for_p_lifetime\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
+        if id in ('object', 'array'):
+            fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
+            _write_value_inf_variables(fd, id, False)
+            fd.write('/* counted ' + id + ' (owns its pool): references go to the */\n')
+            fd.write('/* instance; get_assignable_value gives a fully managed face */\n')
+            fd.write('/* (or copy) so script changes never touch the original. */\n')
+            fd.write('#define AFW_IMPLEMENTATION_ID "counted_' + id + '"\n')
+            fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_counted_' + id + '_inf\n')
+            fd.write('#define impl_afw_value_release impl_afw_value_managed_optional_release\n')
+            fd.write('#define impl_afw_value_get_reference impl_afw_value_managed_get_reference\n')
+            fd.write('#define impl_afw_value_get_assignable_value '
+                     'impl_afw_value_permanent_get_assignable_value\n')
+            fd.write('#define AFW_VALUE_INF_ONLY 1\n')
+            fd.write('#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime\n')
+            fd.write('#include "afw_value_impl_declares.h"\n')
+            fd.write('#undef AFW_IMPLEMENTATION_ID\n')
+            fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
+            fd.write('#undef impl_afw_value_release\n')
+            fd.write('#undef impl_afw_value_get_reference\n')
+            fd.write('#undef impl_afw_value_get_assignable_value\n')
+            fd.write('#undef impl_afw_value_get_for_p_lifetime\n')
+            fd.write('#undef AFW_VALUE_INF_ONLY\n')
+
         if _supports_managed_slice(ctype):
             fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
             fd.write('/* managed_slice ' + id + ': own RC; holds containing; */\n')
@@ -1605,6 +1639,10 @@ def write_c_section(fd, prefix, obj):
                     fd.write('    {\n')
                     fd.write('        return afw_value_get_reference(internal->value, xctx);\n')
                     fd.write('    }\n')
+                    fd.write('    /* Otherwise its face makes the value to keep (copy or face). */\n')
+                    fd.write('    if (internal->value) {\n')
+                    fd.write('        return afw_value_get_assignable_value(internal->value, p, xctx);\n')
+                    fd.write('    }\n')
                     fd.write('    afw_object_get_reference(internal, xctx);\n')
                 elif id == 'array':
                     fd.write('    if (!internal) {\n')
@@ -1619,6 +1657,10 @@ def write_c_section(fd, prefix, obj):
                     fd.write('        internal->value->inf == &afw_value_managed_array_inf)\n')
                     fd.write('    {\n')
                     fd.write('        return afw_value_get_reference(internal->value, xctx);\n')
+                    fd.write('    }\n')
+                    fd.write('    /* Otherwise its face makes the value to keep (copy or face). */\n')
+                    fd.write('    if (internal->value) {\n')
+                    fd.write('        return afw_value_get_assignable_value(internal->value, p, xctx);\n')
                     fd.write('    }\n')
                     fd.write('    afw_array_get_reference(internal, xctx);\n')
                 fd.write('    p = p->managed_p;\n')

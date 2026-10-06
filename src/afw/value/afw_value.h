@@ -1359,13 +1359,16 @@ afw_value_slot_store(
 
 
 /**
- * @brief Store an already-managed (or permanent) value; slot takes the hold.
+ * @brief Store a value in a slot, taking ownership of the caller's
+ *    reference.
  * @param slot address of the stored pointer.
- * @param incoming managed or permanent (NULL becomes undefined).
+ * @param incoming counted or permanent (NULL becomes undefined).
  * @param xctx of caller.
  *
- * No get_assignable. Unmanaged throws. Caller does not release after.
- * Same pointer is a no-op.
+ * No get_assignable. The caller must not release incoming after (the
+ * `_take` convention). Releases the previous occupant. If incoming is
+ * already the occupant, the caller's reference is released (the slot
+ * keeps the one it had).
  */
 AFW_DECLARE(void)
 afw_value_slot_take(

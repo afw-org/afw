@@ -194,14 +194,12 @@ struct afw_runtime_object_indirect_s {
     afw_runtime_object_cb_t cb;
 
     /**
-     * When true, get_reference and release track this object.
-     * The object's pool dies with the last release. Const runtime
-     * objects leave this false.
+     * True when the runtime object table owns this object (made by
+     * afw_runtime_env_create_and_set_indirect_object). Replacing or
+     * removing its entry releases the object's own pool. Nothing else
+     * holds the object: get, retrieve, and foreach return copies.
      */
-    afw_boolean_t refcounted;
-
-    /** Holds. Meaningful only when refcounted is true. */
-    afw_integer_t reference_count;
+    afw_boolean_t owned_by_table;
 };
 
 

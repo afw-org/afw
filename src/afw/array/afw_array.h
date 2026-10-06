@@ -651,7 +651,8 @@ afw_array_push_value(
  * @param xctx of caller.
  *
  * Calls the setter's push_value_take, so each implementation keeps the
- * value its own way. Caller does not release value after.
+ * value its own way. Takes ownership of the caller's reference: the caller must not
+ * release value after (see lifetime-principles.md, `_take`).
  */
 AFW_DECLARE(void)
 afw_array_push_value_take(

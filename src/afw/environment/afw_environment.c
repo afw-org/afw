@@ -1327,7 +1327,6 @@ afw_environment_load_extension(
         }
 
         if (!dso_handle) {
-            afw_pool_release(p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Error loading extension extension_id='%ku' modulePath='%s': %ks",
                 extension_id_for_message, path_z, afw_os_dso_error());
@@ -1338,7 +1337,6 @@ afw_environment_load_extension(
             dso_handle, AFW_ENVIRONMENT_Q_EXTENSION_INSTANCE, xctx);
         if (!extension_instance) {
             afw_os_dso_unload(dso_handle);
-            afw_pool_release(p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Error finding symbol " AFW_ENVIRONMENT_Q_EXTENSION_INSTANCE
                 " in extension_id='%ku' modulePath='%s'",

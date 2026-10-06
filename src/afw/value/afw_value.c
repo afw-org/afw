@@ -194,6 +194,7 @@ afw_value_slot_take(
         incoming = afw_value_undefined;
     }
     if (*slot == incoming) {
+        afw_value_release(incoming, xctx);
         return;
     }
     afw_value_release(*slot, xctx);

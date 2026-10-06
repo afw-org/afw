@@ -53,17 +53,17 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 - **Closures are made in one place:** storing a script function (`get_assignable_value` of the definition) makes a binding of the definition, the captured frame (if any), and the compile unit.
 - **A compiled value has one inf** and is counted: compile returns it at RC 1 and registers that release on dest `p`.
 - **`is_managed` is a capability.** The `is_managed` inf variable on `afw_value`, `afw_object`, and `afw_array` (`afw_*_is_managed()`) says "this implementation is fully managed", so any implementation, including future ones, can declare it. A module's own identity check (`afw_object_is_memory_managed`) is only for guarding a cast to that module's private struct.
+- **`_take` means the callee takes ownership of the caller's reference.** The caller owns one reference to the value (for example a `create_managed` result) and must not release it after the call. Same convention as GLib (`g_value_take_string()` beside `g_value_set_string()`), GObject Introspection `(transfer full)`, and CPython's "steals a reference". The plain form (`set_property`, `push_value`) adds the container's own reference; the caller keeps and releases its own.
 - **Taking a reference into a container:** setter methods `set_property_take` (object) and `push_value_take` (array) store a value and take the caller's reference. A fully managed implementation stores it; others copy it into their pool (`afw_object_setter_set_property_take_by_copy` / `afw_array_setter_push_value_take_by_copy`) and release it. `afw_object_set_property_take` / `afw_array_push_value_take` go through the setter, so they work for any object or array. The generated `*_internal` helpers use the `is_managed` capability to pick the cheap path (pooled value in the object's pool) for pooled objects.
+- **Faces by kind.** A pooled object's or array's value face is `afw_value_unmanaged_*_inf` (`get_reference` / `release` throw). One that owns its pool (`new_p` / `cede_p`, and objects embedded in it) has `afw_value_counted_*_inf`: references go to the instance, and `get_assignable_value` gives a fully managed face (object) or copy (array), so a script change never touches the original (a `get_object` result changed by a script does not change the next `get_object`). A fully managed one has `afw_value_managed_*_inf` (one count with the instance).
+- **Runtime object table borrows.** `afw_runtime_env_set_object` / `afw_runtime_xctx_set_object` take no reference: a registered object is const, built in `env->p`, or removed before its pool goes. The table owns only the indirect objects it makes itself (`afw_runtime_env_create_and_set_indirect_object`, `owned_by_table`): replacing or removing one releases its pool. Get, retrieve, and foreach of an indirect object return a copy. Runtime objects' `get_reference` / `release` are self / no-op.
 - **No exceptions.** Each inf enforces its kind's rules. Code outside an inf does not inspect the inf or `is_managed` to decide what to do.
 - **Every create function's doc comment says which kind it makes and who releases.**
 
 **Tree catching up (#476):**
 
-- A pooled object or array still pins its pool on `get_reference` (runtime `set_object`, adapter results). Nothing releases those pins. To remove.
-- `get_reference` of a pooled scalar or object throws today; `get_assignable_value` is the copy. They fold into one `get_reference` (#476 step 2).
-- `get_reference` of a pooled memory object or array still pins its pool. The environment runtime registry holds both pooled and counted objects through `get_reference` / `release`; it needs a design before pooled `get_reference` can throw (#476).
 
-- A value wrapper over a pooled object or array (`afw_value_<object|array>_managed_t`) still has its own count; step 2 replaces it with a fully managed copy and deletes the wrapper type.
+- The value wrapper type (`afw_value_<object|array>_managed_t`) is now only used for an object or array that has no value face; it can be deleted once no implementation lacks one.
 - Reference-counted adapter results are not yet made immutable at hand-off (#476 S6 showed nothing changes them after).
 
 ---

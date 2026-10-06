@@ -148,6 +148,31 @@ impl_afw_value_permanent_get_assignable_value(
     (const void *)&afw_data_type_array_direct, \
     (const void *)&afw_data_type_array_direct, \
     false
+/* counted array (owns its pool): references go to the */
+/* instance; get_assignable_value gives a fully managed face */
+/* (or copy) so script changes never touch the original. */
+#define AFW_IMPLEMENTATION_ID "counted_array"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_counted_array_inf
+#define impl_afw_value_release impl_afw_value_managed_optional_release
+#define impl_afw_value_get_reference impl_afw_value_managed_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_assignable_value
+#define AFW_VALUE_INF_ONLY 1
+#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
+#include "afw_value_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_value_release
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_get_for_p_lifetime
+#undef AFW_VALUE_INF_ONLY
+
+/* Declares and rti/inf defines for interface afw_value */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    (const void *)&afw_data_type_array_direct, \
+    (const void *)&afw_data_type_array_direct, \
+    false
 /* permanent array: optional_release NULL; */
 /* get_reference as-is; get_assignable_value managed wrapper/clone. */
 #define AFW_IMPLEMENTATION_ID "permanent_array"
@@ -371,6 +396,10 @@ afw_value_array_create_managed(
         internal->value->inf == &afw_value_managed_array_inf)
     {
         return afw_value_get_reference(internal->value, xctx);
+    }
+    /* Otherwise its face makes the value to keep (copy or face). */
+    if (internal->value) {
+        return afw_value_get_assignable_value(internal->value, p, xctx);
     }
     afw_array_get_reference(internal, xctx);
     p = p->managed_p;
