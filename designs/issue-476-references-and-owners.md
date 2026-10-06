@@ -276,8 +276,19 @@ Learned for step 1:
 - Lab 15 s: 50 passed (44 + 6 new #458 workloads, all flat); `eval_object_rebind` flat (was 8.76 MiB/s in_use); 60 s in_use flat, RSS ~0.2 MiB/s (heap reuse, not in_use).
 - Cost (200k calls, best of 3, threshold 50 vs off): no-cycle loops +2–3 %; a self-cycle every call +12 %; local-function loop 6x faster (less memory); a 2000-object live structure re-rooted every call +5 % (adaptive threshold).
 - Found and fixed: pool children were a singly linked list (unlink O(n), quadratic when many pools die at once); now doubly linked.
-- Follow-up (not fixed here): the heap free list is first-fit with a linear scan; bulk frees (and some ordinary loops, e.g. `keep.x = o` each call, ~4.8 s / 200k with or without collection) spend most time there. Size-segregated free lists would fix it generally.
+- Follow-up [#477](https://github.com/afw-org/afw/issues/477) (not fixed here): the heap free list is first-fit with a linear scan; bulk frees (and some ordinary loops, e.g. `keep.x = o` each call, ~4.8 s / 200k with or without collection) spend most time there. Size-segregated free lists would fix it generally.
 - Gates: suite 4609 passed (default; `AFW_REFERENCE_COLLECT=1`; `=1` with `AFW_REFERENCE_CHECK` and region free list 0); valgrind with `AFW_REFERENCE_COLLECT=1` 4609 passed.
+
+**Step 6a status (2026-10-06, branch `issue-476-step4-scope-pool`).** The error owns everything it points to; the throw-path delay is gone.
+
+- `afw_error_own_pointers(xctx)` runs in the throw macro and on the `AFW_ENDTRY` rethrow. It rebuilds one malloc block (`error->owned`) from the current pointers (`source_z`, `message_z` unless in `message_wa`, `rv_source_id_z`, `rv_decoded_z` unless in `decode_rv_wa`, `parser_source` as `afw_utf8_t` + bytes) and frees the old block; it references the compile unit behind `contextual` (`error->contextual_unit`) before releasing the old one. Re-owning on every throw is needed because compile code edits the error after it was thrown.
+- `afw_error_release_references` frees the block and releases the unit. `afw_error_rv_set_z` releases first. `AFW_ERROR_MOVE` = copy plus clear the source (single ownership). The adapter's error copy uses it.
+- `afw_error_add_to_object` copies `parser_source` and the contextual source location into the object's `p`.
+- Removed: scope pool `release_delayed` / `error_delaying_release_first`, `afw_error_processing_handled`'s flush (it only decrements now), the adapter's `error_processing_count` hold and its extra `afw_error_processing_handled` (the extra decrement broke `request_pool_limit` and `adapter_cache_release`).
+- A throw from inside a C `AFW_CATCH` body lands in the same `AFW_TRY`'s `setjmp`; it used to overwrite `this_THROWN_ERROR` without releasing it (leaked `data` / `backtrace` before; would leak `owned` now). It is released first.
+- Gates: suite 4609 passed (default; `AFW_REFERENCE_COLLECT=1 AFW_REFERENCE_CHECK=1`; region free list 0).
+
+**T1 status (2026-10-06).** No lock was needed for counts. The adapter's managed values are owned by the adapter's own multithreaded pool (`*_as_managed_p`); they are counted at startup and released at the adapter's last release, which `adapter_id_anchor_lock` orders after publish, so the two never overlap (S2 found no other thread referencing them). The real cross-thread hazard was the collector: a possible root owned by the base xctx (`env->p`) and last-released on a request thread would be forgotten in the wrong xctx's collector and left dangling. `afw_reference_possible_root` now records only owners that are this xctx's single-threaded job heap (request, CLI); values owned by a multithreaded pool are not collected until worker threads (#343) give every owner one thread. CLI cycle loop: 7 KiB growth over 6000 cycles collected vs 2 MiB off.
 
 ### Steps (each a small branch off `develop`, merged when green)
 
@@ -290,7 +301,7 @@ Learned for step 1:
 | 3 | `for_each_reference` + debug check (listed == released) for values, objects, arrays, closure bindings. | No |
 | 4 | Scope interface extends `afw_pool`; `afw_pool` adopts `afw_reference`; scope lists its frame slots. | **Yes** |
 | 5 | Cycle collector (from S1), per owner. Lab workloads for every #458 shape, all flat. Closes #458. | **Yes** (scope release hook) |
-| 6 | Remove pool parent pins and the scope throw-path delay (the error owns its data since PR #470). | **Yes** |
+| 6 | Remove pool parent pins and the scope throw-path delay (6a: the error owns everything it points to). | **Yes** |
 
 `afw_memory_region` is not touched. Jeremy finished his `afw_pool` / `afw_memory_region` work (2026-10-05), so pool steps are free to start.
 

@@ -26,8 +26,8 @@
  *   heap — owns chunks; malloc/free_memory happen here.
  *   tracker — gets bytes from an ancestor heap and remembers them.
  *   free_memory only marks.
- *   scope — heap used for `{ }`. Smaller chunk_min (4k), plus
- *   last-release delay on throw.
+ *   scope — heap used for `{ }`. Smaller chunk_min (4k); its count
+ *   is the scope's count (frame slots, lexical parent).
  *
  *   chunk — `afw_pool_heap_internal_chunk_t`. One mapped allocation the
  *   heap holds. Linked from first_chunk. Typical sizes: 4k (scope)

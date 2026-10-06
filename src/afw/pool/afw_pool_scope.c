@@ -10,9 +10,8 @@
  * @file afw_pool_scope.c
  * @brief Scope pool and xctx frame. The scope object is the pool.
  *
- * Old link rule: create holds the parent until teardown. The scope
- * reference count is separate and stays at 1 for the creator, so
- * throw-path delay still sees a pool count of 1.
+ * The scope's count is the pool's count. Last release releases the
+ * frame slots and the lexical parent, then the pool.
  * The multithreaded inf is `afw_pool_scope_multithreaded.c`.
  */
 
@@ -26,66 +25,6 @@ impl_scope_specific =
         /* multithreaded */ false,
         /* tracker */ false
     };
-
-static void
-impl_clear_delay(
-    afw_pool_heap_internal_scope_self_t *me, afw_xctx_t *xctx)
-{
-    const afw_pool_t **pos;
-    afw_pool_heap_internal_scope_self_t *curr;
-
-    if (!me->error_delaying_release) {
-        return;
-    }
-    me->error_delaying_release = false;
-    if (!xctx) {
-        me->error_delaying_release_next = NULL;
-        return;
-    }
-    pos = &xctx->error_delaying_release_first;
-    while (*pos) {
-        curr = afw_pool_heap_internal_as_scope(
-            (afw_pool_internal_self_t *)(void *)*pos);
-        if (curr == me) {
-            *pos = curr->error_delaying_release_next;
-            curr->error_delaying_release_next = NULL;
-            return;
-        }
-        pos = &curr->error_delaying_release_next;
-    }
-    me->error_delaying_release_next = NULL;
-}
-
-
-/*
- * While error_processing_count > 0, last release of a scope pool
- * is recorded and skipped. Catching ENDTRY runs
- * afw_pool_heap_internal_release_delayed() when the count is 0 again.
- */
-static afw_boolean_t
-impl_error_delaying_release(
-    afw_pool_heap_internal_scope_self_t *me,
-    afw_xctx_t *xctx)
-{
-    afw_pool_internal_self_t *self;
-
-    self = &me->heap.common;
-    if (!xctx || xctx->error_processing_count == 0) {
-        return false;
-    }
-    if (me->error_delaying_release) {
-        return true;
-    }
-    if (self->reference_count != 1) {
-        return false;
-    }
-    me->error_delaying_release = true;
-    me->error_delaying_release_next =
-        xctx->error_delaying_release_first;
-    xctx->error_delaying_release_first = &self->pub;
-    return true;
-}
-
 
 static void
 impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
@@ -174,11 +113,6 @@ afw_pool_internal_scope_release(
     if (scope->releasing_frame) {
         return &self->pub;
     }
-    if (impl_error_delaying_release(
-            afw_pool_heap_internal_as_scope(self), xctx))
-    {
-        return &self->pub;
-    }
     if (self->reference_count > 1 && self->parent) {
         afw_reference_possible_root(&self->pub.ref, &self->parent->pub,
             xctx);
@@ -210,7 +144,6 @@ afw_pool_internal_scope_run_cleanups(
 {
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
     if (!self->destroying) {
-        impl_clear_delay(afw_pool_heap_internal_as_scope(self), xctx);
         afw_pool_internal_mark_destroying(self);
     }
     afw_pool_internal_run_child_cleanups(self, xctx);
@@ -225,7 +158,6 @@ afw_pool_internal_scope_destroy(
 {
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     if (!self->destroying) {
-        impl_clear_delay(afw_pool_heap_internal_as_scope(self), xctx);
         afw_pool_internal_mark_destroying(self);
     }
     afw_pool_internal_destroy_children(self, xctx);
@@ -352,28 +284,6 @@ afw_pool_scope_allocate(
     scope = impl_scope_object_create(
         parent, sizeof(afw_pool_scope_t), xctx);
     return scope->p;
-}
-
-
-void
-afw_pool_heap_internal_release_delayed(
-    const afw_pool_t *instance,
-    afw_xctx_t *xctx)
-{
-    const afw_pool_t *p;
-    afw_pool_heap_internal_scope_self_t *delay;
-
-    (void)instance;
-    if (!xctx) {
-        return;
-    }
-    while (xctx->error_delaying_release_first) {
-        p = xctx->error_delaying_release_first;
-        delay = afw_pool_heap_internal_as_scope(
-            (afw_pool_internal_self_t *)p);
-        impl_clear_delay(delay, xctx);
-        afw_pool_release(p, xctx);
-    }
 }
 
 

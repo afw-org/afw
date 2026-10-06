@@ -122,6 +122,25 @@ struct afw_error_s {
      */
     const afw_utf8_t *parser_source;
 
+    /**
+     * @brief Copies of the error's strings, owned by the error.
+     *
+     * Filled at throw by afw_error_own_pointers(): source_z, message_z,
+     * rv_source_id_z, rv_decoded_z, and parser_source then point here (or
+     * at message_wa / decode_rv_wa), so nothing the catch reads lives in
+     * a pool that may already be gone. One malloc block;
+     * afw_error_release_references() frees it.
+     */
+    void *owned;
+
+    /**
+     * @brief Reference to the compile unit contextual lives in, or NULL.
+     *
+     * Taken at throw with the string copies; released by
+     * afw_error_release_references().
+     */
+    const afw_value_t *contextual_unit;
+
     /** @brief If non-zero, this is rc, rv, or any int value related to error. */
     int rv;
 
@@ -142,11 +161,23 @@ struct afw_error_s {
 };
 
 /**
- * @brief CATCH finished: decrement error_processing_count, and if it
- *     is 0 last-release delayed pools (ENDTRY, not rethrowing).
+ * @brief CATCH finished: decrement error_processing_count (ENDTRY,
+ *     not rethrowing).
  */
 AFW_DECLARE(void)
 afw_error_processing_handled(afw_xctx_t *xctx);
+
+/**
+ * @brief Make the error own everything it points to (at throw).
+ * @param xctx of caller.
+ *
+ * Copies the error's strings into storage it owns and takes a reference
+ * to the compile unit behind contextual, so a catch never reads memory
+ * from a pool released while unwinding. Runs on every throw, rethrow
+ * included, because a catch may change the error before rethrowing.
+ */
+AFW_DECLARE(void)
+afw_error_own_pointers(afw_xctx_t *xctx);
 
 /**
  * Increment error_processing_count and longjmp. Catching AFW_ENDTRY
@@ -157,6 +188,7 @@ afw_error_processing_handled(afw_xctx_t *xctx);
  * semicolon attaches to longjmp.
  */
 #define afw_error_processing_throw(_xctx, _code) \
+    afw_error_own_pointers(_xctx); \
     (_xctx)->error_processing_count++; \
     longjmp((_xctx)->current_try->throw_jmp_buf, (_code))
 
@@ -732,6 +764,18 @@ do { \
         (_to)->rv_decoded_z = &(_to)->decode_rv_wa[0]; \
     }
 
+/**
+ * @brief Move an error: copy it, then clear what it owns in _from.
+ *
+ * Use when the copy outlives a caught ENDTRY that releases _from.
+ */
+#define AFW_ERROR_MOVE(_to, _from) \
+    AFW_ERROR_COPY((_to), (_from)) \
+    (_from)->data = NULL; \
+    (_from)->backtrace = NULL; \
+    (_from)->owned = NULL; \
+    (_from)->contextual_unit = NULL;
+
 
 /**
  * @brief Access the thrown error. See AFW_TRY.
@@ -836,6 +880,10 @@ do {\
     this_TOP_OFFSET = xctx->evaluation_stack->count; \
     do { \
         if (setjmp(this_TRY.throw_jmp_buf) != 0) { \
+            if (this_ERROR_OCCURRED) { \
+                /* Thrown from a catch: the new error replaces it. */ \
+                afw_error_release_references(&this_THROWN_ERROR, xctx); \
+            } \
             AFW_ERROR_COPY(&this_THROWN_ERROR, xctx->error); \
             AFW_ERROR_CLEAR_PARTIAL(xctx->error); \
             if (this_ERROR_OCCURRED) { \
@@ -916,6 +964,7 @@ do {\
     xctx->current_try = this_TRY.prev; \
     if (this_ERROR_OCCURRED && !this_ERROR_CAUGHT) { \
         AFW_ERROR_COPY(xctx->error, &this_THROWN_ERROR); \
+        afw_error_own_pointers(xctx); \
         longjmp(xctx->current_try->throw_jmp_buf, this_THROWN_ERROR.code); \
     } \
     afw_xctx_evaluation_stack_rewind(this_TOP_OFFSET, xctx); \

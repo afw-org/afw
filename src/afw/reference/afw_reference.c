@@ -143,6 +143,7 @@ afw_reference_check(
     impl_walk_t walk;
     const afw_reference_t *node;
     const impl_node_t *bad;
+    afw_size_t bad_count;
     afw_size_t i;
 
     if (!root) {
@@ -164,6 +165,7 @@ afw_reference_check(
     }
     if (bad) {
         node = bad->node;
+        bad_count = bad->count;
         free(walk.nodes);
         free(walk.stack);
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -171,7 +173,7 @@ afw_reference_check(
             "more times than its count " AFW_SIZE_T_FMT,
             &node->inf->rti.interface_name,
             &node->inf->rti.implementation_id,
-            bad->count);
+            bad_count);
     }
     free(walk.nodes);
     free(walk.stack);
@@ -322,7 +324,16 @@ afw_reference_possible_root(
     impl_collector_t *c;
     const afw_reference_t **slot;
 
+    /*
+     * Only an owner that is this xctx's single-threaded job heap. Its
+     * values are touched only on this thread, so their last release
+     * (and forget) always reaches this collector. Values owned by a
+     * multithreaded pool (env->p, conf, adapter) can be last-released
+     * on another thread and are not collected until worker threads
+     * give every owner one thread (#343).
+     */
     if (!instance || !xctx || owner != xctx->p ||
+        afw_pool_internal_is_multithreaded(owner) ||
         impl_collect_threshold() == 0)
     {
         return;

@@ -31,23 +31,18 @@
  *   chunks (4k-aligned; default floor 64k when chunk_min is 0).
  *   Not a third AFW pool kind.
  * - Parent/child is lifetime only. Store is the ancestor heap.
- *   Trackers may parent other trackers. A heap or tracker pins its
- *   parent only while an extra hold is outstanding. The create
- *   reference does not. A thread pool (afw_pool_thread_create)
- *   uses impl_afw_pool_thread_inf: one parent hold from
- *   create until teardown, and get_reference does not pin that
- *   parent. At 0, destroy
- *   children that never pinned this pool, then free this store.
- *   A referenced child still linked is an error.
+ *   Trackers may parent other trackers. Every pool follows one
+ *   parent rule: it holds one reference on its parent only while
+ *   its count is above 1 (someone besides its creator references
+ *   it). At 0, destroy children, then free this store. A
+ *   referenced child still linked is an error.
  * - One ST job heap per xctx (thread handoff off env->p, including
  *   base). A `{ }` frame is the scope pool (`afw_pool_scope_create`;
- *   top parent is the evaluate dest, nested parent is the parent
- *   scope pool). A scope holds its parent from create until
- *   teardown, and its pool count stays at 1 so throw-path delay
- *   still sees a last release. Blank pool, no block:
- *   `afw_pool_scope_allocate`. Heap/scope/tracker follow parent
- *   ST/MT. Closures hold the inner scope; the xctx heap outlives
- *   the outer `{ }`.
+ *   its pool parent is dest `p->managed_p`, never dest `p`). The
+ *   scope's count is the pool's count; its last release releases the
+ *   frame slots and lexical parent, then the pool. Blank pool, no
+ *   block: `afw_pool_scope_allocate`. Heap/scope/tracker follow parent
+ *   ST/MT. A closure binding holds its captured scope.
  * - `afw_pool_create()` is a heap like the parent (ST or MT lock
  *   wrappers), **inherits** managed_p. Tracker is
  *   `afw_pool_tracker_create()`. `env->p` is the process MT job heap.
@@ -71,8 +66,6 @@
  *   `afw_pool_subtree_*` on `xctx->p`.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
- * - `afw_pool_heap_internal_release_delayed()`: last-release scopes delayed
- *   while error_processing_count > 0. ENDTRY after a caught error.
  * - `env->p` is process lifetime (valgrind still reachable is
  *   intended).
  *
@@ -231,8 +224,8 @@ afw_pool_multithread_create_as_managed_p(
  * @return tracker. managed_p is the ancestor heap.
  *
  * If the parent is multithreaded, methods are lock wrappers on
- * the same region mutex as MT heaps. No last-release delay on
- * throw. For evaluation `{ }`, use afw_pool_scope_create().
+ * the same region mutex as MT heaps. For evaluation `{ }`, use
+ * afw_pool_scope_create().
  * The tracker header is a parent-pool block (`free_memory` on
  * destroy).
  */
@@ -249,8 +242,7 @@ afw_pool_tracker_create(
  * @return The scope pool (`afw_pool_scope_t` is that pool).
  *
  * A `{ }` frame is afw_pool_scope_create(). This entry is the pool
- * alone: no symbols, reference count 0. Last-release is delayed
- * while error_processing_count > 0. Inherits managed_p.
+ * alone: no symbols, reference count 0. Inherits managed_p.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_scope_allocate(

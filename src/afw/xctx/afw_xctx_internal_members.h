@@ -30,12 +30,6 @@
     void *priv;
 
     /**
-     * Pools whose last release/destroy is delayed. First is most
-     * recent; tail is innermost. See afw_error_processing_handled().
-     */
-    const afw_pool_t *error_delaying_release_first;
-
-    /**
      * Cycle collection state for this owner (possible roots). See
      * afw_reference.h. NULL until the first possible root.
      */
