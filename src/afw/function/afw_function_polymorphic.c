@@ -866,10 +866,11 @@ afw_function_execute_includes(
             {
                 count++;
             }
-            if ((afw_size_t)(-start_cp) > count) {
+            /* Unsigned: -#integerMin does not fit. */
+            if ((afw_size_t)0 - (afw_size_t)start_cp > count) {
                 return afw_boolean_v_false;
             }
-            index = count + (afw_size_t)start_cp;
+            index = count - ((afw_size_t)0 - (afw_size_t)start_cp);
         }
         else {
             index = (afw_size_t)start_cp;

@@ -153,3 +153,23 @@ return 0;
 
 evaluate(compile<script>("return " + repeat<string>("(", 200000) + "1"
     + repeat<string>(")", 200000) + ";"))
+
+//?
+//? test: includes-position-min
+//? description: includes with #integerMin position is false, not overflow
+//? expect: 0
+//? source: ...
+
+assert(includes<string>("abc", "a", #integerMin) === false);
+assert(includes<string>("abc", "c", -1) === true);
+return 0;
+
+//?
+//? test: decompile-converted-function
+//? description: decompile of a value converted to function writes its text
+//? expect: 0
+//? source: ...
+
+const d = decompile(bag<function>("abc"));
+assert(index_of(d, "abc") >= 0);
+return 0;

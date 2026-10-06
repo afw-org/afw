@@ -2417,7 +2417,7 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     function,             /* clone             */
     function,             /* compiler listing  */
-    typed_string,             /* as expression     */
+    typed_to_string,      /* as expression     */
     NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
