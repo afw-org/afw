@@ -53,6 +53,33 @@ tests:
       assert(r.REQUEST_METHOD !== null && r.REQUEST_METHOD !== undefined);
       return r.REQUEST_METHOD;
 
+  - name: test-script-expected-error
+    description: >
+      test_script under an action: an expect error test records its error
+      with dest p the request's job heap (no scope above it)
+    sourceType: test_script
+    source: |
+      #!/usr/bin/env -S afw --syntax test_script
+      //?
+      //? testScript: expected_error.as
+      //? sourceType: script
+      //?
+      //? test: compile-error
+      //? description: second let in a for init does not compile
+      //? expect: error
+      //? source: ...
+
+      for (let i = 0, let j = 1; i < 1; i = i + 1) {
+      }
+
+      //?
+      //? test: evaluate-error
+      //? description: a throw at evaluate is an expected error too
+      //? expect: error
+      //? source: ...
+
+      throw "expected";
+
   # --- Raw protocol (escape hatch) ---
   - name: evaluate-x-afw
     description: Raw local session with ACCEPT application/x-afw
