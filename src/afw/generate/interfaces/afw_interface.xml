@@ -64,6 +64,58 @@
 
     </method>
 
+    <method name="get_reference_count">
+
+      <description>
+        Return the number of references currently held to this instance,
+        or 0 if it is not counted. For cycle collection and its debug
+        check; not for deciding lifetime.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_size_t">
+        <description>Reference count, or 0.</description>
+      </return>
+
+    </method>
+
+    <method name="for_each_reference">
+
+      <description>
+        Call callback once for each reference this instance holds that its
+        last release would release, naming the counted instance each
+        reference is held in (see afw_value get_counted). A target held
+        twice is listed twice. Instances that hold no references list
+        nothing. Used by cycle collection and its debug check.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="callback" type="afw_reference_cb_t">
+        <description>Called once per reference.</description>
+      </parameter>
+
+      <parameter name="context" type="void *">
+        <description>Passed to callback.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
   </interface>
 
   <interface name="afw_extension" id="afwex">
@@ -6415,6 +6467,37 @@ AFW_DEFINE(const afw_request_handler_t *)
       <return type="const afw_value_t *">
         <description>
           A value that lasts for p. Caller does not release.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_counted">
+
+      <description>
+        Return the instance whose count a reference to this value is held
+        in, or NULL if this value is not counted (pooled, permanent, or a
+        compiler value). A counted scalar, closure binding, or compiled
+        value returns itself; an object or array value face returns its
+        object or array. Containers use this to list what each value they
+        hold references.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>
+          Pointer to this adaptive value instance.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx.
+        </description>
+      </parameter>
+
+      <return type="const afw_reference_t *">
+        <description>
+          Counted instance, or NULL.
         </description>
       </return>
 

@@ -1410,6 +1410,21 @@ typedef afw_boolean_t
     const afw_object_t *object,
     void *context,
     afw_xctx_t *xctx);
+
+
+/**
+ * @brief Typedef for afw_reference for_each_reference callback.
+ * @param counted instance whose count the listed reference is held in.
+ * @param context supplied with the callback.
+ * @param xctx of caller.
+ *
+ * Called once per reference: a target referenced twice is listed twice.
+ */
+typedef void
+(*afw_reference_cb_t)(
+    const afw_reference_t *counted,
+    void *context,
+    afw_xctx_t *xctx);
  
 
 /** 

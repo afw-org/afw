@@ -124,6 +124,24 @@ impl_afw_array_release(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_array_get_reference_count
+/* Declare method get_reference_count */
+AFW_DECLARE_STATIC(afw_size_t)
+impl_afw_array_get_reference_count(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_array_for_each_reference
+/* Declare method for_each_reference */
+AFW_DECLARE_STATIC(void)
+impl_afw_array_for_each_reference(
+    AFW_ARRAY_SELF_T *self,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_array_get_count
 /* Declare method get_count */
 AFW_DECLARE_STATIC(afw_size_t)
@@ -222,6 +240,10 @@ impl_afw_array_inf = {
     impl_afw_array_get_reference,
     (afw_array_release_t)
     impl_afw_array_release,
+    (afw_array_get_reference_count_t)
+    impl_afw_array_get_reference_count,
+    (afw_array_for_each_reference_t)
+    impl_afw_array_for_each_reference,
     (afw_array_get_count_t)
     impl_afw_array_get_count,
     (afw_array_get_data_type_t)

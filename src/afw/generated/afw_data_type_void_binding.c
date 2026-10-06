@@ -70,6 +70,9 @@ impl_afw_value_get_assignable_via_reference(
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define impl_afw_value_create_iterator NULL
 #define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_get_counted afw_value_not_counted_get_counted
+#define impl_afw_value_get_reference_count afw_value_not_counted_get_reference_count
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
@@ -77,6 +80,9 @@ impl_afw_value_get_assignable_via_reference(
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
 #undef impl_afw_value_get_for_p_lifetime
+#undef impl_afw_value_for_each_reference
+#undef impl_afw_value_get_counted
+#undef impl_afw_value_get_reference_count
 
 static const afw_value_string_t
 impl_data_type_void_id_value = {

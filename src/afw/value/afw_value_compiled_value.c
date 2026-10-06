@@ -29,6 +29,8 @@
  * pool it owns, or frees the header when the pool is shared.
  */
 #define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_get_counted afw_value_self_get_counted
 
 /* Declares and rti/inf defines for interface afw_value */
 #define AFW_IMPLEMENTATION_ID "compiled_value"
@@ -48,6 +50,8 @@
 #undef impl_afw_value_get_evaluated_meta
 #undef impl_afw_value_get_evaluated_metas
 #undef impl_afw_value_get_for_p_lifetime
+#undef impl_afw_value_for_each_reference
+#undef impl_afw_value_get_counted
 
 
 void
@@ -270,4 +274,17 @@ impl_afw_value_get_info(
     afw_memory_clear(info);
     info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->optimized_value = &self->pub;
+}
+
+
+/*
+ * Implementation of method get_reference_count for interface afw_value.
+ */
+afw_size_t
+impl_afw_value_get_reference_count(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
 }

@@ -42,6 +42,32 @@ impl_afw_value_release(
 }
 
 /*
+ * Implementation of method get_reference_count for interface afw_value.
+ */
+afw_size_t
+impl_afw_value_get_reference_count(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method for_each_reference for interface afw_value.
+ */
+void
+impl_afw_value_for_each_reference(
+    AFW_VALUE_SELF_T *self,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method get_assignable_value for interface afw_value.
  */
 const afw_value_t *
@@ -61,6 +87,18 @@ const afw_value_t *
 impl_afw_value_get_for_p_lifetime(
     AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method get_counted for interface afw_value.
+ */
+const afw_reference_t *
+impl_afw_value_get_counted(
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */

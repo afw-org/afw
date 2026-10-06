@@ -862,3 +862,30 @@ afw_object_get_entity(const afw_object_t *object, afw_xctx_t *xctx)
     AFW_OBJECT_GET_ENTITY(entity, object);
     return entity;
 }
+
+
+/* for_each_reference for objects that hold no references. */
+AFW_DEFINE(void)
+afw_object_no_references_for_each(
+    const afw_object_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)callback;
+    (void)context;
+    (void)xctx;
+}
+
+
+/* get_reference_count for objects that are not counted. */
+AFW_DEFINE(afw_size_t)
+afw_object_not_counted_get_reference_count(
+    const afw_object_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+    return 0;
+}

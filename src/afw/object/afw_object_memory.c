@@ -25,6 +25,7 @@
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "memory"
 #define AFW_OBJECT_SELF_T afw_object_internal_memory_object_t
+#define impl_afw_object_for_each_reference afw_object_no_references_for_each
 #include "afw_object_impl_declares.h"
 #define impl_afw_object_setter_set_property_take \
     afw_object_setter_set_property_take_by_copy
@@ -37,6 +38,13 @@ impl_afw_object_managed_release(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
 static const afw_object_t *
 impl_afw_object_managed_get_reference(
+    AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_object_managed_for_each_reference(
+    AFW_OBJECT_SELF_T *self, afw_reference_cb_t callback, void *context,
+    afw_xctx_t *xctx);
+static afw_size_t
+impl_afw_object_managed_get_reference_count(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
 static void
 impl_afw_object_managed_setter_set_property(
@@ -63,7 +71,14 @@ impl_afw_object_managed_setter_remove_property(
 #define AFW_OBJECT_INF_ONLY
 #define impl_afw_object_release impl_afw_object_managed_release
 #define impl_afw_object_get_reference impl_afw_object_managed_get_reference
+#undef impl_afw_object_for_each_reference
+#define impl_afw_object_for_each_reference \
+    impl_afw_object_managed_for_each_reference
+#define impl_afw_object_get_reference_count \
+    impl_afw_object_managed_get_reference_count
 #include "afw_object_impl_declares.h"
+#undef impl_afw_object_for_each_reference
+#undef impl_afw_object_get_reference_count
 #undef AFW_OBJECT_INF_ONLY
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
@@ -1382,4 +1397,54 @@ impl_afw_object_managed_setter_remove_property(
     impl_unlink_property(
         (afw_object_internal_memory_object_t *)self->object,
         property_name, xctx);
+}
+
+
+/* Last release releases each name and value, then wrapped. */
+static void
+impl_afw_object_managed_for_each_reference(
+    AFW_OBJECT_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+
+    for (e = self->first_property; e; e = e->next) {
+        afw_value_list_reference(e->name, callback, context, xctx);
+        afw_value_list_reference(e->value, callback, context, xctx);
+    }
+    if (self->wrapped) {
+        afw_value_list_reference(self->wrapped->value, callback, context,
+            xctx);
+    }
+}
+
+
+/* Pooled: not counted. Owns its pool: the pool's count. */
+afw_size_t
+impl_afw_object_get_reference_count(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *entity;
+
+    if (self->unmanaged) {
+        return 0;
+    }
+    if (self->managed_by_entity) {
+        AFW_OBJECT_GET_ENTITY(entity, &self->pub);
+        return afw_object_get_reference_count(entity, xctx);
+    }
+    return afw_pool_get_reference_count(self->pub.p, xctx);
+}
+
+
+static afw_size_t
+impl_afw_object_managed_get_reference_count(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
 }

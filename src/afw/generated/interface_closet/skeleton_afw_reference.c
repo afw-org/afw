@@ -40,3 +40,29 @@ impl_afw_reference_release(
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
 }
+
+/*
+ * Implementation of method get_reference_count for interface afw_reference.
+ */
+afw_size_t
+impl_afw_reference_get_reference_count(
+    AFW_REFERENCE_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method for_each_reference for interface afw_reference.
+ */
+void
+impl_afw_reference_for_each_reference(
+    AFW_REFERENCE_SELF_T *self,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}

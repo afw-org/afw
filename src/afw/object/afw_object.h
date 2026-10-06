@@ -1284,6 +1284,32 @@ afw_object_create_const_from_key_value_strings_z(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief for_each_reference for objects that hold no references.
+ * @param instance object.
+ * @param callback not called.
+ * @param context unused.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_object_no_references_for_each(
+    const afw_object_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_reference_count for objects that are not counted.
+ * @param instance object.
+ * @param xctx of caller.
+ * @return 0.
+ */
+AFW_DECLARE(afw_size_t)
+afw_object_not_counted_get_reference_count(
+    const afw_object_t *instance,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

@@ -97,6 +97,64 @@ afw_value_clone(
 }
 
 
+/* for_each_reference for values that hold no references. */
+AFW_DEFINE(void)
+afw_value_no_references_for_each(
+    const afw_value_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)callback;
+    (void)context;
+    (void)xctx;
+}
+
+
+/* get_counted for values that are not counted. */
+AFW_DEFINE(const afw_reference_t *)
+afw_value_not_counted_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+    return NULL;
+}
+
+
+/* get_counted for values that hold their own count. */
+AFW_DEFINE(const afw_reference_t *)
+afw_value_self_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return &instance->ref;
+}
+
+
+/* List the counted instance a held value references, if any. */
+AFW_DEFINE(void)
+afw_value_list_reference(
+    const afw_value_t *value,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    const afw_reference_t *counted;
+
+    if (!value) {
+        return;
+    }
+    counted = afw_value_get_counted(value, xctx);
+    if (counted) {
+        callback(counted, context, xctx);
+    }
+}
+
+
 /* get_assignable_value for values that are not counted. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_not_counted_get_assignable_value(
@@ -1470,4 +1528,16 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
     afw_environment_register_value_inf(
         &afw_value_qualified_variable_reference_inf.rti.implementation_id,
         &afw_value_qualified_variable_reference_inf, xctx);
+}
+
+
+/* get_reference_count for values that are not counted. */
+AFW_DEFINE(afw_size_t)
+afw_value_not_counted_get_reference_count(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+    return 0;
 }

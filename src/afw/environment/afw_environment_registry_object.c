@@ -27,6 +27,8 @@
 
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "afw_environment_registry"
+#define impl_afw_object_for_each_reference afw_object_no_references_for_each
+#define impl_afw_object_get_reference_count afw_object_not_counted_get_reference_count
 #include "afw_object_impl_declares.h"
 
 static const afw_utf8_t impl_path =

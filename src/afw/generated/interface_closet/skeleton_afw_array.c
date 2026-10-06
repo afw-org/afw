@@ -42,6 +42,32 @@ impl_afw_array_release(
 }
 
 /*
+ * Implementation of method get_reference_count for interface afw_array.
+ */
+afw_size_t
+impl_afw_array_get_reference_count(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method for_each_reference for interface afw_array.
+ */
+void
+impl_afw_array_for_each_reference(
+    AFW_ARRAY_SELF_T *self,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method get_count for interface afw_array.
  */
 afw_size_t

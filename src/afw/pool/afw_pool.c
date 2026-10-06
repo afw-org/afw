@@ -894,3 +894,15 @@ afw_pool_deregister_value_at_cleanup(
     afw_pool_deregister_cleanup(p, (void *)value, NULL,
         impl_release_value_at_cleanup, xctx);
 }
+
+
+/* Current reference count of a pool. */
+AFW_DEFINE(afw_size_t)
+afw_pool_get_reference_count(
+    const afw_pool_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)((const afw_pool_internal_self_t *)instance)
+        ->reference_count;
+}

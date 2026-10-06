@@ -425,6 +425,17 @@ afw_pool_is_value_release_registered(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Current reference count of a pool.
+ * @param instance pool.
+ * @param xctx of caller.
+ * @return count. For get_reference_count of instances that own a pool.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_get_reference_count(
+    const afw_pool_t *instance,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

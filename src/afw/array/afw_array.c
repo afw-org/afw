@@ -301,3 +301,30 @@ afw_array_remove_all_values(
 
     afw_array_setter_remove_all_values(setter, xctx);
 }
+
+
+/* for_each_reference for arrays that hold no references. */
+AFW_DEFINE(void)
+afw_array_no_references_for_each(
+    const afw_array_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)callback;
+    (void)context;
+    (void)xctx;
+}
+
+
+/* get_reference_count for arrays that are not counted. */
+AFW_DEFINE(afw_size_t)
+afw_array_not_counted_get_reference_count(
+    const afw_array_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+    return 0;
+}

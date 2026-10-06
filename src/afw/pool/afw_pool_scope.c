@@ -717,6 +717,17 @@ afw_pool_scope_deactivate(
         afw_xctx_script_result_set(scope->last_statement_non_void_value, scope->p, xctx);
     }
     afw_vector_pop(xctx->scope_stack, xctx);
+    if (afw_reference_check_is_enabled() && scope->block) {
+        afw_size_t i;
+        const afw_reference_t *counted;
+
+        for (i = 0; i < scope->symbol_count; i++) {
+            counted = (scope->frame_slots[i])
+                ? afw_value_get_counted(scope->frame_slots[i], xctx)
+                : NULL;
+            afw_reference_check(counted, xctx);
+        }
+    }
     afw_pool_scope_release(scope, xctx);
 }
 

@@ -28,12 +28,20 @@ impl_managed_array_elements_cleanup(
 #define AFW_IMPLEMENTATION_ID "memory"
 typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
 #define AFW_ARRAY_SELF_T afw_memory_internal_array_t
+#define impl_afw_array_for_each_reference afw_array_no_references_for_each
 #include "afw_array_impl_declares.h"
 #define impl_afw_array_setter_push_value_take \
     afw_array_setter_push_value_take_by_copy
 #include "afw_array_setter_impl_declares.h"
 #undef impl_afw_array_setter_push_value_take
 
+static void
+impl_afw_array_managed_for_each_reference(
+    AFW_ARRAY_SELF_T *self, afw_reference_cb_t callback, void *context,
+    afw_xctx_t *xctx);
+static afw_size_t
+impl_afw_array_managed_get_reference_count(
+    AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
 static void
 impl_afw_array_managed_setter_push_value_take(
     const afw_array_setter_t *setter,
@@ -96,7 +104,13 @@ impl_afw_array_managed_setter_shift_value(
 #define AFW_ARRAY_INF_ONLY
 #define impl_afw_array_release impl_afw_array_managed_release
 #define impl_afw_array_get_reference impl_afw_array_managed_get_reference
+#undef impl_afw_array_for_each_reference
+#define impl_afw_array_for_each_reference impl_afw_array_managed_for_each_reference
+#define impl_afw_array_get_reference_count \
+    impl_afw_array_managed_get_reference_count
 #include "afw_array_impl_declares.h"
+#undef impl_afw_array_for_each_reference
+#undef impl_afw_array_get_reference_count
 #undef AFW_ARRAY_INF_ONLY
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
@@ -1523,4 +1537,47 @@ afw_array_create_unmanaged_from_value(
     }
 
     return value_array;
+}
+
+
+/* Last release releases every held element. */
+static void
+impl_afw_array_managed_for_each_reference(
+    AFW_ARRAY_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+
+    if (!self->values) {
+        return;
+    }
+    for (i = 0; i < self->values->count; i++) {
+        afw_value_list_reference(self->values->entries[i],
+            callback, context, xctx);
+    }
+}
+
+
+/* Pooled: not counted. Owns its pool: the pool's count. */
+afw_size_t
+impl_afw_array_get_reference_count(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    if (self->unmanaged) {
+        return 0;
+    }
+    return afw_pool_get_reference_count(self->pub.p, xctx);
+}
+
+
+static afw_size_t
+impl_afw_array_managed_get_reference_count(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
 }

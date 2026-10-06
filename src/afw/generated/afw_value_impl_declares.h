@@ -124,6 +124,24 @@ impl_afw_value_release(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_value_get_reference_count
+/* Declare method get_reference_count */
+AFW_DECLARE_STATIC(afw_size_t)
+impl_afw_value_get_reference_count(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_value_for_each_reference
+/* Declare method for_each_reference */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_for_each_reference(
+    AFW_VALUE_SELF_T *self,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_value_get_assignable_value
 /* Declare method get_assignable_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -139,6 +157,14 @@ AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_for_p_lifetime(
     AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_value_get_counted
+/* Declare method get_counted */
+AFW_DECLARE_STATIC(const afw_reference_t *)
+impl_afw_value_get_counted(
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -241,10 +267,16 @@ impl_afw_value_inf = {
     impl_afw_value_get_reference,
     (afw_value_release_t)
     impl_afw_value_release,
+    (afw_value_get_reference_count_t)
+    impl_afw_value_get_reference_count,
+    (afw_value_for_each_reference_t)
+    impl_afw_value_for_each_reference,
     (afw_value_get_assignable_value_t)
     impl_afw_value_get_assignable_value,
     (afw_value_get_for_p_lifetime_t)
     impl_afw_value_get_for_p_lifetime,
+    (afw_value_get_counted_t)
+    impl_afw_value_get_counted,
     (afw_value_create_iterator_t)
     impl_afw_value_create_iterator,
     (afw_value_optional_evaluate_t)

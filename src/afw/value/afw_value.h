@@ -1222,6 +1222,63 @@ afw_value_clone(
 
 
 /**
+ * @brief for_each_reference for a value that holds no references.
+ * @param instance value.
+ * @param callback not called.
+ * @param context unused.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_value_no_references_for_each(
+    const afw_value_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_counted for a value that is not counted.
+ * @param instance value.
+ * @param xctx of caller.
+ * @return NULL.
+ */
+AFW_DECLARE(const afw_reference_t *)
+afw_value_not_counted_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_counted for a value that holds its own count.
+ * @param instance value.
+ * @param xctx of caller.
+ * @return &instance->ref.
+ */
+AFW_DECLARE(const afw_reference_t *)
+afw_value_self_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Call callback with the counted instance value references.
+ * @param value held value (NULL ignored).
+ * @param callback for_each_reference callback.
+ * @param context passed to callback.
+ * @param xctx of caller.
+ *
+ * Nothing is listed when value is not counted. For containers'
+ * for_each_reference implementations.
+ */
+AFW_DECLARE(void)
+afw_value_list_reference(
+    const afw_value_t *value,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief get_assignable_value for a value that is not counted.
  * @param instance value.
  * @param p unused.
@@ -2700,6 +2757,17 @@ afw_value_decompile_assignment_pattern(
 
 /* Core value inf registration: afw_value_register_core_value_infs in
  * afw_value_internal.h (libafw bootstrap only). */
+
+/**
+ * @brief get_reference_count for values that are not counted.
+ * @param instance value.
+ * @param xctx of caller.
+ * @return 0.
+ */
+AFW_DECLARE(afw_size_t)
+afw_value_not_counted_get_reference_count(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 

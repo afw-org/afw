@@ -22,6 +22,7 @@
 #define AFW_VALUE_SELF_T afw_value_closure_binding_t
 #define impl_afw_value_create_iterator NULL
 #define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
+#define impl_afw_value_get_counted afw_value_self_get_counted
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
     (const void *)&afw_data_type_function_direct, \
     NULL, \
@@ -238,4 +239,32 @@ impl_afw_value_get_info(
     }
     info->optimized_value = (const afw_value_t *)self;
     //extended_value_type
+}
+
+
+/*
+ * Implementation of method for_each_reference for interface afw_value.
+ * Last release releases the captured scope and the compile unit.
+ */
+void
+impl_afw_value_for_each_reference(
+    AFW_VALUE_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    afw_value_list_reference(self->compiled_value, callback, context, xctx);
+}
+
+
+/*
+ * Implementation of method get_reference_count for interface afw_value.
+ */
+afw_size_t
+impl_afw_value_get_reference_count(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
 }

@@ -83,6 +83,20 @@ typedef void
     const afw_reference_t * instance,
     afw_xctx_t * xctx);
 
+/** @sa afw_reference_get_reference_count() */
+typedef afw_size_t
+(*afw_reference_get_reference_count_t)(
+    const afw_reference_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_reference_for_each_reference() */
+typedef void
+(*afw_reference_for_each_reference_t)(
+    const afw_reference_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
 /**
  * @brief Method table (inf) for interface `afw_reference`.
  *
@@ -93,6 +107,8 @@ struct afw_reference_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_reference_get_reference_t get_reference;
     afw_reference_release_t release;
+    afw_reference_get_reference_count_t get_reference_count;
+    afw_reference_for_each_reference_t for_each_reference;
 };
 
 /**
@@ -134,6 +150,55 @@ struct afw_reference_inf_s {
     (_instance), \
     (_xctx) \
 ) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_reference`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_reference`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
 
 /** @} */
 
@@ -3828,6 +3893,20 @@ typedef void
     const afw_array_t * instance,
     afw_xctx_t * xctx);
 
+/** @sa afw_array_get_reference_count() */
+typedef afw_size_t
+(*afw_array_get_reference_count_t)(
+    const afw_array_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_for_each_reference() */
+typedef void
+(*afw_array_for_each_reference_t)(
+    const afw_array_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
 /** @sa afw_array_get_count() */
 typedef afw_size_t
 (*afw_array_get_count_t)(
@@ -3893,6 +3972,8 @@ struct afw_array_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_array_get_reference_t get_reference;
     afw_array_release_t release;
+    afw_array_get_reference_count_t get_reference_count;
+    afw_array_for_each_reference_t for_each_reference;
     afw_array_get_count_t get_count;
     afw_array_get_data_type_t get_data_type;
     afw_array_get_entry_meta_t get_entry_meta;
@@ -3951,6 +4032,55 @@ struct afw_array_inf_s {
     (_instance), \
     (_xctx) \
 ) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_array`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_array`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
 
 /**
  * @brief Call method `get_count` of interface `afw_array`.
@@ -4658,6 +4788,20 @@ typedef void
     const afw_object_t * instance,
     afw_xctx_t * xctx);
 
+/** @sa afw_object_get_reference_count() */
+typedef afw_size_t
+(*afw_object_get_reference_count_t)(
+    const afw_object_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_object_for_each_reference() */
+typedef void
+(*afw_object_for_each_reference_t)(
+    const afw_object_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
 /** @sa afw_object_get_count() */
 typedef afw_size_t
 (*afw_object_get_count_t)(
@@ -4726,6 +4870,8 @@ struct afw_object_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_get_reference_t get_reference;
     afw_object_release_t release;
+    afw_object_get_reference_count_t get_reference_count;
+    afw_object_for_each_reference_t for_each_reference;
     afw_object_get_count_t get_count;
     afw_object_get_meta_t get_meta;
     afw_object_get_property_t get_property;
@@ -4784,6 +4930,55 @@ struct afw_object_inf_s {
     (_instance), \
     (_xctx) \
 ) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_object`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_object_t
+ * @see @ref afw_object_s "afw_object_t"
+ */
+#define afw_object_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_object`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_t
+ * @see @ref afw_object_s "afw_object_t"
+ */
+#define afw_object_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
 
 /**
  * @brief Call method `get_count` of interface `afw_object`.
@@ -7875,6 +8070,20 @@ typedef void
     const afw_value_t * instance,
     afw_xctx_t * xctx);
 
+/** @sa afw_value_get_reference_count() */
+typedef afw_size_t
+(*afw_value_get_reference_count_t)(
+    const afw_value_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_for_each_reference() */
+typedef void
+(*afw_value_for_each_reference_t)(
+    const afw_value_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
 /** @sa afw_value_get_assignable_value() */
 typedef const afw_value_t *
 (*afw_value_get_assignable_value_t)(
@@ -7887,6 +8096,12 @@ typedef const afw_value_t *
 (*afw_value_get_for_p_lifetime_t)(
     const afw_value_t * instance,
     const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_get_counted() */
+typedef const afw_reference_t *
+(*afw_value_get_counted_t)(
+    const afw_value_t * instance,
     afw_xctx_t * xctx);
 
 /** @sa afw_value_create_iterator() */
@@ -7955,8 +8170,11 @@ struct afw_value_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_value_get_reference_t get_reference;
     afw_value_release_t release;
+    afw_value_get_reference_count_t get_reference_count;
+    afw_value_for_each_reference_t for_each_reference;
     afw_value_get_assignable_value_t get_assignable_value;
     afw_value_get_for_p_lifetime_t get_for_p_lifetime;
+    afw_value_get_counted_t get_counted;
     afw_value_create_iterator_t create_iterator;
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
@@ -8038,6 +8256,55 @@ struct afw_value_inf_s {
 ) : (void)0)
 
 /**
+ * @brief Call method `get_reference_count` of interface `afw_value`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_value`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
+
+/**
  * @brief Call method `get_assignable_value` of interface `afw_value`.
  *
  * Occupant for a slot (assign, param, overlay, call result). Matching
@@ -8087,6 +8354,30 @@ struct afw_value_inf_s {
 (_instance)->inf->get_for_p_lifetime( \
     (_instance), \
     (_p), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `get_counted` of interface `afw_value`.
+ *
+ * Return the instance whose count a reference to this value is held
+ * in, or NULL if this value is not counted (pooled, permanent, or a
+ * compiler value). A counted scalar, closure binding, or compiled
+ * value returns itself; an object or array value face returns its
+ * object or array. Containers use this to list what each value they
+ * hold references.
+ * @param instance Pointer to this adaptive value instance.
+ * @param xctx This is the caller's xctx.
+ * @return Counted instance, or NULL.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_get_counted( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_counted( \
+    (_instance), \
     (_xctx) \
 )
 

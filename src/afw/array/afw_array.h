@@ -838,6 +838,32 @@ afw_array_remove_all_values(
 
 
 
+/**
+ * @brief for_each_reference for arrays that hold no references.
+ * @param instance array.
+ * @param callback not called.
+ * @param context unused.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_no_references_for_each(
+    const afw_array_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_reference_count for arrays that are not counted.
+ * @param instance array.
+ * @param xctx of caller.
+ * @return 0.
+ */
+AFW_DECLARE(afw_size_t)
+afw_array_not_counted_get_reference_count(
+    const afw_array_t *instance,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

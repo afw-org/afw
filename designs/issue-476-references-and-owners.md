@@ -259,6 +259,8 @@ Learned for step 1:
 
 **Step 2b status (2026-10-06, branch `issue-476-step2b-clone`).** Clone names by intent (table in `lifetime-principles.md`, *Copies by intent*). `afw_value_clone` now means the independent copy (moved from Adaptive `clone()`); its old meaning is `afw_value_create_pooled_copy` (all callers renamed; `afw_value_clone_unmanaged` merged into it). `afw_object_create_clone` / `afw_array_create_or_clone` → `*_create_pooled_copy`. `afw_*_create_managed_clone` / `afw_value_clone_managed` → `afw_*_to_managed`. `afw_object_create_managed_snapshot` removed (deep `afw_object_clone` replaces it); `afw_object_managed_clone_for_caller` → `afw_object_clone_for_p`. Dead `afw_value_clone_or_reference` macro removed. Suite 4609 passed (both modes).
 
+**Step 3 status (2026-10-06, branch `issue-476-step3-for-each-reference`).** `afw_reference` gains `get_reference_count` and `for_each_reference`; `afw_value` gains `get_counted`. Callback type `afw_reference_cb_t` (`afw_common.h`). Shared implementations for kinds that are not counted or hold nothing. New module `reference/` with `afw_reference_check()` (debug; `AFW_REFERENCE_CHECK` runs it at every scope exit from each counted frame slot). Suite 4609 passed with and without the check; a deliberate double listing is caught ("afw_object implementation 'memory_managed' is listed more times than its count 1"). Closure binding's captured scope is listed once scope is an interface (step 4).
+
 ### Steps (each a small branch off `develop`, merged when green)
 
 | # | Step | Touches pool? |

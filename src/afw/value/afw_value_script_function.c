@@ -17,6 +17,9 @@
 
 #define impl_afw_value_release afw_value_not_counted_release
 #define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_get_counted afw_value_not_counted_get_counted
+#define impl_afw_value_get_reference_count afw_value_not_counted_get_reference_count
 
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_function_direct
