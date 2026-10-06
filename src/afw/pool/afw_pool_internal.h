@@ -292,6 +292,11 @@ afw_pool_internal_thread_add_chunks(const afw_thread_t *thread, afw_size_t n);
 void
 afw_pool_internal_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n);
 
+/*
+ * Any multithreaded pool: heap, scope, or tracker (its
+ * implementation-specific flag). For a multithreaded heap only, see
+ * afw_pool_heap_internal_is_multithreaded().
+ */
 afw_boolean_t
 afw_pool_internal_is_multithreaded(const afw_pool_t *p);
 

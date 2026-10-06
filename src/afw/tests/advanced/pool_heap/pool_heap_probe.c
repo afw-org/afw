@@ -1344,8 +1344,7 @@ impl_thread_parent_hold(afw_xctx_t *xctx)
     }
     region = thread->memory_region;
     child = impl_self(thread->p);
-    if (child->pub.inf == parent->pub.inf ||
-        child->holds_parent ||
+    if (child->holds_parent ||
         parent->reference_count != parent_refs)
     {
         rc = impl_fail("thread_parent_hold",

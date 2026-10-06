@@ -786,26 +786,11 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     heap->bump = NULL;
     heap->remaining = 0;
 
+    /* Resource limits are checked once per chunk, not per malloc. */
     if (!unhandled && xctx->error_processing_count == 0) {
         afw_xctx_check_resource_limits(xctx, 0);
-        if (heap->common.thread &&
-            (heap->common.thread->type == afw_thread_type_request ||
-                (xctx->env->limit_request_pool_apply_to_base &&
-                    xctx != ((const afw_environment_internal_t *)
-                        xctx->env)->base_xctx)))
-        {
-            afw_size_t limit;
-            afw_size_t asked;
-
-            limit = xctx->env->limit_request_pool_bytes;
-            asked = heap->common.thread->pool_bytes_in_use;
-            if (limit != 0 &&
-                (asked >= limit || total > limit - asked))
-            {
-                AFW_THROW_ERROR_Z(payload_too_large,
-                    "Request pool limit exceeded.", xctx);
-            }
-        }
+        afw_xctx_internal_check_request_pool_bytes(xctx,
+            heap->common.thread, total);
     }
 
     region = heap->memory_region;
@@ -1208,92 +1193,10 @@ afw_pool_heap_internal_garbage_collect(
     (void)xctx;
 }
 
-/*
- * Thread pool. Same parent rule as every pool (see holds_parent).
- */
-static void
-impl_thread_pool_teardown(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    afw_pool_heap_internal_teardown_store(self, xctx);
-}
-
-static void
-impl_thread_pool_get_reference(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    afw_pool_internal_get_reference(self, xctx);
-}
-
-static const afw_pool_t *
-impl_thread_pool_release(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    return afw_pool_internal_release_common(
-        self, xctx, impl_thread_pool_teardown);
-}
-
-static void
-impl_thread_pool_destroy(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
-    if (!self->destroying) {
-        afw_pool_internal_mark_destroying(self);
-    }
-    afw_pool_internal_destroy_children(self, xctx);
-    impl_thread_pool_teardown(self, xctx);
-}
-
 #undef impl_afw_pool_get_reference
-#undef impl_afw_pool_register_cleanup
-#undef impl_afw_pool_deregister_cleanup
-
-#define AFW_POOL_INF_ONLY 1
-#define AFW_IMPLEMENTATION_ID "thread"
-#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_thread_inf
-#define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
-#define impl_afw_pool_release impl_thread_pool_release
-#define impl_afw_pool_get_reference impl_thread_pool_get_reference
-#define impl_afw_pool_run_cleanups afw_pool_heap_internal_run_cleanups
-#define impl_afw_pool_destroy impl_thread_pool_destroy
-#define impl_afw_pool_calloc afw_pool_heap_internal_calloc
-#define impl_afw_pool_malloc afw_pool_heap_internal_malloc
-#define impl_afw_pool_free_memory afw_pool_heap_internal_free_memory
-#define impl_afw_pool_free_memory_no_throw \
-    afw_pool_heap_internal_free_memory_no_throw
-#define impl_afw_pool_calloc_no_throw afw_pool_heap_internal_calloc_no_throw
-#define impl_afw_pool_malloc_no_throw afw_pool_heap_internal_malloc_no_throw
-#define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
-#define impl_afw_pool_deregister_cleanup \
-    afw_pool_internal_deregister_cleanup
-#define impl_afw_pool_garbage_collect afw_pool_heap_internal_garbage_collect
-
-AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_2, impl_thread_pool_release, impl_thread_pool_get_reference)
-#undef impl_afw_pool_release
-#define impl_afw_pool_release impl_pool_ref_2_release
-#undef impl_afw_pool_get_reference
-#define impl_afw_pool_get_reference impl_pool_ref_2_get_reference
 #undef impl_afw_pool_get_reference_count
-#define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
 #undef impl_afw_pool_for_each_reference
-#define impl_afw_pool_for_each_reference afw_pool_internal_no_references_for_each
 #undef impl_afw_pool_release_references
-#define impl_afw_pool_release_references afw_pool_internal_no_references_release_references
-#include "afw_pool_impl_declares.h"
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef AFW_IMPLEMENTATION_SPECIFIC
-#undef AFW_POOL_INF_ONLY
-#undef impl_afw_pool_release
-#undef impl_afw_pool_get_reference
-#undef impl_afw_pool_run_cleanups
-#undef impl_afw_pool_destroy
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
@@ -1301,7 +1204,6 @@ AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_2, impl_thread_pool_release, 
 #undef impl_afw_pool_calloc_no_throw
 #undef impl_afw_pool_malloc_no_throw
 #undef impl_afw_pool_register_cleanup
-#undef impl_afw_pool_deregister_cleanup
 #undef impl_afw_pool_garbage_collect
 
 afw_boolean_t
@@ -1460,7 +1362,7 @@ afw_pool_thread_create(
     thread->memory_region = region;
     AFW_TRY {
         self = afw_pool_heap_internal_create_self(xctx->p,
-            &impl_afw_pool_thread_inf, true,
+            &impl_afw_pool_inf, true,
             xctx->env->xctx_chunk_min,
             sizeof(afw_pool_heap_internal_self_with_free_memory_head_t),
             thread, xctx);

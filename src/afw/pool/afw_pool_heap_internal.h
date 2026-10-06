@@ -278,6 +278,11 @@ afw_pool_heap_internal_create_base_pool(
     const afw_thread_t *thread,
     const afw_memory_region_t *mt_region);
 
+/*
+ * True only for the multithreaded heap inf, not a multithreaded
+ * scope or tracker. afw_pool_internal_is_multithreaded() is true for
+ * all three.
+ */
 afw_boolean_t
 afw_pool_heap_internal_is_multithreaded(const afw_pool_t *p);
 
