@@ -10,6 +10,7 @@ from _afwdev.build.build import apply_build_profile_flags
 from _afwdev.build.cmake import (
     is_leftover_installed_header,
     prune_leftover_installed_headers,
+    valgrind_headers_available,
 )
 
 
@@ -123,6 +124,24 @@ def run():
         ))
     finally:
         shutil.rmtree(work, ignore_errors=True)
+
+    # --cdev / --fulldev add AFW_VALGRIND_POOL only when this is true.
+    have = valgrind_headers_available()
+    tests.append({
+        "test": "valgrind-headers-found",
+        "description": "the valgrind header preflight finds installed "
+            "<valgrind/memcheck.h>",
+        "passed": have is True,
+        "skip": not have,
+        "skipReason": None if have else "valgrind headers not installed",
+        "error": None,
+    })
+    tests.append(_case(
+        "valgrind-headers-missing",
+        "the preflight reports missing headers (simulated with -nostdinc), "
+        "so --cdev leaves AFW_VALGRIND_POOL out instead of failing the build",
+        passed=valgrind_headers_available(("-nostdinc",)) is False,
+    ))
 
     return {
         "description":
