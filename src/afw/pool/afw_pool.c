@@ -244,7 +244,11 @@ impl_add_child(
     afw_pool_internal_self_t *child, afw_xctx_t *xctx)
 {
     child->parent = parent;
+    child->prev_sibling = NULL;
     child->next_sibling = parent->first_child;
+    if (parent->first_child) {
+        parent->first_child->prev_sibling = child;
+    }
     parent->first_child = child;
 }
 
@@ -255,25 +259,22 @@ impl_unlink_child(
     afw_pool_internal_self_t *child,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_self_t *prev;
-    afw_pool_internal_self_t *sibling;
-
     (void)xctx;
-    for (prev = NULL, sibling = parent->first_child;
-        sibling;
-        prev = sibling, sibling = sibling->next_sibling)
-    {
-        if (sibling == child) {
-            if (!prev) {
-                parent->first_child = sibling->next_sibling;
-            }
-            else {
-                prev->next_sibling = sibling->next_sibling;
-            }
-            child->next_sibling = NULL;
-            return;
-        }
+    if (child->prev_sibling) {
+        child->prev_sibling->next_sibling = child->next_sibling;
     }
+    else if (parent->first_child == child) {
+        parent->first_child = child->next_sibling;
+    }
+    else {
+        /* Not linked under parent. */
+        return;
+    }
+    if (child->next_sibling) {
+        child->next_sibling->prev_sibling = child->prev_sibling;
+    }
+    child->next_sibling = NULL;
+    child->prev_sibling = NULL;
 }
 
 void
@@ -922,5 +923,16 @@ afw_pool_internal_no_references_for_each(
     (void)self;
     (void)callback;
     (void)context;
+    (void)xctx;
+}
+
+
+/* release_references for pools that hold no counted references. */
+void
+afw_pool_internal_no_references_release_references(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)self;
     (void)xctx;
 }

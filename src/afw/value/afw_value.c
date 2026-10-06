@@ -1541,3 +1541,14 @@ afw_value_not_counted_get_reference_count(
     (void)xctx;
     return 0;
 }
+
+
+/* release_references for values that hold no counted references. */
+AFW_DEFINE(void)
+afw_value_no_references_release_references(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+}

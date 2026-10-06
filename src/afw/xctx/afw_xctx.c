@@ -575,6 +575,7 @@ afw_xctx_release(
      * Streams and callbacks may throw (fclose, cleanup). destroy always
      * frees storage. xctx lives in instance->p; return before AFW_ENDTRY.
      */
+    afw_reference_collector_release((afw_xctx_t *)instance);
     if (instance->p) {
         AFW_TRY {
             afw_error_release_references(xctx->error, xctx);

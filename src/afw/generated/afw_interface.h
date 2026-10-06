@@ -97,6 +97,12 @@ typedef void
     void * context,
     afw_xctx_t * xctx);
 
+/** @sa afw_reference_release_references() */
+typedef void
+(*afw_reference_release_references_t)(
+    const afw_reference_t * instance,
+    afw_xctx_t * xctx);
+
 /**
  * @brief Method table (inf) for interface `afw_reference`.
  *
@@ -109,6 +115,7 @@ struct afw_reference_inf_s {
     afw_reference_release_t release;
     afw_reference_get_reference_count_t get_reference_count;
     afw_reference_for_each_reference_t for_each_reference;
+    afw_reference_release_references_t release_references;
 };
 
 /**
@@ -197,6 +204,29 @@ struct afw_reference_inf_s {
     (_instance), \
     (_callback), \
     (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_reference`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
+    (_instance), \
     (_xctx) \
 )
 
@@ -3907,6 +3937,12 @@ typedef void
     void * context,
     afw_xctx_t * xctx);
 
+/** @sa afw_array_release_references() */
+typedef void
+(*afw_array_release_references_t)(
+    const afw_array_t * instance,
+    afw_xctx_t * xctx);
+
 /** @sa afw_array_get_count() */
 typedef afw_size_t
 (*afw_array_get_count_t)(
@@ -3974,6 +4010,7 @@ struct afw_array_inf_s {
     afw_array_release_t release;
     afw_array_get_reference_count_t get_reference_count;
     afw_array_for_each_reference_t for_each_reference;
+    afw_array_release_references_t release_references;
     afw_array_get_count_t get_count;
     afw_array_get_data_type_t get_data_type;
     afw_array_get_entry_meta_t get_entry_meta;
@@ -4079,6 +4116,29 @@ struct afw_array_inf_s {
     (_instance), \
     (_callback), \
     (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_array`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
+    (_instance), \
     (_xctx) \
 )
 
@@ -4802,6 +4862,12 @@ typedef void
     void * context,
     afw_xctx_t * xctx);
 
+/** @sa afw_object_release_references() */
+typedef void
+(*afw_object_release_references_t)(
+    const afw_object_t * instance,
+    afw_xctx_t * xctx);
+
 /** @sa afw_object_get_count() */
 typedef afw_size_t
 (*afw_object_get_count_t)(
@@ -4872,6 +4938,7 @@ struct afw_object_inf_s {
     afw_object_release_t release;
     afw_object_get_reference_count_t get_reference_count;
     afw_object_for_each_reference_t for_each_reference;
+    afw_object_release_references_t release_references;
     afw_object_get_count_t get_count;
     afw_object_get_meta_t get_meta;
     afw_object_get_property_t get_property;
@@ -4977,6 +5044,29 @@ struct afw_object_inf_s {
     (_instance), \
     (_callback), \
     (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_object`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_t
+ * @see @ref afw_object_s "afw_object_t"
+ */
+#define afw_object_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
+    (_instance), \
     (_xctx) \
 )
 
@@ -7155,6 +7245,12 @@ typedef void
     void * context,
     afw_xctx_t * xctx);
 
+/** @sa afw_pool_release_references() */
+typedef void
+(*afw_pool_release_references_t)(
+    const afw_pool_t * instance,
+    afw_xctx_t * xctx);
+
 /** @sa afw_pool_destroy() */
 typedef void
 (*afw_pool_destroy_t)(
@@ -7247,6 +7343,7 @@ struct afw_pool_inf_s {
     afw_pool_release_t release;
     afw_pool_get_reference_count_t get_reference_count;
     afw_pool_for_each_reference_t for_each_reference;
+    afw_pool_release_references_t release_references;
     afw_pool_destroy_t destroy;
     afw_pool_calloc_t calloc;
     afw_pool_calloc_no_throw_t calloc_no_throw;
@@ -7346,6 +7443,29 @@ struct afw_pool_inf_s {
     (_instance), \
     (_callback), \
     (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_pool`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
+    (_instance), \
     (_xctx) \
 )
 
@@ -8150,6 +8270,12 @@ typedef void
     void * context,
     afw_xctx_t * xctx);
 
+/** @sa afw_value_release_references() */
+typedef void
+(*afw_value_release_references_t)(
+    const afw_value_t * instance,
+    afw_xctx_t * xctx);
+
 /** @sa afw_value_get_assignable_value() */
 typedef const afw_value_t *
 (*afw_value_get_assignable_value_t)(
@@ -8238,6 +8364,7 @@ struct afw_value_inf_s {
     afw_value_release_t release;
     afw_value_get_reference_count_t get_reference_count;
     afw_value_for_each_reference_t for_each_reference;
+    afw_value_release_references_t release_references;
     afw_value_get_assignable_value_t get_assignable_value;
     afw_value_get_for_p_lifetime_t get_for_p_lifetime;
     afw_value_get_counted_t get_counted;
@@ -8371,6 +8498,29 @@ struct afw_value_inf_s {
 )
 
 /**
+ * @brief Call method `release_references` of interface `afw_value`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
  * @brief Call method `get_assignable_value` of interface `afw_value`.
  *
  * Occupant for a slot (assign, param, overlay, call result). Matching
@@ -8427,11 +8577,13 @@ struct afw_value_inf_s {
  * @brief Call method `get_counted` of interface `afw_value`.
  *
  * Return the instance whose count a reference to this value is held
- * in, or NULL if this value is not counted (pooled, permanent, or a
- * compiler value). A counted scalar, closure binding, or compiled
- * value returns itself; an object or array value face returns its
- * object or array. Containers use this to list what each value they
- * hold references.
+ * in, when that instance can be part of a cycle; otherwise NULL. A
+ * closure binding or compiled value returns itself; an object or
+ * array value face returns its object or array. Scalars and slices
+ * (they hold no references that can lead back) and values that are
+ * not counted (pooled, permanent, compiler values) return NULL.
+ * Containers use this to list what each value they hold references
+ * for cycle collection.
  * @param instance Pointer to this adaptive value instance.
  * @param xctx This is the caller's xctx.
  * @return Counted instance, or NULL.

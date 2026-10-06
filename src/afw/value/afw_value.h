@@ -2769,6 +2769,16 @@ afw_value_not_counted_get_reference_count(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
+/**
+ * @brief release_references for values that hold no counted references.
+ * @param instance value.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_value_no_references_release_references(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

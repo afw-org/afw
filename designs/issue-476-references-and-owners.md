@@ -270,6 +270,15 @@ Learned for step 1:
 - **Throw-path delay kept (new step 6a).** Removing it broke 13 tests: the error holds raw pointers into pools (`message_z` from compile / query criteria / curl, `parser_source`, `contextual`, `rv_*` strings), and the delay is what keeps those alive until the catch. Step 6a: the error owns everything it points to (copy strings at throw into storage the error owns, reference the compile unit behind `contextual`, single ownership across `AFW_ERROR_COPY`), then remove the delay and the adapter's `error_processing_count` hold.
 - Gates: suite 4609 passed (plain, `AFW_REFERENCE_CHECK`, region free list 0); lab 15 s 44 passed (`eval_object_rebind` still climbs: the cycle). One lab run showed a garbage first `in_use` sample for `function_return` (5.28e18); not reproduced in three reruns. The lab reads `env->pool_bytes_in_use` with gdb at an arbitrary instant under 16 parallel workloads; treated as a sampler artifact.
 
+**Step 5 status (2026-10-06, branch `issue-476-step4-scope-pool`).** Cycle collector in `reference/afw_reference.c` (see `lifetime-principles.md`, *Reference cycles*). New `afw_reference` method `release_references` (managed object / array / `from_values`, closure binding, scope pool; shared no-op elsewhere). Possible roots per xctx (`xctx->reference_collector`), safe point at scope exit, default threshold 50, adaptive. Scalars and slices out of the graph (`get_counted` NULL).
+
+- Shapes (2000 -> 8000 calls): every #458 shape flat; off: 0.5–12.5 KiB/call.
+- Lab 15 s: 50 passed (44 + 6 new #458 workloads, all flat); `eval_object_rebind` flat (was 8.76 MiB/s in_use); 60 s in_use flat, RSS ~0.2 MiB/s (heap reuse, not in_use).
+- Cost (200k calls, best of 3, threshold 50 vs off): no-cycle loops +2–3 %; a self-cycle every call +12 %; local-function loop 6x faster (less memory); a 2000-object live structure re-rooted every call +5 % (adaptive threshold).
+- Found and fixed: pool children were a singly linked list (unlink O(n), quadratic when many pools die at once); now doubly linked.
+- Follow-up (not fixed here): the heap free list is first-fit with a linear scan; bulk frees (and some ordinary loops, e.g. `keep.x = o` each call, ~4.8 s / 200k with or without collection) spend most time there. Size-segregated free lists would fix it generally.
+- Gates: suite 4609 passed (default; `AFW_REFERENCE_COLLECT=1`; `=1` with `AFW_REFERENCE_CHECK` and region free list 0); valgrind with `AFW_REFERENCE_COLLECT=1` 4609 passed.
+
 ### Steps (each a small branch off `develop`, merged when green)
 
 | # | Step | Touches pool? |

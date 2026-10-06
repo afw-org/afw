@@ -1310,6 +1310,16 @@ afw_object_not_counted_get_reference_count(
     const afw_object_t *instance,
     afw_xctx_t *xctx);
 
+/**
+ * @brief release_references for objects that hold no counted references.
+ * @param instance object.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_object_no_references_release_references(
+    const afw_object_t *instance,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

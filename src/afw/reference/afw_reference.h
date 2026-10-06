@@ -56,6 +56,76 @@ AFW_DECLARE(afw_boolean_t)
 afw_reference_check_is_enabled(void);
 
 
+/**
+ * @brief Record a counted instance whose release left its count above 0.
+ * @param instance counted instance that can be part of a cycle.
+ * @param owner pool that owns it (its p->managed_p).
+ * @param xctx of caller.
+ *
+ * Only an instance owned by this xctx (owner == xctx->p) is recorded:
+ * cycle collection runs per owner. Called by implementations, not by
+ * callers.
+ */
+AFW_DECLARE(void)
+afw_reference_possible_root(
+    const afw_reference_t *instance,
+    const afw_pool_t *owner,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Forget a counted instance that is being freed.
+ * @param instance being freed.
+ * @param xctx of caller.
+ *
+ * Called by implementations at last release, so no freed instance stays
+ * a possible root.
+ */
+AFW_DECLARE(void)
+afw_reference_forget(
+    const afw_reference_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Safe point: collect cycles if enough possible roots.
+ * @param xctx of caller.
+ *
+ * Called at scope exit. Collects when the possible roots reach the
+ * threshold: env AFW_REFERENCE_COLLECT (default 50; 0 turns collection
+ * off), raised after each collection to the number of instances it
+ * walked that are still alive (amortized constant cost per root).
+ */
+AFW_DECLARE(void)
+afw_reference_safe_point(
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Collect cycles among this xctx's possible roots now.
+ * @param xctx of caller.
+ *
+ * Trial deletion (Bacon & Rajan 2001): subtract each listed reference
+ * among the instances reachable from the possible roots from a trial
+ * copy of their counts; anything still above 0 is referenced from
+ * outside and kept with all it reaches; the rest only reference each
+ * other and are freed (each is emptied with release_references, then
+ * released normally).
+ */
+AFW_DECLARE(void)
+afw_reference_collect(
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Drop this xctx's cycle collection state (xctx release).
+ * @param xctx being released.
+ */
+AFW_DECLARE(void)
+afw_reference_collector_release(
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */

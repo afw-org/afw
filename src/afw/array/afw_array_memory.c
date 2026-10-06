@@ -29,6 +29,7 @@ impl_managed_array_elements_cleanup(
 typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
 #define AFW_ARRAY_SELF_T afw_memory_internal_array_t
 #define impl_afw_array_for_each_reference afw_array_no_references_for_each
+#define impl_afw_array_release_references afw_array_no_references_release_references
 #include "afw_array_impl_declares.h"
 #define impl_afw_array_setter_push_value_take \
     afw_array_setter_push_value_take_by_copy
@@ -41,6 +42,9 @@ impl_afw_array_managed_for_each_reference(
     afw_xctx_t *xctx);
 static afw_size_t
 impl_afw_array_managed_get_reference_count(
+    AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_release_references(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
 static void
 impl_afw_array_managed_setter_push_value_take(
@@ -108,7 +112,11 @@ impl_afw_array_managed_setter_shift_value(
 #define impl_afw_array_for_each_reference impl_afw_array_managed_for_each_reference
 #define impl_afw_array_get_reference_count \
     impl_afw_array_managed_get_reference_count
+#undef impl_afw_array_release_references
+#define impl_afw_array_release_references \
+    impl_afw_array_managed_release_references
 #include "afw_array_impl_declares.h"
+#undef impl_afw_array_release_references
 #undef impl_afw_array_for_each_reference
 #undef impl_afw_array_get_reference_count
 #undef AFW_ARRAY_INF_ONLY
@@ -1174,8 +1182,10 @@ impl_afw_array_managed_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
+        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
         return;
     }
+    afw_reference_forget(&self->pub.ref, xctx);
     /*
      * One walk: release every held element (nested object/array
      * the same as scalar), then the vector, then the header.
@@ -1576,4 +1586,24 @@ impl_afw_array_managed_get_reference_count(
 {
     (void)xctx;
     return (afw_size_t)self->reference_count;
+}
+
+
+/* Release every held element, as last release would. */
+static void
+impl_afw_array_managed_release_references(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+    const afw_value_t *value;
+
+    if (!self->values) {
+        return;
+    }
+    for (i = 0; i < self->values->count; i++) {
+        value = self->values->entries[i];
+        self->values->entries[i] = NULL;
+        afw_value_release(value, xctx);
+    }
 }

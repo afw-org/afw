@@ -94,6 +94,9 @@ struct afw_pool_internal_self_s {
     /** @brief Next sibling. */
     afw_pool_internal_self_t *next_sibling;
 
+    /** @brief Previous sibling (NULL when first), so unlink is O(1). */
+    afw_pool_internal_self_t *prev_sibling;
+
     /** @brief First cleanup function. */
     afw_pool_cleanup_t *first_cleanup;
 
@@ -494,6 +497,18 @@ afw_pool_internal_calloc_unhandled(
 
 #define afw_pool_internal_calloc_type_unhandled(_instance, _type, _xctx) \
     (_type *) afw_pool_internal_calloc_unhandled(_instance, sizeof(_type), _xctx)
+
+/* release_references for pools that hold no counted references. */
+void
+afw_pool_internal_no_references_release_references(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+/* release_references of a scope pool: frame slots and lexical parent. */
+void
+afw_pool_internal_scope_release_references(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
 
 /* for_each_reference of a scope pool: frame slots and lexical parent. */
 void

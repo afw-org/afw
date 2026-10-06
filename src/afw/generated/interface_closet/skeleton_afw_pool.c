@@ -68,6 +68,18 @@ impl_afw_pool_for_each_reference(
 }
 
 /*
+ * Implementation of method release_references for interface afw_pool.
+ */
+void
+impl_afw_pool_release_references(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method destroy for interface afw_pool.
  */
 void

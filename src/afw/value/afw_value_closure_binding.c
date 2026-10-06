@@ -82,6 +82,7 @@ impl_afw_value_release(
     }
     if (self->reference_count == 1) {
         self->reference_count = 0;
+        afw_reference_forget(&self->pub.ref, xctx);
         if (self->enclosing_lexical_scope) {
             afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
         }
@@ -91,6 +92,7 @@ impl_afw_value_release(
         return;
     }
     self->reference_count--;
+    afw_reference_possible_root(&self->pub.ref, self->p, xctx);
 }
 
 /*
@@ -270,4 +272,26 @@ impl_afw_value_get_reference_count(
 {
     (void)xctx;
     return (afw_size_t)self->reference_count;
+}
+
+
+/*
+ * Implementation of method release_references for interface afw_value.
+ */
+void
+impl_afw_value_release_references(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_scope_t *scope;
+    const afw_value_t *unit;
+
+    scope = self->enclosing_lexical_scope;
+    self->enclosing_lexical_scope = NULL;
+    unit = self->compiled_value;
+    self->compiled_value = NULL;
+    if (scope) {
+        afw_pool_scope_release(scope, xctx);
+    }
+    afw_value_release(unit, xctx);
 }

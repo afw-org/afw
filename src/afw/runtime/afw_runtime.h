@@ -551,6 +551,7 @@ _inf_ = {                                                                       
     afw_runtime_object_release,                                                 \
     afw_object_not_counted_get_reference_count,                                 \
     afw_object_no_references_for_each,                                          \
+    afw_object_no_references_release_references,                               \
     afw_runtime_object_get_count,                                           \
     afw_runtime_object_get_meta,                                                \
     afw_runtime_object_get_property,                                            \

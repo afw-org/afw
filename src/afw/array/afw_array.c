@@ -328,3 +328,14 @@ afw_array_not_counted_get_reference_count(
     (void)xctx;
     return 0;
 }
+
+
+/* release_references for arrays that hold no counted references. */
+AFW_DEFINE(void)
+afw_array_no_references_release_references(
+    const afw_array_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+}

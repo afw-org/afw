@@ -90,6 +90,7 @@ impl_error_delaying_release(
 static void
 impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
+    afw_reference_forget(&self->pub.ref, xctx);
     afw_pool_heap_internal_teardown_store(self, xctx);
 }
 
@@ -116,6 +117,32 @@ afw_pool_internal_scope_for_each_reference(
     }
     if (scope->parent_lexical_scope) {
         callback(&scope->parent_lexical_scope->pub.ref, context, xctx);
+    }
+}
+
+
+/* release_references of a scope: frame slots and lexical parent. */
+void
+afw_pool_internal_scope_release_references(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_pool_scope_t *scope = (afw_pool_scope_t *)self;
+    const afw_pool_scope_t *parent;
+    const afw_value_t *value;
+    afw_size_t i;
+
+    if (scope->block) {
+        for (i = 0; i < scope->symbol_count; i++) {
+            value = scope->frame_slots[i];
+            scope->frame_slots[i] = afw_value_undefined;
+            afw_value_release(value, xctx);
+        }
+    }
+    parent = scope->parent_lexical_scope;
+    scope->parent_lexical_scope = NULL;
+    if (parent) {
+        afw_pool_scope_release(parent, xctx);
     }
 }
 
@@ -151,6 +178,10 @@ afw_pool_internal_scope_release(
             afw_pool_heap_internal_as_scope(self), xctx))
     {
         return &self->pub;
+    }
+    if (self->reference_count > 1 && self->parent) {
+        afw_reference_possible_root(&self->pub.ref, &self->parent->pub,
+            xctx);
     }
     if (self->reference_count == 1 && !self->destroying) {
         scope->releasing_frame = true;
@@ -240,6 +271,8 @@ AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_4, afw_pool_internal_scope_re
 #define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
 #undef impl_afw_pool_for_each_reference
 #define impl_afw_pool_for_each_reference afw_pool_internal_scope_for_each_reference
+#undef impl_afw_pool_release_references
+#define impl_afw_pool_release_references afw_pool_internal_scope_release_references
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
@@ -772,6 +805,7 @@ afw_pool_scope_deactivate(
         afw_reference_check(&scope->pub.ref, xctx);
     }
     afw_pool_scope_release(scope, xctx);
+    afw_reference_safe_point(xctx);
 }
 
 

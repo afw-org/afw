@@ -70,7 +70,7 @@ AFW_ISSUE2_RSS_ASSERT=0 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-l
 | class | `in_use` fail | examples |
 |-------|----------------|----------|
 | **flat** | **64 KiB/s** (readln 128 KiB/s) | assign / overlay / rebind / splice / `managed_create` / `function_return` / listing / `clone_*` / `test_script_*` / `object_rest_*` / script-built containers / `eval_object_literal` |
-| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | `eval_object_rebind`: frame ↔ closure reference cycle (2026-10-05 15 s ~3.4 MiB/s in_use, ~12 KiB per iteration; #458) |
+| **climb** | ~2× last 15 s (see `max_in_use_b_s` in `rss_hard_loops.py`) | none (2026-10-06: `eval_object_rebind` is flat with cycle collection) |
 | **grow** | must grow ≥ 256 KiB/s | `array_append` |
 
 60 s is the night / finish-pass window (`AFW_ISSUE2_DURATION_S=60`).
@@ -143,7 +143,9 @@ scalar on purpose.
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** ([PR #439](https://github.com/afw-org/afw/pull/439), 2026-10-01 15 s: RSS 0 / `in_use` 0). Was ~50–65 MiB/s (`clone_managed` bump of already-managed isolate) | **flat / flat** |
 | `eval_closure_rebind` | `eval<script>` closure overwrite | **flat / flat** (2026-10-05 15 s: binding references its unit; scope pool parent is the job heap) | — |
-| `eval_object_rebind` | `eval<script>` object of functions overwrite | **climb** (2026-10-05 15 s ~8.5 MiB/s RSS / ~3.4 MiB/s in_use; develop ~18.6 MiB/s RSS). Frame ↔ closure reference cycle: the eval frame's slot `f` references a binding that references that frame. [#458](https://github.com/afw-org/afw/issues/458) | — |
+| `eval_object_rebind` | `eval<script>` object of functions overwrite | **flat / flat** (2026-10-06 15 s: RSS ~0.07 MiB/s, in_use flat; 60 s in_use flat, RSS ~0.2 MiB/s heap reuse). Was **climb** ~8.5 MiB/s RSS (frame ↔ closure reference cycle) until cycle collection ([#476](https://github.com/afw-org/afw/issues/476) step 5, [#458](https://github.com/afw-org/afw/issues/458)) | — |
+| `cycle_self`, `cycle_indirect`, `cycle_nested` | `o.self = o`; `a -> b -> c -> a`; `a.x.y.top = a` each call | **flat / flat** (2026-10-06, cycle collection) | — |
+| `closure_local_function`, `closure_object_holds`, `closure_inner_block` | local function never escaping; object -> closure -> frame -> object; inner-block closure in outer slot | **flat / flat** (2026-10-06, cycle collection) | — |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
 | `splice_assign` | splice copy-out then assign | **flat / flat** (2026-09-29, 15 s after managed remove). Was **under bar** 2026-09-28 (~0.42 / ~0.21); leftover RC ~185 MiB/s before extra-hold-only | — |
 | `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s). Was ~2.58 / ~2.59 until managed `remove_value_by_index` last-released the source slot | — |

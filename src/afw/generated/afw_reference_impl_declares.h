@@ -137,6 +137,14 @@ impl_afw_reference_for_each_reference(
     void * context,
     afw_xctx_t * xctx);
 #endif
+
+#ifndef impl_afw_reference_release_references
+/* Declare method release_references */
+AFW_DECLARE_STATIC(void)
+impl_afw_reference_release_references(
+    AFW_REFERENCE_SELF_T *self,
+    afw_xctx_t * xctx);
+#endif
 #endif
 
 /* inf for interface afw_reference */
@@ -168,7 +176,9 @@ impl_afw_reference_inf = {
     (afw_reference_get_reference_count_t)
     impl_afw_reference_get_reference_count,
     (afw_reference_for_each_reference_t)
-    impl_afw_reference_for_each_reference
+    impl_afw_reference_for_each_reference,
+    (afw_reference_release_references_t)
+    impl_afw_reference_release_references
 };
 
 #undef _AFW_IMPLEMENTATION_ID_

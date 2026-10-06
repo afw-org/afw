@@ -36,6 +36,12 @@
     const afw_pool_t *error_delaying_release_first;
 
     /**
+     * Cycle collection state for this owner (possible roots). See
+     * afw_reference.h. NULL until the first possible root.
+     */
+    void *reference_collector;
+
+    /**
      * Runtime objects for xctx.
      */
     const afw_runtime_objects_t *runtime_objects;

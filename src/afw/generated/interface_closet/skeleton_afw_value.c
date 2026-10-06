@@ -68,6 +68,18 @@ impl_afw_value_for_each_reference(
 }
 
 /*
+ * Implementation of method release_references for interface afw_value.
+ */
+void
+impl_afw_value_release_references(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method get_assignable_value for interface afw_value.
  */
 const afw_value_t *

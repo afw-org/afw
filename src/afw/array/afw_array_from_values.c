@@ -34,6 +34,9 @@ impl_afw_array_managed_from_values_for_each_reference(
 static afw_size_t
 impl_afw_array_managed_from_values_get_reference_count(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_from_values_release_references(
+    AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
 
 
 /* Declares and rti/inf defines for interface afw_array */
@@ -41,6 +44,7 @@ impl_afw_array_managed_from_values_get_reference_count(
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_array_unmanaged_from_values_inf
 #define impl_afw_array_for_each_reference afw_array_no_references_for_each
+#define impl_afw_array_release_references afw_array_no_references_release_references
 #define impl_afw_array_get_reference_count afw_array_not_counted_get_reference_count
 #include "afw_array_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -70,6 +74,9 @@ impl_afw_array_managed_from_values_get_reference_count(
 #undef impl_afw_array_get_reference_count
 #define impl_afw_array_get_reference_count \
     impl_afw_array_managed_from_values_get_reference_count
+#undef impl_afw_array_release_references
+#define impl_afw_array_release_references \
+    impl_afw_array_managed_from_values_release_references
 #include "afw_array_impl_declares.h"
 #undef AFW_ARRAY_INF_ONLY
 #undef impl_afw_array_release
@@ -514,8 +521,10 @@ impl_afw_array_managed_from_values_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
+        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
         return;
     }
+    afw_reference_forget(&self->pub.ref, xctx);
     if (self->values) {
         for (i = 0; i < self->count; i++) {
             if (self->values[i]) {
@@ -678,4 +687,24 @@ impl_afw_array_managed_from_values_get_reference_count(
 {
     (void)xctx;
     return (afw_size_t)self->reference_count;
+}
+
+
+/* Release each value, as last release would. */
+static void
+impl_afw_array_managed_from_values_release_references(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+    const afw_value_t *value;
+
+    if (!self->values) {
+        return;
+    }
+    for (i = 0; i < self->count; i++) {
+        value = self->values[i];
+        ((const afw_value_t **)self->values)[i] = NULL;
+        afw_value_release(value, xctx);
+    }
 }

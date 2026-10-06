@@ -864,6 +864,16 @@ afw_array_not_counted_get_reference_count(
     const afw_array_t *instance,
     afw_xctx_t *xctx);
 
+/**
+ * @brief release_references for arrays that hold no counted references.
+ * @param instance array.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_no_references_release_references(
+    const afw_array_t *instance,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

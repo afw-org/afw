@@ -115,6 +115,7 @@ impl_afw_value_managed_get_reference_count(
 #define impl_afw_value_create_iterator NULL
 #define impl_afw_value_get_for_p_lifetime afw_value_pooled_get_for_p_lifetime
 #define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
 #define impl_afw_value_get_counted afw_value_not_counted_get_counted
 #define impl_afw_value_get_reference_count afw_value_not_counted_get_reference_count
 #include "afw_value_impl_declares.h"
@@ -125,6 +126,7 @@ impl_afw_value_managed_get_reference_count(
 #undef impl_afw_value_get_assignable_value
 #undef impl_afw_value_get_for_p_lifetime
 #undef impl_afw_value_for_each_reference
+#undef impl_afw_value_release_references
 #undef impl_afw_value_get_counted
 #undef impl_afw_value_get_reference_count
 
@@ -145,7 +147,8 @@ impl_afw_value_managed_get_reference_count(
 #define AFW_VALUE_INF_ONLY 1
 #define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
 #define impl_afw_value_for_each_reference afw_value_no_references_for_each
-#define impl_afw_value_get_counted afw_value_self_get_counted
+#define impl_afw_value_release_references afw_value_no_references_release_references
+#define impl_afw_value_get_counted afw_value_not_counted_get_counted
 #define impl_afw_value_get_reference_count impl_afw_value_managed_get_reference_count
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -155,6 +158,7 @@ impl_afw_value_managed_get_reference_count(
 #undef impl_afw_value_get_assignable_value
 #undef impl_afw_value_get_for_p_lifetime
 #undef impl_afw_value_for_each_reference
+#undef impl_afw_value_release_references
 #undef impl_afw_value_get_counted
 #undef impl_afw_value_get_reference_count
 #undef AFW_VALUE_INF_ONLY
@@ -175,6 +179,7 @@ impl_afw_value_managed_get_reference_count(
 #define AFW_VALUE_INF_ONLY 1
 #define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime
 #define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
 #define impl_afw_value_get_counted afw_value_not_counted_get_counted
 #define impl_afw_value_get_reference_count afw_value_not_counted_get_reference_count
 #include "afw_value_impl_declares.h"
@@ -185,6 +190,7 @@ impl_afw_value_managed_get_reference_count(
 #undef impl_afw_value_get_assignable_value
 #undef impl_afw_value_get_for_p_lifetime
 #undef impl_afw_value_for_each_reference
+#undef impl_afw_value_release_references
 #undef impl_afw_value_get_counted
 #undef impl_afw_value_get_reference_count
 #undef AFW_VALUE_INF_ONLY

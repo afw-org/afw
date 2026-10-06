@@ -138,6 +138,14 @@ impl_afw_pool_for_each_reference(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_pool_release_references
+/* Declare method release_references */
+AFW_DECLARE_STATIC(void)
+impl_afw_pool_release_references(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_pool_destroy
 /* Declare method destroy */
 AFW_DECLARE_STATIC(void)
@@ -271,6 +279,8 @@ impl_afw_pool_inf = {
     impl_afw_pool_get_reference_count,
     (afw_pool_for_each_reference_t)
     impl_afw_pool_for_each_reference,
+    (afw_pool_release_references_t)
+    impl_afw_pool_release_references,
     (afw_pool_destroy_t)
     impl_afw_pool_destroy,
     (afw_pool_calloc_t)

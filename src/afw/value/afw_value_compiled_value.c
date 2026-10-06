@@ -30,6 +30,7 @@
  */
 #define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
 #define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
 #define impl_afw_value_get_counted afw_value_self_get_counted
 
 /* Declares and rti/inf defines for interface afw_value */

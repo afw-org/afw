@@ -26,6 +26,7 @@
 #define AFW_IMPLEMENTATION_ID "memory"
 #define AFW_OBJECT_SELF_T afw_object_internal_memory_object_t
 #define impl_afw_object_for_each_reference afw_object_no_references_for_each
+#define impl_afw_object_release_references afw_object_no_references_release_references
 #include "afw_object_impl_declares.h"
 #define impl_afw_object_setter_set_property_take \
     afw_object_setter_set_property_take_by_copy
@@ -45,6 +46,9 @@ impl_afw_object_managed_for_each_reference(
     afw_xctx_t *xctx);
 static afw_size_t
 impl_afw_object_managed_get_reference_count(
+    AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_object_managed_release_references(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
 static void
 impl_afw_object_managed_setter_set_property(
@@ -76,7 +80,11 @@ impl_afw_object_managed_setter_remove_property(
     impl_afw_object_managed_for_each_reference
 #define impl_afw_object_get_reference_count \
     impl_afw_object_managed_get_reference_count
+#undef impl_afw_object_release_references
+#define impl_afw_object_release_references \
+    impl_afw_object_managed_release_references
 #include "afw_object_impl_declares.h"
+#undef impl_afw_object_release_references
 #undef impl_afw_object_for_each_reference
 #undef impl_afw_object_get_reference_count
 #undef AFW_OBJECT_INF_ONLY
@@ -1249,8 +1257,10 @@ impl_afw_object_managed_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
+        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
         return;
     }
+    afw_reference_forget(&self->pub.ref, xctx);
     /*
      * One walk: release every held property (nested object/array
      * the same as scalar), then names, then free_memory entries.
@@ -1440,4 +1450,25 @@ impl_afw_object_managed_get_reference_count(
 {
     (void)xctx;
     return (afw_size_t)self->reference_count;
+}
+
+
+/* Release each value and wrapped, as last release would; names stay. */
+static void
+impl_afw_object_managed_release_references(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+    const afw_value_t *value;
+    const afw_object_t *wrapped;
+
+    for (e = self->first_property; e; e = e->next) {
+        value = e->value;
+        e->value = NULL;
+        afw_value_release(value, xctx);
+    }
+    wrapped = self->wrapped;
+    self->wrapped = NULL;
+    afw_object_release(wrapped, xctx);
 }

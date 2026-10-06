@@ -116,6 +116,29 @@
 
     </method>
 
+    <method name="release_references">
+
+      <description>
+        Release every reference this instance holds, as its last release
+        would, and forget them; the instance itself stays alive, now
+        holding nothing. Used by cycle collection to free a group of
+        instances that only reference each other: each is emptied, then
+        released normally. Instances that hold no counted references do
+        nothing.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
   </interface>
 
   <interface name="afw_extension" id="afwex">
@@ -6430,11 +6453,13 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <description>
         Return the instance whose count a reference to this value is held
-        in, or NULL if this value is not counted (pooled, permanent, or a
-        compiler value). A counted scalar, closure binding, or compiled
-        value returns itself; an object or array value face returns its
-        object or array. Containers use this to list what each value they
-        hold references.
+        in, when that instance can be part of a cycle; otherwise NULL. A
+        closure binding or compiled value returns itself; an object or
+        array value face returns its object or array. Scalars and slices
+        (they hold no references that can lead back) and values that are
+        not counted (pooled, permanent, compiler values) return NULL.
+        Containers use this to list what each value they hold references
+        for cycle collection.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">

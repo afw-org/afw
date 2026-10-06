@@ -68,6 +68,18 @@ impl_afw_object_for_each_reference(
 }
 
 /*
+ * Implementation of method release_references for interface afw_object.
+ */
+void
+impl_afw_object_release_references(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method get_count for interface afw_object.
  */
 afw_size_t
