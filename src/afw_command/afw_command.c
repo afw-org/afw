@@ -595,6 +595,7 @@ impl_evaluate(
     AFW_CATCH_UNHANDLED{
         impl_print_error(self, AFW_ERROR_THROWN, xctx);
         error_occurred = true;
+        self->evaluation_failed = true;
     }
 
     AFW_FINALLY{
@@ -1101,6 +1102,17 @@ main(int argc, const char * const *argv) {
             impl_print_end(self);
 
             while (impl_evaluate(self, NULL, NULL));
+        }
+
+        /*
+         * A script, test_script, -x expression, or piped input that ended
+         * with an uncaught error exits non-zero. Interactive mode and
+         * --local keep going after an error.
+         */
+        if (self->evaluation_failed && rv == EXIT_SUCCESS &&
+            !self->interactive_mode && !self->local_mode_z)
+        {
+            rv = EXIT_FAILURE;
         }
     }
 

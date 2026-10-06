@@ -840,6 +840,7 @@ afw_environment_registry_register(
     const void *old_value;
     afw_utf8_octet_t *new_key;
     const afw_utf8_octet_t *use_key;
+    const void *old_key;
     afw_environment_internal_t *env;
 
     env = (afw_environment_internal_t *)xctx->env;
@@ -860,14 +861,27 @@ afw_environment_registry_register(
                 &impl_initial_types[type_number].registry_type_id,
                 key);
         }
-        /** @fixme Small leak if deleting key and then adding again. */
+        /*
+         * A new entry stores a copy of the key in env->p. Deleting the
+         * entry frees that copy, so register/unregister cycles (service
+         * restarts) do not grow env->p.
+         */
+        old_key = NULL;
         if (value && !old_value) {
             new_key = afw_pool_calloc(xctx->env->p, key->len, xctx);
             memcpy(new_key, key->s, key->len);
             use_key = new_key;
         }
+        else if (!value && old_value && key->len > 0) {
+            old_key = afw_hash_table_get_stored_key(type->ht,
+                key->s, key->len);
+        }
 
         afw_hash_table_set(type->ht, use_key, key->len, value, xctx);
+        if (old_key) {
+            afw_pool_free_memory(xctx->env->p, (void *)old_key, key->len,
+                xctx);
+        }
 
         if (type->register_additional) {
             type->register_additional(

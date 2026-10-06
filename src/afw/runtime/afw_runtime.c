@@ -264,6 +264,7 @@ afw_runtime_remove_object(
     const impl_ht_object_entry *entry;
     const afw_xctx_t *c;
     afw_void_hash_table_t *ht;
+    const void *stored_key;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         for (c = xctx; c; c = c->parent) {
@@ -274,8 +275,21 @@ afw_runtime_remove_object(
                     entry = afw_hash_table_get(ht,
                         object_id->s, object_id->len);
                     if (entry) {
+                        /*
+                         * The environment's table copied the key into
+                         * env->p (impl_set_entry_locked); free it. An
+                         * xctx's table borrows its keys.
+                         */
+                        stored_key = (!c->parent && object_id->len > 0)
+                            ? afw_hash_table_get_stored_key(ht,
+                                object_id->s, object_id->len)
+                            : NULL;
                         afw_hash_table_set(ht, object_id->s, object_id->len,
                             NULL, xctx);
+                        if (stored_key) {
+                            afw_pool_free_memory(xctx->env->p,
+                                (void *)stored_key, object_id->len, xctx);
+                        }
                         if (entry->cb_entry.always_NULL != NULL) {
                             impl_entry_object_leaves_table(&entry->object,
                                 xctx);

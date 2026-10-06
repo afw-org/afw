@@ -119,6 +119,9 @@ typedef struct afw_command_self_s {
 
     afw_boolean_t terminal_error;
 
+    /* An evaluation ended with an uncaught error (exit code). */
+    afw_boolean_t evaluation_failed;
+
     afw_boolean_t eof;
 
     afw_boolean_t prompt_continuation;

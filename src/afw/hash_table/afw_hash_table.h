@@ -168,6 +168,23 @@ afw_hash_table_get_impl(
     afw_size_t klen);
 
 /**
+ * @brief Get the key pointer stored for key, or NULL.
+ * @param internal untyped header.
+ * @param key bytes to match.
+ * @param klen length of key in bytes.
+ * @return the key pointer the table stored when the entry was added,
+ *    or NULL if absent.
+ *
+ * Lets a caller that copied a key for the table free that copy when it
+ * deletes the entry.
+ */
+AFW_DECLARE(const void *)
+afw_hash_table_get_stored_key_impl(
+    const afw_hash_table_t *internal,
+    const void *key,
+    afw_size_t klen);
+
+/**
  * @brief Set or delete the value for key.
  * @param internal untyped header.
  * @param key bytes. Stored as a pointer; caller keeps it alive.
@@ -246,6 +263,13 @@ afw_hash_table_release_impl(
  */
 #define afw_hash_table_get(_instance, _key, _klen) \
     afw_hash_table_get_impl(&(_instance)->internal, \
+        (_key), (_klen))
+
+/**
+ * @brief Get the key pointer stored for key, or NULL.
+ */
+#define afw_hash_table_get_stored_key(_instance, _key, _klen) \
+    afw_hash_table_get_stored_key_impl(&(_instance)->internal, \
         (_key), (_klen))
 
 /**
