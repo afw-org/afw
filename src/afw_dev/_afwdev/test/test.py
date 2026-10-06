@@ -203,12 +203,10 @@ def run(options):
             msg.error_exit(str(e))
         failure_log.begin(options)
         try:
-            start = time.time()
             results, failures, max_xctx_bytes, file_records = runner.run(
                 options, srcdirs)
             max_xctx_chunk_bytes = test_history.max_file_metric(
                 file_records, "xctx_chunk_bytes")
-            end = time.time()
 
             # iterate over results dict and print results
             for srcdir, stats in results.items():            

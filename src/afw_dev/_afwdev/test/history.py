@@ -9,7 +9,6 @@
 # bytes/ms. Compare/trend never fail the process in v1.
 #
 
-import glob
 import os
 import re
 import subprocess
