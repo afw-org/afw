@@ -106,6 +106,11 @@ def run():
                 "user block on the allocated or free list",
             ),
             (
+                "small_bins",
+                "managed_p heap bins small blocks: LIFO reuse, no "
+                "merge, split from a larger bin, large on the list",
+            ),
+            (
                 "mixed_sizes",
                 "just-freed 32- and 200-byte blocks reuse independently",
             ),

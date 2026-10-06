@@ -27,8 +27,8 @@
  * [chunk…][size][pool][USER]. An ASAN build without AFW_DEBUG_POOL
  * widens the prefix to a free node (afw_memory_annotate_internal.h).
  * `chunk` is the chunk that holds the
- * block so free coalescing does not walk first_chunk. Its low bit
- * marks a freed block.
+ * block so free coalescing does not walk first_chunk. Its low bits
+ * mark a freed block and a block in a small bin.
  * Freed heap blocks overlay afw_pool_heap_internal_free_node_t at the block start.
  * Tracker gets blocks from this store (`afw_pool_heap_internal_reservoir_heap`).
  * A tracker block's first word is its list link, not `chunk`, so
@@ -83,17 +83,45 @@ struct afw_pool_heap_internal_free_node_s {
 #define AFW_POOL_HEAP_INTERNAL_PREFIX_BYTES sizeof(afw_pool_heap_internal_chunk_t *)
 #endif
 
+/*
+ * Small bins: one LIFO list per exact block total from
+ * AFW_POOL_HEAP_INTERNAL_BIN_MIN to AFW_POOL_HEAP_INTERNAL_BIN_MAX in
+ * AFW_POOL_HEAP_INTERNAL_ALIGN steps. Only a heap that is its own
+ * managed_p (a job heap, env->p, a conf or adapter heap) has bins:
+ * those see most frees and reallocations. Scopes and inherit heaps
+ * are mostly thrown away whole and keep the one list. A binned block
+ * does not coalesce.
+ */
+#define AFW_POOL_HEAP_INTERNAL_BIN_MIN \
+    ((afw_size_t)sizeof(afw_pool_heap_internal_free_node_t))
+#define AFW_POOL_HEAP_INTERNAL_BIN_MAX ((afw_size_t)512)
+#define AFW_POOL_HEAP_INTERNAL_BIN_COUNT \
+    ((AFW_POOL_HEAP_INTERNAL_BIN_MAX - AFW_POOL_HEAP_INTERNAL_BIN_MIN) / \
+        AFW_POOL_HEAP_INTERNAL_ALIGN + 1)
+#define AFW_POOL_HEAP_INTERNAL_BIN_INDEX(_total) \
+    (((_total) - AFW_POOL_HEAP_INTERNAL_BIN_MIN) / AFW_POOL_HEAP_INTERNAL_ALIGN)
+
 typedef struct afw_pool_heap_internal_free_memory_head_s
 afw_pool_heap_internal_free_memory_head_t;
 
 struct afw_pool_heap_internal_free_memory_head_s {
+    /* Blocks that are not in a bin. First-fit; coalesce forward. */
     afw_pool_heap_internal_free_node_t *first;
 
     /*
-     * Upper bound on free-node totals. AFW_SIZE_T_MAX means the
+     * Upper bound on totals on first. AFW_SIZE_T_MAX means the
      * bound is unknown and the list must be walked. 0 means empty.
      */
     afw_size_t largest;
+
+    /*
+     * AFW_POOL_HEAP_INTERNAL_BIN_COUNT LIFO lists linked by next, or
+     * NULL if this heap has no bins. Carved from the first chunk.
+     */
+    afw_pool_heap_internal_free_node_t **bins;
+
+    /* Bit i set: bins[i] is not empty. */
+    afw_uint32_t bin_map;
 };
 
 
@@ -182,6 +210,14 @@ struct afw_pool_heap_internal_self_with_free_memory_head_s {
 
 afw_pool_heap_internal_self_t *
 afw_pool_heap_internal_reservoir_heap(afw_pool_internal_self_t *self);
+
+/*
+ * Give heap small bins if it is its own managed_p. Call after
+ * managed_p is set, before any malloc. Takes the bins from the bump
+ * space in the first chunk; no bins if there is not room.
+ */
+void
+afw_pool_heap_internal_init_bins(afw_pool_heap_internal_self_t *heap);
 
 afw_size_t
 afw_pool_heap_internal_block_bytes(
