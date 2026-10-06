@@ -28,14 +28,18 @@ import os
 import sys
 import time
 import fnmatch
+import resource
 
 from _afwdev.common import msg, nfc, package
 from _afwdev.test import watch, runner, js
 from _afwdev.test.common import (
     find_test_groups, load_test_group_config, test_group_matches_tags,
     print_failure_digest, normalize_tests_paths, write_results_summary,
-    clip_detail, format_xctx_bytes)
+    clip_detail, format_xctx_bytes, want_error_detail)
 from _afwdev.test import failure_log
+from _afwdev.test import run_dir
+from _afwdev.test import baseline as test_baseline
+from _afwdev.test import family
 from _afwdev.test import history as test_history
 from _afwdev.test import sanitize as test_sanitize
 from _afwdev.test import build_tree as test_build_tree
@@ -61,6 +65,10 @@ def _list_tests(options, srcdirs):
     sys.exit(0)
 
 
+# --env-mode values. python and commands are per-file modes, not these.
+ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan")
+
+
 ## 
 # @brief The main entry point for the "test" subcommand
 # @details This routine is the main entry point for the "test" subcommand. 
@@ -81,6 +89,13 @@ def _list_tests(options, srcdirs):
 # @param options The options dictionary.
 # 
 def run(options):
+
+    command_start = time.time()
+    mode = test_history.env_mode(options)
+    if mode not in ENV_MODES:
+        msg.error_exit(
+            "Unknown --env-mode '{m}'. Use one of: {all}.".format(
+                m=mode, all=", ".join(ENV_MODES)))
 
     total_passed = 0
     total_failed = 0
@@ -150,27 +165,21 @@ def run(options):
 
     else:
 
-        want_compare = options.get('compare') is not False and options.get(
-            'compare') is not None
-        want_trend = options.get('trend') is not False and options.get(
-            'trend') is not None
-        try:
-            if _wants_housekeeping(options):
+        # Reports and housekeeping never run tests.
+        want_trend = options.get('trend') not in (False, None)
+        if want_trend or _wants_housekeeping(options):
+            try:
                 _do_housekeeping(options)
-        except (ValueError, OSError) as e:
-            msg.error_exit(str(e))
-        # --history-ref marks a run, except with --trend where it
-        # selects that reference and does not run unless --history.
-        record_run = bool(options.get('history')) or (
-            bool(options.get('history_ref')) and not want_trend)
-        skip_run = (
-            want_compare or want_trend or _wants_housekeeping(options)
-        ) and not record_run
-
-        if skip_run:
-            if want_compare or want_trend:
-                _run_compare_trend(options)
+                if want_trend:
+                    _run_trend(options)
+            except (ValueError, OSError) as e:
+                msg.error_exit(str(e))
             sys.exit(0)
+
+        if options.get('baseline') and _narrowed(options):
+            msg.error_exit(
+                "--baseline needs the whole suite: drop --test-pattern, "
+                "--srcdir-pattern, --tags, and -T.")
 
         # --build-tree: run against the mode's cmake tree, not the
         # install. Sanitizer pairing: asan runs against build/asan;
@@ -184,14 +193,20 @@ def run(options):
         elif test_history.env_mode(options) == 'valgrind':
             test_sanitize.refuse_sanitized_lib_for_valgrind()
 
+        try:
+            run_dir.create(options, test_history.env_mode(options))
+        except OSError as e:
+            msg.error_exit("Can not create the run directory: " + str(e))
+        try:
+            compare = _prepare_compare(options)
+        except (ValueError, OSError) as e:
+            msg.error_exit(str(e))
         failure_log.begin(options)
         try:
-            start = time.time()
             results, failures, max_xctx_bytes, file_records = runner.run(
                 options, srcdirs)
             max_xctx_chunk_bytes = test_history.max_file_metric(
                 file_records, "xctx_chunk_bytes")
-            end = time.time()
 
             # iterate over results dict and print results
             for srcdir, stats in results.items():            
@@ -206,7 +221,14 @@ def run(options):
                     srcdirs_failed += 1
 
             srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)
-            elapsed = round(end - start, 2)
+            elapsed = round(time.time() - command_start, 2)
+            cpu_seconds = _cpu_seconds()
+            fam = None
+            if compare["run"] is not None:
+                fam = family.evaluate(
+                    file_records, compare["run"], compare["last"],
+                    compare["settings"])
+                fam["label"] = compare["label"]
 
             # When --output is '-', keep stdout clean for the machine summary
             summary_to_stdout = (options.get('output') == '-')
@@ -239,7 +261,8 @@ def run(options):
                     msg.highlighted_info(", ", end="")
 
                 msg.highlighted_info("{} total".format(total_tests))
-                msg.highlighted_info("Time:          {}s".format(elapsed))
+                msg.highlighted_info("Elapsed:       {}   CPU: {}".format(
+                    _fmt_duration(elapsed), _fmt_duration(cpu_seconds)))
                 if max_xctx_bytes or max_xctx_chunk_bytes:
                     parts = []
                     if max_xctx_bytes:
@@ -249,6 +272,9 @@ def run(options):
                         parts.append("{} chunk".format(
                             format_xctx_bytes(max_xctx_chunk_bytes)))
                     msg.highlighted_info("Memory:        max " + ", ".join(parts))
+                family.print_summary(fam)
+                if want_error_detail(options):
+                    family.print_detail(fam)
 
                 # Console-only digest so parallel -j runs still end with greppable paths
                 print_failure_digest(failures)
@@ -267,6 +293,9 @@ def run(options):
                     'total': total_tests,
                 },
                 'time_seconds': elapsed,
+                'narrowed': _narrowed(options),
+                'cpu_seconds': cpu_seconds,
+                'family': family.summary_record(fam),
                 'max_xctx_bytes': max_xctx_bytes or 0,
                 'max_xctx_chunk_bytes': max_xctx_chunk_bytes or 0,
                 'mode': test_history.env_mode(options),
@@ -294,67 +323,105 @@ def run(options):
             write_results_summary(options, summary, tool_label='test')
 
             if test_history.should_write_history(options):
-                test_history.write_history(summary, options)
+                written = test_history.write_history(summary, options)
+                if options.get('baseline'):
+                    test_baseline.replace_own(options, written)
 
-            if want_compare or want_trend:
-                _run_compare_trend(options)
-
-            if total_failed > 0:
-                failure_log.note(options)
-            # Machine summary (--output -) stays free of this hint.
+            # Machine summary (--output -) stays free of these lines.
             if not summary_to_stdout:
-                runner.note_kept_detail(
-                    options, had_errors=total_failed > 0)
+                _print_run_location(options)
             if total_failed > 0:
                 sys.exit(1)
-            else:
-                sys.exit(0)
+            if family.strict_failure(fam, compare["settings"]):
+                msg.error(
+                    "Memory out of family and test_family_strict is set.")
+                sys.exit(1)
+            sys.exit(0)
         finally:
             failure_log.finish(options)
+            run_dir.release(options)
+
+
+def _print_run_location(options):
+    msg.highlighted_info("Run:           {p}   (keeps the last {n} {m} runs and {n} failed)".format(
+        p=run_dir.current(options), n=run_dir.keep_runs(options),
+        m=test_history.env_mode(options)))
+    failures = failure_log.path_if_failed(options)
+    if failures:
+        msg.highlighted_info("Failures:      " + failures)
 
 
 def _wants_housekeeping(options):
-    return bool(
-        options.get('clear_failures')
-        or options.get('clear_history')
-        or options.get('list_history_refs')
-        or options.get('delete_history_ref'))
+    return bool(options.get('clear_temps') or options.get('clear_history'))
 
 
 def _do_housekeeping(options):
-    if options.get('clear_failures'):
-        failure_log.clear_failures(options)
+    if options.get('clear_temps'):
+        run_dir.clear(options)
     if options.get('clear_history'):
         test_history.clear_history(options)
-    if options.get('delete_history_ref'):
-        test_history.delete_history_ref(options)
-    if options.get('list_history_refs'):
-        test_history.list_history_refs(options)
 
 
-def _run_compare_trend(options):
-    want_compare = options.get('compare') is not False and options.get(
-        'compare') is not None
-    want_trend = options.get('trend') is not False and options.get(
-        'trend') is not None
-    show_all = bool(options.get('show_all'))
-    if want_compare:
-        try:
-            old_p, new_p = test_history.resolve_compare_paths(options)
-            old = test_history.load_run(old_p)
-            new = test_history.load_run(new_p)
-            if (old.get('mode') or 'afw') != (new.get('mode') or 'afw'):
-                msg.error_exit(
-                    "refusing to compare mixed env-mode ({a} vs {b})".format(
-                        a=old.get('mode'), b=new.get('mode')))
-            test_history.print_compare(
-                test_history.compare_runs(old, new), show_all=show_all)
-        except (ValueError, OSError) as e:
-            msg.error_exit(str(e))
-    if want_trend:
-        try:
-            runs = test_history.resolve_trend_runs(options)
-            test_history.print_trend(
-                test_history.trend_runs(runs, options), show_all=show_all)
-        except (ValueError, OSError) as e:
-            msg.error_exit(str(e)) 
+def _narrowed(options):
+    """True when the run is not the whole suite."""
+    return bool(
+        options.get('tests_path')
+        or (options.get('test-pattern') or '.*') != '.*'
+        or (options.get('test_tags') or '.*') != '.*'
+        or (options.get('srcdir_pattern') or '*') not in ('*', '\\*'))
+
+
+def _prepare_compare(options):
+    """Prune history, pick what this run compares against, share it.
+
+    Returns {run, last, label, settings}. run is None when there is
+    nothing to compare against.
+    """
+    settings = family.settings_from(options)
+    out = {"run": None, "last": None, "label": None, "settings": settings}
+    if options.get('baseline'):
+        options['_history_label'] = test_baseline.label_for_branch(
+            test_history.git_meta().get('branch'))
+    if test_history.should_write_history(options):
+        test_baseline.prune(options, test_baseline.select_baseline(options))
+    path, label = test_baseline.resolve(options)
+    out["label"] = label
+    if path:
+        run = test_history.load_run(path)
+        if (run.get('mode') or 'afw') != test_history.env_mode(options):
+            raise ValueError("--compare-to {p} is a {m} run".format(
+                p=path, m=run.get('mode')))
+        out["run"] = run
+        last = test_baseline.last_run(options)
+        if last and last != path:
+            out["last"] = test_history.load_run(last)
+        family.set_context(
+            test_history.files_by_path(run), label, settings)
+    return out
+
+
+def _cpu_seconds():
+    """CPU of afwdev and every process it waited for (tests, workers)."""
+    me = resource.getrusage(resource.RUSAGE_SELF)
+    kids = resource.getrusage(resource.RUSAGE_CHILDREN)
+    return round(me.ru_utime + me.ru_stime + kids.ru_utime + kids.ru_stime, 2)
+
+
+def _fmt_duration(seconds):
+    seconds = float(seconds or 0)
+    if seconds < 60:
+        return "{:.1f}s".format(seconds)
+    minutes, sec = divmod(int(round(seconds)), 60)
+    if minutes < 60:
+        return "{}m{:02d}s".format(minutes, sec)
+    hours, minutes = divmod(minutes, 60)
+    return "{}h{:02d}m".format(hours, minutes)
+
+
+def _run_trend(options):
+    options['trend_metric'] = options.get('trend') or 'bytes'
+    test_history.print_baselines(options)
+    runs = test_history.resolve_trend_runs(options)
+    test_history.print_trend(
+        test_history.trend_runs(runs, options),
+        show_all=bool(options.get('show_all')))

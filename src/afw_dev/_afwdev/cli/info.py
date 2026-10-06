@@ -1007,7 +1007,9 @@ _info_test_env_mode = {
     "arg": "--env-mode",
     "action": "store",
     "default": "afw",
-    "help": "The test environment mode to use."
+    "help":
+        "The test environment mode to use: afw, afwfcgi, actions, "
+        "valgrind, or asan."
 }
 
 _info_test_output = {
@@ -1069,45 +1071,49 @@ _info_tests_path = {
         "src/afw/tests-extra/ (firehose, progressive, lab leaves)."
 }
 
-_info_test_history = {
-    "optionName": "history",
-    "arg": "--history",
+_info_test_baseline = {
+    "optionName": "baseline",
+    "arg": "--baseline",
     "action": "store_true",
     "default": False,
     "noprompt": True,
     "help":
-        "After the run, write a dated JSON record (per-file ms and xctx "
-        "bytes) under --history-dir (default ~/.afw/test-history/). Also set "
-        "test_history_dir in afwdev-settings.json to write on every run. "
-        "With --compare/--trend, tests are run first so this record is included."
+        "Mark this run as this branch's baseline for its --env-mode (the "
+        "PR gate runs use it). A later --baseline on the same branch "
+        "replaces it; the newest test_keep_baselines (10) per mode are "
+        "kept. Other branches' runs compare against it once it is in their "
+        "history. Refused with --test-pattern, --srcdir-pattern, or -T."
 }
 
-_info_test_history_ref = {
-    "optionName": "history_ref",
-    "arg": "--history-ref",
+_info_test_compare_to = {
+    "optionName": "compare_to",
+    "arg": "--compare-to",
     "action": "store",
-    "default": "",
+    "default": "baseline",
     "noprompt": True,
     "help":
-        "Write this run as a reference baseline (implies --history). "
-        "Filename includes -ref-LABEL- (e.g. …-ref-pre-mgg-afw.json). "
-        "--clear-history keeps these files. With --trend and no paths, "
-        "LABEL selects that reference plus ordinary runs after it and "
-        "does not run tests unless --history is also given. Peer totals "
-        "use the oldest reference."
+        "What this run's out-of-family check and --trend compare against: "
+        "baseline (default: the newest baseline from another branch that "
+        "HEAD contains, which is usually the previous PR's gate run; the "
+        "previous run if there is none), last (the previous run), a commit "
+        "hash, an older -ref- tag label, or a history file path. Only "
+        "tests in both runs compare; memory is the check, time is FYI."
 }
 
-_info_test_clear_failures = {
-    "optionName": "clear_failures",
-    "arg": "--clear-failures",
+_info_test_clear_temps = {
+    "optionName": "clear_temps",
+    "arg": "--clear-temps",
     "action": "store_true",
     "default": False,
     "noprompt": True,
     "help":
-        "Delete failure logs for this --env-mode under "
-        "~/.afw/test-failures/ (the .log and its .state.json). "
-        "Does not run tests unless --history or --history-ref is "
-        "also given."
+        "Delete every run directory under --tmpdir/afwdev-runs/ that "
+        "no live afwdev test holds, plus the old afwdev_test_output "
+        "and directories tests used to leave in --tmpdir (known "
+        "afw_* prefixes only). Otherwise each --env-mode keeps its "
+        "newest test_keep_runs run directories (afwdev-settings.json, "
+        "default 10) and, separately, its newest test_keep_runs failed "
+        "ones. Does not run tests."
 }
 
 _info_test_clear_history = {
@@ -1117,89 +1123,23 @@ _info_test_clear_history = {
     "default": False,
     "noprompt": True,
     "help":
-        "Delete ordinary history for this --env-mode. Reference runs "
-        "(-ref-LABEL-) are kept. Does not run tests unless --history "
-        "or --history-ref is also given. With --history, clears first, "
-        "then records the new run."
-}
-
-_info_test_list_history_refs = {
-    "optionName": "list_history_refs",
-    "arg": "--list-history-refs",
-    "action": "store_true",
-    "default": False,
-    "noprompt": True,
-    "help":
-        "Print reference labels in the history directory for this "
-        "--env-mode. Does not run tests."
-}
-
-_info_test_delete_history_ref = {
-    "optionName": "delete_history_ref",
-    "arg": "--delete-history-ref",
-    "action": "store",
-    "default": "",
-    "noprompt": True,
-    "help":
-        "Delete history files whose reference label is LABEL "
-        "(this --env-mode). Does not run tests unless --history or "
-        "--history-ref is also given."
-}
-
-_info_test_history_dir = {
-    "optionName": "history_dir",
-    "arg": "--history-dir",
-    "action": "store",
-    "default": "",
-    "noprompt": True,
-    "help":
-        "Directory for --history / --compare / --trend / --clear-history. "
-        "Default ~/.afw/test-history/ (or test_history_dir in "
-        "afwdev-settings.json)."
-}
-
-_info_test_compare = {
-    "optionName": "compare",
-    "arg": "--compare",
-    "nargs": "*",
-    "default": False,
-    "noprompt": True,
-    "help":
-        "Compare two history JSON files by test path. No args: latest vs "
-        "previous in --history-dir for this --env-mode. One path: that file "
-        "vs latest. Two paths: older then newer. Does not run tests unless "
-        "--history is also given. xctx bytes and chunk bytes are the "
-        "signal (1.5× and +32,768); ms is listed but noisy. Does not "
-        "fail the process."
+        "Delete all untagged history for this --env-mode (under "
+        "test_history_dir, default ~/.afw/test-history/). Baselines and "
+        "other tagged runs are not affected. Does not run tests."
 }
 
 _info_test_trend = {
     "optionName": "trend",
     "arg": "--trend",
-    "nargs": "*",
+    "nargs": "?",
+    "const": "bytes",
     "default": False,
     "noprompt": True,
     "help":
-        "Show xctx bytes (or --trend-metric ms|chunk) across history "
-        "runs. "
-        "No args: all reference runs for this --env-mode plus the last "
-        "10 ordinary runs. With --history-ref LABEL and no paths: that "
-        "reference plus ordinary runs after it. A single integer is the "
-        "ordinary-run count. Otherwise glob/paths of JSON files (same "
-        "mode only). Does not run tests unless --history is also given "
-        "(--history-ref alone selects, it does not record). "
-        "Peer ms is files in oldest reference ∩ last run."
-}
-
-_info_test_trend_metric = {
-    "optionName": "trend_metric",
-    "arg": "--trend-metric",
-    "action": "store",
-    "default": "bytes",
-    "noprompt": True,
-    "help":
-        "Metric for --trend movers: bytes (default, xctx asked-for), "
-        "chunk (mapped), or ms."
+        "Report only, does not run tests: history runs from --compare-to "
+        "(default the baseline) up to now for this --env-mode, with the "
+        "baselines found. Optional METRIC for the movers: bytes (default, "
+        "xctx asked-for), chunk (mapped), cpu, or ms (wall)."
 }
 
 _info_test_capture_goldens = {
@@ -1234,16 +1174,11 @@ _info_test = {
         _info_srcdir_pattern, 
         _info_tests_path,
         _info_test_capture_goldens,
-        _info_test_history,
-        _info_test_history_ref,
-        _info_test_clear_failures,
-        _info_test_clear_history,
-        _info_test_list_history_refs,
-        _info_test_delete_history_ref,
-        _info_test_history_dir,
-        _info_test_compare,
+        _info_test_baseline,
+        _info_test_compare_to,
         _info_test_trend,
-        _info_test_trend_metric,
+        _info_test_clear_history,
+        _info_test_clear_temps,
         _info_test_watch,
         _info_test_jobs,
         _info_test_build_tree,

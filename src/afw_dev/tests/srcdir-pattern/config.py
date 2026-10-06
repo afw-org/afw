@@ -10,9 +10,13 @@ import subprocess
 import sys
 
 from pprint import pprint
+import tempfile
+
+# The run's scratch directory (afwdev test sets TMPDIR per run).
+TMP = tempfile.gettempdir()
 
 def before_all():
-    test_dir = "/tmp/afw-test-srcdir-pattern"
+    test_dir = os.path.join(TMP, "afw-test-srcdir-pattern")
     package = "test-package"
     package_dir = test_dir
     extension = "hello_world_extension"

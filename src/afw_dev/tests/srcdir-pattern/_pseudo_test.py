@@ -10,7 +10,9 @@ import sys
 import os
 import json
 
-test_dir = "/tmp/afw-test-srcdir-pattern"
+# This file runs from <test_dir>/src/hello_world_extension/tests.
+test_dir = os.path.abspath(os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), "..", "..", ".."))
 package = "test-package"
 package_dir = test_dir
 extension = "hello_world_extension"

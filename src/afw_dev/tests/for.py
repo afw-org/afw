@@ -4,6 +4,10 @@ import os
 import json
 import subprocess
 import shutil
+import tempfile
+
+# The run's scratch directory (afwdev test sets TMPDIR per run).
+TMP = tempfile.gettempdir()
 
 
 def run():
@@ -14,15 +18,15 @@ def run():
 
     subprocess.run(
         ["afwdev", "--noprompt", "make-afw-package",
-         "test-package-4", "/tmp/test-package-4"],
+         "test-package-4", os.path.join(TMP, "test-package-4")],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     subprocess.run(
         ["afwdev", "--noprompt", "make-afw-package",
-         "test-package-5", "/tmp/test-package-5"],
+         "test-package-5", os.path.join(TMP, "test-package-5")],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    if not os.path.isdir("/tmp/test-package-4") or \
-            not os.path.isdir("/tmp/test-package-5"):
+    if not os.path.isdir(os.path.join(TMP, "test-package-4")) or \
+            not os.path.isdir(os.path.join(TMP, "test-package-5")):
         response["tests"].append({
             "description":
                 "(skipping rest of tests, due to make-afw-package failure)",
@@ -31,7 +35,7 @@ def run():
         })
         return response
 
-    with open("/tmp/afwdev-settings.json", 'w') as f:
+    with open(os.path.join(TMP, "afwdev-settings.json"), 'w') as f:
         afwdev_settings = {
             "afwPackages": [
                 {"path": "test-package-4"},
@@ -46,7 +50,7 @@ def run():
         }
         f.write(json.dumps(afwdev_settings))
 
-    os.chdir("/tmp/test-package-4")
+    os.chdir(os.path.join(TMP, "test-package-4"))
 
     result = subprocess.run(
         ["afwdev", "--noprompt", "for", "pwd"],
@@ -59,7 +63,7 @@ def run():
         "test": "for-pwd"
     })
 
-    shutil.rmtree("/tmp/test-package-4", ignore_errors=True)
-    shutil.rmtree("/tmp/test-package-5", ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-4"), ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-5"), ignore_errors=True)
 
     return response

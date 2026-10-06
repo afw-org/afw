@@ -2,8 +2,12 @@
 
 import os
 import subprocess
+import tempfile
 
-test_dir = "/tmp/afw-test-srcdir-pattern"
+# The run's scratch directory (afwdev test sets TMPDIR per run).
+TMP = tempfile.gettempdir()
+
+test_dir = os.path.join(TMP, "afw-test-srcdir-pattern")
 package = "test-package"
 package_dir = test_dir
 extension = "hello_world_extension"
@@ -34,12 +38,12 @@ def run():
     })
 
     # execute afwdev generate command for everything using "\*" as the srcdir-pattern
-    result = subprocess.run(["afwdev", "generate", "--srcdir-pattern", "\*" ], 
+    result = subprocess.run(["afwdev", "generate", "--srcdir-pattern", "\\*" ], 
         cwd=package_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # append the response
     response["tests"].append({
-        "description": "'afwdev generate --srcdir-pattern \*' in " + test_dir,
+        "description": "'afwdev generate --srcdir-pattern \\*' in " + test_dir,
         "passed": result.returncode == 0,
         "test": "subcommand-generate-option-srcdir-pattern"
     })

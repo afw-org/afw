@@ -3,15 +3,17 @@
 """History compare/trend: path match, optional bytes, thresholds."""
 
 import os
+import shutil
 import tempfile
+import threading
+import time
 
 from _afwdev.test.common import format_test_timing, format_xctx_bytes
-from _afwdev.test.failure_log import clear_failures
+from _afwdev.test import run_dir
 from _afwdev.test.history import (
     compare_runs, file_record, trend_runs, _bytes_fatter, BYTES_FLOOR,
-    history_filename, is_reference_name, select_trend_files,
-    clear_history, delete_history_ref, list_history_refs,
-    ref_label_from_name,
+    history_filename, is_reference_name, clear_history,
+    ref_label_from_name, write_history, load_run, list_run_files,
 )
 
 
@@ -146,29 +148,6 @@ def run():
         "skip": False,
     })
 
-    tmp = tempfile.mkdtemp()
-    try:
-        open(os.path.join(tmp, "2026-01-01T000000000Z-ref-pre-mgg-afw.json"), "w").close()
-        open(os.path.join(tmp, "2026-02-01T000000000Z-afw.json"), "w").close()
-        open(os.path.join(tmp, "2026-03-01T000000000Z-afw.json"), "w").close()
-        open(os.path.join(tmp, "latest-afw.json"), "w").close()
-        selected = [os.path.basename(p) for p in select_trend_files(tmp, "afw", 1)]
-        tests.append({
-            "test": "trend-keeps-refs-plus-last-n",
-            "description": "refs never age out; last 1 ordinary run is kept",
-            "passed": (
-                "2026-01-01T000000000Z-ref-pre-mgg-afw.json" in selected
-                and "2026-03-01T000000000Z-afw.json" in selected
-                and "2026-02-01T000000000Z-afw.json" not in selected
-                and "latest-afw.json" not in selected
-            ),
-            "skip": False,
-        })
-    finally:
-        for name in os.listdir(tmp):
-            os.remove(os.path.join(tmp, name))
-        os.rmdir(tmp)
-
     ref = _run([file_record("a.as", 10, 20 * 1024, 1, 0, 0)], commit="ref")
     ref["reference"] = True
     ref["label"] = "pre-mgg"
@@ -217,22 +196,6 @@ def run():
             "2026-02-01T000000000Z-afw.json",
             os.path.join(house, "latest-afw.json"))
         opts = {"mode": "afw", "history_dir": house}
-        picked = [
-            os.path.basename(p)
-            for p in select_trend_files(house, "afw", 10, "thread-inf")
-        ]
-        tests.append({
-            "test": "trend-one-ref-and-later",
-            "description": "one label plus ordinary runs after that reference",
-            "passed": (
-                picked == [
-                    "2026-03-01T000000000Z-ref-thread-inf-afw.json",
-                    "2026-04-01T000000000Z-afw.json",
-                    "2026-05-01T000000000Z-afw.json",
-                ]
-            ),
-            "skip": False,
-        })
         removed = clear_history(opts)
         left = sorted(os.listdir(house))
         tests.append({
@@ -251,63 +214,156 @@ def run():
             ),
             "skip": False,
         })
-        labels = list_history_refs(opts)
-        tests.append({
-            "test": "list-history-refs",
-            "description": "labels for this mode, in timestamp order",
-            "passed": labels == ["old", "thread-inf", "other"],
-            "skip": False,
-        })
-        gone = delete_history_ref(
-            {"mode": "afw", "history_dir": house,
-             "delete_history_ref": "thread-inf"})
-        left = sorted(os.listdir(house))
-        tests.append({
-            "test": "delete-history-ref",
-            "description": "one label is removed; other refs and modes stay",
-            "passed": (
-                gone == 1
-                and "2026-03-01T000000000Z-ref-thread-inf-afw.json" not in left
-                and "2026-01-01T000000000Z-ref-old-afw.json" in left
-                and "2026-06-01T000000000Z-ref-other-afw.json" in left
-                and "2026-04-01T000000000Z-valgrind.json" in left
-            ),
-            "skip": False,
-        })
     finally:
         for name in os.listdir(house):
             os.remove(os.path.join(house, name))
         os.rmdir(house)
 
-    fails = tempfile.mkdtemp()
+    root = tempfile.mkdtemp()
+    saved_tmpdir = (os.environ.get("TMPDIR"), tempfile.tempdir)
     try:
-        for name in (
-            "2026-01-01T000000000Z-afw.log",
-            "2026-01-01T000000000Z-afw.log.state.json",
-            "2026-01-01T000000000Z-valgrind.log",
-            "2026-01-01T000000000Z-valgrind.log.state.json",
-            "notes.txt",
-        ):
-            open(os.path.join(fails, name), "w").close()
-        nfail = clear_failures({"mode": "afw"}, directory=fails)
-        left = sorted(os.listdir(fails))
+        opts = {"tmpdir": root, "mode": "afw",
+                "afwdev_settings": {"test_keep_runs": 3}}
+        runs = run_dir.runs_root(opts)
+        os.makedirs(runs)
+        base_time = time.time() - 3600
+        failed_old = os.path.join(runs, "0100-235959-afw")
+        os.mkdir(failed_old)
+        open(os.path.join(failed_old, run_dir.FAILURES_NAME), "w").close()
+        os.utime(failed_old, (base_time - 50, base_time - 50))
+        for i, (name, locked) in enumerate((
+                ("0101-000000-afw", False),
+                ("0101-000001-afw", True),
+                ("0101-000002-afw", False),
+                ("0101-000003-afw", False),
+                ("0101-000004-valgrind", False))):
+            path = os.path.join(runs, name)
+            os.mkdir(path)
+            if locked:
+                with open(os.path.join(path, run_dir.LOCK_NAME), "w") as fd:
+                    fd.write(str(os.getpid()))
+            stamp = base_time + i
+            if name.endswith("valgrind"):
+                stamp = base_time - 100
+            os.utime(path, (stamp, stamp))
+        made = run_dir.create(opts, "afw")
+        left = sorted(os.listdir(runs))
+        latest = os.path.join(runs, run_dir.LATEST_NAME)
         tests.append({
-            "test": "clear-failures-one-mode",
-            "description": "afw logs and state go; valgrind and other files stay",
+            "test": "run-dir-create-and-prune",
+            "description":
+                "keeps the newest test_keep_runs of the mode, counting the "
+                "new one; an older failed run, a live run, and other modes "
+                "stay; new run has lock, tmp/ as TMPDIR, and latest",
             "passed": (
-                nfail == 2
-                and left == [
-                    "2026-01-01T000000000Z-valgrind.log",
-                    "2026-01-01T000000000Z-valgrind.log.state.json",
-                    "notes.txt",
-                ]
+                "0100-235959-afw" in left
+                and "0101-000000-afw" not in left
+                and "0101-000001-afw" in left
+                and "0101-000002-afw" in left
+                and "0101-000003-afw" in left
+                and "0101-000004-valgrind" in left
+                and os.path.basename(made) in left
+                and run_dir.in_use(made)
+                and os.environ.get("TMPDIR") ==
+                    os.path.join(made, run_dir.SCRATCH_NAME)
+                and tempfile.gettempdir() ==
+                    os.path.join(made, run_dir.SCRATCH_NAME)
+                and os.path.realpath(latest) == os.path.realpath(made)
+            ),
+            "skip": False,
+        })
+        second = run_dir.create(dict(opts), "afw")
+        run_dir.release(opts)
+        tests.append({
+            "test": "run-dir-parallel-and-release",
+            "description":
+                "a second run gets its own directory; release drops the lock",
+            "passed": (
+                second != made
+                and not run_dir.in_use(made)
+                and os.path.isdir(made)
+            ),
+            "skip": False,
+        })
+        for name in ("afwdev_test_output", "afw_req_body_x1",
+                     "afw_vector_probe_x2", "afw-take-tests", "afw_subset"):
+            os.mkdir(os.path.join(root, name))
+        run_dir.clear(opts)
+        top = sorted(os.listdir(root))
+        left = sorted(os.listdir(runs))
+        tests.append({
+            "test": "clear-temps",
+            "description":
+                "unlocked runs and known leftovers go; live runs and "
+                "hand-made directories stay",
+            "passed": (
+                os.path.basename(made) not in left
+                and os.path.basename(second) in left
+                and "0101-000001-afw" in left
+                and "afwdev_test_output" not in top
+                and "afw_req_body_x1" not in top
+                and "afw_vector_probe_x2" not in top
+                and "afw-take-tests" in top
+                and "afw_subset" in top
+            ),
+            "skip": False,
+        })
+        tests.append({
+            "test": "socket-path-limit",
+            "description": "a socket path over 107 bytes is reported",
+            "passed": (
+                run_dir.socket_path_error("/tmp/" + "a" * 102) is None
+                and run_dir.socket_path_error("/tmp/" + "a" * 103)
+                is not None
             ),
             "skip": False,
         })
     finally:
-        for name in os.listdir(fails):
-            os.remove(os.path.join(fails, name))
-        os.rmdir(fails)
+        if saved_tmpdir[0] is None:
+            os.environ.pop("TMPDIR", None)
+        else:
+            os.environ["TMPDIR"] = saved_tmpdir[0]
+        tempfile.tempdir = saved_tmpdir[1]
+        shutil.rmtree(root, ignore_errors=True)
+
+    hist = tempfile.mkdtemp()
+    try:
+        opts = {"mode": "afw", "history_dir": hist}
+        summary = {"mode": "afw", "files": [{"path": "p", "ms": 1}] * 2000}
+        paths = []
+        errors = []
+
+        def writer():
+            try:
+                paths.append(write_history(summary, opts))
+            except Exception as e:
+                errors.append(e)
+
+        threads = [threading.Thread(target=writer) for _ in range(8)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        names = sorted(os.listdir(hist))
+        loaded = [load_run(p) for p in list_run_files(hist, "afw")]
+        latest = os.path.join(hist, "latest-afw.json")
+        tests.append({
+            "test": "history-write-concurrent",
+            "description":
+                "8 writers at once: 8 complete files, no temp files left, "
+                "latest points at a complete file",
+            "passed": (
+                not errors
+                and len(set(paths)) == 8
+                and len(loaded) == 8
+                and all(len(r["files"]) == 2000 for r in loaded)
+                and not [n for n in names if n.endswith(".tmp")]
+                and len(load_run(latest)["files"]) == 2000
+            ),
+            "skip": False,
+        })
+    finally:
+        shutil.rmtree(hist, ignore_errors=True)
 
     return {
         "description": description,

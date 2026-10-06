@@ -13,6 +13,7 @@ import time
 
 from _afwdev.common import msg, resources
 from _afwdev.common.errors import AfwdevProcessError
+from _afwdev.test import run_dir
 
 
 class AfwfcgiHostError(AfwdevProcessError):
@@ -101,6 +102,9 @@ def start_afwfcgi(
             "orchestrated leaf requires afw.conf in work dir: " + work_dir)
 
     socket_path = os.path.join(work_dir, "afw.sock")
+    too_long = run_dir.socket_path_error(socket_path)
+    if too_long:
+        raise AfwfcgiHostError(too_long)
     if os.path.exists(socket_path):
         try:
             os.unlink(socket_path)

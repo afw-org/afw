@@ -61,11 +61,14 @@ afwdev test -j
 ./afwdev build --fulldev
 
 # Full test under valgrind (much slower) — pair with --fulldev before a PR that reaches C
-afwdev test -j --env-mode valgrind
+afwdev test -j --env-mode valgrind --baseline
 
 # AddressSanitizer + UBSan — also before a PR that reaches C (own tree, never installed)
 ./afwdev build --cdev --sanitize address
-./afwdev test -j --env-mode asan
+./afwdev test -j --env-mode asan --baseline
+
+# Gate runs add --baseline: this branch's baseline per env mode (the last gate
+# run replaces it). Later branches compare against it ("Out of family" line).
 
 afwdev validate --pattern 'src/afw/generate/objects/...'
 ```
@@ -83,8 +86,8 @@ afwdev validate --pattern 'src/afw/generate/objects/...'
 
 | PR touches | Build | Test |
 |------------|-------|------|
-| **C** (`src/afw`, extensions, commands, `afwfcgi`), or anything generated into C (`generate/` metadata, interface XML, `_afwdev/generate`) | `./afwdev build --fulldev` and `./afwdev build --cdev --sanitize address` | `afwdev test -j`, `afwdev test -j --env-mode valgrind`, `./afwdev test -j --env-mode asan` |
-| **afwdev Python only** (not the generators) | `./afwdev build --cdev` (installs afwdev) | `afwdev test -j` |
+| **C** (`src/afw`, extensions, commands, `afwfcgi`), or anything generated into C (`generate/` metadata, interface XML, `_afwdev/generate`) | `./afwdev build --fulldev` and `./afwdev build --cdev --sanitize address` | `afwdev test -j --baseline`, `afwdev test -j --env-mode valgrind --baseline`, `./afwdev test -j --env-mode asan --baseline` |
+| **afwdev Python only** (not the generators) | `./afwdev build --cdev` (installs afwdev) | `afwdev test -j --baseline` |
 | **JS app / client only** (`src/afw_app`, `src/afw_client`) | `./afwdev build --js` | `afwdev test --js` |
 | **Handbook XML** (`src/afw/doc/`) | `./afwdev build --docs` (or `--fulldev`) | none |
 | **Markdown only** (`designs/`, `AGENTS.md`, `.cursor/rules/`, `whats-new.md`) | none | none |

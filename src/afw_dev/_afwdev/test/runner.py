@@ -16,13 +16,13 @@
 
 import io
 import os
-import shutil
 import sys
 import time
 import multiprocessing
+import resource
 from functools import partial
 
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg
 from _afwdev.common.errors import (
     AfwdevError,
     AfwdevRunnerError,
@@ -36,8 +36,21 @@ from _afwdev.test.common import \
     test_path_for_display, clip_detail, outcome_flag, errors_only_console, \
     xctx_bytes_from_response, xctx_chunk_bytes_from_response, \
     format_test_timing
-from _afwdev.test.history import file_record
+from _afwdev.test.history import env_mode, file_record
 from _afwdev.test import failure_log
+from _afwdev.test import run_dir
+from _afwdev.test import family
+
+
+def _children_cpu_ms():
+    """User + system CPU of reaped children, in ms.
+
+    Each test's processes (afw, afwfcgi, clients) are reaped before
+    run_test returns, and a -j worker runs one test at a time, so the
+    change around run_test is that test's CPU.
+    """
+    r = resource.getrusage(resource.RUSAGE_CHILDREN)
+    return round((r.ru_utime + r.ru_stime) * 1000)
 
 
 ##
@@ -99,12 +112,43 @@ def _with_buffered_stdio(fn):
 def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     if options.get('_buffer_group_output'):
         result, captured = _with_buffered_stdio(
-            lambda: _run_test_group_body(
+            lambda: _run_test_group_guarded(
                 testGroup, options, testEnvironments, work_dir_prefix))
         return result + (captured,)
-    result = _run_test_group_body(
+    result = _run_test_group_guarded(
         testGroup, options, testEnvironments, work_dir_prefix)
     return result + ("",)
+
+
+def _run_test_group_guarded(testGroup, options, testEnvironments,
+        work_dir_prefix):
+    """A test or config.py that calls sys.exit() fails its group.
+
+    Under -j the group runs in a multiprocessing.Pool worker. If the
+    worker exited, the pool would lose the task and the run would wait
+    forever for its result.
+    """
+    env = os.environ.copy()
+    pwd = os.getcwd()
+    try:
+        return _run_test_group_body(
+            testGroup, options, testEnvironments, work_dir_prefix)
+    except SystemExit as e:
+        os.chdir(pwd)
+        os.environ.clear()
+        os.environ.update(env)
+        srcdir, root, _tests = testGroup
+        detail = "test group called sys.exit({})".format(e.code)
+        failure = {
+            'test': test_path_for_display(root, pwd),
+            'detail': detail,
+            'srcdir': srcdir,
+            'group': test_path_for_display(root, pwd),
+        }
+        failure_log.record(
+            options, test_path_for_display(root, pwd), detail)
+        msg.error("FAIL " + test_path_for_display(root, pwd) + ": " + detail)
+        return testGroup, 0, 0, 1, [failure], 0, []
 
 
 def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
@@ -177,7 +221,9 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             #   debug: any debug output from the test run that should be displayed
             #          to the user, under debug mode to help understand a problem.
             start = time.time()
+            cpu_start = _children_cpu_ms()
             response, error, debug = run_test(test, options, testEnvironment, testGroupConfig)
+            cpu_ms = _children_cpu_ms() - cpu_start
             end = time.time()                        
 
             # parse the test run results
@@ -195,10 +241,12 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             xctx_chunk_bytes = xctx_chunk_bytes_from_response(response)
             if xctx_bytes is not None:
                 max_xctx_bytes = max(max_xctx_bytes, xctx_bytes)
-            file_records.append(file_record(
+            record = file_record(
                 test_display, duration_ms, xctx_bytes,
                 numPassed, numSkipped, numFailures,
-                xctx_chunk_bytes=xctx_chunk_bytes))
+                xctx_chunk_bytes=xctx_chunk_bytes, cpu_ms=cpu_ms)
+            file_records.append(record)
+            marker = family.line_marker(record)
 
             # Quiet human chatter when summary is the sole stdout artifact
             quiet_console = (options.get('output') == '-')
@@ -247,6 +295,13 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             # prints successful tests too.
             errors_only = errors_only_console(options)
             if errors_only and not hasFailures:
+                # Out-of-family memory is shown even when passes are not.
+                if marker and not quiet_console:
+                    msg.warn("{}  {}{}".format(
+                        test_display,
+                        format_test_timing(
+                            duration_ms, xctx_bytes, xctx_chunk_bytes),
+                        marker))
                 continue
 
             if quiet_console:
@@ -255,10 +310,11 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             # Path for assertion failures / --show-all (process errors already
             # printed identity above).
             if error is None:
-                msg.highlighted_info("{}  {}".format(
+                msg.highlighted_info("{}  {}{}".format(
                     test_display,
                     format_test_timing(
-                        duration_ms, xctx_bytes, xctx_chunk_bytes)))
+                        duration_ms, xctx_bytes, xctx_chunk_bytes),
+                    marker))
 
                 if debug:
                     msg.debug('---\n' + debug + '\n---\n')
@@ -294,82 +350,15 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     return testGroup, passed, skipped, failed, failures, max_xctx_bytes, file_records
 
 
-def work_output_directory(options):
-    """``$tmpdir/afwdev_test_output``, or None when tmpdir is unset."""
-    tmpdir = (options or {}).get("tmpdir")
-    if not tmpdir:
-        return None
-    return os.path.join(tmpdir, "afwdev_test_output")
-
-
-def _has_diag(root):
-    """True when a firehose left a non-empty diag file.
-
-    That file is written when request errors were counted, including a
-    run that stayed under its error threshold and passed.
-    """
-    if not root or not os.path.isdir(root):
-        return False
-    for dirpath, _dirnames, filenames in os.walk(root):
-        if os.path.basename(dirpath) != "diag":
-            continue
-        for name in filenames:
-            path = os.path.join(dirpath, name)
-            try:
-                if os.path.getsize(path) > 0:
-                    return True
-            except OSError:
-                continue
-    return False
-
-
-def note_kept_detail(options, had_errors=False):
-    """One summary line when errors left detail in the work dir.
-
-    Printed when the run failed, or when a firehose counted request
-    errors and still passed. A clean pass prints nothing. The directory
-    is removed at the start of the next afwdev test for this temp
-    directory.
-    """
-    root = work_output_directory(options)
-    if not root or not os.path.isdir(root):
-        return
-    if not had_errors and not _has_diag(root):
-        return
-    msg.highlighted_info(
-        "Detail: {} kept until the next afwdev test for this temp directory"
-        .format(root))
-
-
 ##
-# @brief Creates a known, temporary folder to persist test output
+# @brief This run's work directory (run_dir.py), made on first use.
 # @param options The options dictionary
 #
 def allocate_working_directory(options):
-
-    # use a temporary directory for test output
-    tmpdir = options.get('tmpdir')
-    working_directory = tmpdir + "/afwdev_test_output"
-
-    # if folder already exists, remove it first.
-    # Leaf detail lives here until the next afwdev test run for this
-    # temp directory: work_dir/diag/, afwfcgi.stderr.log, and
-    # afwfcgi.stdout.log (log type standard writes stdout).
-    if os.path.exists(working_directory):
-        if options.get('output') != '-':
-            msg.highlighted_info(
-                "Removing previous working directory: " + working_directory)
-        shutil.rmtree(working_directory)
-    
-    # create folder
-    os.mkdir(working_directory)
-
-    # create a timestamp file
-    timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
-    with nfc.open(working_directory + "/timestamp", 'w') as f:
-        f.write(timestamp)
-
-    return working_directory
+    path = run_dir.current(options)
+    if path:
+        return path
+    return run_dir.create(options, env_mode(options))
 
 
 ##
@@ -435,7 +424,9 @@ def run(options, srcdirs):
         worker_options = dict(options)
         worker_options['_buffer_group_output'] = True
         
-        pool = multiprocessing.Pool(processes=test_jobs)                   
+        pool = multiprocessing.Pool(
+            processes=test_jobs, initializer=family.init_worker,
+            initargs=family.worker_args())
 
         # run allTestGroups in parallel     
         results = []
@@ -449,9 +440,23 @@ def run(options, srcdirs):
             ), allTestGroups
         )
         pool.close()
+        # Workers only exit at the end, so a new worker pid means one
+        # died. Its task is lost and imap would wait forever.
+        worker_pids = {p.pid for p in getattr(pool, "_pool", []) or []}
 
         try:
-            for res in pool_results:
+            while True:
+                try:
+                    res = pool_results.next(timeout=5)
+                except StopIteration:
+                    break
+                except multiprocessing.TimeoutError:
+                    now = {p.pid for p in getattr(pool, "_pool", []) or []}
+                    if now - worker_pids:
+                        raise AfwdevRunnerError(
+                            "A test worker process died, so its test group "
+                            "has no result. Run without -j to find it.")
+                    continue
                 if not res:
                     raise AfwdevRunnerError("Test group returned no results")
                 else:

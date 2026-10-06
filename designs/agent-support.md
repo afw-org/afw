@@ -279,7 +279,7 @@ Check `/proc/<pid>/maps` of the running `afwfcgi` once, to confirm it loaded the
 **Traps**
 
 - `afwfcgi.stderr.log` ending at `Service 'log-standard' starting.` is normal. After that log starts, the server writes to stdout (`afwfcgi.stdout.log`).
-- The Unix socket path `<tmpdir>/afwdev_test_output/<leaf>/afw.sock` has a limit of about 107 bytes. A long `--tmpdir` makes `afwfcgi` exit during startup ("Listening socket's path name is too long"), or the client fails ("AF_UNIX path too long"). Keep `--tmpdir` short.
+- The Unix socket path `<tmpdir>/afwdev-runs/<run>/<leaf>/afw.sock` has a limit of 107 bytes. afwdev checks it before starting `afwfcgi` and says to use a shorter `--tmpdir`.
 - One server thread never overlaps a restart with a read. A leaf meant to find timing crashes needs 2 or more threads.
 
 **Expected errors are caught, not counted.** A read of a stopped adapter fails, and that is correct. A restart has no gap. A stop has one until the next start. Reads count `is not available`, `is not running`, and `can not be started` as down. Restart, stop, and start calls catch their own overlap messages. Anything else fails the request, `maxFail` is 0, and the leaf fails if `afwfcgi` exits.
@@ -300,7 +300,7 @@ Check `/proc/<pid>/maps` of the running `afwfcgi` once, to confirm it loaded the
 
 **Shapes found this way:** shared single-threaded pool counts touched from several threads (#480); check-then-use of a runtime object across a lock release; a borrowed key or id outliving its pool.
 
-**Traps:** two `afwdev test` runs at once share `/tmp/afwdev_test_output` (use `--tmpdir`); don't rebuild the ASan tree while something runs from it; the C stack headroom check must use the frame address, since under ASan a local can live on the fake stack.
+**Traps:** don't rebuild the ASan tree while something runs from it; the C stack headroom check must use the frame address, since under ASan a local can live on the fake stack.
 
 **FINALLY that returns:** a function whose `AFW_FINALLY` returns before `AFW_ENDTRY` (because xctx is gone after it) must call `AFW_FINALLY_RELEASE_ERROR` first, or the try's error leaks its owned block.
 
