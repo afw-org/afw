@@ -1532,6 +1532,11 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         *filter = entry;
         entry->property_name = afw_object_get_property_as_string_internal(
             filter_object, afw_v_property, parser->xctx);
+        if (!entry->property_name) {
+            AFW_THROW_ERROR_FZ(general, parser->xctx,
+                "Filter operator '%ku' requires a property",
+                entry->op_name);
+        }
         if (parser->criteria->object_type && entry->property_name) {
             entry->pt = afw_object_type_property_type_get_extended(
                 parser->criteria->object_type,
@@ -1545,6 +1550,12 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
 
         entry->value = afw_object_get_property(
             filter_object, afw_v_value, parser->xctx);
+        /* Testing an object compares to it; NULL was dereferenced. */
+        if (!entry->value) {
+            AFW_THROW_ERROR_FZ(general, parser->xctx,
+                "Filter operator '%ku' requires a value",
+                entry->op_name);
+        }
         /** @fixme Make sure this is a single value/list. */
 
         /* If match, compile expression. */
