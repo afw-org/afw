@@ -989,6 +989,28 @@ do {\
 
 
 /**
+ * @brief In an AFW_FINALLY body that returns before AFW_ENDTRY,
+ *   release this try's error first.
+ *
+ * AFW_ENDTRY releases a caught error (it owns copies of what it points
+ * to). A FINALLY that returns, for example because xctx is gone after
+ * it, skips that. Use this before the return, while xctx is still
+ * valid. An uncaught error is dropped the same way. No-op if no error
+ * occurred.
+ *
+ * Always follow with a semicolon (AFW_FINALLY_RELEASE_ERROR;).
+ */
+#define AFW_FINALLY_RELEASE_ERROR \
+    do { \
+        if (this_ERROR_OCCURRED) { \
+            afw_error_processing_handled(xctx); \
+            afw_error_release_references(&this_THROWN_ERROR, xctx); \
+            this_ERROR_OCCURRED = false; \
+        } \
+    } while (0)
+
+
+/**
  * @brief Use an AFW_ERROR_MARK_CAUGHT in AFW_FINALLY block to mark error as
  *   unconditionally unhandled even if not caught.
  *

@@ -288,6 +288,22 @@ Check `/proc/<pid>/maps` of the running `afwfcgi` once, to confirm it loaded the
 
 **Wrong path:** lowering threads, or widening a catch to any error, to make a leaf green. Blaming current code for a results table from an older commit without rebuilding and re-running.
 
+### SEGV with no useful stack, or only under concurrency (ASan)
+
+| Field | Notes |
+|-------|--------|
+| Symptom | `afwfcgi exited (-11)` or `Connection reset by peer` in a firehose; an ASan `SEGV on unknown address` (unmapped) with a stack that looks unrelated |
+| Layer | A stale read of pool memory: the chunk was handed back and unmapped, so ASan sees only a fault |
+| Probe | Copy the leaf; in its application conf set `memoryRegionFreeListMaxBytes: 1073741824`, `memoryRegionKeepSmallCount: 1000000`, `memoryRegionKeepLargeCount: 1000000`. Freed chunks stay cached and poisoned, so `--env-mode asan` reports `use-after-poison` at the exact read. Then bisect the firehose items, and compare `concurrency: 1` against `2` to prove a race |
+| Entry | `tests/advanced/thread-pool-parent`, `tests/advanced/runtime-service-churn` (both use this conf); [`asan-opt-in.md`](asan-opt-in.md) |
+| Status | **Filled (2026-10-06)** |
+
+**Shapes found this way:** shared single-threaded pool counts touched from several threads (#480); check-then-use of a runtime object across a lock release; a borrowed key or id outliving its pool.
+
+**Traps:** two `afwdev test` runs at once share `/tmp/afwdev_test_output` (use `--tmpdir`); don't rebuild the ASan tree while something runs from it; the C stack headroom check must use the frame address, since under ASan a local can live on the fake stack.
+
+**FINALLY that returns:** a function whose `AFW_FINALLY` returns before `AFW_ENDTRY` (because xctx is gone after it) must call `AFW_FINALLY_RELEASE_ERROR` first, or the try's error leaks its owned block.
+
 ---
 
 ### Git push from an agent shell (dev container)

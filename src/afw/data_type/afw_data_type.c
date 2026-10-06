@@ -744,10 +744,21 @@ impl_afw_data_type_function_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value = from_internal;
+    const afw_value_t *value;
     const afw_utf8_t *result;
 
-    if (afw_value_is_string(value)) {
+    /* cType is const afw_value_t *: from_internal points at one. */
+    value = *(const afw_value_t * const *)from_internal;
+    if (value && afw_value_is_closure_binding(value)) {
+        value = (const afw_value_t *)
+            ((const afw_value_closure_binding_t *)value)->
+                script_function_definition;
+    }
+
+    if (!value) {
+        result = afw_s_a_empty_string;
+    }
+    else if (afw_value_is_string(value)) {
         result = AFW_VALUE_INTERNAL(value);
     }
     else if (afw_value_is_function_definition(value)) {
@@ -780,10 +791,18 @@ impl_afw_data_type_function_utf8_to_internal(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value;
-
-    value = afw_value_create_unmanaged_string(from_utf8, p, xctx);
-    memcpy(to_internal, (const void *)&value, sizeof(afw_value_t *));
+    /*
+     * A string is not a function. Wrapping one made an unmanaged
+     * function value in the caller's pool that escaped its scope
+     * (pool lifetime) and was read after the pool was freed. A
+     * function argument given by name is resolved where it is used.
+     */
+    (void)instance;
+    (void)to_internal;
+    (void)p;
+    AFW_THROW_ERROR_FZ(conversion_error, xctx,
+        "A string can not be converted to a function: '%ku'",
+        from_utf8);
 }
 
 
@@ -2406,7 +2425,7 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     function,             /* clone             */
     function,             /* compiler listing  */
-    typed_string,             /* as expression     */
+    typed_to_string,      /* as expression     */
     NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(

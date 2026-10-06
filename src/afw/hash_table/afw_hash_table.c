@@ -258,6 +258,24 @@ afw_hash_table_get_impl(
 }
 
 
+AFW_DEFINE(const void *)
+afw_hash_table_get_stored_key_impl(
+    const afw_hash_table_t *internal,
+    const void *key,
+    afw_size_t klen)
+{
+    afw_hash_table_t *self;
+    impl_entry_t *e;
+
+    if (!internal || !internal->buckets || internal->count == 0) {
+        return NULL;
+    }
+    self = IMPL_SELF(internal);
+    e = impl_find(self, key, klen, impl_hash(key, klen), NULL);
+    return e ? e->key : NULL;
+}
+
+
 
 /* Set or delete the value for key. */
 AFW_DEFINE(void)

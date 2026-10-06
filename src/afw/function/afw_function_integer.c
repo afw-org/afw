@@ -160,6 +160,10 @@ afw_function_execute_divide_integer(
     if (arg2->internal == 0) {
         AFW_THROW_ERROR_Z(argument_error, "Integer divide by zero error", x->xctx);
     }
+    /* The quotient does not fit, and the CPU traps (SIGFPE). */
+    if (arg1->internal == AFW_INTEGER_MIN && arg2->internal == -1) {
+        AFW_THROW_ERROR_Z(argument_error, "Integer divide overflow", x->xctx);
+    }
 
     return afw_value_create_unmanaged_integer(
         arg1->internal / arg2->internal,
@@ -211,6 +215,10 @@ afw_function_execute_mod_integer(
 
     if (arg2->internal == 0) {
         AFW_THROW_ERROR_Z(argument_error, "Integer divide by zero error", x->xctx);
+    }
+    /* The remainder is 0, but the CPU traps (SIGFPE) computing it. */
+    if (arg2->internal == -1) {
+        return afw_value_create_unmanaged_integer(0, x->p, x->xctx);
     }
 
     return afw_value_create_unmanaged_integer(

@@ -1,0 +1,56 @@
+# Request threads pin their thread pool's parent (holds_parent) when a
+# request heap is referenced. That parent must be a multithreaded pool:
+# with a single-threaded parent the counts raced and a parent destroyed
+# other threads' pools. A test_script references the request heap, so
+# concurrent test_script requests on several threads hit it.
+version: 1
+description: Concurrent test_script requests on several afwfcgi threads
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 900
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: mini-suite
+    sourceType: test_script
+    source: |
+      #!/usr/bin/env -S afw --syntax test_script
+      //?
+      //? testScript: mini_suite.as
+      //? sourceType: script
+      //?
+      //? test: one
+      //? expect: 1
+      //? source: ...
+
+      return 1;
+
+      //?
+      //? test: two
+      //? expect: "ok"
+      //? source: ...
+
+      return "ok";
+
+  - name: scopes
+    sourceType: script
+    source: |
+      let n = 0;
+      for (let i = 0; i < 50; i = i + 1) {
+          const o = { i: i };
+          n = n + o.i;
+      }
+      return n;
+    expect: 1225
+
+schedule:
+  - firehose:
+      maxRequests: 12000
+      concurrency: 8
+      fromTests: [mini-suite, scopes]
+      policy: roundRobin
+      seed: 3
+      stopOnError: true
+      maxFail: 0

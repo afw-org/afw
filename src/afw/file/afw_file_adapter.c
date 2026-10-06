@@ -223,6 +223,37 @@ impl_afw_adapter_get_additional_metrics(
 }
 
 
+/*
+ * An object type id or object id is one directory or file name under
+ * root: not empty, ".", or "..", and no '/', '\\', or NUL. Otherwise a
+ * caller could read or write files outside root.
+ */
+static void
+impl_check_path_segment(
+    const afw_utf8_t *segment,
+    const char *what,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+
+    if (!segment || segment->len == 0 ||
+        (segment->len == 1 && segment->s[0] == '.') ||
+        (segment->len == 2 && segment->s[0] == '.' && segment->s[1] == '.'))
+    {
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "File adapter %s is not a valid file name", what);
+    }
+    for (i = 0; i < segment->len; i++) {
+        if (segment->s[i] == '/' || segment->s[i] == '\\' ||
+            segment->s[i] == '\0')
+        {
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "File adapter %s can not contain '/', '\\', or NUL", what);
+        }
+    }
+}
+
+
 /* Helper to get full path. */
 AFW_DEFINE_STATIC_INLINE(const afw_utf8_t *)
 impl_get_full_path(
@@ -231,6 +262,8 @@ impl_get_full_path(
     const afw_utf8_t * object_id,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
+    impl_check_path_segment(object_type_id, "object type id", xctx);
+    impl_check_path_segment(object_id, "object id", xctx);
     return afw_utf8_concat(p, xctx,
         adapter->root,
         object_type_id,
@@ -283,6 +316,7 @@ impl_afw_adapter_session_retrieve_objects(
     afw_boolean_t stop;
 
     /* Open ObjectType's directory. Concat .len, then C-string door. */
+    impl_check_path_segment(object_type_id, "object type id", xctx);
     dirname_z = afw_utf8_to_utf8_z(
         afw_utf8_concat(p, xctx,
             adapter->root, object_type_id, afw_s_a_slash, NULL),

@@ -432,6 +432,7 @@ impl_read_and_process_request(
         if (keep_going) {
             afw_command_local_server_write_end(self);
         }
+        AFW_FINALLY_RELEASE_ERROR;
         afw_xctx_release(xctx, self->command_self->xctx);
         return keep_going && !self->fatal_error;
     }

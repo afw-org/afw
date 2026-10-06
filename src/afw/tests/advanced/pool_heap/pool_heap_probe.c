@@ -1336,7 +1336,7 @@ impl_thread_parent_hold(afw_xctx_t *xctx)
     int rc;
 
     rc = 0;
-    parent = impl_self(xctx->p);
+    parent = impl_self(xctx->env->p);
     parent_refs = parent->reference_count;
     thread = afw_pool_thread_create(-1, xctx);
     if (!thread || !thread->p) {

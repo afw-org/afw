@@ -32,6 +32,8 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `process::maxPoolBytesInUse` / `maxPoolChunkBytes` | **`peakPoolBytesInUse`** / **`peakPoolChunkBytes`**. Policy caps are **`limitEvaluationStackCount`**, **`limitRequestPoolBytes`**, **`limitCStackHeadroomBytes`**. Request-thread stack is **`threadStackBytes`**. [Telemetry](#process-telemetry-and-request-caps-issue-329) |
 | `const x = compile(…)` then use `x` as a string/function | **`compile()` stores a unit.** Run it with **`evaluate(x)`** (or `evaluate(compile(…))`). **`app::name`** still evaluates on get (`#{…}` / `${…}` / call). [Templates](#compile-time-template-substitutions-issue-97) |
 | Log conf **`custom`** | **Gone** (it was never loaded). Use **`app::`** or log **`format`** / **`filter`**. Model **`custom::`** is unchanged. |
+| Converting a string to `function` (`bag<function>("add")`, a `function`-typed conversion of a string) | Throws **`conversion_error`**. Pass the function value, or a name where the function takes one. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
+| Shell scripts that expect `afw script.as` to exit 0 after a script error | **`afw` exits 1** when a script, test_script, `-x` expression, or piped input ends with an uncaught error. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 
 ### C programmers
 
@@ -164,6 +166,20 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Service start and restart**](#service-start-and-restart-issue-411) ([#411](https://github.com/afw-org/afw/issues/411)) | A read no longer fails when another request just started its adapter. A restart that does not happen throws and leaves the service running. `confPropertyObjectType` uses `_` before the subtype |
 
 ---
+
+## Crash hunt fixes (issue [#480](https://github.com/afw-org/afw/issues/480), PR [#483](https://github.com/afw-org/afw/pull/483))
+
+An overnight crash hunt (ASan stress leaves and fuzzers) fixed crashes that a script, an HTTP client, or concurrent load could cause. What you may notice:
+
+- **`afwfcgi` under load:** request threads no longer race on their thread pool's parent (#480), and reading `_AdaptiveService_`, `_AdaptiveAdapter_`, or log objects while services restart no longer reads freed memory.
+- **Requests:** a body with no `Content-Type` is **`unsupported_content`**. Deeply nested script source or JSON fails with **"C stack headroom exhausted"** (`limitCStackHeadroomBytes`) instead of crashing.
+- **Queries:** a filter object needs **`property`** and **`value`** ("Filter operator 'ne' requires a value").
+- **File adapter:** an object type id or object id must be one file name: not empty, `.`, or `..`, and no `/`, `\`, or NUL (**`argument_error`**).
+- **Functions:** `divide<integer>(#integerMin, -1)` throws "Integer divide overflow"; `mod<integer>(x, -1)` is 0; `meta(current::x)` of an unset variable reports `undefined`; a void value (`continue()` used as a value) does not convert (`conversion_error`); a string does not convert to `function`.
+- **`afw` CLI:** exits 1 after an uncaught error (see *Must change*).
+- **Memory:** an uncaught error no longer leaks at `afw` exit; restarting a service no longer grows `env->p` (registry key copies are freed).
+
+Not yet: deeply nested data built at runtime (thousands of levels) can still overflow the C stack while it is freed ([#482](https://github.com/afw-org/afw/issues/482)).
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 

@@ -1,0 +1,117 @@
+# Service restart and stop/start of file, model, vfs adapters and a log
+# while other threads read the same runtime objects (_AdaptiveService_,
+# _AdaptiveAdapter_, _AdaptiveLog_), adapters, logs, and flags. The
+# runtime table, registry-backed objects, and adapter properties used
+# to be read after the registration they pointed to was released.
+# The region cap is large so freed chunks stay poisoned under
+# --env-mode asan. Longer: src/afw/tests-extra/runtime-service-churn.
+version: 1
+description: Concurrent service churn with readers of runtime objects
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 900
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: restart-data
+    sourceType: script
+    source: |
+      try { service_restart("adapter-data"); } catch (e) { }
+      return true;
+    expect: true
+  - name: restart-model
+    sourceType: script
+    source: |
+      try { service_restart("adapter-model"); } catch (e) { }
+      return true;
+    expect: true
+  - name: restart-vfs
+    sourceType: script
+    source: |
+      try { service_restart("adapter-vfs"); } catch (e) { }
+      return true;
+    expect: true
+  - name: restart-log
+    sourceType: script
+    source: |
+      try { service_restart("log-standard"); } catch (e) { }
+      return true;
+    expect: true
+  - name: stop-start-model
+    sourceType: script
+    source: |
+      try { service_stop("adapter-model"); } catch (e) { }
+      try { service_start("adapter-model"); } catch (e) { }
+      return true;
+    expect: true
+  - name: stop-start-data
+    sourceType: script
+    source: |
+      try { service_stop("adapter-data"); } catch (e) { }
+      try { service_start("adapter-data"); } catch (e) { }
+      return true;
+    expect: true
+  - name: read-data
+    sourceType: script
+    source: |
+      try { const o = get_object("data", "Demo", "seed"); o.extra = [1, 2, { a: o.msg }]; } catch (e) { }
+      try { retrieve_objects("data", "Demo"); } catch (e) { }
+      return true;
+    expect: true
+  - name: read-model
+    sourceType: script
+    source: |
+      try { const o = get_object("model", "Demo", "any"); const s = stringify(o); } catch (e) { }
+      try { retrieve_objects("model", "Demo"); } catch (e) { }
+      return true;
+    expect: true
+  - name: read-vfs
+    sourceType: script
+    source: |
+      try { get_object("vfs", "_AdaptiveFile_vfs", "hello.txt"); } catch (e) { }
+      try { retrieve_objects("vfs", "_AdaptiveFile_vfs"); } catch (e) { }
+      return true;
+    expect: true
+  - name: read-meta
+    sourceType: script
+    source: |
+      try { const m = get_object("afw", "_AdaptiveAdapter_", "data").metrics; } catch (e) { }
+      try { get_object("afw", "_AdaptiveAdapter_", "model"); } catch (e) { }
+      try { retrieve_objects("afw", "_AdaptiveService_"); } catch (e) { }
+      try { retrieve_objects("afw", "_AdaptiveAdapter_"); } catch (e) { }
+      try { retrieve_objects("afw", "_AdaptiveLog_"); } catch (e) { }
+      try { get_object("afw", "_AdaptiveServer_", "current"); } catch (e) { }
+      try { service_get("adapter-model"); service_get("log-standard"); } catch (e) { }
+      return true;
+    expect: true
+  - name: logging
+    sourceType: script
+    source: |
+      try { log("debug", "churn debug"); log("warning", "churn warning"); } catch (e) { }
+      return true;
+    expect: true
+  - name: flags
+    sourceType: script
+    source: |
+      try { flag_set(["response:metrics"], true); flag_set(["response:metrics"], false); } catch (e) { }
+      try { flag_get_active(); } catch (e) { }
+      return true;
+    expect: true
+  - name: write-data
+    sourceType: script
+    source: |
+      const id = "w" + to_string(random_integer(1, 50));
+      try { add_object_with_uri("/data/Demo/" + id, { msg: id }); } catch (e) { }
+      try { delete_object("data", "Demo", id); } catch (e) { }
+      return true;
+    expect: true
+schedule:
+  - firehose:
+      maxRequests: 8000
+      concurrency: 8
+      fromTests: [restart-data, restart-model, restart-vfs, restart-log, stop-start-model, stop-start-data, read-data, read-model, read-vfs, read-meta, logging, flags, write-data]
+      policy: random
+      seed: 11
+      stopOnError: true

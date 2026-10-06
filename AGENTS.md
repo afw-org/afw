@@ -102,8 +102,9 @@ Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml
 
 ```text
 edit generate/ or hand C/Python  →  ./afwdev build --cdev  →  afwdev test -j
-# full package dev install / before PR (maintainer default):
+# full package dev install / before a PR that reaches C (other PRs: PR gate table in afw-project.mdc):
 #   ./afwdev build --fulldev  →  afwdev test -j --env-mode valgrind
+#   ./afwdev build --cdev --sanitize address  →  ./afwdev test -j --env-mode asan
 ```
 
 1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.
@@ -114,8 +115,8 @@ edit generate/ or hand C/Python  →  ./afwdev build --cdev  →  afwdev test -j
 **Before commit/push** (docs, multi-area, finish pass — not every one-line C fix): prefer  
 `./afwdev build --fulldev` (or at least a docs-aware build). `--cdev` alone will not catch handbook XML/docs-builder failures.
 
-**Full build and test before a PR** (maintainer default; also when the user asks for full verify):  
-`./afwdev build --fulldev` then `afwdev test -j --env-mode valgrind`.  
+**Full build and test before a PR that reaches C** (C, or anything generated into C; also when the user asks for full verify). Other PRs: the **PR gate** table in [`.cursor/rules/afw-project.mdc`](.cursor/rules/afw-project.mdc) (afwdev Python, JS app, handbook, Markdown only).  
+`./afwdev build --fulldev` then `afwdev test -j --env-mode valgrind`, **and** the ASAN pair `./afwdev build --cdev --sanitize address` then `./afwdev test -j --env-mode asan` (part of the gate since 2026-10-06: ASAN sees stale reads of pool memory that valgrind cannot; see [`designs/asan-opt-in.md`](designs/asan-opt-in.md)). The ASAN build goes to its own tree and never changes the normal install, so the order of the two pairs does not matter.  
 `--fulldev` is short for **`--all --generate --clean --install --scan`** plus **parallel jobs (`-j`)**: C, docs, and JS contexts, regenerate from package metadata (including version), clean trees, install, and clang analyze-build. **`--docker` is excluded from both `--all` and `--fulldev`** — cross-platform docker image builds are slow (full C compile per target platform) and stay an explicit, deliberate `--docker` invocation, never a side effect of the routine dev loop; see [`designs/docker-cross-platform-builds.md`](designs/docker-cross-platform-builds.md). Valgrind is much slower — not for every edit. Note: **`--all` alone does not run generate or install**.
 
 Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
@@ -150,11 +151,10 @@ afwdev validate --pattern 'src/afw/generate/objects/...'
 # Full package dev install (all contexts + generate + clean + install + scan + -j):
 ./afwdev build --fulldev
 
-# Full verify before PR (maintainer default; also when user asks for full build/test):
+# Full verify before a PR that reaches C (also when user asks for full build/test):
 ./afwdev build --fulldev
 afwdev test -j --env-mode valgrind   # much slower
-
-# Opt-in AddressSanitizer + UBSan (own tree build/asan/cmake/, never installed; ~50s + ~6 min)
+# ...and AddressSanitizer + UBSan (own tree build/asan/cmake/, never installed; ~50s + ~6 min)
 ./afwdev build --cdev --sanitize address
 ./afwdev test -j --env-mode asan
 
@@ -165,7 +165,7 @@ afwdev test -j --env-mode valgrind   # much slower
 afwdev generate --srcdir-pattern '*'
 ```
 
-`--cdev` and `--fulldev` are convenience profiles (both include **`-j`** / parallel cmake unless you pass **`-j N`**). `--cdev` = generate/clean/install/-j for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` plus `-j` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, clang scan — **not** docker, which stays explicit-only even under `--fulldev`). **`--all` alone does not generate or install.** Both define `AFW_DEBUG_EVALUATION`, `AFW_DEBUG_LOCK`, and `AFW_DEBUG_POOL` (runtime flags still off unless set). Extra C preprocessor defines: `afwdev build --define NAME` or `--define NAME=VALUE`. CMake output lives under `build/cmake/`. `--sanitize address` is opt-in and never implied by a profile: it builds into `build/asan/cmake/`, a sibling a normal `--clean` never touches; story and decisions in [`designs/asan-opt-in.md`](designs/asan-opt-in.md).
+`--cdev` and `--fulldev` are convenience profiles (both include **`-j`** / parallel cmake unless you pass **`-j N`**). `--cdev` = generate/clean/install/-j for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` plus `-j` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, clang scan — **not** docker, which stays explicit-only even under `--fulldev`). **`--all` alone does not generate or install.** Both define `AFW_DEBUG_EVALUATION`, `AFW_DEBUG_LOCK`, and `AFW_DEBUG_POOL` (runtime flags still off unless set). Extra C preprocessor defines: `afwdev build --define NAME` or `--define NAME=VALUE`. CMake output lives under `build/cmake/`. `--sanitize address` is never implied by a profile: it builds into `build/asan/cmake/`, a sibling a normal `--clean` never touches. It is an explicit step of the PR gate; story and decisions in [`designs/asan-opt-in.md`](designs/asan-opt-in.md).
 
 ## Documentation
 

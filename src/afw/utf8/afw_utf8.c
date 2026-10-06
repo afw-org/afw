@@ -2102,6 +2102,11 @@ AFW_DEFINE(int) afw_utf8_compare(
         return -1;
     }
 
+    /* An empty utf8 can have a NULL s; memcmp(NULL, ..., 0) is undefined. */
+    if (s1->len == 0 || s2->len == 0) {
+        return (s1->len == s2->len) ? 0 : ((s1->len == 0) ? -1 : 1);
+    }
+
     if (s1->len == s2->len) {
         return memcmp(s1->s, s2->s, s1->len);
     }

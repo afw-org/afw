@@ -38,47 +38,6 @@ typedef struct {
 } impl_ht_object_entry;
 
 
-static const afw_object_t *
-impl_entry_to_object(
-    const impl_ht_object_entry *entry,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *result;
-
-    if (!entry) {
-        result = NULL;
-    }
-
-    else if ((entry)->cb_entry.always_NULL == NULL) {
-        result = entry->cb_entry.cb(entry->cb_entry.data, p, xctx);
-    }
-
-    else {
-        result = (const afw_object_t *)entry;
-    }
-
-    return result;
-}
-
-
-static const afw_object_t *
-impl_get_object(
-    afw_void_hash_table_t *ht, const void *key, afw_size_t klen,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *result;
-    const impl_ht_object_entry *entry;
-
-    entry = afw_hash_table_get(ht, key, klen);
-
-    result = impl_entry_to_object(entry, p, xctx);
-
-    return result;
-}
-
-
 static afw_runtime_object_indirect_t *
 impl_table_owned_indirect(
     const afw_object_t *instance);
@@ -144,7 +103,7 @@ impl_factory =
 
 
 static void
-impl_set_entry(
+impl_set_entry_locked(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const impl_ht_object_entry *entry,
@@ -219,6 +178,27 @@ impl_set_entry(
 }
 
 
+/*
+ * The env table is read and changed from every thread. Changes and
+ * the reads in impl_find_object() / retrieve hold environment_lock.
+ * Callers may already hold it (registry register); it is recursive.
+ */
+static void
+impl_set_entry(
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const impl_ht_object_entry *entry,
+    afw_boolean_t overwrite,
+    afw_xctx_t *xctx)
+{
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        impl_set_entry_locked(object_type_id, object_id, entry, overwrite,
+            xctx);
+    }
+    AFW_LOCK_END;
+}
+
+
 
 /* Set an object pointer in the environment's runtime objects. */
 AFW_DEFINE(void)
@@ -284,24 +264,43 @@ afw_runtime_remove_object(
     const impl_ht_object_entry *entry;
     const afw_xctx_t *c;
     afw_void_hash_table_t *ht;
+    const void *stored_key;
 
-    for (c = xctx; c; c = c->parent) {
-        if (c->runtime_objects && c->runtime_objects->types_ht) {
-            ht = afw_hash_table_get(c->runtime_objects->types_ht,
-                object_type_id->s, object_type_id->len);
-            if (ht) {
-                entry = afw_hash_table_get(ht, object_id->s, object_id->len);
-                if (entry) {
-                    afw_hash_table_set(ht, object_id->s, object_id->len,
-                        NULL, xctx);
-                    if (entry->cb_entry.always_NULL != NULL) {
-                        impl_entry_object_leaves_table(&entry->object, xctx);
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        for (c = xctx; c; c = c->parent) {
+            if (c->runtime_objects && c->runtime_objects->types_ht) {
+                ht = afw_hash_table_get(c->runtime_objects->types_ht,
+                    object_type_id->s, object_type_id->len);
+                if (ht) {
+                    entry = afw_hash_table_get(ht,
+                        object_id->s, object_id->len);
+                    if (entry) {
+                        /*
+                         * The environment's table copied the key into
+                         * env->p (impl_set_entry_locked); free it. An
+                         * xctx's table borrows its keys.
+                         */
+                        stored_key = (!c->parent && object_id->len > 0)
+                            ? afw_hash_table_get_stored_key(ht,
+                                object_id->s, object_id->len)
+                            : NULL;
+                        afw_hash_table_set(ht, object_id->s, object_id->len,
+                            NULL, xctx);
+                        if (stored_key) {
+                            afw_pool_free_memory(xctx->env->p,
+                                (void *)stored_key, object_id->len, xctx);
+                        }
+                        if (entry->cb_entry.always_NULL != NULL) {
+                            impl_entry_object_leaves_table(&entry->object,
+                                xctx);
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
     }
+    AFW_LOCK_END;
 }
 
 
@@ -483,10 +482,21 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
 
     /*
      * Own pool, parented on env->p. The table owns the object: replacing
-     * or removing its entry releases this pool.
+     * or removing its entry releases this pool. The object id is
+     * copied into it: a registry caller's key can live in a pool that
+     * goes first (a service restart), and the object's meta points at
+     * the id.
      */
     object_p = afw_pool_heap_create(xctx->env->p,
         xctx->env->small_chunk_min, xctx);
+    AFW_TRY {
+        object_id = afw_utf8_clone(object_id, object_p, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_pool_release(object_p, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
     obj = afw_runtime_object_create_indirect_using_inf(inf, object_id,
         internal, cb, object_p, xctx);
     indirect = (afw_runtime_object_indirect_t *)obj;
@@ -673,6 +683,114 @@ impl_clone_under_environment_lock(
 
 
 
+static void
+impl_pin_release_cleanup(
+    void *data, void *data2,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    afw_pool_release((const afw_pool_t *)data, xctx);
+}
+
+
+/*
+ * Call with environment_lock held. An entry can leave the table
+ * (service restart or stop, adapter stop) and what it points to be
+ * freed as soon as the lock is dropped, so take what the caller
+ * needs now:
+ *   - a callback wrapper entry: call it (process data, no lock);
+ *   - an indirect object without a callback (registry structure): clone
+ *     it while the lock still holds the registration it points to;
+ *   - an indirect object with a callback: hold its pool until dest p
+ *     goes; the callback pins what it reads (impl_object_for_caller
+ *     calls it after the lock);
+ *   - anything else lives for the process.
+ */
+static const afw_object_t *
+impl_entry_object_locked(
+    const impl_ht_object_entry *entry,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *object;
+    const afw_runtime_object_type_meta_t *meta;
+    const afw_runtime_object_indirect_t *indirect;
+
+    if (!entry) {
+        return NULL;
+    }
+    if (entry->cb_entry.always_NULL == NULL) {
+        return entry->cb_entry.cb(entry->cb_entry.data, p, xctx);
+    }
+    object = &entry->object;
+    if (!object->inf ||
+        object->inf->get_property != afw_runtime_object_get_property)
+    {
+        return object;
+    }
+    meta = object->inf->rti.implementation_specific;
+    if (!meta || !meta->indirect) {
+        return object;
+    }
+    indirect = (const afw_runtime_object_indirect_t *)object;
+    if (!indirect->cb) {
+        return impl_clone_under_environment_lock(object, p, xctx);
+    }
+    if (object->p && afw_pool_internal_is_multithreaded(object->p)) {
+        afw_pool_get_reference(object->p, xctx);
+        AFW_TRY {
+            afw_pool_register_cleanup(p, (void *)object->p, NULL,
+                impl_pin_release_cleanup, xctx);
+        }
+        AFW_CATCH_UNHANDLED {
+            afw_pool_release(object->p, xctx);
+            AFW_ERROR_RETHROW;
+        }
+        AFW_ENDTRY;
+    }
+    return object;
+}
+
+
+/*
+ * Find an object in xctx's chain of runtime tables and take it for
+ * dest p (impl_entry_object_locked), all under environment_lock.
+ */
+static const afw_object_t *
+impl_find_object(
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const impl_ht_object_entry *entry;
+    const afw_object_t *result;
+    const afw_xctx_t *c;
+    afw_void_hash_table_t *ht;
+
+    result = NULL;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        for (c = xctx; c; c = c->parent) {
+            if (c->runtime_objects && c->runtime_objects->types_ht) {
+                ht = afw_hash_table_get(c->runtime_objects->types_ht,
+                    object_type_id->s, object_type_id->len);
+                if (ht) {
+                    entry = afw_hash_table_get(ht,
+                        object_id->s, object_id->len);
+                    if (entry) {
+                        result = impl_entry_object_locked(entry, p, xctx);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    AFW_LOCK_END;
+    return result;
+}
+
+
 /*
  * If this indirect object was created with a callback, call it with
  * the object pointer as data. Otherwise clone under environment_lock.
@@ -712,40 +830,15 @@ afw_runtime_get_object(
     AFW_COMPILER_ANNOTATION_NONNULL afw_xctx_t *xctx)
 {
     const afw_object_t *result;
-    const afw_xctx_t *c;
-    afw_void_hash_table_t *ht;
     impl_check_manifest_cb_context_t ctx;
 
-    result = NULL;
-
-    for (c = xctx; c; c = c->parent) {
-        if (c->runtime_objects && c->runtime_objects->types_ht) {
-            ht = afw_hash_table_get(c->runtime_objects->types_ht,
-                object_type_id->s, object_type_id->len);
-            if (ht) {
-                result = impl_get_object(ht, object_id->s, object_id->len,
-                    p, xctx);
-                if (result) break;
-            }
-        }
-    }
-
+    result = impl_find_object(object_type_id, object_id, p, xctx);
     if (!result) {
         ctx.object_type_id = object_type_id;
         ctx.object_id = object_id;
         afw_runtime_foreach(afw_s__AdaptiveManifest_,
             &ctx, impl_check_manifest_cb, p, xctx);
-        for (c = xctx; c; c = c->parent) {
-            if (c->runtime_objects && c->runtime_objects->types_ht) {
-                ht = afw_hash_table_get(c->runtime_objects->types_ht,
-                    object_type_id->s, object_type_id->len);
-                if (ht) {
-                    result = impl_get_object(ht, object_id->s, object_id->len,
-                        p, xctx);
-                    if (result) break;
-                }
-            }
-        }
+        result = impl_find_object(object_type_id, object_id, p, xctx);
     }
 
     if (result) {
@@ -902,6 +995,11 @@ impl_afw_adapter_session_retrieve_objects(
     afw_hash_table_index_t hi;
     const afw_runtime_custom_t *custom;
     const impl_ht_object_entry *entry;
+    const afw_object_t **objects;
+    afw_size_t count;
+    afw_size_t n;
+    afw_size_t i;
+    int pass;
 
     /* If this is a custom handled object type, call its function and return. */
     if (self) {
@@ -914,29 +1012,60 @@ impl_afw_adapter_session_retrieve_objects(
         }
     }
 
-    /* Call callback with all applicable set runtime objects. */
-    for (c = xctx; c; c = c->parent) {
-        AFW_XCTX_THROW_IF_TERMINATING(xctx);
-        if (c->runtime_objects && c->runtime_objects->types_ht) {
-            ht = afw_hash_table_get(c->runtime_objects->types_ht,
-                object_type_id->s, object_type_id->len);
-            if (ht) {
+    /*
+     * Snapshot the objects under environment_lock (see
+     * impl_entry_object_locked), then test and call back without it.
+     */
+    objects = NULL;
+    count = 0;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        for (pass = 0; pass < 2; pass++) {
+            n = 0;
+            for (c = xctx; c; c = c->parent) {
+                if (!c->runtime_objects || !c->runtime_objects->types_ht) {
+                    continue;
+                }
+                ht = afw_hash_table_get(c->runtime_objects->types_ht,
+                    object_type_id->s, object_type_id->len);
+                if (!ht) {
+                    continue;
+                }
                 for (afw_hash_table_first(ht, &hi);
                     afw_hash_table_this(&hi, NULL, NULL, (void **)&entry);
                     afw_hash_table_next(&hi))
                 {
-                    AFW_XCTX_THROW_IF_TERMINATING(xctx);
-                    obj = impl_object_for_caller(
-                        impl_entry_to_object(entry, p, xctx), p, xctx);
-                    if (afw_query_criteria_test_object(obj,
-                        criteria, p, xctx))
-                    {
-                        /* If complete, short circuit retrieve and return. */
-                        if (callback(obj, context, xctx)) {
-                            return;
-                        }
+                    if (!entry) {
+                        continue;
                     }
+                    if (pass == 1) {
+                        objects[n] = impl_entry_object_locked(
+                            entry, p, xctx);
+                    }
+                    n++;
                 }
+            }
+            if (pass == 0) {
+                count = n;
+                if (count == 0) {
+                    break;
+                }
+                objects = afw_pool_calloc(p,
+                    sizeof(const afw_object_t *) * count, xctx);
+            }
+        }
+    }
+    AFW_LOCK_END;
+
+    /* Call callback with all applicable set runtime objects. */
+    for (i = 0; i < count; i++) {
+        AFW_XCTX_THROW_IF_TERMINATING(xctx);
+        obj = impl_object_for_caller(objects[i], p, xctx);
+        if (afw_query_criteria_test_object(obj,
+            criteria, p, xctx))
+        {
+            /* If complete, short circuit retrieve and return. */
+            if (callback(obj, context, xctx)) {
+                return;
             }
         }
     }

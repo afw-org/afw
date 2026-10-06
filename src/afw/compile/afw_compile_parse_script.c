@@ -2237,6 +2237,8 @@ afw_compile_parse_Statement(
     const afw_value_t *result;
     afw_boolean_t was_assignment_expression;
 
+    afw_compile_parse_check_depth(parser);
+
     /* Initialize was_expression to false. */
     if (was_expression) {
         *was_expression = false;

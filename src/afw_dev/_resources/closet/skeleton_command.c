@@ -288,7 +288,8 @@ int main(int argc, const char * const *argv)
         }
         */
 
-        /* Release enviornment. */
+        /* Release this try's error, then the environment. */
+        AFW_FINALLY_RELEASE_ERROR;
         afw_environment_release(xctx);
 
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */

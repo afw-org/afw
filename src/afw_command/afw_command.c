@@ -595,6 +595,7 @@ impl_evaluate(
     AFW_CATCH_UNHANDLED{
         impl_print_error(self, AFW_ERROR_THROWN, xctx);
         error_occurred = true;
+        self->evaluation_failed = true;
     }
 
     AFW_FINALLY{
@@ -606,6 +607,7 @@ impl_evaluate(
             /* Do not skip xctx_release / destroy. */
         }
         AFW_ENDTRY;
+        AFW_FINALLY_RELEASE_ERROR;
         afw_xctx_release(xctx, xctx);
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */
         if (keep_going) impl_print_end(self);
@@ -1101,6 +1103,17 @@ main(int argc, const char * const *argv) {
 
             while (impl_evaluate(self, NULL, NULL));
         }
+
+        /*
+         * A script, test_script, -x expression, or piped input that ended
+         * with an uncaught error exits non-zero. Interactive mode and
+         * --local keep going after an error.
+         */
+        if (self->evaluation_failed && rv == EXIT_SUCCESS &&
+            !self->interactive_mode && !self->local_mode_z)
+        {
+            rv = EXIT_FAILURE;
+        }
     }
 
     /* Print any unhandled errors. */
@@ -1123,7 +1136,8 @@ main(int argc, const char * const *argv) {
             fclose(self->fd_input);
         }
 
-        /* Release enviornment. */
+        /* Release this try's error, then the environment. */
+        AFW_FINALLY_RELEASE_ERROR;
         afw_environment_release(xctx);
 
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */

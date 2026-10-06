@@ -1361,7 +1361,13 @@ afw_pool_thread_create(
     afw_memory_region_configure(region, xctx->env, xctx);
     thread->memory_region = region;
     AFW_TRY {
-        self = afw_pool_heap_internal_create_self(xctx->p,
+        /*
+         * Parent is env->p, a multithreaded heap. Every request
+         * thread can pin its thread pool's parent (holds_parent), so
+         * that parent must lock its count. A single-threaded parent
+         * (the creating xctx->p) raced across threads.
+         */
+        self = afw_pool_heap_internal_create_self(xctx->env->p,
             &impl_afw_pool_inf, true,
             xctx->env->xctx_chunk_min,
             sizeof(afw_pool_heap_internal_self_with_free_memory_head_t),

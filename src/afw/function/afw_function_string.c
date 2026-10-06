@@ -79,7 +79,9 @@ afw_function_execute_add_string(
     for (v = args, c = s, n = 0; n < x->argc;
         c += (*v)->internal.len, v++, n++)
     {
-        memcpy(c, (*v)->internal.s, (*v)->internal.len);
+        if ((*v)->internal.len > 0) {
+            memcpy(c, (*v)->internal.s, (*v)->internal.len);
+        }
     }
 
     /* Return String value. */
@@ -155,7 +157,9 @@ afw_function_execute_concat(
     for (v = args, c = s, n = 0; n < x->argc;
         c += (*v)->internal.len, v++, n++)
     {
-        memcpy(c, (*v)->internal.s, (*v)->internal.len);
+        if ((*v)->internal.len > 0) {
+            memcpy(c, (*v)->internal.s, (*v)->internal.len);
+        }
     }
 
     /* Return String value. */
@@ -374,7 +378,9 @@ afw_function_execute_string(
     for (v = args, c = s, n = 0; n < x->argc;
         c += (*v)->internal.len, v++, n++)
     {
-        memcpy(c, (*v)->internal.s, (*v)->internal.len);
+        if ((*v)->internal.len > 0) {
+            memcpy(c, (*v)->internal.s, (*v)->internal.len);
+        }
     }
 
     /* Return String value. */
