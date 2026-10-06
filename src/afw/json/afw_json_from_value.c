@@ -338,6 +338,9 @@ impl_convert_value_to_json(
     const afw_data_type_t *value_data_type;
     afw_value_info_t info;
 
+    /* Recursion follows the value's nesting (#482). */
+    afw_xctx_check_resource_limits(wa->xctx, 0);
+
     /* Change undefined value to null.  */
     if (!value) {
         value = afw_value_null;

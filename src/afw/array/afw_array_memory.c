@@ -505,7 +505,7 @@ impl_release_remaining_elements(
     entries = self->values->entries;
     for (i = 0; i < count; i++) {
         if (entries[i]) {
-            afw_value_release(entries[i], xctx);
+            afw_value_release_held(entries[i], xctx);
             entries[i] = NULL;
         }
     }
@@ -814,7 +814,7 @@ impl_drop_element(
     afw_xctx_t *xctx)
 {
     if (self->wrapped) {
-        afw_value_release(value, xctx);
+        afw_value_release_held(value, xctx);
     }
 }
 
@@ -1195,7 +1195,7 @@ impl_afw_array_managed_release(
         entries = self->values->entries;
         for (i = 0; i < count; i++) {
             if (entries[i]) {
-                afw_value_release(entries[i], xctx);
+                afw_value_release_held(entries[i], xctx);
                 entries[i] = NULL;
             }
         }
@@ -1404,7 +1404,7 @@ impl_afw_array_managed_setter_remove_value_by_index(
     }
     /* Managed array holds occupants. Unmanaged remove_by_index
      * only drops a wrapper face; splice would leak the slot hold. */
-    afw_value_release(*slot, xctx);
+    afw_value_release_held(*slot, xctx);
     *slot = NULL;
     afw_vector_remove(array_self->values, at, xctx);
     impl_maybe_clear_generic_data_type(array_self);
@@ -1427,7 +1427,7 @@ impl_afw_array_managed_setter_remove_value(
     entries = array_self->values->entries;
     for (i = 0; i < count; i++) {
         if (afw_value_equal(value, entries[i], xctx)) {
-            afw_value_release(entries[i], xctx);
+            afw_value_release_held(entries[i], xctx);
             entries[i] = NULL;
             afw_vector_remove(array_self->values, i, xctx);
             impl_maybe_clear_generic_data_type(array_self);
@@ -1455,7 +1455,7 @@ impl_afw_array_managed_setter_remove_all_values(
         entries = array_self->values->entries;
         for (i = 0; i < count; i++) {
             if (entries[i]) {
-                afw_value_release(entries[i], xctx);
+                afw_value_release_held(entries[i], xctx);
                 entries[i] = NULL;
             }
         }
@@ -1604,6 +1604,6 @@ impl_afw_array_managed_release_references(
     for (i = 0; i < self->values->count; i++) {
         value = self->values->entries[i];
         self->values->entries[i] = NULL;
-        afw_value_release(value, xctx);
+        afw_value_release_held(value, xctx);
     }
 }

@@ -172,15 +172,12 @@ impl_service_retain(
 
 
 /*
- * Drop one reference. free_at_zero is false while a start or restart
- * caller still owns the object: that caller frees the pool when this
- * generation is not registered. Freeing here too would free it twice
- * after a newer generation took the registry and this start threw.
+ * Drop one reference. The pool is released when the count hits 0, after
+ * the locks. A permanent service lives in env->p, which is not released.
  */
 static void
-impl_service_drop(
+impl_service_release(
     afw_service_t *service,
-    afw_boolean_t free_at_zero,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *free_p;
@@ -193,8 +190,7 @@ impl_service_drop(
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         AFW_LOCK_BEGIN(xctx->env->service_lock) {
             service->reference_count--;
-            if (free_at_zero &&
-                service->reference_count <= 0 &&
+            if (service->reference_count <= 0 &&
                 service->p && service->p != xctx->env->p)
             {
                 free_p = service->p;
@@ -211,22 +207,37 @@ impl_service_drop(
 
 
 
-static void
-impl_service_release(
+/*
+ * Return true if service is the registered generation for its id.
+ */
+static afw_boolean_t
+impl_service_is_current(
     afw_service_t *service,
     afw_xctx_t *xctx)
 {
-    impl_service_drop(service, true, xctx);
+    afw_boolean_t result;
+
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        AFW_LOCK_BEGIN(xctx->env->service_lock) {
+            result = afw_environment_get_service(
+                &service->service_id, xctx) == service;
+        }
+        AFW_LOCK_END;
+    }
+    AFW_LOCK_END;
+
+    return result;
 }
 
 
 
 /*
  * Register service, replacing any previous afw_service_t for this id.
- * service_lock covers the pointer swap and the reference count.
- * Take environment_lock first. The previous generation pool is
- * released after both locks, and only when its count hits 0.
- * A permanent service lives in env->p, which is not released.
+ * The registry holds one reference: this adds it to service and drops
+ * it from the previous generation. service_lock covers the pointer swap
+ * and the reference counts. Take environment_lock first. The previous
+ * generation pool is released after both locks, and only when its count
+ * hits 0. A permanent service lives in env->p, which is not released.
  */
 static void
 impl_register_service(
@@ -244,6 +255,10 @@ impl_register_service(
                 &service->service_id, xctx);
             afw_environment_register_service(
                 &service->service_id, service, xctx);
+            if (previous != service) {
+                service->reference_count++;
+                service->registered = true;
+            }
             if (previous && previous != service) {
                 previous->reference_count--;
                 if (previous->reference_count <= 0 &&
@@ -686,27 +701,35 @@ impl_start_cb(
                 ? &service->service_id
                 : service_id,
             ctx->restart ? "restart" : "start");
-        if (service && service->service_id.s &&
-            afw_environment_get_service(&service->service_id, xctx) == service)
-        {
-            service->status = afw_service_status_error;
-            service->status_message = afw_utf8_create(
-                AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
-                p, xctx);
-            service->status_debug = afw_error_to_utf8(
-                    AFW_ERROR_THROWN, p, xctx);
+        /*
+         * This start's reference keeps service->p alive even if another
+         * thread replaced this generation. Record the error only while it
+         * is still the registered one. conf->p is ceded once registered.
+         */
+        if (service && service->registered) {
+            if (impl_service_is_current(service, xctx)) {
+                service->status = afw_service_status_error;
+                service->status_message = afw_utf8_create(
+                    AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
+                    p, xctx);
+                service->status_debug = afw_error_to_utf8(
+                        AFW_ERROR_THROWN, p, xctx);
+            }
         }
-        else {
-            if (conf && conf->p && conf->p != p &&
-                conf->p != xctx->env->p)
-            {
-                afw_pool_release(conf->p, xctx);
-            }
-            if (p && p != xctx->env->p) {
-                afw_pool_release(p, xctx);
-                p = NULL;
-                service = NULL;
-            }
+        else if (conf && conf->p && conf->p != p &&
+            conf->p != xctx->env->p)
+        {
+            afw_pool_release(conf->p, xctx);
+        }
+    }
+
+    AFW_FINALLY {
+        /* Drop this start's reference. Without a service, free p. */
+        if (service) {
+            impl_service_release(service, xctx);
+        }
+        else if (p && p != xctx->env->p) {
+            afw_pool_release(p, xctx);
         }
     }
 
@@ -1414,6 +1437,7 @@ afw_service_start_using_AdaptiveConf_cede_p(
 
     impl_initialize_and_start_service_using_conf(service,
         afw_s_conf, false, conf, source_location, xctx);
+    impl_service_release(service, xctx);
 }
 
 
@@ -1425,33 +1449,21 @@ impl_start_service(
     const afw_object_t *conf,
     afw_xctx_t *xctx)
 {
-    /*
-     * In-flight reference, same as stop. Unpublished until register, so
-     * the bump is visible before another thread can replace this
-     * generation and free it. The finally drops it. A throw leaves the
-     * pool to the caller, which frees an unregistered generation.
-     */
-    service->reference_count++;
-    AFW_TRY {
-        AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
-        {
-            afw_dateTime_set_now(&service->start_time, NULL, xctx);
-            service->status = afw_service_status_starting;
-            impl_register_service(service, xctx);
-            AFW_LOG_FZ(debug, xctx, "Service '%ku' starting.",
-                &service->service_id);
-            afw_service_type_start_cede_p(service->service_type,
-                conf, conf->p, xctx);
-            service->status = afw_service_status_running;
-            AFW_LOG_FZ(info, xctx, "Service '%ku' successfully started.",
-                &service->service_id);
-        }
-        AFW_THREAD_MUTEX_UNLOCK();
+    /* The caller holds a reference, so a replace can not free service. */
+    AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
+    {
+        afw_dateTime_set_now(&service->start_time, NULL, xctx);
+        service->status = afw_service_status_starting;
+        impl_register_service(service, xctx);
+        AFW_LOG_FZ(debug, xctx, "Service '%ku' starting.",
+            &service->service_id);
+        afw_service_type_start_cede_p(service->service_type,
+            conf, conf->p, xctx);
+        service->status = afw_service_status_running;
+        AFW_LOG_FZ(info, xctx, "Service '%ku' successfully started.",
+            &service->service_id);
     }
-    AFW_FINALLY {
-        impl_service_drop(service, !this_ERROR_OCCURRED, xctx);
-    }
-    AFW_ENDTRY;
+    AFW_THREAD_MUTEX_UNLOCK();
 }
 
 
@@ -1628,28 +1640,21 @@ impl_restart_service(
     const afw_object_t *conf,
     afw_xctx_t *xctx)
 {
-    /* Same in-flight reference as start and stop. See impl_start_service. */
-    service->reference_count++;
-    AFW_TRY {
-        AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
-        {
-            afw_dateTime_set_now(&service->start_time, NULL, xctx);
-            service->status = afw_service_status_restarting;
-            impl_register_service(service, xctx);
-            AFW_LOG_FZ(debug, xctx, "Service '%ku' restarting.",
-                &service->service_id);
-            afw_service_type_restart_cede_p(service->service_type,
-                conf, conf->p, xctx);
-            service->status = afw_service_status_running;
-            AFW_LOG_FZ(info, xctx, "Service '%ku' successfully restarted.",
-                &service->service_id);
-        }
-        AFW_THREAD_MUTEX_UNLOCK();
+    /* The caller holds a reference, so a replace can not free service. */
+    AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
+    {
+        afw_dateTime_set_now(&service->start_time, NULL, xctx);
+        service->status = afw_service_status_restarting;
+        impl_register_service(service, xctx);
+        AFW_LOG_FZ(debug, xctx, "Service '%ku' restarting.",
+            &service->service_id);
+        afw_service_type_restart_cede_p(service->service_type,
+            conf, conf->p, xctx);
+        service->status = afw_service_status_running;
+        AFW_LOG_FZ(info, xctx, "Service '%ku' successfully restarted.",
+            &service->service_id);
     }
-    AFW_FINALLY {
-        impl_service_drop(service, !this_ERROR_OCCURRED, xctx);
-    }
-    AFW_ENDTRY;
+    AFW_THREAD_MUTEX_UNLOCK();
 }
 
 

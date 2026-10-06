@@ -36,6 +36,21 @@
     void *reference_collector;
 
     /**
+     * Depth of nested container element releases on this xctx. See
+     * afw_reference_release_held().
+     */
+    afw_size_t release_depth;
+
+    /**
+     * Element releases deferred because release_depth reached
+     * AFW_REFERENCE_RELEASE_DEPTH_MAX. C malloc; drained and freed
+     * when release_depth returns to 0.
+     */
+    const afw_reference_t **release_pending;
+    afw_size_t release_pending_count;
+    afw_size_t release_pending_cap;
+
+    /**
      * Runtime objects for xctx.
      */
     const afw_runtime_objects_t *runtime_objects;

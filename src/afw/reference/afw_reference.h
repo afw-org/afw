@@ -118,6 +118,68 @@ afw_reference_collect(
 
 
 /**
+ * @brief Nesting depth of element releases done directly before they
+ *    are deferred. See afw_reference_release_held().
+ */
+#define AFW_REFERENCE_RELEASE_DEPTH_MAX 256
+
+
+/**
+ * @brief Release a reference a container held, without recursing on
+ *    the data's depth.
+ * @param instance held reference (NULL is ignored).
+ * @param xctx of caller.
+ *
+ * Containers call this for each element they release (an array's
+ * values, an object's property values and names). Releasing a nested
+ * container releases its elements the same way, so releasing deeply
+ * nested data would recurse once per level and could overflow the C
+ * stack. Below AFW_REFERENCE_RELEASE_DEPTH_MAX nested levels this
+ * releases directly. At that depth it records the release on the xctx
+ * instead; when the outermost element release returns, it releases the
+ * recorded ones in a loop. Stack use is bounded however deep the data
+ * is (#482).
+ */
+AFW_DECLARE(void)
+afw_reference_release_held(
+    const afw_reference_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Release the element releases deferred on xctx.
+ * @param xctx of caller, at release depth 0.
+ *
+ * Called by afw_reference_release_held() and afw_value_release_held()
+ * when the outermost element release returns.
+ */
+AFW_DECLARE(void)
+afw_reference_release_pending_drain(afw_xctx_t *xctx);
+
+
+/**
+ * @brief afw_reference_release_held() for a value.
+ * @param _value held value (NULL is ignored).
+ * @param _xctx of caller.
+ *
+ * Below AFW_REFERENCE_RELEASE_DEPTH_MAX this releases in place, so the
+ * common case costs no extra call. At that depth it calls
+ * afw_reference_release_held() to defer the release.
+ */
+#define afw_value_release_held(_value, _xctx) \
+    ((_value) \
+        ? (((_xctx)->release_depth < AFW_REFERENCE_RELEASE_DEPTH_MAX) \
+            ? ((_xctx)->release_depth++, \
+                afw_value_release((_value), (_xctx)), \
+                ((--(_xctx)->release_depth == 0 && \
+                    (_xctx)->release_pending_count > 0) \
+                    ? afw_reference_release_pending_drain(_xctx) \
+                    : (void)0)) \
+            : afw_reference_release_held(&(_value)->ref, (_xctx))) \
+        : (void)0)
+
+
+/**
  * @brief Drop this xctx's cycle collection state (xctx release).
  * @param xctx being released.
  */

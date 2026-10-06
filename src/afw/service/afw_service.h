@@ -105,13 +105,17 @@ struct afw_service_s {
     afw_boolean_t has_service_conf;
 
     /**
-     * @brief One reference for the registry plus one per in-flight user.
+     * @brief One reference for the registry plus one per user.
      *
-     * Starts at 1 for the registry. impl_register_service drops that
-     * reference on the previous generation. The pool is released only
-     * when this hits 0, after environment_lock is released.
+     * Starts at 1 for the start that creates it, which releases it when
+     * done. impl_register_service adds the registry's reference and drops
+     * it from the previous generation. The pool is released when this
+     * hits 0, after environment_lock is released.
      */
     afw_integer_t reference_count;
+
+    /** @brief Registered at some point (conf was ceded to the type). */
+    afw_boolean_t registered;
 };
 
 
