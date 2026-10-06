@@ -1,9 +1,9 @@
 # Issue #476 — references and owners
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**GitHub:** [#476](https://github.com/afw-org/afw/issues/476) — open. Child of umbrella [#2](https://github.com/afw-org/afw/issues/2).  
-**Related:** [#458](https://github.com/afw-org/afw/issues/458) (reference cycles; closes with step 5), [#343](https://github.com/afw-org/afw/issues/343) (threads, workers), [#342](https://github.com/afw-org/afw/issues/342) (owner heaps).  
-**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md). This pad proposes changes to it; that pad wins until a step lands.
+**GitHub:** [#476](https://github.com/afw-org/afw/issues/476) — **closed**: landed on `develop` in [PR #479](https://github.com/afw-org/afw/pull/479) (`e259edba`, 2026-10-06). Child of umbrella [#2](https://github.com/afw-org/afw/issues/2).  
+**Related:** [#458](https://github.com/afw-org/afw/issues/458) (reference cycles; closed by PR #479), [#477](https://github.com/afw-org/afw/issues/477) (pool review), [#478](https://github.com/afw-org/afw/issues/478) (atomic reference counts left from 2023), [#343](https://github.com/afw-org/afw/issues/343) (threads, workers), [#342](https://github.com/afw-org/afw/issues/342) (owner heaps).  
+**Lifetime story:** [`lifetime-principles.md`](lifetime-principles.md). Every step here has landed and is written into that pad, which wins; this pad is the history of how and why.
 
 ---
 

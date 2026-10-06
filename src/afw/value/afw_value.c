@@ -697,7 +697,7 @@ afw_value_create_pooled_copy(const afw_value_t *value,
 }
 
 
-/* Clone an evaluated value managed in p->managed_p. */
+/* Fully managed version of an evaluated value (bump if already fully managed). */
 AFW_DEFINE(const afw_value_t *)
 afw_value_to_managed(
     const afw_value_t *value,
@@ -709,7 +709,7 @@ afw_value_to_managed(
     dt = (value && value->inf) ? value->inf->is_evaluated_of_data_type : NULL;
     if (!dt || !dt->clone_value_managed) {
         AFW_THROW_ERROR_Z(conversion_error,
-            "clone_managed requires an evaluated value", xctx);
+            "afw_value_to_managed requires an evaluated value", xctx);
     }
     return dt->clone_value_managed(value, p, xctx);
 }
