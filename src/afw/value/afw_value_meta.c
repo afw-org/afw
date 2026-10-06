@@ -399,6 +399,10 @@ afw_value_internal_create_meta_object_self(
     self->pub.p = p;
     self->associated_value = associated_value;
     self->evaluated_value = afw_value_evaluate(associated_value, p, xctx);
+    /* An unset qualified variable (current::x) evaluates to C NULL. */
+    if (!self->evaluated_value) {
+        self->evaluated_value = afw_value_undefined;
+    }
     self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
     self->meta_object_value.internal = (const afw_object_t *)self;
     /* Dual face: instance->value must point at this object's Adaptive value. */

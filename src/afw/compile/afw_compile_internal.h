@@ -1448,6 +1448,14 @@ afw_compile_parse_UnionType(afw_compile_parser_t *parser);
 const afw_value_t *
 afw_compile_parse_Value(afw_compile_parser_t *parser);
 
+/*
+ * Throw payload_too_large before the C stack runs out
+ * (limitCStackHeadroomBytes). Parse recursion follows the source's
+ * nesting, which a script or request body controls.
+ */
+void
+afw_compile_parse_check_depth(afw_compile_parser_t *parser);
+
 AFW_END_DECLARES
 
 /** @} */

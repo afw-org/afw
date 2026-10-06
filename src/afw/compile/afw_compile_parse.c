@@ -422,3 +422,10 @@ afw_compile_parse_check_symbol(
 {
 
 }
+
+
+void
+afw_compile_parse_check_depth(afw_compile_parser_t *parser)
+{
+    afw_xctx_check_resource_limits(parser->xctx, 0);
+}

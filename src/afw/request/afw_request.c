@@ -185,6 +185,12 @@ afw_request_body_to_value(
     string = afw_request_body_to_utf8(instance, p, xctx);
     if (!string) return NULL;
 
+    /* A client can send a body with no Content-Type. */
+    if (!instance->content_type || instance->content_type->len == 0) {
+        AFW_THROW_ERROR_Z(unsupported_content,
+            "A request body requires a Content-Type.", xctx);
+    }
+
     for (s = instance->content_type->s, end = s + instance->content_type->len;
         s < end && *s != ';' && *s != ' ';
         s++);

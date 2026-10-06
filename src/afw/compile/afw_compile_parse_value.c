@@ -76,6 +76,7 @@ afw_compile_parse_List(
         afw_compile_reuse_token();
         return NULL;
     }
+    afw_compile_parse_check_depth(parser);
 
     /* Create result list. */
     list = NULL;
@@ -380,6 +381,7 @@ afw_compile_parse_Object(
         afw_compile_reuse_token();
         return NULL;
     }
+    afw_compile_parse_check_depth(parser);
 
     /*
      * Create new memory object. A top-level literal in a compile unit is

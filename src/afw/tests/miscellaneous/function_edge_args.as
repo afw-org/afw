@@ -134,3 +134,22 @@ bag<dayTimeDuration>(function (x) { return x; })
 const s = string(function (x) { return x; });
 assert(index_of(s, "function (x)") >= 0);
 return 0;
+
+//?
+//? test: meta-of-unset-qualified
+//? description: meta of an unset current:: variable is undefined (used to SEGV)
+//? expect: 0
+//? source: ...
+
+const m = meta(current::not_set_anywhere);
+assert(m.dataType === "undefined");
+return 0;
+
+//?
+//? test: compile-depth
+//? description: deeply nested source is an error, not a stack overflow
+//? expect: error
+//? source: ...
+
+evaluate(compile<script>("return " + repeat<string>("(", 200000) + "1"
+    + repeat<string>(")", 200000) + ";"))
