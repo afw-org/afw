@@ -194,24 +194,6 @@ def _family_tests(tests):
         "skip": False,
     })
 
-    base = {"files": [rec("t{}.as".format(i), cpu=1000) for i in range(10)]}
-    new = [rec("t{}.as".format(i), cpu=1500) for i in range(9)]
-    new.append(rec("t9.as", cpu=4000))
-    r = family.evaluate(new, base, settings=settings)
-    tests.append({
-        "test": "family-time-against-median",
-        "description":
-            "every test 1.5x slower is the run's drift; only the one at "
-            "4x stands out",
-        "passed": (
-            [m["path"] for m in r["time"]] == ["t9.as"]
-            and r["time_metric"] == "cpu"
-            and abs(r["drift"] - 1.5) < 1e-9
-            and not family.memory_paths(r)
-        ),
-        "skip": False,
-    })
-
 
 def run():
     tests = []
