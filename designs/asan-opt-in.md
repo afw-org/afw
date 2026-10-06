@@ -125,6 +125,16 @@ Gotcha: the repo's `./afwdev` only works from the repo root (it runs `src/afw_de
 
 **Decided (2026-10-04):** the default stays as before: `afwdev test` runs the installed binaries and libraries from the system path. `--build-tree` is opt-in only. `--env-mode asan` always uses its build tree (decided 2026-10-04): the ASan build is never installed system-wide, so `build/asan/install` is no longer made by default.
 
+## Valgrind backing for the annotations (`AFW_VALGRIND_POOL`)
+
+Branch `feature/valgrind-pool-annotations` (2026-10-06). `afw_memory_annotate_internal.h` gains a valgrind memcheck backend, selected by `--define AFW_VALGRIND_POOL` (ASan wins when both are set): `NOACCESS` → `VALGRIND_MAKE_MEM_NOACCESS`, `ACCESS` → `VALGRIND_MAKE_MEM_DEFINED` (allocator bookkeeping is addressable and written, so it never trips an uninitialized-read report), a new `UNDEFINED` → `VALGRIND_MAKE_MEM_UNDEFINED` at the two hand-out points (heap and tracker `malloc`; `calloc`'s `memset` defines it again; no-op for ASan), `ROOT` / `UNROOT` no-ops (memcheck already scans mapped memory). Client requests are a few no-op instructions outside valgrind, so the same build runs normally.
+
+What it adds to `--env-mode valgrind`: the same pool invalid accesses ASan finds (read after `free_memory`, slack overflow, read of a released pool), **plus reads of pool memory nobody wrote**, which ASan cannot see (MSan territory). Proven with deliberate bugs (all reported on the exact line; a `calloc` control is clean).
+
+First full run (`./afwdev build --cdev --define AFW_VALGRIND_POOL`, `afwdev test -j --env-mode valgrind`): 4650 passed, 3 failed. Two were `pool_heap` debug cases that read freed memory on purpose (now skipped under valgrind with this define, like ASan). The other was an intermittent `afwfcgi` crash in `runtime-service-churn` under load, not reproducible alone (backlog). **No uninitialized-read reports** in AFW itself. Normal `test -j` on the same build: 4652 passed.
+
+**Decided (2026-10-06, Jeremy and Mike):** `--cdev` and `--fulldev` define `AFW_VALGRIND_POOL` by default, like the `AFW_DEBUG_*` probes, so every valgrind run (pre-PR gate, CI) sees inside pools. `afwdev` first compiles a one-line `#include <valgrind/memcheck.h>` (`build/cmake.py` `valgrind_headers_available`); without the headers it leaves the define out and warns, so a machine without valgrind still builds. An explicit `--define AFW_VALGRIND_POOL` is always passed through. The openSUSE and Alpine `afw-dev-base` images now install `valgrind-devel` / `valgrind-dev` (they had only `valgrind`, an accident of the 2023 initial images, since nothing included a valgrind header before); the images must be rebuilt and published by hand for that to reach CI. Ubuntu's `valgrind` package already has the headers; AlmaLinux and Rocky already installed `valgrind-devel`. Windows is not a build target for now.
+
 ## Remaining plan
 
 Flexible order; one step, then re-decide.
