@@ -799,8 +799,9 @@ impl_utf8_date_set_internal(
     if (*s < '0' || *s > '9') goto error;
     for (; (afw_size_t)(s - from) < len; s++) {
         if (*s < '0' || *s > '9') break;
+        /* Check first: signed overflow is undefined. */
+        if (to->year > (AFW_INT32_MAX - (*s - '0')) / 10) goto error;
         to->year = to->year * 10 + (*s - '0');
-        if (to->year < 0) goto error;     
     }
     if (is_negative) to->year = -to->year;
 

@@ -744,10 +744,21 @@ impl_afw_data_type_function_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value = from_internal;
+    const afw_value_t *value;
     const afw_utf8_t *result;
 
-    if (afw_value_is_string(value)) {
+    /* cType is const afw_value_t *: from_internal points at one. */
+    value = *(const afw_value_t * const *)from_internal;
+    if (value && afw_value_is_closure_binding(value)) {
+        value = (const afw_value_t *)
+            ((const afw_value_closure_binding_t *)value)->
+                script_function_definition;
+    }
+
+    if (!value) {
+        result = afw_s_a_empty_string;
+    }
+    else if (afw_value_is_string(value)) {
         result = AFW_VALUE_INTERNAL(value);
     }
     else if (afw_value_is_function_definition(value)) {

@@ -205,7 +205,10 @@ afw_error_own_pointers(afw_xctx_t *xctx)
             if (e->parser_source) {
                 source = (afw_utf8_t *)next;
                 next += sizeof(afw_utf8_t);
-                memcpy(next, e->parser_source->s, e->parser_source->len);
+                if (e->parser_source->len > 0) {
+                    memcpy(next, e->parser_source->s,
+                        e->parser_source->len);
+                }
                 source->s = next;
                 source->len = e->parser_source->len;
                 next += e->parser_source->len;

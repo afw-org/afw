@@ -387,14 +387,16 @@ afw_function_execute_join(
             }
 
             /* If not first time, add separator. */
-            if (c != result->internal.s) {
+            if (c != result->internal.s && sep->len > 0) {
                 memcpy(c, sep->s, sep->len);
                 c += sep->len;
             }
 
             /* Add this string. */
-            memcpy(c, s->s, s->len);
-            c += s->len;
+            if (s->len > 0) {
+                memcpy(c, s->s, s->len);
+                c += s->len;
+            }
         }
         return &result->pub;
     }
@@ -868,7 +870,8 @@ afw_function_execute_splice(
     else {
         delete_count = count - start;
     }
-    if (start + delete_count > count) {
+    /* Not start + delete_count: that overflows for a huge count. */
+    if (delete_count > count - start) {
         delete_count = count - start;
     }
 

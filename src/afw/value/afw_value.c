@@ -16,6 +16,24 @@
 #include <math.h>
 
 
+/*
+ * The internal a data type's to_utf8/convert takes for value. A
+ * function value is a definition, closure, or thunk struct, not
+ * afw_value_common_t: its internal (cType const afw_value_t *) is the
+ * value itself, so pass the address of that pointer.
+ */
+static const void *
+impl_internal_for_data_type(
+    const afw_value_t * const *value_p,
+    const afw_data_type_t *data_type)
+{
+    if (data_type == afw_data_type_function) {
+        return (const void *)value_p;
+    }
+    return AFW_VALUE_INTERNAL(*value_p);
+}
+
+
 
 static const afw_utf8_t impl_s_a_quote = AFW_UTF8_LITERAL("\"");
 
@@ -877,7 +895,7 @@ afw_value_convert_to_utf8(const afw_value_t *value,
         AFW_THROW_ERROR_Z(general, "Expecting data type", xctx);
     }
     result = afw_data_type_internal_to_utf8(
-        data_type, AFW_VALUE_INTERNAL(value), p, xctx);
+        data_type, impl_internal_for_data_type(&value, data_type), p, xctx);
     return result;
 }
 
@@ -1089,6 +1107,16 @@ afw_value_convert(
 
     v_data_type = afw_value_get_data_type(result, xctx);
 
+    /*
+     * void (the value of continue(), break(), ...) has no internal to
+     * convert or wrap; upconverting it read past the value.
+     */
+    if (v_data_type == afw_data_type_void && to_data_type != v_data_type) {
+        AFW_THROW_ERROR_FZ(conversion_error, xctx,
+            "A void value can not be converted to %ku",
+            &to_data_type->data_type_id);
+    }
+
     if (v_data_type != to_data_type) {
 
         /* Upconvert to one entry list. */
@@ -1128,7 +1156,7 @@ afw_value_convert(
             afw_data_type_convert_internal(
                 v_data_type,
                 &single->internal,
-                &((const afw_value_common_t *)result)->internal,
+                impl_internal_for_data_type(&result, v_data_type),
                 to_data_type,
                 p, xctx);
             result = &single->pub;
@@ -1179,7 +1207,9 @@ afw_value_string_from_internal(
     /* If not, convert value to string and return single_string value. */
     else {
         string = afw_data_type_internal_to_utf8(
-            afw_value_get_data_type(value, xctx), value,
+            afw_value_get_data_type(value, xctx),
+            impl_internal_for_data_type(&value,
+                afw_value_get_data_type(value, xctx)),
             p, xctx);
         result = afw_value_create_unmanaged_string(string, p, xctx);
     }

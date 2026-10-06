@@ -259,31 +259,30 @@ afw_function_execute_random_integer(
 {
     const afw_value_integer_t *min;
     const afw_value_integer_t *max;
-    afw_integer_t range;
+    afw_uint64_t range;
+    afw_uint64_t bits;
     afw_value_integer_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(min, 1, integer);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(max, 2, integer);
 
-    range = max->internal - min->internal + 1;
-    if (range <= 0) {
+    if (max->internal < min->internal) {
         AFW_THROW_ERROR_Z(general,
             "range between min and max is out of bounds",
             x->xctx);
     }
 
-    result = afw_value_allocate_unmanaged_integer(x->p, x->xctx);
-    afw_os_random_bytes(&result->internal,
-        sizeof(afw_integer_t), x->xctx);
-    if (result->internal < 0) {
-        if (result->internal == AFW_INTEGER_MIN) {
-            result->internal = 0;
-        }
-        else {
-            result->internal = -result->internal;
-        }
+    /*
+     * Unsigned: max - min + 1 overflows a signed integer for a wide
+     * range. 0 is the whole 64-bit range.
+     */
+    range = (afw_uint64_t)max->internal - (afw_uint64_t)min->internal + 1;
+    afw_os_random_bytes(&bits, sizeof(bits), x->xctx);
+    if (range != 0) {
+        bits %= range;
     }
-    result->internal = min->internal + (result->internal % range); 
+    result = afw_value_allocate_unmanaged_integer(x->p, x->xctx);
+    result->internal = (afw_integer_t)((afw_uint64_t)min->internal + bits);
 
     return &result->pub;
 }
