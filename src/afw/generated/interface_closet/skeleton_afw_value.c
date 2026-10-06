@@ -55,6 +55,19 @@ impl_afw_value_get_assignable_value(
 }
 
 /*
+ * Implementation of method get_for_p_lifetime for interface afw_value.
+ */
+const afw_value_t *
+impl_afw_value_get_for_p_lifetime(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method create_iterator for interface afw_value.
  */
 const afw_iterator_old_t *

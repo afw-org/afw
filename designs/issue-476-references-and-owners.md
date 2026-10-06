@@ -241,6 +241,20 @@ Learned for step 1:
 - 1d (partial): the four outside "has a release method" checks become `afw_value_is_not_counted()` with "#476 step 2 removes this check"; `afw_value_slot_take` needed it immediately (permanents now have a `release`).
 - Gates: build clean (core and extensions), suite 4609 passed, region free list 0: 4609 passed.
 
+**Step 2 status (2026-10-06, uncommitted on `issue-476-step2-get-reference`).** `get_assignable_value` stays (values only, takes `p`, ECMAScript-style face for permanent objects); `get_reference` takes no `p`.
+
+- New `afw_value` method `get_for_p_lifetime(x, p)` with shared `afw_value_{not_counted,counted,pooled}_get_for_p_lifetime`; every value inf chooses one. `afw_pool_scope_get_assignable_for_p_lifetime` calls it; `afw_pool_release_value_at_cleanup` is `get_for_p_lifetime` then `release` (fixes a second hand-off of the same value on the same `p`, which used to leak one reference). `afw_value_is_not_counted` and all its uses are gone.
+- `get_assignable_value` mandatory (16 IR infs use `afw_value_not_counted_get_assignable_value`); `afw_value_get_assignable` no longer checks the slot. `afw_value_slot_store` drops its compiled-value special case and no longer leaks when `get_assignable_value` returns the current occupant; `afw_value_slot_take` drops its check.
+- Adapter result pin removed (`afw_adapter_internal_process_object_from_adapter`). Model adapter `returnObject` hands the callback an owned reference (`get_assignable_value` into the request `p`).
+- Built-in adapter functions make their journal entry pooled in `x->p` (was `new_p` and never released): `get_object` loop flat (develop ~2.4 KiB/call).
+- Closures: one place. `afw_value_closure_binding_create_if_needed` removed; a script function's `get_assignable_value` always binds (captured frame, or none, plus the unit).
+- Compiled value: one counted inf from parser create; the unmanaged and "assignable" (pool-pin) infs are gone.
+- `is_managed` kept as a capability flag (any implementation can declare it; `afw_*_is_managed()`). `afw_error.c` no longer forks on it. The memory module's identity check (`afw_*_is_memory_managed`) only guards its own casts.
+- New setter methods `set_property_take` / `push_value_take`: fully managed memory setters store (the old take bodies); every other setter shares `*_take_by_copy` (copy into its pool, release). Public `afw_object_set_property_take` / `afw_array_push_value_take` call the setter. Generated `*_internal` helpers use `afw_*_is_managed` (capability) and the setter take.
+- Gates: suite 4609 passed; region free list 0: 4609 passed.
+
+**Open for step 2 (needs a decision):** the environment runtime registry. It holds pooled objects (env objects in `env->p`, conf objects) and counted ones (`afw_runtime_env_create_and_set_indirect_object` drops its create reference and lets the table keep one; replace releases the old entry) through the same `get_reference` / `release`. Until it is decided, pooled `get_reference` keeps pinning and the value wrapper over pooled objects stays.
+
 ### Steps (each a small branch off `develop`, merged when green)
 
 | # | Step | Touches pool? |

@@ -111,6 +111,38 @@ afw_array_push_value(
 }
 
 
+/* Append a value, taking the caller's reference to it. */
+AFW_DEFINE(void)
+afw_array_push_value_take(
+    const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+    afw_array_setter_push_value_take(setter, value, xctx);
+}
+
+
+/* push_value_take for setters whose values live in the array's pool. */
+AFW_DEFINE(void)
+afw_array_setter_push_value_take_by_copy(
+    const afw_array_setter_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *copy;
+
+    copy = afw_value_clone(value, instance->array->p, xctx);
+    afw_array_setter_push_value(instance, copy, xctx);
+    afw_value_release(value, xctx);
+}
+
+
 /* pop_value */
 AFW_DEFINE(const afw_value_t *)
 afw_array_pop_value(

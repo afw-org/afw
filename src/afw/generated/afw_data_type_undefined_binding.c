@@ -69,12 +69,14 @@ impl_afw_value_get_assignable_via_reference(
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define impl_afw_value_create_iterator NULL
+#define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_get_for_p_lifetime
 
 static const afw_value_string_t
 impl_data_type_undefined_id_value = {

@@ -855,7 +855,19 @@ afw_pool_is_value_release_registered(
 }
 
 
-/* Release a value when a pool is destroyed. */
+/* Register one release of value, run when p is destroyed. */
+AFW_DEFINE(void)
+afw_pool_register_value_release(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_pool_register_cleanup(p, (void *)value, NULL,
+        impl_release_value_at_cleanup, xctx);
+}
+
+
+/* p takes over the caller's reference to value. */
 AFW_DEFINE(void)
 afw_pool_release_value_at_cleanup(
     const afw_value_t *value,
@@ -865,15 +877,8 @@ afw_pool_release_value_at_cleanup(
     if (!value) {
         return;
     }
-    /* Not counted: nothing to release. #476 step 2 removes this check. */
-    if (afw_value_is_not_counted(value)) {
-        return;
-    }
-    if (afw_pool_is_value_release_registered(value, p, xctx)) {
-        return;
-    }
-    afw_pool_register_cleanup(p, (void *)value, NULL,
-        impl_release_value_at_cleanup, xctx);
+    afw_value_get_for_p_lifetime(value, p, xctx);
+    afw_value_release(value, xctx);
 }
 
 
@@ -884,10 +889,6 @@ afw_pool_deregister_value_at_cleanup(
     afw_xctx_t *xctx)
 {
     if (!value || !p) {
-        return;
-    }
-    /* #476 step 2 removes this check. */
-    if (afw_value_is_not_counted(value)) {
         return;
     }
     afw_pool_deregister_cleanup(p, (void *)value, NULL,

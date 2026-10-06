@@ -195,9 +195,6 @@ impl_compile_to_value_with_callback(
     if (compile_type != afw_compile_type_json &&
         compile_type != afw_compile_type_relaxed_json)
     {
-        parser->compiled_value->inf =
-            &afw_value_managed_compiled_value_inf;
-        parser->compiled_value->reference_count = 1;
         /* Caller does not release. Result lasts for dest p. */
         if (dest_p) {
             afw_pool_release_value_at_cleanup(

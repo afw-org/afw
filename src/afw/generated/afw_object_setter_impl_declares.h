@@ -123,6 +123,16 @@ impl_afw_object_setter_set_property(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_object_setter_set_property_take
+/* Declare method set_property_take */
+AFW_DECLARE_STATIC(void)
+impl_afw_object_setter_set_property_take(
+    AFW_OBJECT_SETTER_SELF_T *self,
+    const afw_value_t * property_name,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_object_setter_remove_property
 /* Declare method remove_property */
 AFW_DECLARE_STATIC(void)
@@ -159,6 +169,8 @@ impl_afw_object_setter_inf = {
     impl_afw_object_setter_set_immutable,
     (afw_object_setter_set_property_t)
     impl_afw_object_setter_set_property,
+    (afw_object_setter_set_property_take_t)
+    impl_afw_object_setter_set_property_take,
     (afw_object_setter_remove_property_t)
     impl_afw_object_setter_remove_property
 };

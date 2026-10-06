@@ -2895,6 +2895,32 @@ const afw_content_type_t *
     </method>
 
 
+    <method name="push_value_take">
+
+      <description>
+        Append a value at the end of the array, taking the caller's reference
+        to value. The caller owns one reference to value and must not release
+        it after this call. A fully managed array stores it; an array whose
+        values live in its pool keeps a value that lasts for that pool and
+        gives the caller's reference back. Otherwise the same as push_value.
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value to append. The caller's reference is taken.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
     <method name="pop_value">
 
       <description>
@@ -3174,6 +3200,7 @@ const afw_content_type_t *
       macros. See group afw_array.
     </description>
 
+
     <inf_variable name="is_managed" type="afw_boolean_t">
       <description>
         True if this implementation is the managed world: instance RC in
@@ -3183,7 +3210,6 @@ const afw_content_type_t *
         Omitted in an inf initializer is false.
       </description>
     </inf_variable>
-
 
     <variable name="p" type="const afw_pool_t *">
       <description>
@@ -3744,6 +3770,42 @@ AFW_DEFINE(const afw_log_t *)
     </method>
 
 
+    <method name="set_property_take">
+
+      <description>
+        Set the value of a property, taking the caller's reference to value.
+        The caller owns one reference to value (for example a create_managed
+        result) and must not release it after this call. Each implementation
+        keeps the value in its own way: a fully managed object stores it; an
+        object whose values live in its pool keeps a value that lasts for that
+        pool and gives the caller's reference back. Otherwise the same as
+        set_property.
+      </description>
+
+      <parameter name="instance" type="const afw_object_setter_t *">
+        <description>Pointer to this object setter instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_value_t *">
+        <description>
+          Property name of property to set.
+        </description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>
+          Value to set. The caller's reference is taken. NULL is undefined.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
     <method name="remove_property">
 
       <description>
@@ -3784,6 +3846,7 @@ AFW_DEFINE(const afw_log_t *)
       Meta (afw_object_meta) drives validation and UI; see group afw_object.
     </description>
 
+
     <inf_variable name="is_managed" type="afw_boolean_t">
       <description>
         True if this implementation is the managed world: instance RC in
@@ -3793,7 +3856,6 @@ AFW_DEFINE(const afw_log_t *)
         Omitted in an inf initializer is false.
       </description>
     </inf_variable>
-
 
     <variable name="p" type="const afw_pool_t *">
       <description>
@@ -6315,6 +6377,43 @@ AFW_DEFINE(const afw_request_handler_t *)
       <return type="const afw_value_t *">
         <description>
           A value that fully supports being stored in a slot.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_for_p_lifetime">
+
+      <description>
+        Return a value that lasts as long as p. Caller does not release.
+        Permanent and compiler values return self and register nothing.
+        A counted value gets one more reference, released when p is
+        destroyed (at most one registration per value per p). A pooled
+        value returns a fully managed copy whose release is registered on
+        p. Use for results that must outlive the scope that made them.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>
+          Pointer to this adaptive value instance.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          Pool the result must last for (copies use p-&gt;managed_p).
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx.
+        </description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          A value that lasts for p. Caller does not release.
         </description>
       </return>
 

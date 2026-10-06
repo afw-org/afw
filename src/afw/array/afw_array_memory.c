@@ -29,8 +29,16 @@ impl_managed_array_elements_cleanup(
 typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
 #define AFW_ARRAY_SELF_T afw_memory_internal_array_t
 #include "afw_array_impl_declares.h"
+#define impl_afw_array_setter_push_value_take \
+    afw_array_setter_push_value_take_by_copy
 #include "afw_array_setter_impl_declares.h"
+#undef impl_afw_array_setter_push_value_take
 
+static void
+impl_afw_array_managed_setter_push_value_take(
+    const afw_array_setter_t *setter,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 static void
 impl_afw_array_managed_release(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
@@ -98,6 +106,8 @@ impl_afw_array_managed_setter_shift_value(
 #define AFW_ARRAY_SETTER_INF_ONLY
 #define impl_afw_array_setter_push_value \
     impl_afw_array_managed_setter_push_value
+#define impl_afw_array_setter_push_value_take \
+    impl_afw_array_managed_setter_push_value_take
 #define impl_afw_array_setter_set_value \
     impl_afw_array_managed_setter_set_value
 #define impl_afw_array_setter_insert_value \
@@ -115,6 +125,7 @@ impl_afw_array_managed_setter_shift_value(
 #include "afw_array_setter_impl_declares.h"
 #undef AFW_ARRAY_SETTER_INF_ONLY
 #undef impl_afw_array_setter_push_value
+#undef impl_afw_array_setter_push_value_take
 #undef impl_afw_array_setter_set_value
 #undef impl_afw_array_setter_insert_value
 #undef impl_afw_array_setter_remove_all_values
@@ -1211,9 +1222,10 @@ impl_afw_array_managed_setter_push_value(
 }
 
 
-AFW_DEFINE(void)
-afw_array_push_value_take(
-    const afw_array_t *instance,
+/* push_value_take of a fully managed memory array: the slot takes it. */
+static void
+impl_afw_array_managed_setter_push_value_take(
+    const afw_array_setter_t *setter,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -1221,12 +1233,7 @@ afw_array_push_value_take(
     const afw_value_t **slot;
     afw_boolean_t was_empty;
 
-    if (!afw_array_is_managed(instance)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_array_push_value_take requires a managed array",
-            xctx);
-    }
-    self = (afw_memory_internal_array_t *)instance;
+    self = (afw_memory_internal_array_t *)setter->array;
     if (self->immutable) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }

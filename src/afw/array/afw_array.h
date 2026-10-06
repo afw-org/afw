@@ -12,6 +12,13 @@
 #include "afw_interface.h"
 
 /**
+ * @brief True if this array's inf is the managed world (`inf->is_managed`).
+ */
+#define afw_array_is_managed(_array) \
+    ((_array) && (_array)->inf->is_managed)
+
+
+/**
  * @addtogroup afw_array
  * @{
  */
@@ -129,14 +136,6 @@ afw_array_create_managed_clone(
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory_managed(const afw_array_t *array);
-
-
-/**
- * @brief True if this array's inf is the managed world (`inf->is_managed`).
- */
-#define afw_array_is_managed(_array) \
-    ((_array) && (_array)->inf->is_managed)
-
 
 
 /**
@@ -646,17 +645,34 @@ afw_array_push_value(
 
 
 /**
- * @brief Append an already-managed value; slot takes the hold.
- * @param instance managed array.
- * @param value managed or permanent.
+ * @brief Append a value, taking the caller's reference to it.
+ * @param instance array.
+ * @param value counted or permanent.
  * @param xctx of caller.
  *
- * Requires `afw_array_is_managed`. No get_assignable of value.
- * Caller does not release value after.
+ * Calls the setter's push_value_take, so each implementation keeps the
+ * value its own way. Caller does not release value after.
  */
 AFW_DECLARE(void)
 afw_array_push_value_take(
     const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief push_value_take for setters whose values live in the array's
+ *    pool.
+ * @param instance setter.
+ * @param value counted or permanent; the caller's reference is taken.
+ * @param xctx of caller.
+ *
+ * Pushes a copy in the array's pool, then releases value. Shared by
+ * array setter implementations that are not fully managed.
+ */
+AFW_DECLARE(void)
+afw_array_setter_push_value_take_by_copy(
+    const afw_array_setter_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 

@@ -1100,12 +1100,19 @@ def write_c_section(fd, prefix, obj):
                      'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define impl_afw_value_create_iterator NULL\n')
 
+        if id in ('object', 'array') or obj.get('scalar', False):
+            fd.write('#define impl_afw_value_get_for_p_lifetime '
+                     'afw_value_pooled_get_for_p_lifetime\n')
+        else:
+            fd.write('#define impl_afw_value_get_for_p_lifetime '
+                     'afw_value_not_counted_get_for_p_lifetime\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
         fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
+        fd.write('#undef impl_afw_value_get_for_p_lifetime\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
         _write_value_inf_variables(fd, id, True)
@@ -1119,12 +1126,14 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define impl_afw_value_get_assignable_value '
                  'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define AFW_VALUE_INF_ONLY 1\n')
+        fd.write('#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
         fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
+        fd.write('#undef impl_afw_value_get_for_p_lifetime\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
         if _supports_managed_slice(ctype):
@@ -1140,12 +1149,14 @@ def write_c_section(fd, prefix, obj):
             fd.write('#define impl_afw_value_get_assignable_value '
                      'impl_afw_value_get_assignable_via_reference\n')
             fd.write('#define AFW_VALUE_INF_ONLY 1\n')
+            fd.write('#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime\n')
             fd.write('#include "afw_value_impl_declares.h"\n')
             fd.write('#undef AFW_IMPLEMENTATION_ID\n')
             fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
             fd.write('#undef impl_afw_value_release\n')
             fd.write('#undef impl_afw_value_get_reference\n')
             fd.write('#undef impl_afw_value_get_assignable_value\n')
+            fd.write('#undef impl_afw_value_get_for_p_lifetime\n')
             fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
@@ -1166,12 +1177,14 @@ def write_c_section(fd, prefix, obj):
             fd.write('#define impl_afw_value_get_assignable_value '
                      'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define AFW_VALUE_INF_ONLY 1\n')
+        fd.write('#define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
         fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
+        fd.write('#undef impl_afw_value_get_for_p_lifetime\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
 
@@ -1187,12 +1200,14 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define impl_afw_value_get_assignable_value '
                  'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define impl_afw_value_create_iterator NULL\n')
+        fd.write('#define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
         fd.write('#undef impl_afw_value_release\n')
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
+        fd.write('#undef impl_afw_value_get_for_p_lifetime\n')
        
 
     fd.write('\nstatic const afw_value_string_t\n')

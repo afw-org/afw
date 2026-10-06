@@ -26,7 +26,10 @@
 #define AFW_IMPLEMENTATION_ID "memory"
 #define AFW_OBJECT_SELF_T afw_object_internal_memory_object_t
 #include "afw_object_impl_declares.h"
+#define impl_afw_object_setter_set_property_take \
+    afw_object_setter_set_property_take_by_copy
 #include "afw_object_setter_impl_declares.h"
+#undef impl_afw_object_setter_set_property_take
 
 /* Managed bag: separate inf, no extra ifs on set/release. */
 static void
@@ -37,6 +40,12 @@ impl_afw_object_managed_get_reference(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
 static void
 impl_afw_object_managed_setter_set_property(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+static void
+impl_afw_object_managed_setter_set_property_take(
     const afw_object_setter_t *self,
     const afw_value_t *property_name,
     const afw_value_t *value,
@@ -64,11 +73,14 @@ impl_afw_object_managed_setter_remove_property(
 #define AFW_OBJECT_SETTER_INF_ONLY
 #define impl_afw_object_setter_set_property \
     impl_afw_object_managed_setter_set_property
+#define impl_afw_object_setter_set_property_take \
+    impl_afw_object_managed_setter_set_property_take
 #define impl_afw_object_setter_remove_property \
     impl_afw_object_managed_setter_remove_property
 #include "afw_object_setter_impl_declares.h"
 #undef AFW_OBJECT_SETTER_INF_ONLY
 #undef impl_afw_object_setter_set_property
+#undef impl_afw_object_setter_set_property_take
 #undef impl_afw_object_setter_remove_property
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_ID
@@ -1343,21 +1355,18 @@ impl_afw_object_managed_setter_set_property(
 }
 
 
-AFW_DEFINE(void)
-afw_object_set_property_take(
-    const afw_object_t *instance,
+/* set_property_take of a fully managed memory object: the slot takes it. */
+static void
+impl_afw_object_managed_setter_set_property_take(
+    const afw_object_setter_t *setter,
     const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
+    const afw_object_t *instance = setter->object;
     afw_object_internal_memory_object_t *self;
     afw_object_internal_name_value_entry_t *e;
 
-    if (!afw_object_is_managed(instance)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_object_set_property_take requires a managed object",
-            xctx);
-    }
     self = (afw_object_internal_memory_object_t *)instance;
     do { if (self->immutable) { AFW_OBJECT_ERROR_OBJECT_IMMUTABLE; } } while (0);
 

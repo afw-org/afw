@@ -12,6 +12,13 @@
 #include "afw_interface.h"
 
 /**
+ * @brief True if this object's inf is the managed world (`inf->is_managed`).
+ */
+#define afw_object_is_managed(_object) \
+    ((_object) && (_object)->inf->is_managed)
+
+
+/**
  * @addtogroup afw_object
  * @{
  */
@@ -280,18 +287,37 @@ afw_object_set_property(
 
 
 /**
- * @brief Set a property; slot takes an already-managed value.
- * @param instance managed object.
+ * @brief Set a property, taking the caller's reference to value.
+ * @param instance object.
  * @param property_name of property to set.
- * @param value managed or permanent (NULL is undefined).
+ * @param value counted or permanent (NULL is undefined).
  * @param xctx of caller.
  *
- * Requires `afw_object_is_managed`. No get_assignable of value.
- * Caller does not release value after.
+ * Calls the setter's set_property_take, so each implementation keeps
+ * the value its own way. Caller does not release value after.
  */
 AFW_DECLARE(void)
 afw_object_set_property_take(
     const afw_object_t *instance,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief set_property_take for setters whose values live in the object's
+ *    pool.
+ * @param instance setter.
+ * @param property_name of property to set.
+ * @param value counted or permanent; the caller's reference is taken.
+ * @param xctx of caller.
+ *
+ * Stores a copy in the object's pool, then releases value. Shared by
+ * object setter implementations that are not fully managed.
+ */
+AFW_DECLARE(void)
+afw_object_setter_set_property_take_by_copy(
+    const afw_object_setter_t *instance,
     const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx);
@@ -969,13 +995,6 @@ afw_object_is_memory_wrapper(const afw_object_t *object);
  */
 AFW_DECLARE(afw_boolean_t)
 afw_object_is_memory_managed(const afw_object_t *object);
-
-
-/**
- * @brief True if this object's inf is the managed world (`inf->is_managed`).
- */
-#define afw_object_is_managed(_object) \
-    ((_object) && (_object)->inf->is_managed)
 
 
 /**

@@ -1035,7 +1035,6 @@ impl_set_error_string_from_utf8_z(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_utf8_t view;
     const afw_utf8_t *encoded;
 
     if (!s_z) {
@@ -1047,15 +1046,6 @@ impl_set_error_string_from_utf8_z(
     if (afw_utf8_is_valid(
         (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, xctx))
     {
-        if (afw_object_is_managed(object)) {
-            /* create_managed copies; skip a dest-p utf8 leftover.
-             * AFW_UTF8_Z_LEN is the create sentinel, not a byte count. */
-            view.s = (const afw_utf8_octet_t *)s_z;
-            view.len = strlen(s_z);
-            afw_object_set_property_as_string_internal(
-                object, name, &view, xctx);
-            return;
-        }
         encoded = afw_utf8_create(s_z, AFW_UTF8_Z_LEN, p, xctx);
         afw_object_set_property_as_string_internal(
             object, name, encoded, xctx);

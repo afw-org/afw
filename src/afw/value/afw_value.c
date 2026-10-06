@@ -74,6 +74,63 @@ afw_value_not_counted_get_reference(
 }
 
 
+/* get_assignable_value for values that are not counted. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_not_counted_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)p;
+    (void)xctx;
+    return instance;
+}
+
+
+/* get_for_p_lifetime for values that are not counted. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_not_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)p;
+    (void)xctx;
+    return instance;
+}
+
+
+/* get_for_p_lifetime for counted values. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (afw_pool_is_value_release_registered(instance, p, xctx)) {
+        return instance;
+    }
+    instance = afw_value_get_reference(instance, xctx);
+    afw_pool_register_value_release(instance, p, xctx);
+    return instance;
+}
+
+
+/* get_for_p_lifetime for pooled values: a fully managed copy. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_pooled_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *copy;
+
+    copy = afw_value_get_assignable_value(instance, p, xctx);
+    afw_pool_register_value_release(copy, p, xctx);
+    return copy;
+}
+
+
 /* release for values that are not counted. */
 AFW_DEFINE(void)
 afw_value_not_counted_release(
@@ -92,7 +149,7 @@ afw_value_get_assignable(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (!value || !value->inf || !value->inf->get_assignable_value) {
+    if (!value) {
         return value;
     }
     return afw_value_get_assignable_value(value, p, xctx);
@@ -108,7 +165,6 @@ afw_value_slot_store(
     afw_xctx_t *xctx)
 {
     const afw_value_t *assignable;
-    afw_boolean_t unmanaged_compiled_value;
 
     if (!incoming) {
         incoming = afw_value_undefined;
@@ -121,20 +177,7 @@ afw_value_slot_store(
      * self). Release-first lets the pool reuse that block, then
      * create_managed memcpy is dest==src (issue #275).
      */
-    unmanaged_compiled_value =
-        incoming && incoming->inf == &afw_value_compiled_value_inf;
     assignable = afw_value_get_assignable(incoming, p, xctx);
-    if (*slot == assignable) {
-        return;
-    }
-    /*
-     * Unmanaged compiled_value get_assignable_value last-releases the
-     * unit pool and stamps the assignable face (same pointer). Release
-     * the original to drop the birth hold.
-     */
-    if (unmanaged_compiled_value) {
-        afw_value_release(incoming, xctx);
-    }
     afw_value_release(*slot, xctx);
     *slot = assignable;
 }
@@ -152,14 +195,6 @@ afw_value_slot_take(
     }
     if (*slot == incoming) {
         return;
-    }
-    /* #476 step 2 removes this check. */
-    if (!afw_value_is_not_counted(incoming) &&
-        !incoming->inf->is_managed)
-    {
-        AFW_THROW_ERROR_Z(general,
-            "afw_value_slot_take requires a managed or permanent value",
-            xctx);
     }
     afw_value_release(*slot, xctx);
     *slot = incoming;
@@ -1393,14 +1428,6 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
     afw_environment_register_value_inf(
         &afw_value_compiled_value_inf.rti.implementation_id,
         &afw_value_compiled_value_inf, xctx);
-
-    afw_environment_register_value_inf(
-        &afw_value_compiled_value_assignable_inf.rti.implementation_id,
-        &afw_value_compiled_value_assignable_inf, xctx);
-
-    afw_environment_register_value_inf(
-        &afw_value_managed_compiled_value_inf.rti.implementation_id,
-        &afw_value_managed_compiled_value_inf, xctx);
 
     afw_environment_register_value_inf(
         &afw_value_call_inf.rti.implementation_id,

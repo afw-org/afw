@@ -31,7 +31,7 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 | Kind | Lives in | `get_reference` | `release` | Mutable after hand-off | Cycle collector |
 |---|---|---|---|---|---|
 | **Permanent** | compiled in (object code), registered constants | no-op, returns self | no-op | no | never walked |
-| **Pooled** | a pool it does not own; dies with that pool | returns a fully managed **copy** | **error** | only while its builder holds it | never walked |
+| **Pooled** | a pool it does not own; dies with that pool | **error** (use `get_assignable_value` / `get_for_p_lifetime` for a copy) | **error** | only while its builder holds it | never walked |
 | **Reference counted** | its own pool (`new_p` / `cede_p`); its count is that pool's count | count bump | last release destroys its pool and everything in it | **no** | dead end (holds only plain values in its own pool) |
 | **Fully managed** | the owner pool (`p->managed_p`); every value it holds is itself counted | count bump | last release releases each value it holds, then frees itself | yes (replaced values are released) | walked |
 
@@ -41,6 +41,19 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 - **Owner.** `p->managed_p` is the owner of fully managed values: the job heap for a request, `adapter->p` when evaluating in adapter config. A fully managed value has one owner; counts are not atomic. Values crossing owners are copied, or borrowed when the owner outlives the borrower. (Temporary atomic counts or locks are acceptable as a bridge until worker threads, #343.)
 - **`afw_reference`.** `afw_value`, `afw_object`, and `afw_array` extend the `afw_reference` interface (`extends="afw_reference"` in `afw_interface.xml`): their infs start with `get_reference` and `release`, and an instance can be used as `afw_reference_t` (`&x->ref`). `get_reference` returns a pointer typed as the interface it was called through. Both methods are mandatory; values that are not counted (permanent, compiler values) share `afw_value_not_counted_get_reference` / `afw_value_not_counted_release`.
 - **One count, matching release.** An object value and its object share one count (the same for arrays): `afw_value_<object|array>_create_managed` of a fully managed instance returns its own value face. Still, **release through the interface you referenced through** (`afw_object_get_reference` → `afw_object_release`; value → value).
+- **Three ways to get a value you can keep** (`afw_value`; each inf decides, no caller inspects the kind):
+
+  | Method | Meaning | pooled | counted | permanent |
+  |---|---|---|---|---|
+  | `get_reference(x)` | keep this exact instance; caller releases | error | bump, self | self |
+  | `get_assignable_value(x, p)` | a value I own, to store (script may change it); caller releases | fully managed copy | bump, self | scalar: self; object/array: fully managed face (ECMAScript-style mutability) |
+  | `get_for_p_lifetime(x, p)` | lasts as long as `p`; caller does not release | copy, release registered on `p` | bump, release registered on `p` (once per `p`) | self, nothing registered |
+
+  `afw_pool_release_value_at_cleanup(v, p)` ("p takes my reference") is `get_for_p_lifetime` then `release`. All three methods and `release` are mandatory; values that are not counted share `afw_value_not_counted_*`.
+- **Closures are made in one place:** storing a script function (`get_assignable_value` of the definition) makes a binding of the definition, the captured frame (if any), and the compile unit.
+- **A compiled value has one inf** and is counted: compile returns it at RC 1 and registers that release on dest `p`.
+- **`is_managed` is a capability.** The `is_managed` inf variable on `afw_value`, `afw_object`, and `afw_array` (`afw_*_is_managed()`) says "this implementation is fully managed", so any implementation, including future ones, can declare it. A module's own identity check (`afw_object_is_memory_managed`) is only for guarding a cast to that module's private struct.
+- **Taking a reference into a container:** setter methods `set_property_take` (object) and `push_value_take` (array) store a value and take the caller's reference. A fully managed implementation stores it; others copy it into their pool (`afw_object_setter_set_property_take_by_copy` / `afw_array_setter_push_value_take_by_copy`) and release it. `afw_object_set_property_take` / `afw_array_push_value_take` go through the setter, so they work for any object or array. The generated `*_internal` helpers use the `is_managed` capability to pick the cheap path (pooled value in the object's pool) for pooled objects.
 - **No exceptions.** Each inf enforces its kind's rules. Code outside an inf does not inspect the inf or `is_managed` to decide what to do.
 - **Every create function's doc comment says which kind it makes and who releases.**
 
@@ -48,7 +61,8 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 
 - A pooled object or array still pins its pool on `get_reference` (runtime `set_object`, adapter results). Nothing releases those pins. To remove.
 - `get_reference` of a pooled scalar or object throws today; `get_assignable_value` is the copy. They fold into one `get_reference` (#476 step 2).
-- Outside checks marked "#476 step 2 removes this check" (`afw_value_is_not_counted` in `afw_pool.c`, `afw_pool_scope.c`, `afw_value_slot_take`) keep the old "no release method" meaning until then. Also `afw_runtime.c` compares an object's `release`.
+- `get_reference` of a pooled memory object or array still pins its pool. The environment runtime registry holds both pooled and counted objects through `get_reference` / `release`; it needs a design before pooled `get_reference` can throw (#476).
+
 - A value wrapper over a pooled object or array (`afw_value_<object|array>_managed_t`) still has its own count; step 2 replaces it with a fully managed copy and deletes the wrapper type.
 - Reference-counted adapter results are not yet made immutable at hand-off (#476 S6 showed nothing changes them after).
 

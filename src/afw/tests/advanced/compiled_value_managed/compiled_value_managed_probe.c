@@ -43,13 +43,13 @@ impl_front_door(afw_xctx_t *xctx)
     value = afw_compile_to_value(&impl_source, NULL,
         afw_compile_type_script, NULL, xctx->p, xctx);
     if (!value ||
-        value->inf != &afw_value_managed_compiled_value_inf)
+        value->inf != &afw_value_compiled_value_inf)
     {
         fprintf(stderr, "front_door: expected managed compiled_value inf\n");
         return 1;
     }
-    if (!afw_value_is_compiled_value(value) || !value->inf->is_managed) {
-        fprintf(stderr, "front_door: is_compiled_value / is_managed\n");
+    if (!afw_value_is_compiled_value(value)) {
+        fprintf(stderr, "front_door: is_compiled_value\n");
         return 1;
     }
     again = afw_value_get_assignable(value, xctx->p, xctx);

@@ -28,6 +28,8 @@
 #define AFW_IMPLEMENTATION_ID "value_meta"
 #define AFW_OBJECT_SELF_T afw_value_meta_object_self_t
 #include "afw_object_impl_declares.h"
+#define impl_afw_object_setter_set_property_take \
+    afw_object_setter_set_property_take_by_copy
 #include "afw_object_setter_impl_declares.h"
 
 static const afw_value_t *

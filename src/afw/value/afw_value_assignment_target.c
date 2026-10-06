@@ -15,8 +15,9 @@
 #include "afw_internal.h"
 
 #define impl_afw_value_release afw_value_not_counted_release
+#define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime
 #define impl_afw_value_get_reference afw_value_not_counted_get_reference
-#define impl_afw_value_get_assignable_value NULL
+#define impl_afw_value_get_assignable_value afw_value_not_counted_get_assignable_value
 
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default

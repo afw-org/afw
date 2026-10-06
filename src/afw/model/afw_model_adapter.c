@@ -713,6 +713,12 @@ impl_execute_returnObject_thunk(
     if (x->argc >= 1) {
         object_value = afw_value_evaluate(argv[1], p, xctx);
         if (afw_value_is_object(object_value)) {
+            /*
+             * The object may live in this script's scope pool. The
+             * callback receives a reference it owns (a copy if pooled).
+             */
+            object_value = afw_value_get_assignable_value(object_value,
+                cb_ctx->p, xctx);
             object = ((const afw_value_object_t *)object_value)->internal;
         }
     }

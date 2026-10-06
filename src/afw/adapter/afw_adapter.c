@@ -959,7 +959,6 @@ afw_adapter_internal_process_object_from_adapter(
     const afw_utf8_t *entity_path;
 
     *adapted_object = object;
-    afw_object_get_reference(object, xctx);
     entity_path = afw_object_path_make(
         ctx->adapter_id,
         ctx->object_type_id,
@@ -975,8 +974,6 @@ afw_adapter_internal_process_object_from_adapter(
     /* Make view based on options. */
     *view = afw_object_view_create(*adapted_object, entity_path,
         ctx->options, p, xctx);
-
-    /** @fixme Need to add releases at correct place by caller. */
 }
 
 

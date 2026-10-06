@@ -130,6 +130,15 @@ impl_afw_array_setter_push_value(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_array_setter_push_value_take
+/* Declare method push_value_take */
+AFW_DECLARE_STATIC(void)
+impl_afw_array_setter_push_value_take(
+    AFW_ARRAY_SETTER_SELF_T *self,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_array_setter_pop_value
 /* Declare method pop_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -225,6 +234,8 @@ impl_afw_array_setter_inf = {
     impl_afw_array_setter_determine_data_type_and_set_immutable,
     (afw_array_setter_push_value_t)
     impl_afw_array_setter_push_value,
+    (afw_array_setter_push_value_take_t)
+    impl_afw_array_setter_push_value_take,
     (afw_array_setter_pop_value_t)
     impl_afw_array_setter_pop_value,
     (afw_array_setter_shift_value_t)

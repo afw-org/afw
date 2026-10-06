@@ -3358,6 +3358,13 @@ typedef void
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
+/** @sa afw_array_setter_push_value_take() */
+typedef void
+(*afw_array_setter_push_value_take_t)(
+    const afw_array_setter_t * instance,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+
 /** @sa afw_array_setter_pop_value() */
 typedef const afw_value_t *
 (*afw_array_setter_pop_value_t)(
@@ -3421,6 +3428,7 @@ struct afw_array_setter_inf_s {
     afw_array_setter_set_immutable_t set_immutable;
     afw_array_setter_determine_data_type_and_set_immutable_t determine_data_type_and_set_immutable;
     afw_array_setter_push_value_t push_value;
+    afw_array_setter_push_value_take_t push_value_take;
     afw_array_setter_pop_value_t pop_value;
     afw_array_setter_shift_value_t shift_value;
     afw_array_setter_insert_value_t insert_value;
@@ -3498,6 +3506,31 @@ struct afw_array_setter_inf_s {
     _xctx \
 ) \
 (_instance)->inf->push_value( \
+    (_instance), \
+    (_value), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `push_value_take` of interface `afw_array_setter`.
+ *
+ * Append a value at the end of the array, taking the caller's reference
+ * to value. The caller owns one reference to value and must not release
+ * it after this call. A fully managed array stores it; an array whose
+ * values live in its pool keeps a value that lasts for that pool and
+ * gives the caller's reference back. Otherwise the same as push_value.
+ * @param instance Pointer to this array setter instance.
+ * @param value Value to append. The caller's reference is taken.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_setter_t
+ * @see @ref afw_array_setter_s "afw_array_setter_t"
+ */
+#define afw_array_setter_push_value_take( \
+    _instance, \
+    _value, \
+    _xctx \
+) \
+(_instance)->inf->push_value_take( \
     (_instance), \
     (_value), \
     (_xctx) \
@@ -4410,6 +4443,14 @@ typedef void
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
+/** @sa afw_object_setter_set_property_take() */
+typedef void
+(*afw_object_setter_set_property_take_t)(
+    const afw_object_setter_t * instance,
+    const afw_value_t * property_name,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+
 /** @sa afw_object_setter_remove_property() */
 typedef void
 (*afw_object_setter_remove_property_t)(
@@ -4427,6 +4468,7 @@ struct afw_object_setter_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_setter_set_immutable_t set_immutable;
     afw_object_setter_set_property_t set_property;
+    afw_object_setter_set_property_take_t set_property_take;
     afw_object_setter_remove_property_t remove_property;
 };
 
@@ -4480,6 +4522,37 @@ struct afw_object_setter_inf_s {
     _xctx \
 ) \
 (_instance)->inf->set_property( \
+    (_instance), \
+    (_property_name), \
+    (_value), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `set_property_take` of interface `afw_object_setter`.
+ *
+ * Set the value of a property, taking the caller's reference to value.
+ * The caller owns one reference to value (for example a create_managed
+ * result) and must not release it after this call. Each implementation
+ * keeps the value in its own way: a fully managed object stores it; an
+ * object whose values live in its pool keeps a value that lasts for that
+ * pool and gives the caller's reference back. Otherwise the same as
+ * set_property.
+ * @param instance Pointer to this object setter instance.
+ * @param property_name Property name of property to set.
+ * @param value Value to set. The caller's reference is taken. NULL is
+ * undefined.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_setter_t
+ * @see @ref afw_object_setter_s "afw_object_setter_t"
+ */
+#define afw_object_setter_set_property_take( \
+    _instance, \
+    _property_name, \
+    _value, \
+    _xctx \
+) \
+(_instance)->inf->set_property_take( \
     (_instance), \
     (_property_name), \
     (_value), \
@@ -7807,6 +7880,13 @@ typedef const afw_value_t *
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
+/** @sa afw_value_get_for_p_lifetime() */
+typedef const afw_value_t *
+(*afw_value_get_for_p_lifetime_t)(
+    const afw_value_t * instance,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
 /** @sa afw_value_create_iterator() */
 typedef const afw_iterator_old_t *
 (*afw_value_create_iterator_t)(
@@ -7874,6 +7954,7 @@ struct afw_value_inf_s {
     afw_value_get_reference_t get_reference;
     afw_value_release_t release;
     afw_value_get_assignable_value_t get_assignable_value;
+    afw_value_get_for_p_lifetime_t get_for_p_lifetime;
     afw_value_create_iterator_t create_iterator;
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
@@ -7975,6 +8056,33 @@ struct afw_value_inf_s {
     _xctx \
 ) \
 (_instance)->inf->get_assignable_value( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `get_for_p_lifetime` of interface `afw_value`.
+ *
+ * Return a value that lasts as long as p. Caller does not release.
+ * Permanent and compiler values return self and register nothing.
+ * A counted value gets one more reference, released when p is
+ * destroyed (at most one registration per value per p). A pooled
+ * value returns a fully managed copy whose release is registered on
+ * p. Use for results that must outlive the scope that made them.
+ * @param instance Pointer to this adaptive value instance.
+ * @param p Pool the result must last for (copies use p->managed_p).
+ * @param xctx This is the caller's xctx.
+ * @return A value that lasts for p. Caller does not release.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_get_for_p_lifetime( \
+    _instance, \
+    _p, \
+    _xctx \
+) \
+(_instance)->inf->get_for_p_lifetime( \
     (_instance), \
     (_p), \
     (_xctx) \

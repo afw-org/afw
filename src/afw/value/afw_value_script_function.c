@@ -16,6 +16,7 @@
 
 
 #define impl_afw_value_release afw_value_not_counted_release
+#define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime
 
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_function_direct
@@ -98,8 +99,12 @@ impl_afw_value_get_reference(
 
 
 /*
- * Store-time bind (#35): mint a closure_binding (create_managed RC 1).
- * Caller of this get_assignable releases.
+ * The one place a closure is made: storing a script function (assign,
+ * return, object/array literal) binds it. The binding captures the live
+ * frame of the `{ }` the function was written in, not a nested block we
+ * happen to be in, and does not hoist names. With no current block
+ * scope there is nothing to capture; the binding still references the
+ * compile unit. Caller releases.
  */
 const afw_value_t *
 impl_afw_value_get_assignable_value(
@@ -107,8 +112,21 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    return afw_value_closure_binding_create_if_needed(
-        &self->pub, p, xctx);
+    const afw_pool_scope_t *scope;
+
+    scope = afw_pool_scope_internal_current(xctx);
+    if (scope && scope->block) {
+        scope = afw_pool_scope_find_for_block(
+            self->enclosing_block, scope, xctx);
+        if (!scope) {
+            AFW_THROW_ERROR_Z(general,
+                "Internal error: scope not found", xctx);
+        }
+    }
+    else {
+        scope = NULL;
+    }
+    return afw_value_closure_binding_create_managed(self, scope, p, xctx);
 }
 
 

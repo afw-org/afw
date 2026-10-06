@@ -12,6 +12,20 @@
 #include "afw_interface.h"
 
 /**
+ * @brief True if value is reference-counted (managed).
+ *
+ * Inf flag, not a type test. Closures are managed. Unmanaged and
+ * permanents are not. Use after generate of afw_value_inf_t.
+ */
+#define afw_value_is_managed(_A_VALUE) \
+( \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf && \
+    (_A_VALUE)->inf->is_managed \
+)
+
+
+/**
  * @addtogroup afw_value
  * @{
  */
@@ -331,19 +345,9 @@ afw_value_call_script_function_inf;
 
 
 
-/** @brief Value call inf. */
+/** @brief Compiled value inf (counted; one inf). */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_compiled_value_inf;
-
-
-/** @brief Assignable face of a compiled_value (pins the unit pool). */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_compiled_value_assignable_inf;
-
-
-/** @brief Managed compiled_value (RC in p->managed_p, like managed object). */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_compiled_value_inf;
 
 
 
@@ -780,9 +784,7 @@ afw_value_is_fully_evaluated(
 ( \
     (_A_VALUE) && \
     ( \
-        (_A_VALUE)->inf == &afw_value_compiled_value_inf || \
-        (_A_VALUE)->inf == &afw_value_compiled_value_assignable_inf || \
-        (_A_VALUE)->inf == &afw_value_managed_compiled_value_inf \
+        (_A_VALUE)->inf == &afw_value_compiled_value_inf \
     ) \
 )
 
@@ -876,20 +878,6 @@ afw_value_is_fully_evaluated(
 ( \
     (_A_VALUE) && \
     (_A_VALUE)->inf == &afw_value_closure_binding_inf \
-)
-
-
-/**
- * @brief True if value is reference-counted (managed).
- *
- * Inf flag, not a type test. Closures are managed. Unmanaged and
- * permanents are not. Use after generate of afw_value_inf_t.
- */
-#define afw_value_is_managed(_A_VALUE) \
-( \
-    (_A_VALUE) && \
-    (_A_VALUE)->inf && \
-    (_A_VALUE)->inf->is_managed \
 )
 
 
@@ -1215,6 +1203,63 @@ afw_value_not_counted_get_reference(
 
 
 /**
+ * @brief get_assignable_value for a value that is not counted.
+ * @param instance value.
+ * @param p unused.
+ * @param xctx of caller.
+ * @return instance.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_not_counted_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_for_p_lifetime for a value that is not counted.
+ * @param instance value.
+ * @param p unused.
+ * @param xctx of caller.
+ * @return instance. Nothing is registered.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_not_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_for_p_lifetime for a counted value.
+ * @param instance value.
+ * @param p pool the result must last for.
+ * @param xctx of caller.
+ * @return instance with one more reference, released when p is
+ *     destroyed (none added if one is already registered on p).
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_for_p_lifetime for a pooled value.
+ * @param instance value.
+ * @param p pool the result must last for (copy uses p->managed_p).
+ * @param xctx of caller.
+ * @return a fully managed copy, released when p is destroyed.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_pooled_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief release for a value that is not counted (no-op).
  * @param instance value.
  * @param xctx of caller.
@@ -1227,18 +1272,6 @@ AFW_DECLARE(void)
 afw_value_not_counted_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
-
-
-/**
- * @brief True if value is not counted (permanent or compiler value).
- * @param _value non-NULL value.
- *
- * Temporary (#476 step 1): keeps the meaning of the old "no
- * optional_release" checks outside infs. Each use goes away in step 2,
- * when get_reference does the right thing for every kind.
- */
-#define afw_value_is_not_counted(_value) \
-    ((_value)->inf->release == afw_value_not_counted_release)
 
 
 /**
@@ -1812,7 +1845,7 @@ afw_value_common_create(
 /**
  * @brief Create a managed closure binding value.
  * @param script_function_definition script function to enclose.
- * @param enclosing_lexical_scope for closure binding. Create pins it.
+ * @param enclosing_lexical_scope captured scope, or NULL. Referenced.
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return Created afw_value_t (RC 1; caller releases).
@@ -1827,32 +1860,6 @@ afw_value_closure_binding_create_managed(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-
-
-/**
- * @brief Bind a script function to the current lexical scope if needed.
- * @param value candidate value (any kind).
- * @param p dest pool (uses p->managed_p).
- * @param xctx of caller.
- * @return value, or a closure_binding holding the defining scope.
- *
- * Store-time capture for assign, return, and object/array literals. Not
- * hoisting: the function still uses the scope in which it was written, and
- * names must be declared before use. Non-script-function values are
- * returned unchanged. If the current scope is nested inside the defining
- * scope, the defining scope is the one held (not the inner block).
- *
- * Kind: fully managed closure binding (caller releases) when a binding
- * is made. Otherwise returns value unchanged; with no current block
- * scope that is the pooled definition itself, which breaks the caller
- * releases contract of its only caller (get_assignable_value). #476
- * step 2.
- */
-AFW_DEFINE(const afw_value_t *)
-afw_value_closure_binding_create_if_needed(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
 
 
 /**

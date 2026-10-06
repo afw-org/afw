@@ -229,6 +229,40 @@ afw_object_set_property(
 }
 
 
+/* Set a property, taking the caller's reference to value. */
+AFW_DEFINE(void)
+afw_object_set_property_take(
+    const afw_object_t *instance,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_object_setter_t *setter;
+
+    setter = afw_object_get_setter(instance, xctx);
+    if (!setter) {
+        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    }
+    afw_object_setter_set_property_take(setter, property_name, value, xctx);
+}
+
+
+/* set_property_take for setters whose values live in the object's pool. */
+AFW_DEFINE(void)
+afw_object_setter_set_property_take_by_copy(
+    const afw_object_setter_t *instance,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *copy;
+
+    copy = (value) ? afw_value_clone(value, instance->object->p, xctx) : NULL;
+    afw_object_setter_set_property(instance, property_name, copy, xctx);
+    afw_value_release(value, xctx);
+}
+
+
 /* Remove a property from an object. */
 AFW_DEFINE(void)
 afw_object_remove_property(

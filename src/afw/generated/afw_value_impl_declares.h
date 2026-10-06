@@ -133,6 +133,15 @@ impl_afw_value_get_assignable_value(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_value_get_for_p_lifetime
+/* Declare method get_for_p_lifetime */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_for_p_lifetime(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_value_create_iterator
 /* Declare method create_iterator */
 AFW_DECLARE_STATIC(const afw_iterator_old_t *)
@@ -234,6 +243,8 @@ impl_afw_value_inf = {
     impl_afw_value_release,
     (afw_value_get_assignable_value_t)
     impl_afw_value_get_assignable_value,
+    (afw_value_get_for_p_lifetime_t)
+    impl_afw_value_get_for_p_lifetime,
     (afw_value_create_iterator_t)
     impl_afw_value_create_iterator,
     (afw_value_optional_evaluate_t)
