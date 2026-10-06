@@ -5,6 +5,7 @@
 import os
 import shutil
 import tempfile
+import threading
 import time
 
 from _afwdev.test.common import format_test_timing, format_xctx_bytes
@@ -13,7 +14,7 @@ from _afwdev.test.history import (
     compare_runs, file_record, trend_runs, _bytes_fatter, BYTES_FLOOR,
     history_filename, is_reference_name, select_trend_files,
     clear_history, delete_history_ref, list_history_refs,
-    ref_label_from_name,
+    ref_label_from_name, write_history, load_run, list_run_files,
 )
 
 
@@ -387,6 +388,45 @@ def run():
             os.environ["TMPDIR"] = saved_tmpdir[0]
         tempfile.tempdir = saved_tmpdir[1]
         shutil.rmtree(root, ignore_errors=True)
+
+    hist = tempfile.mkdtemp()
+    try:
+        opts = {"mode": "afw", "history_dir": hist}
+        summary = {"mode": "afw", "files": [{"path": "p", "ms": 1}] * 2000}
+        paths = []
+        errors = []
+
+        def writer():
+            try:
+                paths.append(write_history(summary, opts))
+            except Exception as e:
+                errors.append(e)
+
+        threads = [threading.Thread(target=writer) for _ in range(8)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        names = sorted(os.listdir(hist))
+        loaded = [load_run(p) for p in list_run_files(hist, "afw")]
+        latest = os.path.join(hist, "latest-afw.json")
+        tests.append({
+            "test": "history-write-concurrent",
+            "description":
+                "8 writers at once: 8 complete files, no temp files left, "
+                "latest points at a complete file",
+            "passed": (
+                not errors
+                and len(set(paths)) == 8
+                and len(loaded) == 8
+                and all(len(r["files"]) == 2000 for r in loaded)
+                and not [n for n in names if n.endswith(".tmp")]
+                and len(load_run(latest)["files"]) == 2000
+            ),
+            "skip": False,
+        })
+    finally:
+        shutil.rmtree(hist, ignore_errors=True)
 
     return {
         "description": description,

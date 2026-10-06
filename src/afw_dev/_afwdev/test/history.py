@@ -13,7 +13,8 @@ import glob
 import os
 import re
 import subprocess
-from datetime import datetime, timezone
+import threading
+from datetime import datetime, timedelta, timezone
 
 from _afwdev.common import msg, nfc
 from _afwdev.test.common import format_xctx_bytes
@@ -261,26 +262,54 @@ def delete_history_ref(options):
 
 
 def write_history(summary, options):
-    """Write dated JSON and latest-{mode}.json symlink. Returns the path."""
+    """Write dated JSON and latest-{mode}.json symlink. Returns the path.
+
+    Other afwdev test runs may list this directory at any time, so a
+    file appears under its final name only when complete: write a hidden
+    temp file, fsync it, then link it into place. os.link never replaces
+    a file, so two runs that finish in the same millisecond get
+    different stamps. latest is swapped in one step with os.replace.
+    """
     dir_path = history_dir(options)
     mode = env_mode(options)
     os.makedirs(dir_path, exist_ok=True)
     ref_label = sanitize_ref_label((options or {}).get("history_ref"))
-    path = os.path.join(dir_path, history_filename(mode, ref_label=ref_label or None))
     payload = dict(summary)
     payload.pop("_path", None)
     payload.pop("_basename", None)
     if ref_label:
         payload["reference"] = True
         payload["label"] = ref_label
-    with nfc.open(path, "w") as fd:
-        nfc.json_dump(payload, fd, indent=2, sort_keys=True)
-        fd.write("\n")
-    latest = os.path.join(dir_path, "latest-{}.json".format(_mode_suffix(mode)))
+    when = datetime.now(timezone.utc)
+    owner = "{}.{}".format(os.getpid(), threading.get_ident())
+    tmp = os.path.join(dir_path, ".{}.{}.tmp".format(
+        history_filename(mode, when, ref_label or None), owner))
     try:
-        if os.path.islink(latest) or os.path.exists(latest):
-            os.remove(latest)
-        os.symlink(os.path.basename(path), latest)
+        with nfc.open(tmp, "w") as fd:
+            nfc.json_dump(payload, fd, indent=2, sort_keys=True)
+            fd.write("\n")
+            fd.flush()
+            os.fsync(fd.fileno())
+        while True:
+            path = os.path.join(
+                dir_path, history_filename(mode, when, ref_label or None))
+            try:
+                os.link(tmp, path)
+                break
+            except FileExistsError:
+                when += timedelta(milliseconds=1)
+    finally:
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+    latest = _latest_path(dir_path, mode)
+    tmp_link = "{}.{}.tmp".format(latest, owner)
+    try:
+        if os.path.lexists(tmp_link):
+            os.remove(tmp_link)
+        os.symlink(os.path.basename(path), tmp_link)
+        os.replace(tmp_link, latest)
     except OSError:
         pass
     msg.highlighted_info("History:       " + path)
