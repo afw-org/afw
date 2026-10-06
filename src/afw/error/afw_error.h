@@ -872,9 +872,11 @@ do {\
 \
     afw_size_t this_TOP_OFFSET; \
     afw_try_t this_TRY; \
+    afw_try_t this_FINALLY_TRY; \
     afw_error_t this_THROWN_ERROR; \
     afw_boolean_t this_ERROR_OCCURRED = false; \
     afw_boolean_t this_ERROR_CAUGHT = false; \
+    (void)this_FINALLY_TRY; \
     this_TRY.prev = xctx->current_try;\
     xctx->current_try = &this_TRY;\
     this_TOP_OFFSET = xctx->evaluation_stack->count; \
@@ -882,6 +884,7 @@ do {\
         if (setjmp(this_TRY.throw_jmp_buf) != 0) { \
             if (this_ERROR_OCCURRED) { \
                 /* Thrown from a catch: the new error replaces it. */ \
+                afw_error_processing_handled(xctx); \
                 afw_error_release_references(&this_THROWN_ERROR, xctx); \
             } \
             AFW_ERROR_COPY(&this_THROWN_ERROR, xctx->error); \
@@ -932,16 +935,26 @@ do {\
  * The body of AFW_FINALLY is executed after the body of the AFW_TRY and
  * bodies of AFW_CATCH* macros, regardless of whether an error has occurred.
  *
- * The xctx's current_try is set to its value before entering the AFW_TRY
- * block, so errors thrown in this AFW_FINALLY block will be handle by
- * the previous try;
+ * Errors thrown in this AFW_FINALLY block are handled by the previous
+ * try. Such an error replaces one still pending from the AFW_TRY or
+ * AFW_CATCH body, which is released first.
  */
 #define AFW_FINALLY \
             while(0); \
         } \
     } while(0); \
     do { \
-        xctx->current_try = this_TRY.prev; \
+        this_FINALLY_TRY.prev = this_TRY.prev; \
+        xctx->current_try = &this_FINALLY_TRY; \
+        if (setjmp(this_FINALLY_TRY.throw_jmp_buf) != 0) { \
+            /* Thrown from finally: the new error replaces a pending one. */ \
+            xctx->current_try = this_TRY.prev; \
+            if (this_ERROR_OCCURRED) { \
+                afw_error_processing_handled(xctx); \
+                afw_error_release_references(&this_THROWN_ERROR, xctx); \
+            } \
+            longjmp(xctx->current_try->throw_jmp_buf, xctx->error->code); \
+        } \
         { \
             do
 

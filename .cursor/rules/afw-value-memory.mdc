@@ -21,12 +21,17 @@ Use when changing value lifetime, reference count, create/allocate APIs, data ty
 
 ## Lifetimes (inf chooses policy)
 
-- **permanent** — built-in, or lasts for the life of an AFW environment. Usually `static const` with `afw_value_permanent_<dt>_inf`; env-lifetime values may use the same inf. No refcount; `get_reference` returns as-is. Scalar `get_assignable_value` is as-is; object/array `get_assignable_value` is a managed wrapper/clone. No `create_permanent_*` API.
-- **managed** — start-at-1 in `p->managed_p`. Caller must release. Extra `get_reference` / `get_assignable_value` bump self. Last RC `release`s every reference and `free_memory`s every block it allocated. `afw_value_create_managed_<dt>()`. Dual-face object/array: instance RC is the managed lifetime.
-- **managed_slice** — for `cType` `afw_utf8_t` / `afw_memory_t` only: a view (pointer + length/size) into a **containing managed** value. Header in dest `p->managed_p`. Create `get_reference`s containing; slice starts at 1; `get_reference` bumps the slice; last release releases containing and `free_memory`s the slice header. `afw_value_create_managed_<dt>_slice()`.
-- **unmanaged** — programmer-owned; usually created in a pool and lasting for that pool. Scalar and object/array **value** `get_reference` / `release` throw. `get_assignable_value` promotes or clones to managed in dest `p->managed_p` (already-managed object bumps; every other non-permanent object, including runtime/adapter/view, is `clone_managed`). Permanent object `get_assignable_value` stays a managed look-through wrapper. `afw_value_create_unmanaged_<dt>()` / `allocate_unmanaged_*`.
+Four kinds ([#476](https://github.com/afw-org/afw/issues/476); table and rules in [`lifetime-principles.md`](../../designs/lifetime-principles.md) *Four kinds*). A caller only needs to know whether it **owns a reference**.
 
-**Slot fill:** `get_assignable` / `slot_store` take dest `p` (promote/clone uses `p->managed_p`). `add_reference` / `get_reference` take `xctx` only (bump). `afw_value_clone_or_reference` is a compatibility name for `get_reference`. Clone into a pool is `clone_unmanaged` / `clone_managed`.
+- **permanent** — compiled in or registered constants. `get_reference` / `release` are no-ops. Object/array `get_assignable_value` is a fully managed face.
+- **pooled** — lives in a pool it does not own and dies with it (`create_unmanaged`, `afw_*_create_pooled_copy`). `get_reference` / `release` **throw**; keep it with `get_assignable_value` (copy you release) or `get_for_p_lifetime` (copy that lasts for `p`).
+- **reference counted** — owns its pool (`new_p` / `cede_p`); count = pool count; immutable after hand-off (adapter results, journal entries, conf). A script change gets a fully managed face.
+- **fully managed** — in the owner `p->managed_p`; counts every value it holds; mutable (`create_managed`, `afw_*_to_managed`, `afw_*_clone`). Takes part in cycle collection.
+- **managed_slice** — `afw_utf8_t` / `afw_memory_t` view into a containing managed value; holds the containing value.
+
+Values, objects, arrays, and pools extend **`afw_reference`**: `get_reference(x, xctx)` (no `p`), `release` (void, NULL-safe), `get_reference_count`, `for_each_reference`, `release_references`. Each inf enforces its kind; code outside an inf does not inspect the inf or `is_managed`.
+
+**Slot fill:** `get_assignable` / `slot_store` take dest `p`. `_take` (`set_property_take`, `push_value_take`, `slot_take`) means the callee takes the caller's reference. Copies by intent: `afw_*_clone` (independent copy), `afw_*_to_managed` (fully managed, sharing when it can), `afw_*_create_pooled_copy` (pooled in `p`).
 
 Do not invent new lifetime paths; match existing create_* patterns. Words like extra-hold and special case: stop and read [`lifetime-principles.md`](../../designs/lifetime-principles.md).
 
@@ -34,7 +39,7 @@ Do not invent new lifetime paths; match existing create_* patterns. Words like e
 
 ## Active long-running focus
 
-- Implement/complete **optional_release** / **get_reference** on escaping values: objects, arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
+- Reference cycles among fully managed values are collected per owner (trial deletion, `AFW_REFERENCE_COLLECT`; [#458](https://github.com/afw-org/afw/issues/458)). A new counted kind must list what it holds (`for_each_reference`) and empty itself (`release_references`); `AFW_REFERENCE_CHECK` catches over-listing.
 - Evaluation unmanaged values use **`scope->p`** when `{ }` has a frame (PR **#287**). Lab: [`src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md`](../../src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md). Do not `create_managed` in `array()` / `create_array()`. Do not `get_assignable_value` a fresh `create_managed` unless you will also release that second hold. `pop`/`shift`: register last-release of the transferred hold on dest `p`. `afw_compile_*` registers last-release of a managed unit on dest `p`. Implementation order: [`issue-2-hold-in-inf.md`](../../designs/issue-2-hold-in-inf.md) table at top. Details: `afw-function`.
 - Heap tracker + last-release walk handle bulk release. **No reparent** on destroy. Polish value-inf hooks; do not replace the pool kinds.
 - **Qualifier snapshots** (`qualifier()` / `qualifiers()`, issue **#9**) allocate **fresh, possibly large** memory objects (`environment::`, `request::`, nested `qualifiers()`). Prefer `qualifier::name` for normal work; treat repeated/retained snapshots as long-running stress — see **`afw-qualified-variables`**, `beta-backlog.md`.
