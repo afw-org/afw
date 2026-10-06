@@ -165,14 +165,20 @@ assert(includes<string>("abc", "c", -1) === true);
 return 0;
 
 //?
-//? test: decompile-converted-function
-//? description: decompile of a value converted to function writes its text
-//? expect: 0
+//? test: string-to-function
+//? description: a string can not be converted to a function
+//? expect: error:A string can not be converted to a function: 'abc'
 //? source: ...
 
-const d = decompile(bag<function>("abc"));
-assert(index_of(d, "abc") >= 0);
-return 0;
+bag<function>("abc")
+
+//?
+//? test: returned-string-to-function
+//? description: returning a string converted to a function throws, not a read of freed memory
+//? expect: error
+//? source: ...
+
+return bag<function>("x");
 
 //?
 //? test: compile-listing-no-whitespace

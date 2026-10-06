@@ -791,10 +791,18 @@ impl_afw_data_type_function_utf8_to_internal(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value;
-
-    value = afw_value_create_unmanaged_string(from_utf8, p, xctx);
-    memcpy(to_internal, (const void *)&value, sizeof(afw_value_t *));
+    /*
+     * A string is not a function. Wrapping one made an unmanaged
+     * function value in the caller's pool that escaped its scope
+     * (pool lifetime) and was read after the pool was freed. A
+     * function argument given by name is resolved where it is used.
+     */
+    (void)instance;
+    (void)to_internal;
+    (void)p;
+    AFW_THROW_ERROR_FZ(conversion_error, xctx,
+        "A string can not be converted to a function: '%ku'",
+        from_utf8);
 }
 
 
