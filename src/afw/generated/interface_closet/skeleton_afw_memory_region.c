@@ -46,6 +46,18 @@ impl_afw_memory_region_free(
 }
 
 /*
+ * Implementation of method trim for interface afw_memory_region.
+ */
+void
+impl_afw_memory_region_trim(
+    AFW_MEMORY_REGION_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method cleanup for interface afw_memory_region.
  */
 void

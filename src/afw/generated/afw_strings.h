@@ -73791,6 +73791,32 @@ afw_self_v_memoryRegionBytesInUse;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionDiscards \
+    "memoryRegionDiscards"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionDiscards */
+#define afw_s_memoryRegionDiscards \
+    (&afw_self_v_memoryRegionDiscards.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionDiscards */
+#define afw_self_s_memoryRegionDiscards \
+    (afw_self_v_memoryRegionDiscards.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionDiscards */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionDiscards;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionDiscards */
+#define afw_z_memoryRegionDiscards \
+    (afw_self_v_memoryRegionDiscards.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionDiscards */
+#define afw_v_memoryRegionDiscards \
+    (&afw_self_v_memoryRegionDiscards.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_memoryRegionFreeListBytes \
     "memoryRegionFreeListBytes"
 
@@ -73839,6 +73865,32 @@ afw_self_v_memoryRegionFreeListCount;
 /** @brief 'const afw_value_t *' for AFW_Q_memoryRegionFreeListCount */
 #define afw_v_memoryRegionFreeListCount \
     (&afw_self_v_memoryRegionFreeListCount.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionFreeListDiscardedBytes \
+    "memoryRegionFreeListDiscardedBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListDiscardedBytes */
+#define afw_s_memoryRegionFreeListDiscardedBytes \
+    (&afw_self_v_memoryRegionFreeListDiscardedBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListDiscardedBytes */
+#define afw_self_s_memoryRegionFreeListDiscardedBytes \
+    (afw_self_v_memoryRegionFreeListDiscardedBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionFreeListDiscardedBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionFreeListDiscardedBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionFreeListDiscardedBytes */
+#define afw_z_memoryRegionFreeListDiscardedBytes \
+    (afw_self_v_memoryRegionFreeListDiscardedBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionFreeListDiscardedBytes */
+#define afw_v_memoryRegionFreeListDiscardedBytes \
+    (&afw_self_v_memoryRegionFreeListDiscardedBytes.pub)
 
 
 
@@ -73947,6 +73999,58 @@ afw_self_v_memoryRegionGetMisses;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionKeepLargeCount \
+    "memoryRegionKeepLargeCount"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionKeepLargeCount */
+#define afw_s_memoryRegionKeepLargeCount \
+    (&afw_self_v_memoryRegionKeepLargeCount.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionKeepLargeCount */
+#define afw_self_s_memoryRegionKeepLargeCount \
+    (afw_self_v_memoryRegionKeepLargeCount.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionKeepLargeCount */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionKeepLargeCount;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionKeepLargeCount */
+#define afw_z_memoryRegionKeepLargeCount \
+    (afw_self_v_memoryRegionKeepLargeCount.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionKeepLargeCount */
+#define afw_v_memoryRegionKeepLargeCount \
+    (&afw_self_v_memoryRegionKeepLargeCount.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionKeepSmallCount \
+    "memoryRegionKeepSmallCount"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionKeepSmallCount */
+#define afw_s_memoryRegionKeepSmallCount \
+    (&afw_self_v_memoryRegionKeepSmallCount.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionKeepSmallCount */
+#define afw_self_s_memoryRegionKeepSmallCount \
+    (afw_self_v_memoryRegionKeepSmallCount.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionKeepSmallCount */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionKeepSmallCount;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionKeepSmallCount */
+#define afw_z_memoryRegionKeepSmallCount \
+    (afw_self_v_memoryRegionKeepSmallCount.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionKeepSmallCount */
+#define afw_v_memoryRegionKeepSmallCount \
+    (&afw_self_v_memoryRegionKeepSmallCount.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_memoryRegionPeakBytesInUse \
     "memoryRegionPeakBytesInUse"
 
@@ -74025,6 +74129,32 @@ afw_self_v_memoryRegionRegionsInUse;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionTrimUnmaps \
+    "memoryRegionTrimUnmaps"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionTrimUnmaps */
+#define afw_s_memoryRegionTrimUnmaps \
+    (&afw_self_v_memoryRegionTrimUnmaps.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionTrimUnmaps */
+#define afw_self_s_memoryRegionTrimUnmaps \
+    (afw_self_v_memoryRegionTrimUnmaps.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionTrimUnmaps */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionTrimUnmaps;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionTrimUnmaps */
+#define afw_z_memoryRegionTrimUnmaps \
+    (afw_self_v_memoryRegionTrimUnmaps.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionTrimUnmaps */
+#define afw_v_memoryRegionTrimUnmaps \
+    (&afw_self_v_memoryRegionTrimUnmaps.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_memory_region_free_list_max_bytes \
     "memory_region_free_list_max_bytes"
 
@@ -74047,6 +74177,58 @@ afw_self_v_memory_region_free_list_max_bytes;
 /** @brief 'const afw_value_t *' for AFW_Q_memory_region_free_list_max_bytes */
 #define afw_v_memory_region_free_list_max_bytes \
     (&afw_self_v_memory_region_free_list_max_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memory_region_keep_large_count \
+    "memory_region_keep_large_count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memory_region_keep_large_count */
+#define afw_s_memory_region_keep_large_count \
+    (&afw_self_v_memory_region_keep_large_count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memory_region_keep_large_count */
+#define afw_self_s_memory_region_keep_large_count \
+    (afw_self_v_memory_region_keep_large_count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memory_region_keep_large_count */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memory_region_keep_large_count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memory_region_keep_large_count */
+#define afw_z_memory_region_keep_large_count \
+    (afw_self_v_memory_region_keep_large_count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memory_region_keep_large_count */
+#define afw_v_memory_region_keep_large_count \
+    (&afw_self_v_memory_region_keep_large_count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memory_region_keep_small_count \
+    "memory_region_keep_small_count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memory_region_keep_small_count */
+#define afw_s_memory_region_keep_small_count \
+    (&afw_self_v_memory_region_keep_small_count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memory_region_keep_small_count */
+#define afw_self_s_memory_region_keep_small_count \
+    (afw_self_v_memory_region_keep_small_count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memory_region_keep_small_count */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memory_region_keep_small_count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memory_region_keep_small_count */
+#define afw_z_memory_region_keep_small_count \
+    (afw_self_v_memory_region_keep_small_count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memory_region_keep_small_count */
+#define afw_v_memory_region_keep_small_count \
+    (&afw_self_v_memory_region_keep_small_count.pub)
 
 
 

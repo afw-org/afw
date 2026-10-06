@@ -10767,6 +10767,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__2c016e5900e5 \
+    "Optional. If present, overrides process memoryRegionKeepLargeCount."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2c016e5900e5 */
+#define afw_s_zz__2c016e5900e5 \
+    (&afw_self_v_zz__2c016e5900e5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2c016e5900e5 */
+#define afw_self_s_zz__2c016e5900e5 \
+    (afw_self_v_zz__2c016e5900e5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2c016e5900e5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2c016e5900e5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2c016e5900e5 */
+#define afw_z_zz__2c016e5900e5 \
+    (afw_self_v_zz__2c016e5900e5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2c016e5900e5 */
+#define afw_v_zz__2c016e5900e5 \
+    (&afw_self_v_zz__2c016e5900e5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__2c1f7189e136 \
     "This function is called for each value in an array. The returned value is passed as the accumulator parameter on the next call to functor()."
 
@@ -12223,6 +12249,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__327fee713554 \
+    "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__327fee713554 */
+#define afw_s_zz__327fee713554 \
+    (&afw_self_v_zz__327fee713554.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__327fee713554 */
+#define afw_self_s_zz__327fee713554 \
+    (afw_self_v_zz__327fee713554.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__327fee713554 */
+extern const afw_value_string_t \
+    afw_self_v_zz__327fee713554;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__327fee713554 */
+#define afw_z_zz__327fee713554 \
+    (afw_self_v_zz__327fee713554.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__327fee713554 */
+#define afw_v_zz__327fee713554 \
+    (&afw_self_v_zz__327fee713554.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__329221d01dff \
     "Replace string(s) in a <dataType> value. An empty match is a match at a code-point boundary. The default limit replaces once (insert at the start). Specify limit -1 to insert at every boundary, including the start and the end."
 
@@ -13211,6 +13263,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__37238e842610 \
+    "Optional. If present, overrides process memoryRegionKeepSmallCount."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__37238e842610 */
+#define afw_s_zz__37238e842610 \
+    (&afw_self_v_zz__37238e842610.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__37238e842610 */
+#define afw_self_s_zz__37238e842610 \
+    (afw_self_v_zz__37238e842610.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__37238e842610 */
+extern const afw_value_string_t \
+    afw_self_v_zz__37238e842610;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__37238e842610 */
+#define afw_z_zz__37238e842610 \
+    (afw_self_v_zz__37238e842610.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__37238e842610 */
+#define afw_v_zz__37238e842610 \
+    (&afw_self_v_zz__37238e842610.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__373b474399c0 \
     "Indicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request."
 
@@ -13285,6 +13363,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__375604603ffa */
 #define afw_v_zz__375604603ffa \
     (&afw_self_v_zz__375604603ffa.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__3767ced02ae7 \
+    "When an xctx ends, its thread's memory_region keeps this many of the newest smallChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED) or, for a one-page region, unmapped."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3767ced02ae7 */
+#define afw_s_zz__3767ced02ae7 \
+    (&afw_self_v_zz__3767ced02ae7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3767ced02ae7 */
+#define afw_self_s_zz__3767ced02ae7 \
+    (afw_self_v_zz__3767ced02ae7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3767ced02ae7 */
+extern const afw_value_string_t \
+    afw_self_v_zz__3767ced02ae7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3767ced02ae7 */
+#define afw_z_zz__3767ced02ae7 \
+    (afw_self_v_zz__3767ced02ae7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3767ced02ae7 */
+#define afw_v_zz__3767ced02ae7 \
+    (&afw_self_v_zz__3767ced02ae7.pub)
 
 
 
@@ -21661,6 +21765,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5ab4e9d6d17e \
+    "Process-wide count of one-page free-list regions over the keep count that were unmapped when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5ab4e9d6d17e */
+#define afw_s_zz__5ab4e9d6d17e \
+    (&afw_self_v_zz__5ab4e9d6d17e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5ab4e9d6d17e */
+#define afw_self_s_zz__5ab4e9d6d17e \
+    (afw_self_v_zz__5ab4e9d6d17e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5ab4e9d6d17e */
+extern const afw_value_string_t \
+    afw_self_v_zz__5ab4e9d6d17e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5ab4e9d6d17e */
+#define afw_z_zz__5ab4e9d6d17e \
+    (afw_self_v_zz__5ab4e9d6d17e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5ab4e9d6d17e */
+#define afw_v_zz__5ab4e9d6d17e \
+    (&afw_self_v_zz__5ab4e9d6d17e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5ab795eb020b \
     "The parser cursor's line number where the syntax error occurred."
 
@@ -24365,6 +24495,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__655cb792d34c \
+    "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__655cb792d34c */
+#define afw_s_zz__655cb792d34c \
+    (&afw_self_v_zz__655cb792d34c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__655cb792d34c */
+#define afw_self_s_zz__655cb792d34c \
+    (afw_self_v_zz__655cb792d34c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__655cb792d34c */
+extern const afw_value_string_t \
+    afw_self_v_zz__655cb792d34c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__655cb792d34c */
+#define afw_z_zz__655cb792d34c \
+    (afw_self_v_zz__655cb792d34c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__655cb792d34c */
+#define afw_v_zz__655cb792d34c \
+    (&afw_self_v_zz__655cb792d34c.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__658c15e8524c \
     "These functions are related to data type boolean.\n\nThe '<boolean>' in function ids in this category is optional. If omitted, the function will be called polymorphically based on the data type of the first parameter."
 
@@ -24569,6 +24725,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__661cb7b9bd5f */
 #define afw_v_zz__661cb7b9bd5f \
     (&afw_self_v_zz__661cb7b9bd5f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__662244aa5b22 \
+    "Thread-owned reuse of page-aligned regions for heap chunks.\n      Not a pool. get() writes a 4k-aligned region and its actual\n      size through pointer parameters (size is requested on the way\n      in, actual on the way out). free() returns a region to a capped\n      free list or to the system. The free list is three lists: one\n      for small_size, one for large_size, and one for every other\n      size. trim() keeps a few of the newest small and large regions\n      resident and gives back the pages of the rest. cleanup() drains\n      the lists and keeps this instance. release() is last-release\n      of this instance (thread death): cleanup then free the\n      instance. Call methods via afw_memory_region_*() macros. See\n      group afw_memory_region."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__662244aa5b22 */
+#define afw_s_zz__662244aa5b22 \
+    (&afw_self_v_zz__662244aa5b22.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__662244aa5b22 */
+#define afw_self_s_zz__662244aa5b22 \
+    (afw_self_v_zz__662244aa5b22.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__662244aa5b22 */
+extern const afw_value_string_t \
+    afw_self_v_zz__662244aa5b22;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__662244aa5b22 */
+#define afw_z_zz__662244aa5b22 \
+    (afw_self_v_zz__662244aa5b22.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__662244aa5b22 */
+#define afw_v_zz__662244aa5b22 \
+    (&afw_self_v_zz__662244aa5b22.pub)
 
 
 
@@ -28079,6 +28261,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__741b5598d390 */
 #define afw_v_zz__741b5598d390 \
     (&afw_self_v_zz__741b5598d390.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__745f28748bff \
+    "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident. Same as /afw/_AdaptiveProcess_/current."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__745f28748bff */
+#define afw_s_zz__745f28748bff \
+    (&afw_self_v_zz__745f28748bff.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__745f28748bff */
+#define afw_self_s_zz__745f28748bff \
+    (afw_self_v_zz__745f28748bff.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__745f28748bff */
+extern const afw_value_string_t \
+    afw_self_v_zz__745f28748bff;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__745f28748bff */
+#define afw_z_zz__745f28748bff \
+    (afw_self_v_zz__745f28748bff.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__745f28748bff */
+#define afw_v_zz__745f28748bff \
+    (&afw_self_v_zz__745f28748bff.pub)
 
 
 
@@ -56735,6 +56943,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Free_list_bytes_given_back_to_the_system \
+    "Free-list bytes given back to the system"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Free_list_bytes_given_back_to_the_system */
+#define afw_s_zz__Free_list_bytes_given_back_to_the_system \
+    (&afw_self_v_zz__Free_list_bytes_given_back_to_the_system.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Free_list_bytes_given_back_to_the_system */
+#define afw_self_s_zz__Free_list_bytes_given_back_to_the_system \
+    (afw_self_v_zz__Free_list_bytes_given_back_to_the_system.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Free_list_bytes_given_back_to_the_system */
+extern const afw_value_string_t \
+    afw_self_v_zz__Free_list_bytes_given_back_to_the_system;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Free_list_bytes_given_back_to_the_system */
+#define afw_z_zz__Free_list_bytes_given_back_to_the_system \
+    (afw_self_v_zz__Free_list_bytes_given_back_to_the_system.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Free_list_bytes_given_back_to_the_system */
+#define afw_v_zz__Free_list_bytes_given_back_to_the_system \
+    (&afw_self_v_zz__Free_list_bytes_given_back_to_the_system.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Full_meta \
     "Full meta"
 
@@ -62663,6 +62897,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Large_regions_a_thread_keeps_resident \
+    "Large regions a thread keeps resident"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Large_regions_a_thread_keeps_resident */
+#define afw_s_zz__Large_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Large_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Large_regions_a_thread_keeps_resident */
+#define afw_self_s_zz__Large_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Large_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Large_regions_a_thread_keeps_resident */
+extern const afw_value_string_t \
+    afw_self_v_zz__Large_regions_a_thread_keeps_resident;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Large_regions_a_thread_keeps_resident */
+#define afw_z_zz__Large_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Large_regions_a_thread_keeps_resident.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Large_regions_a_thread_keeps_resident */
+#define afw_v_zz__Large_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Large_regions_a_thread_keeps_resident.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Last_Contact_Time \
     "Last Contact Time"
 
@@ -64951,6 +65211,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Memory_Region_Discards \
+    "Memory Region Discards"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Discards */
+#define afw_s_zz__Memory_Region_Discards \
+    (&afw_self_v_zz__Memory_Region_Discards.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Discards */
+#define afw_self_s_zz__Memory_Region_Discards \
+    (afw_self_v_zz__Memory_Region_Discards.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Memory_Region_Discards */
+extern const afw_value_string_t \
+    afw_self_v_zz__Memory_Region_Discards;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Memory_Region_Discards */
+#define afw_z_zz__Memory_Region_Discards \
+    (afw_self_v_zz__Memory_Region_Discards.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Discards */
+#define afw_v_zz__Memory_Region_Discards \
+    (&afw_self_v_zz__Memory_Region_Discards.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Memory_Region_Free_List_Bytes \
     "Memory Region Free List Bytes"
 
@@ -64999,6 +65285,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Free_List_Count */
 #define afw_v_zz__Memory_Region_Free_List_Count \
     (&afw_self_v_zz__Memory_Region_Free_List_Count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Memory_Region_Free_List_Discarded_Bytes \
+    "Memory Region Free List Discarded Bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Free_List_Discarded_Bytes */
+#define afw_s_zz__Memory_Region_Free_List_Discarded_Bytes \
+    (&afw_self_v_zz__Memory_Region_Free_List_Discarded_Bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Free_List_Discarded_Bytes */
+#define afw_self_s_zz__Memory_Region_Free_List_Discarded_Bytes \
+    (afw_self_v_zz__Memory_Region_Free_List_Discarded_Bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Memory_Region_Free_List_Discarded_Bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__Memory_Region_Free_List_Discarded_Bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Memory_Region_Free_List_Discarded_Bytes */
+#define afw_z_zz__Memory_Region_Free_List_Discarded_Bytes \
+    (afw_self_v_zz__Memory_Region_Free_List_Discarded_Bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Free_List_Discarded_Bytes */
+#define afw_v_zz__Memory_Region_Free_List_Discarded_Bytes \
+    (&afw_self_v_zz__Memory_Region_Free_List_Discarded_Bytes.pub)
 
 
 
@@ -65107,6 +65419,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Memory_Region_Keep_Large_Count \
+    "Memory Region Keep Large Count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Keep_Large_Count */
+#define afw_s_zz__Memory_Region_Keep_Large_Count \
+    (&afw_self_v_zz__Memory_Region_Keep_Large_Count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Keep_Large_Count */
+#define afw_self_s_zz__Memory_Region_Keep_Large_Count \
+    (afw_self_v_zz__Memory_Region_Keep_Large_Count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Memory_Region_Keep_Large_Count */
+extern const afw_value_string_t \
+    afw_self_v_zz__Memory_Region_Keep_Large_Count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Memory_Region_Keep_Large_Count */
+#define afw_z_zz__Memory_Region_Keep_Large_Count \
+    (afw_self_v_zz__Memory_Region_Keep_Large_Count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Keep_Large_Count */
+#define afw_v_zz__Memory_Region_Keep_Large_Count \
+    (&afw_self_v_zz__Memory_Region_Keep_Large_Count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Memory_Region_Keep_Small_Count \
+    "Memory Region Keep Small Count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Keep_Small_Count */
+#define afw_s_zz__Memory_Region_Keep_Small_Count \
+    (&afw_self_v_zz__Memory_Region_Keep_Small_Count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Keep_Small_Count */
+#define afw_self_s_zz__Memory_Region_Keep_Small_Count \
+    (afw_self_v_zz__Memory_Region_Keep_Small_Count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Memory_Region_Keep_Small_Count */
+extern const afw_value_string_t \
+    afw_self_v_zz__Memory_Region_Keep_Small_Count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Memory_Region_Keep_Small_Count */
+#define afw_z_zz__Memory_Region_Keep_Small_Count \
+    (afw_self_v_zz__Memory_Region_Keep_Small_Count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Keep_Small_Count */
+#define afw_v_zz__Memory_Region_Keep_Small_Count \
+    (&afw_self_v_zz__Memory_Region_Keep_Small_Count.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Memory_Region_Peak_Bytes_In_Use \
     "Memory Region Peak Bytes In Use"
 
@@ -65181,6 +65545,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Regions_In_Use */
 #define afw_v_zz__Memory_Region_Regions_In_Use \
     (&afw_self_v_zz__Memory_Region_Regions_In_Use.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Memory_Region_Trim_Unmaps \
+    "Memory Region Trim Unmaps"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Trim_Unmaps */
+#define afw_s_zz__Memory_Region_Trim_Unmaps \
+    (&afw_self_v_zz__Memory_Region_Trim_Unmaps.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Trim_Unmaps */
+#define afw_self_s_zz__Memory_Region_Trim_Unmaps \
+    (afw_self_v_zz__Memory_Region_Trim_Unmaps.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Memory_Region_Trim_Unmaps */
+extern const afw_value_string_t \
+    afw_self_v_zz__Memory_Region_Trim_Unmaps;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Memory_Region_Trim_Unmaps */
+#define afw_z_zz__Memory_Region_Trim_Unmaps \
+    (afw_self_v_zz__Memory_Region_Trim_Unmaps.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Trim_Unmaps */
+#define afw_v_zz__Memory_Region_Trim_Unmaps \
+    (&afw_self_v_zz__Memory_Region_Trim_Unmaps.pub)
 
 
 
@@ -69501,6 +69891,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_large_regions_a_thread_keeps_resident \
+    "Override large regions a thread keeps resident"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_large_regions_a_thread_keeps_resident */
+#define afw_s_zz__Override_large_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Override_large_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_large_regions_a_thread_keeps_resident */
+#define afw_self_s_zz__Override_large_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Override_large_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_large_regions_a_thread_keeps_resident */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_large_regions_a_thread_keeps_resident;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_large_regions_a_thread_keeps_resident */
+#define afw_z_zz__Override_large_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Override_large_regions_a_thread_keeps_resident.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_large_regions_a_thread_keeps_resident */
+#define afw_v_zz__Override_large_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Override_large_regions_a_thread_keeps_resident.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Override_request_thread_C_stack_size \
     "Override request-thread C stack size"
 
@@ -69575,6 +69991,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Override_small_heap_chunk_min */
 #define afw_v_zz__Override_small_heap_chunk_min \
     (&afw_self_v_zz__Override_small_heap_chunk_min.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_small_regions_a_thread_keeps_resident \
+    "Override small regions a thread keeps resident"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_small_regions_a_thread_keeps_resident */
+#define afw_s_zz__Override_small_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Override_small_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_small_regions_a_thread_keeps_resident */
+#define afw_self_s_zz__Override_small_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Override_small_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_small_regions_a_thread_keeps_resident */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_small_regions_a_thread_keeps_resident;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_small_regions_a_thread_keeps_resident */
+#define afw_z_zz__Override_small_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Override_small_regions_a_thread_keeps_resident.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_small_regions_a_thread_keeps_resident */
+#define afw_v_zz__Override_small_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Override_small_regions_a_thread_keeps_resident.pub)
 
 
 
@@ -72565,6 +73007,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Regions_sitting_on_free_lists */
 #define afw_v_zz__Regions_sitting_on_free_lists \
     (&afw_self_v_zz__Regions_sitting_on_free_lists.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Regions_unmapped_when_an_xctx_ended \
+    "Regions unmapped when an xctx ended"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Regions_unmapped_when_an_xctx_ended */
+#define afw_s_zz__Regions_unmapped_when_an_xctx_ended \
+    (&afw_self_v_zz__Regions_unmapped_when_an_xctx_ended.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Regions_unmapped_when_an_xctx_ended */
+#define afw_self_s_zz__Regions_unmapped_when_an_xctx_ended \
+    (afw_self_v_zz__Regions_unmapped_when_an_xctx_ended.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Regions_unmapped_when_an_xctx_ended */
+extern const afw_value_string_t \
+    afw_self_v_zz__Regions_unmapped_when_an_xctx_ended;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Regions_unmapped_when_an_xctx_ended */
+#define afw_z_zz__Regions_unmapped_when_an_xctx_ended \
+    (afw_self_v_zz__Regions_unmapped_when_an_xctx_ended.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Regions_unmapped_when_an_xctx_ended */
+#define afw_v_zz__Regions_unmapped_when_an_xctx_ended \
+    (&afw_self_v_zz__Regions_unmapped_when_an_xctx_ended.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Regions_whose_pages_were_given_back \
+    "Regions whose pages were given back"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Regions_whose_pages_were_given_back */
+#define afw_s_zz__Regions_whose_pages_were_given_back \
+    (&afw_self_v_zz__Regions_whose_pages_were_given_back.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Regions_whose_pages_were_given_back */
+#define afw_self_s_zz__Regions_whose_pages_were_given_back \
+    (afw_self_v_zz__Regions_whose_pages_were_given_back.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Regions_whose_pages_were_given_back */
+extern const afw_value_string_t \
+    afw_self_v_zz__Regions_whose_pages_were_given_back;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Regions_whose_pages_were_given_back */
+#define afw_z_zz__Regions_whose_pages_were_given_back \
+    (afw_self_v_zz__Regions_whose_pages_were_given_back.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Regions_whose_pages_were_given_back */
+#define afw_v_zz__Regions_whose_pages_were_given_back \
+    (&afw_self_v_zz__Regions_whose_pages_were_given_back.pub)
 
 
 
@@ -76387,6 +76881,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Small_heap_chunk_min */
 #define afw_v_zz__Small_heap_chunk_min \
     (&afw_self_v_zz__Small_heap_chunk_min.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Small_regions_a_thread_keeps_resident \
+    "Small regions a thread keeps resident"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Small_regions_a_thread_keeps_resident */
+#define afw_s_zz__Small_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Small_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Small_regions_a_thread_keeps_resident */
+#define afw_self_s_zz__Small_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Small_regions_a_thread_keeps_resident.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Small_regions_a_thread_keeps_resident */
+extern const afw_value_string_t \
+    afw_self_v_zz__Small_regions_a_thread_keeps_resident;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Small_regions_a_thread_keeps_resident */
+#define afw_z_zz__Small_regions_a_thread_keeps_resident \
+    (afw_self_v_zz__Small_regions_a_thread_keeps_resident.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Small_regions_a_thread_keeps_resident */
+#define afw_v_zz__Small_regions_a_thread_keeps_resident \
+    (&afw_self_v_zz__Small_regions_a_thread_keeps_resident.pub)
 
 
 
@@ -132161,6 +132681,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ba6925eb58cb \
+    "Process-wide count of free-list regions whose pages past the first were given back when an xctx ended, since environment create. Same as /afw/_AdaptiveProcess_/current."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ba6925eb58cb */
+#define afw_s_zz__ba6925eb58cb \
+    (&afw_self_v_zz__ba6925eb58cb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ba6925eb58cb */
+#define afw_self_s_zz__ba6925eb58cb \
+    (afw_self_v_zz__ba6925eb58cb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ba6925eb58cb */
+extern const afw_value_string_t \
+    afw_self_v_zz__ba6925eb58cb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ba6925eb58cb */
+#define afw_z_zz__ba6925eb58cb \
+    (afw_self_v_zz__ba6925eb58cb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ba6925eb58cb */
+#define afw_v_zz__ba6925eb58cb \
+    (&afw_self_v_zz__ba6925eb58cb.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ba6d75da4d98 \
     "(adapterId: string, consumerId: string, cursor: string, limit?: integer): object"
 
@@ -133929,6 +134475,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__bbbe144a2c66 \
+    "When an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bbbe144a2c66 */
+#define afw_s_zz__bbbe144a2c66 \
+    (&afw_self_v_zz__bbbe144a2c66.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bbbe144a2c66 */
+#define afw_self_s_zz__bbbe144a2c66 \
+    (afw_self_v_zz__bbbe144a2c66.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__bbbe144a2c66 */
+extern const afw_value_string_t \
+    afw_self_v_zz__bbbe144a2c66;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bbbe144a2c66 */
+#define afw_z_zz__bbbe144a2c66 \
+    (afw_self_v_zz__bbbe144a2c66.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__bbbe144a2c66 */
+#define afw_v_zz__bbbe144a2c66 \
+    (&afw_self_v_zz__bbbe144a2c66.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__bbe51975be41 \
     "function all_of_all (\n    predicate: (value1: any, value2: any) => boolean,\n    array1: array,\n    array2: array\n): boolean;\n"
 
@@ -134315,6 +134887,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__bcfe2b2da3fc */
 #define afw_v_zz__bcfe2b2da3fc \
     (&afw_self_v_zz__bcfe2b2da3fc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__bd078791979d \
+    "Process-wide part of memoryRegionFreeListBytes whose pages were given back when an xctx ended. Still mapped, not resident."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bd078791979d */
+#define afw_s_zz__bd078791979d \
+    (&afw_self_v_zz__bd078791979d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bd078791979d */
+#define afw_self_s_zz__bd078791979d \
+    (afw_self_v_zz__bd078791979d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__bd078791979d */
+extern const afw_value_string_t \
+    afw_self_v_zz__bd078791979d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bd078791979d */
+#define afw_z_zz__bd078791979d \
+    (afw_self_v_zz__bd078791979d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__bd078791979d */
+#define afw_v_zz__bd078791979d \
+    (&afw_self_v_zz__bd078791979d.pub)
 
 
 
@@ -150669,32 +151267,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f720266876f9 */
 #define afw_v_zz__f720266876f9 \
     (&afw_self_v_zz__f720266876f9.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f75861dff9f9 \
-    "Thread-owned reuse of page-aligned regions for heap chunks.\n      Not a pool. get() writes a 4k-aligned region and its actual\n      size through pointer parameters (size is requested on the way\n      in, actual on the way out). free() returns a region to a capped\n      list or to the system. cleanup() drains the list and keeps this\n      instance. release() is last-release of this instance (thread\n      death): cleanup then free the instance. Call methods via\n      afw_memory_region_*() macros. See group afw_memory_region."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f75861dff9f9 */
-#define afw_s_zz__f75861dff9f9 \
-    (&afw_self_v_zz__f75861dff9f9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f75861dff9f9 */
-#define afw_self_s_zz__f75861dff9f9 \
-    (afw_self_v_zz__f75861dff9f9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f75861dff9f9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f75861dff9f9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f75861dff9f9 */
-#define afw_z_zz__f75861dff9f9 \
-    (afw_self_v_zz__f75861dff9f9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f75861dff9f9 */
-#define afw_v_zz__f75861dff9f9 \
-    (&afw_self_v_zz__f75861dff9f9.pub)
 
 
 

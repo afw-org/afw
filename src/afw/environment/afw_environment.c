@@ -433,6 +433,10 @@ afw_environment_create(
             ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
     env->memory_region_free_list_max_bytes =
         AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES;
+    env->memory_region_keep_small_count =
+        AFW_MEMORY_REGION_KEEP_SMALL_COUNT;
+    env->memory_region_keep_large_count =
+        AFW_MEMORY_REGION_KEEP_LARGE_COUNT;
     env->multithreaded_memory_region = mt_region;
     env->debug_fd = stderr;
     env->stderr_fd = stderr;
@@ -453,10 +457,8 @@ afw_environment_create(
     thread->xctx = xctx;
     xctx->thread = thread;
     afw_os_c_stack_bounds(&thread->c_stack_base, &thread->c_stack_size);
-    afw_memory_region_set_free_list_max_bytes(thread->memory_region,
-        env->memory_region_free_list_max_bytes, xctx);
-    afw_memory_region_set_free_list_max_bytes(mt_region,
-        env->memory_region_free_list_max_bytes, xctx);
+    afw_memory_region_configure(thread->memory_region, env, xctx);
+    afw_memory_region_configure(mt_region, env, xctx);
 
     /*
      * ST job heap for the base xctx. env->p stays MT. Thread handoff:

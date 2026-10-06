@@ -48,6 +48,9 @@ TSV columns (tab-separated), from **`process::`** and
 | memoryRegionFreeOverCap | `process::memoryRegionFreeOverCap` |
 | memoryRegionPeakBytesInUse | `process::memoryRegionPeakBytesInUse` |
 | memoryRegionPeakFreeListBytes | `process::memoryRegionPeakFreeListBytes` |
+| memoryRegionFreeListDiscardedBytes | `process::memoryRegionFreeListDiscardedBytes` |
+| memoryRegionDiscards | `process::memoryRegionDiscards` |
+| memoryRegionTrimUnmaps | `process::memoryRegionTrimUnmaps` |
 
 `rss_check` uses `process::rss` bytes (64 MiB growth cap).
 

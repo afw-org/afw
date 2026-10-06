@@ -125,6 +125,14 @@ impl_afw_memory_region_free(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_memory_region_trim
+/* Declare method trim */
+AFW_DECLARE_STATIC(void)
+impl_afw_memory_region_trim(
+    AFW_MEMORY_REGION_SELF_T *self,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_memory_region_cleanup
 /* Declare method cleanup */
 AFW_DECLARE_STATIC(void)
@@ -184,6 +192,8 @@ impl_afw_memory_region_inf = {
     impl_afw_memory_region_get,
     (afw_memory_region_free_t)
     impl_afw_memory_region_free,
+    (afw_memory_region_trim_t)
+    impl_afw_memory_region_trim,
     (afw_memory_region_cleanup_t)
     impl_afw_memory_region_cleanup,
     (afw_memory_region_lock_t)

@@ -3993,6 +3993,16 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_env_memory_region_stat
     },
     {
+        afw_v_memoryRegionDiscards,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
         afw_v_memoryRegionFreeListBytes,
         0,
         -1,
@@ -4004,6 +4014,16 @@ impl_properties__AdaptiveProcess_[] = {
     },
     {
         afw_v_memoryRegionFreeListCount,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionFreeListDiscardedBytes,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -4053,6 +4073,26 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_env_memory_region_stat
     },
     {
+        afw_v_memoryRegionKeepLargeCount,
+        offsetof(afw_environment_t, memory_region_keep_large_count),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
+        afw_v_memoryRegionKeepSmallCount,
+        offsetof(afw_environment_t, memory_region_keep_small_count),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
         afw_v_memoryRegionPeakBytesInUse,
         0,
         -1,
@@ -4074,6 +4114,16 @@ impl_properties__AdaptiveProcess_[] = {
     },
     {
         afw_v_memoryRegionRegionsInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionTrimUnmaps,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -4197,7 +4247,7 @@ impl_properties__AdaptiveProcess_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveProcess_ = {
     &afw_self_s__AdaptiveProcess_,
-    28,
+    33,
     &impl_properties__AdaptiveProcess_[0]
 };
 
@@ -4708,6 +4758,16 @@ impl_properties__AdaptiveServer_[] = {
         afw_runtime_value_accessor_env_memory_region_stat
     },
     {
+        afw_v_memoryRegionDiscards,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
         afw_v_memoryRegionFreeListBytes,
         0,
         -1,
@@ -4719,6 +4779,16 @@ impl_properties__AdaptiveServer_[] = {
     },
     {
         afw_v_memoryRegionFreeListCount,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionFreeListDiscardedBytes,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -4779,6 +4849,16 @@ impl_properties__AdaptiveServer_[] = {
     },
     {
         afw_v_memoryRegionRegionsInUse,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_memory_region_stat,
+        afw_runtime_value_accessor_env_memory_region_stat
+    },
+    {
+        afw_v_memoryRegionTrimUnmaps,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -4922,7 +5002,7 @@ impl_properties__AdaptiveServer_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveServer_ = {
     &afw_self_s__AdaptiveServer_,
-    26,
+    29,
     &impl_properties__AdaptiveServer_[0]
 };
 

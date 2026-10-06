@@ -176,6 +176,22 @@
     afw_size_t memory_region_free_list_max_bytes;
 
     /**
+     * @brief Newest small (small_chunk_min) regions trim() keeps
+     *     resident on each thread memory_region.
+     *
+     * Default `AFW_MEMORY_REGION_KEEP_SMALL_COUNT`.
+     */
+    afw_size_t memory_region_keep_small_count;
+
+    /**
+     * @brief Newest large (xctx_chunk_min) regions trim() keeps
+     *     resident on each thread memory_region.
+     *
+     * Default `AFW_MEMORY_REGION_KEEP_LARGE_COUNT`.
+     */
+    afw_size_t memory_region_keep_large_count;
+
+    /**
      * @brief Chunk list for every multithreaded pool.
      *
      * Process lifetime. Single-threaded pools use
@@ -225,6 +241,15 @@
     AFW_ATOMIC afw_size_t memory_region_free_over_cap;
     AFW_ATOMIC afw_size_t memory_region_peak_bytes_in_use;
     AFW_ATOMIC afw_size_t memory_region_peak_free_list_bytes;
+
+    /**
+     * @brief Part of memory_region_free_list_bytes whose pages trim()
+     *     gave back (mapped, not resident), and counts since env
+     *     create of regions trim() discarded or unmapped.
+     */
+    AFW_ATOMIC afw_size_t memory_region_free_list_discarded_bytes;
+    AFW_ATOMIC afw_size_t memory_region_discards;
+    AFW_ATOMIC afw_size_t memory_region_trim_unmaps;
 
     /*---------- LOCKS ----------*/
 

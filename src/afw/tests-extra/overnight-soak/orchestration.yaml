@@ -9,6 +9,8 @@
 #   memoryRegionFreeListBytes memoryRegionFreeListCount
 #   memoryRegionGetHits memoryRegionGetMisses memoryRegionFreeOverCap
 #   memoryRegionPeakBytesInUse memoryRegionPeakFreeListBytes
+#   memoryRegionFreeListDiscardedBytes memoryRegionDiscards
+#   memoryRegionTrimUnmaps
 # rss/pool*/memoryRegion* from process::; concurrent/requestCount from
 # _AdaptiveServer_/current.
 # RSS first/last: rss-first.txt / rss-last.txt (process::rss bytes).

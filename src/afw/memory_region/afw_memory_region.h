@@ -39,12 +39,27 @@ AFW_BEGIN_DECLARES
     ((afw_size_t)(256 * 1024))
 
 /**
+ * @brief Default keep_small_count: newest small regions trim() keeps
+ * resident.
+ */
+#define AFW_MEMORY_REGION_KEEP_SMALL_COUNT ((afw_size_t)8)
+
+/**
+ * @brief Default keep_large_count: newest large regions trim() keeps
+ * resident.
+ */
+#define AFW_MEMORY_REGION_KEEP_LARGE_COUNT ((afw_size_t)1)
+
+/**
  * @brief Create a memory_region instance.
  * @param free_list_max_bytes cap on the free list; 0 = no reuse.
  * @param xctx of caller. May be NULL (environment create).
  * @return new instance, or NULL on allocation failure.
  *
  * Does not throw. Instance is C calloc; release() cleanup then free.
+ * Until afw_memory_region_configure(), there are no small or large
+ * lists (every size is on the other list) and the keep counts are
+ * the defaults.
  */
 AFW_DECLARE(const afw_memory_region_t *)
 afw_memory_region_create(
@@ -52,17 +67,23 @@ afw_memory_region_create(
     afw_xctx_t *xctx);
 
 /**
- * @brief Set the free-list cap on an existing instance.
+ * @brief Copy the env memory_region knobs into an instance.
  * @param instance from create(). May be NULL.
- * @param free_list_max_bytes 0 = no reuse.
+ * @param env with the knobs: memory_region_free_list_max_bytes,
+ *    memory_region_keep_small_count, memory_region_keep_large_count,
+ *    and small_chunk_min / xctx_chunk_min as the small and large
+ *    sizes.
  * @param xctx of caller. May be NULL.
  *
- * Does not drain the list. Later free() uses the new cap.
+ * A changed small or large size drains the free list (cleanup), so
+ * every region on a list matches its size. Otherwise does not drain;
+ * later free() and trim() use the new values. The caller holds the
+ * region's lock if other threads use it.
  */
 AFW_DECLARE(void)
-afw_memory_region_set_free_list_max_bytes(
+afw_memory_region_configure(
     const afw_memory_region_t *instance,
-    afw_size_t free_list_max_bytes,
+    const afw_environment_t *env,
     afw_xctx_t *xctx);
 
 AFW_END_DECLARES

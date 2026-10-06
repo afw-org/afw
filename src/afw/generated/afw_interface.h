@@ -7750,10 +7750,14 @@ struct afw_pool_inf_s {
  * Not a pool. get() writes a 4k-aligned region and its actual
  * size through pointer parameters (size is requested on the way
  * in, actual on the way out). free() returns a region to a capped
- * list or to the system. cleanup() drains the list and keeps this
- * instance. release() is last-release of this instance (thread
- * death): cleanup then free the instance. Call methods via
- * afw_memory_region_*() macros. See group afw_memory_region.
+ * free list or to the system. The free list is three lists: one
+ * for small_size, one for large_size, and one for every other
+ * size. trim() keeps a few of the newest small and large regions
+ * resident and gives back the pages of the rest. cleanup() drains
+ * the lists and keeps this instance. release() is last-release
+ * of this instance (thread death): cleanup then free the
+ * instance. Call methods via afw_memory_region_*() macros. See
+ * group afw_memory_region.
  *
  * @{
  */
@@ -7821,6 +7825,46 @@ struct afw_memory_region_s {
      * system (mmap/munmap).
      */
     afw_size_t free_list_max_bytes;
+
+    /**
+     * Part of free_list_bytes whose pages trim() gave back. Still
+     * mapped, not resident.
+     */
+    afw_size_t free_list_discarded_bytes;
+
+    /**
+     * Regions trim() kept on the free list after giving back their
+     * pages (all but the first page).
+     */
+    afw_size_t discards;
+
+    /**
+     * Regions trim() unmapped. A one-page region has no pages to
+     * give back besides the one holding its list node.
+     */
+    afw_size_t trim_unmaps;
+
+    /**
+     * Region size of the small list (smallChunkMin). 0 means no
+     * small list.
+     */
+    afw_size_t small_size;
+
+    /**
+     * Region size of the large list (xctxChunkMin). 0 means no
+     * large list.
+     */
+    afw_size_t large_size;
+
+    /**
+     * Newest small regions trim() keeps resident.
+     */
+    afw_size_t keep_small_count;
+
+    /**
+     * Newest large regions trim() keeps resident.
+     */
+    afw_size_t keep_large_count;
 };
 
 /** @brief String name of interface `afw_memory_region` (`AFW_MEMORY_REGION_INTERFACE_NAME`). */
@@ -7841,6 +7885,12 @@ typedef void
     const afw_memory_region_t * instance,
     void * region,
     afw_size_t size,
+    afw_xctx_t * xctx);
+
+/** @sa afw_memory_region_trim() */
+typedef void
+(*afw_memory_region_trim_t)(
+    const afw_memory_region_t * instance,
     afw_xctx_t * xctx);
 
 /** @sa afw_memory_region_cleanup() */
@@ -7877,6 +7927,7 @@ struct afw_memory_region_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_memory_region_get_t get;
     afw_memory_region_free_t free;
+    afw_memory_region_trim_t trim;
     afw_memory_region_cleanup_t cleanup;
     afw_memory_region_lock_t lock;
     afw_memory_region_unlock_t unlock;
@@ -7916,10 +7967,11 @@ struct afw_memory_region_inf_s {
 /**
  * @brief Call method `free` of interface `afw_memory_region`.
  *
- * Return a region from get(). If the free list is under cap,
- * keep it for a later get(); otherwise call free(). No-op if
- * region is NULL. size must be the actual size written by
- * get(). xctx may be NULL.
+ * Return a region from get(). Keep it at the head of its list
+ * for a later get() when it fits the cap, unmapping the oldest
+ * other, then small, then large regions to make room;
+ * otherwise unmap it. No-op if region is NULL. size must be the
+ * actual size written by get(). xctx may be NULL.
  * @param instance Pointer to this memory_region instance.
  * @param region Address written by get().
  * @param size Actual size written by get() for this address.
@@ -7941,12 +7993,34 @@ struct afw_memory_region_inf_s {
 )
 
 /**
+ * @brief Call method `trim` of interface `afw_memory_region`.
+ *
+ * Keep the newest keep_small_count small and keep_large_count
+ * large regions resident. Give back the pages of every other
+ * region on the free list except its first page, which holds
+ * the list node; unmap a one-page region instead. Regions that
+ * trim() already handled are skipped. afw_xctx_release() calls
+ * this on the thread's region after the xctx pool is gone.
+ * xctx may be NULL.
+ * @param instance Pointer to this memory_region instance.
+ * @param xctx This is the caller's xctx. May be NULL.
+ * @relates afw_memory_region_t
+ * @see @ref afw_memory_region_s "afw_memory_region_t"
+ */
+#define afw_memory_region_trim( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->trim( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
  * @brief Call method `cleanup` of interface `afw_memory_region`.
  *
  * Drain the free list to free() and keep this instance. Cap 0
- * is a no-op besides remaining available for metrics. Optional
- * trim at request/base xctx end; do not call on nested xctx
- * destroy.
+ * is a no-op besides remaining available for metrics.
  * @param instance Pointer to this memory_region instance.
  * @param xctx This is the caller's xctx. May be NULL.
  * @relates afw_memory_region_t

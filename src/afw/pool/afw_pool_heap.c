@@ -1284,6 +1284,7 @@ afw_pool_thread_create(
         AFW_THROW_ERROR_Z(memory,
             "Unable to allocate memory_region", xctx);
     }
+    afw_memory_region_configure(region, xctx->env, xctx);
     thread->memory_region = region;
     AFW_TRY {
         self = afw_pool_heap_internal_create_self(xctx->p,
