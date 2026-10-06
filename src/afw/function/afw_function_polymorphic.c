@@ -293,78 +293,6 @@ afw_function_execute_bag_size(
  *
  *   (``<Type>``) The cloned `<dataType>` value.
  */
-static const afw_value_t *
-impl_script_clone(
-    const afw_value_t *value,
-    afw_function_execute_t *x)
-{
-    const afw_value_t *result;
-
-    if (!value || afw_value_is_nullish(value)) {
-        return value;
-    }
-
-    /*
-     * Always-copy create_managed (RC 1). Nested containers recurse
-     * then parent take. Nested scalars get_assignable of the source
-     * then take. Copy meta (reconcilable, path, ids). Snapshot of a
-     * managed source would share nested children. Do not
-     * afw_value_clone unmanaged into x->p. Recurse fill does not
-     * register last-release; execute registers the returned root.
-     */
-    if (afw_value_is_object(value)) {
-        const afw_object_t *from;
-        const afw_object_t *to;
-        const afw_iterator_old_t *iterator;
-        const afw_value_t *name;
-        const afw_value_t *prop;
-
-        from = ((const afw_value_object_t *)value)->internal;
-        result = afw_object_create_managed(x->p, x->xctx)->value;
-        to = ((const afw_value_object_t *)result)->internal;
-        afw_object_copy_meta_into_managed(to, from, x->xctx);
-        for (iterator = NULL;;) {
-            name = NULL;
-            prop = afw_object_get_next_property(from, &iterator, &name,
-                x->xctx);
-            if (!prop) {
-                break;
-            }
-            afw_object_set_property_take(to, name,
-                impl_script_clone(prop, x), x->xctx);
-        }
-        return result;
-    }
-
-    if (afw_value_is_array(value)) {
-        const afw_array_t *from;
-        const afw_array_t *to;
-        const afw_data_type_t *data_type;
-        const afw_iterator_old_t *iterator;
-        const afw_value_t *entry;
-
-        from = ((const afw_value_array_t *)value)->internal;
-        data_type = afw_array_get_data_type(from, x->xctx);
-        result = afw_array_create_managed(data_type, x->p, x->xctx)->value;
-        to = ((const afw_value_array_t *)result)->internal;
-        for (iterator = NULL;;) {
-            entry = afw_array_get_next_value(from, &iterator, x->xctx);
-            if (!entry) {
-                break;
-            }
-            afw_array_push_value_take(to,
-                impl_script_clone(entry, x), x->xctx);
-        }
-        return result;
-    }
-
-    /* Nested scalar: one isolate of the source. Permanent stays
-     * as-is; unmanaged (including compile-unit literals) promotes
-     * once. */
-    return afw_value_get_assignable(value, x->p, x->xctx);
-}
-
-
 const afw_value_t *
 afw_function_execute_clone(
     afw_function_execute_t *x)
@@ -373,7 +301,7 @@ afw_function_execute_clone(
     const afw_value_t *result;
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
-    result = impl_script_clone(value, x);
+    result = afw_value_clone(value, x->p, x->xctx);
     return afw_pool_scope_release_value_at_cleanup(result, x->p, x->xctx);
 }
 

@@ -50,6 +50,24 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
   | `get_for_p_lifetime(x, p)` | lasts as long as `p`; caller does not release | copy, release registered on `p` | bump, release registered on `p` (once per `p`) | self, nothing registered |
 
   `afw_pool_release_value_at_cleanup(v, p)` ("p takes my reference") is `get_for_p_lifetime` then `release`. All three methods and `release` are mandatory; values that are not counted share `afw_value_not_counted_*`.
+- **Copies by intent** (#476 step 2b):
+
+  | Intent | Functions | Caller releases? |
+  |---|---|---|
+  | Independent copy a script may change (nested objects and arrays copied too) | `afw_value_clone`, `afw_object_clone`, `afw_array_clone`; Adaptive `clone()` is `afw_value_clone` | yes (`afw_object_clone_for_p`: no, registered on `p`) |
+  | Fully managed version, sharing when it can (count bump if already fully managed, else a fully managed copy) | `afw_value_to_managed`, `afw_object_to_managed`, `afw_array_to_managed` | yes |
+  | Pooled copy in `p` (take a value out of live data or another pool) | `afw_value_create_pooled_copy`, `afw_object_create_pooled_copy`, `afw_array_create_pooled_copy` | no |
+
+  Not value copies: `afw_pool_scope_clone` (loop frame), `afw_utf8_clone`, `afw_object_meta_clone_and_set`. The per-type `afw_value_clone_<type>_{managed,unmanaged}` are data-type internals behind `to_managed` / `create_pooled_copy`.
+- **Copies by intent** (#476 step 2b):
+
+  | Intent | Functions | Caller releases? |
+  |---|---|---|
+  | Independent copy a script may change (nested objects and arrays copied too) | `afw_value_clone`, `afw_object_clone`, `afw_array_clone`; Adaptive `clone()` is `afw_value_clone` | yes (`afw_object_clone_for_p`: no, registered on `p`) |
+  | Fully managed version, sharing when it can (count bump if already fully managed, else a fully managed copy) | `afw_value_to_managed`, `afw_object_to_managed`, `afw_array_to_managed` | yes |
+  | Pooled copy in `p` (take a value out of live data or another pool) | `afw_value_create_pooled_copy`, `afw_object_create_pooled_copy`, `afw_array_create_pooled_copy` | no |
+
+  Not value copies: `afw_pool_scope_clone` (loop frame), `afw_utf8_clone`, `afw_object_meta_clone_and_set`. The per-type `afw_value_clone_<type>_{managed,unmanaged}` are data-type internals behind `to_managed` / `create_pooled_copy`.
 - **Closures are made in one place:** storing a script function (`get_assignable_value` of the definition) makes a binding of the definition, the captured frame (if any), and the compile unit.
 - **A compiled value has one inf** and is counted: compile returns it at RC 1 and registers that release on dest `p`.
 - **`is_managed` is a capability.** The `is_managed` inf variable on `afw_value`, `afw_object`, and `afw_array` (`afw_*_is_managed()`) says "this implementation is fully managed", so any implementation, including future ones, can declare it. A module's own identity check (`afw_object_is_memory_managed`) is only for guarding a cast to that module's private struct.

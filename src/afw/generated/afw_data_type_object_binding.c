@@ -465,7 +465,7 @@ afw_value_clone_object_managed(
         const afw_object_t *to;
 
         from = ((const afw_value_object_t *)value)->internal;
-        to = afw_object_create_managed_clone(from, p, xctx);
+        to = afw_object_to_managed(from, p, xctx);
         return to->value;
     }
 }
@@ -654,7 +654,7 @@ impl_afw_value_get_assignable_value(
     if (!obj) {
         return instance;
     }
-    return afw_value_clone_managed(instance, p, xctx);
+    return afw_value_to_managed(instance, p, xctx);
 }
 
 /* Permanent object/array: managed wrapper (object) or clone (array). */

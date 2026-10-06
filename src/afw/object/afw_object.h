@@ -861,7 +861,7 @@ afw_object_create_wrapper_managed(
  *
  * Deep clone into a managed memory bag. Nested objects become
  * managed embedded (embedding_object + id so path composes). Nested
- * arrays are afw_array_create_managed_clone. A new property name is
+ * arrays are afw_array_to_managed. A new property name is
  * get_assignable_value (names do not change on replace). Sideband
  * object_uri, id, and object_type_uri are utf8-cloned into dest p.
  * Meta delta (parentPaths, reconcilable, …) copies onto a fresh
@@ -872,26 +872,7 @@ afw_object_create_wrapper_managed(
  * when from is already fully managed).
  */
 AFW_DECLARE(const afw_object_t *)
-afw_object_create_managed_clone(
-    const afw_object_t *from,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Always deep-copy from into a new managed object in p->managed_p.
- * @param from object to copy.
- * @param p dest pool (uses p->managed_p).
- * @param xctx of caller.
- * @return new managed object (reference count 1).
- *
- * Unlike afw_object_create_managed_clone(), an already-managed source
- * is copied. The caller registers the release.
- *
- * Kind: fully managed. Caller releases (RC 1).
- */
-AFW_DECLARE(const afw_object_t *)
-afw_object_create_managed_snapshot(
+afw_object_to_managed(
     const afw_object_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -945,16 +926,34 @@ afw_object_register_caller_release(
 
 
 /**
- * @brief Snapshot from into p->managed_p and register its release on p.
- * @param from object to copy. NULL returns NULL.
- * @param p caller's pool.
+ * @brief Independent copy of an object, as a fully managed object.
+ * @param from object to copy.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
- * @return managed snapshot, or NULL when from is NULL.
+ * @return new fully managed object; nested objects and arrays are new
+ *     copies too, so the copy can be changed without touching from.
+ *
+ * Kind: fully managed. Caller releases (RC 1). Shared with Adaptive
+ * clone() (see afw_value_clone()).
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_clone(
+    const afw_object_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief afw_object_clone() that lasts for p.
+ * @param from object to copy. NULL returns NULL.
+ * @param p caller's pool. Not env->p or the base xctx pool.
+ * @param xctx of caller.
+ * @return independent fully managed copy, or NULL when from is NULL.
  *
  * Kind: fully managed. Caller does not release (release registered on p).
  */
 AFW_DECLARE(const afw_object_t *)
-afw_object_managed_clone_for_caller(
+afw_object_clone_for_p(
     const afw_object_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -1199,7 +1198,7 @@ afw_object_as_value(
  * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_object_t *)
-afw_object_create_clone(
+afw_object_create_pooled_copy(
     const afw_object_t *object,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

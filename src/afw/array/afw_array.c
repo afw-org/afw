@@ -111,6 +111,30 @@ afw_array_push_value(
 }
 
 
+/* Independent copy of an array, as a fully managed array. */
+AFW_DEFINE(const afw_array_t *)
+afw_array_clone(
+    const afw_array_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *to;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *entry;
+
+    to = afw_array_create_managed(
+        afw_array_get_data_type(from, xctx), p, xctx);
+    for (iterator = NULL;;) {
+        entry = afw_array_get_next_value(from, &iterator, xctx);
+        if (!entry) {
+            break;
+        }
+        afw_array_push_value_take(to, afw_value_clone(entry, p, xctx), xctx);
+    }
+    return to;
+}
+
+
 /* Append a value, taking the caller's reference to it. */
 AFW_DEFINE(void)
 afw_array_push_value_take(
@@ -137,7 +161,7 @@ afw_array_setter_push_value_take_by_copy(
 {
     const afw_value_t *copy;
 
-    copy = afw_value_clone(value, instance->array->p, xctx);
+    copy = afw_value_create_pooled_copy(value, instance->array->p, xctx);
     afw_array_setter_push_value(instance, copy, xctx);
     afw_value_release(value, xctx);
 }

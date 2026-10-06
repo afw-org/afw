@@ -125,7 +125,7 @@ afw_authorization_handler_type_script_create_cede_p(
             "%ku/%ku",
             self->pub.source_location,
             afw_s_qualifiedVariables);
-        self->qualified_variables = afw_object_create_clone(
+        self->qualified_variables = afw_object_create_pooled_copy(
             self->qualified_variables, p, xctx);
         afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
             context_type_object, self->qualified_variables,

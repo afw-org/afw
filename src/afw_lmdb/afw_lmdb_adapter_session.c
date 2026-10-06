@@ -291,7 +291,7 @@ impl_afw_adapter_session_modify_object(
             object_type_id, internal_id, dbi, xctx);
 
         /* call common routine to modify the object */
-        new_object = afw_object_create_clone(object, xctx->p, xctx);
+        new_object = afw_object_create_pooled_copy(object, xctx->p, xctx);
         afw_adapter_modify_entries_apply_to_unnormalized_object(
             entry, new_object, xctx);
 

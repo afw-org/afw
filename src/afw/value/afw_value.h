@@ -1203,6 +1203,25 @@ afw_value_not_counted_get_reference(
 
 
 /**
+ * @brief Independent copy of a value that a script may change.
+ * @param value to copy (nullish values are returned as-is).
+ * @param p dest pool (uses p->managed_p).
+ * @param xctx of caller.
+ * @return objects and arrays: new fully managed copies, nested ones
+ *     copied too; scalars: a value the caller owns (they cannot change).
+ *
+ * Kind: fully managed. Caller releases. Adaptive clone() is this.
+ * Compare afw_value_to_managed() (shares when it can) and
+ * afw_value_create_pooled_copy() (pooled copy in p).
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief get_assignable_value for a value that is not counted.
  * @param instance value.
  * @param p unused.
@@ -1290,46 +1309,20 @@ afw_value_get_assignable(
     afw_xctx_t *xctx);
 
 
-/** Compatibility name. */
-#define afw_value_clone_or_reference(_instance, _xctx) \
-    afw_value_get_reference(_instance, _xctx)
-
-
 /**
- * @brief Deep clone an evaluated value unmanaged into dest p.
- * @param value evaluated (has is_evaluated_of_data_type).
- * @param p dest pool.
- * @param xctx of caller.
- * @return unmanaged clone in p, or value if permanent.
- *
- * Does not evaluate. Does not release the source. Throws if value is
- * NULL, not evaluated, or has no clone.
- *
- * Adaptive `clone()` of object/array is always-copy
- * `create_managed`, not this (see `afw_function_execute_clone`).
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_clone_unmanaged(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Clone an evaluated value managed in p->managed_p.
+ * @brief Fully managed version of an evaluated value.
  * @param value evaluated (has is_evaluated_of_data_type).
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
- * @return managed value (bump if already managed).
+ * @return value with one more reference if already fully managed,
+ *     otherwise a fully managed copy.
  *
- * Permanents as-is. Does not release the source. Throws if
+ * Kind: fully managed (permanents as-is). Caller releases. Shares when
+ * it can; use afw_value_clone() for an independent copy. Throws if
  * value is NULL, not evaluated, or has no clone.
- *
- * Adaptive `clone()` of object/array is always-copy
- * `create_managed`, not this (see `afw_function_execute_clone`).
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_clone_managed(
+afw_value_to_managed(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -1689,23 +1682,22 @@ afw_value_convert_to_casted_utf8(
 
 
 /**
- * @brief Clone a value to specified pool.
- * @param value to clone.
- * @param p pool used for clone.
+ * @brief Pooled copy of a value in p.
+ * @param value to copy.
+ * @param p pool for the copy.
  * @param xctx of caller.
- * @return cloned value.
+ * @return copy that lives in p.
  *
- * Non-evaluated values will be evaluated as part of clone.
- *
- * Unmanaged copy into dest p. Adaptive `clone()` of object/array is
- * always-copy `create_managed`, not this (see
- * `afw_function_execute_clone`).
+ * Non-evaluated values are evaluated first. Use to take a value out of
+ * something that may change or go away (live runtime data under a
+ * lock, another pool). For a copy a script may change, use
+ * afw_value_clone().
  *
  * Kind: pooled in p (permanent values are returned as-is). Caller does
  * not release.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_clone(
+afw_value_create_pooled_copy(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

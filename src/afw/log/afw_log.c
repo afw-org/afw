@@ -352,7 +352,7 @@ afw_log_get_properties_object(
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         current = afw_environment_get_log(&log->log_id, xctx);
         if (current == log && log->properties) {
-            snapshot = afw_object_managed_clone_for_caller(
+            snapshot = afw_object_clone_for_p(
                 log->properties, p, xctx);
         }
     }

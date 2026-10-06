@@ -465,7 +465,7 @@ afw_value_clone_array_managed(
         const afw_array_t *to;
 
         from = ((const afw_value_array_t *)value)->internal;
-        to = afw_array_create_managed_clone(from, p, xctx);
+        to = afw_array_to_managed(from, p, xctx);
         return to->value;
     }
 }
@@ -647,7 +647,7 @@ impl_afw_value_get_assignable_value(
         afw_array_get_reference(a, xctx);
         return a->value;
     }
-    return afw_value_clone_managed(instance, p, xctx);
+    return afw_value_to_managed(instance, p, xctx);
 }
 
 /* Permanent object/array: managed wrapper (object) or clone (array). */
@@ -668,7 +668,7 @@ impl_afw_value_permanent_get_assignable_value(
         afw_array_get_reference(a, xctx);
         return a->value;
     }
-    to = afw_array_create_managed_clone(a, p, xctx);
+    to = afw_array_to_managed(a, p, xctx);
     return to->value;
 }
 

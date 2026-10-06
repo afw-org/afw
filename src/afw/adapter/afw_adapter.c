@@ -233,7 +233,7 @@ afw_adapter_get_metrics_object(
     }
     AFW_TRY {
         afw_adapter_internal_reference_cleanup(held, xctx->p, xctx);
-        snapshot = afw_object_managed_clone_for_caller(object, p, xctx);
+        snapshot = afw_object_clone_for_p(object, p, xctx);
     }
     AFW_FINALLY {
         afw_adapter_release(held, xctx);
@@ -370,7 +370,7 @@ afw_adapter_get_properties_object(
 
     snapshot = NULL;
     AFW_TRY {
-        snapshot = afw_object_managed_clone_for_caller(
+        snapshot = afw_object_clone_for_p(
             held->properties, p, xctx);
     }
     AFW_FINALLY {

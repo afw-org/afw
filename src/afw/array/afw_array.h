@@ -125,7 +125,7 @@ afw_array_create_managed(
  * when from is already fully managed).
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_create_managed_clone(
+afw_array_to_managed(
     const afw_array_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -398,7 +398,7 @@ afw_array_managed_from_values_inf;
  * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_create_or_clone(
+afw_array_create_pooled_copy(
     const afw_array_t *array,
     const afw_data_type_t *data_type,
     afw_boolean_t clone_values,
@@ -641,6 +641,23 @@ AFW_DECLARE(void)
 afw_array_push_value(
     const afw_array_t *instance,
     const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Independent copy of an array, as a fully managed array.
+ * @param from array to copy.
+ * @param p dest pool (uses p->managed_p).
+ * @param xctx of caller.
+ * @return new fully managed array; nested objects and arrays are new
+ *     copies too.
+ *
+ * Kind: fully managed. Caller releases (RC 1). See afw_value_clone().
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_clone(
+    const afw_array_t *from,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

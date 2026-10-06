@@ -152,7 +152,7 @@ afw_object_meta_clone_and_set(
 
     impl_set_meta_object(
         (afw_object_t *)instance,
-        afw_object_create_clone(
+        afw_object_create_pooled_copy(
             afw_object_meta_object(from),
             instance->p, xctx),
         xctx);
@@ -195,7 +195,7 @@ afw_object_meta_add_parent_path(
     parent_paths = afw_value_allocate_unmanaged_array(instance->p, xctx);
 
     if (existing_parent_paths) {
-        parent_paths->internal = afw_array_create_or_clone(
+        parent_paths->internal = afw_array_create_pooled_copy(
             existing_parent_paths->internal, afw_data_type_anyURI, false,
             instance->p, xctx);
     }
@@ -345,7 +345,7 @@ afw_object_meta_get_property_type(
     }
     else if (!property_types->p) {
         /* Permanent OT propertyTypes — clone onto instance pool / delta. */
-        property_types = afw_object_create_clone(
+        property_types = afw_object_create_pooled_copy(
             property_types, instance->p, xctx);
         ((afw_object_t *)property_types)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyTypes_;
@@ -360,7 +360,7 @@ afw_object_meta_get_property_type(
             instance->meta.meta_object,
             afw_v_otherProperties, xctx);
         if (property_type) {
-            property_type = afw_object_create_clone(property_type,
+            property_type = afw_object_create_pooled_copy(property_type,
                 instance->p, xctx);
             afw_object_set_property_as_object_internal(property_types,
                 property_name, property_type, xctx);
@@ -377,7 +377,7 @@ afw_object_meta_get_property_type(
          * Bag was cloned but entries can still be permanent (shallow
          * nested object values). Replace with a pooled clone.
          */
-        property_type = afw_object_create_clone(property_type,
+        property_type = afw_object_create_pooled_copy(property_type,
             instance->p, xctx);
         ((afw_object_t *)property_type)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyType_;

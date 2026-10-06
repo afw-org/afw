@@ -614,7 +614,7 @@ afw_adapter_impl_set_supported_core_object_type(
             AFW_THROW_ERROR_Z(general, "Invalid object type id", xctx);
         }
         /** @fixme This is where object wrapper would be good to just hold deltas. */
-        e->object = afw_object_create_clone(e->object, p, xctx);
+        e->object = afw_object_create_pooled_copy(e->object, p, xctx);
         path = afw_object_meta_get_path(e->object, xctx);
         afw_object_meta_set_ids(e->object, &adapter->adapter_id,
             afw_s__AdaptiveObjectType_, object_type_id, xctx);

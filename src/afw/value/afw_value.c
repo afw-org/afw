@@ -74,6 +74,29 @@ afw_value_not_counted_get_reference(
 }
 
 
+/* Independent copy of a value that a script may change. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value || afw_value_is_nullish(value)) {
+        return value;
+    }
+    if (afw_value_is_object(value)) {
+        return afw_object_clone(
+            ((const afw_value_object_t *)value)->internal, p, xctx)->value;
+    }
+    if (afw_value_is_array(value)) {
+        return afw_array_clone(
+            ((const afw_value_array_t *)value)->internal, p, xctx)->value;
+    }
+    /* Scalars cannot change, so one value the caller owns is enough. */
+    return afw_value_get_assignable(value, p, xctx);
+}
+
+
 /* get_assignable_value for values that are not counted. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_not_counted_get_assignable_value(
@@ -566,7 +589,7 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Clone a value to specified pool. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_clone(const afw_value_t *value,
+afw_value_create_pooled_copy(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_common_t *evaluated;
@@ -616,27 +639,9 @@ afw_value_clone(const afw_value_t *value,
 }
 
 
-/* Deep clone an evaluated value unmanaged into dest p. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_clone_unmanaged(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_data_type_t *dt;
-
-    dt = (value && value->inf) ? value->inf->is_evaluated_of_data_type : NULL;
-    if (!dt || !dt->clone_value_unmanaged) {
-        AFW_THROW_ERROR_Z(conversion_error,
-            "clone_unmanaged requires an evaluated value", xctx);
-    }
-    return dt->clone_value_unmanaged(value, p, xctx);
-}
-
-
 /* Clone an evaluated value managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_clone_managed(
+afw_value_to_managed(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

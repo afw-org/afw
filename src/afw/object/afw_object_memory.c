@@ -274,9 +274,9 @@ impl_copy_meta_delta_into_managed(
         if (!value) {
             break;
         }
-        cloned = afw_value_clone_unmanaged(value, to->p, xctx);
+        cloned = afw_value_create_pooled_copy(value, to->p, xctx);
         afw_object_set_property(delta,
-            name ? afw_value_clone_unmanaged(name, to->p, xctx)
+            name ? afw_value_create_pooled_copy(name, to->p, xctx)
                 : afw_v_a_empty_string,
             cloned, xctx);
     }
@@ -316,7 +316,7 @@ impl_copy_property_into_managed(
         if (!from_array) {
             return;
         }
-        cloned_array = afw_array_create_managed_clone(from_array, to->p, xctx);
+        cloned_array = afw_array_to_managed(from_array, to->p, xctx);
         afw_object_set_property(to, name, cloned_array->value, xctx);
         afw_array_release(cloned_array, xctx);
         return;
@@ -421,7 +421,7 @@ impl_copy_into_managed(
 
 
 AFW_DEFINE(const afw_object_t *)
-afw_object_create_managed_clone(
+afw_object_to_managed(
     const afw_object_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -430,31 +430,12 @@ afw_object_create_managed_clone(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_object_create_managed_clone requires from",
+            "afw_object_to_managed requires from",
             xctx);
     }
     if (from->inf == &impl_afw_object_managed_inf) {
         afw_object_get_reference(from, xctx);
         return from;
-    }
-    to = afw_object_create_managed(p, xctx);
-    impl_copy_into_managed(to, from, xctx);
-    return to;
-}
-
-
-AFW_DEFINE(const afw_object_t *)
-afw_object_create_managed_snapshot(
-    const afw_object_t *from,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *to;
-
-    if (!from) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_object_create_managed_snapshot requires from",
-            xctx);
     }
     to = afw_object_create_managed(p, xctx);
     impl_copy_into_managed(to, from, xctx);
@@ -925,7 +906,7 @@ impl_has_local_property_name(
 }
 
 
-/* Overlay store is clone_or_reference (GET-cache on this face). */
+/* Overlay store is get_assignable_value (GET-cache on this face). */
 static const afw_value_t *
 impl_hold_from_base(
     AFW_OBJECT_SELF_T *self,
@@ -940,7 +921,7 @@ impl_hold_from_base(
         return value;
     }
 
-    /* Overlay slot_store is clone_or_reference. */
+    /* Overlay slot_store is get_assignable_value. */
     afw_object_set_property((const afw_object_t *)self, property_name,
         value, xctx);
     local = impl_get_local_property(self, property_name, &found_local, xctx);
@@ -976,7 +957,7 @@ impl_afw_object_get_property(
         return NULL;
     }
 
-    /* Hold looked-up value on this face (clone_or_reference via set). */
+    /* Hold looked-up value on this face (get_assignable_value via set). */
     return impl_hold_from_base(self, property_name, value, xctx);
 }
 

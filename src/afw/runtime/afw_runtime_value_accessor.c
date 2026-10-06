@@ -1014,7 +1014,7 @@ afw_runtime_value_accessor_adapter_metrics(
     }
     AFW_TRY {
         afw_adapter_internal_reference_cleanup(held, xctx->p, xctx);
-        metrics_object = afw_object_managed_clone_for_caller(
+        metrics_object = afw_object_clone_for_p(
             metrics_object, p, xctx);
     }
     AFW_FINALLY {
@@ -1280,7 +1280,7 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
     list = afw_array_create_unmanaged_from_c_array(*((const void * const *)internal),
         false, prop->data_type_parameter_data_type, -1, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
-    result = afw_value_clone(result, p, xctx); /* Clone while locked. */
+    result = afw_value_create_pooled_copy(result, p, xctx); /* Clone while locked. */
 
     return result;
 }
@@ -1445,7 +1445,7 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
     list = afw_array_create_unmanaged_from_c_array(*((const void * const *)internal),
         true, prop->data_type_parameter_data_type, -1, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
-    result = afw_value_clone(result, p, xctx); /* Clone while locked. */
+    result = afw_value_create_pooled_copy(result, p, xctx); /* Clone while locked. */
 
     return result;
 }

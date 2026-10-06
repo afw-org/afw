@@ -278,7 +278,7 @@ impl_push_cloned_into_managed(
         if (!obj) {
             return;
         }
-        obj = afw_object_create_managed_clone(obj, to->p, xctx);
+        obj = afw_object_to_managed(obj, to->p, xctx);
         afw_array_push_value(to, obj->value, xctx);
         afw_object_release(obj, xctx);
         return;
@@ -288,7 +288,7 @@ impl_push_cloned_into_managed(
         if (!arr) {
             return;
         }
-        arr = afw_array_create_managed_clone(arr, to->p, xctx);
+        arr = afw_array_to_managed(arr, to->p, xctx);
         afw_array_push_value(to, arr->value, xctx);
         afw_array_release(arr, xctx);
         return;
@@ -298,7 +298,7 @@ impl_push_cloned_into_managed(
 
 
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_managed_clone(
+afw_array_to_managed(
     const afw_array_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -310,7 +310,7 @@ afw_array_create_managed_clone(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_array_create_managed_clone requires from",
+            "afw_array_to_managed requires from",
             xctx);
     }
     if (from->inf == &impl_afw_array_managed_inf) {
@@ -1449,7 +1449,7 @@ impl_afw_array_managed_setter_remove_all_values(
 
 /* Create or clone of an array. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_or_clone(
+afw_array_create_pooled_copy(
     const afw_array_t *array,
     const afw_data_type_t *data_type,
     afw_boolean_t clone_values,
@@ -1476,7 +1476,7 @@ afw_array_create_or_clone(
             break;
         }
         if (clone_values) {
-            value = afw_value_clone(value, p, xctx);
+            value = afw_value_create_pooled_copy(value, p, xctx);
         }
         afw_array_push_value(result, value, xctx);
     }
