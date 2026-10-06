@@ -233,6 +233,7 @@ int main(int argc, const char * const * argv) {
     
     /* Make sure things are cleaned up. */
     AFW_FINALLY{
+        AFW_FINALLY_RELEASE_ERROR;
         afw_environment_release(xctx);
 
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */

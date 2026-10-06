@@ -606,6 +606,7 @@ impl_evaluate(
             /* Do not skip xctx_release / destroy. */
         }
         AFW_ENDTRY;
+        AFW_FINALLY_RELEASE_ERROR;
         afw_xctx_release(xctx, xctx);
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */
         if (keep_going) impl_print_end(self);
@@ -1123,7 +1124,8 @@ main(int argc, const char * const *argv) {
             fclose(self->fd_input);
         }
 
-        /* Release enviornment. */
+        /* Release this try's error, then the environment. */
+        AFW_FINALLY_RELEASE_ERROR;
         afw_environment_release(xctx);
 
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */

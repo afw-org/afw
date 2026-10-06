@@ -612,6 +612,8 @@ afw_xctx_release(
             afw_pool_run_cleanups(instance->p, xctx);
         }
         AFW_FINALLY {
+            /* A throw above is dropped: destroy still runs. */
+            AFW_FINALLY_RELEASE_ERROR;
             afw_os_backtrace_cleanup((afw_xctx_t *)instance);
             afw_pool_destroy(instance->p, xctx);
             if (region) {
