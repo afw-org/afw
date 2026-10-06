@@ -264,6 +264,8 @@ impl_tracker_malloc_internal(
 #endif
     AFW_MEMORY_ANNOTATE_NOACCESS((char *)user + size,
         ((char *)start + total) - ((char *)user + size));
+    /* Not yet written by the caller (valgrind; calloc defines it). */
+    AFW_MEMORY_ANNOTATE_UNDEFINED(user, size);
     if (xctx) {
         afw_pool_internal_account_alloc(self, total, xctx);
     }

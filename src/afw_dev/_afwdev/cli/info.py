@@ -481,7 +481,8 @@ _info_build_cdev = {
     "help": "C development shortcut: enables --generate, --clean, --install, "
         "and -j / parallel jobs (cmake context by default; not docs/JS/docker). "
         "Also defines AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL "
-        "(runtime flags still off unless you set them). Explicit -j N still "
+        "(runtime flags still off unless you set them), and AFW_VALGRIND_POOL "
+        "when <valgrind/memcheck.h> is found. Explicit -j N still "
         "overrides. See also --fulldev and --define."
 }
 
@@ -492,7 +493,7 @@ _info_build_fulldev = {
     "default": False,
     "help": "Full package dev-install shortcut: enables --all, --generate, "
         "--clean, --install, --scan, and -j / parallel jobs. Same AFW_DEBUG_* "
-        "defines as --cdev. Use when the whole tree (C, docs, JS) should be "
+        "and AFW_VALGRIND_POOL defines as --cdev. Use when the whole tree (C, docs, JS) should be "
         "rebuilt and installed. Does not enable --docker — pass it "
         "explicitly alongside --fulldev if you also want cross-platform "
         "docker images built. Explicit -j N still overrides."
@@ -507,7 +508,8 @@ _info_build_define = {
     "help": "C preprocessor define for this cmake build, NAME or NAME=VALUE "
         "(repeatable). Applied with add_compile_definitions to C targets in "
         "this package. --cdev and --fulldev already add AFW_DEBUG_EVALUATION, "
-        "AFW_DEBUG_LOCK, and AFW_DEBUG_POOL."
+        "AFW_DEBUG_LOCK, and AFW_DEBUG_POOL, plus AFW_VALGRIND_POOL when "
+        "<valgrind/memcheck.h> is found."
 }
 
 _info_build_generate = {
@@ -633,7 +635,8 @@ yourself when you actually want to build docker images.
 Convenience profiles: --cdev (C day-to-day generate/clean/install/-j) and
 --fulldev (--all contexts plus generate/clean/install/scan/-j for a full dev
 install; still excludes --docker unless passed explicitly).
-Both define AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL. Pass extra
+Both define AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL, and
+AFW_VALGRIND_POOL when <valgrind/memcheck.h> is found. Pass extra
 C preprocessor defines with --define NAME or --define NAME=VALUE.
 """,
     "thing": "build",

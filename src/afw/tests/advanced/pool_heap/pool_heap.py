@@ -10,12 +10,14 @@ afw_pool_tracker_internal.h from the src tree (pulls heap + shared).
 
 import os
 
+from _afwdev.test import context as test_context
 from _afwdev.test.c_probe import (
     libafw_build_cache, libafw_sanitizers, run_c_probe)
 
 # These read memory an ASAN libafw marks no-access (a freed USER, a
 # foreign block's prefix). ASAN reports that read before the debug
-# check can throw.
+# check can throw. Valgrind does the same for a libafw built with
+# AFW_VALGRIND_POOL when the probe runs under --env-mode valgrind.
 _ASAN_SKIP = (
     "debug_free_wrong_pool",
     "debug_free_poisons_user",
@@ -44,12 +46,13 @@ def _pool_src():
     return os.path.join(_afw_src(), "pool")
 
 
-def _lib_has_debug_pool():
-    """True if the cmake libafw build defined AFW_DEBUG_POOL.
+def _lib_has_define(name):
+    """True if the cmake libafw build defined name (e.g. AFW_DEBUG_POOL).
 
     Probe -D must match the installed lib layout. --cdev/--fulldev
-    define it; a production cmake does not. Same test -j file either
-    way: throw cases run only when the lib was built with the prefix.
+    define AFW_DEBUG_POOL; a production cmake does not. Same test -j
+    file either way: throw cases run only when the lib was built with
+    the prefix. AFW_VALGRIND_POOL also widens the heap prefix.
     """
     root = os.path.abspath(os.path.join(_pool_src(), "..", "..", ".."))
     # A --sanitize build (build/asan/...) names its own cmake dir.
@@ -58,19 +61,21 @@ def _lib_has_debug_pool():
     if os.path.isfile(cache):
         with open(cache, encoding="utf-8", errors="replace") as f:
             for line in f:
-                if "AFWDEV_C_DEFINES" in line and "AFW_DEBUG_POOL" in line:
+                if "AFWDEV_C_DEFINES" in line and name in line:
                     return True
         return False
     ccjson = os.path.join(root, "build", "cmake", "compile_commands.json")
     if os.path.isfile(ccjson):
         with open(ccjson, encoding="utf-8", errors="replace") as f:
-            return "AFW_DEBUG_POOL" in f.read()
+            return name in f.read()
     return False
 
 
 def run():
-    debug_pool = _lib_has_debug_pool()
+    debug_pool = _lib_has_define("AFW_DEBUG_POOL")
     asan = "address" in libafw_sanitizers()
+    valgrind_pool = (test_context.options().get("mode") == "valgrind" and
+        _lib_has_define("AFW_VALGRIND_POOL"))
     extra = [
         "-I", _pool_src(),
         "-I", os.path.join(_afw_src(), "memory"),
@@ -79,6 +84,8 @@ def run():
     ]
     if debug_pool:
         extra.append("-DAFW_DEBUG_POOL")
+    if _lib_has_define("AFW_VALGRIND_POOL"):
+        extra.append("-DAFW_VALGRIND_POOL")
     cases = [
             (
                 "heap_malloc_free",
@@ -199,7 +206,7 @@ def run():
             ),
         ])
     asan_skipped = []
-    if asan:
+    if asan or valgrind_pool:
         asan_skipped = [c for c in cases if c[0] in _ASAN_SKIP]
         cases = [c for c in cases if c[0] not in _ASAN_SKIP]
     result = run_c_probe(
@@ -240,6 +247,7 @@ def run():
             "description": desc,
             "passed": True,
             "skip": True,
-            "skipReason": "ASAN reports this read of no-access memory",
+            "skipReason": ("ASAN" if asan else "valgrind") +
+                " reports this read of no-access memory",
         })
     return result

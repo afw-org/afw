@@ -1050,6 +1050,8 @@ impl_heap_malloc_internal(
     user = AFW_POOL_HEAP_INTERNAL_USER_FROM_START(start);
     AFW_MEMORY_ANNOTATE_NOACCESS((char *)user + size,
         ((char *)start + total) - ((char *)user + size));
+    /* Not yet written by the caller (valgrind; calloc defines it). */
+    AFW_MEMORY_ANNOTATE_UNDEFINED(user, size);
     afw_pool_internal_debug_prefix_set(self, user, size);
     return user;
 }

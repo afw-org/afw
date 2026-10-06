@@ -30,11 +30,20 @@
  * only pool memory points to (the base thread, regions, library
  * handles) is not reported as leaked.
  *
- * Active only when the compiler builds with -fsanitize=address
- * (gcc `__SANITIZE_ADDRESS__`, clang
- * `__has_feature(address_sanitizer)`). Otherwise
- * `AFW_MEMORY_ANNOTATE_ACTIVE` is 0 and every macro is a no-op, so
- * a normal build is unchanged. See `designs/asan-opt-in.md`.
+ * Backends:
+ * - AddressSanitizer, when the compiler builds with -fsanitize=address
+ *   (gcc `__SANITIZE_ADDRESS__`, clang
+ *   `__has_feature(address_sanitizer)`).
+ * - Valgrind memcheck, when built with `--define AFW_VALGRIND_POOL`
+ *   (and not ASan). Client requests are a few no-op instructions when
+ *   the process is not running under valgrind. Valgrind also tracks
+ *   whether bytes were written: ACCESS marks bytes addressable and
+ *   defined (allocator bookkeeping), and UNDEFINED marks the bytes a
+ *   malloc hands to its caller as not yet written, so a read of pool
+ *   memory nobody wrote is reported. ROOT / UNROOT are no-ops: the
+ *   valgrind leak checker already scans mapped memory.
+ * Otherwise `AFW_MEMORY_ANNOTATE_ACTIVE` is 0 and every macro is a
+ * no-op, so a normal build is unchanged. See `designs/asan-opt-in.md`.
  */
 
 #if defined(__SANITIZE_ADDRESS__)
@@ -45,11 +54,32 @@
 #endif
 #endif
 
+#if !defined(AFW_MEMORY_ANNOTATE_ACTIVE) && defined(AFW_VALGRIND_POOL)
+#define AFW_MEMORY_ANNOTATE_ACTIVE 1
+#define AFW_MEMORY_ANNOTATE_VALGRIND 1
+#endif
+
 #ifndef AFW_MEMORY_ANNOTATE_ACTIVE
 #define AFW_MEMORY_ANNOTATE_ACTIVE 0
 #endif
 
-#if AFW_MEMORY_ANNOTATE_ACTIVE
+#if AFW_MEMORY_ANNOTATE_ACTIVE && defined(AFW_MEMORY_ANNOTATE_VALGRIND)
+
+#include <valgrind/memcheck.h>
+
+#define AFW_MEMORY_ANNOTATE_NOACCESS(_addr, _size) \
+    ((void)VALGRIND_MAKE_MEM_NOACCESS((_addr), (_size)))
+
+#define AFW_MEMORY_ANNOTATE_ACCESS(_addr, _size) \
+    ((void)VALGRIND_MAKE_MEM_DEFINED((_addr), (_size)))
+
+#define AFW_MEMORY_ANNOTATE_UNDEFINED(_addr, _size) \
+    ((void)VALGRIND_MAKE_MEM_UNDEFINED((_addr), (_size)))
+
+#define AFW_MEMORY_ANNOTATE_ROOT(_addr, _size) ((void)0)
+#define AFW_MEMORY_ANNOTATE_UNROOT(_addr, _size) ((void)0)
+
+#elif AFW_MEMORY_ANNOTATE_ACTIVE
 
 #include <sanitizer/asan_interface.h>
 #include <sanitizer/lsan_interface.h>
@@ -61,6 +91,9 @@
 /** @brief Mark [_addr, _addr + _size) accessible. */
 #define AFW_MEMORY_ANNOTATE_ACCESS(_addr, _size) \
     ASAN_UNPOISON_MEMORY_REGION((_addr), (_size))
+
+/** @brief Bytes handed to a malloc caller, not yet written (valgrind). */
+#define AFW_MEMORY_ANNOTATE_UNDEFINED(_addr, _size) ((void)0)
 
 /** @brief Leak checker scans [_addr, _addr + _size) for pointers. */
 #define AFW_MEMORY_ANNOTATE_ROOT(_addr, _size) \
@@ -74,6 +107,7 @@
 
 #define AFW_MEMORY_ANNOTATE_NOACCESS(_addr, _size) ((void)0)
 #define AFW_MEMORY_ANNOTATE_ACCESS(_addr, _size) ((void)0)
+#define AFW_MEMORY_ANNOTATE_UNDEFINED(_addr, _size) ((void)0)
 #define AFW_MEMORY_ANNOTATE_ROOT(_addr, _size) ((void)0)
 #define AFW_MEMORY_ANNOTATE_UNROOT(_addr, _size) ((void)0)
 
