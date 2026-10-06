@@ -21,6 +21,9 @@ schedule:
       concurrency: 8
       seed: 1
       maxFail: 0
+      # Valgrind runs one afwfcgi thread at a time (~165ms a request).
+      envModes:
+        valgrind: { maxRequests: 50 }
       fuzz:
         kind: functionCalls
         callsPerRequest: 25

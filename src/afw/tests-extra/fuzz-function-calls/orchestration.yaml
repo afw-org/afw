@@ -20,6 +20,11 @@ schedule:
       clientProcesses: 4
       seed: 1000
       maxFail: 0
+      # Keep going after a crash: each exit is recorded (failures.log,
+      # kept afwfcgi.*.exitN.log) and fails the leaf at the end.
+      onServerExit: restart
+      envModes:
+        valgrind: { duration_s: 300, concurrency: 4, clientProcesses: 1 }
       fuzz:
         kind: functionCalls
         callsPerRequest: 25

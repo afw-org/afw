@@ -3,6 +3,7 @@
 """Fuzz sources for orchestrated firehose steps (#485 part B)."""
 
 from _afwdev.test.orchestrated import fuzz
+from _afwdev.test.orchestrated.runner import _env_mode_body
 
 
 def run():
@@ -63,6 +64,21 @@ def run():
         "test": "fuzz-kind",
         "description": "an unknown fuzz kind is an error",
         "passed": kind_ok,
+        "skip": False,
+    })
+    body = {"maxRequests": 400, "seed": 1,
+            "envModes": {"valgrind": {"maxRequests": 50},
+                         "asan": {"skip": True}}}
+    v = _env_mode_body(body, {"mode": "valgrind"})
+    tests.append({
+        "test": "firehose-env-modes",
+        "description":
+            "envModes replaces step fields for that --env-mode; skip skips",
+        "passed": (
+            v["maxRequests"] == 50 and v["seed"] == 1
+            and _env_mode_body(body, {"mode": "afw"}) is body
+            and _env_mode_body(body, {"mode": "asan"}) is None
+        ),
         "skip": False,
     })
     return {
