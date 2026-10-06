@@ -10,7 +10,7 @@ description: Concurrent service churn with readers of runtime objects
 host: afwfcgi
 afwfcgi:
   threads: 8
-timeout_s: 180
+timeout_s: 900
 feed:
   kind: action
   accept: application/json

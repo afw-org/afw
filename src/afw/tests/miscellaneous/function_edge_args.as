@@ -173,3 +173,15 @@ return 0;
 const d = decompile(bag<function>("abc"));
 assert(index_of(d, "abc") >= 0);
 return 0;
+
+//?
+//? test: compile-listing-no-whitespace
+//? description: compile listing with false/0 whitespace (used to deref NULL)
+//? expect: 0
+//? source: ...
+
+const a = compile(template("a ${1+1}"), false);
+const b = compile(script("return 1;"), 0);
+assert(index_of(a, "Compiled Adaptive Value Listing") >= 0);
+assert(index_of(b, "Compiled Adaptive Value Listing") >= 0);
+return 0;

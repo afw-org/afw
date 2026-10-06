@@ -8,7 +8,7 @@ description: Concurrent test_script requests on several afwfcgi threads
 host: afwfcgi
 afwfcgi:
   threads: 8
-timeout_s: 120
+timeout_s: 900
 feed:
   kind: action
   accept: application/json

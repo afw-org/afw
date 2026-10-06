@@ -390,6 +390,10 @@ afw_value_compiler_listing_to_string_instance(
     self->p = p;
     self->writer.write_raw_cb = impl_afw_writer_write_raw_cb;
     self->ary = afw_vector_create(afw_octet_vector_t, 4000, p, xctx);
+    /* NULL is "no whitespace" (0 or false from the whitespace parameter). */
+    if (!tab) {
+        tab = afw_s_a_empty_string;
+    }
     self->writer.tab = tab;
     if (tab->len == 1 && *(tab->s) == '\t') {
         self->writer.tab = &impl_default_tab;

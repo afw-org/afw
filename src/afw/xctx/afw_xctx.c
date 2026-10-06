@@ -178,12 +178,23 @@ impl_c_stack_remaining(const afw_thread_t *thread)
     const char *sp;
     const char *low;
     const char *high;
+#if !defined(__GNUC__) && !defined(__clang__)
     char probe;
+#endif
 
     if (!thread || !thread->c_stack_base || thread->c_stack_size == 0) {
         return AFW_SIZE_T_MAX;
     }
+    /*
+     * The frame address, not a local's: under ASan a local can live on
+     * its fake stack (heap), so the check never saw the real stack run
+     * out.
+     */
+#if defined(__GNUC__) || defined(__clang__)
+    sp = (const char *)__builtin_frame_address(0);
+#else
     sp = &probe;
+#endif
     low = (const char *)thread->c_stack_base;
     high = low + thread->c_stack_size;
     if (sp < low || sp > high) {
