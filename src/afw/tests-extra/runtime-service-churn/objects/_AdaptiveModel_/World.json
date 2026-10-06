@@ -1,0 +1,14 @@
+{
+    "modelId": "World",
+    "objectTypes": {
+        "Demo": {
+            "mappedObjectType": "Demo",
+            "onGetObject": "return evaluate(compile<script>(script('return { msg: \"from-model\" };')));",
+            "propertyTypes": {
+                "msg": {
+                    "dataType": "string"
+                }
+            }
+        }
+    }
+}

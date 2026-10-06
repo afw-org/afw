@@ -1,0 +1,7 @@
+{
+    "title": "TypeRestarts",
+    "defaultAdapterId": "data",
+    "extensions": [
+        "afw_vfs"
+    ]
+}

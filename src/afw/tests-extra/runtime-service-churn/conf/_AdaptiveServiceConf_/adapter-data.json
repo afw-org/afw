@@ -1,0 +1,13 @@
+{
+    "serviceId": "adapter-data",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "data",
+        "root": "objects/",
+        "filenameSuffix": ".json",
+        "contentType": "json",
+        "isModelLocation": true
+    }
+}

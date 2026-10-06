@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-model",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "model",
+        "adapterId": "model",
+        "modelLocationAdapterId": "data",
+        "modelId": "World",
+        "mappedAdapterId": "data"
+    }
+}

@@ -1076,23 +1076,53 @@ afw_runtime_value_accessor_adapter_properties(
 {
     const afw_adapter_id_anchor_t *anchor;
     const afw_adapter_t *adapter;
+    const afw_adapter_t *held;
     const afw_object_t *properties;
 
     if (!internal) {
         return NULL;
     }
 
+    /*
+     * Pin the adapter while adapter_id_anchor_lock is held, as
+     * adapter_metrics does. After the lock a stop can release it.
+     */
     adapter = NULL;
+    held = NULL;
     AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
         if (internal && prop && prop->offset != (afw_size_t)-1) {
             anchor = (const afw_adapter_id_anchor_t *)(
                 (const char *)internal - prop->offset);
             adapter = anchor->adapter;
+            if (adapter && adapter->properties && p != adapter->p) {
+                held = afw_adapter_internal_pin_for_pool_lock_held(
+                    adapter, p, xctx);
+            }
         }
     }
     AFW_LOCK_END;
 
-    properties = afw_adapter_get_properties_object(adapter, p, xctx);
+    if (!adapter) {
+        return NULL;
+    }
+    /* The adapter's own pool keeps it alive. */
+    if (p == adapter->p) {
+        properties = adapter->properties;
+    }
+    else if (!held) {
+        return NULL;
+    }
+    else {
+        properties = NULL;
+        AFW_TRY {
+            afw_adapter_internal_reference_cleanup(held, xctx->p, xctx);
+            properties = afw_object_clone_for_p(held->properties, p, xctx);
+        }
+        AFW_FINALLY {
+            afw_adapter_release(held, xctx);
+        }
+        AFW_ENDTRY;
+    }
     return (properties && properties->value)
         ? properties->value
         : (properties ? afw_object_as_value(properties, p, xctx) : NULL);
