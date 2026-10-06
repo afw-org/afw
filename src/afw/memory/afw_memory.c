@@ -142,7 +142,7 @@ static afw_size_t impl_callback(void *context,
 
 /* Clone an object to a specified pool. */
 AFW_DEFINE(const afw_object_t *)
-afw_object_create_clone(
+afw_object_create_pooled_copy(
     const afw_object_t * object,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -168,7 +168,7 @@ AFW_DEFINE(const afw_object_t *) afw_object_create_merged(
     const afw_value_t *value;
     const afw_value_t *property_name;
 
-    result = afw_object_create_clone(primary, p, xctx);
+    result = afw_object_create_pooled_copy(primary, p, xctx);
 
     /* Merge */
     iterator = NULL;
@@ -177,7 +177,7 @@ AFW_DEFINE(const afw_object_t *) afw_object_create_merged(
             &property_name, xctx);
         if (!value) break;
         if (!afw_object_has_property(primary, property_name, xctx)) {
-            value = afw_value_clone(value, p, xctx);
+            value = afw_value_create_pooled_copy(value, p, xctx);
             afw_object_set_property(result, property_name, value, xctx);
         }
     } while (1);

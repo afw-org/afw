@@ -1406,7 +1406,7 @@ impl_afw_data_type_array_clone_internal(
         if (!value) {
             break;
         }
-        cloned_value = afw_value_clone(value, p, xctx);
+        cloned_value = afw_value_create_pooled_copy(value, p, xctx);
         afw_array_push_value(to, cloned_value, xctx);
     }
 }
@@ -1507,7 +1507,7 @@ impl_clone_and_set_property(
     const afw_pool_t *p = obj->p;
 
     /* Clone property name.*/
-    property_name = afw_value_clone(property_name, p, xctx);
+    property_name = afw_value_create_pooled_copy(property_name, p, xctx);
 
     /* If object, handle special to support embedding object. */
     if (afw_value_is_object(value)) {
@@ -1521,7 +1521,7 @@ impl_clone_and_set_property(
 
     /* Other cases, just use normal value clone. */
     else {
-        cloned_value = afw_value_clone(value, p, xctx);
+        cloned_value = afw_value_create_pooled_copy(value, p, xctx);
     }
 
     /* Set property to cloned value. */

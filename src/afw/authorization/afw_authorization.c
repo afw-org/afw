@@ -1130,7 +1130,7 @@ afw_authorization_handler_get_properties_object(
 
     snapshot = NULL;
     AFW_TRY {
-        snapshot = afw_object_managed_clone_for_caller(
+        snapshot = afw_object_clone_for_p(
             instance->properties, p, xctx);
     }
     AFW_FINALLY {

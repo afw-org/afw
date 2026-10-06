@@ -92,22 +92,43 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/* get_reference_count of a managed integer. */
+static afw_size_t
+impl_afw_value_managed_get_reference_count(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return ((const afw_value_integer_managed_t *)instance)
+        ->reference_count;
+}
+
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged integer: get_reference/release throw; */
 /* get_assignable_value creates a managed holdable in p->managed_p. */
 #define AFW_IMPLEMENTATION_ID "integer"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_integer_inf
-#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
+#define impl_afw_value_release impl_afw_value_unmanaged_optional_release
 #define impl_afw_value_get_reference impl_afw_value_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
 #define impl_afw_value_create_iterator NULL
+#define impl_afw_value_get_for_p_lifetime afw_value_pooled_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
+#define impl_afw_value_get_counted afw_value_not_counted_get_counted
+#define impl_afw_value_get_reference_count afw_value_not_counted_get_reference_count
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_get_for_p_lifetime
+#undef impl_afw_value_for_each_reference
+#undef impl_afw_value_release_references
+#undef impl_afw_value_get_counted
+#undef impl_afw_value_get_reference_count
 
 /* Declares and rti/inf defines for interface afw_value */
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
@@ -120,16 +141,26 @@ impl_afw_value_get_assignable_value(
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_integer"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_integer_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
+#define impl_afw_value_release impl_afw_value_managed_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
+#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
+#define impl_afw_value_get_counted afw_value_not_counted_get_counted
+#define impl_afw_value_get_reference_count impl_afw_value_managed_get_reference_count
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_get_for_p_lifetime
+#undef impl_afw_value_for_each_reference
+#undef impl_afw_value_release_references
+#undef impl_afw_value_get_counted
+#undef impl_afw_value_get_reference_count
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
@@ -142,16 +173,26 @@ impl_afw_value_get_assignable_value(
 /* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_integer"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_integer_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_release afw_value_not_counted_release
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
+#define impl_afw_value_get_for_p_lifetime afw_value_not_counted_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
+#define impl_afw_value_get_counted afw_value_not_counted_get_counted
+#define impl_afw_value_get_reference_count afw_value_not_counted_get_reference_count
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
+#undef impl_afw_value_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_get_for_p_lifetime
+#undef impl_afw_value_for_each_reference
+#undef impl_afw_value_release_references
+#undef impl_afw_value_get_counted
+#undef impl_afw_value_get_reference_count
 #undef AFW_VALUE_INF_ONLY
 
 static const afw_value_string_t
@@ -177,7 +218,7 @@ impl_data_type_object_integer__value;
 static const afw_runtime_object_indirect_t
 impl_data_type_object_integer = {
     {
-        &afw_runtime_inf__AdaptiveDataType_,
+        {&afw_runtime_inf__AdaptiveDataType_},
         NULL,
         (const afw_value_t *)&impl_data_type_object_integer__value,
         {
@@ -239,7 +280,7 @@ afw_data_type_integer_direct = {
 const afw_array_from_values_self_t
 impl_empty_array_of_integer = {
     {
-        &afw_array_permanent_from_values_inf,
+        {&afw_array_permanent_from_values_inf},
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_integer
     },

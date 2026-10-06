@@ -18,9 +18,21 @@
 #include "afw_pool_impl_declares.h"
 
 /*
- * Implementation of method release for interface afw_pool.
+ * Implementation of method get_reference for interface afw_pool.
  */
 const afw_pool_t *
+impl_afw_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method release for interface afw_pool.
+ */
+void
 impl_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)
@@ -30,10 +42,36 @@ impl_afw_pool_release(
 }
 
 /*
- * Implementation of method get_reference for interface afw_pool.
+ * Implementation of method get_reference_count for interface afw_pool.
+ */
+afw_size_t
+impl_afw_pool_get_reference_count(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method for_each_reference for interface afw_pool.
  */
 void
-impl_afw_pool_get_reference(
+impl_afw_pool_for_each_reference(
+    AFW_POOL_SELF_T *self,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method release_references for interface afw_pool.
+ */
+void
+impl_afw_pool_release_references(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)
 {

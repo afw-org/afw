@@ -79,6 +79,23 @@ impl_get_object(
 }
 
 
+static afw_runtime_object_indirect_t *
+impl_table_owned_indirect(
+    const afw_object_t *instance);
+
+
+/* An entry's object leaves the table: free it if the table owns it. */
+static void
+impl_entry_object_leaves_table(
+    const afw_object_t *object,
+    afw_xctx_t *xctx)
+{
+    if (impl_table_owned_indirect(object)) {
+        afw_pool_release(object->p, xctx);
+    }
+}
+
+
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta_const_embedded_untyped_object = {
     NULL,
@@ -171,7 +188,8 @@ impl_set_entry(
 
     /*
      * The table lives for the process. Copy a new key into env->p.
-     * Overwrite keeps that copy and releases the previous object.
+     * Overwrite keeps that copy. The table borrows what it is given;
+     * a previous object it owns is freed.
      */
     existing = afw_hash_table_get(ht, object_id->s, object_id->len);
     if (!overwrite && existing) {
@@ -196,7 +214,7 @@ impl_set_entry(
         afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
     }
     if (old_object) {
-        afw_object_release(old_object, xctx);
+        impl_entry_object_leaves_table(old_object, xctx);
     }
 }
 
@@ -213,10 +231,12 @@ afw_runtime_env_set_object(
     object_id = afw_object_meta_get_object_id(object, xctx);
     object_type_id = afw_object_meta_get_object_type_id(object, xctx);
 
+    /*
+     * Borrowed: a registered object must outlive its registration
+     * (const, built in env->p, or removed before its pool goes).
+     */
     impl_set_entry(object_type_id, object_id,
         (const impl_ht_object_entry *)object, overwrite, xctx);
-
-    afw_object_get_reference(object, xctx);
 }
 
 
@@ -261,22 +281,22 @@ afw_runtime_remove_object(
     const afw_utf8_t *object_id,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *object;
+    const impl_ht_object_entry *entry;
     const afw_xctx_t *c;
     afw_void_hash_table_t *ht;
 
-    object = NULL;
     for (c = xctx; c; c = c->parent) {
         if (c->runtime_objects && c->runtime_objects->types_ht) {
             ht = afw_hash_table_get(c->runtime_objects->types_ht,
                 object_type_id->s, object_type_id->len);
             if (ht) {
-                object = impl_get_object(ht, object_id->s, object_id->len,
-                    xctx->p, xctx);
-                if (object) {
+                entry = afw_hash_table_get(ht, object_id->s, object_id->len);
+                if (entry) {
                     afw_hash_table_set(ht, object_id->s, object_id->len,
                         NULL, xctx);
-                    afw_object_release(object, xctx);
+                    if (entry->cb_entry.always_NULL != NULL) {
+                        impl_entry_object_leaves_table(&entry->object, xctx);
+                    }
                     break;
                 }
             }
@@ -332,7 +352,7 @@ afw_runtime_xctx_set_object(
                 type, id);
         }
     }
-    afw_object_get_reference(object, xctx);
+    /* Borrowed, as for the environment's runtime objects. */
     afw_hash_table_set(ht, id->s, id->len, object, xctx);
 }
 
@@ -462,23 +482,22 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
     afw_runtime_object_indirect_t *indirect;
 
     /*
-     * Own pool, parented on env->p. The table holds one reference.
-     * Replacing or removing the entry releases it and the pool dies.
+     * Own pool, parented on env->p. The table owns the object: replacing
+     * or removing its entry releases this pool.
      */
     object_p = afw_pool_heap_create(xctx->env->p,
         xctx->env->small_chunk_min, xctx);
     obj = afw_runtime_object_create_indirect_using_inf(inf, object_id,
         internal, cb, object_p, xctx);
     indirect = (afw_runtime_object_indirect_t *)obj;
-    indirect->refcounted = true;
-    indirect->reference_count = 1;
+    indirect->owned_by_table = true;
 
     AFW_TRY {
         afw_runtime_env_set_object(obj, overwrite, xctx);
     }
-    AFW_FINALLY {
-        /* Drop the create hold. The table keeps the other one. */
-        afw_object_release(obj, xctx);
+    AFW_CATCH_UNHANDLED {
+        afw_pool_release(object_p, xctx);
+        AFW_ERROR_RETHROW;
     }
     AFW_ENDTRY;
 }
@@ -1146,7 +1165,7 @@ impl_make_value_from_map_entry(
 
 
 static afw_runtime_object_indirect_t *
-impl_refcounted_indirect(
+impl_table_owned_indirect(
     const afw_object_t *instance)
 {
     const afw_runtime_object_type_meta_t *meta;
@@ -1163,7 +1182,7 @@ impl_refcounted_indirect(
         return NULL;
     }
     indirect = (afw_runtime_object_indirect_t *)instance;
-    if (!indirect->refcounted) {
+    if (!indirect->owned_by_table) {
         return NULL;
     }
     return indirect;
@@ -1179,19 +1198,12 @@ afw_runtime_object_release(
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_runtime_object_indirect_t *indirect;
-
     /*
-     * Const runtime objects share this method and are not freed.
-     * Indirect objects created for the environment registry are
-     * refcounted; the last release frees their pool.
+     * Runtime objects are not counted: const ones live forever, and the
+     * runtime object table frees the ones it owns. get returns copies.
      */
-    indirect = impl_refcounted_indirect(instance);
-    if (!indirect || indirect->reference_count <= 0) {
-        return;
-    }
-    indirect->reference_count--;
-    afw_pool_release(instance->p, xctx);
+    (void)instance;
+    (void)xctx;
 }
 
 
@@ -1199,19 +1211,13 @@ afw_runtime_object_release(
 /*
  * Implementation of method get_reference of interface afw_object.
  */
-void
+const afw_object_t *
 afw_runtime_object_get_reference (
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_runtime_object_indirect_t *indirect;
-
-    indirect = impl_refcounted_indirect(instance);
-    if (!indirect) {
-        return;
-    }
-    indirect->reference_count++;
-    afw_pool_get_reference(instance->p, xctx);
+    (void)xctx;
+    return (const afw_object_t *)instance;
 }
 
 

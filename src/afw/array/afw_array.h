@@ -12,6 +12,13 @@
 #include "afw_interface.h"
 
 /**
+ * @brief True if this array's inf is the managed world (`inf->is_managed`).
+ */
+#define afw_array_is_managed(_array) \
+    ((_array) && (_array)->inf->is_managed)
+
+
+/**
  * @addtogroup afw_array
  * @{
  */
@@ -53,6 +60,10 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
  * If data_type is NULL and only values of a single evaluated
  * data type are added, afw_array_get_data_type() will return
  * that data type.
+ *
+ * Kind: pooled when options is 0 (lives in p; caller does not release).
+ * Reference counted with new_p or cede_p (owns its pool; caller
+ * releases with afw_array_release). See lifetime-principles.md.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_with_options(
@@ -90,6 +101,8 @@ afw_array_create_with_options(
  * This create starts at RC 1. Register last-release of that one hold
  * with `afw_pool_scope_release_value_at_cleanup`. Do not wrap it in
  * `get_assignable_for_scope_lifetime` (second must-release).
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed(
@@ -107,9 +120,12 @@ afw_array_create_managed(
  *
  * Deep clone: nested objects/arrays become managed clones; scalars
  * promote via get_assignable_value. Already-managed source is held.
+ *
+ * Kind: fully managed. Caller releases (RC 1, or one more reference
+ * when from is already fully managed).
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_create_managed_clone(
+afw_array_to_managed(
     const afw_array_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -123,14 +139,6 @@ afw_array_is_memory_managed(const afw_array_t *array);
 
 
 /**
- * @brief True if this array's inf is the managed world (`inf->is_managed`).
- */
-#define afw_array_is_managed(_array) \
-    ((_array) && (_array)->inf->is_managed)
-
-
-
-/**
  * @brief Managed wrapper over another array (p->managed_p, RC 1).
  * @param wrapped base. Required.
  * @param p dest pool (uses p->managed_p).
@@ -140,6 +148,8 @@ afw_array_is_memory_managed(const afw_array_t *array);
  *
  * Uses the managed array inf (`is_managed`). Occupants are
  * slot_store'd. Unmanaged create_wrapper_* stays on the unmanaged inf.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_wrapper_managed(
@@ -210,6 +220,8 @@ afw_array_as_value(
  * If data_type is NULL and only values of a single evaluated
  * data type are added, afw_array_get_data_type() will return
  * that data type.
+ *
+ * Kind: pooled (lives and dies with p). Caller does not release.
  */
 #define afw_array_create_unmanaged_of(_data_type, _p, _xctx) \
     afw_array_create_with_options( \
@@ -221,9 +233,13 @@ afw_array_as_value(
  * @param p parent; the array gets a child of p->managed_p.
  * @param xctx of caller.
  *
- * Unmanaged array (pool world). Instance get_reference / release pin
- * the child pool. Value get_reference / release throw. Last RC of a
- * value wrapper does not drop this child.
+ * Instance get_reference / release are the child pool's count. Value
+ * get_reference / release throw. Last RC of a value wrapper does not
+ * drop this child.
+ *
+ * Kind: reference counted (owns its new pool). Caller releases. The
+ * pool's parent is p->managed_p, so a missing release keeps it until
+ * the owner dies. "unmanaged" in the name is historical.
  */
 #define afw_array_create_unmanaged_new_p(_p, _xctx) \
     afw_array_create_with_options( \
@@ -237,6 +253,8 @@ afw_array_as_value(
  * @return Pointer to interface pointer of new value array.
  *
  * Start 0. Lifetime is p. Value get_reference / release throw.
+ *
+ * Kind: pooled (lives and dies with p). Caller does not release.
  */
 #define afw_array_create_unmanaged(_p, _xctx) \
     afw_array_create_with_options(0, NULL, _p, _xctx)
@@ -250,6 +268,9 @@ afw_array_as_value(
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance. get_data_type() is object.
+ *
+ * Kind: pooled in p, immutable. Caller does not release. Does not
+ * reference the elements; they must outlive the array.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_unmanaged_from_objects(
@@ -272,6 +293,9 @@ afw_array_create_unmanaged_from_objects(
  * Elements are existing value pointers; get_entry_value() does not wrap.
  * Not a permanent array. Generate uses the public self with
  * afw_array_permanent_from_values_inf.
+ *
+ * Kind: pooled in p, immutable. Caller does not release. Does not
+ * reference the elements; they must outlive the array.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_unmanaged_from_values(
@@ -289,6 +313,9 @@ afw_array_create_unmanaged_from_values(
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance. get_data_type() is object.
+ *
+ * Kind: pooled in p, immutable. Caller does not release. Does not
+ * reference the elements; they must outlive the array.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_unmanaged_from_null_terminated_objects(
@@ -305,6 +332,9 @@ afw_array_create_unmanaged_from_null_terminated_objects(
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance.
+ *
+ * Kind: pooled in p, immutable. Caller does not release. Does not
+ * reference the elements; they must outlive the array.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_unmanaged_from_null_terminated_values(
@@ -364,9 +394,11 @@ afw_array_managed_from_values_inf;
  * @return cloned instance of array.
  *
  * If data_type is not NULL and array is typed, they must match.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_create_or_clone(
+afw_array_create_pooled_copy(
     const afw_array_t *array,
     const afw_data_type_t *data_type,
     afw_boolean_t clone_values,
@@ -381,6 +413,8 @@ afw_array_create_or_clone(
  * @param p to use for the array.
  * @param xctx of caller.
  * @return typed array.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_unmanaged_from_value(
@@ -426,6 +460,8 @@ afw_array_convert_to_array_of_strings(
  * If count is -1, the array must be an array of pointers.  This can either
  * be because data_type->cType ends in an asterisk or the indirect parameter
  * is true.
+ *
+ * Kind: pooled in p, immutable. Caller does not release.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_unmanaged_from_c_array(
@@ -448,6 +484,8 @@ afw_array_create_unmanaged_from_c_array(
  * @return instance (reference count 1). Dual face is managed_array.
  *
  * Each element is stored via get_assignable_value.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_values(
@@ -466,6 +504,8 @@ afw_array_create_managed_from_values(
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1). get_data_type() is object.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_objects(
@@ -483,6 +523,8 @@ afw_array_create_managed_from_objects(
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1).
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_null_terminated_values(
@@ -499,6 +541,8 @@ afw_array_create_managed_from_null_terminated_values(
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1). get_data_type() is object.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_null_terminated_objects(
@@ -519,6 +563,8 @@ afw_array_create_managed_from_null_terminated_objects(
  * @return instance (reference count 1).
  *
  * Copies each internal into a managed value in p->managed_p at create.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_c_array(
@@ -599,17 +645,52 @@ afw_array_push_value(
 
 
 /**
- * @brief Append an already-managed value; slot takes the hold.
- * @param instance managed array.
- * @param value managed or permanent.
+ * @brief Independent copy of an array, as a fully managed array.
+ * @param from array to copy.
+ * @param p dest pool (uses p->managed_p).
+ * @param xctx of caller.
+ * @return new fully managed array; nested objects and arrays are new
+ *     copies too.
+ *
+ * Kind: fully managed. Caller releases (RC 1). See afw_value_clone().
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_clone(
+    const afw_array_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Append a value, taking the caller's reference to it.
+ * @param instance array.
+ * @param value counted or permanent.
  * @param xctx of caller.
  *
- * Requires `afw_array_is_managed`. No get_assignable of value.
- * Caller does not release value after.
+ * Calls the setter's push_value_take, so each implementation keeps the
+ * value its own way. Takes ownership of the caller's reference: the caller must not
+ * release value after (see lifetime-principles.md, `_take`).
  */
 AFW_DECLARE(void)
 afw_array_push_value_take(
     const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief push_value_take for setters whose values live in the array's
+ *    pool.
+ * @param instance setter.
+ * @param value counted or permanent; the caller's reference is taken.
+ * @param xctx of caller.
+ *
+ * Pushes a copy in the array's pool, then releases value. Shared by
+ * array setter implementations that are not fully managed.
+ */
+AFW_DECLARE(void)
+afw_array_setter_push_value_take_by_copy(
+    const afw_array_setter_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -756,6 +837,42 @@ afw_array_remove_all_values(
 (afw_array_get_setter(_array, _xctx) == NULL)
 
 
+
+/**
+ * @brief for_each_reference for arrays that hold no references.
+ * @param instance array.
+ * @param callback not called.
+ * @param context unused.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_no_references_for_each(
+    const afw_array_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_reference_count for arrays that are not counted.
+ * @param instance array.
+ * @param xctx of caller.
+ * @return 0.
+ */
+AFW_DECLARE(afw_size_t)
+afw_array_not_counted_get_reference_count(
+    const afw_array_t *instance,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief release_references for arrays that hold no counted references.
+ * @param instance array.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_no_references_release_references(
+    const afw_array_t *instance,
+    afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 

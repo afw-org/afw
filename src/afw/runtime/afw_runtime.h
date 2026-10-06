@@ -194,14 +194,12 @@ struct afw_runtime_object_indirect_s {
     afw_runtime_object_cb_t cb;
 
     /**
-     * When true, get_reference and release track this object.
-     * The object's pool dies with the last release. Const runtime
-     * objects leave this false.
+     * True when the runtime object table owns this object (made by
+     * afw_runtime_env_create_and_set_indirect_object). Replacing or
+     * removing its entry releases the object's own pool. Nothing else
+     * holds the object: get, retrieve, and foreach return copies.
      */
-    afw_boolean_t refcounted;
-
-    /** Holds. Meaningful only when refcounted is true. */
-    afw_integer_t reference_count;
+    afw_boolean_t owned_by_table;
 };
 
 
@@ -549,8 +547,11 @@ _inf_ = {                                                                       
         AFW_UTF8_LITERAL("afw_runtime"),                                        \
         &_meta_                                                                  \
     },                                                                          \
-    afw_runtime_object_release,                                                 \
     afw_runtime_object_get_reference,                                           \
+    afw_runtime_object_release,                                                 \
+    afw_object_not_counted_get_reference_count,                                 \
+    afw_object_no_references_for_each,                                          \
+    afw_object_no_references_release_references,                               \
     afw_runtime_object_get_count,                                           \
     afw_runtime_object_get_meta,                                                \
     afw_runtime_object_get_property,                                            \
@@ -575,7 +576,7 @@ afw_runtime_object_release(
 /**
  * @brief Method get_reference for runtime object.
  */
-void
+const afw_object_t *
 afw_runtime_object_get_reference(
     const afw_object_t * instance,
     afw_xctx_t *xctx);

@@ -32,6 +32,28 @@
 
 
 /**
+ * @brief Opaque instance type for interface `afw_reference`.
+ *
+ * Public name is `afw_reference_t`. Full
+ * `struct afw_reference_s` is in the generated
+ * interface header. Call methods via
+ * `afw_reference_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
+typedef struct afw_reference_s
+afw_reference_t;
+
+/**
+ * @brief Vtable/inf type for interface `afw_reference`.
+ *
+ * Public name is `afw_reference_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
+typedef struct afw_reference_inf_s
+afw_reference_inf_t;
+
+/**
  * @brief Opaque instance type for interface `afw_extension`.
  *
  * Public name is `afw_extension_t`. Full

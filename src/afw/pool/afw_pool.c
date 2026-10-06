@@ -26,8 +26,8 @@
  *   heap — owns chunks; malloc/free_memory happen here.
  *   tracker — gets bytes from an ancestor heap and remembers them.
  *   free_memory only marks.
- *   scope — heap used for `{ }`. Smaller chunk_min (4k), plus
- *   last-release delay on throw.
+ *   scope — heap used for `{ }`. Smaller chunk_min (4k); its count
+ *   is the scope's count (frame slots, lexical parent).
  *
  *   chunk — `afw_pool_heap_internal_chunk_t`. One mapped allocation the
  *   heap holds. Linked from first_chunk. Typical sizes: 4k (scope)
@@ -244,7 +244,11 @@ impl_add_child(
     afw_pool_internal_self_t *child, afw_xctx_t *xctx)
 {
     child->parent = parent;
+    child->prev_sibling = NULL;
     child->next_sibling = parent->first_child;
+    if (parent->first_child) {
+        parent->first_child->prev_sibling = child;
+    }
     parent->first_child = child;
 }
 
@@ -255,25 +259,22 @@ impl_unlink_child(
     afw_pool_internal_self_t *child,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_self_t *prev;
-    afw_pool_internal_self_t *sibling;
-
     (void)xctx;
-    for (prev = NULL, sibling = parent->first_child;
-        sibling;
-        prev = sibling, sibling = sibling->next_sibling)
-    {
-        if (sibling == child) {
-            if (!prev) {
-                parent->first_child = sibling->next_sibling;
-            }
-            else {
-                prev->next_sibling = sibling->next_sibling;
-            }
-            child->next_sibling = NULL;
-            return;
-        }
+    if (child->prev_sibling) {
+        child->prev_sibling->next_sibling = child->next_sibling;
     }
+    else if (parent->first_child == child) {
+        parent->first_child = child->next_sibling;
+    }
+    else {
+        /* Not linked under parent. */
+        return;
+    }
+    if (child->next_sibling) {
+        child->next_sibling->prev_sibling = child->prev_sibling;
+    }
+    child->next_sibling = NULL;
+    child->prev_sibling = NULL;
 }
 
 void
@@ -465,9 +466,9 @@ afw_pool_internal_release_common(
     void (*teardown)(AFW_POOL_SELF_T *self, afw_xctx_t *xctx))
 {
     /*
-     * Extra holds (past the create reference) pin the parent. Drop one
-     * pin per extra release. The release that hits 0 does not, because
-     * the create reference never pinned the parent.
+     * Back to only the creator's reference: give back the one parent
+     * reference (see holds_parent). If that was the parent's last, the
+     * parent destroys this pool with it.
      */
     if (self->reference_count > 1) {
         afw_pool_internal_self_t *parent;
@@ -475,12 +476,14 @@ afw_pool_internal_release_common(
 
         self->reference_count--;
         parent = self->parent;
-        if (self->parent_pins > 0 && parent && !parent->destroying) {
-            self->parent_pins--;
-            parent_dies = (parent->reference_count == 1);
-            afw_pool_release(&parent->pub, xctx);
-            if (parent_dies) {
-                return NULL;
+        if (self->reference_count == 1 && self->holds_parent) {
+            self->holds_parent = false;
+            if (parent && !parent->destroying) {
+                parent_dies = (parent->reference_count == 1);
+                afw_pool_release(&parent->pub, xctx);
+                if (parent_dies) {
+                    return NULL;
+                }
             }
         }
         return &self->pub;
@@ -526,8 +529,10 @@ afw_pool_internal_get_reference(
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
     self->reference_count++;
-    if (self->parent && !self->parent->destroying) {
-        self->parent_pins++;
+    if (self->reference_count == 2 && !self->holds_parent &&
+        self->parent && !self->parent->destroying)
+    {
+        self->holds_parent = true;
         afw_pool_get_reference(&self->parent->pub, xctx);
     }
 }
@@ -855,7 +860,19 @@ afw_pool_is_value_release_registered(
 }
 
 
-/* Release a value when a pool is destroyed. */
+/* Register one release of value, run when p is destroyed. */
+AFW_DEFINE(void)
+afw_pool_register_value_release(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_pool_register_cleanup(p, (void *)value, NULL,
+        impl_release_value_at_cleanup, xctx);
+}
+
+
+/* p takes over the caller's reference to value. */
 AFW_DEFINE(void)
 afw_pool_release_value_at_cleanup(
     const afw_value_t *value,
@@ -865,15 +882,8 @@ afw_pool_release_value_at_cleanup(
     if (!value) {
         return;
     }
-    /* Permanents / compile literals: nothing to release. */
-    if (!value->inf || !value->inf->optional_release) {
-        return;
-    }
-    if (afw_pool_is_value_release_registered(value, p, xctx)) {
-        return;
-    }
-    afw_pool_register_cleanup(p, (void *)value, NULL,
-        impl_release_value_at_cleanup, xctx);
+    afw_value_get_for_p_lifetime(value, p, xctx);
+    afw_value_release(value, xctx);
 }
 
 
@@ -886,9 +896,43 @@ afw_pool_deregister_value_at_cleanup(
     if (!value || !p) {
         return;
     }
-    if (!value->inf || !value->inf->optional_release) {
-        return;
-    }
     afw_pool_deregister_cleanup(p, (void *)value, NULL,
         impl_release_value_at_cleanup, xctx);
+}
+
+
+/* get_reference_count shared by every pool implementation. */
+afw_size_t
+afw_pool_internal_get_reference_count(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
+}
+
+
+/* for_each_reference for pools that hold no counted references. */
+void
+afw_pool_internal_no_references_for_each(
+    AFW_POOL_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    (void)self;
+    (void)callback;
+    (void)context;
+    (void)xctx;
+}
+
+
+/* release_references for pools that hold no counted references. */
+void
+afw_pool_internal_no_references_release_references(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)self;
+    (void)xctx;
 }

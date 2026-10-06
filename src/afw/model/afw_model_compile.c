@@ -808,7 +808,7 @@ afw_model_compile(
     model->shared = afw_compile_shared_create(p, xctx);
 
     /* Create composite view and clone it. */
-    clone = afw_object_create_clone(
+    clone = afw_object_create_pooled_copy(
         model_object, p, xctx);
     object = afw_object_view_create(clone, NULL,
         &afw_object_options_composite_inheritedFrom_resolvedParentPaths,

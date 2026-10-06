@@ -40745,6 +40745,32 @@ afw_self_v_afw_pool;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afw_reference \
+    "afw_reference"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afw_reference */
+#define afw_s_afw_reference \
+    (&afw_self_v_afw_reference.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afw_reference */
+#define afw_self_s_afw_reference \
+    (afw_self_v_afw_reference.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afw_reference */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afw_reference;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afw_reference */
+#define afw_z_afw_reference \
+    (afw_self_v_afw_reference.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afw_reference */
+#define afw_v_afw_reference \
+    (&afw_self_v_afw_reference.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afw_request \
     "afw_request"
 

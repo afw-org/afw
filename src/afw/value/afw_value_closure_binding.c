@@ -21,6 +21,8 @@
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_closure_binding_inf
 #define AFW_VALUE_SELF_T afw_value_closure_binding_t
 #define impl_afw_value_create_iterator NULL
+#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
+#define impl_afw_value_get_counted afw_value_self_get_counted
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
     (const void *)&afw_data_type_function_direct, \
     NULL, \
@@ -40,8 +42,8 @@ afw_value_closure_binding_create_managed(
 
     /*
      * Header in dest p->managed_p. Create is RC 1. Caller releases.
-     * References enclosing_lexical_scope and the compile unit the
-     * definition lives in. Last RC 0 releases the scope, then the
+     * References enclosing_lexical_scope (if any) and the compile unit
+     * the definition lives in. Last RC 0 releases the scope, then the
      * unit.
      */
     p = p->managed_p;
@@ -50,7 +52,9 @@ afw_value_closure_binding_create_managed(
     self->p = p;
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
-    afw_pool_scope_get_reference(enclosing_lexical_scope, xctx);
+    if (enclosing_lexical_scope) {
+        afw_pool_scope_get_reference(enclosing_lexical_scope, xctx);
+    }
     if (script_function_definition->contextual &&
         script_function_definition->contextual->compiled_value)
     {
@@ -66,49 +70,10 @@ afw_value_closure_binding_create_managed(
 
 
 /*
- * Bind a script function to its defining scope when stored (assign, return,
- * object/array literal). Capture at the store, not at a later call, and not
- * by hoisting names.
- */
-AFW_DEFINE(const afw_value_t *)
-afw_value_closure_binding_create_if_needed(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_value_script_function_definition_t *function;
-    const afw_pool_scope_t *scope;
-
-    if (!value || !afw_value_is_script_function_definition(value)) {
-        return value;
-    }
-
-    function = (const afw_value_script_function_definition_t *)value;
-    scope = afw_pool_scope_internal_current(xctx);
-    if (!scope || !scope->block) {
-        return value;
-    }
-
-    /*
-     * Bind the compile-time enclosing `{ }`'s live frame, not a nested
-     * block we happen to be in (e.g. `if { c0 = tick }` where tick was
-     * created in the enclosing body). Do not hoist names.
-     */
-    scope = afw_pool_scope_find_for_block(
-        function->enclosing_block, scope, xctx);
-    if (!scope) {
-        AFW_THROW_ERROR_Z(general,
-            "Internal error: scope not found", xctx);
-    }
-    return afw_value_closure_binding_create_managed(function, scope, p, xctx);
-}
-
-
-/*
  * Implementation of method optional_release for interface afw_value.
  */
 void
-impl_afw_value_optional_release(
+impl_afw_value_release(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
@@ -117,13 +82,17 @@ impl_afw_value_optional_release(
     }
     if (self->reference_count == 1) {
         self->reference_count = 0;
-        afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
+        afw_reference_forget(&self->pub.ref, xctx);
+        if (self->enclosing_lexical_scope) {
+            afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
+        }
         /* After this, script_function_definition may be freed. */
         afw_value_release(self->compiled_value, xctx);
         afw_pool_free_memory_type(self->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }
     self->reference_count--;
+    afw_reference_possible_root(&self->pub.ref, self->p, xctx);
 }
 
 /*
@@ -272,4 +241,57 @@ impl_afw_value_get_info(
     }
     info->optimized_value = (const afw_value_t *)self;
     //extended_value_type
+}
+
+
+/*
+ * Implementation of method for_each_reference for interface afw_value.
+ * Last release releases the captured scope and the compile unit.
+ */
+void
+impl_afw_value_for_each_reference(
+    AFW_VALUE_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    if (self->enclosing_lexical_scope) {
+        callback(&self->enclosing_lexical_scope->pub.ref, context, xctx);
+    }
+    afw_value_list_reference(self->compiled_value, callback, context, xctx);
+}
+
+
+/*
+ * Implementation of method get_reference_count for interface afw_value.
+ */
+afw_size_t
+impl_afw_value_get_reference_count(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
+}
+
+
+/*
+ * Implementation of method release_references for interface afw_value.
+ */
+void
+impl_afw_value_release_references(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_scope_t *scope;
+    const afw_value_t *unit;
+
+    scope = self->enclosing_lexical_scope;
+    self->enclosing_lexical_scope = NULL;
+    unit = self->compiled_value;
+    self->compiled_value = NULL;
+    if (scope) {
+        afw_pool_scope_release(scope, xctx);
+    }
+    afw_value_release(unit, xctx);
 }

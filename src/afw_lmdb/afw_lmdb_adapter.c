@@ -49,7 +49,7 @@ void afw_lmdb_adapter_load_configuration(
 
     config = afw_lmdb_internal_get_config(self, txn, p, xctx);
 
-    self->internalConfig = afw_object_create_clone(
+    self->internalConfig = afw_object_create_pooled_copy(
         config, p, xctx);
 
     afw_lmdb_internal_save_config(self, self->internalConfig, txn, xctx);

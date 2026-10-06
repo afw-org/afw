@@ -1232,8 +1232,9 @@ impl_for_clone_churn(afw_xctx_t *xctx)
 
 
 /*
- * Thread pool takes one parent hold. Later get_reference stays on
- * the thread pool. Last release gives that hold back.
+ * Thread pool follows the one parent rule (holds_parent): create takes
+ * no parent reference; the first reference past the creator's takes
+ * exactly one; going back to only the creator's gives it back.
  */
 static int
 impl_thread_parent_hold(afw_xctx_t *xctx)
@@ -1256,11 +1257,11 @@ impl_thread_parent_hold(afw_xctx_t *xctx)
     region = thread->memory_region;
     child = impl_self(thread->p);
     if (child->pub.inf == parent->pub.inf ||
-        child->parent_pins != 0 ||
-        parent->reference_count != parent_refs + 1)
+        child->holds_parent ||
+        parent->reference_count != parent_refs)
     {
         rc = impl_fail("thread_parent_hold",
-            "create did not take one parent hold");
+            "create took a parent reference");
     }
     else {
         for (i = 0; i < 8; i++) {
@@ -1268,20 +1269,21 @@ impl_thread_parent_hold(afw_xctx_t *xctx)
         }
         if (parent->reference_count != parent_refs + 1 ||
             child->reference_count != 9 ||
-            child->parent_pins != 0)
+            !child->holds_parent)
         {
             rc = impl_fail("thread_parent_hold",
-                "get_reference pinned the parent");
+                "referenced pool did not hold exactly one parent reference");
         }
         else {
             for (i = 0; i < 8; i++) {
                 afw_pool_release(thread->p, xctx);
             }
-            if (parent->reference_count != parent_refs + 1 ||
-                child->reference_count != 1)
+            if (parent->reference_count != parent_refs ||
+                child->reference_count != 1 ||
+                child->holds_parent)
             {
                 rc = impl_fail("thread_parent_hold",
-                    "extra release dropped the parent");
+                    "back to the creator's reference kept the parent");
             }
         }
     }
@@ -1293,7 +1295,7 @@ impl_thread_parent_hold(afw_xctx_t *xctx)
         (parent->reference_count != parent_refs || parent->destroying))
     {
         rc = impl_fail("thread_parent_hold",
-            "teardown did not release the one parent hold");
+            "last release changed the parent");
     }
     if (region) {
         afw_memory_region_release(region, xctx);

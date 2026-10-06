@@ -38,6 +38,201 @@ AFW_BEGIN_DECLARES
  */
 
 /**
+ * @addtogroup afw_reference_interface afw_reference
+ *
+ * Base interface for instances that can be referenced. An interface with
+ * extends="afw_reference" gets these methods first in its inf, so any of
+ * its instances can also be used as an afw_reference_t (x->ref).
+ * 
+ * get_reference returns a pointer, typed as the interface it was called
+ * through, that the caller owns one reference to. release gives that
+ * reference back. Release through the same interface the reference was
+ * taken through. Both methods are mandatory; instances that are not
+ * counted (permanent values, compiler values) use shared no-op
+ * implementations. See designs/lifetime-principles.md (Four kinds).
+ *
+ * @{
+ */
+
+
+/**
+ * @brief Public instance layout for interface `afw_reference`.
+ *
+ * API type name is `afw_reference_t` (see opaques).
+ * Call methods with `afw_reference_<method>(…)` macros.
+ * Implementations often embed this as the first field of
+ * a larger self struct in .c files.
+ */
+struct afw_reference_s {
+    const afw_reference_inf_t *inf;
+};
+
+/** @brief String name of interface `afw_reference` (`AFW_REFERENCE_INTERFACE_NAME`). */
+#define AFW_REFERENCE_INTERFACE_NAME \
+"afw_reference"
+
+/** @sa afw_reference_get_reference() */
+typedef const afw_reference_t *
+(*afw_reference_get_reference_t)(
+    const afw_reference_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_reference_release() */
+typedef void
+(*afw_reference_release_t)(
+    const afw_reference_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_reference_get_reference_count() */
+typedef afw_size_t
+(*afw_reference_get_reference_count_t)(
+    const afw_reference_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_reference_for_each_reference() */
+typedef void
+(*afw_reference_for_each_reference_t)(
+    const afw_reference_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
+/** @sa afw_reference_release_references() */
+typedef void
+(*afw_reference_release_references_t)(
+    const afw_reference_t * instance,
+    afw_xctx_t * xctx);
+
+/**
+ * @brief Method table (inf) for interface `afw_reference`.
+ *
+ * API type name is `afw_reference_inf_t`.
+ * Pointed to by the instance `inf` field; call macros use it.
+ */
+struct afw_reference_inf_s {
+    afw_interface_implementation_rti_t rti;
+    afw_reference_get_reference_t get_reference;
+    afw_reference_release_t release;
+    afw_reference_get_reference_count_t get_reference_count;
+    afw_reference_for_each_reference_t for_each_reference;
+    afw_reference_release_references_t release_references;
+};
+
+/**
+ * @brief Call method `get_reference` of interface `afw_reference`.
+ *
+ * Return a pointer the caller owns one reference to. Use the returned
+ * pointer. NULL instance returns NULL.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Owned pointer (self or a copy).
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_get_reference( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release` of interface `afw_reference`.
+ *
+ * Give back one reference. The last release frees what the instance
+ * owns. NULL instance is ignored.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_release( \
+    _instance, \
+    _xctx \
+) \
+((_instance) ? \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
+) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_reference`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_reference`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_reference`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_reference_t
+ * @see @ref afw_reference_s "afw_reference_t"
+ */
+#define afw_reference_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
+    (_instance), \
+    (_xctx) \
+)
+
+/** @} */
+
+/**
  * @addtogroup afw_extension_interface afw_extension
  *
  * Interface returned from afw_extension_initialize() of a loadable
@@ -3258,6 +3453,13 @@ typedef void
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
+/** @sa afw_array_setter_push_value_take() */
+typedef void
+(*afw_array_setter_push_value_take_t)(
+    const afw_array_setter_t * instance,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+
 /** @sa afw_array_setter_pop_value() */
 typedef const afw_value_t *
 (*afw_array_setter_pop_value_t)(
@@ -3321,6 +3523,7 @@ struct afw_array_setter_inf_s {
     afw_array_setter_set_immutable_t set_immutable;
     afw_array_setter_determine_data_type_and_set_immutable_t determine_data_type_and_set_immutable;
     afw_array_setter_push_value_t push_value;
+    afw_array_setter_push_value_take_t push_value_take;
     afw_array_setter_pop_value_t pop_value;
     afw_array_setter_shift_value_t shift_value;
     afw_array_setter_insert_value_t insert_value;
@@ -3398,6 +3601,32 @@ struct afw_array_setter_inf_s {
     _xctx \
 ) \
 (_instance)->inf->push_value( \
+    (_instance), \
+    (_value), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `push_value_take` of interface `afw_array_setter`.
+ *
+ * Append a value at the end of the array, taking ownership of the
+ * caller's reference to value (the _take convention). The caller owns
+ * one reference to value and must not release it after this call. A fully
+ * managed array stores it; an array whose
+ * values live in its pool keeps a value that lasts for that pool and
+ * gives the caller's reference back. Otherwise the same as push_value.
+ * @param instance Pointer to this array setter instance.
+ * @param value Value to append. The caller's reference is taken.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_setter_t
+ * @see @ref afw_array_setter_s "afw_array_setter_t"
+ */
+#define afw_array_setter_push_value_take( \
+    _instance, \
+    _value, \
+    _xctx \
+) \
+(_instance)->inf->push_value_take( \
     (_instance), \
     (_value), \
     (_xctx) \
@@ -3651,7 +3880,11 @@ struct afw_array_setter_inf_s {
  * a larger self struct in .c files.
  */
 struct afw_array_s {
-    const afw_array_inf_t *inf;
+    /** inf, also usable as `afw_reference_t` via `&x->ref`. */
+    union {
+        const afw_array_inf_t *inf;
+        afw_reference_t ref;
+    };
 
     /**
      * This is the pool containing the array. This will be NULL if the
@@ -3678,15 +3911,35 @@ struct afw_array_s {
 #define AFW_ARRAY_INTERFACE_NAME \
 "afw_array"
 
+/** @sa afw_array_get_reference() */
+typedef const afw_array_t *
+(*afw_array_get_reference_t)(
+    const afw_array_t * instance,
+    afw_xctx_t * xctx);
+
 /** @sa afw_array_release() */
 typedef void
 (*afw_array_release_t)(
     const afw_array_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_array_get_reference() */
+/** @sa afw_array_get_reference_count() */
+typedef afw_size_t
+(*afw_array_get_reference_count_t)(
+    const afw_array_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_for_each_reference() */
 typedef void
-(*afw_array_get_reference_t)(
+(*afw_array_for_each_reference_t)(
+    const afw_array_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_release_references() */
+typedef void
+(*afw_array_release_references_t)(
     const afw_array_t * instance,
     afw_xctx_t * xctx);
 
@@ -3753,8 +4006,11 @@ typedef const afw_array_setter_t *
  */
 struct afw_array_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_array_release_t release;
     afw_array_get_reference_t get_reference;
+    afw_array_release_t release;
+    afw_array_get_reference_count_t get_reference_count;
+    afw_array_for_each_reference_t for_each_reference;
+    afw_array_release_references_t release_references;
     afw_array_get_count_t get_count;
     afw_array_get_data_type_t get_data_type;
     afw_array_get_entry_meta_t get_entry_meta;
@@ -3775,35 +4031,13 @@ struct afw_array_inf_s {
 };
 
 /**
- * @brief Call method `release` of interface `afw_array`.
- *
- * Reduces the array's reference count and releases the array's
- * resources if the count is 0. An array returned from a managed
- * create has a reference count of 1. Calls to method
- * get_reference() increment the count. Unmanaged memory arrays
- * treat this as a no-op (pool bulk free).
- * @param instance Pointer to this value array instance.
- * @param xctx This is the caller's xctx.
- * @relates afw_array_t
- * @see @ref afw_array_s "afw_array_t"
- */
-#define afw_array_release( \
-    _instance, \
-    _xctx \
-) \
-(_instance)->inf->release( \
-    (_instance), \
-    (_xctx) \
-)
-
-/**
  * @brief Call method `get_reference` of interface `afw_array`.
  *
- * Adds an additional reference to a managed array. Necessary if
- * this array may be referenced after it would normally be
- * released. Unmanaged memory arrays treat this as a no-op.
- * @param instance Pointer to this value array instance.
+ * Return a pointer the caller owns one reference to. Use the returned
+ * pointer. NULL instance returns NULL.
+ * @param instance Instance.
  * @param xctx This is the caller's xctx.
+ * @return Owned pointer (self or a copy).
  * @relates afw_array_t
  * @see @ref afw_array_s "afw_array_t"
  */
@@ -3812,6 +4046,98 @@ struct afw_array_inf_s {
     _xctx \
 ) \
 (_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release` of interface `afw_array`.
+ *
+ * Give back one reference. The last release frees what the instance
+ * owns. NULL instance is ignored.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_release( \
+    _instance, \
+    _xctx \
+) \
+((_instance) ? \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
+) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_array`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_array`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_array`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
     (_instance), \
     (_xctx) \
 )
@@ -4308,6 +4634,14 @@ typedef void
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
+/** @sa afw_object_setter_set_property_take() */
+typedef void
+(*afw_object_setter_set_property_take_t)(
+    const afw_object_setter_t * instance,
+    const afw_value_t * property_name,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+
 /** @sa afw_object_setter_remove_property() */
 typedef void
 (*afw_object_setter_remove_property_t)(
@@ -4325,6 +4659,7 @@ struct afw_object_setter_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_setter_set_immutable_t set_immutable;
     afw_object_setter_set_property_t set_property;
+    afw_object_setter_set_property_take_t set_property_take;
     afw_object_setter_remove_property_t remove_property;
 };
 
@@ -4385,6 +4720,38 @@ struct afw_object_setter_inf_s {
 )
 
 /**
+ * @brief Call method `set_property_take` of interface `afw_object_setter`.
+ *
+ * Set the value of a property, taking ownership of the caller's
+ * reference to value (the _take convention). The caller owns one
+ * reference to value (for example a create_managed result) and must
+ * not release it after this call. Each implementation
+ * keeps the value in its own way: a fully managed object stores it; an
+ * object whose values live in its pool keeps a value that lasts for that
+ * pool and gives the caller's reference back. Otherwise the same as
+ * set_property.
+ * @param instance Pointer to this object setter instance.
+ * @param property_name Property name of property to set.
+ * @param value Value to set. The caller's reference is taken. NULL is
+ * undefined.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_setter_t
+ * @see @ref afw_object_setter_s "afw_object_setter_t"
+ */
+#define afw_object_setter_set_property_take( \
+    _instance, \
+    _property_name, \
+    _value, \
+    _xctx \
+) \
+(_instance)->inf->set_property_take( \
+    (_instance), \
+    (_property_name), \
+    (_value), \
+    (_xctx) \
+)
+
+/**
  * @brief Call method `remove_property` of interface `afw_object_setter`.
  *
  * Remove a property owned by this object. If the name is absent, no
@@ -4432,7 +4799,11 @@ struct afw_object_setter_inf_s {
  * a larger self struct in .c files.
  */
 struct afw_object_s {
-    const afw_object_inf_t *inf;
+    /** inf, also usable as `afw_reference_t` via `&x->ref`. */
+    union {
+        const afw_object_inf_t *inf;
+        afw_reference_t ref;
+    };
 
     /**
      * This is the pool containing the object. This will be NULL if the
@@ -4465,15 +4836,35 @@ struct afw_object_s {
 #define AFW_OBJECT_INTERFACE_NAME \
 "afw_object"
 
+/** @sa afw_object_get_reference() */
+typedef const afw_object_t *
+(*afw_object_get_reference_t)(
+    const afw_object_t * instance,
+    afw_xctx_t * xctx);
+
 /** @sa afw_object_release() */
 typedef void
 (*afw_object_release_t)(
     const afw_object_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_object_get_reference() */
+/** @sa afw_object_get_reference_count() */
+typedef afw_size_t
+(*afw_object_get_reference_count_t)(
+    const afw_object_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_object_for_each_reference() */
 typedef void
-(*afw_object_get_reference_t)(
+(*afw_object_for_each_reference_t)(
+    const afw_object_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
+/** @sa afw_object_release_references() */
+typedef void
+(*afw_object_release_references_t)(
     const afw_object_t * instance,
     afw_xctx_t * xctx);
 
@@ -4543,8 +4934,11 @@ typedef const afw_object_setter_t *
  */
 struct afw_object_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_object_release_t release;
     afw_object_get_reference_t get_reference;
+    afw_object_release_t release;
+    afw_object_get_reference_count_t get_reference_count;
+    afw_object_for_each_reference_t for_each_reference;
+    afw_object_release_references_t release_references;
     afw_object_get_count_t get_count;
     afw_object_get_meta_t get_meta;
     afw_object_get_property_t get_property;
@@ -4565,36 +4959,13 @@ struct afw_object_inf_s {
 };
 
 /**
- * @brief Call method `release` of interface `afw_object`.
- *
- * Reduces the object's reference count and releases the object's resources
- * if the count is 0. An object returned from a create function has a
- * reference count of 1. Call's to method get_reference() increments
- * the count.
- * @param instance Pointer to this object instance.
- * @param xctx This is the caller's xctx.
- * @relates afw_object_t
- * @see @ref afw_object_s "afw_object_t"
- */
-#define afw_object_release( \
-    _instance, \
-    _xctx \
-) \
-(_instance)->inf->release( \
-    (_instance), \
-    (_xctx) \
-)
-
-/**
  * @brief Call method `get_reference` of interface `afw_object`.
  *
- * Adds an additional reference to an object. This call is only necessary
- * if this object may be referenced after it would normally be released.
- * For example, when an object is added to a memory cache, this method
- * is called and when the object is removed from cache, the release() method
- * is called.
- * @param instance Pointer to this object instance.
+ * Return a pointer the caller owns one reference to. Use the returned
+ * pointer. NULL instance returns NULL.
+ * @param instance Instance.
  * @param xctx This is the caller's xctx.
+ * @return Owned pointer (self or a copy).
  * @relates afw_object_t
  * @see @ref afw_object_s "afw_object_t"
  */
@@ -4603,6 +4974,98 @@ struct afw_object_inf_s {
     _xctx \
 ) \
 (_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release` of interface `afw_object`.
+ *
+ * Give back one reference. The last release frees what the instance
+ * owns. NULL instance is ignored.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_t
+ * @see @ref afw_object_s "afw_object_t"
+ */
+#define afw_object_release( \
+    _instance, \
+    _xctx \
+) \
+((_instance) ? \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
+) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_object`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_object_t
+ * @see @ref afw_object_s "afw_object_t"
+ */
+#define afw_object_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_object`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_t
+ * @see @ref afw_object_s "afw_object_t"
+ */
+#define afw_object_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_object`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_t
+ * @see @ref afw_object_s "afw_object_t"
+ */
+#define afw_object_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
     (_instance), \
     (_xctx) \
 )
@@ -6737,7 +7200,11 @@ struct afw_stream_inf_s {
  * a larger self struct in .c files.
  */
 struct afw_pool_s {
-    const afw_pool_inf_t *inf;
+    /** inf, also usable as `afw_reference_t` via `&x->ref`. */
+    union {
+        const afw_pool_inf_t *inf;
+        afw_reference_t ref;
+    };
 
     /**
      * Pool to use for managed object/array instances and other managed
@@ -6752,15 +7219,35 @@ struct afw_pool_s {
 #define AFW_POOL_INTERFACE_NAME \
 "afw_pool"
 
-/** @sa afw_pool_release() */
+/** @sa afw_pool_get_reference() */
 typedef const afw_pool_t *
+(*afw_pool_get_reference_t)(
+    const afw_pool_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_pool_release() */
+typedef void
 (*afw_pool_release_t)(
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_get_reference() */
+/** @sa afw_pool_get_reference_count() */
+typedef afw_size_t
+(*afw_pool_get_reference_count_t)(
+    const afw_pool_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_pool_for_each_reference() */
 typedef void
-(*afw_pool_get_reference_t)(
+(*afw_pool_for_each_reference_t)(
+    const afw_pool_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
+/** @sa afw_pool_release_references() */
+typedef void
+(*afw_pool_release_references_t)(
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
@@ -6852,8 +7339,11 @@ typedef void
  */
 struct afw_pool_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_pool_release_t release;
     afw_pool_get_reference_t get_reference;
+    afw_pool_release_t release;
+    afw_pool_get_reference_count_t get_reference_count;
+    afw_pool_for_each_reference_t for_each_reference;
+    afw_pool_release_references_t release_references;
     afw_pool_destroy_t destroy;
     afw_pool_calloc_t calloc;
     afw_pool_calloc_no_throw_t calloc_no_throw;
@@ -6868,36 +7358,13 @@ struct afw_pool_inf_s {
 };
 
 /**
- * @brief Call method `release` of interface `afw_pool`.
- *
- * Reduce the reference count. If it reaches 0, run pool cleanup
- * (callbacks, unchain, free this store, release parent). Does not
- * call destroy. Last-release with children remaining is an error.
- * 
- * Returns the pool if it still exists, or NULL if this call ran
- * cleanup. If the return is NULL, do not use the pool pointer again.
- * @param instance Pointer to this pool instance.
- * @param xctx This is the caller's xctx.
- * @return Pool instance if still referenced; NULL if this call destroyed the
- * pool.
- * @relates afw_pool_t
- * @see @ref afw_pool_s "afw_pool_t"
- */
-#define afw_pool_release( \
-    _instance, \
-    _xctx \
-) \
-(_instance)->inf->release( \
-    (_instance), \
-    (_xctx) \
-)
-
-/**
  * @brief Call method `get_reference` of interface `afw_pool`.
  *
- * Add reference to a pool.
- * @param instance Pointer to this pool instance.
+ * Return a pointer the caller owns one reference to. Use the returned
+ * pointer. NULL instance returns NULL.
+ * @param instance Instance.
  * @param xctx This is the caller's xctx.
+ * @return Owned pointer (self or a copy).
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
  */
@@ -6906,6 +7373,98 @@ struct afw_pool_inf_s {
     _xctx \
 ) \
 (_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release` of interface `afw_pool`.
+ *
+ * Give back one reference. The last release frees what the instance
+ * owns. NULL instance is ignored.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_release( \
+    _instance, \
+    _xctx \
+) \
+((_instance) ? \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
+) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_pool`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_pool`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_pool`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
     (_instance), \
     (_xctx) \
 )
@@ -7674,22 +8233,46 @@ struct afw_adapter_journal_inf_s {
  * See @ref afw_value.
  */
 struct afw_value_s {
-    const afw_value_inf_t *inf;
+    /** inf, also usable as `afw_reference_t` via `&x->ref`. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_reference_t ref;
+    };
 };
 
 /** @brief String name of interface `afw_value` (`AFW_VALUE_INTERFACE_NAME`). */
 #define AFW_VALUE_INTERFACE_NAME \
 "afw_value"
 
-/** @sa afw_value_optional_release() */
-typedef void
-(*afw_value_optional_release_t)(
-    const afw_value_t * instance,
-    afw_xctx_t * xctx);
-
 /** @sa afw_value_get_reference() */
 typedef const afw_value_t *
 (*afw_value_get_reference_t)(
+    const afw_value_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_release() */
+typedef void
+(*afw_value_release_t)(
+    const afw_value_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_get_reference_count() */
+typedef afw_size_t
+(*afw_value_get_reference_count_t)(
+    const afw_value_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_for_each_reference() */
+typedef void
+(*afw_value_for_each_reference_t)(
+    const afw_value_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_release_references() */
+typedef void
+(*afw_value_release_references_t)(
     const afw_value_t * instance,
     afw_xctx_t * xctx);
 
@@ -7698,6 +8281,19 @@ typedef const afw_value_t *
 (*afw_value_get_assignable_value_t)(
     const afw_value_t * instance,
     const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_get_for_p_lifetime() */
+typedef const afw_value_t *
+(*afw_value_get_for_p_lifetime_t)(
+    const afw_value_t * instance,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_get_counted() */
+typedef const afw_reference_t *
+(*afw_value_get_counted_t)(
+    const afw_value_t * instance,
     afw_xctx_t * xctx);
 
 /** @sa afw_value_create_iterator() */
@@ -7764,9 +8360,14 @@ typedef void
  */
 struct afw_value_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_value_optional_release_t optional_release;
     afw_value_get_reference_t get_reference;
+    afw_value_release_t release;
+    afw_value_get_reference_count_t get_reference_count;
+    afw_value_for_each_reference_t for_each_reference;
+    afw_value_release_references_t release_references;
     afw_value_get_assignable_value_t get_assignable_value;
+    afw_value_get_for_p_lifetime_t get_for_p_lifetime;
+    afw_value_get_counted_t get_counted;
     afw_value_create_iterator_t create_iterator;
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
@@ -7808,33 +8409,13 @@ struct afw_value_inf_s {
 };
 
 /**
- * @brief Call method `optional_release` of interface `afw_value`.
- *
- * This is an optional method that exists if the value's memory is managed.
- * Constant values that are compiled into object code are not managed.
- * @param instance Pointer to this adaptive value instance.
- * @param xctx This is the caller's xctx.
- * @relates afw_value_t
- * @see @ref afw_value_s "afw_value_t"
- */
-#define afw_value_optional_release( \
-    _instance, \
-    _xctx \
-) \
-(_instance)->inf->optional_release( \
-    (_instance), \
-    (_xctx) \
-)
-
-/**
  * @brief Call method `get_reference` of interface `afw_value`.
  *
- * Keep this value alive. Matching optional_release. Does not wrap
- * object/array bags. Missing method is a no-op (return instance).
- * See designs/issue-2-hold-in-inf.md.
- * @param instance Pointer to this adaptive value instance.
+ * Return a pointer the caller owns one reference to. Use the returned
+ * pointer. NULL instance returns NULL.
+ * @param instance Instance.
  * @param xctx This is the caller's xctx.
- * @return The held value (often the same instance).
+ * @return Owned pointer (self or a copy).
  * @relates afw_value_t
  * @see @ref afw_value_s "afw_value_t"
  */
@@ -7843,6 +8424,98 @@ struct afw_value_inf_s {
     _xctx \
 ) \
 (_instance)->inf->get_reference( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release` of interface `afw_value`.
+ *
+ * Give back one reference. The last release frees what the instance
+ * owns. NULL instance is ignored.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_release( \
+    _instance, \
+    _xctx \
+) \
+((_instance) ? \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
+) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_value`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_value`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release_references` of interface `afw_value`.
+ *
+ * Release every reference this instance holds, as its last release
+ * would, and forget them; the instance itself stays alive, now
+ * holding nothing. Used by cycle collection to free a group of
+ * instances that only reference each other: each is emptied, then
+ * released normally. Instances that hold no counted references do
+ * nothing.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_release_references( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->release_references( \
     (_instance), \
     (_xctx) \
 )
@@ -7870,6 +8543,59 @@ struct afw_value_inf_s {
 (_instance)->inf->get_assignable_value( \
     (_instance), \
     (_p), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `get_for_p_lifetime` of interface `afw_value`.
+ *
+ * Return a value that lasts as long as p. Caller does not release.
+ * Permanent and compiler values return self and register nothing.
+ * A counted value gets one more reference, released when p is
+ * destroyed (at most one registration per value per p). A pooled
+ * value returns a fully managed copy whose release is registered on
+ * p. Use for results that must outlive the scope that made them.
+ * @param instance Pointer to this adaptive value instance.
+ * @param p Pool the result must last for (copies use p->managed_p).
+ * @param xctx This is the caller's xctx.
+ * @return A value that lasts for p. Caller does not release.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_get_for_p_lifetime( \
+    _instance, \
+    _p, \
+    _xctx \
+) \
+(_instance)->inf->get_for_p_lifetime( \
+    (_instance), \
+    (_p), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `get_counted` of interface `afw_value`.
+ *
+ * Return the instance whose count a reference to this value is held
+ * in, when that instance can be part of a cycle; otherwise NULL. A
+ * closure binding or compiled value returns itself; an object or
+ * array value face returns its object or array. Scalars and slices
+ * (they hold no references that can lead back) and values that are
+ * not counted (pooled, permanent, compiler values) return NULL.
+ * Containers use this to list what each value they hold references
+ * for cycle collection.
+ * @param instance Pointer to this adaptive value instance.
+ * @param xctx This is the caller's xctx.
+ * @return Counted instance, or NULL.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_get_counted( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_counted( \
+    (_instance), \
     (_xctx) \
 )
 

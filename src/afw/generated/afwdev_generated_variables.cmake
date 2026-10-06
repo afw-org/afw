@@ -127,6 +127,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_object_impl_declares.h
     generated/afw_object_setter_impl_declares.h
     generated/afw_pool_impl_declares.h
+    generated/afw_reference_impl_declares.h
     generated/afw_request_handler_factory_impl_declares.h
     generated/afw_request_handler_impl_declares.h
     generated/afw_request_impl_declares.h
@@ -166,6 +167,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     os/afw_os.h
     pool/afw_pool.h
     query_criteria/afw_query_criteria.h
+    reference/afw_reference.h
     request/afw_request.h
     request/afw_request_handler.h
     request/afw_request_impl.h
@@ -228,6 +230,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/os
     ${CMAKE_CURRENT_SOURCE_DIR}/pool
     ${CMAKE_CURRENT_SOURCE_DIR}/query_criteria
+    ${CMAKE_CURRENT_SOURCE_DIR}/reference
     ${CMAKE_CURRENT_SOURCE_DIR}/request
     ${CMAKE_CURRENT_SOURCE_DIR}/runtime
     ${CMAKE_CURRENT_SOURCE_DIR}/safe_cast
@@ -425,6 +428,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     pool/afw_pool_tracker.c
     pool/afw_pool_tracker_multithreaded.c
     query_criteria/afw_query_criteria.c
+    reference/afw_reference.c
     request/afw_request.c
     request/afw_request_handler.c
     request/afw_request_handler_adapter.c

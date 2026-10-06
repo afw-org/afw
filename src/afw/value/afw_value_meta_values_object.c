@@ -22,6 +22,9 @@
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "afw_value_meta_values_object"
 #define AFW_ARRAY_SELF_T afw_value_meta_values_object_list_self_t
+#define impl_afw_array_for_each_reference afw_array_no_references_for_each
+#define impl_afw_array_release_references afw_array_no_references_release_references
+#define impl_afw_array_get_reference_count afw_array_not_counted_get_reference_count
 #include "afw_array_impl_declares.h"
 
 
@@ -42,13 +45,14 @@ impl_afw_array_release(
 }
 
 
-void
+const afw_array_t *
 impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)self;
     (void)xctx;
+    return (const afw_array_t *)self;
 }
 
 

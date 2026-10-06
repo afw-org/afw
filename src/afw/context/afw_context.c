@@ -540,7 +540,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
         }
 
         /* Clone pt and set source. */
-        pt = afw_object_create_clone(pt, p, xctx);
+        pt = afw_object_create_pooled_copy(pt, p, xctx);
         source_value = afw_value_allocate_unmanaged_string(p, xctx);
         source_value->internal.len = object_type_id->len;
         source_value->internal.s = afw_memory_dup(

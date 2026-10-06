@@ -40,7 +40,7 @@ impl_object_path__crypto_decrypt =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_decrypt = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -57,7 +57,7 @@ impl_object__crypto_decrypt = {
 static const afw_value_function_parameter_t
 impl_crypto_decrypt_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -85,7 +85,7 @@ impl_crypto_decrypt_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_decrypt_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -113,7 +113,7 @@ impl_crypto_decrypt_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_decrypt_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -141,7 +141,7 @@ impl_crypto_decrypt_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_crypto_decrypt_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -231,7 +231,7 @@ impl_object_path__crypto_derive_key =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_derive_key = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -248,7 +248,7 @@ impl_object__crypto_derive_key = {
 static const afw_value_function_parameter_t
 impl_crypto_derive_key_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -276,7 +276,7 @@ impl_crypto_derive_key_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_derive_key_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -304,7 +304,7 @@ impl_crypto_derive_key_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_derive_key_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -332,7 +332,7 @@ impl_crypto_derive_key_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_crypto_derive_key_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -360,7 +360,7 @@ impl_crypto_derive_key_parameter_3 = {
 static const afw_value_function_parameter_t
 impl_crypto_derive_key_parameter_4 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -451,7 +451,7 @@ impl_object_path__crypto_destroy_key =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_destroy_key = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -468,7 +468,7 @@ impl_object__crypto_destroy_key = {
 static const afw_value_function_parameter_t
 impl_crypto_destroy_key_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -496,7 +496,7 @@ impl_crypto_destroy_key_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_destroy_key_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -584,7 +584,7 @@ impl_object_path__crypto_digest =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_digest = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -601,7 +601,7 @@ impl_object__crypto_digest = {
 static const afw_value_function_parameter_t
 impl_crypto_digest_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -629,7 +629,7 @@ impl_crypto_digest_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_digest_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -657,7 +657,7 @@ impl_crypto_digest_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_digest_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -740,7 +740,7 @@ impl_object_path__crypto_encrypt =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_encrypt = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -757,7 +757,7 @@ impl_object__crypto_encrypt = {
 static const afw_value_function_parameter_t
 impl_crypto_encrypt_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -785,7 +785,7 @@ impl_crypto_encrypt_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_encrypt_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -813,7 +813,7 @@ impl_crypto_encrypt_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_encrypt_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -841,7 +841,7 @@ impl_crypto_encrypt_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_crypto_encrypt_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -931,7 +931,7 @@ impl_object_path__crypto_export_key =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_export_key = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -948,7 +948,7 @@ impl_object__crypto_export_key = {
 static const afw_value_function_parameter_t
 impl_crypto_export_key_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -976,7 +976,7 @@ impl_crypto_export_key_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_export_key_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1064,7 +1064,7 @@ impl_object_path__crypto_generate_key =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_generate_key = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1081,7 +1081,7 @@ impl_object__crypto_generate_key = {
 static const afw_value_function_parameter_t
 impl_crypto_generate_key_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1109,7 +1109,7 @@ impl_crypto_generate_key_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_generate_key_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1137,7 +1137,7 @@ impl_crypto_generate_key_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_generate_key_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1165,7 +1165,7 @@ impl_crypto_generate_key_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_crypto_generate_key_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1255,7 +1255,7 @@ impl_object_path__crypto_hmac =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_hmac = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1272,7 +1272,7 @@ impl_object__crypto_hmac = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1300,7 +1300,7 @@ impl_crypto_hmac_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1328,7 +1328,7 @@ impl_crypto_hmac_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1356,7 +1356,7 @@ impl_crypto_hmac_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1446,7 +1446,7 @@ impl_object_path__crypto_hmac_verify =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_hmac_verify = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1463,7 +1463,7 @@ impl_object__crypto_hmac_verify = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_verify_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1491,7 +1491,7 @@ impl_crypto_hmac_verify_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_verify_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1519,7 +1519,7 @@ impl_crypto_hmac_verify_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_verify_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1547,7 +1547,7 @@ impl_crypto_hmac_verify_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_verify_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1575,7 +1575,7 @@ impl_crypto_hmac_verify_parameter_3 = {
 static const afw_value_function_parameter_t
 impl_crypto_hmac_verify_parameter_4 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1666,7 +1666,7 @@ impl_object_path__crypto_import_key =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_import_key = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1683,7 +1683,7 @@ impl_object__crypto_import_key = {
 static const afw_value_function_parameter_t
 impl_crypto_import_key_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1711,7 +1711,7 @@ impl_crypto_import_key_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_import_key_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1739,7 +1739,7 @@ impl_crypto_import_key_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_import_key_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1767,7 +1767,7 @@ impl_crypto_import_key_parameter_2 = {
 static const afw_value_function_parameter_t
 impl_crypto_import_key_parameter_3 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1795,7 +1795,7 @@ impl_crypto_import_key_parameter_3 = {
 static const afw_value_function_parameter_t
 impl_crypto_import_key_parameter_4 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1886,7 +1886,7 @@ impl_object_path__crypto_seal =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_seal = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -1903,7 +1903,7 @@ impl_object__crypto_seal = {
 static const afw_value_function_parameter_t
 impl_crypto_seal_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1931,7 +1931,7 @@ impl_crypto_seal_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_seal_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -1959,7 +1959,7 @@ impl_crypto_seal_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_seal_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -2048,7 +2048,7 @@ impl_object_path__crypto_unseal =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_unseal = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -2065,7 +2065,7 @@ impl_object__crypto_unseal = {
 static const afw_value_function_parameter_t
 impl_crypto_unseal_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -2093,7 +2093,7 @@ impl_crypto_unseal_returns = {
 static const afw_value_function_parameter_t
 impl_crypto_unseal_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -2121,7 +2121,7 @@ impl_crypto_unseal_parameter_1 = {
 static const afw_value_function_parameter_t
 impl_crypto_unseal_parameter_2 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -2210,7 +2210,7 @@ impl_object_path__crypto_version_info =
 static const afw_runtime_object_indirect_t
 impl_object__crypto_version_info = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -2227,7 +2227,7 @@ impl_object__crypto_version_info = {
 static const afw_value_function_parameter_t
 impl_crypto_version_info_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {

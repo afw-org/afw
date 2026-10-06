@@ -9,6 +9,138 @@
 
 <definitions>
 
+  <interface name="afw_reference" id="afwref" instance_member="ref">
+
+    <description>
+      Base interface for instances that can be referenced. An interface with
+      extends="afw_reference" gets these methods first in its inf, so any of
+      its instances can also be used as an afw_reference_t (x->ref).
+
+      get_reference returns a pointer, typed as the interface it was called
+      through, that the caller owns one reference to. release gives that
+      reference back. Release through the same interface the reference was
+      taken through. Both methods are mandatory; instances that are not
+      counted (permanent values, compiler values) use shared no-op
+      implementations. See designs/lifetime-principles.md (Four kinds).
+    </description>
+
+    <method name="get_reference">
+
+      <description>
+        Return a pointer the caller owns one reference to. Use the returned
+        pointer. NULL instance returns NULL.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_reference_t *">
+        <description>Owned pointer (self or a copy).</description>
+      </return>
+
+    </method>
+
+    <method name="release" null_safe="true">
+
+      <description>
+        Give back one reference. The last release frees what the instance
+        owns. NULL instance is ignored.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="get_reference_count">
+
+      <description>
+        Return the number of references currently held to this instance,
+        or 0 if it is not counted. For cycle collection and its debug
+        check; not for deciding lifetime.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_size_t">
+        <description>Reference count, or 0.</description>
+      </return>
+
+    </method>
+
+    <method name="for_each_reference">
+
+      <description>
+        Call callback once for each reference this instance holds that its
+        last release would release, naming the counted instance each
+        reference is held in (see afw_value get_counted). A target held
+        twice is listed twice. Instances that hold no references list
+        nothing. Used by cycle collection and its debug check.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="callback" type="afw_reference_cb_t">
+        <description>Called once per reference.</description>
+      </parameter>
+
+      <parameter name="context" type="void *">
+        <description>Passed to callback.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="release_references">
+
+      <description>
+        Release every reference this instance holds, as its last release
+        would, and forget them; the instance itself stays alive, now
+        holding nothing. Used by cycle collection to free a group of
+        instances that only reference each other: each is emptied, then
+        released normally. Instances that hold no counted references do
+        nothing.
+      </description>
+
+      <parameter name="instance" type="const afw_reference_t *">
+        <description>Instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
   <interface name="afw_extension" id="afwex">
 
     <description>
@@ -2838,6 +2970,32 @@ const afw_content_type_t *
     </method>
 
 
+    <method name="push_value_take">
+
+      <description>
+        Append a value at the end of the array, taking ownership of the
+        caller's reference to value (the _take convention). The caller owns
+        one reference to value and must not release it after this call. A fully managed array stores it; an array whose
+        values live in its pool keeps a value that lasts for that pool and
+        gives the caller's reference back. Otherwise the same as push_value.
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value to append. The caller's reference is taken.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
     <method name="pop_value">
 
       <description>
@@ -3108,7 +3266,7 @@ const afw_content_type_t *
   </interface>
 
 
-  <interface name="afw_array" id="afwl">
+  <interface name="afw_array" id="afwl" extends="afw_reference">
 
     <description>
       Adaptive array (list) value interface: count, get, and related list
@@ -3116,6 +3274,7 @@ const afw_content_type_t *
       Mutable arrays may expose a setter. Call methods via afw_array_*()
       macros. See group afw_array.
     </description>
+
 
     <inf_variable name="is_managed" type="afw_boolean_t">
       <description>
@@ -3126,7 +3285,6 @@ const afw_content_type_t *
         Omitted in an inf initializer is false.
       </description>
     </inf_variable>
-
 
     <variable name="p" type="const afw_pool_t *">
       <description>
@@ -3152,48 +3310,6 @@ const afw_content_type_t *
     </variable>
 
 
-    <method name="release">
-
-      <description>
-        Reduces the array's reference count and releases the array's
-        resources if the count is 0. An array returned from a managed
-        create has a reference count of 1. Calls to method
-        get_reference() increment the count. Unmanaged memory arrays
-        treat this as a no-op (pool bulk free).
-      </description>
-
-      <parameter name="instance" type="const afw_array_t *">
-        <description>Pointer to this value array instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-
-    <method name="get_reference">
-
-      <description>
-        Adds an additional reference to a managed array. Necessary if
-        this array may be referenced after it would normally be
-        released. Unmanaged memory arrays treat this as a no-op.
-      </description>
-
-      <parameter name="instance" type="const afw_array_t *">
-        <description>Pointer to this value array instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
 
 
     <method name="get_count">
@@ -3729,6 +3845,43 @@ AFW_DEFINE(const afw_log_t *)
     </method>
 
 
+    <method name="set_property_take">
+
+      <description>
+        Set the value of a property, taking ownership of the caller's
+        reference to value (the _take convention). The caller owns one
+        reference to value (for example a create_managed result) and must
+        not release it after this call. Each implementation
+        keeps the value in its own way: a fully managed object stores it; an
+        object whose values live in its pool keeps a value that lasts for that
+        pool and gives the caller's reference back. Otherwise the same as
+        set_property.
+      </description>
+
+      <parameter name="instance" type="const afw_object_setter_t *">
+        <description>Pointer to this object setter instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_value_t *">
+        <description>
+          Property name of property to set.
+        </description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>
+          Value to set. The caller's reference is taken. NULL is undefined.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
     <method name="remove_property">
 
       <description>
@@ -3759,7 +3912,7 @@ AFW_DEFINE(const afw_log_t *)
 
 
 
-  <interface name="afw_object" id="afwo">
+  <interface name="afw_object" id="afwo" extends="afw_reference">
 
     <description>
       Adaptive object: named properties, meta, path, and object-type driven
@@ -3768,6 +3921,7 @@ AFW_DEFINE(const afw_log_t *)
       Objects may be const (permanent) or mutable (often via sessions).
       Meta (afw_object_meta) drives validation and UI; see group afw_object.
     </description>
+
 
     <inf_variable name="is_managed" type="afw_boolean_t">
       <description>
@@ -3778,7 +3932,6 @@ AFW_DEFINE(const afw_log_t *)
         Omitted in an inf initializer is false.
       </description>
     </inf_variable>
-
 
     <variable name="p" type="const afw_pool_t *">
       <description>
@@ -3812,49 +3965,6 @@ AFW_DEFINE(const afw_log_t *)
     </variable>
 
 
-    <method name="release">
-
-      <description>
-        Reduces the object's reference count and releases the object's resources
-        if the count is 0. An object returned from a create function has a
-        reference count of 1. Call's to method get_reference() increments
-        the count.
-      </description>
-
-      <parameter name="instance" type="const afw_object_t *">
-        <description>Pointer to this object instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-
-    <method name="get_reference">
-
-      <description>
-        Adds an additional reference to an object. This call is only necessary
-        if this object may be referenced after it would normally be released.
-        For example, when an object is added to a memory cache, this method
-        is called and when the object is removed from cache, the release() method
-        is called.
-      </description>
-
-      <parameter name="instance" type="const afw_object_t *">
-        <description>Pointer to this object instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
 
 
     <method name="get_count">
@@ -5541,7 +5651,7 @@ AFW_DEFINE(const afw_request_handler_t *)
   </interface>
 
 
-  <interface name="afw_pool" id="afwp">
+  <interface name="afw_pool" id="afwp" extends="afw_reference">
 
     <description>
       Hierarchical memory pool: fast allocate with bulk free on destroy or
@@ -5560,52 +5670,6 @@ AFW_DEFINE(const afw_request_handler_t *)
         self; other pools inherit the parent.
       </description>
     </variable>
-
-    <method name="release">
-
-      <description>
-        Reduce the reference count. If it reaches 0, run pool cleanup
-        (callbacks, unchain, free this store, release parent). Does not
-        call destroy. Last-release with children remaining is an error.
-
-        Returns the pool if it still exists, or NULL if this call ran
-        cleanup. If the return is NULL, do not use the pool pointer again.
-      </description>
-
-      <parameter name="instance" type="const afw_pool_t *">
-        <description>Pointer to this pool instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="const afw_pool_t *">
-        <description>
-          Pool instance if still referenced; NULL if this call destroyed
-          the pool.
-        </description>
-      </return>
-
-    </method>
-
-    <method name="get_reference">
-
-      <description>
-        Add reference to a pool.
-      </description>
-
-      <parameter name="instance" type="const afw_pool_t *">
-        <description>Pointer to this pool instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
 
     <method name="destroy">
 
@@ -6266,7 +6330,7 @@ AFW_DEFINE(const afw_request_handler_t *)
 
   </interface>
 
-  <interface name="afw_value" id="afwv">
+  <interface name="afw_value" id="afwv" extends="afw_reference">
 
     <description>
       Public handle for an adaptive value (`const afw_value_t *`). Callers
@@ -6312,53 +6376,6 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
     </inf_variable>
 
-    <method name="optional_release">
-
-      <description>
-        This is an optional method that exists if the value's memory is managed.
-        Constant values that are compiled into object code are not managed.
-      </description>
-
-      <parameter name="instance" type="const afw_value_t *">
-        <description>Pointer to this adaptive value instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-    <method name="get_reference">
-
-      <description>
-        Keep this value alive. Matching optional_release. Does not wrap
-        object/array bags. Missing method is a no-op (return instance).
-        See designs/issue-2-hold-in-inf.md.
-      </description>
-
-      <parameter name="instance" type="const afw_value_t *">
-        <description>
-          Pointer to this adaptive value instance.
-        </description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>
-          This is the caller's xctx.
-        </description>
-      </parameter>
-
-      <return type="const afw_value_t *">
-        <description>
-          The held value (often the same instance).
-        </description>
-      </return>
-
-    </method>
-
     <method name="get_assignable_value">
 
       <description>
@@ -6390,6 +6407,76 @@ AFW_DEFINE(const afw_request_handler_t *)
       <return type="const afw_value_t *">
         <description>
           A value that fully supports being stored in a slot.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_for_p_lifetime">
+
+      <description>
+        Return a value that lasts as long as p. Caller does not release.
+        Permanent and compiler values return self and register nothing.
+        A counted value gets one more reference, released when p is
+        destroyed (at most one registration per value per p). A pooled
+        value returns a fully managed copy whose release is registered on
+        p. Use for results that must outlive the scope that made them.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>
+          Pointer to this adaptive value instance.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          Pool the result must last for (copies use p-&gt;managed_p).
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx.
+        </description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          A value that lasts for p. Caller does not release.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_counted">
+
+      <description>
+        Return the instance whose count a reference to this value is held
+        in, when that instance can be part of a cycle; otherwise NULL. A
+        closure binding or compiled value returns itself; an object or
+        array value face returns its object or array. Scalars and slices
+        (they hold no references that can lead back) and values that are
+        not counted (pooled, permanent, compiler values) return NULL.
+        Containers use this to list what each value they hold references
+        for cycle collection.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>
+          Pointer to this adaptive value instance.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx.
+        </description>
+      </parameter>
+
+      <return type="const afw_reference_t *">
+        <description>
+          Counted instance, or NULL.
         </description>
       </return>
 

@@ -537,7 +537,7 @@ impl_add_reconcile_property(
 
     /* Property name. */
     if (property_names) {
-        new_property_names = afw_array_create_or_clone(
+        new_property_names = afw_array_create_pooled_copy(
             property_names, afw_data_type_string, false,
             wa->p, wa->xctx);
         v = property_name;
@@ -627,7 +627,7 @@ impl_reconcile_object(
             /* Handled case where original and modified are both objects */
             if (afw_value_is_object(modified_value)) {
                 new_property_names =
-                    afw_array_create_or_clone(
+                    afw_array_create_pooled_copy(
                         property_names, afw_data_type_string, false,
                         wa->p, wa->xctx);
                 value = property_name;

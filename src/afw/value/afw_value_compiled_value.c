@@ -20,185 +20,44 @@
 
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default
-    
+
 #define impl_afw_value_create_iterator NULL
+
+/*
+ * One inf. A compiled value is counted: compile returns it at RC 1 and
+ * registers that release on dest p. Last release releases the unit
+ * pool it owns, or frees the header when the pool is shared.
+ */
+#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
+#define impl_afw_value_get_counted afw_value_self_get_counted
 
 /* Declares and rti/inf defines for interface afw_value */
 #define AFW_IMPLEMENTATION_ID "compiled_value"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_inf
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    NULL, \
+    NULL, \
+    true
 #define AFW_VALUE_SELF_T afw_value_compiled_value_t
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_create_iterator
-#undef impl_afw_value_get_evaluated_meta
-#undef impl_afw_value_get_evaluated_metas
-
-
-static void
-impl_assignable_optional_release(
-    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
-static const afw_value_t *
-impl_assignable_get_reference(
-    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
-static const afw_value_t *
-impl_assignable_get_assignable_value(
-    afw_value_compiled_value_t *self,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-#define AFW_IMPLEMENTATION_ID "compiled_value_assignable"
-#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_assignable_inf
-#define AFW_IMPLEMENTATION_INF_VARIABLES \
-    NULL, \
-    NULL, \
-    true
-#define AFW_VALUE_INF_ONLY
-#define impl_afw_value_optional_release impl_assignable_optional_release
-#define impl_afw_value_get_reference impl_assignable_get_reference
-#define impl_afw_value_get_assignable_value \
-    impl_assignable_get_assignable_value
-#define impl_afw_value_create_iterator NULL
-#define impl_afw_value_get_evaluated_meta \
-    afw_value_internal_get_evaluated_meta_default
-#define impl_afw_value_get_evaluated_metas \
-    afw_value_internal_get_evaluated_metas_default
-#include "afw_value_impl_declares.h"
-#undef AFW_VALUE_INF_ONLY
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_SPECIFIER
-#undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
-#undef impl_afw_value_optional_release
-#undef impl_afw_value_get_reference
-#undef impl_afw_value_get_assignable_value
 #undef impl_afw_value_create_iterator
 #undef impl_afw_value_get_evaluated_meta
 #undef impl_afw_value_get_evaluated_metas
-
-
-static void
-impl_managed_optional_release(
-    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
-static const afw_value_t *
-impl_managed_get_reference(
-    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
-static const afw_value_t *
-impl_managed_get_assignable_value(
-    afw_value_compiled_value_t *self,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-#define AFW_IMPLEMENTATION_ID "managed_compiled_value"
-#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_compiled_value_inf
-#define AFW_IMPLEMENTATION_INF_VARIABLES \
-    NULL, \
-    NULL, \
-    true
-#define AFW_VALUE_INF_ONLY
-#define impl_afw_value_optional_release impl_managed_optional_release
-#define impl_afw_value_get_reference impl_managed_get_reference
-#define impl_afw_value_get_assignable_value \
-    impl_managed_get_assignable_value
-#define impl_afw_value_create_iterator NULL
-#define impl_afw_value_get_evaluated_meta \
-    afw_value_internal_get_evaluated_meta_default
-#define impl_afw_value_get_evaluated_metas \
-    afw_value_internal_get_evaluated_metas_default
-#include "afw_value_impl_declares.h"
-#undef AFW_VALUE_INF_ONLY
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_SPECIFIER
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef AFW_IMPLEMENTATION_INF_VARIABLES
-#undef impl_afw_value_optional_release
-#undef impl_afw_value_get_reference
-#undef impl_afw_value_get_assignable_value
-#undef impl_afw_value_create_iterator
-#undef impl_afw_value_get_evaluated_meta
-#undef impl_afw_value_get_evaluated_metas
+#undef impl_afw_value_get_for_p_lifetime
+#undef impl_afw_value_for_each_reference
+#undef impl_afw_value_get_counted
 
 
 void
-impl_afw_value_optional_release(
+impl_afw_value_release(
     AFW_VALUE_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    if (self->p) {
-        afw_pool_release(self->p, xctx);
-    }
-}
-
-
-const afw_value_t *
-impl_afw_value_get_reference(
-    AFW_VALUE_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    (void)self;
-    AFW_THROW_ERROR_Z(general,
-        "get_reference of unmanaged compiled_value", xctx);
-}
-
-
-const afw_value_t *
-impl_afw_value_get_assignable_value(
-    AFW_VALUE_SELF_T *self,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    (void)p;
-    if (!self->p || afw_pool_internal_is_tracker(self->p)) {
-        AFW_THROW_ERROR_Z(general,
-            "get_assignable_value of compiled_value requires "
-            "compile p to be a heap (Adaptive compile uses xctx->p)",
-            xctx);
-    }
-    afw_pool_get_reference(self->p, xctx);
-    self->inf = &afw_value_compiled_value_assignable_inf;
-    return &self->pub;
-}
-
-
-static void
-impl_assignable_optional_release(
-    afw_value_compiled_value_t *self,
-    afw_xctx_t *xctx)
-{
-    if (self->p) {
-        afw_pool_release(self->p, xctx);
-    }
-}
-
-
-static const afw_value_t *
-impl_assignable_get_reference(
-    afw_value_compiled_value_t *self,
-    afw_xctx_t *xctx)
-{
-    if (self->p) {
-        afw_pool_get_reference(self->p, xctx);
-    }
-    return &self->pub;
-}
-
-
-static const afw_value_t *
-impl_assignable_get_assignable_value(
-    afw_value_compiled_value_t *self,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    (void)p;
-    return impl_assignable_get_reference(self, xctx);
-}
-
-
-static void
-impl_managed_optional_release(
-    afw_value_compiled_value_t *self,
     afw_xctx_t *xctx)
 {
     if (self->reference_count <= 0) {
@@ -218,9 +77,9 @@ impl_managed_optional_release(
 }
 
 
-static const afw_value_t *
-impl_managed_get_reference(
-    afw_value_compiled_value_t *self,
+const afw_value_t *
+impl_afw_value_get_reference(
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)xctx;
@@ -229,14 +88,14 @@ impl_managed_get_reference(
 }
 
 
-static const afw_value_t *
-impl_managed_get_assignable_value(
-    afw_value_compiled_value_t *self,
+const afw_value_t *
+impl_afw_value_get_assignable_value(
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     (void)p;
-    return impl_managed_get_reference(self, xctx);
+    return impl_afw_value_get_reference(self, xctx);
 }
 
 
@@ -416,4 +275,17 @@ impl_afw_value_get_info(
     afw_memory_clear(info);
     info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->optimized_value = &self->pub;
+}
+
+
+/*
+ * Implementation of method get_reference_count for interface afw_value.
+ */
+afw_size_t
+impl_afw_value_get_reference_count(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
 }

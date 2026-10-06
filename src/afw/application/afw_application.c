@@ -30,7 +30,7 @@ impl_conf_object_cb(
         object = afw_object_view_create(object, NULL,
             &afw_object_options_composite_normalize_defaults_required,
             object->p, xctx);
-        object = afw_object_create_clone(object, object->p, xctx);
+        object = afw_object_create_pooled_copy(object, object->p, xctx);
     }
 
     *((const afw_object_t * *)context) = object;
@@ -729,7 +729,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             "%ku/%ku",
             source_location,
             afw_s_qualifiedVariables);
-        env->application_qualified_variables = afw_object_create_clone(
+        env->application_qualified_variables = afw_object_create_pooled_copy(
             env->application_qualified_variables, p, xctx);
         afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
             context_type_object, env->application_qualified_variables,

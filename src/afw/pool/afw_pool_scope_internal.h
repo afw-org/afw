@@ -37,8 +37,12 @@ struct afw_pool_scope_s {
 
     const afw_pool_scope_t *parent_lexical_scope;
 
-    /** Scope holds. The pool count is separate (create ref stays 1). */
-    afw_size_t reference_count;
+    /**
+     * Set while the last release releases the frame slots and the
+     * lexical parent, so nothing reached from them releases this
+     * scope again.
+     */
+    afw_boolean_t releasing_frame;
 
     afw_size_t scope_number;
 

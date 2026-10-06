@@ -233,7 +233,7 @@ afw_adapter_get_metrics_object(
     }
     AFW_TRY {
         afw_adapter_internal_reference_cleanup(held, xctx->p, xctx);
-        snapshot = afw_object_managed_clone_for_caller(object, p, xctx);
+        snapshot = afw_object_clone_for_p(object, p, xctx);
     }
     AFW_FINALLY {
         afw_adapter_release(held, xctx);
@@ -370,7 +370,7 @@ afw_adapter_get_properties_object(
 
     snapshot = NULL;
     AFW_TRY {
-        snapshot = afw_object_managed_clone_for_caller(
+        snapshot = afw_object_clone_for_p(
             held->properties, p, xctx);
     }
     AFW_FINALLY {
@@ -626,8 +626,9 @@ afw_adapter_session_get_cached(const afw_utf8_t *adapter_id,
 
 /*
  * One commit or release. A throw must not skip the rest of the walk.
- * The first error keeps its backtrace; a caught ENDTRY would release
- * it. Later errors are dropped.
+ * The first error is moved out (it owns its data, backtrace, and
+ * strings); a caught ENDTRY releases only what is left. Later errors
+ * are dropped.
  *
  * have_error and first_error belong to
  * afw_adapter_session_commit_and_release_cache().
@@ -638,8 +639,7 @@ afw_adapter_session_get_cached(const afw_utf8_t *adapter_id,
     } \
     AFW_CATCH_UNHANDLED { \
         if (!have_error) { \
-            AFW_ERROR_COPY(&first_error, &this_THROWN_ERROR); \
-            this_THROWN_ERROR.backtrace = NULL; \
+            AFW_ERROR_MOVE(&first_error, &this_THROWN_ERROR); \
             have_error = true; \
         } \
     } \
@@ -666,16 +666,8 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
         return;
     }
 
-    /*
-     * Each caught throw drops error_processing_count in ENDTRY. Hold
-     * one count across the walk so that drop does not hit 0 and
-     * last-release delayed pools before the remaining sessions run.
-     * The hold is dropped below, before a rethrow, so the caller's
-     * catch is what flushes those pools.
-     */
     have_error = false;
     memset(&first_error, 0, sizeof(first_error));
-    xctx->error_processing_count++;
 
     /* Commit, then release, in reverse order of begin. */
     i = cache->transactions->count;
@@ -709,13 +701,10 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
     xctx->cache = NULL;
 
     if (have_error) {
-        xctx->error_processing_count--;
         afw_error_release_references(xctx->error, xctx);
         AFW_ERROR_COPY(xctx->error, &first_error);
         afw_error_processing_throw(xctx, first_error.code);
     }
-
-    afw_error_processing_handled(xctx);
 }
 
 #undef impl_finish_one
@@ -959,7 +948,6 @@ afw_adapter_internal_process_object_from_adapter(
     const afw_utf8_t *entity_path;
 
     *adapted_object = object;
-    afw_object_get_reference(object, xctx);
     entity_path = afw_object_path_make(
         ctx->adapter_id,
         ctx->object_type_id,
@@ -975,8 +963,6 @@ afw_adapter_internal_process_object_from_adapter(
     /* Make view based on options. */
     *view = afw_object_view_create(*adapted_object, entity_path,
         ctx->options, p, xctx);
-
-    /** @fixme Need to add releases at correct place by caller. */
 }
 
 

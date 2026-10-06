@@ -28,13 +28,33 @@ impl_managed_array_elements_cleanup(
 #define AFW_IMPLEMENTATION_ID "memory"
 typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
 #define AFW_ARRAY_SELF_T afw_memory_internal_array_t
+#define impl_afw_array_for_each_reference afw_array_no_references_for_each
+#define impl_afw_array_release_references afw_array_no_references_release_references
 #include "afw_array_impl_declares.h"
+#define impl_afw_array_setter_push_value_take \
+    afw_array_setter_push_value_take_by_copy
 #include "afw_array_setter_impl_declares.h"
+#undef impl_afw_array_setter_push_value_take
 
+static void
+impl_afw_array_managed_for_each_reference(
+    AFW_ARRAY_SELF_T *self, afw_reference_cb_t callback, void *context,
+    afw_xctx_t *xctx);
+static afw_size_t
+impl_afw_array_managed_get_reference_count(
+    AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_release_references(
+    AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_push_value_take(
+    const afw_array_setter_t *setter,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 static void
 impl_afw_array_managed_release(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
-static void
+static const afw_array_t *
 impl_afw_array_managed_get_reference(
     AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
 static void
@@ -88,7 +108,17 @@ impl_afw_array_managed_setter_shift_value(
 #define AFW_ARRAY_INF_ONLY
 #define impl_afw_array_release impl_afw_array_managed_release
 #define impl_afw_array_get_reference impl_afw_array_managed_get_reference
+#undef impl_afw_array_for_each_reference
+#define impl_afw_array_for_each_reference impl_afw_array_managed_for_each_reference
+#define impl_afw_array_get_reference_count \
+    impl_afw_array_managed_get_reference_count
+#undef impl_afw_array_release_references
+#define impl_afw_array_release_references \
+    impl_afw_array_managed_release_references
 #include "afw_array_impl_declares.h"
+#undef impl_afw_array_release_references
+#undef impl_afw_array_for_each_reference
+#undef impl_afw_array_get_reference_count
 #undef AFW_ARRAY_INF_ONLY
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
@@ -98,6 +128,8 @@ impl_afw_array_managed_setter_shift_value(
 #define AFW_ARRAY_SETTER_INF_ONLY
 #define impl_afw_array_setter_push_value \
     impl_afw_array_managed_setter_push_value
+#define impl_afw_array_setter_push_value_take \
+    impl_afw_array_managed_setter_push_value_take
 #define impl_afw_array_setter_set_value \
     impl_afw_array_managed_setter_set_value
 #define impl_afw_array_setter_insert_value \
@@ -115,6 +147,7 @@ impl_afw_array_managed_setter_shift_value(
 #include "afw_array_setter_impl_declares.h"
 #undef AFW_ARRAY_SETTER_INF_ONLY
 #undef impl_afw_array_setter_push_value
+#undef impl_afw_array_setter_push_value_take
 #undef impl_afw_array_setter_set_value
 #undef impl_afw_array_setter_insert_value
 #undef impl_afw_array_setter_remove_all_values
@@ -198,10 +231,12 @@ afw_array_create_with_options(
         !AFW_ARRAY_MEMORY_OPTION_IS(options, new_p) &&
         !AFW_ARRAY_MEMORY_OPTION_IS(options, cede_p);
     /*
-     * Pool-world dual face is always unmanaged (value get_reference
-     * throws).
+     * Face: pooled for a pooled array (get_reference throws); counted
+     * for an array that owns its pool (references are its pool's).
      */
-    self->value.inf = &afw_value_unmanaged_array_inf;
+    self->value.inf = (self->unmanaged)
+        ? &afw_value_unmanaged_array_inf
+        : &afw_value_counted_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->data_type = data_type;
@@ -265,7 +300,7 @@ impl_push_cloned_into_managed(
         if (!obj) {
             return;
         }
-        obj = afw_object_create_managed_clone(obj, to->p, xctx);
+        obj = afw_object_to_managed(obj, to->p, xctx);
         afw_array_push_value(to, obj->value, xctx);
         afw_object_release(obj, xctx);
         return;
@@ -275,7 +310,7 @@ impl_push_cloned_into_managed(
         if (!arr) {
             return;
         }
-        arr = afw_array_create_managed_clone(arr, to->p, xctx);
+        arr = afw_array_to_managed(arr, to->p, xctx);
         afw_array_push_value(to, arr->value, xctx);
         afw_array_release(arr, xctx);
         return;
@@ -285,7 +320,7 @@ impl_push_cloned_into_managed(
 
 
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_managed_clone(
+afw_array_to_managed(
     const afw_array_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -297,7 +332,7 @@ afw_array_create_managed_clone(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_array_create_managed_clone requires from",
+            "afw_array_to_managed requires from",
             xctx);
     }
     if (from->inf == &impl_afw_array_managed_inf) {
@@ -495,44 +530,33 @@ impl_afw_array_release(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    const afw_array_t *wrapped;
-
-    /*
-     * Unmanaged: a reference pins the pool it lives in. Legacy C
-     * protocol; unmanaged has no references in lifetime-principles.md.
-     * Follow-up under #2.
-     */
+    /* Pooled: no reference was ever taken, so a release is a bug. */
     if (self->unmanaged) {
-        if (self->reference_count <= 0) {
-            return;
-        }
-        self->reference_count--;
-        afw_pool_release(self->pub.p, xctx);
-        return;
+        AFW_THROW_ERROR_Z(general,
+            "release of a pooled array", xctx);
     }
 
-    wrapped = self->wrapped;
-    if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
-        afw_array_release(wrapped, xctx);
-    }
+    /* Owns its pool (new_p / cede_p): a reference is the pool's. */
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
 /*
  * Implementation of method get_reference of interface afw_array.
  */
-void
+const afw_array_t *
 impl_afw_array_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
+    /* Pooled: nothing to reference (see the object equivalent). */
     if (self->unmanaged) {
-        self->reference_count++;
-        afw_pool_get_reference(self->pub.p, xctx);
-        return;
+        AFW_THROW_ERROR_Z(general,
+            "get_reference of a pooled array", xctx);
     }
     /* new_p / cede_p: pin the pool. Value inf still throws. */
     afw_pool_get_reference(self->pub.p, xctx);
+    return (const afw_array_t *)self;
 }
 
 
@@ -1158,8 +1182,10 @@ impl_afw_array_managed_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
+        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
         return;
     }
+    afw_reference_forget(&self->pub.ref, xctx);
     /*
      * One walk: release every held element (nested object/array
      * the same as scalar), then the vector, then the header.
@@ -1181,13 +1207,14 @@ impl_afw_array_managed_release(
 }
 
 
-void
+const afw_array_t *
 impl_afw_array_managed_get_reference(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)xctx;
     self->reference_count++;
+    return (const afw_array_t *)self;
 }
 
 
@@ -1209,9 +1236,10 @@ impl_afw_array_managed_setter_push_value(
 }
 
 
-AFW_DEFINE(void)
-afw_array_push_value_take(
-    const afw_array_t *instance,
+/* push_value_take of a fully managed memory array: the slot takes it. */
+static void
+impl_afw_array_managed_setter_push_value_take(
+    const afw_array_setter_t *setter,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -1219,12 +1247,7 @@ afw_array_push_value_take(
     const afw_value_t **slot;
     afw_boolean_t was_empty;
 
-    if (!afw_array_is_managed(instance)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_array_push_value_take requires a managed array",
-            xctx);
-    }
-    self = (afw_memory_internal_array_t *)instance;
+    self = (afw_memory_internal_array_t *)setter->array;
     if (self->immutable) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
@@ -1446,7 +1469,7 @@ impl_afw_array_managed_setter_remove_all_values(
 
 /* Create or clone of an array. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_or_clone(
+afw_array_create_pooled_copy(
     const afw_array_t *array,
     const afw_data_type_t *data_type,
     afw_boolean_t clone_values,
@@ -1473,7 +1496,7 @@ afw_array_create_or_clone(
             break;
         }
         if (clone_values) {
-            value = afw_value_clone(value, p, xctx);
+            value = afw_value_create_pooled_copy(value, p, xctx);
         }
         afw_array_push_value(result, value, xctx);
     }
@@ -1520,4 +1543,67 @@ afw_array_create_unmanaged_from_value(
     }
 
     return value_array;
+}
+
+
+/* Last release releases every held element. */
+static void
+impl_afw_array_managed_for_each_reference(
+    AFW_ARRAY_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+
+    if (!self->values) {
+        return;
+    }
+    for (i = 0; i < self->values->count; i++) {
+        afw_value_list_reference(self->values->entries[i],
+            callback, context, xctx);
+    }
+}
+
+
+/* Pooled: not counted. Owns its pool: the pool's count. */
+afw_size_t
+impl_afw_array_get_reference_count(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    if (self->unmanaged) {
+        return 0;
+    }
+    return afw_pool_get_reference_count(self->pub.p, xctx);
+}
+
+
+static afw_size_t
+impl_afw_array_managed_get_reference_count(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
+}
+
+
+/* Release every held element, as last release would. */
+static void
+impl_afw_array_managed_release_references(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+    const afw_value_t *value;
+
+    if (!self->values) {
+        return;
+    }
+    for (i = 0; i < self->values->count; i++) {
+        value = self->values->entries[i];
+        self->values->entries[i] = NULL;
+        afw_value_release(value, xctx);
+    }
 }

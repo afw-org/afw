@@ -12,6 +12,20 @@
 #include "afw_interface.h"
 
 /**
+ * @brief True if value is reference-counted (managed).
+ *
+ * Inf flag, not a type test. Closures are managed. Unmanaged and
+ * permanents are not. Use after generate of afw_value_inf_t.
+ */
+#define afw_value_is_managed(_A_VALUE) \
+( \
+    (_A_VALUE) && \
+    (_A_VALUE)->inf && \
+    (_A_VALUE)->inf->is_managed \
+)
+
+
+/**
  * @addtogroup afw_value
  * @{
  */
@@ -331,19 +345,9 @@ afw_value_call_script_function_inf;
 
 
 
-/** @brief Value call inf. */
+/** @brief Compiled value inf (counted; one inf). */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_compiled_value_inf;
-
-
-/** @brief Assignable face of a compiled_value (pins the unit pool). */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_compiled_value_assignable_inf;
-
-
-/** @brief Managed compiled_value (RC in p->managed_p, like managed object). */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_compiled_value_inf;
 
 
 
@@ -780,9 +784,7 @@ afw_value_is_fully_evaluated(
 ( \
     (_A_VALUE) && \
     ( \
-        (_A_VALUE)->inf == &afw_value_compiled_value_inf || \
-        (_A_VALUE)->inf == &afw_value_compiled_value_assignable_inf || \
-        (_A_VALUE)->inf == &afw_value_managed_compiled_value_inf \
+        (_A_VALUE)->inf == &afw_value_compiled_value_inf \
     ) \
 )
 
@@ -876,20 +878,6 @@ afw_value_is_fully_evaluated(
 ( \
     (_A_VALUE) && \
     (_A_VALUE)->inf == &afw_value_closure_binding_inf \
-)
-
-
-/**
- * @brief True if value is reference-counted (managed).
- *
- * Inf flag, not a type test. Closures are managed. Unmanaged and
- * permanents are not. Use after generate of afw_value_inf_t.
- */
-#define afw_value_is_managed(_A_VALUE) \
-( \
-    (_A_VALUE) && \
-    (_A_VALUE)->inf && \
-    (_A_VALUE)->inf->is_managed \
 )
 
 
@@ -1199,17 +1187,166 @@ afw_value_evaluate_impl(
 
 
 /**
- * @brief Hold a value (NULL-safe get_reference).
- * @param value to hold, or NULL.
+ * @brief get_reference for a value that is not counted.
+ * @param instance value.
  * @param xctx of caller.
- * @return value, or NULL if value is NULL.
+ * @return instance.
  *
- * Inf method `get_reference`. Missing method, NULL, and undefined are
- * no-ops. Assign to a slot should use `afw_value_slot_store()`.
+ * Shared by every value inf whose values are not counted: permanent
+ * values and compiler values in a compile unit. Use as
+ * `#define impl_afw_value_get_reference afw_value_not_counted_get_reference`.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_add_reference(
+afw_value_not_counted_get_reference(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Independent copy of a value that a script may change.
+ * @param value to copy (nullish values are returned as-is).
+ * @param p dest pool (uses p->managed_p).
+ * @param xctx of caller.
+ * @return objects and arrays: new fully managed copies, nested ones
+ *     copied too; scalars: a value the caller owns (they cannot change).
+ *
+ * Kind: fully managed. Caller releases. Adaptive clone() is this.
+ * Compare afw_value_to_managed() (shares when it can) and
+ * afw_value_create_pooled_copy() (pooled copy in p).
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone(
     const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief for_each_reference for a value that holds no references.
+ * @param instance value.
+ * @param callback not called.
+ * @param context unused.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_value_no_references_for_each(
+    const afw_value_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_counted for a value that is not counted.
+ * @param instance value.
+ * @param xctx of caller.
+ * @return NULL.
+ */
+AFW_DECLARE(const afw_reference_t *)
+afw_value_not_counted_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_counted for a value that holds its own count.
+ * @param instance value.
+ * @param xctx of caller.
+ * @return &instance->ref.
+ */
+AFW_DECLARE(const afw_reference_t *)
+afw_value_self_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Call callback with the counted instance value references.
+ * @param value held value (NULL ignored).
+ * @param callback for_each_reference callback.
+ * @param context passed to callback.
+ * @param xctx of caller.
+ *
+ * Nothing is listed when value is not counted. For containers'
+ * for_each_reference implementations.
+ */
+AFW_DECLARE(void)
+afw_value_list_reference(
+    const afw_value_t *value,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_assignable_value for a value that is not counted.
+ * @param instance value.
+ * @param p unused.
+ * @param xctx of caller.
+ * @return instance.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_not_counted_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_for_p_lifetime for a value that is not counted.
+ * @param instance value.
+ * @param p unused.
+ * @param xctx of caller.
+ * @return instance. Nothing is registered.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_not_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_for_p_lifetime for a counted value.
+ * @param instance value.
+ * @param p pool the result must last for.
+ * @param xctx of caller.
+ * @return instance with one more reference, released when p is
+ *     destroyed (none added if one is already registered on p).
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief get_for_p_lifetime for a pooled value.
+ * @param instance value.
+ * @param p pool the result must last for (copy uses p->managed_p).
+ * @param xctx of caller.
+ * @return a fully managed copy, released when p is destroyed.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_pooled_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief release for a value that is not counted (no-op).
+ * @param instance value.
+ * @param xctx of caller.
+ *
+ * Shared by every value inf whose values are not counted. `release`
+ * is mandatory on every inf, so no caller checks for a missing one.
+ * Use as `#define impl_afw_value_release afw_value_not_counted_release`.
+ */
+AFW_DECLARE(void)
+afw_value_not_counted_release(
+    const afw_value_t *instance,
     afw_xctx_t *xctx);
 
 
@@ -1229,65 +1366,25 @@ afw_value_get_assignable(
     afw_xctx_t *xctx);
 
 
-/** Compatibility name. */
-#define afw_value_clone_or_reference(_instance, _xctx) \
-    afw_value_get_reference(_instance, _xctx)
-
-
 /**
- * @brief Deep clone an evaluated value unmanaged into dest p.
- * @param value evaluated (has is_evaluated_of_data_type).
- * @param p dest pool.
- * @param xctx of caller.
- * @return unmanaged clone in p, or value if permanent.
- *
- * Does not evaluate. Does not release the source. Throws if value is
- * NULL, not evaluated, or has no clone.
- *
- * Adaptive `clone()` of object/array is always-copy
- * `create_managed`, not this (see `afw_function_execute_clone`).
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_clone_unmanaged(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Clone an evaluated value managed in p->managed_p.
+ * @brief Fully managed version of an evaluated value.
  * @param value evaluated (has is_evaluated_of_data_type).
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
- * @return managed value (bump if already managed).
+ * @return value with one more reference if already fully managed,
+ *     otherwise a fully managed copy.
  *
- * Permanents as-is. Does not release the source. Throws if
+ * Kind: fully managed (permanents as-is). Caller releases. Shares when
+ * it can; use afw_value_clone() for an independent copy. Throws if
  * value is NULL, not evaluated, or has no clone.
- *
- * Adaptive `clone()` of object/array is always-copy
- * `create_managed`, not this (see `afw_function_execute_clone`).
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_clone_managed(
+afw_value_to_managed(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-/**
- * @brief Drop a hold (NULL-safe `optional_release`).
- * @param value to release, or NULL.
- * @param xctx of caller.
- *
- * Missing method, NULL, and undefined are no-ops. Last RC of a
- * managed compiled_value last-releases the unit pool. If you
- * stored a result on a C struct and replace it, release the old
- * occupant (or use slot_store).
- */
-AFW_DECLARE(void)
-afw_value_release(
-    const afw_value_t *value,
-    afw_xctx_t *xctx);
 
 
 
@@ -1312,13 +1409,16 @@ afw_value_slot_store(
 
 
 /**
- * @brief Store an already-managed (or permanent) value; slot takes the hold.
+ * @brief Store a value in a slot, taking ownership of the caller's
+ *    reference.
  * @param slot address of the stored pointer.
- * @param incoming managed or permanent (NULL becomes undefined).
+ * @param incoming counted or permanent (NULL becomes undefined).
  * @param xctx of caller.
  *
- * No get_assignable. Unmanaged throws. Caller does not release after.
- * Same pointer is a no-op.
+ * No get_assignable. The caller must not release incoming after (the
+ * `_take` convention). Releases the previous occupant. If incoming is
+ * already the occupant, the caller's reference is released (the slot
+ * keeps the one it had).
  */
 AFW_DECLARE(void)
 afw_value_slot_take(
@@ -1639,20 +1739,22 @@ afw_value_convert_to_casted_utf8(
 
 
 /**
- * @brief Clone a value to specified pool.
- * @param value to clone.
- * @param p pool used for clone.
+ * @brief Pooled copy of a value in p.
+ * @param value to copy.
+ * @param p pool for the copy.
  * @param xctx of caller.
- * @return cloned value.
+ * @return copy that lives in p.
  *
- * Non-evaluated values will be evaluated as part of clone.
+ * Non-evaluated values are evaluated first. Use to take a value out of
+ * something that may change or go away (live runtime data under a
+ * lock, another pool). For a copy a script may change, use
+ * afw_value_clone().
  *
- * Unmanaged copy into dest p. Adaptive `clone()` of object/array is
- * always-copy `create_managed`, not this (see
- * `afw_function_execute_clone`).
+ * Kind: pooled in p (permanent values are returned as-is). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_clone(
+afw_value_create_pooled_copy(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -1666,6 +1768,9 @@ afw_value_clone(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_assignment_target_create(
@@ -1685,6 +1790,9 @@ afw_value_assignment_target_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_type_declaration_create(
@@ -1774,6 +1882,8 @@ afw_value_common_allocate(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_common_create(
@@ -1787,10 +1897,13 @@ afw_value_common_create(
 /**
  * @brief Create a managed closure binding value.
  * @param script_function_definition script function to enclose.
- * @param enclosing_lexical_scope for closure binding. Create pins it.
+ * @param enclosing_lexical_scope captured scope, or NULL. Referenced.
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return Created afw_value_t (RC 1; caller releases).
+ *
+ * Kind: fully managed. Caller releases (RC 1). References its captured
+ * scope and its compile unit.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create_managed(
@@ -1799,26 +1912,6 @@ afw_value_closure_binding_create_managed(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-
-
-/**
- * @brief Bind a script function to the current lexical scope if needed.
- * @param value candidate value (any kind).
- * @param p dest pool (uses p->managed_p).
- * @param xctx of caller.
- * @return value, or a closure_binding holding the defining scope.
- *
- * Store-time capture for assign, return, and object/array literals. Not
- * hoisting: the function still uses the scope in which it was written, and
- * names must be declared before use. Non-script-function values are
- * returned unchanged. If the current scope is nested inside the defining
- * scope, the defining scope is the one held (not the inner block).
- */
-AFW_DEFINE(const afw_value_t *)
-afw_value_closure_binding_create_if_needed(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
 
 
 /**
@@ -1838,6 +1931,9 @@ afw_value_closure_binding_create_if_needed(
  * The value can be a lambda definition (afw_value_script_function_definition_t *),
  * built-in function definition (afw_value_function_definition_t *) or
  * function thunk (afw_value_function_thunk_t *)
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_create(
@@ -1867,6 +1963,9 @@ afw_value_call_create(
  * 
  * Call this function instead of afw_value_call_create() when it's know that
  * argv[0] is a function definition to save a small amount of evaluation time.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_built_in_function_create(
@@ -1898,6 +1997,9 @@ afw_value_call_built_in_function_create(
  * 
  * Call this function instead of afw_value_call_create() when it's know that
  * argv[0] is a function definition to save a small amount of evaluation time.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_script_function_create(
@@ -1919,6 +2021,9 @@ afw_value_call_script_function_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_test_script_create(
@@ -1939,6 +2044,8 @@ afw_value_call_test_script_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_function_thunk_create_impl(
@@ -1981,6 +2088,9 @@ afw_value_function_thunk_create_impl( \
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_function_definition_create(
@@ -2003,6 +2113,9 @@ afw_value_script_function_definition_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_array_expression(
@@ -2019,6 +2132,9 @@ afw_value_create_array_expression(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_object_expression(
@@ -2036,6 +2152,9 @@ afw_value_create_object_expression(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_object_construct(
@@ -2054,6 +2173,9 @@ afw_value_create_object_construct(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_qualified_variable_reference_create(
@@ -2073,6 +2195,9 @@ afw_value_qualified_variable_reference_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_reference_by_key_create(
@@ -2097,6 +2222,9 @@ afw_value_reference_by_key_create(
  * of the result is the data type of the value.  If multiple values are
  * supplied, the result is a concatenation of the string values of all
  * the values with a data type is string.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_template_definition_create(
@@ -2115,6 +2243,9 @@ afw_value_template_definition_create(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p (usually the compile unit's pool). Caller does
+ * not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_symbol_reference_create(
@@ -2139,6 +2270,8 @@ afw_value_symbol_reference_create(
  * string values from untrusted bytes any other way.
  *
  * Empty or NULL input yields an empty string value.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 /**
  * @brief Create a managed hexBinary without throwing.
@@ -2149,6 +2282,8 @@ afw_value_symbol_reference_create(
  *
  * Same layout and last-release as create_managed. calloc_no_throw on
  * p->managed_p. Last-release uses the stored p. For error-path code.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_value_hexBinary_t *)
 afw_value_hexBinary_create_no_throw(
@@ -2171,6 +2306,8 @@ afw_value_create_from_external_octets(
  * @param p pool for the value and any owned payload.
  * @param xctx of caller.
  * @return See afw_value_create_from_external_octets().
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_from_external_z(
@@ -2188,6 +2325,8 @@ afw_value_create_from_external_z(
  *
  * Throws if string_z is not valid UTF-8. For untrusted external bytes use
  * afw_value_create_from_external_octets() or afw_value_create_from_external_z().
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_string_from_u8z(
@@ -2209,6 +2348,8 @@ afw_value_string_from_internal(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_dateTime_now_utc(
@@ -2221,6 +2362,8 @@ afw_value_create_dateTime_now_utc(
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_dateTime_now_local(
@@ -2614,6 +2757,27 @@ afw_value_decompile_assignment_pattern(
 
 /* Core value inf registration: afw_value_register_core_value_infs in
  * afw_value_internal.h (libafw bootstrap only). */
+
+/**
+ * @brief get_reference_count for values that are not counted.
+ * @param instance value.
+ * @param xctx of caller.
+ * @return 0.
+ */
+AFW_DECLARE(afw_size_t)
+afw_value_not_counted_get_reference_count(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief release_references for values that hold no counted references.
+ * @param instance value.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_value_no_references_release_references(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 

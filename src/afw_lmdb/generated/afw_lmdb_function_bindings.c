@@ -40,7 +40,7 @@ impl_object_path__reader_check =
 static const afw_runtime_object_indirect_t
 impl_object__reader_check = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -57,7 +57,7 @@ impl_object__reader_check = {
 static const afw_value_function_parameter_t
 impl_reader_check_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -85,7 +85,7 @@ impl_reader_check_returns = {
 static const afw_value_function_parameter_t
 impl_reader_check_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -167,7 +167,7 @@ impl_object_path__reader_list =
 static const afw_runtime_object_indirect_t
 impl_object__reader_list = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL, /* Resolved at runtime. */
         {
@@ -184,7 +184,7 @@ impl_object__reader_list = {
 static const afw_value_function_parameter_t
 impl_reader_list_returns = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {
@@ -212,7 +212,7 @@ impl_reader_list_returns = {
 static const afw_value_function_parameter_t
 impl_reader_list_parameter_1 = {
     {
-        NULL,
+        {NULL},
         NULL,
         NULL,
         {

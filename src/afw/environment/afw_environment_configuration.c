@@ -32,7 +32,7 @@ afw_environment_configure_with_object(
         xctx->env->p, xctx->env->small_chunk_min, xctx);
 
     /* Clone conf and source_location to new pool. */
-    conf = afw_object_create_clone(conf, p, xctx);
+    conf = afw_object_create_pooled_copy(conf, p, xctx);
     source_location = afw_utf8_clone(source_location, p, xctx);
 
     /* Added sourceLocation property to conf. */
@@ -291,7 +291,7 @@ afw_environment_prepare_conf_type_properties(
         result = afw_object_view_create(properties,
             path, &afw_object_options_composite_normalize_defaults_required,
             p, xctx);
-        result = afw_object_create_clone(result, p, xctx);
+        result = afw_object_create_pooled_copy(result, p, xctx);
         if (afw_object_meta_has_errors(result, xctx)) {
             afw_object_meta_log_errors(result, source_location, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,

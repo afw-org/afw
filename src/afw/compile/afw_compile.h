@@ -197,6 +197,10 @@ afw_compile_and_evaluate(
  *
  * The _meta_.path and _meta_.parentPaths of any compiled object is always
  * used to set the corresponding values in the new object.
+ *
+ * Kind: script, template, and test_script return a fully managed
+ * compiled_value whose create reference dest p releases (caller does
+ * not release). JSON / relaxed_json return pooled data in dest p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_compile_to_value_with_callback(
@@ -332,7 +336,7 @@ afw_compile_template(
  * @param cede_p if true, cede control of p to the created object.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return unmanaged object instance. Caller does not release.
+ * @return object instance. See Kind below for who releases.
  *     Result lasts for dest p.
  *
  * Old JSON-compiler door: string of JSON syntax → unmanaged
@@ -346,6 +350,10 @@ afw_compile_template(
  *
  * If adapter_id is NULL, object_type_id and object_id must be NULL. If they're
  * NULL, the object's meta will not be set.
+ *
+ * Kind: pooled in p when cede_p is false (caller does not release).
+ * Reference counted when cede_p is true: the object owns p and the
+ * caller releases it (afw_object_release).
  */
 AFW_DECLARE(const afw_object_t *)
 afw_compile_json_to_object(

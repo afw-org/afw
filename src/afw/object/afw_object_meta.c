@@ -27,7 +27,12 @@
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "object_meta"
 #define AFW_OBJECT_SELF_T afw_object_meta_object_t
+#define impl_afw_object_for_each_reference afw_object_no_references_for_each
+#define impl_afw_object_release_references afw_object_no_references_release_references
+#define impl_afw_object_get_reference_count afw_object_not_counted_get_reference_count
 #include "afw_object_impl_declares.h"
+#define impl_afw_object_setter_set_property_take \
+    afw_object_setter_set_property_take_by_copy
 #include "afw_object_setter_impl_declares.h"
 
 
@@ -150,7 +155,7 @@ afw_object_meta_clone_and_set(
 
     impl_set_meta_object(
         (afw_object_t *)instance,
-        afw_object_create_clone(
+        afw_object_create_pooled_copy(
             afw_object_meta_object(from),
             instance->p, xctx),
         xctx);
@@ -193,7 +198,7 @@ afw_object_meta_add_parent_path(
     parent_paths = afw_value_allocate_unmanaged_array(instance->p, xctx);
 
     if (existing_parent_paths) {
-        parent_paths->internal = afw_array_create_or_clone(
+        parent_paths->internal = afw_array_create_pooled_copy(
             existing_parent_paths->internal, afw_data_type_anyURI, false,
             instance->p, xctx);
     }
@@ -343,7 +348,7 @@ afw_object_meta_get_property_type(
     }
     else if (!property_types->p) {
         /* Permanent OT propertyTypes — clone onto instance pool / delta. */
-        property_types = afw_object_create_clone(
+        property_types = afw_object_create_pooled_copy(
             property_types, instance->p, xctx);
         ((afw_object_t *)property_types)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyTypes_;
@@ -358,7 +363,7 @@ afw_object_meta_get_property_type(
             instance->meta.meta_object,
             afw_v_otherProperties, xctx);
         if (property_type) {
-            property_type = afw_object_create_clone(property_type,
+            property_type = afw_object_create_pooled_copy(property_type,
                 instance->p, xctx);
             afw_object_set_property_as_object_internal(property_types,
                 property_name, property_type, xctx);
@@ -375,7 +380,7 @@ afw_object_meta_get_property_type(
          * Bag was cloned but entries can still be permanent (shallow
          * nested object values). Replace with a pooled clone.
          */
-        property_type = afw_object_create_clone(property_type,
+        property_type = afw_object_create_pooled_copy(property_type,
             instance->p, xctx);
         ((afw_object_t *)property_type)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyType_;
@@ -940,13 +945,14 @@ impl_afw_object_release(
 /*
  * Implementation of method get_reference for interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
 
     afw_object_get_reference(self->pub.meta.embedding_object, xctx);
+    return (const afw_object_t *)self;
 }
 
 /*

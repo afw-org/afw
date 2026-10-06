@@ -238,6 +238,8 @@ afw_value_as_integer_internal(
  *
  * Unmanaged: lifetime is pool p; no value refcount.
  * Caller fills internal after allocate.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(afw_value_integer_t *)
 afw_value_integer_allocate(
@@ -257,6 +259,8 @@ afw_value_integer_allocate(
  * get_assignable_value bump. Last-release
  * free_memorys the header via the stored p.
  * Stores internal by value in the header.
+ *
+ * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_integer_create_managed(
@@ -273,6 +277,9 @@ afw_value_integer_create_managed(
  * @return unmanaged clone in p, or value if permanent.
  *
  * Copies utf8/memory octets into p. Does not release the source.
+ *
+ * Kind: pooled in p (a permanent value is returned as-is). Caller
+ * does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_integer_unmanaged(
@@ -288,6 +295,9 @@ afw_value_clone_integer_unmanaged(
  * @return managed value (bump if already managed).
  *
  * Permanents as-is. Does not release the source.
+ *
+ * Kind: fully managed (a permanent value is returned as-is).
+ * Caller releases.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_integer_managed(
@@ -305,6 +315,8 @@ afw_value_clone_integer_managed(
  * Allocates in pool p; lifetime is the pool (no value refcount).
  * get_reference / release throw. get_assignable_value
  * creates a managed holdable in p->managed_p.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_integer_create(afw_integer_t internal,

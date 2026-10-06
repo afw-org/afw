@@ -332,7 +332,7 @@ afw_function_script_assign_pattern(
     afw_xctx_t *xctx)
 {
     /*
-     * Store-time bind for script functions is clone_or_reference on the
+     * Store-time bind for script functions is get_assignable_value on the
      * script_function inf (slot_store). Faces isolate object/array literals.
      */
     if (value && !afw_value_is_undefined(value)) {

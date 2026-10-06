@@ -143,7 +143,7 @@ impl_afw_adapter_impl_index_get_index_definitions (
                 self->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
                 xctx);
             if (indexes) {
-                indexes = afw_object_create_clone(indexes, pool, xctx);
+                indexes = afw_object_create_pooled_copy(indexes, pool, xctx);
             } else {
                 /* if we don't have one, just create one in our own pool */
                 indexes = afw_object_create_unmanaged_new_p(pool, xctx);
@@ -193,7 +193,7 @@ impl_afw_adapter_impl_index_update_index_definitions (
             AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
                 afw_object_set_property_as_object_internal(
                     session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
-                    afw_object_create_clone(
+                    afw_object_create_pooled_copy(
                         indexDefinitions, pool, xctx),
                     xctx);
 
@@ -223,7 +223,7 @@ impl_afw_adapter_impl_index_update_index_definitions (
         AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
             afw_object_set_property_as_object_internal(
                 session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
-                afw_object_create_clone(
+                afw_object_create_pooled_copy(
                     indexDefinitions, pool, xctx),
                 xctx);
 

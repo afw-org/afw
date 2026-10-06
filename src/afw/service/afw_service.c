@@ -278,7 +278,7 @@ impl_conf_for_service_type(
 
     p = afw_pool_multithread_create_as_managed_p(
         xctx->env->p, xctx->env->small_chunk_min, xctx);
-    cede_conf = afw_object_create_clone(conf, p, xctx);
+    cede_conf = afw_object_create_pooled_copy(conf, p, xctx);
     if (source_location) {
         afw_object_set_property_as_string_internal(cede_conf,
             afw_v_sourceLocation, source_location, xctx);
@@ -452,7 +452,7 @@ impl_initialize_and_start_service_using_conf(
     const afw_utf8_t *object_id;
 
     /* Registry copy. conf->p is the pool ceded to the service type. */
-    service->properties = afw_object_create_clone(conf, p, xctx);
+    service->properties = afw_object_create_pooled_copy(conf, p, xctx);
     service->source_location = afw_utf8_clone(source_location, p, xctx);
     service->conf_source_location = afw_utf8_clone(conf_source_location,
         p, xctx);

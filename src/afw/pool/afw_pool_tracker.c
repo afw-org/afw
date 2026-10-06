@@ -56,6 +56,17 @@ impl_tracker_implementation_specific =
 
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_tracker_implementation_specific
 
+AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_6, afw_pool_internal_tracker_release, afw_pool_internal_get_reference)
+#undef impl_afw_pool_release
+#define impl_afw_pool_release impl_pool_ref_6_release
+#undef impl_afw_pool_get_reference
+#define impl_afw_pool_get_reference impl_pool_ref_6_get_reference
+#undef impl_afw_pool_get_reference_count
+#define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
+#undef impl_afw_pool_for_each_reference
+#define impl_afw_pool_for_each_reference afw_pool_internal_no_references_for_each
+#undef impl_afw_pool_release_references
+#define impl_afw_pool_release_references afw_pool_internal_no_references_release_references
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
@@ -140,32 +151,22 @@ impl_tracker_teardown_store(
 {
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
-
-    afw_integer_t parent_pins;
+    afw_boolean_t holds_parent;
 
     parent = self->parent;
     parent_destroying = parent && parent->destroying;
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Tracker has no parent", xctx);
     }
-    parent_pins = self->parent_pins;
-    self->parent_pins = 0;
+    holds_parent = self->holds_parent;
+    self->holds_parent = false;
     afw_pool_internal_unlink_from_parent(self, xctx);
     impl_tracker_return_leftovers(afw_pool_tracker_internal_as_tracker(self), xctx);
     afw_pool_internal_account_destroy(self, xctx);
     afw_pool_free_memory(&parent->pub, self, self_bytes, xctx);
     /* self is back in the parent. A release at parent ref 1 frees it. */
-    if (!parent_destroying) {
-        while (parent_pins > 0) {
-            afw_boolean_t parent_dies;
-
-            parent_pins--;
-            parent_dies = (parent->reference_count == 1);
-            afw_pool_release(&parent->pub, xctx);
-            if (parent_dies) {
-                break;
-            }
-        }
+    if (holds_parent && !parent_destroying) {
+        afw_pool_release(&parent->pub, xctx);
     }
 }
 

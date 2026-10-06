@@ -25,18 +25,39 @@
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "memory"
 #define AFW_OBJECT_SELF_T afw_object_internal_memory_object_t
+#define impl_afw_object_for_each_reference afw_object_no_references_for_each
+#define impl_afw_object_release_references afw_object_no_references_release_references
 #include "afw_object_impl_declares.h"
+#define impl_afw_object_setter_set_property_take \
+    afw_object_setter_set_property_take_by_copy
 #include "afw_object_setter_impl_declares.h"
+#undef impl_afw_object_setter_set_property_take
 
 /* Managed bag: separate inf, no extra ifs on set/release. */
 static void
 impl_afw_object_managed_release(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
-static void
+static const afw_object_t *
 impl_afw_object_managed_get_reference(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
 static void
+impl_afw_object_managed_for_each_reference(
+    AFW_OBJECT_SELF_T *self, afw_reference_cb_t callback, void *context,
+    afw_xctx_t *xctx);
+static afw_size_t
+impl_afw_object_managed_get_reference_count(
+    AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_object_managed_release_references(
+    AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
+static void
 impl_afw_object_managed_setter_set_property(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+static void
+impl_afw_object_managed_setter_set_property_take(
     const afw_object_setter_t *self,
     const afw_value_t *property_name,
     const afw_value_t *value,
@@ -54,7 +75,18 @@ impl_afw_object_managed_setter_remove_property(
 #define AFW_OBJECT_INF_ONLY
 #define impl_afw_object_release impl_afw_object_managed_release
 #define impl_afw_object_get_reference impl_afw_object_managed_get_reference
+#undef impl_afw_object_for_each_reference
+#define impl_afw_object_for_each_reference \
+    impl_afw_object_managed_for_each_reference
+#define impl_afw_object_get_reference_count \
+    impl_afw_object_managed_get_reference_count
+#undef impl_afw_object_release_references
+#define impl_afw_object_release_references \
+    impl_afw_object_managed_release_references
 #include "afw_object_impl_declares.h"
+#undef impl_afw_object_release_references
+#undef impl_afw_object_for_each_reference
+#undef impl_afw_object_get_reference_count
 #undef AFW_OBJECT_INF_ONLY
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
@@ -64,11 +96,14 @@ impl_afw_object_managed_setter_remove_property(
 #define AFW_OBJECT_SETTER_INF_ONLY
 #define impl_afw_object_setter_set_property \
     impl_afw_object_managed_setter_set_property
+#define impl_afw_object_setter_set_property_take \
+    impl_afw_object_managed_setter_set_property_take
 #define impl_afw_object_setter_remove_property \
     impl_afw_object_managed_setter_remove_property
 #include "afw_object_setter_impl_declares.h"
 #undef AFW_OBJECT_SETTER_INF_ONLY
 #undef impl_afw_object_setter_set_property
+#undef impl_afw_object_setter_set_property_take
 #undef impl_afw_object_setter_remove_property
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_ID
@@ -95,8 +130,13 @@ afw_object_create_with_options(
     self->unmanaged =
         !AFW_OBJECT_MEMORY_OPTION_IS(options, new_p) &&
         !AFW_OBJECT_MEMORY_OPTION_IS(options, cede_p);
-    /* Pool-world dual face is always unmanaged (value get_reference throws). */
-    self->value.inf = &afw_value_unmanaged_object_inf;
+    /*
+     * Face: pooled for a pooled object (get_reference throws); counted
+     * for an object that owns its pool (references are its pool's).
+     */
+    self->value.inf = (self->unmanaged)
+        ? &afw_value_unmanaged_object_inf
+        : &afw_value_counted_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     /* clone_on_set: residual field; always false (no public option). */
@@ -257,9 +297,9 @@ impl_copy_meta_delta_into_managed(
         if (!value) {
             break;
         }
-        cloned = afw_value_clone_unmanaged(value, to->p, xctx);
+        cloned = afw_value_create_pooled_copy(value, to->p, xctx);
         afw_object_set_property(delta,
-            name ? afw_value_clone_unmanaged(name, to->p, xctx)
+            name ? afw_value_create_pooled_copy(name, to->p, xctx)
                 : afw_v_a_empty_string,
             cloned, xctx);
     }
@@ -299,7 +339,7 @@ impl_copy_property_into_managed(
         if (!from_array) {
             return;
         }
-        cloned_array = afw_array_create_managed_clone(from_array, to->p, xctx);
+        cloned_array = afw_array_to_managed(from_array, to->p, xctx);
         afw_object_set_property(to, name, cloned_array->value, xctx);
         afw_array_release(cloned_array, xctx);
         return;
@@ -404,7 +444,7 @@ impl_copy_into_managed(
 
 
 AFW_DEFINE(const afw_object_t *)
-afw_object_create_managed_clone(
+afw_object_to_managed(
     const afw_object_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -413,31 +453,12 @@ afw_object_create_managed_clone(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_object_create_managed_clone requires from",
+            "afw_object_to_managed requires from",
             xctx);
     }
     if (from->inf == &impl_afw_object_managed_inf) {
         afw_object_get_reference(from, xctx);
         return from;
-    }
-    to = afw_object_create_managed(p, xctx);
-    impl_copy_into_managed(to, from, xctx);
-    return to;
-}
-
-
-AFW_DEFINE(const afw_object_t *)
-afw_object_create_managed_snapshot(
-    const afw_object_t *from,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *to;
-
-    if (!from) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_object_create_managed_snapshot requires from",
-            xctx);
     }
     to = afw_object_create_managed(p, xctx);
     impl_copy_into_managed(to, from, xctx);
@@ -731,7 +752,11 @@ afw_object_create_embedded(
     self = afw_pool_calloc_type(p, afw_object_internal_memory_object_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_unmanaged_object_inf;
+    /* Same kind as the embedder; references go to the embedder. */
+    self->unmanaged = embedder->unmanaged;
+    self->value.inf = (self->unmanaged)
+        ? &afw_value_unmanaged_object_inf
+        : &afw_value_counted_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.embedding_object = embedding_object;
@@ -787,22 +812,11 @@ impl_afw_object_release(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entity;
-    const afw_object_t *wrapped;
 
-    /*
-     * Unmanaged: a reference pins the pool it lives in. Legacy C
-     * protocol (adapter results, runtime objects); unmanaged has no
-     * references in lifetime-principles.md. Follow-up under #2.
-     */
+    /* Pooled: no reference was ever taken, so a release is a bug. */
     if (self->unmanaged) {
-        if (self->reference_count <= 0) {
-            return;
-        }
-        self->reference_count--;
-        if (self->pub.p) {
-            afw_pool_release(self->pub.p, xctx);
-        }
-        return;
+        AFW_THROW_ERROR_Z(general,
+            "release of a pooled object", xctx);
     }
 
     /*
@@ -815,34 +829,28 @@ impl_afw_object_release(
         return;
     }
 
-    /*
-     * new_p / cede_p: instance release is pool_release of object->p.
-     * If the pool dies, drop the create-time pin on wrapped.
-     */
-    wrapped = self->wrapped;
-    if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
-        afw_object_release(wrapped, xctx);
-    }
+    /* Owns its pool (new_p / cede_p): a reference is the pool's. */
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
 /*
  * Implementation of method get_reference of interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     const afw_object_t *entity;
 
-    /* Unmanaged: legacy pool pin. See impl_afw_object_release. */
+    /*
+     * Pooled: lives and dies with its pool; there is nothing to
+     * reference. Keep a copy with get_assignable_value of its value.
+     */
     if (self->unmanaged) {
-        self->reference_count++;
-        if (self->pub.p) {
-            afw_pool_get_reference(self->pub.p, xctx);
-        }
-        return;
+        AFW_THROW_ERROR_Z(general,
+            "get_reference of a pooled object", xctx);
     }
 
     /*
@@ -852,11 +860,12 @@ impl_afw_object_get_reference(
     if (self->managed_by_entity) {
         AFW_OBJECT_GET_ENTITY(entity, &self->pub);
         afw_object_get_reference(entity, xctx);
-        return;
+        return (const afw_object_t *)self;
     }
 
     /* new_p / cede_p: pin the pool. Value inf still throws. */
     afw_pool_get_reference(self->pub.p, xctx);
+    return (const afw_object_t *)self;
 }
 
 /*
@@ -913,7 +922,7 @@ impl_has_local_property_name(
 }
 
 
-/* Overlay store is clone_or_reference (GET-cache on this face). */
+/* Overlay store is get_assignable_value (GET-cache on this face). */
 static const afw_value_t *
 impl_hold_from_base(
     AFW_OBJECT_SELF_T *self,
@@ -928,7 +937,7 @@ impl_hold_from_base(
         return value;
     }
 
-    /* Overlay slot_store is clone_or_reference. */
+    /* Overlay slot_store is get_assignable_value. */
     afw_object_set_property((const afw_object_t *)self, property_name,
         value, xctx);
     local = impl_get_local_property(self, property_name, &found_local, xctx);
@@ -964,7 +973,7 @@ impl_afw_object_get_property(
         return NULL;
     }
 
-    /* Hold looked-up value on this face (clone_or_reference via set). */
+    /* Hold looked-up value on this face (get_assignable_value via set). */
     return impl_hold_from_base(self, property_name, value, xctx);
 }
 
@@ -1248,8 +1257,10 @@ impl_afw_object_managed_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
+        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
         return;
     }
+    afw_reference_forget(&self->pub.ref, xctx);
     /*
      * One walk: release every held property (nested object/array
      * the same as scalar), then names, then free_memory entries.
@@ -1294,13 +1305,14 @@ impl_afw_object_managed_release(
 }
 
 
-void
+const afw_object_t *
 impl_afw_object_managed_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)xctx;
     self->reference_count++;
+    return (const afw_object_t *)self;
 }
 
 
@@ -1341,21 +1353,18 @@ impl_afw_object_managed_setter_set_property(
 }
 
 
-AFW_DEFINE(void)
-afw_object_set_property_take(
-    const afw_object_t *instance,
+/* set_property_take of a fully managed memory object: the slot takes it. */
+static void
+impl_afw_object_managed_setter_set_property_take(
+    const afw_object_setter_t *setter,
     const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
+    const afw_object_t *instance = setter->object;
     afw_object_internal_memory_object_t *self;
     afw_object_internal_name_value_entry_t *e;
 
-    if (!afw_object_is_managed(instance)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_object_set_property_take requires a managed object",
-            xctx);
-    }
     self = (afw_object_internal_memory_object_t *)instance;
     do { if (self->immutable) { AFW_OBJECT_ERROR_OBJECT_IMMUTABLE; } } while (0);
 
@@ -1391,4 +1400,75 @@ impl_afw_object_managed_setter_remove_property(
     impl_unlink_property(
         (afw_object_internal_memory_object_t *)self->object,
         property_name, xctx);
+}
+
+
+/* Last release releases each name and value, then wrapped. */
+static void
+impl_afw_object_managed_for_each_reference(
+    AFW_OBJECT_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+
+    for (e = self->first_property; e; e = e->next) {
+        afw_value_list_reference(e->name, callback, context, xctx);
+        afw_value_list_reference(e->value, callback, context, xctx);
+    }
+    if (self->wrapped) {
+        afw_value_list_reference(self->wrapped->value, callback, context,
+            xctx);
+    }
+}
+
+
+/* Pooled: not counted. Owns its pool: the pool's count. */
+afw_size_t
+impl_afw_object_get_reference_count(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *entity;
+
+    if (self->unmanaged) {
+        return 0;
+    }
+    if (self->managed_by_entity) {
+        AFW_OBJECT_GET_ENTITY(entity, &self->pub);
+        return afw_object_get_reference_count(entity, xctx);
+    }
+    return afw_pool_get_reference_count(self->pub.p, xctx);
+}
+
+
+static afw_size_t
+impl_afw_object_managed_get_reference_count(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return (afw_size_t)self->reference_count;
+}
+
+
+/* Release each value and wrapped, as last release would; names stay. */
+static void
+impl_afw_object_managed_release_references(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+    const afw_value_t *value;
+    const afw_object_t *wrapped;
+
+    for (e = self->first_property; e; e = e->next) {
+        value = e->value;
+        e->value = NULL;
+        afw_value_release(value, xctx);
+    }
+    wrapped = self->wrapped;
+    self->wrapped = NULL;
+    afw_object_release(wrapped, xctx);
 }

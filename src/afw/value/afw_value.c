@@ -63,16 +63,163 @@ afw_value_evaluate_impl(
 }
 
 
-/* NULL-safe get_reference. */
+/* get_reference for values that are not counted. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_add_reference(
-    const afw_value_t *value,
+afw_value_not_counted_get_reference(
+    const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    if (!value || !value->inf || !value->inf->get_reference) {
+    (void)xctx;
+    return instance;
+}
+
+
+/* Independent copy of a value that a script may change. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value || afw_value_is_nullish(value)) {
         return value;
     }
-    return afw_value_get_reference(value, xctx);
+    if (afw_value_is_object(value)) {
+        return afw_object_clone(
+            ((const afw_value_object_t *)value)->internal, p, xctx)->value;
+    }
+    if (afw_value_is_array(value)) {
+        return afw_array_clone(
+            ((const afw_value_array_t *)value)->internal, p, xctx)->value;
+    }
+    /* Scalars cannot change, so one value the caller owns is enough. */
+    return afw_value_get_assignable(value, p, xctx);
+}
+
+
+/* for_each_reference for values that hold no references. */
+AFW_DEFINE(void)
+afw_value_no_references_for_each(
+    const afw_value_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)callback;
+    (void)context;
+    (void)xctx;
+}
+
+
+/* get_counted for values that are not counted. */
+AFW_DEFINE(const afw_reference_t *)
+afw_value_not_counted_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+    return NULL;
+}
+
+
+/* get_counted for values that hold their own count. */
+AFW_DEFINE(const afw_reference_t *)
+afw_value_self_get_counted(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    return &instance->ref;
+}
+
+
+/* List the counted instance a held value references, if any. */
+AFW_DEFINE(void)
+afw_value_list_reference(
+    const afw_value_t *value,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    const afw_reference_t *counted;
+
+    if (!value) {
+        return;
+    }
+    counted = afw_value_get_counted(value, xctx);
+    if (counted) {
+        callback(counted, context, xctx);
+    }
+}
+
+
+/* get_assignable_value for values that are not counted. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_not_counted_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)p;
+    (void)xctx;
+    return instance;
+}
+
+
+/* get_for_p_lifetime for values that are not counted. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_not_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)p;
+    (void)xctx;
+    return instance;
+}
+
+
+/* get_for_p_lifetime for counted values. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_counted_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (afw_pool_is_value_release_registered(instance, p, xctx)) {
+        return instance;
+    }
+    instance = afw_value_get_reference(instance, xctx);
+    afw_pool_register_value_release(instance, p, xctx);
+    return instance;
+}
+
+
+/* get_for_p_lifetime for pooled values: a fully managed copy. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_pooled_get_for_p_lifetime(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *copy;
+
+    copy = afw_value_get_assignable_value(instance, p, xctx);
+    afw_pool_register_value_release(copy, p, xctx);
+    return copy;
+}
+
+
+/* release for values that are not counted. */
+AFW_DEFINE(void)
+afw_value_not_counted_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
 }
 
 
@@ -83,25 +230,10 @@ afw_value_get_assignable(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (!value || !value->inf || !value->inf->get_assignable_value) {
+    if (!value) {
         return value;
     }
     return afw_value_get_assignable_value(value, p, xctx);
-}
-
-
-/* NULL-safe optional_release. */
-AFW_DEFINE(void)
-afw_value_release(
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    if (!value || afw_value_is_undefined(value) ||
-        !value->inf || !value->inf->optional_release)
-    {
-        return;
-    }
-    afw_value_optional_release(value, xctx);
 }
 
 
@@ -114,7 +246,6 @@ afw_value_slot_store(
     afw_xctx_t *xctx)
 {
     const afw_value_t *assignable;
-    afw_boolean_t unmanaged_compiled_value;
 
     if (!incoming) {
         incoming = afw_value_undefined;
@@ -127,20 +258,7 @@ afw_value_slot_store(
      * self). Release-first lets the pool reuse that block, then
      * create_managed memcpy is dest==src (issue #275).
      */
-    unmanaged_compiled_value =
-        incoming && incoming->inf == &afw_value_compiled_value_inf;
     assignable = afw_value_get_assignable(incoming, p, xctx);
-    if (*slot == assignable) {
-        return;
-    }
-    /*
-     * Unmanaged compiled_value get_assignable_value last-releases the
-     * unit pool and stamps the assignable face (same pointer). Release
-     * the original to drop the birth hold.
-     */
-    if (unmanaged_compiled_value) {
-        afw_value_release(incoming, xctx);
-    }
     afw_value_release(*slot, xctx);
     *slot = assignable;
 }
@@ -157,14 +275,8 @@ afw_value_slot_take(
         incoming = afw_value_undefined;
     }
     if (*slot == incoming) {
+        afw_value_release(incoming, xctx);
         return;
-    }
-    if (incoming->inf && incoming->inf->optional_release &&
-        !incoming->inf->is_managed)
-    {
-        AFW_THROW_ERROR_Z(general,
-            "afw_value_slot_take requires a managed or permanent value",
-            xctx);
     }
     afw_value_release(*slot, xctx);
     *slot = incoming;
@@ -535,7 +647,7 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Clone a value to specified pool. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_clone(const afw_value_t *value,
+afw_value_create_pooled_copy(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_common_t *evaluated;
@@ -585,27 +697,9 @@ afw_value_clone(const afw_value_t *value,
 }
 
 
-/* Deep clone an evaluated value unmanaged into dest p. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_clone_unmanaged(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_data_type_t *dt;
-
-    dt = (value && value->inf) ? value->inf->is_evaluated_of_data_type : NULL;
-    if (!dt || !dt->clone_value_unmanaged) {
-        AFW_THROW_ERROR_Z(conversion_error,
-            "clone_unmanaged requires an evaluated value", xctx);
-    }
-    return dt->clone_value_unmanaged(value, p, xctx);
-}
-
-
 /* Clone an evaluated value managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_clone_managed(
+afw_value_to_managed(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -1400,14 +1494,6 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
         &afw_value_compiled_value_inf, xctx);
 
     afw_environment_register_value_inf(
-        &afw_value_compiled_value_assignable_inf.rti.implementation_id,
-        &afw_value_compiled_value_assignable_inf, xctx);
-
-    afw_environment_register_value_inf(
-        &afw_value_managed_compiled_value_inf.rti.implementation_id,
-        &afw_value_managed_compiled_value_inf, xctx);
-
-    afw_environment_register_value_inf(
         &afw_value_call_inf.rti.implementation_id,
         &afw_value_call_inf, xctx);
 
@@ -1442,4 +1528,27 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
     afw_environment_register_value_inf(
         &afw_value_qualified_variable_reference_inf.rti.implementation_id,
         &afw_value_qualified_variable_reference_inf, xctx);
+}
+
+
+/* get_reference_count for values that are not counted. */
+AFW_DEFINE(afw_size_t)
+afw_value_not_counted_get_reference_count(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+    return 0;
+}
+
+
+/* release_references for values that hold no counted references. */
+AFW_DEFINE(void)
+afw_value_no_references_release_references(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
 }

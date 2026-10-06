@@ -239,6 +239,8 @@ afw_value_as_boolean_internal(
  * Prefer permanent afw_boolean_v_* / create_*_boolean (which return
  * those permanents). allocate still makes a pool header for rare
  * writable cases; that is not the permanent true/false.
+ *
+ * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(afw_value_boolean_t *)
 afw_value_boolean_allocate(
@@ -256,6 +258,8 @@ afw_value_boolean_allocate(
  * Returns permanent afw_boolean_v_true or afw_boolean_v_false
  * (intentional; only two Adaptive booleans). Does not allocate.
  * Prefer afw_value_for_boolean / afw_boolean_v_* at call sites.
+ *
+ * Kind: permanent. Release is a no-op.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_boolean_create_managed(
@@ -272,6 +276,9 @@ afw_value_boolean_create_managed(
  * @return unmanaged clone in p, or value if permanent.
  *
  * Copies utf8/memory octets into p. Does not release the source.
+ *
+ * Kind: pooled in p (a permanent value is returned as-is). Caller
+ * does not release.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_boolean_unmanaged(
@@ -287,6 +294,9 @@ afw_value_clone_boolean_unmanaged(
  * @return managed value (bump if already managed).
  *
  * Permanents as-is. Does not release the source.
+ *
+ * Kind: fully managed (a permanent value is returned as-is).
+ * Caller releases.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_boolean_managed(
@@ -304,6 +314,8 @@ afw_value_clone_boolean_managed(
  * Returns permanent afw_boolean_v_true or afw_boolean_v_false
  * (intentional; only two Adaptive booleans). Does not allocate in p.
  * Prefer afw_value_for_boolean / afw_boolean_v_* at call sites.
+ *
+ * Kind: permanent. Release is a no-op.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_boolean_create(afw_boolean_t internal,

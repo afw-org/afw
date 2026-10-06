@@ -26,6 +26,9 @@
 #define AFW_IMPLEMENTATION_ID "fcgi_request_properties"
 typedef struct impl_self_s impl_self_t;
 #define AFW_OBJECT_SELF_T impl_self_t
+#define impl_afw_object_for_each_reference afw_object_no_references_for_each
+#define impl_afw_object_release_references afw_object_no_references_release_references
+#define impl_afw_object_get_reference_count afw_object_not_counted_get_reference_count
 #include "afw_object_impl_declares.h"
 
 typedef struct impl_self_s {
@@ -144,12 +147,13 @@ impl_afw_object_release(
 /*
  * Implementation of method get_reference of interface afw_object.
  */
-void
+const afw_object_t *
 impl_afw_object_get_reference (
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Always releases with xctx. */
+    return (const afw_object_t *)self;
 }
 
 /*

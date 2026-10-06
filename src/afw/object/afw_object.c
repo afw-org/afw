@@ -101,14 +101,14 @@ afw_object_register_caller_release(
 
 /*
  * Outside callers get a new managed object, not the live one.
- * create_managed_clone() would share an already-managed source,
- * which would still die with the owner's pool. Snapshot always
- * copies. Bytes are allocated in p->managed_p. The release is
+ * afw_object_to_managed() would share an already-managed source,
+ * which would still die with the owner's pool. afw_object_clone()
+ * always copies. Bytes are allocated in p->managed_p. The release is
  * registered on p, because that is the pool the caller will
  * destroy. For a scope, managed_p is the job heap.
  */
 AFW_DEFINE(const afw_object_t *)
-afw_object_managed_clone_for_caller(
+afw_object_clone_for_p(
     const afw_object_t *from,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -119,9 +119,36 @@ afw_object_managed_clone_for_caller(
         return NULL;
     }
     afw_object_reject_process_lifetime_pool(p, xctx);
-    clone = afw_object_create_managed_snapshot(from, p, xctx);
+    clone = afw_object_clone(from, p, xctx);
     afw_object_register_caller_release(clone, p, xctx);
     return clone;
+}
+
+
+/* Independent copy of an object, as a fully managed object. */
+AFW_DEFINE(const afw_object_t *)
+afw_object_clone(
+    const afw_object_t *from,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *to;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *name;
+    const afw_value_t *prop;
+
+    to = afw_object_create_managed(p, xctx);
+    afw_object_copy_meta_into_managed(to, from, xctx);
+    for (iterator = NULL;;) {
+        name = NULL;
+        prop = afw_object_get_next_property(from, &iterator, &name, xctx);
+        if (!prop) {
+            break;
+        }
+        afw_object_set_property_take(to, name,
+            afw_value_clone(prop, p, xctx), xctx);
+    }
+    return to;
 }
 
 
@@ -226,6 +253,40 @@ afw_object_set_property(
     }
 
     afw_object_setter_set_property(setter, property_name, value, xctx);
+}
+
+
+/* Set a property, taking the caller's reference to value. */
+AFW_DEFINE(void)
+afw_object_set_property_take(
+    const afw_object_t *instance,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_object_setter_t *setter;
+
+    setter = afw_object_get_setter(instance, xctx);
+    if (!setter) {
+        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    }
+    afw_object_setter_set_property_take(setter, property_name, value, xctx);
+}
+
+
+/* set_property_take for setters whose values live in the object's pool. */
+AFW_DEFINE(void)
+afw_object_setter_set_property_take_by_copy(
+    const afw_object_setter_t *instance,
+    const afw_value_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *copy;
+
+    copy = (value) ? afw_value_create_pooled_copy(value, instance->object->p, xctx) : NULL;
+    afw_object_setter_set_property(instance, property_name, copy, xctx);
+    afw_value_release(value, xctx);
 }
 
 
@@ -800,4 +861,42 @@ afw_object_get_entity(const afw_object_t *object, afw_xctx_t *xctx)
 
     AFW_OBJECT_GET_ENTITY(entity, object);
     return entity;
+}
+
+
+/* for_each_reference for objects that hold no references. */
+AFW_DEFINE(void)
+afw_object_no_references_for_each(
+    const afw_object_t *instance,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)callback;
+    (void)context;
+    (void)xctx;
+}
+
+
+/* get_reference_count for objects that are not counted. */
+AFW_DEFINE(afw_size_t)
+afw_object_not_counted_get_reference_count(
+    const afw_object_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
+    return 0;
+}
+
+
+/* release_references for objects that hold no counted references. */
+AFW_DEFINE(void)
+afw_object_no_references_release_references(
+    const afw_object_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)xctx;
 }
