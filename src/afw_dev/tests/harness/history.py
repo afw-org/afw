@@ -12,8 +12,7 @@ from _afwdev.test.common import format_test_timing, format_xctx_bytes
 from _afwdev.test import run_dir
 from _afwdev.test.history import (
     compare_runs, file_record, trend_runs, _bytes_fatter, BYTES_FLOOR,
-    history_filename, is_reference_name, select_trend_files,
-    clear_history, delete_history_ref, list_history_refs,
+    history_filename, is_reference_name, clear_history,
     ref_label_from_name, write_history, load_run, list_run_files,
 )
 
@@ -149,29 +148,6 @@ def run():
         "skip": False,
     })
 
-    tmp = tempfile.mkdtemp()
-    try:
-        open(os.path.join(tmp, "2026-01-01T000000000Z-ref-pre-mgg-afw.json"), "w").close()
-        open(os.path.join(tmp, "2026-02-01T000000000Z-afw.json"), "w").close()
-        open(os.path.join(tmp, "2026-03-01T000000000Z-afw.json"), "w").close()
-        open(os.path.join(tmp, "latest-afw.json"), "w").close()
-        selected = [os.path.basename(p) for p in select_trend_files(tmp, "afw", 1)]
-        tests.append({
-            "test": "trend-keeps-refs-plus-last-n",
-            "description": "refs never age out; last 1 ordinary run is kept",
-            "passed": (
-                "2026-01-01T000000000Z-ref-pre-mgg-afw.json" in selected
-                and "2026-03-01T000000000Z-afw.json" in selected
-                and "2026-02-01T000000000Z-afw.json" not in selected
-                and "latest-afw.json" not in selected
-            ),
-            "skip": False,
-        })
-    finally:
-        for name in os.listdir(tmp):
-            os.remove(os.path.join(tmp, name))
-        os.rmdir(tmp)
-
     ref = _run([file_record("a.as", 10, 20 * 1024, 1, 0, 0)], commit="ref")
     ref["reference"] = True
     ref["label"] = "pre-mgg"
@@ -220,22 +196,6 @@ def run():
             "2026-02-01T000000000Z-afw.json",
             os.path.join(house, "latest-afw.json"))
         opts = {"mode": "afw", "history_dir": house}
-        picked = [
-            os.path.basename(p)
-            for p in select_trend_files(house, "afw", 10, "thread-inf")
-        ]
-        tests.append({
-            "test": "trend-one-ref-and-later",
-            "description": "one label plus ordinary runs after that reference",
-            "passed": (
-                picked == [
-                    "2026-03-01T000000000Z-ref-thread-inf-afw.json",
-                    "2026-04-01T000000000Z-afw.json",
-                    "2026-05-01T000000000Z-afw.json",
-                ]
-            ),
-            "skip": False,
-        })
         removed = clear_history(opts)
         left = sorted(os.listdir(house))
         tests.append({
@@ -249,29 +209,6 @@ def run():
                 and "latest-afw.json" not in left
                 and "2026-01-01T000000000Z-ref-old-afw.json" in left
                 and "2026-03-01T000000000Z-ref-thread-inf-afw.json" in left
-                and "2026-06-01T000000000Z-ref-other-afw.json" in left
-                and "2026-04-01T000000000Z-valgrind.json" in left
-            ),
-            "skip": False,
-        })
-        labels = list_history_refs(opts)
-        tests.append({
-            "test": "list-history-refs",
-            "description": "labels for this mode, in timestamp order",
-            "passed": labels == ["old", "thread-inf", "other"],
-            "skip": False,
-        })
-        gone = delete_history_ref(
-            {"mode": "afw", "history_dir": house,
-             "delete_history_ref": "thread-inf"})
-        left = sorted(os.listdir(house))
-        tests.append({
-            "test": "delete-history-ref",
-            "description": "one label is removed; other refs and modes stay",
-            "passed": (
-                gone == 1
-                and "2026-03-01T000000000Z-ref-thread-inf-afw.json" not in left
-                and "2026-01-01T000000000Z-ref-old-afw.json" in left
                 and "2026-06-01T000000000Z-ref-other-afw.json" in left
                 and "2026-04-01T000000000Z-valgrind.json" in left
             ),

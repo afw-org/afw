@@ -15,8 +15,13 @@
 ```bash
 # 1) Gate (do not break)
 afwdev test -j
-# Memory line: max N xctx, N chunk. History: --compare / --trend / --trend-metric chunk
-# --clear-history keeps -ref- baselines. --trend --history-ref LABEL
+# Memory line: max N xctx, N chunk. Elapsed: wall clock of the command, CPU: all of it.
+# Every run records history and compares with the baseline: the newest
+# --baseline run (PR gate) from another branch that HEAD contains.
+# "Out of family" counts matched tests whose memory grew (the check) or whose
+# CPU stands out from the run's median (FYI); --error-detail lists them.
+# --compare-to last|<commit>|<tag>|<file>; --trend [bytes|chunk|cpu|ms] (no run);
+# --clear-history removes untagged history (baselines stay)
 # Each run has its own directory, /tmp/afwdev-runs/<MMDD-HHMMSS>-<mode>/
 # (latest links to the newest), last 10 per mode plus the last 10 failed:
 # leaf work dirs, failures.log,

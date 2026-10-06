@@ -30,10 +30,13 @@ NEW_GONE_LIST_MAX = 20
 
 
 def git_meta(cwd=None):
-    """Short commit, branch, dirty flag. Empty dict fields if not a git tree."""
-    meta = {"commit": None, "branch": None, "dirty": False}
+    """Short and full commit, branch, dirty flag. None if not a git tree."""
+    meta = {"commit": None, "commit_full": None, "branch": None,
+            "dirty": False}
     kw = dict(stderr=subprocess.DEVNULL, text=True, cwd=cwd or os.getcwd())
     try:
+        meta["commit_full"] = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], **kw).strip()
         meta["commit"] = subprocess.check_output(
             ["git", "rev-parse", "--short", "HEAD"], **kw).strip()
         meta["branch"] = subprocess.check_output(
@@ -51,7 +54,10 @@ def env_mode(options):
 
 
 def history_dir(options):
-    """Resolved history directory, or None if history is not in play."""
+    """test_history_dir from afwdev-settings.json, or ~/.afw/test-history.
+
+    history_dir in options is for afwdev's own tests.
+    """
     explicit = (options or {}).get("history_dir") or ""
     if explicit:
         return os.path.expanduser(explicit)
@@ -59,16 +65,13 @@ def history_dir(options):
     setting = settings.get("test_history_dir") or ""
     if setting:
         return os.path.expanduser(setting)
-    if (options or {}).get("history"):
-        return DEFAULT_HISTORY_DIR
     return DEFAULT_HISTORY_DIR
 
 
 def should_write_history(options):
-    if (options or {}).get("history") or (options or {}).get("history_ref"):
-        return True
+    """Every run records history unless test_history is false."""
     settings = (options or {}).get("afwdev_settings") or {}
-    return bool(settings.get("test_history_dir"))
+    return settings.get("test_history", True) is not False
 
 
 def _mode_suffix(mode):
@@ -134,43 +137,6 @@ def list_run_files(dir_path, mode):
     return [os.path.join(dir_path, n) for n in names]
 
 
-def select_trend_files(dir_path, mode, count=TREND_DEFAULT_COUNT, ref_label=None):
-    """Reference runs for mode plus the last N ordinary runs, oldest first.
-
-    ref_label keeps that reference (and later files with the same label)
-    plus ordinary runs after the oldest match. Other references are left out.
-    """
-    all_files = list_run_files(dir_path, mode)
-    label = sanitize_ref_label(ref_label)
-    if ref_label and not label:
-        raise ValueError("empty history ref label")
-    if label:
-        refs = [p for p in all_files if ref_label_from_name(p, mode) == label]
-        if not refs:
-            raise ValueError(
-                "no history ref {l} for mode {m} in {d}".format(
-                    l=label, m=mode, d=dir_path))
-        anchor = os.path.basename(refs[0])
-        nonrefs = [
-            p for p in all_files
-            if not is_reference_name(p) and os.path.basename(p) > anchor
-        ]
-    else:
-        refs = [p for p in all_files if is_reference_name(p)]
-        nonrefs = [p for p in all_files if not is_reference_name(p)]
-    count = max(1, int(count))
-    chosen = refs + nonrefs[-count:]
-    # Unique, keep timestamp order (basename sorts with the stamp prefix).
-    seen = set()
-    out = []
-    for p in sorted(chosen, key=lambda x: os.path.basename(x)):
-        if p in seen:
-            continue
-        seen.add(p)
-        out.append(p)
-    return out
-
-
 def load_run(path):
     with nfc.open(path, "r") as fd:
         data = nfc.json_load(fd)
@@ -218,49 +184,6 @@ def clear_history(options):
     return removed
 
 
-def list_history_refs(options):
-    """Print reference labels for this mode. Returns the labels."""
-    dir_path = history_dir(options)
-    mode = env_mode(options)
-    labels = []
-    seen = set()
-    for path in list_run_files(dir_path, mode):
-        label = ref_label_from_name(path, mode)
-        if label and label not in seen:
-            seen.add(label)
-            labels.append(label)
-    msg.highlighted_info(
-        "History refs in {d} ({m}):".format(d=dir_path, m=mode))
-    if not labels:
-        msg.highlighted_info("  (none)")
-    else:
-        for label in labels:
-            msg.highlighted_info("  " + label)
-    return labels
-
-
-def delete_history_ref(options):
-    """Delete history files whose reference label matches. Returns count."""
-    label = sanitize_ref_label((options or {}).get("delete_history_ref"))
-    if not label:
-        raise ValueError("empty history ref label")
-    dir_path = history_dir(options)
-    mode = env_mode(options)
-    removed = 0
-    if dir_path and os.path.isdir(dir_path):
-        for path in list_run_files(dir_path, mode):
-            if ref_label_from_name(path, mode) != label:
-                continue
-            if os.path.isfile(path) and not os.path.islink(path):
-                os.remove(path)
-                removed += 1
-        removed += _drop_dangling_latest(dir_path, mode)
-    msg.highlighted_info(
-        "Removed {n} history file(s) for ref {l} from {d}".format(
-            n=removed, l=label, d=dir_path))
-    return removed
-
-
 def write_history(summary, options):
     """Write dated JSON and latest-{mode}.json symlink. Returns the path.
 
@@ -273,7 +196,7 @@ def write_history(summary, options):
     dir_path = history_dir(options)
     mode = env_mode(options)
     os.makedirs(dir_path, exist_ok=True)
-    ref_label = sanitize_ref_label((options or {}).get("history_ref"))
+    ref_label = sanitize_ref_label((options or {}).get("_history_label"))
     payload = dict(summary)
     payload.pop("_path", None)
     payload.pop("_basename", None)
@@ -365,11 +288,11 @@ def max_file_metric(records, key):
 
 
 def _trend_metric(options):
-    """'ms', 'chunk', or 'bytes'."""
+    """'ms', 'cpu', 'chunk', or 'bytes' from --trend METRIC."""
     raw = ((options or {}).get("trend_metric") or "bytes")
     metric = str(raw).strip().lower()
-    if metric == "ms":
-        return "ms"
+    if metric in ("ms", "cpu"):
+        return metric
     if metric in ("chunk", "chunks"):
         return "chunk"
     return "bytes"
@@ -378,7 +301,7 @@ def _trend_metric(options):
 def _fmt_metric(n, metric):
     if n is None:
         return "-"
-    if metric == "ms":
+    if metric in ("ms", "cpu"):
         return str(int(n))
     return format_xctx_bytes(n) or "0"
 
@@ -533,159 +456,51 @@ def _run_label(run):
     return (run.get("git") or {}).get("commit") or run.get("_basename") or "?"
 
 
-def print_compare(result, show_all=False):
-    old = result["old"]
-    new = result["new"]
-    n_comp = len(result["compared"])
-    msg.highlighted_info(
-        "Compared {n}  new {a}  gone {g}  (mode {m}, {oc} → {nc})".format(
-            n=n_comp,
-            a=len(result["added"]),
-            g=len(result["gone"]),
-            m=old.get("mode") or new.get("mode") or "afw",
-            oc=_run_label(old),
-            nc=_run_label(new),
-        ))
-    if result["bytes_missing"]:
-        msg.highlighted_info(
-            "bytes missing in {n} compared path(s) "
-            "(old afw / non-test_script)".format(
-                n=result["bytes_missing"]))
-    if result.get("chunk_missing"):
-        msg.highlighted_info(
-            "chunk bytes missing in {n} compared path(s) "
-            "(older harvest / non-test_script)".format(
-                n=result["chunk_missing"]))
-    msg.highlighted_info(
-        "Memory:  {f} fatter  {t} thinner  "
-        "(threshold {r}× and +{floor})".format(
-            f=len(result["fatter"]),
-            t=len(result["thinner"]),
-            r=BYTES_RATIO,
-            floor=format_xctx_bytes(BYTES_FLOOR),
-        ))
-    msg.highlighted_info(
-        "Chunk:   {f} fatter  {t} thinner  "
-        "(threshold {r}× and +{floor})".format(
-            f=len(result.get("chunk_fatter") or []),
-            t=len(result.get("chunk_thinner") or []),
-            r=BYTES_RATIO,
-            floor=format_xctx_bytes(BYTES_FLOOR),
-        ))
-    msg.highlighted_info(
-        "Time:    {s} slower  {f} faster   (noisy; {r}× and +{ms}ms)".format(
-            s=len(result["slower"]),
-            f=len(result["faster"]),
-            r=int(MS_RATIO),
-            ms=MS_FLOOR_MS,
-        ))
-    old_files = result["old_files"]
-    new_files = result["new_files"]
-    show = result["fatter"] if not show_all else result["fatter"]
-    if show:
-        msg.highlighted_info("")
-        msg.highlighted_info("Fatter (xctx):")
-        for path in show[:TREND_TOP] if not show_all else show:
-            o = old_files[path]
-            n = new_files[path]
-            msg.highlighted_info(
-                "  {ob} → {nb}  {path}".format(
-                    ob=_fmt_metric(_xctx_bytes(o), "bytes"),
-                    nb=_fmt_metric(_xctx_bytes(n), "bytes"),
-                    path=path))
-    show_chunk = result.get("chunk_fatter") or []
-    if show_chunk:
-        msg.highlighted_info("")
-        msg.highlighted_info("Fatter (chunk):")
-        listing = show_chunk if show_all else show_chunk[:TREND_TOP]
-        for path in listing:
-            o = old_files[path]
-            n = new_files[path]
-            msg.highlighted_info(
-                "  {ob} → {nb}  {path}".format(
-                    ob=_fmt_metric(_xctx_chunk_bytes(o), "bytes"),
-                    nb=_fmt_metric(_xctx_chunk_bytes(n), "bytes"),
-                    path=path))
-    def _list(title, paths):
-        if not paths:
-            return
-        msg.highlighted_info("")
-        msg.highlighted_info(title + " ({n}):".format(n=len(paths)))
-        if len(paths) > NEW_GONE_LIST_MAX and not show_all:
-            for p in paths[:NEW_GONE_LIST_MAX]:
-                msg.highlighted_info("  " + p)
-            msg.highlighted_info(
-                "  … {n} more (use --show-all)".format(
-                    n=len(paths) - NEW_GONE_LIST_MAX))
-        else:
-            for p in paths:
-                msg.highlighted_info("  " + p)
-    _list("New", result["added"])
-    _list("Gone", result["gone"])
-
-
-def resolve_compare_paths(options):
-    """Return (old_path, new_path) from --compare args and history dir."""
-    args = options.get("compare")
-    if args is False or args is None:
-        raise ValueError("compare not requested")
-    dir_path = history_dir(options)
-    mode = env_mode(options)
-    runs = list_run_files(dir_path, mode)
-    if isinstance(args, str):
-        args = [args]
-    args = list(args or [])
-    if len(args) == 0:
-        if len(runs) < 2:
-            raise ValueError(
-                "need at least two history files for mode {m} in {d}".format(
-                    m=mode, d=dir_path))
-        return runs[-2], runs[-1]
-    if len(args) == 1:
-        if not runs:
-            raise ValueError(
-                "no history files for mode {m} in {d} to use as newer".format(
-                    m=mode, d=dir_path))
-        return os.path.expanduser(args[0]), runs[-1]
-    if len(args) >= 2:
-        return os.path.expanduser(args[0]), os.path.expanduser(args[1])
-    raise ValueError("invalid --compare arguments")
-
-
 def resolve_trend_runs(options):
-    """Load run dicts oldest-first for --trend."""
-    args = options.get("trend")
-    if args is False or args is None:
-        raise ValueError("trend not requested")
-    dir_path = history_dir(options)
+    """--compare-to run (default the baseline), then later runs, oldest first.
+
+    Later means untagged runs of this mode stamped after it, the newest
+    TREND_DEFAULT_COUNT of them. With no baseline yet, the most recent
+    runs.
+    """
+    from _afwdev.test import baseline
     mode = env_mode(options)
-    if isinstance(args, str):
-        args = [args]
-    args = list(args or [])
-    count = TREND_DEFAULT_COUNT
-    files = []
-    if len(args) == 1 and re.fullmatch(r"[0-9]+", args[0]):
-        count = max(1, int(args[0]))
-        args = []
-    if args:
-        for a in args:
-            expanded = glob.glob(os.path.expanduser(a)) or [os.path.expanduser(a)]
-            files.extend(expanded)
-        files = sorted(set(files), key=lambda p: os.path.basename(p))
+    dir_path = history_dir(options)
+    ref = (options or {}).get("compare_to") or "baseline"
+    if ref == "baseline" and not baseline.select_baseline(options):
+        # No baseline yet: the most recent runs.
+        whole = [p for p in list_run_files(dir_path, mode)
+                 if not baseline._narrowed_file(p)]
+        recent = whole[-(TREND_DEFAULT_COUNT + 1):]
+        start, after = (recent[0], recent[1:]) if recent else (None, [])
     else:
-        files = select_trend_files(
-            dir_path, mode, count,
-            (options or {}).get("history_ref") or None)
+        start, _label = baseline.resolve(options)
+        after = [p for p in list_run_files(dir_path, mode)
+                 if not is_reference_name(p)
+                 and os.path.basename(p) > os.path.basename(start or "")]
+    if not start:
+        raise ValueError("no history to start --trend from")
+    after = [p for p in after if not baseline._narrowed_file(p)]
+    files = [start] + after[-TREND_DEFAULT_COUNT:]
     if len(files) < 2:
         raise ValueError(
-            "need at least two history files for --trend (mode {m})".format(
-                m=mode))
-    runs = [load_run(p) for p in files]
-    modes = {(r.get("mode") or "afw") for r in runs}
-    if len(modes) > 1:
-        raise ValueError(
-            "refusing mixed env-mode in --trend: " + ", ".join(sorted(modes)))
-    return runs
+            "need a run after {s} for --trend (mode {m})".format(
+                s=os.path.basename(start), m=mode))
+    return [load_run(p) for p in files]
+
+
+def print_baselines(options):
+    from _afwdev.test import baseline
+    mode = env_mode(options)
+    found = baseline.baselines(options)
+    if not found:
+        msg.highlighted_info("Baselines ({m}): none".format(m=mode))
+        return
+    msg.highlighted_info("Baselines ({m}):".format(m=mode))
+    for p in found:
+        full, short = baseline.file_commit(p)
+        msg.highlighted_info("  {c}  {l}".format(
+            c=short or "?", l=ref_label_from_name(p, mode)))
 
 
 def _path_filter(options):
@@ -755,6 +570,8 @@ def trend_runs(runs, options=None):
     metric = _trend_metric(options)
     if metric == "ms":
         getter = _ms
+    elif metric == "cpu":
+        getter = lambda row: _int_field(row, "cpu_ms")
     elif metric == "chunk":
         getter = _xctx_chunk_bytes
     else:
@@ -830,8 +647,8 @@ def print_trend(result, show_all=False):
     show = movers if show_all else movers[:TREND_TOP]
     if show:
         msg.highlighted_info("")
-        unit = "ms" if metric == "ms" else (
-            "chunk" if metric == "chunk" else "bytes")
+        unit = {"ms": "wall ms", "cpu": "cpu ms",
+                "chunk": "chunk"}.get(metric, "bytes")
         msg.highlighted_info("Top movers ({u}, first → last):".format(u=unit))
         for m in show:
             msg.highlighted_info(
@@ -860,7 +677,7 @@ def print_trend(result, show_all=False):
 
 
 def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped,
-                num_failed, xctx_chunk_bytes=None):
+                num_failed, xctx_chunk_bytes=None, cpu_ms=None):
     rec = {
         "path": path,
         "ms": int(duration_ms),
@@ -874,4 +691,6 @@ def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped,
         rec["xctx_bytes"] = int(xctx_bytes)
     if xctx_chunk_bytes is not None:
         rec["xctx_chunk_bytes"] = int(xctx_chunk_bytes)
+    if cpu_ms is not None:
+        rec["cpu_ms"] = int(cpu_ms)
     return rec

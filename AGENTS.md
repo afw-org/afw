@@ -103,8 +103,9 @@ Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml
 ```text
 edit generate/ or hand C/Python  →  ./afwdev build --cdev  →  afwdev test -j
 # full package dev install / before a PR that reaches C (other PRs: PR gate table in afw-project.mdc):
-#   ./afwdev build --fulldev  →  afwdev test -j --env-mode valgrind
-#   ./afwdev build --cdev --sanitize address  →  ./afwdev test -j --env-mode asan
+#   ./afwdev build --fulldev  →  afwdev test -j --baseline  →  afwdev test -j --env-mode valgrind --baseline
+#   ./afwdev build --cdev --sanitize address  →  ./afwdev test -j --env-mode asan --baseline
+# (--baseline: this branch's baseline per mode; later branches compare against it)
 ```
 
 1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.

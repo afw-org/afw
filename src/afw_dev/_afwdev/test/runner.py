@@ -19,6 +19,7 @@ import os
 import sys
 import time
 import multiprocessing
+import resource
 from functools import partial
 
 from _afwdev.common import msg
@@ -38,6 +39,18 @@ from _afwdev.test.common import \
 from _afwdev.test.history import env_mode, file_record
 from _afwdev.test import failure_log
 from _afwdev.test import run_dir
+from _afwdev.test import family
+
+
+def _children_cpu_ms():
+    """User + system CPU of reaped children, in ms.
+
+    Each test's processes (afw, afwfcgi, clients) are reaped before
+    run_test returns, and a -j worker runs one test at a time, so the
+    change around run_test is that test's CPU.
+    """
+    r = resource.getrusage(resource.RUSAGE_CHILDREN)
+    return round((r.ru_utime + r.ru_stime) * 1000)
 
 
 ##
@@ -208,7 +221,9 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             #   debug: any debug output from the test run that should be displayed
             #          to the user, under debug mode to help understand a problem.
             start = time.time()
+            cpu_start = _children_cpu_ms()
             response, error, debug = run_test(test, options, testEnvironment, testGroupConfig)
+            cpu_ms = _children_cpu_ms() - cpu_start
             end = time.time()                        
 
             # parse the test run results
@@ -226,10 +241,12 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             xctx_chunk_bytes = xctx_chunk_bytes_from_response(response)
             if xctx_bytes is not None:
                 max_xctx_bytes = max(max_xctx_bytes, xctx_bytes)
-            file_records.append(file_record(
+            record = file_record(
                 test_display, duration_ms, xctx_bytes,
                 numPassed, numSkipped, numFailures,
-                xctx_chunk_bytes=xctx_chunk_bytes))
+                xctx_chunk_bytes=xctx_chunk_bytes, cpu_ms=cpu_ms)
+            file_records.append(record)
+            marker = family.line_marker(record)
 
             # Quiet human chatter when summary is the sole stdout artifact
             quiet_console = (options.get('output') == '-')
@@ -278,6 +295,13 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             # prints successful tests too.
             errors_only = errors_only_console(options)
             if errors_only and not hasFailures:
+                # Out-of-family memory is shown even when passes are not.
+                if marker and not quiet_console:
+                    msg.warn("{}  {}{}".format(
+                        test_display,
+                        format_test_timing(
+                            duration_ms, xctx_bytes, xctx_chunk_bytes),
+                        marker))
                 continue
 
             if quiet_console:
@@ -286,10 +310,11 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             # Path for assertion failures / --show-all (process errors already
             # printed identity above).
             if error is None:
-                msg.highlighted_info("{}  {}".format(
+                msg.highlighted_info("{}  {}{}".format(
                     test_display,
                     format_test_timing(
-                        duration_ms, xctx_bytes, xctx_chunk_bytes)))
+                        duration_ms, xctx_bytes, xctx_chunk_bytes),
+                    marker))
 
                 if debug:
                     msg.debug('---\n' + debug + '\n---\n')
@@ -399,7 +424,9 @@ def run(options, srcdirs):
         worker_options = dict(options)
         worker_options['_buffer_group_output'] = True
         
-        pool = multiprocessing.Pool(processes=test_jobs)                   
+        pool = multiprocessing.Pool(
+            processes=test_jobs, initializer=family.init_worker,
+            initargs=family.worker_args())
 
         # run allTestGroups in parallel     
         results = []
