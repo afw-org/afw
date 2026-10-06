@@ -150,6 +150,9 @@ afw_value_decompile_value(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
+    /* Recursion follows the value's nesting (#482). */
+    afw_xctx_check_resource_limits(xctx, 0);
+
     if (afw_value_is_undefined(instance)) {
         afw_writer_write_utf8(writer, afw_s_undefined, xctx);
     }

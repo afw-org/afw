@@ -561,3 +561,72 @@ afw_reference_collect(
     free(whites.v);
     c->collecting = false;
 }
+
+
+/* Record a deferred element release. Falls back to releasing now. */
+static void
+impl_release_pending_push(
+    const afw_reference_t *instance,
+    afw_xctx_t *xctx)
+{
+    const afw_reference_t **grown;
+    afw_size_t cap;
+
+    if (xctx->release_pending_count == xctx->release_pending_cap) {
+        cap = (xctx->release_pending_cap)
+            ? xctx->release_pending_cap * 2 : 64;
+        grown = realloc((void *)xctx->release_pending,
+            cap * sizeof(*grown));
+        if (!grown) {
+            /* No memory to defer: recurse, as before #482. */
+            afw_reference_release(instance, xctx);
+            return;
+        }
+        xctx->release_pending = grown;
+        xctx->release_pending_cap = cap;
+    }
+    xctx->release_pending[xctx->release_pending_count++] = instance;
+}
+
+
+/*
+ * Release what was deferred, one level at a time. Each release can
+ * defer more (its own deep elements); keep going until none are left,
+ * then free the list so nothing is left for xctx release to free.
+ */
+static void
+impl_release_pending_drain(afw_xctx_t *xctx)
+{
+    const afw_reference_t *instance;
+
+    while (xctx->release_pending_count > 0) {
+        instance = xctx->release_pending[--xctx->release_pending_count];
+        xctx->release_depth = 1;
+        afw_reference_release(instance, xctx);
+        xctx->release_depth = 0;
+    }
+    free((void *)xctx->release_pending);
+    xctx->release_pending = NULL;
+    xctx->release_pending_cap = 0;
+}
+
+
+AFW_DEFINE(void)
+afw_reference_release_held(
+    const afw_reference_t *instance,
+    afw_xctx_t *xctx)
+{
+    if (!instance) {
+        return;
+    }
+    if (xctx->release_depth >= AFW_REFERENCE_RELEASE_DEPTH_MAX) {
+        impl_release_pending_push(instance, xctx);
+        return;
+    }
+    xctx->release_depth++;
+    afw_reference_release(instance, xctx);
+    xctx->release_depth--;
+    if (xctx->release_depth == 0 && xctx->release_pending_count > 0) {
+        impl_release_pending_drain(xctx);
+    }
+}

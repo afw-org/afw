@@ -179,7 +179,7 @@ An overnight crash hunt (ASan stress leaves and fuzzers) fixed crashes that a sc
 - **`afw` CLI:** exits 1 after an uncaught error (see *Must change*).
 - **Memory:** an uncaught error no longer leaks at `afw` exit; restarting a service no longer grows `env->p` (registry key copies are freed).
 
-Not yet: deeply nested data built at runtime (thousands of levels) can still overflow the C stack while it is freed ([#482](https://github.com/afw-org/afw/issues/482)).
+Deeply nested data built at runtime ([#482](https://github.com/afw-org/afw/issues/482)): releasing it no longer recurses once per level (an array or object releases its elements directly up to 256 nested levels, then defers the rest and releases them in a loop), so any depth can be built and dropped. `stringify`, `decompile`, `string`, `==`, `===`, and `clone` of data deeper than the C stack allows fail with **"C stack headroom exhausted"** instead of crashing.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 

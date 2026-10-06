@@ -689,10 +689,10 @@ impl_unlink_property(
          * Managed entries live in managed_p; free them here.
          */
         if (managed || self->wrapped) {
-            afw_value_release(e->value, xctx);
+            afw_value_release_held(e->value, xctx);
         }
         if (managed) {
-            afw_value_release(e->name, xctx);
+            afw_value_release_held(e->name, xctx);
         }
         e->value = NULL;
         e->name = NULL;
@@ -1275,11 +1275,11 @@ impl_afw_object_managed_release(
     for (e = self->first_property; e; e = next) {
         next = e->next;
         if (e->value) {
-            afw_value_release(e->value, xctx);
+            afw_value_release_held(e->value, xctx);
             e->value = NULL;
         }
         if (e->name) {
-            afw_value_release(e->name, xctx);
+            afw_value_release_held(e->name, xctx);
             e->name = NULL;
         }
         afw_pool_free_memory_type(self->pub.p, e,
@@ -1466,7 +1466,7 @@ impl_afw_object_managed_release_references(
     for (e = self->first_property; e; e = e->next) {
         value = e->value;
         e->value = NULL;
-        afw_value_release(value, xctx);
+        afw_value_release_held(value, xctx);
     }
     wrapped = self->wrapped;
     self->wrapped = NULL;

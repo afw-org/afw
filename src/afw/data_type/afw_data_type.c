@@ -1004,6 +1004,9 @@ impl_afw_data_type_array_compare_internal(
     const afw_data_type_t *data_type2;
     int result;
 
+    /* Recursion follows the values' nesting (#482). */
+    afw_xctx_check_resource_limits(xctx, 0);
+
     for (iterator1 = NULL, iterator2 = NULL, result = 0; result == 0;) {
         v1 = afw_array_get_next_value(array1, &iterator1, xctx);
         v2 = afw_array_get_next_value(array2, &iterator2, xctx);
@@ -1170,6 +1173,9 @@ impl_afw_data_type_object_compare_internal(
     const afw_value_t *property_name;
     afw_size_t count1, count2;
     const afw_iterator_old_t *iterator;
+
+    /* Recursion follows the values' nesting (#482). */
+    afw_xctx_check_resource_limits(xctx, 0);
 
     /* Get object 1 & 2 pointer. */
     o1 = *(const afw_object_t **)value1;
