@@ -69,6 +69,10 @@
  *                         debug:pool:detail is the alloc/free firehose.
  * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
  *   afwdev build --define AFW_DEBUG_POOL
+ *
+ * AFW_VALGRIND_POOL (not a debug probe): pool memory annotations for
+ * valgrind memcheck (afw_memory_annotate_internal.h). --cdev and
+ * --fulldev define it when <valgrind/memcheck.h> is found.
  */
 
 /* Common standard headers. */

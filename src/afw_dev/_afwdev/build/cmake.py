@@ -38,6 +38,29 @@ _CDEV_DEBUG_DEFINES = (
     'AFW_DEBUG_POOL',
 )
 
+# --cdev / --fulldev also define this when the compiler finds
+# <valgrind/memcheck.h>: valgrind then sees inside pools (see
+# afw_memory_annotate_internal.h). Without the headers it is left out
+# with a warning, so a machine without valgrind still builds.
+_CDEV_VALGRIND_DEFINE = 'AFW_VALGRIND_POOL'
+
+
+def valgrind_headers_available(extra_cflags=()):
+    """True if the C compiler can compile #include <valgrind/memcheck.h>."""
+    cc = os.environ.get('CC', 'cc')
+    with tempfile.TemporaryDirectory(prefix='afwdev_valgrind_') as d:
+        src = os.path.join(d, 'probe.c')
+        with open(src, 'w') as f:
+            f.write('#include <valgrind/memcheck.h>\n'
+                'int main(void) { return 0; }\n')
+        try:
+            rc = subprocess.run([cc] + list(extra_cflags) +
+                ['-c', '-o', os.path.join(d, 'probe.o'), src],
+                capture_output=True, text=True)
+        except OSError:
+            return False
+    return rc.returncode == 0
+
 
 def _cmake_install_prefix(options):
     if options.get('build_prefix'):
@@ -224,6 +247,16 @@ def build(options):
         for _name in _CDEV_DEBUG_DEFINES:
             if not any(_d.split('=', 1)[0] == _name for _d in _c_defines):
                 _c_defines.append(_name)
+        if not any(_d.split('=', 1)[0] == _CDEV_VALGRIND_DEFINE
+                for _d in _c_defines):
+            if valgrind_headers_available():
+                _c_defines.append(_CDEV_VALGRIND_DEFINE)
+            else:
+                msg.warn('valgrind headers (<valgrind/memcheck.h>) not '
+                    'found: building without ' + _CDEV_VALGRIND_DEFINE +
+                    ', so valgrind will not see inside pools. Install '
+                    'valgrind-devel (valgrind-dev on Alpine; the valgrind '
+                    'package on Ubuntu).')
     if _c_defines:
         # Semicolon list: add_compile_definitions in the root CMakeLists.
         _configure_command.extend(['-DAFWDEV_C_DEFINES=' + ';'.join(_c_defines)])
