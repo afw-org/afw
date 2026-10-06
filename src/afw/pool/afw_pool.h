@@ -303,7 +303,8 @@ afw_pool_subtree_chunk_bytes(const afw_pool_t *instance);
  *
  * Internal. Only called from afw_thread_create(). Does not start a
  * pthread; it creates the thread-specific pool and the thread struct
- * in that pool.
+ * in that pool. The pool's parent is env->p (multithreaded), not the
+ * caller's xctx->p.
  */
 AFW_DECLARE(afw_thread_t *)
 afw_pool_thread_create(
