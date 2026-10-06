@@ -203,6 +203,8 @@ afwdev test -j
 # build/test). --fulldev = --all --generate --clean --install --scan plus -j.
 ./afwdev build --fulldev
 afwdev test -j --env-mode valgrind
+./afwdev build --cdev --sanitize address
+./afwdev test -j --env-mode asan
 
 # Filename filter (regex on path under tests/)
 afwdev test -p afw --test-pattern 'miscellaneous/property_get'

@@ -4,7 +4,9 @@
 
 ## Decision
 
-ASAN is an **optional, intentional** testing method, not a default (maintainer call, 2026-10). It never runs as part of `--cdev`, `--fulldev`, `--all` or the pre-PR gate; CI runs it (below). You get it only by asking for it, and an ASAN build must not change a normal build, a normal install, or the plain / valgrind test modes. Revisit only by consensus.
+ASAN is an **explicit** testing method: no build profile implies it (`--cdev`, `--fulldev`, `--all` never build it), and an ASAN build must not change a normal build, a normal install, or the plain / valgrind test modes.
+
+**Pre-PR gate (maintainer call, 2026-10-06):** the full ASAN suite (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`) is part of the pre-PR gate next to `--fulldev` + valgrind. It had been opt-in only (2026-10); the first overnight crash hunt (2026-10-06) showed it finds stale reads of pool memory, races, and UBSan faults that valgrind cannot see.
 
 **CI (2026-10-05, maintainer request):** `integration.yml` has a `build_test_c_asan_ubuntu` job (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`). It is **blocking** (decided 2026-10-05): `integration.yml` gates PRs to `main`, not `develop`, so open findings block a release merge, not day-to-day work. The three open UBSan findings must be fixed before the next `develop` → `main` merge. Ubuntu only (the `afw-dev-base` images carry the ASan/UBSan runtimes; Alpine has none). It is still never part of `--cdev`, `--fulldev` or `--all` locally.
 
@@ -65,12 +67,12 @@ Question (2026-10-04): does ASan replace `AFW_DEBUG_POOL`, so the macro and its 
 | `AFW_DEBUG_POOL` feature | ASan equivalent? |
 |---|---|
 | **1. `{size, pool}` prefix checked on every free** (`afw_pool_internal_debug_check_prefix`, `pool/afw_pool.c`): `afw_pool_free_memory` throws "pool does not match allocation" / "size does not match allocation", a catchable error in every `--cdev` run at normal speed | **No.** ASan does not know the size or pool passed to `afw_pool_free_memory`. A free into the wrong heap or with the wrong size corrupts free lists while every byte involved still looks valid to it. |
-| **2. Freed USER filled with `0x0BADF00D`**: a dangling `inf` faults on first use; the pattern is recognizable in gdb and core dumps | **Only in ASan runs**, where it is strictly better (exact read reported, plus slack and released chunks). ASan is opt-in and ~17× slower, so the fill is still the fast signal in everyday `--cdev` runs. |
+| **2. Freed USER filled with `0x0BADF00D`**: a dangling `inf` faults on first use; the pattern is recognizable in gdb and core dumps | **Only in ASan runs**, where it is strictly better (exact read reported, plus slack and released chunks). ASan runs at the PR gate, not in everyday runs, and is ~17× slower, so the fill is still the fast signal in everyday `--cdev` runs. |
 | **3. `debug:pool` / `debug:pool:detail` trace flags** (create / release / destroy, plus every alloc / free at `:detail`, with `in_use`, totals, RSS, refs, parent) | **No.** ASan finds errors; it does not trace pool lifetime or accounting. The #2 RSS lab depends on these lines (`tests-extra/issue-2/01-rss-hard-loops/README.md`, `_trace.py`). |
 
 The prefix also made ASan's reports usable. ASan reports a bad read in pool memory as `use-after-poison` with no allocation or free stack. Every diagnosis in *Findings so far* came from reading `[chunk][size][pool]` before the block in gdb: live or freed, and whether the owning heap had been released. Without `AFW_DEBUG_POOL` that would have been much harder.
 
-If anything is trimmed, only the fill (2) is a candidate, and only if ASan becomes routine rather than opt-in.
+If anything is trimmed, only the fill (2) is a candidate, and only if ASan becomes routine in everyday runs rather than a PR-gate step.
 
 ## Build design (`afwdev build --sanitize`)
 
