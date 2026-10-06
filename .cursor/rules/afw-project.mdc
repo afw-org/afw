@@ -59,10 +59,10 @@ afwdev test -j
 # --all alone does NOT generate or install (version headers / Doxyfile need generate).
 ./afwdev build --fulldev
 
-# Full test under valgrind (much slower) — pair with --fulldev before a PR
+# Full test under valgrind (much slower) — pair with --fulldev before a PR that reaches C
 afwdev test -j --env-mode valgrind
 
-# AddressSanitizer + UBSan — also before a PR (own tree, never installed)
+# AddressSanitizer + UBSan — also before a PR that reaches C (own tree, never installed)
 ./afwdev build --cdev --sanitize address
 ./afwdev test -j --env-mode asan
 
@@ -75,10 +75,23 @@ afwdev validate --pattern 'src/afw/generate/objects/...'
 |-----------|--------|------|
 | Day-to-day C/Python edit loop | `./afwdev build --cdev` (implies `-j`) | `afwdev test -j` (or narrow `--test-pattern`) |
 | **Before commit/push** on work that is more than a trivial C/Python fix (docs, afwdev docs builder, JS, multi-area, finish pass) | Prefer **`./afwdev build --fulldev`** (implies `-j`) | Focused or full `afwdev test` as appropriate |
-| User asks for **full build and test** | `./afwdev build --fulldev` and `./afwdev build --cdev --sanitize address` | `afwdev test -j --env-mode valgrind` and `./afwdev test -j --env-mode asan` |
-| **Before opening/updating a PR** | **Always** (maintainer default): `./afwdev build --fulldev` and `./afwdev build --cdev --sanitize address` | **Always:** `afwdev test -j --env-mode valgrind` and `./afwdev test -j --env-mode asan` |
+| User asks for **full build and test** | `./afwdev build --fulldev` and `./afwdev build --cdev --sanitize address` | `afwdev test -j`, `afwdev test -j --env-mode valgrind`, and `./afwdev test -j --env-mode asan` |
+| **Before opening/updating a PR** | By what the PR touches; see **PR gate** below | |
 
-**`--cdev`** does not build the handbook or JS. **`--fulldev`** does (plus generate so package version and other metadata land in sources). Both enable parallel cmake (`-j`); pass **`-j N`** to cap jobs. Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR, run the full pair so generate, JS/docs, clang scan, and valgrind all pass, then the ASAN pair (its own `build/asan/cmake/` tree; it does not touch the normal install).
+### PR gate (by what the PR touches)
+
+| PR touches | Build | Test |
+|------------|-------|------|
+| **C** (`src/afw`, extensions, commands, `afwfcgi`), or anything generated into C (`generate/` metadata, interface XML, `_afwdev/generate`) | `./afwdev build --fulldev` and `./afwdev build --cdev --sanitize address` | `afwdev test -j`, `afwdev test -j --env-mode valgrind`, `./afwdev test -j --env-mode asan` |
+| **afwdev Python only** (not the generators) | `./afwdev build --cdev` (installs afwdev) | `afwdev test -j` |
+| **JS app / client only** (`src/afw_app`, `src/afw_client`) | `./afwdev build --js` | `afwdev test --js` |
+| **Handbook XML** (`src/afw/doc/`) | `./afwdev build --docs` (or `--fulldev`) | none |
+| **Markdown only** (`designs/`, `AGENTS.md`, `.cursor/rules/`, `whats-new.md`) | none | none |
+| **Mixed** | Every row that applies | |
+
+Valgrind and ASan test the C runtime; they add nothing for a change that does not reach C.
+
+**`--cdev`** does not build the handbook or JS. **`--fulldev`** does (plus generate so package version and other metadata land in sources). Both enable parallel cmake (`-j`); pass **`-j N`** to cap jobs. Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR that reaches C, run the full pair so generate, JS/docs, clang scan, and valgrind all pass, then the ASAN pair (its own `build/asan/cmake/` tree; it does not touch the normal install). Other PRs use the **PR gate** table.
 
 Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; otherwise **`afwdev`** from PATH is fine.
 

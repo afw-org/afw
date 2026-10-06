@@ -199,7 +199,7 @@ When a compile, decompile, type-syntax, or compiler-internal change can break **
 # Usual script-test run (judge success from command output)
 afwdev test -j
 
-# Thorough (maintainer default before a PR; also when user asks for full
+# Thorough (before a PR that reaches C; also when user asks for full
 # build/test). --fulldev = --all --generate --clean --install --scan plus -j.
 ./afwdev build --fulldev
 afwdev test -j --env-mode valgrind

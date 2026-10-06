@@ -6,7 +6,7 @@
 
 ASAN is an **explicit** testing method: no build profile implies it (`--cdev`, `--fulldev`, `--all` never build it), and an ASAN build must not change a normal build, a normal install, or the plain / valgrind test modes.
 
-**Pre-PR gate (maintainer call, 2026-10-06):** the full ASAN suite (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`) is part of the pre-PR gate next to `--fulldev` + valgrind. It had been opt-in only (2026-10); the first overnight crash hunt (2026-10-06) showed it finds stale reads of pool memory, races, and UBSan faults that valgrind cannot see.
+**Pre-PR gate (maintainer call, 2026-10-06):** the full ASAN suite (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`) is part of the pre-PR gate next to `--fulldev` + valgrind for a PR that reaches C (the gate table in `.cursor/rules/afw-project.mdc` covers app, afwdev, and docs-only PRs). It had been opt-in only (2026-10); the first overnight crash hunt (2026-10-06) showed it finds stale reads of pool memory, races, and UBSan faults that valgrind cannot see.
 
 **CI (2026-10-05, maintainer request):** `integration.yml` has a `build_test_c_asan_ubuntu` job (`./afwdev build --cdev --sanitize address`, then `./afwdev test -j --env-mode asan`). It is **blocking** (decided 2026-10-05): `integration.yml` gates PRs to `main`, not `develop`, so open findings block a release merge, not day-to-day work. The three open UBSan findings must be fixed before the next `develop` → `main` merge. Ubuntu only (the `afw-dev-base` images carry the ASan/UBSan runtimes; Alpine has none). It is still never part of `--cdev`, `--fulldev` or `--all` locally.
 
