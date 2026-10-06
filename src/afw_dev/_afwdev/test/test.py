@@ -327,7 +327,7 @@ def run(options):
 
 
 def _print_run_location(options):
-    msg.highlighted_info("Run:           {p}   (keeps the last {n} {m} runs)".format(
+    msg.highlighted_info("Run:           {p}   (keeps the last {n} {m} runs and {n} failed)".format(
         p=run_dir.current(options), n=run_dir.keep_runs(options),
         m=test_history.env_mode(options)))
     failures = failure_log.path_if_failed(options)

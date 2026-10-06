@@ -2,6 +2,10 @@
 
 import shutil
 import os
+import tempfile
+
+# The run's scratch directory (afwdev test sets TMPDIR per run).
+TMP = tempfile.gettempdir()
 
 # test configuration settings
 Environment = "afwdev"
@@ -14,13 +18,13 @@ def remove_file(file):
 
 def before_each():
     # remove any residual packages from a prior, broken run
-    remove_file("/tmp/test-settings.code-workspace")    
-    remove_file("/tmp/afwdev-settings.json")
+    remove_file(os.path.join(TMP, "test-settings.code-workspace"))    
+    remove_file(os.path.join(TMP, "afwdev-settings.json"))
 
 def before_all():
 
-    shutil.rmtree("/tmp/test-package-1", ignore_errors=True)
-    shutil.rmtree("/tmp/test-package-2", ignore_errors=True)
-    shutil.rmtree("/tmp/test-package-3", ignore_errors=True)
-    shutil.rmtree("/tmp/test-package-4", ignore_errors=True)
-    shutil.rmtree("/tmp/test-package-5", ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-1"), ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-2"), ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-3"), ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-4"), ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-5"), ignore_errors=True)

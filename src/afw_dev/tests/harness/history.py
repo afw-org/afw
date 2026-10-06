@@ -289,6 +289,10 @@ def run():
         runs = run_dir.runs_root(opts)
         os.makedirs(runs)
         base_time = time.time() - 3600
+        failed_old = os.path.join(runs, "0100-235959-afw")
+        os.mkdir(failed_old)
+        open(os.path.join(failed_old, run_dir.FAILURES_NAME), "w").close()
+        os.utime(failed_old, (base_time - 50, base_time - 50))
         for i, (name, locked) in enumerate((
                 ("0101-000000-afw", False),
                 ("0101-000001-afw", True),
@@ -311,10 +315,11 @@ def run():
             "test": "run-dir-create-and-prune",
             "description":
                 "keeps the newest test_keep_runs of the mode, counting the "
-                "new one; a live run and other modes stay; new run has "
-                "lock, tmp/ as TMPDIR, and latest",
+                "new one; an older failed run, a live run, and other modes "
+                "stay; new run has lock, tmp/ as TMPDIR, and latest",
             "passed": (
-                "0101-000000-afw" not in left
+                "0100-235959-afw" in left
+                and "0101-000000-afw" not in left
                 and "0101-000001-afw" in left
                 and "0101-000002-afw" in left
                 and "0101-000003-afw" in left

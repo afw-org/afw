@@ -1106,9 +1106,10 @@ _info_test_clear_temps = {
         "Delete every run directory under --tmpdir/afwdev-runs/ that "
         "no live afwdev test holds, plus the old afwdev_test_output "
         "and directories tests used to leave in --tmpdir (known "
-        "afw_* prefixes only). Otherwise each run keeps the newest "
-        "test_keep_runs run directories of its --env-mode "
-        "(afwdev-settings.json, default 10). Does not run tests."
+        "afw_* prefixes only). Otherwise each --env-mode keeps its "
+        "newest test_keep_runs run directories (afwdev-settings.json, "
+        "default 10) and, separately, its newest test_keep_runs failed "
+        "ones. Does not run tests."
 }
 
 _info_test_clear_history = {

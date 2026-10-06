@@ -4,6 +4,10 @@ import os
 import json
 import subprocess
 import shutil
+import tempfile
+
+# The run's scratch directory (afwdev test sets TMPDIR per run).
+TMP = tempfile.gettempdir()
 
 
 def run():
@@ -14,10 +18,10 @@ def run():
 
     subprocess.run(
         ["afwdev", "--noprompt", "make-afw-package",
-         "test-package-2", "/tmp/test-package-2"],
+         "test-package-2", os.path.join(TMP, "test-package-2")],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    if not os.path.isdir("/tmp/test-package-2"):
+    if not os.path.isdir(os.path.join(TMP, "test-package-2")):
         response["tests"].append({
             "description":
                 "Lists settings (skipping rest of tests, "
@@ -27,7 +31,7 @@ def run():
         })
         return response
 
-    os.chdir("/tmp/test-package-2")
+    os.chdir(os.path.join(TMP, "test-package-2"))
 
     result = subprocess.run(["afwdev", "settings"], stdout=subprocess.PIPE)
     passed = True
@@ -51,7 +55,7 @@ def run():
         "test": "settings-no-settings-code-workspace"
     })
 
-    with open("/tmp/test-settings.code-workspace", 'w') as f:
+    with open(os.path.join(TMP, "test-settings.code-workspace"), 'w') as f:
         code_workspace = {
             "folders": [
                 {"path": "test-package-1"},
@@ -86,7 +90,7 @@ def run():
         "test": "settings-code-workspace"
     })
 
-    with open("/tmp/afwdev-settings.json", 'w') as f:
+    with open(os.path.join(TMP, "afwdev-settings.json"), 'w') as f:
         afwdev_settings = {
             "afwPackages": [
                 {"path": "test-package-2"}
@@ -125,10 +129,10 @@ def run():
     })
 
     try:
-        os.remove("/tmp/test-settings.code-workspace")
-        os.remove("/tmp/afwdev-settings.json")
+        os.remove(os.path.join(TMP, "test-settings.code-workspace"))
+        os.remove(os.path.join(TMP, "afwdev-settings.json"))
     except OSError:
         pass
-    shutil.rmtree("/tmp/test-package-2", ignore_errors=True)
+    shutil.rmtree(os.path.join(TMP, "test-package-2"), ignore_errors=True)
 
     return response

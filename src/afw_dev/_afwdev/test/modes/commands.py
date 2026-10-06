@@ -5,6 +5,7 @@
 import os
 import subprocess
 import shlex
+import tempfile
 import json
 from contextlib import redirect_stdout, redirect_stderr
 
@@ -53,11 +54,13 @@ def _process_commands_file(response, test, options):
             # Non-empty, non-comment lines that do not start with 'cd' are
             # executed as shell commands. Lines that start with 'cd' are
             # used to determine the current working directory for the subsequent
-            # commands.
+            # commands. $VAR and ${VAR} are expanded first; $TMPDIR is the
+            # run's scratch directory.
             #
             else:
                 try:
-                    split_line = shlex.split(line)
+                    os.environ.setdefault("TMPDIR", tempfile.gettempdir())
+                    split_line = shlex.split(os.path.expandvars(line))
                     if len(split_line) == 0:
                         # The description before the first empty line is used
                         # as the description of the overall test.

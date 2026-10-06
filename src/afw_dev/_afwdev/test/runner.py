@@ -99,12 +99,43 @@ def _with_buffered_stdio(fn):
 def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     if options.get('_buffer_group_output'):
         result, captured = _with_buffered_stdio(
-            lambda: _run_test_group_body(
+            lambda: _run_test_group_guarded(
                 testGroup, options, testEnvironments, work_dir_prefix))
         return result + (captured,)
-    result = _run_test_group_body(
+    result = _run_test_group_guarded(
         testGroup, options, testEnvironments, work_dir_prefix)
     return result + ("",)
+
+
+def _run_test_group_guarded(testGroup, options, testEnvironments,
+        work_dir_prefix):
+    """A test or config.py that calls sys.exit() fails its group.
+
+    Under -j the group runs in a multiprocessing.Pool worker. If the
+    worker exited, the pool would lose the task and the run would wait
+    forever for its result.
+    """
+    env = os.environ.copy()
+    pwd = os.getcwd()
+    try:
+        return _run_test_group_body(
+            testGroup, options, testEnvironments, work_dir_prefix)
+    except SystemExit as e:
+        os.chdir(pwd)
+        os.environ.clear()
+        os.environ.update(env)
+        srcdir, root, _tests = testGroup
+        detail = "test group called sys.exit({})".format(e.code)
+        failure = {
+            'test': test_path_for_display(root, pwd),
+            'detail': detail,
+            'srcdir': srcdir,
+            'group': test_path_for_display(root, pwd),
+        }
+        failure_log.record(
+            options, test_path_for_display(root, pwd), detail)
+        msg.error("FAIL " + test_path_for_display(root, pwd) + ": " + detail)
+        return testGroup, 0, 0, 1, [failure], 0, []
 
 
 def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
@@ -382,9 +413,23 @@ def run(options, srcdirs):
             ), allTestGroups
         )
         pool.close()
+        # Workers only exit at the end, so a new worker pid means one
+        # died. Its task is lost and imap would wait forever.
+        worker_pids = {p.pid for p in getattr(pool, "_pool", []) or []}
 
         try:
-            for res in pool_results:
+            while True:
+                try:
+                    res = pool_results.next(timeout=5)
+                except StopIteration:
+                    break
+                except multiprocessing.TimeoutError:
+                    now = {p.pid for p in getattr(pool, "_pool", []) or []}
+                    if now - worker_pids:
+                        raise AfwdevRunnerError(
+                            "A test worker process died, so its test group "
+                            "has no result. Run without -j to find it.")
+                    continue
                 if not res:
                     raise AfwdevRunnerError("Test group returned no results")
                 else:

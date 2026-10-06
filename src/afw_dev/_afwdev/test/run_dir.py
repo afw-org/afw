@@ -9,9 +9,12 @@
 #   tmp/          TMPDIR and tempfile.tempdir for tests and their children
 #   <leaf>/       per test-group work directories (afwfcgi logs, diag/)
 # <tmpdir>/afwdev-runs/latest links to the newest run. Parallel runs
-# never share a directory. At the start of a run, only the newest
-# test_keep_runs (afwdev-settings.json, default 10) of each env mode are
-# kept, counting the new one; a run still in use is never removed.
+# never share a directory. At the start of a run, each env mode keeps
+# its newest test_keep_runs (afwdev-settings.json, default 10) failed
+# runs (those with a failures.log) and, separately, its newest
+# test_keep_runs other runs, counting the new one. Many passing runs,
+# such as an overnight loop, never push out a failure. A run still in
+# use is never removed.
 # Names stay short: Unix socket paths under a run are limited to
 # SOCKET_PATH_MAX bytes.
 #
@@ -132,16 +135,24 @@ def _mtime(path):
         return 0
 
 
-def prune(options, mode):
-    """Before a new run: keep the newest keep_runs - 1 of mode.
+def _failed(path):
+    return os.path.isfile(os.path.join(path, FAILURES_NAME))
 
-    Runs still in use count toward the number but are never removed.
+
+def prune(options, mode):
+    """Before a new run: keep the newest of mode, failed runs apart.
+
+    keep_runs failed runs, and keep_runs - 1 others (the new run is the
+    last one). Runs still in use count toward the number but are never
+    removed.
     """
-    keep = keep_runs(options) - 1
+    keep = keep_runs(options)
     same = [p for p in _run_dirs(runs_root(options)) if _mode_of(p) == mode]
     same.sort(key=_mtime, reverse=True)
+    failed = [p for p in same if _failed(p)]
+    others = [p for p in same if not _failed(p)]
     removed = 0
-    for path in same[keep:]:
+    for path in failed[keep:] + others[keep - 1:]:
         if in_use(path):
             continue
         _remove(path)
