@@ -5628,7 +5628,7 @@ AFW_DEFINE(const afw_request_handler_t *)
   </interface>
 
 
-  <interface name="afw_pool" id="afwp">
+  <interface name="afw_pool" id="afwp" extends="afw_reference">
 
     <description>
       Hierarchical memory pool: fast allocate with bulk free on destroy or
@@ -5647,52 +5647,6 @@ AFW_DEFINE(const afw_request_handler_t *)
         self; other pools inherit the parent.
       </description>
     </variable>
-
-    <method name="release">
-
-      <description>
-        Reduce the reference count. If it reaches 0, run pool cleanup
-        (callbacks, unchain, free this store, release parent). Does not
-        call destroy. Last-release with children remaining is an error.
-
-        Returns the pool if it still exists, or NULL if this call ran
-        cleanup. If the return is NULL, do not use the pool pointer again.
-      </description>
-
-      <parameter name="instance" type="const afw_pool_t *">
-        <description>Pointer to this pool instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="const afw_pool_t *">
-        <description>
-          Pool instance if still referenced; NULL if this call destroyed
-          the pool.
-        </description>
-      </return>
-
-    </method>
-
-    <method name="get_reference">
-
-      <description>
-        Add reference to a pool.
-      </description>
-
-      <parameter name="instance" type="const afw_pool_t *">
-        <description>Pointer to this pool instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
 
     <method name="destroy">
 

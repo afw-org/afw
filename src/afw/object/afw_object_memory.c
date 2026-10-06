@@ -804,7 +804,6 @@ impl_afw_object_release(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entity;
-    const afw_object_t *wrapped;
 
     /* Pooled: no reference was ever taken, so a release is a bug. */
     if (self->unmanaged) {
@@ -822,14 +821,8 @@ impl_afw_object_release(
         return;
     }
 
-    /*
-     * new_p / cede_p: instance release is pool_release of object->p.
-     * If the pool dies, drop the create-time pin on wrapped.
-     */
-    wrapped = self->wrapped;
-    if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
-        afw_object_release(wrapped, xctx);
-    }
+    /* Owns its pool (new_p / cede_p): a reference is the pool's. */
+    afw_pool_release(self->pub.p, xctx);
 }
 
 

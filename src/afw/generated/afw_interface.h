@@ -7110,7 +7110,11 @@ struct afw_stream_inf_s {
  * a larger self struct in .c files.
  */
 struct afw_pool_s {
-    const afw_pool_inf_t *inf;
+    /** inf, also usable as `afw_reference_t` via `&x->ref`. */
+    union {
+        const afw_pool_inf_t *inf;
+        afw_reference_t ref;
+    };
 
     /**
      * Pool to use for managed object/array instances and other managed
@@ -7125,16 +7129,30 @@ struct afw_pool_s {
 #define AFW_POOL_INTERFACE_NAME \
 "afw_pool"
 
-/** @sa afw_pool_release() */
+/** @sa afw_pool_get_reference() */
 typedef const afw_pool_t *
+(*afw_pool_get_reference_t)(
+    const afw_pool_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_pool_release() */
+typedef void
 (*afw_pool_release_t)(
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_get_reference() */
-typedef void
-(*afw_pool_get_reference_t)(
+/** @sa afw_pool_get_reference_count() */
+typedef afw_size_t
+(*afw_pool_get_reference_count_t)(
     const afw_pool_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_pool_for_each_reference() */
+typedef void
+(*afw_pool_for_each_reference_t)(
+    const afw_pool_t * instance,
+    afw_reference_cb_t callback,
+    void * context,
     afw_xctx_t * xctx);
 
 /** @sa afw_pool_destroy() */
@@ -7225,8 +7243,10 @@ typedef void
  */
 struct afw_pool_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_pool_release_t release;
     afw_pool_get_reference_t get_reference;
+    afw_pool_release_t release;
+    afw_pool_get_reference_count_t get_reference_count;
+    afw_pool_for_each_reference_t for_each_reference;
     afw_pool_destroy_t destroy;
     afw_pool_calloc_t calloc;
     afw_pool_calloc_no_throw_t calloc_no_throw;
@@ -7241,36 +7261,13 @@ struct afw_pool_inf_s {
 };
 
 /**
- * @brief Call method `release` of interface `afw_pool`.
- *
- * Reduce the reference count. If it reaches 0, run pool cleanup
- * (callbacks, unchain, free this store, release parent). Does not
- * call destroy. Last-release with children remaining is an error.
- * 
- * Returns the pool if it still exists, or NULL if this call ran
- * cleanup. If the return is NULL, do not use the pool pointer again.
- * @param instance Pointer to this pool instance.
- * @param xctx This is the caller's xctx.
- * @return Pool instance if still referenced; NULL if this call destroyed the
- * pool.
- * @relates afw_pool_t
- * @see @ref afw_pool_s "afw_pool_t"
- */
-#define afw_pool_release( \
-    _instance, \
-    _xctx \
-) \
-(_instance)->inf->release( \
-    (_instance), \
-    (_xctx) \
-)
-
-/**
  * @brief Call method `get_reference` of interface `afw_pool`.
  *
- * Add reference to a pool.
- * @param instance Pointer to this pool instance.
+ * Return a pointer the caller owns one reference to. Use the returned
+ * pointer. NULL instance returns NULL.
+ * @param instance Instance.
  * @param xctx This is the caller's xctx.
+ * @return Owned pointer (self or a copy).
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
  */
@@ -7280,6 +7277,75 @@ struct afw_pool_inf_s {
 ) \
 (_instance)->inf->get_reference( \
     (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `release` of interface `afw_pool`.
+ *
+ * Give back one reference. The last release frees what the instance
+ * owns. NULL instance is ignored.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_release( \
+    _instance, \
+    _xctx \
+) \
+((_instance) ? \
+(_instance)->inf->release( \
+    (_instance), \
+    (_xctx) \
+) : (void)0)
+
+/**
+ * @brief Call method `get_reference_count` of interface `afw_pool`.
+ *
+ * Return the number of references currently held to this instance,
+ * or 0 if it is not counted. For cycle collection and its debug
+ * check; not for deciding lifetime.
+ * @param instance Instance.
+ * @param xctx This is the caller's xctx.
+ * @return Reference count, or 0.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_get_reference_count( \
+    _instance, \
+    _xctx \
+) \
+(_instance)->inf->get_reference_count( \
+    (_instance), \
+    (_xctx) \
+)
+
+/**
+ * @brief Call method `for_each_reference` of interface `afw_pool`.
+ *
+ * Call callback once for each reference this instance holds that its
+ * last release would release, naming the counted instance each
+ * reference is held in (see afw_value get_counted). A target held
+ * twice is listed twice. Instances that hold no references list
+ * nothing. Used by cycle collection and its debug check.
+ * @param instance Instance.
+ * @param callback Called once per reference.
+ * @param context Passed to callback.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_for_each_reference( \
+    _instance, \
+    _callback, \
+    _context, \
+    _xctx \
+) \
+(_instance)->inf->for_each_reference( \
+    (_instance), \
+    (_callback), \
+    (_context), \
     (_xctx) \
 )
 

@@ -90,35 +90,82 @@ impl_error_delaying_release(
 static void
 impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
-    /*
-     * One parent hold from create. It is not kept in parent_pins, so
-     * extra releases leave it. Teardown releases that one hold.
-     */
-    self->parent_pins = 1;
     afw_pool_heap_internal_teardown_store(self, xctx);
 }
 
 
+/*
+ * for_each_reference of a scope: its frame slots and its lexical
+ * parent (the references its last release releases).
+ */
+void
+afw_pool_internal_scope_for_each_reference(
+    AFW_POOL_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_scope_t *scope = (const afw_pool_scope_t *)self;
+    afw_size_t i;
+
+    if (scope->block) {
+        for (i = 0; i < scope->symbol_count; i++) {
+            afw_value_list_reference(scope->frame_slots[i],
+                callback, context, xctx);
+        }
+    }
+    if (scope->parent_lexical_scope) {
+        callback(&scope->parent_lexical_scope->pub.ref, context, xctx);
+    }
+}
+
+
+/* Same rule as every pool (see holds_parent). */
 void
 afw_pool_internal_scope_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
-    self->reference_count++;
+    afw_pool_internal_get_reference(self, xctx);
 }
 
 
+/*
+ * A scope's count is its pool's count. The last release first releases
+ * the frame slots and the lexical parent, then the pool.
+ */
 const afw_pool_t *
 afw_pool_internal_scope_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
+    afw_pool_scope_t *scope = (afw_pool_scope_t *)self;
+    const afw_pool_scope_t *parent;
+    afw_size_t i;
+
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "release");
+    if (scope->releasing_frame) {
+        return &self->pub;
+    }
     if (impl_error_delaying_release(
             afw_pool_heap_internal_as_scope(self), xctx))
     {
         return &self->pub;
+    }
+    if (self->reference_count == 1 && !self->destroying) {
+        scope->releasing_frame = true;
+        if (scope->block) {
+            for (i = 0; i < scope->symbol_count; i++) {
+                afw_value_release(scope->frame_slots[i], xctx);
+                scope->frame_slots[i] = afw_value_undefined;
+            }
+        }
+        parent = scope->parent_lexical_scope;
+        scope->parent_lexical_scope = NULL;
+        if (parent) {
+            afw_pool_scope_release(parent, xctx);
+        }
+        scope->releasing_frame = false;
     }
     return afw_pool_internal_release_common(
         self, xctx, impl_scope_teardown);
@@ -184,6 +231,15 @@ afw_pool_internal_scope_garbage_collect(
 #define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
 #define impl_afw_pool_deregister_cleanup afw_pool_internal_deregister_cleanup
 
+AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_4, afw_pool_internal_scope_release, afw_pool_internal_scope_get_reference)
+#undef impl_afw_pool_release
+#define impl_afw_pool_release impl_pool_ref_4_release
+#undef impl_afw_pool_get_reference
+#define impl_afw_pool_get_reference impl_pool_ref_4_get_reference
+#undef impl_afw_pool_get_reference_count
+#define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
+#undef impl_afw_pool_for_each_reference
+#define impl_afw_pool_for_each_reference afw_pool_internal_scope_for_each_reference
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
@@ -246,14 +302,10 @@ impl_scope_object_create(
     scope = (afw_pool_scope_t *)self;
     scope->p = &scope->pub;
     /*
-     * Reference the parent for the life of this scope pool. Pool count
-     * stays 1, so throw-path delay still sees a last release. A frame's
-     * parent is the job heap (see afw_pool_scope_create), so this
-     * reference never keeps a dest p alive.
+     * No parent reference from create (see holds_parent). A frame's
+     * parent is the job heap (see afw_pool_scope_create), which
+     * outlives it.
      */
-    if (self->parent && !self->parent->destroying) {
-        afw_pool_get_reference(&self->parent->pub, xctx);
-    }
     return scope;
 }
 
@@ -337,7 +389,7 @@ static void impl_scope_debug(
             ", refs: " AFW_SIZE_T_FMT,
             (afw_integer_t)(afw_size_t)scope->p,
             scope->scope_number,
-            scope->reference_count);
+            afw_pool_get_reference_count(scope->p, NULL));
     }
     else {
         printf(" scope: NULL");
@@ -577,7 +629,6 @@ afw_pool_scope_create(
     scope = impl_scope_object_create(p->managed_p, self_bytes, xctx);
     scope->block = block;
     scope->symbol_count = block->symbol_count;
-    scope->reference_count = 1;
     scope->last_statement_non_void_value = afw_value_void;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
@@ -587,8 +638,8 @@ afw_pool_scope_create(
     }
 
     if (parent_lexical_scope) {
-        scope->parent_lexical_scope = parent_lexical_scope;
-        ((afw_pool_scope_t *)parent_lexical_scope)->reference_count++;
+        scope->parent_lexical_scope = afw_pool_scope_get_reference(
+            parent_lexical_scope, xctx);
     }
 
     afw_pool_scope_debug(
@@ -670,7 +721,7 @@ afw_pool_scope_activate(
     const afw_pool_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    ((afw_pool_scope_t *)scope)->reference_count++;
+    afw_pool_get_reference(scope->p, xctx);
     afw_vector_push(xctx->scope_stack, xctx) = scope;
 
     afw_pool_scope_debug(
@@ -684,7 +735,7 @@ afw_pool_scope_get_reference(
     const afw_pool_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    ((afw_pool_scope_t *)scope)->reference_count++;
+    afw_pool_get_reference(scope->p, xctx);
 
     afw_pool_scope_debug(
         "+1 afw_pool_scope_get_reference()",
@@ -717,16 +768,8 @@ afw_pool_scope_deactivate(
         afw_xctx_script_result_set(scope->last_statement_non_void_value, scope->p, xctx);
     }
     afw_vector_pop(xctx->scope_stack, xctx);
-    if (afw_reference_check_is_enabled() && scope->block) {
-        afw_size_t i;
-        const afw_reference_t *counted;
-
-        for (i = 0; i < scope->symbol_count; i++) {
-            counted = (scope->frame_slots[i])
-                ? afw_value_get_counted(scope->frame_slots[i], xctx)
-                : NULL;
-            afw_reference_check(counted, xctx);
-        }
+    if (afw_reference_check_is_enabled()) {
+        afw_reference_check(&scope->pub.ref, xctx);
     }
     afw_pool_scope_release(scope, xctx);
 }
@@ -763,31 +806,10 @@ afw_pool_scope_release(
     const afw_pool_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    afw_size_t i;
-
     afw_pool_scope_debug(
         "-1 afw_pool_scope_release() begin",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
-    if (scope->reference_count == 0) {
-        return;
-    }
-
-    ((afw_pool_scope_t *)scope)->reference_count--;
-    if (scope->reference_count > 0) {
-        return;
-    }
-
-    if (scope->block) {
-        for (i = 0; i < scope->symbol_count; i++) {
-            afw_value_release(scope->frame_slots[i], xctx);
-            ((afw_pool_scope_t *)scope)->frame_slots[i] =
-                afw_value_undefined;
-        }
-    }
-    if (scope->parent_lexical_scope) {
-        afw_pool_scope_release(scope->parent_lexical_scope, xctx);
-    }
     afw_pool_release(scope->p, xctx);
 }
 

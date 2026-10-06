@@ -253,6 +253,9 @@ impl_afw_value_for_each_reference(
     void *context,
     afw_xctx_t *xctx)
 {
+    if (self->enclosing_lexical_scope) {
+        callback(&self->enclosing_lexical_scope->pub.ref, context, xctx);
+    }
     afw_value_list_reference(self->compiled_value, callback, context, xctx);
 }
 

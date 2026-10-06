@@ -261,6 +261,15 @@ Learned for step 1:
 
 **Step 3 status (2026-10-06, branch `issue-476-step3-for-each-reference`).** `afw_reference` gains `get_reference_count` and `for_each_reference`; `afw_value` gains `get_counted`. Callback type `afw_reference_cb_t` (`afw_common.h`). Shared implementations for kinds that are not counted or hold nothing. New module `reference/` with `afw_reference_check()` (debug; `AFW_REFERENCE_CHECK` runs it at every scope exit from each counted frame slot). Suite 4609 passed with and without the check; a deliberate double listing is caught ("afw_object implementation 'memory_managed' is listed more times than its count 1"). Closure binding's captured scope is listed once scope is an interface (step 4).
 
+**Steps 4 + 6 status (2026-10-06, branch `issue-476-step4-scope-pool`; one branch from here on).**
+
+- **Scope count = pool count.** The separate scope `reference_count` is gone; the scope pool's last release releases frame slots and the lexical parent, then the pool (`releasing_frame` guards re-entry).
+- **One parent rule** (`holds_parent`, replaces `parent_pins` and its per-release cascade): a pool holds one parent reference while its count is above 1. The scope and thread pools' "hold the parent from create" special cases are gone. `pool_heap` probe updated to the rule.
+- **`afw_pool extends afw_reference`.** `release` is void (each inf wraps its internal release, which keeps its pointer result; `AFW_POOL_INTERNAL_REFERENCE_WRAPPERS`), `get_reference` returns the pool, shared `get_reference_count`; the scope pool's `for_each_reference` lists frame slots and lexical parent; others list nothing. Own-pool object / array release is a plain `afw_pool_release` (their `wrapped` check was dead: only fully managed wrappers have one).
+- **Closure binding lists its captured scope.** `AFW_REFERENCE_CHECK` is rooted at the scope at every scope exit.
+- **Throw-path delay kept (new step 6a).** Removing it broke 13 tests: the error holds raw pointers into pools (`message_z` from compile / query criteria / curl, `parser_source`, `contextual`, `rv_*` strings), and the delay is what keeps those alive until the catch. Step 6a: the error owns everything it points to (copy strings at throw into storage the error owns, reference the compile unit behind `contextual`, single ownership across `AFW_ERROR_COPY`), then remove the delay and the adapter's `error_processing_count` hold.
+- Gates: suite 4609 passed (plain, `AFW_REFERENCE_CHECK`, region free list 0); lab 15 s 44 passed (`eval_object_rebind` still climbs: the cycle). One lab run showed a garbage first `in_use` sample for `function_return` (5.28e18); not reproduced in three reruns. The lab reads `env->pool_bytes_in_use` with gdb at an arbitrary instant under 16 parallel workloads; treated as a sampler artifact.
+
 ### Steps (each a small branch off `develop`, merged when green)
 
 | # | Step | Touches pool? |

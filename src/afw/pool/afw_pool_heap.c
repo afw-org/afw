@@ -56,6 +56,15 @@ impl_pool_implementation_specific =
 #define impl_afw_pool_calloc_no_throw afw_pool_heap_internal_calloc_no_throw
 #define impl_afw_pool_malloc_no_throw afw_pool_heap_internal_malloc_no_throw
 
+AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_1, afw_pool_heap_internal_release, afw_pool_internal_get_reference)
+#undef impl_afw_pool_release
+#define impl_afw_pool_release impl_pool_ref_1_release
+#undef impl_afw_pool_get_reference
+#define impl_afw_pool_get_reference impl_pool_ref_1_get_reference
+#undef impl_afw_pool_get_reference_count
+#define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
+#undef impl_afw_pool_for_each_reference
+#define impl_afw_pool_for_each_reference afw_pool_internal_no_references_for_each
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_SPECIFIC
@@ -778,30 +787,22 @@ afw_pool_heap_internal_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
-    afw_integer_t parent_pins;
+    afw_boolean_t holds_parent;
 
     parent = self->parent;
     parent_destroying = parent && parent->destroying;
-    parent_pins = self->parent_pins;
-    self->parent_pins = 0;
+    holds_parent = self->holds_parent;
+    self->holds_parent = false;
     afw_pool_internal_unlink_from_parent(self, xctx);
     afw_pool_internal_account_destroy(self, xctx);
     /*
-     * Drop pins before free_chunks. This struct and an xctx pool's
-     * xctx live in these chunks; a later parent release reads xctx.
-     * A release that finds the parent at 1 destroys it.
+     * Give back the parent reference before free_chunks: this struct
+     * and an xctx pool's xctx live in these chunks, and a parent
+     * release reads xctx. Only a pool destroyed while referenced still
+     * holds one here.
      */
-    if (parent && !parent_destroying) {
-        while (parent_pins > 0) {
-            afw_boolean_t parent_dies;
-
-            parent_pins--;
-            parent_dies = (parent->reference_count == 1);
-            afw_pool_release(&parent->pub, xctx);
-            if (parent_dies) {
-                break;
-            }
-        }
+    if (holds_parent && parent && !parent_destroying) {
+        afw_pool_release(&parent->pub, xctx);
     }
     impl_heap_free_chunks(afw_pool_heap_internal_as_heap(self), xctx);
 }
@@ -1035,16 +1036,13 @@ afw_pool_heap_internal_garbage_collect(
 }
 
 /*
- * Thread pool. One parent hold from create until teardown.
- * get_reference does not pin the parent, so a worker does not
- * bump the base job pool.
+ * Thread pool. Same parent rule as every pool (see holds_parent).
  */
 static void
 impl_thread_pool_teardown(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    self->parent_pins = 1;
     afw_pool_heap_internal_teardown_store(self, xctx);
 }
 
@@ -1053,8 +1051,7 @@ impl_thread_pool_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
-    self->reference_count++;
+    afw_pool_internal_get_reference(self, xctx);
 }
 
 static const afw_pool_t *
@@ -1104,6 +1101,15 @@ impl_thread_pool_destroy(
     afw_pool_internal_deregister_cleanup
 #define impl_afw_pool_garbage_collect afw_pool_heap_internal_garbage_collect
 
+AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_2, impl_thread_pool_release, impl_thread_pool_get_reference)
+#undef impl_afw_pool_release
+#define impl_afw_pool_release impl_pool_ref_2_release
+#undef impl_afw_pool_get_reference
+#define impl_afw_pool_get_reference impl_pool_ref_2_get_reference
+#undef impl_afw_pool_get_reference_count
+#define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
+#undef impl_afw_pool_for_each_reference
+#define impl_afw_pool_for_each_reference afw_pool_internal_no_references_for_each
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
@@ -1284,14 +1290,6 @@ afw_pool_thread_create(
         impl_pool_set_owning_thread(
             afw_pool_heap_internal_as_heap(self), thread);
         thread->p = &self->pub;
-        /*
-         * One hold on the base job pool, taken on this thread.
-         * The thread inf does not pin on later get_reference.
-         * Teardown releases this hold.
-         */
-        if (self->parent) {
-            afw_pool_get_reference(&self->parent->pub, xctx);
-        }
     }
     AFW_CATCH_UNHANDLED {
         afw_memory_region_release(region, xctx);

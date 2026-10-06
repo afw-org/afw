@@ -100,21 +100,22 @@ struct afw_pool_internal_self_s {
     /**
      * @brief Reference count.
      *
-     * Starts at 1 on create; get_reference / release. The create
-     * reference does not pin the parent. Each get_reference does.
-     * impl_afw_pool_thread_inf does not: that pool holds its
-     * parent from create until teardown.
+     * Starts at 1 on create (the creator's reference); get_reference /
+     * release.
      */
     afw_integer_t reference_count;
 
     /**
-     * @brief Parent references taken by get_reference on this child.
+     * @brief True while this pool holds one reference on its parent.
      *
-     * Dropped one at a time by release. Not used for the create
-     * reference. The thread pool's one parent hold is applied
-     * at teardown, not stored here during its life.
+     * One rule for every pool: a pool holds one reference on its parent
+     * while someone other than its creator references it (count above
+     * 1). It is taken when the count goes from 1 to 2 and given back
+     * when the count returns to 1. A pool only its creator references
+     * is part of its parent and dies with it; a referenced one keeps
+     * its parent alive (a tracker's memory comes from an ancestor heap).
      */
-    afw_integer_t parent_pins;
+    afw_boolean_t holds_parent;
 
     /** @brief Outstanding malloc/calloc (minus free/destroy). */
     afw_size_t bytes_allocated;
@@ -493,6 +494,50 @@ afw_pool_internal_calloc_unhandled(
 
 #define afw_pool_internal_calloc_type_unhandled(_instance, _type, _xctx) \
     (_type *) afw_pool_internal_calloc_unhandled(_instance, sizeof(_type), _xctx)
+
+/* for_each_reference of a scope pool: frame slots and lexical parent. */
+void
+afw_pool_internal_scope_for_each_reference(
+    afw_pool_internal_self_t *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+/* get_reference_count shared by every pool implementation. */
+afw_size_t
+afw_pool_internal_get_reference_count(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+/* for_each_reference for pools that hold no counted references. */
+void
+afw_pool_internal_no_references_for_each(
+    afw_pool_internal_self_t *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+
+/*
+ * afw_reference methods for a pool inf: release is void and
+ * get_reference returns the pool. The internal release keeps its
+ * pointer result for the pool's own use.
+ */
+#define AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(_prefix, _release_fn, _get_reference_fn) \
+static void \
+_prefix##_release( \
+    afw_pool_internal_self_t *self, afw_xctx_t *xctx) \
+{ \
+    (void)_release_fn(self, xctx); \
+} \
+static const afw_pool_t * \
+_prefix##_get_reference( \
+    afw_pool_internal_self_t *self, afw_xctx_t *xctx) \
+{ \
+    _get_reference_fn(self, xctx); \
+    return &self->pub; \
+}
+
 
 AFW_END_DECLARES
 

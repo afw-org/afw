@@ -522,18 +522,14 @@ impl_afw_array_release(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    const afw_array_t *wrapped;
-
     /* Pooled: no reference was ever taken, so a release is a bug. */
     if (self->unmanaged) {
         AFW_THROW_ERROR_Z(general,
             "release of a pooled array", xctx);
     }
 
-    wrapped = self->wrapped;
-    if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
-        afw_array_release(wrapped, xctx);
-    }
+    /* Owns its pool (new_p / cede_p): a reference is the pool's. */
+    afw_pool_release(self->pub.p, xctx);
 }
 
 

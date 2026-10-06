@@ -216,6 +216,15 @@ impl_scope_mt_specific =
 
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_scope_mt_specific
 
+AFW_POOL_INTERNAL_REFERENCE_WRAPPERS(impl_pool_ref_5, impl_mt_scope_release, impl_mt_scope_get_reference)
+#undef impl_afw_pool_release
+#define impl_afw_pool_release impl_pool_ref_5_release
+#undef impl_afw_pool_get_reference
+#define impl_afw_pool_get_reference impl_pool_ref_5_get_reference
+#undef impl_afw_pool_get_reference_count
+#define impl_afw_pool_get_reference_count afw_pool_internal_get_reference_count
+#undef impl_afw_pool_for_each_reference
+#define impl_afw_pool_for_each_reference afw_pool_internal_scope_for_each_reference
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL

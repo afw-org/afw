@@ -465,9 +465,9 @@ afw_pool_internal_release_common(
     void (*teardown)(AFW_POOL_SELF_T *self, afw_xctx_t *xctx))
 {
     /*
-     * Extra holds (past the create reference) pin the parent. Drop one
-     * pin per extra release. The release that hits 0 does not, because
-     * the create reference never pinned the parent.
+     * Back to only the creator's reference: give back the one parent
+     * reference (see holds_parent). If that was the parent's last, the
+     * parent destroys this pool with it.
      */
     if (self->reference_count > 1) {
         afw_pool_internal_self_t *parent;
@@ -475,12 +475,14 @@ afw_pool_internal_release_common(
 
         self->reference_count--;
         parent = self->parent;
-        if (self->parent_pins > 0 && parent && !parent->destroying) {
-            self->parent_pins--;
-            parent_dies = (parent->reference_count == 1);
-            afw_pool_release(&parent->pub, xctx);
-            if (parent_dies) {
-                return NULL;
+        if (self->reference_count == 1 && self->holds_parent) {
+            self->holds_parent = false;
+            if (parent && !parent->destroying) {
+                parent_dies = (parent->reference_count == 1);
+                afw_pool_release(&parent->pub, xctx);
+                if (parent_dies) {
+                    return NULL;
+                }
             }
         }
         return &self->pub;
@@ -526,8 +528,10 @@ afw_pool_internal_get_reference(
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
     self->reference_count++;
-    if (self->parent && !self->parent->destroying) {
-        self->parent_pins++;
+    if (self->reference_count == 2 && !self->holds_parent &&
+        self->parent && !self->parent->destroying)
+    {
+        self->holds_parent = true;
         afw_pool_get_reference(&self->parent->pub, xctx);
     }
 }
@@ -896,13 +900,27 @@ afw_pool_deregister_value_at_cleanup(
 }
 
 
-/* Current reference count of a pool. */
-AFW_DEFINE(afw_size_t)
-afw_pool_get_reference_count(
-    const afw_pool_t *instance,
+/* get_reference_count shared by every pool implementation. */
+afw_size_t
+afw_pool_internal_get_reference_count(
+    AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
     (void)xctx;
-    return (afw_size_t)((const afw_pool_internal_self_t *)instance)
-        ->reference_count;
+    return (afw_size_t)self->reference_count;
+}
+
+
+/* for_each_reference for pools that hold no counted references. */
+void
+afw_pool_internal_no_references_for_each(
+    AFW_POOL_SELF_T *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    (void)self;
+    (void)callback;
+    (void)context;
+    (void)xctx;
 }
