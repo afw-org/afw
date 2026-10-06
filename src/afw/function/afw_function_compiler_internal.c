@@ -1609,6 +1609,10 @@ afw_function_execute_rethrow(
     afw_xctx_t *xctx = x->xctx;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(0);
+    if (xctx->catch_depth == 0) {
+        AFW_THROW_ERROR_Z(general,
+            "rethrow() can only be used in a catch block", xctx);
+    }
     afw_xctx_statement_flow_set_type(rethrow, xctx);
 
     return afw_value_void;
@@ -2101,9 +2105,12 @@ afw_function_execute_try(
     const afw_pool_scope_t *scope_at_entry;
     const afw_pool_scope_t *scope;
     afw_xctx_statement_flow_t use_type;
+    volatile afw_boolean_t in_catch;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
+
+    in_catch = false;
 
     /*
      * Try does not write last. Body, catch, and finally run as
@@ -2121,7 +2128,16 @@ afw_function_execute_try(
 
     AFW_CATCH_UNHANDLED {
         afw_pool_scope_unwind(scope_at_entry, xctx);
+        /*
+         * The error ended the body, so a flow the body set no longer
+         * applies. A rethrow() evaluated as an argument before the
+         * throw left rethrow set, and the catch then rethrew the error
+         * it caught.
+         */
+        afw_xctx_statement_flow_set_type(sequential, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
+            xctx->catch_depth++;
+            in_catch = true;
             /*
              * Catch body is a block when there is a binding (arg 4
              * or Pattern reparse with bind as first statement). Plain
@@ -2245,6 +2261,10 @@ afw_function_execute_try(
     }
 
     AFW_FINALLY {
+        if (in_catch) {
+            xctx->catch_depth--;
+            in_catch = false;
+        }
         afw_pool_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
             saved_label = xctx->statement_flow_label;

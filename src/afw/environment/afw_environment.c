@@ -437,6 +437,24 @@ afw_environment_create(
         AFW_MEMORY_REGION_KEEP_SMALL_COUNT;
     env->memory_region_keep_large_count =
         AFW_MEMORY_REGION_KEEP_LARGE_COUNT;
+    {
+        /* Test harnesses keep freed chunks poisoned. See the header. */
+        const char *keep_freed = getenv(AFW_MEMORY_REGION_KEEP_FREED_ENV);
+        char *end;
+        unsigned long long bytes;
+
+        if (keep_freed && *keep_freed) {
+            end = NULL;
+            bytes = strtoull(keep_freed, &end, 10);
+            if (end && *end == 0 && bytes > 0) {
+                env->memory_region_free_list_max_bytes = (afw_size_t)bytes;
+                env->memory_region_keep_small_count =
+                    AFW_MEMORY_REGION_KEEP_FREED_COUNT;
+                env->memory_region_keep_large_count =
+                    AFW_MEMORY_REGION_KEEP_FREED_COUNT;
+            }
+        }
+    }
     env->multithreaded_memory_region = mt_region;
     env->debug_fd = stderr;
     env->stderr_fd = stderr;

@@ -1,0 +1,29 @@
+# Built-in functions called with odd arguments (#485 part B): each
+# request is a script of 25 try-wrapped calls, built from the server's
+# own function list and the fixed seed, so every run sends the same
+# requests. A crash, sanitizer report, or error escaping a try fails
+# the leaf and names the requests to replay:
+#   afwdev test -T src/afw/tests/advanced/fuzz-function-calls --replay 1:INDEX
+# Longer runs with other seeds: src/afw/tests-extra/fuzz-function-calls.
+version: 1
+description: Built-in functions called with odd arguments
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 600
+feed:
+  kind: action
+  accept: application/json
+tests: []
+schedule:
+  - firehose:
+      maxRequests: 400
+      concurrency: 8
+      seed: 1
+      maxFail: 0
+      # Valgrind runs one afwfcgi thread at a time (~165ms a request).
+      envModes:
+        valgrind: { maxRequests: 50 }
+      fuzz:
+        kind: functionCalls
+        callsPerRequest: 25

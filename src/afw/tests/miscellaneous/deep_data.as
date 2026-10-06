@@ -5,31 +5,35 @@
 //? description: ...
 Deeply nested data built at runtime (#482). Releasing it used to
 recurse once per level and overflow the C stack (SIGSEGV); container
-element releases now defer past a fixed depth. Recursive operations
+element releases now defer past a fixed depth (256 levels). Depths
+are the smallest that still matter, since deeper data only makes
+valgrind slower: the release code before #482 crashed between 50000
+and 100000 levels (mixed data by 50000), and the error tests need data
+deep enough to exhaust the C stack headroom (about 50000 levels). Recursive operations
 (stringify, decompile, string, ==, ===, clone) stop at
 limitCStackHeadroomBytes with "C stack headroom exhausted", and the
 data is still released afterwards.
 //? sourceType: script
 //?
 //? test: deep-array-drop
-//? description: 300000 nested arrays are built and released
+//? description: 100000 nested arrays are built and released
 //? expect: 0
 //? source: ...
 
 let a = [];
-for (let i = 0; i < 300000; i = i + 1) {
+for (let i = 0; i < 100000; i = i + 1) {
     a = [a];
 }
 return 0;
 
 //?
 //? test: deep-object-drop
-//? description: 200000 nested objects are built and released
+//? description: 100000 nested objects are built and released
 //? expect: 0
 //? source: ...
 
 let o = {};
-for (let i = 0; i < 200000; i = i + 1) {
+for (let i = 0; i < 100000; i = i + 1) {
     o = { x: o };
 }
 return 0;
@@ -41,7 +45,7 @@ return 0;
 //? source: ...
 
 let a = [];
-for (let i = 0; i < 100000; i = i + 1) {
+for (let i = 0; i < 50000; i = i + 1) {
     a = [{ x: a, y: [1, "two", { z: 3 }] }];
 }
 return 0;
@@ -53,7 +57,7 @@ return 0;
 //? source: ...
 
 let a = [];
-for (let i = 0; i < 200000; i = i + 1) {
+for (let i = 0; i < 100000; i = i + 1) {
     a = [a];
 }
 a = 1;
@@ -66,7 +70,7 @@ return a - 1;
 //? source: ...
 
 let a = [];
-for (let i = 0; i < 200000; i = i + 1) {
+for (let i = 0; i < 100000; i = i + 1) {
     a = [a];
 }
 return stringify(a);
@@ -78,7 +82,7 @@ return stringify(a);
 //? source: ...
 
 let a = [];
-for (let i = 0; i < 200000; i = i + 1) {
+for (let i = 0; i < 100000; i = i + 1) {
     a = [a];
 }
 return decompile(a);
@@ -90,7 +94,7 @@ return decompile(a);
 //? source: ...
 
 let a = [];
-for (let i = 0; i < 200000; i = i + 1) {
+for (let i = 0; i < 100000; i = i + 1) {
     a = [a];
 }
 return a == a;
@@ -102,7 +106,7 @@ return a == a;
 //? source: ...
 
 let o = {};
-for (let i = 0; i < 200000; i = i + 1) {
+for (let i = 0; i < 100000; i = i + 1) {
     o = { x: o };
 }
 return clone(o);

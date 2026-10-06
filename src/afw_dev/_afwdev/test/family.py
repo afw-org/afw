@@ -7,25 +7,23 @@
 # Only tests in both runs compare (same path); the others are counted as
 # new or gone. A test that failed in either run is not flagged.
 #
-# Memory (xctx and chunk bytes) is close to deterministic, so it is the
-# tighter check: ratio and floor from afwdev-settings.json. It is marked
-# on the test's line as soon as the test finishes.
+# The check is memory only (xctx and chunk bytes, close to
+# deterministic): ratio and floor from afwdev-settings.json, each test
+# against the same test in the baseline. It is marked on the test's
+# line as soon as the test finishes. A run's numbers are the count of
+# tests that tripped.
 #
-# Time is FYI and judged at the end: each test's CPU ratio to the
-# baseline against the median ratio over all matched tests, so a busy
-# machine moves everything together and only a test that stands out is
-# flagged. Wall ms is the fallback where a run has no CPU numbers.
+# Time is not compared. A small test's CPU is mostly afw starting up
+# (about 19 of 21 ms for test262/keywords.as) and moves with machine
+# load and context switching, not with the test. History still keeps
+# each test's cpu_ms for --trend cpu.
 #
-
-from statistics import median
 
 from _afwdev.common import msg
 from _afwdev.test.common import format_xctx_bytes
 
 MEMORY_RATIO = 1.2
 MEMORY_FLOOR = 16 * 1024
-TIME_RATIO = 2.0
-TIME_FLOOR_MS = 200
 DETAIL_TOP = 20
 
 # Set in the parent before tests start, and in each -j worker by
@@ -40,9 +38,6 @@ def settings_from(options):
                                 MEMORY_RATIO),
         "memory_floor": _number(s.get("test_family_memory_floor"),
                                 MEMORY_FLOOR),
-        "time_ratio": _number(s.get("test_family_time_ratio"), TIME_RATIO),
-        "time_floor_ms": _number(s.get("test_family_time_floor_ms"),
-                                 TIME_FLOOR_MS),
         "strict": bool(s.get("test_family_strict")),
     }
 
@@ -126,12 +121,8 @@ def line_marker(record):
         "▲{} {:.1f}× base".format(name, r) for name, r in marks)
 
 
-def _time_value(row, use_cpu):
-    return _int(row, "cpu_ms") if use_cpu else _int(row, "ms")
-
-
 def evaluate(records, base_run, last_run=None, settings=None):
-    """Compare this run's file records with base_run (and last_run)."""
+    """This run's memory against base_run, test by test."""
     settings = settings or {}
     new = {r["path"]: r for r in records or [] if r.get("path")}
     base = {}
@@ -152,37 +143,12 @@ def evaluate(records, base_run, last_run=None, settings=None):
             memory.append({"path": path, "metric": name, "ratio": r})
     memory.sort(key=lambda m: m["ratio"], reverse=True)
 
-    use_cpu = any(_int(new[p], "cpu_ms") is not None and
-                  _int(base[p], "cpu_ms") is not None for p in matched)
-    ratios = {}
-    for path in matched:
-        if _failed(base[path]) or _failed(new[path]):
-            continue
-        o = _time_value(base[path], use_cpu)
-        n = _time_value(new[path], use_cpu)
-        if o is None or n is None or o <= 0:
-            continue
-        ratios[path] = (float(n) / float(o), o, n)
-    drift = median([r for r, _o, _n in ratios.values()]) if ratios else None
-    time = []
-    t_ratio = settings.get("time_ratio", TIME_RATIO)
-    t_floor = settings.get("time_floor_ms", TIME_FLOOR_MS)
-    for path, (r, o, n) in ratios.items():
-        expected = o * (drift or 1.0)
-        if drift and r / drift >= t_ratio and n - expected >= t_floor:
-            time.append({"path": path, "ratio": r,
-                         "relative": r / drift, "old": o, "new": n})
-    time.sort(key=lambda m: m["relative"], reverse=True)
-
     return {
         "label": None,
         "matched": len(matched),
         "new": added,
         "gone": gone,
         "memory": memory,
-        "time": time,
-        "time_metric": "cpu" if use_cpu else "wall",
-        "drift": drift,
         "base_files": base,
         "last_files": last,
         "new_files": new,
@@ -200,10 +166,6 @@ def summary_record(result):
         "gone": len(result["gone"]),
         "memory": [{"path": m["path"], "metric": m["metric"],
                     "ratio": round(m["ratio"], 3)} for m in result["memory"]],
-        "time": [{"path": m["path"], "ratio": round(m["relative"], 3)}
-                 for m in result["time"]],
-        "time_metric": result["time_metric"],
-        "drift": round(result["drift"], 3) if result["drift"] else None,
     }
 
 
@@ -215,10 +177,8 @@ def print_summary(result):
     if not result:
         return
     nmem = len(memory_paths(result))
-    ntime = len(result["time"])
-    line = "Out of family: {t} (memory {m}, time {c}) vs {lab}".format(
-        t=len(set(memory_paths(result)) | {m["path"] for m in result["time"]}),
-        m=nmem, c=ntime, lab=result.get("label") or "?")
+    line = "Out of family: {m} (memory, {n} matched tests) vs {lab}".format(
+        m=nmem, n=result["matched"], lab=result.get("label") or "?")
     extra = []
     if result["new"]:
         extra.append("{} new".format(len(result["new"])))
@@ -230,12 +190,6 @@ def print_summary(result):
         msg.warn(line)
     else:
         msg.highlighted_info(line)
-    if result["drift"] and result["matched"]:
-        msg.highlighted_info(
-            "               {m} {d:.2f}× across {n} matched "
-            "tests (FYI: busy machine or broad change)".format(
-                m="CPU" if result["time_metric"] == "cpu" else "Wall time",
-                d=result["drift"], n=result["matched"]))
 
 
 def _fmt(n):
@@ -244,7 +198,7 @@ def _fmt(n):
 
 def print_detail(result):
     """--error-detail: each flagged test against the last run and base."""
-    if not result or not (result["memory"] or result["time"]):
+    if not result or not result["memory"]:
         return
     base = result["base_files"]
     last = result["last_files"]
@@ -264,17 +218,9 @@ def print_detail(result):
         parts.append("base {v} ({r:.1f}×)".format(
             v=_fmt(_int(base[m["path"]], key)), r=m["ratio"]))
         msg.warn("  ".join(parts))
-    unit = "cpu" if result["time_metric"] == "cpu" else "wall"
-    for m in result["time"][:DETAIL_TOP]:
-        msg.highlighted_info(
-            "  {p}  {u} {n}ms  base {o}ms ({r:.1f}×, "
-            "{x:.1f}× the run's median)".format(
-                p=m["path"], u=unit, n=m["new"], o=m["old"], r=m["ratio"],
-                x=m["relative"]))
-    more = len(result["memory"]) + len(result["time"]) - min(
-        DETAIL_TOP, len(result["memory"])) - min(DETAIL_TOP, len(result["time"]))
-    if more > 0:
-        msg.highlighted_info("  … {} more".format(more))
+    if len(result["memory"]) > DETAIL_TOP:
+        msg.highlighted_info("  … {} more".format(
+            len(result["memory"]) - DETAIL_TOP))
 
 
 def strict_failure(result, settings):

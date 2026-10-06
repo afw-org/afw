@@ -285,6 +285,54 @@ schedule:
 
 Summary in `stepTimings[].firehose`: total, ok, fail, failRate, rps, policy.
 
+**Fuzz source (`fuzz:`, #485):** a firehose step can send generated requests.
+With `fuzz:` the `tests:` list may be empty; with both, odd request indexes are
+fuzz requests.
+
+```yaml
+schedule:
+  - firehose:
+      maxRequests: 400
+      seed: 1
+      maxFail: 0
+      fuzz:
+        kind: functionCalls     # the only kind so far
+        callsPerRequest: 25     # default 25
+        requestTimeout_s: 30    # default 30; a slower request is a failure
+        exclude: [name_*]       # fnmatch patterns, added to the defaults
+```
+
+- `functionCalls`: each request is a script of try-wrapped calls to built-in
+  functions with odd arguments, run inside a function so a fuzzed `return()`
+  leaves only that function. The function list comes from the server under
+  test (`_AdaptiveFunction_`), less the default deny list in
+  `src/afw_dev/_afwdev/test/orchestrated/fuzz.py` (state changes, response
+  writes, loops, `random_*`) and `exclude`. A request fails on an error that
+  escapes its `try`, an error status, or the timeout; the result value is not
+  checked.
+- Request *i* is built only from (seed, *i*) and the function list, so the same
+  build and deny list send the same requests, and nothing generated is stored.
+  `afwdev test -T <leaf> --replay SEED:INDEX` (or `SEED:FIRST-LAST`) sends
+  just those requests, printing each script.
+- When `afwfcgi` exits or the step fails with an error, the message names the
+  fuzz requests sent last, a `--replay` range for them, and
+  `diag/fuzz-in-flight/` with their scripts.
+- `summary.fuzz` in the step timings: kind, seed, index range, function count.
+
+**Any firehose step:**
+
+- `onServerExit: stop | restart` (default `stop`). With `restart`, when
+  `afwfcgi` exits the step records it (the requests in flight, `failures.log`
+  at once, the dead server's logs kept as `afwfcgi.stderr.exitN.log` and
+  `afwfcgi.stdout.exitN.log`), starts `afwfcgi` again, and goes on with the
+  rest of its `maxRequests` or `duration_s`. Fuzz request indexes continue, so
+  each replay names one request. The step fails at the end, listing every
+  exit; `summary.serverExits` counts them.
+- `envModes: { <env-mode>: { ... } }` replaces step fields under that
+  `--env-mode`, for example `envModes: { valgrind: { maxRequests: 50 } }`
+  (valgrind runs one `afwfcgi` thread at a time). `{ skip: true }` skips the
+  step in that mode.
+
 ---
 
 ## 5. Discovery (outside the file, but part of the product)

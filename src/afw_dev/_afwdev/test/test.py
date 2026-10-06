@@ -65,6 +65,9 @@ def _list_tests(options, srcdirs):
     sys.exit(0)
 
 
+# Free-list cap per memory region under --env-mode asan and valgrind.
+KEEP_FREED_BYTES = 64 * 1024 * 1024
+
 # --env-mode values. python and commands are per-file modes, not these.
 ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan")
 
@@ -192,6 +195,12 @@ def run(options):
             test_sanitize.prepare_asan_environment(options)
         elif test_history.env_mode(options) == 'valgrind':
             test_sanitize.refuse_sanitized_lib_for_valgrind()
+        if test_history.env_mode(options) in ('asan', 'valgrind'):
+            # Freed pool chunks stay mapped and poisoned, so a stale read
+            # is reported as one, not a SEGV (afw_memory_region.h). An
+            # application conf's memoryRegion* still wins.
+            os.environ.setdefault(
+                'AFW_MEMORY_REGION_KEEP_FREED_BYTES', str(KEEP_FREED_BYTES))
 
         try:
             run_dir.create(options, test_history.env_mode(options))

@@ -832,3 +832,43 @@ try {
 } catch (e) {
     return e.message;
 }
+
+//?
+//? test: rethrow-call-outside-catch
+//? description: rethrow() called outside a catch block is an error (found by the function-call fuzzer)
+//? expect: error:rethrow() can only be used in a catch block
+//? source: ...
+
+rethrow();
+return 0;
+
+//?
+//? test: rethrow-call-outside-catch-is-caught
+//? description: a rethrow() argument outside a catch throws, and the try catches it
+//? expect: "rethrow() can only be used in a catch block"
+//? source: ...
+
+try {
+    let r = integer(rethrow());
+} catch (e) {
+    return e.message;
+}
+return "not caught";
+
+//?
+//? test: catch-after-rethrow-argument
+//? description: in a catch, a rethrow() argument followed by a throw is caught by an inner try with an empty catch (it used to escape)
+//? expect: "caught"
+//? source: ...
+
+let result = "escaped";
+try {
+    throw "outer";
+} catch (e) {
+    try {
+        let r = integer(rethrow());
+    } catch (e2) {
+    }
+    result = "caught";
+}
+return result;

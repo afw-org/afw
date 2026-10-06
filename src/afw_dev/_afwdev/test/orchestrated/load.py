@@ -76,9 +76,14 @@ def load_orchestration_document(marker_path):
         raw["host"] = "local"
 
     tests = raw.get("tests")
-    if not isinstance(tests, list) or len(tests) == 0:
+    fuzzes = any(
+        isinstance(step, dict) and isinstance(step.get("firehose"), dict)
+        and step["firehose"].get("fuzz") is not None
+        for step in (raw.get("schedule") or []))
+    if not isinstance(tests, list) or (len(tests) == 0 and not fuzzes):
         raise OrchestrationLoadError(
-            "orchestration requires non-empty 'tests' list: " + marker_path)
+            "orchestration requires non-empty 'tests' list (or a firehose "
+            "with fuzz:): " + marker_path)
 
     names = set()
     for i, item in enumerate(tests):

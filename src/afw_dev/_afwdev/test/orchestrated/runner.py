@@ -47,6 +47,7 @@ from _afwdev.test.orchestrated import http_front
 from _afwdev.test.orchestrated.hosts import afwfcgi as afwfcgi_host
 from _afwdev.test.orchestrated.hosts import local as local_host
 from _afwdev.test.orchestrated import x_afw_demux
+from _afwdev.test.orchestrated import fuzz as fuzz_mod
 from _afwdev.test import failure_log
 
 
@@ -354,13 +355,16 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
         if host_kind == "afwfcgi":
             # Valgrind cold-start is much slower, especially under -j load.
             ready_cap = 120.0 if under_valgrind else 30.0
-            handle = afwfcgi_host.start_afwfcgi(
-                work_dir,
+            start_kwargs = dict(
+                work_dir=work_dir,
                 threads=threads,
                 under_valgrind=under_valgrind,
                 options=options,
                 ready_timeout_s=min(ready_cap, timeout_s),
             )
+            handle = afwfcgi_host.start_afwfcgi(**start_kwargs)
+            # onServerExit: restart starts it again the same way.
+            handle["_start_kwargs"] = start_kwargs
             socket_path = handle["socket_path"]
             debug_parts.append("started: " + " ".join(handle["argv"]))
             debug_parts.append("socket: " + socket_path)
@@ -818,7 +822,7 @@ def _firehose_process_entry(args):
     stop = _FH_STOP
     issued = _FH_ISSUED
     (socket_path, work_dir, items, doc_feed, deadline, seed, policy,
-     per, max_requests, timeout, stop_on_error) = args
+     per, max_requests, timeout, stop_on_error, fuzz) = args
 
     def one_loop(start):
         ok = fail = 0
@@ -830,12 +834,16 @@ def _firehose_process_entry(args):
                 break
             if deadline is not None and time.time() >= deadline:
                 break
-            if max_requests is not None:
-                with issued.get_lock():
-                    if issued.value >= max_requests:
-                        break
-                    issued.value += 1
-            if policy == "roundRobin":
+            with issued.get_lock():
+                if (max_requests is not None and
+                        issued.value >= max_requests):
+                    break
+                index = issued.value
+                issued.value += 1
+            item = _fuzz_item(fuzz, items, index, work_dir)
+            if item is not None:
+                pass
+            elif policy == "roundRobin":
                 item = items[rr % len(items)]
                 rr += 1
             else:
@@ -874,7 +882,8 @@ def _firehose_process_entry(args):
 def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
                           timeout, doc_feed, options, t_end, t0, policy,
                           rng, max_requests, stop_on_error, handle,
-                          quiet_log, honor_timeout=True):
+                          quiet_log, honor_timeout=True, fuzz=None,
+                          index_base=0):
     """Single-process firehose. One Python thread per in-flight request."""
     ok = fail = 0
     total = 0
@@ -883,16 +892,23 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
 
     def pick_item():
         nonlocal rr_i
+        item = _fuzz_item(fuzz, pool, index_base + total, work_dir)
+        if item is not None:
+            return item
         if policy == "roundRobin":
             item = pool[rr_i % len(pool)]
             rr_i += 1
             return item
         return rng.choice(pool)
 
+    item_timeout = max(5.0, timeout)
+    if fuzz is not None:
+        item_timeout = min(item_timeout, fuzz.request_timeout)
+
     def one(item):
         try:
             _run_test_item(item, work_dir, source_leaf, ctx,
-                           max(5.0, timeout), doc_feed, quiet_log, options)
+                           item_timeout, doc_feed, quiet_log, options)
             return True, None
         except Exception as e:
             if samples.add(item.get("name"), e):
@@ -905,6 +921,7 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
         while True:
             dead = _afwfcgi_dead(handle)
             if dead is not None:
+                dead.firehose_counts = (ok, fail, total)
                 raise dead
             if _ASKED.is_set():
                 break
@@ -964,6 +981,7 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
 
     dead = _afwfcgi_dead(handle)
     if dead is not None:
+        dead.firehose_counts = (ok, fail, total)
         _attach_samples(dead, samples, work_dir)
         raise dead
     return ok, fail, total, samples
@@ -971,7 +989,8 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
 
 def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
                             socket_path, doc_feed, deadline, policy, seed,
-                            max_requests, timeout, stop_on_error, handle):
+                            max_requests, timeout, stop_on_error, handle,
+                            fuzz=None, index_base=0):
     """Feed afwfcgi from several processes. Raises if the server exits."""
     if client_processes > concurrency:
         client_processes = concurrency
@@ -980,7 +999,10 @@ def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
     global _FH_STOP, _FH_ISSUED
     ctx = multiprocessing.get_context("fork")
     _FH_STOP = ctx.Event()
-    _FH_ISSUED = ctx.Value("i", 0)
+    # Request indexes continue across a restart (onServerExit).
+    _FH_ISSUED = ctx.Value("i", index_base)
+    if max_requests is not None:
+        max_requests += index_base
     stop = _FH_STOP
     if _ASKED.is_set():
         stop.set()
@@ -993,7 +1015,7 @@ def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
         asyncs.append(pool_mp.apply_async(_firehose_process_entry, ((
             socket_path, work_dir, pool, doc_feed, deadline,
             (seed or 0) + i * 1009, policy, per,
-            max_requests, timeout, stop_on_error,
+            max_requests, timeout, stop_on_error, fuzz,
         ),)))
     died = None
     try:
@@ -1044,14 +1066,239 @@ def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
         samples.merge_rows([row])
         have.add(key)
     if died is not None:
+        died.firehose_counts = (ok, fail, _FH_ISSUED.value - index_base)
         _attach_samples(died, samples, work_dir)
         raise died
     return ok, fail, ok + fail, samples
 
 
+def _fuzz_item(fuzz, pool, index, work_dir):
+    """Request index as a fuzz item, or None for a fromTests item.
+
+    With both, odd indexes are fuzz so an index always names the same
+    request. The index is logged before sending, so the requests in
+    flight when afwfcgi dies can be named afterwards.
+    """
+    if fuzz is None or (pool and index % 2 == 0):
+        return None
+    try:
+        os.makedirs(_diag_dir(work_dir), exist_ok=True)
+        with open(os.path.join(_diag_dir(work_dir), "fuzz-sent.txt"),
+                  "a") as fd:
+            fd.write("{}:{}\n".format(fuzz.seed, index))
+    except OSError:
+        pass
+    return fuzz.item(index)
+
+
+def _fetch_functions(socket_path, doc_feed, timeout):
+    """[[functionId, parameter count]] from the server under test."""
+    feed = merge_feed(doc_feed, None)
+    action = {
+        "function": eval_function_for_source_type("script", feed),
+        "source": fuzz_mod.FUNCTION_LIST_SCRIPT,
+    }
+    result = fcgi_request(
+        socket_path, path=feed.get("path") or "/afw", method="POST",
+        body=nfc.json_dumps({"actions": [action]}),
+        param_overrides={"HTTP_ACCEPT": "application/json"},
+        timeout=max(30.0, timeout))
+    raw = (result.get("body") or b"").decode("utf-8", "replace")
+    try:
+        parsed = nfc.json_loads(raw)
+    except ValueError:
+        parsed = None
+    found = _find_pairs(parsed)
+    if not found:
+        raise AfwdevRunnerError(
+            "fuzz: could not list functions from afwfcgi: " + raw[:500])
+    return found
+
+
+def _find_pairs(value):
+    """The first list of [string, int] pairs anywhere in a response."""
+    if isinstance(value, list):
+        if value and all(
+                isinstance(p, list) and len(p) == 2 and
+                isinstance(p[0], str) and isinstance(p[1], int)
+                for p in value):
+            return value
+        for v in value:
+            got = _find_pairs(v)
+            if got:
+                return got
+    elif isinstance(value, dict):
+        for v in value.values():
+            got = _find_pairs(v)
+            if got:
+                return got
+    return None
+
+
+def _make_fuzz(body, ctx, doc_feed, timeout, options):
+    socket_path = ctx.get("socket_path")
+    if not socket_path:
+        raise AfwdevRunnerError("firehose fuzz: needs host: afwfcgi")
+    seed = body.get("seed") or 0
+    replay = options.get("replay") if options else None
+    if replay:
+        seed = fuzz_mod.parse_replay(replay)[0]
+    try:
+        return fuzz_mod.make_source(
+            body.get("fuzz"), _fetch_functions(socket_path, doc_feed, timeout),
+            seed)
+    except fuzz_mod.FuzzError as e:
+        raise AfwdevRunnerError(str(e))
+
+
+def _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency):
+    """Name the fuzz requests sent last when afwfcgi died or the step
+    failed, and save their sources under diag/fuzz-in-flight/."""
+    if fuzz is None or err is None or getattr(err, "_fuzz_noted", False):
+        return
+    err._fuzz_noted = True
+    path = os.path.join(_diag_dir(work_dir), "fuzz-sent.txt")
+    try:
+        with open(path, "r") as fd:
+            sent = [line.strip() for line in fd if line.strip()]
+    except OSError:
+        return
+    last = sent[-max(1, int(concurrency or 1) * 2):]
+    saved = os.path.join(_diag_dir(work_dir), "fuzz-in-flight")
+    try:
+        os.makedirs(saved, exist_ok=True)
+        for ref in last:
+            index = int(ref.split(":", 1)[1])
+            with open(os.path.join(saved, ref.replace(":", "-") + ".as"),
+                      "w") as fd:
+                fd.write(fuzz.source(index))
+    except (OSError, ValueError):
+        pass
+    indexes = []
+    for ref in last:
+        try:
+            indexes.append(int(ref.split(":", 1)[1]))
+        except (IndexError, ValueError):
+            pass
+    span = "{}:{}".format(fuzz.seed, last[-1].split(":", 1)[-1])
+    if indexes:
+        span = "{}:{}-{}".format(fuzz.seed, min(indexes), max(indexes))
+    err.message = (error_message(err) or str(err)) + (
+        "\nfuzz requests sent last (newest last): {refs}\n"
+        "replay them: afwdev test -T {leaf} --replay {span}\n"
+        "sources: {saved}".format(
+            refs=" ".join(last), leaf=source_leaf, span=span,
+            saved=saved))
+
+
+def _run_fuzz_replay(fuzz, replay, work_dir, source_leaf, ctx, timeout,
+                     doc_feed, debug_parts, step_timings, options, handle):
+    """--replay SEED:INDEX[-LAST]: send those fuzz requests one at a time."""
+    try:
+        _seed, first, last = fuzz_mod.parse_replay(replay)
+    except fuzz_mod.FuzzError as e:
+        raise AfwdevRunnerError(str(e))
+    t0 = time.time()
+    fails = []
+    for index in range(first, last + 1):
+        item = fuzz.item(index)
+        msg.highlighted_info("--- {} ---\n{}".format(
+            item["name"], item["source"]))
+        try:
+            _run_test_item(item, work_dir, source_leaf, ctx,
+                           max(5.0, timeout), doc_feed, debug_parts, options)
+        except Exception as e:
+            fails.append("{}: {}".format(item["name"], error_message(e) or e))
+        dead = _afwfcgi_dead(handle)
+        if dead is not None:
+            dead.message = (error_message(dead) or str(dead)) + (
+                "\nafter replaying " + item["name"])
+            raise dead
+    step_timings.append({
+        "name": "firehose", "ms": round((time.time() - t0) * 1000),
+        "passed": not fails, "replay": replay})
+    if fails:
+        raise AfwdevRunnerError("replay failed:\n" + "\n".join(fails))
+    msg.highlighted_info("replay {}: {} request(s) ok".format(
+        replay, last - first + 1))
+
+
+def _env_mode_body(body, options):
+    """body with its envModes entry for this --env-mode applied, or None
+    when that entry says skip."""
+    modes = body.get("envModes")
+    if modes is None:
+        return body
+    if not isinstance(modes, dict):
+        raise AfwdevRunnerError("firehose envModes must be a mapping")
+    mode = (options or {}).get("mode") or "afw"
+    over = modes.get(mode)
+    if over is None:
+        return body
+    if not isinstance(over, dict):
+        raise AfwdevRunnerError(
+            "firehose envModes.{} must be a mapping".format(mode))
+    if over.get("skip"):
+        return None
+    out = dict(body)
+    out.update({k: v for k, v in over.items() if k != "skip"})
+    return out
+
+
+def _restart_afwfcgi(handle, number):
+    """Stop what is left of afwfcgi, keep its logs, start it again.
+
+    The handle dict is updated in place, so the leaf's cleanup stops the
+    new process. Returns the kept log paths.
+    """
+    kwargs = handle.get("_start_kwargs")
+    if not kwargs:
+        raise AfwdevRunnerError("onServerExit restart: no afwfcgi to restart")
+    afwfcgi_host.stop_afwfcgi(handle)
+    kept = []
+    for key in ("log_path", "stdout_path"):
+        path = handle.get(key)
+        if path and os.path.isfile(path):
+            dest = path[:-len(".log")] + ".exit{}.log".format(number)
+            try:
+                os.replace(path, dest)
+                kept.append(dest)
+            except OSError:
+                pass
+    new = afwfcgi_host.start_afwfcgi(**kwargs)
+    handle.clear()
+    handle.update(new)
+    handle["_start_kwargs"] = kwargs
+    return kept
+
+
+def _last_fuzz_index(work_dir):
+    try:
+        with open(os.path.join(_diag_dir(work_dir), "fuzz-sent.txt")) as fd:
+            last = None
+            for line in fd:
+                if line.strip():
+                    last = line
+        return int(last.strip().split(":", 1)[1]) if last else None
+    except (OSError, ValueError, IndexError):
+        return None
+
+
 def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
                   timeout, doc_feed, debug_parts, step_timings, description,
                   options, handle=None, server_threads=1):
+    body = _env_mode_body(body, options)
+    if body is None:
+        msg.highlighted_info("firehose skipped for --env-mode {}".format(
+            (options or {}).get("mode") or "afw"))
+        step_timings.append({"name": "firehose", "ms": 0, "passed": True,
+                             "skipped": True})
+        return
+    on_exit = str(body.get("onServerExit") or "stop").strip()
+    if on_exit not in ("stop", "restart"):
+        raise AfwdevRunnerError(
+            "firehose onServerExit must be 'stop' or 'restart', got {!r}"
+            .format(on_exit))
     names = body.get("fromTests") or []
     pool = []
     for name in names:
@@ -1061,7 +1308,18 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
                 "firehose fromTests unknown test {!r}".format(name))
         if not item.get("skip"):
             pool.append(item)
-    if not pool:
+    fuzz = None
+    if body.get("fuzz") is not None:
+        fuzz = _make_fuzz(body, ctx, doc_feed, timeout, options)
+        if options and options.get("replay"):
+            return _run_fuzz_replay(
+                fuzz, options.get("replay"), work_dir, source_leaf, ctx,
+                timeout, doc_feed, debug_parts, step_timings, options,
+                handle)
+    elif options and options.get("replay"):
+        raise AfwdevRunnerError(
+            "--replay needs a firehose step with fuzz:")
+    if not pool and fuzz is None:
         raise AfwdevRunnerError("firehose fromTests pool is empty")
 
     cpu = os.cpu_count() or 1
@@ -1127,21 +1385,79 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     previous_signals = {}
     for signum in (signal.SIGINT, signal.SIGTERM):
         previous_signals[signum] = signal.signal(signum, _on_firehose_signal)
+    exits = []
+    ok = fail = total = 0
+    samples = _FirehoseSamples()
+    index_base = 0
     try:
-        if client_processes > 1:
-            ok, fail, total, samples = _run_firehose_processes(
-                client_processes, concurrency, pool, work_dir, socket_path,
-                doc_feed, wall_end, policy, seed if seed is not None else 0,
-                max_requests, request_timeout, stop_on_error, handle)
-        else:
-            ok, fail, total, samples = _run_firehose_threads(
-                concurrency, pool, work_dir, source_leaf, ctx, timeout,
-                doc_feed, options, t_end, t0, policy, rng, max_requests,
-                stop_on_error, handle, quiet_log,
-                honor_timeout=not until_stopped)
+        if fuzz is not None:
+            request_timeout = min(request_timeout, fuzz.request_timeout)
+        while True:
+            remaining = None
+            if max_requests is not None:
+                remaining = max_requests - total
+                if remaining <= 0:
+                    break
+            try:
+                if client_processes > 1:
+                    s_ok, s_fail, s_total, s_samples = \
+                        _run_firehose_processes(
+                            client_processes, concurrency, pool, work_dir,
+                            socket_path, doc_feed, wall_end, policy,
+                            seed if seed is not None else 0, remaining,
+                            request_timeout, stop_on_error, handle,
+                            fuzz=fuzz, index_base=index_base)
+                else:
+                    s_ok, s_fail, s_total, s_samples = _run_firehose_threads(
+                        concurrency, pool, work_dir, source_leaf, ctx,
+                        timeout, doc_feed, options, t_end, t0, policy, rng,
+                        remaining, stop_on_error, handle, quiet_log,
+                        honor_timeout=not until_stopped, fuzz=fuzz,
+                        index_base=index_base)
+            except AfwdevError as err:
+                if on_exit != "restart" or _afwfcgi_dead(handle) is None:
+                    raise
+                # onServerExit: restart. Record this exit and go on.
+                c_ok, c_fail, c_total = getattr(
+                    err, "firehose_counts", (0, 0, 0))
+                ok += c_ok
+                fail += c_fail
+                total += c_total
+                rows = getattr(err, "firehose_samples", None)
+                if rows is not None:
+                    samples.merge_rows(rows.as_list())
+                _note_fuzz_in_flight(
+                    err, fuzz, work_dir, source_leaf, concurrency)
+                kept = _restart_afwfcgi(handle, len(exits) + 1)
+                ctx["log_path"] = handle.get("log_path")
+                ctx["stdout_path"] = handle.get("stdout_path")
+                text = (error_message(err) or str(err)) + (
+                    "\nkept logs: " + " ".join(kept) if kept else "")
+                exits.append(text)
+                failure_log.record(
+                    options, name="afwfcgi exit {} ({})".format(
+                        len(exits), source_leaf),
+                    message=text)
+                msg.error("afwfcgi exited during firehose ({} so far); "
+                          "restarted".format(len(exits)))
+                index_base += c_total
+                last = _last_fuzz_index(work_dir)
+                if last is not None and last + 1 > index_base:
+                    index_base = last + 1
+                if _ASKED.is_set() or (
+                        t_end is not None and time.time() >= t_end):
+                    break
+                continue
+            ok += s_ok
+            fail += s_fail
+            total += s_total
+            samples.merge_rows(s_samples.as_list())
+            samples.other += s_samples.other
+            break
     except AfwdevError as err:
         _attach_samples(
             err, getattr(err, "firehose_samples", None), work_dir)
+        _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency)
         # A stop must not stick to the next leaf in this process.
         _ASKED.clear()
         raise
@@ -1165,8 +1481,15 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     }
     if seed is not None:
         summary["seed"] = seed
+    if exits:
+        summary["serverExits"] = len(exits)
+    if fuzz is not None:
+        summary["fuzz"] = {"kind": "functionCalls", "seed": fuzz.seed,
+                           "indexes": [0, total - 1] if total else [],
+                           "functions": len(fuzz.functions)}
     dead = _afwfcgi_dead(handle)
     if dead is not None:
+        _note_fuzz_in_flight(dead, fuzz, work_dir, source_leaf, concurrency)
         raise dead
     if socket_path:
         server_stats = _sample_server(socket_path)
@@ -1175,7 +1498,12 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
 
     # Pass criteria: explicit maxFail / maxFailRate win; else blast-like
     # (survive with any successes; only hard-fail if every request failed).
-    if total == 0:
+    if exits:
+        passed = False
+        reason = (
+            "afwfcgi exited {} time(s) during firehose (onServerExit: "
+            "restart):\n".format(len(exits)) + "\n---\n".join(exits))
+    elif total == 0:
         passed = False
         reason = "firehose issued 0 requests"
     elif max_fail is not None:

@@ -1097,7 +1097,7 @@ _info_test_compare_to = {
         "HEAD contains, which is usually the previous PR's gate run; the "
         "previous run if there is none), last (the previous run), a commit "
         "hash, an older -ref- tag label, or a history file path. Only "
-        "tests in both runs compare; memory is the check, time is FYI."
+        "tests in both runs compare, test by test, on memory."
 }
 
 _info_test_clear_temps = {
@@ -1114,6 +1114,19 @@ _info_test_clear_temps = {
         "newest test_keep_runs run directories (afwdev-settings.json, "
         "default 10) and, separately, its newest test_keep_runs failed "
         "ones. Does not run tests."
+}
+
+_info_test_replay = {
+    "optionName": "replay",
+    "arg": "--replay",
+    "action": "store",
+    "default": "",
+    "noprompt": True,
+    "help":
+        "With -T on an orchestrated leaf whose firehose has fuzz:, send "
+        "only fuzz request SEED:INDEX (or SEED:FIRST-LAST), one at a "
+        "time, printing each. Failures and afwfcgi exits name the "
+        "requests to replay."
 }
 
 _info_test_clear_history = {
@@ -1177,6 +1190,7 @@ _info_test = {
         _info_test_baseline,
         _info_test_compare_to,
         _info_test_trend,
+        _info_test_replay,
         _info_test_clear_history,
         _info_test_clear_temps,
         _info_test_watch,
