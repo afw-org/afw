@@ -51,6 +51,20 @@ AFW_BEGIN_DECLARES
 #define AFW_MEMORY_REGION_KEEP_LARGE_COUNT ((afw_size_t)1)
 
 /**
+ * @brief Environment variable read at environment create: a byte count
+ *    for the free-list cap, with every freed region kept.
+ *
+ * For test harnesses (afwdev test --env-mode asan and valgrind set it):
+ * freed chunks stay mapped and poisoned, so a stale read of pool memory
+ * is reported as one instead of a SEGV on an unmapped address. An
+ * application conf's memoryRegion* properties still apply after it.
+ */
+#define AFW_MEMORY_REGION_KEEP_FREED_ENV "AFW_MEMORY_REGION_KEEP_FREED_BYTES"
+
+/** @brief Keep counts used with AFW_MEMORY_REGION_KEEP_FREED_ENV. */
+#define AFW_MEMORY_REGION_KEEP_FREED_COUNT ((afw_size_t)1000000)
+
+/**
  * @brief Create a memory_region instance.
  * @param free_list_max_bytes cap on the free list; 0 = no reuse.
  * @param xctx of caller. May be NULL (environment create).

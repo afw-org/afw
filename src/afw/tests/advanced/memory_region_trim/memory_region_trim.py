@@ -18,4 +18,7 @@ def run():
             ("trim", "trim keeps newest resident, discards or unmaps the rest"),
             ("evict", "over cap unmaps the other list before small"),
         ],
+        # configure checks the defaults, which afwdev raises under
+        # --env-mode asan and valgrind.
+        env_unset=("AFW_MEMORY_REGION_KEEP_FREED_BYTES",),
     )

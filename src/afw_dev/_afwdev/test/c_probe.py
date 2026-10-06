@@ -233,7 +233,8 @@ def _valgrind_xml_has_error(xml_path):
         return False
 
 
-def _run_probe_case(probe, name, timeout, work_dir, use_valgrind):
+def _run_probe_case(probe, name, timeout, work_dir, use_valgrind,
+                    env_unset=()):
     cmd = [probe, name]
     xml_path = None
     if use_valgrind:
@@ -254,11 +255,15 @@ def _run_probe_case(probe, name, timeout, work_dir, use_valgrind):
             vg.append("--suppressions=" + suppressions)
         cmd = vg + cmd
 
+    env = None
+    if env_unset:
+        env = {k: v for k, v in os.environ.items() if k not in env_unset}
     r = subprocess.run(
         cmd,
         capture_output=True,
         text=True,
         timeout=timeout,
+        env=env,
     )
     err = (r.stderr or "").strip() or (r.stdout or "").strip()
     if r.returncode != 0:
@@ -283,7 +288,8 @@ def run_c_probe(
         extra_ldflags=None,
         timeout=None,
         valgrind=None,
-        caller_dir=None):
+        caller_dir=None,
+        env_unset=()):
     """Compile a checked-in probe and run named cases.
 
     @param source Filename or path of the *_probe.c. Relative paths are
@@ -300,6 +306,8 @@ def run_c_probe(
     @param timeout Seconds per case. Default 60, or 300 under valgrind.
     @param valgrind True/False to force wrap. None follows --env-mode.
     @param caller_dir Override directory used to resolve source.
+    @param env_unset Environment variable names to remove for the probe
+                     (for example ones afwdev sets for --env-mode asan).
     @return Standard python-mode result dict.
     """
     if caller_dir is None:
@@ -346,7 +354,8 @@ def run_c_probe(
         for name, desc in cases:
             try:
                 rc, err = _run_probe_case(
-                    dest, name, timeout, work, use_valgrind)
+                    dest, name, timeout, work, use_valgrind,
+                    env_unset=env_unset)
             except subprocess.TimeoutExpired:
                 tests.append(_case(
                     name,
