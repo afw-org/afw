@@ -147,13 +147,35 @@ afw_reference_release_held(
 
 
 /**
+ * @brief Release the element releases deferred on xctx.
+ * @param xctx of caller, at release depth 0.
+ *
+ * Called by afw_reference_release_held() and afw_value_release_held()
+ * when the outermost element release returns.
+ */
+AFW_DECLARE(void)
+afw_reference_release_pending_drain(afw_xctx_t *xctx);
+
+
+/**
  * @brief afw_reference_release_held() for a value.
  * @param _value held value (NULL is ignored).
  * @param _xctx of caller.
+ *
+ * Below AFW_REFERENCE_RELEASE_DEPTH_MAX this releases in place, so the
+ * common case costs no extra call. At that depth it calls
+ * afw_reference_release_held() to defer the release.
  */
 #define afw_value_release_held(_value, _xctx) \
     ((_value) \
-        ? afw_reference_release_held(&(_value)->ref, (_xctx)) \
+        ? (((_xctx)->release_depth < AFW_REFERENCE_RELEASE_DEPTH_MAX) \
+            ? ((_xctx)->release_depth++, \
+                afw_value_release((_value), (_xctx)), \
+                ((--(_xctx)->release_depth == 0 && \
+                    (_xctx)->release_pending_count > 0) \
+                    ? afw_reference_release_pending_drain(_xctx) \
+                    : (void)0)) \
+            : afw_reference_release_held(&(_value)->ref, (_xctx))) \
         : (void)0)
 
 

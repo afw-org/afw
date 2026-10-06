@@ -594,8 +594,8 @@ impl_release_pending_push(
  * defer more (its own deep elements); keep going until none are left,
  * then free the list so nothing is left for xctx release to free.
  */
-static void
-impl_release_pending_drain(afw_xctx_t *xctx)
+AFW_DEFINE(void)
+afw_reference_release_pending_drain(afw_xctx_t *xctx)
 {
     const afw_reference_t *instance;
 
@@ -627,6 +627,6 @@ afw_reference_release_held(
     afw_reference_release(instance, xctx);
     xctx->release_depth--;
     if (xctx->release_depth == 0 && xctx->release_pending_count > 0) {
-        impl_release_pending_drain(xctx);
+        afw_reference_release_pending_drain(xctx);
     }
 }
