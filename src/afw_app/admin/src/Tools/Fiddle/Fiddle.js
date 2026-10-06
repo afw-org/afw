@@ -43,10 +43,17 @@ const FIDDLE_MAX_RECENT = 8;
 /* default object to save to Local Storage in browser */
 const fiddleLocalStorageDefault = { scripts: {}, recent: [] };
 
-/* default initial fiddle state */
+/*
+ * default initial fiddle state
+ *
+ * Each tab keeps its own last output (tab.output), in memory only, so the
+ * output panel follows the active tab.  state.output only holds output that
+ * has no tab to belong to, such as a failed open with every tab closed.
+ */
 const initialState = {
-    defaultPanelSize:       "100%",
+    defaultPanelSize:       "60%",
     tabs:                   [],
+    nextTabId:              1,
     selectedFlags:          [ 
         "response:error", 
         "response:stdout", 
@@ -59,7 +66,6 @@ const initialState = {
     counter:                1,
     selectedContextTypes:   [],
     contextVariables:       [],
-    hasOutput:              false,
 };
 
 /* grab the initial source for each type of new file */
@@ -115,6 +121,44 @@ const getError = (error) => {
 };
 
 /**
+ * The editor error marker for an evaluation error.
+ */
+const getErrorMarker = (error) => {
+
+    if (!error)
+        return {};
+
+    return {
+        errorOffset: (error.offset !== undefined) ? error.offset : error.parserCursor - 1,
+        errorHoverMessage: error.message,
+    };
+};
+
+/**
+ * Apply update(tab) to the tab that an output action belongs to: the tab
+ * with action.tabId (captured when the action started), or else the active
+ * tab.  update returns the tab properties to change, such as output.
+ */
+const updateOutputTab = (state, tabId, update) => {
+
+    const index = (tabId !== undefined) ?
+        state.tabs.findIndex(tab => tab.id === tabId) : state.activeTab;
+    const tab = state.tabs[index];
+
+    /* the tab was closed before its output arrived */
+    if (!tab && tabId !== undefined)
+        return state;
+
+    if (!tab)
+        return { ...state, output: update({ output: state.output }).output };
+
+    const tabs = [ ...state.tabs ];
+    tabs[index] = { ...tab, ...update(tab) };
+
+    return { ...state, tabs };
+};
+
+/**
  * The main Reducer function for Fiddle.  It takes a state and action and
  * returns the new state for the Fiddle app.
  */
@@ -134,115 +178,100 @@ const reducer = (state, action) => {
             spinnerText: undefined
         });
 
-    case "OPEN_OUTPUT": {
-        const defaultPanelSize = (state.defaultPanelSize === "100%") ?
-            "60%" : state.defaultPanelSize;
-
+    case "OPEN_OUTPUT": 
         return ({
-            ...state,
-            defaultPanelSize,
-            stdout: action.stdout,
-            stderr: action.stderr,
-            listing: action.listing,
-            error: getError(action.error),
-            spinnerText: undefined,   
-            hasOutput: true,                  
-        });
-
-    }
-
-    case "CLOSE_OUTPUT": {
-        const updatedTabs = [ ...state.tabs ];
-        updatedTabs.forEach( t => {
-            if (t.errorOffset !== undefined)
-                t.errorOffset = undefined;
-            if (t.errorHoverMessage !== undefined)
-                t.errorHoverMessage = undefined;
-        });
-
-        return ({
-            ...state,
-            defaultPanelSize: "100%",
-            error: undefined,
-            result: undefined,
-            resultDataType: undefined,
-            stdout: undefined,
-            stderr: undefined,
-            listing: undefined,            
-            tabs: updatedTabs,
-            hasOutput: false,
-        });
-
-    } 
-    
-    case "EVALUATING": {
-        const updatedTabs = [ ...state.tabs ];
-        const currentTab = updatedTabs[state.activeTab];
-        currentTab.errorOffset = undefined;
-        currentTab.errorHoverMessage = undefined;
-
-        return ({
-            ...state,
-            spinnerText: action.spinnerText,
-            error: undefined,
-            listing: undefined,
-        });
-
-    } 
-    
-    case "EVALUATED": {
-        const updatedTabs = [ ...state.tabs ];
-        const currentTab = updatedTabs[state.activeTab];        
-
-        let evaluatedSubformat = action.subformat;
-        if (!evaluatedSubformat) {
-            if (isTestScript(currentTab.source))
-                evaluatedSubformat = "test";            
-        }
-
-        return ({
-            ...state,
+            ...updateOutputTab(state, action.tabId, tab => ({
+                output: {
+                    ...tab.output,
+                    stdout: action.stdout,
+                    stderr: action.stderr,
+                    listing: action.listing,
+                    error: getError(action.error),
+                    hasOutput: true,
+                },
+                ...(action.markError ? getErrorMarker(action.error) : {}),
+            })),
             spinnerText: undefined,
-            result: action.result,
-            resultDataType: action.result,
-            tabs: updatedTabs,
-            evaluatedFormat: action.format,
-            evaluatedSubformat,
-            hasOutput: true,
         });
 
-    } 
+    case "CLOSE_OUTPUT": 
+        return updateOutputTab(state, undefined, () => ({
+            output: undefined,
+            errorOffset: undefined,
+            errorHoverMessage: undefined,
+        }));
+    
+    case "EVALUATING": 
+        return ({
+            ...updateOutputTab(state, action.tabId, tab => ({
+                output: {
+                    ...tab.output,
+                    error: undefined,
+                    listing: undefined,
+                },
+                errorOffset: undefined,
+                errorHoverMessage: undefined,
+            })),
+            spinnerText: action.spinnerText,
+        });
+    
+    case "EVALUATED": 
+        return ({
+            ...updateOutputTab(state, action.tabId, tab => {
+                let evaluatedSubformat = action.subformat;
+                if (!evaluatedSubformat) {
+                    if (isTestScript(tab.source))
+                        evaluatedSubformat = "test";            
+                }
+
+                return {
+                    output: {
+                        ...tab.output,
+                        result: action.result,
+                        resultDataType: action.result,
+                        evaluatedFormat: action.format,
+                        evaluatedSubformat,
+                        hasOutput: true,
+                    },
+                };
+            }),
+            spinnerText: undefined,
+        });
+
     case "LISTING":
         return ({
-            ...state,
+            ...updateOutputTab(state, action.tabId, tab => ({
+                output: {
+                    ...tab.output,
+                    error: undefined,
+                    result: undefined,
+                    resultDataType: undefined,
+                },
+            })),
             spinnerText: action.spinnerText,
-            error: undefined,
-            result: undefined,
-            resultDataType: undefined,
         });
 
 
     /* \fixme "ERROR" may indicate an internal Fiddle error (caught exception) - handle separately */
     case "ERROR": 
         return ({
-            ...state,
+            ...updateOutputTab(state, action.tabId, tab => ({
+                output: {
+                    ...tab.output,
+                    error: (typeof action.error === "string") ? 
+                        { message: action.error } : 
+                        { message: action.error.message },
+                    stdout: undefined,
+                    stderr: undefined,
+                    result: undefined,
+                    resultDataType: undefined,
+                    listing: undefined,
+                    hasOutput: true,
+                },
+                ...(action.markError ? getErrorMarker(action.error) : {}),
+            })),
             spinnerText: undefined,
-            error: (typeof action.error === "string") ? 
-                { message: action.error } : 
-                { message: action.error.message },
-            stdout: undefined,
-            stderr: undefined,
-            result: undefined,
-            resultDataType: undefined,
-            listing: undefined,
             showSaveAs: false,
-            hasOutput: true,
-        });
-
-    case "ERROR_OFFSET":
-        return ({
-            ...state,
-            tabs: action.updatedTabs,
         });
 
     case "SCRIPT_SAVED":            
@@ -268,6 +297,7 @@ const reducer = (state, action) => {
         return ({
             ...state,            
             tabs: [ ...state.tabs, { 
+                id: state.nextTabId,
                 source: getInitialSource(action.format, action.subformat), 
                 format: action.format ? action.format : "script", 
                 subformat: action.subformat,
@@ -276,6 +306,7 @@ const reducer = (state, action) => {
             }],
             activeTab: state.tabs.length,         
             counter: state.counter + 1,            
+            nextTabId: state.nextTabId + 1,
         });
 
     case "OPEN_SCRIPT":
@@ -283,9 +314,10 @@ const reducer = (state, action) => {
             ...state,
             tabs: [
                 ...state.tabs,
-                action.newTab
+                { ...action.newTab, id: state.nextTabId }
             ],
             activeTab: state.tabs.length,     
+            nextTabId: state.nextTabId + 1,
             showOpen: false,       
         });    
 
@@ -326,7 +358,7 @@ const reducer = (state, action) => {
     case "LOADED_VFS_FILE": {
         const tabs = [ 
             ...state.tabs,
-            action.newTab
+            { ...action.newTab, id: state.nextTabId }
         ];        
 
         return ({
@@ -334,6 +366,7 @@ const reducer = (state, action) => {
             spinnerText: undefined,
             tabs,
             activeTab: state.tabs.length,
+            nextTabId: state.nextTabId + 1,
         });
 
     } case "TAB_CLOSE":
@@ -645,7 +678,7 @@ export const Fiddle = () => {
     /**
      * This is called when the Evaluate button is clicked for a script.
      */
-    const onEvaluateScript = async (script, additionalUntrustedQualifiedVariables) => {        
+    const onEvaluateScript = async (script, additionalUntrustedQualifiedVariables, tabId) => {        
         let action = {};
 
         action["function"] = "eval<script>";
@@ -658,22 +691,11 @@ export const Fiddle = () => {
             const streams = await client.current.perform(action).streams();                                           
             const {response: { result, resultDataType, error }, stdout, stderr} = streams;
 
-            dispatch({ type: "OPEN_OUTPUT", stdout, stderr, error });
-
-            if (error) {
-                const updatedTabs = [ ...state.tabs ];
-                if (error.offset !== undefined)
-                    updatedTabs[state.activeTab].errorOffset = error.offset;
-                else 
-                    updatedTabs[state.activeTab].errorOffset = error.parserCursor - 1;
-                updatedTabs[state.activeTab].errorHoverMessage = error.message;
-                
-                dispatch({ type: "ERROR_OFFSET", updatedTabs });            
-            }
+            dispatch({ type: "OPEN_OUTPUT", tabId, stdout, stderr, error, markError: true });
 
             return { result, resultDataType };
         } catch (e) {            
-            dispatch({ type: "OPEN_OUTPUT", error: e });
+            dispatch({ type: "OPEN_OUTPUT", tabId, error: e });
         }
 
         return {};
@@ -684,7 +706,10 @@ export const Fiddle = () => {
      */
     const onEvaluate = async () => {
 
-        dispatch({ type: "EVALUATING", spinnerText: "Evaluating..." });
+        /* output goes to the tab that was evaluated, even if another is active by then */
+        const tabId = activeTabContent.id;
+
+        dispatch({ type: "EVALUATING", tabId, spinnerText: "Evaluating..." });
 
         /* use context variables to build up an evaluation context */
         let additionalUntrustedQualifiedVariables = (state.contextVariables.length > 0) ? {} : undefined;
@@ -713,7 +738,7 @@ export const Fiddle = () => {
 
             if (activeTabInputFormat === "script") 
                 ({ result, resultDataType } = 
-                    await onEvaluateScript(input, additionalUntrustedQualifiedVariables));
+                    await onEvaluateScript(input, additionalUntrustedQualifiedVariables, tabId));
 
             else if (activeTabInputFormat === "template") {
                 result = await afwEvalTemplate(client.current, input, additionalUntrustedQualifiedVariables).result();                
@@ -721,6 +746,7 @@ export const Fiddle = () => {
 
             dispatch({ 
                 type: "EVALUATED", 
+                tabId,
                 /* \fixme move to reducer and handle NaN/Infinity/etc.  */
                 result: (result === undefined) ? "undefined" : JSON.stringify(result, null, 4),
                 resultDataType,
@@ -730,18 +756,7 @@ export const Fiddle = () => {
 
         } catch (error) {
 
-            dispatch({ type: "ERROR", error });
-
-            if (error) {
-                const updatedTabs = [...state.tabs];
-                if (error.offset !== undefined)
-                    updatedTabs[state.activeTab].errorOffset = error.offset;
-                else 
-                    updatedTabs[state.activeTab].errorOffset = error.parserCursor - 1;
-                updatedTabs[state.activeTab].errorHoverMessage = error.message;
-                
-                dispatch({ type: "ERROR_OFFSET", updatedTabs });
-            }            
+            dispatch({ type: "ERROR", tabId, error, markError: true });
         }
     };
 
@@ -749,7 +764,9 @@ export const Fiddle = () => {
      * This is called when the Listing button is clicked.
      */
     const onList = async () => {
-        dispatch({ type: "LISTING", spinnerText: "Listing..." });
+        const tabId = activeTabContent.id;
+
+        dispatch({ type: "LISTING", tabId, spinnerText: "Listing..." });
 
         try {
             let result;
@@ -762,10 +779,10 @@ export const Fiddle = () => {
                 result = await afwCompileTemplate(client.current, input, 4).result();                
             }
             
-            dispatch({ type: "OPEN_OUTPUT", listing: result });
+            dispatch({ type: "OPEN_OUTPUT", tabId, listing: result });
 
         } catch (error) {
-            dispatch({ type: "ERROR", error });
+            dispatch({ type: "ERROR", tabId, error });
         }
     };
 
@@ -1059,11 +1076,9 @@ export const Fiddle = () => {
     if (errorFunctions)
         return <ErrorFunctions />;
 
-    const {hasOutput, defaultPanelSize} = state;    
-    let size = defaultPanelSize;
-    
-    if (!hasOutput)
-        size = "100%";
+    /* the output panel shows the active tab's output, collapsing when it has none */
+    const output = activeTabContent ? activeTabContent.output : state.output;
+    const size = output?.hasOutput ? state.defaultPanelSize : "100%";
 
     return (
         <>            
@@ -1142,15 +1157,15 @@ export const Fiddle = () => {
                     </QualifiersProvider>         
                 </div>                       
                 <EvaluationOutput 
-                    format={state.evaluatedFormat}
-                    subformat={state.evaluatedSubformat}
+                    format={output?.evaluatedFormat}
+                    subformat={output?.evaluatedSubformat}
                     size={state.defaultPanelSize}
-                    error={state.error}
-                    result={state.result}
-                    resultDataType={state.resultDataType}
-                    listing={state.listing}
-                    stdout={state.stdout}
-                    stderr={state.stderr}
+                    error={output?.error}
+                    result={output?.result}
+                    resultDataType={output?.resultDataType}
+                    listing={output?.listing}
+                    stdout={output?.stdout}
+                    stderr={output?.stderr}
                     onClear={() => {
                         dispatch({ type: "CLOSE_OUTPUT" });                        
                     }}

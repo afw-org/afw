@@ -161,6 +161,58 @@ describe("Fiddle Tests", () => {
         expect(screen.getByText("Untitled-1")).toBeInTheDocument();
     });
 
+    test("Output follows the active tab (issue #60)", async () => {
+
+        renderRoute("/Tools/Fiddle");
+
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
+
+        await waitFor(() => expect(screen.getByTestId("admin-tools-fiddle")).toBeInTheDocument());
+
+        // open a first tab and evaluate it
+        await waitFor(() => expect(screen.getByLabelText("New Source Window")).toBeInTheDocument());
+        fireEvent.click(screen.getByLabelText("New Source Window"));
+        await waitFor(() => expect(screen.getByText("Untitled-1")).toBeInTheDocument());
+        await act(async () => {
+            getLatestMonacoEditorInstance().__setValueAndFireChange("1 + 1");
+            await new Promise(resolve => setTimeout(resolve, 150));
+        });
+
+        server.use(
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
+                return new HttpResponse(
+                    "1 31 response\n{\"result\":2,\"status\":\"success\"}2 0 end\n",
+                    { headers: { "Content-Type": "application/x-afw" } }
+                );
+            })
+        );
+
+        mswPostCallback.mockClear();
+        fireEvent.click(screen.getByLabelText("Evaluate"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
+        await waitFor(() => expect(screen.getByRole("region", { name: "Evaluation Output" })).toBeInTheDocument());
+
+        // a second, never evaluated tab has no output
+        fireEvent.click(screen.getByLabelText("New Source Window"));
+        await waitFor(() => expect(screen.getByText("Untitled-2")).toBeInTheDocument());
+        await waitFor(() => expect(screen.queryByRole("region", { name: "Evaluation Output" })).not.toBeInTheDocument());
+
+        // switching back shows the first tab's output again
+        fireEvent.click(screen.getByText(/^Untitled-1/));
+        await waitFor(() => expect(screen.getByRole("region", { name: "Evaluation Output" })).toBeInTheDocument());
+
+        // closing the first tab's output leaves it closed after a round trip
+        fireEvent.click(screen.getByLabelText("Close Output"));
+        await waitFor(() => expect(screen.queryByRole("region", { name: "Evaluation Output" })).not.toBeInTheDocument());
+        fireEvent.click(screen.getByText(/^Untitled-2/));
+        fireEvent.click(screen.getByText(/^Untitled-1/));
+        expect(screen.queryByRole("region", { name: "Evaluation Output" })).not.toBeInTheDocument();
+    });
+
     test("Create new fiddle input, set trace flag, execute", async () => {
 
         renderRoute("/Tools/Fiddle");        
