@@ -146,10 +146,13 @@ afw_server_fcgi_internal_create_request(
     value = afw_object_get_property(self->pub.properties,
         AFW_REQUEST_v_PN_REQUEST_METHOD, xctx);
     if (!value) {
-        AFW_THROW_ERROR_Z(general,
-            AFW_REQUEST_Q_PN_REQUEST_METHOD " property required.", xctx);
+        self->invalid_z = AFW_REQUEST_Q_PN_REQUEST_METHOD
+            " property required.";
+        self->pub.method = afw_s_a_empty_string;
     }
-    self->pub.method = afw_value_convert_to_utf8(value, xctx->p, xctx);
+    else {
+        self->pub.method = afw_value_convert_to_utf8(value, xctx->p, xctx);
+    }
 
     /* Get request URI. */
     self->pub.uri = afw_object_get_property_convert_to_utf8(self->pub.properties,
@@ -170,19 +173,27 @@ afw_server_fcgi_internal_create_request(
         }
     }
     if (!self->pub.uri || self->pub.uri->len == 0) {
-        AFW_THROW_ERROR_Z(general,
-            AFW_REQUEST_Q_PN_PATH_INFO " or " AFW_REQUEST_Q_PN_REQUEST_URI
-            " property required", xctx);
+        if (!self->invalid_z) {
+            self->invalid_z = AFW_REQUEST_Q_PN_PATH_INFO " or "
+                AFW_REQUEST_Q_PN_REQUEST_URI " property required.";
+        }
+        self->pub.uri = afw_utf8_create("/", 1, xctx->p, xctx);
     }
 
     /* Get request query string. */
     value = afw_object_get_property(self->pub.properties,
         AFW_REQUEST_v_PN_QUERY_STRING, xctx);
     if (!value) {
-        AFW_THROW_ERROR_Z(general,
-            AFW_REQUEST_Q_PN_QUERY_STRING " property required.", xctx);
+        if (!self->invalid_z) {
+            self->invalid_z = AFW_REQUEST_Q_PN_QUERY_STRING
+                " property required.";
+        }
+        self->pub.query_string = afw_s_a_empty_string;
     }
-    self->pub.query_string = afw_value_convert_to_utf8(value, xctx->p, xctx);
+    else {
+        self->pub.query_string = afw_value_convert_to_utf8(value, xctx->p,
+            xctx);
+    }
 
     /* Get request content type. */
     self->pub.content_type = afw_object_get_property_convert_to_utf8(

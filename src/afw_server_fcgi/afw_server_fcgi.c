@@ -254,6 +254,15 @@ static void impl_process_request(afw_server_fcgi_internal_t *self,
     /* Handle request errors in request session xctx. */
     AFW_TRY{
 
+        /* A missing required parameter is answered as a bad request. */
+        if (((const afw_server_fcgi_internal_request_t *)request)->
+            invalid_z)
+        {
+            AFW_THROW_ERROR_Z(request_syntax,
+                ((const afw_server_fcgi_internal_request_t *)request)->
+                    invalid_z, xctx);
+        }
+
         afw_server_fcgi_internal_set_content_length(
             (afw_server_fcgi_internal_request_t *)request, xctx);
 

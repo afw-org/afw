@@ -84,6 +84,13 @@ struct afw_server_fcgi_internal_request_s {
 
     /* FCGX Request used in run loop. */
     FCGX_Request *fcgx_request;
+
+    /*
+     * First missing required parameter, or NULL. create_request runs
+     * before the request's error handling, so it records the problem
+     * and impl_process_request throws it (400) where it can be answered.
+     */
+    const char *invalid_z;
 };
 
 
