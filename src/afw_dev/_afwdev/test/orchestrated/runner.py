@@ -10,6 +10,7 @@ import os
 import random
 import re
 import signal
+import socket
 import threading
 import time
 from concurrent.futures import (
@@ -34,6 +35,7 @@ from _afwdev.test.orchestrated.load import (
     OrchestrationLoadError,
     eval_function_for_source_type,
     load_orchestration_document,
+    parse_sets,
     merge_feed,
     parse_count_spec,
     parse_triple_lt_path,
@@ -314,7 +316,8 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
     under_valgrind = (mode == "valgrind")
 
     try:
-        doc = load_orchestration_document(marker_path)
+        doc = load_orchestration_document(
+            marker_path, sets=parse_sets(options.get("set")), mode=mode)
     except OrchestrationLoadError as e:
         return _fail_response(str(marker_path), e), None, None
 
@@ -344,6 +347,8 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
 
     handle = None
     http_front_handle = None
+    # Kept on failure too: a failed leaf still reports its firehose numbers.
+    step_timings = []
     t0 = time.time()
     try:
         socket_path = None
@@ -374,7 +379,6 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
         else:
             debug_parts.append("host: local (afw --local 1 per work item)")
 
-        step_timings = []
         schedule = doc.get("schedule")
         if not schedule:
             # Include skipped names so counts stay stable; runner no-ops skip.
@@ -522,20 +526,20 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
 
     except afwfcgi_host.AfwfcgiHostError as e:
         return (
-            _fail_response(description, e, None),
+            _fail_response(description, e, step_timings or None),
             e,
             _debug_blob(debug_parts, handle),
         )
     except local_host.AfwLocalHostError as e:
         return (
-            _fail_response(description, e, None),
+            _fail_response(description, e, step_timings or None),
             e,
             _debug_blob(debug_parts, handle),
         )
     except Exception as e:
         wrapped = wrap_exception(e)
         return (
-            _fail_response(description, wrapped, None),
+            _fail_response(description, wrapped, step_timings or None),
             wrapped,
             _debug_blob(debug_parts, handle),
         )
@@ -1182,7 +1186,7 @@ def _make_fuzz(body, ctx, doc_feed, timeout, options):
     seed = body.get("seed") or 0
     replay = options.get("replay") if options else None
     if replay:
-        seed = fuzz_mod.parse_replay(replay)[0]
+        seed = fuzz_mod.parse_replay(fuzz_mod.split_shrink(replay)[0])[0]
     spec = body.get("fuzz") or {}
     functions = []
     if spec.get("kind") == "functionCalls":
@@ -1233,11 +1237,22 @@ def _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency):
 
 def _run_fuzz_replay(fuzz, replay, work_dir, source_leaf, ctx, timeout,
                      doc_feed, debug_parts, step_timings, options, handle):
-    """--replay SEED:INDEX[-LAST]: send those fuzz requests one at a time."""
+    """--replay SEED:INDEX[-LAST]: send those fuzz requests one at a time.
+
+    SEED:INDEX:shrink shrinks that one request instead (_run_fuzz_shrink).
+    """
+    replay, shrink = fuzz_mod.split_shrink(replay)
     try:
         _seed, first, last = fuzz_mod.parse_replay(replay)
     except fuzz_mod.FuzzError as e:
         raise AfwdevRunnerError(str(e))
+    if shrink:
+        if first != last:
+            raise AfwdevRunnerError(
+                "--replay ...:shrink takes one SEED:INDEX, not a range")
+        return _run_fuzz_shrink(
+            fuzz, _seed, first, work_dir, source_leaf, ctx, timeout,
+            doc_feed, debug_parts, step_timings, options, handle)
     t0 = time.time()
     fails = []
     for index in range(first, last + 1):
@@ -1266,6 +1281,145 @@ def _run_fuzz_replay(fuzz, replay, work_dir, source_leaf, ctx, timeout,
         raise AfwdevRunnerError("replay failed:\n" + "\n".join(fails))
     msg.highlighted_info("replay {}: {} request(s) ok".format(
         replay, last - first + 1))
+
+
+SHRINK_MAX_ATTEMPTS = 300
+
+# The line that names a sanitizer or valgrind finding in afwfcgi stderr.
+_FINDING_LINE = re.compile(
+    r"(SUMMARY: \w+Sanitizer: .*|ERROR: \w+Sanitizer: \S+|"
+    r"runtime error: .*|<kind>\w+</kind>)")
+_NOISE = re.compile(r"0x[0-9a-fA-F]+|==\d+==|\(pid=\d+\)|\b\d{3,}\b")
+
+
+def _is_timeout(err):
+    """True when err, or what it was raised from, is a socket timeout."""
+    seen = 0
+    while err is not None and seen < 10:
+        if isinstance(err, (socket.timeout, TimeoutError)):
+            return True
+        err = err.__cause__ or err.__context__
+        seen += 1
+    return False
+
+
+def _exit_signature(handle):
+    """(return code, first sanitizer/valgrind finding line) of a dead
+    afwfcgi, with addresses and pids removed so two runs compare."""
+    proc = (handle or {}).get("process")
+    code = proc.returncode if proc is not None else None
+    line = ""
+    path = (handle or {}).get("log_path")
+    try:
+        with open(path, "r", errors="replace") as fd:
+            for text in fd:
+                m = _FINDING_LINE.search(text)
+                if m:
+                    line = _NOISE.sub("#", m.group(1)).strip()
+                    break
+    except (OSError, TypeError):
+        pass
+    return code, line
+
+
+def _shrink_reduce(start, smaller, still_fails, max_attempts):
+    """Keep the first smaller candidate that still fails, and repeat.
+
+    Pure: smaller(c) yields candidates, still_fails(c) tries one.
+    Returns (smallest candidate, attempts).
+    """
+    current = start
+    attempts = 0
+    improved = True
+    while improved and attempts < max_attempts:
+        improved = False
+        for candidate in smaller(current):
+            if attempts >= max_attempts:
+                break
+            attempts += 1
+            if still_fails(candidate):
+                current = candidate
+                improved = True
+                break
+    return current, attempts
+
+
+def _run_fuzz_shrink(fuzz, seed, index, work_dir, source_leaf, ctx, timeout,
+                     doc_feed, debug_parts, step_timings, options, handle):
+    """--replay SEED:INDEX:shrink: cut one failing fuzz request to the
+    smallest that still fails the same way, then print and save it.
+
+    The same way: afwfcgi exits with the same code and the same first
+    sanitizer/valgrind line; or the request times out; or the same first
+    line of an error. After an exit or a timeout afwfcgi is restarted.
+    """
+    request_timeout = min(max(5.0, timeout), fuzz.request_timeout)
+    restarts = [0]
+
+    def outcome(candidate, n):
+        item = fuzz.shrink_item(candidate, "{} shrink {}".format(
+            fuzz.name(index), n))
+        result = ("ok",)
+        try:
+            if item.get("hostile") is not None:
+                _hostile_request_ok(
+                    item, ctx.get("socket_path"), request_timeout)
+            else:
+                _run_test_item(item, work_dir, source_leaf, ctx,
+                               request_timeout, doc_feed, debug_parts,
+                               options)
+        except Exception as e:
+            if _is_timeout(e):
+                result = ("timeout",)
+            else:
+                text = error_message(e) or str(e)
+                result = ("error", text.splitlines()[0] if text else "")
+        if _afwfcgi_dead(handle) is not None:
+            result = ("exit",) + _exit_signature(handle)
+        if result[0] in ("exit", "timeout"):
+            restarts[0] += 1
+            _restart_afwfcgi(handle, restarts[0])
+            ctx["log_path"] = handle.get("log_path")
+            ctx["stdout_path"] = handle.get("stdout_path")
+        return result
+
+    start = fuzz.shrink_start(index)
+    target = outcome(start, 0)
+    if target[0] == "ok":
+        raise AfwdevRunnerError(
+            "{} does not fail, so there is nothing to shrink".format(
+                fuzz.name(index)))
+    msg.highlighted_info("shrink {}: fails with {}".format(
+        fuzz.name(index), target))
+    counter = [0]
+
+    def still_fails(candidate):
+        counter[0] += 1
+        return outcome(candidate, counter[0]) == target
+
+    smallest, attempts = _shrink_reduce(
+        start, fuzz.shrink_smaller, still_fails, SHRINK_MAX_ATTEMPTS)
+    text = fuzz.shrink_text(smallest)
+    saved = None
+    try:
+        directory = os.path.join(_diag_dir(work_dir), "fuzz-shrunk")
+        os.makedirs(directory, exist_ok=True)
+        saved = os.path.join(directory, "{}-{}{}".format(
+            seed, index, getattr(fuzz, "source_suffix", ".txt")))
+        with open(saved, "w") as fd:
+            fd.write(text)
+    except OSError:
+        saved = None
+    step_timings.append({"name": "firehose", "ms": 0, "passed": True,
+                         "shrink": "{}:{}".format(seed, index),
+                         "attempts": attempts, "outcome": list(target)})
+    msg.highlighted_info(
+        "shrink {}: {} attempts{}, still {}\n--- smallest ---\n{}".format(
+            fuzz.name(index), attempts,
+            " (the limit)" if attempts >= SHRINK_MAX_ATTEMPTS else "",
+            target, text))
+    if saved:
+        msg.highlighted_info("saved: " + saved)
 
 
 def _env_mode_body(body, options):
@@ -1315,6 +1469,25 @@ def _restart_afwfcgi(handle, number):
     handle.update(new)
     handle["_start_kwargs"] = kwargs
     return kept
+
+
+def _fuzz_summary(body, fuzz, work_dir, total, fail, samples, exits):
+    """What a fuzz firehose did, for step timings and history."""
+    last = _last_fuzz_index(work_dir)
+    try:
+        distinct = len(samples.as_list()) if samples is not None else 0
+    except AttributeError:
+        distinct = 0
+    return {
+        "kind": (body.get("fuzz") or {}).get("kind"),
+        "seed": fuzz.seed,
+        "requests": total,
+        "failed": fail,
+        "lastIndex": last if last is not None else max(total - 1, -1),
+        "distinctFailures": distinct,
+        "serverExits": len(exits or []),
+        "functions": len(getattr(fuzz, "functions", []) or []),
+    }
 
 
 def _last_fuzz_index(work_dir):
@@ -1500,6 +1673,24 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         _attach_samples(
             err, getattr(err, "firehose_samples", None), work_dir)
         _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency)
+        # Keep the step's numbers when it ends this way (afwfcgi exited
+        # with onServerExit: stop, a timeout, stopOnError).
+        c_ok, c_fail, c_total = getattr(err, "firehose_counts", (0, 0, 0))
+        partial = {"total": total + c_total, "ok": ok + c_ok,
+                   "fail": fail + c_fail, "stopped": True}
+        stopped_by = list(exits)
+        if _afwfcgi_dead(handle) is not None:
+            # onServerExit: stop. This exit ended the step; count it.
+            stopped_by.append(error_message(err) or str(err))
+        partial["serverExits"] = len(stopped_by)
+        if fuzz is not None:
+            rows = getattr(err, "firehose_samples", None) or samples
+            partial["fuzz"] = _fuzz_summary(
+                body, fuzz, work_dir, partial["total"], partial["fail"],
+                rows, stopped_by)
+        step_timings.append({"name": "firehose",
+                             "ms": round((time.time() - t0) * 1000),
+                             "passed": False, "firehose": partial})
         # A stop must not stick to the next leaf in this process.
         _ASKED.clear()
         raise
@@ -1526,10 +1717,8 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     if exits:
         summary["serverExits"] = len(exits)
     if fuzz is not None:
-        summary["fuzz"] = {"kind": (body.get("fuzz") or {}).get("kind"),
-                           "seed": fuzz.seed,
-                           "indexes": [0, total - 1] if total else [],
-                           "functions": len(fuzz.functions)}
+        summary["fuzz"] = _fuzz_summary(
+            body, fuzz, work_dir, total, fail, samples, exits)
     dead = _afwfcgi_dead(handle)
     if dead is not None:
         _note_fuzz_in_flight(dead, fuzz, work_dir, source_leaf, concurrency)

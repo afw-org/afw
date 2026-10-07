@@ -320,13 +320,53 @@ schedule:
 - Request *i* is built only from (seed, *i*) and the function list, so the same
   build and deny list send the same requests, and nothing generated is stored.
   `afwdev test -T <leaf> --replay SEED:INDEX` (or `SEED:FIRST-LAST`) sends
-  just those requests, printing each script.
+  just those requests, printing each script. `--replay SEED:INDEX:shrink`
+  cuts that one failing request to the smallest that still fails the same
+  way: `afwfcgi` exits with the same code and first sanitizer/valgrind line,
+  or it times out, or the same first error line. `afwfcgi` is restarted after
+  an exit or a timeout. `functionCalls` tries each call alone, drops calls,
+  then nulls arguments; `hostile` drops overrides, empties or halves the body,
+  then tries GET. The result is printed and saved to `diag/fuzz-shrunk/`. A
+  failure that needs requests in flight together (a race) does not reproduce
+  from one request, so it does not shrink; use `--set concurrency=...`.
 - When `afwfcgi` exits or the step fails with an error, the message names the
   fuzz requests sent last, a `--replay` range for them, and
   `diag/fuzz-in-flight/` with their scripts (`.as`) or requests (`.txt`).
   `diag/fuzz-sent.txt` is the sent index log; past 1MB it becomes
   `fuzz-sent.txt.old` and starts again.
-- `summary.fuzz` in the step timings: kind, seed, index range, function count.
+- `summary.fuzz` in the step timings: kind, seed, requests, failed,
+  lastIndex, distinctFailures, serverExits, and function count. A step that
+  ends early (afwfcgi exits under `onServerExit: stop`, a timeout,
+  `stopOnError`) still records its numbers, and a failed leaf keeps its step
+  timings. Each leaf's fuzz summary is stored on its history file record; a
+  run's totals print as `Fuzz: N requests in L leaf(s), F failed, E server
+  exit(s)` and go into history, and `--trend` shows fuzz requests per run.
+
+**Leaf parameters and `--set` (#485):** a leaf declares the values a run may
+change, and uses them where a value is exactly `$name`:
+
+```yaml
+parameters:
+  seed: { default: 1000, description: "first fuzz seed" }
+  duration_s:
+    default: 600
+    valgrind: 300          # a default per --env-mode
+    description: seconds of requests
+schedule:
+  - firehose:
+      duration_s: $duration_s
+      seed: $seed
+```
+
+`afwdev test --set seed=7` sets it for every leaf that declares `seed`;
+`--set fuzz-hostile:seed=7` for the leaf in directory `fuzz-hostile` (an error
+if it has no such parameter); `--set @file.yaml` reads a mapping of the same
+keys. The value takes the default's type; `none` clears it. Only a whole value
+is replaced, so `$` inside text or a `source:` script is never touched; an
+undeclared `$name` is an error. Usual names: `seed`, `maxRequests`,
+`duration_s`, `concurrency`, `clientProcesses`. `afwdev test --list` shows
+each leaf's parameters as ready-to-use `--set LEAF:NAME=DEFAULT` lines with
+their per-mode defaults and descriptions.
 
 **Any firehose step:**
 
@@ -340,7 +380,9 @@ schedule:
 - `envModes: { <env-mode>: { ... } }` replaces step fields under that
   `--env-mode`, for example `envModes: { valgrind: { maxRequests: 50 } }`
   (valgrind runs one `afwfcgi` thread at a time). `{ skip: true }` skips the
-  step in that mode.
+  step in that mode. `envModes` is applied after `--set`, so it wins over a
+  `--set` value; to vary a value by mode and still let `--set` change it,
+  give the parameter a per-mode default instead (as the fuzz leaves do).
 
 ---
 

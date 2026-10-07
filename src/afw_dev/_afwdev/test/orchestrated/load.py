@@ -2,6 +2,7 @@
 """Load and validate orchestration.yaml / .json documents."""
 
 import os
+import re
 
 from _afwdev.common import nfc
 from _afwdev.common.errors import AfwdevRunnerError
@@ -25,10 +26,179 @@ _SOURCE_TYPES_EVAL = {
 }
 
 
-def load_orchestration_document(marker_path):
+_PARAM_REF = re.compile(r"^\$([A-Za-z_][A-Za-z0-9_]*)$")
+_ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan")
+
+
+def parse_sets(values):
+    """--set NAME=VALUE / LEAF:NAME=VALUE / @FILE -> [(leaf, name, text)].
+
+    leaf is None for a value every leaf that declares NAME gets. @FILE is
+    a YAML or JSON mapping of the same keys to values.
+    """
+    out = []
+    for item in values or []:
+        if item.startswith("@"):
+            path = os.path.expanduser(item[1:])
+            try:
+                with nfc.open(path, "r") as fd:
+                    text = fd.read()
+                data = (yaml.safe_load(text) if yaml is not None
+                        else nfc.json_loads(text))
+            except Exception as e:
+                raise OrchestrationLoadError(
+                    "--set {}: {}".format(item, e)) from e
+            if not isinstance(data, dict):
+                raise OrchestrationLoadError(
+                    "--set {}: must be a mapping".format(item))
+            pairs = [(str(k), v) for k, v in data.items()]
+        else:
+            if "=" not in item:
+                raise OrchestrationLoadError(
+                    "--set wants NAME=VALUE or LEAF:NAME=VALUE, got {!r}"
+                    .format(item))
+            key, value = item.split("=", 1)
+            pairs = [(key, value)]
+        for key, value in pairs:
+            leaf, _, name = key.rpartition(":")
+            if not name:
+                raise OrchestrationLoadError(
+                    "--set {!r}: no parameter name".format(item))
+            out.append((leaf or None, name, value))
+    return out
+
+
+def _convert(text, default, name):
+    """A --set value as the type of the parameter's default."""
+    if not isinstance(text, str):
+        return text
+    if text.lower() == "none":
+        return None
+    try:
+        if isinstance(default, bool):
+            if text.lower() in ("true", "1", "yes", "on"):
+                return True
+            if text.lower() in ("false", "0", "no", "off"):
+                return False
+            raise ValueError(text)
+        if isinstance(default, int):
+            return int(text)
+        if isinstance(default, float):
+            return float(text)
+    except ValueError:
+        raise OrchestrationLoadError(
+            "--set {}={!r}: must be a {} like its default {!r}".format(
+                name, text, type(default).__name__, default))
+    return text
+
+
+def resolve_parameters(raw, leaf_name, sets, mode):
+    """{name: value} from the document's parameters and --set values."""
+    declared = raw.get("parameters") or {}
+    if not isinstance(declared, dict):
+        raise OrchestrationLoadError("parameters must be a mapping")
+    values = {}
+    for name, spec in declared.items():
+        if isinstance(spec, dict):
+            unknown = set(spec) - {"default", "description"} - \
+                set(_ENV_MODES)
+            if unknown:
+                raise OrchestrationLoadError(
+                    "parameter {}: unknown key(s) {}; use default, "
+                    "description, or an --env-mode".format(
+                        name, ", ".join(sorted(unknown))))
+            value = spec.get(mode, spec.get("default"))
+        else:
+            value = spec
+        values[name] = value
+    for leaf, name, text in sets or []:
+        if leaf is not None and leaf != leaf_name:
+            continue
+        if name not in values:
+            if leaf is not None:
+                raise OrchestrationLoadError(
+                    "--set {}:{}: leaf {} has no parameter {} (it has: "
+                    "{})".format(leaf, name, leaf, name,
+                                 ", ".join(sorted(values)) or "none"))
+            continue
+        values[name] = _convert(text, values[name], name)
+    return values
+
+
+def _substitute(value, params, where):
+    if isinstance(value, str):
+        m = _PARAM_REF.match(value)
+        if not m:
+            return value
+        name = m.group(1)
+        if name not in params:
+            raise OrchestrationLoadError(
+                "{}: ${} is not a declared parameter (declared: {})".format(
+                    where, name, ", ".join(sorted(params)) or "none"))
+        return params[name]
+    if isinstance(value, list):
+        return [_substitute(v, params, where) for v in value]
+    if isinstance(value, dict):
+        return {k: _substitute(v, params, where) for k, v in value.items()}
+    return value
+
+
+def apply_parameters(raw, marker_path, sets=None, mode=None):
+    """Replace each value that is exactly $name with its parameter value.
+
+    Only a whole value is replaced, so text in sources is never touched.
+    The leaf name for LEAF:NAME=VALUE is the marker's directory name.
+    """
+    leaf_name = os.path.basename(os.path.dirname(os.path.abspath(
+        marker_path)))
+    params = resolve_parameters(raw, leaf_name, sets, mode or "afw")
+    body = {k: v for k, v in raw.items() if k != "parameters"}
+    out = _substitute(body, params, marker_path)
+    out["parameters"] = raw.get("parameters") or {}
+    out["_parameter_values"] = params
+    return out
+
+
+def describe_parameters(marker_path):
+    """[(name, default, description, {env mode: default})] a leaf declares.
+
+    Reads only the parameters block, for afwdev test --list. Returns []
+    for a leaf without parameters or one that does not parse.
+    """
+    try:
+        with nfc.open(marker_path, "r") as fd:
+            text = fd.read()
+        if marker_path.endswith(".json"):
+            raw = nfc.json_loads(text)
+        elif yaml is not None:
+            raw = yaml.safe_load(text)
+        else:
+            return []
+    except Exception:
+        return []
+    declared = (raw or {}).get("parameters") if isinstance(raw, dict) \
+        else None
+    if not isinstance(declared, dict):
+        return []
+    out = []
+    for name, spec in declared.items():
+        if isinstance(spec, dict):
+            modes = {k: v for k, v in spec.items() if k in _ENV_MODES}
+            out.append((name, spec.get("default"), spec.get("description"),
+                        modes))
+        else:
+            out.append((name, spec, None, {}))
+    return out
+
+
+def load_orchestration_document(marker_path, sets=None, mode=None):
     """
     Load orchestration.yaml or .json and validate v1 sequential schema
     (plus optional schedule.firehose / sequential / parallel).
+
+    parameters (name: default, or name: {default, description, <env
+    mode>: default}) are substituted where a value is exactly $name;
+    sets are parse_sets() entries from --set.
 
     Returns the document dict (normalized defaults applied).
     """
@@ -62,6 +232,7 @@ def load_orchestration_document(marker_path):
     if not isinstance(raw, dict):
         raise OrchestrationLoadError(
             "orchestration document must be a mapping/object: " + marker_path)
+    raw = apply_parameters(raw, marker_path, sets, mode)
 
     host = raw.get("host")
     if not host:

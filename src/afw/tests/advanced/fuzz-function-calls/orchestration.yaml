@@ -4,6 +4,8 @@
 # requests. A crash, sanitizer report, or error escaping a try fails
 # the leaf and names the requests to replay:
 #   afwdev test -T src/afw/tests/advanced/fuzz-function-calls --replay 1:INDEX
+# Shrink one failing request: --replay 1:INDEX:shrink.
+# Another seed or size: --set seed=7, --set maxRequests=2000.
 # Longer runs with other seeds: src/afw/tests-extra/fuzz-function-calls.
 version: 1
 description: Built-in functions called with odd arguments
@@ -14,16 +16,20 @@ timeout_s: 600
 feed:
   kind: action
   accept: application/json
+parameters:
+  maxRequests:
+    default: 400
+    valgrind: 50
+    description: requests to send (valgrind runs one afwfcgi thread at a time)
+  concurrency: { default: 8, description: "requests in flight" }
+  seed: { default: 1, description: "fuzz seed; request i comes from (seed, i)" }
 tests: []
 schedule:
   - firehose:
-      maxRequests: 400
-      concurrency: 8
-      seed: 1
+      maxRequests: $maxRequests
+      concurrency: $concurrency
+      seed: $seed
       maxFail: 0
-      # Valgrind runs one afwfcgi thread at a time (~165ms a request).
-      envModes:
-        valgrind: { maxRequests: 50 }
       fuzz:
         kind: functionCalls
         callsPerRequest: 25

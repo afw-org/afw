@@ -165,7 +165,7 @@ def watch_tests(options, srcdir, testEnvironments):
 def run(options, srcdirs):
 
     # for now, just choose the first one to watch...
-    _, srcdir_path, _, _, _ = srcdirs[0]      
+    _, srcdir_path, _, _ = srcdirs[0]
 
     # load up all the test environments for this srcdir
     testEnvironments = load_test_environments(srcdir_path)

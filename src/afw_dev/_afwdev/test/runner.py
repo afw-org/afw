@@ -36,7 +36,7 @@ from _afwdev.test.common import \
     test_path_for_display, clip_detail, outcome_flag, errors_only_console, \
     xctx_bytes_from_response, xctx_chunk_bytes_from_response, \
     format_test_timing
-from _afwdev.test.history import env_mode, file_record
+from _afwdev.test.history import env_mode, file_record, fuzz_from_response
 from _afwdev.test import failure_log
 from _afwdev.test import run_dir
 from _afwdev.test import family
@@ -244,7 +244,8 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             record = file_record(
                 test_display, duration_ms, xctx_bytes,
                 numPassed, numSkipped, numFailures,
-                xctx_chunk_bytes=xctx_chunk_bytes, cpu_ms=cpu_ms)
+                xctx_chunk_bytes=xctx_chunk_bytes, cpu_ms=cpu_ms,
+                fuzz=fuzz_from_response(response))
             file_records.append(record)
             marker = family.line_marker(record)
 

@@ -4,6 +4,8 @@
 # sanitizer report, hang, or a reply without a FastCGI end record or
 # status line fails the leaf and names the requests to replay:
 #   afwdev test -T src/afw/tests/advanced/fuzz-hostile --replay 1:INDEX
+# Shrink one failing request: --replay 1:INDEX:shrink.
+# Another seed or size: --set seed=7, --set maxRequests=2000.
 # Longer runs: src/afw/tests-extra/fuzz-hostile.
 version: 1
 description: Odd FastCGI requests answered without a crash or hang
@@ -14,15 +16,20 @@ timeout_s: 600
 feed:
   kind: action
   accept: application/json
+parameters:
+  maxRequests:
+    default: 400
+    valgrind: 50
+    description: requests to send (valgrind runs one afwfcgi thread at a time)
+  concurrency: { default: 8, description: "requests in flight" }
+  seed: { default: 1, description: "fuzz seed; request i comes from (seed, i)" }
 tests: []
 schedule:
   - firehose:
-      maxRequests: 400
-      concurrency: 8
-      seed: 1
+      maxRequests: $maxRequests
+      concurrency: $concurrency
+      seed: $seed
       maxFail: 0
-      envModes:
-        valgrind: { maxRequests: 50 }
       fuzz:
         kind: hostile
         requestTimeout_s: 30

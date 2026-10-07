@@ -1,7 +1,9 @@
 # Longer hostile FastCGI fuzz (#485 step 5). Ten minutes from its own
 # seed range; pair with --env-mode asan for a memory check:
 #   ./afwdev test --env-mode asan -T src/afw/tests-extra/fuzz-hostile
-# A failure names the requests to replay with --replay SEED:FIRST-LAST.
+# A failure names the requests to replay with --replay SEED:FIRST-LAST;
+# shrink one with --replay SEED:INDEX:shrink. Other seeds or a shorter
+# run: --set seed=N --set duration_s=60.
 # The gate version is src/afw/tests/advanced/fuzz-hostile.
 version: 1
 description: Odd FastCGI requests, ten minutes
@@ -12,17 +14,29 @@ timeout_s: 900
 feed:
   kind: action
   accept: application/json
+parameters:
+  duration_s:
+    default: 600
+    valgrind: 300
+    description: seconds of requests
+  concurrency:
+    default: 16
+    valgrind: 4
+    description: requests in flight
+  clientProcesses:
+    default: 4
+    valgrind: 1
+    description: client processes sending them
+  seed: { default: 1000, description: "fuzz seed; request i comes from (seed, i)" }
 tests: []
 schedule:
   - firehose:
-      duration_s: 600
-      concurrency: 16
-      clientProcesses: 4
-      seed: 1000
+      duration_s: $duration_s
+      concurrency: $concurrency
+      clientProcesses: $clientProcesses
+      seed: $seed
       maxFail: 0
       onServerExit: restart
-      envModes:
-        valgrind: { duration_s: 300, concurrency: 4, clientProcesses: 1 }
       fuzz:
         kind: hostile
         requestTimeout_s: 30

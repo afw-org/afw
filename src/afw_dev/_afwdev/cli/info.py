@@ -1116,6 +1116,21 @@ _info_test_clear_temps = {
         "ones. Does not run tests."
 }
 
+_info_test_set = {
+    "optionName": "set",
+    "arg": "--set",
+    "action": "append",
+    "default": None,
+    "noprompt": True,
+    "help":
+        "Set an orchestrated leaf parameter: NAME=VALUE for every leaf "
+        "that declares NAME, LEAF:NAME=VALUE for one leaf (its directory "
+        "name), or @FILE for a YAML/JSON mapping of those keys. Repeat "
+        "for more. A leaf declares parameters (name, default, "
+        "description) and uses them where a value is exactly $name; the "
+        "value takes the default's type, and none clears it."
+}
+
 _info_test_replay = {
     "optionName": "replay",
     "arg": "--replay",
@@ -1125,8 +1140,12 @@ _info_test_replay = {
     "help":
         "With -T on an orchestrated leaf whose firehose has fuzz:, send "
         "only fuzz request SEED:INDEX (or SEED:FIRST-LAST), one at a "
-        "time, printing each. Failures and afwfcgi exits name the "
-        "requests to replay."
+        "time, printing each. SEED:INDEX:shrink instead cuts that one "
+        "failing request to the smallest that still fails the same way "
+        "(the same afwfcgi exit and sanitizer line, a timeout, or the "
+        "same error line), prints it, and saves it under the run's "
+        "diag/fuzz-shrunk/. Failures and afwfcgi exits name the requests "
+        "to replay."
 }
 
 _info_test_clear_history = {
@@ -1191,6 +1210,7 @@ _info_test = {
         _info_test_compare_to,
         _info_test_trend,
         _info_test_replay,
+        _info_test_set,
         _info_test_clear_history,
         _info_test_clear_temps,
         _info_test_watch,
