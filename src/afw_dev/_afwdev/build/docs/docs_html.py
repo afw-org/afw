@@ -103,10 +103,14 @@ class DocsHtml:
         }
 
     # create a HTML <img> element
-    def image(self, src="", description="", caption=None, **kwargs):
+    # invert: add Tailwind dark:invert so a light-only image reads on dark
+    #    pages. Images that carry their own dark palette pass False.
+    def image(self, src="", description="", caption=None, invert=True, **kwargs):
 
-        img = self.html_templates.get("image.html") % { 
-            "src": src, "alt": description
+        img = self.html_templates.get("image.html") % {
+            "src": src,
+            "alt": self.escape(description or ""),
+            "class": ' class="dark:invert"' if invert else "",
         }
 
         # center it

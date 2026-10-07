@@ -12,7 +12,7 @@ RUN apt-get update && \
     python3-venv \
     libicu-dev libunwind-setjmp0-dev elfutils libdw-dev cmake \
     libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev \
-    libyaml-dev libfcgi-dev libedit-dev nginx gdb valgrind lsof default-jre doxygen \
+    libyaml-dev libfcgi-dev libedit-dev nginx gdb valgrind lsof doxygen \
     libldap2-dev slapd \
     clang llvm libasan8 libubsan1 \
     curl nodejs npm tmux vim locales bash-completion docker.io && \
@@ -45,8 +45,5 @@ RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8 
-
-# install railroad ebnf syntax diagram generator
-ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war
 
 CMD ["bash"]

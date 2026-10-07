@@ -493,7 +493,15 @@ def generate_doc_html_content(options, cwd, path, docsHtml, element, level):
             else:
                 msg.error("    Could not find image source: " + src_path)
 
-        content += docsHtml.image(src, description, caption)
+        # EBNF railroad diagrams are SVG with their own light and dark
+        # palettes; name them by production for the alt text.
+        invert = True
+        if src.startswith('ebnf/syntax/diagram/') and src.endswith('.svg'):
+            invert = False
+            if not description:
+                description = os.path.basename(src)[:-4] + ' syntax diagram'
+
+        content += docsHtml.image(src, description, caption, invert=invert)
 
     elif tag == 'link':   
         href = element.get("href")         

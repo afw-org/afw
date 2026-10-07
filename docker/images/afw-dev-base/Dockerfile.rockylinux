@@ -37,7 +37,4 @@ COPY python-requirements.txt /tmp/python-requirements.txt
 RUN python3 -m venv /opt/afw-venv && \
     pip install -r /tmp/python-requirements.txt
 
-# install railroad ebnf syntax diagram generator
-ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war
-
 CMD [ "bash" ]

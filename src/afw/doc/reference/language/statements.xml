@@ -9,7 +9,7 @@
     </paragraph>   
     <section>
         <title>Block</title>
-        <image generated-src="ebnf/syntax/diagram/Block.png" />                     
+        <image generated-src="ebnf/syntax/diagram/Block.svg" />                     
         <paragraph>
             A Block is a sequence of statements that are executed sequentially. When 
             creating a script, a new block is created initially. Blocks can be nested 
@@ -37,7 +37,7 @@
     </section>
     <section>
         <title>Assignment</title>
-        <image generated-src="ebnf/syntax/diagram/Assignment.png" />
+        <image generated-src="ebnf/syntax/diagram/Assignment.svg" />
         <paragraph>
             The Assignment statement assigns the value of an Expression to
             a variable, a property, or an index. You can chain assignments
@@ -76,7 +76,7 @@ let [z] = [ 3 ];]]></code>
     </section>
     <section>
         <title>Break</title>
-        <image generated-src="ebnf/syntax/diagram/BreakStatement.png" />        
+        <image generated-src="ebnf/syntax/diagram/BreakStatement.svg" />        
         <paragraph>
             The <literal>break</literal> statement breaks out of the
             current loop or <literal>switch</literal>. You may specify a
@@ -99,7 +99,7 @@ outer: for (let i = 0; i < 3; i = i + 1) {
     </section>
     <section>
         <title>Call</title>
-        <image generated-src="ebnf/syntax/diagram/CallStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/CallStatement.svg" />
         <paragraph>
             A Call statement is an evaluation that compiles to the call 
             of an Adaptive Value.
@@ -107,7 +107,7 @@ outer: for (let i = 0; i < 3; i = i + 1) {
     </section>
     <section>
         <title>Const</title>
-        <image generated-src="ebnf/syntax/diagram/ConstStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/ConstStatement.svg" />
         <paragraph>            
             The <literal>const</literal> statement declares constant
             variables. Each name must have an initializer. You can declare
@@ -123,7 +123,7 @@ const p: integer = 0, q: integer = 1;]]></code>
     </section>
     <section>
         <title>Continue</title>
-        <image generated-src="ebnf/syntax/diagram/ContinueStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/ContinueStatement.svg" />
         <paragraph>
             The <literal>continue</literal> statement continues with the
             next iteration of the current loop. You may specify a loop
@@ -146,7 +146,7 @@ outer: for (let i = 0; i < 3; i = i + 1) {
     </section>
     <section>
         <title>Do While</title>
-        <image generated-src="ebnf/syntax/diagram/DoWhileStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/DoWhileStatement.svg" />
         <paragraph>
             The do-while statement executes a block of statements until a 
             condition is met. Unlike the while statement, the do-while statement
@@ -164,7 +164,7 @@ do {
     </section>
     <section>
         <title>For</title>
-        <image generated-src="ebnf/syntax/diagram/ForStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/ForStatement.svg" />
         <paragraph>
             The <literal>for</literal> statement executes a block of statements 
             until a condition is met. Unlike the while statement, the for 
@@ -201,7 +201,7 @@ for (a = 1, b = 2; a < 3; a = a + 1) {
     </section>
     <section>
         <title>Function</title>
-        <image generated-src="ebnf/syntax/diagram/FunctionStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/FunctionStatement.svg" />
         <paragraph>
             This declares a function. Parameters may be simple names or the same
             list and object <literal>Pattern</literal>s used in
@@ -256,7 +256,7 @@ assert(sum3(...[1, 2, 3]) === 6);]]></code>
     </section>
     <section>
         <title>If</title>
-        <image generated-src="ebnf/syntax/diagram/IfStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/IfStatement.svg" />
         <paragraph>
             The <literal>if</literal> statement executes a block of statements 
             if a condition evaluates to true.
@@ -270,7 +270,7 @@ assert(sum3(...[1, 2, 3]) === 6);]]></code>
     </section>
     <section>
         <title>Interface</title>
-        <image generated-src="ebnf/syntax/diagram/InterfaceStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/InterfaceStatement.svg" />
         <paragraph>
             Declares a named object shape for script type checking. Optional
             properties use <literal>?</literal>; use
@@ -289,7 +289,7 @@ const p: Point = { x: 0, y: 0 };]]></code>
     </section>
     <section>
         <title>Let</title>
-        <image generated-src="ebnf/syntax/diagram/LetStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/LetStatement.svg" />
         <paragraph>
             The <literal>let</literal> statement declares local variables
             in the current block. An initializer is optional. You can
@@ -308,7 +308,7 @@ let { host } = { host: "h" }, [first] = [7, 8];]]></code>
     </section>
     <section>
         <title>Return</title>
-        <image generated-src="ebnf/syntax/diagram/ReturnStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/ReturnStatement.svg" />
         <paragraph>
             The <literal>return</literal> statement returns a value from a 
             block of execution.
@@ -322,7 +322,7 @@ let { host } = { host: "h" }, [first] = [7, 8];]]></code>
     </section>
     <section>
         <title>Switch</title>
-        <image generated-src="ebnf/syntax/diagram/SwitchStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/SwitchStatement.svg" />
         <paragraph>
             The <literal>switch</literal> statement branches control flow based
             on the value of an expression and the value of each case.
@@ -361,7 +361,7 @@ let { host } = { host: "h" }, [first] = [7, 8];]]></code>
     </section>
     <section>
         <title>Type</title>
-        <image generated-src="ebnf/syntax/diagram/TypeStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/TypeStatement.svg" />
         <paragraph>
             Declares a local type alias:
             <literal>type Name = Type;</literal>. See
@@ -376,7 +376,7 @@ const x: Id = 3;]]></code>
     </section>
     <section>
         <title>While</title>
-        <image generated-src="ebnf/syntax/diagram/WhileStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/WhileStatement.svg" />
         <paragraph>
             The <literal>while</literal> statement executes a block of 
             statements until a condition is met. Unlike the do-while statement, 

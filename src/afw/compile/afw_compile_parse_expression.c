@@ -444,7 +444,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
  *#
  *# An object with object type _AdaptiveFunctionDeclaration_
  *#
- * FunctionDeclarationObject ::= object
+ * FunctionDeclarationObject ::= Object
  *
  * FunctionSignature ::= '(' ParameterList ')' OptionalReturnType
  *

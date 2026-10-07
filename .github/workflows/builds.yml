@@ -45,10 +45,6 @@ jobs:
             - name: Install Doxygen
               run: sudo apt-get install -y doxygen
 
-            - name: Install rr.war
-              run: |
-                  wget -O /usr/local/bin/rr.war https://github.com/afw-org/rr/releases/download/v1.63/rr.war
-
             - name: Build Docs
               run: |
                   ./afwdev build --docs
