@@ -147,6 +147,17 @@ afw_file_adapter_create_cede_p(
         }
     }
 
+    /*
+     * Writes of this adapter go one at a time, so modify (read, change,
+     * write) does not lose another thread's write, and a replace does
+     * not bring back an object another thread just deleted.
+     */
+    self->write_lock = afw_lock_create(
+        afw_s_a_lock_file_adapter_write,
+        afw_s_a_lock_file_adapter_write_brief,
+        afw_s_a_lock_file_adapter_write_description,
+        false, p, xctx);
+
     /* If isDevelopmentInput is true, provide appropriate object types. */
     b = afw_object_get_property_as_boolean_internal(properties,
         afw_v_isDevelopmentInput, &found, xctx);
@@ -369,13 +380,31 @@ impl_afw_adapter_session_retrieve_objects(
                     ? adapter->filename_suffix : afw_s_a_empty_string,
                 NULL);
 
-            raw = afw_file_to_memory(full_path, 0, obj_p, xctx);
-            obj = afw_content_type_raw_to_object(
-                adapter->content_type, raw, full_path,
-                &adapter->pub.adapter_id,
-                object_type_id, object_id, true, obj_p, xctx);
+            /*
+             * Skip a file deleted since the directory was read, and an
+             * empty file (no object; a NULL to callback would end the
+             * list).
+             */
+            raw = NULL;
+            AFW_TRY {
+                raw = afw_file_to_memory(full_path, 0, obj_p, xctx);
+            }
+            AFW_CATCH(not_found) {
+                raw = NULL;
+            }
+            AFW_ENDTRY;
+            obj = NULL;
+            if (raw) {
+                obj = afw_content_type_raw_to_object(
+                    adapter->content_type, raw, full_path,
+                    &adapter->pub.adapter_id,
+                    object_type_id, object_id, true, obj_p, xctx);
+            }
+            if (!obj) {
+                afw_pool_release(obj_p, xctx);
+            }
 
-            if (afw_query_criteria_test_object(obj, criteria, p, xctx)) {
+            else if (afw_query_criteria_test_object(obj, criteria, p, xctx)) {
                 if (callback(obj, context, xctx)) {
                     stop = true;
                 }
@@ -464,7 +493,11 @@ impl_afw_adapter_session_add_object(
     raw = afw_content_type_object_to_raw(adapter->content_type,
         object, &afw_object_options_essential_with_whitespace,
         xctx->p, xctx);
-    afw_file_from_memory(full_path, raw, afw_file_mode_write_new, xctx);
+    AFW_LOCK_BEGIN(adapter->write_lock) {
+        afw_file_from_memory(full_path, raw, afw_file_mode_write_new,
+            xctx);
+    }
+    AFW_LOCK_END;
 
     return object_id;
 }
@@ -506,28 +539,33 @@ impl_afw_adapter_session_modify_object(
     full_path = impl_get_full_path(adapter, object_type_id, object_id,
         xctx->p, xctx);
 
-    /* Get object to modify. */
-    raw = afw_file_to_memory(full_path, 0, xctx->p, xctx);
-    object = afw_content_type_raw_to_object(
-        adapter->content_type, raw, full_path,
-        &adapter->pub.adapter_id,
-        object_type_id, object_id, false, xctx->p, xctx);
+    /* Read, change, and write as one step for other writers. */
+    AFW_LOCK_BEGIN(adapter->write_lock) {
 
-    /* An empty file has no object (get_object answers not_found too). */
-    if (!object) {
-        AFW_THROW_ERROR_Z(not_found, "Not found", xctx);
+        /* Get object to modify. */
+        raw = afw_file_to_memory(full_path, 0, xctx->p, xctx);
+        object = afw_content_type_raw_to_object(
+            adapter->content_type, raw, full_path,
+            &adapter->pub.adapter_id,
+            object_type_id, object_id, false, xctx->p, xctx);
+
+        /* An empty file has no object (get_object answers not_found too). */
+        if (!object) {
+            AFW_THROW_ERROR_Z(not_found, "Not found", xctx);
+        }
+
+        /* Apply modifications. */
+        afw_adapter_modify_entries_apply_to_unnormalized_object(
+            entry, object, xctx);
+
+        /* Write modified object. */
+        raw = afw_content_type_object_to_raw(adapter->content_type,
+            object, &afw_object_options_essential_with_whitespace,
+            xctx->p, xctx);
+        afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
+            xctx);
     }
-
-    /* Apply modifications. */
-    afw_adapter_modify_entries_apply_to_unnormalized_object(
-        entry, object, xctx);
-
-    /* Write modified object. */
-    raw = afw_content_type_object_to_raw(adapter->content_type,
-        object, &afw_object_options_essential_with_whitespace,
-        xctx->p, xctx);
-    afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
-        xctx);
+    AFW_LOCK_END;
 }
 
 
@@ -556,12 +594,15 @@ impl_afw_adapter_session_replace_object(
     full_path = impl_get_full_path(adapter, object_type_id,
         object_id, xctx->p, xctx);
 
-    /* Write updated object. */
+    /* Write updated object. Not found if there is no object to replace. */
     raw = afw_content_type_object_to_raw(adapter->content_type,
         replacement_object, &afw_object_options_essential_with_whitespace,
         xctx->p, xctx);
-    afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
-        xctx);
+    AFW_LOCK_BEGIN(adapter->write_lock) {
+        afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
+            xctx);
+    }
+    AFW_LOCK_END;
 }
 
 
@@ -582,7 +623,10 @@ impl_afw_adapter_session_delete_object(
 
     full_path = impl_get_full_path(adapter, object_type_id, object_id,
         xctx->p, xctx);
-    afw_file_delete(full_path, xctx);
+    AFW_LOCK_BEGIN(adapter->write_lock) {
+        afw_file_delete(full_path, xctx);
+    }
+    AFW_LOCK_END;
 }
 
 

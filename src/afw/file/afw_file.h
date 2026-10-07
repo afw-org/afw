@@ -173,11 +173,40 @@ afw_file_to_memory(
  * @param from_memory memory to write.
  * @param mode file open mode.
  * @param xctx of caller.
+ *
+ * Uses afw_file_write_whole(), so readers never see a partial file.
+ * afw_file_mode_write_new also makes the missing directories.
  */
 AFW_DECLARE(void)
 afw_file_from_memory(
     const afw_utf8_t * file_path,
     const afw_memory_t * from_memory,
+    afw_file_mode_t mode,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Write a whole file in one step.
+ * @param path_z file path.
+ * @param buf bytes to write (NULL writes an empty file).
+ * @param n number of bytes.
+ * @param mode afw_file_mode_write (create or replace),
+ *    afw_file_mode_write_new (conflict error if it exists), or
+ *    afw_file_mode_write_existing (not_found error if it is missing).
+ * @param xctx of caller.
+ *
+ * The bytes go to a hidden temporary file in the same directory, which
+ * is flushed to disk and then renamed (or, for a new file, linked) into
+ * place, so a reader sees the old content or the new content, never an
+ * empty or partial file. A replacement keeps the old file's permissions.
+ * The check for write_new / write_existing and the rename are not one
+ * step against another process; callers serialize their own writers.
+ */
+AFW_DECLARE(void)
+afw_file_write_whole(
+    const afw_utf8_z_t *path_z,
+    const void *buf,
+    afw_size_t n,
     afw_file_mode_t mode,
     afw_xctx_t *xctx);
 

@@ -48,3 +48,23 @@ assert(obj.TestString1 == "A new value", "replace_object failed");
 delete_object("file", "TestObjectType1", uuid);
 
 return 0;
+//?
+//? test: replace_object-missing-not-found
+//? description: replace_object of an object that does not exist is not_found and does not create it.
+//? expect: "not_found not_found"
+//? source: ...
+
+let ids: array = [];
+try {
+    replace_object("file", "TestObjectType1", "NoSuchObject", {a: 1});
+}
+catch (e) {
+    push(ids, e.id);
+}
+try {
+    get_object("file", "TestObjectType1", "NoSuchObject");
+}
+catch (e) {
+    push(ids, e.id);
+}
+return join(ids, " ");

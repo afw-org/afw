@@ -25,6 +25,7 @@
 #else
 #include <io.h>
 #include <direct.h>
+#include <windows.h>
 #define open _open
 #define close _close
 #define read _read
@@ -626,3 +627,175 @@ afw_file_dir_close(
 }
 
 #endif /* _WIN32 */
+
+
+/*
+ * Write a whole file so that a reader sees the old content or the new
+ * content, never an empty or partial file: write a hidden temporary file
+ * in the same directory, flush it to disk, then put it in place in one
+ * step. rename() replaces; link() adds only if the name is free.
+ */
+AFW_DEFINE(void)
+afw_file_write_whole(
+    const afw_utf8_z_t *path_z,
+    const void *buf,
+    afw_size_t n,
+    afw_file_mode_t mode,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_z_t *last_slash;
+    const afw_utf8_z_t *dir_z;
+    const afw_utf8_z_t *base_z;
+    const afw_utf8_z_t *temp_z;
+    const afw_utf8_t *uuid;
+    struct stat st;
+    afw_boolean_t exists;
+    int fd;
+    int rc;
+    int err;
+
+    if (!path_z || !*path_z) {
+        AFW_THROW_ERROR_Z(general, "write: empty path", xctx);
+    }
+
+    /* What is there now. */
+    exists = false;
+    if (stat(path_z, &st) == 0) {
+        exists = true;
+    }
+    else if (errno != ENOENT) {
+        err = errno;
+        AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+            "stat %s failed", path_z);
+    }
+    if (mode == afw_file_mode_write_new && exists) {
+        AFW_THROW_ERROR_FZ(conflict, xctx,
+            "File %s already exists.", path_z);
+    }
+    if (mode == afw_file_mode_write_existing && !exists) {
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            "File %s does not exist.", path_z);
+    }
+
+    /* Hidden temporary file next to it (directory listings skip '.'). */
+    last_slash = strrchr(path_z, '/');
+    if (last_slash) {
+        afw_utf8_octet_t *dir;
+        afw_size_t dir_len;
+
+        dir_len = (afw_size_t)(last_slash - path_z) + 1;
+        dir = afw_pool_malloc(xctx->p, dir_len + 1, xctx);
+        memcpy(dir, path_z, dir_len);
+        dir[dir_len] = 0;
+        dir_z = dir;
+        base_z = last_slash + 1;
+    }
+    else {
+        dir_z = "./";
+        base_z = path_z;
+    }
+    uuid = afw_uuid_create_utf8(xctx->p, xctx);
+    temp_z = afw_utf8_z_printf(xctx->p, xctx, "%s.%s.%ku.tmp",
+        dir_z, base_z, uuid);
+
+    fd = -1;
+    AFW_TRY {
+        fd = afw_file_open(temp_z, O_WRONLY | O_CREAT | O_EXCL, xctx);
+#ifndef _WIN32
+        /* A replacement keeps the permissions of the file it replaces. */
+        if (exists && fchmod(fd, st.st_mode & 07777) != 0) {
+            err = errno;
+            AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                "chmod %s failed", temp_z);
+        }
+#endif
+        afw_file_write_full(fd, buf ? buf : "", n, xctx);
+#ifndef _WIN32
+        rc = fsync(fd);
+#else
+        rc = _commit(fd);
+#endif
+        if (rc != 0) {
+            err = errno;
+            AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                "fsync %s failed", temp_z);
+        }
+        rc = close(fd);
+        fd = -1;
+        if (rc != 0) {
+            err = errno;
+            AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                "close %s failed", temp_z);
+        }
+
+        if (mode == afw_file_mode_write_new) {
+#ifndef _WIN32
+            rc = link(temp_z, path_z);
+            err = errno;
+            if (rc != 0 && err != EEXIST) {
+                /*
+                 * No hard links on this file system: claim the name
+                 * with an empty file, then replace it. A reader may see
+                 * that empty file for a moment.
+                 */
+                fd = open(path_z, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC,
+                    0666);
+                err = errno;
+                if (fd >= 0) {
+                    close(fd);
+                    fd = -1;
+                    rc = rename(temp_z, path_z);
+                    err = errno;
+                }
+            }
+#else
+            /* Windows rename() does not replace an existing file. */
+            rc = rename(temp_z, path_z);
+            err = errno;
+            if (rc != 0 && err == EACCES) {
+                err = EEXIST;
+            }
+#endif
+            if (rc != 0) {
+                if (err == EEXIST) {
+                    AFW_THROW_ERROR_FZ(conflict, xctx,
+                        "File %s already exists.", path_z);
+                }
+                AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                    "create %s failed", path_z);
+            }
+        }
+        else {
+#ifndef _WIN32
+            rc = rename(temp_z, path_z);
+            err = errno;
+#else
+            rc = MoveFileExA(temp_z, path_z, MOVEFILE_REPLACE_EXISTING)
+                ? 0 : -1;
+            err = EACCES;
+#endif
+            if (rc != 0) {
+                AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                    "rename %s to %s failed", temp_z, path_z);
+            }
+        }
+
+#ifndef _WIN32
+        /* The new name is on disk too (best effort; some fs refuse). */
+        fd = open(dir_z, O_RDONLY | O_CLOEXEC);
+        if (fd >= 0) {
+            (void)fsync(fd);
+            close(fd);
+            fd = -1;
+        }
+#endif
+    }
+    AFW_FINALLY {
+        if (fd >= 0) {
+            close(fd);
+        }
+        /* Gone already after rename; after link it is a second name. */
+        (void)unlink(temp_z);
+    }
+    AFW_ENDTRY;
+}

@@ -14511,6 +14511,84 @@ afw_self_v_a_lock_environment_description;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_a_lock_file_adapter_write \
+    "file_adapter:write"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_adapter_write */
+#define afw_s_a_lock_file_adapter_write \
+    (&afw_self_v_a_lock_file_adapter_write.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_adapter_write */
+#define afw_self_s_a_lock_file_adapter_write \
+    (afw_self_v_a_lock_file_adapter_write.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_lock_file_adapter_write */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_lock_file_adapter_write;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_file_adapter_write */
+#define afw_z_a_lock_file_adapter_write \
+    (afw_self_v_a_lock_file_adapter_write.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_lock_file_adapter_write */
+#define afw_v_a_lock_file_adapter_write \
+    (&afw_self_v_a_lock_file_adapter_write.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_lock_file_adapter_write_brief \
+    "File adapter write lock"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_adapter_write_brief */
+#define afw_s_a_lock_file_adapter_write_brief \
+    (&afw_self_v_a_lock_file_adapter_write_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_adapter_write_brief */
+#define afw_self_s_a_lock_file_adapter_write_brief \
+    (afw_self_v_a_lock_file_adapter_write_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_lock_file_adapter_write_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_lock_file_adapter_write_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_file_adapter_write_brief */
+#define afw_z_a_lock_file_adapter_write_brief \
+    (afw_self_v_a_lock_file_adapter_write_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_lock_file_adapter_write_brief */
+#define afw_v_a_lock_file_adapter_write_brief \
+    (&afw_self_v_a_lock_file_adapter_write_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_lock_file_adapter_write_description \
+    "This lock makes each file adapter write (add, modify, replace, delete) one step for other threads."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_adapter_write_description */
+#define afw_s_a_lock_file_adapter_write_description \
+    (&afw_self_v_a_lock_file_adapter_write_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_adapter_write_description */
+#define afw_self_s_a_lock_file_adapter_write_description \
+    (afw_self_v_a_lock_file_adapter_write_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_lock_file_adapter_write_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_lock_file_adapter_write_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_file_adapter_write_description */
+#define afw_z_a_lock_file_adapter_write_description \
+    (afw_self_v_a_lock_file_adapter_write_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_lock_file_adapter_write_description */
+#define afw_v_a_lock_file_adapter_write_description \
+    (&afw_self_v_a_lock_file_adapter_write_description.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_a_lock_file_journal_anchor \
     "environment:file_journal_anchor"
 

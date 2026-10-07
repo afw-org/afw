@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/stat.h>
 
 
 /* Return full file path. */
@@ -52,7 +53,7 @@ afw_file_to_memory(
     afw_memory_t *to_memory;
     afw_octet_t *buff;
     FILE *in;
-    afw_file_info_t info;
+    struct stat st;
     const afw_utf8_z_t *file_path_z;
 
     to_memory = afw_pool_calloc_type(p, afw_memory_t, xctx);
@@ -66,12 +67,15 @@ afw_file_to_memory(
     AFW_TRY {
 
         if (file_size == 0) {
-            afw_file_stat(file_path_z, &info, xctx);
-            if (info.type == afw_file_type_missing) {
-                AFW_THROW_ERROR_FZ(not_found, xctx,
-                    "Error opening %s errno %d", file_path_z, ENOENT);
+            /*
+             * Size of the file this stream opened. A stat() of the path
+             * could see a file renamed into place after the open.
+             */
+            if (fstat(fileno(in), &st) != 0) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Error reading %s errno %d", file_path_z, errno);
             }
-            file_size = (afw_size_t)info.size;
+            file_size = (afw_size_t)st.st_size;
         }
         if (file_size == 0) {
             to_memory->size = 0;
@@ -112,9 +116,6 @@ afw_file_from_memory(
     afw_utf8_octet_t *o;
     afw_utf8_octet_t *last_slash;
     afw_size_t count;
-    afw_file_info_t info;
-    int fd;
-    int flags;
 
     /*
      * Make afw_u8_z copy of name with '\' changed to '/'.  Remember location
@@ -138,11 +139,6 @@ afw_file_from_memory(
         break;
 
     case afw_file_mode_write_new:
-        afw_file_stat(file_path_z, &info, xctx);
-        if (info.type != afw_file_type_missing) {
-            AFW_THROW_ERROR_FZ(conflict, xctx,
-                "File %s already exists.", file_path_z);
-        }
         if (last_slash) {
             *last_slash = 0;
             afw_file_mkdir_p(file_path_z, xctx);
@@ -157,21 +153,8 @@ afw_file_from_memory(
         AFW_THROW_ERROR_FZ(general, xctx, "Invalid mode %d.", mode);
     };
 
-    flags = O_WRONLY | O_CREAT | O_TRUNC;
-    if (mode == afw_file_mode_write_new) {
-        flags |= O_EXCL;
-    }
-    fd = -1;
-    AFW_TRY {
-        fd = afw_file_open(file_path_z, flags, xctx);
-        afw_file_write_full(fd,
-            from_memory->ptr ? from_memory->ptr : (const afw_octet_t *)"",
-            from_memory->size, xctx);
-    }
-    AFW_FINALLY {
-        afw_file_close(fd, xctx);
-    }
-    AFW_ENDTRY;
+    afw_file_write_whole(file_path_z, from_memory->ptr, from_memory->size,
+        mode, xctx);
 }
 
 

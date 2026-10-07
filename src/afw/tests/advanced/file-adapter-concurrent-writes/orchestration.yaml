@@ -1,0 +1,78 @@
+# File adapter writes from many requests at once. Each modify reads,
+# changes, and writes the whole file, so without one writer at a time a
+# modify loses another's change; and a reader of a file being written
+# could see it empty or cut short. Every firehose request adds its own
+# property to one object and reads it back; at the end the object has
+# one property per request.
+version: 1
+description: File adapter modify, get, and retrieve from many threads at once
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 300
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: create
+    sourceType: script
+    source: |
+      add_object("file", "Counter", {}, "c");
+      return true;
+    expect: true
+
+  - name: modify-and-read
+    sourceType: script
+    source: |
+      const name = "p" + generate_uuid();
+      modify_object("file", "Counter", "c", [["set_property", name, true]]);
+      const o = get_object("file", "Counter", "c");
+      assert(o[name] === true, "own change missing");
+      const all = retrieve_objects("file", "Counter");
+      assert(length(all) === 1, "retrieve lost the object");
+      return true;
+    expect: true
+
+  - name: check
+    sourceType: script
+    source: |
+      const o = get_object("file", "Counter", "c");
+      return length(keys(o));
+    expect: 400
+
+  - name: missing
+    sourceType: script
+    source: |
+      let ids = [];
+      try {
+          replace_object("file", "Counter", "none", {a: 1});
+      }
+      catch (e) {
+          push(ids, e.id);
+      }
+      try {
+          modify_object("file", "Counter", "none", [["set_property", "a", 1]]);
+      }
+      catch (e) {
+          push(ids, e.id);
+      }
+      try {
+          add_object("file", "Counter", {}, "c");
+      }
+      catch (e) {
+          push(ids, e.id);
+      }
+      return join(ids, " ");
+    expect: "not_found not_found conflict"
+
+schedule:
+  - sequential: [create]
+  - firehose:
+      maxRequests: 400
+      concurrency: 16
+      fromTests: [modify-and-read]
+      policy: roundRobin
+      seed: 5
+      stopOnError: false
+      maxFail: 0
+  - sequential: [check, missing]
