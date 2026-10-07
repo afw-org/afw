@@ -1097,7 +1097,8 @@ _info_test_compare_to = {
         "HEAD contains, which is usually the previous PR's gate run; the "
         "previous run if there is none), last (the previous run), a commit "
         "hash, an older -ref- tag label, or a history file path. Only "
-        "tests in both runs compare, test by test, on memory."
+        "tests in both runs compare, test by test, on memory; a test whose "
+        "file changed since then is counted as changed, not compared."
 }
 
 _info_test_clear_temps = {

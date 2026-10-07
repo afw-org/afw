@@ -19,7 +19,8 @@ afwdev test -j
 # Every run records history and compares with the baseline: the newest
 # --baseline run (PR gate) from another branch that HEAD contains.
 # "Out of family" counts matched tests whose memory grew, test by test;
-# --error-detail lists them. Time is not compared (a small test's CPU is
+# --error-detail lists them. A test whose file changed since the baseline
+# is "changed", not compared (#504). Time is not compared (a small test's CPU is
 # mostly afw startup); --trend cpu shows it.
 # --compare-to last|<commit>|<tag>|<file>; --trend [bytes|chunk|cpu|ms] (no run);
 # --clear-history removes untagged history (baselines stay)
