@@ -343,6 +343,33 @@ afw_adapter_modify_entries_to_list(
 
 
 
+/*
+ * A changeable copy of a property's array. The property's own array may
+ * be immutable (parsed from storage) or held elsewhere, so add_value and
+ * remove_value change a copy and set the property to it.
+ */
+static const afw_array_t *
+impl_array_copy(
+    const afw_value_t *array_value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *from;
+    const afw_array_t *to;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *value;
+
+    from = afw_value_as_array_internal(array_value, p, xctx);
+    to = afw_array_create_unmanaged(p, xctx);
+    iterator = NULL;
+    while ((value = afw_array_get_next_value(from, &iterator, xctx))) {
+        afw_array_push_value(to, value, xctx);
+    }
+
+    return to;
+}
+
+
 /* Apply modify entries to unnormalize object. */
 AFW_DEFINE(void)
 afw_adapter_modify_entries_apply_to_unnormalized_object(
@@ -390,8 +417,11 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
 
                 /* If old value is a list, just add new value to it. */
                 if (afw_value_is_array(old_value)) {
-                    list = afw_value_as_array_internal(old_value, p, xctx);
+                    list = impl_array_copy(old_value, p, xctx);
                     afw_array_push_value(list, value, xctx);
+                    impl_set_property(object, first_property_name_entry,
+                        afw_value_create_unmanaged_array(list, p, xctx),
+                        xctx);
                 }
 
                 /*
@@ -442,8 +472,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
             if (old_value) {
 
                 if (afw_value_is_array(old_value)) {
-                    list = ((const afw_value_array_t *)old_value)
-                        ->internal;
+                    list = impl_array_copy(old_value, p, xctx);
                     afw_array_remove_value(list, value, xctx);
                     new_value = afw_value_create_unmanaged_array(list, p, xctx);
                     impl_set_property(object, first_property_name_entry,

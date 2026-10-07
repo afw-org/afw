@@ -98,3 +98,23 @@ for (const e of bad) {
 assert(get_object("file", "TestObjectType1", id).s === 1);
 delete_object("file", "TestObjectType1", id);
 return 0;
+
+//?
+//? test: modify_object_array_values
+//? description: add_value and remove_value on a stored array property change a copy (the array read from the file is immutable; this used to fail with "List immutable").
+//? expect: 0
+//? source: ...
+
+const id: string = generate_uuid();
+add_object("file", "TestObjectType1", { "a": [1, 2], "s": "x" }, id);
+modify_object("file", "TestObjectType1", id, [["add_value", "a", 3]]);
+assert(stringify(get_object("file", "TestObjectType1", id).a) === "[1,2,3]",
+    "add_value: " + stringify(get_object("file", "TestObjectType1", id).a));
+modify_object("file", "TestObjectType1", id, [["remove_value", "a", 1]]);
+assert(stringify(get_object("file", "TestObjectType1", id).a) === "[2,3]",
+    "remove_value: " + stringify(get_object("file", "TestObjectType1", id).a));
+modify_object("file", "TestObjectType1", id, [["add_value", "s", "y"]]);
+assert(stringify(get_object("file", "TestObjectType1", id).s) === "[\"x\",\"y\"]",
+    "add_value to single: " + stringify(get_object("file", "TestObjectType1", id).s));
+delete_object("file", "TestObjectType1", id);
+return 0;
