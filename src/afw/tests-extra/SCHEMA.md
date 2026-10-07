@@ -328,6 +328,30 @@ schedule:
   `fuzz-sent.txt.old` and starts again.
 - `summary.fuzz` in the step timings: kind, seed, index range, function count.
 
+**Leaf parameters and `--set` (#485):** a leaf declares the values a run may
+change, and uses them where a value is exactly `$name`:
+
+```yaml
+parameters:
+  seed: { default: 1000, description: "first fuzz seed" }
+  duration_s:
+    default: 600
+    valgrind: 300          # a default per --env-mode
+    description: seconds of requests
+schedule:
+  - firehose:
+      duration_s: $duration_s
+      seed: $seed
+```
+
+`afwdev test --set seed=7` sets it for every leaf that declares `seed`;
+`--set fuzz-hostile:seed=7` for the leaf in directory `fuzz-hostile` (an error
+if it has no such parameter); `--set @file.yaml` reads a mapping of the same
+keys. The value takes the default's type; `none` clears it. Only a whole value
+is replaced, so `$` inside text or a `source:` script is never touched; an
+undeclared `$name` is an error. Usual names: `seed`, `maxRequests`,
+`duration_s`, `concurrency`, `clientProcesses`.
+
 **Any firehose step:**
 
 - `onServerExit: stop | restart` (default `stop`). With `restart`, when

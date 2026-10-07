@@ -34,6 +34,7 @@ from _afwdev.test.orchestrated.load import (
     OrchestrationLoadError,
     eval_function_for_source_type,
     load_orchestration_document,
+    parse_sets,
     merge_feed,
     parse_count_spec,
     parse_triple_lt_path,
@@ -314,7 +315,8 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
     under_valgrind = (mode == "valgrind")
 
     try:
-        doc = load_orchestration_document(marker_path)
+        doc = load_orchestration_document(
+            marker_path, sets=parse_sets(options.get("set")), mode=mode)
     except OrchestrationLoadError as e:
         return _fail_response(str(marker_path), e), None, None
 

@@ -12,19 +12,31 @@ timeout_s: 900
 feed:
   kind: action
   accept: application/json
+parameters:
+  duration_s:
+    default: 600
+    valgrind: 300
+    description: seconds of requests
+  concurrency:
+    default: 16
+    valgrind: 4
+    description: requests in flight
+  clientProcesses:
+    default: 4
+    valgrind: 1
+    description: client processes sending them
+  seed: { default: 1000, description: "fuzz seed; request i comes from (seed, i)" }
 tests: []
 schedule:
   - firehose:
-      duration_s: 600
-      concurrency: 16
-      clientProcesses: 4
-      seed: 1000
+      duration_s: $duration_s
+      concurrency: $concurrency
+      clientProcesses: $clientProcesses
+      seed: $seed
       maxFail: 0
       # Keep going after a crash: each exit is recorded (failures.log,
       # kept afwfcgi.*.exitN.log) and fails the leaf at the end.
       onServerExit: restart
-      envModes:
-        valgrind: { duration_s: 300, concurrency: 4, clientProcesses: 1 }
       fuzz:
         kind: functionCalls
         callsPerRequest: 25
