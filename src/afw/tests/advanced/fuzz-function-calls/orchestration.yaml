@@ -4,6 +4,7 @@
 # requests. A crash, sanitizer report, or error escaping a try fails
 # the leaf and names the requests to replay:
 #   afwdev test -T src/afw/tests/advanced/fuzz-function-calls --replay 1:INDEX
+# Shrink one failing request: --replay 1:INDEX:shrink.
 # Another seed or size: --set seed=7, --set maxRequests=2000.
 # Longer runs with other seeds: src/afw/tests-extra/fuzz-function-calls.
 version: 1

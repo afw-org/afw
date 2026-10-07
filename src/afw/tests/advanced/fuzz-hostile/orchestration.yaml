@@ -4,6 +4,7 @@
 # sanitizer report, hang, or a reply without a FastCGI end record or
 # status line fails the leaf and names the requests to replay:
 #   afwdev test -T src/afw/tests/advanced/fuzz-hostile --replay 1:INDEX
+# Shrink one failing request: --replay 1:INDEX:shrink.
 # Another seed or size: --set seed=7, --set maxRequests=2000.
 # Longer runs: src/afw/tests-extra/fuzz-hostile.
 version: 1

@@ -372,7 +372,9 @@ undeclared `$name` is an error. Usual names: `seed`, `maxRequests`,
 - `envModes: { <env-mode>: { ... } }` replaces step fields under that
   `--env-mode`, for example `envModes: { valgrind: { maxRequests: 50 } }`
   (valgrind runs one `afwfcgi` thread at a time). `{ skip: true }` skips the
-  step in that mode.
+  step in that mode. `envModes` is applied after `--set`, so it wins over a
+  `--set` value; to vary a value by mode and still let `--set` change it,
+  give the parameter a per-mode default instead (as the fuzz leaves do).
 
 ---
 

@@ -1,7 +1,9 @@
 # Longer hostile FastCGI fuzz (#485 step 5). Ten minutes from its own
 # seed range; pair with --env-mode asan for a memory check:
 #   ./afwdev test --env-mode asan -T src/afw/tests-extra/fuzz-hostile
-# A failure names the requests to replay with --replay SEED:FIRST-LAST.
+# A failure names the requests to replay with --replay SEED:FIRST-LAST;
+# shrink one with --replay SEED:INDEX:shrink. Other seeds or a shorter
+# run: --set seed=N --set duration_s=60.
 # The gate version is src/afw/tests/advanced/fuzz-hostile.
 version: 1
 description: Odd FastCGI requests, ten minutes
