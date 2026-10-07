@@ -51,6 +51,7 @@ check("switch (1) { case 1: return 1; default: return 0; }");
 check("try { return 1; } catch (e) { return 0; }");
 check("try { throw 1; } catch (e) { return e; }");
 check("try { throw \"x\"; } catch ({message}) { return message; }");
+check("try { throw 1; } catch {}\nreturn 0;");
 check("const f = function (...r) { return r; };\nreturn f(...[1,2], 3);");
 return 0;
 

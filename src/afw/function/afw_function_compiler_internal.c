@@ -2135,7 +2135,12 @@ afw_function_execute_try(
          * it caught.
          */
         afw_xctx_statement_flow_set_type(sequential, xctx);
-        if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
+        /*
+         * A catch is present when there are 3 or more args. Compile
+         * omits an empty `catch { }` body (argv[3] NULL); it still
+         * catches.
+         */
+        if (x->argc >= 3) {
             xctx->catch_depth++;
             in_catch = true;
             /*
@@ -2144,7 +2149,7 @@ afw_function_execute_try(
              * catch without a binding evaluates argv[3] as a statement.
              */
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4) ||
-                (afw_value_is_block(x->argv[3]) &&
+                (x->argv[3] && afw_value_is_block(x->argv[3]) &&
                     ((const afw_value_block_t *)x->argv[3])->statement_count >
                         0 &&
                     afw_value_is_assignment_target(
