@@ -37,9 +37,8 @@ DEFAULT_EXCLUDE = (
     "index_create*", "index_remove*", "model_default_*_action*",
     "write*", "stream*", "*_to_response*", "*_to_stream*",
     "random_*", "*<null>",
-    # Loops: a fuzzed while(true, ...) runs until the request timeout, and
-    # so does evaluate_with_retry(<always fails>, #integerMax).
-    "while", "do_while", "for", "for_of", "evaluate_with_retry",
+    # Loops: a fuzzed while(true, ...) runs until the request timeout.
+    "while", "do_while", "for", "for_of",
 )
 
 REQUEST_TIMEOUT_S = 30
