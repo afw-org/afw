@@ -301,6 +301,13 @@ MDB_dbi afw_lmdb_internal_open_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx);
 
+int afw_lmdb_internal_drop_database(
+    const afw_lmdb_adapter_t * adapter,
+    MDB_txn                  * txn,
+    const afw_utf8_t         * database,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx);
+
 MDB_cursor * afw_lmdb_internal_open_cursor(
     const afw_lmdb_adapter_session_t *session,
     MDB_dbi dbi,

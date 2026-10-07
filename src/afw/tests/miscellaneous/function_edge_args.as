@@ -191,3 +191,39 @@ const b = compile(script("return 1;"), 0);
 assert(index_of(a, "Compiled Adaptive Value Listing") >= 0);
 assert(index_of(b, "Compiled Adaptive Value Listing") >= 0);
 return 0;
+
+//?
+//? test: integer-from-string-overflow
+//? description: integer() of a string past the integer range throws; the digit sum used to overflow and could wrap back to a wrong value (2^64 gave 0)
+//? expect: 0
+//? source: ...
+
+const bad = [
+    "9223372036854775808",
+    "-9223372036854775809",
+    "18446744073709551616",
+    "18446744073709551617",
+    "-18446744073709551616",
+    "92233720368547758080",
+    "99999999999999999999999999999999999999"
+];
+for (const s of bad) {
+    const r = safe_evaluate(integer(s), "error");
+    assert(r === "error", s + " gave " + string(r));
+}
+assert(integer("9223372036854775807") === #integerMax);
+assert(integer("-9223372036854775808") === #integerMin);
+assert(integer("-0") === 0);
+assert(double("18446744073709551616") === 1.8446744073709552e19);
+return 0;
+
+//?
+//? test: join-function-values
+//? description: join of an array holding a script function uses the function's string form (used to read past the value)
+//? expect: 0
+//? source: ...
+
+const s = join(["a", function (x) { return x; }], "|");
+assert(starts_with<string>(s, "a|"), s);
+assert(index_of(s, "function (x)") >= 0, s);
+return 0;

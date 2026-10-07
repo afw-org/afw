@@ -393,6 +393,15 @@ afw_compile_json_to_object(
     }
     AFW_CATCH_UNHANDLED {
         afw_compile_parse_embellish_error(parser, &this_THROWN_ERROR);
+        /*
+         * The parser's contextual lives in parser_p, and the parse result
+         * is data, not a unit an error can hold, so a caller may release
+         * parser_p before the error is caught. The error keeps its own
+         * copy of the source and cursor; drop the contextual.
+         */
+        if (this_THROWN_ERROR.contextual == &parser->contextual) {
+            this_THROWN_ERROR.contextual = NULL;
+        }
         AFW_ERROR_RETHROW;
     }
     AFW_FINALLY {

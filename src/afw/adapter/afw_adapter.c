@@ -728,6 +728,7 @@ afw_adapter_get_object_type(
     const afw_adapter_t *adapter;
     const afw_pool_t *p;
     afw_boolean_t final_result;
+    const afw_utf8_t *key;
 
     /** @fixme This may change so that object types are reused unless changed. */
 
@@ -815,8 +816,14 @@ afw_adapter_get_object_type(
                 session_cache->object_types_ht =
                     afw_hash_table_create(afw_void_hash_table_t, p, xctx);
             }
+            /*
+             * The table keeps the key pointer, and the caller's
+             * object_type_id may die before the session; key by a copy
+             * in the pool result lives in.
+             */
+            key = afw_utf8_clone(object_type_id, p, xctx);
             afw_hash_table_set(session_cache->object_types_ht,
-                object_type_id->s, object_type_id->len, result, xctx);
+                key->s, key->len, result, xctx);
         }
 
         for (

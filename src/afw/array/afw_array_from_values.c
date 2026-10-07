@@ -443,7 +443,6 @@ afw_array_convert_to_array_of_strings(
 {
     const afw_value_t **values;
     const afw_value_t *value;
-    const afw_data_type_t *data_type;
     const afw_utf8_t *s;
     const afw_iterator_old_t *iterator;
     afw_size_t count;
@@ -465,16 +464,17 @@ afw_array_convert_to_array_of_strings(
         if (!value) {
             break;
         }
+        /*
+         * Not every value keeps its internal after inf (a function value
+         * is the value itself), so convert through the value.
+         */
         value = afw_value_evaluate(value, p, xctx);
-        data_type = afw_value_get_data_type(value, xctx);
-        if (!data_type) {
+        if (!afw_value_get_data_type(value, xctx)) {
             AFW_THROW_ERROR_Z(general,
                 "data type needed in afw_array_convert_to_array_of_strings()",
                 xctx);
         }
-        s = afw_data_type_internal_to_utf8(
-            data_type, &((const afw_value_common_t *)value)->internal,
-            p, xctx);
+        s = afw_value_convert_to_utf8(value, p, xctx);
         values[i++] = afw_value_common_create(
             s, afw_data_type_string, p, xctx);
     }

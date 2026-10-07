@@ -113,6 +113,11 @@ impl_afw_data_type_utf8_compare_internal(
     const afw_utf8_t *v2 = value2;
     int result;
 
+    /* An empty utf8 can have a NULL s; memcmp(NULL, ..., 0) is undefined. */
+    if (v1->len == 0 || v2->len == 0) {
+        return (v1->len == v2->len) ? 0 : ((v1->len == 0) ? -1 : 1);
+    }
+
     if (v1->len == v2->len) {
         result = memcmp(v1->s, v2->s, v1->len);
     }

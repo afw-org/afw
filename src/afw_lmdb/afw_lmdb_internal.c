@@ -130,6 +130,36 @@ MDB_dbi afw_lmdb_internal_open_database(
 }
 
 /*
+ * int afw_lmdb_internal_drop_database()
+ *
+ * Deletes a database from the environment. mdb_drop() with del 1 also
+ * closes its handle, so the cached handle is forgotten too: LMDB reuses
+ * the slot for the next database opened, and a stale cache entry would
+ * then reach that other database (or fail with EINVAL).
+ */
+int afw_lmdb_internal_drop_database(
+    const afw_lmdb_adapter_t * adapter,
+    MDB_txn                  * txn,
+    const afw_utf8_t         * database,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx)
+{
+    MDB_dbi dbi;
+    int rc;
+
+    dbi = afw_lmdb_internal_open_database(adapter,
+        txn, database, MDB_DUPSORT|MDB_CREATE, p, xctx);
+
+    /* (1) means delete it from the environment and close the DB handle */
+    rc = mdb_drop(txn, dbi, 1);
+    if (rc == 0) {
+        afw_hash_table_set_utf8(adapter->dbi_handles, database, NULL, xctx);
+    }
+
+    return rc;
+}
+
+/*
  * Functions for opening and automatically releasing
  * LMDB cursors by an xctx cleanup registration.
  */

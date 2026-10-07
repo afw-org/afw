@@ -1,0 +1,111 @@
+# Opt-in LMDB leaf: indexed writes and queries while the index is
+# removed and created again, and the adapter is restarted.
+#   afwdev test -T src/afw/tests-extra/lmdb-index-churn
+#
+# Expected refusals (no index, duplicate index, not running, a query
+# racing an index removal) are caught; anything else fails the request.
+#
+# Known open: after enough index churn, index writes can fail with
+# "Unable to add index value." (LMDB EINVAL) until the adapter
+# restarts. A database handle opened in a transaction that later
+# aborts stays in the adapter's handle cache. See #500.
+version: 1
+description: LMDB index churn under concurrent indexed writes and queries
+host: afwfcgi
+afwfcgi:
+  threads: 16
+timeout_s: 400
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: setup
+    sourceType: script
+    source: |
+      index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, false, false);
+      return true;
+    expect: true
+
+  - name: indexed-cycle
+    sourceType: script
+    source: |
+      const id = generate_uuid();
+      const v = "v" + string(random_integer(0, 20));
+      const ok = function(e) { return includes<string>(e.message, "cannot be queried")
+          || includes<string>(e.message, "cannot be restarted")
+          || includes<string>(e.message, "not running")
+          || includes<string>(e.message, "Unable to open cursor")
+          || e.id === "not_found"; };
+      try {
+          add_object("lmdb", "Idx", {s: v, n: 1}, id);
+          modify_object("lmdb", "Idx", id, [["set_property", "s", v + "x"]]);
+          const r = retrieve_objects("lmdb", "Idx",
+              {filter: {op: "eq", property: "s", value: v + "x"}});
+          replace_object("lmdb", "Idx", id, {s: v, n: 2});
+          delete_object("lmdb", "Idx", id);
+      }
+      catch (e) {
+          if (!ok(e)) { throw string(e.rvDecoded) + " " + string(e.rv) + " " + e.message + " at " + string(e.source); }
+      }
+      return true;
+    expect: true
+
+  - name: index-toggle
+    sourceType: script
+    source: |
+      try {
+          index_remove("lmdb", "s");
+      }
+      catch (e) {}
+      try {
+          index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, true, false);
+      }
+      catch (e) {}
+      const l = index_list("lmdb");
+      return true;
+    expect: true
+
+  - name: query
+    sourceType: script
+    source: |
+      try {
+          const r = retrieve_objects("lmdb", "Idx",
+              {filter: {op: "or", filters: [
+                  {op: "eq", property: "s", value: "v1"},
+                  {op: "ge", property: "s", value: "v5"}]}});
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "cannot be queried")
+              && !includes<string>(e.message, "Unable to open cursor")) {
+              throw e.message;
+          }
+      }
+      return true;
+    expect: true
+
+  - name: restart-once
+    sourceType: script
+    source: |
+      try {
+          const svc = service_restart("adapter-lmdb");
+          assert(svc.status !== "error", string(svc.statusMessage));
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "cannot be restarted")) {
+              throw e.message;
+          }
+      }
+      return true;
+    expect: true
+
+schedule:
+  - sequential: [setup]
+  - firehose:
+      duration_s: 60
+      concurrency: 32
+      clientProcesses: 4
+      fromTests: [indexed-cycle, indexed-cycle, indexed-cycle, query, index-toggle, restart-once]
+      policy: random
+      seed: 11
+      stopOnError: false
+      maxFail: 0
