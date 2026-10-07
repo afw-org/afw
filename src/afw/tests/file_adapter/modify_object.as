@@ -51,3 +51,19 @@ assert(obj.TestString1 == "A new value", "Modify object failed");
 delete_object("file", "TestObjectType1", uuid);
 
 return 0;
+//?
+//? test: modify_object_test-empty-file
+//? description: modify_object of an empty object file is not_found, not a crash.
+//? skip: false
+//? expect: "not_found"
+//? source: ...
+
+let err: string = "none";
+try {
+    modify_object("file", "EmptyFileType", "Empty",
+        [["set_property", "a", 1]]);
+}
+catch (e) {
+    err = e.id;
+}
+return err;

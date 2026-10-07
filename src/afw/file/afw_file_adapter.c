@@ -513,6 +513,11 @@ impl_afw_adapter_session_modify_object(
         &adapter->pub.adapter_id,
         object_type_id, object_id, false, xctx->p, xctx);
 
+    /* An empty file has no object (get_object answers not_found too). */
+    if (!object) {
+        AFW_THROW_ERROR_Z(not_found, "Not found", xctx);
+    }
+
     /* Apply modifications. */
     afw_adapter_modify_entries_apply_to_unnormalized_object(
         entry, object, xctx);
