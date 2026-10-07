@@ -1917,7 +1917,7 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     afw_thread_rwlock_rdlock(session->adapter->dbLock, xctx);
 
     afw_trace_z(1, session->adapter->pub.trace_flag_index,
-        NULL, "LMDB Begin read transaction.", xctx);
+        NULL, "LMDB Begin write transaction.", xctx);
 
     rc = mdb_txn_begin(session->adapter->dbEnv, NULL, 0, &self->txn);
     if (rc) {

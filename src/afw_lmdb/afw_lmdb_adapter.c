@@ -39,7 +39,7 @@ void afw_lmdb_adapter_load_configuration(
     int rc;
 
     afw_trace_z(1, self->pub.trace_flag_index, 
-        NULL, "LMDB Begin read transaction.", xctx);
+        NULL, "LMDB Begin write transaction.", xctx);
 
     rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
     if (rc) {
@@ -240,7 +240,7 @@ void afw_lmdb_adapter_open_databases(
     int rc;
 
     afw_trace_z(1, self->pub.trace_flag_index, 
-        NULL, "LMDB Begin read transaction.", xctx);
+        NULL, "LMDB Begin write transaction.", xctx);
 
     rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
     if (rc) {
@@ -777,7 +777,7 @@ impl_afw_adapter_get_additional_metrics (
     afw_lmdb_internal_txn_abort(self, txn, xctx);
 
     afw_trace_z(1, self->pub.trace_flag_index, 
-        NULL, "LMDB Transaction committed.", xctx);
+        NULL, "LMDB Transaction aborted.", xctx);
 
     afw_thread_rwlock_unlock(self->dbLock, xctx);
 
