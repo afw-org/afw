@@ -20,7 +20,7 @@
 # locks (dbLock and the LMDB writer mutex) against a change that makes
 # index create/open wait on writers that wait on it. A hang shows up as
 # "Timeout waiting for afwfcgi"; attach gdb to afwfcgi for the stacks.
-# lmdb-index-create-error is the related known hang.
+# src/afw_lmdb/tests/index-create-error-fcgi is the related hang (#500).
 version: 1
 description: LMDB index create/remove under concurrent writes
 host: afwfcgi

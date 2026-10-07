@@ -501,6 +501,54 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
 }
 
 /*
+ * const afw_uuid_t * afw_lmdb_internal_object_uuid()
+ *
+ * See afw_lmdb_internal.h.
+ */
+const afw_uuid_t * afw_lmdb_internal_object_uuid(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_uuid_t *uuid;
+    afw_uuid_t *copy;
+    MDB_dbi dbi;
+    afw_memory_t alias_key, raw_value;
+    int rc;
+
+    uuid = afw_lmdb_internal_try_uuid_from_utf8(object_id, p, xctx);
+    if (uuid) {
+        return uuid;
+    }
+
+    dbi = afw_lmdb_internal_open_database(adapter,
+        txn, afw_lmdb_s_IdIndex, 0, p, xctx);
+
+    afw_lmdb_internal_set_alias_key(&alias_key,
+        object_type_id, object_id, p, xctx);
+
+    rc = afw_lmdb_internal_get_entry(txn, dbi, &alias_key, &raw_value, xctx);
+    if (rc != 0) {
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            "'%ku' cannot be found.",
+            object_id);
+    }
+    if (raw_value.size != sizeof(afw_uuid_t)) {
+        AFW_THROW_ERROR_Z(general,
+            "Corrupt IdIndex entry.", xctx);
+    }
+
+    /* raw_value points into the map, valid only during txn. */
+    copy = afw_pool_malloc(p, sizeof(afw_uuid_t), xctx);
+    memcpy(copy, raw_value.ptr, sizeof(afw_uuid_t));
+
+    return copy;
+}
+
+/*
  * const afw_utf8_t * afw_lmdb_internal_lookup_alias()
  *
  * The reverse of afw_lmdb_internal_resolve_object_id(): given the raw
@@ -1810,6 +1858,14 @@ impl_afw_adapter_transaction_commit (
 
     rc = mdb_txn_commit(self->txn);
     if (rc) {
+        /*
+         * mdb_txn_commit() frees the transaction even when it fails.
+         * Forget it first, so a later release does not abort it or
+         * unlock dbLock a second time.
+         */
+        self->txn = NULL;
+        session->transaction = NULL;
+        session->currTxn = NULL;
         afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,

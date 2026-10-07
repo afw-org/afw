@@ -122,7 +122,6 @@ src/afw/tests-extra/
 | **lmdb-concurrent-rmw** | LMDB: 2000 concurrent modifies of one object all kept, then add/modify/replace/delete + retrieves + restarts |
 | **lmdb-index-churn** | LMDB: indexed writes and queries while the index is removed/created and the adapter restarts (known open #500: EINVAL after churn) |
 | **lmdb-index-under-writes** | LMDB: index remove/create mixed with writes, callback retrieves that write, `index_list`; no hang |
-| **lmdb-index-create-error** | LMDB: `index_create` that throws in its retroactive scan must release its transaction (known open #500: hangs) |
 
 **Gate smokes** (default `test -j`, not this tree):
 

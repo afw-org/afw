@@ -448,6 +448,22 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
     afw_xctx_t *xctx);
 
 /**
+ * @brief The internal uuid of object_id, read in txn.
+ *
+ * object_id is a UUID string or an alias in IdIndex. An index entry
+ * stores the internal uuid; a scan (retroactive index create or remove)
+ * reports an object by its alias. Throws not_found if an alias is not
+ * in IdIndex.
+ */
+const afw_uuid_t * afw_lmdb_internal_object_uuid(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Look up the human alias an internal {object_type_id}{uuid}
  * identity was created with, for scans that only have the raw Primary
  * key (never the alias) to work from.
