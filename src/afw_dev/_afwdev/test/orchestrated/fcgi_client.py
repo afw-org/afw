@@ -10,6 +10,7 @@ Default params mirror the AFW reference nginx fastcgi_param set
 import datetime
 import socket
 import struct
+import threading
 
 from _afwdev.common.errors import AfwdevProcessError
 
@@ -231,6 +232,7 @@ def fcgi_request(
     payload = b"".join(records)
 
     sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    sender = None
     try:
         sock.settimeout(timeout)
         try:
@@ -239,7 +241,21 @@ def fcgi_request(
             raise FcgiClientError(
                 "Cannot connect to afwfcgi socket {!r}: {}".format(
                     socket_path, e)) from e
-        sock.sendall(payload)
+        # Send from another thread while reading the reply. A server may
+        # answer before it reads the body (a GET with a body); if it is
+        # writing a large reply while this side is still in sendall, both
+        # block. A front end like nginx buffers, so this is the client's
+        # job here.
+        send_error = []
+
+        def _send():
+            try:
+                sock.sendall(payload)
+            except OSError as e:
+                send_error.append(e)
+
+        sender = threading.Thread(target=_send, daemon=True)
+        sender.start()
 
         stdout = bytearray()
         stderr = bytearray()
@@ -272,6 +288,9 @@ def fcgi_request(
             sock.close()
         except Exception:
             pass
+        if sender is not None:
+            # Closing the socket ends a sendall the server never read.
+            sender.join(timeout)
 
     status_code, headers, body_out = _parse_cgi_response(bytes(stdout))
     return {

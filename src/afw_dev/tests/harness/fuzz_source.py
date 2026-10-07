@@ -56,7 +56,7 @@ def run():
         "skip": False,
     })
     try:
-        fuzz.make_source({"kind": "mutate"}, functions, 1)
+        fuzz.make_source({"kind": "nope"}, functions, 1)
         kind_ok = False
     except fuzz.FuzzError:
         kind_ok = True
@@ -78,6 +78,39 @@ def run():
             v["maxRequests"] == 50 and v["seed"] == 1
             and _env_mode_body(body, {"mode": "afw"}) is body
             and _env_mode_body(body, {"mode": "asan"}) is None
+        ),
+        "skip": False,
+    })
+    h = fuzz.make_source({"kind": "hostile"}, [], 3)
+    req = h.request(7)
+    tests.append({
+        "test": "hostile-request",
+        "description":
+            "hostile request i depends only on (seed, i); item and replay "
+            "text name it",
+        "passed": (
+            req == h.request(7)
+            and isinstance(req["body"], bytes)
+            and isinstance(req["overrides"], dict)
+            and h.item(7)["name"] == "hostile 3:7"
+            and h.item(7)["hostile"] == req
+            and "method: " in h.source(7) and "path: " in h.source(7)
+            and not h.needs_functions
+        ),
+        "skip": False,
+    })
+    ok = {"app_status": 0, "status_code": 404, "stdout_raw": b"Status: 404"}
+    tests.append({
+        "test": "hostile-reply-judging",
+        "description":
+            "any HTTP status is an answer; no end record, an empty reply, "
+            "or no status is a problem",
+        "passed": (
+            fuzz.reply_problem(ok) is None
+            and fuzz.reply_problem(dict(ok, status_code=500)) is None
+            and fuzz.reply_problem(dict(ok, app_status=None)) is not None
+            and fuzz.reply_problem(dict(ok, stdout_raw=b"")) is not None
+            and fuzz.reply_problem(dict(ok, status_code=None)) is not None
         ),
         "skip": False,
     })

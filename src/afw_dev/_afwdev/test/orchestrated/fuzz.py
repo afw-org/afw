@@ -108,6 +108,9 @@ def parse_replay(text):
 class FunctionCalls(object):
     """kind: functionCalls. Picklable; workers rebuild requests."""
 
+    needs_functions = True
+    source_suffix = ".as"
+
     def __init__(self, spec, functions, seed):
         self.seed = int(seed or 0)
         self.calls = int(spec.get("callsPerRequest") or 25)
@@ -181,9 +184,79 @@ class FunctionCalls(object):
         return rnd.choice(VALUES)
 
 
+class Hostile(object):
+    """kind: hostile. Odd FastCGI requests from fuzz_hostile_pieces.build.
+
+    Any HTTP status is a fine answer; see reply_problem().
+    """
+
+    needs_functions = False
+    source_suffix = ".txt"
+
+    def __init__(self, spec, seed):
+        self.seed = int(seed or 0)
+        self.request_timeout = float(
+            spec.get("requestTimeout_s") or REQUEST_TIMEOUT_S)
+        self.functions = []
+
+    def name(self, index):
+        return "hostile {}:{}".format(self.seed, index)
+
+    def request(self, index):
+        from _afwdev.test.orchestrated import fuzz_hostile_pieces
+        rnd = random.Random(self.seed * 1000003 + index)
+        req = fuzz_hostile_pieces.build(rnd)
+        body = req.get("body") or b""
+        if isinstance(body, str):
+            body = body.encode("utf-8", "surrogateescape")
+        return {
+            "path": req.get("path") or "/",
+            "method": req.get("method") if req.get("method") is not None
+            else "GET",
+            "body": body,
+            "overrides": dict(req.get("overrides") or {}),
+        }
+
+    def item(self, index):
+        return {"name": self.name(index), "hostile": self.request(index),
+                "fuzzIndex": index}
+
+    def source(self, index):
+        """The request as text, for --replay and diag/fuzz-in-flight/."""
+        req = self.request(index)
+        lines = ["method: {!r}".format(req["method"]),
+                 "path: {!r}".format(req["path"])]
+        for name in sorted(req["overrides"]):
+            lines.append("param {}: {!r}".format(name, req["overrides"][name]))
+        body = req["body"]
+        shown = body[:2000]
+        lines.append("body ({} bytes): {!r}{}".format(
+            len(body), shown, " ..." if len(body) > len(shown) else ""))
+        return "\n".join(lines) + "\n"
+
+
+def reply_problem(result):
+    """Why an afwfcgi reply is not a well-formed answer, or None.
+
+    result is fcgi_client.fcgi_request's dict. Any HTTP status counts as
+    an answer; a missing end record or status line does not.
+    """
+    if result.get("app_status") is None:
+        return "no FastCGI end record"
+    if not result.get("stdout_raw"):
+        return "empty reply"
+    code = result.get("status_code")
+    if not isinstance(code, int) or code < 100 or code > 599:
+        return "no HTTP status in the reply ({!r})".format(code)
+    return None
+
+
 def make_source(spec, functions, seed):
     kind = (spec or {}).get("kind")
     if kind == "functionCalls":
         return FunctionCalls(spec, functions, seed)
+    if kind == "hostile":
+        return Hostile(spec, seed)
     raise FuzzError(
-        "fuzz.kind must be 'functionCalls', got {!r}".format(kind))
+        "fuzz.kind must be 'functionCalls' or 'hostile', got {!r}".format(
+            kind))

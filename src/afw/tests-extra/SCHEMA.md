@@ -296,7 +296,7 @@ schedule:
       seed: 1
       maxFail: 0
       fuzz:
-        kind: functionCalls     # the only kind so far
+        kind: functionCalls     # or hostile
         callsPerRequest: 25     # default 25
         requestTimeout_s: 30    # default 30; a slower request is a failure
         exclude: [name_*]       # fnmatch patterns, added to the defaults
@@ -310,13 +310,22 @@ schedule:
   writes, loops, `random_*`) and `exclude`. A request fails on an error that
   escapes its `try`, an error status, or the timeout; the result value is not
   checked.
+- `hostile`: each request is an HTTP request through the FastCGI client, built
+  by `build(rnd)` in `src/afw_dev/_afwdev/test/orchestrated/fuzz_hostile_pieces.py`
+  (its header is the contract: path, method, body, parameter overrides; only
+  the `rnd` passed in). Any HTTP status is a fine answer. A request fails only
+  on a timeout, a lost connection, or a reply without a FastCGI end record or
+  status line. Leaves: `tests/advanced/fuzz-hostile`, `tests-extra/fuzz-hostile`
+  (their conf has only `afw` and a file adapter `data` in the work directory).
 - Request *i* is built only from (seed, *i*) and the function list, so the same
   build and deny list send the same requests, and nothing generated is stored.
   `afwdev test -T <leaf> --replay SEED:INDEX` (or `SEED:FIRST-LAST`) sends
   just those requests, printing each script.
 - When `afwfcgi` exits or the step fails with an error, the message names the
   fuzz requests sent last, a `--replay` range for them, and
-  `diag/fuzz-in-flight/` with their scripts.
+  `diag/fuzz-in-flight/` with their scripts (`.as`) or requests (`.txt`).
+  `diag/fuzz-sent.txt` is the sent index log; past 1MB it becomes
+  `fuzz-sent.txt.old` and starts again.
 - `summary.fuzz` in the step timings: kind, seed, index range, function count.
 
 **Any firehose step:**

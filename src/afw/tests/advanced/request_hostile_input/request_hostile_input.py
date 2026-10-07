@@ -103,12 +103,31 @@ def run():
                       "source": "return " + "(" * DEPTH + "1" + ")" * DEPTH + ";",
                   }).encode("utf-8")),
              "headroom"),
+            ("no-path",
+             "No PATH_INFO or REQUEST_URI is a 400, not an empty reply "
+             "(found by the hostile fuzz source)",
+             dict(path="/afw", method="GET",
+                  param_overrides={"PATH_INFO": None, "REQUEST_URI": "",
+                                   "URI": ""}),
+             "REQUEST_URI property required"),
+            ("no-method",
+             "No REQUEST_METHOD is a 400, not an empty reply",
+             dict(path="/afw", method="GET",
+                  param_overrides={"REQUEST_METHOD": None}),
+             "REQUEST_METHOD property required"),
+            ("no-query-string",
+             "No QUERY_STRING is a 400, not an empty reply",
+             dict(path="/afw", method="GET",
+                  param_overrides={"QUERY_STRING": None}),
+             "QUERY_STRING property required"),
         ]
         for name, desc, kwargs, want in cases:
             result = fcgi_request(sock, timeout=120.0, **kwargs)
             err = _error(result)
             msg = (err or {}).get("message", "") if isinstance(err, dict) else ""
             got_error = err is not None and (not want or want in msg)
+            if name.startswith("no-"):
+                got_error = got_error and result.get("status_code") == 400
             after = fcgi_request(sock, path="/afw", method="POST",
                 body=GOOD_BODY)
             ok = got_error and _ok(after)
