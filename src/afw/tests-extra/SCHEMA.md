@@ -334,7 +334,13 @@ schedule:
   `diag/fuzz-in-flight/` with their scripts (`.as`) or requests (`.txt`).
   `diag/fuzz-sent.txt` is the sent index log; past 1MB it becomes
   `fuzz-sent.txt.old` and starts again.
-- `summary.fuzz` in the step timings: kind, seed, index range, function count.
+- `summary.fuzz` in the step timings: kind, seed, requests, failed,
+  lastIndex, distinctFailures, serverExits, and function count. A step that
+  ends early (afwfcgi exits under `onServerExit: stop`, a timeout,
+  `stopOnError`) still records its numbers, and a failed leaf keeps its step
+  timings. Each leaf's fuzz summary is stored on its history file record; a
+  run's totals print as `Fuzz: N requests in L leaf(s), F failed, E server
+  exit(s)` and go into history, and `--trend` shows fuzz requests per run.
 
 **Leaf parameters and `--set` (#485):** a leaf declares the values a run may
 change, and uses them where a value is exactly `$name`:
@@ -358,7 +364,9 @@ if it has no such parameter); `--set @file.yaml` reads a mapping of the same
 keys. The value takes the default's type; `none` clears it. Only a whole value
 is replaced, so `$` inside text or a `source:` script is never touched; an
 undeclared `$name` is an error. Usual names: `seed`, `maxRequests`,
-`duration_s`, `concurrency`, `clientProcesses`.
+`duration_s`, `concurrency`, `clientProcesses`. `afwdev test --list` shows
+each leaf's parameters as ready-to-use `--set LEAF:NAME=DEFAULT` lines with
+their per-mode defaults and descriptions.
 
 **Any firehose step:**
 

@@ -619,6 +619,19 @@ def print_trend(result, show_all=False):
             m=runs[0].get("mode") or "afw",
             lab=result.get("peer_label") or "first",
         ))
+    fuzz_bits = []
+    for run in runs:
+        totals = run.get("fuzz") or fuzz_totals(run.get("files"))
+        if totals.get("leaves"):
+            fuzz_bits.append("{:,}{}".format(
+                totals.get("requests") or 0,
+                "!" if totals.get("serverExits") or totals.get("failed")
+                else ""))
+        else:
+            fuzz_bits.append("-")
+    if any(b != "-" for b in fuzz_bits):
+        msg.highlighted_info(
+            "Fuzz requests (! = failures or exits):  " + "  ".join(fuzz_bits))
     peer = result.get("peer_ms") or []
     if peer:
         bits = []
@@ -675,8 +688,35 @@ def print_trend(result, show_all=False):
     _list("Gone since first run", result["gone"])
 
 
+def fuzz_from_response(response):
+    """Fuzz summaries from an orchestrated leaf's step timings."""
+    out = []
+    steps = (response or {}).get("stepTimings") if isinstance(
+        response, dict) else None
+    for step in steps or []:
+        fh = step.get("firehose") if isinstance(step, dict) else None
+        if isinstance(fh, dict) and isinstance(fh.get("fuzz"), dict):
+            out.append(fh["fuzz"])
+    return out
+
+
+def fuzz_totals(records):
+    """{leaves, requests, failed, serverExits} over a run's file records."""
+    totals = {"leaves": 0, "requests": 0, "failed": 0, "serverExits": 0}
+    for rec in records or []:
+        fuzz = rec.get("fuzz") if isinstance(rec, dict) else None
+        if not fuzz:
+            continue
+        totals["leaves"] += 1
+        for f in fuzz:
+            totals["requests"] += int(f.get("requests") or 0)
+            totals["failed"] += int(f.get("failed") or 0)
+            totals["serverExits"] += int(f.get("serverExits") or 0)
+    return totals
+
+
 def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped,
-                num_failed, xctx_chunk_bytes=None, cpu_ms=None):
+                num_failed, xctx_chunk_bytes=None, cpu_ms=None, fuzz=None):
     rec = {
         "path": path,
         "ms": int(duration_ms),
@@ -692,4 +732,6 @@ def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped,
         rec["xctx_chunk_bytes"] = int(xctx_chunk_bytes)
     if cpu_ms is not None:
         rec["cpu_ms"] = int(cpu_ms)
+    if fuzz:
+        rec["fuzz"] = fuzz
     return rec

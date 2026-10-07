@@ -130,6 +130,7 @@ def run():
         "skip": False,
     })
     _shrink_tests(tests)
+    _summary_tests(tests)
     return {
         "description": "Fuzz sources for orchestrated firehose steps",
         "tests": tests,
@@ -139,6 +140,33 @@ def run():
 class _Proc(object):
     def __init__(self, code):
         self.returncode = code
+
+
+def _summary_tests(tests):
+    from _afwdev.test.history import fuzz_from_response, fuzz_totals
+    one = {"kind": "hostile", "requests": 10, "failed": 1, "serverExits": 1}
+    two = {"kind": "functionCalls", "requests": 5, "failed": 0,
+           "serverExits": 0}
+    response = {"stepTimings": [
+        {"name": "firehose", "firehose": {"total": 10, "fuzz": one}},
+        {"name": "firehose", "firehose": {"total": 3}},
+        {"name": "sequential"},
+    ]}
+    got = fuzz_from_response(response)
+    totals = fuzz_totals([{"path": "a", "fuzz": [one]},
+                          {"path": "b", "fuzz": [two]}, {"path": "c"}])
+    tests.append({
+        "test": "fuzz-summary",
+        "description":
+            "fuzz summaries come from firehose step timings; a run's "
+            "totals add up its leaves",
+        "passed": (
+            got == [one] and fuzz_from_response(None) == []
+            and totals == {"leaves": 2, "requests": 15, "failed": 1,
+                           "serverExits": 1}
+        ),
+        "skip": False,
+    })
 
 
 def _shrink_tests(tests):

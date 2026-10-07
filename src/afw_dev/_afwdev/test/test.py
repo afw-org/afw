@@ -48,6 +48,22 @@ from _afwdev.test import build_tree as test_build_tree
 ##
 # @brief List matching tests without running them
 #
+def _list_parameters(test):
+    """Under an orchestrated leaf in --list: what --set can change."""
+    if not test.endswith(("orchestration.yaml", "orchestration.json")):
+        return
+    from _afwdev.test.orchestrated.load import describe_parameters
+    leaf = os.path.basename(os.path.dirname(os.path.abspath(test)))
+    for name, default, description, modes in describe_parameters(test):
+        line = "    --set {}:{}={!r}".format(leaf, name, default)
+        if modes:
+            line += " ({})".format(", ".join(
+                "{} {!r}".format(m, v) for m, v in sorted(modes.items())))
+        if description:
+            line += "  " + str(description)
+        msg.highlighted_info(line)
+
+
 def _list_tests(options, srcdirs):
     count = 0
     for srcdir, srcdirPath, _, manual_tests in srcdirs:
@@ -61,6 +77,7 @@ def _list_tests(options, srcdirs):
             for test in tests:
                 msg.highlighted_info(os.path.relpath(test))
                 count += 1
+                _list_parameters(test)
     msg.highlighted_info(str(count) + ' test(s) listed')
     sys.exit(0)
 
@@ -164,7 +181,19 @@ def run(options):
 
     elif options.get('watch'):
 
-        watch.run(options, srcdirs)
+        # Its own run directory, so scratch (TMPDIR) and the lock work as
+        # for any run; released when watch stops (Ctrl-C).
+        try:
+            run_dir.create(options, test_history.env_mode(options))
+        except OSError as e:
+            msg.error_exit("Can not create the run directory: " + str(e))
+        msg.highlighted_info("Run:           " + run_dir.current(options))
+        try:
+            watch.run(options, srcdirs)
+        except KeyboardInterrupt:
+            msg.highlighted_info("Stopped watching.")
+        finally:
+            run_dir.release(options)
 
     else:
 
@@ -281,6 +310,14 @@ def run(options):
                         parts.append("{} chunk".format(
                             format_xctx_bytes(max_xctx_chunk_bytes)))
                     msg.highlighted_info("Memory:        max " + ", ".join(parts))
+                fuzz_total = test_history.fuzz_totals(file_records)
+                if fuzz_total["leaves"]:
+                    msg.highlighted_info(
+                        "Fuzz:          {r:,} requests in {l} leaf(s), "
+                        "{f} failed, {e} server exit(s)".format(
+                            r=fuzz_total["requests"], l=fuzz_total["leaves"],
+                            f=fuzz_total["failed"],
+                            e=fuzz_total["serverExits"]))
                 family.print_summary(fam)
                 if want_error_detail(options):
                     family.print_detail(fam)
@@ -305,6 +342,7 @@ def run(options):
                 'narrowed': _narrowed(options),
                 'cpu_seconds': cpu_seconds,
                 'family': family.summary_record(fam),
+                'fuzz': test_history.fuzz_totals(file_records),
                 'max_xctx_bytes': max_xctx_bytes or 0,
                 'max_xctx_chunk_bytes': max_xctx_chunk_bytes or 0,
                 'mode': test_history.env_mode(options),

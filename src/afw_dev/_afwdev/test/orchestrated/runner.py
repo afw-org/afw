@@ -347,6 +347,8 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
 
     handle = None
     http_front_handle = None
+    # Kept on failure too: a failed leaf still reports its firehose numbers.
+    step_timings = []
     t0 = time.time()
     try:
         socket_path = None
@@ -377,7 +379,6 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
         else:
             debug_parts.append("host: local (afw --local 1 per work item)")
 
-        step_timings = []
         schedule = doc.get("schedule")
         if not schedule:
             # Include skipped names so counts stay stable; runner no-ops skip.
@@ -525,20 +526,20 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
 
     except afwfcgi_host.AfwfcgiHostError as e:
         return (
-            _fail_response(description, e, None),
+            _fail_response(description, e, step_timings or None),
             e,
             _debug_blob(debug_parts, handle),
         )
     except local_host.AfwLocalHostError as e:
         return (
-            _fail_response(description, e, None),
+            _fail_response(description, e, step_timings or None),
             e,
             _debug_blob(debug_parts, handle),
         )
     except Exception as e:
         wrapped = wrap_exception(e)
         return (
-            _fail_response(description, wrapped, None),
+            _fail_response(description, wrapped, step_timings or None),
             wrapped,
             _debug_blob(debug_parts, handle),
         )
@@ -1470,6 +1471,25 @@ def _restart_afwfcgi(handle, number):
     return kept
 
 
+def _fuzz_summary(body, fuzz, work_dir, total, fail, samples, exits):
+    """What a fuzz firehose did, for step timings and history."""
+    last = _last_fuzz_index(work_dir)
+    try:
+        distinct = len(samples.as_list()) if samples is not None else 0
+    except AttributeError:
+        distinct = 0
+    return {
+        "kind": (body.get("fuzz") or {}).get("kind"),
+        "seed": fuzz.seed,
+        "requests": total,
+        "failed": fail,
+        "lastIndex": last if last is not None else max(total - 1, -1),
+        "distinctFailures": distinct,
+        "serverExits": len(exits or []),
+        "functions": len(getattr(fuzz, "functions", []) or []),
+    }
+
+
 def _last_fuzz_index(work_dir):
     sent = _read_fuzz_sent(work_dir)
     try:
@@ -1653,6 +1673,24 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
         _attach_samples(
             err, getattr(err, "firehose_samples", None), work_dir)
         _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency)
+        # Keep the step's numbers when it ends this way (afwfcgi exited
+        # with onServerExit: stop, a timeout, stopOnError).
+        c_ok, c_fail, c_total = getattr(err, "firehose_counts", (0, 0, 0))
+        partial = {"total": total + c_total, "ok": ok + c_ok,
+                   "fail": fail + c_fail, "stopped": True}
+        stopped_by = list(exits)
+        if _afwfcgi_dead(handle) is not None:
+            # onServerExit: stop. This exit ended the step; count it.
+            stopped_by.append(error_message(err) or str(err))
+        partial["serverExits"] = len(stopped_by)
+        if fuzz is not None:
+            rows = getattr(err, "firehose_samples", None) or samples
+            partial["fuzz"] = _fuzz_summary(
+                body, fuzz, work_dir, partial["total"], partial["fail"],
+                rows, stopped_by)
+        step_timings.append({"name": "firehose",
+                             "ms": round((time.time() - t0) * 1000),
+                             "passed": False, "firehose": partial})
         # A stop must not stick to the next leaf in this process.
         _ASKED.clear()
         raise
@@ -1679,10 +1717,8 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     if exits:
         summary["serverExits"] = len(exits)
     if fuzz is not None:
-        summary["fuzz"] = {"kind": (body.get("fuzz") or {}).get("kind"),
-                           "seed": fuzz.seed,
-                           "indexes": [0, total - 1] if total else [],
-                           "functions": len(fuzz.functions)}
+        summary["fuzz"] = _fuzz_summary(
+            body, fuzz, work_dir, total, fail, samples, exits)
     dead = _afwfcgi_dead(handle)
     if dead is not None:
         _note_fuzz_in_flight(dead, fuzz, work_dir, source_leaf, concurrency)

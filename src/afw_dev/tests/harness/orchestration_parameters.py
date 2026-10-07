@@ -2,8 +2,12 @@
 # -*- coding: utf-8 -*-
 """Orchestration leaf parameters, $name, and --set (#485)."""
 
+import os
+import tempfile
+
 from _afwdev.test.orchestrated.load import (
-    OrchestrationLoadError, apply_parameters, parse_sets)
+    OrchestrationLoadError, apply_parameters, describe_parameters,
+    parse_sets)
 
 
 def _raises(fn):
@@ -80,6 +84,29 @@ def run():
             and apply_parameters(raw, marker, parse_sets(["seed=none"]),
                                  "afw")["schedule"][0]["firehose"][
                                      "seed"] is None
+        ),
+        "skip": False,
+    })
+    with tempfile.TemporaryDirectory() as d:
+        path = os.path.join(d, "orchestration.yaml")
+        with open(path, "w") as fd:
+            fd.write("parameters:\n  seed: 3\n  count:\n    default: 9\n"
+                     "    valgrind: 2\n    description: how many\n"
+                     "host: afwfcgi\n")
+        listed = describe_parameters(path)
+        bad = os.path.join(d, "bad.yaml")
+        with open(bad, "w") as fd:
+            fd.write("parameters: [\n")
+        broken = describe_parameters(bad)
+    tests.append({
+        "test": "parameters-list",
+        "description":
+            "--list reads a leaf's parameters (default, description, per "
+            "mode); a leaf that does not parse lists none",
+        "passed": (
+            listed == [("seed", 3, None, {}),
+                       ("count", 9, "how many", {"valgrind": 2})]
+            and broken == []
         ),
         "skip": False,
     })

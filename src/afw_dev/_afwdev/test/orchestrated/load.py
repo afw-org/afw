@@ -159,6 +159,38 @@ def apply_parameters(raw, marker_path, sets=None, mode=None):
     return out
 
 
+def describe_parameters(marker_path):
+    """[(name, default, description, {env mode: default})] a leaf declares.
+
+    Reads only the parameters block, for afwdev test --list. Returns []
+    for a leaf without parameters or one that does not parse.
+    """
+    try:
+        with nfc.open(marker_path, "r") as fd:
+            text = fd.read()
+        if marker_path.endswith(".json"):
+            raw = nfc.json_loads(text)
+        elif yaml is not None:
+            raw = yaml.safe_load(text)
+        else:
+            return []
+    except Exception:
+        return []
+    declared = (raw or {}).get("parameters") if isinstance(raw, dict) \
+        else None
+    if not isinstance(declared, dict):
+        return []
+    out = []
+    for name, spec in declared.items():
+        if isinstance(spec, dict):
+            modes = {k: v for k, v in spec.items() if k in _ENV_MODES}
+            out.append((name, spec.get("default"), spec.get("description"),
+                        modes))
+        else:
+            out.append((name, spec, None, {}))
+    return out
+
+
 def load_orchestration_document(marker_path, sets=None, mode=None):
     """
     Load orchestration.yaml or .json and validate v1 sequential schema
