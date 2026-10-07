@@ -137,10 +137,10 @@ afw_compile_parse_Substitution(afw_compile_parser_t *parser)
  *
  * Template ::=
  *    (
- *        ( Char - ['$' '#'] ) |
- *        ( ['$' '#'] ) |
- *        ( ['$' '#'] (Char - '{') ) |
- *        ( '\\' ['$' '#'] ) |
+ *        ( Char - [$#] ) |
+ *        ( [$#] ) |
+ *        ( [$#] (Char - '{') ) |
+ *        ( '\' [$#] ) |
  *        Substitution
  *    )*
  *
@@ -257,7 +257,7 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * TemplateString ::= '`' + Template + '`'
+ * TemplateString ::= '`' Template '`'
  *
  *<<<ebnf*/
 const afw_value_t *

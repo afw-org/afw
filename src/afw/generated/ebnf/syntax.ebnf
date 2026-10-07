@@ -13,22 +13,23 @@
 /* afwdev generate from these ebnf comments):                                 */
 /*                                                                            */
 /* A) Automated handbook / docs build (usual path)                            */
-/*    afwdev build --docs / --fulldev runs Railroad Diagram Generator         */
-/*    (rr.war; same engine as https://bottlecaps.de/rr) with                  */
-/*    -color:#DCDCDC, unpacks PNG + index.html under                          */
-/*    build/docs/.../reference/language/ebnf/syntax/, and themes that         */
-/*    page for the Docs site. Handbook XML embeds PNGs from                   */
-/*    the diagram directory (e.g. statements.html).                           */
+/*    afwdev build --docs / --fulldev draws railroad diagrams from it in      */
+/*    Python (_afwdev/build/ebnf): diagram/<Name>.svg plus index.html         */
+/*    (the Syntax EBNF page) under                                            */
+/*    build/docs/.../reference/language/ebnf/syntax/. Handbook XML embeds     */
+/*    the SVGs from the diagram directory (e.g. statements.html).             */
 /*                                                                            */
-/* B) Manual exploration (optional)                                           */
-/*    Paste syntax.ebnf into https://bottlecaps.de/rr/ui yourself if you      */
-/*    want alternate colors, SVG, or a one-off diagram:                       */
-/*    1) Open https://bottlecaps.de/rr/ui                                     */
-/*    2) Options tab: set Color if desired (docs default is #DCDCDC)          */
-/*    3) Edit Grammar: paste src/afw/generated/ebnf/syntax.ebnf               */
-/*    4) View Diagram: download PNG/SVG as needed                             */
-/*    You do not need to copy results back into the tree for the              */
-/*    published handbook unless you are changing the automated path.          */
+/* B) Any W3C EBNF tool                                                       */
+/*    The file is plain W3C EBNF, so other tools can read it, e.g.            */
+/*    https://bottlecaps.de/rr/ui for one-off diagrams.                       */
+/*                                                                            */
+/* Comments in these ebnf blocks (lines starting with *#)                     */
+/*                                                                            */
+/* - Comment lines before a production describe it: the caption on            */
+/*   the Syntax EBNF page and the text in the SVG.                            */
+/* - A comment line inside a production labels the item after it in           */
+/*   the diagram (keep it to a word or two).                                  */
+/* - A name used but never defined is reported when the docs build.           */
 /*                                                                            */
 /* Root productions                                                           */
 /*                                                                            */
@@ -223,7 +224,6 @@ CompilerInternalValue ::=
     CompilerInternalTemplateDefinition |
     CompilerInternalSwitchDefault |
     CompilerInternalStatements |
-    CompilerInternalFunctionReturnValue |
     CompilerLiteral
 
 /* From afw_compile_parse_expression.c                                        */
@@ -366,7 +366,7 @@ EllipsisParameter ::=
 /* An object with object type _AdaptiveFunctionDeclaration_                   */
 /*                                                                            */
 
-FunctionDeclarationObject ::= object
+FunctionDeclarationObject ::= Object
 
 FunctionSignature ::= '(' ParameterList ')' OptionalReturnType
 
@@ -903,16 +903,16 @@ Substitution ::= CompileTimeSubstitution | EvaluationTimeSubstitution
 
 Template ::=
    (
-       ( Char - ['$' '#'] ) |
-       ( ['$' '#'] ) |
-       ( ['$' '#'] (Char - '{') ) |
-       ( '\\' ['$' '#'] ) |
+       ( Char - [$#] ) |
+       ( [$#] ) |
+       ( [$#] (Char - '{') ) |
+       ( '\' [$#] ) |
        Substitution
    )*
 
 /* From afw_compile_parse_template.c                                          */
 
-TemplateString ::= '`' + Template + '`'
+TemplateString ::= '`' Template '`'
 
 /* From afw_compile_parse_value.c                                             */
 /* Expression must produce a value of data type array.                        */

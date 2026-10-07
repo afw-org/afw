@@ -36,27 +36,34 @@ Typical files:
    (not the grammar itself).  
 3. `afwdev generate` / `./afwdev build --cdev` harvests into
    `src/afw/generated/ebnf/` (e.g. `syntax.ebnf`).  
-4. Docs build (`./afwdev build --docs` / `--fulldev`) runs **rr.war**
-   (Railroad Diagram Generator; same engine as https://bottlecaps.de/rr)
-   with `-color:#DCDCDC`, extracts under
-   `build/docs/afw/html/reference/language/ebnf/syntax/`, and **themes**
-   `index.html` so “Syntax EBNF” matches handbook slate light/dark chrome.
-5. Handbook pages (e.g. statements) embed `diagram/*.png` via
-   `generated-src="ebnf/syntax/diagram/…"`. Those `<img>` tags use Tailwind
-   **`dark:invert`** (see `_resources/html_templates/image.html`) so gray
-   PNGs invert on dark docs pages. The full Syntax EBNF `index.html` applies
-   the same invert via CSS (`filter: invert(1)` under `prefers-color-scheme:
-   dark`).
+4. Docs build (`./afwdev build --docs` / `--fulldev`) draws railroad
+   diagrams in Python (`src/afw_dev/_afwdev/build/ebnf/`, no Java): one
+   `diagram/<Name>.svg` per production plus the “Syntax EBNF” page
+   (`index.html`) under `build/docs/afw/html/reference/language/ebnf/syntax/`.
+   It applies the same rewrites as Railroad Diagram Generator (left and right
+   factoring, `X ( sep X )*` as one loop, single-literal productions drawn
+   inline), so diagrams keep their familiar shape.
+5. Handbook pages (e.g. statements) embed `diagram/<Name>.svg` via
+   `generated-src="ebnf/syntax/diagram/…"`. Each SVG carries the handbook's
+   light and dark palettes and follows `prefers-color-scheme`, so these
+   images get no `dark:invert`.
 
 **Do not hand-edit** `generated/ebnf/`. The **C parser is authoritative** if
 prose and code disagree.
 
-### Optional: bottlecaps web UI
+### Comments become captions and labels
 
-You can still paste `syntax.ebnf` into https://bottlecaps.de/rr/ui for one-off
-colors/SVG. That is for exploration; the published site uses the automated
-`rr.war` path above. Steps are summarized in the harvest header inside
-`syntax.ebnf` (from `afw_compile_parse.c`).
+- `*#` lines **before** a production (in the same `ebnf` block) describe it:
+  the caption on the Syntax EBNF page and the SVG's `<desc>`. `#62`-style
+  issue numbers become links.
+- A `*#` line **inside** a production labels the item after it in the
+  diagram. Keep it to a word or two (`C-style`, `for-of`).
+- The docs build warns about names that are used but have no production.
+
+### Other tools
+
+`syntax.ebnf` is plain W3C EBNF, so other tools can read it too, e.g.
+https://bottlecaps.de/rr/ui for one-off diagrams.
 
 ## Related
 

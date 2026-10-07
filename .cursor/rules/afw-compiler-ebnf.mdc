@@ -29,7 +29,7 @@ Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/c
 Script **statement** parsers sometimes stay `static impl_parse_FooStatement` with EBNF on that static; expression/type hierarchy prefers the public `afw_compile_parse_*` form (see `LogicalExpression`, `Type`, …).
 
 ## EBNF comment hygiene
-- Lines with `*#` become harvest **comments** (`/* … */` in `syntax.ebnf`).
+- Lines with `*#` become harvest **comments** (`/* … */` in `syntax.ebnf`). Before a production they are its description (caption on the Syntax EBNF page, SVG `<desc>`); inside a production a `*#` line labels the item after it in the railroad diagram (a word or two).
 - Other `* ` lines are production text (leading `*` stripped).
 - **Never** nest C `/* … */` inside an ebnf block — it terminates the outer comment early. Use `*#` prose or a quoted terminal string instead (see `ID_START ::= "any Unicode ID_Start code point"`).
 - Prefer productions that match real accept sets; use `*#` notes for lookahead / “token already consumed” (e.g. destructure after `[`, `FunctionType` after `(`).

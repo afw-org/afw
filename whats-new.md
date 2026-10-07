@@ -167,6 +167,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**`maxNumberOfParameters`**](#maxnumberofparameters-issue-125) ([#125](https://github.com/afw-org/afw/issues/125)) | Function metadata property renamed from `maximumNumberOfParameters` |
 | [**LDAP `sn` on add**](#ldap-inetorgperson-add-issue-384) ([#384](https://github.com/afw-org/afw/issues/384)) | An `inetOrgPerson` or `person` add sends `sn`. A get of `sn` or `cn` is an array when the directory attribute is not single-value |
 | [**Service start and restart**](#service-start-and-restart-issue-411) ([#411](https://github.com/afw-org/afw/issues/411)) | A read no longer fails when another request just started its adapter. A restart that does not happen throws and leaves the service running. `confPropertyObjectType` uses `_` before the subtype |
+| **Syntax EBNF diagrams** ([#495](https://github.com/afw-org/afw/issues/495)) | The docs build draws the railroad diagrams itself, in Python: **Java and `rr.war` are no longer needed**. Diagrams are **SVG** in the handbook's light and dark colors, and the Syntax EBNF page links every rule name. In the C `ebnf` blocks, a `*#` comment before a production becomes its caption and one inside a production labels the diagram. See `src/afw/doc/developer/compiler-ebnf.md` |
 
 ---
 

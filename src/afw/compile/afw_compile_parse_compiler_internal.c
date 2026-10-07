@@ -1006,7 +1006,6 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
  *     CompilerInternalTemplateDefinition |
  *     CompilerInternalSwitchDefault |
  *     CompilerInternalStatements |
- *     CompilerInternalFunctionReturnValue |
  *     CompilerLiteral
  *
  *<<<ebnf*/

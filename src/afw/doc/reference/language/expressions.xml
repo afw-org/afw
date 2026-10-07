@@ -63,9 +63,9 @@ return `${outer}`;   /* → 42 */
             its containing unit is compiled. Different sites are not shared or
             memoized with each other.
         </paragraph>
-        <image generated-src="ebnf/syntax/diagram/CompileTimeSubstitution.png" />
-        <image generated-src="ebnf/syntax/diagram/EvaluationTimeSubstitution.png" />
-        <image generated-src="ebnf/syntax/diagram/Substitution.png" />
+        <image generated-src="ebnf/syntax/diagram/CompileTimeSubstitution.svg" />
+        <image generated-src="ebnf/syntax/diagram/EvaluationTimeSubstitution.svg" />
+        <image generated-src="ebnf/syntax/diagram/Substitution.svg" />
     </section>
 
     <section>
@@ -88,8 +88,8 @@ return `${outer}`;   /* → 42 */
             (<literal>\\</literal>, <literal>\n</literal>,
             <literal>\`</literal>, and so on).
         </paragraph>
-        <image generated-src="ebnf/syntax/diagram/Template.png" />
-        <image generated-src="ebnf/syntax/diagram/TemplateString.png" />
+        <image generated-src="ebnf/syntax/diagram/Template.svg" />
+        <image generated-src="ebnf/syntax/diagram/TemplateString.svg" />
     </section>
 
     <section>
