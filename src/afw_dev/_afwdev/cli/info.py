@@ -1140,8 +1140,12 @@ _info_test_replay = {
     "help":
         "With -T on an orchestrated leaf whose firehose has fuzz:, send "
         "only fuzz request SEED:INDEX (or SEED:FIRST-LAST), one at a "
-        "time, printing each. Failures and afwfcgi exits name the "
-        "requests to replay."
+        "time, printing each. SEED:INDEX:shrink instead cuts that one "
+        "failing request to the smallest that still fails the same way "
+        "(the same afwfcgi exit and sanitizer line, a timeout, or the "
+        "same error line), prints it, and saves it under the run's "
+        "diag/fuzz-shrunk/. Failures and afwfcgi exits name the requests "
+        "to replay."
 }
 
 _info_test_clear_history = {

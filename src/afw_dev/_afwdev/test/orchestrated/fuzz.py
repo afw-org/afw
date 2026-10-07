@@ -87,6 +87,14 @@ class FuzzError(ValueError):
     pass
 
 
+def split_shrink(text):
+    """'SEED:INDEX:shrink' -> ('SEED:INDEX', True); otherwise (text, False)."""
+    text = str(text)
+    if text.endswith(":shrink"):
+        return text[:-len(":shrink")], True
+    return text, False
+
+
 def parse_replay(text):
     """'SEED:INDEX' or 'SEED:FIRST-LAST' -> (seed, first, last)."""
     try:
@@ -130,21 +138,58 @@ class FunctionCalls(object):
     def name(self, index):
         return "fuzz {}:{}".format(self.seed, index)
 
-    def source(self, index):
-        # Request i depends only on (seed, i). Integer seed: stable across
-        # Python runs, unlike hash().
+    def _top_calls(self, index):
+        """The request's calls as [(functionId, [argument text, ...])].
+
+        Request i depends only on (seed, i). Integer seed: stable across
+        Python runs, unlike hash(). The draws are the ones source() has
+        always made, so replays keep naming the same request.
+        """
         rnd = random.Random(self.seed * 1000003 + index)
+        return [self._call_parts(rnd, rnd.choice(self.functions))
+                for _ in range(self.calls)]
+
+    def _script(self, calls):
         # The calls run inside a function, so a fuzzed return() or
         # break() leaves the function, not the script: the script's own
         # result is always true.
         lines = ["const fuzz = function () {"]
-        for i in range(self.calls):
+        for i, (fid, args) in enumerate(calls):
             lines.append(
-                "    try {{ let r{} = {}; }} catch (e) {{ }}".format(
-                    i, self._call(rnd, rnd.choice(self.functions))))
+                "    try {{ let r{} = {}({}); }} catch (e) {{ }}".format(
+                    i, fid, ", ".join(args)))
         lines.append("};")
         lines.append("fuzz();")
         return "\n".join(lines) + "\nreturn true;\n"
+
+    def source(self, index):
+        return self._script(self._top_calls(index))
+
+    # Shrink (--replay SEED:INDEX:shrink): a candidate is the call list.
+    def shrink_start(self, index):
+        return self._top_calls(index)
+
+    def shrink_smaller(self, calls):
+        """Smaller candidates: each call alone, one call dropped, then
+        one argument replaced by null."""
+        if len(calls) > 1:
+            for call in calls:
+                yield [call]
+            for i in range(len(calls)):
+                yield calls[:i] + calls[i + 1:]
+        for i, (fid, args) in enumerate(calls):
+            for j, arg in enumerate(args):
+                if arg != "null":
+                    yield (calls[:i] +
+                           [(fid, args[:j] + ["null"] + args[j + 1:])] +
+                           calls[i + 1:])
+
+    def shrink_item(self, calls, name):
+        return {"name": name, "sourceType": "script",
+                "source": self._script(calls)}
+
+    def shrink_text(self, calls):
+        return self._script(calls)
 
     def item(self, index):
         # No expect: a fuzzed return(), break(), or continue() can end the
@@ -157,7 +202,7 @@ class FunctionCalls(object):
             "fuzzIndex": index,
         }
 
-    def _call(self, rnd, fn, depth=0):
+    def _call_parts(self, rnd, fn, depth=0):
         fid, n = fn
         c = rnd.random()
         if c < 0.1:
@@ -166,8 +211,11 @@ class FunctionCalls(object):
             n += 1
         elif c < 0.3:
             n += rnd.randint(2, 6)
-        args = ", ".join(self._value(rnd, depth) for _ in range(n))
-        return "{}({})".format(fid, args)
+        return fid, [self._value(rnd, depth) for _ in range(n)]
+
+    def _call(self, rnd, fn, depth=0):
+        fid, args = self._call_parts(rnd, fn, depth)
+        return "{}({})".format(fid, ", ".join(args))
 
     def _value(self, rnd, depth):
         r = rnd.random()
@@ -223,16 +271,46 @@ class Hostile(object):
 
     def source(self, index):
         """The request as text, for --replay and diag/fuzz-in-flight/."""
-        req = self.request(index)
-        lines = ["method: {!r}".format(req["method"]),
-                 "path: {!r}".format(req["path"])]
+        return _request_text(self.request(index))
+
+    # Shrink (--replay SEED:INDEX:shrink): a candidate is the request.
+    def shrink_start(self, index):
+        return self.request(index)
+
+    def shrink_smaller(self, req):
+        """Smaller candidates: one override dropped, the body emptied or
+        halved, then GET."""
         for name in sorted(req["overrides"]):
-            lines.append("param {}: {!r}".format(name, req["overrides"][name]))
+            overrides = dict(req["overrides"])
+            del overrides[name]
+            yield dict(req, overrides=overrides)
         body = req["body"]
-        shown = body[:2000]
-        lines.append("body ({} bytes): {!r}{}".format(
-            len(body), shown, " ..." if len(body) > len(shown) else ""))
-        return "\n".join(lines) + "\n"
+        if body:
+            yield dict(req, body=b"")
+            half = len(body) // 2
+            if half:
+                yield dict(req, body=body[:half])
+                yield dict(req, body=body[half:])
+        if req["method"] != "GET":
+            yield dict(req, method="GET")
+
+    def shrink_item(self, req, name):
+        return {"name": name, "hostile": req}
+
+    def shrink_text(self, req):
+        return _request_text(req)
+
+
+def _request_text(req):
+    lines = ["method: {!r}".format(req["method"]),
+             "path: {!r}".format(req["path"])]
+    for name in sorted(req["overrides"]):
+        lines.append("param {}: {!r}".format(name, req["overrides"][name]))
+    body = req["body"]
+    shown = body[:2000]
+    lines.append("body ({} bytes): {!r}{}".format(
+        len(body), shown, " ..." if len(body) > len(shown) else ""))
+    return "\n".join(lines) + "\n"
 
 
 def reply_problem(result):

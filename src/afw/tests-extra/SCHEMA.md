@@ -320,7 +320,15 @@ schedule:
 - Request *i* is built only from (seed, *i*) and the function list, so the same
   build and deny list send the same requests, and nothing generated is stored.
   `afwdev test -T <leaf> --replay SEED:INDEX` (or `SEED:FIRST-LAST`) sends
-  just those requests, printing each script.
+  just those requests, printing each script. `--replay SEED:INDEX:shrink`
+  cuts that one failing request to the smallest that still fails the same
+  way: `afwfcgi` exits with the same code and first sanitizer/valgrind line,
+  or it times out, or the same first error line. `afwfcgi` is restarted after
+  an exit or a timeout. `functionCalls` tries each call alone, drops calls,
+  then nulls arguments; `hostile` drops overrides, empties or halves the body,
+  then tries GET. The result is printed and saved to `diag/fuzz-shrunk/`. A
+  failure that needs requests in flight together (a race) does not reproduce
+  from one request, so it does not shrink; use `--set concurrency=...`.
 - When `afwfcgi` exits or the step fails with an error, the message names the
   fuzz requests sent last, a `--replay` range for them, and
   `diag/fuzz-in-flight/` with their scripts (`.as`) or requests (`.txt`).

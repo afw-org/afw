@@ -10,6 +10,7 @@ import os
 import random
 import re
 import signal
+import socket
 import threading
 import time
 from concurrent.futures import (
@@ -1184,7 +1185,7 @@ def _make_fuzz(body, ctx, doc_feed, timeout, options):
     seed = body.get("seed") or 0
     replay = options.get("replay") if options else None
     if replay:
-        seed = fuzz_mod.parse_replay(replay)[0]
+        seed = fuzz_mod.parse_replay(fuzz_mod.split_shrink(replay)[0])[0]
     spec = body.get("fuzz") or {}
     functions = []
     if spec.get("kind") == "functionCalls":
@@ -1235,11 +1236,22 @@ def _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency):
 
 def _run_fuzz_replay(fuzz, replay, work_dir, source_leaf, ctx, timeout,
                      doc_feed, debug_parts, step_timings, options, handle):
-    """--replay SEED:INDEX[-LAST]: send those fuzz requests one at a time."""
+    """--replay SEED:INDEX[-LAST]: send those fuzz requests one at a time.
+
+    SEED:INDEX:shrink shrinks that one request instead (_run_fuzz_shrink).
+    """
+    replay, shrink = fuzz_mod.split_shrink(replay)
     try:
         _seed, first, last = fuzz_mod.parse_replay(replay)
     except fuzz_mod.FuzzError as e:
         raise AfwdevRunnerError(str(e))
+    if shrink:
+        if first != last:
+            raise AfwdevRunnerError(
+                "--replay ...:shrink takes one SEED:INDEX, not a range")
+        return _run_fuzz_shrink(
+            fuzz, _seed, first, work_dir, source_leaf, ctx, timeout,
+            doc_feed, debug_parts, step_timings, options, handle)
     t0 = time.time()
     fails = []
     for index in range(first, last + 1):
@@ -1268,6 +1280,145 @@ def _run_fuzz_replay(fuzz, replay, work_dir, source_leaf, ctx, timeout,
         raise AfwdevRunnerError("replay failed:\n" + "\n".join(fails))
     msg.highlighted_info("replay {}: {} request(s) ok".format(
         replay, last - first + 1))
+
+
+SHRINK_MAX_ATTEMPTS = 300
+
+# The line that names a sanitizer or valgrind finding in afwfcgi stderr.
+_FINDING_LINE = re.compile(
+    r"(SUMMARY: \w+Sanitizer: .*|ERROR: \w+Sanitizer: \S+|"
+    r"runtime error: .*|<kind>\w+</kind>)")
+_NOISE = re.compile(r"0x[0-9a-fA-F]+|==\d+==|\(pid=\d+\)|\b\d{3,}\b")
+
+
+def _is_timeout(err):
+    """True when err, or what it was raised from, is a socket timeout."""
+    seen = 0
+    while err is not None and seen < 10:
+        if isinstance(err, (socket.timeout, TimeoutError)):
+            return True
+        err = err.__cause__ or err.__context__
+        seen += 1
+    return False
+
+
+def _exit_signature(handle):
+    """(return code, first sanitizer/valgrind finding line) of a dead
+    afwfcgi, with addresses and pids removed so two runs compare."""
+    proc = (handle or {}).get("process")
+    code = proc.returncode if proc is not None else None
+    line = ""
+    path = (handle or {}).get("log_path")
+    try:
+        with open(path, "r", errors="replace") as fd:
+            for text in fd:
+                m = _FINDING_LINE.search(text)
+                if m:
+                    line = _NOISE.sub("#", m.group(1)).strip()
+                    break
+    except (OSError, TypeError):
+        pass
+    return code, line
+
+
+def _shrink_reduce(start, smaller, still_fails, max_attempts):
+    """Keep the first smaller candidate that still fails, and repeat.
+
+    Pure: smaller(c) yields candidates, still_fails(c) tries one.
+    Returns (smallest candidate, attempts).
+    """
+    current = start
+    attempts = 0
+    improved = True
+    while improved and attempts < max_attempts:
+        improved = False
+        for candidate in smaller(current):
+            if attempts >= max_attempts:
+                break
+            attempts += 1
+            if still_fails(candidate):
+                current = candidate
+                improved = True
+                break
+    return current, attempts
+
+
+def _run_fuzz_shrink(fuzz, seed, index, work_dir, source_leaf, ctx, timeout,
+                     doc_feed, debug_parts, step_timings, options, handle):
+    """--replay SEED:INDEX:shrink: cut one failing fuzz request to the
+    smallest that still fails the same way, then print and save it.
+
+    The same way: afwfcgi exits with the same code and the same first
+    sanitizer/valgrind line; or the request times out; or the same first
+    line of an error. After an exit or a timeout afwfcgi is restarted.
+    """
+    request_timeout = min(max(5.0, timeout), fuzz.request_timeout)
+    restarts = [0]
+
+    def outcome(candidate, n):
+        item = fuzz.shrink_item(candidate, "{} shrink {}".format(
+            fuzz.name(index), n))
+        result = ("ok",)
+        try:
+            if item.get("hostile") is not None:
+                _hostile_request_ok(
+                    item, ctx.get("socket_path"), request_timeout)
+            else:
+                _run_test_item(item, work_dir, source_leaf, ctx,
+                               request_timeout, doc_feed, debug_parts,
+                               options)
+        except Exception as e:
+            if _is_timeout(e):
+                result = ("timeout",)
+            else:
+                text = error_message(e) or str(e)
+                result = ("error", text.splitlines()[0] if text else "")
+        if _afwfcgi_dead(handle) is not None:
+            result = ("exit",) + _exit_signature(handle)
+        if result[0] in ("exit", "timeout"):
+            restarts[0] += 1
+            _restart_afwfcgi(handle, restarts[0])
+            ctx["log_path"] = handle.get("log_path")
+            ctx["stdout_path"] = handle.get("stdout_path")
+        return result
+
+    start = fuzz.shrink_start(index)
+    target = outcome(start, 0)
+    if target[0] == "ok":
+        raise AfwdevRunnerError(
+            "{} does not fail, so there is nothing to shrink".format(
+                fuzz.name(index)))
+    msg.highlighted_info("shrink {}: fails with {}".format(
+        fuzz.name(index), target))
+    counter = [0]
+
+    def still_fails(candidate):
+        counter[0] += 1
+        return outcome(candidate, counter[0]) == target
+
+    smallest, attempts = _shrink_reduce(
+        start, fuzz.shrink_smaller, still_fails, SHRINK_MAX_ATTEMPTS)
+    text = fuzz.shrink_text(smallest)
+    saved = None
+    try:
+        directory = os.path.join(_diag_dir(work_dir), "fuzz-shrunk")
+        os.makedirs(directory, exist_ok=True)
+        saved = os.path.join(directory, "{}-{}{}".format(
+            seed, index, getattr(fuzz, "source_suffix", ".txt")))
+        with open(saved, "w") as fd:
+            fd.write(text)
+    except OSError:
+        saved = None
+    step_timings.append({"name": "firehose", "ms": 0, "passed": True,
+                         "shrink": "{}:{}".format(seed, index),
+                         "attempts": attempts, "outcome": list(target)})
+    msg.highlighted_info(
+        "shrink {}: {} attempts{}, still {}\n--- smallest ---\n{}".format(
+            fuzz.name(index), attempts,
+            " (the limit)" if attempts >= SHRINK_MAX_ATTEMPTS else "",
+            target, text))
+    if saved:
+        msg.highlighted_info("saved: " + saved)
 
 
 def _env_mode_body(body, options):
