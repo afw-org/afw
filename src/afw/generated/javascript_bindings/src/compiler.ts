@@ -162,17 +162,20 @@ export function afwEvaluate(client : any, value : any, additionalUntrustedQualif
  * 
  * @param {} value - Value to evaluate
  * 
- * @param {integer} limit - Maximum number to retry if an exception occurs.
+ * @param {integer} limit - Maximum number of retries if an exception occurs,
+ *     1 to 10. The default is 1.
  * 
  * @returns {} Evaluated value.
  */
-export function afwEvaluateWithRetry(client : any, value : any, limit : number) : any {
+export function afwEvaluateWithRetry(client : any, value : any, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "evaluate_with_retry";
     _action["value"] = value;
-    _action["limit"] = limit;
+
+    if (limit !== undefined)
+        _action["limit"] = limit;
 
     return client.perform(_action);
 }

@@ -16513,32 +16513,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__45c63f3e399a \
-    "function evaluate_with_retry (\n    value: any,\n    limit: integer\n): any;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__45c63f3e399a */
-#define afw_s_zz__45c63f3e399a \
-    (&afw_self_v_zz__45c63f3e399a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__45c63f3e399a */
-#define afw_self_s_zz__45c63f3e399a \
-    (afw_self_v_zz__45c63f3e399a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__45c63f3e399a */
-extern const afw_value_string_t \
-    afw_self_v_zz__45c63f3e399a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__45c63f3e399a */
-#define afw_z_zz__45c63f3e399a \
-    (afw_self_v_zz__45c63f3e399a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__45c63f3e399a */
-#define afw_v_zz__45c63f3e399a \
-    (&afw_self_v_zz__45c63f3e399a.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__45cba3834df4 \
     "function ne<regexp> (\n    arg1: regexp,\n    arg2: any\n): boolean;\n"
 
@@ -34527,6 +34501,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8d9e9965f5fb */
 #define afw_v_zz__8d9e9965f5fb \
     (&afw_self_v_zz__8d9e9965f5fb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8db688470533 \
+    "function evaluate_with_retry (\n    value: any,\n    limit?: integer\n): any;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8db688470533 */
+#define afw_s_zz__8db688470533 \
+    (&afw_self_v_zz__8db688470533.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8db688470533 */
+#define afw_self_s_zz__8db688470533 \
+    (afw_self_v_zz__8db688470533.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8db688470533 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8db688470533;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8db688470533 */
+#define afw_z_zz__8db688470533 \
+    (afw_self_v_zz__8db688470533.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8db688470533 */
+#define afw_v_zz__8db688470533 \
+    (&afw_self_v_zz__8db688470533.pub)
 
 
 
@@ -65051,32 +65051,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Maximum_number_of_parameters */
 #define afw_v_zz__Maximum_number_of_parameters \
     (&afw_self_v_zz__Maximum_number_of_parameters.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Maximum_number_to_retry_if_an_exception_occurs_ \
-    "Maximum number to retry if an exception occurs."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Maximum_number_to_retry_if_an_exception_occurs_ */
-#define afw_s_zz__Maximum_number_to_retry_if_an_exception_occurs_ \
-    (&afw_self_v_zz__Maximum_number_to_retry_if_an_exception_occurs_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Maximum_number_to_retry_if_an_exception_occurs_ */
-#define afw_self_s_zz__Maximum_number_to_retry_if_an_exception_occurs_ \
-    (afw_self_v_zz__Maximum_number_to_retry_if_an_exception_occurs_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Maximum_number_to_retry_if_an_exception_occurs_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Maximum_number_to_retry_if_an_exception_occurs_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Maximum_number_to_retry_if_an_exception_occurs_ */
-#define afw_z_zz__Maximum_number_to_retry_if_an_exception_occurs_ \
-    (afw_self_v_zz__Maximum_number_to_retry_if_an_exception_occurs_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Maximum_number_to_retry_if_an_exception_occurs_ */
-#define afw_v_zz__Maximum_number_to_retry_if_an_exception_occurs_ \
-    (&afw_self_v_zz__Maximum_number_to_retry_if_an_exception_occurs_.pub)
 
 
 
@@ -123347,28 +123321,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__any__limit__integer___any \
-    "(value: any, limit: integer): any"
+#define AFW_Q_zz___value__any__limit___integer___any \
+    "(value: any, limit?: integer): any"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any__limit__integer___any */
-#define afw_s_zz___value__any__limit__integer___any \
-    (&afw_self_v_zz___value__any__limit__integer___any.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any__limit___integer___any */
+#define afw_s_zz___value__any__limit___integer___any \
+    (&afw_self_v_zz___value__any__limit___integer___any.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any__limit__integer___any */
-#define afw_self_s_zz___value__any__limit__integer___any \
-    (afw_self_v_zz___value__any__limit__integer___any.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any__limit___integer___any */
+#define afw_self_s_zz___value__any__limit___integer___any \
+    (afw_self_v_zz___value__any__limit___integer___any.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__any__limit__integer___any */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___value__any__limit___integer___any */
 extern const afw_value_string_t \
-    afw_self_v_zz___value__any__limit__integer___any;
+    afw_self_v_zz___value__any__limit___integer___any;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__any__limit__integer___any */
-#define afw_z_zz___value__any__limit__integer___any \
-    (afw_self_v_zz___value__any__limit__integer___any.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__any__limit___integer___any */
+#define afw_z_zz___value__any__limit___integer___any \
+    (afw_self_v_zz___value__any__limit___integer___any.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__any__limit__integer___any */
-#define afw_v_zz___value__any__limit__integer___any \
-    (&afw_self_v_zz___value__any__limit__integer___any.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___value__any__limit___integer___any */
+#define afw_v_zz___value__any__limit___integer___any \
+    (&afw_self_v_zz___value__any__limit___integer___any.pub)
 
 
 
@@ -126437,6 +126411,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a1336eea3713 */
 #define afw_v_zz__a1336eea3713 \
     (&afw_self_v_zz__a1336eea3713.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__a16a662e01e1 \
+    "Maximum number of retries if an exception occurs, 1 to 10. The default is 1."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a16a662e01e1 */
+#define afw_s_zz__a16a662e01e1 \
+    (&afw_self_v_zz__a16a662e01e1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a16a662e01e1 */
+#define afw_self_s_zz__a16a662e01e1 \
+    (afw_self_v_zz__a16a662e01e1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a16a662e01e1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__a16a662e01e1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a16a662e01e1 */
+#define afw_z_zz__a16a662e01e1 \
+    (afw_self_v_zz__a16a662e01e1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a16a662e01e1 */
+#define afw_v_zz__a16a662e01e1 \
+    (&afw_self_v_zz__a16a662e01e1.pub)
 
 
 
