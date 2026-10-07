@@ -24,3 +24,18 @@ result = add_object(
 );
 
 return 0;
+//?
+//? test: model_default_add_object_action_invalid_property
+//? description: model_default_add_object_action with a property the model does not define throws (it has no request to record the error on, and used to dereference NULL)
+//? expect: 0
+//? source: ...
+
+let message: any = "no error";
+try {
+    add_object("model", "MyObjectType5", { "bogus": 1 }, generate_uuid());
+}
+catch (e) {
+    message = e.message;
+}
+assert(includes<string>(message, "Invalid property 'bogus'"), string(message));
+return 0;

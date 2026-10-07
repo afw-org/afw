@@ -1374,6 +1374,13 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
             xctx);
 
         if (!pt) {
+            /* model_default_*_action functions have no request. */
+            if (!ctx->impl_request || !ctx->impl_request->request) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Invalid property '%ku'",
+                    (afw_object_property_name_display_utf8(
+                        property_name, xctx)));
+            }
             afw_object_meta_add_property_error_fz(
                 ctx->impl_request->request,
                 property_name, xctx,
