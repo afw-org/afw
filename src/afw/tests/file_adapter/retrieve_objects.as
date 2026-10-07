@@ -386,3 +386,10 @@ delete_object("file", "TestObjectType1", "CbA");
 delete_object("file", "TestObjectType1", "CbB");
 
 return 0;
+//?
+//? test: retrieve_objects-skips-empty-file
+//? description: An empty object file is skipped; the objects after it are still returned.
+//? expect: 5
+//? source: ...
+
+return length(retrieve_objects("file", "EmptyFileType"));

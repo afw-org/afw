@@ -145,7 +145,7 @@ Value to evaluate
 
     $limit
 
-Maximum number to retry if an exception occurs.
+Maximum number of retries if an exception occurs, 1 to 10. The default is 1.
 
 =head3 qualifier
 
@@ -451,7 +451,9 @@ sub evaluate_with_retry {
 
     $request->set("function" => "evaluate_with_retry");
     $request->set("value", $value);
-    $request->set("limit", $limit);
+
+    if (defined $limit)
+        $request->set("limit", $limit);
 
     return $request->getResult();
 }

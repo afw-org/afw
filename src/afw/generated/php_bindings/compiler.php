@@ -214,11 +214,12 @@ class compiler
      * error is thrown if the evaluated result is undefined.
      *
      * @param $value Value to evaluate
-     * @param integer $limit Maximum number to retry if an exception occurs.
+     * @param integer $limit Maximum number of retries if an exception occurs,
+     *                       1 to 10. The default is 1.
      *
      * @return Evaluated value.
      */
-    public function evaluate_with_retry(, $value, $limit)
+    public function evaluate_with_retry(, $value, $limit = null)
     {
         $request = $this->$session->request();
 
@@ -226,9 +227,11 @@ class compiler
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("limit", $limit);
 
         /* pass along any optional parameters to the request payload */
+        if ($limit != null)
+            $request->set('limit', $limit);
+
         return $request->get_result();
     }
 

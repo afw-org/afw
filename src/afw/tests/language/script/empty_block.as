@@ -127,6 +127,38 @@ assert(saw === true);
 return 0;
 
 //?
+//? test: catch-body-empty-no-binding
+//? description: `catch {}` with nothing in it still catches
+//? expect: 0
+//? source: ...
+
+let n = 0;
+try {
+    throw "x";
+} catch {}
+try {
+    throw "y";
+} catch {} finally {
+    n = 1;
+}
+assert(n === 1);
+return 0;
+
+//?
+//? test: catch-body-empty-in-function
+//? description: an error caught by an empty `catch {}` does not leave the function
+//? expect: 2
+//? source: ...
+
+function f(): integer {
+    try {
+        throw "x";
+    } catch {}
+    return 2;
+}
+return f();
+
+//?
 //? test: finally-empty
 //? description: empty `finally {}` still runs after try
 //? expect: 0

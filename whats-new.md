@@ -34,6 +34,8 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Log conf **`custom`** | **Gone** (it was never loaded). Use **`app::`** or log **`format`** / **`filter`**. Model **`custom::`** is unchanged. |
 | Converting a string to `function` (`bag<function>("add")`, a `function`-typed conversion of a string) | Throws **`conversion_error`**. Pass the function value, or a name where the function takes one. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | Shell scripts that expect `afw script.as` to exit 0 after a script error | **`afw` exits 1** when a script, test_script, `-x` expression, or piped input ends with an uncaught error. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
+| `replace_object` on the file adapter to create an object | Use **`add_object`**. `replace_object` and `modify_object` of a missing object are **`not_found`** (the file adapter used to create it). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
+| `evaluate_with_retry(value, limit)` with a limit above 10, or 0 | The limit is **1 to 10** (**`argument_error`** otherwise) and optional (default **1** retry). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | `rethrow()` called outside a catch block | Throws **"rethrow() can only be used in a catch block"** (it used to leave a stray rethrow that ended the enclosing function oddly, or let a later error in the same `try` escape its `catch`). Inside a `catch`, `rethrow()` and `throw;` are unchanged. Found by the function-call fuzzer ([#485](https://github.com/afw-org/afw/issues/485)). |
 
 ### C programmers
@@ -179,6 +181,12 @@ An overnight crash hunt (ASan stress leaves and fuzzers) fixed crashes that a sc
 - **Functions:** `divide<integer>(#integerMin, -1)` throws "Integer divide overflow"; `mod<integer>(x, -1)` is 0; `meta(current::x)` of an unset variable reports `undefined`; a void value (`continue()` used as a value) does not convert (`conversion_error`); a string does not convert to `function`.
 - **`afw` CLI:** exits 1 after an uncaught error (see *Must change*).
 - **Memory:** an uncaught error no longer leaks at `afw` exit; restarting a service no longer grows `env->p` (registry key copies are freed).
+
+A second night (2026-10-07):
+
+- **File adapter writes are whole and one at a time.** A write used to empty the file and then write it, so a concurrent `get_object` or `retrieve_objects` could see an empty or partial object (`not_found`, a syntax error, or an `afwfcgi` crash in `modify_object`), and two `modify_object`s at once could lose one. A write now goes to a hidden temporary file that is flushed and renamed into place, and an adapter's add, modify, replace, and delete run one at a time within a process (two processes writing one root are not coordinated). `replace_object` and `modify_object` of a missing object are **`not_found`**; `add_object` of an existing one is **`conflict`**. Retrieve skips an empty object file instead of ending the list there. A replaced file keeps its permissions.
+- **`catch {}`:** an empty catch block with no binding now catches (the error used to leave the `try`).
+- **`evaluate_with_retry`:** the limit is optional, default 1 retry, at most 10 (a fuzzer's `#integerMax` retried until the request timed out).
 
 Deeply nested data built at runtime ([#482](https://github.com/afw-org/afw/issues/482)): releasing it no longer recurses once per level (an array or object releases its elements directly up to 256 nested levels, then defers the rest and releases them in a loop), so any depth can be built and dropped. `stringify`, `decompile`, `string`, `==`, `===`, and `clone` of data deeper than the C stack allows fail with **"C stack headroom exhausted"** instead of crashing.
 

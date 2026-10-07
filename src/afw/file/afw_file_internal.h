@@ -38,6 +38,8 @@ struct afw_file_internal_adapter_s {
     const afw_utf8_z_t *journal_dir_path_z;
     const afw_utf8_z_t *journal_lock_file_path_z;
     const afw_lock_rw_t *journal_rw_lock;
+    /* Serializes add, modify, replace, and delete in this process. */
+    const afw_lock_t *write_lock;
 };
 
 

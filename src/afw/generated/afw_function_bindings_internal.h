@@ -7366,7 +7366,7 @@ afw_function_definition_evaluate_with_retry;
  * ```
  *   function evaluate_with_retry(
  *       value: any,
- *       limit: integer
+ *       limit?: integer
  *   ): any;
  * ```
  *
@@ -7374,7 +7374,8 @@ afw_function_definition_evaluate_with_retry;
  *
  *   value - (any) Value to evaluate.
  *
- *   limit - (integer) Maximum number to retry if an exception occurs.
+ *   limit - (optional integer) Maximum number of retries if an exception
+ *       occurs, 1 to 10. The default is 1.
  *
  * Returns:
  *

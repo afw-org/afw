@@ -202,7 +202,7 @@ def evaluate(session, value, additionalUntrustedQualifiedVariables=None):
 
     return response['actions'][0]['result']
 
-def evaluate_with_retry(session, value, limit):
+def evaluate_with_retry(session, value, limit=None):
     """
     Evaluate value with retry
 
@@ -211,7 +211,8 @@ def evaluate_with_retry(session, value, limit):
 
     Args:
         value (object): Value to evaluate
-        limit (int): Maximum number to retry if an exception occurs.
+        limit (int): Maximum number of retries if an exception occurs, 1 to
+            10. The default is 1.
 
     Returns:
         object: Evaluated value.
@@ -221,9 +222,11 @@ def evaluate_with_retry(session, value, limit):
 
     action = {
         "function": "evaluate_with_retry",
-        "value": value,
-        "limit": limit
+        "value": value
     }
+
+    if limit != None:
+        action['limit'] = limit
 
     request.add_action(action)
 

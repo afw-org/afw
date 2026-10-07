@@ -281,7 +281,7 @@ afw_function_execute_evaluate(
  * ```
  *   function evaluate_with_retry(
  *       value: any,
- *       limit: integer
+ *       limit?: integer
  *   ): any;
  * ```
  *
@@ -289,7 +289,8 @@ afw_function_execute_evaluate(
  *
  *   value - (any) Value to evaluate.
  *
- *   limit - (integer) Maximum number to retry if an exception occurs.
+ *   limit - (optional integer) Maximum number of retries if an exception
+ *       occurs, 1 to 10. The default is 1.
  *
  * Returns:
  *
@@ -301,11 +302,23 @@ afw_function_execute_evaluate_with_retry(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_value_t *value;
-    const afw_value_integer_t *limit;
+    const afw_value_integer_t *limit_value;
+    afw_integer_t limit;
     afw_integer_t failures;
     afw_boolean_t success;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit, 2, integer);
+    /* Retries: default 1, at most 10 (each retry evaluates value again). */
+    limit = 1;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit_value, 2,
+            integer);
+        limit = limit_value->internal;
+        if (limit < 1 || limit > 10) {
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "Parameter 2 (limit) of evaluate_with_retry must be "
+                "1 to 10, not " AFW_INTEGER_FMT ".", limit);
+        }
+    }
 
     value = NULL;
     failures = 0;
@@ -323,7 +336,7 @@ afw_function_execute_evaluate_with_retry(
 
         AFW_CATCH_UNHANDLED {
             failures++;
-            if (failures > limit->internal) {
+            if (failures > limit) {
                 AFW_ERROR_RETHROW;
             }
         }

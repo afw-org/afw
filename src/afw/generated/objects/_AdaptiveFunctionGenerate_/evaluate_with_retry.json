@@ -13,8 +13,9 @@
         },
         {
             "dataType": "integer",
-            "description": "Maximum number to retry if an exception occurs.",
-            "name": "limit"
+            "description": "Maximum number of retries if an exception occurs, 1 to 10. The default is 1.",
+            "name": "limit",
+            "optional": true
         }
     ],
     "returns": {
