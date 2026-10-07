@@ -216,3 +216,14 @@ assert(integer("-9223372036854775808") === #integerMin);
 assert(integer("-0") === 0);
 assert(double("18446744073709551616") === 1.8446744073709552e19);
 return 0;
+
+//?
+//? test: join-function-values
+//? description: join of an array holding a script function uses the function's string form (used to read past the value)
+//? expect: 0
+//? source: ...
+
+const s = join(["a", function (x) { return x; }], "|");
+assert(starts_with<string>(s, "a|"), s);
+assert(index_of(s, "function (x)") >= 0, s);
+return 0;
