@@ -301,8 +301,18 @@ afw_number_parse(
             c++;
             (len)--;
             while (len > 0 && *c >= '0' && *c <= '9') {
-                negative = (negative * 10) - ((*c) - '0');
-                if (negative > 0) {
+                /*
+                 * Stop summing once the next digit would go below
+                 * AFW_INTEGER_MIN (signed overflow is undefined, and a
+                 * wrapped sum can land back in range with a wrong value).
+                 * C division truncates toward zero, so this is exact.
+                 */
+                if (is_integer &&
+                    negative >= (AFW_INTEGER_MIN + ((*c) - '0')) / 10)
+                {
+                    negative = (negative * 10) - ((*c) - '0');
+                }
+                else {
                     is_integer = false;
                 }
                 c++;
