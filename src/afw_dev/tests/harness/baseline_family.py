@@ -10,7 +10,8 @@ import tempfile
 from datetime import datetime, timedelta, timezone
 
 from _afwdev.test import baseline, family
-from _afwdev.test.history import file_record
+from _afwdev.test.history import (
+    content_hash, file_record, fill_content_hashes)
 
 
 def _git(repo, *args):
@@ -191,6 +192,93 @@ def _family_tests(tests):
             and r["matched"] == 3
             and r["new"] == ["new.as"] and r["gone"] == ["gone.as"]
         ),
+        "skip": False,
+    })
+
+    # #504: a test whose file changed since the baseline is not compared.
+    srec = lambda p, x, sha=None: file_record(
+        p, 10, x, 1, 0, 0, sha=sha)
+    base = {"files": [
+        srec("grown.as", 100 * 1024, "aaa"),
+        srec("same.as", 100 * 1024, "bbb"), srec("old.as", 100 * 1024)]}
+    new = [srec("grown.as", 400 * 1024, "ccc"),
+           srec("same.as", 400 * 1024, "bbb"),
+           srec("old.as", 400 * 1024, "ddd")]
+    r = family.evaluate(new, base, settings=settings)
+    # Tests may run in afwdev's own process: put its context back.
+    saved = family.worker_args()
+    family.set_context(
+        {row["path"]: row for row in base["files"]}, "base", settings)
+    try:
+        markers = [family.line_marker(rec) for rec in new]
+    finally:
+        family.set_context(*saved)
+    tests.append({
+        "test": "family-memory-changed-not-compared",
+        "description":
+            "a different sha is changed (not flagged on its line or in the "
+            "summary); the same sha, or a baseline row with no sha, compares",
+        "passed": (
+            family.memory_paths(r) == ["old.as", "same.as"]
+            and r["changed"] == ["grown.as"] and r["matched"] == 2
+            and family.summary_record(r)["changed"] == 1
+            and markers[0] == "" and markers[1] != "" and markers[2] != ""
+        ),
+        "skip": False,
+    })
+
+    tmp = tempfile.mkdtemp()
+    try:
+        path = os.path.join(tmp, "t.as")
+        with open(path, "w") as fd:
+            fd.write("one")
+        one = content_hash(path)
+        with open(path, "a") as fd:
+            fd.write(" more")
+        two = content_hash(path)
+        missing = content_hash(os.path.join(tmp, "missing.as"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    tests.append({
+        "test": "family-content-hash",
+        "description": "content_hash follows the file's bytes; None if absent",
+        "passed": (
+            bool(one) and len(one) == 12 and one != two and missing is None),
+        "skip": False,
+    })
+
+    # Baselines from before #504 have no sha: they get git's.
+    repo = tempfile.mkdtemp()
+    try:
+        _git(repo, "init", "-q")
+        os.makedirs(os.path.join(repo, "t"))
+        commit = _commit(repo, os.path.join("t", "a.as"))
+        on_disk = content_hash(os.path.join(repo, "t", "a.as"))
+        row = lambda p: file_record(p, 10, 1024, 1, 0, 0)
+        clean = {"git": {"commit_full": commit, "dirty": False},
+                 "files": [row("t/a.as"), row("t/unknown.as"),
+                           file_record("t/a.as", 10, 1024, 1, 0, 0,
+                                       sha="keep")]}
+        dirty = {"git": {"commit_full": commit, "dirty": True},
+                 "files": [row("t/a.as")]}
+        nocommit = {"git": {}, "files": [row("t/a.as")]}
+        n_clean = fill_content_hashes(clean, cwd=repo)
+        n_dirty = fill_content_hashes(dirty, cwd=repo)
+        n_nocommit = fill_content_hashes(nocommit, cwd=repo)
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+    tests.append({
+        "test": "family-fill-content-hashes",
+        "description":
+            "rows get the committed file's sha (same as content_hash), "
+            "dirty run too; unknown paths, rows with a sha, and a run "
+            "with no commit are left alone",
+        "passed": (
+            n_clean == 1 and clean["files"][0].get("sha") == on_disk
+            and "sha" not in clean["files"][1]
+            and clean["files"][2]["sha"] == "keep"
+            and n_dirty == 1 and dirty["files"][0].get("sha") == on_disk
+            and n_nocommit == 0 and "sha" not in nocommit["files"][0]),
         "skip": False,
     })
 

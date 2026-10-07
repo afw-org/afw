@@ -36,7 +36,8 @@ from _afwdev.test.common import \
     test_path_for_display, clip_detail, outcome_flag, errors_only_console, \
     xctx_bytes_from_response, xctx_chunk_bytes_from_response, \
     format_test_timing
-from _afwdev.test.history import env_mode, file_record, fuzz_from_response
+from _afwdev.test.history import (
+    content_hash, env_mode, file_record, fuzz_from_response)
 from _afwdev.test import failure_log
 from _afwdev.test import run_dir
 from _afwdev.test import family
@@ -220,6 +221,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             #   error: any error message or exception from the test run
             #   debug: any debug output from the test run that should be displayed
             #          to the user, under debug mode to help understand a problem.
+            sha = content_hash(os.path.join(pwd, test))
             start = time.time()
             cpu_start = _children_cpu_ms()
             response, error, debug = run_test(test, options, testEnvironment, testGroupConfig)
@@ -245,7 +247,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
                 test_display, duration_ms, xctx_bytes,
                 numPassed, numSkipped, numFailures,
                 xctx_chunk_bytes=xctx_chunk_bytes, cpu_ms=cpu_ms,
-                fuzz=fuzz_from_response(response))
+                fuzz=fuzz_from_response(response), sha=sha)
             file_records.append(record)
             marker = family.line_marker(record)
 

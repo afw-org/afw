@@ -5,7 +5,12 @@
 #
 # "Out of family" is fuzzy: a flag means "worth a look", not an error.
 # Only tests in both runs compare (same path); the others are counted as
-# new or gone. A test that failed in either run is not flagged.
+# new or gone. A test whose file changed since the baseline (its "sha"
+# differs) is counted as changed, not compared: fixes usually add cases
+# to an existing test, and that test's memory grows with it (#504). A
+# baseline from before sha gets it from git at its commit
+# (history.fill_content_hashes); a row still without one compares. A
+# test that failed in either run is not flagged.
 #
 # The check is memory only (xctx and chunk bytes, close to
 # deterministic): ratio and floor from afwdev-settings.json, each test
@@ -83,6 +88,13 @@ def _failed(row):
     return bool(row) and int(row.get("failed") or 0) > 0
 
 
+def _changed(base_row, new_row):
+    """True when both rows have a content hash and they differ."""
+    old = (base_row or {}).get("sha")
+    new = (new_row or {}).get("sha")
+    return bool(old) and bool(new) and old != new
+
+
 def _memory_out(old, new, settings):
     """(ratio) when new is out of family vs old, else None."""
     if old is None or new is None or old <= 0 or new <= old:
@@ -100,6 +112,8 @@ def memory_marks(base_row, new_row, settings=None):
     if not base_row or not new_row:
         return []
     if _failed(base_row) or _failed(new_row):
+        return []
+    if _changed(base_row, new_row):
         return []
     out = []
     for key, name in (("xctx_bytes", "xctx"), ("xctx_chunk_bytes", "chunk")):
@@ -133,7 +147,9 @@ def evaluate(records, base_run, last_run=None, settings=None):
     for row in (last_run or {}).get("files") or []:
         if isinstance(row, dict) and row.get("path"):
             last[row["path"]] = row
-    matched = sorted(set(new) & set(base))
+    both = set(new) & set(base)
+    changed = sorted(p for p in both if _changed(base[p], new[p]))
+    matched = sorted(both - set(changed))
     added = sorted(set(new) - set(base))
     gone = sorted(set(base) - set(new))
 
@@ -148,6 +164,7 @@ def evaluate(records, base_run, last_run=None, settings=None):
         "matched": len(matched),
         "new": added,
         "gone": gone,
+        "changed": changed,
         "memory": memory,
         "base_files": base,
         "last_files": last,
@@ -164,6 +181,7 @@ def summary_record(result):
         "matched": result["matched"],
         "new": len(result["new"]),
         "gone": len(result["gone"]),
+        "changed": len(result.get("changed") or []),
         "memory": [{"path": m["path"], "metric": m["metric"],
                     "ratio": round(m["ratio"], 3)} for m in result["memory"]],
     }
@@ -184,6 +202,8 @@ def print_summary(result):
         extra.append("{} new".format(len(result["new"])))
     if result["gone"]:
         extra.append("{} gone".format(len(result["gone"])))
+    if result.get("changed"):
+        extra.append("{} changed".format(len(result["changed"])))
     if extra:
         line += " (" + ", ".join(extra) + ")"
     if nmem:
@@ -197,8 +217,30 @@ def _fmt(n):
 
 
 def print_detail(result):
-    """--error-detail: each flagged test against the last run and base."""
-    if not result or not result["memory"]:
+    """--error-detail: each flagged test against the last run and base,
+    then the tests not compared because their file changed."""
+    if not result:
+        return
+    _print_memory_detail(result)
+    _print_changed_detail(result)
+
+
+def _print_changed_detail(result):
+    changed = result.get("changed") or []
+    if not changed:
+        return
+    msg.highlighted_info("")
+    msg.highlighted_info(
+        "Not compared, test file changed since " +
+        (result.get("label") or "?") + ":")
+    for p in changed[:DETAIL_TOP]:
+        msg.highlighted_info("  " + p)
+    if len(changed) > DETAIL_TOP:
+        msg.highlighted_info("  … {} more".format(len(changed) - DETAIL_TOP))
+
+
+def _print_memory_detail(result):
+    if not result["memory"]:
         return
     base = result["base_files"]
     last = result["last_files"]

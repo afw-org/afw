@@ -438,6 +438,7 @@ def _prepare_compare(options):
         if (run.get('mode') or 'afw') != test_history.env_mode(options):
             raise ValueError("--compare-to {p} is a {m} run".format(
                 p=path, m=run.get('mode')))
+        test_history.fill_content_hashes(run)
         out["run"] = run
         last = test_baseline.last_run(options)
         if last and last != path:

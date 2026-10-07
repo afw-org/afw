@@ -9,6 +9,7 @@
 # bytes/ms. Compare/trend never fail the process in v1.
 #
 
+import hashlib
 import os
 import re
 import subprocess
@@ -26,6 +27,8 @@ MS_FLOOR_MS = 200
 TREND_DEFAULT_COUNT = 10
 TREND_TOP = 10
 NEW_GONE_LIST_MAX = 20
+# git blob id prefix kept per test row; plenty to tell versions apart.
+CONTENT_HASH_LEN = 12
 
 
 def git_meta(cwd=None):
@@ -715,8 +718,66 @@ def fuzz_totals(records):
     return totals
 
 
+def _blob_hash(data):
+    """git's blob id of data, so a baseline's rows can be filled from git."""
+    h = hashlib.sha1(b"blob %d\0" % len(data))
+    h.update(data)
+    return h.hexdigest()[:CONTENT_HASH_LEN]
+
+
+def content_hash(path):
+    """Short git blob id of a test file's bytes, or None if unreadable.
+
+    Out of family compares a test only against the same content: a test
+    that gained cases since the baseline is "changed", not compared.
+    """
+    try:
+        with open(path, "rb") as fd:
+            return _blob_hash(fd.read())
+    except OSError:
+        return None
+
+
+def fill_content_hashes(run, cwd=None):
+    """Give rows without "sha" the file's blob id at the run's commit.
+
+    History from before #504 has no sha. The run tested its commit's
+    files, unless one had uncommitted edits ("dirty" runs, often an
+    unrelated file). Then this sha is a guess, which at worst compares
+    that test as before #504 or skips it; it never adds a flag. Paths git
+    does not know stay without sha and compare as before. Only the
+    loaded run changes, not the history file. Returns rows filled.
+    """
+    git = (run or {}).get("git") or {}
+    commit = git.get("commit_full") or git.get("commit")
+    rows = [r for r in (run or {}).get("files") or []
+            if isinstance(r, dict) and r.get("path") and not r.get("sha")]
+    if not rows or not commit:
+        return 0
+    try:
+        out = subprocess.check_output(
+            ["git", "ls-tree", "-r", "-z", commit, "--", "."],
+            stderr=subprocess.DEVNULL, text=True, cwd=cwd or os.getcwd())
+    except Exception:
+        return 0
+    blobs = {}
+    for line in out.split("\0"):
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) == 3 and parts[1] == "blob":
+            blobs[path] = parts[2][:CONTENT_HASH_LEN]
+    filled = 0
+    for row in rows:
+        sha = blobs.get(row["path"])
+        if sha:
+            row["sha"] = sha
+            filled += 1
+    return filled
+
+
 def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped,
-                num_failed, xctx_chunk_bytes=None, cpu_ms=None, fuzz=None):
+                num_failed, xctx_chunk_bytes=None, cpu_ms=None, fuzz=None,
+                sha=None):
     rec = {
         "path": path,
         "ms": int(duration_ms),
@@ -734,4 +795,6 @@ def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped,
         rec["cpu_ms"] = int(cpu_ms)
     if fuzz:
         rec["fuzz"] = fuzz
+    if sha:
+        rec["sha"] = sha
     return rec
