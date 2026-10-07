@@ -478,7 +478,6 @@ impl_afw_adapter_impl_index_drop (
     const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
     const afw_utf8_t *database;
-    MDB_dbi dbi;
     MDB_txn *txn;
     afw_rc_t rc = 0;
 
@@ -495,11 +494,8 @@ impl_afw_adapter_impl_index_drop (
         AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
             txn = AFW_LMDB_GET_TRANSACTION();
 
-            dbi = afw_lmdb_internal_open_database(session->adapter,
-                txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
-
-            /* (1) means delete it from the environment and close the DB handle */
-            rc = mdb_drop(txn, dbi, 1);
+            rc = afw_lmdb_internal_drop_database(session->adapter,
+                txn, database, pool, xctx);
 
             AFW_LMDB_COMMIT_TRANSACTION();
         }
@@ -507,11 +503,8 @@ impl_afw_adapter_impl_index_drop (
     } else {
         txn = self->txn;
 
-        dbi = afw_lmdb_internal_open_database(session->adapter,
-            txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
-
-        /* (1) means delete it from the environment and close the DB handle */
-        rc = mdb_drop(txn, dbi, 1);
+        rc = afw_lmdb_internal_drop_database(session->adapter,
+            txn, database, pool, xctx);
     }
 
     return rc;

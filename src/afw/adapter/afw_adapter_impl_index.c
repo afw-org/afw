@@ -1137,11 +1137,17 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
         }
     }
 
-    /* now, tell the adapter to add the new indexDefinition for configuration */
+    /*
+     * Now, tell the adapter to add the new indexDefinition for
+     * configuration. indexDefinitions is the indexer's cached copy and
+     * outlives pool, so it gets a copy of the definition in its own pool.
+     */
     afw_object_set_property_as_object_internal(
         indexDefinitions,
         afw_value_create_unmanaged_string(key, pool, xctx),
-        indexDefinition, xctx);
+        afw_object_create_pooled_copy(indexDefinition,
+            indexDefinitions->p, xctx),
+        xctx);
 
     afw_adapter_impl_index_update_index_definitions(
         indexer, indexDefinitions, xctx);
