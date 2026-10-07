@@ -1,0 +1,52 @@
+# Opt-in LMDB leaf: an index_create that fails during its retroactive
+# scan must not leave the adapter's transaction open.
+#   afwdev test -T src/afw/tests-extra/lmdb-index-create-error
+#
+# add          one object of type Idx, so the retroactive scan has work.
+# bad-retro    index_create with retroactive true and an index value
+#              that does not parse. The error is caught and checked.
+# add-after    another write on the same (only) server thread.
+#
+# Pass: all three answer. Known open: afw_adapter_impl_index_create
+# begins a transaction before the retroactive scan and does not release
+# it when the scan throws. The LMDB write transaction and the adapter's
+# dbLock stay held, so add-after (and every later write) waits forever
+# and the leaf fails on timeout. See #500.
+version: 1
+description: LMDB index_create error during retroactive scan releases its transaction
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 30
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: add
+    sourceType: script
+    source: |
+      add_object("lmdb", "Idx", {t: "V1"});
+      return true;
+    expect: true
+
+  - name: bad-retro
+    sourceType: script
+    source: |
+      try {
+          index_create("lmdb", "t", "(", ["Idx"], undefined, undefined, true, false);
+      }
+      catch (e) {
+          return includes<string>(e.message, "Parse error");
+      }
+      return false;
+    expect: true
+
+  - name: add-after
+    sourceType: script
+    source: |
+      add_object("lmdb", "Idx", {t: "V2"});
+      return length(retrieve_objects("lmdb", "Idx"));
+    expect: 2
+
+schedule:
+  - sequential: [add, bad-retro, add-after]

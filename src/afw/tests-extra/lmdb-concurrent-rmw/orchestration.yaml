@@ -1,0 +1,104 @@
+# Opt-in LMDB leaf: read/modify/write of one object from many threads
+# at once, then add/modify/replace/delete cycles with retrieves and the
+# odd adapter restart.
+#   afwdev test -T src/afw/tests-extra/lmdb-concurrent-rmw
+#
+# "check" proves no modify was lost: 2000 concurrent modifies each set
+# their own property on object "counter", and all 2000 must be there.
+version: 1
+description: LMDB concurrent modify/replace/retrieve with restarts
+host: afwfcgi
+afwfcgi:
+  threads: 16
+timeout_s: 400
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: create
+    sourceType: script
+    source: |
+      add_object("lmdb", "_AdaptiveObject_", {}, "counter");
+      return true;
+    expect: true
+
+  - name: modify-and-read
+    sourceType: script
+    source: |
+      const name = "p" + replace<string>(generate_uuid(), "-", "", -1);
+      modify_object("lmdb", "_AdaptiveObject_", "counter",
+          [["set_property", name, true]]);
+      const o = get_object("lmdb", "_AdaptiveObject_", "counter");
+      assert(o[name] === true, "own change missing");
+      return true;
+    expect: true
+
+  - name: own-cycle
+    sourceType: script
+    source: |
+      const id = "own-" + generate_uuid();
+      add_object("lmdb", "_AdaptiveObject_", {n: 1, s: "a"}, id);
+      modify_object("lmdb", "_AdaptiveObject_", id,
+          [["add_value", "n", 2], ["set_property", "s", "b"]]);
+      replace_object("lmdb", "_AdaptiveObject_", id, {n: 9, s: "c"});
+      const o = get_object("lmdb", "_AdaptiveObject_", id);
+      assert(o.n === 9 && o.s === "c", "replace lost");
+      delete_object("lmdb", "_AdaptiveObject_", id);
+      return true;
+    expect: true
+
+  - name: retrieve-all
+    sourceType: script
+    source: |
+      const all = retrieve_objects("lmdb", "_AdaptiveObject_");
+      return length(all) >= 1;
+    expect: true
+
+  - name: restart-once
+    sourceType: script
+    source: |
+      try {
+          const svc = service_restart("adapter-lmdb");
+          assert(svc.status !== "error", string(svc.statusMessage));
+          return true;
+      }
+      catch (e) {
+          if (includes<string>(e.message, "cannot be restarted")) {
+              return true;
+          }
+          throw e.message;
+      }
+    expect: true
+
+  - name: check
+    sourceType: script
+    source: |
+      const o = get_object("lmdb", "_AdaptiveObject_", "counter");
+      let n = 0;
+      for (const k of keys(o)) {
+          if (starts_with<string>(k, "p")) { n = n + 1; }
+      }
+      return n;
+    expect: 2000
+
+schedule:
+  - sequential: [create]
+  - firehose:
+      maxRequests: 2000
+      concurrency: 32
+      clientProcesses: 2
+      fromTests: [modify-and-read]
+      policy: roundRobin
+      seed: 5
+      stopOnError: false
+      maxFail: 0
+  - sequential: [check]
+  - firehose:
+      duration_s: 240
+      concurrency: 32
+      clientProcesses: 4
+      fromTests: [own-cycle, retrieve-all, modify-and-read, restart-once]
+      policy: random
+      seed: 7
+      stopOnError: false
+      maxFail: 50

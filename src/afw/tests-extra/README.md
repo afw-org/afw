@@ -119,6 +119,10 @@ src/afw/tests-extra/
 | **night/slope** | Leak watch: firehose mix plus #379 cheap/catalog/metrics, no restarts, RSS cap |
 | **night/restart** | File, model, VFS, log, handler restarts; expected overlap is success; `maxFail` 0 |
 | **stress-campaign** | Maintainer loop: `run-cycle.sh` rotates night practice, stress restarts, issue-2 RSS, 07/07b firehoses |
+| **lmdb-concurrent-rmw** | LMDB: 2000 concurrent modifies of one object all kept, then add/modify/replace/delete + retrieves + restarts |
+| **lmdb-index-churn** | LMDB: indexed writes and queries while the index is removed/created and the adapter restarts (known open #500: EINVAL after churn) |
+| **lmdb-index-under-writes** | LMDB: index remove/create mixed with writes, callback retrieves that write, `index_list`; no hang |
+| **lmdb-index-create-error** | LMDB: `index_create` that throws in its retroactive scan must release its transaction (known open #500: hangs) |
 
 **Gate smokes** (default `test -j`, not this tree):
 

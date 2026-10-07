@@ -1,0 +1,95 @@
+# Opt-in LMDB leaf: index create/remove while other requests write.
+#   afwdev test -T src/afw/tests-extra/lmdb-index-under-writes
+#
+# write-cycle
+#   add, modify, then delete one object of type Idx. Each request uses
+#   its own id, so requests never touch the same object.
+#
+# index-toggle
+#   index_remove then index_create (retroactive) of property "s" on Idx.
+#   Expected refusals (no such index, already exists) are swallowed.
+#
+# callback-write
+#   retrieve_objects_to_callback over Idx; the callback updates each
+#   object it is handed (a write while the retrieve is open).
+#
+# index-list
+#   index_list on the adapter.
+#
+# Pass: every request answers, none fail. Guards the adapter's two
+# locks (dbLock and the LMDB writer mutex) against a change that makes
+# index create/open wait on writers that wait on it. A hang shows up as
+# "Timeout waiting for afwfcgi"; attach gdb to afwfcgi for the stacks.
+# lmdb-index-create-error is the related known hang.
+version: 1
+description: LMDB index create/remove under concurrent writes
+host: afwfcgi
+afwfcgi:
+  threads: 16
+timeout_s: 180
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: setup
+    sourceType: script
+    source: |
+      index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, false, false);
+      return true;
+    expect: true
+
+  - name: write-cycle
+    sourceType: script
+    source: |
+      const id = generate_uuid();
+      add_object("lmdb", "Idx", {s: "a", n: 1}, id);
+      modify_object("lmdb", "Idx", id, [["set_property", "s", "b"]]);
+      delete_object("lmdb", "Idx", id);
+      return true;
+    expect: true
+
+  - name: index-toggle
+    sourceType: script
+    source: |
+      try {
+          index_remove("lmdb", "s");
+      }
+      catch (e) {}
+      try {
+          index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, true, false);
+      }
+      catch (e) {}
+      return true;
+    expect: true
+
+  - name: callback-write
+    sourceType: script
+    source: |
+      retrieve_objects_to_callback(function (o, u) {
+          try {
+              update_object("lmdb", "Idx", o.meta().objectId, {s: "c", n: 2});
+          }
+          catch (e) {}
+          return true;
+      }, undefined, "lmdb", "Idx");
+      return true;
+    expect: true
+
+  - name: index-list
+    sourceType: script
+    source: |
+      const l = index_list("lmdb");
+      return true;
+    expect: true
+
+schedule:
+  - sequential: [setup]
+  - firehose:
+      duration_s: 60
+      concurrency: 32
+      clientProcesses: 2
+      fromTests: [write-cycle, write-cycle, write-cycle, callback-write, index-list, index-toggle]
+      policy: random
+      seed: 1
+      stopOnError: false
+      maxFail: 0
