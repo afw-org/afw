@@ -118,3 +118,19 @@ assert(stringify(get_object("file", "TestObjectType1", id).s) === "[\"x\",\"y\"]
     "add_value to single: " + stringify(get_object("file", "TestObjectType1", id).s));
 delete_object("file", "TestObjectType1", id);
 return 0;
+
+//?
+//? test: modify_object_empty_property_name
+//? description: An object with an empty property name can be stored, read, and changed (its name compare used to pass NULL to memcmp).
+//? expect: 0
+//? source: ...
+
+const id: string = generate_uuid();
+add_object("file", "TestObjectType1", { "a": 1 }, id);
+modify_object("file", "TestObjectType1", id, [["set_property", "", 2]]);
+const o: object = get_object("file", "TestObjectType1", id);
+assert(o[""] === 2, "empty name: " + stringify(o));
+modify_object("file", "TestObjectType1", id, [["set_property", "", 3], ["set_property", "b", 4]]);
+assert(get_object("file", "TestObjectType1", id)[""] === 3);
+delete_object("file", "TestObjectType1", id);
+return 0;
