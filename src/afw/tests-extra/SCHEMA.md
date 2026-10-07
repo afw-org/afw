@@ -317,8 +317,6 @@ schedule:
   on a timeout, a lost connection, or a reply without a FastCGI end record or
   status line. Leaves: `tests/advanced/fuzz-hostile`, `tests-extra/fuzz-hostile`
   (their conf has only `afw` and a file adapter `data` in the work directory).
-  The pieces module now holds placeholder valid requests; the varied pieces
-  are to be written (#485 step 5).
 - Request *i* is built only from (seed, *i*) and the function list, so the same
   build and deny list send the same requests, and nothing generated is stored.
   `afwdev test -T <leaf> --replay SEED:INDEX` (or `SEED:FIRST-LAST`) sends

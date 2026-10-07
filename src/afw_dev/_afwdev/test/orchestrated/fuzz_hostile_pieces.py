@@ -199,10 +199,12 @@ _ACTIONS = (
      "function": "add", "a": 1, "b": 2},
 )
 
-# create_request requires REQUEST_METHOD, QUERY_STRING, and a URI
-# (PATH_INFO or REQUEST_URI) before the request TRY; dropping those
-# yields an empty reply. Optional params are fair game.
+# A missing REQUEST_METHOD, QUERY_STRING, or URI (PATH_INFO or
+# REQUEST_URI) is answered with a 400 (it used to be an empty reply).
 _DROPPABLE = (
+    "REQUEST_METHOD",
+    "QUERY_STRING",
+    "REQUEST_URI",
     "IGNORE_URI_PREFIX",
     "URI",
     "CONTENT_TYPE",
