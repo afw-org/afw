@@ -1,0 +1,28 @@
+# Odd FastCGI requests (#485 step 5): each request comes from
+# fuzz_hostile_pieces.build() with the fixed seed, so every run sends
+# the same requests. Any HTTP status is a fine answer; a crash,
+# sanitizer report, hang, or a reply without a FastCGI end record or
+# status line fails the leaf and names the requests to replay:
+#   afwdev test -T src/afw/tests/advanced/fuzz-hostile --replay 1:INDEX
+# Longer runs: src/afw/tests-extra/fuzz-hostile.
+version: 1
+description: Odd FastCGI requests answered without a crash or hang
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 600
+feed:
+  kind: action
+  accept: application/json
+tests: []
+schedule:
+  - firehose:
+      maxRequests: 400
+      concurrency: 8
+      seed: 1
+      maxFail: 0
+      envModes:
+        valgrind: { maxRequests: 50 }
+      fuzz:
+        kind: hostile
+        requestTimeout_s: 30

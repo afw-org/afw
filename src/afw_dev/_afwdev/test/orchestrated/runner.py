@@ -755,8 +755,23 @@ def _sample_server(socket_path):
     }
 
 
+def _hostile_request_ok(item, socket_path, timeout):
+    """Send a hostile fuzz request. Any HTTP status is an answer."""
+    req = item["hostile"]
+    result = fcgi_request(
+        socket_path, path=req["path"], method=req["method"],
+        body=req["body"], param_overrides=req["overrides"],
+        timeout=timeout)
+    problem = fuzz_mod.reply_problem(result)
+    if problem:
+        raise AfwdevRunnerError("{}: {}".format(item.get("name"), problem))
+    return True
+
+
 def _firehose_request_ok(item, work_dir, socket_path, doc_feed, timeout):
     """Issue one action request. Raise on a failed or non-success response."""
+    if item.get("hostile") is not None:
+        return _hostile_request_ok(item, socket_path, timeout)
     source = resolve_source_text(item, work_dir)
     source_type = item.get("sourceType") or "script"
     feed = merge_feed(doc_feed, item.get("feed"))
@@ -907,6 +922,10 @@ def _run_firehose_threads(concurrency, pool, work_dir, source_leaf, ctx,
 
     def one(item):
         try:
+            if item.get("hostile") is not None:
+                _hostile_request_ok(
+                    item, ctx.get("socket_path"), item_timeout)
+                return True, None
             _run_test_item(item, work_dir, source_leaf, ctx,
                            item_timeout, doc_feed, quiet_log, options)
             return True, None
@@ -1072,6 +1091,22 @@ def _run_firehose_processes(client_processes, concurrency, pool, work_dir,
     return ok, fail, ok + fail, samples
 
 
+FUZZ_SENT_MAX = 1024 * 1024
+
+
+def _read_fuzz_sent(work_dir):
+    """Sent fuzz refs, oldest first, from fuzz-sent.txt and its .old."""
+    path = os.path.join(_diag_dir(work_dir), "fuzz-sent.txt")
+    sent = []
+    for name in (path + ".old", path):
+        try:
+            with open(name, "r") as fd:
+                sent.extend(line.strip() for line in fd if line.strip())
+        except OSError:
+            continue
+    return sent
+
+
 def _fuzz_item(fuzz, pool, index, work_dir):
     """Request index as a fuzz item, or None for a fromTests item.
 
@@ -1081,10 +1116,15 @@ def _fuzz_item(fuzz, pool, index, work_dir):
     """
     if fuzz is None or (pool and index % 2 == 0):
         return None
+    path = os.path.join(_diag_dir(work_dir), "fuzz-sent.txt")
     try:
         os.makedirs(_diag_dir(work_dir), exist_ok=True)
-        with open(os.path.join(_diag_dir(work_dir), "fuzz-sent.txt"),
-                  "a") as fd:
+        # Only the tail is read, so keep it small: past FUZZ_SENT_MAX
+        # bytes the log becomes fuzz-sent.txt.old and starts again.
+        if index % 1024 == 0 and os.path.isfile(path) and \
+                os.path.getsize(path) > FUZZ_SENT_MAX:
+            os.replace(path, path + ".old")
+        with open(path, "a") as fd:
             fd.write("{}:{}\n".format(fuzz.seed, index))
     except OSError:
         pass
@@ -1143,10 +1183,12 @@ def _make_fuzz(body, ctx, doc_feed, timeout, options):
     replay = options.get("replay") if options else None
     if replay:
         seed = fuzz_mod.parse_replay(replay)[0]
+    spec = body.get("fuzz") or {}
+    functions = []
+    if spec.get("kind") == "functionCalls":
+        functions = _fetch_functions(socket_path, doc_feed, timeout)
     try:
-        return fuzz_mod.make_source(
-            body.get("fuzz"), _fetch_functions(socket_path, doc_feed, timeout),
-            seed)
+        return fuzz_mod.make_source(spec, functions, seed)
     except fuzz_mod.FuzzError as e:
         raise AfwdevRunnerError(str(e))
 
@@ -1157,11 +1199,8 @@ def _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency):
     if fuzz is None or err is None or getattr(err, "_fuzz_noted", False):
         return
     err._fuzz_noted = True
-    path = os.path.join(_diag_dir(work_dir), "fuzz-sent.txt")
-    try:
-        with open(path, "r") as fd:
-            sent = [line.strip() for line in fd if line.strip()]
-    except OSError:
+    sent = _read_fuzz_sent(work_dir)
+    if not sent:
         return
     last = sent[-max(1, int(concurrency or 1) * 2):]
     saved = os.path.join(_diag_dir(work_dir), "fuzz-in-flight")
@@ -1169,8 +1208,9 @@ def _note_fuzz_in_flight(err, fuzz, work_dir, source_leaf, concurrency):
         os.makedirs(saved, exist_ok=True)
         for ref in last:
             index = int(ref.split(":", 1)[1])
-            with open(os.path.join(saved, ref.replace(":", "-") + ".as"),
-                      "w") as fd:
+            name = ref.replace(":", "-") + getattr(
+                fuzz, "source_suffix", ".as")
+            with open(os.path.join(saved, name), "w") as fd:
                 fd.write(fuzz.source(index))
     except (OSError, ValueError):
         pass
@@ -1203,10 +1243,15 @@ def _run_fuzz_replay(fuzz, replay, work_dir, source_leaf, ctx, timeout,
     for index in range(first, last + 1):
         item = fuzz.item(index)
         msg.highlighted_info("--- {} ---\n{}".format(
-            item["name"], item["source"]))
+            item["name"], fuzz.source(index)))
         try:
-            _run_test_item(item, work_dir, source_leaf, ctx,
-                           max(5.0, timeout), doc_feed, debug_parts, options)
+            if item.get("hostile") is not None:
+                _hostile_request_ok(
+                    item, ctx.get("socket_path"), fuzz.request_timeout)
+            else:
+                _run_test_item(item, work_dir, source_leaf, ctx,
+                               max(5.0, timeout), doc_feed, debug_parts,
+                               options)
         except Exception as e:
             fails.append("{}: {}".format(item["name"], error_message(e) or e))
         dead = _afwfcgi_dead(handle)
@@ -1273,14 +1318,11 @@ def _restart_afwfcgi(handle, number):
 
 
 def _last_fuzz_index(work_dir):
+    sent = _read_fuzz_sent(work_dir)
     try:
-        with open(os.path.join(_diag_dir(work_dir), "fuzz-sent.txt")) as fd:
-            last = None
-            for line in fd:
-                if line.strip():
-                    last = line
-        return int(last.strip().split(":", 1)[1]) if last else None
-    except (OSError, ValueError, IndexError):
+        return max(int(ref.split(":", 1)[1]) for ref in sent) if sent \
+            else None
+    except (ValueError, IndexError):
         return None
 
 
@@ -1484,7 +1526,8 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
     if exits:
         summary["serverExits"] = len(exits)
     if fuzz is not None:
-        summary["fuzz"] = {"kind": "functionCalls", "seed": fuzz.seed,
+        summary["fuzz"] = {"kind": (body.get("fuzz") or {}).get("kind"),
+                           "seed": fuzz.seed,
                            "indexes": [0, total - 1] if total else [],
                            "functions": len(fuzz.functions)}
     dead = _afwfcgi_dead(handle)
