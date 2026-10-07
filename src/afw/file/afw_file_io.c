@@ -650,7 +650,8 @@ afw_file_write_whole(
     const afw_utf8_t *uuid;
     struct stat st;
     afw_boolean_t exists;
-    int fd;
+    /* Changed in AFW_TRY and read in AFW_FINALLY (setjmp). */
+    volatile int fd;
     int rc;
     int err;
 
