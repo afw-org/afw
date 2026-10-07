@@ -51,10 +51,10 @@ typedef struct afw_lmdb_env_s {
 /*
  * A database handle opened by a transaction that has not ended yet.
  * LMDB keeps a handle a transaction opened only if that transaction
- * commits (a nested one passes it to its parent); an abort, including
- * the end of a read-only transaction by abort, closes it. So a new
- * handle waits here and reaches dbi_handles only when its top-level
- * transaction commits.
+ * commits (a nested one passes it to its parent); an abort closes it.
+ * So a new handle waits here and reaches dbi_handles only when its
+ * top-level write transaction commits. Read-only transactions end by
+ * abort, so they never add to the cache.
  */
 typedef struct afw_lmdb_dbi_pending_s afw_lmdb_dbi_pending_t;
 struct afw_lmdb_dbi_pending_s {
@@ -578,7 +578,6 @@ do { \
     MDB_txn * this_txn = NULL; \
     bool this_txnHandled = false; \
     bool this_txnOwner = false; \
-    bool this_txnReadOnly = ((flags) & MDB_RDONLY) != 0; \
     const afw_lmdb_adapter_t * this_adapter = adapter; \
     const afw_lmdb_adapter_session_t * this_session = session; \
     afw_xctx_t * this_xctx = xctx; \
@@ -681,13 +680,7 @@ do { \
         } while (0); \
     } AFW_FINALLY { \
         if (this_txnOwner) { \
-            if (this_txn && !this_txnHandled && this_txnReadOnly) { \
-                /* Same as abort for data; keeps handles it opened. */ \
-                afw_lmdb_internal_txn_commit(this_adapter, this_txn, \
-                    NULL, this_xctx); \
-                this_txnHandled = true; \
-            } \
-            else if (this_txn && !this_txnHandled) { \
+            if (this_txn && !this_txnHandled) { \
                 afw_lmdb_internal_txn_abort(this_adapter, this_txn, \
                     this_xctx); \
                 this_txnHandled = true; \

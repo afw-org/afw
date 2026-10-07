@@ -769,8 +769,12 @@ impl_afw_adapter_get_additional_metrics (
         mdb_close(self->dbEnv, dbi);
     }
 
-    /* FIXME check return code here and decide what to do/throw */
-    afw_lmdb_internal_txn_commit(self, txn, NULL, xctx);
+    /*
+     * Read-only, so abort ends it the same as commit, and does not keep
+     * the handles it opened: a read transaction's snapshot may predate
+     * a drop of one of those databases.
+     */
+    afw_lmdb_internal_txn_abort(self, txn, xctx);
 
     afw_trace_z(1, self->pub.trace_flag_index, 
         NULL, "LMDB Transaction committed.", xctx);

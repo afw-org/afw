@@ -97,11 +97,12 @@ impl_dbi_pending_add(
  * Returns the cached handle for database, or opens it in txn.
  *
  * A handle opened here is valid in txn at once, but LMDB keeps it only
- * if txn commits: an abort (including a read-only txn ended by abort)
- * closes it, and LMDB may then give the slot to another database. So
- * it is cached only when txn commits (afw_lmdb_internal_txn_commit());
- * until then a later open in the same txn gets the same handle again
- * from mdb_dbi_open().
+ * if txn commits: an abort closes it, and LMDB may then give the slot
+ * to another database. So it is cached only when a write txn commits
+ * (afw_lmdb_internal_txn_commit()); until then a later open in the
+ * same txn gets the same handle again from mdb_dbi_open(). Read-only
+ * txns end by abort, so a handle only a read opened is never cached: a
+ * read's snapshot may predate a drop of that database.
  *
  * Note: LMDB allows only one transaction at a time to open a new
  * database. index_open does that in an exclusive transaction (dbLock
