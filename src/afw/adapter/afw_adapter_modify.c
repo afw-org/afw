@@ -244,6 +244,9 @@ afw_adapter_modify_entries_from_list(
                 prev_property_name_list = property_name_entry;
             }
         }
+        else {
+            goto error;
+        }
 
         /* Get value. */
         entry->value = afw_array_get_next_value(tuple, &tuple_i, xctx);

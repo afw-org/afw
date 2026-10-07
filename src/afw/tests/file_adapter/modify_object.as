@@ -67,3 +67,34 @@ catch (e) {
     err = e.id;
 }
 return err;
+
+//?
+//? test: modify_object_bad_property_name
+//? description: A modify entry whose property name is not a string or an array of strings is invalid (used to dereference NULL).
+//? expect: 0
+//? source: ...
+
+const id: string = generate_uuid();
+add_object("file", "TestObjectType1", { "s": 1 }, id);
+const bad: array = [
+    ["remove_property", 1],
+    ["remove_property", true],
+    ["remove_property", null],
+    ["remove_property", {}],
+    ["set_property", 1, 2],
+    ["add_value", 1, 2],
+    ["remove_value", 1, 2]
+];
+for (const e of bad) {
+    let message: any = "no error";
+    try {
+        modify_object("file", "TestObjectType1", id, [e]);
+    }
+    catch (err) {
+        message = err.message;
+    }
+    assert(includes<string>(message, "is invalid"), stringify(e) + ": " + message);
+}
+assert(get_object("file", "TestObjectType1", id).s === 1);
+delete_object("file", "TestObjectType1", id);
+return 0;
