@@ -83,6 +83,71 @@ impl_afw_adapter_session_destroy(
 
 
 /*
+ * Is every index database the query may open in txn's view? The query
+ * planner opens one for each indexed property it reaches from entry. A
+ * database is not in a read's view when nothing of object_type_id was
+ * indexed yet, or the write that created it committed after the read
+ * began (#511). The caller scans instead.
+ */
+static afw_boolean_t
+impl_index_databases_in_view(
+    afw_lmdb_adapter_session_t *self,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_query_criteria_filter_entry_t *entry,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *database;
+    MDB_dbi dbi;
+
+    if (entry == AFW_QUERY_CRITERIA_TRUE ||
+        entry == AFW_QUERY_CRITERIA_FALSE)
+    {
+        return true;
+    }
+
+    if (entry->property_name &&
+        afw_adapter_impl_index_is_property_indexed(self->indexer,
+            object_type_id, entry->property_name, xctx))
+    {
+        database = afw_lmdb_index_database(object_type_id,
+            entry->property_name, xctx->p, xctx);
+        if (afw_lmdb_internal_try_open_database(self->adapter, txn,
+            database, 0, &dbi, xctx->p, xctx) != 0)
+        {
+            return false;
+        }
+    }
+
+    return
+        impl_index_databases_in_view(self, txn, object_type_id,
+            entry->on_true, xctx) &&
+        impl_index_databases_in_view(self, txn, object_type_id,
+            entry->on_false, xctx);
+}
+
+
+/* Remembers whether an index query returned anything yet. */
+typedef struct impl_retrieve_cb_ctx_s {
+    afw_object_cb_t callback;
+    void *context;
+    volatile afw_boolean_t called;
+} impl_retrieve_cb_ctx_t;
+
+static afw_boolean_t
+impl_retrieve_cb(
+    const afw_object_t *object,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    impl_retrieve_cb_ctx_t *ctx = context;
+
+    ctx->called = true;
+    return ctx->callback(object, ctx->context, xctx);
+}
+
+
+/*
  * Implementation of method retrieve_objects for interface
  * afw_adapter_session.
  */
@@ -100,6 +165,8 @@ impl_afw_adapter_session_retrieve_objects(
 {
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     MDB_txn * txn;
+    impl_retrieve_cb_ctx_t ctx;
+    volatile afw_boolean_t scan;
 
     if (afw_lmdb_metadata_handles(object_type_id)) {
         afw_lmdb_metadata_retrieve_objects(
@@ -124,10 +191,53 @@ impl_afw_adapter_session_retrieve_objects(
         else if (afw_adapter_impl_index_sargable(self->indexer,
             object_type_id, criteria, xctx))
         {
-            afw_trace_z(1, adapter->pub.trace_flag_index, NULL,
-                "retrieve_objects: using index query", xctx);
-            afw_adapter_impl_index_query(self->indexer, object_type_id,
-                criteria, callback, context, p, xctx);
+            scan = !impl_index_databases_in_view(self, txn, object_type_id,
+                criteria->filter, xctx);
+            if (scan) {
+                afw_trace_z(1, adapter->pub.trace_flag_index, NULL,
+                    "retrieve_objects: using full scan (index database not "
+                    "in this transaction's view)", xctx);
+            }
+            else {
+                afw_trace_z(1, adapter->pub.trace_flag_index, NULL,
+                    "retrieve_objects: using index query", xctx);
+                ctx.callback = callback;
+                ctx.context = context;
+                ctx.called = false;
+                AFW_TRY {
+                    afw_adapter_impl_index_query(self->indexer,
+                        object_type_id, criteria, impl_retrieve_cb, &ctx,
+                        p, xctx);
+                }
+                AFW_CATCH_UNHANDLED {
+                    /*
+                     * The planner opens every cursor before it returns
+                     * an object, so an index removed since the checks
+                     * above throws here with nothing returned yet. If
+                     * the checks no longer pass, a scan gives the same
+                     * answer. Any other error is the query's own.
+                     */
+                    if (ctx.called ||
+                        (afw_adapter_impl_index_sargable(self->indexer,
+                            object_type_id, criteria, xctx) &&
+                        impl_index_databases_in_view(self, txn,
+                            object_type_id, criteria->filter, xctx)))
+                    {
+                        AFW_ERROR_RETHROW;
+                    }
+                    afw_trace_fz(1, adapter->pub.trace_flag_index, NULL,
+                        xctx, "retrieve_objects: using full scan (index "
+                        "removed during query: %s)",
+                        (AFW_ERROR_THROWN->message_z)
+                            ? AFW_ERROR_THROWN->message_z : "");
+                    scan = true;
+                }
+                AFW_ENDTRY;
+            }
+            if (scan) {
+                afw_lmdb_adapter_session_dump_objects(self, txn,
+                    object_type_id, criteria, callback, context, p, xctx);
+            }
         }
 
         else {

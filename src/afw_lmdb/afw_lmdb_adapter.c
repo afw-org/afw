@@ -41,7 +41,7 @@ void afw_lmdb_adapter_load_configuration(
     afw_trace_z(1, self->pub.trace_flag_index, 
         NULL, "LMDB Begin write transaction.", xctx);
 
-    rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
+    rc = afw_lmdb_internal_txn_begin(self, NULL, 0, &txn, xctx);
     if (rc) {
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to begin initial transaction.", xctx);
@@ -221,12 +221,83 @@ const afw_lmdb_index_conf_t * afw_lmdb_adapter_parse_index_conf(
 }
 
 /*
+ * Open every named database on disk in txn. The keys of LMDB's unnamed
+ * database are the names of the named ones. This includes databases
+ * nothing names at startup: an index database per object type for an
+ * index on all object types, and a key-value namespace.
+ */
+static void
+impl_open_databases_on_disk(
+    afw_lmdb_adapter_t * self,
+    MDB_txn            * txn,
+    const afw_pool_t   * pool,
+    afw_xctx_t        * xctx)
+{
+    MDB_dbi main_dbi;
+    MDB_dbi dbi;
+    MDB_cursor *cursor;
+    MDB_val key;
+    afw_utf8_t name;
+    int rc;
+
+    /* The unnamed database takes no slot of its own. */
+    rc = mdb_dbi_open(txn, NULL, 0, &main_dbi);
+    if (rc == 0) {
+        rc = mdb_cursor_open(txn, main_dbi, &cursor);
+    }
+    if (rc) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+            "Unable to list databases.", xctx);
+    }
+
+    AFW_TRY {
+        while (mdb_cursor_get(cursor, &key, NULL, MDB_NEXT_NODUP) == 0) {
+            if (key.mv_size == 0 || memchr(key.mv_data, '\0', key.mv_size)) {
+                continue;
+            }
+            name.s = key.mv_data;
+            name.len = key.mv_size;
+
+            rc = afw_lmdb_internal_try_open_database(self, txn,
+                &name, 0, &dbi, pool, xctx);
+
+            /* A key that is not a database. */
+            if (rc == MDB_INCOMPATIBLE) {
+                continue;
+            }
+
+            /* A write opens the rest on first use, or fails there. */
+            if (rc == MDB_DBS_FULL) {
+                afw_trace_fz(1, self->pub.trace_flag_index, NULL, xctx,
+                    "LMDB maxdbs reached; not opening '%.*s' and later "
+                    "databases at start.", (int)name.len, name.s);
+                break;
+            }
+
+            if (rc) {
+                AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+                    "Unable to open database: '%.*s'.",
+                    (int)name.len, name.s);
+            }
+        }
+    }
+    AFW_FINALLY {
+        mdb_cursor_close(cursor);
+    }
+    AFW_ENDTRY;
+}
+
+
+/*
  * The LMDB API to open a database is mdb_dbi_open().
  *
  * According to the documentation, this function must not be
- * called from multiple concurrent transactions in the same 
- * process.  One way to make this easy is to go ahead and
- * open all the databases we think we will need ahead of time.
+ * called from multiple concurrent transactions in the same
+ * process, and a transaction that calls it must end before
+ * another may. Only a write transaction opens one (see
+ * afw_lmdb_internal_try_open_database()), and so that a read
+ * finds every database it can see in the cache, every database
+ * on disk is opened here, ahead of time.
  *
  */
 void afw_lmdb_adapter_open_databases(
@@ -242,7 +313,7 @@ void afw_lmdb_adapter_open_databases(
     afw_trace_z(1, self->pub.trace_flag_index, 
         NULL, "LMDB Begin write transaction.", xctx);
 
-    rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
+    rc = afw_lmdb_internal_txn_begin(self, NULL, 0, &txn, xctx);
     if (rc) {
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to begin initial transaction.", xctx);
@@ -282,6 +353,9 @@ void afw_lmdb_adapter_open_databases(
         afw_adapter_impl_index_open_definitions(indexer, 
             indexDefinitions, pool, xctx);
     }
+
+    /* and every other database already on disk (#511) */
+    impl_open_databases_on_disk(self, txn, pool, xctx);
 
     /** @fixme: set compare routines? */
 
@@ -699,7 +773,7 @@ impl_afw_adapter_get_additional_metrics (
      * it must not compete with real writers for LMDB's single write
      * transaction slot (#387).
      */
-    rc = mdb_txn_begin(self->dbEnv, NULL, MDB_RDONLY, &txn);
+    rc = afw_lmdb_internal_txn_begin(self, NULL, MDB_RDONLY, &txn, xctx);
     if (rc) {
         afw_thread_rwlock_unlock(self->dbLock, xctx);
 
@@ -727,9 +801,12 @@ impl_afw_adapter_get_additional_metrics (
 
                 database_str = afw_utf8_create(str, key.mv_size, p, xctx);
 
-                db2 = afw_lmdb_internal_open_database(self, 
-                    txn, database_str, 0, p, xctx);
-                if (db2 == 0) continue;
+                /* A read opens no database; skip one not in its view. */
+                if (afw_lmdb_internal_try_open_database(self,
+                    txn, database_str, 0, &db2, p, xctx) != 0)
+                {
+                    continue;
+                }
 
                 rc = mdb_stat(txn, db2, &stat);
                 if (rc == 0) {

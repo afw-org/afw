@@ -44,16 +44,32 @@ typedef struct afw_lmdb_env_s {
  * LMDB keeps a handle a transaction opened only if that transaction
  * commits (a nested one passes it to its parent); an abort closes it.
  * So a new handle waits here and reaches dbi_handles only when its
- * top-level write transaction commits. Read-only transactions end by
- * abort, so they never add to the cache.
+ * top-level write transaction commits. Read-only transactions never
+ * open a database (see afw_lmdb_internal_try_open_database()), so they
+ * never add here.
  */
 typedef struct afw_lmdb_dbi_pending_s afw_lmdb_dbi_pending_t;
 struct afw_lmdb_dbi_pending_s {
     afw_lmdb_dbi_pending_t *next;
     MDB_txn *txn;
     MDB_dbi dbi;
+    /* txn created the database, rather than opening one on disk. */
+    afw_boolean_t created;
     afw_size_t name_len;
     char name[];
+};
+
+/*
+ * A write transaction that has not ended yet. LMDB allows only one
+ * transaction at a time to open a database, and a read that opens one
+ * and then aborts closes a slot a concurrent write may have just cached
+ * (#511). LMDB already runs one write at a time, so only a transaction
+ * listed here may call mdb_dbi_open().
+ */
+typedef struct afw_lmdb_write_txn_s afw_lmdb_write_txn_t;
+struct afw_lmdb_write_txn_s {
+    afw_lmdb_write_txn_t *next;
+    MDB_txn *txn;
 };
 
 /*
@@ -69,9 +85,10 @@ typedef struct afw_lmdb_shared_env_s {
     MDB_env *dbEnv;
     afw_thread_rwlock_t *dbLock;
     afw_void_hash_table_t *dbi_handles;
-    /* Guards dbi_handles and dbi_pending. */
+    /* Guards dbi_handles, dbi_pending and write_txns. */
     afw_thread_mutex_t *dbi_mutex;
     afw_lmdb_dbi_pending_t *dbi_pending;
+    afw_lmdb_write_txn_t *write_txns;
 } afw_lmdb_shared_env_t;
 
 /*
@@ -231,6 +248,13 @@ typedef struct impl_afw_adapter_impl_index_cursor_self_s {
 typedef struct {
     MDB_env *env;
     MDB_dbi dbi;
+    /*
+     * The first snapshot known to have this database: mdb_txn_id() of
+     * the write that created it, or the snapshot that write read when
+     * the database was already on disk. A transaction whose mdb_txn_id()
+     * is lower may not have the database; LMDB answers EINVAL there.
+     */
+    size_t txnid;
 } afw_lmdb_dbi_t;
 
 
@@ -323,12 +347,45 @@ MDB_dbi afw_lmdb_internal_open_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx);
 
+/**
+ * @brief Get a database handle for txn without throwing.
+ * @param dbi set when 0 is returned.
+ * @return 0, MDB_NOTFOUND when database is not in txn's view, or the
+ *    mdb_dbi_open() error.
+ *
+ * Only a write transaction opens a database that is not in the cache. A
+ * read gets MDB_NOTFOUND for a database the cache does not have, or one
+ * committed after the read began.
+ */
+int afw_lmdb_internal_try_open_database(
+    const afw_lmdb_adapter_t * adapter,
+    MDB_txn                  * txn,
+    const afw_utf8_t         * database,
+    unsigned int               flags,
+    MDB_dbi                  * dbi,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx);
+
 int afw_lmdb_internal_drop_database(
     const afw_lmdb_adapter_t * adapter,
     MDB_txn                  * txn,
     const afw_utf8_t         * database,
     const afw_pool_t         * p,
     afw_xctx_t              * xctx);
+
+/**
+ * @brief Begin txn. Every LMDB begin in this adapter goes here.
+ * @param parent for a nested txn, or NULL for a top-level txn.
+ * @return mdb_txn_begin() rc, or ENOMEM.
+ *
+ * A write txn is remembered until it ends, so it may open databases.
+ */
+int afw_lmdb_internal_txn_begin(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *parent,
+    unsigned int flags,
+    MDB_txn **txn,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Commit txn. Every LMDB commit in this adapter goes here.
@@ -613,7 +670,8 @@ do { \
             afw_trace_z(1, adapter->pub.trace_flag_index, \
                 NULL, (flags & MDB_RDONLY) ? "LMDB Begin read transaction" : \
                 "LMDB Begin write transaction", this_xctx); \
-            this_rc = mdb_txn_begin(adapter->dbEnv, NULL, flags, &this_txn); \
+            this_rc = afw_lmdb_internal_txn_begin(adapter, NULL, flags, \
+                &this_txn, this_xctx); \
             if (this_rc) { \
                 afw_thread_rwlock_unlock(adapter->dbLock, this_xctx); \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
@@ -750,7 +808,8 @@ do { \
         if (this_ambient_txn) { \
             afw_trace_z(1, adapter->pub.trace_flag_index, \
                 NULL, "LMDB Begin nested write transaction", this_xctx); \
-            this_rc = mdb_txn_begin(adapter->dbEnv, this_ambient_txn, 0, &this_txn); \
+            this_rc = afw_lmdb_internal_txn_begin(adapter, this_ambient_txn, \
+                0, &this_txn, this_xctx); \
             if (this_rc) { \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
                     NULL, this_xctx, "LMDB nested transaction begin failed with error: " \
@@ -766,7 +825,8 @@ do { \
             afw_thread_rwlock_rdlock(adapter->dbLock, this_xctx); \
             afw_trace_z(1, adapter->pub.trace_flag_index, \
                 NULL, "LMDB Begin write transaction", this_xctx); \
-            this_rc = mdb_txn_begin(adapter->dbEnv, NULL, 0, &this_txn); \
+            this_rc = afw_lmdb_internal_txn_begin(adapter, NULL, 0, \
+                &this_txn, this_xctx); \
             if (this_rc) { \
                 afw_thread_rwlock_unlock(adapter->dbLock, this_xctx); \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \

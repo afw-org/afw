@@ -1184,7 +1184,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
  * if the property is indexed or not.
  *
  */
-afw_boolean_t afw_adapter_impl_index_is_property_indexed(
+AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_is_property_indexed(
     const afw_adapter_impl_index_t * instance,
     const afw_utf8_t               * object_type_id,
     const afw_utf8_t               * property_name,
