@@ -113,6 +113,17 @@ impl_afw_request_handler_release(
 
 
 /*
+ * Commit and release cached sessions before a response is written, so a
+ * failed commit throws to the catch below (abort) and the client gets
+ * only the error, not a success followed by it. A streamed retrieve
+ * writes as it goes; the call after AFW_ENDTRY covers it, and is a
+ * no-op once the cache is released.
+ */
+#define impl_commit_before_response(xctx) \
+    afw_adapter_session_commit_and_release_cache(false, xctx)
+
+
+/*
  * Implementation of method process of interface afw_request_handler.
  */
 void
@@ -248,6 +259,7 @@ impl_afw_request_handler_process(
                 }
 
                 /* Write value to response body. */
+                impl_commit_before_response(xctx);
                 afw_request_write_value_to_response_body(request, value,
                     parsed_path->options, xctx);
             }
@@ -295,6 +307,7 @@ impl_afw_request_handler_process(
             afw_adapter_replace_object(&parsed_path->adapter_id,
                 &parsed_path->object_type_id, &parsed_path->entity_object_id,
                 obj, journal_entry, NULL, xctx);
+            impl_commit_before_response(xctx);
             afw_request_write_success_response(request, journal_entry, xctx);
         }
 
@@ -444,6 +457,7 @@ impl_afw_request_handler_process(
             }
 
             /* Write success response. */
+            impl_commit_before_response(xctx);
             afw_request_write_success_response(request, journal_entry, xctx);
         }
 
@@ -461,6 +475,7 @@ impl_afw_request_handler_process(
                 &parsed_path->adapter_id, &parsed_path->object_type_id,
                 &parsed_path->entity_object_id, journal_entry, /*FIXME */ NULL,
                 xctx);
+            impl_commit_before_response(xctx);
             afw_request_write_success_response(request, journal_entry, xctx);
         }
 
