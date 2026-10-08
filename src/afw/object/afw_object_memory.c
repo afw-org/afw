@@ -252,6 +252,16 @@ impl_is_memory_property_list(const afw_object_t *o)
 }
 
 
+/* True if meta is an afw_object_meta_object_t (meta with a delta bag). */
+static afw_boolean_t
+impl_is_object_meta(const afw_object_t *meta)
+{
+    return meta->inf &&
+        afw_utf8_equal_utf8_z(&meta->inf->rti.implementation_id,
+            "object_meta");
+}
+
+
 static const afw_object_t *
 impl_meta_delta_bag(const afw_object_t *from)
 {
@@ -261,10 +271,7 @@ impl_meta_delta_bag(const afw_object_t *from)
     if (!meta) {
         return NULL;
     }
-    if (meta->inf &&
-        afw_utf8_equal_utf8_z(&meta->inf->rti.implementation_id,
-            "object_meta"))
-    {
+    if (impl_is_object_meta(meta)) {
         return ((const afw_object_meta_object_t *)meta)->delta;
     }
     return meta;
@@ -385,10 +392,12 @@ afw_object_copy_meta_into_managed(
     /*
      * Runtime/const objects keep parentPaths on a non-memory
      * meta_object. Share it so meta() still sees it. Mutable memory
-     * meta is copied into a delta instead.
+     * meta, and object meta (its pool is the from object's, such as an
+     * object view's), is copied into a delta instead.
      */
     if (from->meta.meta_object &&
-        from->meta.meta_object->inf != &impl_afw_object_inf)
+        from->meta.meta_object->inf != &impl_afw_object_inf &&
+        !impl_is_object_meta(from->meta.meta_object))
     {
         self->meta.meta_object = from->meta.meta_object;
     }

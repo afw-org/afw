@@ -377,3 +377,25 @@ const obj = get_object("afw", "_AdaptiveEnvironmentRegistry_", "current", {
     objectTypes: true
 });
 return obj != null && meta(obj).objectTypes != null;
+//? test: view meta outlives its scope
+//? description: ...
+#502: an object retrieved with object options is a view whose meta lives in
+the view's pool. Keeping it past the scope (function return or block end)
+must copy that meta, not borrow it.
+//? expect: true
+//? source: ...
+
+function g(): object {
+    return get_object("afw", "_AdaptiveAdapter_", "afw",
+        {objectId: true, objectType: true});
+}
+const a = g();
+let b;
+{
+    b = get_object("afw", "_AdaptiveAdapter_", "afw", {path: true});
+}
+const sa = stringify(a);
+const sb = stringify(b);
+return includes<string>(sa, '"objectId":"afw"') &&
+    includes<string>(sa, '"objectType":"_AdaptiveAdapter_"') &&
+    includes<string>(sb, '"path":"/afw/_AdaptiveAdapter_/afw"');
