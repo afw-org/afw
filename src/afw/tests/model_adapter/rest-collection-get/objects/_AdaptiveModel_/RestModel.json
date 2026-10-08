@@ -1,0 +1,14 @@
+{
+    "modelId": "RestModel",
+    "objectTypes": {
+        "MyObjectType1": {
+            "mappedObjectType": "TestObjectType1",
+            "propertyTypes": {
+                "MyTestString1": {
+                    "dataType": "string",
+                    "mappedPropertyName": "TestString1"
+                }
+            }
+        }
+    }
+}
