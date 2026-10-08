@@ -439,3 +439,17 @@ assert(reduce(function (acc, e) { push(a, 1); return acc + e; }, 0, a) === 6, "r
 a = [1, 2];
 assert(all_of_all(function (p, q) { push(a, 1); return true; }, a, [1, 2]) === true, "all_of_all");
 return 0;
+
+//?
+//? test: functor-over-array-of-functions
+//? description: map over an array of functions passes each function as is (was "Invalid function_value")
+//? expect: 0
+//? source: ...
+
+const f = function () { return 1; };
+const g = function () { return 2; };
+const r = map(function (h) { return h(); }, [f, g]);
+assert(r[0] === 1 && r[1] === 2, "closures: " + stringify(r));
+const b = map(function (h) { return h(-3); }, [abs]);
+assert(b[0] === 3, "built-in: " + stringify(b));
+return 0;

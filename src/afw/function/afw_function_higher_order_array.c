@@ -139,7 +139,15 @@ impl_over_array(
             }
             else {
                 entry_dt = afw_value_get_data_type(entry_value, e.xctx);
-                if (entry_dt != e.data_type) {
+                /*
+                 * Only a value with the buffer's own inf can be copied
+                 * into it. A value of the same data type with another inf
+                 * (a closure or script function is data type function)
+                 * is passed as is.
+                 */
+                if (entry_dt != e.data_type ||
+                    entry_value->inf != typed_slot->inf)
+                {
                     *e.entry_arg_ptr = entry_value;
                     e.entry_internal = NULL;
                 }
