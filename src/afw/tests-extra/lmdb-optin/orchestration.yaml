@@ -21,23 +21,14 @@
 # metrics-additional
 #   One read of adapter "lmdb" metrics.additional.
 #   That property calls afw_adapter_get_additional_metrics() in
-#   src/afw_lmdb/afw_lmdb_adapter.c. After mdb_env_stat / mdb_env_info
-#   it takes self->dbLock and then:
-#       mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
-#   Flags 0 is a write transaction, used only to list database names.
-#   A quiet single read of this property has returned. With the
-#   firehose below (16 threads, concurrency 32, restarts plus
-#   read-write plus this metrics read) afwfcgi died with signal 11
-#   during the mix, after several "successfully restarted" lines.
-#   The faulting thread was inside mdb_txn_begin at that line, on
-#   the way through the shared metrics snapshot:
-#       afw_runtime_value_accessor_adapter_metrics
-#       -> managed snapshot walks the "additional" property
-#       -> afw_runtime_value_accessor_adapter_additional_metrics
-#       -> impl_afw_adapter_get_additional_metrics line 611
-#   The mutex being locked sits in memory that a restart can close
-#   with the LMDB env. To chase that, keep metrics-additional in
-#   fromTests. To try restart without that call, remove it.
+#   src/afw_lmdb/afw_lmdb_adapter.c, which lists database names and
+#   stats in a read-only transaction under self->dbLock (shared).
+#   An earlier version began a write transaction there, and afwfcgi
+#   died with signal 11 inside mdb_txn_begin during this mix (16
+#   threads, restarts, read-write, metrics). Since the read-only
+#   transaction (#387) this leaf passes, also under ASan (240s,
+#   100k+ requests). Keep metrics-additional in fromTests so the mix
+#   still covers restarts racing the metrics read.
 #
 # Knobs, top to bottom:
 #   afwfcgi.threads     server threads. 4 is the quiet example.

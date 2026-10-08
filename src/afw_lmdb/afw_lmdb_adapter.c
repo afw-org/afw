@@ -39,7 +39,7 @@ void afw_lmdb_adapter_load_configuration(
     int rc;
 
     afw_trace_z(1, self->pub.trace_flag_index, 
-        NULL, "LMDB Begin read transaction.", xctx);
+        NULL, "LMDB Begin write transaction.", xctx);
 
     rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
     if (rc) {
@@ -54,7 +54,7 @@ void afw_lmdb_adapter_load_configuration(
 
     afw_lmdb_internal_save_config(self, self->internalConfig, txn, xctx);
 
-    rc = mdb_txn_commit(txn);
+    rc = afw_lmdb_internal_txn_commit(self, txn, NULL, xctx);
     if (rc) {
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to commit initial transaction.", xctx);
@@ -240,7 +240,7 @@ void afw_lmdb_adapter_open_databases(
     int rc;
 
     afw_trace_z(1, self->pub.trace_flag_index, 
-        NULL, "LMDB Begin read transaction.", xctx);
+        NULL, "LMDB Begin write transaction.", xctx);
 
     rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
     if (rc) {
@@ -285,7 +285,7 @@ void afw_lmdb_adapter_open_databases(
 
     /** @fixme: set compare routines? */
 
-    rc = mdb_txn_commit(txn);
+    rc = afw_lmdb_internal_txn_commit(self, txn, NULL, xctx);
     if (rc) {
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to commit initial transaction.", xctx);
@@ -360,6 +360,8 @@ impl_shared_env_add(
     shared->dbLock = afw_thread_rwlock_create(shared_p, xctx);
     shared->dbi_handles = afw_hash_table_create(
         afw_void_hash_table_t, shared_p, xctx);
+    shared->dbi_mutex = afw_thread_mutex_create(
+        AFW_THREAD_MUTEX_DEFAULT, shared_p, xctx);
 
     /* The registry outlives whatever instance's pool path_z is
        allocated in, so the key must be its own stable copy. */
@@ -483,6 +485,7 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     self->dbEnv = shared->dbEnv;
     self->dbLock = shared->dbLock;
     self->dbi_handles = shared->dbi_handles;
+    self->shared = (afw_lmdb_shared_env_t *)shared;
 
     value = afw_object_get_property(properties, afw_lmdb_v_limits, xctx);
     if (value) {
@@ -766,11 +769,15 @@ impl_afw_adapter_get_additional_metrics (
         mdb_close(self->dbEnv, dbi);
     }
 
-    /* FIXME check return code here and decide what to do/throw */
-    mdb_txn_commit(txn);
+    /*
+     * Read-only, so abort ends it the same as commit, and does not keep
+     * the handles it opened: a read transaction's snapshot may predate
+     * a drop of one of those databases.
+     */
+    afw_lmdb_internal_txn_abort(self, txn, xctx);
 
     afw_trace_z(1, self->pub.trace_flag_index, 
-        NULL, "LMDB Transaction committed.", xctx);
+        NULL, "LMDB Transaction aborted.", xctx);
 
     afw_thread_rwlock_unlock(self->dbLock, xctx);
 
