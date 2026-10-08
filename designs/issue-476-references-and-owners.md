@@ -281,6 +281,8 @@ Learned for step 1:
 
 **Step 6a status (2026-10-06, branch `issue-476-step4-scope-pool`).** The error owns everything it points to; the throw-path delay is gone.
 
+> **Superseded by [#496](https://github.com/afw-org/afw/issues/496) (2026-10-08).** The per-throw ownership below (`afw_error_own_pointers`, `error->owned`, `error->contextual_unit`, `AFW_ERROR_MOVE`) is removed. Its reference on the compile unit behind `contextual` changed a shared unit's count from every request thread that threw (a model's `on*` script), which raced and crashed afwfcgi under load. The scope pool's throw-path delay is restored (released oldest first), with the adapter's count hold. Kept from this step: the catch-throw and FINALLY-throw release of a superseded error, `AFW_FINALLY_RELEASE_ERROR`, T1. Current rule: [`lifetime-principles.md`](lifetime-principles.md) *Scopes*. The bullets below are history.
+
 - `afw_error_own_pointers(xctx)` runs in the throw macro and on the `AFW_ENDTRY` rethrow. It rebuilds one malloc block (`error->owned`) from the current pointers (`source_z`, `message_z` unless in `message_wa`, `rv_source_id_z`, `rv_decoded_z` unless in `decode_rv_wa`, `parser_source` as `afw_utf8_t` + bytes) and frees the old block; it references the compile unit behind `contextual` (`error->contextual_unit`) before releasing the old one. Re-owning on every throw is needed because compile code edits the error after it was thrown.
 - `afw_error_release_references` frees the block and releases the unit. `afw_error_rv_set_z` releases first. `AFW_ERROR_MOVE` = copy plus clear the source (single ownership). The adapter's error copy uses it.
 - `afw_error_add_to_object` copies `parser_source` and the contextual source location into the object's `p`.

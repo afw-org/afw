@@ -66,6 +66,9 @@
  *   `afw_pool_subtree_*` on `xctx->p`.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
+ * - `afw_pool_heap_internal_release_delayed()`: last-release scopes
+ *   delayed while error_processing_count > 0, oldest first. ENDTRY
+ *   after a caught error.
  * - `env->p` is process lifetime (valgrind still reachable is
  *   intended).
  *
@@ -242,7 +245,8 @@ afw_pool_tracker_create(
  * @return The scope pool (`afw_pool_scope_t` is that pool).
  *
  * A `{ }` frame is afw_pool_scope_create(). This entry is the pool
- * alone: no symbols, reference count 0. Inherits managed_p.
+ * alone: no symbols, reference count 0. Last-release is delayed
+ * while error_processing_count > 0. Inherits managed_p.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_scope_allocate(

@@ -298,11 +298,13 @@ Check `/proc/<pid>/maps` of the running `afwfcgi` once, to confirm it loaded the
 | Entry | `tests/advanced/thread-pool-parent`, `tests/advanced/runtime-service-churn` (both use this conf); [`asan-opt-in.md`](asan-opt-in.md) |
 | Status | **Filled (2026-10-06)** |
 
-**Shapes found this way:** shared single-threaded pool counts touched from several threads (#480); check-then-use of a runtime object across a lock release; a borrowed key or id outliving its pool.
+**Shapes found this way:** shared single-threaded pool counts touched from several threads (#480); check-then-use of a runtime object across a lock release; a borrowed key or id outliving its pool; a shared compile unit's count changed by every request thread that threw from it (a model `on*` script; #496: a throw must not write to a shared unit).
 
 **Traps:** don't rebuild the ASan tree while something runs from it; the C stack headroom check must use the frame address, since under ASan a local can live on the fake stack.
 
-**FINALLY that returns:** a function whose `AFW_FINALLY` returns before `AFW_ENDTRY` (because xctx is gone after it) must call `AFW_FINALLY_RELEASE_ERROR` first, or the try's error leaks its owned block.
+**FINALLY that returns:** a function whose `AFW_FINALLY` returns before `AFW_ENDTRY` (because xctx is gone after it) must call `AFW_FINALLY_RELEASE_ERROR` first, or the try's error leaks its data and backtrace and its `error_processing_count` is never dropped.
+
+**`afw_xctx_release: error_processing_count N` on stderr** (`AFW_DEBUG_POOL` builds, so `--cdev` / `--fulldev`): a throw in that xctx was never matched by a handled `AFW_ENDTRY`, so every later scope release on it was delayed until the xctx ended. Look for a catch body that throws out to a try in another xctx (the afwfcgi error writer did, #496), or a C hold on the count that is not dropped. An error that escaped to a parent xctx's try is expected and not reported.
 
 ---
 
