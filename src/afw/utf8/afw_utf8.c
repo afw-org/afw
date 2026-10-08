@@ -2164,8 +2164,10 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_to_lower(
         if (c < 0) {
             AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
         }
-        len2 += U8_LENGTH(c);
-        if (c != u_tolower(c)) {
+        /* The lower case code point can have another UTF-8 length. */
+        c_lower = u_tolower(c);
+        len2 += U8_LENGTH(c_lower);
+        if (c != c_lower) {
             already_lower_case = false;
         }
     }
