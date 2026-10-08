@@ -1718,10 +1718,15 @@ afw_function_execute_return(
 
     result = afw_value_void;
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
+    /*
+     * return with a value that is undefined (including a literal
+     * undefined) returns undefined. Void would leave the last statement's
+     * value as the result.
+     */
+    if (x->argc >= 1) {
         result = afw_function_evaluate_parameter(x, 1, NULL);
         if (!result) {
-            result = afw_value_void;
+            result = afw_value_undefined;
         }
     }
     afw_pool_scope_set_last_statement_non_void_value(result, xctx);
