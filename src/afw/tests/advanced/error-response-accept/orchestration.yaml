@@ -1,0 +1,23 @@
+# An error that is written to the response body, on a request whose
+# Accept matches no content type. The error response falls back to
+# application/json. It used to throw unsupported_accept from the catch
+# that writes the error, so the client got no error response and the
+# request xctx kept an error_processing_count of 1.
+version: 1
+description: Error response falls back to JSON when Accept matches nothing
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: not-found-with-unsupported-accept
+    feed:
+      kind: rest
+      method: GET
+      path: /afw/_AdaptiveNoSuchObjectType_/x
+      accept: application/x-no-such-type
+    expectStatus: 404
+
