@@ -388,3 +388,16 @@ const f = function (): string {
 const x: string = f();
 assert(x === "hi");
 return 0;
+
+//?
+//? test: lower-case-changes-utf8-length
+//? description: Lower case of a code point whose lower case has another UTF-8 length (U+0130 2->1 bytes, U+023A 2->3 bytes)
+//? expect: 0
+//? source: ...
+
+const a = normalize_to_lower_case("İİ");
+assert(a === "ii", "U+0130: " + stringify(a));
+assert(length(a) === 2, "U+0130 length");
+const b = normalize_to_lower_case("ȺB");
+assert(b === "ⱥb", "U+023A: " + stringify(b));
+return 0;
