@@ -40,6 +40,23 @@ typedef struct afw_lmdb_env_s {
 } afw_lmdb_env_t;
 
 /*
+ * A database handle opened by a transaction that has not ended yet.
+ * LMDB keeps a handle a transaction opened only if that transaction
+ * commits (a nested one passes it to its parent); an abort closes it.
+ * So a new handle waits here and reaches dbi_handles only when its
+ * top-level write transaction commits. Read-only transactions end by
+ * abort, so they never add to the cache.
+ */
+typedef struct afw_lmdb_dbi_pending_s afw_lmdb_dbi_pending_t;
+struct afw_lmdb_dbi_pending_s {
+    afw_lmdb_dbi_pending_t *next;
+    MDB_txn *txn;
+    MDB_dbi dbi;
+    afw_size_t name_len;
+    char name[];
+};
+
+/*
  * An open MDB_env plus the state that guards it, shared by every
  * adapter instance whose path resolves to this same entry. LMDB does
  * not allow the same path to be opened twice in one process, so a
@@ -52,6 +69,9 @@ typedef struct afw_lmdb_shared_env_s {
     MDB_env *dbEnv;
     afw_thread_rwlock_t *dbLock;
     afw_void_hash_table_t *dbi_handles;
+    /* Guards dbi_handles and dbi_pending. */
+    afw_thread_mutex_t *dbi_mutex;
+    afw_lmdb_dbi_pending_t *dbi_pending;
 } afw_lmdb_shared_env_t;
 
 /*
@@ -112,6 +132,8 @@ typedef struct afw_lmdb_adapter_s {
     afw_lmdb_metadata_t *metadata;
     afw_void_hash_table_t *dbi_handles;
     afw_thread_rwlock_t *dbLock;
+    /* The shared entry dbEnv, dbLock and dbi_handles came from. */
+    afw_lmdb_shared_env_t *shared;
     /*
      * Bumped (under AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN) each time
      * indexDefinitions is published to internalConfig. Lets any indexer
@@ -308,6 +330,30 @@ int afw_lmdb_internal_drop_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx);
 
+/**
+ * @brief Commit txn. Every LMDB commit in this adapter goes here.
+ * @param parent of a nested txn, or NULL for a top-level txn.
+ * @return mdb_txn_commit() rc. txn is freed either way.
+ *
+ * Handles txn opened move to parent (nested), or reach the adapter's
+ * handle cache (top-level, committed). A failed commit drops them.
+ */
+int afw_lmdb_internal_txn_commit(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    MDB_txn *parent,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Abort txn. Every LMDB abort in this adapter goes here.
+ *
+ * LMDB closes the handles txn opened; they are dropped, never cached.
+ */
+void afw_lmdb_internal_txn_abort(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    afw_xctx_t *xctx);
+
 MDB_cursor * afw_lmdb_internal_open_cursor(
     const afw_lmdb_adapter_session_t *session,
     MDB_dbi dbi,
@@ -448,6 +494,22 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
     afw_xctx_t *xctx);
 
 /**
+ * @brief The internal uuid of object_id, read in txn.
+ *
+ * object_id is a UUID string or an alias in IdIndex. An index entry
+ * stores the internal uuid; a scan (retroactive index create or remove)
+ * reports an object by its alias. Throws not_found if an alias is not
+ * in IdIndex.
+ */
+const afw_uuid_t * afw_lmdb_internal_object_uuid(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Look up the human alias an internal {object_type_id}{uuid}
  * identity was created with, for scans that only have the raw Primary
  * key (never the alias) to work from.
@@ -578,7 +640,8 @@ do { \
 #define AFW_LMDB_COMMIT_TRANSACTION() \
     if (this_txnOwner) { \
         if (this_txn && !this_txnHandled) { \
-            this_rc = mdb_txn_commit(this_txn); \
+            this_rc = afw_lmdb_internal_txn_commit(this_adapter, \
+                this_txn, NULL, this_xctx); \
             this_txnHandled = true; \
             if (this_session) \
                 ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
@@ -597,7 +660,7 @@ do { \
 #define AFW_LMDB_ABORT_TRANSACTION() \
     if (this_txnOwner) { \
         if (this_txn && !this_txnHandled) { \
-            mdb_txn_abort(this_txn); \
+            afw_lmdb_internal_txn_abort(this_adapter, this_txn, this_xctx); \
             this_txnHandled = true; \
             if (this_session) \
                 ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
@@ -618,7 +681,8 @@ do { \
     } AFW_FINALLY { \
         if (this_txnOwner) { \
             if (this_txn && !this_txnHandled) { \
-                mdb_txn_abort(this_txn); \
+                afw_lmdb_internal_txn_abort(this_adapter, this_txn, \
+                    this_xctx); \
                 this_txnHandled = true; \
                 afw_trace_z(1, this_adapter->pub.trace_flag_index, \
                     NULL, "LMDB Transaction aborted.", this_xctx); \
@@ -724,7 +788,9 @@ do { \
 #define AFW_LMDB_COMMIT_ATOMIC_TRANSACTION() \
     if (this_txnOwner) { \
         if (this_txn && !this_txnHandled) { \
-            this_rc = mdb_txn_commit(this_txn); \
+            this_rc = afw_lmdb_internal_txn_commit(this_adapter, \
+                this_txn, (this_txnNested) ? this_ambient_txn : NULL, \
+                this_xctx); \
             this_txnHandled = true; \
             if (this_session) \
                 ((afw_lmdb_adapter_session_t *)this_session)->currTxn = this_saved_currTxn; \
@@ -746,7 +812,8 @@ do { \
     } AFW_FINALLY { \
         if (this_txnOwner) { \
             if (this_txn && !this_txnHandled) { \
-                mdb_txn_abort(this_txn); \
+                afw_lmdb_internal_txn_abort(this_adapter, this_txn, \
+                    this_xctx); \
                 this_txnHandled = true; \
                 afw_trace_z(1, this_adapter->pub.trace_flag_index, \
                     NULL, "LMDB Transaction aborted.", this_xctx); \

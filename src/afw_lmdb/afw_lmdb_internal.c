@@ -56,17 +56,57 @@ afw_rc_t afw_lmdb_internal_close_database(void *val)
     return 0;
 }
 
+/* Remember a handle txn opened until txn ends. Caller holds dbi_mutex. */
+static void
+impl_dbi_pending_add(
+    afw_lmdb_shared_env_t *shared,
+    MDB_txn *txn,
+    const afw_utf8_t *database,
+    MDB_dbi dbi)
+{
+    afw_lmdb_dbi_pending_t *e;
+
+    for (e = shared->dbi_pending; e; e = e->next) {
+        if (e->txn == txn && e->dbi == dbi) {
+            return;
+        }
+    }
+
+    /*
+     * If this fails the handle is only never cached; each later use
+     * opens it again, which LMDB answers with the same handle.
+     */
+    e = malloc(sizeof(afw_lmdb_dbi_pending_t) + database->len);
+    if (!e) {
+        return;
+    }
+    e->txn = txn;
+    e->dbi = dbi;
+    e->name_len = database->len;
+    if (database->len > 0) {
+        memcpy(e->name, database->s, database->len);
+    }
+    e->next = shared->dbi_pending;
+    shared->dbi_pending = e;
+}
+
+
 /*
  * MDB_dbi afw_lmdb_internal_open_database()
  *
- * This routine opens a database by first trying the pre-loaded
- * handles that were created at adapter create.  If it's not found,
- * then it creates one, on-the-fly, and registers a cleanup to close
- * it.
+ * Returns the cached handle for database, or opens it in txn.
  *
- * Note:  only one transaction at a time may open a new database.  
- * Therefore, the AFW_LMDB_BEGIN_TRANSACTION() macro requires an exclusive
- * writer lock, ahead of time, to achieve this.
+ * A handle opened here is valid in txn at once, but LMDB keeps it only
+ * if txn commits: an abort closes it, and LMDB may then give the slot
+ * to another database. So it is cached only when a write txn commits
+ * (afw_lmdb_internal_txn_commit()); until then a later open in the
+ * same txn gets the same handle again from mdb_dbi_open(). Read-only
+ * txns end by abort, so a handle only a read opened is never cached: a
+ * read's snapshot may predate a drop of that database.
+ *
+ * Note: LMDB allows only one transaction at a time to open a new
+ * database. index_open does that in an exclusive transaction (dbLock
+ * held for write).
  */
 MDB_dbi afw_lmdb_internal_open_database(
     const afw_lmdb_adapter_t * adapter,
@@ -76,10 +116,68 @@ MDB_dbi afw_lmdb_internal_open_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx)
 {
-    const afw_pool_t *registry_p;
+    afw_lmdb_shared_env_t *shared = adapter->shared;
+    const afw_utf8_z_t *database_z;
     MDB_dbi dbi = 0;
     afw_lmdb_dbi_t *dbi_p;
+    afw_boolean_t cached;
     int rc;
+
+    database_z = afw_utf8_to_utf8_z(database, p, xctx);
+
+    /* dbi_mutex calls nothing that throws. */
+    cached = false;
+    rc = 0;
+    afw_thread_mutex_lock(shared->dbi_mutex, xctx);
+    dbi_p = afw_hash_table_get_utf8(adapter->dbi_handles, database);
+    if (dbi_p) {
+        dbi = dbi_p->dbi;
+        cached = true;
+    }
+    else {
+        rc = mdb_dbi_open(txn, database_z, flags, &dbi);
+        if (rc == 0) {
+            impl_dbi_pending_add(shared, txn, database, dbi);
+        }
+    }
+    afw_thread_mutex_unlock(shared->dbi_mutex, xctx);
+
+    if (cached) {
+        return dbi;
+    }
+
+    if (rc == MDB_NOTFOUND) {
+        AFW_THROW_ERROR_RV_FZ(not_found, lmdb, rc, xctx,
+            "Unable to open database: '%ku'.", 
+            database);
+    } else if (rc) {
+        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+            "Unable to open database: '%ku'.", 
+            database);
+    }
+
+    return dbi;
+}
+
+
+/*
+ * End txn's pending handles: a committed top-level txn caches them, a
+ * committed nested txn moves them to parent, anything else drops them.
+ */
+static void
+impl_dbi_pending_end(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    MDB_txn *parent,
+    afw_boolean_t committed,
+    afw_xctx_t *xctx)
+{
+    afw_lmdb_shared_env_t *shared = adapter->shared;
+    afw_lmdb_dbi_pending_t **pos;
+    afw_lmdb_dbi_pending_t *e;
+    const afw_pool_t *registry_p;
+    const afw_utf8_t *name;
+    afw_lmdb_dbi_t *dbi_p;
 
     /*
      * dbi_handles is the process-wide shared-env registry's table
@@ -91,43 +189,66 @@ MDB_dbi afw_lmdb_internal_open_database(
      */
     registry_p = xctx->env->p;
 
-    /* first check our adapter's dbi_handles */
-    dbi_p = afw_hash_table_get_utf8(adapter->dbi_handles, database);
-
-    /* if we got a database handle, use it */
-    if (dbi_p) {
-        return dbi_p->dbi;
+    AFW_THREAD_MUTEX_LOCK(shared->dbi_mutex, xctx) {
+        pos = &shared->dbi_pending;
+        while ((e = *pos)) {
+            if (e->txn != txn) {
+                pos = &e->next;
+                continue;
+            }
+            if (committed && parent) {
+                e->txn = parent;
+                pos = &e->next;
+                continue;
+            }
+            *pos = e->next;
+            if (committed && !afw_hash_table_get(adapter->dbi_handles,
+                e->name, e->name_len))
+            {
+                /*
+                 * afw_hash_table stores the key pointer, same as
+                 * apr_hash. Clone into registry_p so this outlives
+                 * whichever instance happened to trigger the
+                 * cache-miss (#387).
+                 */
+                name = afw_utf8_create(e->name, e->name_len,
+                    registry_p, xctx);
+                dbi_p = afw_lmdb_internal_dbi_handle(
+                    adapter->dbEnv, e->dbi, registry_p, xctx);
+                afw_hash_table_set_utf8(adapter->dbi_handles,
+                    name, dbi_p, xctx);
+            }
+            free(e);
+        }
     }
-
-    /* if it's not found from our pre-loaded databases, then try to open it */
-    rc = mdb_dbi_open(txn, afw_utf8_to_utf8_z(database, p, xctx), flags, &dbi);
-    if (rc == 0) {
-        const afw_utf8_t *name;
-
-        dbi_p = afw_lmdb_internal_dbi_handle(
-            adapter->dbEnv, dbi, registry_p, xctx);
-
-        /*
-         * afw_hash_table stores the key pointer, same as apr_hash.
-         * Clone into registry_p so this outlives whichever instance
-         * happened to trigger the cache-miss (#387), same reasoning
-         * as the session-cache key fix in afw_adapter.c.
-         */
-        name = afw_utf8_clone(database, registry_p, xctx);
-        afw_hash_table_set_utf8(adapter->dbi_handles,
-            name, dbi_p, xctx);
-    } else if (rc == MDB_NOTFOUND) {
-        AFW_THROW_ERROR_RV_FZ(not_found, lmdb, rc, xctx,
-            "Unable to open database: '%ku'.", 
-            database);
-    } else {
-        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
-            "Unable to open database: '%ku'.", 
-            database);
-    }
-
-    return dbi;
+    AFW_THREAD_MUTEX_UNLOCK();
 }
+
+
+int afw_lmdb_internal_txn_commit(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    MDB_txn *parent,
+    afw_xctx_t *xctx)
+{
+    int rc;
+
+    rc = mdb_txn_commit(txn);
+    impl_dbi_pending_end(adapter, txn, parent, rc == 0, xctx);
+
+    return rc;
+}
+
+
+void afw_lmdb_internal_txn_abort(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    afw_xctx_t *xctx)
+{
+    mdb_txn_abort(txn);
+    impl_dbi_pending_end(adapter, txn, NULL, false, xctx);
+}
+
 
 /*
  * int afw_lmdb_internal_drop_database()
@@ -135,7 +256,8 @@ MDB_dbi afw_lmdb_internal_open_database(
  * Deletes a database from the environment. mdb_drop() with del 1 also
  * closes its handle, so the cached handle is forgotten too: LMDB reuses
  * the slot for the next database opened, and a stale cache entry would
- * then reach that other database (or fail with EINVAL).
+ * then reach that other database (or fail with EINVAL). A handle still
+ * pending in some transaction is forgotten for the same reason.
  */
 int afw_lmdb_internal_drop_database(
     const afw_lmdb_adapter_t * adapter,
@@ -144,6 +266,9 @@ int afw_lmdb_internal_drop_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx)
 {
+    afw_lmdb_shared_env_t *shared = adapter->shared;
+    afw_lmdb_dbi_pending_t **pos;
+    afw_lmdb_dbi_pending_t *e;
     MDB_dbi dbi;
     int rc;
 
@@ -153,7 +278,21 @@ int afw_lmdb_internal_drop_database(
     /* (1) means delete it from the environment and close the DB handle */
     rc = mdb_drop(txn, dbi, 1);
     if (rc == 0) {
-        afw_hash_table_set_utf8(adapter->dbi_handles, database, NULL, xctx);
+        AFW_THREAD_MUTEX_LOCK(shared->dbi_mutex, xctx) {
+            afw_hash_table_set_utf8(adapter->dbi_handles,
+                database, NULL, xctx);
+            pos = &shared->dbi_pending;
+            while ((e = *pos)) {
+                if (e->dbi == dbi) {
+                    *pos = e->next;
+                    free(e);
+                }
+                else {
+                    pos = &e->next;
+                }
+            }
+        }
+        AFW_THREAD_MUTEX_UNLOCK();
     }
 
     return rc;
@@ -498,6 +637,54 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
     }
 
     return afw_uuid_to_utf8(uuid, p, xctx);
+}
+
+/*
+ * const afw_uuid_t * afw_lmdb_internal_object_uuid()
+ *
+ * See afw_lmdb_internal.h.
+ */
+const afw_uuid_t * afw_lmdb_internal_object_uuid(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_uuid_t *uuid;
+    afw_uuid_t *copy;
+    MDB_dbi dbi;
+    afw_memory_t alias_key, raw_value;
+    int rc;
+
+    uuid = afw_lmdb_internal_try_uuid_from_utf8(object_id, p, xctx);
+    if (uuid) {
+        return uuid;
+    }
+
+    dbi = afw_lmdb_internal_open_database(adapter,
+        txn, afw_lmdb_s_IdIndex, 0, p, xctx);
+
+    afw_lmdb_internal_set_alias_key(&alias_key,
+        object_type_id, object_id, p, xctx);
+
+    rc = afw_lmdb_internal_get_entry(txn, dbi, &alias_key, &raw_value, xctx);
+    if (rc != 0) {
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            "'%ku' cannot be found.",
+            object_id);
+    }
+    if (raw_value.size != sizeof(afw_uuid_t)) {
+        AFW_THROW_ERROR_Z(general,
+            "Corrupt IdIndex entry.", xctx);
+    }
+
+    /* raw_value points into the map, valid only during txn. */
+    copy = afw_pool_malloc(p, sizeof(afw_uuid_t), xctx);
+    memcpy(copy, raw_value.ptr, sizeof(afw_uuid_t));
+
+    return copy;
 }
 
 /*
@@ -1730,7 +1917,7 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     afw_thread_rwlock_rdlock(session->adapter->dbLock, xctx);
 
     afw_trace_z(1, session->adapter->pub.trace_flag_index,
-        NULL, "LMDB Begin read transaction.", xctx);
+        NULL, "LMDB Begin write transaction.", xctx);
 
     rc = mdb_txn_begin(session->adapter->dbEnv, NULL, 0, &self->txn);
     if (rc) {
@@ -1774,7 +1961,7 @@ impl_afw_adapter_transaction_release (
 
     /* if our session still has an active transaction going, abort it */
     if (session->transaction) {
-        mdb_txn_abort(self->txn);
+        afw_lmdb_internal_txn_abort(session->adapter, self->txn, xctx);
         afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         afw_trace_z(1, session->adapter->pub.trace_flag_index, 
@@ -1808,8 +1995,17 @@ impl_afw_adapter_transaction_commit (
         return;
     }
 
-    rc = mdb_txn_commit(self->txn);
+    rc = afw_lmdb_internal_txn_commit(session->adapter, self->txn,
+        NULL, xctx);
     if (rc) {
+        /*
+         * mdb_txn_commit() frees the transaction even when it fails.
+         * Forget it first, so a later release does not abort it or
+         * unlock dbLock a second time.
+         */
+        self->txn = NULL;
+        session->transaction = NULL;
+        session->currTxn = NULL;
         afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
