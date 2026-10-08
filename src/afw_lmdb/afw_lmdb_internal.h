@@ -366,10 +366,33 @@ int afw_lmdb_internal_try_open_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx);
 
+/**
+ * @brief Delete a database. Only when the adapter first opens the env.
+ * @return 0 (also when database does not exist) or mdb_drop() rc.
+ */
 int afw_lmdb_internal_drop_database(
     const afw_lmdb_adapter_t * adapter,
     MDB_txn                  * txn,
     const afw_utf8_t         * database,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx);
+
+/**
+ * @brief Delete every entry of a database; keep it and its handle.
+ * @return 0 (also when database does not exist) or mdb_drop() rc.
+ */
+int afw_lmdb_internal_clear_database(
+    const afw_lmdb_adapter_t * adapter,
+    MDB_txn                  * txn,
+    const afw_utf8_t         * database,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx);
+
+/**
+ * @brief Names of the named databases in txn's view, NULL terminated.
+ */
+const afw_utf8_t * const * afw_lmdb_internal_database_names(
+    MDB_txn                  * txn,
     const afw_pool_t         * p,
     afw_xctx_t              * xctx);
 

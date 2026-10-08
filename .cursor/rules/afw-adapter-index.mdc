@@ -26,7 +26,9 @@ LMDB-only Adaptive functions (`reader_check`, `reader_list`) are **not** index-r
 - Property: **`indexDefinitions`** — map of key → `{ value?, filter?, objectType?, options? }`
 - Created/updated via **`index_create` / `index_remove`** (e.g. `afw -x "index_create(...)"` is just CLI eval of Adaptive)
 
-Index **data** (lookup keys) live in named DBs: `Index#<objectType>#<key>` (or `Index#<key>`). LMDB key = computed index value (utf8); data = object identity.
+Index **data** (lookup keys) live in named DBs: `Index#<objectType>#<key>`. An index with no `objectType` list (or an empty one) gets one per object type, created by the first index write of that type, always `MDB_DUPSORT`. LMDB key = computed index value (utf8); data = object identity.
+
+**Database lifecycle (#511):** only write transactions open an LMDB database (`afw_lmdb_internal_try_open_database`), and adapter start opens every database on disk. `index_remove` **clears** its databases (`mdb_drop(..., 0)`) and keeps the handles: deleting one (`mdb_drop(..., 1)`) closes the handle for the whole process at once, under any transaction still reading it. `index_create` reuses a cleared database when its flags match the options and throws ("Restart AFW …") when they differ; LMDB itself keeps a database's flags whatever `mdb_dbi_open` is given. The first adapter start in a process (when the shared `MDB_env` is created, not on attach after a restart) deletes every `Index#…` database no definition covers. Not covered: another process using the same environment at that moment.
 
 ## Filter / value evaluation (issue #54)
 
