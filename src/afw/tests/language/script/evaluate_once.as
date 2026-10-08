@@ -275,4 +275,33 @@ catch (e) {
 }
 
 return 0;
+
 //?
+//? test: optional-chaining-base-once
+//? description: Each '?.' evaluates the base once; a chain of them does not re-evaluate earlier links
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let n = 0;
+function o(): object {
+    n = n + 1;
+    return {x: {y: 1, z: null}, g: function () { return 9; }};
+}
+function fo(): function {
+    n = n + 1;
+    return function (a) { return a + 1; };
+}
+
+assert(o()?.x?.y === 1 && n === 1, "o()?.x?.y: " + string(n));
+n = 0;
+assert(o()?.x?.z?.w === undefined && n === 1, "o()?.x?.z?.w: " + string(n));
+n = 0;
+assert(o()?.["x"]?.["y"] === 1 && n === 1, "o()?.[x]?.[y]: " + string(n));
+n = 0;
+assert(o()?.g?.() === 9 && n === 1, "o()?.g?.(): " + string(n));
+n = 0;
+assert(fo()?.(1) === 2 && n === 1, "fo()?.(1): " + string(n));
+n = 0;
+assert(o()?.nope?.y === undefined && n === 1, "o()?.nope?.y: " + string(n));
+return 0;
