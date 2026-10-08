@@ -183,6 +183,7 @@ afw_adapter_modify_entries_from_list(
     const afw_value_t *value;
     afw_object_path_property_name_entry_t *property_name_entry;
     afw_object_path_property_name_entry_t *prev_property_name_list;
+    const afw_object_path_property_name_entry_t *name_entry;
 
     ary = afw_vector_create(impl_modify_entry_p_vector_t, 5, p, xctx);
     entry_i = NULL;
@@ -255,6 +256,22 @@ afw_adapter_modify_entries_from_list(
         {
             goto error;
         }
+
+        /* A property named _meta_ would be stored and not read back. */
+        for (name_entry = entry->first_property_name_entry;
+            name_entry;
+            name_entry = name_entry->next)
+        {
+            if (afw_utf8_equal(&name_entry->property_name.internal,
+                afw_s__meta_))
+            {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Modify entry tuple number %d: "
+                    "'_meta_' is object meta, not a property",
+                    (int)ary->count + 1);
+            }
+        }
+        afw_adapter_internal_refuse_meta_property(entry->value, xctx);
 
         /* It's an error if there is a 4th value in tuple. */
         if (entry->value) {

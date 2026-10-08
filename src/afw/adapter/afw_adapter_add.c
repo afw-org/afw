@@ -33,6 +33,9 @@ afw_adapter_add_object(
     const afw_adapter_journal_t *journal;
     afw_adapter_impl_request_t impl_request;
 
+    /* A property named _meta_ would be stored and not read back. */
+    afw_adapter_internal_refuse_meta_property_in_object(object, xctx);
+
     /* Set request in journal entry. */
     afw_memory_clear(&impl_request);
     impl_request.request = request = afw_object_create_embedded(
