@@ -401,7 +401,8 @@ impl_list_destructure(
         if (!ae->assignment_target) {
             continue; /* hole */
         }
-        if (eol) {
+        /* A default applies to a missing or undefined element. */
+        if (eol || afw_value_is_undefined(v)) {
             v = impl_evaluate_pattern_default(ae->default_value, p, xctx);
         }
         /* Missing element and no default → undefined (TS/ES-like). */
@@ -507,7 +508,8 @@ impl_object_destructure(
             v = bound_name
                 ? afw_object_get_property(object, bound_name, xctx)
                 : NULL;
-            if (!v) {
+            /* A default applies to a missing or undefined property. */
+            if (afw_value_is_undefined(v)) {
                 v = impl_evaluate_pattern_default(
                     ap->assignment_element->default_value, p, xctx);
             }
@@ -528,7 +530,7 @@ impl_object_destructure(
             }
             v = afw_object_get_property(object,
                 &ap->symbol_reference->symbol->name->pub, xctx);
-            if (!v) {
+            if (afw_value_is_undefined(v)) {
                 v = impl_evaluate_pattern_default(
                     ap->default_value, p, xctx);
             }
