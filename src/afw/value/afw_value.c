@@ -1079,18 +1079,27 @@ afw_value_convert(
     const afw_iterator_old_t *iterator;
     afw_size_t evaluate_count;
 
-    /* Evaluate value. */
+    /*
+     * Evaluate value. A value that evaluates to itself (a function
+     * value such as a closure) is done.
+     */
     result = value;
     for (evaluate_count = 0;
         result && result->inf->optional_evaluate;
         evaluate_count++)
     {
+        const afw_value_t *evaluated;
+
         if (evaluate_count >= /** @fixme make parameter */ 20) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "afw_value_convert() value required > %d evaluations",
                 20);
         }
-        result = afw_value_evaluate(result, p, xctx);
+        evaluated = afw_value_evaluate(result, p, xctx);
+        if (evaluated == result) {
+            break;
+        }
+        result = evaluated;
     }
 
     if (!result) {

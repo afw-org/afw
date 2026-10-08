@@ -43,3 +43,17 @@ const pick = function () {
     return one_and_only<integer>(5);
 };
 return pick();
+//?
+//? test: function-in-variable
+//? description: ...
+A function value read from a variable evaluates to itself; convert used
+to keep evaluating it and threw "value required > 20 evaluations".
+//? expect: 9
+//? source: ...
+#!/usr/bin/env afw
+
+const f = function (x) { return x; };
+const pick = function () {
+    return one_and_only<string>(f);
+};
+return pick()(9);
