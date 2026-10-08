@@ -629,6 +629,11 @@ afw_function_execute_to_integer_double(
     };
 
     d = trunc(arg->internal);
+    /* Outside the integer range the cast is undefined (gave INT64_MIN). */
+    if (!(d >= -9223372036854775808.0 && d < 9223372036854775808.0)) {
+        AFW_THROW_ERROR_Z(argument_error,
+            "arg is out of the integer range", x->xctx);
+    }
     return afw_value_create_unmanaged_integer((afw_integer_t)d, x->p, x->xctx);
 }
 

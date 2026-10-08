@@ -414,3 +414,18 @@ let v = compile(relaxed_json("[1,,2]"));
 assert(length(v) === 3);
 assert(v[0] === 1 && v[1] === undefined && v[2] === 2);
 return 0;
+
+//?
+//? test: array-literal-missing-property-element
+//? description: An array literal element that is a missing property is an undefined element; it does not end the array early
+//? expect: 0
+//? source: ...
+
+let o = {};
+const a = [1, o.x, 3];
+assert(length(a) === 3, "length: " + string(length(a)));
+assert(a[0] === 1 && a[1] === undefined && a[2] === 3, "elements");
+assert(stringify(a) === "[1,null,3]", "stringify: " + stringify(a));
+const b = [o.x];
+assert(length(b) === 1 && stringify(b) === "[null]", "one element: " + stringify(b));
+return 0;

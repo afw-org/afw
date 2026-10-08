@@ -277,6 +277,7 @@ impl_afw_data_type_from_double_convert_internal(
     afw_xctx_t *xctx)
 {
     afw_integer_t i;
+    afw_double_t d;
 
     if (afw_data_type_is_double(to_data_type)) {
         memcpy(to_internal, from_internal, sizeof(afw_double_t));
@@ -288,7 +289,17 @@ impl_afw_data_type_from_double_convert_internal(
             (&instance->data_type_id),
             (&to_data_type->data_type_id));
          */
-        i = (afw_integer_t)(*(const afw_double_t *)from_internal);
+        d = *(const afw_double_t *)from_internal;
+        /*
+         * Casting NaN, an infinity, or a double outside the integer range
+         * to afw_integer_t is undefined in C (it gave INT64_MIN). The
+         * range test is false for NaN.
+         */
+        if (!(d >= -9223372036854775808.0 && d < 9223372036854775808.0)) {
+            AFW_THROW_ERROR_Z(conversion_error,
+                "double value is out of the integer range", xctx);
+        }
+        i = (afw_integer_t)d;
         //if (i != *(const afw_double_t *)from_internal) {
         //    AFW_THROW_ERROR_Z(general,
         //        "This double value can not be converted to integer",

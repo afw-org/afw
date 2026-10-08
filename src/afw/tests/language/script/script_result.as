@@ -293,3 +293,24 @@ const r = evaluate(compile<script>(script(
     "let x; try { throw \"e\"; } catch (err) { x = 3; }")));
 assert(r === 3);
 return 0;
+
+//?
+//? test: return-undefined-after-assignment
+//? description: return undefined (or return;) returns undefined, not the value of an earlier assignment statement
+//? expect: 0
+//? source: ...
+
+let n = 0;
+function u(): any { n = 5; return undefined; }
+function v(): any { n = 6; return; }
+function w(): any { return undefined; }
+function x(): any { n = 7; return w(); }
+
+assert(u() === undefined, "return undefined");
+assert(v() === undefined, "return;");
+assert(x() === undefined, "return of an undefined call");
+assert(n === 7, "assignments ran");
+
+const r = evaluate(compile<script>(script("let m = 0; m = 5; return undefined;")));
+assert(r === undefined, "script return undefined: " + string(r));
+return 0;

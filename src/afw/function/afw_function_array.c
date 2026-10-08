@@ -151,9 +151,14 @@ afw_function_execute_array(
             }
         }
 
-        /* If not an array expression, add evaluated argument as element. */
+        /*
+         * If not an array expression, add evaluated argument as element.
+         * A missing value (NULL) is an undefined element: a NULL entry
+         * would end iteration of the array early.
+         */
         else {
-            afw_array_push_value(array, value, x->xctx);
+            afw_array_push_value(array,
+                (value) ? value : afw_value_undefined, x->xctx);
         }
     }
 

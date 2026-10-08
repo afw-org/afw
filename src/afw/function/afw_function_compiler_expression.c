@@ -104,13 +104,57 @@ afw_function_execute_optional_chaining(
 {
     const afw_value_t *arg1;
     const afw_value_t *arg2;
+    const afw_value_reference_by_key_t *ref;
+    afw_value_reference_by_key_t *once_ref;
+    const afw_value_call_t *call;
+    afw_value_call_t *once_call;
+    const afw_value_t **argv;
 
     AFW_FUNCTION_EVALUATE_PARAMETER(arg1, 1);
     if (afw_value_is_nullish(arg1)) {
         return NULL;
     }
 
-    AFW_FUNCTION_EVALUATE_PARAMETER(arg2, 2);
+    /*
+     * The compiler makes arg2 from arg1's tree: base?.key is
+     * optional_chaining(base, base[key]) and base?.(args) is
+     * optional_chaining(base, base(args)). Use the evaluated arg1 in a
+     * copy of arg2 so base is evaluated once, not again for every '?.'
+     * in a chain.
+     */
+    arg2 = x->argv[2];
+    if (afw_value_is_reference_by_key(arg2)) {
+        ref = (const afw_value_reference_by_key_t *)arg2;
+        if (ref->aggregate_value == x->argv[1]) {
+            once_ref = afw_pool_malloc_type(x->p,
+                afw_value_reference_by_key_t, x->xctx);
+            afw_memory_copy(once_ref, ref);
+            once_ref->aggregate_value = arg1;
+            arg2 = &once_ref->pub;
+        }
+    }
+    else if (afw_value_is_call(arg2)) {
+        call = (const afw_value_call_t *)arg2;
+        if (call->function_value == x->argv[1]) {
+            once_call = afw_pool_malloc_type(x->p,
+                afw_value_call_t, x->xctx);
+            afw_memory_copy(once_call, call);
+            argv = afw_pool_malloc(x->p,
+                sizeof(afw_value_t *) * (call->args.argc + 1), x->xctx);
+            memcpy(argv, call->args.argv,
+                sizeof(afw_value_t *) * (call->args.argc + 1));
+            argv[0] = arg1;
+            once_call->args.argv = argv;
+            once_call->function_value = arg1;
+            once_call->optimized_value = &once_call->pub;
+            arg2 = &once_call->pub;
+        }
+    }
+
+    arg2 = afw_value_evaluate(arg2, x->p, x->xctx);
+    if (afw_value_is_undefined(arg2)) {
+        arg2 = NULL;
+    }
     return arg2;
 }
 

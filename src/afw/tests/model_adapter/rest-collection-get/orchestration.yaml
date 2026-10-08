@@ -1,0 +1,40 @@
+# A REST GET of a model adapter collection streams each adapted object
+# to the response and releases it. The adapted object ceded the pool it
+# was made in, which was the request's own pool, so the release freed
+# the request: the client got status 200 with an empty body and the
+# server process ended.
+version: 1
+description: REST GET of a model adapter collection (streamed retrieve)
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: model-collection-get
+    feed:
+      kind: rest
+      method: GET
+      path: /model/MyObjectType1/
+      accept: application/json
+    expectStatus: 200
+    expectResponse: "[\n{\"MyTestString1\":\"one\"}\n]\n"
+
+  - name: model-collection-get-again
+    feed:
+      kind: rest
+      method: GET
+      path: /model/MyObjectType1/
+      accept: application/json
+    expectStatus: 200
+    expectResponse: "[\n{\"MyTestString1\":\"one\"}\n]\n"
+
+  - name: model-object-get
+    feed:
+      kind: rest
+      method: GET
+      path: /model/MyObjectType1/T1
+      accept: application/json
+    expectStatus: 200

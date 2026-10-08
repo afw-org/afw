@@ -401,7 +401,8 @@ impl_list_destructure(
         if (!ae->assignment_target) {
             continue; /* hole */
         }
-        if (eol) {
+        /* A default applies to a missing or undefined element. */
+        if (eol || afw_value_is_undefined(v)) {
             v = impl_evaluate_pattern_default(ae->default_value, p, xctx);
         }
         /* Missing element and no default → undefined (TS/ES-like). */
@@ -507,7 +508,8 @@ impl_object_destructure(
             v = bound_name
                 ? afw_object_get_property(object, bound_name, xctx)
                 : NULL;
-            if (!v) {
+            /* A default applies to a missing or undefined property. */
+            if (afw_value_is_undefined(v)) {
                 v = impl_evaluate_pattern_default(
                     ap->assignment_element->default_value, p, xctx);
             }
@@ -528,7 +530,7 @@ impl_object_destructure(
             }
             v = afw_object_get_property(object,
                 &ap->symbol_reference->symbol->name->pub, xctx);
-            if (!v) {
+            if (afw_value_is_undefined(v)) {
                 v = impl_evaluate_pattern_default(
                     ap->default_value, p, xctx);
             }
@@ -910,8 +912,64 @@ afw_function_execute_assign(
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
     const afw_value_t *result;
+    const afw_value_call_built_in_function_t *call;
+    const afw_value_reference_by_key_t *ref;
+    afw_value_reference_by_key_t *once_target;
+    afw_value_call_built_in_function_t *once_call;
+    const afw_value_t **argv;
+    const afw_value_t *once_aggregate;
+    const afw_value_t *once_key;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
+
+    /*
+     * Compound assignment (target op= rhs) compiles as
+     * assign(target, op(target, rhs)) with one target tree (#512). For a
+     * reference by key, evaluate its aggregate and key once and use them
+     * for both the read and the store, so subscripts run once. Hold them
+     * until the store, since the rhs may reassign what they came from.
+     */
+    call = (const afw_value_call_built_in_function_t *)AFW_FUNCTION_ARGV(2);
+    if (afw_value_is_reference_by_key(x->argv[1]) &&
+        afw_value_is_call_built_in_function(&call->pub) &&
+        call->args.argc == 2 && call->args.argv[1] == x->argv[1])
+    {
+        ref = (const afw_value_reference_by_key_t *)x->argv[1];
+        once_key = NULL;
+        once_aggregate = afw_value_get_assignable(
+            afw_value_evaluate(ref->aggregate_value, p, xctx), p, xctx);
+        AFW_TRY {
+            once_key = afw_value_get_assignable(
+                afw_value_evaluate(ref->key, p, xctx), p, xctx);
+
+            once_target = afw_pool_malloc_type(p,
+                afw_value_reference_by_key_t, xctx);
+            afw_memory_copy(once_target, ref);
+            once_target->aggregate_value = once_aggregate;
+            once_target->key = once_key;
+
+            argv = afw_pool_malloc(p, sizeof(afw_value_t *) * 3, xctx);
+            argv[0] = call->args.argv[0];
+            argv[1] = &once_target->pub;
+            argv[2] = call->args.argv[2];
+            once_call = afw_pool_malloc_type(p,
+                afw_value_call_built_in_function_t, xctx);
+            afw_memory_copy(once_call, call);
+            once_call->args.argv = argv;
+            once_call->optimized_value = &once_call->pub;
+
+            result = impl_assign(&once_target->pub, &once_call->pub,
+                afw_compile_assignment_type_assign_only,
+                p, xctx);
+        }
+        AFW_FINALLY {
+            afw_value_release(once_key, xctx);
+            afw_value_release(once_aggregate, xctx);
+        }
+        AFW_ENDTRY;
+        return result;
+    }
+
     /* Same door as let/const: impl_assign evaluates the RHS.
      * EVALUATE_PARAMETER extra-evaluates compiled_value (formal any). */
     result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
@@ -1662,10 +1720,15 @@ afw_function_execute_return(
 
     result = afw_value_void;
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
+    /*
+     * return with a value that is undefined (including a literal
+     * undefined) returns undefined. Void would leave the last statement's
+     * value as the result.
+     */
+    if (x->argc >= 1) {
         result = afw_function_evaluate_parameter(x, 1, NULL);
         if (!result) {
-            result = afw_value_void;
+            result = afw_value_undefined;
         }
     }
     afw_pool_scope_set_last_statement_non_void_value(result, xctx);

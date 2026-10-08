@@ -41,6 +41,7 @@ impl_over_array(
     afw_size_t functor_argc;
     const afw_value_t * (*functor_argv);
     const afw_iterator_old_t *iterator;
+    afw_size_t remaining;
     impl_call_over_array_cb_e_t e;
 
     /* Initialize param. */
@@ -113,6 +114,9 @@ impl_over_array(
      * reusable value buffer holds the current element. Entries that are
      * undefined (or not of the array data type) are passed by value pointer
      * so we never memcpy undefined into a typed buffer.
+     *
+     * Visit only the entries there at the start: a functor that adds to
+     * the array it is called over must not keep the loop going.
      */
     if (e.data_type) {
         const afw_value_t *typed_slot;
@@ -120,7 +124,8 @@ impl_over_array(
         const afw_data_type_t *entry_dt;
 
         typed_slot = *e.entry_arg_ptr;
-        for (iterator = NULL;;) {
+        remaining = afw_array_get_count(e.array, e.xctx);
+        for (iterator = NULL; remaining > 0; remaining--) {
             entry_value = afw_array_get_next_value(
                 e.array, &iterator, e.xctx);
             if (!entry_value) {
@@ -134,7 +139,15 @@ impl_over_array(
             }
             else {
                 entry_dt = afw_value_get_data_type(entry_value, e.xctx);
-                if (entry_dt != e.data_type) {
+                /*
+                 * Only a value with the buffer's own inf can be copied
+                 * into it. A value of the same data type with another inf
+                 * (a closure or script function is data type function)
+                 * is passed as is.
+                 */
+                if (entry_dt != e.data_type ||
+                    entry_value->inf != typed_slot->inf)
+                {
                     *e.entry_arg_ptr = entry_value;
                     e.entry_internal = NULL;
                 }
@@ -157,7 +170,8 @@ impl_over_array(
 
     /* Call function with each entry in untyped array as a single value. */
     else {
-        for (iterator = NULL;;) {
+        remaining = afw_array_get_count(e.array, e.xctx);
+        for (iterator = NULL; remaining > 0; remaining--) {
             *e.entry_arg_ptr = afw_array_get_next_value(
                 e.array, &iterator, e.xctx);
             if (!*e.entry_arg_ptr) {
@@ -229,6 +243,7 @@ impl_bag_of_bag(
     const afw_value_t *v;
     const afw_value_t *call;
     afw_boolean_t is_true, any_1, any_2;
+    afw_size_t remaining1, remaining2;
 
     /* The first arg is the function to call, and other 2 are typed arrays. */
     f_argv[0] = afw_function_evaluate_function_parameter(
@@ -264,14 +279,17 @@ impl_bag_of_bag(
     /* Call function for each combination of bag1 and bag2 entries. */
     is_true = true;
 
-    for (iterator1 = NULL;;) {
+    /* Visit the entries there at the start (see impl_over_array). */
+    remaining1 = afw_array_get_count(array1->internal, x->xctx);
+    for (iterator1 = NULL; remaining1 > 0; remaining1--) {
         f_argv[1] = afw_array_get_next_value(array1->internal,
             &iterator1, x->xctx);
         if (!f_argv[1]) {
             break;
         }
         is_true = true;
-        for (iterator2 = NULL;;) {
+        remaining2 = afw_array_get_count(array2->internal, x->xctx);
+        for (iterator2 = NULL; remaining2 > 0; remaining2--) {
             f_argv[2] = afw_array_get_next_value(array2->internal,
                 &iterator2, x->xctx);
             if (!f_argv[2]) {
@@ -889,6 +907,7 @@ afw_function_execute_reduce(
     const afw_iterator_old_t *iterator;
     const afw_value_t * f_argv[3];
     const afw_value_t *call;
+    afw_size_t remaining;
 
     f_argv[0] = afw_function_evaluate_function_parameter(
         x->argv[1], x->p, x->xctx);
@@ -897,7 +916,9 @@ afw_function_execute_reduce(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(accumulator, 2);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 3, array);
 
-    for (iterator = NULL;;) {
+    /* Visit the entries there at the start, like map and filter. */
+    remaining = afw_array_get_count(array->internal, x->xctx);
+    for (iterator = NULL; remaining > 0; remaining--) {
         f_argv[2] = afw_array_get_next_value(array->internal, &iterator, x->xctx);
         if (!f_argv[2]) {
             break;
