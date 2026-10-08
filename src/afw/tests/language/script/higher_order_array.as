@@ -419,3 +419,23 @@ let sorted = sort(makeBefore(), [3, 1, 2]);
 assert(length(sorted) === 3);
 assert(sorted[0] === 1 && sorted[1] === 2 && sorted[2] === 3);
 return 0;
+
+//?
+//? test: functor-adds-to-array-terminates
+//? description: A functor that adds to the array it is called over visits only the entries there at the start (it used to loop forever)
+//? expect: 0
+//? source: ...
+
+let a = [1, 2, 3];
+assert(length(map(function (e) { push(a, e); return e; }, a)) === 3, "map");
+assert(length(a) === 6, "map pushed");
+
+a = [1, 2, 3];
+assert(length(filter(function (e) { unshift(a, 0); return true; }, a)) === 3, "filter");
+
+a = [1, 2, 3];
+assert(reduce(function (acc, e) { push(a, 1); return acc + e; }, 0, a) === 6, "reduce");
+
+a = [1, 2];
+assert(all_of_all(function (p, q) { push(a, 1); return true; }, a, [1, 2]) === true, "all_of_all");
+return 0;
