@@ -615,11 +615,15 @@ afw_xctx_release(
      */
 #ifdef AFW_DEBUG_POOL
     /*
-     * Every throw is matched by a handled ENDTRY. A count left above 0
-     * delays every later scope release on this xctx until here.
+     * Every throw is matched by a handled ENDTRY in the same xctx. A
+     * count left above 0 delays every later scope release on this xctx
+     * until here. An error that escaped to a try in a parent xctx
+     * (still set in this xctx's error) is the one expected case: this
+     * xctx ends here and its delayed pools go with its pool.
      */
-    if (instance->error_processing_count != 0 ||
-        instance->error_delaying_release_first)
+    if ((instance->error_processing_count != 0 ||
+        instance->error_delaying_release_first) &&
+        instance->error->code == 0)
     {
         fprintf(stderr,
             "afw_xctx_release: error_processing_count " AFW_SIZE_T_FMT

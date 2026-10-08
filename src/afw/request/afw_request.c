@@ -300,9 +300,14 @@ afw_request_write_error_to_response_body(
 
     afw_request_set_response_status_code(instance, code, NULL, xctx);
 
-    /* If response should not include error object, skip writing it. */
+    /*
+     * If response should not include error object, skip writing it.
+     * Finish the response so the status line's headers are ended; with
+     * no body nothing else ends them, and the client sees no status.
+     */
     if (!afw_error_allow_in_response(error->code)) {
         ((afw_request_t *)instance)->is_closed = true;
+        afw_request_finish_response(instance, xctx);
         return;
     }
 

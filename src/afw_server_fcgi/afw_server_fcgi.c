@@ -284,9 +284,22 @@ static void impl_process_request(afw_server_fcgi_internal_t *self,
 
     /* For all other errors, log and write to response body. */
     AFW_CATCH_UNHANDLED{
-        afw_error_write_log(afw_log_priority_info, AFW_ERROR_THROWN, xctx);
-        afw_request_write_error_to_response_body(request,
-            afw_error_http_status(AFW_ERROR_THROWN), AFW_ERROR_THROWN, xctx);
+        const afw_error_t *thrown = AFW_ERROR_THROWN;
+
+        afw_error_write_log(afw_log_priority_info, thrown, xctx);
+        /*
+         * A failure writing the error (client gone) is logged here, so
+         * it does not escape this request's xctx to the thread's try.
+         */
+        AFW_TRY {
+            afw_request_write_error_to_response_body(request,
+                afw_error_http_status(thrown), thrown, xctx);
+        }
+        AFW_CATCH_UNHANDLED {
+            afw_error_write_log(afw_log_priority_info, AFW_ERROR_THROWN,
+                xctx);
+        }
+        AFW_ENDTRY;
     }
 
     /* Always cleanup. */
