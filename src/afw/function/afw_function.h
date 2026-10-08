@@ -87,8 +87,16 @@ struct afw_function_execute_s {
     /** @brief This is the `<dataType>` for data type functions or NULL. */
     const afw_data_type_t *data_type;
 
-    /** @brief This is the evaluated first parameter if data type function. */  
+    /**
+     * @brief This is the evaluated first parameter if data type function.
+     *
+     * Valid when first_arg_evaluated is true (NULL if undefined). Parameter
+     * 1 is then not evaluated again (#507).
+     */
     const afw_value_t *first_arg;
+
+    /** @brief first_arg holds parameter 1 already evaluated. */
+    afw_boolean_t first_arg_evaluated;
 
     /**
      * @brief Call argv (function + parameters).
