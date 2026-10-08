@@ -1119,11 +1119,19 @@ afw_value_convert(
 
     if (v_data_type != to_data_type) {
 
-        /* Upconvert to one entry list. */
+        /*
+         * Upconvert to one entry list holding the value itself. Not a
+         * value rebuilt from its internal: a closure or other non-common
+         * value has no common internal, and the rebuilt "value" belonged
+         * to nothing and died with p's frame (#496 Example 2).
+         */
         if (to_data_type == afw_data_type_array) {
-            list = afw_array_create_unmanaged_from_c_array(
-                &((afw_value_common_t *)result)->internal, false,
-                v_data_type, 1, p, xctx);
+            const afw_value_t **one;
+
+            one = afw_pool_malloc_type(p, const afw_value_t *, xctx);
+            *one = afw_value_get_for_p_lifetime(result, p, xctx);
+            list = afw_array_create_unmanaged_from_values(
+                v_data_type, one, 1, p, xctx);
             result = afw_value_create_unmanaged_array(list, p, xctx);
         }
 
