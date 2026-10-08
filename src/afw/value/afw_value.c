@@ -1079,18 +1079,27 @@ afw_value_convert(
     const afw_iterator_old_t *iterator;
     afw_size_t evaluate_count;
 
-    /* Evaluate value. */
+    /*
+     * Evaluate value. A value that evaluates to itself (a function
+     * value such as a closure) is done.
+     */
     result = value;
     for (evaluate_count = 0;
         result && result->inf->optional_evaluate;
         evaluate_count++)
     {
+        const afw_value_t *evaluated;
+
         if (evaluate_count >= /** @fixme make parameter */ 20) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "afw_value_convert() value required > %d evaluations",
                 20);
         }
-        result = afw_value_evaluate(result, p, xctx);
+        evaluated = afw_value_evaluate(result, p, xctx);
+        if (evaluated == result) {
+            break;
+        }
+        result = evaluated;
     }
 
     if (!result) {
@@ -1119,11 +1128,19 @@ afw_value_convert(
 
     if (v_data_type != to_data_type) {
 
-        /* Upconvert to one entry list. */
+        /*
+         * Upconvert to one entry list holding the value itself. Not a
+         * value rebuilt from its internal: a closure or other non-common
+         * value has no common internal, and the rebuilt "value" belonged
+         * to nothing and died with p's frame (#496 Example 2).
+         */
         if (to_data_type == afw_data_type_array) {
-            list = afw_array_create_unmanaged_from_c_array(
-                &((afw_value_common_t *)result)->internal, false,
-                v_data_type, 1, p, xctx);
+            const afw_value_t **one;
+
+            one = afw_pool_malloc_type(p, const afw_value_t *, xctx);
+            *one = afw_value_get_for_p_lifetime(result, p, xctx);
+            list = afw_array_create_unmanaged_from_values(
+                v_data_type, one, 1, p, xctx);
             result = afw_value_create_unmanaged_array(list, p, xctx);
         }
 
@@ -1522,6 +1539,10 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
     afw_environment_register_value_inf(
         &afw_value_compiled_value_inf.rti.implementation_id,
         &afw_value_compiled_value_inf, xctx);
+
+    afw_environment_register_value_inf(
+        &afw_value_compiled_value_multithreaded_inf.rti.implementation_id,
+        &afw_value_compiled_value_multithreaded_inf, xctx);
 
     afw_environment_register_value_inf(
         &afw_value_call_inf.rti.implementation_id,

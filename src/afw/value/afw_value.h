@@ -345,9 +345,13 @@ afw_value_call_script_function_inf;
 
 
 
-/** @brief Compiled value inf (counted; one inf). */
+/** @brief Compiled value inf (counted; unit in a single-threaded pool). */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_compiled_value_inf;
+
+/** @brief Compiled value inf for a unit in a multithreaded pool (atomic count). */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_compiled_value_multithreaded_inf;
 
 
 
@@ -784,7 +788,8 @@ afw_value_is_fully_evaluated(
 ( \
     (_A_VALUE) && \
     ( \
-        (_A_VALUE)->inf == &afw_value_compiled_value_inf \
+        (_A_VALUE)->inf == &afw_value_compiled_value_inf || \
+        (_A_VALUE)->inf == &afw_value_compiled_value_multithreaded_inf \
     ) \
 )
 

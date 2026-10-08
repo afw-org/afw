@@ -613,6 +613,25 @@ afw_xctx_release(
      * what the next xctx on this thread is likely to need. A caller
      * may pass instance as xctx, so trim with the parent then.
      */
+#ifdef AFW_DEBUG_POOL
+    /*
+     * Every throw is matched by a handled ENDTRY in the same xctx. A
+     * count left above 0 delays every later scope release on this xctx
+     * until here. An error that escaped to a try in a parent xctx
+     * (still set in this xctx's error) is the one expected case: this
+     * xctx ends here and its delayed pools go with its pool.
+     */
+    if ((instance->error_processing_count != 0 ||
+        instance->error_delaying_release_first) &&
+        instance->error->code == 0)
+    {
+        fprintf(stderr,
+            "afw_xctx_release: error_processing_count " AFW_SIZE_T_FMT
+            ", delayed scope pools %s\n",
+            instance->error_processing_count,
+            instance->error_delaying_release_first ? "yes" : "no");
+    }
+#endif
     afw_reference_collector_release((afw_xctx_t *)instance);
     region = instance->thread ? instance->thread->memory_region : NULL;
     trim_xctx = (xctx == instance) ? instance->parent : xctx;

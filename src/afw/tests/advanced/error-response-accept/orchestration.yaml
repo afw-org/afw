@@ -1,0 +1,41 @@
+# Requests whose Accept matches no content type.
+# - An error written to the response body falls back to
+#   application/json. It used to throw unsupported_accept from the
+#   catch that writes the error, so the client got no error response
+#   and the request xctx kept an error_processing_count of 1.
+# - unsupported_accept itself has no body. Its response is finished so
+#   the status reaches the client; the headers used to be left open
+#   and the client saw 200.
+version: 1
+description: Error responses when the request Accept matches nothing
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: not-found-with-unsupported-accept
+    feed:
+      kind: rest
+      method: GET
+      path: /afw/_AdaptiveNoSuchObjectType_/x
+      accept: application/x-no-such-type
+    expectStatus: 404
+
+  - name: retrieve-unsupported-accept
+    feed:
+      kind: rest
+      method: GET
+      path: /afw/_AdaptiveAdapter_
+      accept: application/x-no-such-type
+    expectStatus: 406
+
+  - name: get-unsupported-accept
+    feed:
+      kind: rest
+      method: GET
+      path: /afw/_AdaptiveAdapter_/afw
+      accept: application/x-no-such-type
+    expectStatus: 406

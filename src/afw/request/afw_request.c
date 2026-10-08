@@ -33,9 +33,12 @@ afw_request_response_body_raw_writer_self_s {
 
 
 
-/* Get response content type. */
-AFW_DEFINE(void)
-afw_request_get_response_content_type(
+/*
+ * Find the response content type from accept. *response_content_type
+ * is NULL if accept was specified but none match.
+ */
+static void
+impl_find_response_content_type(
     const afw_request_t *instance,
     const afw_content_type_t **response_content_type,
     const afw_utf8_t **type,
@@ -75,9 +78,24 @@ afw_request_get_response_content_type(
             }
         }
     }
+}
+
+
+/* Get response content type. */
+AFW_DEFINE(void)
+afw_request_get_response_content_type(
+    const afw_request_t *instance,
+    const afw_content_type_t **response_content_type,
+    const afw_utf8_t **type,
+    const afw_utf8_t **type_parameter,
+    afw_xctx_t *xctx)
+{
+    impl_find_response_content_type(instance,
+        response_content_type, type, type_parameter, xctx);
 
     /* If an accept was specified but none match, throw error. */
     if (!*response_content_type) {
+        *type = AFW_JSON_S_CONTENT_TYPE;
         *response_content_type = afw_environment_get_content_type(
             AFW_JSON_S_CONTENT_TYPE, xctx);
         AFW_THROW_ERROR_Z(unsupported_accept, "Unsupported accept.", xctx);
@@ -85,10 +103,16 @@ afw_request_get_response_content_type(
 }
 
 
-/* Get response content type. */
-AFW_DEFINE(const afw_content_type_t *)
-afw_request_prepare_response_content_type(
-    const afw_request_t * instance, afw_xctx_t *xctx)
+/*
+ * Set the response content type and its header the first time. If
+ * accept matches nothing, an error response uses application/json;
+ * anything else throws unsupported_accept.
+ */
+static const afw_content_type_t *
+impl_prepare_response_content_type(
+    const afw_request_t * instance,
+    afw_boolean_t error_response,
+    afw_xctx_t *xctx)
 {
     afw_request_t *self = (afw_request_t *)instance;
     const afw_content_type_t *response_content_type;
@@ -100,8 +124,19 @@ afw_request_prepare_response_content_type(
         return instance->response_content_type;
     }
 
-    afw_request_get_response_content_type(instance,
-        &response_content_type, &type, &type_parameter, xctx);
+    if (error_response) {
+        impl_find_response_content_type(instance,
+            &response_content_type, &type, &type_parameter, xctx);
+        if (!response_content_type) {
+            type = AFW_JSON_S_CONTENT_TYPE;
+            response_content_type = afw_environment_get_content_type(
+                AFW_JSON_S_CONTENT_TYPE, xctx);
+        }
+    }
+    else {
+        afw_request_get_response_content_type(instance,
+            &response_content_type, &type, &type_parameter, xctx);
+    }
 
     /* Get content type. */
     self->response_content_type = response_content_type;
@@ -114,6 +149,15 @@ afw_request_prepare_response_content_type(
 
     /* Return content type. */
     return self->response_content_type;
+}
+
+
+/* Get response content type. */
+AFW_DEFINE(const afw_content_type_t *)
+afw_request_prepare_response_content_type(
+    const afw_request_t * instance, afw_xctx_t *xctx)
+{
+    return impl_prepare_response_content_type(instance, false, xctx);
 }
 
 
@@ -256,11 +300,23 @@ afw_request_write_error_to_response_body(
 
     afw_request_set_response_status_code(instance, code, NULL, xctx);
 
-    /* If response should not include error object, skip writing it. */
+    /*
+     * If response should not include error object, skip writing it.
+     * Finish the response so the status line's headers are ended; with
+     * no body nothing else ends them, and the client sees no status.
+     */
     if (!afw_error_allow_in_response(error->code)) {
         ((afw_request_t *)instance)->is_closed = true;
+        afw_request_finish_response(instance, xctx);
         return;
     }
+
+    /*
+     * An error response must not throw for its own content type: an
+     * Accept that matches nothing gets application/json. Throwing here
+     * would leave the catch writing this error with no response.
+     */
+    impl_prepare_response_content_type(instance, true, xctx);
 
     response = instance->error_info;
     if (!response) {

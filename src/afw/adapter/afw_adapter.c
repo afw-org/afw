@@ -626,9 +626,8 @@ afw_adapter_session_get_cached(const afw_utf8_t *adapter_id,
 
 /*
  * One commit or release. A throw must not skip the rest of the walk.
- * The first error is moved out (it owns its data, backtrace, and
- * strings); a caught ENDTRY releases only what is left. Later errors
- * are dropped.
+ * The first error keeps its data and backtrace; a caught ENDTRY
+ * would release them. Later errors are dropped.
  *
  * have_error and first_error belong to
  * afw_adapter_session_commit_and_release_cache().
@@ -639,7 +638,9 @@ afw_adapter_session_get_cached(const afw_utf8_t *adapter_id,
     } \
     AFW_CATCH_UNHANDLED { \
         if (!have_error) { \
-            AFW_ERROR_MOVE(&first_error, &this_THROWN_ERROR); \
+            AFW_ERROR_COPY(&first_error, &this_THROWN_ERROR); \
+            this_THROWN_ERROR.data = NULL; \
+            this_THROWN_ERROR.backtrace = NULL; \
             have_error = true; \
         } \
     } \
@@ -666,8 +667,16 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
         return;
     }
 
+    /*
+     * Each caught throw drops error_processing_count in ENDTRY. Hold
+     * one count across the walk so that drop does not hit 0 and
+     * last-release delayed pools before the remaining sessions run.
+     * The hold is dropped below, before a rethrow, so the caller's
+     * catch is what flushes those pools.
+     */
     have_error = false;
     memset(&first_error, 0, sizeof(first_error));
+    xctx->error_processing_count++;
 
     /* Commit, then release, in reverse order of begin. */
     i = cache->transactions->count;
@@ -701,10 +710,13 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
     xctx->cache = NULL;
 
     if (have_error) {
+        xctx->error_processing_count--;
         afw_error_release_references(xctx->error, xctx);
         AFW_ERROR_COPY(xctx->error, &first_error);
         afw_error_processing_throw(xctx, first_error.code);
     }
+
+    afw_error_processing_handled(xctx);
 }
 
 #undef impl_finish_one

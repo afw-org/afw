@@ -177,7 +177,8 @@ struct afw_pool_heap_internal_self_s {
 
 /**
  * Scope pool. ST job heap (4k chunks); its last release also releases
- * the frame slots and lexical parent.
+ * the frame slots and lexical parent. That last release is delayed
+ * while a throw is processed (see afw_pool_heap_internal_release_delayed).
  */
 typedef struct afw_pool_heap_internal_scope_self_s
 afw_pool_heap_internal_scope_self_t;
@@ -188,6 +189,15 @@ struct afw_pool_heap_internal_scope_self_s {
 
     /* Don't access this directly. Use heap.free_memory_head. */
     afw_pool_heap_internal_free_memory_head_t memory_for_free_memory_head;
+
+    /**
+     * Next pool delaying last release while
+     * error_processing_count > 0.
+     */
+    const afw_pool_t *error_delaying_release_next;
+
+    /** Already on xctx->error_delaying_release_first. */
+    afw_boolean_t error_delaying_release;
 };
 
 
@@ -328,6 +338,15 @@ afw_pool_heap_internal_multithreaded_create_self(
     afw_size_t chunk_min,
     afw_size_t self_bytes,
     const afw_thread_t *thread,
+    afw_xctx_t *xctx);
+
+/**
+ * Last-release scope pools delayed during error processing, oldest
+ * first (ENDTRY that handles the error).
+ */
+void
+afw_pool_heap_internal_release_delayed(
+    const afw_pool_t *instance,
     afw_xctx_t *xctx);
 
 afw_pool_internal_self_t *

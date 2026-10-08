@@ -35,6 +35,9 @@ afw_error_processing_handled(afw_xctx_t *xctx)
         return;
     }
     xctx->error_processing_count--;
+    if (xctx->error_processing_count == 0) {
+        afw_pool_heap_internal_release_delayed(xctx->p, xctx);
+    }
 }
 
 
@@ -118,7 +121,6 @@ afw_error_release_references(
 {
     const afw_value_hexBinary_t *bt;
     const afw_value_t *data;
-    const afw_value_t *unit;
 
     if (!error) {
         return;
@@ -127,114 +129,10 @@ afw_error_release_references(
     error->backtrace = NULL;
     data = error->data;
     error->data = NULL;
-    unit = error->contextual_unit;
-    error->contextual_unit = NULL;
-    free(error->owned);
-    error->owned = NULL;
     if (bt) {
         afw_value_release(&bt->pub, xctx);
     }
     afw_value_release(data, xctx);
-    afw_value_release(unit, xctx);
-}
-
-
-/* Copy one string into the owned block; return its new address. */
-static const afw_utf8_z_t *
-impl_own_z(const afw_utf8_z_t *s, char **next)
-{
-    afw_size_t len;
-    char *to;
-
-    if (!s) {
-        return NULL;
-    }
-    len = strlen(s) + 1;
-    to = *next;
-    memcpy(to, s, len);
-    *next = to + len;
-    return to;
-}
-
-
-AFW_DEFINE(void)
-afw_error_own_pointers(afw_xctx_t *xctx)
-{
-    afw_error_t *e;
-    afw_boolean_t own_message;
-    afw_boolean_t own_decoded;
-    afw_size_t size;
-    char *block;
-    char *next;
-    afw_utf8_t *source;
-    const afw_value_t *unit;
-
-    e = xctx->error;
-    if (!e) {
-        return;
-    }
-
-    /*
-     * Build a fresh block from the current pointers (some may point
-     * into the previous block), then free the previous block.
-     */
-    own_message = e->message_z && e->message_z != &e->message_wa[0];
-    own_decoded = e->rv_decoded_z && e->rv_decoded_z != &e->decode_rv_wa[0];
-    size = 0;
-    if (e->source_z) {
-        size += strlen(e->source_z) + 1;
-    }
-    if (own_message) {
-        size += strlen(e->message_z) + 1;
-    }
-    if (e->rv_source_id_z) {
-        size += strlen(e->rv_source_id_z) + 1;
-    }
-    if (own_decoded) {
-        size += strlen(e->rv_decoded_z) + 1;
-    }
-    if (e->parser_source) {
-        size += sizeof(afw_utf8_t) + e->parser_source->len;
-    }
-
-    if (size > 0) {
-        /* If this fails, the error keeps what it has (no worse). */
-        block = malloc(size);
-        if (block) {
-            next = block;
-            if (e->parser_source) {
-                source = (afw_utf8_t *)next;
-                next += sizeof(afw_utf8_t);
-                if (e->parser_source->len > 0) {
-                    memcpy(next, e->parser_source->s,
-                        e->parser_source->len);
-                }
-                source->s = next;
-                source->len = e->parser_source->len;
-                next += e->parser_source->len;
-                e->parser_source = source;
-            }
-            e->source_z = impl_own_z(e->source_z, &next);
-            if (own_message) {
-                e->message_z = impl_own_z(e->message_z, &next);
-            }
-            e->rv_source_id_z = impl_own_z(e->rv_source_id_z, &next);
-            if (own_decoded) {
-                e->rv_decoded_z = impl_own_z(e->rv_decoded_z, &next);
-            }
-            free(e->owned);
-            e->owned = block;
-        }
-    }
-
-    /* Reference the current contextual's unit before dropping the old. */
-    unit = NULL;
-    if (e->contextual && e->contextual->compiled_value) {
-        unit = afw_value_get_reference(
-            &e->contextual->compiled_value->pub, xctx);
-    }
-    afw_value_release(e->contextual_unit, xctx);
-    e->contextual_unit = unit;
 }
 
 

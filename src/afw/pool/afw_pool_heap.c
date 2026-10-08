@@ -11,7 +11,8 @@
  * @brief Heap store, heap/scope infs.
  *
  * Chunks, bump, free list, and heap malloc/free. Scope is a heap
- * with compile-sized chunks (see afw_pool_scope.c).
+ * with compile-sized chunks plus throw last-release delay (see
+ * afw_pool_scope.c).
  * The multithreaded inf is `afw_pool_heap_multithreaded.c`.
  * Shared lifetime is `afw_pool.c`. Tracker is `afw_pool_tracker.c`.
  */
