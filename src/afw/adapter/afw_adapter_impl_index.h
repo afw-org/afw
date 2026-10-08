@@ -119,6 +119,18 @@ AFW_DECLARE(void) afw_adapter_impl_index_object(
     const afw_utf8_t * object_id,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Is property_name indexed for object_type_id?
+ *
+ * The same test afw_adapter_impl_index_sargable() makes for each filter
+ * entry, so an implementation can check what a query will open.
+ */
+AFW_DECLARE(afw_boolean_t) afw_adapter_impl_index_is_property_indexed(
+    const afw_adapter_impl_index_t * instance,
+    const afw_utf8_t * object_type_id,
+    const afw_utf8_t * property_name,
+    afw_xctx_t *xctx);
+
 AFW_DECLARE(afw_boolean_t) afw_adapter_impl_index_sargable(
     const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,

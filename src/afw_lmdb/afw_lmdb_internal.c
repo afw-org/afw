@@ -62,7 +62,8 @@ impl_dbi_pending_add(
     afw_lmdb_shared_env_t *shared,
     MDB_txn *txn,
     const afw_utf8_t *database,
-    MDB_dbi dbi)
+    MDB_dbi dbi,
+    afw_boolean_t created)
 {
     afw_lmdb_dbi_pending_t *e;
 
@@ -82,6 +83,7 @@ impl_dbi_pending_add(
     }
     e->txn = txn;
     e->dbi = dbi;
+    e->created = created;
     e->name_len = database->len;
     if (database->len > 0) {
         memcpy(e->name, database->s, database->len);
@@ -91,8 +93,45 @@ impl_dbi_pending_add(
 }
 
 
+/* Is txn a write that has not ended? Caller holds dbi_mutex. */
+static afw_boolean_t
+impl_write_txn_is(
+    afw_lmdb_shared_env_t *shared,
+    MDB_txn *txn)
+{
+    afw_lmdb_write_txn_t *e;
+
+    for (e = shared->write_txns; e; e = e->next) {
+        if (e->txn == txn) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+/* Forget txn as a write. Caller holds dbi_mutex. */
+static void
+impl_write_txn_remove(
+    afw_lmdb_shared_env_t *shared,
+    MDB_txn *txn)
+{
+    afw_lmdb_write_txn_t **pos;
+    afw_lmdb_write_txn_t *e;
+
+    for (pos = &shared->write_txns; (e = *pos); pos = &e->next) {
+        if (e->txn == txn) {
+            *pos = e->next;
+            free(e);
+            return;
+        }
+    }
+}
+
+
 /*
- * MDB_dbi afw_lmdb_internal_open_database()
+ * int afw_lmdb_internal_try_open_database()
  *
  * Returns the cached handle for database, or opens it in txn.
  *
@@ -100,13 +139,66 @@ impl_dbi_pending_add(
  * if txn commits: an abort closes it, and LMDB may then give the slot
  * to another database. So it is cached only when a write txn commits
  * (afw_lmdb_internal_txn_commit()); until then a later open in the
- * same txn gets the same handle again from mdb_dbi_open(). Read-only
- * txns end by abort, so a handle only a read opened is never cached: a
- * read's snapshot may predate a drop of that database.
+ * same txn gets the same handle again from mdb_dbi_open().
  *
- * Note: LMDB allows only one transaction at a time to open a new
- * database. index_open does that in an exclusive transaction (dbLock
- * held for write).
+ * LMDB allows only one transaction at a time to open a database, and
+ * that transaction must end before another opens one. LMDB already runs
+ * one write at a time, so only a write opens (#511). A read never does:
+ * the adapter opens every database on disk when it starts, and a
+ * database created later is cached when its write commits. A database
+ * not in the cache, or cached by a commit after the read began, is not
+ * in the read's snapshot, so the read gets MDB_NOTFOUND.
+ */
+int afw_lmdb_internal_try_open_database(
+    const afw_lmdb_adapter_t * adapter,
+    MDB_txn                  * txn,
+    const afw_utf8_t         * database,
+    unsigned int               flags,
+    MDB_dbi                  * dbi,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx)
+{
+    afw_lmdb_shared_env_t *shared = adapter->shared;
+    const afw_utf8_z_t *database_z;
+    afw_lmdb_dbi_t *dbi_p;
+    afw_boolean_t created;
+    int rc;
+
+    database_z = afw_utf8_to_utf8_z(database, p, xctx);
+
+    /* dbi_mutex calls nothing that throws. */
+    afw_thread_mutex_lock(shared->dbi_mutex, xctx);
+    dbi_p = afw_hash_table_get_utf8(adapter->dbi_handles, database);
+    if (dbi_p) {
+        rc = (mdb_txn_id(txn) >= dbi_p->txnid) ? 0 : MDB_NOTFOUND;
+        *dbi = dbi_p->dbi;
+    }
+    else if (impl_write_txn_is(shared, txn)) {
+        /* Whether txn creates it decides the first snapshot with it. */
+        created = false;
+        rc = mdb_dbi_open(txn, database_z, flags & ~MDB_CREATE, dbi);
+        if (rc == MDB_NOTFOUND && (flags & MDB_CREATE)) {
+            rc = mdb_dbi_open(txn, database_z, flags, dbi);
+            created = true;
+        }
+        if (rc == 0) {
+            impl_dbi_pending_add(shared, txn, database, *dbi, created);
+        }
+    }
+    else {
+        rc = MDB_NOTFOUND;
+    }
+    afw_thread_mutex_unlock(shared->dbi_mutex, xctx);
+
+    return rc;
+}
+
+
+/*
+ * MDB_dbi afw_lmdb_internal_open_database()
+ *
+ * afw_lmdb_internal_try_open_database() that throws not_found when
+ * database is not in txn's view, and general for other errors.
  */
 MDB_dbi afw_lmdb_internal_open_database(
     const afw_lmdb_adapter_t * adapter,
@@ -116,35 +208,11 @@ MDB_dbi afw_lmdb_internal_open_database(
     const afw_pool_t         * p,
     afw_xctx_t              * xctx)
 {
-    afw_lmdb_shared_env_t *shared = adapter->shared;
-    const afw_utf8_z_t *database_z;
     MDB_dbi dbi = 0;
-    afw_lmdb_dbi_t *dbi_p;
-    afw_boolean_t cached;
     int rc;
 
-    database_z = afw_utf8_to_utf8_z(database, p, xctx);
-
-    /* dbi_mutex calls nothing that throws. */
-    cached = false;
-    rc = 0;
-    afw_thread_mutex_lock(shared->dbi_mutex, xctx);
-    dbi_p = afw_hash_table_get_utf8(adapter->dbi_handles, database);
-    if (dbi_p) {
-        dbi = dbi_p->dbi;
-        cached = true;
-    }
-    else {
-        rc = mdb_dbi_open(txn, database_z, flags, &dbi);
-        if (rc == 0) {
-            impl_dbi_pending_add(shared, txn, database, dbi);
-        }
-    }
-    afw_thread_mutex_unlock(shared->dbi_mutex, xctx);
-
-    if (cached) {
-        return dbi;
-    }
+    rc = afw_lmdb_internal_try_open_database(adapter, txn, database,
+        flags, &dbi, p, xctx);
 
     if (rc == MDB_NOTFOUND) {
         AFW_THROW_ERROR_RV_FZ(not_found, lmdb, rc, xctx,
@@ -163,6 +231,7 @@ MDB_dbi afw_lmdb_internal_open_database(
 /*
  * End txn's pending handles: a committed top-level txn caches them, a
  * committed nested txn moves them to parent, anything else drops them.
+ * txnid is mdb_txn_id() of txn, taken before it ended.
  */
 static void
 impl_dbi_pending_end(
@@ -170,6 +239,7 @@ impl_dbi_pending_end(
     MDB_txn *txn,
     MDB_txn *parent,
     afw_boolean_t committed,
+    size_t txnid,
     afw_xctx_t *xctx)
 {
     afw_lmdb_shared_env_t *shared = adapter->shared;
@@ -190,6 +260,7 @@ impl_dbi_pending_end(
     registry_p = xctx->env->p;
 
     AFW_THREAD_MUTEX_LOCK(shared->dbi_mutex, xctx) {
+        impl_write_txn_remove(shared, txn);
         pos = &shared->dbi_pending;
         while ((e = *pos)) {
             if (e->txn != txn) {
@@ -215,6 +286,11 @@ impl_dbi_pending_end(
                     registry_p, xctx);
                 dbi_p = afw_lmdb_internal_dbi_handle(
                     adapter->dbEnv, e->dbi, registry_p, xctx);
+                /*
+                 * A write that changes nothing commits no new snapshot,
+                 * so an opened database dates from the one txn read.
+                 */
+                dbi_p->txnid = (e->created) ? txnid : txnid - 1;
                 afw_hash_table_set_utf8(adapter->dbi_handles,
                     name, dbi_p, xctx);
             }
@@ -225,16 +301,52 @@ impl_dbi_pending_end(
 }
 
 
+int afw_lmdb_internal_txn_begin(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *parent,
+    unsigned int flags,
+    MDB_txn **txn,
+    afw_xctx_t *xctx)
+{
+    afw_lmdb_shared_env_t *shared = adapter->shared;
+    afw_lmdb_write_txn_t *e;
+    int rc;
+
+    rc = mdb_txn_begin(adapter->dbEnv, parent, flags, txn);
+    if (rc || (flags & MDB_RDONLY)) {
+        return rc;
+    }
+
+    e = malloc(sizeof(afw_lmdb_write_txn_t));
+    if (!e) {
+        mdb_txn_abort(*txn);
+        *txn = NULL;
+        return ENOMEM;
+    }
+    e->txn = *txn;
+
+    AFW_THREAD_MUTEX_LOCK(shared->dbi_mutex, xctx) {
+        e->next = shared->write_txns;
+        shared->write_txns = e;
+    }
+    AFW_THREAD_MUTEX_UNLOCK();
+
+    return 0;
+}
+
+
 int afw_lmdb_internal_txn_commit(
     const afw_lmdb_adapter_t *adapter,
     MDB_txn *txn,
     MDB_txn *parent,
     afw_xctx_t *xctx)
 {
+    size_t txnid;
     int rc;
 
+    txnid = mdb_txn_id(txn);
     rc = mdb_txn_commit(txn);
-    impl_dbi_pending_end(adapter, txn, parent, rc == 0, xctx);
+    impl_dbi_pending_end(adapter, txn, parent, rc == 0, txnid, xctx);
 
     return rc;
 }
@@ -246,7 +358,7 @@ void afw_lmdb_internal_txn_abort(
     afw_xctx_t *xctx)
 {
     mdb_txn_abort(txn);
-    impl_dbi_pending_end(adapter, txn, NULL, false, xctx);
+    impl_dbi_pending_end(adapter, txn, NULL, false, 0, xctx);
 }
 
 
@@ -1910,16 +2022,17 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     }
 
     /*
-        Anytime we need to begin a transaction, we must first obtain
-        a database lock to prevent another transactions from opening
-        databases.
+        Every transaction holds dbLock shared, so a transaction that
+        takes it exclusive (index_open with no transaction) runs alone.
+        Opening databases needs no lock: only a write opens one (#511).
      */
     afw_thread_rwlock_rdlock(session->adapter->dbLock, xctx);
 
     afw_trace_z(1, session->adapter->pub.trace_flag_index,
         NULL, "LMDB Begin write transaction.", xctx);
 
-    rc = mdb_txn_begin(session->adapter->dbEnv, NULL, 0, &self->txn);
+    rc = afw_lmdb_internal_txn_begin(session->adapter, NULL, 0,
+        &self->txn, xctx);
     if (rc) {
         afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
