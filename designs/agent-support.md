@@ -298,7 +298,7 @@ Check `/proc/<pid>/maps` of the running `afwfcgi` once, to confirm it loaded the
 | Entry | `tests/advanced/thread-pool-parent`, `tests/advanced/runtime-service-churn` (both use this conf); [`asan-opt-in.md`](asan-opt-in.md) |
 | Status | **Filled (2026-10-06)** |
 
-**Shapes found this way:** shared single-threaded pool counts touched from several threads (#480); check-then-use of a runtime object across a lock release; a borrowed key or id outliving its pool; a shared compile unit's count changed by every request thread that threw from it (a model `on*` script; #496: a throw must not write to a shared unit).
+**Shapes found this way:** shared single-threaded pool counts touched from several threads (#480); check-then-use of a runtime object across a lock release; a borrowed key or id outliving its pool; a shared compile unit's count changed by every request thread that threw from it (a model `on*` script; #496: a throw must not write to a shared unit; a closure still references its unit, so a unit in a multithreaded pool has an atomic count).
 
 **Traps:** don't rebuild the ASan tree while something runs from it; the C stack headroom check must use the frame address, since under ASan a local can live on the fake stack.
 

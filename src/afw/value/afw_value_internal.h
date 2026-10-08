@@ -500,9 +500,17 @@ struct afw_value_internal_compiled_value_s {
     const afw_pool_t *p;
 
     /**
-     * @brief Managed inf only (RC 1 at create). Unmanaged ignores this.
+     * @brief Count (RC 1 at create).
+     *
+     * afw_value_compiled_value_inf (unit in a single-threaded pool) uses
+     * reference_count. afw_value_compiled_value_multithreaded_inf (unit
+     * in a multithreaded pool, evaluated by many threads, such as a
+     * model's on* script) uses atomic_reference_count, the same count.
      */
-    afw_integer_t reference_count;
+    union {
+        afw_integer_t reference_count;
+        AFW_ATOMIC afw_integer_t atomic_reference_count;
+    };
 
     /** @brief True if last RC last-releases self->p (unit created that pool). */
     afw_boolean_t unit_owns_p;

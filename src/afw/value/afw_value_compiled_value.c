@@ -24,9 +24,11 @@
 #define impl_afw_value_create_iterator NULL
 
 /*
- * One inf. A compiled value is counted: compile returns it at RC 1 and
+ * Two infs. A compiled value is counted: compile returns it at RC 1 and
  * registers that release on dest p. Last release releases the unit
- * pool it owns, or frees the header when the pool is shared.
+ * pool it owns, or frees the header when the pool is shared. A unit in
+ * a multithreaded pool uses afw_value_compiled_value_multithreaded_inf
+ * (end of this file): the same methods with an atomic count.
  */
 #define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
 #define impl_afw_value_for_each_reference afw_value_no_references_for_each
@@ -289,3 +291,75 @@ impl_afw_value_get_reference_count(
     (void)xctx;
     return (afw_size_t)self->reference_count;
 }
+
+
+/*
+ * Multithreaded compiled value: a unit compiled into a multithreaded
+ * pool (a model's on* script, conf scripts) is evaluated by many request
+ * threads at once. Evaluation changes nothing in the unit except its
+ * count (a closure references the unit its definition lives in), so
+ * only get_reference and release differ: the count is atomic.
+ */
+static const afw_value_t *
+impl_mt_get_reference(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    afw_atomic_integer_increment(&self->atomic_reference_count);
+    return &self->pub;
+}
+
+
+static void
+impl_mt_release(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    if (afw_atomic_integer_decrement(&self->atomic_reference_count) != 0) {
+        return;
+    }
+    if (self->unit_owns_p) {
+        afw_pool_release(self->p, xctx);
+    }
+    else {
+        afw_pool_free_memory(self->p, self,
+            sizeof(afw_value_compiled_value_t), xctx);
+    }
+}
+
+
+static const afw_value_t *
+impl_mt_get_assignable_value(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)p;
+    return impl_mt_get_reference(self, xctx);
+}
+
+
+#undef impl_afw_value_release_references
+#define impl_afw_value_get_reference impl_mt_get_reference
+#define impl_afw_value_release impl_mt_release
+#define impl_afw_value_get_assignable_value impl_mt_get_assignable_value
+#define impl_afw_value_get_evaluated_meta \
+    afw_value_internal_get_evaluated_meta_default
+#define impl_afw_value_get_evaluated_metas \
+    afw_value_internal_get_evaluated_metas_default
+#define impl_afw_value_create_iterator NULL
+#define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
+#define impl_afw_value_for_each_reference afw_value_no_references_for_each
+#define impl_afw_value_release_references afw_value_no_references_release_references
+#define impl_afw_value_get_counted afw_value_self_get_counted
+
+#define AFW_VALUE_INF_ONLY 1
+#define AFW_IMPLEMENTATION_ID "compiled_value_multithreaded"
+#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_multithreaded_inf
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    NULL, \
+    NULL, \
+    true
+#include "afw_value_impl_declares.h"

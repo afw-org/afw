@@ -1541,6 +1541,10 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
         &afw_value_compiled_value_inf, xctx);
 
     afw_environment_register_value_inf(
+        &afw_value_compiled_value_multithreaded_inf.rti.implementation_id,
+        &afw_value_compiled_value_multithreaded_inf, xctx);
+
+    afw_environment_register_value_inf(
         &afw_value_call_inf.rti.implementation_id,
         &afw_value_call_inf, xctx);
 
