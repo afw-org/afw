@@ -1048,7 +1048,12 @@ impl_model_object_cb(
     const afw_value_t *current_mode;
     afw_boolean_t result;
 
-    /* Process object from adapter. */
+    /*
+     * Process object from adapter. The adapted object cedes the pool it is
+     * created in, and the callback releases it, so give it a pool of its
+     * own: ceding ctx->p let that release free the caller's pool (the
+     * request's, for a streamed GET of a collection).
+     */
     object = mapped_object;
     if (object) {
         object = impl_adapt_object_from_adapter(
@@ -1056,7 +1061,7 @@ impl_model_object_cb(
             ctx->model_object_type, ctx->object_id,
             mapped_object,
             ctx->criteria, 
-            ctx->p, xctx);
+            afw_pool_create(ctx->p, xctx), xctx);
     }
 
     /*
