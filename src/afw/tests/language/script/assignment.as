@@ -276,3 +276,51 @@ return 0;
 let n = 5;
 n[0] = 1;
 return 0;
+
+//?
+//? test: compound-assign-subscript-once
+//? description: #512 compound assignment evaluates the target's subscripts once
+//? expect: 0
+//? source: ...
+
+let n = 0;
+function i0(): integer { n = n + 1; return 0; }
+function kx(): string { n = n + 1; return "x"; }
+function kp(): string { n = n + 1; return "p"; }
+let a = [1, 2];
+let o = {x: 1, p: {q: 1}};
+
+a[i0()] += 1;
+assert(n === 1 && a[0] === 2, "a[i0()] += 1");
+n = 0;
+a[i0()]++;
+assert(n === 1 && a[0] === 3, "a[i0()]++");
+n = 0;
+o[kx()] *= 3;
+assert(n === 1 && o.x === 3, "o[kx()] *= 3");
+n = 0;
+o[kx()] ??= 5;
+assert(n === 1 && o.x === 3, "o[kx()] ??= 5");
+n = 0;
+o[kp()].q += 1;
+assert(n === 1 && o.p.q === 2, "o[kp()].q += 1");
+return 0;
+
+//?
+//? test: compound-assign-target-before-rhs
+//? description: #512 the target is resolved before the rhs runs, so a rhs that reassigns the variable does not move the store
+//? expect: 0
+//? source: ...
+
+let a = [1, 2];
+let b = a;
+function r(): integer { a = [7, 8]; return 10; }
+a[0] += r();
+assert(a[0] === 7 && b[0] === 11, "array: " + stringify([a, b]));
+
+let k = "x";
+let o = {x: 1};
+function s(): integer { k = "y"; return 10; }
+o[k] += s();
+assert(k === "y" && o.x === 11 && o.y === undefined, "key: " + stringify(o));
+return 0;
