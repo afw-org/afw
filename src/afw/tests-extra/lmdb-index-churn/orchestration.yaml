@@ -5,10 +5,9 @@
 # Expected refusals (no index, duplicate index, not running, a query
 # racing an index removal) are caught; anything else fails the request.
 #
-# Known open: after enough index churn, index writes can fail with
-# "Unable to add index value." (LMDB EINVAL) until the adapter
-# restarts. A database handle opened in a transaction that later
-# aborts stays in the adapter's handle cache. See #500.
+# This leaf found the LMDB EINVAL "Unable to add index value." that
+# lasted until restart: a handle cached from a transaction that aborted
+# (#500), and a read and a write opening the same new database (#511).
 version: 1
 description: LMDB index churn under concurrent indexed writes and queries
 host: afwfcgi

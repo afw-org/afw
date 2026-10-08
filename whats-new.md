@@ -200,6 +200,11 @@ Adapter commit and the HTTP response:
 
 - **A change that fails to commit is no longer reported as a success:** a request's adapter changes (a `POST /afw` action, or `PUT` / `POST` / `DELETE` on an object path) are committed before the response is written. When the commit fails (for example LMDB `MDB_MAP_FULL`), the client gets one error response. It used to get the success response followed by a second JSON document with the commit error, and the change was not saved.
 
+LMDB index databases ([#511](https://github.com/afw-org/afw/issues/511)):
+
+- **Index writes no longer fail with EINVAL until restart under load:** when a read and a write first used the same index database at the same time, "Unable to add index value." (LMDB EINVAL) could follow every later index write until the process restarted. Only writes open LMDB databases now, and the adapter opens every database on disk when it starts.
+- **A query on an indexed property scans when the index cannot be used:** for an object type nothing was written to yet under an index on all object types, `retrieve_objects` threw "Unable to open database: 'Index#…'". It now scans and returns the matching objects (often none). A query that races `index_remove` also scans instead of failing.
+
 Deeply nested data built at runtime ([#482](https://github.com/afw-org/afw/issues/482)): releasing it no longer recurses once per level (an array or object releases its elements directly up to 256 nested levels, then defers the rest and releases them in a loop), so any depth can be built and dropped. `stringify`, `decompile`, `string`, `==`, `===`, and `clone` of data deeper than the C stack allows fail with **"C stack headroom exhausted"** instead of crashing.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
