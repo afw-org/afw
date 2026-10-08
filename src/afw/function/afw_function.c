@@ -89,6 +89,26 @@ afw_function_internal_prepare_environment(afw_xctx_t *xctx)
 
 
 
+/*
+ * Evaluate argv[n], or return parameter 1 already evaluated by the call
+ * (first_arg) so it is not evaluated twice (#507).
+ */
+static const afw_value_t *
+impl_evaluate_argv(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    afw_xctx_t *xctx)
+{
+    if (parameter_number == 1 && x->first_arg_evaluated) {
+        return x->first_arg;
+    }
+    return afw_value_evaluate(
+        (parameter_number <= x->argc) ? x->argv[parameter_number] : NULL,
+        x->p, xctx);
+}
+
+
+
 /*  Adaptive function: convert arg to <datatype> */
 const afw_value_t *
 afw_function_execute_convert(
@@ -97,8 +117,7 @@ afw_function_execute_convert(
     const afw_value_t *result;
     afw_xctx_t *xctx = x->xctx;
 
-    result = (x->argc >= 1) ? x->argv[1] : NULL;
-    result = afw_value_evaluate(result, x->p, xctx);
+    result = impl_evaluate_argv(x, 1, xctx);
     if (!result) {
         AFW_THROW_ERROR_Z(undefined_value,
             "Parameter 1 is undefined value", xctx);
@@ -147,7 +166,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         temp_x->argv = argv;
         argv[0] = x->argv[0];
         for (argc = 1; argc <= x->argc; argc++) {
-            argv[argc] = afw_value_evaluate(x->argv[argc], x->p, xctx);
+            argv[argc] = impl_evaluate_argv(x, argc, xctx);
         }
 
         /* Set properties in object to be available in authorization check. */
@@ -267,10 +286,8 @@ afw_function_evaluate_parameter(
             - 1
         ];
 
-    /* Get possibly unevaluated result from argv. */
-    result = ((parameter_number <= x->argc) ? x->argv[parameter_number] : NULL);
-
-    result = afw_value_evaluate(result, x->p, xctx);
+    /* Evaluate argv (parameter 1 may already be evaluated). */
+    result = impl_evaluate_argv(x, parameter_number, xctx);
 
     /* If result is undefined, return NULL. Fuss if required. */
     if (afw_value_is_undefined(result)) {

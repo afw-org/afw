@@ -193,6 +193,7 @@ impl_afw_value_optional_evaluate(
     x.function = self->function;
     x.data_type = self->function->data_type;
     x.first_arg = NULL;
+    x.first_arg_evaluated = false;
     /* Expand call-site ...spreads before required/max checks and execute. */
     afw_value_call_args_expand_spreads(
         self->args.argc, self->args.argv,
@@ -228,6 +229,7 @@ impl_afw_value_optional_evaluate(
         AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING)
     {
         x.first_arg = afw_function_evaluate_parameter(&x, 1, NULL);
+        x.first_arg_evaluated = true;
         if (!x.first_arg) {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "Polymorphic function '%ku' requires first parameter not be undefined",
@@ -253,6 +255,7 @@ impl_afw_value_optional_evaluate(
      */
     else if (x.data_type) {
         x.first_arg = afw_function_evaluate_parameter(&x, 1, NULL);
+        x.first_arg_evaluated = true;
     }
 
     /* Call function implementation. */
