@@ -1105,55 +1105,67 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
 
     transaction = afw_adapter_session_begin_transaction(session, xctx);
 
-    /* the callback routine does all of our work for us */
-    if (retroactive) {
-        /*
-         * If this definition is scoped to specific objectTypes, scan only
-         * those types instead of paying for a full-table walk (mirrors the
-         * per-objectType loop afw_adapter_impl_index_remove() already uses).
-         * An omitted or empty objectType list means all types apply, so
-         * fall back to a single unscoped scan for that case.
-         */
-        object_type_iterator = NULL;
-        object_type_id = (objectType)
-            ? afw_array_of_string_get_next_internal(
-                objectType, &object_type_iterator, xctx)
-            : NULL;
+    /* A throw (for example a value that does not compile) still ends it. */
+    AFW_TRY {
 
-        if (object_type_id) {
-            do {
+        /* the callback routine does all of our work for us */
+        if (retroactive) {
+            /*
+             * If this definition is scoped to specific objectTypes, scan
+             * only those types instead of paying for a full-table walk
+             * (mirrors the per-objectType loop
+             * afw_adapter_impl_index_remove() already uses). An omitted or
+             * empty objectType list means all types apply, so fall back to
+             * a single unscoped scan for that case.
+             */
+            object_type_iterator = NULL;
+            object_type_id = (objectType)
+                ? afw_array_of_string_get_next_internal(
+                    objectType, &object_type_iterator, xctx)
+                : NULL;
+
+            if (object_type_id) {
+                do {
+                    /** @fixme should this be session->p, pool, or xctx->p? */
+                    afw_adapter_session_retrieve_objects(session, NULL,
+                        object_type_id, NULL, &ctx,
+                        afw_adapter_impl_index_cb, NULL, pool, xctx);
+
+                    object_type_id = afw_array_of_string_get_next_internal(
+                        objectType, &object_type_iterator, xctx);
+                } while (object_type_id);
+            } else {
                 /** @fixme should this be session->p, pool, or xctx->p? */
-                afw_adapter_session_retrieve_objects(session, NULL,
-                    object_type_id,
+                afw_adapter_session_retrieve_objects(session, NULL, NULL,
                     NULL, &ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
+            }
+        }
 
-                object_type_id = afw_array_of_string_get_next_internal(
-                    objectType, &object_type_iterator, xctx);
-            } while (object_type_id);
-        } else {
-            /** @fixme should this be session->p, pool, or xctx->p? */
-            afw_adapter_session_retrieve_objects(session, NULL, NULL,
-                NULL, &ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
+        /*
+         * Now, tell the adapter to add the new indexDefinition for
+         * configuration. indexDefinitions is the indexer's cached copy and
+         * outlives pool, so it gets a copy of the definition in its own pool.
+         */
+        afw_object_set_property_as_object_internal(
+            indexDefinitions,
+            afw_value_create_unmanaged_string(key, pool, xctx),
+            afw_object_create_pooled_copy(indexDefinition,
+                indexDefinitions->p, xctx),
+            xctx);
+
+        afw_adapter_impl_index_update_index_definitions(
+            indexer, indexDefinitions, xctx);
+
+        if (transaction) {
+            afw_adapter_transaction_commit(transaction, xctx);
         }
     }
-
-    /*
-     * Now, tell the adapter to add the new indexDefinition for
-     * configuration. indexDefinitions is the indexer's cached copy and
-     * outlives pool, so it gets a copy of the definition in its own pool.
-     */
-    afw_object_set_property_as_object_internal(
-        indexDefinitions,
-        afw_value_create_unmanaged_string(key, pool, xctx),
-        afw_object_create_pooled_copy(indexDefinition,
-            indexDefinitions->p, xctx),
-        xctx);
-
-    afw_adapter_impl_index_update_index_definitions(
-        indexer, indexDefinitions, xctx);
-
-    afw_adapter_transaction_commit(transaction, xctx);
-    afw_adapter_transaction_release(transaction, xctx);
+    AFW_FINALLY {
+        if (transaction) {
+            afw_adapter_transaction_release(transaction, xctx);
+        }
+    }
+    AFW_ENDTRY;
 
     /* return metrics */
     afw_object_set_property_as_integer_internal(

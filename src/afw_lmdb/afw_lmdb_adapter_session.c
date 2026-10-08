@@ -71,6 +71,14 @@ impl_afw_adapter_session_destroy(
     AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
+    /*
+     * A transaction still open here was never committed or released.
+     * Abort it: it holds the LMDB writer and dbLock, and every later
+     * write on any thread would wait for them forever.
+     */
+    if (self->transaction) {
+        afw_adapter_transaction_release(&self->transaction->pub, xctx);
+    }
 }
 
 

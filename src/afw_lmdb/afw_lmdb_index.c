@@ -287,6 +287,35 @@ impl_afw_adapter_impl_index_open(
 
 
 /*
+ * Index entry data: {object_type_id}{uuid}. object_id may be an alias
+ * (a retroactive scan reports objects by alias), so it is resolved in
+ * txn.
+ */
+static void
+impl_index_data(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    MDB_val *data,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx)
+{
+    const afw_uuid_t *uuid;
+    afw_memory_t raw;
+
+    uuid = afw_lmdb_internal_object_uuid(adapter, txn,
+        object_type_id, object_id, pool, xctx);
+
+    afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
+
+    memset(data, 0, sizeof(MDB_val));
+    data->mv_data = (void *)raw.ptr;
+    data->mv_size = raw.size;
+}
+
+
+/*
  * Implementation of method add of interface afw_adapter_impl_index.
  */
 void impl_afw_adapter_impl_index_add(
@@ -305,9 +334,7 @@ void impl_afw_adapter_impl_index_add(
     MDB_txn * txn;
     MDB_dbi dbi;
     MDB_val key, data;
-    const afw_uuid_t *uuid;
     const afw_utf8_t *database;
-    afw_memory_t raw;
 
     /* we will get an error if we try to add a key of length 0 */
     /** @fixme this basically avoids indexing an empty string, so
@@ -320,16 +347,8 @@ void impl_afw_adapter_impl_index_add(
     database = afw_lmdb_index_database(
         object_type_id, indexKey, pool, xctx);
 
-    uuid = afw_uuid_from_utf8(object_id, pool, xctx);
-
-    afw_lmdb_internal_set_key(&raw,
-        object_type_id, uuid, pool, xctx);
-
     key.mv_data = (void*)value->s;
     key.mv_size = value->len;
-
-    data.mv_data = (void*)raw.ptr;
-    data.mv_size = raw.size;
 
     /*
      * self->txn is only set for the one-off adapter-level indexer; a
@@ -340,6 +359,9 @@ void impl_afw_adapter_impl_index_add(
     if (self->txn == NULL) {
         AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
             txn = AFW_LMDB_GET_TRANSACTION();
+
+            impl_index_data(adapter, txn, object_type_id, object_id,
+                &data, pool, xctx);
 
             dbi = afw_lmdb_internal_open_database(session->adapter,
                 txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
@@ -363,6 +385,9 @@ void impl_afw_adapter_impl_index_add(
         AFW_LMDB_END_TRANSACTION();
     } else {
         txn = self->txn;
+
+        impl_index_data(adapter, txn, object_type_id, object_id,
+            &data, pool, xctx);
 
         dbi = afw_lmdb_internal_open_database(session->adapter,
             txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
@@ -401,9 +426,7 @@ void impl_afw_adapter_impl_index_delete(
     MDB_dbi dbi;
     MDB_txn *txn;
     const afw_utf8_t *database;
-    const afw_uuid_t *uuid;
     afw_rc_t rc;
-    afw_memory_t raw;
 
     /* we will get an error if we try to delete a key of length 0 */
     /** @fixme this basically avoids indexing an empty string, so
@@ -416,17 +439,9 @@ void impl_afw_adapter_impl_index_delete(
     database = afw_lmdb_index_database(
         object_type_id, indexKey, pool, xctx);
 
-    uuid = afw_uuid_from_utf8(object_id, pool, xctx);
-
-    afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
-
     memset(&key, 0, sizeof(MDB_val));
     key.mv_data = (void *)value->s;
     key.mv_size = value->len;
-
-    memset(&data, 0, sizeof(MDB_val));
-    data.mv_data = (void*)raw.ptr;
-    data.mv_size = raw.size;
 
     /*
      * self->txn is only set for the one-off adapter-level indexer; a
@@ -437,6 +452,9 @@ void impl_afw_adapter_impl_index_delete(
     if (self->txn == NULL) {
         AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
             txn = AFW_LMDB_GET_TRANSACTION();
+
+            impl_index_data(adapter, txn, object_type_id, object_id,
+                &data, pool, xctx);
 
             dbi = afw_lmdb_internal_open_database(session->adapter,
                 txn, database, MDB_DUPSORT, pool, xctx);
@@ -452,6 +470,9 @@ void impl_afw_adapter_impl_index_delete(
         AFW_LMDB_END_TRANSACTION();
     } else {
         txn = self->txn;
+
+        impl_index_data(adapter, txn, object_type_id, object_id,
+            &data, pool, xctx);
 
         dbi = afw_lmdb_internal_open_database(session->adapter,
             txn, database, MDB_DUPSORT, pool, xctx);
