@@ -88,6 +88,33 @@ const afw_utf8_t * afw_lmdb_index_database(
 }
 
 
+afw_boolean_t afw_lmdb_index_database_is_for_key(
+    const afw_utf8_t *database,
+    const afw_utf8_t *key,
+    afw_utf8_t *object_type_id)
+{
+    const afw_utf8_t *prefix = afw_lmdb_s_Index;
+    afw_size_t fixed;
+
+    /* "Index" "#" type "#" key, with a type of at least one octet */
+    fixed = prefix->len + 1 + 1 + key->len;
+    if (database->len <= fixed ||
+        memcmp(database->s, prefix->s, prefix->len) != 0 ||
+        database->s[prefix->len] != '#' ||
+        database->s[database->len - key->len - 1] != '#' ||
+        memcmp(database->s + database->len - key->len, key->s,
+            key->len) != 0)
+    {
+        return false;
+    }
+
+    object_type_id->s = database->s + prefix->len + 1;
+    object_type_id->len = database->len - fixed;
+
+    return true;
+}
+
+
 /*
  * Implementation of method release of interface afw_adapter_impl_index.
  */
@@ -238,6 +265,101 @@ impl_afw_adapter_impl_index_update_index_definitions (
     }
 }
 
+/* Flags LMDB stores with a database. */
+#define IMPL_PERSISTENT_FLAGS (MDB_REVERSEKEY | MDB_DUPSORT | \
+    MDB_INTEGERKEY | MDB_DUPFIXED | MDB_INTEGERDUP | MDB_REVERSEDUP)
+
+/*
+ * A database already there may be one a removed index cleared, which
+ * keeps that index's flags until the environment is next opened in a new
+ * process (#511). LMDB keeps a database's flags whatever mdb_dbi_open()
+ * is given, so this index would store its entries the wrong way.
+ */
+static void
+impl_index_flags_check(
+    MDB_txn *txn,
+    MDB_dbi dbi,
+    const afw_utf8_t *database,
+    unsigned int flags,
+    afw_xctx_t *xctx)
+{
+    unsigned int existing;
+    int rc;
+
+    rc = mdb_dbi_flags(txn, dbi, &existing);
+    if (rc) {
+        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+            "Unable to read flags of database: '%.*s'.",
+            (int)database->len, database->s);
+    }
+
+    if ((existing & IMPL_PERSISTENT_FLAGS) !=
+        (flags & IMPL_PERSISTENT_FLAGS))
+    {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Index database '%.*s' is left from a removed index with "
+            "different options. Restart AFW to create this index with "
+            "these options.",
+            (int)database->len, database->s);
+    }
+}
+
+
+/*
+ * Open or create the index database of key in txn. For object_type_id
+ * NULL (an index on all object types), index add creates a database per
+ * object type, always with MDB_DUPSORT; only those already there are
+ * checked.
+ */
+static void
+impl_index_open(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *key,
+    unsigned int flags,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t * const *names;
+    const afw_utf8_t *database;
+    afw_utf8_t type;
+    MDB_dbi dbi;
+    int rc;
+
+    if (!object_type_id) {
+        for (names = afw_lmdb_internal_database_names(txn, pool, xctx);
+            *names; names++)
+        {
+            if (afw_lmdb_index_database_is_for_key(*names, key, &type)) {
+                dbi = afw_lmdb_internal_open_database(adapter, txn,
+                    *names, 0, pool, xctx);
+                impl_index_flags_check(txn, dbi, *names, MDB_DUPSORT,
+                    xctx);
+            }
+        }
+        return;
+    }
+
+    database = afw_lmdb_index_database(object_type_id, key, pool, xctx);
+
+    rc = afw_lmdb_internal_try_open_database(adapter, txn, database,
+        flags & ~MDB_CREATE, &dbi, pool, xctx);
+    if (rc == 0) {
+        impl_index_flags_check(txn, dbi, database, flags, xctx);
+    }
+    else if (rc == MDB_NOTFOUND) {
+        afw_lmdb_internal_open_database(adapter, txn, database, flags,
+            pool, xctx);
+    }
+    else {
+        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+            "Unable to open database: '%.*s'.",
+            (int)database->len, database->s);
+    }
+}
+
+
 /*
  * Implementation of method create of interface afw_adapter_impl_index.
  */
@@ -253,10 +375,7 @@ impl_afw_adapter_impl_index_open(
 {
     const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t * session = self->session;
-    const afw_utf8_t *database;
     unsigned int flags;
-
-    database = afw_lmdb_index_database(object_type_id, key, pool, xctx);
 
     /* we want to create the database, if it doesn't exist */
     flags = MDB_CREATE;
@@ -270,18 +389,16 @@ impl_afw_adapter_impl_index_open(
     if (self->txn == NULL) {
         AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, true, xctx) {        
 
-            /* now open up the new index database */
-            afw_lmdb_internal_open_database(adapter, 
-                AFW_LMDB_GET_TRANSACTION(), 
-                database, flags, pool, xctx);
+            impl_index_open(adapter, AFW_LMDB_GET_TRANSACTION(),
+                object_type_id, key, flags, pool, xctx);
 
             /* and commit our change */
             AFW_LMDB_COMMIT_TRANSACTION();
         }        
         AFW_LMDB_END_TRANSACTION();
     } else {
-        afw_lmdb_internal_open_database(adapter, 
-            self->txn, database, flags, pool, xctx);
+        impl_index_open(adapter, self->txn,
+            object_type_id, key, flags, pool, xctx);
     }
 }
 
@@ -486,7 +603,50 @@ void impl_afw_adapter_impl_index_delete(
 }
 
 /*
+ * Clear the index databases of key in txn: Index#<object_type_id>#<key>,
+ * or for object_type_id NULL (an index on all object types) every
+ * Index#<type>#<key> and the old unused Index#<key>.
+ */
+static int
+impl_index_clear(
+    const afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *key,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t * const *names;
+    afw_utf8_t type;
+    int rc;
+
+    rc = afw_lmdb_internal_clear_database(adapter, txn,
+        afw_lmdb_index_database(object_type_id, key, pool, xctx),
+        pool, xctx);
+
+    if (rc == 0 && !object_type_id) {
+        for (names = afw_lmdb_internal_database_names(txn, pool, xctx);
+            rc == 0 && *names; names++)
+        {
+            if (afw_lmdb_index_database_is_for_key(*names, key, &type)) {
+                rc = afw_lmdb_internal_clear_database(adapter, txn,
+                    *names, pool, xctx);
+            }
+        }
+    }
+
+    return rc;
+}
+
+
+/*
  * Implementation of method drop of interface afw_adapter_impl_index.
+ *
+ * Clears the index databases rather than deleting them. Deleting closes
+ * the handle for the whole process at once (mdb_drop() del 1), under any
+ * transaction still reading it. A cleared database that no definition
+ * covers is deleted when the adapter next opens the environment in a new
+ * process (#511).
  */
 afw_rc_t
 impl_afw_adapter_impl_index_drop (
@@ -498,12 +658,7 @@ impl_afw_adapter_impl_index_drop (
 {
     const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
-    const afw_utf8_t *database;
-    MDB_txn *txn;
     afw_rc_t rc = 0;
-
-    database = afw_lmdb_index_database(
-        object_type_id, key, pool, xctx);
 
     /*
      * self->txn is only set for the one-off adapter-level indexer; a
@@ -513,19 +668,15 @@ impl_afw_adapter_impl_index_drop (
      */
     if (self->txn == NULL) {
         AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
-            txn = AFW_LMDB_GET_TRANSACTION();
-
-            rc = afw_lmdb_internal_drop_database(session->adapter,
-                txn, database, pool, xctx);
+            rc = impl_index_clear(adapter, AFW_LMDB_GET_TRANSACTION(),
+                object_type_id, key, pool, xctx);
 
             AFW_LMDB_COMMIT_TRANSACTION();
         }
         AFW_LMDB_END_TRANSACTION();
     } else {
-        txn = self->txn;
-
-        rc = afw_lmdb_internal_drop_database(session->adapter,
-            txn, database, pool, xctx);
+        rc = impl_index_clear(adapter, self->txn,
+            object_type_id, key, pool, xctx);
     }
 
     return rc;
