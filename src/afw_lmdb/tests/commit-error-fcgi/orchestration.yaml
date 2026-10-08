@@ -1,0 +1,38 @@
+# A request whose adapter commit fails gets one error response.
+#
+# The request's LMDB writes share one transaction, committed after the
+# actions run. fill adds objects to a 1MB map until a write fails with
+# MDB_MAP_FULL, catches that, and returns true. The failed write leaves
+# the transaction unusable, so the commit at the end of the request
+# fails.
+#
+# Pass: the response is a single error document. Before the fix the
+# request handler wrote the success response first and committed after,
+# so the client got {"status":"success"...} followed by a second
+# document with the commit error (not JSON as a whole), and was told a
+# change succeeded that was never saved.
+version: 1
+description: LMDB commit failure at request end answers with one error response
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: fill
+    sourceType: script
+    source: |
+      const s = repeat<string>("xxxx", 1000);
+      for (let i = 0; i < 2000; i = i + 1) {
+          try {
+              add_object("lmdb", "Fill", {s: s});
+          }
+          catch (e) {
+              break;
+          }
+      }
+      return true;
+    expectError: general
+
