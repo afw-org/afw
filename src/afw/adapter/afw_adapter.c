@@ -954,6 +954,92 @@ afw_adapter_internal_conf_type_create_cede_p(
 
 
 
+/* Deeper than this is left to the content type that writes it. */
+#define IMPL_REFUSE_META_PROPERTY_MAX_DEPTH 256
+
+static void
+impl_refuse_meta_property(
+    const afw_value_t *value,
+    int depth,
+    afw_xctx_t *xctx);
+
+static void
+impl_refuse_meta_property_in_object(
+    const afw_object_t *object,
+    int depth,
+    afw_xctx_t *xctx)
+{
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *name;
+    const afw_value_t *v;
+
+    if (!object || depth > IMPL_REFUSE_META_PROPERTY_MAX_DEPTH) {
+        return;
+    }
+    iterator = NULL;
+    while ((v = afw_object_get_next_property(object,
+        &iterator, &name, xctx)))
+    {
+        if (name && afw_value_is_string(name) &&
+            afw_utf8_equal(&((const afw_value_string_t *)name)->internal,
+                afw_s__meta_))
+        {
+            AFW_THROW_ERROR_Z(general,
+                "'_meta_' is object meta, not a property", xctx);
+        }
+        impl_refuse_meta_property(v, depth + 1, xctx);
+    }
+}
+
+static void
+impl_refuse_meta_property(
+    const afw_value_t *value,
+    int depth,
+    afw_xctx_t *xctx)
+{
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *v;
+
+    if (!value || depth > IMPL_REFUSE_META_PROPERTY_MAX_DEPTH) {
+        return;
+    }
+    if (afw_value_is_object(value)) {
+        impl_refuse_meta_property_in_object(
+            ((const afw_value_object_t *)value)->internal, depth, xctx);
+    }
+    else if (afw_value_is_array(value)) {
+        iterator = NULL;
+        while ((v = afw_array_get_next_value(
+            ((const afw_value_array_t *)value)->internal,
+            &iterator, xctx)))
+        {
+            impl_refuse_meta_property(v, depth + 1, xctx);
+        }
+    }
+}
+
+
+/* Throw if object has a property named _meta_ (#497). */
+void
+afw_adapter_internal_refuse_meta_property_in_object(
+    const afw_object_t *object,
+    afw_xctx_t *xctx)
+{
+    impl_refuse_meta_property_in_object(object, 0, xctx);
+}
+
+
+/* Throw if value has a property named _meta_ (#497). */
+void
+afw_adapter_internal_refuse_meta_property(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    impl_refuse_meta_property(value, 0, xctx);
+}
+
+
+
 /* Adapt and apply view if requested and object is not NULL. */
 void
 afw_adapter_internal_process_object_from_adapter(

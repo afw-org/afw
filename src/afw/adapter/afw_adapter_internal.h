@@ -165,6 +165,31 @@ struct afw_adapter_internal_transaction_s {
 
 /**
  * @internal
+ * @brief Throw if value (or an object or array in it) has a property named
+ *        _meta_.
+ *
+ * Object meta is not a property. An adapter that stores a property named
+ * _meta_ writes an object it can not read back (#497).
+ */
+void
+afw_adapter_internal_refuse_meta_property(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @internal
+ * @brief Throw if object (or an object or array in it) has a property named
+ *        _meta_. See afw_adapter_internal_refuse_meta_property().
+ */
+void
+afw_adapter_internal_refuse_meta_property_in_object(
+    const afw_object_t *object,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @internal
  * @brief Adapt and apply view if requested and object is not NULL.
  */
 void
