@@ -82,8 +82,16 @@ impl_afw_value_optional_evaluate(
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
-    /* Get value of symbol. */
+    /*
+     * Get value of symbol. Evaluate is caller does not release: the result
+     * lasts for dest p. The slot's value is released when the variable is
+     * reassigned, which user code can do while the caller still uses the
+     * result (map(f, a) with f doing a = null), so hold it for p.
+     */
     result = afw_pool_scope_symbol_get_value(self->symbol, xctx);
+    if (result) {
+        result = afw_value_get_for_p_lifetime(result, p, xctx);
+    }
 
     /* Pop value from evaluation stack and return result. */
     afw_xctx_evaluation_stack_pop_value(xctx);
