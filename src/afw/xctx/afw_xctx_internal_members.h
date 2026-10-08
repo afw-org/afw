@@ -30,6 +30,15 @@
     void *priv;
 
     /**
+     * Scope pools whose last release is delayed while a throw is
+     * processed, oldest first. See afw_error_processing_handled().
+     */
+    const afw_pool_t *error_delaying_release_first;
+
+    /** Newest pool on error_delaying_release_first, or NULL. */
+    const afw_pool_t *error_delaying_release_last;
+
+    /**
      * Cycle collection state for this owner (possible roots). See
      * afw_reference.h. NULL until the first possible root.
      */
