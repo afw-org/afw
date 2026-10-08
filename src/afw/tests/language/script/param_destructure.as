@@ -443,3 +443,25 @@ assert(evaluate(compile<script>(script(src))) == "z");
 assert(evaluate(compile<script>(script(d1))) == "z");
 
 return 0;
+
+//?
+//? test: pattern-default-for-undefined
+//? description: A pattern default applies to an undefined element or property, as a parameter default does (not only a missing one); null keeps null
+//? expect: 0
+//? source: ...
+
+const {a = 5} = {a: undefined};
+assert(a === 5, "object property undefined");
+const [b = 6] = [undefined];
+assert(b === 6, "array element undefined");
+const {c: x = 7} = {c: undefined};
+assert(x === 7, "renamed property undefined");
+function f({d = 8}) { return d; }
+assert(f({d: undefined}) === 8, "parameter pattern");
+const {e = 9} = {e: null};
+assert(e === null, "null is not undefined");
+let n = 0;
+function g() { n = n + 1; return 1; }
+const [h = g()] = [2];
+assert(h === 2 && n === 0, "default not evaluated when present");
+return 0;
