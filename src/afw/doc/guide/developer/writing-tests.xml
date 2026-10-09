@@ -415,7 +415,9 @@ return 0;
             <literal>expect-stdout</literal>, 
             <literal>expect-stderr</literal>, plus 
             <literal>expectResponse</literal> and 
-            <literal>expectStatus</literal> for HTTP bodies.
+            <literal>expectStatus</literal> for HTTP bodies, and 
+            <literal>expectHeaders</literal> (header name to expected 
+            value) for REST response headers.
         </paragraph>
         <paragraph>
             Tests under <literal>src/afw/tests/</literal> are run by 

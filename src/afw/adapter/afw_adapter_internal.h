@@ -131,6 +131,27 @@ afw_adapter_internal_journal_get_entry(
 
 /**
  * @internal
+ * @brief Authorize a journal operation.
+ *
+ * A journal operation is authorized like an object operation on path
+ * /<adapter_id>/_AdaptiveJournalEntry_/<object_id>, where object_id is a
+ * cursor, a special journal objectId, or NULL for none. object is the
+ * entry being added, or NULL. The journal entries an adapter writes for
+ * its own object changes are not checked again.
+ *
+ * Definition in afw_adapter_journal.c.
+ */
+void
+afw_adapter_internal_journal_authorize(
+    const afw_utf8_t *adapter_id,
+    const afw_utf8_t *object_id,
+    const afw_value_t *action_id_value,
+    const afw_object_t *object,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @internal
  * @brief Called internally for action journal prologue.
  *
  * Definition in afw_adapter.c.

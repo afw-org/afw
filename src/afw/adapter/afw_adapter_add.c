@@ -80,6 +80,8 @@ afw_adapter_add_object(
                     "adapter_id '%ku' session get_journal() returned NULL",
                     &session->adapter->adapter_id);
             }
+            afw_adapter_internal_journal_authorize(adapter_id, NULL,
+                afw_authorization_action_id_create, object, xctx);
             object_id = afw_adapter_journal_add_entry(journal,
                 &impl_request, object, xctx);
         }

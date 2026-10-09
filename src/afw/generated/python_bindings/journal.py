@@ -11,6 +11,44 @@
 import requests
 import json
 
+def journal_add_entry(session, entry, adapterId=None):
+    """
+    Add journal entry
+
+    Add an entry to the journal of an adapter. The entry is stored as given.
+    This is the same as add_object() with object type _AdaptiveJournalEntry_,
+    but returns the new entry's cursor.
+    
+    Include something like an eventType property in entries you write, so a
+    peer's consumeFilter can tell them apart from each other and from the
+    entries an adapter writes for its object changes.
+
+    Args:
+        adapterId (str): Id of the adapter whose journal gets the entry.
+        entry (dict): The journal entry.
+
+    Returns:
+        str: The new entry's cursor.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "journal_add_entry",
+        "entry": entry
+    }
+
+    if adapterId != None:
+        action['adapterId'] = adapterId
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def journal_advance_cursor_for_consumer(session, consumerId, adapterId=None, limit=None):
     """
     Advance journal cursor for consumer

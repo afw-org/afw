@@ -199,3 +199,173 @@ for (const id of [generate_uuid(), "not-a-uuid"]) {
 }
 
 return 0;
+
+
+//? test: rest-mark-consumed
+//? description: the REST form of mark consumed, an update of the entry at its cursor (POST /journal/_AdaptiveJournalEntry_/<cursor>)
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const peer: string = generate_uuid();
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "rest-mark-consumer",
+    consumeFilter: "(current::entry.eventType === 'rest-mark')"
+}, peer);
+const c1: string = add_object("journal", "_AdaptiveJournalEntry_",
+    { eventType: "rest-mark", n: 1 }).objectId;
+const c2: string = add_object("journal", "_AdaptiveJournalEntry_",
+    { eventType: "rest-mark", n: 2 }).objectId;
+const t: string = "_AdaptiveJournalEntry_";
+
+let r: object = get_object("journal", t, "get_next_for_consumer:" + peer);
+assert(r.entryCursor === c1);
+
+update_object("journal", t, c1, { consumed: true, consumerId: peer });
+
+r = get_object("journal", t, "get_next_for_consumer:" + peer);
+assert(r.entryCursor === c2 && is_nullish(r.reissue),
+    "moves on after mark consumed, got " + string(r.entryCursor));
+
+// Only the entry being consumed can be marked, and consumed must be true.
+assert(safe_evaluate(update_object("journal", t, c1,
+    { consumed: true, consumerId: peer }), "error") == "error");
+assert(safe_evaluate(update_object("journal", t, c2,
+    { consumed: false, consumerId: peer }), "error") == "error");
+assert(safe_evaluate(update_object("journal", t, c2,
+    { consumed: true }), "error") == "error");
+
+update_object("journal", t, c2, { consumed: true, consumerId: peer });
+r = get_object("journal", t, "get_next_for_consumer:" + peer);
+assert(is_nullish(r.entry), "nothing left");
+
+return 0;
+
+
+//? test: end-of-journal
+//? description: with no entry to return, neither entry nor entryCursor is set
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const last: string = add_object("journal", "_AdaptiveJournalEntry_",
+    { eventType: "end-of-journal" }).objectId;
+
+let r: object = journal_get_next_after_cursor("journal", last);
+assert(is_nullish(r.entry) && is_nullish(r.entryCursor),
+    "after the last entry, got " + string(r));
+
+const peer: string = generate_uuid();
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "end-consumer",
+    consumeFilter: "(current::entry.eventType === 'never-written')"
+}, peer);
+r = journal_get_next_for_consumer("journal", peer, 1000);
+assert(is_nullish(r.entry) && is_nullish(r.entryCursor),
+    "nothing applicable for the consumer, got " + string(r));
+r = journal_advance_cursor_for_consumer("journal", peer, 1000);
+assert(is_nullish(r.entryCursor), "advance found nothing, got " + string(r));
+
+return 0;
+
+
+//? test: consumer-scan-limit
+//? description: limit stops a consumer scan early; the next call resumes where it stopped (built-in and REST forms)
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const t: string = "_AdaptiveJournalEntry_";
+
+for (const form of ["built-in", "rest"]) {
+    const peer: string = generate_uuid();
+    add_object("journal", "_AdaptiveProvisioningPeer_", {
+        peerId: "limit-consumer",
+        consumeFilter: "(current::entry.eventType === 'limit-match-" + form + "')"
+    }, peer);
+    for (const i of [1, 2, 3, 4, 5]) {
+        add_object("journal", t, { eventType: "limit-skip" });
+    }
+    const match: string = add_object("journal", t,
+        { eventType: "limit-match-" + form }).objectId;
+
+    let calls: integer = 0;
+    let r: object = {};
+    while (r.entry === undefined) {
+        assert(calls < 20, form + ": scan never reached the match");
+        r = (form === "built-in")
+            ? journal_get_next_for_consumer("journal", peer, 2)
+            : get_object("journal", t, "get_next_for_consumer:" + peer + ":2");
+        calls = calls + 1;
+    }
+    assert(r.entryCursor === match, form + ": found the match");
+    assert(calls > 1, form + ": limit 2 needed more than one call, took " +
+        string(calls));
+    journal_mark_consumed("journal", peer, match);
+}
+
+// Bad REST limits.
+const peer: string = generate_uuid();
+add_object("journal", "_AdaptiveProvisioningPeer_", { peerId: "bad-limit" }, peer);
+for (const bad of [":0", ":x", ":", ":2:3"]) {
+    assert(safe_evaluate(get_object("journal", t,
+        "get_next_for_consumer:" + peer + bad), "error") == "error",
+        "limit '" + bad + "' is an error");
+}
+
+return 0;
+
+
+//? test: advance-cursor-for-consumer
+//? description: advancing moves advanceCursor to the next applicable entry without starting to consume it; get_next_for_consumer then returns it
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const peer: string = generate_uuid();
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "advance-consumer",
+    consumeFilter: "(current::entry.eventType === 'advance-match')"
+}, peer);
+add_object("journal", "_AdaptiveJournalEntry_", { eventType: "advance-skip" });
+const match: string = add_object("journal", "_AdaptiveJournalEntry_",
+    { eventType: "advance-match" }).objectId;
+
+const a: object = journal_advance_cursor_for_consumer("journal", peer, 1000);
+assert(a.entryCursor === match, "advance found the match, got " + string(a));
+assert(is_nullish(a.entry), "advance does not return the entry");
+
+const state: object = get_object("journal", "_AdaptiveProvisioningPeer_", peer);
+assert(state.advanceCursor === match, "advanceCursor is the match");
+assert(is_nullish(state.consumeCursor), "advancing does not start consuming");
+
+const r: object = journal_get_next_for_consumer("journal", peer, 1000);
+assert(r.entryCursor === match && is_nullish(r.reissue),
+    "get_next_for_consumer returns it, got " + string(r));
+
+return 0;
+
+
+//? test: journal-add-entry
+//? description: journal_add_entry stores the entry as given and returns its cursor
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const cursor: string = journal_add_entry("journal",
+    { eventType: "added-by-function", n: 7 });
+const got: object = journal_get_by_cursor("journal", cursor);
+assert(got.entryCursor === cursor);
+assert(got.entry == { eventType: "added-by-function", n: 7 },
+    "stored as given, got " + string(got.entry));
+
+const cursor2: string = journal_add_entry("journal", { eventType: "second" });
+assert(journal_get_next_after_cursor("journal", cursor).entryCursor === cursor2,
+    "next entry after it");
+
+return 0;

@@ -26,6 +26,39 @@ class journal
     }
 
     /**
+     * journal_add_entry()
+     *
+     * Add an entry to the journal of an adapter. The entry is stored as
+     * given. This is the same as add_object() with object type
+     * _AdaptiveJournalEntry_, but returns the new entry's cursor.
+     * 
+     * Include something like an eventType property in entries you write, so a
+     * peer's consumeFilter can tell them apart from each other and from the
+     * entries an adapter writes for its object changes.
+     *
+     * @param string $adapterId Id of the adapter whose journal gets the
+     *                          entry.
+     * @param object $entry The journal entry.
+     *
+     * @return string The new entry's cursor.
+     */
+    public function journal_add_entry(, $entry, $adapterId = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "journal_add_entry");
+
+        /* pass along required parameters to the request payload */
+        $request->set("entry", $entry);
+
+        /* pass along any optional parameters to the request payload */
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
+
+        return $request->get_result();
+    }
+
+    /**
      * journal_advance_cursor_for_consumer()
      *
      * Update the advance cursor for a consumer referenced by the consumerId

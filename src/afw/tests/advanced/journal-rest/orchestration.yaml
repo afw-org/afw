@@ -1,0 +1,61 @@
+# The REST forms of the journal (#520): add an entry with POST, read it
+# for a consumer with a GET special objectId. Journal GETs are sent with
+# Cache-Control: no-store, since what they return changes as entries are
+# added and the consumer forms change the peer. The object path parser
+# does not accept a raw ':' in an object id, so the ':' in special
+# objectIds is sent as %3A.
+version: 1
+description: Journal over REST, and journal GETs are not cached
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: add-peer
+    sourceType: script
+    source: |
+      add_object("journal", "_AdaptiveProvisioningPeer_",
+          { peerId: "rest", consumeFilter: "(current::entry.eventType === 'rest')" },
+          "rest");
+      return true;
+    expect: true
+
+  - name: rest-add-entry
+    feed:
+      kind: rest
+      method: POST
+      path: /journal/_AdaptiveJournalEntry_
+      contentType: application/json
+      body: { "eventType": "rest", "n": 1 }
+    expectStatus: 200
+
+  - name: rest-get-next-for-consumer
+    feed:
+      kind: rest
+      method: GET
+      path: /journal/_AdaptiveJournalEntry_/get_next_for_consumer%3Arest%3A10
+    expectStatus: 200
+    expectHeaders:
+      Cache-Control: no-store
+
+  - name: consumed-by-rest-get
+    sourceType: script
+    source: |
+      const peer = get_object("journal", "_AdaptiveProvisioningPeer_", "rest");
+      const entry = journal_get_by_cursor("journal", peer.consumeCursor).entry;
+      assert(entry.eventType === "rest" && entry.n === 1,
+          "the REST read started consuming the REST-added entry");
+      return true;
+    expect: true
+
+  - name: rest-get-first
+    feed:
+      kind: rest
+      method: GET
+      path: /journal/_AdaptiveJournalEntry_/get_first
+    expectStatus: 200
+    expectHeaders:
+      Cache-Control: no-store

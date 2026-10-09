@@ -75879,6 +75879,201 @@ impl_object__to_string_ipAddress__value = {
     (const afw_object_t *)&impl_object__to_string_ipAddress
 };
 
+/* ---------- journal_add_entry ---------- */
+
+static const afw_utf8_t
+impl_object_path__journal_add_entry =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/journal_add_entry");
+
+static const afw_value_object_t
+impl_object__journal_add_entry__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__journal_add_entry = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__journal_add_entry__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_journal_add_entry,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__journal_add_entry
+        }
+    },
+    (void *)&afw_function_definition_journal_add_entry
+};
+
+static const afw_value_object_t
+impl_journal_add_entry_returns__value;
+
+static const afw_value_function_parameter_t
+impl_journal_add_entry_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_journal_add_entry_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_new_entry_s_cursor_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_journal_add_entry_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_journal_add_entry_returns
+};
+
+static const afw_value_object_t
+impl_journal_add_entry_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_journal_add_entry_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_journal_add_entry_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_adapterId,
+    NULL,
+    &afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_journal_add_entry_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_journal_add_entry_parameter_1
+};
+
+static const afw_value_object_t
+impl_journal_add_entry_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_journal_add_entry_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_journal_add_entry_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    &afw_self_v_object,
+    NULL,
+    &afw_self_v_entry,
+    NULL,
+    &afw_self_v_zz__The_journal_entry_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_journal_add_entry_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_journal_add_entry_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_journal_add_entry_parameters[] = {
+    &impl_journal_add_entry_parameter_1,
+    &impl_journal_add_entry_parameter_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_journal_add_entry_sideEffects[] = {
+    AFW_UTF8_LITERAL("Journal entry added"),
+    { NULL }
+};
+
+const afw_value_function_definition_t
+afw_function_definition_journal_add_entry = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__journal_add_entry,
+    &afw_self_v_journal,
+    &afw_self_v_journal_add_entry,
+    &afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry,
+    &afw_self_v_journal_add_entry,
+    &afw_self_v_journal_add_entry,
+    &afw_self_v_journalAddEntry,
+    &afw_self_v_afwJournalAddEntry,
+    &afw_self_v_zz__Add_journal_entry,
+    &afw_self_v_zz__b8679ed69739,
+    &afw_self_v_zz___adapterId__string__entry__object___string,
+    &afw_self_v_zz__7db5129dd8ea,
+    NULL,
+    afw_function_execute_journal_add_entry,
+    afw_function_execute_journal_add_entry,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_journal_add_entry_parameters[0],
+    2,
+    &impl_journal_add_entry_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    &impl_journal_add_entry_sideEffects[0],
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__journal_add_entry__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__journal_add_entry
+};
+
 /* ---------- journal_advance_cursor_for_consumer ---------- */
 
 static const afw_utf8_t
@@ -149868,6 +150063,7 @@ impl_function_bindings[] = {
     &afw_function_definition_one_and_only_ipAddress,
     &afw_function_definition_regexp_match_ipAddress,
     &afw_function_definition_to_string_ipAddress,
+    &afw_function_definition_journal_add_entry,
     &afw_function_definition_journal_advance_cursor_for_consumer,
     &afw_function_definition_journal_get_by_cursor,
     &afw_function_definition_journal_get_first,

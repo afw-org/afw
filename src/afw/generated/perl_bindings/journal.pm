@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    journal_add_entry 
     journal_advance_cursor_for_consumer 
     journal_get_by_cursor 
     journal_get_first 
@@ -29,6 +30,27 @@ afw::journal - Perl module for journal functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 journal_add_entry
+
+Add an entry to the journal of an adapter. The entry is stored as given. This
+is the same as add_object() with object type _AdaptiveJournalEntry_, but
+returns the new entry's cursor.
+
+Include something like an eventType property in entries you write, so a peer's
+consumeFilter can tell them apart from each other and from the entries an
+adapter writes for its object changes.
+Add journal entry
+
+=head4 Parameters
+
+    $adapterId
+
+Id of the adapter whose journal gets the entry.
+
+    $entry
+
+The journal entry.
 
 =head3 journal_advance_cursor_for_consumer
 
@@ -230,6 +252,20 @@ The objectId of the associated _AdaptiveProvisioningPeer_ object.
 Journal entry cursor.
 
 =cut
+
+sub journal_add_entry {
+    my ($adapterId, $entry) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "journal_add_entry");
+    $request->set("entry", $entry);
+
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
+
+    return $request->getResult();
+}
 
 sub journal_advance_cursor_for_consumer {
     my ($adapterId, $consumerId, $limit) = @_;

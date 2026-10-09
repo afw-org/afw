@@ -30241,6 +30241,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7db5129dd8ea \
+    "function journal_add_entry (\n    adapterId: string,\n    entry: object\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7db5129dd8ea */
+#define afw_s_zz__7db5129dd8ea \
+    (&afw_self_v_zz__7db5129dd8ea.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7db5129dd8ea */
+#define afw_self_s_zz__7db5129dd8ea \
+    (afw_self_v_zz__7db5129dd8ea.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7db5129dd8ea */
+extern const afw_value_string_t \
+    afw_self_v_zz__7db5129dd8ea;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7db5129dd8ea */
+#define afw_z_zz__7db5129dd8ea \
+    (afw_self_v_zz__7db5129dd8ea.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7db5129dd8ea */
+#define afw_v_zz__7db5129dd8ea \
+    (&afw_self_v_zz__7db5129dd8ea.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7dc68fefbb1b \
     "Converts ia5String value to string. For array values, the to_string() value for each entry is returned separated with commas."
 
@@ -41989,6 +42015,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Add_duration */
 #define afw_v_zz__Add_duration \
     (&afw_self_v_zz__Add_duration.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Add_journal_entry \
+    "Add journal entry"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Add_journal_entry */
+#define afw_s_zz__Add_journal_entry \
+    (&afw_self_v_zz__Add_journal_entry.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Add_journal_entry */
+#define afw_self_s_zz__Add_journal_entry \
+    (afw_self_v_zz__Add_journal_entry.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Add_journal_entry */
+extern const afw_value_string_t \
+    afw_self_v_zz__Add_journal_entry;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Add_journal_entry */
+#define afw_z_zz__Add_journal_entry \
+    (afw_self_v_zz__Add_journal_entry.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Add_journal_entry */
+#define afw_v_zz__Add_journal_entry \
+    (&afw_self_v_zz__Add_journal_entry.pub)
 
 
 
@@ -59175,6 +59227,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Id_of_test */
 #define afw_v_zz__Id_of_test \
     (&afw_self_v_zz__Id_of_test.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    "Id of the adapter whose journal gets the entry."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_s_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (&afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_self_s_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_z_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (&afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.pub)
 
 
 
@@ -82345,6 +82423,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__The_journal_entry_ \
+    "The journal entry."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_journal_entry_ */
+#define afw_s_zz__The_journal_entry_ \
+    (&afw_self_v_zz__The_journal_entry_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_journal_entry_ */
+#define afw_self_s_zz__The_journal_entry_ \
+    (afw_self_v_zz__The_journal_entry_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_journal_entry_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_journal_entry_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_journal_entry_ */
+#define afw_z_zz__The_journal_entry_ \
+    (afw_self_v_zz__The_journal_entry_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_journal_entry_ */
+#define afw_v_zz__The_journal_entry_ \
+    (&afw_self_v_zz__The_journal_entry_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_key_for_this_lock \
     "The key for this lock"
 
@@ -82939,6 +83043,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__The_name_of_this_parameter */
 #define afw_v_zz__The_name_of_this_parameter \
     (&afw_self_v_zz__The_name_of_this_parameter.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_new_entry_s_cursor_ \
+    "The new entry's cursor."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_s_zz__The_new_entry_s_cursor_ \
+    (&afw_self_v_zz__The_new_entry_s_cursor_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_self_s_zz__The_new_entry_s_cursor_ \
+    (afw_self_v_zz__The_new_entry_s_cursor_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_new_entry_s_cursor_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_new_entry_s_cursor_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_z_zz__The_new_entry_s_cursor_ \
+    (afw_self_v_zz__The_new_entry_s_cursor_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_v_zz__The_new_entry_s_cursor_ \
+    (&afw_self_v_zz__The_new_entry_s_cursor_.pub)
 
 
 
@@ -93005,6 +93135,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___adapterId__string__entry__object___string \
+    "(adapterId: string, entry: object): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_s_zz___adapterId__string__entry__object___string \
+    (&afw_self_v_zz___adapterId__string__entry__object___string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_self_s_zz___adapterId__string__entry__object___string \
+    (afw_self_v_zz___adapterId__string__entry__object___string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___adapterId__string__entry__object___string */
+extern const afw_value_string_t \
+    afw_self_v_zz___adapterId__string__entry__object___string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_z_zz___adapterId__string__entry__object___string \
+    (afw_self_v_zz___adapterId__string__entry__object___string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_v_zz___adapterId__string__entry__object___string \
+    (&afw_self_v_zz___adapterId__string__entry__object___string.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___adapterId__string__key__string___object \
     "(adapterId: string, key: string): object"
 
@@ -103037,6 +103193,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__join */
 #define afw_v_zz___afw__AdaptiveFunction__join \
     (&afw_self_v_zz___afw__AdaptiveFunction__join.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry \
+    "/afw/_AdaptiveFunction_/journal_add_entry"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_s_zz___afw__AdaptiveFunction__journal_add_entry \
+    (&afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_self_s_zz___afw__AdaptiveFunction__journal_add_entry \
+    (afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_z_zz___afw__AdaptiveFunction__journal_add_entry \
+    (afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_v_zz___afw__AdaptiveFunction__journal_add_entry \
+    (&afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.pub)
 
 
 
@@ -132365,6 +132547,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b7a5ce01fc04 */
 #define afw_v_zz__b7a5ce01fc04 \
     (&afw_self_v_zz__b7a5ce01fc04.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b8679ed69739 \
+    "Add an entry to the journal of an adapter. The entry is stored as given. This is the same as add_object() with object type _AdaptiveJournalEntry_, but returns the new entry's cursor.\n\nInclude something like an eventType property in entries you write, so a peer's consumeFilter can tell them apart from each other and from the entries an adapter writes for its object changes."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b8679ed69739 */
+#define afw_s_zz__b8679ed69739 \
+    (&afw_self_v_zz__b8679ed69739.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b8679ed69739 */
+#define afw_self_s_zz__b8679ed69739 \
+    (afw_self_v_zz__b8679ed69739.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b8679ed69739 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b8679ed69739;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b8679ed69739 */
+#define afw_z_zz__b8679ed69739 \
+    (afw_self_v_zz__b8679ed69739.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b8679ed69739 */
+#define afw_v_zz__b8679ed69739 \
+    (&afw_self_v_zz__b8679ed69739.pub)
 
 
 

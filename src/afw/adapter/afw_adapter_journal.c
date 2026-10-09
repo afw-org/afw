@@ -28,6 +28,29 @@ afw_adapter_internal_journal_prologue(
 }
 
 
+/* Authorize a journal operation. See afw_adapter_internal.h. */
+void
+afw_adapter_internal_journal_authorize(
+    const afw_utf8_t *adapter_id,
+    const afw_utf8_t *object_id,
+    const afw_value_t *action_id_value,
+    const afw_object_t *object,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *resource_id;
+
+    resource_id = afw_utf8_printf(xctx->p, xctx,
+        "/%ku/" AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/%ku",
+        adapter_id, (object_id) ? object_id : afw_s_a_empty_string);
+    afw_authorization_check(true, NULL,
+        afw_value_create_unmanaged_string(resource_id, xctx->p, xctx),
+        (object)
+            ? afw_value_create_unmanaged_object(object, xctx->p, xctx)
+            : NULL,
+        action_id_value, xctx->p, xctx);
+}
+
+
 void
 afw_adapter_internal_journal_epilogue(
     const afw_adapter_session_t *session,
@@ -98,12 +121,17 @@ afw_adapter_journal_entry_consume(
             " update_object() must have consumerId property", xctx);
     }
 
+    afw_adapter_internal_journal_authorize(&session->adapter->adapter_id,
+        object_id, afw_authorization_action_id_modify, NULL, xctx);
+
     /* Mark entry consumed. */
     afw_memory_clear(&impl_request);
     afw_adapter_journal_mark_entry_consumed(journal, &impl_request,
         consumer_id, object_id, xctx);
 }
 
+
+static const afw_utf8_t impl_s_get_first = AFW_UTF8_LITERAL("get_first");
 
 static const afw_adapter_journal_t *
 impl_get_journal_interface(const afw_utf8_t *adapter_id,
@@ -143,7 +171,9 @@ afw_adapter_journal_get_first(
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, false, xctx);
 
-    /** @fixme Add authorization check before and after call. */
+    afw_adapter_internal_journal_authorize(adapter_id,
+        &impl_s_get_first,
+        afw_authorization_action_id_read, NULL, xctx);
 
     /* Get first entry. */
     afw_memory_clear(&impl_request);
@@ -174,7 +204,8 @@ afw_adapter_journal_get_by_cursor(
     journal = impl_get_journal_interface(adapter_id, false, xctx);
 
 
-    /** @fixme Add authorization check before and after call. */
+    afw_adapter_internal_journal_authorize(adapter_id, cursor,
+        afw_authorization_action_id_read, NULL, xctx);
 
     /* Get first entry. */
     afw_memory_clear(&impl_request);
@@ -205,7 +236,9 @@ afw_adapter_journal_get_next_after_cursor(
     journal = impl_get_journal_interface(adapter_id, false, xctx);
 
 
-    /** @fixme Add authorization check before and after call. */
+    afw_adapter_internal_journal_authorize(adapter_id,
+        afw_utf8_printf(xctx->p, xctx, "get_next_after_cursor:%ku", cursor),
+        afw_authorization_action_id_read, NULL, xctx);
 
     /* Get first entry. */
     afw_memory_clear(&impl_request);
@@ -238,7 +271,10 @@ afw_adapter_journal_get_next_for_consumer(
     journal = impl_get_journal_interface(adapter_id, true, xctx);
 
 
-    /** @fixme Add authorization check before and after call. */
+    afw_adapter_internal_journal_authorize(adapter_id,
+        afw_utf8_printf(xctx->p, xctx, "get_next_for_consumer:%ku",
+            consumer_id),
+        afw_authorization_action_id_read, NULL, xctx);
 
     /* Get first entry. */
     afw_memory_clear(&impl_request);
@@ -272,7 +308,11 @@ afw_adapter_journal_get_next_for_consumer_after_cursor(
     journal = impl_get_journal_interface(adapter_id, true, xctx);
 
 
-    /** @fixme Add authorization check before and after call. */
+    afw_adapter_internal_journal_authorize(adapter_id,
+        afw_utf8_printf(xctx->p, xctx,
+            "get_next_for_consumer_after_cursor:%ku:%ku",
+            consumer_id, cursor),
+        afw_authorization_action_id_read, NULL, xctx);
 
     /* Get first entry. */
     afw_memory_clear(&impl_request);
@@ -305,7 +345,10 @@ afw_adapter_journal_advance_cursor_for_consumer(
     journal = impl_get_journal_interface(adapter_id, true, xctx);
 
 
-    /** @fixme Add authorization check before and after call. */
+    afw_adapter_internal_journal_authorize(adapter_id,
+        afw_utf8_printf(xctx->p, xctx, "advance_cursor_for_consumer:%ku",
+            consumer_id),
+        afw_authorization_action_id_read, NULL, xctx);
 
     /* Get first entry. */
     afw_memory_clear(&impl_request);
@@ -332,12 +375,64 @@ afw_adapter_journal_mark_consumed(
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, true, xctx);
 
-    /** @fixme Add authorization check before and after call. */
+    afw_adapter_internal_journal_authorize(adapter_id, cursor,
+        afw_authorization_action_id_modify, NULL, xctx);
 
     /* Get first entry. */
     afw_memory_clear(&impl_request);
     afw_adapter_journal_mark_entry_consumed(journal, &impl_request,
         consumer_id, cursor, xctx);
+}
+
+
+/*
+ * Split the arguments of a special journal objectId at ':' into at most
+ * max non-empty fields. Returns the number of fields, or 0 if there are
+ * more than max or one is empty.
+ */
+static afw_size_t
+impl_split_special_id_args(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_utf8_t *fields[],
+    afw_size_t max,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_octet_t *start;
+    afw_size_t count;
+
+    for (count = 0, start = s; ; s++, len--) {
+        if (len == 0 || *s == ':') {
+            if (count == max || s == start) return 0;
+            fields[count++] = afw_utf8_create(start, s - start, p, xctx);
+            if (len == 0) return count;
+            start = s + 1;
+        }
+    }
+}
+
+
+/* Parse a special journal objectId limit field: decimal digits, not 0. */
+static afw_boolean_t
+impl_parse_special_id_limit(
+    const afw_utf8_t *field,
+    afw_size_t *limit)
+{
+    afw_size_t i;
+    afw_size_t result;
+
+    for (i = 0, result = 0; i < field->len; i++) {
+        if (field->s[i] < '0' || field->s[i] > '9' ||
+            result > (AFW_SIZE_T_MAX - 9) / 10)
+        {
+            return false;
+        }
+        result = result * 10 + (field->s[i] - '0');
+    }
+    if (result == 0) return false;
+    *limit = result;
+    return true;
 }
 
 
@@ -352,11 +447,10 @@ afw_adapter_internal_journal_get_entry(
     const afw_utf8_t *consumer_id;
     const afw_utf8_t *entry_cursor;
     afw_size_t limit;
-    const afw_utf8_octet_t *s;
-    const afw_utf8_octet_t *c;
+    const afw_utf8_t *fields[3];
+    afw_size_t count;
     const afw_utf8_z_t *option_z;
     const afw_utf8_z_t *syntax_z;
-    afw_size_t len;
     const afw_adapter_journal_t *journal;
     const afw_object_t *request;
     afw_adapter_impl_request_t impl_request;
@@ -373,9 +467,9 @@ afw_adapter_internal_journal_get_entry(
             journal_entry, afw_v_request, xctx);
     }
 
-    /* Set default limit. */
+    /* Default limit when a consumer form does not give one. */
     limit_applies = false;
-    limit = 100; /** @fixme Should this be configurable and where? By adapter? */
+    limit = 100;
 
     consumer_id = NULL;
     entry_cursor = NULL;
@@ -415,57 +509,67 @@ afw_adapter_internal_journal_get_entry(
         if (entry_cursor->len == 0) goto error_special_id;
     }
 
-    /* get_next_for_consumer:<consumer_id> */
+    /* get_next_for_consumer:<consumer_id>[:<limit>] */
     else if (afw_utf8_starts_with_utf8_z(object_id, "get_next_for_consumer:"))
     {
         limit_applies = true;
-        syntax_z = "get_next_for_consumer:<consumer_id>";
+        syntax_z = "get_next_for_consumer:<consumer_id>[:<limit>]";
         option = afw_adapter_journal_option_get_next_for_consumer;
         option_z = "get_next_for_consumer";
-        consumer_id = afw_utf8_create(
+        count = impl_split_special_id_args(
             object_id->s + strlen("get_next_for_consumer:"),
             object_id->len - strlen("get_next_for_consumer:"),
-            request->p, xctx);
-        if (consumer_id->len == 0) goto error_special_id;
+            fields, 2, request->p, xctx);
+        if (count == 0) goto error_special_id;
+        consumer_id = fields[0];
+        if (count == 2 && !impl_parse_special_id_limit(fields[1], &limit)) {
+            goto error_special_id;
+        }
     }
 
-    /* get_next_for_consumer_after_cursor:<consumer_id>:<event_cursor> */
+    /*
+     * get_next_for_consumer_after_cursor:
+     *     <consumer_id>:<event_cursor>[:<limit>]
+     */
     else if (afw_utf8_starts_with_utf8_z(object_id,
         "get_next_for_consumer_after_cursor:"))
     {
         limit_applies = true;
-        syntax_z =
-            "get_next_for_consumer_after_cursor:<consumer_id>:<event_cursor>";
+        syntax_z = "get_next_for_consumer_after_cursor:"
+            "<consumer_id>:<event_cursor>[:<limit>]";
         option =
             afw_adapter_journal_option_get_next_for_consumer_after_cursor;
         option_z = "get_next_for_consumer_after_cursor";
-        s = c = object_id->s + strlen("get_next_for_consumer_after_cursor:");
-        len = object_id->len - strlen("get_next_for_consumer_after_cursor:");
-        for (; len > 0; c++, len--) {
-            if (*c == ':') {
-                consumer_id = afw_utf8_create(s, c - s, request->p, xctx);
-                break;
-            }
+        count = impl_split_special_id_args(
+            object_id->s + strlen("get_next_for_consumer_after_cursor:"),
+            object_id->len - strlen("get_next_for_consumer_after_cursor:"),
+            fields, 3, request->p, xctx);
+        if (count < 2) goto error_special_id;
+        consumer_id = fields[0];
+        entry_cursor = fields[1];
+        if (count == 3 && !impl_parse_special_id_limit(fields[2], &limit)) {
+            goto error_special_id;
         }
-        if (len <= 0) goto error_special_id;
-        entry_cursor = afw_utf8_create(c + 1, len - 1, request->p, xctx);
-        if (entry_cursor->len == 0) goto error_special_id;
     }
 
-    /* advance_cursor_for_consumer:<consumer_id> */
+    /* advance_cursor_for_consumer:<consumer_id>[:<limit>] */
     else if (afw_utf8_starts_with_utf8_z(object_id,
         "advance_cursor_for_consumer:"))
     {
         limit_applies = true;
-        syntax_z = "advance_cursor_for_consumer:<consumer_id>";
+        syntax_z = "advance_cursor_for_consumer:<consumer_id>[:<limit>]";
         option =
             afw_adapter_journal_option_advance_cursor_for_consumer;
         option_z = "advance_cursor_for_consumer";
-        consumer_id = afw_utf8_create(
+        count = impl_split_special_id_args(
             object_id->s + strlen("advance_cursor_for_consumer:"),
             object_id->len - strlen("advance_cursor_for_consumer:"),
-            request->p, xctx);
-        if (consumer_id->len == 0) goto error_special_id;
+            fields, 2, request->p, xctx);
+        if (count == 0) goto error_special_id;
+        consumer_id = fields[0];
+        if (count == 2 && !impl_parse_special_id_limit(fields[1], &limit)) {
+            goto error_special_id;
+        }
     }
 
     /* <event_cursor> */
@@ -502,6 +606,9 @@ afw_adapter_internal_journal_get_entry(
     } else {
         limit = 1;
     }
+
+    afw_adapter_internal_journal_authorize(&session->adapter->adapter_id,
+        object_id, afw_authorization_action_id_read, NULL, xctx);
 
     /* Get entry and return. */
     afw_memory_clear(&impl_request);

@@ -565,14 +565,12 @@ impl_afw_adapter_journal_get_next_for_consumer(
         afw_object_set_property_as_object_internal(response, 
             afw_v_entry, entry, xctx);
     } else {
-        /* we may need to increase the advanceCursor */
-        if (advance_cursor) {
-            /** @fixme: is the cursor further along than our existing advanceCursor? */
-
-        } else {
-            afw_object_set_property_as_string_internal(peer, 
-                afw_v_advanceCursor, cursor_str, xctx); 
-        }
+        /*
+         * Nothing applicable within limit: the scan only moves forward from
+         * advanceCursor, so the next scan starts where this one stopped.
+         */
+        afw_object_set_property_as_string_internal(peer,
+            afw_v_advanceCursor, cursor_str, xctx);
     }
 
     afw_object_set_property_as_dateTime_internal(peer,
@@ -602,7 +600,6 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     const afw_object_t *peer;
     const afw_utf8_t *current_cursor;
     const afw_utf8_t *advance_cursor;
-    const afw_utf8_t *consume_cursor;
     const afw_utf8_t *cursor_str;
     const afw_value_t *consumer_filter;
     afw_boolean_t found = AFW_FALSE;
@@ -621,16 +618,10 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
-    consume_cursor = afw_object_get_property_as_string_internal(
-        peer, afw_v_consumeCursor, xctx);
 
-    /** @fixme: we'll have to consider the scenario where we get
-        a consume_cursor (re-issue) and now it's removed from the
-        journal */
-
-    if (consume_cursor)
-        cursor = impl_cursor_from_utf8(consume_cursor, xctx);
-    else if (advance_cursor)
+    /* Advancing does not reissue; it starts at advanceCursor or after
+       currentCursor, like the file journal. */
+    if (advance_cursor)
         cursor = impl_cursor_from_utf8(advance_cursor, xctx);
     else if (current_cursor)
         cursor = impl_cursor_from_utf8(current_cursor, xctx) + 1;
@@ -662,35 +653,15 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     /* update our last contact time */
     now = afw_dateTime_now_utc(xctx->p, xctx);
 
+    /*
+     * advanceCursor is the applicable entry found or where the scan
+     * stopped. Advancing does not start consuming the entry.
+     */
+    afw_object_set_property_as_string_internal(peer,
+        afw_v_advanceCursor, cursor_str, xctx);
     if (found) {
-        /* check to see if this is a re-issue */
-        if (consume_cursor) {
-            afw_object_set_property(response, afw_v_reissue,
-                afw_boolean_v_true, xctx);
-        } else {
-            /* not a re-issue, so set our consumption properties */
-            afw_object_set_property_as_dateTime_internal(peer,
-                afw_v_consumeStartTime, now, xctx);
-            afw_object_set_property_as_string_internal(peer,
-                afw_v_consumeCursor, cursor_str, xctx);
-            afw_object_set_property_as_string_internal(peer,
-                afw_v_currentCursor, cursor_str, xctx);
-            afw_object_remove_property(peer,
-                afw_v_advanceCursor, xctx);
-        }
-
-        /* set our entry cursor */
         afw_object_set_property_as_string_internal(response,
             afw_v_entryCursor, cursor_str, xctx);
-    } else {
-        /* we may need to increase the advanceCursor */
-        if (advance_cursor) {
-            /** @fixme: is the cursor further along than our existing advanceCursor? */
-
-        } else {
-            afw_object_set_property_as_string_internal(peer,
-                afw_v_advanceCursor, cursor_str, xctx);
-        }
     }
 
     afw_object_set_property_as_dateTime_internal(peer,

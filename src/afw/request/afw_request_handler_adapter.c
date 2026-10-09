@@ -234,6 +234,19 @@ impl_afw_request_handler_process(
                     parsed_path->options, query_criteria,
                     journal_entry, NULL, xctx->p, xctx);
 
+                /*
+                 * Journal reads change as entries are added, and the
+                 * consumer forms change the peer, so they must not be
+                 * cached.
+                 */
+                if (afw_utf8_equal(&parsed_path->object_type_id,
+                    AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+                {
+                    afw_request_write_response_header(request,
+                        afw_s_a_Cache_dash_Control, afw_s_a_no_dash_store,
+                        xctx);
+                }
+
                 /* If object not found, indicate. */
                 if (!obj) {
                     value = NULL;

@@ -18,6 +18,34 @@ interface IAnyObject {
 }
 
 /**
+ * Add an entry to the journal of an adapter. The entry is stored as given.
+ * This is the same as add_object() with object type _AdaptiveJournalEntry_,
+ * but returns the new entry's cursor.
+ * 
+ * Include something like an eventType property in entries you write, so a
+ * peer's consumeFilter can tell them apart from each other and from the
+ * entries an adapter writes for its object changes.
+ * 
+ * @param {string} adapterId - Id of the adapter whose journal gets the entry.
+ * 
+ * @param {object} entry - The journal entry.
+ * 
+ * @returns {string} The new entry's cursor.
+ */
+export function afwJournalAddEntry(client : any, entry : object, adapterId? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "journal_add_entry";
+    _action["entry"] = entry;
+
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
+
+    return client.perform(_action);
+}
+
+/**
  * Update the advance cursor for a consumer referenced by the consumerId
  * parameter. The limit parameter specifies the maximum number of entries to
  * scan for an applicable entry for consumer before returning. A response

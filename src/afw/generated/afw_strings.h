@@ -8921,6 +8921,32 @@ afw_self_v__meta_;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_a_Cache_dash_Control \
+    "Cache-Control"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_Cache_dash_Control */
+#define afw_s_a_Cache_dash_Control \
+    (&afw_self_v_a_Cache_dash_Control.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_Cache_dash_Control */
+#define afw_self_s_a_Cache_dash_Control \
+    (afw_self_v_a_Cache_dash_Control.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_Cache_dash_Control */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_Cache_dash_Control;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_Cache_dash_Control */
+#define afw_z_a_Cache_dash_Control \
+    (afw_self_v_a_Cache_dash_Control.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_Cache_dash_Control */
+#define afw_v_a_Cache_dash_Control \
+    (&afw_self_v_a_Cache_dash_Control.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_a_Content_dash_Type \
     "Content-Type"
 
@@ -14949,6 +14975,32 @@ afw_self_v_a_newline_char;
 /** @brief 'const afw_value_t *' for AFW_Q_a_newline_char */
 #define afw_v_a_newline_char \
     (&afw_self_v_a_newline_char.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_no_dash_store \
+    "no-store"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_no_dash_store */
+#define afw_s_a_no_dash_store \
+    (&afw_self_v_a_no_dash_store.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_no_dash_store */
+#define afw_self_s_a_no_dash_store \
+    (afw_self_v_a_no_dash_store.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_no_dash_store */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_no_dash_store;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_no_dash_store */
+#define afw_z_a_no_dash_store \
+    (afw_self_v_a_no_dash_store.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_no_dash_store */
+#define afw_v_a_no_dash_store \
+    (&afw_self_v_a_no_dash_store.pub)
 
 
 
@@ -26961,6 +27013,32 @@ afw_self_v_afwJoin;
 /** @brief 'const afw_value_t *' for AFW_Q_afwJoin */
 #define afw_v_afwJoin \
     (&afw_self_v_afwJoin.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwJournalAddEntry \
+    "afwJournalAddEntry"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwJournalAddEntry */
+#define afw_s_afwJournalAddEntry \
+    (&afw_self_v_afwJournalAddEntry.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwJournalAddEntry */
+#define afw_self_s_afwJournalAddEntry \
+    (afw_self_v_afwJournalAddEntry.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwJournalAddEntry */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwJournalAddEntry;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwJournalAddEntry */
+#define afw_z_afwJournalAddEntry \
+    (afw_self_v_afwJournalAddEntry.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwJournalAddEntry */
+#define afw_v_afwJournalAddEntry \
+    (&afw_self_v_afwJournalAddEntry.pub)
 
 
 
@@ -67941,6 +68019,32 @@ afw_self_v_journalAdapterId;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_journalAddEntry \
+    "journalAddEntry"
+
+/** @brief 'afw_utf8_t' for AFW_Q_journalAddEntry */
+#define afw_s_journalAddEntry \
+    (&afw_self_v_journalAddEntry.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_journalAddEntry */
+#define afw_self_s_journalAddEntry \
+    (afw_self_v_journalAddEntry.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_journalAddEntry */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_journalAddEntry;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_journalAddEntry */
+#define afw_z_journalAddEntry \
+    (afw_self_v_journalAddEntry.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_journalAddEntry */
+#define afw_v_journalAddEntry \
+    (&afw_self_v_journalAddEntry.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_journalAdvanceCursorForConsumer \
     "journalAdvanceCursorForConsumer"
 
@@ -68119,6 +68223,32 @@ afw_self_v_journalMarkConsumed;
 /** @brief 'const afw_value_t *' for AFW_Q_journalMarkConsumed */
 #define afw_v_journalMarkConsumed \
     (&afw_self_v_journalMarkConsumed.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_journal_add_entry \
+    "journal_add_entry"
+
+/** @brief 'afw_utf8_t' for AFW_Q_journal_add_entry */
+#define afw_s_journal_add_entry \
+    (&afw_self_v_journal_add_entry.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_journal_add_entry */
+#define afw_self_s_journal_add_entry \
+    (afw_self_v_journal_add_entry.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_journal_add_entry */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_journal_add_entry;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_journal_add_entry */
+#define afw_z_journal_add_entry \
+    (afw_self_v_journal_add_entry.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_journal_add_entry */
+#define afw_v_journal_add_entry \
+    (&afw_self_v_journal_add_entry.pub)
 
 
 

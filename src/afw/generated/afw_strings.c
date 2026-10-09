@@ -2079,6 +2079,12 @@ afw_self_v__meta_ = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_Cache_dash_Control = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_Cache_dash_Control)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_Content_dash_Type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_Content_dash_Type)
@@ -3468,6 +3474,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_newline_char = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_newline_char)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_no_dash_store = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_no_dash_store)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -6240,6 +6252,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJoin = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJoin)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwJournalAddEntry = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afwJournalAddEntry)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -15699,6 +15717,12 @@ afw_self_v_journalAdapterId = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_journalAddEntry = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_journalAddEntry)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalAdvanceCursorForConsumer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalAdvanceCursorForConsumer)
@@ -15738,6 +15762,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalMarkConsumed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalMarkConsumed)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_journal_add_entry = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_journal_add_entry)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -30273,6 +30303,12 @@ afw_self_v_zz__7da16cee43b4 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__7db5129dd8ea = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__7db5129dd8ea)
+};
+
+const afw_value_string_t
 afw_self_v_zz__7dc68fefbb1b = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__7dc68fefbb1b)
@@ -32982,6 +33018,12 @@ const afw_value_string_t
 afw_self_v_zz__Add_duration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Add_duration)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Add_journal_entry = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Add_journal_entry)
 };
 
 const afw_value_string_t
@@ -36948,6 +36990,12 @@ const afw_value_string_t
 afw_self_v_zz__Id_of_test = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Id_of_test)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_)
 };
 
 const afw_value_string_t
@@ -42297,6 +42345,12 @@ afw_self_v_zz__The_internal_source_filename_line_where_the_error_occurred_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__The_journal_entry_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__The_journal_entry_)
+};
+
+const afw_value_string_t
 afw_self_v_zz__The_key_for_this_lock = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_key_for_this_lock)
@@ -42432,6 +42486,12 @@ const afw_value_string_t
 afw_self_v_zz__The_name_of_this_parameter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_name_of_this_parameter)
+};
+
+const afw_value_string_t
+afw_self_v_zz__The_new_entry_s_cursor_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__The_new_entry_s_cursor_)
 };
 
 const afw_value_string_t
@@ -44757,6 +44817,12 @@ afw_self_v_zz___adapterId__string__cursor__string___object = {
 };
 
 const afw_value_string_t
+afw_self_v_zz___adapterId__string__entry__object___string = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___adapterId__string__entry__object___string)
+};
+
+const afw_value_string_t
 afw_self_v_zz___adapterId__string__key__string___object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___adapterId__string__key__string___object)
@@ -47070,6 +47136,12 @@ const afw_value_string_t
 afw_self_v_zz___afw__AdaptiveFunction__join = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__join)
+};
+
+const afw_value_string_t
+afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry)
 };
 
 const afw_value_string_t
@@ -53838,6 +53910,12 @@ const afw_value_string_t
 afw_self_v_zz__b7a5ce01fc04 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__b7a5ce01fc04)
+};
+
+const afw_value_string_t
+afw_self_v_zz__b8679ed69739 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__b8679ed69739)
 };
 
 const afw_value_string_t
@@ -63251,6 +63329,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_afwIsXpathExpression,
     &afw_self_v_afwIsYearMonthDuration,
     &afw_self_v_afwJoin,
+    &afw_self_v_afwJournalAddEntry,
     &afw_self_v_afwJournalAdvanceCursorForConsumer,
     &afw_self_v_afwJournalGetByCursor,
     &afw_self_v_afwJournalGetFirst,
@@ -64822,6 +64901,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_join,
     &afw_self_v_journal,
     &afw_self_v_journalAdapterId,
+    &afw_self_v_journalAddEntry,
     &afw_self_v_journalAdvanceCursorForConsumer,
     &afw_self_v_journalGetByCursor,
     &afw_self_v_journalGetFirst,
@@ -64829,6 +64909,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_journalGetNextForConsumer,
     &afw_self_v_journalGetNextForConsumerAfterCursor,
     &afw_self_v_journalMarkConsumed,
+    &afw_self_v_journal_add_entry,
     &afw_self_v_journal_advance_cursor_for_consumer,
     &afw_self_v_journal_get_by_cursor,
     &afw_self_v_journal_get_first,

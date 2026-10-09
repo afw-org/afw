@@ -16596,6 +16596,48 @@ afw_function_definition_to_string_ipAddress;
  * @{
  */
 
+/** @brief Function definition journal_add_entry */
+extern const afw_value_function_definition_t
+afw_function_definition_journal_add_entry;
+
+/**
+ * @brief Adaptive Function `journal_add_entry`
+ * @param x function execute parameter.
+ *
+ * Add an entry to the journal of an adapter. The entry is stored as given. This
+ * is the same as add_object() with object type _AdaptiveJournalEntry_, but
+ * returns the new entry's cursor.
+ * 
+ * Include something like an eventType property in entries you write, so a
+ * peer's consumeFilter can tell them apart from each other and from the entries
+ * an adapter writes for its object changes.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function journal_add_entry(
+ *       adapterId: string,
+ *       entry: object
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   adapterId - (string) Id of the adapter whose journal gets the entry.
+ *
+ *   entry - (object) The journal entry.
+ *
+ * Returns:
+ *
+ *   (string) The new entry's cursor.
+ */
+const afw_value_t *
+afw_function_execute_journal_add_entry(
+    afw_function_execute_t *x);
+
 /** @brief Function definition journal_advance_cursor_for_consumer */
 extern const afw_value_function_definition_t
 afw_function_definition_journal_advance_cursor_for_consumer;

@@ -494,3 +494,63 @@ afw_function_execute_journal_mark_consumed(
     /* Return void singleton. */
     return afw_value_void;
 }
+
+
+
+/*
+ * Adaptive function: journal_add_entry
+ *
+ * afw_function_execute_journal_add_entry
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Add an entry to the journal of an adapter. The entry is stored as given. This
+ * is the same as add_object() with object type _AdaptiveJournalEntry_, but
+ * returns the new entry's cursor.
+ * 
+ * Include something like an eventType property in entries you write, so a
+ * peer's consumeFilter can tell them apart from each other and from the entries
+ * an adapter writes for its object changes.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function journal_add_entry(
+ *       adapterId: string,
+ *       entry: object
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   adapterId - (string) Id of the adapter whose journal gets the entry.
+ *
+ *   entry - (object) The journal entry.
+ *
+ * Returns:
+ *
+ *   (string) The new entry's cursor.
+ */
+const afw_value_t *
+afw_function_execute_journal_add_entry(
+    afw_function_execute_t *x)
+{
+    const afw_value_string_t *adapterId;
+    const afw_value_object_t *entry;
+    const afw_object_t *journal_entry;
+    const afw_utf8_t *cursor;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(entry, 2, object);
+
+    /* Same path as add_object(), so the same checks apply. */
+    journal_entry = afw_object_create_unmanaged(x->p, x->xctx);
+    cursor = afw_adapter_add_object(&adapterId->internal,
+        AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY, NULL,
+        entry->internal, journal_entry, NULL, x->xctx);
+
+    return afw_value_create_unmanaged_string(cursor, x->p, x->xctx);
+}
