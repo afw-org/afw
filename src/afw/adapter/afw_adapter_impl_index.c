@@ -767,17 +767,20 @@ void afw_adapter_impl_index_open_definition(
     objectType = afw_object_get_property_as_array_internal(
         indexDefinition, afw_v_objectType, xctx);
 
-    if (objectType) {
-        object_type_iterator = NULL;
-        object_type_id = afw_array_of_string_get_next_internal(
-            objectType, &object_type_iterator, xctx);
-        while (object_type_id) {
+    /* An omitted or empty objectType list means all object types. */
+    object_type_iterator = NULL;
+    object_type_id = (objectType)
+        ? afw_array_of_string_get_next_internal(
+            objectType, &object_type_iterator, xctx)
+        : NULL;
+    if (object_type_id) {
+        do {
             afw_adapter_impl_index_open(indexer, object_type_id,
                 key, unique, reverse, pool, xctx);
 
             object_type_id = afw_array_of_string_get_next_internal(
                 objectType, &object_type_iterator, xctx);
-        }
+        } while (object_type_id);
     } else {
         afw_adapter_impl_index_open(indexer, NULL, key,
             unique, reverse, pool, xctx);
@@ -974,40 +977,42 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     afw_adapter_impl_index_update_index_definitions(
         indexer, indexDefinitions, xctx);
 
-    /* get all applicable objectTypes */
+    /*
+     * get all applicable objectTypes. An omitted or empty objectType list
+     * means all object types: drop once with no object type.
+     */
     objectTypes = afw_object_get_property_as_array_internal(
         indexDefinition, afw_v_objectType, xctx);
-    if (objectTypes) {
-        object_type_iterator = NULL;
+    object_type_iterator = NULL;
+    object_type_id = (objectTypes)
+        ? afw_array_of_string_get_next_internal(
+            objectTypes, &object_type_iterator, xctx)
+        : NULL;
+    do
+    {
+        /* try to drop it first, if possible */
+        rc = afw_adapter_impl_index_drop(indexer,
+            object_type_id, key, pool, xctx);
+        if (rc) {
+            ctx.instance = indexer;
+            ctx.key = key;
+            ctx.indexDefinition = indexDefinition;
+            ctx.num_indexed = 0;
+            ctx.num_processed = 0;
+            ctx.mode = afw_adapter_impl_index_mode_delete;
 
-        object_type_id = afw_array_of_string_get_next_internal(
-            objectTypes, &object_type_iterator, xctx);
-        do
-        {
-            /* try to drop it first, if possible */
-            rc = afw_adapter_impl_index_drop(indexer,
-                object_type_id, key, pool, xctx);
-            if (rc) {
-                ctx.instance = indexer;
-                ctx.key = key;
-                ctx.indexDefinition = indexDefinition;
-                ctx.num_indexed = 0;
-                ctx.num_processed = 0;
-                ctx.mode = afw_adapter_impl_index_mode_delete;
+            /** @fixme xctx->p, session->p, or pool?  */
+            afw_adapter_session_retrieve_objects(session, NULL,
+                object_type_id,
+                NULL, &ctx, afw_adapter_impl_index_cb, NULL,
+                /** @fixme is pool correct? */ pool, xctx);
+        }
 
-                /** @fixme xctx->p, session->p, or pool?  */
-                afw_adapter_session_retrieve_objects(session, NULL,
-                    object_type_id,
-                    NULL, &ctx, afw_adapter_impl_index_cb, NULL,
-                    /** @fixme is pool correct? */ pool, xctx);
-            }
+        if (object_type_id)
+            object_type_id = afw_array_of_string_get_next_internal(
+                objectTypes, &object_type_iterator, xctx);
 
-            if (object_type_id)
-                object_type_id = afw_array_of_string_get_next_internal(
-                    objectTypes, &object_type_iterator, xctx);
-
-        } while (object_type_id);
-    }
+    } while (object_type_id);
 
     return result;
 }

@@ -221,70 +221,132 @@ const afw_lmdb_index_conf_t * afw_lmdb_adapter_parse_index_conf(
 }
 
 /*
- * Open every named database on disk in txn. The keys of LMDB's unnamed
- * database are the names of the named ones. This includes databases
+ * Is database an index database no index definition covers? A covered
+ * one is Index#<type>#<key> for a definition of key whose objectType
+ * list is omitted, empty, or has type. Index#<key> is not used.
+ */
+static afw_boolean_t
+impl_index_database_is_left(
+    afw_lmdb_adapter_t * self,
+    const afw_utf8_t   * database,
+    afw_xctx_t        * xctx)
+{
+    const afw_utf8_t *prefix = afw_lmdb_s_Index;
+    const afw_object_t *indexDefinitions;
+    const afw_object_t *indexDefinition;
+    const afw_iterator_old_t *iterator;
+    const afw_iterator_old_t *type_iterator;
+    const afw_value_t *key;
+    const afw_array_t *objectType;
+    const afw_utf8_t *type_id;
+    afw_utf8_t type;
+
+    if (database->len <= prefix->len ||
+        memcmp(database->s, prefix->s, prefix->len) != 0 ||
+        database->s[prefix->len] != '#')
+    {
+        return false;
+    }
+
+    indexDefinitions = afw_object_get_property_as_object_internal(
+        self->internalConfig, afw_lmdb_v_indexDefinitions, xctx);
+    if (!indexDefinitions) {
+        return true;
+    }
+
+    iterator = NULL;
+    while ((indexDefinition = afw_object_get_next_property_as_object_internal(
+        indexDefinitions, &iterator, &key, xctx)))
+    {
+        if (!afw_lmdb_index_database_is_for_key(database,
+            afw_object_string_property_name_internal(key, xctx), &type))
+        {
+            continue;
+        }
+
+        objectType = afw_object_get_property_as_array_internal(
+            indexDefinition, afw_v_objectType, xctx);
+        type_iterator = NULL;
+        type_id = (objectType)
+            ? afw_array_of_string_get_next_internal(
+                objectType, &type_iterator, xctx)
+            : NULL;
+        if (!type_id) {
+            return false;
+        }
+        for (; type_id; type_id = afw_array_of_string_get_next_internal(
+            objectType, &type_iterator, xctx))
+        {
+            if (afw_utf8_equal(type_id, &type)) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+/*
+ * Open every named database on disk in txn. This includes databases
  * nothing names at startup: an index database per object type for an
  * index on all object types, and a key-value namespace.
+ *
+ * first_open: this process just opened the environment, so no other
+ * transaction in it can be using a database. index_remove only clears
+ * an index database; here, one no definition covers is deleted (#511).
  */
 static void
 impl_open_databases_on_disk(
     afw_lmdb_adapter_t * self,
     MDB_txn            * txn,
+    afw_boolean_t        first_open,
     const afw_pool_t   * pool,
     afw_xctx_t        * xctx)
 {
-    MDB_dbi main_dbi;
+    const afw_utf8_t * const *names;
     MDB_dbi dbi;
-    MDB_cursor *cursor;
-    MDB_val key;
-    afw_utf8_t name;
     int rc;
 
-    /* The unnamed database takes no slot of its own. */
-    rc = mdb_dbi_open(txn, NULL, 0, &main_dbi);
-    if (rc == 0) {
-        rc = mdb_cursor_open(txn, main_dbi, &cursor);
-    }
-    if (rc) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
-            "Unable to list databases.", xctx);
-    }
-
-    AFW_TRY {
-        while (mdb_cursor_get(cursor, &key, NULL, MDB_NEXT_NODUP) == 0) {
-            if (key.mv_size == 0 || memchr(key.mv_data, '\0', key.mv_size)) {
-                continue;
-            }
-            name.s = key.mv_data;
-            name.len = key.mv_size;
-
-            rc = afw_lmdb_internal_try_open_database(self, txn,
-                &name, 0, &dbi, pool, xctx);
-
-            /* A key that is not a database. */
-            if (rc == MDB_INCOMPATIBLE) {
-                continue;
-            }
-
-            /* A write opens the rest on first use, or fails there. */
-            if (rc == MDB_DBS_FULL) {
-                afw_trace_fz(1, self->pub.trace_flag_index, NULL, xctx,
-                    "LMDB maxdbs reached; not opening '%.*s' and later "
-                    "databases at start.", (int)name.len, name.s);
-                break;
-            }
-
+    for (names = afw_lmdb_internal_database_names(txn, pool, xctx);
+        *names; names++)
+    {
+        if (first_open && impl_index_database_is_left(self, *names, xctx)) {
+            afw_trace_fz(1, self->pub.trace_flag_index, NULL, xctx,
+                "LMDB deleting index database '%.*s' left by a removed "
+                "index.", (int)(*names)->len, (*names)->s);
+            rc = afw_lmdb_internal_drop_database(self, txn, *names,
+                pool, xctx);
             if (rc) {
                 AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
-                    "Unable to open database: '%.*s'.",
-                    (int)name.len, name.s);
+                    "Unable to delete database: '%.*s'.",
+                    (int)(*names)->len, (*names)->s);
             }
+            continue;
+        }
+
+        rc = afw_lmdb_internal_try_open_database(self, txn,
+            *names, 0, &dbi, pool, xctx);
+
+        /* A key that is not a database. */
+        if (rc == MDB_INCOMPATIBLE) {
+            continue;
+        }
+
+        /* A write opens the rest on first use, or fails there. */
+        if (rc == MDB_DBS_FULL) {
+            afw_trace_fz(1, self->pub.trace_flag_index, NULL, xctx,
+                "LMDB maxdbs reached; not opening '%.*s' and later "
+                "databases at start.", (int)(*names)->len, (*names)->s);
+            break;
+        }
+
+        if (rc) {
+            AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+                "Unable to open database: '%.*s'.",
+                (int)(*names)->len, (*names)->s);
         }
     }
-    AFW_FINALLY {
-        mdb_cursor_close(cursor);
-    }
-    AFW_ENDTRY;
 }
 
 
@@ -302,6 +364,7 @@ impl_open_databases_on_disk(
  */
 void afw_lmdb_adapter_open_databases(
     afw_lmdb_adapter_t * self, 
+    afw_boolean_t        first_open,
     const afw_pool_t   * pool,
     afw_xctx_t        * xctx)
 {
@@ -355,7 +418,7 @@ void afw_lmdb_adapter_open_databases(
     }
 
     /* and every other database already on disk (#511) */
-    impl_open_databases_on_disk(self, txn, pool, xctx);
+    impl_open_databases_on_disk(self, txn, first_open, pool, xctx);
 
     /** @fixme: set compare routines? */
 
@@ -453,6 +516,7 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
 {
     afw_lmdb_adapter_t *self;
     const afw_lmdb_shared_env_t *shared;
+    volatile afw_boolean_t first_open;
     MDB_env *dbEnv;
     afw_adapter_t *adapter;
     const afw_value_t *value;
@@ -498,9 +562,11 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
        when this is genuinely the first time this process has seen
        this path. */
     shared = NULL;
+    first_open = false;
     AFW_LOCK_BEGIN(impl_shared_env_registry_lock) {
         shared = impl_shared_env_find(self->env->path_z, xctx);
         if (!shared) {
+            first_open = true;
             rc = mdb_env_create(&dbEnv);
             if (rc) {
                 AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
@@ -580,7 +646,7 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     afw_lmdb_adapter_load_configuration(self, p, xctx);
 
     /* Pre-open any databases we will need */
-    afw_lmdb_adapter_open_databases(self, p, xctx);
+    afw_lmdb_adapter_open_databases(self, first_open, p, xctx);
 
     /* Return adapter. */
     return (const afw_adapter_t *)self;

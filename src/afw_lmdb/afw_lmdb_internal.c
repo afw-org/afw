@@ -365,11 +365,14 @@ void afw_lmdb_internal_txn_abort(
 /*
  * int afw_lmdb_internal_drop_database()
  *
- * Deletes a database from the environment. mdb_drop() with del 1 also
- * closes its handle, so the cached handle is forgotten too: LMDB reuses
- * the slot for the next database opened, and a stale cache entry would
- * then reach that other database (or fail with EINVAL). A handle still
- * pending in some transaction is forgotten for the same reason.
+ * Deletes a database from the environment. mdb_drop() with del 1 closes
+ * its handle for the whole process at once, before txn commits, so no
+ * other transaction in the process may be using it: call this only when
+ * the adapter first opens the environment (#511). The cached handle is
+ * forgotten too: LMDB reuses the slot for the next database opened, and
+ * a stale cache entry would then reach that other database (or fail
+ * with EINVAL). A handle still pending in txn is forgotten for the same
+ * reason. A database that does not exist is left alone.
  */
 int afw_lmdb_internal_drop_database(
     const afw_lmdb_adapter_t * adapter,
@@ -384,8 +387,11 @@ int afw_lmdb_internal_drop_database(
     MDB_dbi dbi;
     int rc;
 
-    dbi = afw_lmdb_internal_open_database(adapter,
-        txn, database, MDB_DUPSORT|MDB_CREATE, p, xctx);
+    rc = afw_lmdb_internal_try_open_database(adapter, txn, database, 0,
+        &dbi, p, xctx);
+    if (rc) {
+        return (rc == MDB_NOTFOUND) ? 0 : rc;
+    }
 
     /* (1) means delete it from the environment and close the DB handle */
     rc = mdb_drop(txn, dbi, 1);
@@ -409,6 +415,95 @@ int afw_lmdb_internal_drop_database(
 
     return rc;
 }
+
+
+/*
+ * int afw_lmdb_internal_clear_database()
+ *
+ * Deletes every entry of a database in txn and keeps the database and
+ * its handle, so a transaction still reading it is unaffected (#511).
+ * A database that does not exist is left alone.
+ */
+int afw_lmdb_internal_clear_database(
+    const afw_lmdb_adapter_t * adapter,
+    MDB_txn                  * txn,
+    const afw_utf8_t         * database,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx)
+{
+    MDB_dbi dbi;
+    int rc;
+
+    rc = afw_lmdb_internal_try_open_database(adapter, txn, database, 0,
+        &dbi, p, xctx);
+    if (rc) {
+        return (rc == MDB_NOTFOUND) ? 0 : rc;
+    }
+
+    /* (0) means empty it; the database and its handle stay */
+    return mdb_drop(txn, dbi, 0);
+}
+
+
+/*
+ * const afw_utf8_t * const * afw_lmdb_internal_database_names()
+ *
+ * The names of the named databases in txn's view: the keys of the
+ * unnamed database. NULL terminated, in p.
+ */
+const afw_utf8_t * const * afw_lmdb_internal_database_names(
+    MDB_txn                  * txn,
+    const afw_pool_t         * p,
+    afw_xctx_t              * xctx)
+{
+    const afw_utf8_t **names;
+    MDB_dbi main_dbi;
+    MDB_cursor *cursor;
+    MDB_val key;
+    afw_size_t count, allocated;
+    int rc;
+
+    /* The unnamed database takes no slot of its own. */
+    rc = mdb_dbi_open(txn, NULL, 0, &main_dbi);
+    if (rc == 0) {
+        rc = mdb_cursor_open(txn, main_dbi, &cursor);
+    }
+    if (rc) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+            "Unable to list databases.", xctx);
+    }
+
+    count = 0;
+    allocated = 16;
+    names = afw_pool_malloc(p, allocated * sizeof(afw_utf8_t *), xctx);
+    AFW_TRY {
+        while (mdb_cursor_get(cursor, &key, NULL, MDB_NEXT_NODUP) == 0) {
+            if (key.mv_size == 0 ||
+                memchr(key.mv_data, '\0', key.mv_size))
+            {
+                continue;
+            }
+            if (count + 1 == allocated) {
+                const afw_utf8_t **grown;
+                grown = afw_pool_malloc(p,
+                    2 * allocated * sizeof(afw_utf8_t *), xctx);
+                memcpy(grown, names, count * sizeof(afw_utf8_t *));
+                names = grown;
+                allocated *= 2;
+            }
+            names[count++] = afw_utf8_create(key.mv_data, key.mv_size,
+                p, xctx);
+        }
+        names[count] = NULL;
+    }
+    AFW_FINALLY {
+        mdb_cursor_close(cursor);
+    }
+    AFW_ENDTRY;
+
+    return names;
+}
+
 
 /*
  * Functions for opening and automatically releasing

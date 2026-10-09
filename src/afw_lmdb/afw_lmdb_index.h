@@ -33,5 +33,15 @@ const afw_utf8_t * afw_lmdb_index_database(
     const afw_pool_t *pool,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Is database the index database of key for one object type?
+ * @param object_type_id set to the object type when true is returned.
+ * @return true for Index#<object_type_id>#<key>.
+ */
+afw_boolean_t afw_lmdb_index_database_is_for_key(
+    const afw_utf8_t *database,
+    const afw_utf8_t *key,
+    afw_utf8_t *object_type_id);
+
 
 #endif
