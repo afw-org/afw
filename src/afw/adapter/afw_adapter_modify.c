@@ -917,13 +917,9 @@ afw_adapter_modify_using_update_object(
      * {"consumed": true, "consumerId": <peer objectId>}. This is the REST
      * form, POST /<journal>/_AdaptiveJournalEntry_/<cursor>.
      */
-    if (object_type_id && afw_utf8_equal(object_type_id,
+    if (object_type_id && object_id && afw_utf8_equal(object_type_id,
         AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
     {
-        if (!object_id) {
-            AFW_THROW_ERROR_Z(general,
-                "Missing object id or object_type.", xctx);
-        }
         afw_adapter_journal_entry_consume(
             afw_adapter_session_get_cached(adapter_id, true, xctx),
             object_id, update_object, xctx);

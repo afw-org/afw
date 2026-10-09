@@ -1703,11 +1703,7 @@ impl_afw_adapter_journal_get_entry(
     afw_adapter_impl_session_t *session =
         (afw_adapter_impl_session_t *)(self->session);
 
-    /*
-     * Not authorized here: the callers that serve journal requests do it
-     * (afw_adapter_internal_journal_authorize), so the entries an adapter
-     * writes for its own object changes are not checked again.
-     */
+    /* Authorized by callers. See add_entry above. */
 
     afw_adapter_journal_get_entry(session->wrapped_journal,
         impl_request, option, consumer_id, entry_cursor,
@@ -1729,11 +1725,7 @@ impl_afw_adapter_journal_mark_entry_consumed(
     afw_adapter_impl_session_t *session =
         (afw_adapter_impl_session_t *)(self->session);
 
-    /*
-     * Not authorized here: the callers that serve journal requests do it
-     * (afw_adapter_internal_journal_authorize), so the entries an adapter
-     * writes for its own object changes are not checked again.
-     */
+    /* Authorized by callers. See add_entry above. */
 
     afw_adapter_journal_mark_entry_consumed(session->wrapped_journal,
         impl_request, consumer_id, entry_cursor, xctx);
