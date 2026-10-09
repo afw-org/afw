@@ -1,0 +1,7 @@
+{
+    "title": "LmdbOptin",
+    "defaultAdapterId": "lmdb",
+    "extensions": [
+        "afw_lmdb"
+    ]
+}
