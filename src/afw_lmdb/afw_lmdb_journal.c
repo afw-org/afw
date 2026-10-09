@@ -77,7 +77,7 @@ impl_afw_adapter_journal_add_entry(
     afw_uint64_t t = 0;
     int rc;
 
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
 
         /* open the journal database */
         dbi = afw_lmdb_internal_open_database(adapter, 
@@ -694,7 +694,7 @@ impl_afw_adapter_journal_get_entry(
     MDB_dbi dbiJournal;    
     MDB_txn *txn;
 
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -762,7 +762,7 @@ impl_afw_adapter_journal_mark_entry_consumed(
     MDB_txn * txn;
     const afw_dateTime_t *now;    
 
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 

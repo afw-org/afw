@@ -1,0 +1,21 @@
+{
+    "serviceId": "adapter-lmdbSmall",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "lmdb",
+        "adapterId": "lmdbSmall",
+        "description": "LMDB env with a 1MB map, filled until MDB_MAP_FULL to make its commit fail",
+        "limits": {
+            "time": { "hard": 60, "soft": 30 },
+            "size": { "hard": 100000, "soft": 100000 }
+        },
+        "env": {
+            "mapsize": 1048576,
+            "maxdbs": 32,
+            "maxreaders": 126,
+            "mode": 384,
+            "path": "lmdbSmall/"
+        }
+    }
+}

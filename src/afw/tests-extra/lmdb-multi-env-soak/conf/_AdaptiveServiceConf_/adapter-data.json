@@ -1,0 +1,28 @@
+{
+    "serviceId": "adapter-data",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "lmdb",
+        "adapterId": "data",
+        "description": "Data, journaled to journal",
+        "limits": {
+            "time": {
+                "hard": 60,
+                "soft": 30
+            },
+            "size": {
+                "hard": 100000,
+                "soft": 100000
+            }
+        },
+        "env": {
+            "mapsize": 268435456,
+            "maxdbs": 32,
+            "maxreaders": 126,
+            "mode": 384,
+            "path": "data/"
+        },
+        "journalAdapterId": "journal"
+    }
+}

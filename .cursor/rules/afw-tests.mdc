@@ -158,6 +158,7 @@ unless the hole is C-only (then the probe above):
 |-------|-------------|--------|
 | `tests/model_adapter/` | `models` | Hybrid: file is model location **and** `mappedAdapterId` |
 | `tests/model_adapter_script_only/` | `models-script-only` | Issue **#109**: no `mappedAdapterId`; pure `on*`; errors when default processing is needed |
+| `afw_lmdb/tests/model_multi_env/` (+ `model-multi-env-fcgi/`, `model-multi-env-concurrent-fcgi/`) | `lmdb-model-multi-env` / leaf conf | Model mapped to one LMDB env whose `on*` use another env and a second adapter id on the same directory; request-end commit/abort and concurrency in the FCGI leaves |
 
 - Seed models under `tests/environments/<name>/objects/_AdaptiveModel_/`.
 - Hook bodies may live in `includes/*.as` via `eval_from_file` from the model JSON.

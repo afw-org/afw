@@ -213,7 +213,7 @@ impl_afw_adapter_impl_index_update_index_definitions (
      * uses, rather than passing a stale NULL txn to save_config.
      */
     if (self->txn == NULL) {
-        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
             txn = AFW_LMDB_GET_TRANSACTION();
 
             /* lock the adapter */
@@ -385,9 +385,9 @@ impl_afw_adapter_impl_index_open(
 
     if (reverse) flags |= MDB_REVERSEKEY | MDB_REVERSEDUP;
 
-    /* open up our exclusive transaction, if we haven't already */
+    /* open up our own write transaction, if we haven't one already */
     if (self->txn == NULL) {
-        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, true, xctx) {        
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {        
 
             impl_index_open(adapter, AFW_LMDB_GET_TRANSACTION(),
                 object_type_id, key, flags, pool, xctx);
@@ -474,7 +474,7 @@ void impl_afw_adapter_impl_index_add(
      * impl_index_open uses.
      */
     if (self->txn == NULL) {
-        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
             txn = AFW_LMDB_GET_TRANSACTION();
 
             impl_index_data(adapter, txn, object_type_id, object_id,
@@ -567,7 +567,7 @@ void impl_afw_adapter_impl_index_delete(
      * impl_index_open uses.
      */
     if (self->txn == NULL) {
-        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
             txn = AFW_LMDB_GET_TRANSACTION();
 
             impl_index_data(adapter, txn, object_type_id, object_id,
@@ -667,7 +667,7 @@ impl_afw_adapter_impl_index_drop (
      * impl_index_open uses.
      */
     if (self->txn == NULL) {
-        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
             rc = impl_index_clear(adapter, AFW_LMDB_GET_TRANSACTION(),
                 object_type_id, key, pool, xctx);
 

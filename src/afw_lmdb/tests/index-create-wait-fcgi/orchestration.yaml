@@ -1,0 +1,102 @@
+# index_create while other writes hold LMDB environments.
+#
+# index_create opens the index's database before it begins its own
+# transaction. That open used to take the environment's dbLock exclusive,
+# which waits for every open transaction on that environment, and the
+# write wait graph could not see that wait:
+#
+#   alias-then-index-create: one request writes through lmdbA2, then
+#   index_create on lmdbA (same directory, same MDB_env). The exclusive
+#   lock waited on this request's own read hold: hung forever.
+#
+#   indexer / holder: holder writes lmdbB, then (a second later) lmdbA;
+#   indexer writes lmdbA, then index_create on lmdbB. indexer waited for
+#   holder's lmdbB transaction to end, holder for indexer's lmdbA writer:
+#   deadlock, every later request on either environment queued behind.
+#
+# With dbLock gone, the index open is an ordinary write on lmdbB that the
+# wait graph sees: the alias case is refused at once, and in the pair the
+# holder (whose wait closes the cycle) is refused and indexer finishes.
+version: 1
+description: LMDB index_create against writes that hold environments
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: alias-then-index-create
+    description: Write through lmdbA2, then index_create on lmdbA, in one request. Refused.
+    sourceType: script
+    source: |
+      add_object("lmdbA2", "Row", {k: "a"}, "a1");
+      try {
+          index_create("lmdbA", "k", undefined, ["Row"], undefined, undefined, false, false);
+      }
+      catch (e) {
+          assert(includes<string>(e.message, "would deadlock"), e.message);
+          return "refused";
+      }
+      return "created";
+    expect: refused
+
+  - name: indexer
+    description: lmdbA first, then index_create on lmdbB while holder still holds lmdbB.
+    sourceType: script
+    source: |
+      function spin(duration: string): void {
+          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration(duration));
+          while (true) {
+              const now = now_utc();
+              if (now >= until) { break; }
+          }
+      }
+      spin("PT0.2S");
+      add_object("lmdbA", "Row", {k: "x"}, "x1");
+      spin("PT0.3S");
+      // Retroactive: the scan runs once holder's request has ended, so
+      // it indexes holder's committed row too.
+      index_create("lmdbB", "k", undefined, ["Row"], undefined, undefined, true, false);
+      return "created";
+    expect: created
+
+  - name: holder
+    description: lmdbB first, then (after indexer waits on lmdbB) lmdbA. Refused.
+    sourceType: script
+    source: |
+      add_object("lmdbB", "Row", {k: "h"}, "h1");
+      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT1S"));
+      while (true) {
+          const now = now_utc();
+          if (now >= until) { break; }
+      }
+      try {
+          add_object("lmdbA", "Row", {k: "h"}, "h2");
+      }
+      catch (e) {
+          assert(includes<string>(e.message, "would deadlock"), e.message);
+          return "refused";
+      }
+      return "written";
+    expect: refused
+
+  - name: check
+    description: >-
+      The index on lmdbB finds holder's row (indexed retroactively) and a
+      row added since; both environments still take writes.
+    sourceType: script
+    source: |
+      add_object("lmdbA", "Row", {k: "y"}, "y1");
+      add_object("lmdbB", "Row", {k: "h"}, "h3");
+      const found = retrieve_objects("lmdbB", "Row", {filter: {op: "eq", property: "k", value: "h"}});
+      return [length(found), is_defined(index_list("lmdbB"))];
+    expect: [2, true]
+
+schedule:
+  - sequential: [alias-then-index-create]
+  - parallel:
+      n: 2
+      tests: [indexer, holder]
+  - sequential: [check]

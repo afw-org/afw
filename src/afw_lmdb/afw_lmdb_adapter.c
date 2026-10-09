@@ -43,7 +43,7 @@ void afw_lmdb_adapter_load_configuration(
 
     rc = afw_lmdb_internal_txn_begin(self, NULL, 0, &txn, xctx);
     if (rc) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+        afw_lmdb_internal_throw_txn_begin_error(self, rc,
             "Unable to begin initial transaction.", xctx);
     }
 
@@ -378,7 +378,7 @@ void afw_lmdb_adapter_open_databases(
 
     rc = afw_lmdb_internal_txn_begin(self, NULL, 0, &txn, xctx);
     if (rc) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+        afw_lmdb_internal_throw_txn_begin_error(self, rc,
             "Unable to begin initial transaction.", xctx);
     }
 
@@ -470,6 +470,7 @@ afw_lmdb_internal_shared_env_registry_initialize(afw_xctx_t *xctx)
         &impl_shared_env_registry_lock_brief,
         &impl_shared_env_registry_lock_description,
         false, xctx->env->p, xctx);
+    afw_lmdb_internal_wait_graph_initialize(xctx);
 }
 
 /* Look up an already-open entry for path, or NULL if this path has
@@ -494,7 +495,6 @@ impl_shared_env_add(
     shared_p = xctx->env->p;
     shared = afw_pool_calloc_type(shared_p, afw_lmdb_shared_env_t, xctx);
     shared->dbEnv = dbEnv;
-    shared->dbLock = afw_thread_rwlock_create(shared_p, xctx);
     shared->dbi_handles = afw_hash_table_create(
         afw_void_hash_table_t, shared_p, xctx);
     shared->dbi_mutex = afw_thread_mutex_create(
@@ -623,7 +623,6 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     AFW_LOCK_END;
 
     self->dbEnv = shared->dbEnv;
-    self->dbLock = shared->dbLock;
     self->dbi_handles = shared->dbi_handles;
     self->shared = (afw_lmdb_shared_env_t *)shared;
 
@@ -663,7 +662,7 @@ impl_afw_adapter_destroy(
     afw_xctx_t *xctx)
 {
     /*
-     * dbEnv, dbLock, and dbi_handles are not this instance's to close.
+     * dbEnv and dbi_handles are not this instance's to close.
      * LMDB does not allow the same path to be opened twice in one
      * process (#387), so they live in the process-wide shared-env
      * registry (impl_shared_env_find / impl_shared_env_add below),
@@ -832,8 +831,6 @@ impl_afw_adapter_get_additional_metrics (
                 info.me_numreaders, p, xctx), xctx);
     }
 
-    afw_thread_rwlock_rdlock(self->dbLock, xctx);
-
     /*
      * Read-only: this only lists database names and reads stats, so
      * it must not compete with real writers for LMDB's single write
@@ -841,8 +838,6 @@ impl_afw_adapter_get_additional_metrics (
      */
     rc = afw_lmdb_internal_txn_begin(self, NULL, MDB_RDONLY, &txn, xctx);
     if (rc) {
-        afw_thread_rwlock_unlock(self->dbLock, xctx);
-
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to begin initial transaction.", xctx);
     }
@@ -921,8 +916,6 @@ impl_afw_adapter_get_additional_metrics (
 
     afw_trace_z(1, self->pub.trace_flag_index, 
         NULL, "LMDB Transaction aborted.", xctx);
-
-    afw_thread_rwlock_unlock(self->dbLock, xctx);
 
     return metrics;
 }

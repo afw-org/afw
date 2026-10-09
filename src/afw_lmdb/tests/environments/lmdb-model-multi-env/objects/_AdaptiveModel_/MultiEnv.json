@@ -1,0 +1,77 @@
+{
+    "modelId": "MultiEnv",
+    "description": "Model mapped to lmdbA whose on* scripts also use lmdbB (a separate LMDB environment) and lmdbA2 (a second adapter id on lmdbA's environment).",
+    "objectTypes": {
+        "Order": {
+            "description": "Default processing writes lmdbA. onAddObject and onDeleteObject also write lmdbB.",
+            "mappedObjectType": "OrderRow",
+            "onAddObject": "add_object('lmdbB', 'Audit',\n    {op: 'add', orderId: current::objectId, item: current::object.item},\n    current::objectId + '-add');\nreturn current::useDefaultProcessing;",
+            "onDeleteObject": "delete_object('lmdbB', 'Audit', current::objectId + '-add');\nreturn current::useDefaultProcessing;",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                },
+                "auditCount": {
+                    "dataType": "integer",
+                    "description": "Read from lmdbB while lmdbA's read of this object is still open.",
+                    "onGetProperty": "const rows: array = retrieve_objects('lmdbB', 'Audit',\n    {filter: {op: 'eq', property: 'orderId', value: current::mappedObjectId}});\nreturn length(rows);"
+                }
+            }
+        },
+        "Note": {
+            "description": "Script only: every on* stores in lmdbB, though the model's mappedAdapterId is lmdbA.",
+            "onAddObject": "const r: object = add_object('lmdbB', 'NoteRow', current::object, current::objectId);\nreturn r.objectId;",
+            "onGetObject": "return get_object('lmdbB', 'NoteRow', current::objectId);",
+            "onRetrieveObjects": "retrieve_objects_to_callback(current::returnObject, true, 'lmdbB', 'NoteRow', current::queryCriteria);\nreturn null;",
+            "onModifyObject": "modify_object('lmdbB', 'NoteRow', current::objectId, current::modifyEntries);\nreturn null;",
+            "onDeleteObject": "delete_object('lmdbB', 'NoteRow', current::objectId);\nreturn null;",
+            "propertyTypes": {
+                "text": {
+                    "dataType": "string"
+                }
+            }
+        },
+        "OrderAliasRead": {
+            "description": "Reads lmdbA2 while lmdbA's read of this object is still open.",
+            "mappedObjectType": "OrderRow",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                },
+                "aliasCount": {
+                    "dataType": "integer",
+                    "onGetProperty": "return length(retrieve_objects('lmdbA2', 'OrderRow'));"
+                }
+            }
+        },
+        "OrderAliasWrite": {
+            "description": "Writes lmdbA2 while lmdbA's read of this object is still open.",
+            "mappedObjectType": "OrderRow",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                },
+                "sideWritten": {
+                    "dataType": "boolean",
+                    "onGetProperty": "add_object('lmdbA2', 'Side', {from: current::mappedObjectId},\n    current::mappedObjectId + '-side');\nreturn true;"
+                }
+            }
+        },
+        "OrderSelfNote": {
+            "description": "onAddObject and onDeleteObject also write the mapped adapter, lmdbA, inside the model's own lmdbA transaction.",
+            "mappedObjectType": "OrderRow",
+            "onAddObject": "add_object(current::mappedAdapterId, 'OrderNote',\n    {orderId: current::objectId, item: current::object.item},\n    current::objectId + '-note');\nreturn current::useDefaultProcessing;",
+            "onDeleteObject": "delete_object(current::mappedAdapterId, 'OrderNote', current::objectId + '-note');\nreturn current::useDefaultProcessing;",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                },
+                "noteCount": {
+                    "dataType": "integer",
+                    "description": "Read lmdbA again while the model's read of this object from lmdbA is open.",
+                    "onGetProperty": "return length(retrieve_objects(current::mappedAdapterId, 'OrderNote',\n    {filter: {op: 'eq', property: 'orderId', value: current::mappedObjectId}}));"
+                }
+            }
+        }
+    }
+}

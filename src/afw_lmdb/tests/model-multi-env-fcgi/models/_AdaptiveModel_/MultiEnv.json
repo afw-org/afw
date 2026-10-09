@@ -1,0 +1,58 @@
+{
+    "modelId": "MultiEnv",
+    "description": "Model mapped to lmdbA whose on* scripts also write lmdbB and lmdbSmall, separate LMDB environments.",
+    "objectTypes": {
+        "Order": {
+            "description": "Default processing writes lmdbA. onAddObject and onDeleteObject also write lmdbB.",
+            "mappedObjectType": "OrderRow",
+            "onAddObject": "add_object('lmdbB', 'Audit',\n    {op: 'add', orderId: current::objectId, item: current::object.item},\n    current::objectId + '-add');\nreturn current::useDefaultProcessing;",
+            "onDeleteObject": "delete_object('lmdbB', 'Audit', current::objectId + '-add');\nreturn current::useDefaultProcessing;",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                },
+                "auditCount": {
+                    "dataType": "integer",
+                    "description": "Read from lmdbB while lmdbA's read of this object is still open.",
+                    "onGetProperty": "const rows: array = retrieve_objects('lmdbB', 'Audit',\n    {filter: {op: 'eq', property: 'orderId', value: current::mappedObjectId}});\nreturn length(rows);"
+                }
+            }
+        },
+        "OrderThrow": {
+            "description": "Writes lmdbB and lmdbA, then throws: the request aborts both.",
+            "mappedObjectType": "OrderRow",
+            "onAddObject": "add_object('lmdbB', 'Audit', {op: 'add', orderId: current::object.item},\n    current::object.item + '-add');\nadd_object(current::mappedAdapterId, 'OrderRow', current::object,\n    current::object.item);\nthrow 'OrderThrow: abort after writing lmdbA and lmdbB';",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                }
+            }
+        },
+        "OrderFillSmall": {
+            "description": "Fills lmdbSmall until a write fails with MDB_MAP_FULL, then lets default processing write lmdbA. lmdbSmall's commit fails at the end of the request; lmdbA's still happens.",
+            "mappedObjectType": "OrderRow",
+            "onAddObject": "const s = repeat<string>('xxxx', 1000);\nfor (let i = 0; i < 2000; i = i + 1) {\n    try {\n        add_object('lmdbSmall', 'Fill', {s: s});\n    }\n    catch (e) {\n        break;\n    }\n}\nreturn current::useDefaultProcessing;",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                }
+            }
+        },
+        "OrderSelfNote": {
+            "description": "onAddObject and onDeleteObject also write the mapped adapter, lmdbA, inside the model's own lmdbA transaction.",
+            "mappedObjectType": "OrderRow",
+            "onAddObject": "add_object(current::mappedAdapterId, 'OrderNote',\n    {orderId: current::objectId, item: current::object.item},\n    current::objectId + '-note');\nreturn current::useDefaultProcessing;",
+            "onDeleteObject": "delete_object(current::mappedAdapterId, 'OrderNote', current::objectId + '-note');\nreturn current::useDefaultProcessing;",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                },
+                "noteCount": {
+                    "dataType": "integer",
+                    "description": "Read lmdbA again while the model's read of this object from lmdbA is open.",
+                    "onGetProperty": "return length(retrieve_objects(current::mappedAdapterId, 'OrderNote',\n    {filter: {op: 'eq', property: 'orderId', value: current::mappedObjectId}}));"
+                }
+            }
+        }
+    }
+}

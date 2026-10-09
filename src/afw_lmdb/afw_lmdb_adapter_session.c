@@ -73,8 +73,8 @@ impl_afw_adapter_session_destroy(
 {
     /*
      * A transaction still open here was never committed or released.
-     * Abort it: it holds the LMDB writer and dbLock, and every later
-     * write on any thread would wait for them forever.
+     * Abort it: it holds the LMDB writer, and every later write on any
+     * thread would wait for it forever.
      */
     if (self->transaction) {
         afw_adapter_transaction_release(&self->transaction->pub, xctx);
@@ -174,7 +174,7 @@ impl_afw_adapter_session_retrieve_objects(
     }
 
     /* open the transaction */
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, MDB_RDONLY, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, MDB_RDONLY, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -276,7 +276,7 @@ impl_afw_adapter_session_get_object(
     const afw_utf8_t *internal_id;
 
     /* begin the transaction */
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, MDB_RDONLY, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, MDB_RDONLY, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 

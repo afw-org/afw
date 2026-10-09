@@ -1,0 +1,263 @@
+# A model mapped to lmdbA whose on* scripts also write lmdbB and
+# lmdbSmall, separate LMDB environments, seen across requests: what is
+# committed, aborted, or half committed when a request ends.
+#
+# Each adapter a request writes gets its own transaction, begun on first
+# write and committed (in reverse order of begin) after the request's
+# work, or aborted if the request handler catches an error. There is no
+# two-phase commit between environments, so one request's writes to two
+# of them are not atomic ("partial" below).
+#
+# lmdbA2 is a second adapter id on lmdbA's directory (shared MDB_env).
+#
+# Same-process cases: ../model_multi_env/. Concurrency:
+# ../model-multi-env-concurrent-fcgi/.
+version: 1
+description: LMDB model across environments - commit, abort, partial commit
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: add
+    description: Order o1 writes lmdbA and (onAddObject) lmdbB; auditCount reads lmdbB back in the same request.
+    sourceType: script
+    source: |
+      add_object("model", "Order", {item: "widget"}, "o1");
+      return get_object("model", "Order", "o1").auditCount;
+    expect: 1
+
+  - name: add-committed
+    description: The next request sees both writes, each only in its own environment.
+    sourceType: script
+    source: |
+      assert(get_object("lmdbA", "OrderRow", "o1").item === "widget");
+      assert(get_object("lmdbB", "Audit", "o1-add").orderId === "o1");
+      assert(length(retrieve_objects("lmdbA", "Audit")) === 0, "Audit in lmdbA");
+      assert(length(retrieve_objects("lmdbB", "OrderRow")) === 0, "OrderRow in lmdbB");
+      return true;
+    expect: true
+
+  - name: add-self
+    description: >-
+      OrderSelfNote's onAddObject writes lmdbA, the mapped adapter, inside
+      the model's own lmdbA write: one session, one transaction, nested
+      child transactions. Not refused as a deadlock.
+    sourceType: script
+    source: |
+      add_object("model", "OrderSelfNote", {item: "self"}, "n1");
+      return get_object("model", "OrderSelfNote", "n1").noteCount;
+    expect: 1
+
+  - name: add-self-committed
+    description: Both lmdbA writes committed together; then delete removes both.
+    sourceType: script
+    source: |
+      const result = [get_object("lmdbA", "OrderRow", "n1").item,
+          get_object("lmdbA", "OrderNote", "n1-note").orderId];
+      delete_object("model", "OrderSelfNote", "n1");
+      return result;
+    expect: ["self", "n1"]
+
+  - name: delete-self-committed
+    sourceType: script
+    source: |
+      return [length(retrieve_objects("lmdbA", "OrderNote")),
+          length(retrieve_objects("lmdbA", "OrderRow",
+              {filter: {op: "eq", property: "item", value: "self"}}))];
+    expect: [0, 0]
+
+  - name: delete
+    description: Adds o2, then deletes o1 (lmdbB in onDeleteObject, then lmdbA).
+    sourceType: script
+    source: |
+      add_object("model", "Order", {item: "gadget"}, "o2");
+      delete_object("model", "Order", "o1");
+      return true;
+    expect: true
+
+  - name: delete-committed
+    sourceType: script
+    source: |
+      const rows = retrieve_objects("lmdbA", "OrderRow");
+      const audits = retrieve_objects("lmdbB", "Audit");
+      return [length(rows), length(audits), get_object("model", "Order", "o2").auditCount];
+    expect: [1, 1, 1]
+
+  - name: throw-rest
+    description: >-
+      REST add of OrderThrow: onAddObject writes lmdbB and lmdbA, then
+      throws. The request handler aborts every transaction.
+    feed:
+      kind: rest
+      method: POST
+      path: /model/OrderThrow
+      contentType: application/json
+      body: '{"item": "t2"}'
+    expectStatus: 400
+
+  - name: throw-action
+    description: >-
+      The same throw inside a POST /afw action. afw_action_perform()
+      catches it into a status "error" response and returns normally, so
+      the request handler commits what the action wrote before the
+      throw. Current behavior (beta-backlog.md); throw-committed pins it.
+    sourceType: script
+    source: |
+      add_object("model", "OrderThrow", {item: "t1"}, "t1");
+      return true;
+    expectError: throw
+
+  - name: throw-committed
+    description: t2 (REST) left nothing in either environment; t1 (action) left both writes.
+    sourceType: script
+    source: |
+      function has(adapterId: string, objectType: string, objectId: string): boolean {
+          try { get_object(adapterId, objectType, objectId); return true; }
+          catch (e) { return false; }
+      }
+      return [has("lmdbA", "OrderRow", "t2"), has("lmdbB", "Audit", "t2-add"),
+          has("lmdbA", "OrderRow", "t1"), has("lmdbB", "Audit", "t1-add")];
+    expect: [false, false, true, true]
+
+  - name: partial
+    description: >-
+      OrderFillSmall fills lmdbSmall (1MB map) until MDB_MAP_FULL, then
+      default processing writes p1 to lmdbA. At request end lmdbSmall's
+      commit (last begun, so first) fails; the walk goes on and commits
+      lmdbA. The client gets an error.
+    sourceType: script
+    source: |
+      add_object("model", "OrderFillSmall", {item: "p1"}, "p1");
+      return true;
+    expectError: general
+
+  - name: partial-committed
+    description: >-
+      Known limitation: lmdbA kept p1 although the request failed, and
+      lmdbSmall kept nothing. Use one environment for writes that must
+      be atomic together.
+    sourceType: script
+    source: |
+      return [get_object("lmdbA", "OrderRow", "p1").item,
+          length(retrieve_objects("lmdbSmall", "Fill"))];
+    expect: ["p1", 0]
+
+  - name: after-partial
+    description: Every environment still takes writes after the failed commit.
+    sourceType: script
+    source: |
+      add_object("model", "Order", {item: "after"}, "o3");
+      add_object("lmdbSmall", "Fill", {s: "x"}, "f1");
+      return true;
+    expect: true
+
+  - name: after-partial-committed
+    sourceType: script
+    source: |
+      return [get_object("model", "Order", "o3").auditCount,
+          get_object("lmdbSmall", "Fill", "f1").s];
+    expect: [1, "x"]
+
+  - name: alias-across-requests
+    description: lmdbA2 writes in its own request; lmdbA and lmdbA2 both see it, and lmdbA's rows, in the next.
+    sourceType: script
+    source: |
+      add_object("lmdbA2", "OrderRow", {item: "via-alias"}, "a1");
+      return true;
+    expect: true
+
+  - name: alias-across-requests-committed
+    sourceType: script
+    source: |
+      return [get_object("lmdbA", "OrderRow", "a1").item,
+          length(retrieve_objects("lmdbA2", "OrderRow"))];
+    expect: ["via-alias", 5]
+
+  - name: alias-write-write
+    description: >-
+      Write through lmdbA, then lmdbA2, in one request. Two sessions on
+      one MDB_env: the second write transaction would wait forever on
+      the writer mutex the first holds until request end, so it is
+      refused. The script catches that; the request commits x1.
+    sourceType: script
+    source: |
+      add_object("lmdbA", "OrderRow", {item: "x"}, "x1");
+      try {
+          add_object("lmdbA2", "OrderRow", {item: "y"}, "y1");
+      }
+      catch (e) {
+          assert(includes<string>(e.message, "would deadlock"), e.message);
+          return "refused";
+      }
+      return "not refused";
+    expect: refused
+
+  - name: alias-write-write-committed
+    description: x1 committed and y1 never written; then lmdbA2 writes y2 in a request of its own.
+    sourceType: script
+    source: |
+      const result = [get_object("lmdbA", "OrderRow", "x1").item,
+          length(retrieve_objects("lmdbA", "OrderRow",
+              {filter: {op: "eq", property: "item", value: "y"}}))];
+      add_object("lmdbA2", "OrderRow", {item: "y"}, "y2");
+      return result;
+    expect: ["x", 0]
+
+  - name: alias-write-after-refusal-committed
+    description: The refusal left nothing behind; lmdbA2's later write landed.
+    sourceType: script
+    source: |
+      return get_object("lmdbA", "OrderRow", "y2").item;
+    expect: "y"
+
+  - name: restart-after-write
+    description: >-
+      Restart lmdbA in a request that already wrote it. The new instance's
+      start-up write transaction would wait forever on the writer mutex
+      this request holds (before the LMDB wait graph, the request hung
+      holding the service's mutex), so it is refused and the new instance
+      fails to start. FIXME (beta-backlog.md): service_restart does not
+      throw when the new instance fails; the service is left in "error"
+      while the old instance keeps serving, and service_restart then
+      refuses it ("not running"). This pins that.
+    sourceType: script
+    source: |
+      add_object("lmdbA", "OrderRow", {item: "r"}, "r1");
+      let thrown = null;
+      try {
+          service_restart("adapter-lmdbA");
+      }
+      catch (e) {
+          thrown = e.message;
+      }
+      const svc = get_object("afw", "_AdaptiveService_", "adapter-lmdbA");
+      assert(includes<string>(svc.statusMessage, "a new instance of it (a restart)"),
+          svc.statusMessage);
+      return [thrown, svc.status];
+    expect: [null, error]
+
+  - name: restart-after-write-recover
+    description: r1 committed and lmdbA still served; service_start (not restart) brings the service back.
+    sourceType: script
+    source: |
+      const item = get_object("lmdbA", "OrderRow", "r1").item;
+      let restart = null;
+      try {
+          service_restart("adapter-lmdbA");
+      }
+      catch (e) {
+          restart = includes<string>(e.message, "not running");
+      }
+      return [item, restart, service_start("adapter-lmdbA").status];
+    expect: ["r", true, running]
+
+  - name: restart-alone
+    description: A restart in a request of its own works.
+    sourceType: script
+    source: |
+      return service_restart("adapter-lmdbA").status;
+    expect: running
