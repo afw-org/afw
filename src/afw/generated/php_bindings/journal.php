@@ -40,7 +40,7 @@ class journal
      * The properties of the _AdaptiveProvisioningPeer_ object associated with
      * the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * Journal entries are scanned beginning at the entry at the cursor in the
@@ -52,10 +52,10 @@ class journal
      * advanceCursor property is set to the currently scanned entry's cursor.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
-     *                       scanned for an entry where the consumerFilter
+     *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
      *                       true.
@@ -183,7 +183,7 @@ class journal
      * The properties of the _AdaptiveProvisioningPeer_ object associated with
      * the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * If consumeCursor property exists, return that entry at that cursor
@@ -202,10 +202,10 @@ class journal
      * scanned.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
-     *                       scanned for an entry where the consumerFilter
+     *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
      *                       true.
@@ -245,18 +245,18 @@ class journal
      * The properties of the _AdaptiveProvisioningPeer_ object associated with
      * the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * Unlike option get_next_for_consumer, no other properties are referenced
      * or modified.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
      * @param integer $limit The maximum number of entries that will be
-     *                       scanned for an entry where the consumerFilter
+     *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
      *                       true.
@@ -289,8 +289,8 @@ class journal
      * Mark a journal entry returned by get_next_for_consumer() as consumed.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
      *
      * @return void

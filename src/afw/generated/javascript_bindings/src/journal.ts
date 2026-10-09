@@ -30,7 +30,7 @@ interface IAnyObject {
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
+ * The consumeFilter expression is used to determine if an entry is
  * applicable.
  * 
  * Journal entries are scanned beginning at the entry at the cursor in the
@@ -43,11 +43,11 @@ interface IAnyObject {
  * 
  * @param {string} adapterId - Id of adapter.
  * 
- * @param {string} consumerId - The consumerId property value of the
- *     associated _AdaptiveProvisioningPeer_ object.
+ * @param {string} consumerId - The objectId of the associated
+ *     _AdaptiveProvisioningPeer_ object.
  * 
  * @param {integer} limit - The maximum number of entries that will be scanned
- *     for an entry where the consumerFilter expression in the associated
+ *     for an entry where the consumeFilter expression in the associated
  *     _AdaptiveProvisioningPeer_ object evaluates to true.
  * 
  * @returns {object} Response object.
@@ -155,7 +155,7 @@ export function afwJournalGetNextAfterCursor(client : any, cursor : string, adap
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
+ * The consumeFilter expression is used to determine if an entry is
  * applicable.
  * 
  * If consumeCursor property exists, return that entry at that cursor again
@@ -175,11 +175,11 @@ export function afwJournalGetNextAfterCursor(client : any, cursor : string, adap
  * 
  * @param {string} adapterId - Id of adapter.
  * 
- * @param {string} consumerId - The consumerId property value of the
- *     associated _AdaptiveProvisioningPeer_ object.
+ * @param {string} consumerId - The objectId of the associated
+ *     _AdaptiveProvisioningPeer_ object.
  * 
  * @param {integer} limit - The maximum number of entries that will be scanned
- *     for an entry where the consumerFilter expression in the associated
+ *     for an entry where the consumeFilter expression in the associated
  *     _AdaptiveProvisioningPeer_ object evaluates to true.
  * 
  * @returns {object} Response object.
@@ -212,7 +212,7 @@ export function afwJournalGetNextForConsumer(client : any, consumerId : string, 
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
+ * The consumeFilter expression is used to determine if an entry is
  * applicable.
  * 
  * Unlike option get_next_for_consumer, no other properties are referenced or
@@ -220,13 +220,13 @@ export function afwJournalGetNextForConsumer(client : any, consumerId : string, 
  * 
  * @param {string} adapterId - Id of adapter.
  * 
- * @param {string} consumerId - The consumerId property value of the
- *     associated _AdaptiveProvisioningPeer_ object.
+ * @param {string} consumerId - The objectId of the associated
+ *     _AdaptiveProvisioningPeer_ object.
  * 
  * @param {string} cursor - Journal entry cursor.
  * 
  * @param {integer} limit - The maximum number of entries that will be scanned
- *     for an entry where the consumerFilter expression in the associated
+ *     for an entry where the consumeFilter expression in the associated
  *     _AdaptiveProvisioningPeer_ object evaluates to true.
  * 
  * @returns {object} Response object.
@@ -253,8 +253,8 @@ export function afwJournalGetNextForConsumerAfterCursor(client : any, consumerId
  * 
  * @param {string} adapterId - Id of adapter.
  * 
- * @param {string} consumerId - The consumerId property value of the
- *     associated _AdaptiveProvisioningPeer_ object.
+ * @param {string} consumerId - The objectId of the associated
+ *     _AdaptiveProvisioningPeer_ object.
  * 
  * @param {string} cursor - Journal entry cursor.
  * 

@@ -319,7 +319,7 @@ afw_adapter_impl_create_cede_p(
     }
 
     if (impl->journal_adapter_id &&
-        !afw_utf8_equal(s, &adapter->adapter_id))
+        !afw_utf8_equal(impl->journal_adapter_id, &adapter->adapter_id))
     {
         temp_session = NULL;
         AFW_TRY{

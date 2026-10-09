@@ -239,8 +239,8 @@ impl_afw_adapter_get_additional_metrics(
  * root: not empty, ".", or "..", and no '/', '\\', or NUL. Otherwise a
  * caller could read or write files outside root.
  */
-static void
-impl_check_path_segment(
+void
+afw_file_internal_check_path_segment(
     const afw_utf8_t *segment,
     const char *what,
     afw_xctx_t *xctx)
@@ -273,8 +273,9 @@ impl_get_full_path(
     const afw_utf8_t * object_id,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    impl_check_path_segment(object_type_id, "object type id", xctx);
-    impl_check_path_segment(object_id, "object id", xctx);
+    afw_file_internal_check_path_segment(object_type_id, "object type id",
+        xctx);
+    afw_file_internal_check_path_segment(object_id, "object id", xctx);
     return afw_utf8_concat(p, xctx,
         adapter->root,
         object_type_id,
@@ -327,7 +328,8 @@ impl_afw_adapter_session_retrieve_objects(
     afw_boolean_t stop;
 
     /* Open ObjectType's directory. Concat .len, then C-string door. */
-    impl_check_path_segment(object_type_id, "object type id", xctx);
+    afw_file_internal_check_path_segment(object_type_id, "object type id",
+        xctx);
     dirname_z = afw_utf8_to_utf8_z(
         afw_utf8_concat(p, xctx,
             adapter->root, object_type_id, afw_s_a_slash, NULL),

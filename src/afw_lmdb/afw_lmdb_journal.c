@@ -181,6 +181,39 @@ afw_lmdb_adapter_journal_get_peer_object(
     return object;
 }
 
+
+/*
+ * Get the peer object for consumer_id, the peer's objectId. Throws
+ * not_found if there is none. A consumer_id that is not the length of a
+ * UUID can not be one here.
+ */
+static const afw_object_t *
+impl_get_peer_or_throw(
+    afw_lmdb_journal_t * self,
+    afw_lmdb_adapter_session_t * session,
+    afw_lmdb_adapter_t * adapter,
+    MDB_dbi dbi,
+    MDB_txn * txn,
+    const afw_utf8_t *consumer_id,
+    const afw_uuid_t **uuid,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *peer;
+
+    peer = NULL;
+    if (consumer_id->len == AFW_UUID_FORMATTED_LENGTH) {
+        *uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
+        peer = afw_lmdb_adapter_journal_get_peer_object(
+            self, session, adapter, dbi, txn, *uuid, xctx);
+    }
+    if (!peer) {
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            "Provisioning peer '%ku' not found", consumer_id);
+    }
+
+    return peer;
+}
+
 void
 afw_lmdb_journal_update_peer(
     afw_lmdb_journal_t * self,
@@ -359,14 +392,8 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
-    uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-    peer = afw_lmdb_adapter_journal_get_peer_object(
-        self, session, adapter, dbiConsumers, txn, uuid, xctx);
-    if (peer == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error, provisioning peer not found.", xctx);
-    }
+    peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+        txn, consumer_id, &uuid, xctx);
 
     advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
@@ -464,14 +491,8 @@ impl_afw_adapter_journal_get_next_for_consumer(
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
-    uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-    peer = afw_lmdb_adapter_journal_get_peer_object(
-        self, session, adapter, dbiConsumers, txn, uuid, xctx);
-    if (peer == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error, provisioning peer not found.", xctx);
-    }
+    peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+        txn, consumer_id, &uuid, xctx);
 
     current_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_currentCursor, xctx->p, xctx);
@@ -592,14 +613,8 @@ afw_lmdb_journal_advance_cursor_for_consumer(
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
-    uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-    peer = afw_lmdb_adapter_journal_get_peer_object(
-        self, session, adapter, dbiConsumers, txn, uuid, xctx);
-    if (peer == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error, provisioning peer not found.", xctx);
-    }
+    peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+        txn, consumer_id, &uuid, xctx);
 
     current_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_currentCursor, xctx->p, xctx);
@@ -784,14 +799,8 @@ impl_afw_adapter_journal_mark_entry_consumed(
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
         /* lookup the cursor from the database */
-        uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-        peer = afw_lmdb_adapter_journal_get_peer_object(
-            self, session, adapter, dbiConsumers, txn, uuid, xctx);
-        if (peer == NULL) {
-            AFW_THROW_ERROR_Z(general,
-                "Error, provisioning peer not found.", xctx);
-        }
+        peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+            txn, consumer_id, &uuid, xctx);
 
         consume_cursor = afw_object_get_property_as_string_internal(peer,
             afw_v_consumeCursor, xctx);

@@ -48,7 +48,7 @@ impl_return_faced_object(
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is applicable.
+ * The consumeFilter expression is used to determine if an entry is applicable.
  * 
  * Journal entries are scanned beginning at the entry at the cursor in the
  * advanceCursor property. If the advanceCursor property is not present, the
@@ -75,11 +75,11 @@ impl_return_faced_object(
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   limit - (optional integer) The maximum number of entries that will be
- *       scanned for an entry where the consumerFilter expression in the
+ *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
  *
  * Returns:
@@ -288,7 +288,7 @@ afw_function_execute_journal_get_next_after_cursor(
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is applicable.
+ * The consumeFilter expression is used to determine if an entry is applicable.
  * 
  * If consumeCursor property exists, return that entry at that cursor again
  * immediately with a 'reissue' property added and set to true.
@@ -322,11 +322,11 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   limit - (optional integer) The maximum number of entries that will be
- *       scanned for an entry where the consumerFilter expression in the
+ *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
  *
  * Returns:
@@ -376,7 +376,7 @@ afw_function_execute_journal_get_next_for_consumer(
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is applicable.
+ * The consumeFilter expression is used to determine if an entry is applicable.
  * 
  * Unlike option get_next_for_consumer, no other properties are referenced or
  * modified.
@@ -399,13 +399,13 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   cursor - (string) Journal entry cursor.
  *
  *   limit - (optional integer) The maximum number of entries that will be
- *       scanned for an entry where the consumerFilter expression in the
+ *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
  *
  * Returns:
@@ -466,7 +466,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   cursor - (string) Journal entry cursor.

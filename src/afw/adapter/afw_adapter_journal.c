@@ -436,7 +436,8 @@ afw_adapter_internal_journal_get_entry(
         limit_applies = true;
         syntax_z =
             "get_next_for_consumer_after_cursor:<consumer_id>:<event_cursor>";
-        option = afw_adapter_journal_option_get_next_for_consumer;
+        option =
+            afw_adapter_journal_option_get_next_for_consumer_after_cursor;
         option_z = "get_next_for_consumer_after_cursor";
         s = c = object_id->s + strlen("get_next_for_consumer_after_cursor:");
         len = object_id->len - strlen("get_next_for_consumer_after_cursor:");

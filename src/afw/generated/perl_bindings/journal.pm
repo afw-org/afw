@@ -44,7 +44,7 @@ is found, these response properties are not set.
 The properties of the _AdaptiveProvisioningPeer_ object associated with the
 consumer_id are used in the following way:
 
-The consumerFilter expression is used to determine if an entry is applicable.
+The consumeFilter expression is used to determine if an entry is applicable.
 
 Journal entries are scanned beginning at the entry at the cursor in the
 advanceCursor property. If the advanceCursor property is not present, the scan
@@ -63,13 +63,12 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $limit
 
 The maximum number of entries that will be scanned for an entry where the
-consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object
+consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
 evaluates to true.
 
 =head3 journal_get_by_cursor
@@ -138,7 +137,7 @@ below.
 The properties of the _AdaptiveProvisioningPeer_ object associated with the
 consumer_id are used in the following way:
 
-The consumerFilter expression is used to determine if an entry is applicable.
+The consumeFilter expression is used to determine if an entry is applicable.
 
 If consumeCursor property exists, return that entry at that cursor again
 immediately with a 'reissue' property added and set to true.
@@ -164,13 +163,12 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $limit
 
 The maximum number of entries that will be scanned for an entry where the
-consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object
+consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
 evaluates to true.
 
 =head3 journal_get_next_for_consumer_after_cursor
@@ -186,7 +184,7 @@ applicable entry is retrieved.
 The properties of the _AdaptiveProvisioningPeer_ object associated with the
 consumer_id are used in the following way:
 
-The consumerFilter expression is used to determine if an entry is applicable.
+The consumeFilter expression is used to determine if an entry is applicable.
 
 Unlike option get_next_for_consumer, no other properties are referenced or
 modified.
@@ -200,8 +198,7 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $cursor
 
@@ -210,7 +207,7 @@ Journal entry cursor.
     $limit
 
 The maximum number of entries that will be scanned for an entry where the
-consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object
+consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
 evaluates to true.
 
 =head3 journal_mark_consumed
@@ -226,8 +223,7 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $cursor
 

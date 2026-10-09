@@ -8248,16 +8248,20 @@ struct afw_adapter_journal_inf_s {
 /**
  * @brief Call method `mark_entry_consumed` of interface `afw_adapter_journal`.
  *
- * Mark an entry consumed. If entry is not the current ... blah blah blah
- * Need to make object type for _AdaptiveJournalPeer_
- * Different journal ids?
+ * Mark the entry a consumer is currently consuming as consumed.
+ * entry_cursor must be the consumer's consumeCursor, which
+ * get_entry() option get_next_for_consumer set; otherwise an error
+ * is thrown. Removes the consumer's consumeCursor and
+ * consumeStartTime properties and updates lastContactTime, so the
+ * next get_next_for_consumer scans past this entry instead of
+ * reissuing it.
  * @param instance Pointer to this adaptive event journal instance.
  * @param impl_request Pass this as first parameter of
  * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
  * information.
- * @param consumer_id Get entry option. See afw_adapter_journal_option_t for
- * more information.
- * @param entry_cursor Token of the event to mark consumed.
+ * @param consumer_id The objectId of the consumer's _AdaptiveProvisioningPeer_
+ * object.
+ * @param entry_cursor Cursor of the entry to mark consumed.
  * @param xctx This is the caller's xctx.
  * @relates afw_adapter_journal_t
  * @see @ref afw_adapter_journal_s "afw_adapter_journal_t"
