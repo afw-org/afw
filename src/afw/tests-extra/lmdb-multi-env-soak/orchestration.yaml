@@ -1,0 +1,306 @@
+# Opt-in timed soak: LMDB with more than one environment, under a mixed
+# concurrent load, to shake out ordering and timing problems that the
+# gate leaves only hit once.
+#   afwdev test -T src/afw/tests-extra/lmdb-multi-env-soak
+#   afwdev test -T src/afw/tests-extra/lmdb-multi-env-soak --set duration_s=1800 --set timeout_s=2000
+#
+# Environments: lmdbA (the model's mapped adapter), lmdbB (written by the
+# model's on* scripts), lmdbA2 (a second adapter id on lmdbA's directory,
+# so the same MDB_env), data (journaled to journal) and journal.
+#
+# A request holds every LMDB environment it writes until it ends. The
+# pool mixes requests that take lmdbA then lmdbB, lmdbB then lmdbA, data
+# then journal (a journaled write) and journal then data (a journal
+# consumer), so writers keep meeting in opposite orders. A write that
+# would deadlock is refused with "would deadlock"; a request that gets
+# that returns true, like one that did its work. Any other error fails
+# the leaf (maxFail: 0), and so does a server that stops answering
+# (timeout_s).
+#
+# Each toggle step adds the object if it is missing and deletes it if it
+# is there, from a fixed set of ids, so lmdbA, lmdbB and data stay small
+# however long the run is. Journal grows with every data write: about
+# 13MB a minute at 8 threads on a laptop, so an 8GB map lasts about ten
+# hours, and the run directory needs that much disk.
+#
+# After the firehose: every OrderRow in lmdbA has its Audit in lmdbB and
+# no Audit is left without its OrderRow; every OrderSelfNote row in lmdbA
+# has its OrderNote. Model writes reach both environments or neither as
+# long as no commit fails, which nothing here makes happen.
+#
+# Gate versions of each shape: src/afw_lmdb/tests/model-multi-env-fcgi/,
+# model-multi-env-concurrent-fcgi/, journal-consumer-fcgi/.
+version: 1
+description: LMDB multi-environment soak - opposite-order writers, alias ids, journal consumer
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: $timeout_s
+
+parameters:
+  duration_s:
+    default: 60
+    valgrind: 30
+    asan: 30
+    tsan: 30
+    description: seconds of mixed requests
+  timeout_s:
+    default: 240
+    description: whole leaf; keep it above duration_s plus setup and check
+  opposite_order_skip:
+    default: false
+    tsan: true
+    description: >-
+      Skip the steps that write two LMDB environments in opposite orders.
+      TSan reports that lock order (two LMDB writer mutexes) even though
+      the LMDB write wait graph refuses the wait that would close the
+      cycle; expected, see beta-backlog.md (TSan findings).
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: setup
+    description: The fixed objects the toggles write first, and the journal consumer.
+    sourceType: script
+    source: |
+      add_object("lmdbA", "Lock", {by: "setup"}, "l");
+      add_object("lmdbB", "Pre", {by: "setup"}, "p");
+      add_object("data", "Applied", {cursor: ""}, "a");
+      add_object("journal", "_AdaptiveProvisioningPeer_", {peerId: "consumer1"},
+          "6f1c2d3e-0000-4000-8000-000000000001");
+      return true;
+    expect: true
+
+  - name: setup-alias
+    description: Its own request, since lmdbA2 shares lmdbA's environment.
+    sourceType: script
+    source: |
+      add_object("lmdbA2", "AliasTick", {by: "setup"}, "t");
+      return true;
+    expect: true
+
+  - name: order-ab
+    description: >-
+      lmdbA (Lock, then the model's own transaction), then lmdbB (Order's
+      onAddObject / onDeleteObject): add or delete one Order.
+    sourceType: script
+    source: |
+      try {
+          const id = "o" + string(random_integer(0, 99));
+          modify_object("lmdbA", "Lock", "l", [["set_property", "by", "order-ab"]]);
+          let exists = true;
+          try { get_object("lmdbA", "OrderRow", id); }
+          catch (e) { exists = false; }
+          if (exists) {
+              delete_object("model", "Order", id);
+          } else {
+              add_object("model", "Order", {item: id}, id);
+          }
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: order-ba
+    description: lmdbB first (Pre), then the same Order toggle (lmdbA, then lmdbB again).
+    skip: $opposite_order_skip
+    sourceType: script
+    source: |
+      try {
+          const id = "o" + string(random_integer(0, 99));
+          modify_object("lmdbB", "Pre", "p", [["set_property", "by", "order-ba"]]);
+          modify_object("lmdbA", "Lock", "l", [["set_property", "by", "order-ba"]]);
+          let exists = true;
+          try { get_object("lmdbA", "OrderRow", id); }
+          catch (e) { exists = false; }
+          if (exists) {
+              delete_object("model", "Order", id);
+          } else {
+              add_object("model", "Order", {item: id}, id);
+          }
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: self-note
+    description: OrderSelfNote toggle; its hooks write lmdbA inside the model's own lmdbA write.
+    sourceType: script
+    source: |
+      try {
+          const id = "s" + string(random_integer(0, 49));
+          modify_object("lmdbA", "Lock", "l", [["set_property", "by", "self-note"]]);
+          let exists = true;
+          try { get_object("lmdbA", "OrderRow", id); }
+          catch (e) { exists = false; }
+          if (exists) {
+              delete_object("model", "OrderSelfNote", id);
+          } else {
+              add_object("model", "OrderSelfNote", {item: id}, id);
+          }
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: note
+    description: >-
+      Note toggle; script only, kept in lmdbB. A model write still begins a
+      transaction on the model's mapped adapter (lmdbA), so this takes lmdbA
+      (Lock), then lmdbB, like order-ab.
+    sourceType: script
+    source: |
+      try {
+          const id = "n" + string(random_integer(0, 49));
+          modify_object("lmdbA", "Lock", "l", [["set_property", "by", "note"]]);
+          let exists = true;
+          try { get_object("lmdbB", "NoteRow", id); }
+          catch (e) { exists = false; }
+          if (exists) {
+              delete_object("model", "Note", id);
+          } else {
+              add_object("model", "Note", {text: id}, id);
+          }
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: alias-tick
+    description: Write through lmdbA2 alone; it queues on lmdbA's writer mutex.
+    sourceType: script
+    source: |
+      try {
+          modify_object("lmdbA2", "AliasTick", "t", [["set_property", "by", "alias-tick"]]);
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: alias-write-write
+    description: lmdbA, then lmdbA2, in one request. Always refused; lmdbA's write stays.
+    sourceType: script
+    source: |
+      try {
+          modify_object("lmdbA", "Lock", "l", [["set_property", "by", "alias-write-write"]]);
+          modify_object("lmdbA2", "AliasTick", "t", [["set_property", "by", "alias-write-write"]]);
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+          return true;
+      }
+      throw "write through lmdbA2 was not refused";
+    expect: true
+
+  - name: journal-writer
+    description: >-
+      data, then journal (the entry for the write): add or delete one data object.
+    sourceType: script
+    source: |
+      try {
+          const id = "d" + string(random_integer(0, 49));
+          modify_object("data", "Applied", "a", [["set_property", "by", "journal-writer"]]);
+          let exists = true;
+          try { get_object("data", "Row", id); }
+          catch (e) { exists = false; }
+          if (exists) {
+              delete_object("data", "Row", id);
+          } else {
+              add_object("data", "Row", {n: id}, id);
+          }
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: journal-consumer
+    description: journal (get_next_for_consumer), then data (apply), then journal again (mark consumed).
+    skip: $opposite_order_skip
+    sourceType: script
+    source: |
+      const peer = "6f1c2d3e-0000-4000-8000-000000000001";
+      try {
+          const next = journal_get_next_for_consumer("journal", peer, 10);
+          if (is_defined(next.entryCursor)) {
+              modify_object("data", "Applied", "a",
+                  [["set_property", "cursor", next.entryCursor]]);
+              journal_mark_consumed("journal", peer, next.entryCursor);
+          }
+      }
+      catch (e) {
+          if (!includes<string>(e.message, "would deadlock")) { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: reader
+    description: >-
+      Read an Order through the model; auditCount reads lmdbB while the
+      model's read of lmdbA is open. Two read snapshots taken at different
+      times, so a concurrent delete can show 0: only more than one fails.
+    sourceType: script
+    source: |
+      const id = "o" + string(random_integer(0, 99));
+      try {
+          const o = get_object("model", "Order", id);
+          assert(o.auditCount <= 1, id + " auditCount " + string(o.auditCount));
+      }
+      catch (e) {
+          if (e.id !== "not_found") { throw e; }
+      }
+      return true;
+    expect: true
+
+  - name: check
+    description: >-
+      Quiescent: OrderRow and Audit match one to one; every self-note row has its note.
+    sourceType: script
+    source: |
+      const rows = retrieve_objects("lmdbA", "OrderRow");
+      let orders = 0;
+      let selfNotes = 0;
+      for (const row of rows) {
+          if (starts_with<string>(row.item, "o")) {
+              orders = orders + 1;
+              const id: string = row.item;
+              get_object("lmdbB", "Audit", id + "-add");
+          } else {
+              selfNotes = selfNotes + 1;
+              const id: string = row.item;
+              get_object("lmdbA", "OrderNote", id + "-note");
+          }
+      }
+      const audits = length(retrieve_objects("lmdbB", "Audit"));
+      const notes = length(retrieve_objects("lmdbA", "OrderNote"));
+      assert(audits === orders, string(audits) + " Audit, " + string(orders) + " Order rows");
+      assert(notes === selfNotes, string(notes) + " OrderNote, " + string(selfNotes) + " OrderSelfNote rows");
+      return true;
+    expect: true
+
+schedule:
+  - sequential: [setup, setup-alias]
+  - firehose:
+      duration_s: $duration_s
+      concurrency: 16
+      clientProcesses: 2
+      fromTests: [order-ab, order-ba, self-note, note, alias-tick,
+          alias-write-write, journal-writer, journal-consumer, reader]
+      policy: random
+      seed: 11
+      stopOnError: false
+      maxFail: 0
+  - sequential: [check]

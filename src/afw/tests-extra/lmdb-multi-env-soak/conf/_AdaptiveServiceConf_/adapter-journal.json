@@ -1,0 +1,27 @@
+{
+    "serviceId": "adapter-journal",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "lmdb",
+        "adapterId": "journal",
+        "description": "Journal of data: its own LMDB env; grows with every data write (about 800MB an hour at full load)",
+        "limits": {
+            "time": {
+                "hard": 60,
+                "soft": 30
+            },
+            "size": {
+                "hard": 100000,
+                "soft": 100000
+            }
+        },
+        "env": {
+            "mapsize": 8589934592,
+            "maxdbs": 32,
+            "maxreaders": 126,
+            "mode": 384,
+            "path": "journal/"
+        }
+    }
+}

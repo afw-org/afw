@@ -1,0 +1,7 @@
+{
+    "title": "MultiEnvSoak",
+    "defaultAdapterId": "lmdbA",
+    "extensions": [
+        "afw_lmdb"
+    ]
+}
