@@ -36,7 +36,6 @@ typedef struct afw_lmdb_env_s {
     int maxreaders;
     int maxdbs;
     size_t mapsize;
-    unsigned int flags;
 } afw_lmdb_env_t;
 
 /*
@@ -197,17 +196,9 @@ typedef struct afw_lmdb_transaction_s {
     afw_boolean_t owner;
 } afw_lmdb_transaction_t;
 
-/* defines the data used to remember our open transaction handle */
-typedef struct {
-    const afw_lmdb_adapter_t *adapter;
-    MDB_txn *txn;
-    afw_boolean_t transCommitted;
-} afw_lmdb_txn_t;
-
 typedef struct afw_lmdb_adapter_session_s {
     afw_adapter_session_t pub;
     afw_lmdb_adapter_t *adapter;
-    afw_adapter_session_t *metadata_session;
     afw_adapter_impl_index_t *indexer;      
     afw_lmdb_journal_t *journal;
     afw_lmdb_key_value_t *key_value;
@@ -257,9 +248,8 @@ typedef struct impl_afw_adapter_impl_index_cursor_self_s {
 
 } impl_afw_adapter_impl_index_cursor_self_t;
 
-/* defines the data used to remember our open database handle */
+/* A cached database handle (adapter->dbi_handles). */
 typedef struct {
-    MDB_env *env;
     MDB_dbi dbi;
     /*
      * The first snapshot known to have this database: mdb_txn_id() of
@@ -272,12 +262,9 @@ typedef struct {
 
 
 
-/*
- *
- */
+/* New cache entry for dbi, allocated in pool. */
 afw_lmdb_dbi_t * afw_lmdb_internal_dbi_handle(
-    MDB_env           * env, 
-    MDB_dbi             dbi, 
+    MDB_dbi             dbi,
     const afw_pool_t  * pool,
     afw_xctx_t       * xctx);
 
@@ -337,20 +324,6 @@ afw_lmdb_transaction_t *
     afw_lmdb_adapter_session_t *session,
     afw_xctx_t *xctx);
 
-
-afw_rc_t afw_lmdb_internal_cleanup_free_result(void *data);
-
-const afw_utf8_t * afw_lmdb_internal_get_object_id(
-    const afw_lmdb_adapter_session_t *self,
-    afw_xctx_t *xctx);
-
-afw_rc_t afw_lmdb_internal_close_database(void *val);
-afw_rc_t afw_lmdb_internal_close_cursor(void *val);
-
-void afw_lmdb_internal_close_transaction(
-    void *data, void *data2,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
 
 MDB_dbi afw_lmdb_internal_open_database(
     const afw_lmdb_adapter_t * adapter,
@@ -466,54 +439,6 @@ void afw_lmdb_internal_txn_abort(
 MDB_cursor * afw_lmdb_internal_open_cursor(
     const afw_lmdb_adapter_session_t *session,
     MDB_dbi dbi,
-    afw_xctx_t *xctx);
-
-afw_lmdb_txn_t * afw_lmdb_internal_open_transaction(
-    const afw_lmdb_adapter_session_t *session,
-    const afw_lmdb_adapter_t *adapter, 
-    unsigned int flags,
-    afw_boolean_t exclusive,
-    afw_xctx_t *xctx);
-
-int afw_lmdb_internal_commit_transaction(
-    const afw_lmdb_adapter_session_t *session,
-    const afw_lmdb_adapter_t *adapter,
-    afw_xctx_t *xctx);
-
-void afw_lmdb_internal_abort_transaction(
-    const afw_lmdb_adapter_session_t *session,
-    const afw_lmdb_adapter_t *adapter,
-    afw_xctx_t *xctx);
-
-int afw_lmdb_internal_index_object(
-    const afw_lmdb_adapter_session_t * session,
-    const afw_lmdb_adapter_t * adapter,
-    const afw_utf8_t * object_type_id,
-    const afw_object_t * object,
-    const afw_uuid_t *uuid,
-    afw_xctx_t *xctx);
-
-int afw_lmdb_internal_index_property(
-    const afw_lmdb_adapter_t * adapter,
-    MDB_txn *txn,
-    const afw_utf8_t *object_type_id,
-    const afw_utf8_t *property,
-    const afw_utf8_t *value,
-    const afw_uuid_t *uuid,
-    afw_xctx_t *xctx);
-
-int afw_lmdb_internal_delete_index(
-    const afw_lmdb_adapter_session_t * session,
-    const afw_utf8_t *object_type_id,
-    const afw_utf8_t *object_id,
-    const afw_utf8_t *property,
-    const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-afw_boolean_t afw_lmdb_internal_is_property_indexed(
-    const afw_lmdb_adapter_t *adapter,
-    const afw_utf8_t *object_type_id,
-    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 const afw_object_t * afw_lmdb_internal_create_object_from_entry(
@@ -754,25 +679,6 @@ do { \
             } \
             afw_trace_z(1, this_adapter->pub.trace_flag_index, \
                 NULL, "LMDB Transaction committed.", this_xctx); \
-        } \
-    }
-
-/**
- * @brief Abort a transaction.
- */
-#define AFW_LMDB_ABORT_TRANSACTION() \
-    if (this_txnOwner) { \
-        if (this_txn && !this_txnHandled) { \
-            afw_lmdb_internal_txn_abort(this_adapter, this_txn, this_xctx); \
-            this_txnHandled = true; \
-            if (this_session) \
-                ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
-            if (this_rc) { \
-                AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
-                    "Unable to abort transaction.", this_xctx); \
-            } \
-            afw_trace_z(1, this_adapter->pub.trace_flag_index, \
-                NULL, "LMDB Transaction aborted.", this_xctx); \
         } \
     }
 
