@@ -52,6 +52,16 @@ struct afw_file_internal_adapter_session_s {
 
 const afw_adapter_journal_inf_t * afw_file_internal_get_journal_inf();
 
+/*
+ * Throw if segment is not one file name under root: empty, ".", "..", or
+ * containing '/', '\\', or NUL. what names it in the error.
+ */
+void
+afw_file_internal_check_path_segment(
+    const afw_utf8_t *segment,
+    const char *what,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

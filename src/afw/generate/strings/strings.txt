@@ -72,6 +72,8 @@ a_equal==
 a_exclamation=!
 a_vertical_bar=|
 a_Content_dash_Type=Content-Type
+a_Cache_dash_Control=Cache-Control
+a_no_dash_store=no-store
 a_automatic_start=automatic start
 a_Core_afw_adapter=Core afw adapter
 a_in_catch=in catch

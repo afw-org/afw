@@ -16596,6 +16596,48 @@ afw_function_definition_to_string_ipAddress;
  * @{
  */
 
+/** @brief Function definition journal_add_entry */
+extern const afw_value_function_definition_t
+afw_function_definition_journal_add_entry;
+
+/**
+ * @brief Adaptive Function `journal_add_entry`
+ * @param x function execute parameter.
+ *
+ * Add an entry to the journal of an adapter. The entry is stored as given. This
+ * is the same as add_object() with object type _AdaptiveJournalEntry_, but
+ * returns the new entry's cursor.
+ * 
+ * Include something like an eventType property in entries you write, so a
+ * peer's consumeFilter can tell them apart from each other and from the entries
+ * an adapter writes for its object changes.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function journal_add_entry(
+ *       adapterId: string,
+ *       entry: object
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   adapterId - (string) Id of the adapter whose journal gets the entry.
+ *
+ *   entry - (object) The journal entry.
+ *
+ * Returns:
+ *
+ *   (string) The new entry's cursor.
+ */
+const afw_value_t *
+afw_function_execute_journal_add_entry(
+    afw_function_execute_t *x);
+
 /** @brief Function definition journal_advance_cursor_for_consumer */
 extern const afw_value_function_definition_t
 afw_function_definition_journal_advance_cursor_for_consumer;
@@ -16616,7 +16658,7 @@ afw_function_definition_journal_advance_cursor_for_consumer;
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is applicable.
+ * The consumeFilter expression is used to determine if an entry is applicable.
  * 
  * Journal entries are scanned beginning at the entry at the cursor in the
  * advanceCursor property. If the advanceCursor property is not present, the
@@ -16643,11 +16685,11 @@ afw_function_definition_journal_advance_cursor_for_consumer;
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   limit - (optional integer) The maximum number of entries that will be
- *       scanned for an entry where the consumerFilter expression in the
+ *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
  *
  * Returns:
@@ -16799,7 +16841,7 @@ afw_function_definition_journal_get_next_for_consumer;
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is applicable.
+ * The consumeFilter expression is used to determine if an entry is applicable.
  * 
  * If consumeCursor property exists, return that entry at that cursor again
  * immediately with a 'reissue' property added and set to true.
@@ -16833,11 +16875,11 @@ afw_function_definition_journal_get_next_for_consumer;
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   limit - (optional integer) The maximum number of entries that will be
- *       scanned for an entry where the consumerFilter expression in the
+ *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
  *
  * Returns:
@@ -16867,7 +16909,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is applicable.
+ * The consumeFilter expression is used to determine if an entry is applicable.
  * 
  * Unlike option get_next_for_consumer, no other properties are referenced or
  * modified.
@@ -16890,13 +16932,13 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   cursor - (string) Journal entry cursor.
  *
  *   limit - (optional integer) The maximum number of entries that will be
- *       scanned for an entry where the consumerFilter expression in the
+ *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
  *
  * Returns:
@@ -16934,7 +16976,7 @@ afw_function_definition_journal_mark_consumed;
  *
  *   adapterId - (string) Id of adapter.
  *
- *   consumerId - (string) The consumerId property value of the associated
+ *   consumerId - (string) The objectId of the associated
  *       _AdaptiveProvisioningPeer_ object.
  *
  *   cursor - (string) Journal entry cursor.

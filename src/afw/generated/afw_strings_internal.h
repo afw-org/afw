@@ -1537,32 +1537,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__0621212918d6 \
-    "Get the next journal entry for a consumer referenced by the consumer_id after the one specified by the entry_cursor parameter. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\nThis option will set response properties 'entry' and 'entryCursor' if an applicable entry is retrieved.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nUnlike option get_next_for_consumer, no other properties are referenced or modified."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0621212918d6 */
-#define afw_s_zz__0621212918d6 \
-    (&afw_self_v_zz__0621212918d6.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0621212918d6 */
-#define afw_self_s_zz__0621212918d6 \
-    (afw_self_v_zz__0621212918d6.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0621212918d6 */
-extern const afw_value_string_t \
-    afw_self_v_zz__0621212918d6;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0621212918d6 */
-#define afw_z_zz__0621212918d6 \
-    (afw_self_v_zz__0621212918d6.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0621212918d6 */
-#define afw_v_zz__0621212918d6 \
-    (&afw_self_v_zz__0621212918d6.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__06574490a9ae \
     "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Toggle"
 
@@ -3509,32 +3483,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__0e338fb20283 */
 #define afw_v_zz__0e338fb20283 \
     (&afw_self_v_zz__0e338fb20283.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__0e3ef0df4fed \
-    "Update the advance cursor for a consumer referenced by the consumerId parameter. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning. A response object is always returned.\n\nThis option will set response property 'entryCursor' if an applicable entry is found (and 'reissue' if that entry is being reissued). If no applicable entry is found, these response properties are not set.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nJournal entries are scanned beginning at the entry at the cursor in the advanceCursor property. If the advanceCursor property is not present, the scan begins after the cursor in currentCursor. If neither are present, the scan begins at the start of the journal.\n\nIf an new applicable entry is found or if the limit is met, the advanceCursor property is set to the currently scanned entry's cursor."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0e3ef0df4fed */
-#define afw_s_zz__0e3ef0df4fed \
-    (&afw_self_v_zz__0e3ef0df4fed.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0e3ef0df4fed */
-#define afw_self_s_zz__0e3ef0df4fed \
-    (afw_self_v_zz__0e3ef0df4fed.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0e3ef0df4fed */
-extern const afw_value_string_t \
-    afw_self_v_zz__0e3ef0df4fed;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0e3ef0df4fed */
-#define afw_z_zz__0e3ef0df4fed \
-    (afw_self_v_zz__0e3ef0df4fed.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0e3ef0df4fed */
-#define afw_v_zz__0e3ef0df4fed \
-    (&afw_self_v_zz__0e3ef0df4fed.pub)
 
 
 
@@ -9259,6 +9207,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__2639434f2a98 \
+    "Get the next journal entry for a consumer referenced by the consumer_id parameter. The entry_cursor parameter is ignored. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\n This option will set response properties 'entry' and 'entryCursor' if an applicable entry is retrieved. Property 'reissue' will be set as described below.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumeFilter expression is used to determine if an entry is applicable.\n\nIf consumeCursor property exists, return that entry at that cursor again immediately with a 'reissue' property added and set to true.\n\nJournal entries are scanned beginning at the entry at the cursor in the advanceCursor property. If the advanceCursor property is not present, the scan begins after the cursor in currentCursor. If neither are present, the scan begins at the start of the journal.\n\nIf an applicable entry is found, properties consumeStart and consumeCursor are set, advanceCursor is removed, and the entry is returned. Method mark_entry_consumed() will remove these properties.\n\nIf no applicable entry is found, advanceCursor is set to the last entry scanned."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2639434f2a98 */
+#define afw_s_zz__2639434f2a98 \
+    (&afw_self_v_zz__2639434f2a98.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2639434f2a98 */
+#define afw_self_s_zz__2639434f2a98 \
+    (afw_self_v_zz__2639434f2a98.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2639434f2a98 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2639434f2a98;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2639434f2a98 */
+#define afw_z_zz__2639434f2a98 \
+    (afw_self_v_zz__2639434f2a98.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2639434f2a98 */
+#define afw_v_zz__2639434f2a98 \
+    (&afw_self_v_zz__2639434f2a98.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__263b969c211f \
     "Evaluate an adaptive value and compare it to an expected value. Return object with the test's results."
 
@@ -13419,6 +13393,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__3787eb4a9491 \
+    "The maximum number of entries that will be scanned for an entry where the consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3787eb4a9491 */
+#define afw_s_zz__3787eb4a9491 \
+    (&afw_self_v_zz__3787eb4a9491.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3787eb4a9491 */
+#define afw_self_s_zz__3787eb4a9491 \
+    (afw_self_v_zz__3787eb4a9491.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3787eb4a9491 */
+extern const afw_value_string_t \
+    afw_self_v_zz__3787eb4a9491;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3787eb4a9491 */
+#define afw_z_zz__3787eb4a9491 \
+    (afw_self_v_zz__3787eb4a9491.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3787eb4a9491 */
+#define afw_v_zz__3787eb4a9491 \
+    (&afw_self_v_zz__3787eb4a9491.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__37a9e0125e6b \
     "function get_object (\n    adapterId: string,\n    objectType: string,\n    objectId: string,\n    options?: object, // _AdaptiveObjectOptions_\n    adapterTypeSpecific?: object\n): object;\n"
 
@@ -15105,6 +15105,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3e9850fec8c0 */
 #define afw_v_zz__3e9850fec8c0 \
     (&afw_self_v_zz__3e9850fec8c0.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__3ebd01bb7c48 \
+    "The objectId of the associated _AdaptiveProvisioningPeer_ object."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3ebd01bb7c48 */
+#define afw_s_zz__3ebd01bb7c48 \
+    (&afw_self_v_zz__3ebd01bb7c48.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3ebd01bb7c48 */
+#define afw_self_s_zz__3ebd01bb7c48 \
+    (afw_self_v_zz__3ebd01bb7c48.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3ebd01bb7c48 */
+extern const afw_value_string_t \
+    afw_self_v_zz__3ebd01bb7c48;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3ebd01bb7c48 */
+#define afw_z_zz__3ebd01bb7c48 \
+    (afw_self_v_zz__3ebd01bb7c48.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3ebd01bb7c48 */
+#define afw_v_zz__3ebd01bb7c48 \
+    (&afw_self_v_zz__3ebd01bb7c48.pub)
 
 
 
@@ -19811,6 +19837,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__53c2b691eb68 */
 #define afw_v_zz__53c2b691eb68 \
     (&afw_self_v_zz__53c2b691eb68.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__53cffbb0bbe5 \
+    "Update the advance cursor for a consumer referenced by the consumerId parameter. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning. A response object is always returned.\n\nThis option will set response property 'entryCursor' if an applicable entry is found (and 'reissue' if that entry is being reissued). If no applicable entry is found, these response properties are not set.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumeFilter expression is used to determine if an entry is applicable.\n\nJournal entries are scanned beginning at the entry at the cursor in the advanceCursor property. If the advanceCursor property is not present, the scan begins after the cursor in currentCursor. If neither are present, the scan begins at the start of the journal.\n\nIf an new applicable entry is found or if the limit is met, the advanceCursor property is set to the currently scanned entry's cursor."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__53cffbb0bbe5 */
+#define afw_s_zz__53cffbb0bbe5 \
+    (&afw_self_v_zz__53cffbb0bbe5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__53cffbb0bbe5 */
+#define afw_self_s_zz__53cffbb0bbe5 \
+    (afw_self_v_zz__53cffbb0bbe5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__53cffbb0bbe5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__53cffbb0bbe5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__53cffbb0bbe5 */
+#define afw_z_zz__53cffbb0bbe5 \
+    (afw_self_v_zz__53cffbb0bbe5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__53cffbb0bbe5 */
+#define afw_v_zz__53cffbb0bbe5 \
+    (&afw_self_v_zz__53cffbb0bbe5.pub)
 
 
 
@@ -29695,6 +29747,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7ac6787636b2 \
+    "Get the next journal entry for a consumer referenced by the consumer_id after the one specified by the entry_cursor parameter. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\nThis option will set response properties 'entry' and 'entryCursor' if an applicable entry is retrieved.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumeFilter expression is used to determine if an entry is applicable.\n\nUnlike option get_next_for_consumer, no other properties are referenced or modified."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7ac6787636b2 */
+#define afw_s_zz__7ac6787636b2 \
+    (&afw_self_v_zz__7ac6787636b2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7ac6787636b2 */
+#define afw_self_s_zz__7ac6787636b2 \
+    (afw_self_v_zz__7ac6787636b2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7ac6787636b2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7ac6787636b2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7ac6787636b2 */
+#define afw_z_zz__7ac6787636b2 \
+    (afw_self_v_zz__7ac6787636b2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7ac6787636b2 */
+#define afw_v_zz__7ac6787636b2 \
+    (&afw_self_v_zz__7ac6787636b2.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7acdfe5b754e \
     "Determine if for anyURI arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison."
 
@@ -30159,6 +30237,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7da16cee43b4 */
 #define afw_v_zz__7da16cee43b4 \
     (&afw_self_v_zz__7da16cee43b4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__7db5129dd8ea \
+    "function journal_add_entry (\n    adapterId: string,\n    entry: object\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7db5129dd8ea */
+#define afw_s_zz__7db5129dd8ea \
+    (&afw_self_v_zz__7db5129dd8ea.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7db5129dd8ea */
+#define afw_self_s_zz__7db5129dd8ea \
+    (afw_self_v_zz__7db5129dd8ea.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7db5129dd8ea */
+extern const afw_value_string_t \
+    afw_self_v_zz__7db5129dd8ea;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7db5129dd8ea */
+#define afw_z_zz__7db5129dd8ea \
+    (afw_self_v_zz__7db5129dd8ea.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7db5129dd8ea */
+#define afw_v_zz__7db5129dd8ea \
+    (&afw_self_v_zz__7db5129dd8ea.pub)
 
 
 
@@ -41911,6 +42015,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Add_duration */
 #define afw_v_zz__Add_duration \
     (&afw_self_v_zz__Add_duration.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Add_journal_entry \
+    "Add journal entry"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Add_journal_entry */
+#define afw_s_zz__Add_journal_entry \
+    (&afw_self_v_zz__Add_journal_entry.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Add_journal_entry */
+#define afw_self_s_zz__Add_journal_entry \
+    (afw_self_v_zz__Add_journal_entry.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Add_journal_entry */
+extern const afw_value_string_t \
+    afw_self_v_zz__Add_journal_entry;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Add_journal_entry */
+#define afw_z_zz__Add_journal_entry \
+    (afw_self_v_zz__Add_journal_entry.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Add_journal_entry */
+#define afw_v_zz__Add_journal_entry \
+    (&afw_self_v_zz__Add_journal_entry.pub)
 
 
 
@@ -59097,6 +59227,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Id_of_test */
 #define afw_v_zz__Id_of_test \
     (&afw_self_v_zz__Id_of_test.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    "Id of the adapter whose journal gets the entry."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_s_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (&afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_self_s_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_z_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ */
+#define afw_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_ \
+    (&afw_self_v_zz__Id_of_the_adapter_whose_journal_gets_the_entry_.pub)
 
 
 
@@ -82267,6 +82423,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__The_journal_entry_ \
+    "The journal entry."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_journal_entry_ */
+#define afw_s_zz__The_journal_entry_ \
+    (&afw_self_v_zz__The_journal_entry_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_journal_entry_ */
+#define afw_self_s_zz__The_journal_entry_ \
+    (afw_self_v_zz__The_journal_entry_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_journal_entry_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_journal_entry_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_journal_entry_ */
+#define afw_z_zz__The_journal_entry_ \
+    (afw_self_v_zz__The_journal_entry_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_journal_entry_ */
+#define afw_v_zz__The_journal_entry_ \
+    (&afw_self_v_zz__The_journal_entry_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_key_for_this_lock \
     "The key for this lock"
 
@@ -82861,6 +83043,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__The_name_of_this_parameter */
 #define afw_v_zz__The_name_of_this_parameter \
     (&afw_self_v_zz__The_name_of_this_parameter.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_new_entry_s_cursor_ \
+    "The new entry's cursor."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_s_zz__The_new_entry_s_cursor_ \
+    (&afw_self_v_zz__The_new_entry_s_cursor_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_self_s_zz__The_new_entry_s_cursor_ \
+    (afw_self_v_zz__The_new_entry_s_cursor_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_new_entry_s_cursor_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_new_entry_s_cursor_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_z_zz__The_new_entry_s_cursor_ \
+    (afw_self_v_zz__The_new_entry_s_cursor_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_new_entry_s_cursor_ */
+#define afw_v_zz__The_new_entry_s_cursor_ \
+    (&afw_self_v_zz__The_new_entry_s_cursor_.pub)
 
 
 
@@ -92927,6 +93135,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___adapterId__string__entry__object___string \
+    "(adapterId: string, entry: object): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_s_zz___adapterId__string__entry__object___string \
+    (&afw_self_v_zz___adapterId__string__entry__object___string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_self_s_zz___adapterId__string__entry__object___string \
+    (afw_self_v_zz___adapterId__string__entry__object___string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___adapterId__string__entry__object___string */
+extern const afw_value_string_t \
+    afw_self_v_zz___adapterId__string__entry__object___string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_z_zz___adapterId__string__entry__object___string \
+    (afw_self_v_zz___adapterId__string__entry__object___string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___adapterId__string__entry__object___string */
+#define afw_v_zz___adapterId__string__entry__object___string \
+    (&afw_self_v_zz___adapterId__string__entry__object___string.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___adapterId__string__key__string___object \
     "(adapterId: string, key: string): object"
 
@@ -102959,6 +103193,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__join */
 #define afw_v_zz___afw__AdaptiveFunction__join \
     (&afw_self_v_zz___afw__AdaptiveFunction__join.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry \
+    "/afw/_AdaptiveFunction_/journal_add_entry"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_s_zz___afw__AdaptiveFunction__journal_add_entry \
+    (&afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_self_s_zz___afw__AdaptiveFunction__journal_add_entry \
+    (afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_z_zz___afw__AdaptiveFunction__journal_add_entry \
+    (afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__journal_add_entry */
+#define afw_v_zz___afw__AdaptiveFunction__journal_add_entry \
+    (&afw_self_v_zz___afw__AdaptiveFunction__journal_add_entry.pub)
 
 
 
@@ -132291,6 +132551,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b8679ed69739 \
+    "Add an entry to the journal of an adapter. The entry is stored as given. This is the same as add_object() with object type _AdaptiveJournalEntry_, but returns the new entry's cursor.\n\nInclude something like an eventType property in entries you write, so a peer's consumeFilter can tell them apart from each other and from the entries an adapter writes for its object changes."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b8679ed69739 */
+#define afw_s_zz__b8679ed69739 \
+    (&afw_self_v_zz__b8679ed69739.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b8679ed69739 */
+#define afw_self_s_zz__b8679ed69739 \
+    (afw_self_v_zz__b8679ed69739.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b8679ed69739 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b8679ed69739;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b8679ed69739 */
+#define afw_z_zz__b8679ed69739 \
+    (afw_self_v_zz__b8679ed69739.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b8679ed69739 */
+#define afw_v_zz__b8679ed69739 \
+    (&afw_self_v_zz__b8679ed69739.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b891406e2caf \
     "function decode_to_string<base64Binary> (\n    value: base64Binary\n): string;\n"
 
@@ -144797,32 +145083,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e30fd8821c1b \
-    "The maximum number of entries that will be scanned for an entry where the consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e30fd8821c1b */
-#define afw_s_zz__e30fd8821c1b \
-    (&afw_self_v_zz__e30fd8821c1b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e30fd8821c1b */
-#define afw_self_s_zz__e30fd8821c1b \
-    (afw_self_v_zz__e30fd8821c1b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e30fd8821c1b */
-extern const afw_value_string_t \
-    afw_self_v_zz__e30fd8821c1b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e30fd8821c1b */
-#define afw_z_zz__e30fd8821c1b \
-    (afw_self_v_zz__e30fd8821c1b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e30fd8821c1b */
-#define afw_v_zz__e30fd8821c1b \
-    (&afw_self_v_zz__e30fd8821c1b.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e3453832a2fe \
     "Returns boolean true if string array1 and string array2 are subsets of each other and return the boolean result."
 
@@ -147393,32 +147653,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__eebea8ac66d7 */
 #define afw_v_zz__eebea8ac66d7 \
     (&afw_self_v_zz__eebea8ac66d7.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__eeda370462e6 \
-    "Get the next journal entry for a consumer referenced by the consumer_id parameter. The entry_cursor parameter is ignored. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\n This option will set response properties 'entry' and 'entryCursor' if an applicable entry is retrieved. Property 'reissue' will be set as described below.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nIf consumeCursor property exists, return that entry at that cursor again immediately with a 'reissue' property added and set to true.\n\nJournal entries are scanned beginning at the entry at the cursor in the advanceCursor property. If the advanceCursor property is not present, the scan begins after the cursor in currentCursor. If neither are present, the scan begins at the start of the journal.\n\nIf an applicable entry is found, properties consumeStart and consumeCursor are set, advanceCursor is removed, and the entry is returned. Method mark_entry_consumed() will remove these properties.\n\nIf no applicable entry is found, advanceCursor is set to the last entry scanned."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eeda370462e6 */
-#define afw_s_zz__eeda370462e6 \
-    (&afw_self_v_zz__eeda370462e6.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eeda370462e6 */
-#define afw_self_s_zz__eeda370462e6 \
-    (afw_self_v_zz__eeda370462e6.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__eeda370462e6 */
-extern const afw_value_string_t \
-    afw_self_v_zz__eeda370462e6;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__eeda370462e6 */
-#define afw_z_zz__eeda370462e6 \
-    (afw_self_v_zz__eeda370462e6.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__eeda370462e6 */
-#define afw_v_zz__eeda370462e6 \
-    (&afw_self_v_zz__eeda370462e6.pub)
 
 
 
@@ -152463,32 +152697,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fbe33175e4b2 */
 #define afw_v_zz__fbe33175e4b2 \
     (&afw_self_v_zz__fbe33175e4b2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__fbec1fa635bd \
-    "The consumerId property value of the associated _AdaptiveProvisioningPeer_ object."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fbec1fa635bd */
-#define afw_s_zz__fbec1fa635bd \
-    (&afw_self_v_zz__fbec1fa635bd.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fbec1fa635bd */
-#define afw_self_s_zz__fbec1fa635bd \
-    (afw_self_v_zz__fbec1fa635bd.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__fbec1fa635bd */
-extern const afw_value_string_t \
-    afw_self_v_zz__fbec1fa635bd;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fbec1fa635bd */
-#define afw_z_zz__fbec1fa635bd \
-    (afw_self_v_zz__fbec1fa635bd.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__fbec1fa635bd */
-#define afw_v_zz__fbec1fa635bd \
-    (&afw_self_v_zz__fbec1fa635bd.pub)
 
 
 

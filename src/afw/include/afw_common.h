@@ -1249,7 +1249,7 @@ typedef enum afw_log_priority_e {
  * ------------ | ----------- 
  * entry_cursor | The objectId of a journal entry.
  * consumer_id  | The objectId of an _AdaptiveProvisioningPeer_ object.
- * limit        | The maximum number of entries that will be scanned for an entry where the consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true. 
+ * limit        | The maximum number of entries that will be scanned for an entry where the consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true. 
  *
  * Depending on option, get_entry() sets zero or more of these properties in
  * the response:
@@ -1311,7 +1311,7 @@ typedef enum afw_adapter_journal_option_e {
      * The properties of the _AdaptiveProvisioningPeer_ object associated
      * with the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * If consumeCursor property exists, return that entry at that cursor
@@ -1346,7 +1346,7 @@ typedef enum afw_adapter_journal_option_e {
      * The properties of the _AdaptiveProvisioningPeer_ object associated
      * with the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * Unlike option get_next_for_consumer, no other properties are
@@ -1368,7 +1368,7 @@ typedef enum afw_adapter_journal_option_e {
      * The properties of the _AdaptiveProvisioningPeer_ object associated
      * with the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * Journal entries are scanned beginning at the entry at the cursor

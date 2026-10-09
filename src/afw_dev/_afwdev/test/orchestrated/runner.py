@@ -2349,6 +2349,16 @@ def _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir=None,
         raise AfwdevRunnerError(
             "REST status {} for {} {}".format(code, method, path))
 
+    expect_headers = item.get("expectHeaders")
+    if expect_headers:
+        headers = result.get("headers") or {}
+        for name, value in expect_headers.items():
+            actual = headers.get(name.lower())
+            if actual != value:
+                raise AfwdevRunnerError(
+                    "REST header {!r} is {!r}, expected {!r}".format(
+                        name, actual, value))
+
     body_bytes = result.get("body") or b""
     if "x-afw" in (accept or "").lower():
         _judge_x_afw_body(

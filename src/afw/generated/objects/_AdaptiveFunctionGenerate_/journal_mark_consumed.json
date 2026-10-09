@@ -14,7 +14,7 @@
         },
         {
             "dataType": "string",
-            "description": "The consumerId property value of the associated _AdaptiveProvisioningPeer_ object.",
+            "description": "The objectId of the associated _AdaptiveProvisioningPeer_ object.",
             "name": "consumerId"
         },
         {

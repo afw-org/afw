@@ -26,6 +26,39 @@ class journal
     }
 
     /**
+     * journal_add_entry()
+     *
+     * Add an entry to the journal of an adapter. The entry is stored as
+     * given. This is the same as add_object() with object type
+     * _AdaptiveJournalEntry_, but returns the new entry's cursor.
+     * 
+     * Include something like an eventType property in entries you write, so a
+     * peer's consumeFilter can tell them apart from each other and from the
+     * entries an adapter writes for its object changes.
+     *
+     * @param string $adapterId Id of the adapter whose journal gets the
+     *                          entry.
+     * @param object $entry The journal entry.
+     *
+     * @return string The new entry's cursor.
+     */
+    public function journal_add_entry(, $entry, $adapterId = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "journal_add_entry");
+
+        /* pass along required parameters to the request payload */
+        $request->set("entry", $entry);
+
+        /* pass along any optional parameters to the request payload */
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
+
+        return $request->get_result();
+    }
+
+    /**
      * journal_advance_cursor_for_consumer()
      *
      * Update the advance cursor for a consumer referenced by the consumerId
@@ -40,7 +73,7 @@ class journal
      * The properties of the _AdaptiveProvisioningPeer_ object associated with
      * the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * Journal entries are scanned beginning at the entry at the cursor in the
@@ -52,10 +85,10 @@ class journal
      * advanceCursor property is set to the currently scanned entry's cursor.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
-     *                       scanned for an entry where the consumerFilter
+     *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
      *                       true.
@@ -183,7 +216,7 @@ class journal
      * The properties of the _AdaptiveProvisioningPeer_ object associated with
      * the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * If consumeCursor property exists, return that entry at that cursor
@@ -202,10 +235,10 @@ class journal
      * scanned.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
-     *                       scanned for an entry where the consumerFilter
+     *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
      *                       true.
@@ -245,18 +278,18 @@ class journal
      * The properties of the _AdaptiveProvisioningPeer_ object associated with
      * the consumer_id are used in the following way:
      * 
-     * The consumerFilter expression is used to determine if an entry is
+     * The consumeFilter expression is used to determine if an entry is
      * applicable.
      * 
      * Unlike option get_next_for_consumer, no other properties are referenced
      * or modified.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
      * @param integer $limit The maximum number of entries that will be
-     *                       scanned for an entry where the consumerFilter
+     *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
      *                       true.
@@ -289,8 +322,8 @@ class journal
      * Mark a journal entry returned by get_next_for_consumer() as consumed.
      *
      * @param string $adapterId Id of adapter.
-     * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_ object.
+     * @param string $consumerId The objectId of the associated
+     *                           _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
      *
      * @return void

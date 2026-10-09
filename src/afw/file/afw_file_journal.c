@@ -204,6 +204,9 @@ impl_open_and_retrieve_peer_object(
     afw_error_footprint_t footprint;
     afw_size_t len;
 
+    /* consumer_id is the peer's file name, so it must stay under root. */
+    afw_file_internal_check_path_segment(consumer_id, "consumer id", xctx);
+
     *full_peer_path_z = afw_utf8_to_utf8_z(
         afw_utf8_concat(p, xctx,
             adapter->root,
@@ -219,7 +222,8 @@ impl_open_and_retrieve_peer_object(
     AFW_ERROR_FOOTPRINT("stat()");
     afw_file_stat(*full_peer_path_z, &info, xctx);
     if (info.type == afw_file_type_missing) {
-        goto error_peer;
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            "Provisioning peer '%ku' not found", consumer_id);
     }
 
     AFW_ERROR_FOOTPRINT("open()");
@@ -427,9 +431,13 @@ impl_afw_adapter_journal_add_entry_internal(
     entry_fd = afw_file_open(full_entry_path_z,
         O_WRONLY | O_CREAT | O_APPEND, xctx);
 
-    /* Determine cursor of entry. */
+    /*
+     * Determine cursor of entry. O_APPEND only moves to the end when
+     * writing, so SEEK_CUR here would be 0. The journal write lock keeps
+     * the end where it is until this entry is written.
+     */
     AFW_ERROR_FOOTPRINT("seek()");
-    offset = afw_file_seek(entry_fd, 0, SEEK_CUR, xctx);
+    offset = afw_file_seek(entry_fd, 0, SEEK_END, xctx);
     cursor = afw_utf8_printf(xctx->p, xctx,
         "%02d%02d%02d%02d%02d_" AFW_INTEGER_FMT,
         lock.century, lock.year, lock.month, lock.day, lock.hour,
@@ -548,6 +556,7 @@ impl_afw_adapter_journal_get_entry_internal(
     afw_boolean_t check_filter;
     afw_boolean_t open_journal;
     afw_boolean_t applicable;
+    afw_size_t scanned;
     const afw_utf8_z_t *relative_entry_path_z;
     afw_utf8_z_t relative_entry_path_wa_z[IMPL_RELATIVE_ENTRY_PATH_WA_Z_SIZE];
     const afw_utf8_z_t *full_entry_path_z;
@@ -719,13 +728,20 @@ impl_afw_adapter_journal_get_entry_internal(
             xctx);
     }
 
-    /* Loop until end or an applicable entry found. */
+    /*
+     * Loop until end, an applicable entry found, or, when checking the
+     * filter, limit (if not 0) entries scanned. On limit, entry_object_id
+     * is the next entry to scan, which becomes the advanceCursor.
+     */
     open_journal = true;
+    scanned = 0;
     for (;;) {
 
         /* Make entry_object_id for the entry. */
         entry_object_id = impl_relative_entry_path_to_object_id(
             relative_entry_path_z, offset, xctx);
+
+        if (check_filter && limit > 0 && scanned >= limit) break;
 
         /* If needed, open journal file. */
         if (open_journal) {
@@ -801,6 +817,7 @@ impl_afw_adapter_journal_get_entry_internal(
 
             /* If applicable entry, leave loop. */
             if (applicable) break;
+            scanned++;
         }
 
         /* Set offset for next loop. */
@@ -858,17 +875,18 @@ impl_afw_adapter_journal_get_entry_internal(
  
     }
 
-    /* Set entryCursor property. */
-    afw_object_set_property_as_string_internal(response, afw_v_entryCursor,
-        entry_object_id, xctx);
-
     /*
-     * Return entry if there is an applicable one and not
-     * advance_consumer_cursor request.
+     * If there is an applicable entry, set entryCursor and, if not
+     * advance_consumer_cursor request, entry. With no entry, neither is
+     * set: entry_object_id is then just where the scan stopped.
      */
-    if (applicable && !advance_consumer_cursor) {
-        afw_object_set_property_as_object_internal(response, afw_v_entry, entry,
-            xctx);
+    if (applicable) {
+        afw_object_set_property_as_string_internal(response,
+            afw_v_entryCursor, entry_object_id, xctx);
+        if (!advance_consumer_cursor) {
+            afw_object_set_property_as_object_internal(response,
+                afw_v_entry, entry, xctx);
+        }
     }
     return;
 

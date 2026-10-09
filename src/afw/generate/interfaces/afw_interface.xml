@@ -6365,9 +6365,13 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="mark_entry_consumed">
 
       <description>
-        Mark an entry consumed. If entry is not the current ... blah blah blah
-        Need to make object type for _AdaptiveJournalPeer_
-        Different journal ids?
+        Mark the entry a consumer is currently consuming as consumed.
+        entry_cursor must be the consumer's consumeCursor, which
+        get_entry() option get_next_for_consumer set; otherwise an error
+        is thrown. Removes the consumer's consumeCursor and
+        consumeStartTime properties and updates lastContactTime, so the
+        next get_next_for_consumer scans past this entry instead of
+        reissuing it.
       </description>
 
       <parameter name="instance" type="const afw_adapter_journal_t *">
@@ -6385,14 +6389,13 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <parameter name="consumer_id" type="const afw_utf8_t *">
         <description>
-          Get entry option. See afw_adapter_journal_option_t for
-          more information.
+          The objectId of the consumer's _AdaptiveProvisioningPeer_ object.
         </description>
       </parameter>
 
       <parameter name="entry_cursor" type="const afw_utf8_t *">
         <description>
-          Token of the event to mark consumed.
+          Cursor of the entry to mark consumed.
         </description>
       </parameter>
 

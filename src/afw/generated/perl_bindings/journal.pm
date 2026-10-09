@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    journal_add_entry 
     journal_advance_cursor_for_consumer 
     journal_get_by_cursor 
     journal_get_first 
@@ -30,6 +31,27 @@ afw::journal - Perl module for journal functions
 
 The following functions are exported by default
 
+=head3 journal_add_entry
+
+Add an entry to the journal of an adapter. The entry is stored as given. This
+is the same as add_object() with object type _AdaptiveJournalEntry_, but
+returns the new entry's cursor.
+
+Include something like an eventType property in entries you write, so a peer's
+consumeFilter can tell them apart from each other and from the entries an
+adapter writes for its object changes.
+Add journal entry
+
+=head4 Parameters
+
+    $adapterId
+
+Id of the adapter whose journal gets the entry.
+
+    $entry
+
+The journal entry.
+
 =head3 journal_advance_cursor_for_consumer
 
 Update the advance cursor for a consumer referenced by the consumerId
@@ -44,7 +66,7 @@ is found, these response properties are not set.
 The properties of the _AdaptiveProvisioningPeer_ object associated with the
 consumer_id are used in the following way:
 
-The consumerFilter expression is used to determine if an entry is applicable.
+The consumeFilter expression is used to determine if an entry is applicable.
 
 Journal entries are scanned beginning at the entry at the cursor in the
 advanceCursor property. If the advanceCursor property is not present, the scan
@@ -63,13 +85,12 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $limit
 
 The maximum number of entries that will be scanned for an entry where the
-consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object
+consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
 evaluates to true.
 
 =head3 journal_get_by_cursor
@@ -138,7 +159,7 @@ below.
 The properties of the _AdaptiveProvisioningPeer_ object associated with the
 consumer_id are used in the following way:
 
-The consumerFilter expression is used to determine if an entry is applicable.
+The consumeFilter expression is used to determine if an entry is applicable.
 
 If consumeCursor property exists, return that entry at that cursor again
 immediately with a 'reissue' property added and set to true.
@@ -164,13 +185,12 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $limit
 
 The maximum number of entries that will be scanned for an entry where the
-consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object
+consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
 evaluates to true.
 
 =head3 journal_get_next_for_consumer_after_cursor
@@ -186,7 +206,7 @@ applicable entry is retrieved.
 The properties of the _AdaptiveProvisioningPeer_ object associated with the
 consumer_id are used in the following way:
 
-The consumerFilter expression is used to determine if an entry is applicable.
+The consumeFilter expression is used to determine if an entry is applicable.
 
 Unlike option get_next_for_consumer, no other properties are referenced or
 modified.
@@ -200,8 +220,7 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $cursor
 
@@ -210,7 +229,7 @@ Journal entry cursor.
     $limit
 
 The maximum number of entries that will be scanned for an entry where the
-consumerFilter expression in the associated _AdaptiveProvisioningPeer_ object
+consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
 evaluates to true.
 
 =head3 journal_mark_consumed
@@ -226,14 +245,27 @@ Id of adapter.
 
     $consumerId
 
-The consumerId property value of the associated _AdaptiveProvisioningPeer_
-object.
+The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
     $cursor
 
 Journal entry cursor.
 
 =cut
+
+sub journal_add_entry {
+    my ($adapterId, $entry) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "journal_add_entry");
+    $request->set("entry", $entry);
+
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
+
+    return $request->getResult();
+}
 
 sub journal_advance_cursor_for_consumer {
     my ($adapterId, $consumerId, $limit) = @_;

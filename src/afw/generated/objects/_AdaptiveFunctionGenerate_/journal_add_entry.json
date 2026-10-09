@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwJournalAddEntry",
+    "brief": "Add journal entry",
+    "camelCaseFunctionLabel": "journalAddEntry",
+    "category": "journal",
+    "description": "Add an entry to the journal of an adapter. The entry is stored as given. This is the same as add_object() with object type _AdaptiveJournalEntry_, but returns the new entry's cursor.\n\nInclude something like an eventType property in entries you write, so a peer's consumeFilter can tell them apart from each other and from the entries an adapter writes for its object changes.",
+    "functionId": "journal_add_entry",
+    "functionLabel": "journal_add_entry",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of the adapter whose journal gets the entry.",
+            "name": "adapterId"
+        },
+        {
+            "dataType": "object",
+            "description": "The journal entry.",
+            "name": "entry"
+        }
+    ],
+    "returns": {
+        "dataType": "string",
+        "description": "The new entry's cursor."
+    },
+    "sideEffects": [
+        "Journal entry added"
+    ]
+}

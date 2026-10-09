@@ -181,6 +181,39 @@ afw_lmdb_adapter_journal_get_peer_object(
     return object;
 }
 
+
+/*
+ * Get the peer object for consumer_id, the peer's objectId. Throws
+ * not_found if there is none. A consumer_id that is not the length of a
+ * UUID can not be one here.
+ */
+static const afw_object_t *
+impl_get_peer_or_throw(
+    afw_lmdb_journal_t * self,
+    afw_lmdb_adapter_session_t * session,
+    afw_lmdb_adapter_t * adapter,
+    MDB_dbi dbi,
+    MDB_txn * txn,
+    const afw_utf8_t *consumer_id,
+    const afw_uuid_t **uuid,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *peer;
+
+    peer = NULL;
+    if (consumer_id->len == AFW_UUID_FORMATTED_LENGTH) {
+        *uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
+        peer = afw_lmdb_adapter_journal_get_peer_object(
+            self, session, adapter, dbi, txn, *uuid, xctx);
+    }
+    if (!peer) {
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            "Provisioning peer '%ku' not found", consumer_id);
+    }
+
+    return peer;
+}
+
 void
 afw_lmdb_journal_update_peer(
     afw_lmdb_journal_t * self,
@@ -359,14 +392,8 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
-    uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-    peer = afw_lmdb_adapter_journal_get_peer_object(
-        self, session, adapter, dbiConsumers, txn, uuid, xctx);
-    if (peer == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error, provisioning peer not found.", xctx);
-    }
+    peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+        txn, consumer_id, &uuid, xctx);
 
     advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
@@ -464,14 +491,8 @@ impl_afw_adapter_journal_get_next_for_consumer(
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
-    uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-    peer = afw_lmdb_adapter_journal_get_peer_object(
-        self, session, adapter, dbiConsumers, txn, uuid, xctx);
-    if (peer == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error, provisioning peer not found.", xctx);
-    }
+    peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+        txn, consumer_id, &uuid, xctx);
 
     current_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_currentCursor, xctx->p, xctx);
@@ -544,14 +565,12 @@ impl_afw_adapter_journal_get_next_for_consumer(
         afw_object_set_property_as_object_internal(response, 
             afw_v_entry, entry, xctx);
     } else {
-        /* we may need to increase the advanceCursor */
-        if (advance_cursor) {
-            /** @fixme: is the cursor further along than our existing advanceCursor? */
-
-        } else {
-            afw_object_set_property_as_string_internal(peer, 
-                afw_v_advanceCursor, cursor_str, xctx); 
-        }
+        /*
+         * Nothing applicable within limit: the scan only moves forward from
+         * advanceCursor, so the next scan starts where this one stopped.
+         */
+        afw_object_set_property_as_string_internal(peer,
+            afw_v_advanceCursor, cursor_str, xctx);
     }
 
     afw_object_set_property_as_dateTime_internal(peer,
@@ -581,7 +600,6 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     const afw_object_t *peer;
     const afw_utf8_t *current_cursor;
     const afw_utf8_t *advance_cursor;
-    const afw_utf8_t *consume_cursor;
     const afw_utf8_t *cursor_str;
     const afw_value_t *consumer_filter;
     afw_boolean_t found = AFW_FALSE;
@@ -592,30 +610,18 @@ afw_lmdb_journal_advance_cursor_for_consumer(
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
-    uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-    peer = afw_lmdb_adapter_journal_get_peer_object(
-        self, session, adapter, dbiConsumers, txn, uuid, xctx);
-    if (peer == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error, provisioning peer not found.", xctx);
-    }
+    peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+        txn, consumer_id, &uuid, xctx);
 
     current_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_currentCursor, xctx->p, xctx);
     advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
-    consume_cursor = afw_object_get_property_as_string_internal(
-        peer, afw_v_consumeCursor, xctx);
 
-    /** @fixme: we'll have to consider the scenario where we get
-        a consume_cursor (re-issue) and now it's removed from the
-        journal */
-
-    if (consume_cursor)
-        cursor = impl_cursor_from_utf8(consume_cursor, xctx);
-    else if (advance_cursor)
+    /* Advancing does not reissue; it starts at advanceCursor or after
+       currentCursor, like the file journal. */
+    if (advance_cursor)
         cursor = impl_cursor_from_utf8(advance_cursor, xctx);
     else if (current_cursor)
         cursor = impl_cursor_from_utf8(current_cursor, xctx) + 1;
@@ -647,35 +653,15 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     /* update our last contact time */
     now = afw_dateTime_now_utc(xctx->p, xctx);
 
+    /*
+     * advanceCursor is the applicable entry found or where the scan
+     * stopped. Advancing does not start consuming the entry.
+     */
+    afw_object_set_property_as_string_internal(peer,
+        afw_v_advanceCursor, cursor_str, xctx);
     if (found) {
-        /* check to see if this is a re-issue */
-        if (consume_cursor) {
-            afw_object_set_property(response, afw_v_reissue,
-                afw_boolean_v_true, xctx);
-        } else {
-            /* not a re-issue, so set our consumption properties */
-            afw_object_set_property_as_dateTime_internal(peer,
-                afw_v_consumeStartTime, now, xctx);
-            afw_object_set_property_as_string_internal(peer,
-                afw_v_consumeCursor, cursor_str, xctx);
-            afw_object_set_property_as_string_internal(peer,
-                afw_v_currentCursor, cursor_str, xctx);
-            afw_object_remove_property(peer,
-                afw_v_advanceCursor, xctx);
-        }
-
-        /* set our entry cursor */
         afw_object_set_property_as_string_internal(response,
             afw_v_entryCursor, cursor_str, xctx);
-    } else {
-        /* we may need to increase the advanceCursor */
-        if (advance_cursor) {
-            /** @fixme: is the cursor further along than our existing advanceCursor? */
-
-        } else {
-            afw_object_set_property_as_string_internal(peer,
-                afw_v_advanceCursor, cursor_str, xctx);
-        }
     }
 
     afw_object_set_property_as_dateTime_internal(peer,
@@ -784,14 +770,8 @@ impl_afw_adapter_journal_mark_entry_consumed(
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
         /* lookup the cursor from the database */
-        uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
-
-        peer = afw_lmdb_adapter_journal_get_peer_object(
-            self, session, adapter, dbiConsumers, txn, uuid, xctx);
-        if (peer == NULL) {
-            AFW_THROW_ERROR_Z(general,
-                "Error, provisioning peer not found.", xctx);
-        }
+        peer = impl_get_peer_or_throw(self, session, adapter, dbiConsumers,
+            txn, consumer_id, &uuid, xctx);
 
         consume_cursor = afw_object_get_property_as_string_internal(peer,
             afw_v_consumeCursor, xctx);
