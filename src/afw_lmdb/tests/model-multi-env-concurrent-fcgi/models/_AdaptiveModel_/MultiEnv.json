@@ -1,0 +1,22 @@
+{
+    "modelId": "MultiEnv",
+    "description": "Model mapped to lmdbA whose on* scripts also write lmdbB, a separate LMDB environment.",
+    "objectTypes": {
+        "Order": {
+            "description": "Default processing writes lmdbA. onAddObject and onDeleteObject also write lmdbB.",
+            "mappedObjectType": "OrderRow",
+            "onAddObject": "add_object('lmdbB', 'Audit',\n    {op: 'add', orderId: current::objectId, item: current::object.item},\n    current::objectId + '-add');\nreturn current::useDefaultProcessing;",
+            "onDeleteObject": "delete_object('lmdbB', 'Audit', current::objectId + '-add');\nreturn current::useDefaultProcessing;",
+            "propertyTypes": {
+                "item": {
+                    "dataType": "string"
+                },
+                "auditCount": {
+                    "dataType": "integer",
+                    "description": "Read from lmdbB while lmdbA's read of this object is still open.",
+                    "onGetProperty": "const rows: array = retrieve_objects('lmdbB', 'Audit',\n    {filter: {op: 'eq', property: 'orderId', value: current::mappedObjectId}});\nreturn length(rows);"
+                }
+            }
+        }
+    }
+}

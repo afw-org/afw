@@ -1,0 +1,86 @@
+# Concurrent requests across two LMDB environments, lmdbA (the model's
+# mapped adapter) and lmdbB (written by Order's onAddObject), plus
+# lmdbA2, a second adapter id on lmdbA's directory (shared MDB_env).
+#
+# A request's write transaction on an environment holds that
+# environment's writer mutex from first write until the request ends.
+# Requests that take lmdbA then lmdbB (every model add) queue behind each
+# other and all land, and writes through lmdbA and lmdbA2 in separate
+# requests queue on the one writer mutex. A request that takes lmdbB
+# first and then lmdbA, against one of these, deadlocks the server
+# (beta-backlog.md); not run here.
+#
+# Request-boundary cases: ../model-multi-env-fcgi/.
+version: 1
+description: LMDB model across environments - concurrent writers
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 120
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: ab-only
+    description: lmdbA, then lmdbB, with no opposite-order writers around.
+    sourceType: script
+    source: |
+      add_object("model", "Order", {item: "order"}, generate_uuid());
+      return true;
+    expect: true
+
+  - name: via-a
+    description: Write through lmdbA alone.
+    sourceType: script
+    source: |
+      add_object("lmdbA", "AliasRow", {via: "lmdbA"}, generate_uuid());
+      return true;
+    expect: true
+
+  - name: via-a2
+    description: Write through lmdbA2 alone; it shares lmdbA's MDB_env and writer mutex.
+    sourceType: script
+    source: |
+      add_object("lmdbA2", "AliasRow", {via: "lmdbA2"}, generate_uuid());
+      return true;
+    expect: true
+
+  - name: check-orders-1
+    description: Every Order has its OrderRow in lmdbA and its Audit in lmdbB.
+    sourceType: script
+    source: |
+      const rows = length(retrieve_objects("lmdbA", "OrderRow"));
+      const adds = length(retrieve_objects("lmdbB", "Audit",
+          {filter: {op: "eq", property: "op", value: "add"}}));
+      assert(rows === adds, string(rows) + " OrderRow, " + string(adds) + " Audit");
+      return rows;
+    expect: 96
+
+  - name: check-alias
+    description: Both ids see every AliasRow, from either id.
+    sourceType: script
+    source: |
+      const viaA = length(retrieve_objects("lmdbA", "AliasRow"));
+      const viaA2 = length(retrieve_objects("lmdbA2", "AliasRow"));
+      return [viaA, viaA2];
+    expect: [96, 96]
+
+schedule:
+  - firehose:
+      maxRequests: 96
+      concurrency: 8
+      fromTests: [ab-only]
+      policy: roundRobin
+      seed: 3
+      stopOnError: false
+      maxFail: 0
+  - sequential: [check-orders-1]
+  - firehose:
+      maxRequests: 96
+      concurrency: 8
+      fromTests: [via-a, via-a2]
+      policy: roundRobin
+      seed: 5
+      stopOnError: false
+      maxFail: 0
+  - sequential: [check-alias]
