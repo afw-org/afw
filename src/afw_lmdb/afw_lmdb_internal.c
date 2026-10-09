@@ -2453,9 +2453,10 @@ int afw_lmdb_internal_reader_list_cb(
     afw_lmdb_internal_reader_list_cb_ctx * context = (afw_lmdb_internal_reader_list_cb_ctx *)ctx;
     const afw_utf8_t *message;
 
+    /* LMDB calls this once per line: the header, then each reader. */
     message = afw_utf8_z_to_utf8(msg, context->pool, context->xctx);
-    *(context->list) = afw_utf8_create(
-    message->s, message->len, context->pool, context->xctx);
+    *(context->list) = afw_utf8_concat(context->pool, context->xctx,
+        *(context->list), message, NULL);
 
     return (int)strlen(msg);
 }
@@ -2480,6 +2481,7 @@ int afw_lmdb_internal_reader_list(
     ctx.pool = pool;
     ctx.xctx = xctx;
     ctx.list = list;
+    *list = afw_s_a_empty_string;
 
     rc = mdb_reader_list(self->dbEnv, afw_lmdb_internal_reader_list_cb, &ctx);
 

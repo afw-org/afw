@@ -28,12 +28,11 @@ return reader_check("lmdb");
 
 //?
 //? test: reader_functions_not_lmdb
-//? description: reader_check() and reader_list() on an adapter that is not LMDB throw.
-//? skip: true
-//? skipReason: ...
-FIXME (beta-backlog.md): both cast any adapter to afw_lmdb_adapter_t and
-pass its memory to LMDB as an MDB_env; on the runtime adapter ("afw")
-the process dies with SIGSEGV.
+//? description: ...
+reader_check() and reader_list() on an adapter that is not LMDB throw
+"not an LMDB adapter". They used to hand that adapter's memory to LMDB
+as an MDB_env, and the process died (SIGSEGV).
+//? skip: false
 //? expect: true
 //? source: ...
 

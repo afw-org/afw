@@ -21,13 +21,10 @@ tests:
   - name: reader-list-during-read
     description: >-
       Called while this request's retrieve holds a read transaction,
-      reader_list() returns LMDB's header line and that reader.
-    skip: true
+      reader_list() returns LMDB's header line and that reader. It used
+      to return only the last line LMDB passed its callback.
     sourceType: script
     source: |
-      // FIXME (beta-backlog.md): afw_lmdb_internal_reader_list_cb()
-      // replaces the result with each line LMDB passes it instead of
-      // appending, so only the last line (the reader) comes back.
       let seen: string = "";
       retrieve_objects_to_callback(
           function (o: object, userData: any): boolean {
