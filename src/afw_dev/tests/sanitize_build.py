@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""afwdev build --sanitize: accepted variant, refused combinations, install."""
+"""afwdev build --sanitize: accepted variants, refused combinations, install."""
 
 import contextlib
 import io
@@ -56,6 +56,19 @@ def run():
         ),
     ))
 
+    thread = _apply({'build_sanitize': 'thread', 'build_cdev': True})
+    tests.append(_case(
+        "thread",
+        "--cdev --sanitize thread: thread + undefined into build/tsan, "
+        "cmake only, no install",
+        passed=(
+            thread.get('build_sanitizers') == ('thread', 'undefined')
+            and thread.get('build_sanitize_dir') == 'tsan'
+            and thread.get('build_cmake') is True
+            and thread.get('build_install') is False
+        ),
+    ))
+
     cdev = _apply({'build_sanitize': 'address', 'build_cdev': True})
     tests.append(_case(
         "cdev-no-install",
@@ -86,15 +99,16 @@ def run():
 
     tests.append(_case(
         "variants-refused",
-        "--sanitize thread / memory / bogus exit with an error",
+        "--sanitize memory / bogus exit with an error",
         passed=all(_exits({'build_sanitize': v})
-            for v in ('thread', 'memory', 'bogus')),
+            for v in ('memory', 'bogus')),
     ))
 
     refused = ('build_fulldev', 'build_all', 'build_docs', 'build_js',
         'build_docker', 'build_package', 'build_scan')
-    not_refused = [flag for flag in refused
-        if not _exits({'build_sanitize': 'address', flag: True})]
+    not_refused = [variant + ' ' + flag for variant in ('address', 'thread')
+        for flag in refused
+        if not _exits({'build_sanitize': variant, flag: True})]
     tests.append(_case(
         "combinations-refused",
         "--sanitize with --fulldev, --all, --docs, --js, --docker, "

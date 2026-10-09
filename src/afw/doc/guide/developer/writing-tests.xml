@@ -371,6 +371,10 @@ return 0;
                     <column>Runs the suite against the AddressSanitizer + UndefinedBehaviorSanitizer build from <literal>./afwdev build --cdev --sanitize address</literal> (<literal>build/asan/cmake/</literal>, never installed). Python tests, C probes and orchestrated <literal>afwfcgi</literal> use the same build. Any sanitizer report fails the process that hit it, and a fail shows the report line and the top stack frames. Opt-in: about 6 minutes for the suite.</column>
                 </row>
                 <row>
+                    <column><literal>tsan</literal></column>
+                    <column>Runs the suite the same way against the ThreadSanitizer + UndefinedBehaviorSanitizer build from <literal>./afwdev build --cdev --sanitize thread</literal> (<literal>build/tsan/cmake/</literal>, never installed). Races need more than one thread, so reports come from the multi-threaded orchestrated <literal>afwfcgi</literal> tests. The stack limit is capped at 4 MiB for the run. Opt-in: about 80 seconds for the suite.</column>
+                </row>
+                <row>
                     <column><literal>afwfcgi</literal></column>
                     <column>Replays compatible <literal>.as</literal> files against a running stack. The default URL is <literal>http://localhost:8080/afw</literal>. Tests with their own <literal>afw.conf</literal> are skipped. Orchestrated tests are also skipped, because their conf does not apply to the running process.</column>
                 </row>

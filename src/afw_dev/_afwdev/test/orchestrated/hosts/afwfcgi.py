@@ -32,7 +32,8 @@ def build_afwfcgi_argv(
 
     Hook point for --env-mode valgrind and future flags. line_buffer
     False skips stdbuf: its LD_PRELOAD would load ahead of the ASan
-    runtime, which an ASan afwfcgi refuses (--env-mode asan).
+    runtime, which an ASan afwfcgi refuses (--env-mode asan). A TSan
+    afwfcgi runs fine with it (--env-mode tsan keeps line buffering).
     """
     afwfcgi = "afwfcgi"
     server = [

@@ -7,13 +7,14 @@
 # @details Tests normally run the installed afw, afwfcgi and libraries.
 #          --build-tree points the whole run (children inherit it) at the
 #          cmake tree of the build the --env-mode needs: build/cmake/, or
-#          build/asan/cmake/ for asan. PATH gets the tree's executables
+#          build/asan/cmake/ / build/tsan/cmake/ for asan / tsan. PATH
+#          gets the tree's executables
 #          and a link to the repo's ./afwdev; LD_LIBRARY_PATH gets every
 #          library dir (required: afw_environment_load_extension falls
 #          back to the installed lib dir); C probes get the tree's libafw,
-#          library dirs and -I dirs. --env-mode asan always uses this
-#          (the ASan build is never installed system-wide); other modes
-#          only with --build-tree. See designs/asan-opt-in.md.
+#          library dirs and -I dirs. --env-mode asan and tsan always use
+#          this (a sanitizer build is never installed system-wide); other
+#          modes only with --build-tree. See designs/asan-opt-in.md.
 #
 
 import json
@@ -22,6 +23,7 @@ import shlex
 import subprocess
 
 from _afwdev.common import msg
+from _afwdev.test.sanitize import SANITIZER_MODES, sanitizer_mode
 
 _EXECUTABLES = ('afw', 'afwfcgi')
 
@@ -29,14 +31,15 @@ _EXECUTABLES = ('afw', 'afwfcgi')
 def tree_dir(options):
     """cmake tree --build-tree uses for this --env-mode."""
     root = (options or {}).get('afw_package_dir_path') or os.getcwd()
-    if ((options or {}).get('mode') or 'afw') == 'asan':
-        return os.path.join(root, 'build', 'asan', 'cmake')
+    if sanitizer_mode(options):
+        return os.path.join(root, 'build', options['mode'], 'cmake')
     return os.path.join(root, 'build', 'cmake')
 
 
 def build_command(options):
-    if ((options or {}).get('mode') or 'afw') == 'asan':
-        return './afwdev build --cdev --sanitize address'
+    mode = sanitizer_mode(options)
+    if mode:
+        return './afwdev build --cdev --sanitize ' + mode['variant']
     return './afwdev build --cdev'
 
 
@@ -123,6 +126,7 @@ def _afwdev_link_dir(options, tree):
 
 def _warn_if_stale(options, tree, command):
     """Warn when the --sanitize stamp is from another commit or dirty."""
+    short = sanitizer_mode(options)['short']
     from _afwdev.build.cmake import SANITIZE_STAMP_NAME
     try:
         with open(os.path.join(tree, SANITIZE_STAMP_NAME),
@@ -137,11 +141,11 @@ def _warn_if_stale(options, tree, command):
     except (OSError, subprocess.CalledProcessError):
         head = None
     if head and stamp.get('commit') and stamp['commit'] != head:
-        msg.warn('ASan build is from commit ' + stamp['commit'][:10] +
+        msg.warn(short + ' build is from commit ' + stamp['commit'][:10] +
             ', HEAD is ' + head[:10] + '. If C changed since, rebuild: ' +
             command)
     elif stamp.get('dirty'):
-        msg.warn('ASan build was made from a tree with uncommitted '
+        msg.warn(short + ' build was made from a tree with uncommitted '
             'changes (' + str(stamp.get('built')) + '). If C changed '
             'since, rebuild: ' + command)
 
@@ -161,14 +165,18 @@ def prepare(options):
             'afw. Build it first: ' + command)
 
     sanitize = cache_value(tree, 'AFWDEV_SANITIZE') or ''
-    if ((options or {}).get('mode') or 'afw') == 'asan':
-        if 'address' not in sanitize.split(';'):
-            msg.error_exit(tree + ' is not an AddressSanitizer build. '
+    mode = sanitizer_mode(options)
+    if mode:
+        if mode['sanitizer'] not in sanitize.split(';'):
+            msg.error_exit(tree + ' is not a ' + mode['name'] + ' build. '
                 'Rebuild: ' + command)
         _warn_if_stale(options, tree, command)
     elif sanitize:
+        modes = [m for m, v in sorted(SANITIZER_MODES.items())
+            if v['sanitizer'] in sanitize.split(';')]
         msg.error_exit(tree + ' is a sanitizer build (' + sanitize + '); '
-            'use --env-mode asan for it.')
+            'use --env-mode ' + (' / '.join(modes) or 'asan / tsan') +
+            ' for it.')
 
     path = list(bin_dirs)
     link_dir = _afwdev_link_dir(options, tree)

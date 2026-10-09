@@ -93,9 +93,10 @@ def _env_dirs(name):
 def libafw_sanitizers(libdir=None):
     """Sanitizers the installed libafw was built with, e.g. ("address",).
 
-    Empty for a normal build. A probe against an ASAN libafw must be
-    built the same way: the ASAN runtime has to load first, and pool
-    internals widen the heap prefix under ASAN.
+    Empty for a normal build. A probe against an ASAN or TSAN libafw
+    must be built the same way: the ASAN runtime has to load first, pool
+    internals widen the heap prefix under ASAN, and an uninstrumented
+    probe crashes against a TSAN libafw.
     """
     if libdir is None:
         _, libdir = _include_and_libdir()
@@ -107,6 +108,8 @@ def libafw_sanitizers(libdir=None):
     found = []
     if b"__asan_init" in data:
         found.append("address")
+    if b"__tsan_init" in data:
+        found.append("thread")
     if b"__ubsan_handle_" in data:
         found.append("undefined")
     return tuple(found)

@@ -205,6 +205,9 @@ afwdev test -j
 afwdev test -j --env-mode valgrind
 ./afwdev build --cdev --sanitize address
 ./afwdev test -j --env-mode asan
+# Opt-in, not in the gate: ThreadSanitizer (designs/asan-opt-in.md)
+./afwdev build --cdev --sanitize thread
+./afwdev test -j --env-mode tsan
 
 # Filename filter (regex on path under tests/)
 afwdev test -p afw --test-pattern 'miscellaneous/property_get'

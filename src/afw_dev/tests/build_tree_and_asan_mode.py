@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""afwdev test --build-tree and --env-mode asan helpers (no real build).
+"""afwdev test --build-tree and --env-mode asan / tsan helpers (no real build).
 
 Uses a fake cmake tree in a temp dir. Only the refusal paths of
 build_tree.prepare() run here: they exit before touching os.environ.
@@ -82,6 +82,17 @@ READ of size 8 at 0xffff thread T0
 SUMMARY: AddressSanitizer: use-after-poison src/afw/json/afw_json_from_value.c:359 in impl_convert_value_to_json
 """
 
+_TSAN_TEXT = """\
+==================
+WARNING: ThreadSanitizer: data race (pid=1569437)
+  Write of size 1 at 0xffff7b52f428 by main thread:
+    #0 impl_handle_shutdown_signal src/afw_server_fcgi/afw_server_fcgi.c:85 (afwfcgi+0xd878)
+  Previous read of size 1 at 0xffff7b52f428 by thread T1:
+    #0 impl_afw_server_request_thread_start src/afw_server_fcgi/afw_server_fcgi.c:339 (afwfcgi+0x12d90)
+SUMMARY: ThreadSanitizer: data race src/afw_server_fcgi/afw_server_fcgi.c:85 in impl_handle_shutdown_signal
+==================
+"""
+
 _UBSAN_TEXT = (
     "/w/src/afw/function/afw_function_integer.c:263:14: runtime error: "
     "signed integer overflow: 24 * 9223372036854775807 cannot be "
@@ -117,14 +128,30 @@ def run():
 
         tests.append(_case(
             "tree-per-mode",
-            "asan uses build/asan/cmake; other modes use build/cmake",
+            "asan / tsan use build/asan/cmake / build/tsan/cmake; other "
+            "modes use build/cmake",
             passed=(
                 build_tree.tree_dir({'afw_package_dir_path': '/p/',
                     'mode': 'asan'}) == '/p/build/asan/cmake'
                 and build_tree.tree_dir({'afw_package_dir_path': '/p/',
+                    'mode': 'tsan'}) == '/p/build/tsan/cmake'
+                and build_tree.tree_dir({'afw_package_dir_path': '/p/',
                     'mode': 'valgrind'}) == '/p/build/cmake'
                 and build_tree.tree_dir({'afw_package_dir_path': '/p/'})
                     == '/p/build/cmake'
+            ),
+        ))
+
+        tests.append(_case(
+            "build-command",
+            "the rebuild hint names the mode's --sanitize variant",
+            passed=(
+                build_tree.build_command({'mode': 'asan'}) ==
+                    './afwdev build --cdev --sanitize address'
+                and build_tree.build_command({'mode': 'tsan'}) ==
+                    './afwdev build --cdev --sanitize thread'
+                and build_tree.build_command({'mode': 'valgrind'}) ==
+                    './afwdev build --cdev'
             ),
         ))
 
@@ -152,12 +179,21 @@ def run():
         shutil.copytree(tree, os.path.join(pkg, 'build', 'asan', 'cmake'))
         plain_for_asan = _exits(build_tree.prepare,
             {'afw_package_dir_path': pkg, 'mode': 'asan'})
+        os.makedirs(os.path.join(pkg, 'build', 'tsan'))
+        shutil.copytree(
+            _fake_tree(os.path.join(work, 'asan'), 'address;undefined'),
+            os.path.join(pkg, 'build', 'tsan', 'cmake'))
+        asan_for_tsan = _exits(build_tree.prepare,
+            {'afw_package_dir_path': pkg, 'mode': 'tsan'})
         tests.append(_case(
             "prepare-refusals",
-            "missing tree, a sanitizer tree for a normal mode, and a "
-            "normal tree for asan all exit with an error",
-            passed=missing and sanitized_for_afw and plain_for_asan,
-            error=str((missing, sanitized_for_afw, plain_for_asan)),
+            "missing tree, a sanitizer tree for a normal mode, a normal "
+            "tree for asan, and an ASan tree for tsan all exit with an "
+            "error",
+            passed=(missing and sanitized_for_afw and plain_for_asan
+                and asan_for_tsan),
+            error=str((missing, sanitized_for_afw, plain_for_asan,
+                asan_for_tsan)),
         ))
 
         tests.append(_case(
@@ -170,21 +206,27 @@ def run():
         shutil.rmtree(work, ignore_errors=True)
 
     asan = sanitize.sanitizer_report_summary(_ASAN_TEXT)
+    tsan = sanitize.sanitizer_report_summary(_TSAN_TEXT)
     ubsan = sanitize.sanitizer_report_summary(_UBSAN_TEXT)
     tests.append(_case(
         "report-summary",
-        "ASan and UBSan reports become a short summary; clean output is None",
+        "ASan, TSan and UBSan reports become a short summary; clean output "
+        "is None",
         passed=(
             asan is not None
             and 'ERROR: AddressSanitizer: use-after-poison' in asan
             and 'impl_convert_value_to_json' in asan
+            and tsan is not None
+            and 'WARNING: ThreadSanitizer: data race' in tsan
+            and 'SUMMARY: ThreadSanitizer: data race' in tsan
+            and 'impl_handle_shutdown_signal' in tsan
             and ubsan is not None
             and 'runtime error: signed integer overflow' in ubsan
             and sanitize.sanitizer_report_summary(
                 "[afw] Service 'adapter-afw' started.\n") is None
             and sanitize.sanitizer_report_summary(None) is None
         ),
-        error=str((asan, ubsan)),
+        error=str((asan, tsan, ubsan)),
     ))
 
     merged = sanitize._merge_options('detect_leaks=0:verbosity=1',
@@ -196,7 +238,20 @@ def run():
         error=merged,
     ))
 
+    tests.append(_case(
+        "sanitizer-modes",
+        "asan and tsan map to the address and thread --sanitize variants",
+        passed=(
+            sanitize.sanitizer_mode({'mode': 'asan'})['variant'] == 'address'
+            and sanitize.sanitizer_mode({'mode': 'tsan'})['variant']
+                == 'thread'
+            and sanitize.sanitizer_mode({'mode': 'valgrind'}) is None
+            and sanitize.sanitizer_mode({}) is None
+        ),
+    ))
+
     return {
-        "description": "afwdev test --build-tree and --env-mode asan helpers",
+        "description":
+            "afwdev test --build-tree and --env-mode asan / tsan helpers",
         "tests": tests,
     }

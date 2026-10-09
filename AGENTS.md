@@ -159,6 +159,11 @@ afwdev test -j --env-mode valgrind   # much slower
 ./afwdev build --cdev --sanitize address
 ./afwdev test -j --env-mode asan
 
+# Opt-in ThreadSanitizer + UBSan (own tree build/tsan/cmake/; ~40s + ~80s;
+# not in the PR gate). Races need threads: reports come from multi-threaded afwfcgi tests.
+./afwdev build --cdev --sanitize thread
+./afwdev test -j --env-mode tsan
+
 # Test the cmake build tree (build/cmake/) instead of the installed afw/libs
 ./afwdev test -j --build-tree
 

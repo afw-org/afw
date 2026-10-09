@@ -6,9 +6,9 @@
 # @brief This file defines the run method for running tests under the
 #        "asan" test mode.
 # @details Adaptive Scripts (.as) run under the afw command line tool from
-#          the AddressSanitizer build (build/asan/install, made by
+#          the AddressSanitizer build (build/asan/cmake, made by
 #          `afwdev build --cdev --sanitize address`). test.py has already
-#          put that prefix first on PATH and set ASAN_OPTIONS /
+#          put that tree first on PATH and set ASAN_OPTIONS /
 #          UBSAN_OPTIONS for the whole run (_afwdev.test.sanitize), so
 #          python tests, C probes and orchestrated afwfcgi use the same
 #          build. This mode runs the afw mode and turns a sanitizer report
