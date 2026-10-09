@@ -121,35 +121,45 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     return result + ("",)
 
 
+class _BailError(AfwdevRunnerError):
+    """--bail reached: stops the whole run (not caught per group)."""
+
+
 def _run_test_group_guarded(testGroup, options, testEnvironments,
         work_dir_prefix):
-    """A test or config.py that calls sys.exit() fails its group.
+    """A test or config.py that calls sys.exit() or raises fails its group.
 
     Under -j the group runs in a multiprocessing.Pool worker. If the
     worker exited, the pool would lose the task and the run would wait
-    forever for its result.
+    forever for its result. An exception (e.g. a before_each hook whose
+    subprocess fails) used to reach run() and stop the whole run with
+    no summary. Only --bail stops the run.
     """
     env = os.environ.copy()
     pwd = os.getcwd()
     try:
         return _run_test_group_body(
             testGroup, options, testEnvironments, work_dir_prefix)
+    except _BailError:
+        raise
     except SystemExit as e:
-        os.chdir(pwd)
-        os.environ.clear()
-        os.environ.update(env)
-        srcdir, root, _tests = testGroup
         detail = "test group called sys.exit({})".format(e.code)
-        failure = {
-            'test': test_path_for_display(root, pwd),
-            'detail': detail,
-            'srcdir': srcdir,
-            'group': test_path_for_display(root, pwd),
-        }
-        failure_log.record(
-            options, test_path_for_display(root, pwd), detail)
-        msg.error("FAIL " + test_path_for_display(root, pwd) + ": " + detail)
-        return testGroup, 0, 0, 1, [failure], 0, []
+    except Exception as e:
+        detail = "test group raised {}: {}".format(type(e).__name__, e)
+    os.chdir(pwd)
+    os.environ.clear()
+    os.environ.update(env)
+    srcdir, root, _tests = testGroup
+    failure = {
+        'test': test_path_for_display(root, pwd),
+        'detail': clip_detail(detail),
+        'srcdir': srcdir,
+        'group': test_path_for_display(root, pwd),
+    }
+    failure_log.record(
+        options, test_path_for_display(root, pwd), detail)
+    msg.error("FAIL " + test_path_for_display(root, pwd) + ": " + detail)
+    return testGroup, 0, 0, 1, [failure], 0, []
 
 
 def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
@@ -331,7 +341,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
                 # still make sure to cleanup by running after_all
                 after_all(root, testGroupConfig, testEnvironment)  
 
-                raise AfwdevRunnerError("Bailing due to test failure")
+                raise _BailError("Bailing due to test failure")
                     
             msg.highlighted_info("")
 

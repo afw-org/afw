@@ -51,11 +51,13 @@ _BUILD_TYPE_CONTEXTS_ALL = tuple(
     context for context in _BUILD_TYPE_CONTEXTS if context != 'docker'
 )
 
-# --sanitize <variant>: sanitizers it builds and its directory under build/.
-# Only address for now (thread / memory are not supported; see
+# --sanitize <variant>: sanitizers it builds and its directory under build/
+# (also the --env-mode that tests it; see SANITIZER_MODES in
+# _afwdev/test/sanitize.py). memory is not supported (see
 # designs/asan-opt-in.md). UBSan rides along with any variant.
 _SANITIZE_VARIANTS = {
     'address': (('address', 'undefined'), 'asan'),
+    'thread': (('thread', 'undefined'), 'tsan'),
 }
 
 # Options --sanitize refuses: it is the C (cmake) context only, built into
@@ -128,9 +130,9 @@ def apply_sanitize_options(options):
 
     Sets build_sanitizers (e.g. ('address', 'undefined')) and
     build_sanitize_dir (e.g. 'asan'). Run after apply_build_profile_flags
-    so --fulldev / --all are already expanded. --env-mode asan tests the
-    build tree, so a sanitizer build installs only with an explicit
-    --install (not the one --cdev implies).
+    so --fulldev / --all are already expanded. --env-mode asan / tsan
+    test the build tree, so a sanitizer build installs only with an
+    explicit --install (not the one --cdev implies).
     """
     variant = options.get('build_sanitize')
     if not variant:
@@ -138,8 +140,7 @@ def apply_sanitize_options(options):
     if variant not in _SANITIZE_VARIANTS:
         msg.error_exit('--sanitize ' + str(variant) + ' is not supported. '
             'Accepted: ' + ', '.join(sorted(_SANITIZE_VARIANTS)) +
-            '. thread and memory are not supported yet; see '
-            'designs/asan-opt-in.md.')
+            '. memory is not supported; see designs/asan-opt-in.md.')
     for option_name, flag in _SANITIZE_REFUSED:
         if options.get(option_name, False):
             msg.error_exit('--sanitize builds only the C (cmake) context '

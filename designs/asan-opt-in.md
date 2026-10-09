@@ -78,8 +78,8 @@ If anything is trimmed, only the fill (2) is a candidate, and only if ASan becom
 
 Decided with the maintainer, 2026-10-04.
 
-- **Flag:** `--sanitize <variant>`. `address` is the only value accepted now and builds `-fsanitize=address,undefined` (UBSan combines with any variant, so it always rides along; LeakSanitizer comes with `address` and is switched at run time). Other values are rejected with the reason. Accepting a value promises a working path (build, run, reports you can trust), not just compiler flags.
-- **Variants:** `thread` maybe later, after a trial run shows TSan is usable on AFW (its own `build/tsan/`). `memory` is not planned: MSan needs every dependency rebuilt with it, and AFW takes OpenSSL, ICU, libxml2, curl, LMDB, LDAP and yaml from the OS. Valgrind on the normal build already covers uninitialized reads. `address` works with uninstrumented OS libraries (no false reports; it just does not see bugs inside them).
+- **Flag:** `--sanitize <variant>`. `address` builds `-fsanitize=address,undefined` (UBSan combines with any variant, so it always rides along; LeakSanitizer comes with `address` and is switched at run time). Other values are rejected with the reason. Accepting a value promises a working path (build, run, reports you can trust), not just compiler flags.
+- **Variants:** `thread` landed 2026-10-09 after a trial showed TSan is usable on AFW (`build/tsan/`, `--env-mode tsan`; see *ThreadSanitizer*). `memory` is not planned: MSan needs every dependency rebuilt with it, and AFW takes OpenSSL, ICU, libxml2, curl, LMDB, LDAP and yaml from the OS. Valgrind on the normal build already covers uninitialized reads. `address` works with uninstrumented OS libraries (no false reports; it just does not see bugs inside them).
 - **Layout** (one directory per variant, a sibling of `build/cmake/`):
 
   ```
@@ -147,6 +147,29 @@ Flexible order; one step, then re-decide.
 **Also decided 2026-10-05:** a stale ASan build (stamp from another commit, or a dirty tree) stays a **warning**; LeakSanitizer stays **on** by default (`detect_leaks=1`).
 
 **Pre-PR verification (2026-10-05, rebased on `develop` `34f4eed9`):** `./afwdev build --fulldev` passed (generate, C, printf scan, `analyze-build` with no reports, install, Doxygen, Sphinx, TypeDoc, JS apps); `afwdev test -j --env-mode valgrind` 4607 passed, 0 failed (286s); `afwdev test -j` 4593 passed; `--env-mode asan` fails exactly the 7 tests of the three open UBSan findings.
+
+## ThreadSanitizer (`--sanitize thread`, `--env-mode tsan`)
+
+Branch `feature/tsan-opt-in` (2026-10-09). Same shape as ASan: `./afwdev build --cdev --sanitize thread` builds `-fsanitize=thread,undefined` into `build/tsan/cmake/` (about 40s; never installed, never implied by a profile), and `./afwdev test -j --env-mode tsan` runs the whole suite against that tree (about 80s, against ~20–30s normal and ~6 min ASan). Not part of the PR gate or CI (no decision yet).
+
+**Code map:** one row per variant in `_SANITIZE_VARIANTS` (`_afwdev/build/build.py`) and in `SANITIZER_MODES` (`_afwdev/test/sanitize.py`); `build_tree.py` takes the tree (`build/<mode>/cmake/`), the rebuild hint and the "is this that sanitizer's build" check from the latter. `modes/tsan.py` reuses the asan mode's `run_test`. `libafw_sanitizers()` reports `thread` from `__tsan_init`, so `run_c_probe` builds probes with `-fsanitize=thread,undefined`: an uninstrumented probe crashes (exit -11) against a TSan `libafw`.
+
+**Why it works without annotations:** AFW's atomics are C11 `_Atomic` (`AFW_ATOMIC`, `atomic_compare_exchange_strong`) and its locks are pthread mutexes / rwlocks, all of which TSan understands. Our own allocator gave no false reports: every pool free list that crosses threads is under the region mutex. The ASan annotations are no-ops under TSan; `AFW_VALGRIND_POOL` client requests (which `--cdev` adds) are harmless.
+
+**Test-mode choices:**
+
+- `TSAN_OPTIONS` adds `halt_on_error=1:second_deadlock_stack=1` (keys you set win, e.g. `suppressions=`). Halting matches the ASan decision: the first report fails the process (exit 66), so a report in `afwfcgi` fails the orchestrated test instead of only changing the exit code at shutdown.
+- **Stack cap:** the mode lowers the `RLIMIT_STACK` soft limit to 4 MiB for the run (children inherit it). Request threads get a stack as large as `RLIMIT_STACK`; TSan's shadow call stack holds about 64K frames, so `request_hostile_input` `deep-json-body` (200000 nested arrays) on an 8 MiB stack overran it and TSan itself SEGV'd inside `memcpy` under `FCGX_PutStr` before the C stack headroom check tripped. Passes at 2 and 4 MiB, fails 3 of 3 at 8 MiB; the normal build passes.
+- `KEEP_FREED_BYTES` (`AFW_MEMORY_REGION_KEEP_FREED_BYTES`) is not set: nothing poisons freed pool memory under TSan.
+- `afwfcgi` keeps `stdbuf` line buffering (only ASan refuses its `LD_PRELOAD`).
+
+**Coverage:** only `afwfcgi` creates threads, so races come from the orchestrated leaves with `threads:` above 1 (`file-adapter-concurrent-writes`, `fuzz-function-calls`, `fuzz-hostile`, `runtime-service-churn`, `thread-pool-parent` at 8; `firehose-smoke` at 2). Lock-order inversions also show up single-threaded (TSan records lock order, not only contention). Everything else runs as a slow UBSan pass.
+
+**Decided (2026-10-09, Jeremy): no suppressions.** The mode is opt-in and gates nothing, so known findings show as failures, as ASan's did while open; a suppression would only hide a bug. Pass your own with `TSAN_OPTIONS=suppressions=<file>` (your keys win) to look past one.
+
+**First run (2026-10-09, `develop` `d901acbd`):** 4672 passed, 69 failed (47 files), about 80s; every failure a finding in [`beta-backlog.md`](../beta-backlog.md) → *TSan findings*. Most are one finding: the registry-vs-flag lock-order inversion fires in every process that starts an lmdb / vfs / ldap adapter (or loads such an extension from conf), so nearly every `afw_lmdb` / `afw_vfs` test fails on it until it is fixed. The rest are the multi-threaded `afwfcgi` leaves (pool parent count, service status, thread accounting, signal flag). With that inversion suppressed by hand: 13 failed (7 files).
+
+**Runner fix on the same branch:** an LMDB group's `before_each` seed (`subprocess.run(..., check=True)`) raised when `afw` exited 66, and the exception stopped the whole run (~15s, no summary). `_run_test_group_guarded` (`_afwdev/test/runner.py`) now fails just that group for any exception, as it did for `sys.exit()`; only `--bail` (`_BailError`) stops the run. Regression: `src/afw_dev/tests/harness/group_hook_raises.py`.
 
 ## Footguns
 

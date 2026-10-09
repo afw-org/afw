@@ -82,11 +82,12 @@ def _list_tests(options, srcdirs):
     sys.exit(0)
 
 
-# Free-list cap per memory region under --env-mode asan and valgrind.
+# Free-list cap per memory region under --env-mode asan and valgrind
+# (not tsan: nothing poisons freed pool memory there).
 KEEP_FREED_BYTES = 64 * 1024 * 1024
 
 # --env-mode values. python and commands are per-file modes, not these.
-ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan")
+ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan", "tsan")
 
 
 ## 
@@ -214,14 +215,15 @@ def run(options):
                 "--srcdir-pattern, --tags, and -T.")
 
         # --build-tree: run against the mode's cmake tree, not the
-        # install. Sanitizer pairing: asan runs against build/asan;
-        # valgrind cannot run a sanitizer build.
-        # asan always uses its tree (it is never installed system-wide).
+        # install. Sanitizer pairing: asan / tsan run against
+        # build/asan / build/tsan; valgrind cannot run a sanitizer build.
+        # A sanitizer mode always uses its tree (it is never installed
+        # system-wide).
         if options.get('build_tree') or \
-                test_history.env_mode(options) == 'asan':
+                test_sanitize.sanitizer_mode(options):
             test_build_tree.prepare(options)
-        if test_history.env_mode(options) == 'asan':
-            test_sanitize.prepare_asan_environment(options)
+        if test_sanitize.sanitizer_mode(options):
+            test_sanitize.prepare_sanitizer_environment(options)
         elif test_history.env_mode(options) == 'valgrind':
             test_sanitize.refuse_sanitized_lib_for_valgrind()
         if test_history.env_mode(options) in ('asan', 'valgrind'):

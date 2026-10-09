@@ -190,7 +190,7 @@ def check_sanitizer_runtime(sanitizers):
 def write_sanitize_stamp(options):
     """Record the sanitizers and source commit in the --sanitize build tree.
 
-    --env-mode asan reads it to warn about a stale build.
+    --env-mode asan / tsan read it to warn about a stale build.
     """
     stamp_dir = options['build_directory_cmake']
     root = options['afw_package_dir_path']

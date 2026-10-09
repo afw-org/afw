@@ -27,8 +27,8 @@ alwaysApply: false
 
 ## Sanitizer build and test (opt-in)
 
-- `build --sanitize address`: `_afwdev/build/build.py` (`apply_sanitize_options`, refusals, `build/asan/cmake/`, no install unless explicit `--install`) and `build/cmake.py` (`AFWDEV_SANITIZE`, runtime check, `afwdev-sanitize.json` stamp). Root `CMakeLists.txt` turns `AFWDEV_SANITIZE` into `-fsanitize`.
-- `test --env-mode asan`: `test/modes/asan.py` + `test/sanitize.py` (options, report summary); always runs through `test/build_tree.py`, which also backs `test --build-tree`.
+- `build --sanitize address` / `thread`: `_afwdev/build/build.py` (`_SANITIZE_VARIANTS`, `apply_sanitize_options`, refusals, `build/asan/cmake/` / `build/tsan/cmake/`, no install unless explicit `--install`) and `build/cmake.py` (`AFWDEV_SANITIZE`, runtime check, `afwdev-sanitize.json` stamp). Root `CMakeLists.txt` turns `AFWDEV_SANITIZE` into `-fsanitize`.
+- `test --env-mode asan` / `tsan`: `test/modes/asan.py` (`tsan.py` reuses its `run_test`) + `test/sanitize.py` (`SANITIZER_MODES`, options, tsan's `RLIMIT_STACK` cap, report summary); always runs through `test/build_tree.py`, which also backs `test --build-tree`. A new variant is a row in both tables.
 - Tests: `src/afw_dev/tests/sanitize_build.py`, `build_tree_and_asan_mode.py`. Story and decisions: `designs/asan-opt-in.md`.
 
 ## Handbook XML (`build --docs` / `--fulldev`)

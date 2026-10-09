@@ -27,7 +27,7 @@ _SOURCE_TYPES_EVAL = {
 
 
 _PARAM_REF = re.compile(r"^\$([A-Za-z_][A-Za-z0-9_]*)$")
-_ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan")
+_ENV_MODES = ("afw", "afwfcgi", "actions", "valgrind", "asan", "tsan")
 
 
 def parse_sets(values):
