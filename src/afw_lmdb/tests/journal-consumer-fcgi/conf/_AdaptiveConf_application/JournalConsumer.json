@@ -1,0 +1,7 @@
+{
+    "title": "JournalConsumer",
+    "defaultAdapterId": "lmdb",
+    "extensions": [
+        "afw_lmdb"
+    ]
+}

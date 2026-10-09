@@ -176,3 +176,88 @@ tests:
       return [get_object("lmdbA", "OrderRow", "a1").item,
           length(retrieve_objects("lmdbA2", "OrderRow"))];
     expect: ["via-alias", 5]
+
+  - name: alias-write-write
+    description: >-
+      Write through lmdbA, then lmdbA2, in one request. Two sessions on
+      one MDB_env: the second write transaction would wait forever on
+      the writer mutex the first holds until request end, so it is
+      refused. The script catches that; the request commits x1.
+    sourceType: script
+    source: |
+      add_object("lmdbA", "OrderRow", {item: "x"}, "x1");
+      try {
+          add_object("lmdbA2", "OrderRow", {item: "y"}, "y1");
+      }
+      catch (e) {
+          assert(includes<string>(e.message, "would deadlock"), e.message);
+          return "refused";
+      }
+      return "not refused";
+    expect: refused
+
+  - name: alias-write-write-committed
+    description: x1 committed and y1 never written; then lmdbA2 writes y2 in a request of its own.
+    sourceType: script
+    source: |
+      const result = [get_object("lmdbA", "OrderRow", "x1").item,
+          length(retrieve_objects("lmdbA", "OrderRow",
+              {filter: {op: "eq", property: "item", value: "y"}}))];
+      add_object("lmdbA2", "OrderRow", {item: "y"}, "y2");
+      return result;
+    expect: ["x", 0]
+
+  - name: alias-write-after-refusal-committed
+    description: The refusal left nothing behind; lmdbA2's later write landed.
+    sourceType: script
+    source: |
+      return get_object("lmdbA", "OrderRow", "y2").item;
+    expect: "y"
+
+  - name: restart-after-write
+    description: >-
+      Restart lmdbA in a request that already wrote it. The new instance's
+      start-up write transaction would wait forever on the writer mutex
+      this request holds (before the LMDB wait graph, the request hung
+      holding the service's mutex), so it is refused and the new instance
+      fails to start. FIXME (beta-backlog.md): service_restart does not
+      throw when the new instance fails; the service is left in "error"
+      while the old instance keeps serving, and service_restart then
+      refuses it ("not running"). This pins that.
+    sourceType: script
+    source: |
+      add_object("lmdbA", "OrderRow", {item: "r"}, "r1");
+      let thrown = null;
+      try {
+          service_restart("adapter-lmdbA");
+      }
+      catch (e) {
+          thrown = e.message;
+      }
+      const svc = get_object("afw", "_AdaptiveService_", "adapter-lmdbA");
+      assert(includes<string>(svc.statusMessage, "a new instance of it (a restart)"),
+          svc.statusMessage);
+      return [thrown, svc.status];
+    expect: [null, error]
+
+  - name: restart-after-write-recover
+    description: r1 committed and lmdbA still served; service_start (not restart) brings the service back.
+    sourceType: script
+    source: |
+      const item = get_object("lmdbA", "OrderRow", "r1").item;
+      let restart = null;
+      try {
+          service_restart("adapter-lmdbA");
+      }
+      catch (e) {
+          restart = includes<string>(e.message, "not running");
+      }
+      return [item, restart, service_start("adapter-lmdbA").status];
+    expect: ["r", true, running]
+
+  - name: restart-alone
+    description: A restart in a request of its own works.
+    sourceType: script
+    source: |
+      return service_restart("adapter-lmdbA").status;
+    expect: running

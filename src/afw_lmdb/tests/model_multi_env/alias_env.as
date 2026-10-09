@@ -7,7 +7,7 @@ lmdbA2 is a second adapter id on lmdbA's directory, spelled without
 the trailing slash. Both ids resolve to one path, so they share one
 MDB_env (#387), but each id has its own session and its own
 transaction. Nothing here writes through both ids in one process:
-that self-deadlocks on the shared writer mutex.
+that is refused (alias_write_write.as).
 //? sourceType: script
 //?
 //? test: alias_sees_committed_rows

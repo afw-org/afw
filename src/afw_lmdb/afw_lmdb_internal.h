@@ -89,6 +89,15 @@ typedef struct afw_lmdb_shared_env_s {
     afw_thread_mutex_t *dbi_mutex;
     afw_lmdb_dbi_pending_t *dbi_pending;
     afw_lmdb_write_txn_t *write_txns;
+    /*
+     * The top-level write txn open on this MDB_env in this process, the
+     * thread that began it, and the adapter id it began through; NULL
+     * when there is none. Guarded by the write wait graph's mutex
+     * (afw_lmdb_internal.c), which refuses a begin that would deadlock.
+     */
+    MDB_txn *writer_txn;
+    const void *writer;
+    const afw_utf8_t *writer_adapter_id;
 } afw_lmdb_shared_env_t;
 
 /*
@@ -97,6 +106,12 @@ typedef struct afw_lmdb_shared_env_s {
  * once or concurrently with itself.
  */
 void afw_lmdb_internal_shared_env_registry_initialize(afw_xctx_t *xctx);
+
+/*
+ * Called once with the registry above: creates the mutex of the write
+ * wait graph that refuses a write txn begin that would deadlock.
+ */
+void afw_lmdb_internal_wait_graph_initialize(afw_xctx_t *xctx);
 
 typedef struct afw_lmdb_limits_s {
     int size_soft;
@@ -399,7 +414,12 @@ const afw_utf8_t * const * afw_lmdb_internal_database_names(
 /**
  * @brief Begin txn. Every LMDB begin in this adapter goes here.
  * @param parent for a nested txn, or NULL for a top-level txn.
- * @return mdb_txn_begin() rc, or ENOMEM.
+ * @return mdb_txn_begin() rc, ENOMEM, or EDEADLK when a top-level write
+ *    txn is refused because waiting for it would deadlock: this thread
+ *    already has one on this MDB_env (through another adapter id on the
+ *    same path), or the thread that has one is waiting, directly or
+ *    through other threads, for an MDB_env this thread is writing.
+ *    Throw any nonzero rc with afw_lmdb_internal_throw_txn_begin_error().
  *
  * A write txn is remembered until it ends, so it may open databases.
  */
@@ -408,6 +428,17 @@ int afw_lmdb_internal_txn_begin(
     MDB_txn *parent,
     unsigned int flags,
     MDB_txn **txn,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Throw for a nonzero rc from afw_lmdb_internal_txn_begin().
+ * @param message_z for any rc but a refused begin (EDEADLK), which
+ *    gets its own message naming both adapters.
+ */
+void afw_lmdb_internal_throw_txn_begin_error(
+    const afw_lmdb_adapter_t *adapter,
+    int rc,
+    const afw_utf8_z_t *message_z,
     afw_xctx_t *xctx);
 
 /**
@@ -700,7 +731,7 @@ do { \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
                     NULL, this_xctx, "LMDB transaction begin failed with error: " \
                     AFW_INTEGER_FMT, this_rc); \
-                AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
+                afw_lmdb_internal_throw_txn_begin_error(adapter, this_rc, \
                     "Unable to begin transaction.", this_xctx); \
             } \
             this_txnOwner = true; \
@@ -855,7 +886,7 @@ do { \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
                     NULL, this_xctx, "LMDB transaction begin failed with error: " \
                     AFW_INTEGER_FMT, this_rc); \
-                AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
+                afw_lmdb_internal_throw_txn_begin_error(adapter, this_rc, \
                     "Unable to begin transaction.", this_xctx); \
             } \
             this_txnOwner = true; \

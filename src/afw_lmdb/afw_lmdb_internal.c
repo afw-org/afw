@@ -301,6 +301,191 @@ impl_dbi_pending_end(
 }
 
 
+/* --- write wait graph ------------------------------------------------
+ *
+ * A top-level write txn holds its MDB_env's writer mutex until it ends,
+ * which for a request's adapter transaction is the end of the request.
+ * Waiting for a second one can then deadlock:
+ *
+ *  - on the same MDB_env from the same thread (two adapter ids on one
+ *    path, each with its own session): LMDB's mutex waits on itself;
+ *  - on another MDB_env whose writer waits, directly or through other
+ *    writers, for one this thread holds (request X writes lmdbA then
+ *    lmdbB while request Y writes lmdbB then lmdbA).
+ *
+ * Each shared env records its writer thread (writer); each thread
+ * records the env it is about to wait for (impl_this_writer). Both
+ * change only under impl_wait_graph_mutex. A top-level write begin
+ * follows writer -> waiting_for -> writer ... and is refused (EDEADLK)
+ * when that leads back to this thread. Whichever thread adds the edge
+ * that closes a cycle sees it: a thread is waiting only after it
+ * recorded so, and it records its writes as soon as mdb_txn_begin()
+ * returns, before it can wait for anything else.
+ *
+ * Only writers in this process are known. LMDB still serializes writers
+ * in other processes on the same path; a cycle through one is not seen.
+ */
+
+typedef struct impl_writer_s {
+    /* The env this thread waits for in mdb_txn_begin(), or NULL. */
+    afw_lmdb_shared_env_t *waiting_for;
+    /* Envs this thread is the writer of. Only this thread uses it. */
+    int writes;
+} impl_writer_t;
+
+static _Thread_local impl_writer_t impl_this_writer;
+
+/* Why this thread's last begin was refused (EDEADLK), for the throw. */
+static _Thread_local struct {
+    afw_boolean_t refused;
+    afw_boolean_t same_thread;
+    char writer_adapter_id[128];
+} impl_refusal;
+
+static afw_thread_mutex_t *impl_wait_graph_mutex = NULL;
+
+/* Longest writer chain followed; more threads than this never write. */
+#define IMPL_WAIT_GRAPH_MAX_CHAIN 4096
+
+void
+afw_lmdb_internal_wait_graph_initialize(afw_xctx_t *xctx)
+{
+    impl_wait_graph_mutex = afw_thread_mutex_create(
+        AFW_THREAD_MUTEX_DEFAULT, xctx->env->p, xctx);
+}
+
+
+/* Remember who holds shared, for the refusal message. */
+static void
+impl_refusal_set(
+    afw_lmdb_shared_env_t *shared,
+    afw_boolean_t same_thread)
+{
+    const afw_utf8_t *id = shared->writer_adapter_id;
+    afw_size_t len;
+
+    impl_refusal.refused = true;
+    impl_refusal.same_thread = same_thread;
+    len = (id) ? id->len : 0;
+    if (len >= sizeof(impl_refusal.writer_adapter_id)) {
+        len = sizeof(impl_refusal.writer_adapter_id) - 1;
+    }
+    if (len > 0) {
+        memcpy(impl_refusal.writer_adapter_id, id->s, len);
+    }
+    impl_refusal.writer_adapter_id[len] = 0;
+}
+
+
+/*
+ * True when waiting for shared's writer mutex would deadlock. Caller
+ * holds impl_wait_graph_mutex.
+ */
+static afw_boolean_t
+impl_wait_would_deadlock(afw_lmdb_shared_env_t *shared)
+{
+    const impl_writer_t *writer;
+    afw_lmdb_shared_env_t *env;
+    int i;
+
+    if (shared->writer == &impl_this_writer) {
+        impl_refusal_set(shared, true);
+        return true;
+    }
+
+    for (env = shared, i = 0; i < IMPL_WAIT_GRAPH_MAX_CHAIN; i++) {
+        writer = env->writer;
+        if (!writer) {
+            return false;
+        }
+        if (writer == &impl_this_writer) {
+            impl_refusal_set(shared, false);
+            return true;
+        }
+        env = writer->waiting_for;
+        if (!env) {
+            return false;
+        }
+    }
+
+    return false;
+}
+
+
+/*
+ * Forget txn as shared's writer, before LMDB lets the next one in. A
+ * txn ends on the thread that began it, so a thread writing nothing
+ * (any read txn there) skips the lock.
+ */
+static void
+impl_writer_end(
+    afw_lmdb_shared_env_t *shared,
+    MDB_txn *txn,
+    afw_xctx_t *xctx)
+{
+    if (impl_this_writer.writes == 0) {
+        return;
+    }
+    AFW_THREAD_MUTEX_LOCK(impl_wait_graph_mutex, xctx) {
+        if (shared->writer_txn == txn) {
+            shared->writer_txn = NULL;
+            shared->writer = NULL;
+            shared->writer_adapter_id = NULL;
+            impl_this_writer.writes--;
+        }
+    }
+    AFW_THREAD_MUTEX_UNLOCK();
+}
+
+
+void
+afw_lmdb_internal_throw_txn_begin_error(
+    const afw_lmdb_adapter_t *adapter,
+    int rc,
+    const afw_utf8_z_t *message_z,
+    afw_xctx_t *xctx)
+{
+    if (rc != EDEADLK || !impl_refusal.refused) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rc, message_z, xctx);
+    }
+    impl_refusal.refused = false;
+
+    /* Error messages are cut at 255 bytes, so the path goes last. */
+    if (impl_refusal.same_thread &&
+        afw_utf8_equal_utf8_z(&adapter->pub.adapter_id,
+            impl_refusal.writer_adapter_id))
+    {
+        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+            "Adapter '" AFW_UTF8_FMT "' would deadlock: this request is "
+            "already writing its LMDB environment, so a new instance of "
+            "it (a restart) can not start until the request ends. Restart "
+            "it in a request of its own. Path: %s",
+            AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+            adapter->env->path_z);
+    }
+
+    if (impl_refusal.same_thread) {
+        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+            "Adapter '" AFW_UTF8_FMT "' would deadlock: this request is "
+            "already writing the same LMDB environment through adapter "
+            "'%s'. Use one adapter id per environment in a request. "
+            "Path: %s",
+            AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+            impl_refusal.writer_adapter_id,
+            adapter->env->path_z);
+    }
+
+    AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+        "Adapter '" AFW_UTF8_FMT "' would deadlock: a request writing its "
+        "LMDB environment (through adapter '%s') waits for one this "
+        "request writes. Retry, or write environments in one order in "
+        "every request. Path: %s",
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        impl_refusal.writer_adapter_id,
+        adapter->env->path_z);
+}
+
+
 int afw_lmdb_internal_txn_begin(
     const afw_lmdb_adapter_t *adapter,
     MDB_txn *parent,
@@ -310,15 +495,51 @@ int afw_lmdb_internal_txn_begin(
 {
     afw_lmdb_shared_env_t *shared = adapter->shared;
     afw_lmdb_write_txn_t *e;
+    afw_boolean_t top_level_write;
+    afw_boolean_t refused;
     int rc;
 
+    /* Record the wait first, or refuse it. A nested txn waits for none. */
+    top_level_write = !parent && !(flags & MDB_RDONLY);
+    if (top_level_write) {
+        refused = false;
+        AFW_THREAD_MUTEX_LOCK(impl_wait_graph_mutex, xctx) {
+            refused = impl_wait_would_deadlock(shared);
+            if (!refused) {
+                impl_this_writer.waiting_for = shared;
+            }
+        }
+        AFW_THREAD_MUTEX_UNLOCK();
+        if (refused) {
+            *txn = NULL;
+            return EDEADLK;
+        }
+    }
+
     rc = mdb_txn_begin(adapter->dbEnv, parent, flags, txn);
+
+    if (top_level_write) {
+        AFW_THREAD_MUTEX_LOCK(impl_wait_graph_mutex, xctx) {
+            impl_this_writer.waiting_for = NULL;
+            if (rc == 0) {
+                shared->writer_txn = *txn;
+                shared->writer = &impl_this_writer;
+                shared->writer_adapter_id = &adapter->pub.adapter_id;
+                impl_this_writer.writes++;
+            }
+        }
+        AFW_THREAD_MUTEX_UNLOCK();
+    }
+
     if (rc || (flags & MDB_RDONLY)) {
         return rc;
     }
 
     e = malloc(sizeof(afw_lmdb_write_txn_t));
     if (!e) {
+        if (top_level_write) {
+            impl_writer_end(shared, *txn, xctx);
+        }
         mdb_txn_abort(*txn);
         *txn = NULL;
         return ENOMEM;
@@ -345,6 +566,9 @@ int afw_lmdb_internal_txn_commit(
     int rc;
 
     txnid = mdb_txn_id(txn);
+    if (!parent) {
+        impl_writer_end(adapter->shared, txn, xctx);
+    }
     rc = mdb_txn_commit(txn);
     impl_dbi_pending_end(adapter, txn, parent, rc == 0, txnid, xctx);
 
@@ -357,6 +581,7 @@ void afw_lmdb_internal_txn_abort(
     MDB_txn *txn,
     afw_xctx_t *xctx)
 {
+    impl_writer_end(adapter->shared, txn, xctx);
     mdb_txn_abort(txn);
     impl_dbi_pending_end(adapter, txn, NULL, false, 0, xctx);
 }
@@ -2135,7 +2360,7 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
             NULL, xctx, "LMDB transaction begin failed with error: "
             AFW_INTEGER_FMT, rc);
 
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+        afw_lmdb_internal_throw_txn_begin_error(session->adapter, rc,
             "Unable to begin transaction.", xctx);
     }
 

@@ -43,7 +43,7 @@ void afw_lmdb_adapter_load_configuration(
 
     rc = afw_lmdb_internal_txn_begin(self, NULL, 0, &txn, xctx);
     if (rc) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+        afw_lmdb_internal_throw_txn_begin_error(self, rc,
             "Unable to begin initial transaction.", xctx);
     }
 
@@ -378,7 +378,7 @@ void afw_lmdb_adapter_open_databases(
 
     rc = afw_lmdb_internal_txn_begin(self, NULL, 0, &txn, xctx);
     if (rc) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+        afw_lmdb_internal_throw_txn_begin_error(self, rc,
             "Unable to begin initial transaction.", xctx);
     }
 
@@ -470,6 +470,7 @@ afw_lmdb_internal_shared_env_registry_initialize(afw_xctx_t *xctx)
         &impl_shared_env_registry_lock_brief,
         &impl_shared_env_registry_lock_description,
         false, xctx->env->p, xctx);
+    afw_lmdb_internal_wait_graph_initialize(xctx);
 }
 
 /* Look up an already-open entry for path, or NULL if this path has

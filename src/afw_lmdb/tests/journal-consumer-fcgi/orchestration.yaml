@@ -1,0 +1,108 @@
+# An LMDB adapter journaled to another LMDB adapter (journalAdapterId),
+# each its own environment: data and journal. Every journaled write
+# takes data, then journal (the entry is written after the object). A
+# journal consumer takes them the other way: journal_get_next_for_consumer
+# writes the consumer's state in journal, then applying the entry writes
+# data. A consumer and a writer that overlap would each hold one
+# environment's writer mutex and wait for the other's. Before the LMDB
+# wait graph that hung the server; now the request that would close the
+# cycle (here the consumer) gets "would deadlock" and can be retried.
+#
+# The consumer holds journal for about a second so the writer, started
+# 0.3s later, takes data and then waits for journal: deterministic.
+version: 1
+description: LMDB journal consumer and a journaled writer in opposite environment order
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 60
+parameters:
+  opposite_order_skip:
+    default: false
+    tsan: true
+    description: >-
+      Skip the steps that write two LMDB environments in opposite orders.
+      TSan reports that lock order (two LMDB writer mutexes) even though
+      the LMDB write wait graph refuses the wait that would close the
+      cycle; expected, see beta-backlog.md (TSan findings).
+
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: setup
+    description: A consumer (peer) in journal, and one journaled write for it to find.
+    sourceType: script
+    source: |
+      add_object("journal", "_AdaptiveProvisioningPeer_", {peerId: "consumer1"},
+          "6f1c2d3e-0000-4000-8000-000000000001");
+      add_object("lmdb", "_AdaptiveObject_", {n: 0}, "seed");
+      return true;
+    expect: true
+
+  - name: consumer
+    description: Journal first (get_next_for_consumer), then data (apply the entry). Refused.
+    skip: $opposite_order_skip
+    sourceType: script
+    source: |
+      const peer = "6f1c2d3e-0000-4000-8000-000000000001";
+      const next = journal_get_next_for_consumer("journal", peer, 10);
+      assert(is_defined(next.entryCursor), "no entry for the consumer");
+      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT1S"));
+      while (true) {
+          const now = now_utc();
+          if (now >= until) { break; }
+      }
+      try {
+          add_object("lmdb", "_AdaptiveObject_", {applied: next.entryCursor}, "applied");
+          journal_mark_consumed("journal", peer, next.entryCursor);
+      }
+      catch (e) {
+          assert(includes<string>(e.message, "would deadlock"), e.message);
+          return "refused";
+      }
+      return "applied";
+    expect: refused
+
+  - name: writer
+    description: Data first, then journal (the entry for this write). Waits for the consumer, then lands.
+    skip: $opposite_order_skip
+    sourceType: script
+    source: |
+      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT0.3S"));
+      while (true) {
+          const now = now_utc();
+          if (now >= until) { break; }
+      }
+      add_object("lmdb", "_AdaptiveObject_", {n: 1}, "w1");
+      return true;
+    expect: true
+
+  - name: consumer-retry
+    description: The retry, with nothing in its way, applies the entry and marks it consumed.
+    skip: $opposite_order_skip
+    sourceType: script
+    source: |
+      const peer = "6f1c2d3e-0000-4000-8000-000000000001";
+      const next = journal_get_next_for_consumer("journal", peer, 10);
+      assert(is_defined(next.entryCursor), "no entry for the consumer");
+      add_object("lmdb", "_AdaptiveObject_", {applied: next.entryCursor}, "applied");
+      journal_mark_consumed("journal", peer, next.entryCursor);
+      return true;
+    expect: true
+
+  - name: check
+    description: The writer's object, the applied marker, and no "applied" from the refused try.
+    skip: $opposite_order_skip
+    sourceType: script
+    source: |
+      return [get_object("lmdb", "_AdaptiveObject_", "w1").n,
+          is_defined(get_object("lmdb", "_AdaptiveObject_", "applied").applied)];
+    expect: [1, true]
+
+schedule:
+  - sequential: [setup]
+  - parallel:
+      n: 2
+      tests: [consumer, writer]
+  - sequential: [consumer-retry, check]
