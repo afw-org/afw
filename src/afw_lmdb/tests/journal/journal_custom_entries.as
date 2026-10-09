@@ -369,3 +369,120 @@ assert(journal_get_next_after_cursor("journal", cursor).entryCursor === cursor2,
     "next entry after it");
 
 return 0;
+
+
+//? test: many-entries-several-consumers
+//? description: 24 interleaved entries (your own of two kinds, and adapter adds); three consumers with different filters, each run without a limit and with limit 2, each get exactly their entries, in order, once
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const data: string = "lmdb";
+
+// i % 3 == 1: your own "vol-a"; i % 3 == 2: your own "vol-b";
+// i % 3 == 0: an adapter add of VolumeThing carrying i.
+let expectA: array = [];
+let expectB: array = [];
+let expectAll: array = [];
+for (const i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+{
+    if (i % 3 === 0) {
+        add_object(data, "VolumeThing", { i: i }, "v" + string(i));
+    } else {
+        const kind: string = (i % 3 === 1) ? "vol-a" : "vol-b";
+        journal_add_entry("journal", { eventType: kind, batch: "volume", i: i });
+        push((kind === "vol-a") ? expectA : expectB, i);
+    }
+    push(expectAll, i);
+}
+
+const filters: object = {
+    a: "(current::entry.eventType === 'vol-a')",
+    b: "(current::entry.eventType === 'vol-b')",
+    all: "(current::entry.batch === 'volume' || (current::entry.request !== undefined && current::entry.request.objectType === 'VolumeThing'))"
+};
+const expected: object = { a: expectA, b: expectB, all: expectAll };
+
+for (const limit of [0, 2]) {
+    for (const name of ["a", "b", "all"]) {
+        const peer: string = generate_uuid();
+        add_object("journal", "_AdaptiveProvisioningPeer_",
+            { peerId: "vol-" + name, consumeFilter: filters[name] }, peer);
+
+        // With a limit, a call can return no entry before the end, so
+        // keep calling until all expected entries arrive.
+        let got: array = [];
+        let calls: integer = 0;
+        while (length(got) < length(expected[name])) {
+            calls = calls + 1;
+            assert(calls < 500, name + " limit " + string(limit) +
+                ": stuck after " + string(got));
+            const r: object = (limit === 0)
+                ? journal_get_next_for_consumer("journal", peer)
+                : journal_get_next_for_consumer("journal", peer, limit);
+            if (r.entry !== undefined) {
+                assert(r.reissue !== true, "no reissue without a restart");
+                push(got, (r.entry.i !== undefined)
+                    ? r.entry.i : r.entry.request.object.i);
+                journal_mark_consumed("journal", peer, r.entryCursor);
+            }
+        }
+        assert(got == expected[name], name + " limit " + string(limit) +
+            ": got " + string(got));
+
+        // Nothing more for this consumer.
+        if (limit === 0) {
+            assert(is_nullish(journal_get_next_for_consumer("journal", peer).entry),
+                name + ": nothing after the last one");
+        }
+    }
+}
+
+return 0;
+
+
+//? test: restart-mid-stream
+//? description: a consumer stops without marking an entry; after the restart it gets that entry again (reissue) and then the rest, with nothing lost or repeated
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const peer: string = generate_uuid();
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "restart-consumer",
+    consumeFilter: "(current::entry.eventType === 'restart')"
+}, peer);
+for (const i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+    journal_add_entry("journal", { eventType: "restart", i: i });
+}
+
+// First run: process 1-3, take 4 and stop before marking it.
+let processed: array = [];
+for (const k of [1, 2, 3]) {
+    const r: object = journal_get_next_for_consumer("journal", peer, 100);
+    push(processed, r.entry.i);
+    journal_mark_consumed("journal", peer, r.entryCursor);
+}
+const taken: object = journal_get_next_for_consumer("journal", peer, 100);
+assert(taken.entry.i === 4);
+
+// Restart: the unmarked entry comes back first, as a reissue.
+let r: object = journal_get_next_for_consumer("journal", peer, 100);
+assert(r.entry.i === 4 && r.reissue === true,
+    "unmarked entry reissued, got " + string(r));
+assert(r.entryCursor === taken.entryCursor);
+
+// Then the rest, in order.
+while (r.entry !== undefined) {
+    push(processed, r.entry.i);
+    journal_mark_consumed("journal", peer, r.entryCursor);
+    r = journal_get_next_for_consumer("journal", peer, 100);
+    assert(r.reissue !== true, "only the unmarked entry is reissued");
+}
+assert(processed == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "each processed once, in order, got " + string(processed));
+
+return 0;
