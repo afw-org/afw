@@ -502,7 +502,7 @@ High signal for #149 (adjust as inventory proceeds):
 5. ~~EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7).~~ **fixed** PR **#161**.  
 6. ~~metrics / properties: document-R + lock-safe pointer load~~ — `adapter_metrics` loads under lock; new `adapter_properties`; OT prose. At the time: no deep metrics snapshot (live-while-active).  
    **Superseded by [PR #386](https://github.com/afw-org/afw/pull/386) and [#381](https://github.com/afw-org/afw/issues/381):** the accessor pins the instance under `adapter_id_anchor_lock`, copies a managed snapshot into the caller pool **outside** the lock, and releases the pin in `AFW_FINALLY`. `metrics.additional` pins only across `get_additional_metrics`; the object is built in `p` and must not refer to the adapter after return. Nothing pins until the caller pool dies. The adapter's own pool (`p == adapter->p`) still sees the live object.  
-   **Will-not-do:** cloning into the requestor's pool **while the lock is still held**. The lock is environment-wide, and for `additional` the clone is the adapter's build (LMDB takes `dbLock` and begins a read transaction). Pin under the lock, copy outside it.  
+   **Will-not-do:** cloning into the requestor's pool **while the lock is still held**. The lock is environment-wide, and for `additional` the clone is the adapter's build (LMDB begins a read transaction). Pin under the lock, copy outside it.  
 7. **Out of #149 / under #2 if needed:** services/logs custom paths; deeper escape/leak work.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.

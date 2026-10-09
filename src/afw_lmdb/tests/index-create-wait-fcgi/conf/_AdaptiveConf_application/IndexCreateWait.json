@@ -1,0 +1,7 @@
+{
+    "title": "IndexCreateWait",
+    "defaultAdapterId": "lmdbA",
+    "extensions": [
+        "afw_lmdb"
+    ]
+}

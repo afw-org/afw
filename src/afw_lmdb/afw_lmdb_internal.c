@@ -1549,7 +1549,7 @@ impl_afw_adapter_key_value_add (
     MDB_txn *txn;
     afw_rc_t rc;
     
-    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -1593,7 +1593,7 @@ impl_afw_adapter_key_value_delete (
     MDB_txn *txn;
     afw_rc_t rc;
     
-    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -1641,7 +1641,7 @@ impl_afw_adapter_key_value_replace (
     afw_rc_t rc;
     afw_memory_t existing;
 
-    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -1701,7 +1701,7 @@ impl_afw_adapter_key_value_get (
     afw_memory_t existing;
     const afw_memory_t *value;
 
-    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(session->adapter, session, 0, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -2342,20 +2342,17 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     }
 
     /*
-        Every transaction holds dbLock shared, so a transaction that
-        takes it exclusive (index_open with no transaction) runs alone.
-        Opening databases needs no lock: only a write opens one (#511).
+        No lock of AFW's around a transaction: only a write opens a
+        database (#511), LMDB lets one write at a time into an
+        environment, and the write wait graph refuses a begin that would
+        wait forever for that.
      */
-    afw_thread_rwlock_rdlock(session->adapter->dbLock, xctx);
-
     afw_trace_z(1, session->adapter->pub.trace_flag_index,
         NULL, "LMDB Begin write transaction.", xctx);
 
     rc = afw_lmdb_internal_txn_begin(session->adapter, NULL, 0,
         &self->txn, xctx);
     if (rc) {
-        afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
-
         afw_trace_fz(1, session->adapter->pub.trace_flag_index,
             NULL, xctx, "LMDB transaction begin failed with error: "
             AFW_INTEGER_FMT, rc);
@@ -2395,7 +2392,6 @@ impl_afw_adapter_transaction_release (
     /* if our session still has an active transaction going, abort it */
     if (session->transaction) {
         afw_lmdb_internal_txn_abort(session->adapter, self->txn, xctx);
-        afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         afw_trace_z(1, session->adapter->pub.trace_flag_index, 
             NULL, "LMDB Transaction aborted.", xctx);
@@ -2433,13 +2429,11 @@ impl_afw_adapter_transaction_commit (
     if (rc) {
         /*
          * mdb_txn_commit() frees the transaction even when it fails.
-         * Forget it first, so a later release does not abort it or
-         * unlock dbLock a second time.
+         * Forget it first, so a later release does not abort it.
          */
         self->txn = NULL;
         session->transaction = NULL;
         session->currTxn = NULL;
-        afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to commit transaction.", xctx);
@@ -2447,8 +2441,6 @@ impl_afw_adapter_transaction_commit (
 
     afw_trace_z(1, session->adapter->pub.trace_flag_index, 
         NULL, "LMDB Transaction committed.", xctx);
-
-    afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
     /* clear our session transaction to prevent further commits */
     self->txn = NULL;

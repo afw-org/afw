@@ -1,0 +1,21 @@
+{
+    "serviceId": "adapter-lmdbA2",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "lmdb",
+        "adapterId": "lmdbA2",
+        "description": "Second adapter id on lmdbA's path: shares its MDB_env",
+        "limits": {
+            "time": { "hard": 60, "soft": 30 },
+            "size": { "hard": 100000, "soft": 100000 }
+        },
+        "env": {
+            "mapsize": 104857600,
+            "maxdbs": 32,
+            "maxreaders": 126,
+            "mode": 384,
+            "path": "./lmdbA"
+        }
+    }
+}

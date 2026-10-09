@@ -1,0 +1,21 @@
+{
+    "serviceId": "adapter-lmdbA",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "lmdb",
+        "adapterId": "lmdbA",
+        "description": "LMDB env A",
+        "limits": {
+            "time": { "hard": 60, "soft": 30 },
+            "size": { "hard": 100000, "soft": 100000 }
+        },
+        "env": {
+            "mapsize": 104857600,
+            "maxdbs": 32,
+            "maxreaders": 126,
+            "mode": 384,
+            "path": "lmdbA/"
+        }
+    }
+}
