@@ -16,6 +16,23 @@
 
 #include "afw_lmdb_internal.h"
 
+
+/* The LMDB adapter adapter_id names; throws if it is another type. */
+static const afw_adapter_t *
+impl_lmdb_adapter(const afw_utf8_t *adapter_id, afw_xctx_t *xctx)
+{
+    const afw_adapter_session_t *session;
+
+    session = afw_adapter_session_get_cached(adapter_id, false, xctx);
+    if (!session->adapter->adapter_type_id ||
+        !afw_utf8_equal(session->adapter->adapter_type_id, afw_lmdb_s_lmdb))
+    {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Adapter '%ku' is not an LMDB adapter", adapter_id);
+    }
+    return session->adapter;
+}
+
 /*
  * Adaptive function: reader_check
  *
@@ -49,16 +66,13 @@ afw_lmdb_function_execute_reader_check(
     afw_function_execute_t *x)
 {
     const afw_value_string_t *adapterId;
-    const afw_adapter_session_t     *session;
     int                             deadReaders;
     int                             rc;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
 
-    session = afw_adapter_session_get_cached(&adapterId->internal, false,
-        x->xctx);
-
-    rc = afw_lmdb_internal_reader_check(session->adapter, &deadReaders,
+    rc = afw_lmdb_internal_reader_check(
+        impl_lmdb_adapter(&adapterId->internal, x->xctx), &deadReaders,
         x->xctx);
     if (rc) {
         AFW_THROW_ERROR_Z(general, "Error in reader_check()", x->xctx);
@@ -102,16 +116,14 @@ afw_lmdb_function_execute_reader_list(
     afw_function_execute_t *x)
 {
     const afw_value_string_t *adapterId;
-    const afw_adapter_session_t     *session;
     const afw_utf8_t                *list;
     int                             rc;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
 
-    session = afw_adapter_session_get_cached(&adapterId->internal, false,
+    rc = afw_lmdb_internal_reader_list(
+        impl_lmdb_adapter(&adapterId->internal, x->xctx), &list, x->p,
         x->xctx);
-
-    rc = afw_lmdb_internal_reader_list(session->adapter, &list, x->p, x->xctx);
     if (rc < 0) {
         AFW_THROW_ERROR_Z(general, "Error in reader_list()", x->xctx);
     }

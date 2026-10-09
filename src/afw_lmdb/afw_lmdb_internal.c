@@ -25,35 +25,18 @@
 #define AFW_ADAPTER_TRANSACTION_SELF_T afw_lmdb_transaction_t
 #include "afw_adapter_transaction_impl_declares.h"
 
-/*
- * Functions for maintaining a LMDB Database handle.  
- * Both the environment and dbi pointers are required
- * to close it and release its resources, so we
- * group them together.  These routines allow us to 
- * register the handle on the xctx for release.
- */
+/* New cache entry for dbi, allocated in pool. */
 afw_lmdb_dbi_t * afw_lmdb_internal_dbi_handle(
-    MDB_env           * env, 
-    MDB_dbi             dbi, 
+    MDB_dbi             dbi,
     const afw_pool_t  * pool,
     afw_xctx_t       * xctx)
 {
     afw_lmdb_dbi_t *dbi_p;
 
     dbi_p = afw_pool_calloc_type(pool, afw_lmdb_dbi_t, xctx);
-    dbi_p->env = env;
     dbi_p->dbi = dbi;
 
     return dbi_p;
-}
-
-afw_rc_t afw_lmdb_internal_close_database(void *val)
-{
-    afw_lmdb_dbi_t *dbi_p = (afw_lmdb_dbi_t *)val;
-
-    mdb_dbi_close(dbi_p->env, dbi_p->dbi);
-
-    return 0;
 }
 
 /* Remember a handle txn opened until txn ends. Caller holds dbi_mutex. */
@@ -285,7 +268,7 @@ impl_dbi_pending_end(
                 name = afw_utf8_create(e->name, e->name_len,
                     registry_p, xctx);
                 dbi_p = afw_lmdb_internal_dbi_handle(
-                    adapter->dbEnv, e->dbi, registry_p, xctx);
+                    e->dbi, registry_p, xctx);
                 /*
                  * A write that changes nothing commits no new snapshot,
                  * so an opened database dates from the one txn read.
@@ -729,17 +712,6 @@ const afw_utf8_t * const * afw_lmdb_internal_database_names(
     return names;
 }
 
-
-/*
- * Functions for opening and automatically releasing
- * LMDB cursors by an xctx cleanup registration.
- */
-afw_rc_t afw_lmdb_internal_close_cursor(void *cursor)
-{
-    mdb_cursor_close((MDB_cursor*)cursor);
-
-    return 0;
-}
 
 MDB_cursor * afw_lmdb_internal_open_cursor(
     const afw_lmdb_adapter_session_t *session,
@@ -2481,9 +2453,10 @@ int afw_lmdb_internal_reader_list_cb(
     afw_lmdb_internal_reader_list_cb_ctx * context = (afw_lmdb_internal_reader_list_cb_ctx *)ctx;
     const afw_utf8_t *message;
 
+    /* LMDB calls this once per line: the header, then each reader. */
     message = afw_utf8_z_to_utf8(msg, context->pool, context->xctx);
-    *(context->list) = afw_utf8_create(
-    message->s, message->len, context->pool, context->xctx);
+    *(context->list) = afw_utf8_concat(context->pool, context->xctx,
+        *(context->list), message, NULL);
 
     return (int)strlen(msg);
 }
@@ -2508,6 +2481,7 @@ int afw_lmdb_internal_reader_list(
     ctx.pool = pool;
     ctx.xctx = xctx;
     ctx.list = list;
+    *list = afw_s_a_empty_string;
 
     rc = mdb_reader_list(self->dbEnv, afw_lmdb_internal_reader_list_cb, &ctx);
 

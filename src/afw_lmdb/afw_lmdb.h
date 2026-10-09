@@ -43,9 +43,6 @@ AFW_BEGIN_DECLARES
 /** lmdb_journal rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_lmdb_journal "lmdb_journal"
 
-/** lmdb_index rv source id */
-#define AFW_ERROR_RV_SOURCE_ID_Z_lmdb_index "lmdb_index"
-
 /** Prefix for lmdb adapter synthetic names quoted string. */
 #define AFW_LMDB_Q_OBJECT_TYPE_SYNTHETIC_PREFIX "_lmdb"
 

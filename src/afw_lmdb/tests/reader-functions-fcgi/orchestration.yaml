@@ -1,0 +1,38 @@
+# reader_list() while a read transaction is open. Under afw every write
+# keeps its transaction until the process ends, and a retrieve then reuses
+# it (no reader), so the read has to be its own request.
+version: 1
+description: LMDB reader_list() with an active reader
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: seed
+    sourceType: script
+    source: |
+      add_object("lmdb", "_AdaptiveObject_", {n: 1}, "r1");
+      return true;
+    expect: true
+
+  - name: reader-list-during-read
+    description: >-
+      Called while this request's retrieve holds a read transaction,
+      reader_list() returns LMDB's header line and that reader. It used
+      to return only the last line LMDB passed its callback.
+    sourceType: script
+    source: |
+      let seen: string = "";
+      retrieve_objects_to_callback(
+          function (o: object, userData: any): boolean {
+              seen = reader_list("lmdb");
+              return true;
+          },
+          null, "lmdb", "_AdaptiveObject_");
+      assert(includes<string>(seen, "pid"), "no header: " + seen);
+      assert(length(split(seen, "\n")) >= 2, "header and one reader expected: " + seen);
+      return true;
+    expect: true
