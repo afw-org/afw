@@ -85,14 +85,6 @@ impl_apply_optional_size_limit(
 
 
 /*
- * Note: Make sure to update
- * afw_application_internal_register_basic_application_context_type()
- * with parallel changes to this function.
- *
- * get_cb: C NULL = not this frame; non-NULL = defined here (use
- * afw_value_undefined for present undefined — permanent singleton).
- */
-/*
  * Values of current:: variables that do not change for the xctx, made
  * once when the qualifier is pushed. Made per read, each read would add
  * to the xctx's pool until the xctx is released.
@@ -104,6 +96,14 @@ typedef struct impl_current_values_s {
 } impl_current_values_t;
 
 
+/*
+ * Note: Make sure to update
+ * afw_application_internal_register_basic_application_context_type()
+ * with parallel changes to this function.
+ *
+ * get_cb: C NULL = not this frame; non-NULL = defined here (use
+ * afw_value_undefined for present undefined — permanent singleton).
+ */
 static const afw_value_t *
 impl_current_get_variable_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
