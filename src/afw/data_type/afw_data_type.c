@@ -138,7 +138,17 @@ impl_afw_data_type_utf8_compare_internal(
 
 /* ---- Convert  ------------------------------------------------------*/
 
-/* Can use for any data type tha does not have a convert function. */
+/*
+ * Can use for any data type that does not have a convert function, and
+ * every convert function ends here for a data type it does not handle.
+ *
+ * To boolean is ECMAScript Boolean() of the value as JSON carries it
+ * (instance is the from data type): null and undefined are false; a
+ * boolean is itself; a string-form value (dateTime, a duration, ...) is
+ * false only when its text is empty; an object, array, or function is
+ * true. The from_* functions handle the cases they own the internal for:
+ * numbers (0 and NaN are false), utf8 strings and binary (empty is false).
+ */
 static void
 impl_afw_data_type_standard_convert_internal(
     const afw_data_type_t * instance,
@@ -149,6 +159,27 @@ impl_afw_data_type_standard_convert_internal(
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *from_utf8;
+
+    if (afw_data_type_is_boolean(to_data_type)) {
+        if (afw_utf8_equal(&instance->jsonPrimitive, afw_s_null)) {
+            *(afw_boolean_t *)to_internal = false;
+        }
+        else if (afw_data_type_is_boolean(instance)) {
+            *(afw_boolean_t *)to_internal =
+                *(const afw_boolean_t *)from_internal;
+        }
+        else if (afw_utf8_equal(&instance->jsonPrimitive, afw_s_string) &&
+            !afw_data_type_is_function(instance))
+        {
+            from_utf8 = afw_data_type_internal_to_utf8(instance,
+                from_internal, p, xctx);
+            *(afw_boolean_t *)to_internal = from_utf8 && from_utf8->len > 0;
+        }
+        else {
+            *(afw_boolean_t *)to_internal = true;
+        }
+        return;
+    }
 
     /* Try converting to utf8 and then to to_data_type. */
     from_utf8 = afw_data_type_internal_to_utf8(instance, from_internal,
@@ -201,27 +232,6 @@ impl_afw_data_type_from_raw_convert_internal(
         afw_data_type_is_hexBinary(to_data_type))
     {
         memcpy(to_internal, (afw_octet_t *)from_internal, sizeof(afw_memory_t));
-    }
-    else {
-        impl_afw_data_type_standard_convert_internal(
-            instance, to_internal, from_internal, to_data_type, p, xctx);
-    }
-}
-
-
-/* Can use for any data type with cType afw_memory_t. */
-static void
-impl_afw_data_type_from_pointer_convert_internal(
-    const afw_data_type_t *instance,
-    void *to_internal,
-    const void *from_internal,
-    const afw_data_type_t *to_data_type,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (afw_data_type_is_boolean(to_data_type)) {
-        *((afw_boolean_t *)to_internal) =
-            (*(char *)from_internal) ? false : true;
     }
     else {
         impl_afw_data_type_standard_convert_internal(
@@ -2356,7 +2366,7 @@ IMPL_DATA_TYPE_INF(
     array,                /* to utf8           */
     array,                /* to internal       */
     array,                /* compare           */
-    from_pointer,         /* conversion        */
+    standard,             /* conversion        */
     array,                /* clone             */
     array,                /* compiler listing  */
     array,             /* as expression     */
@@ -2521,7 +2531,7 @@ IMPL_DATA_TYPE_INF(
     object,               /* to utf8           */
     object,               /* to internal       */
     object,               /* compare           */
-    from_pointer,         /* conversion        */
+    standard,             /* conversion        */
     object,               /* clone             */
     object,               /* compiler listing  */
     object,             /* as expression     */

@@ -1144,9 +1144,13 @@ afw_value_convert(
             result = afw_value_create_unmanaged_array(list, p, xctx);
         }
 
-        /* Down convert from a single entry list. */
+        /*
+         * Down convert from a single entry list. Not to string, and not to
+         * boolean: an array is true, as in ECMAScript ([false] is true).
+         */
         else if (v_data_type == afw_data_type_array &&
-            !afw_data_type_is_string(to_data_type))
+            !afw_data_type_is_string(to_data_type) &&
+            !afw_data_type_is_boolean(to_data_type))
         {
             list = ((const afw_value_array_t *)result)->internal;
             if (afw_array_get_count(list, xctx) != 1) {

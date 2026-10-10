@@ -214,3 +214,33 @@ assert(stringify(split("", ",")) === "[\"\"]", stringify(split("", ",")));
 assert(stringify(split("a,b,c", ",", 2)) === "[\"a\",\"b\"]", "limit");
 assert(stringify(split("abc")) === "[\"a\",\"b\",\"c\"]", "no separator");
 return 0;
+
+//?
+//? test: object-to-boolean-is-true
+//? description: boolean() of an object is true, like a non-empty string (it read a byte of the pointer)
+//? expect: 0
+//? source: ...
+
+assert(boolean({}) === true, "{}");
+assert(boolean({a: 1}) === true, "{a: 1}");
+let n = 0;
+for (let i = 0; i < 50; i = i + 1) { if (boolean({i: i})) { n = n + 1; } }
+assert(n === 50, "every object");
+return 0;
+
+//?
+//? test: boolean-as-ecmascript
+//? description: conversion to boolean (boolean() and typed parameters) is ECMAScript Boolean() of the value as JSON carries it (undefined and null threw; an array was its one entry or threw; dateTime and functions threw)
+//? expect: 0
+//? source: ...
+
+const falsy = [undefined, null, false, 0, -0.0, NaN, "", anyURI(""), base64Binary("")];
+const truthy = [true, -1, 0.5, Infinity, "false", "0", " ", {}, [], [0], [1, 2],
+    dateTime("2020-01-01T00:00:00Z"), function () { return 1; }];
+for (const v of falsy) { assert(boolean(v) === false, "falsy " + stringify(v)); }
+for (const v of truthy) { assert(boolean(v) === true, "truthy " + stringify(v)); }
+function f(b: boolean): boolean { return b; }
+assert(f([false]) === true, "typed parameter: an array is true");
+assert(f(0) === false, "typed parameter: 0");
+assert(f(dateTime("2020-01-01T00:00:00Z")) === true, "typed parameter: dateTime");
+return 0;

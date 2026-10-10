@@ -9545,6 +9545,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__27a658c9be3a \
+    "Converts value to boolean as ECMAScript Boolean() does with the value as JSON carries it: undefined and null are false; a boolean is itself; a number is false for 0, -0, and NaN; a value whose JSON form is a string (string, anyURI, dateTime, base64Binary, ...) is false only when that text is empty (so \"false\" and \"0\" are true); an object, array, or function is true."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__27a658c9be3a */
+#define afw_s_zz__27a658c9be3a \
+    (&afw_self_v_zz__27a658c9be3a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__27a658c9be3a */
+#define afw_self_s_zz__27a658c9be3a \
+    (afw_self_v_zz__27a658c9be3a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__27a658c9be3a */
+extern const afw_value_string_t \
+    afw_self_v_zz__27a658c9be3a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__27a658c9be3a */
+#define afw_z_zz__27a658c9be3a \
+    (afw_self_v_zz__27a658c9be3a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__27a658c9be3a */
+#define afw_v_zz__27a658c9be3a \
+    (&afw_self_v_zz__27a658c9be3a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__27b88a34cf77 \
     "function bag<rfc822Name> (\n    ...values: rfc822Name[]\n): rfc822Name[];\n"
 
@@ -34241,32 +34267,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8bb2a030928e */
 #define afw_v_zz__8bb2a030928e \
     (&afw_self_v_zz__8bb2a030928e.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__8bc4bea0ef20 \
-    "Converts value to data type boolean returning boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8bc4bea0ef20 */
-#define afw_s_zz__8bc4bea0ef20 \
-    (&afw_self_v_zz__8bc4bea0ef20.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8bc4bea0ef20 */
-#define afw_self_s_zz__8bc4bea0ef20 \
-    (afw_self_v_zz__8bc4bea0ef20.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8bc4bea0ef20 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8bc4bea0ef20;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8bc4bea0ef20 */
-#define afw_z_zz__8bc4bea0ef20 \
-    (afw_self_v_zz__8bc4bea0ef20.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8bc4bea0ef20 */
-#define afw_v_zz__8bc4bea0ef20 \
-    (&afw_self_v_zz__8bc4bea0ef20.pub)
 
 
 

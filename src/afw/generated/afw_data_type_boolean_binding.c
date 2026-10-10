@@ -253,7 +253,7 @@ afw_data_type_boolean_direct = {
     (const afw_object_t *)&impl_data_type_object_boolean,
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("A boolean value"),
-    AFW_UTF8_LITERAL("Data type 'boolean' holds a boolean value. Its to_string() value is 'true' or 'false'. Its from_string() true value can be mixed case 't', 'true' or '1'. Its from_string() false value can be mixed case 'f', 'false' or '0'."),
+    AFW_UTF8_LITERAL("Data type 'boolean' holds a boolean value. Its to_string() value is 'true' or 'false'. Its from_string() true value can be mixed case 't', 'true' or '1'. Its from_string() false value can be mixed case 'f', 'false' or '0'. Converting a value of another data type to boolean (boolean(), a boolean parameter) is ECMAScript Boolean() instead: a string is true unless it is empty, so 'false' converts to true; undefined, null, 0, and NaN are false; an object or array is true."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_boolean,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.7"),
