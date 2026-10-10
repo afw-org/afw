@@ -41,3 +41,16 @@ assert(u.userinfo === "u" && u.host === "h" && u.query === "x", stringify(u));
 u = parse_uri("http://h/a@b");
 assert(u.host === "h" && u.path === "/a@b", "an @ in the path is not a userinfo");
 return 0;
+
+//?
+//? test: parse-uri-normalize-keeps-reserved-escapes
+//? description: normalizing decodes only unreserved characters (a%2Fb is not a/b)
+//? expect: 0
+//? source: ...
+
+assert(parse_uri("http://h/a%2fb").normalizedURI === "http://h/a%2Fb",
+    parse_uri("http://h/a%2fb").normalizedURI);
+assert(parse_uri("http://h/a%3Fb").normalizedURI === "http://h/a%3Fb");
+assert(parse_uri("http://h/?q=%41%26b").normalizedURI === "http://h/?q=A%26b");
+assert(parse_uri("http://h/%7euser").normalizedURI === "http://h/~user", "unreserved decoded");
+return 0;

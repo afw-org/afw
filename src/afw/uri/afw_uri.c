@@ -1323,7 +1323,8 @@ impl_component_len(const afw_utf8_t *component)
             s += 2;
             o = x1 * 16 + x2;
             type = afw_uri_octet_type[o];
-            if (AFW_URI_OCTET_IS(type, ENCODE_URI)) {
+            /* Decode only unreserved octets (RFC 3986 6.2.2.2). */
+            if (AFW_URI_OCTET_IS(type, UNRESERVED)) {
                 len += 1;
             }
             else {
@@ -1369,7 +1370,11 @@ impl_component_encode(afw_utf8_octet_t *s, const afw_utf8_t *component)
             c += 2;
             o = x1 * 16 + x2;
             type = afw_uri_octet_type[o];
-            if (AFW_URI_OCTET_IS(type, ENCODE_URI)) {
+            /*
+             * Decode only unreserved octets (RFC 3986 6.2.2.2): a decoded
+             * '/', '?', or '#' would change the URI's components.
+             */
+            if (AFW_URI_OCTET_IS(type, UNRESERVED)) {
                 *s++ = o;
                 len++;
             }
