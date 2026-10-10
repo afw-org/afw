@@ -17,6 +17,8 @@ tests:
     source: |
       add_object("files", "Thing", { n: 1, "p:q": "colon" }, "a:b@c,d;e=f");
       add_object("files", "Thing", { n: 1 }, "x*y");
+      add_object("files", "Thing",
+          { n: 1, o: { "k:v": 5, i: { j: 6 } } }, "nested");
       add_object("files", "Thing", { n: 1 }, "gone:soon");
       return true;
     expect: true
@@ -68,6 +70,34 @@ tests:
       kind: rest
       method: GET
       path: /files/Thing/a:b@c,d;e=f/no:such
+    expectStatus: 404
+
+  - name: get-nested-property
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/nested/o/k:v
+    expectStatus: 200
+
+  - name: get-nested-property-two-deep
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/nested/o/i/j
+    expectStatus: 200
+
+  - name: get-nested-is-not-top-level
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/nested/o/n
+    expectStatus: 404
+
+  - name: get-nested-under-non-object
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/nested/n/x
     expectStatus: 404
 
   - name: get-literal-asterisk

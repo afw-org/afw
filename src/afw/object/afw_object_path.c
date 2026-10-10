@@ -783,12 +783,15 @@ afw_object_path_property_name_list_get_property(
     result = afw_object_get_property(object,
         &first_property_name->property_name.pub, xctx);
 
-    for (name = first_property_name->next; name; name = name->next) {
-        result = afw_object_get_property(object,
-            &name->property_name.pub, xctx);
-        if (!result) {
-            break;
+    /* Each name after the first is a property of the object before it. */
+    for (name = first_property_name->next; name && result; name = name->next)
+    {
+        if (!afw_value_is_object(result)) {
+            return NULL;
         }
+        result = afw_object_get_property(
+            ((const afw_value_object_t *)result)->internal,
+            &name->property_name.pub, xctx);
     }
 
     return result;
