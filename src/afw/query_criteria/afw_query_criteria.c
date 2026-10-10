@@ -2277,16 +2277,35 @@ afw_query_criteria_test_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    return afw_query_criteria_test_object_cb(obj, criteria, NULL, NULL,
+        p, xctx);
+}
+
+
+/* Test object against query criteria, getting values with a callback. */
+AFW_DEFINE(afw_boolean_t)
+afw_query_criteria_test_object_cb(
+    const afw_object_t *obj,
+    const afw_query_criteria_t *criteria,
+    afw_query_criteria_get_value_cb_t get_value,
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
     const afw_query_criteria_filter_entry_t *entry;
+    const afw_query_criteria_filter_entry_t *test_entry;
     const afw_value_t *value;
     afw_boolean_t is_true;
 
     /* Check object against filter. No filter always results in true. */
     entry = (criteria) ? criteria->filter : NULL;
-    is_true = true; 
+    is_true = true;
     while (entry) {
-        value = afw_object_get_property_extended(obj,
-            entry->property_name, xctx);
+        test_entry = entry;
+        value = (get_value)
+            ? get_value(obj, entry, &test_entry, data, p, xctx)
+            : afw_object_get_property_extended(obj,
+                entry->property_name, xctx);
 
         /*
          * A relation on a property the object does not have is false
@@ -2306,7 +2325,7 @@ afw_query_criteria_test_object(
 
             /* Object values are not supported yet or ever. */
             if (afw_value_is_object(value) ||
-                afw_value_is_object(entry->value))
+                afw_value_is_object(test_entry->value))
             {
                 AFW_THROW_ERROR_Z(general,
                     "Object values are not supported in query string",
@@ -2314,7 +2333,7 @@ afw_query_criteria_test_object(
             }
 
             /* Set on_true/on_value based on comparison. */
-            is_true = impl_compare_value(entry, value, p, xctx);
+            is_true = impl_compare_value(test_entry, value, p, xctx);
         }
         if (is_true) {
             if (entry->on_true == AFW_QUERY_CRITERIA_TRUE) {
