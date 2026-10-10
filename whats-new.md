@@ -245,6 +245,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **Template string escapes:** `` `a\`b` `` (an escaped grave accent) ended the template early, and `\u{...}` was "Invalid hex digit" in a template though it works in a string. Both work now, and an escaped `$` or `#` written as a `\u` escape no longer opens a substitution.
 
+**`parse_uri` authority:** `http://user:pw@host/` (a userinfo with a password) was a parse error, and a query or fragment right after the host or port was taken as part of the host (`parse_uri("http://h?x=1").host` was `h?x=1`) or was an error (`http://h:80?x`). They now split as RFC 3986 says.
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
