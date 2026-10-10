@@ -8,8 +8,11 @@
 # wait graph that hung the server; now the request that would close the
 # cycle (here the consumer) gets "would deadlock" and can be retried.
 #
-# The consumer holds journal for about a second so the writer, started
-# 0.3s later, takes data and then waits for journal: deterministic.
+# The two requests signal each other through the file adapter "signals"
+# (no transactions, so a write is seen at once): the consumer holds
+# journal before the writer starts, and the writer starts before the
+# consumer reaches for data. The writer cannot signal from inside its
+# write (data, then waiting for journal), so the consumer gives it 2s.
 version: 1
 description: LMDB journal consumer and a journaled writer in opposite environment order
 host: afwfcgi
@@ -41,15 +44,37 @@ tests:
     expect: true
 
   - name: consumer
-    description: Journal first (get_next_for_consumer), then data (apply the entry). Refused.
+    description: >-
+      Journal first (get_next_for_consumer), then data (apply the entry).
+      Signals that it holds journal, waits for the writer's signal that
+      it is about to write, gives that write 2s to take data and wait for
+      journal, then writes data: refused.
     skip: $opposite_order_skip
     sourceType: script
     source: |
+      function waitFor(signal: string): void {
+          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          // A body of its own: each try's allocations are freed with it.
+          while (true) {
+              let found: boolean = false;
+              try { get_object("signals", "Signal", signal); found = true; }
+              catch (e) { }
+              if (found) { break; }
+              const now = now_utc();
+              if (now >= until) { throw "timed out waiting for " + signal; }
+          }
+      }
       const peer = "6f1c2d3e-0000-4000-8000-000000000001";
       const next = journal_get_next_for_consumer("journal", peer, 10);
       assert(is_defined(next.entryCursor), "no entry for the consumer");
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT1S"));
+      add_object("signals", "Signal", {}, "consumer-holds-journal");
+      waitFor("writer-writing");
+      // Give the writer 2s. Each pass reads a file, a system call: under
+      // valgrind a loop without one can keep the writer's thread from
+      // running at all.
+      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT2S"));
       while (true) {
+          try { get_object("signals", "Signal", "never"); } catch (e) { }
           const now = now_utc();
           if (now >= until) { break; }
       }
@@ -65,15 +90,26 @@ tests:
     expect: refused
 
   - name: writer
-    description: Data first, then journal (the entry for this write). Waits for the consumer, then lands.
+    description: >-
+      Waits for the consumer's signal that it holds journal, signals, then
+      writes data and its journal entry: waits for the consumer, then lands.
     skip: $opposite_order_skip
     sourceType: script
     source: |
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT0.3S"));
-      while (true) {
-          const now = now_utc();
-          if (now >= until) { break; }
+      function waitFor(signal: string): void {
+          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          // A body of its own: each try's allocations are freed with it.
+          while (true) {
+              let found: boolean = false;
+              try { get_object("signals", "Signal", signal); found = true; }
+              catch (e) { }
+              if (found) { break; }
+              const now = now_utc();
+              if (now >= until) { throw "timed out waiting for " + signal; }
+          }
       }
+      waitFor("consumer-holds-journal");
+      add_object("signals", "Signal", {}, "writer-writing");
       add_object("lmdb", "_AdaptiveObject_", {n: 1}, "w1");
       return true;
     expect: true
