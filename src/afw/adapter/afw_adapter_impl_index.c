@@ -1403,6 +1403,25 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
     (_x != AFW_QUERY_CRITERIA_FALSE && _x != AFW_QUERY_CRITERIA_TRUE)
 
 /*
+ * Whether an index cursor can answer this entry's operator: eq, lt, le,
+ * gt, ge, or a match that is a literal "starts with".
+ */
+static afw_boolean_t
+impl_index_op_is_sargable(
+    const afw_query_criteria_filter_entry_t *entry,
+    afw_boolean_t is_starts_with)
+{
+    return
+        entry->op_id == afw_query_criteria_filter_op_id_eq ||
+        entry->op_id == afw_query_criteria_filter_op_id_lt ||
+        entry->op_id == afw_query_criteria_filter_op_id_le ||
+        entry->op_id == afw_query_criteria_filter_op_id_gt ||
+        entry->op_id == afw_query_criteria_filter_op_id_ge ||
+        is_starts_with;
+}
+
+
+/*
  * afw_boolean_t afw_adapter_impl_index_sargable_entry()
  *
  * This recursive function takes a filter entry and evaluates
@@ -1441,15 +1460,7 @@ AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_sargable_entry(
         impl_index_match_literal_prefix(entry, xctx->p, xctx) != NULL;
 
     /* For now, we will only evaluate certain operations for sargability */
-    if (! (
-            entry->op_id == afw_query_criteria_filter_op_id_eq  ||
-            entry->op_id == afw_query_criteria_filter_op_id_lt  ||
-            entry->op_id == afw_query_criteria_filter_op_id_le ||
-            entry->op_id == afw_query_criteria_filter_op_id_gt  ||
-            entry->op_id == afw_query_criteria_filter_op_id_ge ||
-            is_starts_with
-        )
-        )
+    if (!impl_index_op_is_sargable(entry, is_starts_with))
         return false;
 
     /* Determine if this property is indexed */
@@ -1664,6 +1675,20 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list_merge(
     afw_size_t merged_size;
     int i, j;
 
+    /*
+     * An "or" with a side that has no cursors (not indexable) can't be
+     * answered from cursors at all: return no cursors, so an enclosing
+     * "and" takes its other side (afw_adapter_impl_index_cursor_list_join).
+     * This returned NULL when this_list was empty, and the join
+     * dereferenced it; returning the other side would lose objects.
+     */
+    if (!this_list || this_list->count == 0 ||
+        !that_list || that_list->count == 0)
+    {
+        return afw_vector_create(impl_index_cursor_p_vector_t,
+            8, xctx->p, xctx);
+    }
+
     merged_size = this_list->count + that_list->count;
     merged_list = NULL;
     temp = that_list;
@@ -1782,10 +1807,16 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
         ? AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH
         : (int)entry->op_id;
 
-    /* Determine if this property is indexed */
-    indexDefinition = afw_adapter_impl_index_get_index_definition(
-        instance, object_type_id,
-        entry->property_name, xctx);
+    /*
+     * Determine if this property is indexed. Only an operator an index
+     * can answer gets a cursor (out, ne, in, ... on an indexed property
+     * threw "Unable to create cursor for this operator"); the rest is
+     * tested on the objects the other cursors find.
+     */
+    indexDefinition = (impl_index_op_is_sargable(entry, literal_prefix != NULL))
+        ? afw_adapter_impl_index_get_index_definition(
+            instance, object_type_id, entry->property_name, xctx)
+        : NULL;
     if (indexDefinition)
     {
         /* if the indexDefinition is case-insensitive, then we need

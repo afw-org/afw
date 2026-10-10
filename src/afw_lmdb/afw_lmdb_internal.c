@@ -1705,6 +1705,28 @@ impl_afw_adapter_key_value_get (
     }
 
 /*
+ * Compare the key the cursor is on with the cursor's key string, in the
+ * order of LMDB's default key compare (bytes, then the shorter first).
+ * Comparing only key_string->len bytes took "ab" as equal to "a".
+ */
+static int
+impl_cursor_key_compare(
+    const impl_afw_adapter_impl_index_cursor_self_t *self)
+{
+    size_t len;
+    size_t min;
+    int rv;
+
+    len = self->key_string ? self->key_string->len : 0;
+    min = (self->key.mv_size < len) ? self->key.mv_size : len;
+    rv = (min > 0) ? memcmp(self->key.mv_data, self->key_string->s, min) : 0;
+    if (rv == 0 && self->key.mv_size != len) {
+        rv = (self->key.mv_size < len) ? -1 : 1;
+    }
+    return rv;
+}
+
+/*
  * Implementation of Index Cursor interface
  *
  * The following routines implement the interface for
@@ -1760,77 +1782,116 @@ void afw_lmdb_internal_cursor_reset(
         return;
     }
 
-    /* the filter entry operator helps us determine our start position */
+    /*
+     * The filter entry operator determines the start position. Index
+     * databases are MDB_DUPSORT: a key's duplicates are the objects with
+     * that value, and lt/le walk backwards (MDB_PREV), so they start on
+     * the last duplicate of their first key.
+     *
+     * An empty string is never an index key (LMDB keys can't be empty):
+     * every key is greater than it.
+     */
     switch (self->operator) {
         case afw_query_criteria_filter_op_id_ne:
-            rv = mdb_cursor_get(self->cursor, &self->key, 
+            rv = mdb_cursor_get(self->cursor, &self->key,
                 &self->data, MDB_FIRST);
-            AFW_LMDB_CURSOR_CHECK_RV(rv);
+            if (rv == 0 && impl_cursor_key_compare(self) == 0) {
+                /* the first key is the one excluded: go past it */
+                rv = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_NEXT_NODUP);
+            }
             break;
 
         case afw_query_criteria_filter_op_id_eq:
-            rv = mdb_cursor_get(self->cursor, &self->key, 
+            if (self->key.mv_size == 0) {
+                rv = MDB_NOTFOUND;
+                break;
+            }
+            rv = mdb_cursor_get(self->cursor, &self->key,
                 &self->data, MDB_SET);
-            AFW_LMDB_CURSOR_CHECK_RV(rv);
             break;
 
         case afw_query_criteria_filter_op_id_ge:
-            rv = mdb_cursor_get(self->cursor, &self->key, 
-                &self->data, MDB_SET_RANGE);
-            AFW_LMDB_CURSOR_CHECK_RV(rv);
+            rv = mdb_cursor_get(self->cursor, &self->key,
+                &self->data,
+                (self->key.mv_size == 0) ? MDB_FIRST : MDB_SET_RANGE);
             break;
 
-        case afw_query_criteria_filter_op_id_le:
-            rv = mdb_cursor_get(self->cursor, &self->key, 
+        /* For gt, we start right after this key */
+        case afw_query_criteria_filter_op_id_gt:
+            if (self->key.mv_size == 0) {
+                rv = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_FIRST);
+                break;
+            }
+            rv = mdb_cursor_get(self->cursor, &self->key,
                 &self->data, MDB_SET_RANGE);
-            AFW_LMDB_CURSOR_CHECK_RV(rv);
+            if (rv == 0 && impl_cursor_key_compare(self) == 0) {
+                /* if we've landed at our key, go past it */
+                rv = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_NEXT_NODUP);
+            }
+            break;
 
-            /* MDB_SET_RANGE may have gone past our key */
-            if (memcmp(self->key.mv_data, self->key_string->s, 
-                        self->key_string->len) > 0) {
-                /* So set it to our previous data item */
+        /* For le, we start on the last duplicate of the last key <= ours */
+        case afw_query_criteria_filter_op_id_le:
+            if (self->key.mv_size == 0) {
+                rv = MDB_NOTFOUND;
+                break;
+            }
+            rv = mdb_cursor_get(self->cursor, &self->key,
+                &self->data, MDB_SET_RANGE);
+            if (rv == MDB_NOTFOUND) {
+                /* every key is less than ours */
+                rv = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_LAST);
+            }
+            else if (rv == 0 && impl_cursor_key_compare(self) > 0) {
+                /* past our key: the previous one is less */
                 rv = mdb_cursor_get(self->cursor, &self->key,
                     &self->data, MDB_PREV);
-                AFW_LMDB_CURSOR_CHECK_RV(rv);
             }
-
+            else if (rv == 0) {
+                /* at our key's first duplicate: take all of them */
+                rv = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_LAST_DUP);
+            }
             break;
 
         /* For lt, we start right before the key */
         case afw_query_criteria_filter_op_id_lt:
-            rv = mdb_cursor_get(self->cursor, &self->key, 
-                &self->data, MDB_SET_RANGE);
-            AFW_LMDB_CURSOR_CHECK_RV(rv);
-
-            /* MDB_SET_RANGE will always set at or just past
-                our key.  So, we go one item backwards */
-            rv = mdb_cursor_get(self->cursor, &self->key, 
-                &self->data, MDB_PREV);
-            AFW_LMDB_CURSOR_CHECK_RV(rv);
-            
-            break;
-
-        /* For gt, we start right after this key */ 
-        case afw_query_criteria_filter_op_id_gt:
+            if (self->key.mv_size == 0) {
+                rv = MDB_NOTFOUND;
+                break;
+            }
             rv = mdb_cursor_get(self->cursor, &self->key,
                 &self->data, MDB_SET_RANGE);
-            AFW_LMDB_CURSOR_CHECK_RV(rv);
-            if (self->key_string) {
-                if (memcmp(self->key.mv_data, self->key_string->s, 
-                            self->key_string->len) == 0) {
-                    /* if we've landed at our key, go past it */
-                    rv = mdb_cursor_get(self->cursor, &self->key,
-                        &self->data, MDB_NEXT_NODUP);
-                    AFW_LMDB_CURSOR_CHECK_RV(rv);
-                }
+            if (rv == MDB_NOTFOUND) {
+                /* every key is less than ours */
+                rv = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_LAST);
             }
-
+            else if (rv == 0) {
+                /* at or past our key: the previous one is less */
+                rv = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_PREV);
+            }
             break;
 
         default:
             AFW_THROW_ERROR_Z(general,
                 "Unable to create cursor for this operator", xctx);
             break;
+    }
+
+    /*
+     * Nothing to start on. A failed move leaves data where it was (the
+     * key just past the end, which was returned: lt of the first key
+     * returned the first key).
+     */
+    AFW_LMDB_CURSOR_CHECK_RV(rv);
+    if (rv == MDB_NOTFOUND) {
+        self->data.mv_data = NULL;
     }
 }
 
@@ -1936,13 +1997,10 @@ int afw_lmdb_internal_cursor_next(
         case afw_query_criteria_filter_op_id_ne:
             rc = mdb_cursor_get(self->cursor, &self->key,
                 &self->data, MDB_NEXT);
-            if (self->key_string) {
-                if (memcmp(self->key.mv_data, self->key_string->s, 
-                            self->key_string->len) == 0) {
-                    /* if we've landed at our key, go past it */
-                    rc = mdb_cursor_get(self->cursor, &self->key,
-                        &self->data, MDB_NEXT_NODUP);
-                }
+            if (rc == 0 && impl_cursor_key_compare(self) == 0) {
+                /* if we've landed at our key, go past it */
+                rc = mdb_cursor_get(self->cursor, &self->key,
+                    &self->data, MDB_NEXT_NODUP);
             }
             break;
 
