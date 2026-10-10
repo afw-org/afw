@@ -237,6 +237,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **`split` keeps empty pieces like ECMAScript:** there is one more piece than separators. `split("a,", ",")` is `["a", ""]` (was `["a"]`, while `split(",a", ",")` already kept its leading `""`), and `split("", ",")` is `[""]` (was `[]`).
 
+**JSON output of control characters:** `stringify()` and JSON responses wrote bell (U+0007) as `\b`, which is the escape for backspace (U+0008), so a JSON reader got a different character back. Bell is now `\u0007` and backspace `\b`.
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))

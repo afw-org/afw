@@ -225,10 +225,11 @@ return stringify(obj);
 
 //? test: stringify-object-property-escape-bell
 //? description: ...
-Test stringify of objects, containing properties with 
-names that include bells
+Test stringify of objects, containing properties with
+names that include bells. JSON has no short escape for bell (U+0007);
+\b is backspace (U+0008).
 //? skip: false
-//? expect: "{\"a\\bb\":\"c\"}"
+//? expect: "{\"a\\u0007b\":\"c\"}"
 //? source: ...
 
 const str = "a\u{0007}b";
@@ -236,6 +237,20 @@ const str = "a\u{0007}b";
 let obj = {};
 obj[str] = "c";
 
+return stringify(obj);
+
+//?
+//? test: stringify-object-property-escape-backspace
+//? description: backspace (U+0008) is \b and reads back as the same string
+//? expect: "{\"a\\bb\":\"c\"}"
+//? source: ...
+
+const str = "a\u{0008}b";
+
+let obj = {};
+obj[str] = "c";
+
+assert(object(stringify(obj))[str] === "c", "round trip");
 return stringify(obj);
 
 

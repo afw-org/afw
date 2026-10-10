@@ -186,7 +186,8 @@ impl_encode_json_string(
         else if (c == 12) {
             impl_json_out(wa, writer, "\\f", 2, xctx);
         }
-        else if (c == 7) {
+        /* \b is backspace (U+0008); bell (U+0007) is \u0007. */
+        else if (c == 8) {
             impl_json_out(wa, writer, "\\b", 2, xctx);
         }
         else {
