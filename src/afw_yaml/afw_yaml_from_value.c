@@ -226,10 +226,6 @@ impl_put_key(
 
 
 /*
- * Write a string using the literal block scalar style as described in
- * Chapter 8 at https://yaml.org/spec/1.2.2/#rule-c-indentation-indicator.
- */
-/*
  * Whether a string with a line break reads back exactly in the literal
  * block style this writer uses: content lines at the next indentation,
  * no indentation indicator, and strip ("|-", no final line break) or
@@ -417,27 +413,21 @@ impl_double_to_yaml(char *s, double d)
 
 
 /*
- * Finite doubles use JSON-like %.23G (valid YAML plain numbers). Non-finite
- * values are quoted strings (NaN / INF), matching JSON helpers. YAML 1.2 Core
+ * Finite doubles are YAML floats in the fewest digits that read back
+ * (impl_double_to_yaml). Non-finite values are quoted strings (NaN / INF), matching JSON helpers. YAML 1.2 Core
  * Schema does not treat plain 1 as boolean — no special-case quoting needed.
  */
 void convert_number_to_yaml(
     from_value_wa_t *wa,
     double d)
 {
-    /* IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT
-     *
-     * Make sure s is one longer than precision plus 1 for \0 plus a
-     * little padding because of implementation differences that may
-     * not count leading sign in precision, etc.  For %.23g, 30 is used
-     * just to be safe.
+    /*
+     * At most 17 digits: sign, 17 digits, '.', "E-308", ".0" added by
+     * impl_double_to_yaml, and \0 fit in 30.
      */
-    char s[30]; /* 23 + 1 for \0 + some padding for sign, etc. */
+    char s[30];
 
     /*
-     * %.23g will be able to print minus, plus 16 digits, plus period,
-     * plus 'e', plus sign, plus 3 digits.
-     *
      * JSON only supports finite numbers.  If not finite, return a string
      * with "NaN", "-INF", or "INF".
      */
