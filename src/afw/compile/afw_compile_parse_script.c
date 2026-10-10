@@ -2448,6 +2448,33 @@ afw_compile_parse_Statement(
         }
         if (was_assignment_expression) {
             if (was_expression) {
+                /*
+                 * An expression value (a substitution, an expression
+                 * compile) that starts with a name, call, or member access
+                 * may go on with operators: ${x + 1} (#542). Parse the
+                 * rest of the Expression with that value as its left
+                 * operand.
+                 */
+                afw_compile_next_can_be_operator();
+                afw_compile_get_token();
+                if (!afw_compile_token_is(end) &&
+                    !afw_compile_token_is(semicolon) &&
+                    !afw_compile_token_is(close_brace) &&
+                    !afw_compile_token_is(close_bracket) &&
+                    !afw_compile_token_is(close_parenthesis) &&
+                    !afw_compile_token_is(comma))
+                {
+                    afw_compile_reuse_token();
+                    parser->pending_left_value = result;
+                    result = afw_compile_parse_Expression(parser);
+                    if (parser->pending_left_value) {
+                        AFW_COMPILE_THROW_ERROR_Z(
+                            "Internal error: left operand not used");
+                    }
+                }
+                else {
+                    afw_compile_reuse_token();
+                }
                 *was_expression = was_assignment_expression;
             }
             else {

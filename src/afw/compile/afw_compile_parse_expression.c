@@ -2262,6 +2262,13 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
     const afw_value_t **argv;
     afw_size_t start_offset;
 
+    /* Left operand already parsed by the statement parser (#542). */
+    if (parser->pending_left_value) {
+        result = parser->pending_left_value;
+        parser->pending_left_value = NULL;
+        return result;
+    }
+
     afw_compile_get_token_and_save_offset(start_offset);
 
     switch (parser->token->type) {
