@@ -225,6 +225,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 - **`object("{…}")`** and anything else that parses JSON into a value for a caller: the parsed data now lasts as long as the caller's pool instead of the whole request.
 - **read of `current::pid`, `current::xctxUUID`, or `current::programName`** (and `qualifier("current")`): made once per request now.
 
+**Doubles with a 0 in the exponent print correctly.** `string()`, `stringify()`, and JSON output of a double dropped every `0` in the exponent: `1e10` printed as `1.0E1` (ten), `1.5e20` as `1.5E2`, `1e100` as `1.0E1`, `2.2250738585072014e-308` as `…E-38`. Only the `+` and the exponent's leading zeros are dropped now (`1.0E10`, `1.0E5`, `0.0E0`), so a double printed and read back is the same double.
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))

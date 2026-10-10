@@ -62,25 +62,34 @@ afw_number_double_to_utf8(
     char dst[32];
     char *pdst = &dst[0];
     char *epos;
+    const char *exponent;
 
     if (afw_number_is_finite(d)) {
         sprintf(s, "%#.16E", d);
 
-        /* remove '+' and leading zero if any after 'E' inserted by sprintf */
-        strcpy(pdst, s);
-        epos = strchr(pdst, 'E');
-
-        for (i = epos - dst; dst[i] != '\0'; i++) {
-            if (dst[i] == '0' || dst[i] == '+')  continue;
-            else  pdst[0] = dst[i];
-            pdst++;
+        /*
+         * Exponent: drop the '+' and the leading zeros sprintf writes,
+         * and only those (E+05 is E5, E+10 stays E10, E-308 stays E-308,
+         * E+00 is E0).
+         */
+        epos = strchr(s, 'E');
+        exponent = epos + 1;
+        *pdst++ = 'E';
+        if (*exponent == '-') {
+            *pdst++ = *exponent++;
         }
-
-        /* make sure it is null terminated */
-        pdst[0] = '\0';
-
-        if (strlen(dst)==1) 
+        else if (*exponent == '+') {
+            exponent++;
+        }
+        while (*exponent == '0') {
+            exponent++;
+        }
+        if (*exponent == '\0') {
             strcpy(dst, AFW_NUMBER_Q_EXPONENT_ZERO);
+        }
+        else {
+            strcpy(pdst, exponent);
+        }
 
         /* Find most significant digits without trailing zeroes before 'E' */
         epos = strchr(s, 'E');
