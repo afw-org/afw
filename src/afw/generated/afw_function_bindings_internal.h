@@ -17296,7 +17296,7 @@ afw_function_definition_compare_uri;
  *   isValuePath - (optional boolean) The URIs are adaptive value paths. If one
  *       of the URIs begins with a single slash '/', both must, and each URI
  *       will be parsed as an adaptive value path (example:
- *       /adapterId/objectType/objectId.propertyNames).
+ *       /adapterId/objectType/objectId/propertyName).
  *
  *   currentPath - (optional string) If isValuePath is true, this is the current
  *       path that is used to resolve a relative path in the URIs. If
@@ -17634,7 +17634,7 @@ afw_function_definition_parse_uri;
  *   isValuePath - (optional boolean) The URI is an adaptive value path. If the
  *       path begins with a single slash '/', the URI will be parsed as an
  *       adaptive value path (example:
- *       /adapterId/objectType/objectId.propertyNames).
+ *       /adapterId/objectType/objectId/propertyName).
  *
  *   currentPath - (optional string) If isValuePath is true, this is the current
  *       path that is used to resolve relative paths. If isValuePath is not

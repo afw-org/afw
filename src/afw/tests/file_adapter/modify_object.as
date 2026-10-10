@@ -134,3 +134,35 @@ modify_object("file", "TestObjectType1", id, [["set_property", "", 3], ["set_pro
 assert(get_object("file", "TestObjectType1", id)[""] === 3);
 delete_object("file", "TestObjectType1", id);
 return 0;
+
+//?
+//? test: modify_object_nested_values
+//? description: add_value and remove_value with a property path use the nested property, not the top-level property with the last name (#535 follow-up).
+//? expect: 0
+//? source: ...
+
+const id: string = generate_uuid();
+add_object("file", "TestObjectType1",
+    { "a": "top", "o": { "a": [1], "s": "x" } }, id);
+modify_object("file", "TestObjectType1", id, [["add_value", ["o", "a"], 2]]);
+let o: object = get_object("file", "TestObjectType1", id);
+assert(stringify(o.o.a) === "[1,2]", "add_value nested: " + stringify(o));
+assert(o.a === "top", "add_value nested changed top: " + stringify(o));
+modify_object("file", "TestObjectType1", id, [["remove_value", ["o", "a"], 1]]);
+o = get_object("file", "TestObjectType1", id);
+assert(stringify(o.o.a) === "[2]", "remove_value nested: " + stringify(o));
+modify_object("file", "TestObjectType1", id, [["add_value", ["o", "s"], "y"]]);
+o = get_object("file", "TestObjectType1", id);
+assert(stringify(o.o.s) === "[\"x\",\"y\"]", "add_value nested single: " + stringify(o));
+// A name before the last that is not an object is an error.
+let message: any = "no error";
+try {
+    modify_object("file", "TestObjectType1", id, [["add_value", ["a", "b"], 1]]);
+}
+catch (err) {
+    message = err.message;
+}
+assert(message !== "no error", "add_value under a string");
+assert(get_object("file", "TestObjectType1", id).a === "top");
+delete_object("file", "TestObjectType1", id);
+return 0;

@@ -97,9 +97,11 @@ struct afw_object_path_parsed_s {
 /**
  * @brief Get object property value using property names.
  * @param object containing first property.
- * @param first_property_name is first of list of names.
+ * @param first_property_name is first of list of names.  Each name after
+ *    the first is a property of the object value of the name before it.
  * @param xctx of caller
- * @return value or NULL if not found.
+ * @return value or NULL if not found or a name before the last is not an
+ *    object.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_object_path_property_name_list_get_property(

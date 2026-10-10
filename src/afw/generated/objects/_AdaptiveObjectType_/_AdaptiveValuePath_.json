@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Adaptive value path.",
+    "description": "Adaptive value path: /adapterId/objectType/objectId/propertyName/... Each part between slashes may hold any RFC 3986 pchar, so a raw ':', '@' or sub-delim is part of an id, and percent-encoded octets are decoded. A part that is exactly '*' is substituted from the current path, and '**' as the object id substitutes the entire object id, including property names; any other '*' is literal. A ';' right after the object type starts options (;name=value&name).",
     "objectType": "_AdaptiveValuePath_",
     "propertyTypes": {
         "adapterId": {
@@ -37,9 +37,9 @@
             "label": "Normalized Path"
         },
         "objectId": {
-            "brief": "Object id including each property name preceded by a dot if embedded object reference",
+            "brief": "Object id, percent-encoded, including each property name preceded by a slash if embedded object reference",
             "dataType": "string",
-            "description": "Object id including each property name preceded by a dot if embedded object reference.",
+            "description": "Object id, percent-encoded, including each property name preceded by a slash if embedded object reference.",
             "label": "Object"
         },
         "objectType": {

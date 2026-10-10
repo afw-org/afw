@@ -61,7 +61,7 @@ if isValuePath is true and currentPath2 is specified.
 
 The URIs are adaptive value paths. If one of the URIs begins with a single
 slash '/', both must, and each URI will be parsed as an adaptive value path
-(example: /adapterId/objectType/objectId.propertyNames).
+(example: /adapterId/objectType/objectId/propertyName).
 
     $currentPath
 
@@ -175,7 +175,7 @@ URI to parse
 
 The URI is an adaptive value path. If the path begins with a single slash '/',
 the URI will be parsed as an adaptive value path (example:
-/adapterId/objectType/objectId.propertyNames)
+/adapterId/objectType/objectId/propertyName)
 
     $currentPath
 
