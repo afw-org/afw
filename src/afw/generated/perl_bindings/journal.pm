@@ -91,7 +91,7 @@ The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
 The maximum number of entries that will be scanned for an entry where the
 consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
-evaluates to true.
+evaluates to true. If not specified, there is no limit.
 
 =head3 journal_get_by_cursor
 
@@ -191,7 +191,7 @@ The objectId of the associated _AdaptiveProvisioningPeer_ object.
 
 The maximum number of entries that will be scanned for an entry where the
 consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
-evaluates to true.
+evaluates to true. If not specified, there is no limit.
 
 =head3 journal_get_next_for_consumer_after_cursor
 
@@ -230,7 +230,7 @@ Journal entry cursor.
 
 The maximum number of entries that will be scanned for an entry where the
 consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object
-evaluates to true.
+evaluates to true. If not specified, there is no limit.
 
 =head3 journal_mark_consumed
 

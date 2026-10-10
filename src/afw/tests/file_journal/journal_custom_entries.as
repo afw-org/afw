@@ -202,7 +202,7 @@ return 0;
 
 
 //? test: rest-mark-consumed
-//? description: the REST form of mark consumed, an update of the entry at its cursor (POST /journal/_AdaptiveJournalEntry_/<cursor>)
+//? description: the REST form of mark consumed, GET /journal/_AdaptiveJournalEntry_/mark_consumed:<consumer_id>:<cursor>, works like journal_mark_consumed()
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -222,21 +222,31 @@ const t: string = "_AdaptiveJournalEntry_";
 let r: object = get_object("journal", t, "get_next_for_consumer:" + peer);
 assert(r.entryCursor === c1);
 
-update_object("journal", t, c1, { consumed: true, consumerId: peer });
+assert(get_object("journal", t, "mark_consumed:" + peer + ":" + c1).status
+    === "success");
 
 r = get_object("journal", t, "get_next_for_consumer:" + peer);
 assert(r.entryCursor === c2 && is_nullish(r.reissue),
     "moves on after mark consumed, got " + string(r.entryCursor));
 
-// Only the entry being consumed can be marked, and consumed must be true.
-assert(safe_evaluate(update_object("journal", t, c1,
-    { consumed: true, consumerId: peer }), "error") == "error");
-assert(safe_evaluate(update_object("journal", t, c2,
-    { consumed: false, consumerId: peer }), "error") == "error");
-assert(safe_evaluate(update_object("journal", t, c2,
-    { consumed: true }), "error") == "error");
+// Only the entry being consumed can be marked, as with journal_mark_consumed().
+assert(safe_evaluate(get_object("journal", t,
+    "mark_consumed:" + peer + ":" + c1), "error") == "error");
+assert(safe_evaluate(journal_mark_consumed("journal", peer, c1), "error")
+    == "error");
 
-update_object("journal", t, c2, { consumed: true, consumerId: peer });
+// Both arguments are required.
+assert(safe_evaluate(get_object("journal", t, "mark_consumed:" + peer),
+    "error") == "error");
+assert(safe_evaluate(get_object("journal", t, "mark_consumed:" + peer + ":"),
+    "error") == "error");
+
+// An update of a journal entry is no longer a way to mark it consumed.
+assert(safe_evaluate(update_object("journal", t, c2,
+    { consumed: true, consumerId: peer }), "error") == "error");
+
+assert(get_object("journal", t, "mark_consumed:" + peer + ":" + c2).status
+    === "success");
 r = get_object("journal", t, "get_next_for_consumer:" + peer);
 assert(is_nullish(r.entry), "nothing left");
 
@@ -484,5 +494,35 @@ while (r.entry !== undefined) {
 }
 assert(processed == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     "each processed once, in order, got " + string(processed));
+
+return 0;
+
+
+//? test: no-limit-by-default
+//? description: with no limit, the built-in and the REST form scan past many entries that do not match, the same way
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const t: string = "_AdaptiveJournalEntry_";
+for (const form of ["built-in", "rest"]) {
+    const peer: string = generate_uuid();
+    add_object("journal", "_AdaptiveProvisioningPeer_", {
+        peerId: "no-limit-" + form,
+        consumeFilter: "(current::entry.eventType === 'no-limit-match-" + form + "')"
+    }, peer);
+    for (let i: integer = 0; i < 150; i = i + 1) {
+        add_object("journal", t, { eventType: "no-limit-skip" });
+    }
+    const match: string = add_object("journal", t,
+        { eventType: "no-limit-match-" + form }).objectId;
+    const r: object = (form === "rest")
+        ? get_object("journal", t, "get_next_for_consumer:" + peer)
+        : journal_get_next_for_consumer("journal", peer);
+    assert(r.entryCursor === match,
+        form + ": found the entry after 150 others, got " +
+        string(r.entryCursor));
+}
 
 return 0;

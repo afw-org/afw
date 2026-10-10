@@ -42,7 +42,7 @@ check("journal_get_next_for_consumer_after_cursor", function () { journal_get_ne
 check("journal_advance_cursor_for_consumer", function () { journal_advance_cursor_for_consumer("journal", "p", 10); });
 check("journal_mark_consumed", function () { journal_mark_consumed("journal", "p", "x"); });
 check("get_object special id", function () { get_object("journal", t, "get_first"); });
-check("update_object mark consumed", function () { update_object("journal", t, "x", { consumed: true, consumerId: "p" }); });
+check("get_object mark_consumed", function () { get_object("journal", t, "mark_consumed:p:x"); });
 
 assert(length(notDenied) === 0, "not denied: " + string(notDenied));
 

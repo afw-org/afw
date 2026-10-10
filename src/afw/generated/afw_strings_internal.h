@@ -2135,6 +2135,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__08ccd7e9af5b \
+    "The maximum number of entries that will be scanned for an entry where the consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true. If not specified, there is no limit."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__08ccd7e9af5b */
+#define afw_s_zz__08ccd7e9af5b \
+    (&afw_self_v_zz__08ccd7e9af5b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__08ccd7e9af5b */
+#define afw_self_s_zz__08ccd7e9af5b \
+    (afw_self_v_zz__08ccd7e9af5b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__08ccd7e9af5b */
+extern const afw_value_string_t \
+    afw_self_v_zz__08ccd7e9af5b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__08ccd7e9af5b */
+#define afw_z_zz__08ccd7e9af5b \
+    (afw_self_v_zz__08ccd7e9af5b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__08ccd7e9af5b */
+#define afw_v_zz__08ccd7e9af5b \
+    (&afw_self_v_zz__08ccd7e9af5b.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__08cde1e73c0f \
     "<dataType>(value: dataType, match: string, replacement: string, limit?: integer): string"
 
@@ -13389,32 +13415,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3778f2876b8f */
 #define afw_v_zz__3778f2876b8f \
     (&afw_self_v_zz__3778f2876b8f.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__3787eb4a9491 \
-    "The maximum number of entries that will be scanned for an entry where the consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3787eb4a9491 */
-#define afw_s_zz__3787eb4a9491 \
-    (&afw_self_v_zz__3787eb4a9491.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3787eb4a9491 */
-#define afw_self_s_zz__3787eb4a9491 \
-    (afw_self_v_zz__3787eb4a9491.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3787eb4a9491 */
-extern const afw_value_string_t \
-    afw_self_v_zz__3787eb4a9491;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3787eb4a9491 */
-#define afw_z_zz__3787eb4a9491 \
-    (afw_self_v_zz__3787eb4a9491.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3787eb4a9491 */
-#define afw_v_zz__3787eb4a9491 \
-    (&afw_self_v_zz__3787eb4a9491.pub)
 
 
 
