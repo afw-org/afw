@@ -1513,12 +1513,41 @@ finished:
 }
 
 
+/*
+ * Days from 1970-01-01 to a civil date (proleptic Gregorian, negative
+ * years allowed; H. Hinnant's days_from_civil). Used to order instants.
+ */
+static afw_integer_t
+impl_days_from_civil(afw_integer_t y, afw_integer_t m, afw_integer_t d)
+{
+    afw_integer_t era, yoe, doy, doe;
+
+    y -= (m <= 2) ? 1 : 0;
+    era = (y >= 0 ? y : y - 399) / 400;
+    yoe = y - era * 400;
+    doy = (153 * (m + (m > 2 ? -3 : 9)) + 2) / 5 + d - 1;
+    doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+    return era * 146097 + doe - 719468;
+}
+
+
+/* Time zone offset in minutes (0 when there is no time zone). */
+static afw_integer_t
+impl_time_zone_offset_minutes(const afw_time_zone_t *time_zone)
+{
+    if (time_zone->minutes == -1) {
+        return 0;
+    }
+    return (afw_integer_t)time_zone->hours * 60 +
+        ((time_zone->hours < 0) ? -time_zone->minutes : time_zone->minutes);
+}
+
+
 AFW_DEFINE(int)
 afw_dateTime_compare(const afw_dateTime_t *v1, const afw_dateTime_t *v2,
     afw_xctx_t *xctx)
 {
-    afw_integer_t result;
-    afw_integer_t v1hour, v2hour, v1minute, v2minute;
+    afw_integer_t s1, s2, result;
 
     /* if only one value has a time zone then cannot compare */
     if ((v1->time_zone.minutes == -1 && v2->time_zone.minutes != -1) ||
@@ -1529,36 +1558,25 @@ afw_dateTime_compare(const afw_dateTime_t *v1, const afw_dateTime_t *v2,
             xctx);
     }
 
-
-    result = v1->date.year - v2->date.year;
-    if (result != 0) goto finished;
-    result = v1->date.month - v2->date.month;
-    if (result != 0) goto finished;
-    result = v1->date.day - v2->date.day;
-    if (result != 0) goto finished;
-    /* if different time zones, normalize the two times */
-    if (v1->time_zone.hours != v2->time_zone.hours ||
-        v1->time_zone.minutes != v2->time_zone.minutes) {
-        v1hour = v1->time.hour - v1->time_zone.hours;
-        v2hour = v2->time.hour - v2->time_zone.hours;
-        v1minute = v1->time.minute - v1->time_zone.minutes;
-        v2minute = v2->time.minute - v2->time_zone.minutes;
-        result = v1hour - v2hour;
-        if (result != 0) goto finished;
-        result = v1minute - v2minute;
-        if (result != 0) goto finished;
+    /*
+     * Compare the instants: seconds since the epoch in UTC (local when
+     * neither has a time zone), then microseconds. Comparing the local
+     * date first made equal instants on different local dates unequal.
+     */
+    s1 = (((impl_days_from_civil(v1->date.year, v1->date.month,
+        v1->date.day) * 24 + v1->time.hour) * 60 + v1->time.minute -
+        impl_time_zone_offset_minutes(&v1->time_zone)) * 60) +
+        v1->time.second;
+    s2 = (((impl_days_from_civil(v2->date.year, v2->date.month,
+        v2->date.day) * 24 + v2->time.hour) * 60 + v2->time.minute -
+        impl_time_zone_offset_minutes(&v2->time_zone)) * 60) +
+        v2->time.second;
+    result = s1 - s2;
+    if (result == 0) {
+        result = (afw_integer_t)v1->time.microsecond -
+            (afw_integer_t)v2->time.microsecond;
     }
-    else {
-        result = (afw_integer_t)v1->time.hour - (afw_integer_t)v2->time.hour;
-        if (result != 0) goto finished;
-        result = (afw_integer_t)v1->time.minute - (afw_integer_t)v2->time.minute;
-        if (result != 0) goto finished;
-    }
-    result = (afw_integer_t)v1->time.second - (afw_integer_t)v2->time.second;
-    if (result != 0) goto finished;
-    result = (afw_integer_t)v1->time.microsecond - (afw_integer_t)v2->time.microsecond;
 
-finished:
     return (result == 0) ? 0 : (result > 0) ? 1 : -1;
 }
 
@@ -1567,8 +1585,7 @@ AFW_DEFINE(int)
 afw_time_compare(const afw_time_t *v1, const afw_time_t *v2,
     afw_xctx_t *xctx)
 {
-    afw_integer_t result;
-    afw_integer_t v1hour, v2hour, v1minute, v2minute;
+    afw_integer_t s1, s2, result;
 
     /* if only one value has a time zone then cannot compare */
     if ((v1->time_zone.minutes == -1 && v2->time_zone.minutes != -1)||
@@ -1579,30 +1596,19 @@ afw_time_compare(const afw_time_t *v1, const afw_time_t *v2,
             xctx);
     }
 
-    /* if different time zones, normalize the two times */
-    if (v1->time_zone.hours != v2->time_zone.hours ||
-        v1->time_zone.minutes != v2->time_zone.minutes) {
-        v1hour = v1->time.hour + v1->time_zone.hours;
-        v2hour = v2->time.hour + v2->time_zone.hours;
-        v1minute = v1->time.minute + v1->time_zone.minutes;
-        v2minute = v2->time.minute + v2->time_zone.minutes;
-        result = v1hour - v2hour;
-        if (result != 0) goto finished;
-        result = v1minute - v2minute;
-        if (result != 0) goto finished;
-    }
-    else {
-        result = (afw_integer_t)v1->time.hour - (afw_integer_t)v2->time.hour;
-        if (result != 0) goto finished;
-        result = (afw_integer_t)v1->time.minute - (afw_integer_t)v2->time.minute;
-        if (result != 0) goto finished;
+    /* Compare as UTC on one reference day (the offset is subtracted). */
+    s1 = ((afw_integer_t)v1->time.hour * 60 + v1->time.minute -
+        impl_time_zone_offset_minutes(&v1->time_zone)) * 60 +
+        v1->time.second;
+    s2 = ((afw_integer_t)v2->time.hour * 60 + v2->time.minute -
+        impl_time_zone_offset_minutes(&v2->time_zone)) * 60 +
+        v2->time.second;
+    result = s1 - s2;
+    if (result == 0) {
+        result = (afw_integer_t)v1->time.microsecond -
+            (afw_integer_t)v2->time.microsecond;
     }
 
-    result = (afw_integer_t)v1->time.second - (afw_integer_t)v2->time.second;
-    if (result != 0) goto finished;
-    result = (afw_integer_t)v1->time.microsecond - (afw_integer_t)v2->time.microsecond;
- 
-finished:
     return (result == 0) ? 0 : (result > 0) ? 1 : -1;
 }
 
