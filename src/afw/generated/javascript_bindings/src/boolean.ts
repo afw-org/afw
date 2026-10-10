@@ -75,7 +75,12 @@ export function afwBagSizeBoolean(client : any, value : any[]) : any {
 }
 
 /**
- * Converts value to data type boolean returning boolean result.
+ * Converts value to boolean as ECMAScript Boolean() does with the value as
+ * JSON carries it: undefined and null are false; a boolean is itself; a
+ * number is false for 0, -0, and NaN; a value whose JSON form is a string
+ * (string, anyURI, dateTime, base64Binary, ...) is false only when that text
+ * is empty (so "false" and "0" are true); an object, array, or function is
+ * true.
  * 
  * @param {} value - Value to convert
  * 
