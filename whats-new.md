@@ -243,6 +243,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **`sort` is stable:** entries the compare function treats as equal keep their order, as in ECMAScript (it used a quicksort that reordered them).
 
+**Template string escapes:** `` `a\`b` `` (an escaped grave accent) ended the template early, and `\u{...}` was "Invalid hex digit" in a template though it works in a string. Both work now, and an escaped `$` or `#` written as a `\u` escape no longer opens a substitution.
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))

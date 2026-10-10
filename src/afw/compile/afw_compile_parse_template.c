@@ -304,6 +304,13 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
             }
             afw_compile_restore_cursor(previous_cursor);
             cp = afw_compile_get_unescaped_code_point();
+
+            /*
+             * An escaped code point is text: \` does not end the string,
+             * and an escaped '$' or '#' does not open a substitution.
+             */
+            afw_compile_internal_s_push_code_point(parser, cp);
+            continue;
         }
 
         /* If '${' or '#{', indicate substitution and restore cursor. */

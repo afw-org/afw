@@ -1741,6 +1741,39 @@ impl_unescaped(afw_compile_parser_t *parser)
         break;
 
     case 'u':
+        /* Code point for \u{x...} (as in strings, impl_parse_u). */
+        afw_compile_save_cursor(save_cursor);
+        o = afw_compile_get_octet(parser);
+        if (!afw_compile_is_at_eof() && o == '{') {
+            cp = 0;
+            hi = impl_get_HexDigit(parser);
+            if (hi < 0) {
+                goto error;
+            }
+            for (;;) {
+                cp = (cp << 4) + hi;
+                if (cp > 0x10FFFF) {
+                    goto error;
+                }
+                hi = impl_get_HexDigit(parser);
+                if (afw_compile_is_at_eof()) {
+                    goto error;
+                }
+                if (hi < 0) {
+                    o = afw_compile_get_octet(parser);
+                    if (afw_compile_is_at_eof() || o != '}') {
+                        goto error;
+                    }
+                    break;
+                }
+            }
+            if (cp >= 0xD800 && cp <= 0xDFFF) {
+                goto error;
+            }
+            break;
+        }
+        afw_compile_restore_cursor(save_cursor);
+
         /* Code point for /uxxxx. */
         cp =
             impl_get_required_HexDigit(parser) * 0x1000 +
