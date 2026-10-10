@@ -166,67 +166,166 @@ void put_yaml_string(
 
 
 /*
+ * Write a mapping key. A name that YAML would read as itself in plain
+ * style (a letter or '_', then letters, digits, '_' or '-', and not a
+ * word a YAML 1.1 or 1.2 reader takes as a boolean or null) is written
+ * plain; any other is JSON-quoted. Keys were always written plain, so
+ * "a #b", "%p", " x", "{a}", or "- x" made a file no reader could load,
+ * and "yes" or "1" read back as another type.
+ */
+static void
+impl_put_key(
+    from_value_wa_t *wa,
+    const afw_utf8_t *key)
+{
+    static const char * const reserved[] = {
+        "y", "n", "yes", "no", "on", "off", "true", "false", "null", NULL
+    };
+    const afw_utf8_t *quoted;
+    afw_boolean_t plain;
+    afw_size_t i;
+    const char * const *r;
+    unsigned char c;
+
+    plain = key->len > 0;
+    for (i = 0; plain && i < key->len; i++) {
+        c = (unsigned char)key->s[i];
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+            c == '_' ||
+            (i > 0 && ((c >= '0' && c <= '9') || c == '-'))))
+        {
+            plain = false;
+        }
+    }
+    for (r = reserved; plain && *r; r++) {
+        if (strlen(*r) != key->len) {
+            continue;
+        }
+        for (i = 0; i < key->len; i++) {
+            c = (unsigned char)key->s[i];
+            if (c >= 'A' && c <= 'Z') {
+                c = c - 'A' + 'a';
+            }
+            if (c != (unsigned char)(*r)[i]) {
+                break;
+            }
+        }
+        if (i == key->len) {
+            plain = false;
+        }
+    }
+
+    if (plain) {
+        put_yaml_string(wa, key);
+    }
+    else {
+        quoted = afw_json_utf8_string_create(key, wa->p, wa->xctx);
+        impl_write(wa, quoted->s, quoted->len);
+    }
+}
+
+
+/*
  * Write a string using the literal block scalar style as described in
  * Chapter 8 at https://yaml.org/spec/1.2.2/#rule-c-indentation-indicator.
+ */
+/*
+ * Whether a string with a line break reads back exactly in the literal
+ * block style this writer uses: content lines at the next indentation,
+ * no indentation indicator, and strip ("|-", no final line break) or
+ * clip ("|", one final line break) chomping. That needs a non-empty
+ * line, a first non-empty line that does not start with a space or tab
+ * (the reader takes its indentation from it), at most one final line
+ * break (keep chomping wrote the indentation after the last line as one
+ * more empty line), and no control character but tab (and no NEL, LS or
+ * PS, which a YAML 1.1 reader takes as line breaks).
+ */
+static afw_boolean_t
+impl_literal_style_ok(const afw_utf8_t *string)
+{
+    const afw_utf8_octet_t *c, *end;
+    afw_boolean_t at_line_start;
+    afw_boolean_t seen_content;
+    unsigned char o;
+
+    if (string->len == 0 ||
+        (string->len >= 2 && string->s[string->len - 1] == '\n' &&
+            string->s[string->len - 2] == '\n'))
+    {
+        return false;
+    }
+
+    at_line_start = true;
+    seen_content = false;
+    for (c = string->s, end = c + string->len; c < end; c++) {
+        o = (unsigned char)*c;
+        if (o == '\n') {
+            at_line_start = true;
+            continue;
+        }
+        if ((o < 0x20 && o != '\t') || o == 0x7f) {
+            return false;
+        }
+        if (o == 0xc2 && c + 1 < end && (unsigned char)c[1] == 0x85) {
+            return false;
+        }
+        if (o == 0xe2 && c + 2 < end && (unsigned char)c[1] == 0x80 &&
+            ((unsigned char)c[2] == 0xa8 || (unsigned char)c[2] == 0xa9))
+        {
+            return false;
+        }
+        if (at_line_start && !seen_content && (o == ' ' || o == '\t')) {
+            return false;
+        }
+        at_line_start = false;
+        seen_content = true;
+    }
+
+    return seen_content;
+}
+
+
+/*
+ * Write a string using the literal block scalar style as described in
+ * Chapter 8 at https://yaml.org/spec/1.2.2/#rule-c-indentation-indicator.
+ * The caller checked impl_literal_style_ok().
  */
 void convert_string_to_literal_style_yaml(
     from_value_wa_t *wa,
     const afw_utf8_t *string)
 {
-    unsigned char c;
     afw_size_t len;
     const afw_utf8_octet_t *s;
+    afw_boolean_t clip;
 
     s = string->s;
     len = string->len;
 
-    /* Caller only uses this when len > 0 and the string contains '\n'. */
-    if (len == 0) {
-        impl_puts(wa, "\"\"");
-        return;
+    /*
+     * Clip ("|") keeps one final line break, strip ("|-") none. The final
+     * line break is written here, so it is there at the end of a
+     * document too; the indentation the next line starts with is an
+     * empty line, which clip drops.
+     */
+    clip = s[len - 1] == '\n';
+    impl_puts(wa, clip ? "|" : "|-");
+    if (clip) {
+        len--;
     }
 
-    /* Indicate literal style. */
-    impl_putc(wa, '|');
-
-    /* If first char is space, add indentation indicator. */
-    if (*s == ' ') {
-        impl_printf(wa, "%d", wa->indent);
-    }
-
-    /* If string ends with a newline, use KEEP chomping indicator. */
-    if (s[len - 1] == '\n') {
-        impl_putc(wa, '+');
-    }
-
-    /* If string does not end with a newline, use STRIP chomping indicator. */
-    else {
-        impl_putc(wa, '-');
-    }
-
-    /* Put newline and indentation. */
+    /* Each line on its own line at the next indentation. */
     put_ws(wa);
-
-    /* Write string. */
-    while (len > 0) {
-        c = *s;
-
-        /* If \n, line break and add indent. */
-        if (c == '\n') {
+    for (; len > 0; len--, s++) {
+        if (*s == '\n') {
             put_ws(wa);
         }
-
-        /*
-         * If not new line, just write character asis.
-         */
         else {
-            impl_putc(wa, c);
+            impl_putc(wa, *s);
         }
-
-        /* Increment. */
-        len--;
-        s++;
-    }    
+    }
+    if (clip) {
+        impl_putc(wa, '\n');
+    }
 }
 
 
@@ -247,13 +346,19 @@ void convert_string_to_yaml(
         AFW_THROW_ERROR_Z(general, "Error converting string.", wa->xctx);
     }
 
-    /* If string contains a newline, write as literal style. */
+    /*
+     * If string contains a newline, write as literal style when it reads
+     * back exactly; else as a JSON (YAML double-quoted) string.
+     */
     if (string->len > 0) {
         for (c = string->s, end = c + string->len; c < end; c++)
         {
             if (*c == '\n') {
-                convert_string_to_literal_style_yaml(wa, string);
-                return;
+                if (impl_literal_style_ok(string)) {
+                    convert_string_to_literal_style_yaml(wa, string);
+                    return;
+                }
+                break;
             }
         }
     }
@@ -273,6 +378,43 @@ void convert_integer_to_yaml(
 {
     impl_printf(wa, AFW_INTEGER_FMT, i);
 }
+
+/*
+ * A finite double in the fewest digits that read back as the same value,
+ * written as a YAML float: it always has a '.' (1e10 was written
+ * 10000000000 and read back as an integer; -0.0 as -0), and an exponent
+ * has a sign ("1.0E+10", which YAML 1.1 readers also take as a float).
+ */
+static void
+impl_double_to_yaml(char *s, double d)
+{
+    int precision;
+    char *e;
+    char tail[32];
+
+    for (precision = 1; precision < 17; precision++) {
+        sprintf(s, "%.*G", precision, d);
+        if (strtod(s, NULL) == d) {
+            break;
+        }
+    }
+    if (precision == 17) {
+        sprintf(s, "%.17G", d);
+    }
+
+    if (!strchr(s, '.')) {
+        e = strchr(s, 'E');
+        if (e) {
+            strcpy(tail, e);
+            strcpy(e, ".0");
+            strcat(s, tail);
+        }
+        else {
+            strcat(s, ".0");
+        }
+    }
+}
+
 
 /*
  * Finite doubles use JSON-like %.23G (valid YAML plain numbers). Non-finite
@@ -300,7 +442,7 @@ void convert_number_to_yaml(
      * with "NaN", "-INF", or "INF".
      */
     if (afw_number_is_finite(d)) {
-        sprintf(s, "%.23G", d);
+        impl_double_to_yaml(s, d);
     }
     else if (afw_number_is_NaN(d)) {
         strcpy(s, "\"" AFW_JSON_Q_NAN "\"");
@@ -396,7 +538,7 @@ void convert_object_to_yaml(
     if (next) {
         while (1) {
             (wa->indent)++;
-            put_yaml_string(wa,
+            impl_put_key(wa,
                 afw_object_string_property_name_internal(
                     property_name, wa->xctx));
 
@@ -537,8 +679,16 @@ extern void afw_yaml_internal_write_value(
     wa->context = context;
     wa->callback = callback;
 
-    /* begin the document */
+    /*
+     * Begin the document. A scalar follows "--- " on the same line: "---"
+     * must be followed by a space or a line break to start a document
+     * ("---42" is the string "---42").
+     */
     impl_puts(wa, "---");
+    if (!value || (!afw_value_is_array(value) && !afw_value_is_object(value)))
+    {
+        impl_putc(wa, ' ');
+    }
     (wa->indent)++;
 
     /* Convert value to YAML. */
