@@ -130,3 +130,23 @@ assert(integer(42.0) === 42, "integer(42.0)");
 assert(integer(1.5) === 1, "integer(1.5) truncates");
 assert(to_integer(-9.2233720368547758e18) === -9223372036854775807 - 1, "min");
 return 0;
+
+//?
+//? test: double-to-string-exponent-zero-digits
+//? description: string() keeps every exponent digit after the leading zeros (1e10 was "1.0E1")
+//? expect: 0
+//? source: ...
+
+assert(string(1e10) === "1.0E10", "1e10 " + string(1e10));
+assert(string(1.5e20) === "1.5E20", "1.5e20 " + string(1.5e20));
+assert(string(1e100) === "1.0E100", "1e100 " + string(1e100));
+assert(string(-2.5e-300) === "-2.5E-300", "-2.5e-300 " + string(-2.5e-300));
+assert(string(1e5) === "1.0E5", "1e5 " + string(1e5));
+assert(string(0.0) === "0.0E0", "0.0 " + string(0.0));
+assert(stringify([1e10]) === "[1.0E10]", "stringify " + stringify([1e10]));
+for (const x of [1e10, 2e-10, 1e100, 1e300, 1.7976931348623157e308,
+    2.2250738585072014e-308, 123456789.0, -1e-5, 1e20, 3.0e-20])
+{
+    assert(double(string(x)) === x, "round trip " + string(x));
+}
+return 0;
