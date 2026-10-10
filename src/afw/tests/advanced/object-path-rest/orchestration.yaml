@@ -1,0 +1,130 @@
+# Object ids over REST with a raw ':', '@' or sub-delim in the path
+# (#535). RFC 3986 lets a path segment hold these unencoded, and curl,
+# browsers and most HTTP libraries send them that way. The object path
+# parser used to reject them, so only the %XX forms worked.
+version: 1
+description: Object paths over REST with raw pchar delimiters in ids
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: add-objects
+    sourceType: script
+    source: |
+      add_object("files", "Thing", { n: 1, "p:q": "colon" }, "a:b@c,d;e=f");
+      add_object("files", "Thing", { n: 1 }, "x*y");
+      add_object("files", "Thing", { n: 1 }, "gone:soon");
+      return true;
+    expect: true
+
+  - name: get-raw
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a:b@c,d;e=f
+    expectStatus: 200
+
+  - name: get-encoded
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a%3Ab%40c%2Cd%3Be%3Df
+    expectStatus: 200
+
+  - name: get-mixed
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a:b%40c,d%3Be=f
+    expectStatus: 200
+
+  - name: get-other-id-not-found
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a:b
+    expectStatus: 404
+
+  - name: get-raw-property
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a:b@c,d;e=f/n
+    expectStatus: 200
+
+  - name: get-raw-property-name-with-colon
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a:b@c,d;e=f/p:q
+    expectStatus: 200
+
+  - name: get-raw-missing-property
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a:b@c,d;e=f/no:such
+    expectStatus: 404
+
+  - name: get-literal-asterisk
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/x*y
+    expectStatus: 200
+
+  - name: put-raw
+    feed:
+      kind: rest
+      method: PUT
+      path: /files/Thing/a:b@c,d;e=f
+      contentType: application/json
+      body: { "n": 2 }
+    expectStatus: 200
+
+  - name: put-raw-replaced
+    sourceType: script
+    source: |
+      const o = get_object("files", "Thing", "a:b@c,d;e=f");
+      assert(o.n === 2, "PUT with a raw path replaced the object");
+      return true;
+    expect: true
+
+  - name: delete-raw
+    feed:
+      kind: rest
+      method: DELETE
+      path: /files/Thing/gone:soon
+    expectStatus: 200
+
+  - name: delete-raw-deleted
+    sourceType: script
+    source: |
+      let found = true;
+      try {
+          found = get_object("files", "Thing", "gone:soon") !== undefined;
+      }
+      catch (e) {
+          found = false;
+      }
+      assert(!found, "DELETE with a raw path deleted the object");
+      return true;
+    expect: true
+
+  - name: options-still-follow-object-type
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing;objectId/a:b@c,d;e=f
+    expectStatus: 200
+
+  - name: not-pchar-is-bad-request
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/a[b
+    expectStatus: 400

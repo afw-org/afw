@@ -35,7 +35,6 @@ typedef enum {
     impl_state_option_value,
     impl_state_after_option_value,
     impl_state_entity_object_id,
-    impl_state_entity_object_id_possible_second_asterisk,
     impl_state_property_name,
     impl_state_property_name_slash_or_end,
     impl_state_expect_end
@@ -75,7 +74,8 @@ impl_set_result_paths(
             AFW_URI_OCTET_UNRESERVED, xctx);
     parsed->entity_path.len = path_len;
     for (name = parsed->first_property_name; name; name = name->next) {
-        path_len += name->property_name.internal.len + 1 /* slash */;
+        path_len += afw_uri_encode_len(&name->property_name.internal,
+            AFW_URI_OCTET_UNRESERVED, xctx) + 1 /* slash */;
     }
     parsed->normalized_path.len = path_len;
 
@@ -119,6 +119,177 @@ impl_set_result_paths(
 
 
 
+/*
+ * Object path tokens.
+ *
+ * A segment runs to the next '/' (or, in the object type and options part,
+ * to the next ';', '=' or '&' that has a meaning there) and may hold any
+ * RFC 3986 pchar, so a raw ':', '@' or other sub-delim is part of an id
+ * (#535). Percent-encoded octets are decoded. A segment that is exactly "*"
+ * or "**" is a wildcard; any other '*' is literal.
+ */
+typedef enum {
+    impl_token_end,
+    impl_token_slash,
+    impl_token_semicolon,
+    impl_token_equal,
+    impl_token_ampersand,
+    impl_token_segment,
+    impl_token_asterisk,
+    impl_token_double_asterisk
+} impl_token_kind;
+
+
+typedef struct {
+    const afw_utf8_octet_t *c;
+    const afw_utf8_octet_t *end;
+    /* Where the current token starts, or the octet in error. */
+    const afw_utf8_octet_t *at;
+    impl_token_kind kind;
+    afw_utf8_t token;
+} impl_parser_t;
+
+
+/* Delimiters other than '/' that end a segment in a state. */
+static const char *
+impl_state_delimiters(impl_state state)
+{
+    switch (state) {
+
+    case impl_state_object_type_id:
+    case impl_state_after_object_type_id:
+        return ";";
+
+    case impl_state_option_name:
+    case impl_state_after_option_name:
+        return "=&";
+
+    case impl_state_option_value:
+    case impl_state_after_option_value:
+        return "&";
+
+    default:
+        return "";
+    }
+}
+
+
+static afw_boolean_t
+impl_is_delimiter(afw_utf8_octet_t c, const char *delimiters)
+{
+    for (; *delimiters; delimiters++) {
+        if (c == *delimiters) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+/* Next token.  Returns false if a segment has an octet that is not pchar. */
+static afw_boolean_t
+impl_next_token(
+    impl_parser_t *self,
+    const char *delimiters,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t has_percent;
+    const afw_utf8_t *decoded;
+
+    self->at = self->c;
+    self->token.s = self->c;
+    self->token.len = 0;
+
+    if (self->c >= self->end) {
+        self->kind = impl_token_end;
+        self->token.s = NULL;
+        return true;
+    }
+
+    if (*self->c == '/' || impl_is_delimiter(*self->c, delimiters)) {
+        switch (*self->c) {
+        case '/':
+            self->kind = impl_token_slash;
+            break;
+        case ';':
+            self->kind = impl_token_semicolon;
+            break;
+        case '=':
+            self->kind = impl_token_equal;
+            break;
+        default:
+            self->kind = impl_token_ampersand;
+        }
+        self->token.len = 1;
+        (self->c)++;
+        return true;
+    }
+
+    for (has_percent = false;
+        self->c < self->end && *self->c != '/' &&
+        !impl_is_delimiter(*self->c, delimiters);
+        (self->c)++)
+    {
+        if (*self->c == '%') {
+            has_percent = true;
+        }
+        else if (!afw_uri_octet_test(*self->c, AFW_URI_OCTET_PCHAR)) {
+            self->at = self->c;
+            return false;
+        }
+    }
+    self->token.len = self->c - self->token.s;
+
+    if (afw_utf8_equal(&self->token, afw_s_a_asterisk)) {
+        self->kind = impl_token_asterisk;
+    }
+    else if (self->token.len == 2 &&
+        self->token.s[0] == '*' && self->token.s[1] == '*')
+    {
+        self->kind = impl_token_double_asterisk;
+    }
+    else {
+        self->kind = impl_token_segment;
+        if (has_percent) {
+            decoded = afw_uri_decode_create(self->token.s, self->token.len,
+                p, xctx);
+            self->token.s = decoded->s;
+            self->token.len = decoded->len;
+        }
+    }
+
+    return true;
+}
+
+
+/*
+ * Might path have a wildcard, a "*" or "**" between '/' or ';'?  It can say
+ * true for a "*" that is not a wildcard, such as an option value, which only
+ * means current_path is parsed when not needed.
+ */
+static afw_boolean_t
+impl_has_wildcard(const afw_utf8_t *path)
+{
+    const afw_utf8_octet_t *c;
+    const afw_utf8_octet_t *end;
+    const afw_utf8_octet_t *s;
+    afw_size_t len;
+
+    for (c = path->s, end = c + path->len; c < end; c++) {
+        for (s = c; c < end && *c != '/' && *c != ';'; c++);
+        len = c - s;
+        if ((len == 1 && s[0] == '*') ||
+            (len == 2 && s[0] == '*' && s[1] == '*'))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 /* Parse an object path in specific pool. */
 static afw_object_path_parsed_t *
 impl_object_path_parse(
@@ -129,54 +300,36 @@ impl_object_path_parse(
 {
     afw_object_path_parsed_t *parsed;
     afw_object_path_parsed_t *current_parsed;
-    afw_uri_parser_t parser;
+    impl_parser_t parser;
     impl_state state;
     const afw_utf8_t *token;
-    afw_boolean_t is_reserved;
-    afw_boolean_t at_end;
+    impl_token_kind kind;
     const afw_value_t *name = NULL;
-    const afw_octet_t *c;
-    const afw_octet_t *prev_c;
     afw_object_path_property_name_entry_t *prev_name;
     afw_object_path_property_name_entry_t *curr_name;
     afw_object_path_property_name_entry_t *relative_name;
-    afw_boolean_t has_asterisk;
-    afw_size_t len;
 
     if (!path || path->len == 0) return NULL;
 
     parsed = afw_pool_calloc_type(p, afw_object_path_parsed_t, xctx);
-    afw_uri_parser_initialize(&parser, path, p, xctx);
     parsed->original_path.s = afw_memory_dup(path->s, path->len, p, xctx);
     parsed->original_path.len = path->len;
+    parser.c = parsed->original_path.s;
+    parser.end = parser.c + parsed->original_path.len;
+    parser.at = parser.c;
     prev_name = NULL;
     relative_name = NULL;
     name = NULL;
 
-    /* 
-     * If there is an asterisk in path, current_path is needed for
-     * substitution, so parse it if present.
+    /*
+     * If there may be a wildcard in path, current_path is needed for
+     * substitution, so parse it if present.  Each wildcard without a
+     * current path part sets contains_unresolved_substitutions.
      */
     current_parsed = NULL;
-    for (has_asterisk = false,
-        c = (const afw_octet_t *) path->s,
-        len = path->len;
-        len > 0;
-        c++, len--)
-    {
-        if (*c == '*') {
-            has_asterisk = true;
-            break;
-        }
-    }
-    if (has_asterisk) {
-        if (!current_path) {
-            parsed->contains_unresolved_substitutions = true;
-        }
-        else {
-            current_parsed = impl_object_path_parse(current_path, NULL, NULL,
-                p, xctx);
-        }
+    if (current_path && impl_has_wildcard(path)) {
+        current_parsed = impl_object_path_parse(current_path, NULL, NULL,
+            p, xctx);
     }
 
     /* If starts with '/', set state to slash before adapter id. */
@@ -210,12 +363,13 @@ impl_object_path_parse(
     while (state != impl_state_end) {
 
         /* Parse next token and set some variables for convenience. */
-        prev_c = parser.c;
-        afw_uri_parse_next_token(&parser, xctx);
+        if (!impl_next_token(&parser, impl_state_delimiters(state), p, xctx))
+        {
+            goto error;
+        }
         token = &parser.token;
-        is_reserved = parser.is_reserved;
-        at_end = !token->s;
-    
+        kind = parser.kind;
+
         /* Process based on state. */
         switch (state) {
 
@@ -229,16 +383,12 @@ impl_object_path_parse(
         /* Token should be an adapter id, '*', or end. */
         case impl_state_adapter_id:
 
-            if (at_end) {
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (is_reserved) {
-                if (!afw_utf8_equal(token, afw_s_a_asterisk)) {
-                    goto error;
-                }
-
+            if (kind == impl_token_asterisk) {
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->adapter_id,
                         afw_s_a_asterisk))
@@ -255,9 +405,15 @@ impl_object_path_parse(
                 }
             }
 
-            else {
+            else if (kind == impl_token_segment ||
+                kind == impl_token_double_asterisk)
+            {
                 parsed->adapter_id.s = token->s;
                 parsed->adapter_id.len = token->len;
+            }
+
+            else {
+                goto error;
             }
 
             state = impl_state_after_adapter_id;
@@ -267,12 +423,12 @@ impl_object_path_parse(
         /* After adapter id is either '/' or end. */
         case impl_state_after_adapter_id:
 
-            if (at_end) {
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (!is_reserved || !afw_utf8_equal(token, afw_s_a_slash)) {
+            if (kind != impl_token_slash) {
                 goto error;
             }
 
@@ -283,15 +439,12 @@ impl_object_path_parse(
         /* Object type id, '*', or end. */
         case impl_state_object_type_id:
 
-            if (at_end) {
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (is_reserved) {
-                if (!afw_utf8_equal(token, afw_s_a_asterisk)) {
-                    goto error;
-                }
+            if (kind == impl_token_asterisk) {
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->object_type_id,
                         afw_s_a_asterisk))
@@ -308,9 +461,15 @@ impl_object_path_parse(
                 }
             }
 
-            else {
+            else if (kind == impl_token_segment ||
+                kind == impl_token_double_asterisk)
+            {
                 parsed->object_type_id.s = token->s;
                 parsed->object_type_id.len = token->len;
+            }
+
+            else {
+                goto error;
             }
 
             state = impl_state_after_object_type_id;
@@ -319,22 +478,18 @@ impl_object_path_parse(
 
         /* After object type id can be '/', ';' followed by parms, or end. */
         case impl_state_after_object_type_id:
-          
-            if (at_end) {
+
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (!is_reserved) {
-                goto error;
-            }
-
-            if (afw_utf8_equal(token, afw_s_a_slash)) {
+            if (kind == impl_token_slash) {
                 state = impl_state_entity_object_id;
                 break;
             }
 
-            if (afw_utf8_equal(token, afw_s_a_semicolon)) {
+            if (kind == impl_token_semicolon) {
                 state = impl_state_option_name;
                 parsed->options_object =
                     afw_object_create_unmanaged(p, xctx);
@@ -347,7 +502,10 @@ impl_object_path_parse(
         /* Option name. */
         case impl_state_option_name:
 
-            if (at_end || is_reserved) {
+            if (kind != impl_token_segment &&
+                kind != impl_token_asterisk &&
+                kind != impl_token_double_asterisk)
+            {
                 goto error;
             }
 
@@ -360,34 +518,29 @@ impl_object_path_parse(
         /* After option name can be '=', '&', '/', or end. */
         case impl_state_after_option_name:
 
-            if (at_end ||
-                (is_reserved && !afw_utf8_equal(token, afw_s_a_equal)))
-            {
+            if (kind != impl_token_equal) {
                 afw_object_set_property(parsed->options_object,
                     name, afw_boolean_v_true, xctx);
             }
 
-            if (at_end) {
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (is_reserved) {
+            if (kind == impl_token_equal) {
+                state = impl_state_option_value;
+                break;
+            }
 
-                if (afw_utf8_equal(token, afw_s_a_equal)) {
-                    state = impl_state_option_value;
-                    break;
-                }
+            if (kind == impl_token_ampersand) {
+                state = impl_state_option_name;
+                break;
+            }
 
-                if (afw_utf8_equal(token, afw_s_a_ampersand)) {
-                    state = impl_state_option_name;
-                    break;
-                }
-
-                if (afw_utf8_equal(token, afw_s_a_slash)) {
-                    state = impl_state_entity_object_id;
-                    break;
-                }
+            if (kind == impl_token_slash) {
+                state = impl_state_entity_object_id;
+                break;
             }
 
             goto error;
@@ -396,7 +549,10 @@ impl_object_path_parse(
         /* Value for name '=' pair. */
         case impl_state_option_value:
 
-            if (at_end || is_reserved) {
+            if (kind != impl_token_segment &&
+                kind != impl_token_asterisk &&
+                kind != impl_token_double_asterisk)
+            {
                 goto error;
             }
 
@@ -411,17 +567,17 @@ impl_object_path_parse(
         /* After value in name '=' value pair can be '&', '/', or end. */
         case impl_state_after_option_value:
 
-            if (at_end) {
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (afw_utf8_equal(token, afw_s_a_ampersand)) {
+            if (kind == impl_token_ampersand) {
                 state = impl_state_option_name;
                 break;
             }
 
-            if (afw_utf8_equal(token, afw_s_a_slash)) {
+            if (kind == impl_token_slash) {
                 state = impl_state_entity_object_id;
                 break;
             }
@@ -429,18 +585,19 @@ impl_object_path_parse(
             goto error;
 
 
-        /* Entity object id can be '*' or entity object id. */
+        /*
+         * Entity object id can be '*', '**' or entity object id.  A '**'
+         * means use the entire object id, including property names, from
+         * current path.
+         */
         case impl_state_entity_object_id:
 
-            if (at_end) {
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (is_reserved) {
-                if (!afw_utf8_equal(token, afw_s_a_asterisk)) {
-                    goto error;
-                }
+            if (kind == impl_token_asterisk) {
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->entity_object_id,
                         afw_s_a_asterisk))
@@ -455,44 +612,25 @@ impl_object_path_parse(
                     afw_memory_copy(&parsed->entity_object_id,
                         &current_parsed->entity_object_id);
                 }
-                state =
-                    impl_state_entity_object_id_possible_second_asterisk;
+                state = impl_state_property_name_slash_or_end;
                 break;
             }
 
-            parsed->entity_object_id.s = token->s;
-            parsed->entity_object_id.len = token->len;
-            state = impl_state_property_name_slash_or_end;
-            break;
-
-
-        /*
-         * If entity object id starts with '*', another '*' means use all
-         * property names from object path.
-         */
-        case impl_state_entity_object_id_possible_second_asterisk:
-
-            if (at_end) {
-                state = impl_state_end;
-                break;
-            }
-
-            if (is_reserved && !afw_utf8_equal(token, afw_s_a_slash))
-            {
-                if (!afw_utf8_equal(token, afw_s_a_asterisk))
-                {
-                    goto error;
-                }
+            if (kind == impl_token_double_asterisk) {
                 parsed->substituted_entire_object_id = true;
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->entity_object_id,
-                            afw_s_a_asterisk))
+                        afw_s_a_asterisk))
                 {
                     parsed->contains_unresolved_substitutions = true;
                     parsed->entity_object_id.s = afw_self_s_a_asterisk.s;
                     parsed->entity_object_id.len = afw_self_s_a_asterisk.len;
                 }
                 else {
+                    parsed->substituted_entity_object_id = true;
+                    parsed->substitution_occurred = true;
+                    afw_memory_copy(&parsed->entity_object_id,
+                        &current_parsed->entity_object_id);
                     parsed->first_property_name = current_parsed->first_property_name;
                     for (curr_name = (afw_object_path_property_name_entry_t *)
                             parsed->first_property_name;
@@ -511,18 +649,23 @@ impl_object_path_parse(
                 break;
             }
 
-            if (!afw_utf8_equal(token, afw_s_a_slash)) {
+            if (kind != impl_token_segment) {
                 goto error;
             }
 
-            state = impl_state_property_name;
+            parsed->entity_object_id.s = token->s;
+            parsed->entity_object_id.len = token->len;
+            state = impl_state_property_name_slash_or_end;
             break;
 
 
         /* Property name. */
         case impl_state_property_name:
 
-            if (at_end) {
+            if (kind != impl_token_segment &&
+                kind != impl_token_asterisk &&
+                kind != impl_token_double_asterisk)
+            {
                 goto error;
             }
 
@@ -543,13 +686,7 @@ impl_object_path_parse(
                 }
             }
 
-            if (is_reserved && !afw_utf8_equal(token, afw_s_a_slash))
-            {
-
-                if (!afw_utf8_equal(token, afw_s_a_asterisk))
-                {
-                    goto error;
-                }
+            if (kind == impl_token_asterisk) {
 
                 if (!current_parsed ||
                     !current_parsed->first_property_name ||
@@ -578,16 +715,15 @@ impl_object_path_parse(
             break;
 
 
-        /* After property name can be slash or end. */
+        /* After entity object id or property name can be slash or end. */
         case impl_state_property_name_slash_or_end:
 
-            if (at_end) {
+            if (kind == impl_token_end) {
                 state = impl_state_end;
                 break;
             }
 
-            if (!afw_utf8_equal(token, afw_s_a_slash))
-            {
+            if (kind != impl_token_slash) {
                 goto error;
             }
 
@@ -598,7 +734,7 @@ impl_object_path_parse(
         /* Expecting end. */
         case impl_state_expect_end:
 
-            if (!at_end) {
+            if (kind != impl_token_end) {
                 goto error;
             }
 
@@ -628,10 +764,10 @@ impl_object_path_parse(
     return parsed;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(syntax, xctx,
         "Error parsing object path '%ku' at offset %d",
-        parser.uri,
-        (int)(prev_c - (const afw_octet_t *)parser.uri->s));
+        &parsed->original_path,
+        (int)(parser.at - parsed->original_path.s));
 }
 
 
@@ -866,7 +1002,7 @@ afw_object_path_parsed_are_equivalent(
 
     for (
         name1 = parsed1->first_property_name,
-        name2 = parsed1->first_property_name;
+        name2 = parsed2->first_property_name;
         ;
         name1 = name1->next,
         name2 = name2->next

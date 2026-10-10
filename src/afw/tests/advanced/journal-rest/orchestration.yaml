@@ -1,9 +1,9 @@
 # The REST forms of the journal (#520): add an entry with POST, read it
 # for a consumer with a GET special objectId. Journal GETs are sent with
 # Cache-Control: no-store, since what they return changes as entries are
-# added and the consumer forms change the peer. The object path parser
-# does not accept a raw ':' in an object id, so the ':' in special
-# objectIds is sent as %3A.
+# added and the consumer forms change the peer. The ':' in special
+# objectIds is sent raw, as curl and browsers send it, and also as %3A
+# (#535).
 version: 1
 description: Journal over REST, and journal GETs are not cached
 host: afwfcgi
@@ -36,7 +36,7 @@ tests:
     feed:
       kind: rest
       method: GET
-      path: /journal/_AdaptiveJournalEntry_/get_next_for_consumer%3Arest%3A10
+      path: /journal/_AdaptiveJournalEntry_/get_next_for_consumer:rest:10
     expectStatus: 200
     expectHeaders:
       Cache-Control: no-store
@@ -56,6 +56,15 @@ tests:
       kind: rest
       method: GET
       path: /journal/_AdaptiveJournalEntry_/get_first
+    expectStatus: 200
+    expectHeaders:
+      Cache-Control: no-store
+
+  - name: rest-get-next-for-consumer-encoded-colon
+    feed:
+      kind: rest
+      method: GET
+      path: /journal/_AdaptiveJournalEntry_/get_next_for_consumer%3Arest%3A10
     expectStatus: 200
     expectHeaders:
       Cache-Control: no-store
