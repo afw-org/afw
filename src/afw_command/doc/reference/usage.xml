@@ -11,7 +11,7 @@ OPTION:
  -k, --check            Parse but don't evaluate.
  -f, --conf        ARG  Configuration file.
  -x, --expression  ARG  The first string to evaluate.
- -e, --extension   ARG  Load extension.
+ -e, --extension   ARG  Load extension (repeat for more).
  -h, --help             Print this help and exit successfully.
  -l, --local       ARG  Run in "local" mode with output to path or fd number.
  -s, --syntax      ARG  expression, parenthesized, script, template, test_script
