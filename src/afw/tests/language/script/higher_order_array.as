@@ -453,3 +453,18 @@ assert(r[0] === 1 && r[1] === 2, "closures: " + stringify(r));
 const b = map(function (h) { return h(-3); }, [abs]);
 assert(b[0] === 3, "built-in: " + stringify(b));
 return 0;
+
+//?
+//? test: sort-is-stable
+//? description: sort keeps the order of entries that compare equal (as ECMAScript does)
+//? expect: 0
+//? source: ...
+
+let a = [];
+for (let i = 0; i < 40; i = i + 1) { push(a, {k: i % 3, i: i}); }
+const r = sort(function (x, y) { return x.k < y.k; }, a);
+for (let j = 1; j < length(r); j = j + 1) {
+    assert(r[j - 1].k <= r[j].k, "sorted");
+    if (r[j - 1].k == r[j].k) { assert(r[j - 1].i < r[j].i, "stable at " + string(j)); }
+}
+return 0;

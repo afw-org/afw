@@ -932,10 +932,16 @@ afw_function_execute_reduce(
 
 
 
+/* A value to sort and where it was, so equal values keep their order. */
+typedef struct {
+    const afw_value_t *value;
+    afw_size_t index;
+} impl_sort_entry_t;
+
 typedef struct {
     const afw_value_t *compareFunction;
     const afw_value_t *args[3];
-    const afw_value_t **values;
+    const impl_sort_entry_t **entries;
     afw_size_t count;
     const afw_pool_t *p;
     afw_xctx_t *xctx;
@@ -955,22 +961,29 @@ impl_sort_before(impl_sort_ctx_t *ctx, const void *first, const void *second)
     return ((const afw_value_boolean_t *)return_value)->internal;
 }
 
-/* Neither direction true means the two values are equal. */
+/*
+ * Neither direction true means the two values are equal; then the one
+ * that came first stays first (a stable sort, as in ECMAScript).
+ */
 static int
 impl_sort_compare(const void *a, const void *b, void *data)
 {
     impl_sort_ctx_t *ctx = data;
+    const impl_sort_entry_t *ea = a;
+    const impl_sort_entry_t *eb = b;
 
-    if (a == b) {
+    if (ea == eb) {
         return 0;
     }
-    if (impl_sort_before(ctx, a, b)) {
-        return -1;
+    if (ea->value != eb->value) {
+        if (impl_sort_before(ctx, ea->value, eb->value)) {
+            return -1;
+        }
+        if (impl_sort_before(ctx, eb->value, ea->value)) {
+            return 1;
+        }
     }
-    if (impl_sort_before(ctx, b, a)) {
-        return 1;
-    }
-    return 0;
+    return (ea->index < eb->index) ? -1 : 1;
 }
 
 /*
@@ -1020,6 +1033,7 @@ afw_function_execute_sort(
     const afw_iterator_old_t *iterator;
     afw_size_t i;
     impl_sort_ctx_t ctx;
+    impl_sort_entry_t *entry;
 
     /* Initialize sort ctx. */
     afw_memory_clear(&ctx);
@@ -1044,19 +1058,23 @@ afw_function_execute_sort(
         return data_type->empty_array_value;
     }
 
-    /* Make array of pointers to values. Exactly count; no NULL slot. */
-    ctx.values = afw_pool_malloc(ctx.p,
-        sizeof(const afw_value_t *) * ctx.count, ctx.xctx);
+    /* Entries (value and position) and pointers to them to sort. */
+    entry = afw_pool_malloc(ctx.p,
+        sizeof(impl_sort_entry_t) * ctx.count, ctx.xctx);
+    ctx.entries = afw_pool_malloc(ctx.p,
+        sizeof(const impl_sort_entry_t *) * ctx.count, ctx.xctx);
     for (iterator = NULL, i = 0; i < ctx.count; i++) {
-        ctx.values[i] = afw_array_get_next_value(array->internal,
+        entry[i].value = afw_array_get_next_value(array->internal,
             &iterator, ctx.xctx);
+        entry[i].index = i;
+        ctx.entries[i] = &entry[i];
     }
 
     /*
      * True from compareFunction means the first value comes first.
      * False in both directions means the values are equal.
      */
-    afw_sort((const void **)ctx.values, ctx.count,
+    afw_sort((const void **)ctx.entries, ctx.count,
         impl_sort_compare, &ctx);
 
     /* New array: create_managed RC 1. Last-release of that hold on dest p. */
@@ -1065,7 +1083,8 @@ afw_function_execute_sort(
             afw_array_create_managed(data_type, ctx.p, ctx.xctx)->value,
             ctx.p, ctx.xctx);
     for (i = 0; i < ctx.count; i++) {
-        afw_array_push_value(result->internal, ctx.values[i], ctx.xctx);
+        afw_array_push_value(result->internal, ctx.entries[i]->value,
+            ctx.xctx);
     }
     return &result->pub;
 }
