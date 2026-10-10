@@ -153,7 +153,7 @@ static void convert_integer_to_ubjson(
         impl_write(wa, (const char*)&x, sizeof(x));
     }
 
-    else if (i >= -2147483647 && i <= 2147483647) {
+    else if (i >= AFW_INT32_MIN && i <= AFW_INT32_MAX) {
         afw_uint32_t x = (afw_uint32_t)i;
         AFW_ENDIAN_NATIVE_TO_BIG_32(&x);
 
@@ -161,10 +161,13 @@ static void convert_integer_to_ubjson(
         impl_write(wa, (const char*)&x, sizeof(x));
     }
 
+    /* Everything else fits int64 (afw_integer_t is 64 bits). */
     else {
-        /* this should never happen.  64-bit integers can't exceed this range */
-        AFW_THROW_ERROR_Z(general,
-            "Unexpected error in UBJSON converting 64-bit integer.", wa->xctx);
+        afw_uint64_t x = (afw_uint64_t)i;
+        AFW_ENDIAN_NATIVE_TO_BIG_64(&x);
+
+        impl_putc(wa, AFW_UBJSON_MARKER_INT64);
+        impl_write(wa, (const char*)&x, sizeof(x));
     }
 }
 
