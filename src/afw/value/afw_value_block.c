@@ -218,13 +218,13 @@ afw_value_block_evaluate_statement(
      * again after this returns.
      */
     if (afw_value_is_block(statement)) {
-        const afw_value_t *saved_script_result;
+        afw_size_t saved_write_count;
 
-        saved_script_result = xctx->script_result;
+        saved_write_count = xctx->script_result_write_count;
         afw_value_block_evaluate_block(
             x, (const afw_value_block_t *)statement, p, xctx,
             false);
-        if (xctx->script_result != saved_script_result) {
+        if (xctx->script_result_write_count != saved_write_count) {
             afw_pool_scope_clear_last_statement_non_void_value(xctx);
         }
         return afw_value_void;

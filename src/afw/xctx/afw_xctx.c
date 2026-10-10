@@ -699,6 +699,7 @@ afw_xctx_script_result_set_value(
             xctx);
     }
     afw_value_slot_store(&xctx->script_result, value, p, xctx);
+    xctx->script_result_write_count++;
 }
 
 
