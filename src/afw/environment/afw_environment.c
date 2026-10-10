@@ -51,6 +51,31 @@ impl_check_manifest_cb(
     void *context,
     afw_xctx_t *xctx);
 
+
+/*
+ * Load the extension whose manifest registers ctx->type/ctx->key, if
+ * any. A registry miss is common (the compiler looks up every
+ * identifier as a string literal), so what the scan makes goes in a
+ * temporary pool, not the job heap that lasts as long as the xctx.
+ */
+static void
+impl_check_manifests(
+    impl_check_manifest_cb_context_t *ctx,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *p;
+
+    p = afw_pool_create(xctx->p, xctx);
+    AFW_TRY {
+        afw_runtime_foreach(afw_s__AdaptiveManifest_,
+            ctx, impl_check_manifest_cb, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_pool_release(p, xctx);
+    }
+    AFW_ENDTRY;
+}
+
 /*
  * Evaluate a modulePath conf/manifest property as a template (#15).
  * Returns NULL if property is absent.
@@ -808,8 +833,7 @@ afw_environment_get_registry_type_by_id(
         if (!type && load_extension) {
             ctx.type = afw_s_registry_type;
             ctx.key = registry_type_id;
-            afw_runtime_foreach(afw_s__AdaptiveManifest_,
-                &ctx, impl_check_manifest_cb, xctx->p, xctx);
+            impl_check_manifests(&ctx, xctx);
             type = afw_hash_table_get(
                 env->registry_names_ht,
                 registry_type_id->s,
@@ -974,8 +998,12 @@ impl_check_manifest_cb(
             if (afw_utf8_equal(ctx->type, &registry_type_id) &&
                 afw_utf8_equal(ctx->key, &registry_key))
             {
+                /* The manifest object dies with the scan's pool. */
                 extension_id = afw_object_get_property_as_string_internal(object,
                     afw_v_extensionId, xctx);
+                if (extension_id) {
+                    extension_id = afw_utf8_clone(extension_id, xctx->p, xctx);
+                }
                 module_path = impl_module_path_from_property(object,
                     NULL, xctx->p, xctx);
                 if (extension_id && module_path) {
@@ -1060,8 +1088,7 @@ afw_environment_registry_get(
         if (!result) {
             ctx.type = type->registry_type_id;
             ctx.key = key;
-            afw_runtime_foreach(afw_s__AdaptiveManifest_,
-                &ctx, impl_check_manifest_cb, xctx->p, xctx);
+            impl_check_manifests(&ctx, xctx);
             result = afw_hash_table_get(type->ht, key->s, key->len);
         }
 
