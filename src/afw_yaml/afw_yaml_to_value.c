@@ -26,6 +26,24 @@ typedef struct afw_yaml_parser_s {
     const afw_utf8_t *path;
     afw_boolean_t cede_p;
     afw_size_t parse_nesting;
+
+    /* A token scanned ahead and given back (see afw_yaml_parser_scan). */
+    yaml_token_t *pending;
+
+    /*
+     * Parsing the entries of a sequence: a block entry token ("- ") is the
+     * next entry. Outside one, it starts a sequence with no indentation
+     * under a mapping key ("key:\n- a\n- b"), which libyaml scans with no
+     * sequence start or end token.
+     */
+    afw_boolean_t in_sequence;
+
+    /*
+     * The next scalar is a mapping key: it is its text, whatever its
+     * plain form looks like ("1: a", "1e30: b", "true: c" have keys "1",
+     * "1e30", "true"; they were typed and the mapping saw no key).
+     */
+    afw_boolean_t scalar_is_key;
 } afw_yaml_parser_t;
 
 
@@ -82,6 +100,12 @@ yaml_token_t * afw_yaml_parser_scan(
     int rc;
     yaml_token_t *token;
 
+    if (parser->pending) {
+        token = parser->pending;
+        parser->pending = NULL;
+        return token;
+    }
+
     token = afw_pool_calloc_type(xctx->p, yaml_token_t, xctx);
 
     rc = yaml_parser_scan(&parser->parser, token);
@@ -117,6 +141,12 @@ const afw_value_t * afw_yaml_parse_scalar(
 
     s = (const afw_utf8_octet_t *)token->data.scalar.value;
     len = token->data.scalar.length;
+
+    if (parser->scalar_is_key) {
+        parser->scalar_is_key = false;
+        str = afw_utf8_create(s, len, parser->p, xctx);
+        return afw_value_create_unmanaged_string(str, parser->p, xctx);
+    }
 
     switch (token->data.scalar.style) {
         case YAML_PLAIN_SCALAR_STYLE:
@@ -178,8 +208,11 @@ const afw_array_t * afw_yaml_parse_list(
 {
     const afw_array_t *list;
     const afw_value_t *value;
+    afw_boolean_t saved_in_sequence;
 
     impl_yaml_parse_nesting_enter(parser, xctx);
+    saved_in_sequence = parser->in_sequence;
+    parser->in_sequence = true;
 
     list = afw_array_create_unmanaged(parser->p, xctx);
 
@@ -190,11 +223,55 @@ const afw_array_t * afw_yaml_parse_list(
         }
     } while (value);
 
+    parser->in_sequence = saved_in_sequence;
     impl_yaml_parse_nesting_leave(parser);
 
     /* Return. */
     return list;
 }
+
+/*
+ * A sequence with no indentation under a mapping key. Its first block
+ * entry token has been scanned. It has no end token: it ends at the
+ * first token after an entry that is not another block entry, which is
+ * given back for the mapping (it took the first entry as the key's value,
+ * then failed on the second "Unexpected token inside map").
+ */
+static const afw_array_t *
+impl_yaml_parse_indentless_list(
+    afw_yaml_parser_t *parser, afw_xctx_t *xctx)
+{
+    const afw_array_t *list;
+    const afw_value_t *value;
+    yaml_token_t *token;
+    afw_boolean_t saved_in_sequence;
+
+    impl_yaml_parse_nesting_enter(parser, xctx);
+    saved_in_sequence = parser->in_sequence;
+    parser->in_sequence = true;
+
+    list = afw_array_create_unmanaged(parser->p, xctx);
+    for (;;) {
+        value = afw_yaml_parse_value(parser, xctx);
+        if (!value) {
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "YAML sequence entry without a value, near line %d, "
+                "column %d",
+                parser->parser.mark.line, parser->parser.mark.column);
+        }
+        afw_array_push_value(list, value, xctx);
+        token = afw_yaml_parser_scan(parser, xctx);
+        if (token->type != YAML_BLOCK_ENTRY_TOKEN) {
+            parser->pending = token;
+            break;
+        }
+    }
+
+    parser->in_sequence = saved_in_sequence;
+    impl_yaml_parse_nesting_leave(parser);
+    return list;
+}
+
 
 const afw_object_t * afw_yaml_parse_object(
     afw_yaml_parser_t *parser, afw_xctx_t *xctx)
@@ -207,6 +284,7 @@ const afw_object_t * afw_yaml_parse_object(
     const afw_object_t *saved_embedding_object;
     const afw_value_t *saved_property_name;
     const afw_object_t *_meta_;
+    afw_boolean_t saved_in_sequence;
 
     impl_yaml_parse_nesting_enter(parser, xctx);
 
@@ -228,6 +306,9 @@ const afw_object_t * afw_yaml_parse_object(
     parser->embedding_object = object;
     saved_property_name = parser->property_name;
     parser->property_name = NULL;
+    saved_in_sequence = parser->in_sequence;
+    parser->in_sequence = false;
+    parser->scalar_is_key = false;
 
     while (!done) {
         token = afw_yaml_parser_scan(parser, xctx);
@@ -236,7 +317,9 @@ const afw_object_t * afw_yaml_parse_object(
             continue;
 
         if (token->type == YAML_KEY_TOKEN) {
+            parser->scalar_is_key = true;
             v = afw_yaml_parse_value(parser, xctx);
+            parser->scalar_is_key = false;
             if (v && afw_value_is_string(v)) {
                 key = afw_object_require_string_property_name(v, xctx);
                 parser->property_name = key;
@@ -292,6 +375,7 @@ const afw_object_t * afw_yaml_parse_object(
     /* Set parser->embedding_object to previous value and return object. */
     parser->embedding_object = saved_embedding_object;
     parser->property_name = saved_property_name;
+    parser->in_sequence = saved_in_sequence;
     impl_yaml_parse_nesting_leave(parser);
     return object;
 }
@@ -322,8 +406,15 @@ const afw_value_t * afw_yaml_parse_value(
                 break;
 
             case YAML_FLOW_ENTRY_TOKEN:
-            case YAML_BLOCK_ENTRY_TOKEN:
                 continue;
+
+            case YAML_BLOCK_ENTRY_TOKEN:
+                if (parser->in_sequence) {
+                    continue;
+                }
+                list = impl_yaml_parse_indentless_list(parser, xctx);
+                value = afw_value_create_unmanaged_array(list, parser->p, xctx);
+                break;
 
             case YAML_FLOW_SEQUENCE_START_TOKEN:
             case YAML_BLOCK_SEQUENCE_START_TOKEN:

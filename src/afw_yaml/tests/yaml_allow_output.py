@@ -119,7 +119,7 @@ def run():
             "allow_short_yaml_integer",
             "issue #14: -a yaml encodes integer without quotes",
             "integer(42)",
-            "---42",
+            "--- 42",
             allow="yaml",
         )
     )
@@ -129,7 +129,7 @@ def run():
             "allow_media_type_application_x_yaml",
             "issue #14: -a application/x-yaml is accepted (media type)",
             "integer(99)",
-            "---99",
+            "--- 99",
             allow="application/x-yaml",
         )
     )
@@ -166,17 +166,17 @@ def run():
             "integer_zero",
             "YAML integer 0",
             "0",
-            "---0",
+            "--- 0",
         )
     )
 
-    # Document start "---" + signed integer yields "----42" (current encoding).
+    # Document start "---" + signed integer yields "--- -42" (current encoding).
     tests.append(
         _expect_equal(
             "integer_negative",
             "YAML negative integer (--- document start + signed value)",
             "integer(-42)",
-            "----42",
+            "--- -42",
         )
     )
 
@@ -185,7 +185,7 @@ def run():
             "boolean_true",
             "YAML boolean true",
             "true",
-            "---true",
+            "--- true",
         )
     )
 
@@ -194,7 +194,7 @@ def run():
             "boolean_false",
             "YAML boolean false",
             "false",
-            "---false",
+            "--- false",
         )
     )
 
@@ -203,7 +203,7 @@ def run():
             "null_value",
             "YAML null",
             "null",
-            "---null",
+            "--- null",
         )
     )
 
@@ -213,7 +213,7 @@ def run():
             "double_finite",
             "YAML double is emitted as an unquoted number",
             "3.5",
-            r"^---3\.5",
+            r"^--- 3\.5",
         )
     )
 
@@ -224,7 +224,7 @@ def run():
             "string_no_newline_json_quoted",
             "issue #14: string without newline uses JSON-quoted style",
             'string("hello")',
-            '---"hello"',
+            '--- "hello"',
         )
     )
 
@@ -233,7 +233,7 @@ def run():
             "string_empty",
             "empty string is JSON-quoted",
             'string("")',
-            '---""',
+            '--- ""',
         )
     )
 
@@ -243,7 +243,7 @@ def run():
             "string_multiline_strip_chomp",
             "issue #14: multiline string without trailing NL uses |- block",
             'string("a\\nb")',
-            "---|-\n  a\n  b",
+            "--- |-\n  a\n  b",
         )
     )
 
@@ -251,9 +251,9 @@ def run():
     tests.append(
         _expect_equal(
             "string_multiline_keep_chomp",
-            "issue #14: multiline string with trailing NL uses |+ block",
+            "multiline string with one trailing NL uses | (clip; |+ read back an extra NL)",
             'string("a\\nb\\n")',
-            "---|+\n  a\n  b\n  ",
+            "--- |\n  a\n  b\n",
         )
     )
 
@@ -261,16 +261,17 @@ def run():
     tests.append(
         _expect_equal(
             "string_multiline_indent_indicator",
-            "issue #14: leading space sets literal indent indicator",
+            "a string whose first line starts with a space is JSON-quoted "
+            "(the literal style it got, ---|1+, read back as another string)",
             'string("  lead\\n")',
-            "---|1+\n    lead\n  ",
+            '--- "  lead\\n"',
         )
     )
 
     # Must not fall back to escaped JSON for multiline
     code, body, err = _yaml_expr('string("line1\\nline2")')
-    looks_like_block = body.startswith("---|") and "\n" in body
-    has_json_escape = r"\n" in body and not body.startswith("---|")
+    looks_like_block = body.startswith("--- |") and "\n" in body
+    has_json_escape = r"\n" in body and not body.startswith("--- |")
     tests.append(
         _case(
             "string_multiline_not_json_escaped",
@@ -287,7 +288,7 @@ def run():
             "object_multiline_and_integer",
             "issue #14: object with multiline string + integer + boolean",
             'object({msg: string("line1\\nline2"), n: integer(7), ok: true})',
-            "---\n  msg: |-\n    line1\n    line2\n  n: 7\n  ok: true",
+            "---\n  msg: |-\n    line1\n    line2\n  \"n\": 7\n  ok: true",
         )
     )
 
@@ -382,7 +383,7 @@ def run():
             _case(
                 "conf_type_yaml_with_allow_yaml",
                 "combine -t yaml conf load with -a yaml block-scalar output",
-                code == 0 and body == "---|-\n  ok\n  path",
+                code == 0 and body == "--- |-\n  ok\n  path",
                 detail="exit=%s body=%r" % (code, body),
             )
         )
