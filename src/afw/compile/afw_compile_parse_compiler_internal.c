@@ -148,19 +148,23 @@ impl_compiler_internal_function_thunk_not_recompilable(
 /*ebnf>>>
  *
  *# Compiler-internal #block( statementExpression, ... ).
- *# Token is already pound_identifier with name "block".
+ *# Token is already pound_identifier with name "block" or "loop_head".
+ *# #loop_head is the block around a for or for-of with let/const in its
+ *# head.
  *
  * CompilerInternalBlock ::=
- *     '#block' '(' ( Expression ( ',' Expression )* )? ')'
+ *     ( '#block' | '#loop_head' ) '(' ( Expression ( ',' Expression )* )? ')'
  *
  *<<<ebnf*/
 /*
  * Builds a block value via link + finalize. Arguments are Expressions (same
  * list shape as function Parameters). Matches decompile of block:
- * #block(stmt, ...).
+ * #block(stmt, ...) or #loop_head(stmt).
  */
 static const afw_value_t *
-impl_parse_compiler_internal_block(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_block(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_loop_head)
 {
     const afw_value_block_t *block;
     const afw_value_t *expr;
@@ -204,6 +208,7 @@ impl_parse_compiler_internal_block(afw_compile_parser_t *parser)
     }
 
     afw_compile_args_finalize(args, &argc, &argv);
+    ((afw_value_block_t *)block)->is_loop_head = is_loop_head;
     afw_value_block_finalize(block, argc, argv, parser->xctx);
     afw_compile_parse_pop_value_block(parser);
 
@@ -962,7 +967,11 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
 {
     /* #block is allowed as a statement so decompile output can recompile. */
     if (impl_compiler_internal_name_is(parser, "block")) {
-        return impl_parse_compiler_internal_block(parser);
+        return impl_parse_compiler_internal_block(parser, false);
+    }
+
+    if (impl_compiler_internal_name_is(parser, "loop_head")) {
+        return impl_parse_compiler_internal_block(parser, true);
     }
 
     if (impl_compiler_internal_name_is(parser, "closure_binding")) {
@@ -1018,7 +1027,11 @@ afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
     const afw_value_t *numeric;
 
     if (impl_compiler_internal_name_is(parser, "block")) {
-        return impl_parse_compiler_internal_block(parser);
+        return impl_parse_compiler_internal_block(parser, false);
+    }
+
+    if (impl_compiler_internal_name_is(parser, "loop_head")) {
+        return impl_parse_compiler_internal_block(parser, true);
     }
 
     if (impl_compiler_internal_name_is(parser, "assignment_target")) {

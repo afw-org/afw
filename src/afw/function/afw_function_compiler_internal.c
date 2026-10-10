@@ -208,9 +208,10 @@ impl_evaluate_loop_body(
 
 
 /*
- * Next for-let trip: sibling clone of previous (or of the first `{ }`).
- * clone() marks the original; deactivate then skips script_result_set.
- * Release previous; it dies unless a closure holds it.
+ * Next trip of a for or for-of with let/const in its head: sibling clone
+ * of previous (or of the head's first `{ }`). clone() marks the original;
+ * deactivate then skips script_result_set. Release previous; it dies
+ * unless a closure holds it.
  */
 static const afw_pool_scope_t *
 impl_for_let_next_clone(
@@ -827,33 +828,20 @@ impl_evaluate_one_or_more_values(
 
 
 /*
- * for (let/const …) compile wraps the call in a one-statement block that
- * holds the loop-local names. Assign-for has no such wrapper; do not clone
- * the enclosing script/function scope.
+ * let/const in a for or for-of head: compile wraps the loop in a block
+ * that holds those names (is_loop_head); each trip runs in a copy of it.
+ * True if scope is that block for this call. A loop without let/const, or
+ * called some other way, is not wrapped; do not copy the enclosing scope.
  */
 static afw_boolean_t
-impl_is_c_style_for_let_wrapper(const afw_pool_scope_t *scope)
+impl_is_loop_head_scope(
+    const afw_pool_scope_t *scope,
+    afw_function_execute_t *x)
 {
-    const afw_value_t *stmt;
-    const afw_value_call_built_in_function_t *call;
-    const afw_utf8_t *id;
-
-    if (!scope || !scope->block ||
-        scope->block->symbol_count == 0 ||
-        scope->block->statement_count != 1)
-    {
-        return false;
-    }
-    stmt = scope->block->statements[0];
-    if (!stmt || !afw_value_is_call_built_in_function(stmt)) {
-        return false;
-    }
-    call = (const afw_value_call_built_in_function_t *)stmt;
-    if (!call->function || !call->function->functionId) {
-        return false;
-    }
-    id = &call->function->functionId->internal;
-    return afw_utf8_equal(id, afw_s_for);
+    return scope && scope->block && scope->block->is_loop_head &&
+        x->self &&
+        scope->block->statement_count == 1 &&
+        scope->block->statements[0] == &x->self->pub;
 }
 
 
@@ -867,6 +855,158 @@ impl_evaluate_for_increment(
     afw_xctx_t *xctx)
 {
     impl_evaluate_one_or_more_values(x, parameter_number, values, p, xctx);
+}
+
+
+/*
+ * Evaluate a loop condition with dest p of the trip's scope: what it
+ * makes or holds goes with the trip, not at the end of the loop. Same
+ * checks and errors as AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER.
+ */
+static afw_boolean_t
+impl_evaluate_loop_condition(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *condition;
+
+    condition = afw_function_evaluate_required_parameter_with_p(x,
+        parameter_number, NULL, p);
+    if (!afw_value_is_boolean(condition)) {
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "Condition must be boolean (parameter %d)",
+            (int)parameter_number);
+    }
+    return ((const afw_value_boolean_t *)condition)->internal;
+}
+
+
+/*
+ * A loop whose trips run in its body's `{ }` scope: while, do while, and a
+ * for or for-of with no let/const in the head. before runs ahead of the
+ * body's statements (a condition, or for-of's next value and target) and
+ * after runs behind them (do while's condition, for's increment), also
+ * after a continue. Each returns false to end the loop. What they and the
+ * body make goes with the trip.
+ */
+typedef struct impl_trip_s impl_trip_t;
+
+typedef afw_boolean_t (*impl_trip_step_t)(
+    impl_trip_t *trip,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+struct impl_trip_s {
+    afw_function_execute_t *x;
+    const afw_value_t *body;
+    const afw_value_t *this_label;
+    impl_trip_step_t before;
+    impl_trip_step_t after;
+    const afw_value_t *result;
+
+    /* Condition steps. */
+    afw_size_t condition_parameter_number;
+
+    /* for-of next step. */
+    afw_iterator_t *iterator;
+    afw_compile_internal_assignment_type_t assignment_type;
+};
+
+
+static afw_boolean_t
+impl_trip_condition(
+    impl_trip_t *trip,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return impl_evaluate_loop_condition(trip->x,
+        trip->condition_parameter_number, p, xctx);
+}
+
+
+static afw_boolean_t
+impl_trip_for_increment(
+    impl_trip_t *trip,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    impl_evaluate_for_increment(trip->x, 3, trip->x->argv[3], p, xctx);
+    return true;
+}
+
+
+static afw_boolean_t
+impl_trip_for_of_next(
+    impl_trip_t *trip,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+
+    value = afw_iterator_get_next(trip->iterator, p, xctx);
+    if (!value) {
+        return false;
+    }
+    impl_assign(trip->x->argv[1], value, trip->assignment_type, p, xctx);
+    trip->assignment_type = afw_compile_assignment_type_assign_only;
+    return true;
+}
+
+
+/*
+ * One trip. Returns false when the loop ends. A body that is not a block
+ * (a loop called as a function) runs in x->p.
+ */
+static afw_boolean_t
+impl_evaluate_trip(
+    impl_trip_t *trip,
+    afw_xctx_t *xctx)
+{
+    afw_function_execute_t *x = trip->x;
+    const afw_value_t *saved_script_result;
+    afw_value_block_scope_t block_scope;
+    afw_boolean_t more;
+
+    if (!trip->body || !afw_value_is_block(trip->body)) {
+        if (trip->before && !trip->before(trip, x->p, xctx)) {
+            return false;
+        }
+        trip->result = impl_keep_if_return(trip->result,
+            impl_evaluate_loop_body(x, trip->body, x->p, xctx), xctx);
+        if (impl_loop_should_exit(trip->this_label, xctx)) {
+            return false;
+        }
+        return !trip->after || trip->after(trip, x->p, xctx);
+    }
+
+    saved_script_result = xctx->script_result;
+    afw_value_block_scope_enter(&block_scope,
+        (const afw_value_block_t *)trip->body, x->p, xctx);
+    AFW_TRY{
+        more = !trip->before ||
+            trip->before(trip, block_scope.scope->p, xctx);
+        if (more) {
+            afw_value_block_evaluate_statements(x, block_scope.block, 0,
+                block_scope.scope->p, xctx);
+            more = !impl_loop_should_exit(trip->this_label, xctx) &&
+                (!trip->after ||
+                    trip->after(trip, block_scope.scope->p, xctx));
+        }
+    }
+    AFW_FINALLY{
+        afw_value_block_scope_leave(&block_scope, xctx);
+    }
+    AFW_ENDTRY;
+    afw_value_block_scope_finish(&block_scope, xctx);
+
+    /* As impl_evaluate_loop_body: the body wrote script_result. */
+    if (xctx->script_result != saved_script_result) {
+        afw_pool_scope_clear_last_statement_non_void_value(xctx);
+    }
+    trip->result = impl_keep_if_return(trip->result, afw_value_void, xctx);
+    return more;
 }
 
 
@@ -1183,31 +1323,23 @@ afw_function_execute_do_while(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_value_t *result;
-    const afw_value_boolean_t *condition;
-
-    const afw_value_t *this_label;
+    impl_trip_t trip;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
-    this_label = impl_optional_loop_label(x, 3);
-    result = afw_value_void;
-    for (;;) {
-        result = impl_keep_if_return(result,
-            impl_evaluate_loop_body(x, x->argv[2], x->p, xctx),
-            xctx);
-        if (impl_loop_should_exit(this_label, xctx)) {
-            break;
-        }
-        AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
-        if (!condition->internal) {
-            break;
-        }
-    }
+    afw_memory_clear(&trip);
+    trip.x = x;
+    trip.body = x->argv[2];
+    trip.this_label = impl_optional_loop_label(x, 3);
+    trip.before = NULL;
+    trip.after = impl_trip_condition;
+    trip.condition_parameter_number = 1;
+    trip.result = afw_value_void;
+    while (impl_evaluate_trip(&trip, xctx));
 
-    impl_loop_consume_if_target(this_label, xctx);
+    impl_loop_consume_if_target(trip.this_label, xctx);
 
-    return impl_statement_result_or_void(result, xctx);
+    return impl_statement_result_or_void(trip.result, xctx);
 }
 
 
@@ -1271,23 +1403,18 @@ afw_function_execute_for(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_boolean_t *condition;
     const afw_pool_scope_t *previous_iterator_scope;
-    const afw_value_t *result;
     const afw_value_t *increment;
-    const afw_value_t *body;
-
-    const afw_value_t *this_label;
-    afw_boolean_t clone_each;
+    impl_trip_t trip;
 
     previous_iterator_scope = NULL;
-    this_label = NULL;
-    clone_each = impl_is_c_style_for_let_wrapper(
-        afw_pool_scope_internal_current(xctx));
+    afw_memory_clear(&trip);
+    trip.x = x;
+    trip.result = afw_value_void;
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(5);
-        this_label = impl_optional_loop_label(x, 5);
+        trip.this_label = impl_optional_loop_label(x, 5);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
             impl_evaluate_for_increment(x, 1, x->argv[1], p, xctx);
@@ -1298,48 +1425,59 @@ afw_function_execute_for(
             increment = x->argv[3];
         }
 
-        body = NULL;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
-            body = x->argv[4];
+            trip.body = x->argv[4];
         }
 
-        for (result = afw_value_void;;) {
-
-            if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-                AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition,
-                    2);
-                if (!condition->internal) {
+        /*
+         * let/const in the head: each trip runs in a copy of the head's
+         * block (the first in the block itself), holding the condition and
+         * increment; the body is its own block. ECMAScript copies every
+         * trip, so closures in the body see that trip's names.
+         */
+        if (impl_is_loop_head_scope(
+            afw_pool_scope_internal_current(xctx), x))
+        {
+            for (;;) {
+                if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2) &&
+                    !impl_evaluate_loop_condition(x, 2,
+                        (previous_iterator_scope)
+                        ? previous_iterator_scope->p
+                        : p,
+                        xctx))
+                {
                     break;
                 }
-            }
-
-            if (body || increment) {
-                afw_boolean_t leave;
-
-                leave = false;
-                if (body) {
-                    result = impl_keep_if_return(result,
-                        impl_evaluate_loop_body(x, body, p, xctx),
-                        xctx);
-                    leave = impl_loop_should_exit(this_label, xctx);
+                trip.result = impl_keep_if_return(trip.result,
+                    impl_evaluate_loop_body(x, trip.body, p, xctx),
+                    xctx);
+                if (impl_loop_should_exit(trip.this_label, xctx)) {
+                    break;
                 }
-                if (!leave && increment) {
-                    if (clone_each) {
-                        previous_iterator_scope = impl_for_let_next_clone(
-                            previous_iterator_scope, xctx);
-                    }
+                previous_iterator_scope = impl_for_let_next_clone(
+                    previous_iterator_scope, xctx);
+                if (increment) {
                     impl_evaluate_for_increment(x, 3, increment,
-                        p, xctx);
-                }
-                if (leave) {
-                    break;
+                        previous_iterator_scope->p, xctx);
                 }
             }
+        }
+
+        /* Otherwise each trip runs in the body's block. */
+        else {
+            if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+                trip.before = impl_trip_condition;
+                trip.condition_parameter_number = 2;
+            }
+            if (increment) {
+                trip.after = impl_trip_for_increment;
+            }
+            while (impl_evaluate_trip(&trip, xctx));
         }
     }
     AFW_FINALLY{
 
-        impl_loop_consume_if_target(this_label, xctx);
+        impl_loop_consume_if_target(trip.this_label, xctx);
 
         /* Creator release of the last clone; pop if still current. */
         if (previous_iterator_scope) {
@@ -1354,7 +1492,7 @@ afw_function_execute_for(
     }
     AFW_ENDTRY;
 
-    return impl_statement_result_or_void(result, xctx);
+    return impl_statement_result_or_void(trip.result, xctx);
 }
 
 
@@ -1412,79 +1550,79 @@ afw_function_execute_for_of(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_t *result;
     const afw_value_t *iterable;
     const afw_value_t *value;
-    const afw_value_t *for_of_target;
+    const afw_pool_t *trip_p;
     const afw_pool_scope_t *previous_iterator_scope;
-    afw_compile_internal_assignment_type_t assignment_type;
-    afw_compile_internal_assignment_type_t head_type;
     afw_iterator_t iterator;
-    const afw_value_t *this_label;
-    afw_boolean_t clone_each;
-    afw_boolean_t started;
+    impl_trip_t trip;
 
-    result = afw_value_void;
-    this_label = NULL;
     previous_iterator_scope = NULL;
-    clone_each = false;
-    started = false;
+    afw_memory_clear(&trip);
+    trip.x = x;
+    trip.result = afw_value_void;
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(3);
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
-        this_label = impl_optional_loop_label(x, 4);
+        trip.this_label = impl_optional_loop_label(x, 4);
+        if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+            trip.body = x->argv[3];
+        }
 
         /*
          * Evaluate head without forcing array. Keyless afw_iterator covers
          * array and utf8-backed types (code points as managed strings) — #153.
          */
         iterable = afw_function_evaluate_required_parameter(x, 2, NULL);
-
-        assignment_type = afw_compile_assignment_type_use_assignment_targets;
-        for_of_target = x->argv[1];
-        if (afw_value_is_assignment_target(for_of_target)) {
-            const afw_value_assignment_target_t *at =
-                (const afw_value_assignment_target_t *)for_of_target;
-
-            head_type = at->assignment_target->assignment_type;
-            /* let/const open a loop-local block; clone it per iteration. */
-            if (head_type == afw_compile_assignment_type_let ||
-                head_type == afw_compile_assignment_type_const)
-            {
-                clone_each = true;
-            }
-        }
-
         if (!afw_value_has_iterator(iterable)) {
             AFW_THROW_ERROR_Z(general,
                 "for-of head must be an array or utf8 code-point sequence",
                 xctx);
         }
-
         afw_value_initialize_iterator(iterable, &iterator, xctx);
-        while ((value = afw_iterator_get_next(&iterator, p, xctx)) != NULL) {
-            if (clone_each && started) {
+        trip.iterator = &iterator;
+        trip.assignment_type =
+            afw_compile_assignment_type_use_assignment_targets;
+
+        /*
+         * let/const target: each trip runs in a copy of the head's block
+         * (the first in the block itself), a fresh binding each trip; the
+         * body is its own block.
+         */
+        if (impl_is_loop_head_scope(
+            afw_pool_scope_internal_current(xctx), x))
+        {
+            for (;;) {
+                trip_p = (previous_iterator_scope)
+                    ? previous_iterator_scope->p
+                    : p;
+                value = afw_iterator_get_next(&iterator, trip_p, xctx);
+                if (!value) {
+                    break;
+                }
+                impl_assign(x->argv[1], value, trip.assignment_type,
+                    trip_p, xctx);
+                trip.result = impl_keep_if_return(trip.result,
+                    impl_evaluate_loop_body(x, trip.body, trip_p, xctx),
+                    xctx);
+                if (impl_loop_should_exit(trip.this_label, xctx)) {
+                    break;
+                }
                 previous_iterator_scope = impl_for_let_next_clone(
                     previous_iterator_scope, xctx);
             }
-            started = true;
-            impl_assign(x->argv[1], value, assignment_type, p, xctx);
-            if (!clone_each) {
-                assignment_type =
-                    afw_compile_assignment_type_assign_only;
-            }
-            result = impl_keep_if_return(result,
-                impl_evaluate_loop_body(x, x->argv[3], p, xctx),
-                xctx);
-            if (impl_loop_should_exit(this_label, xctx)) {
-                break;
-            }
+        }
+
+        /* Otherwise each trip runs in the body's block. */
+        else {
+            trip.before = impl_trip_for_of_next;
+            while (impl_evaluate_trip(&trip, xctx));
         }
     }
     AFW_FINALLY{
 
-        impl_loop_consume_if_target(this_label, xctx);
+        impl_loop_consume_if_target(trip.this_label, xctx);
         if (previous_iterator_scope) {
             if (afw_pool_scope_internal_current(xctx) ==
                 previous_iterator_scope)
@@ -1498,7 +1636,7 @@ afw_function_execute_for_of(
     }
     AFW_ENDTRY;
 
-    return impl_statement_result_or_void(result, xctx);
+    return impl_statement_result_or_void(trip.result, xctx);
 }
 
 
@@ -2433,30 +2571,21 @@ afw_function_execute_while(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_value_t *result;
-    const afw_value_boolean_t *condition;
-
-    const afw_value_t *this_label;
+    impl_trip_t trip;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
-    this_label = impl_optional_loop_label(x, 3);
+    afw_memory_clear(&trip);
+    trip.x = x;
+    trip.body = x->argv[2];
+    trip.this_label = impl_optional_loop_label(x, 3);
+    trip.before = impl_trip_condition;
+    trip.after = NULL;
+    trip.condition_parameter_number = 1;
+    trip.result = afw_value_void;
+    while (impl_evaluate_trip(&trip, xctx));
 
-    for (result = afw_value_void;;) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
-        if (!condition->internal) {
-            break;
-        }
-        result = impl_keep_if_return(result,
-            impl_evaluate_loop_body(x, x->argv[2], x->p, xctx),
-            xctx);
-        if (impl_loop_should_exit(this_label, xctx))
-        {
-            break;
-        }
-    }
+    impl_loop_consume_if_target(trip.this_label, xctx);
 
-    impl_loop_consume_if_target(this_label, xctx);
-
-    return impl_statement_result_or_void(result, xctx);
+    return impl_statement_result_or_void(trip.result, xctx);
 }

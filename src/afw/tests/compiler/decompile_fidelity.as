@@ -53,6 +53,10 @@ check("try { throw 1; } catch (e) { return e; }");
 check("try { throw \"x\"; } catch ({message}) { return message; }");
 check("try { throw 1; } catch {}\nreturn 0;");
 check("const f = function (...r) { return r; };\nreturn f(...[1,2], 3);");
+/* A missing argument: empty then, omitted empty loop body */
+check("let r = 0;\nif (true) { } else { r = 2; }\nreturn r;");
+check("for (let i = 0; i < 1; i = i + 1) { }\nreturn 0;");
+check("for (const x of [1]) { }\nreturn 0;");
 return 0;
 
 //? test: fidelity-eval-throw-catch

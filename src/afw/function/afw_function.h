@@ -465,6 +465,26 @@ afw_function_evaluate_parameter(
 
 
 /**
+ * @brief Like afw_function_evaluate_parameter, with dest p.
+ * @param x function execute struct pointer.
+ * @param parameter_number 1-based (first user parameter is 1 → x->argv[1]).
+ * @param data_type convert result to this leaf type if needed, or NULL.
+ * @param p dest p for the evaluate (and convert) instead of x->p.
+ * @return value of parameter or undefined (NULL).
+ *
+ * For a parameter evaluated more than once in a pool shorter than the call,
+ * such as a loop condition in each trip's scope p.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_function_evaluate_parameter_with_p(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_data_type_t *data_type,
+    const afw_pool_t *p);
+
+
+
+/**
  * @brief Like afw_function_evaluate_parameter, but throws if undefined.
  * @param x function execute struct pointer.
  * @param parameter_number starting at 1.
@@ -479,6 +499,23 @@ afw_function_evaluate_required_parameter(
     afw_function_execute_t *x,
     afw_size_t parameter_number,
     const afw_data_type_t *data_type);
+
+
+
+/**
+ * @brief Like afw_function_evaluate_required_parameter, with dest p.
+ * @param x function execute struct pointer.
+ * @param parameter_number starting at 1.
+ * @param data_type convert result to this leaf type if needed, or NULL.
+ * @param p dest p for the evaluate (and convert) instead of x->p.
+ * @return non-NULL parameter value.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_function_evaluate_required_parameter_with_p(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_data_type_t *data_type,
+    const afw_pool_t *p);
 
 
 AFW_END_DECLARES

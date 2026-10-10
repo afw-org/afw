@@ -232,10 +232,13 @@ return 0;
 //? expect: 0
 //? source: ...
 
-if (true) let x
-: integer;
+let x: integer;
+let y: integer;
 
-if (false) let 
-y: integer = 1;
+if (true) x
+= 1;
+
+if (false) y =
+1;
 
 return 0;

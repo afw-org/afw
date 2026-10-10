@@ -97,6 +97,7 @@ static const afw_value_t *
 impl_evaluate_argv(
     afw_function_execute_t *x,
     afw_size_t parameter_number,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (parameter_number == 1 && x->first_arg_evaluated) {
@@ -104,7 +105,7 @@ impl_evaluate_argv(
     }
     return afw_value_evaluate(
         (parameter_number <= x->argc) ? x->argv[parameter_number] : NULL,
-        x->p, xctx);
+        p, xctx);
 }
 
 
@@ -117,7 +118,7 @@ afw_function_execute_convert(
     const afw_value_t *result;
     afw_xctx_t *xctx = x->xctx;
 
-    result = impl_evaluate_argv(x, 1, xctx);
+    result = impl_evaluate_argv(x, 1, x->p, xctx);
     if (!result) {
         AFW_THROW_ERROR_Z(undefined_value,
             "Parameter 1 is undefined value", xctx);
@@ -166,7 +167,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         temp_x->argv = argv;
         argv[0] = x->argv[0];
         for (argc = 1; argc <= x->argc; argc++) {
-            argv[argc] = impl_evaluate_argv(x, argc, xctx);
+            argv[argc] = impl_evaluate_argv(x, argc, x->p, xctx);
         }
 
         /* Set properties in object to be available in authorization check. */
@@ -271,6 +272,19 @@ afw_function_evaluate_parameter(
     afw_size_t parameter_number,
     const afw_data_type_t *data_type)
 {
+    return afw_function_evaluate_parameter_with_p(x, parameter_number,
+        data_type, x->p);
+}
+
+
+/* Same with dest p, such as a loop trip's scope p. */
+AFW_DEFINE(const afw_value_t *)
+afw_function_evaluate_parameter_with_p(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_data_type_t *data_type,
+    const afw_pool_t *p)
+{
     afw_xctx_t *xctx = x->xctx;
     const afw_value_t *result;
     const afw_data_type_t *result_data_type;
@@ -287,7 +301,7 @@ afw_function_evaluate_parameter(
         ];
 
     /* Evaluate argv (parameter 1 may already be evaluated). */
-    result = impl_evaluate_argv(x, parameter_number, xctx);
+    result = impl_evaluate_argv(x, parameter_number, p, xctx);
 
     /* If result is undefined, return NULL. Fuss if required. */
     if (afw_value_is_undefined(result)) {
@@ -319,7 +333,7 @@ afw_function_evaluate_parameter(
      * (XACML bag-of-one), not code-point sequences.
      */
     if (data_type == afw_data_type_array) {
-        result = afw_value_convert_to_array_sequence(result, x->p, xctx);
+        result = afw_value_convert_to_array_sequence(result, p, xctx);
     }
 
     /* Get result's data type. */
@@ -343,7 +357,7 @@ afw_function_evaluate_parameter(
     /* Convert to requested data type if needed. */
     if (data_type && result_data_type && result_data_type != data_type)
     {
-        result = afw_value_convert(result, data_type, false, x->p, xctx);
+        result = afw_value_convert(result, data_type, false, p, xctx);
     }
 
     return result;
@@ -358,11 +372,25 @@ afw_function_evaluate_required_parameter(
     afw_size_t parameter_number,
     const afw_data_type_t *data_type)
 {
+    return afw_function_evaluate_required_parameter_with_p(x,
+        parameter_number, data_type, x->p);
+}
+
+
+/* Same with dest p, such as a loop trip's scope p. */
+AFW_DEFINE(const afw_value_t *)
+afw_function_evaluate_required_parameter_with_p(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_data_type_t *data_type,
+    const afw_pool_t *p)
+{
     afw_xctx_t *xctx = x->xctx;
     const afw_value_t *result;
 
     /* Evaluate parameter. */
-    result = afw_function_evaluate_parameter(x, parameter_number, data_type);
+    result = afw_function_evaluate_parameter_with_p(x, parameter_number,
+        data_type, p);
 
     /* If result is NULL, throw error with parameter # on evaluation stack. */
     if (!result) {

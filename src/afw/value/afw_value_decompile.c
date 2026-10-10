@@ -77,7 +77,17 @@ afw_value_decompile_call_args(
          * surface form is ...expr (issue #140).
          */
         if (!args->argv[i]) {
-            afw_value_decompile(afw_value_void, writer, xctx);
+            /*
+             * A missing argument (an empty then, an omitted empty loop
+             * body) followed by others is an empty position, which
+             * recompiles as missing. Last, it is undefined (a trailing
+             * empty position is not an argument), which a function treats
+             * as not present.
+             */
+            if (i == args->argc) {
+                afw_value_decompile_value(afw_value_undefined, writer,
+                    xctx);
+            }
         }
         else if (args->argv[i] && afw_value_is_array_expression(args->argv[i])) {
             const afw_value_list_expression_t *le =

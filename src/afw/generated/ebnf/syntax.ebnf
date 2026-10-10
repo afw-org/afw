@@ -101,10 +101,12 @@ AssignmentTarget ::= AssignmentBindingTarget | Reference
 
 /* From afw_compile_parse_compiler_internal.c                                 */
 /* Compiler-internal #block( statementExpression, ... ).                      */
-/* Token is already pound_identifier with name "block".                       */
+/* Token is already pound_identifier with name "block" or "loop_head".        */
+/* #loop_head is the block around a for or for-of with let/const in its       */
+/* head.                                                                      */
 
 CompilerInternalBlock ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')'
+    ( '#block' | '#loop_head' ) '(' ( Expression ( ',' Expression )* )? ')'
 
 /* From afw_compile_parse_compiler_internal.c                                 */
 /* Target shape for #assignment_target (symbol name or destructure Pattern).  */
@@ -753,6 +755,8 @@ EvaluationThatCompilesToCallValue ::= Evaluation
 CallStatement ::= EvaluationThatCompilesToCallValue
 /* BreakStatement and ContinueStatement can only be in a loop.                */
 /* LabeledStatement is only for / while / do (issue #62). Not blocks or if.   */
+/* The Statement of a loop, if, or else that is not a Block can not be a      */
+/* LetStatement, ConstStatement, or FunctionStatement (as in TypeScript).     */
 
 LabeledStatement ::= Identifier ':' (
     ForStatement | WhileStatement | DoWhileStatement )

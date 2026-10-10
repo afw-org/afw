@@ -127,6 +127,13 @@ struct afw_value_block_s {
     afw_size_t depth; /* Syntax nesting (every `{ }`). */
     afw_size_t scope_depth; /* Frame nesting (same as depth). */
     afw_size_t symbol_count; /* first_entry length; frame_slots[] size. */
+
+    /*
+     * Block around a for or for-of with let/const in its head: holds those
+     * names, and its one statement is that loop, which runs each trip in a
+     * copy of it. Decompiles as #loop_head(...).
+     */
+    afw_boolean_t is_loop_head;
 };
 
 
@@ -1097,6 +1104,37 @@ afw_value_block_evaluate_block(
     const afw_pool_t *p,
     afw_xctx_t *xctx,
     afw_boolean_t as_value);
+
+/*
+ * A block's scope run by its caller: evaluate_block, and loops that run
+ * each trip in their body's scope with the condition (while, do while,
+ * and a for or for-of with no let/const in its head).
+ * enter pushes the block on the evaluation stack and activates a new
+ * scope; leave (in AFW_FINALLY) deactivates and releases it; finish
+ * (after AFW_ENDTRY) pops the evaluation stack.
+ */
+typedef struct afw_value_block_scope_s {
+    const afw_value_block_t *block;
+    const afw_pool_scope_t *scope;
+    const afw_compile_value_contextual_t *saved_contextual;
+} afw_value_block_scope_t;
+
+void
+afw_value_block_scope_enter(
+    afw_value_block_scope_t *block_scope,
+    const afw_value_block_t *block,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+void
+afw_value_block_scope_leave(
+    afw_value_block_scope_t *block_scope,
+    afw_xctx_t *xctx);
+
+void
+afw_value_block_scope_finish(
+    afw_value_block_scope_t *block_scope,
+    afw_xctx_t *xctx);
 
 /*
  * Statement list. Starts at void; each non-void sequential statement

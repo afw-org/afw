@@ -289,7 +289,7 @@ do let x = 1; while (false)
 //? description:...
     let declarations with initialisers in statement positions:
     for ( ;;) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -299,7 +299,7 @@ for (;false;) let x = 1;
 //? description:...
     let declarations with initialisers in statement positions:
     if ( Expression ) Statement else Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -309,7 +309,7 @@ if (true) {} else let x = 1;
 //? description:...
     let declarations with initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: success
+//? expect: error
 //? differences: let does not write the script result (#62)
 //? source: ...
 #!/usr/bin/env afw
@@ -331,7 +331,7 @@ label: let x = 1;
 //? description:...
     let declarations with initialisers in statement positions:
     while ( Expression ) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -372,7 +372,7 @@ do let x; while (false)
 //? description:...
     let declarations without initialisers in statement positions:
     for ( ;;) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -382,7 +382,7 @@ for (;false;) let x;
 //? description:...
     let declarations without initialisers in statement positions:
     if ( Expression ) Statement else Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -392,7 +392,7 @@ if (true) {} else let x;
 //? description:...
     let declarations without initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -413,7 +413,7 @@ label: let x;
 //? description:...
     let declarations without initialisers in statement positions:
     while ( Expression ) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 

@@ -1248,27 +1248,21 @@ for (let x of []) class C {}
 
 
 //? test: decl-const
-//? description:...
-    ES forbids const declaration in for-of statement position; Adaptive allows
-    it as a body statement (body may not run when the iterable is empty).
-//? expect: 0
+//? description: const declaration not allowed in statement position
+//? expect: error:Parse error at offset 39 around line 3 column 20: 'const' declarations can only be declared inside a block
 //? source: ...
 #!/usr/bin/env afw
 
 for (let x of [1]) const y = null;
-return 0;
 
 
 //? test: decl-fun
-//? description:...
-    ES forbids function declaration in for-of statement position; Adaptive
-    allows nested function declarations in that position.
-//? expect: 0
+//? description: function declaration not allowed in statement position
+//? expect: error:Parse error at offset 39 around line 3 column 20: 'function' declarations can only be declared inside a block
 //? source: ...
 #!/usr/bin/env afw
 
 for (let x of [1]) function f() {}
-return 0;
 
 
 //? test: decl-gen
@@ -1281,15 +1275,12 @@ for (let x of []) function* g() {}
 
 
 //? test: decl-let
-//? description:...
-    ES forbids let declaration in for-of statement position; Adaptive allows
-    it as a body statement.
-//? expect: 0
+//? description: let declaration not allowed in statement position
+//? expect: error:Parse error at offset 39 around line 3 column 20: 'let' declarations can only be declared inside a block
 //? source: ...
 #!/usr/bin/env afw
 
 for (let x of [1]) let y;
-return 0;
 
 
 //? test: escaped-of
@@ -3257,7 +3248,7 @@ for (let x of []) let
 
 //? test: let-block-with-newline
 //? description:...
-//? expect: error:Parse error at offset 51 around line 5 column 2: Expecting PropertyName
+//? expect: error:Parse error at offset 39 around line 4 column 19: 'let' declarations can only be declared inside a block
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3268,7 +3259,7 @@ for (let x of []) let // ASI
 
 //? test: let-identifier-with-newline
 //? description:...
-//? expect: error:Parse error at offset 52 around line 5 column 3: 'x' already defined
+//? expect: error:Parse error at offset 39 around line 4 column 19: 'let' declarations can only be declared inside a block
 //? source: ...
 #!/usr/bin/env afw
 
