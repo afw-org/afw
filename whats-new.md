@@ -387,6 +387,8 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 
 **A function returned from `#{ }`:** `evaluate(compile(template("#{ return function () { … }; }")))` returned a function that crashed when called after the compiled template was gone. A `#{ }` is now compiled on its own, as it was meant to be: nothing in it sees outside it (as before), and a function it returns keeps only what it needs.
 
+**Closures in a model's `on*` script on many threads:** a closure made by a shared model script (`onGetObject` and the others, one compiled unit for every `afwfcgi` request thread) led each request's cycle collector to read that unit's reference count while other threads changed it (a data race ThreadSanitizer reports). The shared unit is no longer a collector node; only its own pool can free it.
+
 **Error locations in `#{ }`:** an error inside a `#{ }` reported a location one character before the `#` (`+18446744073709551615` when a template started with `#{`). It now points just after `#{`, where the offsets in the message count from; an error from evaluating it points at the `#`.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))

@@ -1,0 +1,11 @@
+{
+    "modelId": "ClosureCollect",
+    "objectTypes": {
+        "CT": {
+            "onGetObject": "function mk() {\n    let fns = [];\n    for (let i = 0; i < 3; i = i + 1) {\n        push(fns, function () { return i; });\n    }\n    return fns[2]();\n}\nlet n = 0;\nfor (let j = 0; j < 60; j = j + 1) { n = n + mk(); }\nreturn {n: n};\n",
+            "propertyTypes": {
+                "n": { "dataType": "integer" }
+            }
+        }
+    }
+}
