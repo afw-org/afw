@@ -237,3 +237,23 @@ assert(stringify(map(function (f) { return f(); }, r)) ===
     "[[0,1],[0,2],[1,1],[1,2]]");
 assert(stringify([c, n, m]) === "[2,2,2]");
 return 0;
+
+//?
+//? test: for-increment-after-last-value-holding-loop-variable
+//? description: the body's last value holds the loop variable the increment reassigns
+//? expect: "[3,3]"
+//? source: ...
+
+let i = 0;
+let n = 0;
+for (i = 0; i < 3; i = i + 1) {
+    n = n + 1;
+    array(i);
+}
+let j = 0;
+let m = 0;
+for (j = 0; j < 3; j = j + 1) {
+    m = m + 1;
+    object({n: j, m: at([{k: j}], 0)});
+}
+return stringify([n, m]);

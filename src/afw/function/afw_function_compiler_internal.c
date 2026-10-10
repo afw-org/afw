@@ -990,9 +990,23 @@ impl_evaluate_trip(
         if (more) {
             afw_value_block_evaluate_statements(x, block_scope.block, 0,
                 block_scope.scope->p, xctx);
-            more = !impl_loop_should_exit(trip->this_label, xctx) &&
-                (!trip->after ||
-                    trip->after(trip, block_scope.scope->p, xctx));
+            more = !impl_loop_should_exit(trip->this_label, xctx);
+            if (more && trip->after) {
+                /*
+                 * The body's last value can hold a value read from a
+                 * variable the after step reassigns (`array(i)` then the
+                 * for increment `i = i + 1`). Hold it for the trip first,
+                 * so leaving the scope does not copy freed memory.
+                 */
+                if (!afw_value_is_void(
+                    block_scope.scope->last_statement_non_void_value))
+                {
+                    afw_pool_scope_set_last_statement_non_void_value_for_lifetime(
+                        block_scope.scope->last_statement_non_void_value,
+                        block_scope.scope->p, xctx);
+                }
+                more = trip->after(trip, block_scope.scope->p, xctx);
+            }
         }
     }
     AFW_FINALLY{
