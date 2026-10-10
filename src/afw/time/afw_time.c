@@ -1691,6 +1691,7 @@ impl_normalize_dayTimeDuration(
     memset(to, 0, sizeof(*to));
     afw_integer_t days, minutes, hours;
 
+    to->microseconds = from->microseconds;
     to->seconds = from->seconds % 60;
 
     minutes = from->minutes + (from->seconds / 60);
@@ -1701,7 +1702,8 @@ impl_normalize_dayTimeDuration(
         AFW_THROW_ERROR_Z(general,
             "dayTimeDuration limit exceeded", xctx);
     }
-    to->hours = (afw_int32_t)hours;
+    /* Hours past a day go into days (PT36H is P1DT12H). */
+    to->hours = (afw_int32_t)(hours % 24);
 
     days = from->days + (hours / 24);
     if (days < AFW_INT32_MIN || days > AFW_INT32_MAX) {

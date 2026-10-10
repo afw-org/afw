@@ -77,3 +77,17 @@ assert(time("12:00:00-05:00") == time("17:00:00Z"), "-05:00");
 assert(time("12:00:00-05:00") > time("12:00:00Z"), "later in UTC");
 assert(time("10:00:00+01:00") < time("09:30:00Z"), "09:00Z < 09:30Z");
 return 0;
+
+//?
+//? test: compare-day-time-duration-normalized
+//? description: durations compare by length, however they are spelled, including fractional seconds
+//? expect: 0
+//? source: ...
+
+assert(dayTimeDuration("P1DT32H78M108S") > dayTimeDuration("P2DT1H"), "hours past a day");
+assert(dayTimeDuration("P1DT32H") == dayTimeDuration("P2DT8H"), "PT32H in P1D");
+assert(dayTimeDuration("P3DT17H58M26.945215S") == dayTimeDuration("PT323906.945215S"), "all seconds");
+assert(dayTimeDuration("-P1DT45H") < dayTimeDuration("-P2DT20H"), "negative");
+assert(dayTimeDuration("PT1.5S") < dayTimeDuration("PT1.6S"), "microseconds");
+assert(!(dayTimeDuration("PT1.5S") == dayTimeDuration("PT1.6S")), "microseconds differ");
+return 0;
