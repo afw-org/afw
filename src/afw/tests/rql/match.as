@@ -79,3 +79,61 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "value": "(a*b"
     }
 }, undefined, undefined, 0);
+
+
+//? test: differ
+//? description: "differ" is not match, and match(p,x) in function syntax (their expressions were not compiled, so they threw)
+//? expect: 0
+//? source: ...
+
+const all = retrieve_objects("afw", "_AdaptiveObjectType_",
+    undefined, undefined, undefined, 0);
+const matched = retrieve_objects("afw", "_AdaptiveObjectType_", {
+    "filter": {
+        "op": "match",
+        "property": "objectType",
+        "value": "_AdaptiveA.*"
+    }
+}, undefined, undefined, 0);
+const differ = retrieve_objects("afw", "_AdaptiveObjectType_", {
+    "filter": {
+        "op": "differ",
+        "property": "objectType",
+        "value": "_AdaptiveA.*"
+    }
+}, undefined, undefined, 0);
+assert(length(matched) > 0);
+assert(length(differ) === length(all) - length(matched));
+for (const o of differ) {
+    assert(!starts_with(o.objectType, "_AdaptiveA"));
+}
+
+const differ_rql = retrieve_objects("afw", "_AdaptiveObjectType_", {
+    "urlEncodedRQLString": "objectType=differ=_AdaptiveA.*"
+}, undefined, undefined, 0);
+assert(length(differ_rql) === length(differ));
+
+const differ_function = retrieve_objects("afw", "_AdaptiveObjectType_", {
+    "urlEncodedRQLString": "differ(objectType,_AdaptiveA.*)"
+}, undefined, undefined, 0);
+assert(length(differ_function) === length(differ));
+
+const match_function = retrieve_objects("afw", "_AdaptiveObjectType_", {
+    "urlEncodedRQLString": "match(objectType,_AdaptiveA.*)"
+}, undefined, undefined, 0);
+assert(length(match_function) === length(matched));
+return 0;
+
+
+//? test: differ_invalid_regexp
+//? description: "differ" with an invalid regular expression
+//? expect: error:regexp syntax error
+//? source: ...
+
+retrieve_objects("afw", "_AdaptiveObjectType_", {
+    "filter": {
+        "op": "differ",
+        "property": "objectType",
+        "value": "(a*b"
+    }
+}, undefined, undefined, 0);

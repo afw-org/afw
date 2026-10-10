@@ -1050,8 +1050,8 @@ impl_parse_string_relation(
         entry->value = impl_parse_string_list_value(parser);
     }
 
-    /* If match, compile expression. */
-    if (entry->op_id == afw_query_criteria_filter_op_id_match) {
+    /* If match or differ (not match), compile expression. */
+    if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
         s_z = BAD_CAST afw_utf8_to_utf8_z(decoded, parser->p, parser->xctx);
         entry->op_specific = xmlRegexpCompile(s_z);
         if (entry->op_specific == NULL) {
@@ -1234,6 +1234,7 @@ impl_parse_string_function(
     afw_query_criteria_filter_entry_t *previous_entry;
     afw_query_criteria_filter_entry_t *previous_tree;
     const afw_array_t *list;
+    const xmlChar *s_z;
 
     /* Find impl_rql_op_t for this operator. */
     impl_get_token(parser);
@@ -1350,6 +1351,23 @@ impl_parse_string_function(
             }
             entry->value = impl_token_to_value(parser);
             impl_get_token(parser);
+
+            /*
+             * If match or differ (not match), compile expression (it was
+             * not compiled here, so match(p,x) threw at evaluation).
+             */
+            if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
+                s_z = BAD_CAST afw_utf8_to_utf8_z(
+                    (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value),
+                    parser->p, parser->xctx);
+                entry->op_specific = xmlRegexpCompile(s_z);
+                if (entry->op_specific == NULL) {
+                    IMPL_STRING_THROW_ERROR_Z("regexp syntax error");
+                }
+                afw_pool_register_cleanup(parser->p,
+                    (void *)entry->op_specific, NULL,
+                    impl_query_criteria_regexp_cleanup, parser->xctx);
+            }
         }
 
         /* List value. */
@@ -1569,8 +1587,8 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         }
         /** @fixme Make sure this is a single value/list. */
 
-        /* If match, compile expression. */
-        if (entry->op_id == afw_query_criteria_filter_op_id_match) {
+        /* If match or differ (not match), compile expression. */
+        if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
             if (!entry->value || !afw_value_is_string(entry->value)) {
                 AFW_THROW_ERROR_Z(general,
                     "Value for match operator must be a string",
