@@ -241,6 +241,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **LMDB stores integers outside 32 bits:** writing an object with an integer below -2147483647 or above 2147483647 (a millisecond timestamp, an id) to an LMDB adapter failed with "Unexpected error in UBJSON converting 64-bit integer."; the UBJSON encoder had no 64-bit case. It writes int64 now (the reader already read it).
 
+**`sort` is stable:** entries the compare function treats as equal keep their order, as in ECMAScript (it used a quicksort that reordered them).
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
