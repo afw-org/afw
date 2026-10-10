@@ -90,3 +90,16 @@ assert(!in_range<time>(time("05:00:00-05:30"), time("09:20:00Z"), time("09:40:00
 assert(in_range<time>(time("05:00:00+05:30"), time("23:20:00Z"), time("23:40:00Z")), "+05:30 in range");
 return 0;
 
+//?
+//? test: compare-day-time-duration-normalized
+//? description: durations compare by length, however they are spelled, including fractional seconds
+//? expect: 0
+//? source: ...
+
+assert(dayTimeDuration("P1DT32H78M108S") > dayTimeDuration("P2DT1H"), "hours past a day");
+assert(dayTimeDuration("P1DT32H") == dayTimeDuration("P2DT8H"), "PT32H in P1D");
+assert(dayTimeDuration("P3DT17H58M26.945215S") == dayTimeDuration("PT323906.945215S"), "all seconds");
+assert(dayTimeDuration("-P1DT45H") < dayTimeDuration("-P2DT20H"), "negative");
+assert(dayTimeDuration("PT1.5S") < dayTimeDuration("PT1.6S"), "microseconds");
+assert(!(dayTimeDuration("PT1.5S") == dayTimeDuration("PT1.6S")), "microseconds differ");
+return 0;
