@@ -208,9 +208,10 @@ impl_evaluate_loop_body(
 
 
 /*
- * Next for-let trip: sibling clone of previous (or of the first `{ }`).
- * clone() marks the original; deactivate then skips script_result_set.
- * Release previous; it dies unless a closure holds it.
+ * Next trip of a for or for-of with let/const in its head: sibling clone
+ * of previous (or of the head's first `{ }`). clone() marks the original;
+ * deactivate then skips script_result_set. Release previous; it dies
+ * unless a closure holds it.
  */
 static const afw_pool_scope_t *
 impl_for_let_next_clone(

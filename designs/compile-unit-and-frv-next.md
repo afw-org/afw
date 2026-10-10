@@ -48,18 +48,23 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_statemen
 
 **`for` / `while` / `try` are void** except `return` / `rethrow`. Nested assignment writes last on the **running** scope. Do not C-return the loop’s last assignment.
 
+**Loop trips** (branch `issue-loop-frames`, 2026-10-10): each trip runs in one scope that also holds its condition, increment, and for-of target, so what they make goes with the trip (they used to evaluate in the loop's dest `p`: 300+ MB at 400k trips, some loops quadratic).
+
+- `while`, `do`, and a `for` / `for-of` with **no** `let`/`const` in the head: each trip runs in the **body** `{ }`'s scope (`impl_evaluate_trip` with a step before the statements and one after, the after also after `continue`). The scope steps are `afw_value_block_scope_enter` / `leave` / `finish`, shared with `evaluate_block`. A loop body is always a `{ }`, even empty, because the trip runs in it.
+- `for` / `for-of` **with** `let`/`const` in the head: compile wraps the loop in a head `{ }` marked `is_loop_head` (decompiles as `#loop_head(...)`); the loop finds it by that mark, not by its shape. Each trip runs in a copy of it (below); the body is its own `{ }`, and an empty body is left out.
+- An unbraced loop body is parsed **in** its `{ }`, where it runs; a `let` / `const` / `function` declaration there (or as an unbraced `if` / `else`) is a compile error, as in TypeScript.
+
 **`for (let)` clone** is for closures, not a result stack:
 
-- First trip **is** the for-let `{ }` (not a template).
-- Next trip: sibling `scope_clone` (copy `frame_slots[]`; same `parent_lexical_scope`). `clone()` `script_result_set`s original last, dest `original_scope->p`, then clone last stays void from create. Marks original **cloned** so deactivate does not write the slot. Increment / for-of assign run on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure `get_reference`s it.
+- First trip **is** the head `{ }` (not a template).
+- Next trip: sibling `scope_clone` (copy `frame_slots[]`; same `parent_lexical_scope`), made **every** trip (also with no increment, as ECMAScript). `clone()` `script_result_set`s original last, dest `original_scope->p`, then clone last stays void from create. Marks original **cloned** so deactivate does not write the slot. Increment, condition, and for-of next value and assign run on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure `get_reference`s it.
 - Loop `{ }` bodies `evaluate_block` and only point last at the occupant already in `script_result` (no extra-hold on the clone). The slot is not rewritten until this clone is cloned or it deactivates.
-- Unbraced while / do / for / for-of bodies wrap as a 0-symbol `{ }` **after** parsing the Statement in the current block (`for (let x of []) let x` is still already defined). `if` is not wrapped.
-- Without closures, two frames: the `{ }` until `for` ends, plus the **current** clone.
+- Without closures, two frames: the head `{ }` until `for` ends, plus the **current** clone.
 - How we know which iteration is last: the one that was **never cloned**. Do not pick a winner.
 
 **Finally:** a **normal** finally `{ }` must not adopt last onto the parent (that overwrote `return 'try'` with `count.finally += 1`). Finally **return** still wins. Nested assignment in finally still writes last when try/catch did not return.
 
-**Rejected this wave:** a dest `p` parameter on `deactivate` itself (hop dest — `deactivate` still takes `(scope, xctx)` and passes `scope->p` to `script_result_set`); treating `last_statement_non_void_value` like `frame_slots[]`; extra-hold “harder” on cloned-from last; extra-hold previous sibling last onto the clone (useless: isolate at clone, void last will not override the slot); wrap unbraced **before** parse (hides `let` clash); `for` C-return of last; clone-first as a template; `iter_p`; isolating FRV at `return()` `get_assignable`/`slot_store` as the design (that is a later slice).
+**Rejected this wave:** a dest `p` parameter on `deactivate` itself (hop dest — `deactivate` still takes `(scope, xctx)` and passes `scope->p` to `script_result_set`); treating `last_statement_non_void_value` like `frame_slots[]`; extra-hold “harder” on cloned-from last; extra-hold previous sibling last onto the clone (useless: isolate at clone, void last will not override the slot); wrap unbraced **before** parse (hid the `let` clash; now done, since a declaration can not be an unbraced body); `for` C-return of last; clone-first as a template; `iter_p`; isolating FRV at `return()` `get_assignable`/`slot_store` as the design (that is a later slice).
 
 ---
 

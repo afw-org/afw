@@ -1107,7 +1107,8 @@ afw_value_block_evaluate_block(
 
 /*
  * A block's scope run by its caller: evaluate_block, and loops that run
- * each trip in their body's scope with the condition (while, do while).
+ * each trip in their body's scope with the condition (while, do while,
+ * and a for or for-of with no let/const in its head).
  * enter pushes the block on the evaluation stack and activates a new
  * scope; leave (in AFW_FINALLY) deactivates and releases it; finish
  * (after AFW_ENDTRY) pops the evaluation stack.
