@@ -192,14 +192,15 @@ impl_compile_to_value_with_callback(
         string, callback, callback_data, source_location,
         compile_type, residual_check, false, shared, p,
         xctx);
-    if (compile_type != afw_compile_type_json &&
-        compile_type != afw_compile_type_relaxed_json)
-    {
-        /* Caller does not release. Result lasts for dest p. */
-        if (dest_p) {
-            afw_pool_release_value_at_cleanup(
-                &parser->compiled_value->pub, dest_p, xctx);
-        }
+    /*
+     * Caller does not release. Result lasts for dest p. For json and
+     * relaxed_json the result is data in the unit's pool, so the unit
+     * must last for dest p too (otherwise it lasts until the job heap
+     * goes).
+     */
+    if (dest_p) {
+        afw_pool_release_value_at_cleanup(
+            &parser->compiled_value->pub, dest_p, xctx);
     }
 
     /* Parse. */
