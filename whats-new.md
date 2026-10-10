@@ -218,6 +218,15 @@ LMDB with more than one environment (several LMDB adapters, or a model mapped to
 
 Deeply nested data built at runtime ([#482](https://github.com/afw-org/afw/issues/482)): releasing it no longer recurses once per level (an array or object releases its elements directly up to 256 nested levels, then defers the rest and releases them in a loop), so any depth can be built and dropped. `stringify`, `decompile`, `string`, `==`, `===`, and `clone` of data deeper than the C stack allows fail with **"C stack headroom exhausted"** instead of crashing.
 
+Memory in one long evaluation, and error positions (overnight 2026-10-10). A loop or long script no longer grows memory with each:
+
+- **closure stored in an array or object in its own frame** (`let fns = []; push(fns, function () { … });` in a function called many times): the cycle is now collected.
+- **compile of a script that declares names** (`compile<script>(script("let x = 1; …"))` in a loop): about 1 KB each before.
+- **`object("{…}")`** and anything else that parses JSON into a value for a caller: the parsed data now lasts as long as the caller's pool instead of the whole request.
+- **read of `current::pid`, `current::xctxUUID`, or `current::programName`** (and `qualifier("current")`): made once per request now.
+
+A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
+
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 
 A get or retrieve on an adapter that is not running starts it. When another request finished that start first, the read threw `can not be started.  Service is running`. It now uses the running adapter. A manual `service_start()` of a running service still throws.
