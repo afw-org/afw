@@ -1,0 +1,35 @@
+version: 1
+description: "select() parsed by concurrent requests: each gets its own list (the parser kept it in a static; TSan reports the race under --env-mode tsan)"
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 120
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: sel1
+    sourceType: script
+    source: |
+      for (let i = 0; i < 50; i = i + 1) {
+        const c = convert_query_string_to_AdaptiveQueryCriteria("select(objectType,description)&objectType=x", "afw", "_AdaptiveObjectType_");
+        assert(stringify(c.select) === '["objectType","description"]', stringify(c.select));
+      }
+      return true;
+  - name: sel2
+    sourceType: script
+    source: |
+      for (let i = 0; i < 50; i = i + 1) {
+        const c = convert_query_string_to_AdaptiveQueryCriteria("select(allowEntity)&objectType=y", "afw", "_AdaptiveObjectType_");
+        assert(stringify(c.select) === '["allowEntity"]', stringify(c.select));
+      }
+      return true;
+schedule:
+  - firehose:
+      maxRequests: 80
+      concurrency: 4
+      fromTests: [sel1, sel2]
+      policy: roundRobin
+      seed: 7
+      stopOnError: false
+      maxFail: 0

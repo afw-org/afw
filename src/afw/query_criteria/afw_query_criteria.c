@@ -849,7 +849,7 @@ impl_parse_string_select(impl_string_parser_t *parser)
 {
     impl_utf8_p_vector_t *names;
     const afw_utf8_t *property_name;
-    static const afw_utf8_t * const *result;
+    const afw_utf8_t * const *result;
 
     /* Work vector for a NULL-terminated list of property names. */
     names = afw_vector_create(impl_utf8_p_vector_t, 10,
