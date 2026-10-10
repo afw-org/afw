@@ -1213,14 +1213,17 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
  * of the head's block, so an empty body is NULL. `if` is not wrapped.
  * Surface syntax is still Statement.
  *
- * Parse in the current block so `for (let x of []) let x = 1`
- * is still "already defined". Then wrap in a 0-symbol `{ }`.
+ * A let, const, or function declaration body is parsed in the current
+ * block so `for (let x of []) let x = 1` is still "already defined" and
+ * the name is seen after the loop, then wrapped in a 0-symbol `{ }`. Any
+ * other unbraced statement is parsed in that `{ }`.
  */
 static const afw_value_t *
 impl_parse_loop_body(afw_compile_parser_t *parser, afw_boolean_t keep_empty)
 {
     const afw_value_t *statement;
     const afw_value_block_t *block;
+    afw_boolean_t in_current_block;
     const afw_value_t **argv;
     afw_size_t start_offset;
 
@@ -1238,13 +1241,38 @@ impl_parse_loop_body(afw_compile_parser_t *parser, afw_boolean_t keep_empty)
         afw_compile_parse_pop_value_block(parser);
         return &block->pub;
     }
+    in_current_block = afw_compile_token_is(semicolon) ||
+        afw_compile_token_is_name(afw_v_let) ||
+        afw_compile_token_is_name(afw_v_const) ||
+        afw_compile_token_is_name(afw_v_function);
     afw_compile_reuse_token();
 
+    /*
+     * A let, const, or function body declares in the current block (see
+     * above), and `;` has nothing to parse. Any other statement is parsed
+     * in the body's block, where it runs, so a nested loop's head or `{ }`
+     * and a function in it all have the body as their parent.
+     *
+     * The block has to be chosen before parsing: a declaration gets its
+     * slot in the current block as it is parsed, and every reference to
+     * it holds that block and index. So this looks at the first token for
+     * the statements that declare a name: let, const, and function (a
+     * named function statement is a const). A new statement that declares
+     * a name must be added here.
+     */
+    block = NULL;
+    if (!in_current_block) {
+        block = afw_compile_parse_link_new_value_block(parser,
+            start_offset);
+    }
     statement = afw_compile_parse_Statement(parser, NULL);
     if (!statement && !keep_empty) {
         return NULL;
     }
-    block = afw_compile_parse_link_new_value_block(parser, start_offset);
+    if (!block) {
+        block = afw_compile_parse_link_new_value_block(parser,
+            start_offset);
+    }
     if (statement) {
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *), parser->xctx);
