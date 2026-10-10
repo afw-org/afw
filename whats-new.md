@@ -229,6 +229,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **Number literals:** a double literal whose integer part is too large for an integer (`99999999999999999999.5`) and a subnormal double (`5e-324`) now compile; they were "Integer is out of range" and "Invalid number". **`decompile`** of a function with an empty body now recompiles (it wrote `{}`, an object).
 
+**Zero durations print a valid form:** `string()` / `stringify()` of a zero `dayTimeDuration` is now `PT0S` and of a zero `yearMonthDuration` `P0M`; both printed `P`, which their constructors (and a JSON reader) reject. **`boolean()` of an object is `true`** (like a non-empty string); it read a byte of the object's address and inverted it, so `boolean({a: 1})` was usually `false`.
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))

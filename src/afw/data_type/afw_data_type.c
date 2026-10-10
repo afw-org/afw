@@ -219,9 +219,14 @@ impl_afw_data_type_from_pointer_convert_internal(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    /*
+     * from_internal points at the pointer (an object or array). Like a
+     * string, a value that is present is true. This read the low byte of
+     * the pointer and inverted it.
+     */
     if (afw_data_type_is_boolean(to_data_type)) {
         *((afw_boolean_t *)to_internal) =
-            (*(char *)from_internal) ? false : true;
+            (*(const void * const *)from_internal) ? true : false;
     }
     else {
         impl_afw_data_type_standard_convert_internal(
