@@ -143,6 +143,19 @@ afw_number_strtod(
 
 
 /**
+ * @brief Fewest significant digits that read back as the same double.
+ * @param d finite double.
+ * @return 1 to 17.
+ *
+ * Print with that many significant digits (for example "%.*G" with this
+ * count, or "%.*E" with one less) for the shortest text that strtod reads
+ * back as d.
+ */
+AFW_DECLARE(int)
+afw_number_double_shortest_digits(afw_double_t d);
+
+
+/**
  * @brief Convert a double to utf8 in specified pool.
  * @param d is double to convert.
  * @param p to use for result.

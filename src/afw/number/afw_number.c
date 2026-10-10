@@ -14,6 +14,7 @@
 #include "afw_internal.h"
 #include <float.h>
 #include <string.h>
+#include <math.h>
 #include <errno.h>
 
 /* strtod of text the caller has already checked the syntax of. */
@@ -40,6 +41,42 @@ afw_number_strtod(
      */
     return errno == 0 ||
         (errno == ERANGE && *d != 0.0 && afw_number_is_finite(*d));
+}
+
+
+/* Fewest significant digits that read back as the same finite double. */
+AFW_DEFINE(int)
+afw_number_double_shortest_digits(afw_double_t d)
+{
+    char s[32];
+    char *e;
+    int digits;
+
+    /*
+     * Any decimal of 15 or fewer digits survives a round trip through a
+     * normal double (DBL_DIG), so if one reads back as d, 15 digits print
+     * it padded with zeros, which are not needed. Otherwise 16 digits,
+     * then 17, which always reads back. A subnormal has fewer digits of
+     * precision (5e-324 is 4.94065645841247E-324 in 15), so it tries every
+     * length.
+     */
+    digits = (d != 0.0 && fabs(d) < DBL_MIN) ? 1 : 15;
+    for (; digits < 17; digits++) {
+        sprintf(s, "%.*E", digits - 1, d);
+        if (strtod(s, NULL) == d) {
+            break;
+        }
+    }
+    if (digits == 17) {
+        return 17;
+    }
+
+    /* Trailing zeros of the mantissa are not needed digits. */
+    for (e = strchr(s, 'E'); digits > 1 && e[-1] == '0'; e--) {
+        digits--;
+    }
+
+    return digits;
 }
 
 
@@ -92,7 +129,12 @@ afw_number_double_to_utf8(
     const char *exponent;
 
     if (afw_number_is_finite(d)) {
-        sprintf(s, "%#.16E", d);
+
+        /*
+         * The fewest digits that read back as the same double: 0.1 is
+         * 1.0E-1 (it was always 17 digits, 1.0000000000000001E-1).
+         */
+        sprintf(s, "%#.*E", afw_number_double_shortest_digits(d) - 1, d);
 
         /*
          * Exponent: drop the '+' and the leading zeros sprintf writes,
