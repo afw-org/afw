@@ -270,11 +270,40 @@ return 0;
 
 //?
 //? test: sort-empty-untyped
-//? description: sort requires a single-type array; empty [] is untyped and errors
-//? expect: error
+//? description: as in ECMAScript, sort needs no typed array: [] sorts to [] (it threw "sort() requires array to be typed"), and a mixed array sorts by the compare function
+//? expect: 0
 //? source: ...
 
-sort(function (a, b) { return a < b; }, []);
+assert(length(sort(function (a, b) { return a < b; }, [])) === 0, "[]");
+const mixed = sort(function (a, b) { return string(a) < string(b); }, [2, "a", 1]);
+assert(stringify(mixed) === '[1,2,"a"]', stringify(mixed));
+return 0;
+
+//?
+//? test: all-of-all-untyped
+//? description: as in ECMAScript every / some, the pair functions need no typed arrays (they threw "array1 and array2 must both be typed")
+//? expect: 0
+//? source: ...
+
+assert(all_of_all(eq<integer>, [], [1]) === true, "all_of_all [] is true");
+assert(all_of_all(eq<integer>, [], []) === true, "all_of_all [] []");
+assert(any_of_any(eq<integer>, [], [1]) === false, "any_of_any [] is false");
+assert(all_of_any(eq<integer>, [1], []) === false, "all_of_any with nothing to match");
+assert(any_of_all(function (a, b) { return string(a) == string(b); }, ["1", 1], [1]) === true, "mixed");
+return 0;
+
+//?
+//? test: pair-functions-xacml-examples
+//? description: the XACML examples; any_of_all is some value of array1 with every value of array2, the predicate getting the array1 value first (it swapped the arrays and the arguments, so this was false)
+//? expect: 0
+//? source: ...
+
+assert(any_of_all(gt<integer>, [3, 5], [1, 2]) === true, "any_of_all 3 > 1 and 3 > 2");
+assert(any_of_all(gt<integer>, [1, 2], [3, 5]) === false, "any_of_all none");
+assert(all_of_any(gt<integer>, [10, 20], [1, 3, 5, 19]) === true, "all_of_any");
+assert(all_of_all(gt<integer>, [6, 7], [1, 2, 3, 4, 5]) === true, "all_of_all");
+assert(any_of_any(eq<string>, ["Ringo", "Mary"], ["John", "Paul", "George", "Ringo"]) === true, "any_of_any");
+assert(any_of_all(function (a, b) { return a == 3 && b < 3; }, [3, 5], [1, 2]) === true, "argument order");
 return 0;
 
 //?

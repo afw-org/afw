@@ -122,8 +122,9 @@ export function afwAnyOf(client : any, predicate : any, values : any) : any {
 }
 
 /**
- * Returns true if the result of calling predicate with all of the combination
- * of values from array2 and any of the values of array1 returns true.
+ * Returns true if, for at least one value of array1, the predicate returns
+ * true with every value of array2 (the predicate gets the value from array1
+ * first).
  * 
  * @param {function} predicate - The predicate is passed two parameters, the
  *     first is a value from array1 and the second is a value from array2.
@@ -333,11 +334,11 @@ export function afwSome(client : any, predicate : any, values : any) : any {
 
 /**
  * Return a new array with the same entries as array, ordered using
- * compareFunction. The array must have a single element data type (for
- * example all integers or all strings); mixed or empty untyped arrays are not
- * accepted. compareFunction is called with two entries and must return true
- * when the first should sort before the second (boolean), not a numeric sort
- * key.
+ * compareFunction. Entries that compare equal keep their order (a stable
+ * sort). The array may hold any mix of data types, as compareFunction decides
+ * the order; the result has the array's data type, if it has one.
+ * compareFunction is called with two entries and must return true when the
+ * first should sort before the second (boolean), not a numeric sort key.
  * 
  * @param {function} compareFunction - Return true if value1 should be ordered
  *     before value2.

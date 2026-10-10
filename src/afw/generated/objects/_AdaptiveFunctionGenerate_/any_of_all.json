@@ -4,7 +4,7 @@
     "brief": "Combinations of any in array1 and all in array2 true",
     "camelCaseFunctionLabel": "anyOfAll",
     "category": "higher_order_array",
-    "description": "Returns true if the result of calling predicate with all of the combination of values from array2 and any of the values of array1 returns true.",
+    "description": "Returns true if, for at least one value of array1, the predicate returns true with every value of array2 (the predicate gets the value from array1 first).",
     "functionId": "any_of_all",
     "functionLabel": "any_of_all",
     "parameters": [

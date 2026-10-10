@@ -30761,6 +30761,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7fb0d149abad \
+    "Returns true if, for at least one value of array1, the predicate returns true with every value of array2 (the predicate gets the value from array1 first)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7fb0d149abad */
+#define afw_s_zz__7fb0d149abad \
+    (&afw_self_v_zz__7fb0d149abad.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7fb0d149abad */
+#define afw_self_s_zz__7fb0d149abad \
+    (afw_self_v_zz__7fb0d149abad.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7fb0d149abad */
+extern const afw_value_string_t \
+    afw_self_v_zz__7fb0d149abad;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7fb0d149abad */
+#define afw_z_zz__7fb0d149abad \
+    (afw_self_v_zz__7fb0d149abad.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7fb0d149abad */
+#define afw_v_zz__7fb0d149abad \
+    (&afw_self_v_zz__7fb0d149abad.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7fbe81b7d2f8 \
     "See /afw/_AdaptiveObjectType_/_AdaptiveActions_ for more information."
 
@@ -128651,32 +128677,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a9efbf803865 \
-    "Returns true if the result of calling predicate with all of the combination of values from array2 and any of the values of array1 returns true."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a9efbf803865 */
-#define afw_s_zz__a9efbf803865 \
-    (&afw_self_v_zz__a9efbf803865.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a9efbf803865 */
-#define afw_self_s_zz__a9efbf803865 \
-    (afw_self_v_zz__a9efbf803865.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a9efbf803865 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a9efbf803865;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a9efbf803865 */
-#define afw_z_zz__a9efbf803865 \
-    (afw_self_v_zz__a9efbf803865.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a9efbf803865 */
-#define afw_v_zz__a9efbf803865 \
-    (&afw_self_v_zz__a9efbf803865.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__aa034334dc4b \
     "Evaluate an array of values (statements) while a condition is true with an array of initial and increment values"
 
@@ -131247,32 +131247,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b2ae56b6ea2b */
 #define afw_v_zz__b2ae56b6ea2b \
     (&afw_self_v_zz__b2ae56b6ea2b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b2b0acbaccab \
-    "Return a new array with the same entries as array, ordered using compareFunction. The array must have a single element data type (for example all integers or all strings); mixed or empty untyped arrays are not accepted. compareFunction is called with two entries and must return true when the first should sort before the second (boolean), not a numeric sort key."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b2b0acbaccab */
-#define afw_s_zz__b2b0acbaccab \
-    (&afw_self_v_zz__b2b0acbaccab.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b2b0acbaccab */
-#define afw_self_s_zz__b2b0acbaccab \
-    (afw_self_v_zz__b2b0acbaccab.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b2b0acbaccab */
-extern const afw_value_string_t \
-    afw_self_v_zz__b2b0acbaccab;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b2b0acbaccab */
-#define afw_z_zz__b2b0acbaccab \
-    (afw_self_v_zz__b2b0acbaccab.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b2b0acbaccab */
-#define afw_v_zz__b2b0acbaccab \
-    (&afw_self_v_zz__b2b0acbaccab.pub)
 
 
 
@@ -147653,6 +147627,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__eebea8ac66d7 */
 #define afw_v_zz__eebea8ac66d7 \
     (&afw_self_v_zz__eebea8ac66d7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__eecc7f4a7fd0 \
+    "Return a new array with the same entries as array, ordered using compareFunction. Entries that compare equal keep their order (a stable sort). The array may hold any mix of data types, as compareFunction decides the order; the result has the array's data type, if it has one. compareFunction is called with two entries and must return true when the first should sort before the second (boolean), not a numeric sort key."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__eecc7f4a7fd0 */
+#define afw_s_zz__eecc7f4a7fd0 \
+    (&afw_self_v_zz__eecc7f4a7fd0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__eecc7f4a7fd0 */
+#define afw_self_s_zz__eecc7f4a7fd0 \
+    (afw_self_v_zz__eecc7f4a7fd0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__eecc7f4a7fd0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__eecc7f4a7fd0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__eecc7f4a7fd0 */
+#define afw_z_zz__eecc7f4a7fd0 \
+    (afw_self_v_zz__eecc7f4a7fd0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__eecc7f4a7fd0 */
+#define afw_v_zz__eecc7f4a7fd0 \
+    (&afw_self_v_zz__eecc7f4a7fd0.pub)
 
 
 
