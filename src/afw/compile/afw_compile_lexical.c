@@ -1108,7 +1108,8 @@ impl_parse_number(afw_compile_parser_t *parser)
             n = -negative;
         }
         else {
-            goto error;
+            /* 9223372036854775808 fits only negated. */
+            AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
         }
         parser->token->integer = impl_integer_literal(parser, n);
         return true;
