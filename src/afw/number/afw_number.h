@@ -126,6 +126,36 @@ afw_number_parse(
 
 
 /**
+ * @brief strtod of text the caller has already checked the syntax of.
+ * @param s number text (what strtod reads).
+ * @param len of s.
+ * @param d set to the double.
+ * @param p for scratch when s is long.
+ * @param xctx of caller.
+ * @return false if the value overflows or underflows to 0 (a subnormal
+ *    result is fine).
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_number_strtod(
+    const afw_utf8_octet_t *s, afw_size_t len,
+    afw_double_t *d,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+/**
+ * @brief Fewest significant digits that read back as the same double.
+ * @param d finite double.
+ * @return 1 to 17.
+ *
+ * Print with that many significant digits (for example "%.*G" with this
+ * count, or "%.*E" with one less) for the shortest text that strtod reads
+ * back as d.
+ */
+AFW_DECLARE(int)
+afw_number_double_shortest_digits(afw_double_t d);
+
+
+/**
  * @brief Convert a double to utf8 in specified pool.
  * @param d is double to convert.
  * @param p to use for result.

@@ -53,9 +53,9 @@ sort(
 )
 
 //?
-//? test: sort-error-untyped-array
-//? description: sort throws when the array is not typed
-//? expect: error:sort() requires array to be typed
+//? test: sort-empty-untyped-array
+//? description: sort of an empty untyped array is an empty array, as in ECMAScript; it threw "sort() requires array to be typed"
+//? expect: array()
 //? source: ...
 
 sort(

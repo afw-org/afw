@@ -149,3 +149,18 @@ const d2 = decompile(compile<script>(script(d1)));
 assert(d1 == d2);
 assert(evaluate(compile<script>(script(d1))) === 4);
 return 0;
+
+//?
+//? test: emit-script-function-empty-body
+//? description: a function with an empty body decompiles to a form that recompiles (not {}, an object)
+//? expect: 0
+//? source: ...
+
+const src = "function f() {}\nconst g = function (a) {};\nreturn [f(), g(1)];";
+const d1 = decompile(compile<script>(script(src)));
+assert(includes(d1, "#script_function(#block())"), d1);
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+const r = evaluate(compile<script>(script(d1)));
+assert(is_nullish(r[0]) && is_nullish(r[1]));
+return 0;

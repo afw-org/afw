@@ -130,3 +130,87 @@ assert(integer(42.0) === 42, "integer(42.0)");
 assert(integer(1.5) === 1, "integer(1.5) truncates");
 assert(to_integer(-9.2233720368547758e18) === -9223372036854775807 - 1, "min");
 return 0;
+
+//?
+//? test: double-to-string-exponent-zero-digits
+//? description: string() keeps every exponent digit after the leading zeros (1e10 was "1.0E1")
+//? expect: 0
+//? source: ...
+
+assert(string(1e10) === "1.0E10", "1e10 " + string(1e10));
+assert(string(1.5e20) === "1.5E20", "1.5e20 " + string(1.5e20));
+assert(string(1e100) === "1.0E100", "1e100 " + string(1e100));
+assert(string(-2.5e-300) === "-2.5E-300", "-2.5e-300 " + string(-2.5e-300));
+assert(string(1e5) === "1.0E5", "1e5 " + string(1e5));
+assert(string(0.0) === "0.0E0", "0.0 " + string(0.0));
+assert(stringify([1e10]) === "[1.0E10]", "stringify " + stringify([1e10]));
+for (const x of [1e10, 2e-10, 1e100, 1e300, 1.7976931348623157e308,
+    2.2250738585072014e-308, 123456789.0, -1e-5, 1e20, 3.0e-20])
+{
+    assert(double(string(x)) === x, "round trip " + string(x));
+}
+return 0;
+
+//?
+//? test: double-to-string-fewest-digits
+//? description: string() of a double has the fewest digits that read back as it (0.1 was "1.0000000000000001E-1")
+//? expect: 0
+//? source: ...
+
+assert(string(0.1) === "1.0E-1", "0.1 " + string(0.1));
+assert(string(1.1) === "1.1E0", "1.1 " + string(1.1));
+assert(string(0.3) === "3.0E-1", "0.3 " + string(0.3));
+assert(string(5e-324) === "5.0E-324", "5e-324 " + string(5e-324));
+assert(string(0.1 + 0.2) === "3.0000000000000004E-1", "0.1 + 0.2 " + string(0.1 + 0.2));
+assert(stringify({a: 0.1}) === '{"a":1.0E-1}', "stringify");
+for (const x of [0.1, 0.2, 0.1 + 0.2, 1.1, 123.456, 5e-324, 4.9e-324,
+    1.7976931348623157e308, 2.2250738585072014e-308, -1.5e-7, 9007199254740993.0,
+    0.30000000000000004, 1e23, 8.41e21])
+{
+    assert(double(string(x)) === x, "round trip " + string(x));
+}
+return 0;
+
+//?
+//? test: zero-duration-string-round-trip
+//? description: a zero duration prints a form its constructor reads back (it printed "P")
+//? expect: 0
+//? source: ...
+
+assert(string(dayTimeDuration("P0D")) === "PT0S", string(dayTimeDuration("P0D")));
+assert(string(dayTimeDuration("PT0S")) === "PT0S");
+assert(string(yearMonthDuration("P0Y")) === "P0M", string(yearMonthDuration("P0Y")));
+assert(string(yearMonthDuration("P0M")) === "P0M");
+assert(dayTimeDuration(string(dayTimeDuration("P0D"))) == dayTimeDuration("P0D"));
+assert(yearMonthDuration(string(yearMonthDuration("P0M"))) == yearMonthDuration("P0M"));
+assert(stringify([dayTimeDuration("PT0S")]) === "[\"PT0S\"]");
+assert(string(dayTimeDuration("P1D")) === "P1D", "nonzero unchanged");
+return 0;
+
+//?
+//? test: double-from-string-subnormal-and-negative-zero
+//? description: double() of a subnormal string works and "-0.0" keeps its sign
+//? expect: 0
+//? source: ...
+
+assert(double("4.9E-324") === 5e-324, "subnormal");
+assert(double("2.2250738585072011e-308") < double("2.2250738585072014e-308"), "largest subnormal");
+assert(string(double("-0.0")) === "-0.0E0", string(double("-0.0")));
+assert(string(double("0.0")) === "0.0E0");
+assert(string(double(string(-0.0))) === string(-0.0), "round trip -0.0");
+return 0;
+
+//?
+//? test: split-keeps-empty-pieces
+//? description: split has one more piece than separators, like ECMAScript (the piece after a trailing separator was dropped)
+//? expect: 0
+//? source: ...
+
+assert(stringify(split("a,", ",")) === "[\"a\",\"\"]", stringify(split("a,", ",")));
+assert(stringify(split("a,,", ",")) === "[\"a\",\"\",\"\"]");
+assert(stringify(split(",", ",")) === "[\"\",\"\"]");
+assert(stringify(split(",a", ",")) === "[\"\",\"a\"]");
+assert(stringify(split("", ",")) === "[\"\"]", stringify(split("", ",")));
+assert(stringify(split("a,b,c", ",", 2)) === "[\"a\",\"b\"]", "limit");
+assert(stringify(split("abc")) === "[\"a\",\"b\",\"c\"]", "no separator");
+return 0;

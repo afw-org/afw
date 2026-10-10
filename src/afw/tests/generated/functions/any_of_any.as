@@ -51,9 +51,9 @@ any_of_any(
 )
 
 //?
-//? test: any_of_any-error-untyped-arrays
-//? description: any_of_any throws when either array is not typed
-//? expect: error:array1 and array2 must both be typed
+//? test: any_of_any-empty-untyped-arrays
+//? description: any_of_any of empty untyped arrays is false (nothing to match), as in ECMAScript some(); it threw "must both be typed"
+//? expect: false
 //? source: ...
 
 any_of_any(

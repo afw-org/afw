@@ -54,8 +54,12 @@ impl_parse_number(afw_compile_parser_t *parser);
 static void
 impl_parse_identifier(afw_compile_parser_t *parser);
 
-static void
+static afw_code_point_t
 impl_parse_u(afw_compile_parser_t *parser);
+
+static afw_boolean_t
+impl_unescaped(afw_compile_parser_t *parser, afw_utf8_octet_t o,
+    afw_code_point_t *cp);
 
 
 
@@ -522,14 +526,13 @@ afw_compile_skip_ws(afw_compile_parser_t *parser)
 /*
  * Cursor starts after '\u'.
  *
- * Parse a \uxxxx.  If surrogate pair, parse \uxxxx\uxxxx.
+ * Return the code point of \u{x...} or \uxxxx. If \uxxxx is a surrogate, it
+ * must be followed by its pair \uxxxx.
  */
-static void
+static afw_code_point_t
 impl_parse_u(afw_compile_parser_t *parser)
 {
     afw_code_point_t cp, cp2;
-    afw_utf8_octet_t utf8_z[5];
-    const afw_utf8_octet_t *c;
     afw_utf8_octet_t o;
     int digit;
 
@@ -604,17 +607,12 @@ impl_parse_u(afw_compile_parser_t *parser)
         }
     }
 
-    /* Convert code point to utf-8 and push on utf-8 bytes on parser->s */
-    if (!afw_utf8_from_code_point(utf8_z, cp, parser->xctx)) {
+    /* A lone surrogate (\u{D800}) is not a character. */
+    if (cp >= 0xD800 && cp <= 0xDFFF) {
         AFW_COMPILE_THROW_ERROR_Z("Invalid codepoint");
     }
-    c = &utf8_z[0];
-    do {
-        afw_vector_push(parser->s, parser->xctx) = *c;
-    } while (*++c);
 
-    /* Return. */
-    return;
+    return cp;
 
 error:
     AFW_COMPILE_THROW_ERROR_Z("Invalid surrogate pair");
@@ -666,8 +664,7 @@ static void
 impl_parse_String(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t quot, o;
-    afw_size_t save_cursor;
-    int hi, lo;
+    afw_code_point_t cp;
 
     /* Clear array used for building string. */
     afw_vector_clear(parser->s);
@@ -694,116 +691,9 @@ impl_parse_String(afw_compile_parser_t *parser)
             o = afw_compile_get_octet(parser);
             if (afw_compile_is_at_eof()) break;
 
-            /* Process based on octet after \. */
-            switch (o) {
-
-            case '"':
-            case '\'':
-            case '`':
-            case '\\':
-            case '/':
-                afw_vector_push(parser->s, parser->xctx) = o;
-                break;
-
-            case 'b':
-                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_BS;
-                break;
-
-            case 'f':
-                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_FF;
-                break;
-
-            case 'n':
-                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_LF;
-                break;
-
-            case 'r':
-                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_CR;
-                break;
-
-            case 't':
-                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_HT;
-                break;
-
-            case 'v':
-                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_VT;
-                break;
-
-            case '0':
-                /*
-                 * Null escape \0 when not followed by a digit. Digits after
-                 * \0 would be legacy octal, which Adaptive does not support.
-                 */
-                afw_compile_save_cursor(save_cursor);
-                o = afw_compile_get_octet(parser);
-                if (!afw_compile_is_at_eof() && o >= '0' && o <= '9') {
-                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
-                }
-                afw_compile_restore_cursor(save_cursor);
-                afw_vector_push(parser->s, parser->xctx) = 0;
-                break;
-
-            case 'x':
-                /* HexEscapeSequence \xHH (exactly two hex digits). */
-                hi = impl_get_HexDigit(parser);
-                lo = impl_get_HexDigit(parser);
-                if (hi < 0 || lo < 0) {
-                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
-                }
-                afw_vector_push(parser->s, parser->xctx) =
-                    (afw_utf8_octet_t)((hi << 4) | lo);
-                break;
-
-            case 'u':
-                impl_parse_u(parser);
-                break;
-
-            default:
-                /*
-                 * LineContinuation: backslash + LineTerminatorSequence
-                 * contributes no characters (ES string grammar).
-                 *   LF / CR / CR LF / LS (U+2028) / PS (U+2029)
-                 */
-                if (o == AFW_ASCII_LF) {
-                    break;
-                }
-                if (o == AFW_ASCII_CR) {
-                    afw_compile_save_cursor(save_cursor);
-                    o = afw_compile_get_octet(parser);
-                    if (afw_compile_is_at_eof() || o != AFW_ASCII_LF) {
-                        afw_compile_restore_cursor(save_cursor);
-                    }
-                    break;
-                }
-                /* UTF-8 LS E2 80 A8, PS E2 80 A9 */
-                if ((afw_utf8_octet_t)o == (afw_utf8_octet_t)0xE2) {
-                    afw_compile_save_cursor(save_cursor);
-                    hi = -1;
-                    lo = -1;
-                    if (!afw_compile_is_at_eof()) {
-                        hi = (int)(unsigned char)
-                            afw_compile_get_octet(parser);
-                        if (!afw_compile_is_at_eof()) {
-                            lo = (int)(unsigned char)
-                                afw_compile_get_octet(parser);
-                        }
-                    }
-                    if (hi == 0x80 && (lo == 0xA8 || lo == 0xA9)) {
-                        break;
-                    }
-                    afw_compile_restore_cursor(save_cursor);
-                    /* fall through: identity of first octet 0xE2 */
-                }
-                /*
-                 * NonEscapeSequence / identity escape: backslash + letter
-                 * (or other non-special octet) yields that octet. Digits
-                 * 1-9 are not identity escapes.
-                 */
-                if (o >= '1' && o <= '9') {
-                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
-                }
-                afw_vector_push(parser->s, parser->xctx) = o;
-                break;
+            /* Code point of the escape, if any (as in template strings). */
+            if (impl_unescaped(parser, o, &cp)) {
+                afw_compile_internal_s_push_code_point(parser, cp);
             }
         }
 
@@ -967,8 +857,10 @@ impl_parse_number(afw_compile_parser_t *parser)
     afw_boolean_t is_integer;
     afw_boolean_t is_zero;
     afw_boolean_t leading_dot;
+    afw_boolean_t integer_out_of_range;
     afw_utf8_octet_t o;
     afw_code_point_t cp;
+    double d;
 
     afw_compile_save_cursor(start_offset);
     negative = 0;
@@ -976,6 +868,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     is_integer = true;
     is_zero = true;
     leading_dot = false;
+    integer_out_of_range = false;
 
     /* Determine if negative and handle reserved identifiers. */
     o = afw_compile_get_octet(parser);
@@ -1065,15 +958,20 @@ impl_parse_number(afw_compile_parser_t *parser)
                 parser->cursor--;
                 break;
             }
-            if (negative < AFW_INTEGER_MIN / 10)
+            /*
+             * Too large for an integer is only an error if no fraction
+             * or exponent follows (99999999999999999999.5 is a double).
+             */
+            if (integer_out_of_range) {
+                continue;
+            }
+            if (negative < AFW_INTEGER_MIN / 10 ||
+                negative * 10 < AFW_INTEGER_MIN + (o - '0'))
             {
-                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+                integer_out_of_range = true;
+                continue;
             }
             negative = (negative * 10);
-            if (negative < AFW_INTEGER_MIN + (o - '0'))
-            {
-                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
-            }
             negative -= (o - '0');
         }
     }
@@ -1199,6 +1097,9 @@ impl_parse_number(afw_compile_parser_t *parser)
      *       frameworks treats integers as afw_integer_t.
      */
     if (is_integer) {
+        if (integer_out_of_range) {
+            AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+        }
         parser->token->type = afw_compile_token_type_integer;
         if (is_negative) {
             n = negative;
@@ -1207,7 +1108,8 @@ impl_parse_number(afw_compile_parser_t *parser)
             n = -negative;
         }
         else {
-            goto error;
+            /* 9223372036854775808 fits only negated. */
+            AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
         }
         parser->token->integer = impl_integer_literal(parser, n);
         return true;
@@ -1215,7 +1117,7 @@ impl_parse_number(afw_compile_parser_t *parser)
 
 
     /*
-     * Not integer, create a double value. Use strtod to convert number if it
+     * Not integer, create a double value (afw_number_strtod) if it
      * is not zero.
      */
     parser->token->type = afw_compile_token_type_number;
@@ -1224,18 +1126,13 @@ impl_parse_number(afw_compile_parser_t *parser)
             is_negative ? -0.0 : 0.0);
     }
     else {
+        if (!afw_number_strtod(
+            parser->full_source->s + start_offset,
+            parser->cursor - start_offset, &d, parser->p, parser->xctx))
         {
-            afw_size_t n = parser->cursor - start_offset;
-            char *scratch;
-
-            scratch = afw_pool_malloc(parser->p, n + 1, parser->xctx);
-            memcpy(scratch, parser->full_source->s + start_offset, n);
-            scratch[n] = 0;
-            errno = 0;
-            parser->token->number = impl_double_literal(parser,
-                strtod(scratch, NULL));
+            goto error;
         }
-        if (errno != 0) goto error;
+        parser->token->number = impl_double_literal(parser, d);
     }
 
     return true;
@@ -1651,21 +1548,19 @@ error:
 }
 
 
-static afw_code_point_t
-impl_unescaped(afw_compile_parser_t *parser)
+/*
+ * The escape after '\' in a string or template string; o is the octet after
+ * the '\' and the cursor is after it. Set *cp and return true, or return
+ * false for a LineContinuation (a line terminator after '\'), which is no
+ * character.
+ */
+static afw_boolean_t
+impl_unescaped(afw_compile_parser_t *parser, afw_utf8_octet_t o,
+    afw_code_point_t *cp)
 {
-    afw_utf8_octet_t o;
-    afw_code_point_t cp, cp2;
     afw_size_t save_cursor;
     int hi, lo;
 
-    /* If escape, get next octet and break if eof.*/
-    o = afw_compile_get_octet(parser);
-    if (afw_compile_is_at_eof()) {
-        AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
-    }
-
-    /* Process based on octet after \. */
     switch (o) {
 
     case '"':
@@ -1673,109 +1568,114 @@ impl_unescaped(afw_compile_parser_t *parser)
     case '`':
     case '\\':
     case '/':
-        cp = o;
+        *cp = o;
         break;
 
     case 'b':
-        cp = AFW_ASCII_BS;
+        *cp = AFW_ASCII_BS;
         break;
 
     case 'f':
-        cp = AFW_ASCII_FF;
+        *cp = AFW_ASCII_FF;
         break;
 
     case 'n':
-        cp = AFW_ASCII_LF;
+        *cp = AFW_ASCII_LF;
         break;
 
     case 'r':
-        cp = AFW_ASCII_CR;
+        *cp = AFW_ASCII_CR;
         break;
 
     case 't':
-        cp = AFW_ASCII_HT;
+        *cp = AFW_ASCII_HT;
         break;
 
     case 'v':
-        cp = AFW_ASCII_VT;
+        *cp = AFW_ASCII_VT;
         break;
 
     case '0':
-        /* Null escape \0 when not followed by a digit. */
+        /*
+         * Null escape \0 when not followed by a digit. Digits after \0
+         * would be legacy octal, which Adaptive does not support.
+         */
         afw_compile_save_cursor(save_cursor);
         o = afw_compile_get_octet(parser);
         if (!afw_compile_is_at_eof() && o >= '0' && o <= '9') {
-            goto error;
+            AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
         }
         afw_compile_restore_cursor(save_cursor);
-        cp = 0;
+        *cp = 0;
         break;
 
     case 'x':
-        /* HexEscapeSequence \xHH. */
+        /* HexEscapeSequence \xHH (exactly two hex digits): U+0000-U+00FF. */
         hi = impl_get_HexDigit(parser);
         lo = impl_get_HexDigit(parser);
         if (hi < 0 || lo < 0) {
-            goto error;
+            AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
         }
-        cp = (afw_code_point_t)((hi << 4) | lo);
+        *cp = (afw_code_point_t)((hi << 4) | lo);
         break;
 
     case 'u':
-        /* Code point for /uxxxx. */
-        cp =
-            impl_get_required_HexDigit(parser) * 0x1000 +
-            impl_get_required_HexDigit(parser) * 0x100 +
-            impl_get_required_HexDigit(parser) * 0x10 +
-            impl_get_required_HexDigit(parser);
-
-        /* If code point is a utf-16 surrogate, it must be paired. */
-        if (cp >= 0xD800 && cp <= 0xDFFF) {
-            if (cp >= 0xDC00) goto error;
-            o = afw_compile_get_octet(parser);
-            if (o != '\\') goto error;
-            o = afw_compile_get_octet(parser);
-            if (o != 'u') goto error;
-            cp2 =
-                impl_get_required_HexDigit(parser) * 0x1000 +
-                impl_get_required_HexDigit(parser) * 0x100 +
-                impl_get_required_HexDigit(parser) * 0x10 +
-                impl_get_required_HexDigit(parser);
-            if (cp2 < 0xDC00 || cp2 > 0xDFFF) goto error;
-            cp = ((cp - 0xD800) << 10) + (cp2 - 0xDC00) + 0x10000;
-        }
-
+        *cp = impl_parse_u(parser);
         break;
 
-    default:
-        /* Identity NonEscapeSequence for non-digit characters. */
-        if (o >= '1' && o <= '9') {
-            goto error;
+    case AFW_ASCII_LF:
+        /* LineContinuation: LF. */
+        return false;
+
+    case AFW_ASCII_CR:
+        /* LineContinuation: CR or CR LF. */
+        afw_compile_save_cursor(save_cursor);
+        o = afw_compile_get_octet(parser);
+        if (afw_compile_is_at_eof() || o != AFW_ASCII_LF) {
+            afw_compile_restore_cursor(save_cursor);
         }
-        cp = o;
+        return false;
+
+    default:
+        /*
+         * NonEscapeSequence / identity escape: the character after '\'.
+         * Digits 1-9 are not identity escapes (legacy octal).
+         */
+        if (o >= '1' && o <= '9') {
+            AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+        }
+        if ((afw_octet_t)o < 0x80) {
+            *cp = o;
+            break;
+        }
+
+        /* A multi-octet character; LS and PS are a LineContinuation. */
+        parser->cursor--;
+        *cp = afw_compile_get_code_point();
+        if (*cp == 0x2028 || *cp == 0x2029) {
+            return false;
+        }
         break;
     }
 
-    return cp;
-
-error:
-    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+    return true;
 }
 
 
 
-afw_code_point_t
-afw_compile_get_unescaped_code_point_impl(afw_compile_parser_t *parser)
+afw_boolean_t
+afw_compile_get_escaped_code_point_impl(
+    afw_compile_parser_t *parser,
+    afw_code_point_t *cp)
 {
-    afw_code_point_t cp;
+    afw_utf8_octet_t o;
 
-    cp = afw_compile_get_code_point();
-
-    if (cp == '\\') {
-        cp = impl_unescaped(parser);
+    o = afw_compile_get_octet(parser);
+    if (afw_compile_is_at_eof()) {
+        AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
     }
 
-    return cp;
+    return impl_unescaped(parser, o, cp);
 }
 
 

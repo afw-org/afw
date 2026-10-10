@@ -621,6 +621,19 @@ afw_time_now_local(
 }
 
 
+/* Time zone offset east of UTC in minutes (0 when there is no time zone). */
+AFW_DEFINE(afw_integer_t)
+afw_time_zone_offset_minutes(const afw_time_zone_t *time_zone)
+{
+    if (time_zone->minutes == -1) {
+        return 0;
+    }
+    /* The sign is on hours; minutes are always 0-59. */
+    return (afw_integer_t)time_zone->hours * 60 +
+        ((time_zone->hours < 0) ? -time_zone->minutes : time_zone->minutes);
+}
+
+
 /* Convert time normalize to utc to microseconds. */
 AFW_DEFINE(afw_integer_t)
 afw_time_to_microseconds_utc(
@@ -633,10 +646,8 @@ afw_time_to_microseconds_utc(
         AFW_TIME_SECONDS_TO_MICROSECONDS(time->time.second) +
         time->time.microsecond;
 
-    if (time->time_zone.minutes != -1) {
-        result -= AFW_TIME_HOURS_TO_MICROSECONDS(time->time_zone.hours) +
-            AFW_TIME_MINUTES_TO_MICROSECONDS(time->time_zone.minutes);
-    }
+    result -= AFW_TIME_MINUTES_TO_MICROSECONDS(
+        afw_time_zone_offset_minutes(&time->time_zone));
 
     return result;
 }
@@ -1126,6 +1137,15 @@ afw_dayTimeDuration_internal_to_utf8(
     /* Next is always 'P'. */
     *c++ = 'P';
 
+    /* Zero is "PT0S" ("P" alone is not a dayTimeDuration). */
+    if (days == 0 && hours == 0 && minutes == 0 && seconds == 0 &&
+        microseconds == 0)
+    {
+        *c++ = 'T';
+        *c++ = '0';
+        *c++ = 'S';
+    }
+
     /* If hours, put number of hours followed by 'H'. */
     if (days != 0) {
         c += afw_number_integer_set_u8(days, c, end - c,
@@ -1396,6 +1416,12 @@ afw_yearMonthDuration_internal_to_utf8(
     /* Next is always 'P'. */
     *c++ = 'P';
 
+    /* Zero is "P0M" ("P" alone is not a yearMonthDuration). */
+    if (years == 0 && months == 0) {
+        *c++ = '0';
+        *c++ = 'M';
+    }
+
     /* If years, put number of years followed by 'Y'. */
     if (years != 0) {
         c += afw_number_integer_set_u8(years, c, end - c,
@@ -1498,12 +1524,29 @@ finished:
 }
 
 
+/*
+ * Days from 1970-01-01 to a civil date (proleptic Gregorian, negative
+ * years allowed; H. Hinnant's days_from_civil). Used to order instants.
+ */
+static afw_integer_t
+impl_days_from_civil(afw_integer_t y, afw_integer_t m, afw_integer_t d)
+{
+    afw_integer_t era, yoe, doy, doe;
+
+    y -= (m <= 2) ? 1 : 0;
+    era = (y >= 0 ? y : y - 399) / 400;
+    yoe = y - era * 400;
+    doy = (153 * (m + (m > 2 ? -3 : 9)) + 2) / 5 + d - 1;
+    doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+    return era * 146097 + doe - 719468;
+}
+
+
 AFW_DEFINE(int)
 afw_dateTime_compare(const afw_dateTime_t *v1, const afw_dateTime_t *v2,
     afw_xctx_t *xctx)
 {
-    afw_integer_t result;
-    afw_integer_t v1hour, v2hour, v1minute, v2minute;
+    afw_integer_t s1, s2, result;
 
     /* if only one value has a time zone then cannot compare */
     if ((v1->time_zone.minutes == -1 && v2->time_zone.minutes != -1) ||
@@ -1514,36 +1557,25 @@ afw_dateTime_compare(const afw_dateTime_t *v1, const afw_dateTime_t *v2,
             xctx);
     }
 
-
-    result = v1->date.year - v2->date.year;
-    if (result != 0) goto finished;
-    result = v1->date.month - v2->date.month;
-    if (result != 0) goto finished;
-    result = v1->date.day - v2->date.day;
-    if (result != 0) goto finished;
-    /* if different time zones, normalize the two times */
-    if (v1->time_zone.hours != v2->time_zone.hours ||
-        v1->time_zone.minutes != v2->time_zone.minutes) {
-        v1hour = v1->time.hour - v1->time_zone.hours;
-        v2hour = v2->time.hour - v2->time_zone.hours;
-        v1minute = v1->time.minute - v1->time_zone.minutes;
-        v2minute = v2->time.minute - v2->time_zone.minutes;
-        result = v1hour - v2hour;
-        if (result != 0) goto finished;
-        result = v1minute - v2minute;
-        if (result != 0) goto finished;
+    /*
+     * Compare the instants: seconds since the epoch in UTC (local when
+     * neither has a time zone), then microseconds. Comparing the local
+     * date first made equal instants on different local dates unequal.
+     */
+    s1 = (((impl_days_from_civil(v1->date.year, v1->date.month,
+        v1->date.day) * 24 + v1->time.hour) * 60 + v1->time.minute -
+        afw_time_zone_offset_minutes(&v1->time_zone)) * 60) +
+        v1->time.second;
+    s2 = (((impl_days_from_civil(v2->date.year, v2->date.month,
+        v2->date.day) * 24 + v2->time.hour) * 60 + v2->time.minute -
+        afw_time_zone_offset_minutes(&v2->time_zone)) * 60) +
+        v2->time.second;
+    result = s1 - s2;
+    if (result == 0) {
+        result = (afw_integer_t)v1->time.microsecond -
+            (afw_integer_t)v2->time.microsecond;
     }
-    else {
-        result = (afw_integer_t)v1->time.hour - (afw_integer_t)v2->time.hour;
-        if (result != 0) goto finished;
-        result = (afw_integer_t)v1->time.minute - (afw_integer_t)v2->time.minute;
-        if (result != 0) goto finished;
-    }
-    result = (afw_integer_t)v1->time.second - (afw_integer_t)v2->time.second;
-    if (result != 0) goto finished;
-    result = (afw_integer_t)v1->time.microsecond - (afw_integer_t)v2->time.microsecond;
 
-finished:
     return (result == 0) ? 0 : (result > 0) ? 1 : -1;
 }
 
@@ -1552,8 +1584,7 @@ AFW_DEFINE(int)
 afw_time_compare(const afw_time_t *v1, const afw_time_t *v2,
     afw_xctx_t *xctx)
 {
-    afw_integer_t result;
-    afw_integer_t v1hour, v2hour, v1minute, v2minute;
+    afw_integer_t s1, s2, result;
 
     /* if only one value has a time zone then cannot compare */
     if ((v1->time_zone.minutes == -1 && v2->time_zone.minutes != -1)||
@@ -1564,30 +1595,19 @@ afw_time_compare(const afw_time_t *v1, const afw_time_t *v2,
             xctx);
     }
 
-    /* if different time zones, normalize the two times */
-    if (v1->time_zone.hours != v2->time_zone.hours ||
-        v1->time_zone.minutes != v2->time_zone.minutes) {
-        v1hour = v1->time.hour + v1->time_zone.hours;
-        v2hour = v2->time.hour + v2->time_zone.hours;
-        v1minute = v1->time.minute + v1->time_zone.minutes;
-        v2minute = v2->time.minute + v2->time_zone.minutes;
-        result = v1hour - v2hour;
-        if (result != 0) goto finished;
-        result = v1minute - v2minute;
-        if (result != 0) goto finished;
-    }
-    else {
-        result = (afw_integer_t)v1->time.hour - (afw_integer_t)v2->time.hour;
-        if (result != 0) goto finished;
-        result = (afw_integer_t)v1->time.minute - (afw_integer_t)v2->time.minute;
-        if (result != 0) goto finished;
+    /* Compare as UTC on one reference day (the offset is subtracted). */
+    s1 = ((afw_integer_t)v1->time.hour * 60 + v1->time.minute -
+        afw_time_zone_offset_minutes(&v1->time_zone)) * 60 +
+        v1->time.second;
+    s2 = ((afw_integer_t)v2->time.hour * 60 + v2->time.minute -
+        afw_time_zone_offset_minutes(&v2->time_zone)) * 60 +
+        v2->time.second;
+    result = s1 - s2;
+    if (result == 0) {
+        result = (afw_integer_t)v1->time.microsecond -
+            (afw_integer_t)v2->time.microsecond;
     }
 
-    result = (afw_integer_t)v1->time.second - (afw_integer_t)v2->time.second;
-    if (result != 0) goto finished;
-    result = (afw_integer_t)v1->time.microsecond - (afw_integer_t)v2->time.microsecond;
- 
-finished:
     return (result == 0) ? 0 : (result > 0) ? 1 : -1;
 }
 
@@ -1597,8 +1617,13 @@ impl_fQuotient2(afw_integer_t a, unsigned int b)
 {
     afw_integer_t result;
 
+    /*
+     * Floor of a / b. C division truncates toward zero, so a negative a
+     * needs b - 1 more (not b: -60 / 60 is -1, not -2, which made
+     * modulo give 60 seconds, hour 24, or month 13).
+     */
     if (a < 0) {
-        result = (a - (afw_integer_t)b) / b;
+        result = (a - ((afw_integer_t)b - 1)) / (afw_integer_t)b;
     }
     else {
         result = a / b;
@@ -1665,6 +1690,7 @@ impl_normalize_dayTimeDuration(
     memset(to, 0, sizeof(*to));
     afw_integer_t days, minutes, hours;
 
+    to->microseconds = from->microseconds;
     to->seconds = from->seconds % 60;
 
     minutes = from->minutes + (from->seconds / 60);
@@ -1675,7 +1701,8 @@ impl_normalize_dayTimeDuration(
         AFW_THROW_ERROR_Z(general,
             "dayTimeDuration limit exceeded", xctx);
     }
-    to->hours = (afw_int32_t)hours;
+    /* Hours past a day go into days (PT36H is P1DT12H). */
+    to->hours = (afw_int32_t)(hours % 24);
 
     days = from->days + (hours / 24);
     if (days < AFW_INT32_MIN || days > AFW_INT32_MAX) {

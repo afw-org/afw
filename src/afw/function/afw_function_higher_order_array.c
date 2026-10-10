@@ -236,8 +236,7 @@ impl_bag_of_bag(
     afw_function_execute_t *x,
     afw_boolean_t all_1, afw_boolean_t all_2)
 {
-    const afw_value_array_t *array1, *array2, *arrayx;
-    const afw_data_type_t *data_type_1, *data_type_2;
+    const afw_value_array_t *array1, *array2;
     const afw_iterator_old_t *iterator1, *iterator2;
     const afw_value_t * f_argv[3];
     const afw_value_t *v;
@@ -254,30 +253,21 @@ impl_bag_of_bag(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 2, array);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 3, array);
 
-    /* Work off of any* variables. */
+    /*
+     * Outer quantifier over array1, inner over array2; the predicate gets
+     * a value from array1 then one from array2. any_of_all is "some value
+     * of array1 with every value of array2" (XACML any-of-all:
+     * any_of_all(gt, [3, 5], [1, 2]) is true). It swapped the arrays,
+     * which also swapped the predicate's arguments, and returned false.
+     *
+     * The predicate decides about each pair, so the arrays need no data
+     * type, as in ECMAScript every / some: an empty literal [] or a mixed
+     * array is fine ("array1 and array2 must both be typed"). Over no
+     * values, "all" is true and "any" is false.
+     */
     any_1 = !all_1;
     any_2 = !all_2;
-
-    /* If any_of_all, reverse bags and any* values. */
-    if (!all_1 && all_2) {
-        arrayx = array1;
-        array1 = array2;
-        array2 = arrayx;
-        any_1 = !all_2;
-        any_2 = !all_1;
-    }
-
-    /* Get required data type from each array. */
-    data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
-    data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
-    if (!data_type_1 || !data_type_2) {
-        AFW_THROW_ERROR_Z(general,
-            "array1 and array2 must both be typed",
-            x->xctx);
-    }
-
-    /* Call function for each combination of bag1 and bag2 entries. */
-    is_true = true;
+    is_true = all_1;
 
     /* Visit the entries there at the start (see impl_over_array). */
     remaining1 = afw_array_get_count(array1->internal, x->xctx);
@@ -287,7 +277,7 @@ impl_bag_of_bag(
         if (!f_argv[1]) {
             break;
         }
-        is_true = true;
+        is_true = all_2;
         remaining2 = afw_array_get_count(array2->internal, x->xctx);
         for (iterator2 = NULL; remaining2 > 0; remaining2--) {
             f_argv[2] = afw_array_get_next_value(array2->internal,
@@ -520,8 +510,8 @@ afw_function_execute_any_of(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Returns true if the result of calling predicate with all of the combination
- * of values from array2 and any of the values of array1 returns true.
+ * Returns true if, for at least one value of array1, the predicate returns true
+ * with every value of array2 (the predicate gets the value from array1 first).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -932,10 +922,16 @@ afw_function_execute_reduce(
 
 
 
+/* A value to sort and where it was, so equal values keep their order. */
+typedef struct {
+    const afw_value_t *value;
+    afw_size_t index;
+} impl_sort_entry_t;
+
 typedef struct {
     const afw_value_t *compareFunction;
     const afw_value_t *args[3];
-    const afw_value_t **values;
+    const impl_sort_entry_t **entries;
     afw_size_t count;
     const afw_pool_t *p;
     afw_xctx_t *xctx;
@@ -955,22 +951,29 @@ impl_sort_before(impl_sort_ctx_t *ctx, const void *first, const void *second)
     return ((const afw_value_boolean_t *)return_value)->internal;
 }
 
-/* Neither direction true means the two values are equal. */
+/*
+ * Neither direction true means the two values are equal; then the one
+ * that came first stays first (a stable sort, as in ECMAScript).
+ */
 static int
 impl_sort_compare(const void *a, const void *b, void *data)
 {
     impl_sort_ctx_t *ctx = data;
+    const impl_sort_entry_t *ea = a;
+    const impl_sort_entry_t *eb = b;
 
-    if (a == b) {
+    if (ea == eb) {
         return 0;
     }
-    if (impl_sort_before(ctx, a, b)) {
-        return -1;
+    if (ea->value != eb->value) {
+        if (impl_sort_before(ctx, ea->value, eb->value)) {
+            return -1;
+        }
+        if (impl_sort_before(ctx, eb->value, ea->value)) {
+            return 1;
+        }
     }
-    if (impl_sort_before(ctx, b, a)) {
-        return 1;
-    }
-    return 0;
+    return (ea->index < eb->index) ? -1 : 1;
 }
 
 /*
@@ -981,10 +984,11 @@ impl_sort_compare(const void *a, const void *b, void *data)
  * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array with the same entries as array, ordered using
- * compareFunction. The array must have a single element data type (for example
- * all integers or all strings); mixed or empty untyped arrays are not accepted.
- * compareFunction is called with two entries and must return true when the
- * first should sort before the second (boolean), not a numeric sort key.
+ * compareFunction. Entries that compare equal keep their order (a stable sort).
+ * The array may hold any mix of data types, as compareFunction decides the
+ * order; the result has the array's data type, if it has one. compareFunction
+ * is called with two entries and must return true when the first should sort
+ * before the second (boolean), not a numeric sort key.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1020,6 +1024,7 @@ afw_function_execute_sort(
     const afw_iterator_old_t *iterator;
     afw_size_t i;
     impl_sort_ctx_t ctx;
+    impl_sort_entry_t *entry;
 
     /* Initialize sort ctx. */
     afw_memory_clear(&ctx);
@@ -1033,30 +1038,42 @@ afw_function_execute_sort(
         2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 2, array);
 
-    /* Get the data type and count.  If count is 0, return empty array. */
+    /*
+     * The compare function orders the values, so the array needs no data
+     * type, as in ECMAScript: an empty literal [] sorts to [] and a mixed
+     * array sorts by the function ("sort() requires array to be typed").
+     * The result has the array's data type, or none.
+     */
     data_type = afw_array_get_data_type(array->internal, ctx.xctx);
-    if (!data_type) {
-        AFW_THROW_ERROR_Z(general,
-            "sort() requires array to be typed", ctx.xctx);
-    }
     ctx.count = afw_array_get_count(array->internal, ctx.xctx);
-    if (ctx.count == 0) {
+    if (ctx.count == 0 && data_type) {
         return data_type->empty_array_value;
     }
 
-    /* Make array of pointers to values. Exactly count; no NULL slot. */
-    ctx.values = afw_pool_malloc(ctx.p,
-        sizeof(const afw_value_t *) * ctx.count, ctx.xctx);
+    /* An untyped empty array: an empty untyped result. */
+    if (ctx.count == 0) {
+        return afw_pool_scope_release_value_at_cleanup(
+            afw_array_create_managed(NULL, ctx.p, ctx.xctx)->value,
+            ctx.p, ctx.xctx);
+    }
+
+    /* Entries (value and position) and pointers to them to sort. */
+    entry = afw_pool_malloc(ctx.p,
+        sizeof(impl_sort_entry_t) * ctx.count, ctx.xctx);
+    ctx.entries = afw_pool_malloc(ctx.p,
+        sizeof(const impl_sort_entry_t *) * ctx.count, ctx.xctx);
     for (iterator = NULL, i = 0; i < ctx.count; i++) {
-        ctx.values[i] = afw_array_get_next_value(array->internal,
+        entry[i].value = afw_array_get_next_value(array->internal,
             &iterator, ctx.xctx);
+        entry[i].index = i;
+        ctx.entries[i] = &entry[i];
     }
 
     /*
      * True from compareFunction means the first value comes first.
      * False in both directions means the values are equal.
      */
-    afw_sort((const void **)ctx.values, ctx.count,
+    afw_sort((const void **)ctx.entries, ctx.count,
         impl_sort_compare, &ctx);
 
     /* New array: create_managed RC 1. Last-release of that hold on dest p. */
@@ -1065,7 +1082,8 @@ afw_function_execute_sort(
             afw_array_create_managed(data_type, ctx.p, ctx.xctx)->value,
             ctx.p, ctx.xctx);
     for (i = 0; i < ctx.count; i++) {
-        afw_array_push_value(result->internal, ctx.values[i], ctx.xctx);
+        afw_array_push_value(result->internal, ctx.entries[i]->value,
+            ctx.xctx);
     }
     return &result->pub;
 }

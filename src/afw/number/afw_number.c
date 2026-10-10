@@ -14,7 +14,71 @@
 #include "afw_internal.h"
 #include <float.h>
 #include <string.h>
+#include <math.h>
 #include <errno.h>
+
+/* strtod of text the caller has already checked the syntax of. */
+AFW_DEFINE(afw_boolean_t)
+afw_number_strtod(
+    const afw_utf8_octet_t *s, afw_size_t len,
+    afw_double_t *d,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    char buffer[64];
+    char *scratch;
+
+    scratch = (len < sizeof(buffer))
+        ? buffer
+        : afw_pool_malloc(p, len + 1, xctx);
+    memcpy(scratch, s, len);
+    scratch[len] = 0;
+    errno = 0;
+    *d = strtod(scratch, NULL);
+
+    /*
+     * ERANGE is an error for overflow and for underflow to 0, not for a
+     * subnormal result (glibc sets it for those too).
+     */
+    return errno == 0 ||
+        (errno == ERANGE && *d != 0.0 && afw_number_is_finite(*d));
+}
+
+
+/* Fewest significant digits that read back as the same finite double. */
+AFW_DEFINE(int)
+afw_number_double_shortest_digits(afw_double_t d)
+{
+    char s[32];
+    char *e;
+    int digits;
+
+    /*
+     * Any decimal of 15 or fewer digits survives a round trip through a
+     * normal double (DBL_DIG), so if one reads back as d, 15 digits print
+     * it padded with zeros, which are not needed. Otherwise 16 digits,
+     * then 17, which always reads back. A subnormal has fewer digits of
+     * precision (5e-324 is 4.94065645841247E-324 in 15), so it tries every
+     * length.
+     */
+    digits = (d != 0.0 && fabs(d) < DBL_MIN) ? 1 : 15;
+    for (; digits < 17; digits++) {
+        sprintf(s, "%.*E", digits - 1, d);
+        if (strtod(s, NULL) == d) {
+            break;
+        }
+    }
+    if (digits == 17) {
+        return 17;
+    }
+
+    /* Trailing zeros of the mantissa are not needed digits. */
+    for (e = strchr(s, 'E'); digits > 1 && e[-1] == '0'; e--) {
+        digits--;
+    }
+
+    return digits;
+}
+
 
 /* Convert a double to utf8 in specified pool. */
 AFW_DEFINE(const afw_utf8_t *)
@@ -62,25 +126,39 @@ afw_number_double_to_utf8(
     char dst[32];
     char *pdst = &dst[0];
     char *epos;
+    const char *exponent;
 
     if (afw_number_is_finite(d)) {
-        sprintf(s, "%#.16E", d);
 
-        /* remove '+' and leading zero if any after 'E' inserted by sprintf */
-        strcpy(pdst, s);
-        epos = strchr(pdst, 'E');
+        /*
+         * The fewest digits that read back as the same double: 0.1 is
+         * 1.0E-1 (it was always 17 digits, 1.0000000000000001E-1).
+         */
+        sprintf(s, "%#.*E", afw_number_double_shortest_digits(d) - 1, d);
 
-        for (i = epos - dst; dst[i] != '\0'; i++) {
-            if (dst[i] == '0' || dst[i] == '+')  continue;
-            else  pdst[0] = dst[i];
-            pdst++;
+        /*
+         * Exponent: drop the '+' and the leading zeros sprintf writes,
+         * and only those (E+05 is E5, E+10 stays E10, E-308 stays E-308,
+         * E+00 is E0).
+         */
+        epos = strchr(s, 'E');
+        exponent = epos + 1;
+        *pdst++ = 'E';
+        if (*exponent == '-') {
+            *pdst++ = *exponent++;
         }
-
-        /* make sure it is null terminated */
-        pdst[0] = '\0';
-
-        if (strlen(dst)==1) 
+        else if (*exponent == '+') {
+            exponent++;
+        }
+        while (*exponent == '0') {
+            exponent++;
+        }
+        if (*exponent == '\0') {
             strcpy(dst, AFW_NUMBER_Q_EXPONENT_ZERO);
+        }
+        else {
+            strcpy(pdst, exponent);
+        }
 
         /* Find most significant digits without trailing zeroes before 'E' */
         epos = strchr(s, 'E');
@@ -418,17 +496,12 @@ afw_number_parse(
      */
     if (is_double) *is_double = true;
     if (!d) return -1;
-    number = 0;
+    /* Zero keeps its sign (-0.0). */
+    number = (is_negative) ? -0.0 : 0.0;
     if (!zero) {
-        afw_size_t n = (afw_size_t)(c - cursor);
-        char *scratch;
-
-        scratch = afw_pool_malloc(p, n + 1, xctx);
-        memcpy(scratch, cursor, n);
-        scratch[n] = 0;
-        errno = 0;
-        number = strtod(scratch, NULL);
-        if (errno != 0) {
+        if (!afw_number_strtod(cursor, (afw_size_t)(c - cursor),
+            &number, p, xctx))
+        {
             return -1;
         }
     }

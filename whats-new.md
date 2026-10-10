@@ -218,6 +218,48 @@ LMDB with more than one environment (several LMDB adapters, or a model mapped to
 
 Deeply nested data built at runtime ([#482](https://github.com/afw-org/afw/issues/482)): releasing it no longer recurses once per level (an array or object releases its elements directly up to 256 nested levels, then defers the rest and releases them in a loop), so any depth can be built and dropped. `stringify`, `decompile`, `string`, `==`, `===`, and `clone` of data deeper than the C stack allows fail with **"C stack headroom exhausted"** instead of crashing.
 
+## Data types, language, and CLI (overnight 2026-10-10)
+
+Found by differential checks against node, Python, and the XACML examples. Behavior changes are marked **changed**.
+
+**Numbers**
+
+- **Double text** (**changed**): `string()`, `stringify()`, and JSON output write a double in the fewest digits that read back as the same value: `0.1` is `1.0E-1` (it was always 17 digits, `1.0000000000000001E-1`). Every `0` in the exponent was dropped: `1e10` printed as `1.0E1` (ten), `1e100` as `1.0E1`; only the `+` and the exponent's leading zeros are dropped now (`1.0E10`, `0.0E0`).
+- **Number literals:** a double literal whose integer part is too large for an integer (`99999999999999999999.5`) and a subnormal (`5e-324`) compile; they were *Integer is out of range* and *Invalid number*. `9223372036854775808` (2^63) is *Integer is out of range* like any larger integer (it was *Invalid number*); `-9223372036854775808` still compiles.
+- **`double()` of a string:** a subnormal (`double("4.9E-324")`) was *Invalid double*, and `double("-0.0")` lost its sign.
+
+**Dates, times, and durations**
+
+- **Compare by instant across time zones:** `dateTime("1932-04-02T02:54:04+05:30") == dateTime("1932-04-01T16:24:04-05:00")` was false (the local dates were compared first), and `lt` / `gt` could be wrong whenever two values had different offsets; `time` with different offsets added the offset instead of subtracting it; `in_range<time>` took `05:00:00-05:30` as 09:30Z, not 10:30Z. All use the UTC instant now. Comparing a value that has a time zone with one that has none is still an error.
+- **`dayTimeDuration` compares by length:** hours past a day were not folded into days (`P1DT32H78M108S` was less than `P2DT1H`), and fractional seconds were ignored (`PT1.5S == PT1.6S` was true).
+- **Arithmetic borrows correctly:** subtracting a duration that borrowed exactly a whole minute, hour, day, or year could give second `60`, minute `60`, hour `24`, or month `13` (`subtract_dayTimeDuration<dateTime>("…T14:59:32Z", "P189DT15H81M92S")` was `…T22:36:60Z`).
+- **Zero durations** (**changed**): a zero `dayTimeDuration` prints `PT0S` and a zero `yearMonthDuration` `P0M`; both printed `P`, which their constructors (and a JSON reader) reject.
+
+**Strings**
+
+- **`split` keeps empty pieces** (**changed**), as in ECMAScript: one more piece than separators. `split("a,", ",")` is `["a", ""]` (was `["a"]`), and `split("", ",")` is `[""]` (was `[]`).
+- **Escapes:** strings and template strings read escapes the same way. In a template, an escaped grave accent (`` `a\`b` ``) ended the template, `\u{...}` was *Invalid hex digit*, an escaped `$` or `#` could open a substitution, and a backslash at the end of a line kept the newline. In a string, `"\xE9"` was a compile error (*Not valid UTF-8*); it is `é`.
+- **JSON output of control characters** (**changed**): bell (U+0007) was written `\b`, the escape for backspace, so a JSON reader got a different character back. Bell is `\u0007` and backspace `\b`.
+
+**Arrays**
+
+- **`sort` is stable** (**changed**): entries the compare function treats as equal keep their order, as in ECMAScript.
+- **`sort`, `all_of_all`, `all_of_any`, `any_of_all`, `any_of_any` take any array**, as in ECMAScript: the function you pass decides, so an empty literal `[]` or a mixed array is fine (they threw *sort() requires array to be typed* / *array1 and array2 must both be typed*). Over an empty array "all" is `true` and "any" is `false` (`any_of_any(f, [], [1])` was `true`).
+- **`any_of_all(f, a, b)`** (**changed**) is true when some value of `a` gives `true` with every value of `b`, `f` getting the `a` value first, as its description and XACML say: `any_of_all(gt<integer>, [3, 5], [1, 2])` was `false` (the arrays and `f`'s arguments were swapped).
+- **Set functions:** an empty literal `[]` is an empty set of the function's data type: `subset<string>([], ["a"])` is `true`, and `union` / `intersection` / `set_equals` accept `[]` (they threw *must have a data type*).
+
+**URIs and objects**
+
+- **`parse_uri` authority:** `http://user:pw@host/` was a parse error, and a query or fragment right after the host or port was taken as part of the host (`parse_uri("http://h?x=1").host` was `h?x=1`) or was an error (`http://h:80?x`). They split as RFC 3986 says. `normalizedURI` decodes only unreserved characters (**changed**): `http://h/a%2Fb` was normalized to `http://h/a/b`, a different path.
+- **`modify_object`:** `remove_value` of a property's only value removes the property (the object kept it as `null`). `remove_property` through a value that is not an object does nothing, as when the path is missing (it threw a typesafe error); `set_property` / `add_value` through one says *Property 'a' in the path is not an object*.
+
+**Errors, compile, and CLI**
+
+- A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are those of the error in the whole source. They were counted inside the text of the expression that threw, so almost every error said line 1.
+- **`decompile`** of a function with an empty body recompiles (it wrote `{}`, an object).
+- **Memory:** compiling a script that declares names (`compile<script>(script("let x = 1; …"))` in a loop) no longer grows memory by about 1 KB each.
+- **`afw -e A -e B`** loads both extensions (a second `-e` replaced the first).
+
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 
 A get or retrieve on an adapter that is not running starts it. When another request finished that start first, the read threw `can not be started.  Service is running`. It now uses the running adapter. A manual `service_start()` of a running service still throws.
