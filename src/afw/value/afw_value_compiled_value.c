@@ -352,7 +352,12 @@ impl_mt_get_assignable_value(
 #define impl_afw_value_get_for_p_lifetime afw_value_counted_get_for_p_lifetime
 #define impl_afw_value_for_each_reference afw_value_no_references_for_each
 #define impl_afw_value_release_references afw_value_no_references_release_references
-#define impl_afw_value_get_counted afw_value_self_get_counted
+/*
+ * Not a cycle-collector node: closures on many threads reference this
+ * unit, so one xctx's collector must not read its count (it changes
+ * atomically on other threads) or count it as garbage.
+ */
+#define impl_afw_value_get_counted afw_value_not_counted_get_counted
 
 #define AFW_VALUE_INF_ONLY 1
 #define AFW_IMPLEMENTATION_ID "compiled_value_multithreaded"
