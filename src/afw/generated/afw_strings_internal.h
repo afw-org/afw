@@ -55,32 +55,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__000c4405fc88 \
-    "Object id including each property name preceded by a dot if embedded object reference"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__000c4405fc88 */
-#define afw_s_zz__000c4405fc88 \
-    (&afw_self_v_zz__000c4405fc88.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__000c4405fc88 */
-#define afw_self_s_zz__000c4405fc88 \
-    (afw_self_v_zz__000c4405fc88.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__000c4405fc88 */
-extern const afw_value_string_t \
-    afw_self_v_zz__000c4405fc88;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__000c4405fc88 */
-#define afw_z_zz__000c4405fc88 \
-    (afw_self_v_zz__000c4405fc88.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__000c4405fc88 */
-#define afw_v_zz__000c4405fc88 \
-    (&afw_self_v_zz__000c4405fc88.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__000e26ca0f91 \
     "Placeholder connection interface (not fully developed). Do not build\n      new features on this without checking current core status.\n      Call methods via afw_connection_*() macros if present."
 
@@ -11573,32 +11547,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2f5025619143 \
-    "Object id including each property name preceded by a dot if embedded object reference."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2f5025619143 */
-#define afw_s_zz__2f5025619143 \
-    (&afw_self_v_zz__2f5025619143.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2f5025619143 */
-#define afw_self_s_zz__2f5025619143 \
-    (afw_self_v_zz__2f5025619143.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2f5025619143 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2f5025619143;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2f5025619143 */
-#define afw_z_zz__2f5025619143 \
-    (afw_self_v_zz__2f5025619143.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2f5025619143 */
-#define afw_v_zz__2f5025619143 \
-    (&afw_self_v_zz__2f5025619143.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2f8ba053a3ea \
     "This is the maximum number of splits. Any remaining part of value is ignored."
 
@@ -16145,6 +16093,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__443b72c2ee87 */
 #define afw_v_zz__443b72c2ee87 \
     (&afw_self_v_zz__443b72c2ee87.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__448094b3a320 \
+    "The URIs are adaptive value paths. If one of the URIs begins with a single slash '/', both must, and each URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId/propertyName)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__448094b3a320 */
+#define afw_s_zz__448094b3a320 \
+    (&afw_self_v_zz__448094b3a320.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__448094b3a320 */
+#define afw_self_s_zz__448094b3a320 \
+    (afw_self_v_zz__448094b3a320.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__448094b3a320 */
+extern const afw_value_string_t \
+    afw_self_v_zz__448094b3a320;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__448094b3a320 */
+#define afw_z_zz__448094b3a320 \
+    (afw_self_v_zz__448094b3a320.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__448094b3a320 */
+#define afw_v_zz__448094b3a320 \
+    (&afw_self_v_zz__448094b3a320.pub)
 
 
 
@@ -24469,6 +24443,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__654455a52f5d \
+    "Object id, percent-encoded, including each property name preceded by a slash if embedded object reference"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__654455a52f5d */
+#define afw_s_zz__654455a52f5d \
+    (&afw_self_v_zz__654455a52f5d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__654455a52f5d */
+#define afw_self_s_zz__654455a52f5d \
+    (afw_self_v_zz__654455a52f5d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__654455a52f5d */
+extern const afw_value_string_t \
+    afw_self_v_zz__654455a52f5d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__654455a52f5d */
+#define afw_z_zz__654455a52f5d \
+    (afw_self_v_zz__654455a52f5d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__654455a52f5d */
+#define afw_v_zz__654455a52f5d \
+    (&afw_self_v_zz__654455a52f5d.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__65503f24612a \
     "Returns an array of boolean with the values that are common to both array of boolean array1 and array2."
 
@@ -30783,6 +30783,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7fbe81b7d2f8 */
 #define afw_v_zz__7fbe81b7d2f8 \
     (&afw_self_v_zz__7fbe81b7d2f8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__7fc5a990ea59 \
+    "Object id, percent-encoded, including each property name preceded by a slash if embedded object reference."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7fc5a990ea59 */
+#define afw_s_zz__7fc5a990ea59 \
+    (&afw_self_v_zz__7fc5a990ea59.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7fc5a990ea59 */
+#define afw_self_s_zz__7fc5a990ea59 \
+    (afw_self_v_zz__7fc5a990ea59.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7fc5a990ea59 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7fc5a990ea59;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7fc5a990ea59 */
+#define afw_z_zz__7fc5a990ea59 \
+    (afw_self_v_zz__7fc5a990ea59.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7fc5a990ea59 */
+#define afw_v_zz__7fc5a990ea59 \
+    (&afw_self_v_zz__7fc5a990ea59.pub)
 
 
 
@@ -37283,32 +37309,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__99bf817631ef */
 #define afw_v_zz__99bf817631ef \
     (&afw_self_v_zz__99bf817631ef.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__99ce50723783 \
-    "The URIs are adaptive value paths. If one of the URIs begins with a single slash '/', both must, and each URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId.propertyNames)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__99ce50723783 */
-#define afw_s_zz__99ce50723783 \
-    (&afw_self_v_zz__99ce50723783.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__99ce50723783 */
-#define afw_self_s_zz__99ce50723783 \
-    (afw_self_v_zz__99ce50723783.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__99ce50723783 */
-extern const afw_value_string_t \
-    afw_self_v_zz__99ce50723783;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__99ce50723783 */
-#define afw_z_zz__99ce50723783 \
-    (afw_self_v_zz__99ce50723783.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__99ce50723783 */
-#define afw_v_zz__99ce50723783 \
-    (&afw_self_v_zz__99ce50723783.pub)
 
 
 
@@ -130185,32 +130185,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__aea614ccd283 \
-    "The URI is an adaptive value path. If the path begins with a single slash '/', the URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId.propertyNames)"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__aea614ccd283 */
-#define afw_s_zz__aea614ccd283 \
-    (&afw_self_v_zz__aea614ccd283.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__aea614ccd283 */
-#define afw_self_s_zz__aea614ccd283 \
-    (afw_self_v_zz__aea614ccd283.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__aea614ccd283 */
-extern const afw_value_string_t \
-    afw_self_v_zz__aea614ccd283;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__aea614ccd283 */
-#define afw_z_zz__aea614ccd283 \
-    (afw_self_v_zz__aea614ccd283.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__aea614ccd283 */
-#define afw_v_zz__aea614ccd283 \
-    (&afw_self_v_zz__aea614ccd283.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__aedec8b825c0 \
     "Subtract integer arg2 from integer arg1 and return the integer result."
 
@@ -131065,6 +131039,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b1c247840711 */
 #define afw_v_zz__b1c247840711 \
     (&afw_self_v_zz__b1c247840711.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b1c8cbeef689 \
+    "Adaptive value path: /adapterId/objectType/objectId/propertyName/... Each part between slashes may hold any RFC 3986 pchar, so a raw ':', '@' or sub-delim is part of an id, and percent-encoded octets are decoded. A part that is exactly '*' is substituted from the current path, and '**' as the object id substitutes the entire object id, including property names; any other '*' is literal. A ';' right after the object type starts options (;name=value&name)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b1c8cbeef689 */
+#define afw_s_zz__b1c8cbeef689 \
+    (&afw_self_v_zz__b1c8cbeef689.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b1c8cbeef689 */
+#define afw_self_s_zz__b1c8cbeef689 \
+    (afw_self_v_zz__b1c8cbeef689.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b1c8cbeef689 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b1c8cbeef689;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b1c8cbeef689 */
+#define afw_z_zz__b1c8cbeef689 \
+    (afw_self_v_zz__b1c8cbeef689.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b1c8cbeef689 */
+#define afw_v_zz__b1c8cbeef689 \
+    (&afw_self_v_zz__b1c8cbeef689.pub)
 
 
 
@@ -152333,6 +152333,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f9e4ce0478e2 */
 #define afw_v_zz__f9e4ce0478e2 \
     (&afw_self_v_zz__f9e4ce0478e2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__f9e4dfd0834b \
+    "The URI is an adaptive value path. If the path begins with a single slash '/', the URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId/propertyName)"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f9e4dfd0834b */
+#define afw_s_zz__f9e4dfd0834b \
+    (&afw_self_v_zz__f9e4dfd0834b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f9e4dfd0834b */
+#define afw_self_s_zz__f9e4dfd0834b \
+    (afw_self_v_zz__f9e4dfd0834b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f9e4dfd0834b */
+extern const afw_value_string_t \
+    afw_self_v_zz__f9e4dfd0834b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f9e4dfd0834b */
+#define afw_z_zz__f9e4dfd0834b \
+    (afw_self_v_zz__f9e4dfd0834b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f9e4dfd0834b */
+#define afw_v_zz__f9e4dfd0834b \
+    (&afw_self_v_zz__f9e4dfd0834b.pub)
 
 
 
