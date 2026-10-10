@@ -1206,6 +1206,29 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 
 
 /*
+ * The body of a loop or an if/else that is not a Block. As in TypeScript,
+ * it can not be a declaration (let, const, function): its name would
+ * belong to no block the reader can see.
+ */
+static const afw_value_t *
+impl_parse_single_statement(afw_compile_parser_t *parser)
+{
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier() &&
+        (afw_compile_token_is_name(afw_v_let) ||
+        afw_compile_token_is_name(afw_v_const) ||
+        afw_compile_token_is_name(afw_v_function)))
+    {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "'%ku' declarations can only be declared inside a block",
+            &parser->token->identifier_name->internal);
+    }
+    afw_compile_reuse_token();
+    return afw_compile_parse_Statement(parser, NULL);
+}
+
+
+/*
  * Loop body is a `{ }` at compile. Unbraced Statement is wrapped so each
  * trip has a frame (temps die with it). keep_empty: an empty body is still
  * a `{ }` because the trip runs in it (while, do while, a for or for-of
@@ -1213,17 +1236,15 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
  * of the head's block, so an empty body is NULL. `if` is not wrapped.
  * Surface syntax is still Statement.
  *
- * A let, const, or function declaration body is parsed in the current
- * block so `for (let x of []) let x = 1` is still "already defined" and
- * the name is seen after the loop, then wrapped in a 0-symbol `{ }`. Any
- * other unbraced statement is parsed in that `{ }`.
+ * An unbraced Statement is parsed in that `{ }`; it can not be a
+ * declaration (impl_parse_single_statement).
  */
 static const afw_value_t *
 impl_parse_loop_body(afw_compile_parser_t *parser, afw_boolean_t keep_empty)
 {
     const afw_value_t *statement;
     const afw_value_block_t *block;
-    afw_boolean_t in_current_block;
+    afw_boolean_t is_empty;
     const afw_value_t **argv;
     afw_size_t start_offset;
 
@@ -1241,32 +1262,21 @@ impl_parse_loop_body(afw_compile_parser_t *parser, afw_boolean_t keep_empty)
         afw_compile_parse_pop_value_block(parser);
         return &block->pub;
     }
-    in_current_block = afw_compile_token_is(semicolon) ||
-        afw_compile_token_is_name(afw_v_let) ||
-        afw_compile_token_is_name(afw_v_const) ||
-        afw_compile_token_is_name(afw_v_function);
+    is_empty = afw_compile_token_is(semicolon);
     afw_compile_reuse_token();
 
     /*
-     * A let, const, or function body declares in the current block (see
-     * above), and `;` has nothing to parse. Any other statement is parsed
-     * in the body's block, where it runs, so a nested loop's head or `{ }`
-     * and a function in it all have the body as their parent.
-     *
-     * The block has to be chosen before parsing: a declaration gets its
-     * slot in the current block as it is parsed, and every reference to
-     * it holds that block and index. So this looks at the first token for
-     * the statements that declare a name: let, const, and function (a
-     * named function statement is a const). A new statement that declares
-     * a name must be added here.
+     * Parsed in the body's block, where it runs, so a nested loop's head
+     * or `{ }` and a function in it all have the body as their parent.
+     * `;` has nothing to parse.
      */
     block = NULL;
-    if (!in_current_block) {
+    if (!is_empty) {
         block = afw_compile_parse_link_new_value_block(parser,
             start_offset);
     }
-    statement = afw_compile_parse_Statement(parser, NULL);
-    if (!statement && !keep_empty) {
+    statement = impl_parse_single_statement(parser);
+    if (!statement && !keep_empty && !block) {
         return NULL;
     }
     if (!block) {
@@ -1628,14 +1638,14 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
     }
 
     /* statement and optional else statement. */
-    then = afw_compile_parse_Statement(parser, NULL);
+    then = impl_parse_single_statement(parser);
     otherwise = NULL;
 
     afw_compile_get_token();
     if (afw_compile_token_is_unqualified_identifier()) {
         if (afw_compile_token_is_name(afw_v_else))
         {
-            otherwise = afw_compile_parse_Statement(parser, NULL);
+            otherwise = impl_parse_single_statement(parser);
         }
         else {
             afw_compile_reuse_token();
@@ -2200,6 +2210,8 @@ impl_parse_WhileStatement(
  *
  *# BreakStatement and ContinueStatement can only be in a loop.
  *# LabeledStatement is only for / while / do (issue #62). Not blocks or if.
+ *# The Statement of a loop, if, or else that is not a Block can not be a
+ *# LetStatement, ConstStatement, or FunctionStatement (as in TypeScript).
  *
  * LabeledStatement ::= Identifier ':' (
  *     ForStatement | WhileStatement | DoWhileStatement )

@@ -58,8 +58,8 @@ return 0;
 //?
 //? test: for-of-unbraced-let-same-name
 //? description: ...
-unbraced `let x` body of `for (let x of [])` is the same block
-as the for-of binding (`'x' already defined`), not a nested `{ }`.
+an unbraced `let` body of `for (let x of [])` is an error: a declaration
+can only be in a block.
 //? expect: error
 //? source: ...
 
@@ -113,13 +113,26 @@ assert(stringify(map(function (f) { return f(); }, fs)) === "[0,1,2,7,8]");
 return 0;
 
 //?
-//? test: unbraced-declarations-in-enclosing-block
-//? description: a let, const, or function unbraced body declares in the enclosing block
+//? test: unbraced-declaration-is-an-error
+//? description: a let, const, or function can not be the unbraced body of a loop or if/else
 //? expect: 0
 //? source: ...
 
-do let y = 3; while (false);
-do const z = 4; while (false);
-do function f() { return 7; } while (false);
-assert(y + z + f() === 14);
+const check = function (src, word) {
+    try {
+        compile<script>(script(src));
+    }
+    catch (e) {
+        assert(includes<string>(e.message, "'" + word +
+            "' declarations can only be declared inside a block"), e.message);
+        return;
+    }
+    assert(false, "no error from " + src);
+};
+check("while (false) let y = 3;", "let");
+check("do const z = 4; while (false);", "const");
+check("for (const x of [1]) function f() { return 7; }", "function");
+check("for (let i = 0; i < 1; i = i + 1) let y = i;", "let");
+check("if (true) const w = 5;", "const");
+check("if (false) { } else let v = 1;", "let");
 return 0;

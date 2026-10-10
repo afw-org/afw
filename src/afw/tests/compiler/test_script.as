@@ -73,12 +73,10 @@ assert(result.passed === false);
 //? expect: undefined
 //? source: ...
 
-// this test may actually fail in the future, so we should 
-// change or remove it later, if we implement it
 const result = test_script(
     "expect-error-fails-undefined", 
     "expect an error and it returns undefined", 
-    "#!/usr/bin/env afw\n\nfor (let x of []) const y = null;",
+    "#!/usr/bin/env afw\n\nfor (let x of []) { const y = null; }",
     "error"
 );
 assert(result.passed === false);

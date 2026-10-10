@@ -210,7 +210,9 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-for (; false; ) let
-x : integer = 1;
+let x: integer;
+
+for (; false; ) x
+= 1;
 
 return 0;

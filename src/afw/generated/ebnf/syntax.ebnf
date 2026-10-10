@@ -755,6 +755,8 @@ EvaluationThatCompilesToCallValue ::= Evaluation
 CallStatement ::= EvaluationThatCompilesToCallValue
 /* BreakStatement and ContinueStatement can only be in a loop.                */
 /* LabeledStatement is only for / while / do (issue #62). Not blocks or if.   */
+/* The Statement of a loop, if, or else that is not a Block can not be a      */
+/* LetStatement, ConstStatement, or FunctionStatement (as in TypeScript).     */
 
 LabeledStatement ::= Identifier ':' (
     ForStatement | WhileStatement | DoWhileStatement )

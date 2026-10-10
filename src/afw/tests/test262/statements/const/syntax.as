@@ -147,31 +147,28 @@ do const x = 1; while (false)
 //? description:...
     const declarations with initialisers in statement positions:
     for ( ;;) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
-// this is OK in Adaptive Script for now
 for (;false;) const x = 1;
 //? test: with-initializer-if-expression-statement-else-statement
 //? description:...
     const declarations with initialisers in statement positions:
     if ( Expression ) Statement else Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
-// this is OK in Adaptive Script for now
 if (true) {} else const x = 1;
 //? test: with-initializer-if-expression-statement
 //? description:...
     const declarations with initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
-// this is OK in Adaptive Script for now
 if (true) const x = 1;
 //? test: with-initializer-label-statement
 //? description:...
@@ -188,11 +185,10 @@ label: const x = 1;
 //? description:...
     const declarations with initialisers in statement positions:
     while ( Expression ) Statement
-//? expect: success
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
-// This is OK in Adaptive Script for now
 while (false) const x = 1;
 //? test: without-initializer-case-expression-statement-list
 //? description:...
@@ -275,7 +271,7 @@ label: const x;
 //? description:...
     const declarations without initialisers in statement positions:
     while ( Expression ) Statement
-//? expect: error:Parse error at offset 41 around line 3 column 22: Expecting '='
+//? expect: error:Parse error at offset 34 around line 3 column 15: 'const' declarations can only be declared inside a block
 //? source: ...
 #!/usr/bin/env afw
 

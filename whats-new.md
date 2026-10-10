@@ -38,6 +38,8 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `replace_object` on the file adapter to create an object | Use **`add_object`**. `replace_object` and `modify_object` of a missing object are **`not_found`** (the file adapter used to create it). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | `evaluate_with_retry(value, limit)` with a limit above 10, or 0 | The limit is **1 to 10** (**`argument_error`** otherwise) and optional (default **1** retry). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | `rethrow()` called outside a catch block | Throws **"rethrow() can only be used in a catch block"** (it used to leave a stray rethrow that ended the enclosing function oddly, or let a later error in the same `try` escape its `catch`). Inside a `catch`, `rethrow()` and `throw;` are unchanged. Found by the function-call fuzzer ([#485](https://github.com/afw-org/afw/issues/485)). |
+| A `let`, `const`, or `function` declaration as the unbraced body of a loop or of `if` / `else` (`while (c) let x = 1;`, `if (c) const y = 2;`) | Put it in braces. It is now a compile error, as in TypeScript: **"'let' declarations can only be declared inside a block"**. It used to declare in the enclosing block, so a `const` changed each loop trip and an `if (false) let z` still declared `z`. |
+| Relying on closures made in a `for (let …)` with **no increment** (`for (let i = 0; i < 3; ) { … }`) all seeing the last `i` | Each trip now has its own `i`, as with an increment and as in ECMAScript. |
 
 ### C programmers
 
