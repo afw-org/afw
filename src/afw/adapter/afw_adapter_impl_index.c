@@ -13,6 +13,7 @@
 
 #include "afw_internal.h"
 #include "afw_adapter_impl_index.h"
+#include <libxml/xmlregexp.h>
 
 AFW_VECTOR_STRUCT(impl_index_cursor_p_vector_s,
     const afw_adapter_impl_index_cursor_t *);
@@ -168,9 +169,9 @@ impl_index_current_variables[] = {
  * An index definition looks like:
  *
  *  "FullName" : {
- *      "value"      : "string_concat(current::object.get('givenName'), current::object.get('surname'))"
+ *      "value"      : "return current::object.givenName + ' ' + current::object.surname;"
  *      "objectType" : ['Person']
- *      "filter"     : "eq(current::object.get('department'), 'ENG')"
+ *      "filter"     : "return current::object.department == 'ENG';"
  *      "options"    : [ "case-insensitive-string" ]
  *  }
  *
@@ -187,12 +188,16 @@ impl_index_current_variables[] = {
  *
  *  The "value" property is the computed value(s) for the index, which
  *      is described by an Adaptive script (or omitted to index property `key`).
+ *      With a value script, key is a computed name: a query on it means
+ *      what the script gives, in every plan (issue #516), so it must be a
+ *      name objects don't have.
  *
  *  The "objectType" property optionally determines a list of applicable objectType(s)
  *      this index definition. An empty array implies any/all objectType's.
  *
  *  The "filter" property optionally determines if a given object is applicable for
- *      this index definition (script must return boolean).
+ *      this index definition (script must return boolean). It needs a value
+ *      script: an object the filter leaves out has no value under key.
  *
  *  The "options" property is a list of options for how the index needs to
  *      be used.  Implemented options:
@@ -255,49 +260,6 @@ afw_boolean_t afw_adapter_impl_index_object_type_applicable(
  
         nextObjectType = afw_array_of_string_get_next_internal(
             objectTypes, &object_type_iterator, xctx);
-    }
-
-    return false;
-}
-
-/*
- * This routine uses the configured filter on the indexDefinition to determine
- * if the object in question passes the filter test.  Caller must push current::
- * (see afw_adapter_impl_index_try) before calling when a filter script is used.
- * A filter is an Adaptive script that must evaluate to a single boolean value.
- * If the filter is omitted, then the default is 'true'.
- */
-afw_boolean_t afw_adapter_impl_index_filter_applicable(
-    const afw_object_t * object,
-    const afw_object_t * indexDefinition,
-    afw_xctx_t         * xctx)
-{
-    const afw_utf8_t  * filter;
-    const afw_value_t * filterValue;
-    const afw_value_t * eval;
-
-    /* if we have a filter, evaluate it to decide if we should apply this indexDefinition */
-    filter = afw_object_get_property_as_string_internal(
-        indexDefinition, afw_v_filter, xctx);
-    if (filter) {
-        filterValue = afw_compile_to_value(filter,  NULL,
-            afw_compile_type_script, NULL, object->p, xctx);
-    } else {
-        /* No filter means it always passes */
-        return true;
-    }
-
-    eval = afw_value_evaluate(filterValue, object->p, xctx);
-    if (afw_value_is_boolean(eval)) {
-        if (afw_value_as_boolean_internal(eval, object->p, xctx)) {
-            /* the filter expression evaluated to true */
-            return true;
-        }
-    } else {
-        /* the filter expression did not evaluate to a boolean expression */
-        AFW_THROW_ERROR_Z(general,
-            "Error: filter evaluation did not end with a boolean result.", 
-            xctx);
     }
 
     return false;
@@ -569,6 +531,50 @@ impl_index_match_literal_prefix(
 }
 
 /*
+ * The key a cursor on entry seeks: the literal "starts with" prefix of a
+ * match, or the entry value's key, lowercased for a case-insensitive
+ * index. The dedup check (afw_adapter_impl_index_applies) compares
+ * object keys with this same key.
+ */
+static const afw_utf8_t *
+impl_index_entry_seek_key(
+    const afw_object_t *indexDefinition,
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_utf8_t *literal_prefix,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *key;
+
+    key = (literal_prefix)
+        ? literal_prefix
+        : impl_index_entry_value_as_key_utf8(entry, p, xctx);
+    if (afw_adapter_impl_index_option_case_insensitive(
+        indexDefinition, xctx))
+    {
+        key = afw_utf8_to_lower(key, p, xctx);
+    }
+
+    return key;
+}
+
+
+/* Whether object_type declares name (not just its otherProperties). */
+static afw_boolean_t
+impl_index_object_type_declares(
+    const afw_object_type_t *object_type,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    const afw_object_type_property_type_t *pt;
+    const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
+
+    pt = afw_object_type_property_type_get(object_type, &name_value.pub,
+        xctx);
+    return pt && pt != object_type->other_properties;
+}
+
+/*
  * When we need to add or remove an index value, this routine
  * will determine the appropriate way to do so, depending on
  * the indexDefinition options.
@@ -615,6 +621,126 @@ void afw_adapter_impl_index_apply(
 }
 
 /*
+ * Compile a definition's value and filter scripts into p. Either is NULL
+ * when the definition has none.
+ */
+static void
+impl_index_compile_scripts(
+    const afw_object_t * indexDefinition,
+    const afw_value_t ** value_script,
+    const afw_value_t ** filter_script,
+    const afw_pool_t   * p,
+    afw_xctx_t         * xctx)
+{
+    const afw_utf8_t *s;
+
+    s = afw_object_get_property_as_string_internal(
+        indexDefinition, afw_v_value, xctx);
+    *value_script = (s)
+        ? afw_compile_to_value(s, NULL, afw_compile_type_script, NULL, p, xctx)
+        : NULL;
+
+    s = afw_object_get_property_as_string_internal(
+        indexDefinition, afw_v_filter, xctx);
+    *filter_script = (s)
+        ? afw_compile_to_value(s, NULL, afw_compile_type_script, NULL, p, xctx)
+        : NULL;
+}
+
+/*
+ * What an index definition gives an object: its value script's result,
+ * or the property named key when there is no value script. NULL when
+ * the filter script is false or the result is nullish. Writing an
+ * index and every query test of a computed name get values here, so a
+ * query means what the index holds (issue #516).
+ *
+ * The scripts are compiled (impl_index_compile_scripts). While they
+ * evaluate, current:: holds the object, its id and type, and key
+ * (issue #54).
+ */
+static const afw_value_t *
+impl_index_evaluate(
+    const afw_utf8_t   * key,
+    const afw_object_t * object,
+    const afw_utf8_t   * object_type_id,
+    const afw_utf8_t   * object_id,
+    const afw_value_t  * value_script,
+    const afw_value_t  * filter_script,
+    const afw_pool_t   * p,
+    afw_xctx_t         * xctx)
+{
+    const afw_value_t *result;
+    const afw_value_t *eval;
+    impl_index_eval_ctx_t eval_ctx;
+    int top;
+
+    /* No scripts: the property named key, no current:: needed. */
+    if (!value_script && !filter_script) {
+        if (!key) {
+            return NULL;
+        }
+        {
+            const afw_value_string_t key_value =
+                AFW_VALUE_STRING_UNMANAGED(key);
+            result = afw_object_get_property(object, &key_value.pub, xctx);
+        }
+        return (afw_value_is_nullish(result)) ? NULL : result;
+    }
+
+    /*
+     * Push current:: for filter and value scripts (issue #54). Always restore
+     * the qualifier stack, including on error or early filter fail.
+     */
+    result = NULL;
+    top = afw_xctx_qualifier_stack_top_get(xctx);
+    AFW_TRY {
+
+        eval_ctx.object = afw_value_create_unmanaged_object(
+            object, p, xctx);
+        eval_ctx.objectId = (object_id)
+            ? afw_value_create_unmanaged_string(object_id, p, xctx)
+            : NULL;
+        eval_ctx.objectType = (object_type_id)
+            ? afw_value_create_unmanaged_string(object_type_id, p, xctx)
+            : NULL;
+        eval_ctx.key = (key)
+            ? afw_value_create_unmanaged_string(key, p, xctx)
+            : NULL;
+
+        afw_context_push_cb_variables(afw_s_current,
+            impl_index_current_variables, &eval_ctx, p, xctx);
+
+        /* A filter must be boolean; false means no value. */
+        if (filter_script) {
+            eval = afw_value_evaluate(filter_script, p, xctx);
+            if (!afw_value_is_boolean(eval)) {
+                AFW_THROW_ERROR_Z(general,
+                    "Error: filter evaluation did not end with a boolean "
+                    "result.", xctx);
+            }
+            if (!afw_value_as_boolean_internal(eval, p, xctx)) {
+                break;
+            }
+        }
+
+        if (value_script) {
+            result = afw_value_evaluate(value_script, p, xctx);
+        }
+        else if (key) {
+            const afw_value_string_t key_value =
+                AFW_VALUE_STRING_UNMANAGED(key);
+            result = afw_object_get_property(object, &key_value.pub, xctx);
+        }
+    }
+    AFW_FINALLY {
+        afw_xctx_qualifier_stack_top_set(top, xctx);
+    }
+    AFW_ENDTRY;
+
+    return (afw_value_is_nullish(result)) ? NULL : result;
+}
+
+/*
  * This routine takes an object and a possible indexDefinition
  * and tries to add/remove the index, if it's applicable.  It will
  * return true if it was successful in and false otherwise.
@@ -634,13 +760,9 @@ afw_boolean_t afw_adapter_impl_index_try(
     afw_xctx_t        * xctx)
 {
     const afw_value_t  * const *index_values;
-    const afw_value_t  * index_value;
-    afw_boolean_t        indexed = false;
-    const afw_utf8_t   * value_expression;
-    const afw_value_t  * value;
+    const afw_value_t  * value_script;
+    const afw_value_t  * filter_script;
     const afw_value_t  * eval;
-    impl_index_eval_ctx_t eval_ctx;
-    int top;
     int i;
 
     /* first we make sure the objectType is applicable */
@@ -650,114 +772,49 @@ afw_boolean_t afw_adapter_impl_index_try(
         return false;
     }
 
-    /*
-     * Push current:: for filter and value scripts (issue #54). Always restore
-     * the qualifier stack, including on error or early filter fail.
-     */
-    top = afw_xctx_qualifier_stack_top_get(xctx);
-    AFW_TRY {
+    impl_index_compile_scripts(indexDefinition,
+        &value_script, &filter_script, object->p, xctx);
+    eval = impl_index_evaluate(key, object, object_type_id, object_id,
+        value_script, filter_script, object->p, xctx);
 
-        eval_ctx.object = afw_value_create_unmanaged_object(
-            object, object->p, xctx);
-        eval_ctx.objectId = (object_id)
-            ? afw_value_create_unmanaged_string(object_id, object->p, xctx)
-            : NULL;
-        eval_ctx.objectType = (object_type_id)
-            ? afw_value_create_unmanaged_string(object_type_id, object->p, xctx)
-            : NULL;
-        eval_ctx.key = (key)
-            ? afw_value_create_unmanaged_string(key, object->p, xctx)
-            : NULL;
+    /* if eval is nullish, then we didn't generate a value and shouldn't index */
+    if (!eval) {
+        return false;
+    }
 
-        afw_context_push_cb_variables(afw_s_current,
-            impl_index_current_variables, &eval_ctx, object->p, xctx);
+    /* Check the type of afw_value_t we got back. */
+    if (afw_value_is_object(eval))
+    {
+        /* we can't use an object as an index key */
+        AFW_THROW_ERROR_Z(general,
+            "Error: value expression generated an object and cannot be used as an index.",
+            xctx);
+    }
 
-        if (!afw_adapter_impl_index_filter_applicable(
-            object, indexDefinition, xctx))
-        {
-            /* the filter expression did not pass */
-            break;
-        }
-
-        /* generate an index value based on the provided expression */
-        value_expression = afw_object_get_property_as_string_internal(
-            indexDefinition, afw_v_value, xctx);
-        if (value_expression)
-        {
-            value = afw_compile_to_value(value_expression, NULL,
-                afw_compile_type_script, NULL, object->p, xctx);
-
-            /*
-             * Evaluate the 'value' definition for the index.  This may generate
-             * one or more afw_value_t types.  For each one, generate/remove an
-             * index.
-             */
-            eval = afw_value_evaluate(value, object->p, xctx);
-        }
-        else
-        {
-            /* no value script: index property with the same name as the key */
-            if (key) {
-                const afw_value_string_t key_value =
-                    AFW_VALUE_STRING_UNMANAGED(key);
-                eval = afw_object_get_property(object, &key_value.pub, xctx);
-            }
-            else {
-                eval = NULL;
-            }
-        }
-
-        /* if eval is nullish, then we didn't generate a value and shouldn't index */
-        if (afw_value_is_nullish(eval))
-        {
-            /* nothing to do */
-        }
-
-        /* Check the type of afw_value_t we got back. */
-        else if (afw_value_is_object(eval))
-        {
-            /* we can't use an object as an index key */
-            AFW_THROW_ERROR_Z(general,
-                "Error: value expression generated an object and cannot be used as an index.",
-                xctx);
-        }
-
-        /* if we have multiple values, then index each one */
-        else if (afw_value_is_array(eval))
-        {
-            index_values = afw_value_to_null_terminated_values(
-                eval, object->p, xctx);
-            for (i = 0; index_values[i]; i++) {
-                index_value = index_values[i];
-
-                afw_adapter_impl_index_apply(instance, indexDefinition,
-                    object_type_id, object_id, object, key, index_value,
-                    operation, xctx);
-            }
-            indexed = true;
-        }
-
-        /* a single value can be converted to a single utf8 string */
-        else if (afw_value_is_defined_and_evaluated(eval))
-        {
-            /* scalar value */
+    /* if we have multiple values, then index each one */
+    if (afw_value_is_array(eval))
+    {
+        index_values = afw_value_to_null_terminated_values(
+            eval, object->p, xctx);
+        for (i = 0; index_values[i]; i++) {
             afw_adapter_impl_index_apply(instance, indexDefinition,
-                object_type_id, object_id, object, key, eval, operation, xctx);
-            indexed = true;
+                object_type_id, object_id, object, key, index_values[i],
+                operation, xctx);
         }
-
-        else {
-            AFW_THROW_ERROR_Z(general,
-                "Error: value expression generated an unknown and unhandled index value.",
-                xctx);
-        }
+        return true;
     }
-    AFW_FINALLY {
-        afw_xctx_qualifier_stack_top_set(top, xctx);
-    }
-    AFW_ENDTRY;
 
-    return indexed;
+    /* a single value can be converted to a single utf8 string */
+    if (afw_value_is_defined_and_evaluated(eval))
+    {
+        afw_adapter_impl_index_apply(instance, indexDefinition,
+            object_type_id, object_id, object, key, eval, operation, xctx);
+        return true;
+    }
+
+    AFW_THROW_ERROR_Z(general,
+        "Error: value expression generated an unknown and unhandled index value.",
+        xctx);
 }
 
 void afw_adapter_impl_index_open_definition(
@@ -1077,13 +1134,50 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     const afw_adapter_transaction_t    * transaction;
     const afw_iterator_old_t           * object_type_iterator;
     const afw_utf8_t                   * object_type_id;
+    const afw_object_type_t            * object_type;
 
     session = afw_adapter_session_get_cached(adapterId, false, xctx);
 
     indexer = afw_adapter_session_get_index_interface(session, xctx);
     if (indexer == NULL) {
-        AFW_THROW_ERROR_Z(general, 
+        AFW_THROW_ERROR_Z(general,
             "Error: unable to get index interface.", xctx);
+    }
+
+    /*
+     * A value or filter script makes key a computed name: a query on it
+     * means what the scripts give (issue #516). A filter on an index of a
+     * real property would leave objects that have the property out of
+     * every query the index answers, so a filter needs a value script,
+     * and a computed name must not be a property an object type
+     * declares (a query checks again, for object types changed later).
+     */
+    if (filter && !value) {
+        AFW_THROW_ERROR_Z(general,
+            "An index with a filter needs a value script and a name "
+            "objects don't have: a filter on an index of a property would "
+            "leave objects that have it out of queries", xctx);
+    }
+    if ((value || filter) && objectType) {
+        for (object_type_iterator = NULL;;) {
+            object_type_id = afw_array_of_string_get_next_internal(
+                objectType, &object_type_iterator, xctx);
+            if (!object_type_id) {
+                break;
+            }
+            object_type = afw_adapter_get_object_type(adapterId,
+                object_type_id, afw_object_create_unmanaged(pool, xctx),
+                xctx);
+            if (object_type &&
+                impl_index_object_type_declares(object_type, key, xctx))
+            {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Object type '%ku' declares property '%ku'; an index "
+                    "with a value or filter script needs a name objects "
+                    "don't have",
+                    object_type_id, key);
+            }
+        }
     }
 
     /* create our result object to be returned */
@@ -1825,17 +1919,6 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
             entry, xctx->p, xctx);
     }
 
-    /* use the internal utf-8 string representation; integer/double
-       get the sortable encoding so range ops walk keys in numeric
-       order (issue #251). A match entry that reduces to a literal
-       "starts with" prefix (see impl_index_match_literal_prefix())
-       seeks on that prefix instead of the raw regex pattern text; any
-       other match pattern is left as-is and will be rejected below by
-       the index implementation, same as it already is today. */
-    value_string = (literal_prefix)
-        ? literal_prefix
-        : impl_index_entry_value_as_key_utf8(entry, xctx->p, xctx);
-
     cursor_operator = (literal_prefix)
         ? AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH
         : (int)entry->op_id;
@@ -1852,12 +1935,14 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
         : NULL;
     if (indexDefinition)
     {
-        /* if the indexDefinition is case-insensitive, then we need
-            to lowercase our query value for comparison */
-        if (afw_adapter_impl_index_option_case_insensitive(
-            indexDefinition, xctx)) {
-            value_string = afw_utf8_to_lower(value_string, xctx->p, xctx);
-        }
+        /* use the internal utf-8 string representation; integer/double
+           get the sortable encoding so range ops walk keys in numeric
+           order (issue #251). A match entry that reduces to a literal
+           "starts with" prefix (see impl_index_match_literal_prefix())
+           seeks on that prefix instead of the raw regex pattern text.
+           A case-insensitive index seeks the lowercased key. */
+        value_string = impl_index_entry_seek_key(indexDefinition, entry,
+            literal_prefix, xctx->p, xctx);
         unique = afw_adapter_impl_index_option_unique(
             indexDefinition, xctx);
 
@@ -1950,169 +2035,472 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     return cursor_list;
 }
 
-/*
- * int afw_adapter_impl_index_compare()
+/* -------------------------------------------------------------------------
+ * Query tests through index definitions (issue #516)
  *
- * This routine compares a value to the filter criteria entry
- * and returns the comparison result as:
- *
- * <0 less than
- * =  equivalent
- * >= grater than
- *
- */
-static int afw_adapter_impl_index_compare(
-    const afw_adapter_impl_index_t          * instance,
-    const afw_query_criteria_filter_entry_t * entry,
-    const afw_value_t                       * value,
-    afw_xctx_t                             * xctx)
+ * An index can give a name another meaning than the object's property:
+ * a value script (a computed name, maybe with a filter), or the
+ * case-insensitive-string option. Cursors find what the index holds, so
+ * the re-test of an index query and an adapter's scan test those names
+ * the same way. A query that names neither kind uses
+ * afw_query_criteria_test_object() as before.
+ * ------------------------------------------------------------------------- */
+
+typedef struct impl_index_query_name_s impl_index_query_name_t;
+
+/* A relation of the filter, and how a query test gets its value. */
+struct impl_index_query_name_s {
+    impl_index_query_name_t *next;
+    const afw_query_criteria_filter_entry_t *entry;
+
+    /* entry, or for case-insensitive a copy with lowercased values. */
+    const afw_query_criteria_filter_entry_t *test_entry;
+
+    /* False: the object's property, as afw_query_criteria_test_object(). */
+    afw_boolean_t through_definition;
+
+    afw_boolean_t case_insensitive;
+
+    /* Compiled once per query; NULL when the definition has none. */
+    const afw_value_t *value_script;
+    const afw_value_t *filter_script;
+};
+
+struct afw_adapter_impl_index_query_test_s {
+    const afw_adapter_impl_index_t *instance;
+    const afw_utf8_t *object_type_id;
+    const afw_query_criteria_t *criteria;
+    impl_index_query_name_t *first;
+};
+
+
+static void
+impl_index_regexp_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_utf8_t *string;
-    const afw_value_t * const *values, *v;
-    int i;
-    const afw_utf8_t *property_value;
+    (void)data2;
+    (void)p;
+    (void)xctx;
+    xmlRegFreeRegexp((xmlRegexpPtr)data);
+}
 
-    /* use the internal utf-8 string representation; integer/double
-       get the sortable encoding so lt/le/gt/ge below compare
-       numerically, not lexicographically (issue #251) */
-    property_value = impl_index_entry_value_as_key_utf8(entry, xctx->p, xctx);
 
-    /* can't compare Objects */
-    if (afw_value_is_object(value)) {
-        AFW_THROW_ERROR_Z(general,
-            "Error: property value cannot be of type object.", xctx);
+/* A string, or each string of an array, lowercased. */
+static const afw_value_t *
+impl_index_value_to_lower(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t * const *values;
+    const afw_value_t **lowered;
+    afw_size_t count;
+    afw_size_t i;
+
+    if (afw_value_is_string(value)) {
+        return afw_value_create_unmanaged_string(
+            afw_utf8_to_lower(
+                (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), p, xctx),
+            p, xctx);
     }
 
-    /* all we can do with Lists is check for equivalence */
-    else if (afw_value_is_array(value)) {
-        values = afw_value_to_null_terminated_values(value, xctx->p, xctx);
-        for (i = 0; values[i]; i++) {
-            v = values[i];
-            string = impl_index_value_as_key_utf8(v, xctx->p, xctx);
+    if (afw_value_is_array(value)) {
+        values = afw_value_to_null_terminated_values(value, p, xctx);
+        for (count = 0; values[count]; count++);
+        lowered = afw_pool_calloc(p,
+            sizeof(afw_value_t *) * (count + 1), xctx);
+        for (i = 0; i < count; i++) {
+            lowered[i] = (afw_value_is_string(values[i]))
+                ? impl_index_value_to_lower(values[i], p, xctx)
+                : values[i];
+        }
+        return afw_value_create_unmanaged_array(
+            afw_array_create_unmanaged_from_values(
+                NULL, lowered, count, p, xctx),
+            p, xctx);
+    }
 
-            if (afw_utf8_equal(string, property_value))
-                return 0;
+    return value;
+}
+
+
+/*
+ * A match pattern for a case-insensitive name: the pattern lowercased
+ * like the values, except its escapes. \s and \S, \d and \D, ... differ
+ * by case, and \p{...} / \P{...} name Unicode categories, so they are
+ * kept as written. A category that names a case (\p{Lu}) never matches
+ * a lowercased value.
+ */
+static const afw_utf8_t *
+impl_index_pattern_to_lower(
+    const afw_utf8_t *pattern,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *result;
+    afw_utf8_t run;
+    afw_utf8_t escape;
+    afw_size_t start;
+    afw_size_t i;
+    afw_size_t j;
+
+    result = afw_s_a_empty_string;
+    for (i = 0, start = 0; i < pattern->len; ) {
+        if (pattern->s[i] != '\\') {
+            i++;
+            continue;
+        }
+
+        escape.s = pattern->s + i;
+        escape.len = (i + 1 < pattern->len) ? 2 : 1;
+        if (escape.len == 2 &&
+            (pattern->s[i + 1] == 'p' || pattern->s[i + 1] == 'P') &&
+            i + 2 < pattern->len && pattern->s[i + 2] == '{')
+        {
+            for (j = i + 3; j < pattern->len && pattern->s[j] != '}'; j++);
+            escape.len = ((j < pattern->len) ? j + 1 : pattern->len) - i;
+        }
+
+        run.s = pattern->s + start;
+        run.len = i - start;
+        result = afw_utf8_concat(p, xctx, result,
+            afw_utf8_to_lower(&run, p, xctx), &escape, NULL);
+
+        i += escape.len;
+        start = i;
+    }
+
+    run.s = pattern->s + start;
+    run.len = pattern->len - start;
+    return afw_utf8_concat(p, xctx, result,
+        afw_utf8_to_lower(&run, p, xctx), NULL);
+}
+
+
+/*
+ * A copy of entry that compares with lowercased values: its value
+ * lowercased, and for match and differ the pattern recompiled from
+ * impl_index_pattern_to_lower().
+ */
+static const afw_query_criteria_filter_entry_t *
+impl_index_entry_to_lower(
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_query_criteria_filter_entry_t *copy;
+    const afw_utf8_t *pattern;
+    xmlRegexpPtr regexp;
+
+    copy = afw_pool_calloc_type(p, afw_query_criteria_filter_entry_t, xctx);
+    afw_memory_copy(copy, entry);
+
+    if (entry->alt_op_id == afw_query_criteria_filter_op_id_match &&
+        entry->value && afw_value_is_string(entry->value))
+    {
+        pattern = impl_index_pattern_to_lower(
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value), p, xctx);
+        regexp = xmlRegexpCompile(
+            BAD_CAST afw_utf8_to_utf8_z(pattern, p, xctx));
+        if (!regexp) {
+            AFW_THROW_ERROR_Z(general, "regexp syntax error", xctx);
+        }
+        afw_pool_register_cleanup(p, regexp, NULL,
+            impl_index_regexp_cleanup, xctx);
+        copy->op_specific = regexp;
+        copy->value = afw_value_create_unmanaged_string(pattern, p, xctx);
+    }
+    else if (entry->value) {
+        copy->value = impl_index_value_to_lower(entry->value, p, xctx);
+    }
+
+    return copy;
+}
+
+
+static impl_index_query_name_t *
+impl_index_query_test_name(
+    const afw_adapter_impl_index_query_test_t *test,
+    const afw_query_criteria_filter_entry_t *entry)
+{
+    impl_index_query_name_t *name;
+
+    for (name = (test) ? test->first : NULL;
+        name && name->entry != entry;
+        name = name->next);
+
+    return name;
+}
+
+
+/*
+ * Add every relation reachable from entry, the ones the filter walk can
+ * visit, once each.
+ */
+static void
+impl_index_query_test_add(
+    afw_adapter_impl_index_query_test_t *test,
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    impl_index_query_name_t *name;
+    const afw_object_t *indexDefinition;
+    const afw_object_type_t *object_type;
+
+    if (entry == AFW_QUERY_CRITERIA_TRUE || entry == AFW_QUERY_CRITERIA_FALSE ||
+        impl_index_query_test_name(test, entry))
+    {
+        return;
+    }
+
+    name = afw_pool_calloc_type(p, impl_index_query_name_t, xctx);
+    name->entry = entry;
+    name->test_entry = entry;
+    name->next = test->first;
+    test->first = name;
+
+    indexDefinition = (entry->property_name)
+        ? afw_adapter_impl_index_get_index_definition(test->instance,
+            test->object_type_id, entry->property_name, xctx)
+        : NULL;
+    if (indexDefinition) {
+        name->case_insensitive = afw_adapter_impl_index_option_case_insensitive(
+            indexDefinition, xctx);
+        impl_index_compile_scripts(indexDefinition,
+            &name->value_script, &name->filter_script, p, xctx);
+        name->through_definition = name->case_insensitive ||
+            name->value_script || name->filter_script;
+        if (name->case_insensitive) {
+            name->test_entry = impl_index_entry_to_lower(entry, p, xctx);
+        }
+
+        /*
+         * index_create refuses a computed name an object type declares;
+         * an object type changed since then is caught here.
+         */
+        object_type = test->criteria->object_type;
+        if ((name->value_script || name->filter_script) &&
+            object_type && entry->pt &&
+            entry->pt != object_type->other_properties)
+        {
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Index '%ku' has a value or filter script, but object type "
+                "'%ku' declares property '%ku'; rename or remove the index",
+                entry->property_name, object_type->object_type_id,
+                entry->property_name);
         }
     }
 
-    else {
-        /* scalars are easy */
-        string = impl_index_value_as_key_utf8(value, xctx->p, xctx);
-        return afw_utf8_compare(string, property_value);
+    impl_index_query_test_add(test, entry->on_true, p, xctx);
+    impl_index_query_test_add(test, entry->on_false, p, xctx);
+}
+
+
+/* afw_query_criteria_get_value_cb_t for a query test. */
+static const afw_value_t *
+impl_index_query_test_get_value(
+    const afw_object_t *obj,
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_query_criteria_filter_entry_t **test_entry,
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_adapter_impl_index_query_test_t *test = data;
+    const impl_index_query_name_t *name;
+    const afw_value_t *value;
+
+    name = impl_index_query_test_name(test, entry);
+    if (!name || !name->through_definition) {
+        return afw_object_get_property_extended(obj,
+            entry->property_name, xctx);
     }
 
-    /* not sure what else to do here, but say they definitely aren't equal */
-    return -1;
+    *test_entry = name->test_entry;
+    value = impl_index_evaluate(entry->property_name, obj,
+        test->object_type_id, afw_object_meta_get_object_id(obj, xctx),
+        name->value_script, name->filter_script, p, xctx);
+    if (value && name->case_insensitive) {
+        value = impl_index_value_to_lower(value, p, xctx);
+    }
+
+    return value;
 }
+
+
+/* Create a test of criteria's filter through object_type_id's indexes. */
+AFW_DEFINE(const afw_adapter_impl_index_query_test_t *)
+afw_adapter_impl_index_query_test_create(
+    const afw_adapter_impl_index_t * instance,
+    const afw_utf8_t               * object_type_id,
+    const afw_query_criteria_t     * criteria,
+    const afw_pool_t               * p,
+    afw_xctx_t                    * xctx)
+{
+    afw_adapter_impl_index_query_test_t *test;
+    const impl_index_query_name_t *name;
+    const afw_adapter_session_t *session;
+    afw_boolean_t needed;
+
+    if (!instance || !object_type_id || !criteria || !criteria->filter) {
+        return NULL;
+    }
+
+    test = afw_pool_calloc_type(p, afw_adapter_impl_index_query_test_t,
+        xctx);
+    test->instance = instance;
+    test->object_type_id = object_type_id;
+    test->criteria = criteria;
+    impl_index_query_test_add(test, criteria->filter, p, xctx);
+
+    for (needed = false, name = test->first; name; name = name->next) {
+        if (name->through_definition) {
+            needed = true;
+            session = afw_adapter_impl_index_get_session(instance, xctx);
+            afw_trace_fz(1, session->adapter->trace_flag_index, NULL, xctx,
+                "index query test: %ku through its index definition (%s)",
+                name->entry->property_name,
+                (name->value_script || name->filter_script)
+                    ? "computed" : "case-insensitive");
+        }
+    }
+
+    return (needed) ? test : NULL;
+}
+
+
+/* Test object against a query test's criteria. */
+AFW_DEFINE(afw_boolean_t)
+afw_adapter_impl_index_query_test_object(
+    const afw_adapter_impl_index_query_test_t * test,
+    const afw_object_t                        * object,
+    const afw_pool_t                          * p,
+    afw_xctx_t                               * xctx)
+{
+    return afw_query_criteria_test_object_cb(object, test->criteria,
+        impl_index_query_test_get_value, (void *)test, p, xctx);
+}
+
 
 /*
  * afw_boolean_t afw_adapter_impl_index_applies()
  *
- * This routine determines whether a known object applies to
- * a specific cursor.  It's used to eliminate duplicates during
- * a cursor conjunction operation.
- *
- * We could ask the cursor if the object applies, but that is often
- * more expensive than testing the criteria ourselves, since there
- * are typically more objects in a cursor than there are properties
- * in an object.
- *
+ * Whether cursor returns object: the object's values through the
+ * cursor's index definition, as index keys, compared with the key the
+ * cursor seeks. The dedup in afw_adapter_impl_index_query() skips an
+ * object a later cursor returns, so this must be exactly the cursor's
+ * set, or an object comes back twice or not at all. It read the filter's
+ * property from the object, which a computed name doesn't have and a
+ * case-insensitive index holds lowercased (issue #516).
  */
 static afw_boolean_t afw_adapter_impl_index_applies(
-    const afw_adapter_impl_index_t        * instance,
-    const afw_adapter_impl_index_cursor_t * cursor,
-    const afw_object_t                    * object,
-    afw_xctx_t                           * xctx)
+    const afw_adapter_impl_index_t            * instance,
+    const afw_adapter_impl_index_query_test_t * test,
+    const afw_utf8_t                          * object_type_id,
+    const afw_adapter_impl_index_cursor_t     * cursor,
+    const afw_object_t                        * object,
+    const afw_pool_t                          * p,
+    afw_xctx_t                               * xctx)
 {
-    afw_boolean_t contains = false;
     const afw_query_criteria_filter_entry_t *entry = cursor->filter_entry;
-    const afw_value_t *value;
+    const impl_index_query_name_t *name;
+    const afw_object_t *indexDefinition;
     const afw_utf8_t *literal_prefix;
-    const afw_utf8_t *property_value_string;
+    const afw_utf8_t *seek_key;
+    const afw_utf8_t *key;
+    const afw_value_t *value_script;
+    const afw_value_t *filter_script;
+    const afw_value_t *value;
+    const afw_value_t * const *values;
+    const afw_value_t *single[2];
+    afw_boolean_t case_insensitive;
+    int compare;
+    int i;
 
-    value = afw_object_get_property(object,
-        afw_value_create_unmanaged_string(
-            entry->property_name, xctx->p, xctx), xctx);
-    if (value) {
-        switch (entry->op_id) {
-            case afw_query_criteria_filter_op_id_eq:
-                if (afw_adapter_impl_index_compare(instance, 
-                        entry, value, xctx) == 0)
-                    return true;
-                break;
-            case afw_query_criteria_filter_op_id_ne:
-                if (afw_adapter_impl_index_compare(instance, 
-                        entry, value, xctx) != 0)
-                    return true;
-                break;
-            case afw_query_criteria_filter_op_id_lt:
-                if (afw_adapter_impl_index_compare(instance, 
-                        entry, value, xctx) < 0)
-                    return true;
-                break;
-            case afw_query_criteria_filter_op_id_le:
-                if (afw_adapter_impl_index_compare(instance, 
-                        entry, value, xctx) <= 0)
-                    return true;
-                break;
-            case afw_query_criteria_filter_op_id_gt:
-                if (afw_adapter_impl_index_compare(instance, 
-                        entry, value, xctx) > 0)
-                    return true;
-                break;
-            case afw_query_criteria_filter_op_id_ge:
-                if (afw_adapter_impl_index_compare(instance, 
-                        entry, value, xctx) >= 0)
-                    return true;
-                break;
-
-            case afw_query_criteria_filter_op_id_na:
-                break;
-
-            case afw_query_criteria_filter_op_id_match:
-                /*
-                 * Only the literal "starts with" shape is supported (see
-                 * impl_index_match_literal_prefix()); any other
-                 * match pattern falls through to the same
-                 * query_too_complex throw as contains/in/etc below.
-                 */
-                literal_prefix = impl_index_match_literal_prefix(
-                    entry, xctx->p, xctx);
-                if (!literal_prefix) {
-                    AFW_THROW_ERROR_Z(query_too_complex,
-                        "Filter op not implemented", xctx);
-                }
-
-                property_value_string = impl_index_value_as_key_utf8(
-                    value, xctx->p, xctx);
-                if (property_value_string->len >= literal_prefix->len &&
-                    memcmp(property_value_string->s, literal_prefix->s,
-                        literal_prefix->len) == 0)
-                {
-                    return true;
-                }
-                break;
-
-            case afw_query_criteria_filter_op_id_contains:
-            case afw_query_criteria_filter_op_id_in:
-            case afw_query_criteria_filter_op_id_differ:
-            case afw_query_criteria_filter_op_id_excludes:
-            case afw_query_criteria_filter_op_id_out:
-            case afw_query_criteria_filter_op_id_and:
-            case afw_query_criteria_filter_op_id_or:
-                AFW_THROW_ERROR_Z(query_too_complex,
-                    "Filter op not implemented", xctx);
-
-            default:
-                AFW_THROW_ERROR_Z(general, "Filter op invalid", xctx);
-        }
-    } else {
-        /* only "ne" operator is meaningful if the value doesn't exist */
-        if (entry->op_id == afw_query_criteria_filter_op_id_ne)
-            return true;
+    indexDefinition = afw_adapter_impl_index_get_index_definition(
+        instance, object_type_id, entry->property_name, xctx);
+    if (!indexDefinition) {
+        return false;
     }
 
-    return contains;
+    literal_prefix = (entry->op_id == afw_query_criteria_filter_op_id_match)
+        ? impl_index_match_literal_prefix(entry, p, xctx)
+        : NULL;
+    seek_key = impl_index_entry_seek_key(indexDefinition, entry,
+        literal_prefix, p, xctx);
+    case_insensitive = afw_adapter_impl_index_option_case_insensitive(
+        indexDefinition, xctx);
+
+    /* What the index holds for object, as afw_adapter_impl_index_try(). */
+    name = impl_index_query_test_name(test, entry);
+    if (name) {
+        value_script = name->value_script;
+        filter_script = name->filter_script;
+    }
+    else {
+        impl_index_compile_scripts(indexDefinition,
+            &value_script, &filter_script, p, xctx);
+    }
+    value = impl_index_evaluate(entry->property_name, object, object_type_id,
+        afw_object_meta_get_object_id(object, xctx),
+        value_script, filter_script, p, xctx);
+    if (!value) {
+        return false;
+    }
+    if (afw_value_is_array(value)) {
+        values = afw_value_to_null_terminated_values(value, p, xctx);
+    }
+    else {
+        single[0] = value;
+        single[1] = NULL;
+        values = single;
+    }
+
+    for (i = 0; values[i]; i++) {
+        key = impl_index_value_as_key_utf8(values[i], p, xctx);
+        if (case_insensitive) {
+            key = afw_utf8_to_lower(key, p, xctx);
+        }
+
+        /* An empty value is never an index key. */
+        if (key->len == 0) {
+            continue;
+        }
+
+        if (literal_prefix) {
+            if (key->len >= seek_key->len &&
+                memcmp(key->s, seek_key->s, seek_key->len) == 0)
+            {
+                return true;
+            }
+            continue;
+        }
+
+        compare = afw_utf8_compare(key, seek_key);
+        switch (entry->op_id) {
+            case afw_query_criteria_filter_op_id_eq:
+                if (compare == 0) return true;
+                break;
+            case afw_query_criteria_filter_op_id_lt:
+                if (compare < 0) return true;
+                break;
+            case afw_query_criteria_filter_op_id_le:
+                if (compare <= 0) return true;
+                break;
+            case afw_query_criteria_filter_op_id_gt:
+                if (compare > 0) return true;
+                break;
+            case afw_query_criteria_filter_op_id_ge:
+                if (compare >= 0) return true;
+                break;
+            default:
+                /* Only these operators get a cursor (cursor_list). */
+                AFW_THROW_ERROR_Z(general, "Filter op invalid", xctx);
+        }
+    }
+
+    return false;
 }
 
 /*
@@ -2137,6 +2525,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
     afw_xctx_t                    * xctx)
 {
     impl_index_cursor_p_vector_t *cursors;
+    const afw_adapter_impl_index_query_test_t *test;
     const afw_adapter_impl_index_cursor_t *current_cursor;
     const afw_adapter_impl_index_cursor_t *next_cursor;
     const afw_adapter_session_t *session;
@@ -2150,6 +2539,13 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
     size_t applies_calls = 0;
     int cursor_index = 0;
     int i;
+
+    /*
+     * Names a computed or case-insensitive index gives another meaning
+     * are tested through it (NULL: none in this filter).
+     */
+    test = afw_adapter_impl_index_query_test_create(instance,
+        object_type_id, criteria, pool, xctx);
 
     /* Recursively compute our cursors */
     cursors = afw_adapter_impl_index_cursor_list(instance,
@@ -2200,7 +2596,10 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
          *  that we couldn't exclude automatically through joins.
          */
         if (!current_cursor->inner_join &&
-            !afw_query_criteria_test_object(object, criteria, p, xctx))
+            !((test)
+                ? afw_adapter_impl_index_query_test_object(test, object,
+                    p, xctx)
+                : afw_query_criteria_test_object(object, criteria, p, xctx)))
         {
             /* this object can be discarded/ignored, so release its memory */
             afw_pool_release(p, xctx);
@@ -2221,8 +2620,8 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
                 and determine whether this cursor contains the object. 
              */
             applies_calls++;
-            if (afw_adapter_impl_index_applies(instance,
-                next_cursor, object, xctx)) {
+            if (afw_adapter_impl_index_applies(instance, test,
+                object_type_id, next_cursor, object, p, xctx)) {
                 /* we have a duplicate, which we skip for now and let the
                     future cursor provide instead. */
                 duplicate = true;
