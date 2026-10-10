@@ -478,12 +478,42 @@ impl_convert_select(
 }
 
 
+/*
+ * A filter value as the model property's data type. A string read as a
+ * boolean is its lexical form: afw_value_convert reads a string as a
+ * boolean by truthiness, so mb=false matched true.
+ */
+static const afw_value_t *
+impl_convert_filter_value(
+    const afw_value_t *value,
+    const afw_data_type_t *data_type,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_common_t *result;
+
+    if (!data_type || afw_value_get_data_type(value, xctx) == data_type) {
+        return value;
+    }
+    if (afw_value_is_string(value) && afw_data_type_is_boolean(data_type)) {
+        result = afw_value_common_allocate(data_type, p, xctx);
+        afw_data_type_utf8_to_internal(data_type, &result->internal,
+            &((const afw_value_string_t *)value)->internal, p, xctx);
+        return &result->pub;
+    }
+    return afw_value_convert(value, data_type, false, p, xctx);
+}
+
+
 const afw_query_criteria_filter_entry_t *
 impl_get_converted_entry(
     impl_convert_entry_wa_t *wa,
     const afw_query_criteria_filter_entry_t *old_entry)
 {
     impl_filter_entry_t *entry;
+    const afw_model_property_type_t *property_type;
+    const afw_array_t *list;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *value;
 
     if (!old_entry || old_entry == (void *)1) {
         return old_entry;
@@ -531,17 +561,41 @@ impl_get_converted_entry(
             }
         }
 
-        /* Else, convert property name and value based on object type. */
-        else {
-            afw_model_internal_convert_property(
-                wa->model_object_type,
-                afw_model_adapt_to_adapter,
-                &entry->converted.property_name, &entry->converted.value,
-                old_entry->property_name, old_entry->value,
-                NULL /** @fixme include conf? */, wa->p, wa->xctx);
-            if (afw_value_is_array(entry->converted.value)) {
-                entry->converted.value = afw_value_one_and_only(
-                    entry->converted.value,
+        /*
+         * Else, convert property name and value based on object type. The
+         * value of in / out is a list: each listed value is converted (it
+         * was squeezed to one value, so in / out threw).
+         */
+        else if (wa->model_object_type) {
+            impl_get_property_type_by_property_name(
+                &property_type, &entry->converted.property_name,
+                wa->model_object_type, old_entry->property_name, wa->xctx);
+            if (!property_type) {
+                AFW_THROW_ERROR_FZ(general, wa->xctx,
+                    "Invalid property '%ku'",
+                    old_entry->property_name);
+            }
+            if (afw_value_is_array(old_entry->value)) {
+                list = afw_array_create_unmanaged(wa->p, wa->xctx);
+                for (iterator = NULL;;) {
+                    value = afw_array_get_next_value(
+                        afw_value_as_array_internal(old_entry->value,
+                            wa->p, wa->xctx),
+                        &iterator, wa->xctx);
+                    if (!value) {
+                        break;
+                    }
+                    afw_array_push_value(list,
+                        impl_convert_filter_value(value,
+                            property_type->data_type, wa->p, wa->xctx),
+                        wa->xctx);
+                }
+                entry->converted.value = afw_value_create_unmanaged_array(
+                    list, wa->p, wa->xctx);
+            }
+            else {
+                entry->converted.value = impl_convert_filter_value(
+                    old_entry->value, property_type->data_type,
                     wa->p, wa->xctx);
             }
         }

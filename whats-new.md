@@ -253,6 +253,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **`return` from a nested `{ }` on a later loop trip:** `while (true) { abs(-7); { if (i == 1) return i; } i = 1; }` returned `7` (or a closure pushed earlier in the trip), not `1`: the value returned was the one an earlier trip had already left as the result, and that was taken for no result.
 
+**Model adapter queries:** `in` / `out` on a model object type threw (*Can't down convert an array with more than one entry* or *array required for 'in' operator*): the list was squeezed to one value when mapped to the adapter's property. A string value on a boolean model property (`flag=false` in a query string) matched `true`.
+
 **Set functions:** an empty literal array `[]` is an empty set of the function's data type: `subset<string>([], ["a"])` is `true`, and `union` / `intersection` / `set_equals` accept `[]` (they threw *must have a data type*).
 
 **Integer literal `9223372036854775808`** (2^63) is *Integer is out of range* like any larger integer (it was *Invalid number*); `-9223372036854775808` still compiles.
