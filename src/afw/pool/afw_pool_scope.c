@@ -115,8 +115,11 @@ impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 /*
- * for_each_reference of a scope: its frame slots and its lexical
- * parent (the references its last release releases).
+ * for_each_reference of a scope: its frame slots, its lexical parent,
+ * and the value releases registered on its pool (the references its
+ * last release releases). A registered release is a reference the
+ * scope holds: an array held for the scope's lifetime by push() that
+ * holds a closure over this scope is a cycle the collector must see.
  */
 void
 afw_pool_internal_scope_for_each_reference(
@@ -137,10 +140,15 @@ afw_pool_internal_scope_for_each_reference(
     if (scope->parent_lexical_scope) {
         callback(&scope->parent_lexical_scope->pub.ref, context, xctx);
     }
+    afw_pool_internal_for_each_registered_value_release(self,
+        callback, context, xctx);
 }
 
 
-/* release_references of a scope: frame slots and lexical parent. */
+/*
+ * release_references of a scope: frame slots, lexical parent, and the
+ * value releases registered on its pool.
+ */
 void
 afw_pool_internal_scope_release_references(
     AFW_POOL_SELF_T *self,
@@ -163,6 +171,7 @@ afw_pool_internal_scope_release_references(
     if (parent) {
         afw_pool_scope_release(parent, xctx);
     }
+    afw_pool_internal_run_registered_value_releases(self, xctx);
 }
 
 

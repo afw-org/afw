@@ -866,6 +866,57 @@ afw_pool_is_value_release_registered(
 }
 
 
+void
+afw_pool_internal_for_each_registered_value_release(
+    afw_pool_internal_self_t *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx)
+{
+    afw_pool_cleanup_t *e;
+
+    for (e = self->first_cleanup; e; e = e->next_cleanup) {
+        if (e->cleanup == impl_release_value_at_cleanup && !e->data2) {
+            afw_value_list_reference((const afw_value_t *)e->data,
+                callback, context, xctx);
+        }
+    }
+}
+
+
+void
+afw_pool_internal_run_registered_value_releases(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx)
+{
+    afw_pool_cleanup_t *e, *prev;
+    const afw_value_t *value;
+
+    /*
+     * Unlink each entry before its release: the release may last-release
+     * something that registers on, or walks, this list.
+     */
+    for (;;) {
+        for (prev = NULL, e = self->first_cleanup;
+            e && !(e->cleanup == impl_release_value_at_cleanup && !e->data2);
+            prev = e, e = e->next_cleanup);
+        if (!e) {
+            break;
+        }
+        if (prev) {
+            prev->next_cleanup = e->next_cleanup;
+        }
+        else {
+            self->first_cleanup = e->next_cleanup;
+        }
+        value = (const afw_value_t *)e->data;
+        afw_pool_free_memory(&self->pub, e,
+            sizeof(afw_pool_cleanup_t), xctx);
+        afw_value_release(value, xctx);
+    }
+}
+
+
 /* Register one release of value, run when p is destroyed. */
 AFW_DEFINE(void)
 afw_pool_register_value_release(

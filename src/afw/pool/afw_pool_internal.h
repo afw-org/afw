@@ -331,6 +331,23 @@ void
 afw_pool_internal_run_cleanups(
     afw_pool_internal_self_t *self, afw_xctx_t *xctx);
 
+/*
+ * Call callback for each value with a release registered on this pool
+ * (afw_pool_register_value_release), once per registration.
+ */
+void
+afw_pool_internal_for_each_registered_value_release(
+    afw_pool_internal_self_t *self,
+    afw_reference_cb_t callback,
+    void *context,
+    afw_xctx_t *xctx);
+
+/* Run (and remove) every value release registered on this pool now. */
+void
+afw_pool_internal_run_registered_value_releases(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
 void
 afw_pool_internal_mark_destroying(afw_pool_internal_self_t *self);
 
@@ -509,13 +526,19 @@ afw_pool_internal_no_references_release_references(
     afw_pool_internal_self_t *self,
     afw_xctx_t *xctx);
 
-/* release_references of a scope pool: frame slots and lexical parent. */
+/*
+ * release_references of a scope pool: frame slots, lexical parent, and
+ * the value releases registered on its pool.
+ */
 void
 afw_pool_internal_scope_release_references(
     afw_pool_internal_self_t *self,
     afw_xctx_t *xctx);
 
-/* for_each_reference of a scope pool: frame slots and lexical parent. */
+/*
+ * for_each_reference of a scope pool: frame slots, lexical parent, and
+ * the value releases registered on its pool.
+ */
 void
 afw_pool_internal_scope_for_each_reference(
     afw_pool_internal_self_t *self,
