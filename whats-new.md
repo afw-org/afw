@@ -260,6 +260,12 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 - **Memory:** compiling a script that declares names (`compile<script>(script("let x = 1; …"))` in a loop) no longer grows memory by about 1 KB each.
 - **`afw -e A -e B`** loads both extensions (a second `-e` replaced the first).
 
+## Query filters and query strings (overnight 2026-10-10)
+
+**Query filters (`retrieve_objects`, REST queries):** a nested `and` / `or` skipped every filter of the group after its first: `and(and(a, b), c)` was `and(a, c)`. A relation on a property the object does not have is false and the filter goes on (`or(missing=x, objectType=y)` matched nothing for objects without `missing`). `out`, `differ`, and `excludes` threw *Error occurred processing query filter*; they are not `in`, not `match`, not `contains`. A string value for a boolean property is read as a boolean (`allowEntity=false` matched `true`), and a string listed in `in` / `out` is converted to the property's data type (it was *data type mismatch*). `convert_AdaptiveQueryCriteria_to_query_string` wrote a list as `(a),b)`; it writes `(a,b)`. In a query string, a list item starting with `-` (`n=in=(-1,2)`) was an *Invalid array item* error. `differ`, and `match(p,x)` / `differ(p,x)` in function syntax, threw *xmlRegexpExec() error*: their expression was never compiled. Concurrent requests with `select(...)` in a query string could get each other's property list (the parser kept it in a static variable). Items in a query-string list are separated by `,` only: `in=(a+b,c)` was the list `a`, `b`, `c`; it is now *Expecting ',' or ')' in list* (encode a `+` in a value as `%2B`).
+
+**Model adapter queries:** `in` / `out` on a model object type threw (*Can't down convert an array with more than one entry* or *array required for 'in' operator*): the list was squeezed to one value when mapped to the adapter's property. A string value on a boolean model property (`flag=false` in a query string) matched `true`.
+
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 
 A get or retrieve on an adapter that is not running starts it. When another request finished that start first, the read threw `can not be started.  Service is running`. It now uses the running adapter. A manual `service_start()` of a running service still throws.

@@ -849,7 +849,7 @@ impl_parse_string_select(impl_string_parser_t *parser)
 {
     impl_utf8_p_vector_t *names;
     const afw_utf8_t *property_name;
-    static const afw_utf8_t * const *result;
+    const afw_utf8_t * const *result;
 
     /* Work vector for a NULL-terminated list of property names. */
     names = afw_vector_create(impl_utf8_p_vector_t, 10,
@@ -908,9 +908,15 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
         /* Get next token. */
         impl_get_token(parser);
 
-        /* If token is '+' or '-', remember sign and get another token. */
+        /*
+         * If token is a '+' delimiter, remember sign and get another token.
+         * '-' is not a delimiter, so -1 is one string token (taking its
+         * '-' as a sign read the ',' after it as the value).
+         */
         memset(&sign, 0, sizeof(afw_utf8_t));
-        if (*(parser->token.s) == '+' || *(parser->token.s) == '-') {
+        if (parser->token_type == impl_token_type_delimiter &&
+            *(parser->token.s) == '+')
+        {
             sign.s = parser->token.s;
             sign.len = parser->token.len;
             impl_get_token(parser);
@@ -944,6 +950,12 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
         if (*(parser->token.s) == ')') {
             break;
         }
+
+        /*
+         * Anything else is an error: it was skipped, so in=(a+b,c) was the
+         * list a, b, c.
+         */
+        IMPL_STRING_THROW_ERROR_Z("Expecting ',' or ')' in list");
     }
 
     /* Return list of strings. from_c_array copies internals. */
@@ -1044,8 +1056,8 @@ impl_parse_string_relation(
         entry->value = impl_parse_string_list_value(parser);
     }
 
-    /* If match, compile expression. */
-    if (entry->op_id == afw_query_criteria_filter_op_id_match) {
+    /* If match or differ (not match), compile expression. */
+    if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
         s_z = BAD_CAST afw_utf8_to_utf8_z(decoded, parser->p, parser->xctx);
         entry->op_specific = xmlRegexpCompile(s_z);
         if (entry->op_specific == NULL) {
@@ -1228,6 +1240,7 @@ impl_parse_string_function(
     afw_query_criteria_filter_entry_t *previous_entry;
     afw_query_criteria_filter_entry_t *previous_tree;
     const afw_array_t *list;
+    const xmlChar *s_z;
 
     /* Find impl_rql_op_t for this operator. */
     impl_get_token(parser);
@@ -1280,16 +1293,17 @@ impl_parse_string_function(
             else {
                 previous_tree->next_conjunctive_sibling = child_tree;
 
-                /* If "and", patch previous entry true to new entry. */
+                /*
+                 * If "and", the previous filter's exits on true go to the
+                 * new one; if "or", its exits on false. The exit is this
+                 * entry's on_true / on_false (see the same patch in
+                 * impl_AdaptiveQueryCriteria_object_parse_filter()).
+                 */
                 if (entry->op_id == afw_query_criteria_filter_op_id_and) {
-                    impl_patch_on(previous_entry, previous_entry->on_true,
-                        child_entry);
+                    impl_patch_on(previous_entry, on_true, child_entry);
                 }
-
-                /* If "or", patch previous entry false to new entry. */
                 else {
-                    impl_patch_on(previous_entry, previous_entry->on_false,
-                        child_entry);
+                    impl_patch_on(previous_entry, on_false, child_entry);
                 }
             }
 
@@ -1343,6 +1357,23 @@ impl_parse_string_function(
             }
             entry->value = impl_token_to_value(parser);
             impl_get_token(parser);
+
+            /*
+             * If match or differ (not match), compile expression (it was
+             * not compiled here, so match(p,x) threw at evaluation).
+             */
+            if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
+                s_z = BAD_CAST afw_utf8_to_utf8_z(
+                    (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value),
+                    parser->p, parser->xctx);
+                entry->op_specific = xmlRegexpCompile(s_z);
+                if (entry->op_specific == NULL) {
+                    IMPL_STRING_THROW_ERROR_Z("regexp syntax error");
+                }
+                afw_pool_register_cleanup(parser->p,
+                    (void *)entry->op_specific, NULL,
+                    impl_query_criteria_regexp_cleanup, parser->xctx);
+            }
         }
 
         /* List value. */
@@ -1509,16 +1540,20 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
             else {
                 previous_tree->next_conjunctive_sibling = child_tree;
 
-                /* If "and", patch previous entry true to new entry. */
+                /*
+                 * If "and", the previous filter's exits on true go to the
+                 * new one; if "or", its exits on false. The exit is this
+                 * entry's on_true / on_false: previous_entry->on_true is
+                 * only the exit when the previous filter is one relation.
+                 * For a nested group it is the group's second relation,
+                 * and patching that skipped it (and(and(a, b), c) was
+                 * and(a, c)).
+                 */
                 if (entry->op_id == afw_query_criteria_filter_op_id_and) {
-                    impl_patch_on(previous_entry, previous_entry->on_true,
-                        child_entry);
-                }                
-                
-                /* If "or", patch previous entry false to new entry. */
+                    impl_patch_on(previous_entry, on_true, child_entry);
+                }
                 else {
-                    impl_patch_on(previous_entry, previous_entry->on_false,
-                        child_entry);
+                    impl_patch_on(previous_entry, on_false, child_entry);
                 }
             }
         }
@@ -1558,8 +1593,8 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         }
         /** @fixme Make sure this is a single value/list. */
 
-        /* If match, compile expression. */
-        if (entry->op_id == afw_query_criteria_filter_op_id_match) {
+        /* If match or differ (not match), compile expression. */
+        if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
             if (!entry->value || !afw_value_is_string(entry->value)) {
                 AFW_THROW_ERROR_Z(general,
                     "Value for match operator must be a string",
@@ -1660,6 +1695,37 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
 /* Internal query test function defines                                      */
 /* ------------------------------------------------------------------------- */
 
+/*
+ * A filter value as the data type of the property it is compared with.
+ * A string is a lexical form, read with the data type's parser: a query
+ * for b=false means false (afw_value_convert reads a string as a boolean
+ * by truthiness, so "false" was true). Throws if it does not convert.
+ */
+static const afw_value_t *
+impl_filter_value_as(
+    const afw_value_t *filter_value,
+    const afw_data_type_t *data_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *result;
+
+    if (afw_value_get_data_type(filter_value, xctx) == data_type) {
+        return filter_value;
+    }
+    if (data_type && afw_value_is_string(filter_value) &&
+        afw_data_type_is_boolean(data_type))
+    {
+        result = afw_value_common_allocate(data_type, p, xctx);
+        afw_data_type_utf8_to_internal(data_type, &result->internal,
+            &((const afw_value_string_t *)filter_value)->internal,
+            p, xctx);
+        return &result->pub;
+    }
+    return afw_value_convert(filter_value, data_type, false, p, xctx);
+}
+
+
 static afw_boolean_t
 impl_compare_value(
     const afw_query_criteria_filter_entry_t *entry,
@@ -1678,6 +1744,20 @@ impl_compare_value(
     const afw_utf8_t *s2;
     const xmlChar *s_z;
     int rv;
+    afw_query_criteria_filter_entry_t alt;
+
+    /*
+     * out, differ, and excludes are not in, not match, and not contains
+     * (alt_op_id with alt_not); they had no case and threw.
+     */
+    if (entry->op_id == afw_query_criteria_filter_op_id_out ||
+        entry->op_id == afw_query_criteria_filter_op_id_differ ||
+        entry->op_id == afw_query_criteria_filter_op_id_excludes)
+    {
+        afw_memory_copy(&alt, entry);
+        alt.op_id = entry->alt_op_id;
+        return !impl_compare_value(&alt, value, p, xctx);
+    }
 
     /*
      * If operator is not contains, match or in, and data type passed does not match,
@@ -1690,9 +1770,8 @@ impl_compare_value(
     {
         if (value->inf != entry_value->inf) {
             AFW_TRY {
-                entry_value = afw_value_convert(entry_value,
-                    afw_value_get_data_type(value, xctx), false,
-                    p, xctx);
+                entry_value = impl_filter_value_as(entry_value,
+                    afw_value_get_data_type(value, xctx), p, xctx);
             }
             AFW_CATCH_UNHANDLED{
                 entry_value = NULL;
@@ -1850,13 +1929,32 @@ impl_compare_value(
                     break;
                 }
 
-                /* make sure types match */
+                /*
+                 * A listed string is the lexical form of the property's
+                 * data type (a query string lists strings); one that does
+                 * not convert is not equal. Another data type is still a
+                 * mismatch.
+                 */
                 if (afw_value_get_data_type(v1, xctx) !=
                     afw_value_get_data_type(v2, xctx))
                 {
-                    AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                    if (!afw_value_is_string(v2)) {
+                        AFW_THROW_ERROR_Z(general, "data type mismatch",
+                            xctx);
+                    }
+                    AFW_TRY {
+                        v2 = impl_filter_value_as(v2,
+                            afw_value_get_data_type(v1, xctx), p, xctx);
+                    }
+                    AFW_CATCH_UNHANDLED {
+                        v2 = NULL;
+                    }
+                    AFW_ENDTRY;
+                    if (!v2) {
+                        continue;
+                    }
                 }
-                
+
                 is_true = afw_value_equal(v1, v2, xctx);
                 if (is_true) {
                     break;
@@ -2190,27 +2288,34 @@ afw_query_criteria_test_object(
         value = afw_object_get_property_extended(obj,
             entry->property_name, xctx);
 
-        /* If property does not exists, always fail. */
+        /*
+         * A relation on a property the object does not have is false
+         * (ne and out too). Only this relation: the filter goes on to
+         * on_false, so or(missing, true) is true. It used to fail the
+         * whole filter.
+         */
         if (!value) {
             is_true = false;
-            break;
         }
 
-        /* Make sure value is already evaluated. */
-        if (!afw_value_is_defined_and_evaluated(value)) {
-            AFW_THROW_ERROR_Z(general, "Expecting evaluated value", xctx);
-        }
+        else {
+            /* Make sure value is already evaluated. */
+            if (!afw_value_is_defined_and_evaluated(value)) {
+                AFW_THROW_ERROR_Z(general, "Expecting evaluated value", xctx);
+            }
 
-        /* Object values are not supported yet or ever. */
-        if (afw_value_is_object(value) || afw_value_is_object(entry->value))
-        {
-            AFW_THROW_ERROR_Z(general,
-                "Object values are not supported in query string",
-                xctx);
-        }
+            /* Object values are not supported yet or ever. */
+            if (afw_value_is_object(value) ||
+                afw_value_is_object(entry->value))
+            {
+                AFW_THROW_ERROR_Z(general,
+                    "Object values are not supported in query string",
+                    xctx);
+            }
 
-        /* Set on_true/on_value based on comparison. */
-        is_true = impl_compare_value(entry, value, p, xctx);
+            /* Set on_true/on_value based on comparison. */
+            is_true = impl_compare_value(entry, value, p, xctx);
+        }
         if (is_true) {
             if (entry->on_true == AFW_QUERY_CRITERIA_TRUE) {
                 break;
@@ -2578,6 +2683,9 @@ impl_entry_to_query_string(
                     s = afw_uri_encode(s,
                         AFW_URI_OCTET_ENCODE_COMPONENT_VALUE, p, xctx);
                     afw_writer_write_utf8(w, s, xctx);
+                }
+                /* After the list (it was after the first item: (a),b)). */
+                if (!first_time) {
                     afw_writer_write_z(w, ")", xctx);
                 }
             }
