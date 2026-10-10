@@ -791,10 +791,8 @@ afw_error_write_log(afw_log_priority_t priority,
 AFW_DEFINE(int)
 afw_error_print(FILE *fp, const afw_error_t *error)
 {
-    afw_integer_t line;
-    const afw_utf8_octet_t *c;
-    const afw_utf8_octet_t *end;
-    const afw_utf8_octet_t *last_nl;
+    afw_size_t line;
+    afw_size_t column;
     afw_utf8_t value_source;
     int rv;
 
@@ -840,26 +838,14 @@ afw_error_print(FILE *fp, const afw_error_t *error)
                 AFW_UTF8_FMT_ARG(&value_source));
             if (rv < 0) goto return_rv;
 
-            c = value_source.s;
-            end = c + (error->contextual->value_offset < value_source.len ?
-                error->contextual->value_offset : value_source.len);
-            last_nl = c;
-            line = 0;
-            for (; c < end; c++)
-            {
-                if (*c == '\n') {
-                    line++;
-                    last_nl = c;
-                }
-            }
-            if (line != 1) {
-                line++;
-                rv = fprintf(fp, "  line:    " AFW_INTEGER_FMT "\n", line);
-                if (rv < 0) goto return_rv;
-                rv = fprintf(fp, "  column:  " AFW_INTEGER_FMT "\n",
-                    (afw_integer_t)(end - last_nl));
-                if (rv < 0) goto return_rv;
-            }
+            /* Line and column of the offset in the whole source. */
+            afw_utf8_line_column_of_offset(&line, &column,
+                error->contextual->compiled_value->full_source,
+                error->contextual->value_offset, 4, NULL);
+            rv = fprintf(fp, "  line:    " AFW_SIZE_T_FMT "\n", line);
+            if (rv < 0) goto return_rv;
+            rv = fprintf(fp, "  column:  " AFW_SIZE_T_FMT "\n", column);
+            if (rv < 0) goto return_rv;
         }
     }
 
@@ -928,10 +914,8 @@ impl_add_contextual(
     const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_integer_t line;
-    const afw_utf8_octet_t *c;
-    const afw_utf8_octet_t *end;
-    const afw_utf8_octet_t *last_nl;
+    afw_size_t line;
+    afw_size_t column;
     afw_utf8_t value_source;
 
     if (contextual->source_location) {
@@ -946,27 +930,14 @@ impl_add_contextual(
 
         afw_object_set_property_as_integer_internal(object,
             afw_v_offset, (afw_integer_t)contextual->value_offset, xctx);
-        line = 0;
-        c = value_source.s;
-        end = c + (contextual->value_offset < value_source.len ?
-                contextual->value_offset : value_source.len);
-        last_nl = c;
-        for (;
-            c < end;
-            c++)
-        {
-            if (*c == '\n') {
-                line++;
-                last_nl = c;
-            }
-        }
-        if (line != 1) {
-            line++;
-            afw_object_set_property_as_integer_internal(object,
-                afw_v_line, line, xctx);
-            afw_object_set_property_as_integer_internal(object,
-                afw_v_column, (afw_integer_t)(end - last_nl), xctx);
-        }
+        /* Line and column of the offset in the whole source. */
+        afw_utf8_line_column_of_offset(&line, &column,
+            contextual->compiled_value->full_source,
+            contextual->value_offset, 4, xctx);
+        afw_object_set_property_as_integer_internal(object,
+            afw_v_line, (afw_integer_t)line, xctx);
+        afw_object_set_property_as_integer_internal(object,
+            afw_v_column, (afw_integer_t)column, xctx);
     }
 }
 
