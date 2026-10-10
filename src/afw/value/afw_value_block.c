@@ -483,7 +483,13 @@ impl_afw_value_decompile(
     afw_xctx_t *xctx)
 {
 
-    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
+    if (self->is_loop_head) {
+        afw_writer_write_z(writer, "#loop_head", xctx);
+    }
+    else {
+        afw_value_decompile_write_synthetic_function_name(&self->pub,
+            writer, xctx);
+    }
     afw_value_decompile_value_list(writer, self->statement_count,
         self->statements, xctx);
 }

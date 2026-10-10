@@ -127,6 +127,13 @@ struct afw_value_block_s {
     afw_size_t depth; /* Syntax nesting (every `{ }`). */
     afw_size_t scope_depth; /* Frame nesting (same as depth). */
     afw_size_t symbol_count; /* first_entry length; frame_slots[] size. */
+
+    /*
+     * Block around a for or for-of with let/const in its head: holds those
+     * names, and its one statement is that loop, which runs each trip in a
+     * copy of it. Decompiles as #loop_head(...).
+     */
+    afw_boolean_t is_loop_head;
 };
 
 

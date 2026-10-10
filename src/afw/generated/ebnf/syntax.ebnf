@@ -101,10 +101,12 @@ AssignmentTarget ::= AssignmentBindingTarget | Reference
 
 /* From afw_compile_parse_compiler_internal.c                                 */
 /* Compiler-internal #block( statementExpression, ... ).                      */
-/* Token is already pound_identifier with name "block".                       */
+/* Token is already pound_identifier with name "block" or "loop_head".        */
+/* #loop_head is the block around a for or for-of with let/const in its       */
+/* head.                                                                      */
 
 CompilerInternalBlock ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')'
+    ( '#block' | '#loop_head' ) '(' ( Expression ( ',' Expression )* )? ')'
 
 /* From afw_compile_parse_compiler_internal.c                                 */
 /* Target shape for #assignment_target (symbol name or destructure Pattern).  */
