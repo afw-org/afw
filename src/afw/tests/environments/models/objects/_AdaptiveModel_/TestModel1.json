@@ -5,8 +5,14 @@
             "mappedObjectType": "TestObjectType1",
             "propertyTypes": {
                 "MyTestString1": {
+                    "allowQuery": true,
                     "dataType": "string",
                     "mappedPropertyName": "TestString1"
+                },
+                "MyTestBoolean1": {
+                    "allowQuery": true,
+                    "dataType": "boolean",
+                    "mappedPropertyName": "TestBoolean1"
                 }
             }
         },
