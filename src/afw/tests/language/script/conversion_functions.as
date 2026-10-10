@@ -192,3 +192,18 @@ assert(string(double("-0.0")) === "-0.0E0", string(double("-0.0")));
 assert(string(double("0.0")) === "0.0E0");
 assert(string(double(string(-0.0))) === string(-0.0), "round trip -0.0");
 return 0;
+
+//?
+//? test: split-keeps-empty-pieces
+//? description: split has one more piece than separators, like ECMAScript (the piece after a trailing separator was dropped)
+//? expect: 0
+//? source: ...
+
+assert(stringify(split("a,", ",")) === "[\"a\",\"\"]", stringify(split("a,", ",")));
+assert(stringify(split("a,,", ",")) === "[\"a\",\"\",\"\"]");
+assert(stringify(split(",", ",")) === "[\"\",\"\"]");
+assert(stringify(split(",a", ",")) === "[\"\",\"a\"]");
+assert(stringify(split("", ",")) === "[\"\"]", stringify(split("", ",")));
+assert(stringify(split("a,b,c", ",", 2)) === "[\"a\",\"b\"]", "limit");
+assert(stringify(split("abc")) === "[\"a\",\"b\",\"c\"]", "no separator");
+return 0;

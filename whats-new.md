@@ -235,6 +235,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **dateTime and time compare by instant across time zones:** `dateTime("1932-04-02T02:54:04+05:30") == dateTime("1932-04-01T16:24:04-05:00")` was false (the local dates were compared first), and `lt` / `gt` could be wrong whenever two values had different offsets. `time` with different offsets added the offset instead of subtracting it. Both now compare the UTC instant. Comparing a value that has a time zone with one that has none is still an error. **`dayTimeDuration` compares by length:** hours past a day were not folded into days (`P1DT32H78M108S` was less than `P2DT1H`), and fractional seconds were ignored (`PT1.5S == PT1.6S` was true).
 
+**`split` keeps empty pieces like ECMAScript:** there is one more piece than separators. `split("a,", ",")` is `["a", ""]` (was `["a"]`, while `split(",a", ",")` already kept its leading `""`), and `split("", ",")` is `[""]` (was `[]`).
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
