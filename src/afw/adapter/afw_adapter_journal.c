@@ -81,58 +81,6 @@ afw_adapter_internal_journal_epilogue(
 
 
 
-/* _AdaptiveJournalEntry update_object(). */
-AFW_DEFINE(void)
-afw_adapter_journal_entry_consume(
-    const afw_adapter_session_t *session,
-    const afw_utf8_t *object_id,
-    const afw_object_t *update_object,
-    afw_xctx_t *xctx)
-{
-    const afw_adapter_journal_t *journal;
-    afw_boolean_t consumed;
-    afw_boolean_t found;
-    const afw_utf8_t *consumer_id;
-    afw_adapter_impl_request_t impl_request;
-
-    /* Get journal interface. */
-    journal = afw_adapter_session_get_journal_interface(session, xctx);
-    if (!journal) {
-        AFW_THROW_ERROR_FZ(general, xctx,
-            "adapter_id '%ku' session get_journal() returned NULL",
-            &session->adapter->adapter_id);
-    }
-
-    /* Get consumed property from update object. */
-    consumed = afw_object_get_property_as_boolean_internal(update_object,
-        afw_v_consumed, &found, xctx);
-    if (!found || !consumed) {
-        AFW_THROW_ERROR_Z(general,
-            AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
-            " update_object() must have consumed property set to true", xctx);
-    }
-
-    /* Get consumer_id from update object. */
-    consumer_id = afw_object_get_property_as_string_internal(update_object,
-        afw_v_consumerId, xctx);
-    if (!consumer_id) {
-        AFW_THROW_ERROR_Z(general,
-            AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
-            " update_object() must have consumerId property", xctx);
-    }
-
-    afw_adapter_internal_journal_authorize(&session->adapter->adapter_id,
-        object_id, afw_authorization_action_id_modify, NULL, xctx);
-
-    /* Mark entry consumed. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_mark_entry_consumed(journal, &impl_request,
-        consumer_id, object_id, xctx);
-}
-
-
-static const afw_utf8_t impl_s_get_first = AFW_UTF8_LITERAL("get_first");
-
 static const afw_adapter_journal_t *
 impl_get_journal_interface(const afw_utf8_t *adapter_id,
     afw_boolean_t begin_transaction, afw_xctx_t *xctx)
@@ -154,6 +102,75 @@ error:
 }
 
 
+static const afw_utf8_t impl_s_get_first = AFW_UTF8_LITERAL("get_first");
+
+/*
+ * The objectId part of the resource id a journal read is authorized on:
+ * the special objectId of its REST form without the limit, so the
+ * built-in and the REST form of an operation are checked on the same
+ * path. A read of the entry at a cursor is the entry's own path.
+ */
+static const afw_utf8_t *
+impl_resource_object_id(
+    afw_adapter_journal_option_t option,
+    const afw_utf8_t *consumer_id,
+    const afw_utf8_t *cursor,
+    afw_xctx_t *xctx)
+{
+    switch (option) {
+    case afw_adapter_journal_option_get_first:
+        return &impl_s_get_first;
+    case afw_adapter_journal_option_get_by_cursor:
+        return cursor;
+    case afw_adapter_journal_option_get_next_after_cursor:
+        return afw_utf8_printf(xctx->p, xctx,
+            "get_next_after_cursor:%ku", cursor);
+    case afw_adapter_journal_option_get_next_for_consumer:
+        return afw_utf8_printf(xctx->p, xctx,
+            "get_next_for_consumer:%ku", consumer_id);
+    case afw_adapter_journal_option_get_next_for_consumer_after_cursor:
+        return afw_utf8_printf(xctx->p, xctx,
+            "get_next_for_consumer_after_cursor:%ku:%ku",
+            consumer_id, cursor);
+    case afw_adapter_journal_option_advance_cursor_for_consumer:
+        return afw_utf8_printf(xctx->p, xctx,
+            "advance_cursor_for_consumer:%ku", consumer_id);
+    }
+    AFW_THROW_ERROR_Z(general, "Unknown journal option", xctx);
+}
+
+
+/*
+ * Authorize and do a journal read for both the built-ins and the REST
+ * forms. limit 0 is no limit; it applies only to the consumer forms. The
+ * consumer forms change the peer, so they begin a transaction.
+ */
+static void
+impl_get_entry(
+    const afw_utf8_t *adapter_id,
+    afw_adapter_journal_option_t option,
+    const afw_utf8_t *consumer_id,
+    const afw_utf8_t *cursor,
+    afw_size_t limit,
+    const afw_object_t *result,
+    afw_xctx_t *xctx)
+{
+    const afw_adapter_journal_t *journal;
+    afw_adapter_impl_request_t impl_request;
+
+    journal = impl_get_journal_interface(adapter_id, consumer_id != NULL,
+        xctx);
+
+    afw_adapter_internal_journal_authorize(adapter_id,
+        impl_resource_object_id(option, consumer_id, cursor, xctx),
+        afw_authorization_action_id_read, NULL, xctx);
+
+    afw_memory_clear(&impl_request);
+    afw_adapter_journal_get_entry(journal, &impl_request,
+        option, consumer_id, cursor, limit, result, xctx);
+}
+
+
 /* Journal - get first entry. */
 AFW_DEFINE(const afw_object_t *)
 afw_adapter_journal_get_first(
@@ -161,26 +178,11 @@ afw_adapter_journal_get_first(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_adapter_journal_t *journal;
     const afw_object_t *result;
-    afw_adapter_impl_request_t impl_request;
 
-    /* Create memory object for result. */
     result = afw_object_create_unmanaged_new_p(p, xctx);
-
-    /* Get journal interface. */
-    journal = impl_get_journal_interface(adapter_id, false, xctx);
-
-    afw_adapter_internal_journal_authorize(adapter_id,
-        &impl_s_get_first,
-        afw_authorization_action_id_read, NULL, xctx);
-
-    /* Get first entry. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_get_entry(journal, &impl_request,
-        afw_adapter_journal_option_get_first, NULL, NULL, -1, result, xctx);
-
-    /* Return result object. */
+    impl_get_entry(adapter_id, afw_adapter_journal_option_get_first,
+        NULL, NULL, 0, result, xctx);
     return result;
 }
 
@@ -193,26 +195,11 @@ afw_adapter_journal_get_by_cursor(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_adapter_journal_t *journal;
     const afw_object_t *result;
-    afw_adapter_impl_request_t impl_request;
 
-    /* Create memory object for result. */
     result = afw_object_create_unmanaged_new_p(p, xctx);
-
-    /* Get journal interface. */
-    journal = impl_get_journal_interface(adapter_id, false, xctx);
-
-
-    afw_adapter_internal_journal_authorize(adapter_id, cursor,
-        afw_authorization_action_id_read, NULL, xctx);
-
-    /* Get first entry. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_get_entry(journal, &impl_request,
-        afw_adapter_journal_option_get_by_cursor, NULL, cursor, -1, result, xctx);
-
-    /* Return result object. */
+    impl_get_entry(adapter_id, afw_adapter_journal_option_get_by_cursor,
+        NULL, cursor, 0, result, xctx);
     return result;
 }
 
@@ -225,28 +212,12 @@ afw_adapter_journal_get_next_after_cursor(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_adapter_journal_t *journal;
     const afw_object_t *result;
-    afw_adapter_impl_request_t impl_request;
 
-    /* Create memory object for result. */
     result = afw_object_create_unmanaged_new_p(p, xctx);
-
-    /* Get journal interface. */
-    journal = impl_get_journal_interface(adapter_id, false, xctx);
-
-
-    afw_adapter_internal_journal_authorize(adapter_id,
-        afw_utf8_printf(xctx->p, xctx, "get_next_after_cursor:%ku", cursor),
-        afw_authorization_action_id_read, NULL, xctx);
-
-    /* Get first entry. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_get_entry(journal, &impl_request,
-        afw_adapter_journal_option_get_next_after_cursor, NULL, cursor, -1, result,
-        xctx);
-
-    /* Return result object. */
+    impl_get_entry(adapter_id,
+        afw_adapter_journal_option_get_next_after_cursor,
+        NULL, cursor, 0, result, xctx);
     return result;
 }
 
@@ -260,29 +231,12 @@ afw_adapter_journal_get_next_for_consumer(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_adapter_journal_t *journal;
     const afw_object_t *result;
-    afw_adapter_impl_request_t impl_request;
 
-    /* Create memory object for result. */
     result = afw_object_create_unmanaged_new_p(p, xctx);
-
-    /* Get journal interface. */
-    journal = impl_get_journal_interface(adapter_id, true, xctx);
-
-
-    afw_adapter_internal_journal_authorize(adapter_id,
-        afw_utf8_printf(xctx->p, xctx, "get_next_for_consumer:%ku",
-            consumer_id),
-        afw_authorization_action_id_read, NULL, xctx);
-
-    /* Get first entry. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_get_entry(journal, &impl_request,
-        afw_adapter_journal_option_get_next_for_consumer, consumer_id, NULL,
-        limit, result, xctx);
-
-    /* Return result object. */
+    impl_get_entry(adapter_id,
+        afw_adapter_journal_option_get_next_for_consumer,
+        consumer_id, NULL, limit, result, xctx);
     return result;
 }
 
@@ -297,30 +251,12 @@ afw_adapter_journal_get_next_for_consumer_after_cursor(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_adapter_journal_t *journal;
     const afw_object_t *result;
-    afw_adapter_impl_request_t impl_request;
 
-    /* Create memory object for result. */
     result = afw_object_create_unmanaged_new_p(p, xctx);
-
-    /* Get journal interface. */
-    journal = impl_get_journal_interface(adapter_id, true, xctx);
-
-
-    afw_adapter_internal_journal_authorize(adapter_id,
-        afw_utf8_printf(xctx->p, xctx,
-            "get_next_for_consumer_after_cursor:%ku:%ku",
-            consumer_id, cursor),
-        afw_authorization_action_id_read, NULL, xctx);
-
-    /* Get first entry. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_get_entry(journal, &impl_request,
+    impl_get_entry(adapter_id,
         afw_adapter_journal_option_get_next_for_consumer_after_cursor,
         consumer_id, cursor, limit, result, xctx);
-
-    /* Return result object. */
     return result;
 }
 
@@ -334,33 +270,21 @@ afw_adapter_journal_advance_cursor_for_consumer(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_adapter_journal_t *journal;
     const afw_object_t *result;
-    afw_adapter_impl_request_t impl_request;
 
-    /* Create memory object for result. */
     result = afw_object_create_unmanaged_new_p(p, xctx);
-
-    /* Get journal interface. */
-    journal = impl_get_journal_interface(adapter_id, true, xctx);
-
-
-    afw_adapter_internal_journal_authorize(adapter_id,
-        afw_utf8_printf(xctx->p, xctx, "advance_cursor_for_consumer:%ku",
-            consumer_id),
-        afw_authorization_action_id_read, NULL, xctx);
-
-    /* Get first entry. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_get_entry(journal, &impl_request,
+    impl_get_entry(adapter_id,
         afw_adapter_journal_option_advance_cursor_for_consumer,
         consumer_id, NULL, limit, result, xctx);
-
-    /* Return result object. */
     return result;
 }
 
-/* Journal - mark entry consumed by consumer. */
+
+/*
+ * Journal - mark entry consumed by consumer. Authorized as read of
+ * mark_consumed:<consumer_id>:<cursor>, the special objectId of its REST
+ * form, like the other consumer operations that change the peer.
+ */
 AFW_DEFINE(void)
 afw_adapter_journal_mark_consumed(
     const afw_utf8_t *adapter_id,
@@ -375,10 +299,11 @@ afw_adapter_journal_mark_consumed(
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, true, xctx);
 
-    afw_adapter_internal_journal_authorize(adapter_id, cursor,
-        afw_authorization_action_id_modify, NULL, xctx);
+    afw_adapter_internal_journal_authorize(adapter_id,
+        afw_utf8_printf(xctx->p, xctx, "mark_consumed:%ku:%ku",
+            consumer_id, cursor),
+        afw_authorization_action_id_read, NULL, xctx);
 
-    /* Get first entry. */
     afw_memory_clear(&impl_request);
     afw_adapter_journal_mark_entry_consumed(journal, &impl_request,
         consumer_id, cursor, xctx);
@@ -451,10 +376,7 @@ afw_adapter_internal_journal_get_entry(
     afw_size_t count;
     const afw_utf8_z_t *option_z;
     const afw_utf8_z_t *syntax_z;
-    const afw_adapter_journal_t *journal;
     const afw_object_t *request;
-    afw_adapter_impl_request_t impl_request;
-    afw_boolean_t limit_applies;
 
     /*
      * Get request object.  Make one if necessary.  Additional properties
@@ -467,15 +389,11 @@ afw_adapter_internal_journal_get_entry(
             journal_entry, afw_v_request, xctx);
     }
 
-    /* Default limit when a consumer form does not give one. */
-    limit_applies = false;
-    limit = 100;
+    /* No limit when a consumer form does not give one, as the built-ins. */
+    limit = 0;
 
     consumer_id = NULL;
     entry_cursor = NULL;
-    journal = afw_adapter_session_get_journal_interface(session, xctx);
-    if (!journal) return NULL; /** @fixme Should this be error? */
-    /** @fixme Might want to url_decode consumer_id and entry_cursor. */
 
     /* get_first */
     if (afw_utf8_starts_with_utf8_z(object_id, "get_first")) {
@@ -512,7 +430,6 @@ afw_adapter_internal_journal_get_entry(
     /* get_next_for_consumer:<consumer_id>[:<limit>] */
     else if (afw_utf8_starts_with_utf8_z(object_id, "get_next_for_consumer:"))
     {
-        limit_applies = true;
         syntax_z = "get_next_for_consumer:<consumer_id>[:<limit>]";
         option = afw_adapter_journal_option_get_next_for_consumer;
         option_z = "get_next_for_consumer";
@@ -534,7 +451,6 @@ afw_adapter_internal_journal_get_entry(
     else if (afw_utf8_starts_with_utf8_z(object_id,
         "get_next_for_consumer_after_cursor:"))
     {
-        limit_applies = true;
         syntax_z = "get_next_for_consumer_after_cursor:"
             "<consumer_id>:<event_cursor>[:<limit>]";
         option =
@@ -556,7 +472,6 @@ afw_adapter_internal_journal_get_entry(
     else if (afw_utf8_starts_with_utf8_z(object_id,
         "advance_cursor_for_consumer:"))
     {
-        limit_applies = true;
         syntax_z = "advance_cursor_for_consumer:<consumer_id>[:<limit>]";
         option =
             afw_adapter_journal_option_advance_cursor_for_consumer;
@@ -570,6 +485,31 @@ afw_adapter_internal_journal_get_entry(
         if (count == 2 && !impl_parse_special_id_limit(fields[1], &limit)) {
             goto error_special_id;
         }
+    }
+
+    /*
+     * mark_consumed:<consumer_id>:<event_cursor>
+     *
+     * The same as journal_mark_consumed().
+     */
+    else if (afw_utf8_starts_with_utf8_z(object_id, "mark_consumed:")) {
+        syntax_z = "mark_consumed:<consumer_id>:<event_cursor>";
+        count = impl_split_special_id_args(
+            object_id->s + strlen("mark_consumed:"),
+            object_id->len - strlen("mark_consumed:"),
+            fields, 2, request->p, xctx);
+        if (count != 2) goto error_special_id;
+        afw_object_set_property_as_string_from_utf8_z(request,
+            afw_v_option, "mark_consumed", xctx);
+        afw_object_set_property_as_string_internal(request, afw_v_consumerId,
+            fields[0], xctx);
+        afw_object_set_property_as_string_internal(request, afw_v_entryCursor,
+            fields[1], xctx);
+        afw_adapter_journal_mark_consumed(&session->adapter->adapter_id,
+            fields[0], fields[1], journal_entry->p, xctx);
+        afw_object_set_property(journal_entry,
+            afw_v_status, afw_v_success, xctx);
+        return journal_entry;
     }
 
     /* <event_cursor> */
@@ -599,21 +539,15 @@ afw_adapter_internal_journal_get_entry(
             entry_cursor, xctx);
     }
 
-    /* Set entry limit property, if applicable. */
-    if (limit_applies) {
+    /* Set entry limit property, if one was given. */
+    if (limit > 0) {
         afw_object_set_property_as_integer_internal(request, afw_v_limit,
             limit, xctx);
-    } else {
-        limit = 1;
     }
 
-    afw_adapter_internal_journal_authorize(&session->adapter->adapter_id,
-        object_id, afw_authorization_action_id_read, NULL, xctx);
-
-    /* Get entry and return. */
-    afw_memory_clear(&impl_request);
-    afw_adapter_journal_get_entry(journal, &impl_request,
-        option, consumer_id, entry_cursor, limit, journal_entry, xctx);
+    /* Get entry the same way as the built-in, and return. */
+    impl_get_entry(&session->adapter->adapter_id, option,
+        consumer_id, entry_cursor, limit, journal_entry, xctx);
     afw_object_set_property(journal_entry,
         afw_v_status, afw_v_success, xctx);
     return journal_entry;

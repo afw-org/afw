@@ -144,16 +144,6 @@ afw_adapter_journal_mark_consumed(
 
 
 
-/* _AdaptiveJournalEntry update_object(). */
-AFW_DECLARE(void)
-afw_adapter_journal_entry_consume(
-    const afw_adapter_session_t *session,
-    const afw_utf8_t *object_id,
-    const afw_object_t *update_object,
-    afw_xctx_t *xctx);
-
-
-
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

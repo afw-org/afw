@@ -911,21 +911,6 @@ afw_adapter_modify_using_update_object(
     const afw_value_t *entry_value;
     const afw_value_t *property_name_value;
 
-
-    /*
-     * Updating a journal entry marks it consumed:
-     * {"consumed": true, "consumerId": <peer objectId>}. This is the REST
-     * form, POST /<journal>/_AdaptiveJournalEntry_/<cursor>.
-     */
-    if (object_type_id && object_id && afw_utf8_equal(object_type_id,
-        AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
-    {
-        afw_adapter_journal_entry_consume(
-            afw_adapter_session_get_cached(adapter_id, true, xctx),
-            object_id, update_object, xctx);
-        return;
-    }
-
     /* Convert update_object to list of modify entries. */
     entries = afw_array_create_unmanaged_of(afw_data_type_array, xctx->p, xctx);
     iterator = NULL;

@@ -134,10 +134,13 @@ afw_adapter_internal_journal_get_entry(
  * @brief Authorize a journal operation.
  *
  * A journal operation is authorized like an object operation on path
- * /<adapter_id>/_AdaptiveJournalEntry_/<object_id>, where object_id is a
- * cursor, a special journal objectId, or NULL for none. object is the
- * entry being added, or NULL. The journal entries an adapter writes for
- * its own object changes are not checked again.
+ * /<adapter_id>/_AdaptiveJournalEntry_/<object_id>, where object_id is
+ * NULL to add an entry, the cursor to read the entry at a cursor, and
+ * otherwise the special objectId of the operation's REST form without a
+ * limit (for example get_next_for_consumer:<consumer_id> or
+ * mark_consumed:<consumer_id>:<cursor>), whether it came from REST or a
+ * built-in. object is the entry being added, or NULL. The journal entries
+ * an adapter writes for its own object changes are not checked again.
  *
  * Definition in afw_adapter_journal.c.
  */

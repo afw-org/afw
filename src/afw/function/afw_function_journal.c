@@ -30,6 +30,28 @@ impl_return_faced_object(
 
 
 /*
+ * Optional limit parameter n: 0 (no limit) if not specified, otherwise 1
+ * or more, the same as the :<limit> of the REST forms.
+ */
+static afw_size_t
+impl_get_limit(afw_function_execute_t *x, afw_size_t n)
+{
+    const afw_value_integer_t *limit_arg;
+
+    if (!AFW_FUNCTION_PARAMETER_IS_PRESENT(n)) {
+        return 0;
+    }
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit_arg, n, integer);
+    if (limit_arg->internal < 1) {
+        AFW_THROW_ERROR_Z(argument_error,
+            "limit must be 1 or more", x->xctx);
+    }
+    return (afw_size_t)limit_arg->internal;
+}
+
+
+
+/*
  * Adaptive function: journal_advance_cursor_for_consumer
  *
  * afw_function_execute_journal_advance_cursor_for_consumer
@@ -80,7 +102,8 @@ impl_return_faced_object(
  *
  *   limit - (optional integer) The maximum number of entries that will be
  *       scanned for an entry where the consumeFilter expression in the
- *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
+ *       associated _AdaptiveProvisioningPeer_ object evaluates to true. If not
+ *       specified, there is no limit. If specified, it must be 1 or more.
  *
  * Returns:
  *
@@ -92,17 +115,12 @@ afw_function_execute_journal_advance_cursor_for_consumer(
 {
     const afw_value_string_t *adapterId;
     const afw_value_string_t *consumerId;
-    const afw_value_integer_t *limit_arg;
     afw_size_t limit;
     const afw_object_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(consumerId, 2, string);
-    limit = 0;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit_arg, 3, integer);
-        limit = (afw_size_t)limit_arg->internal;
-    }
+    limit = impl_get_limit(x, 3);
     
     result = afw_adapter_journal_advance_cursor_for_consumer(
         &adapterId->internal, &consumerId->internal, limit, x->p, x->xctx);
@@ -327,7 +345,8 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  *   limit - (optional integer) The maximum number of entries that will be
  *       scanned for an entry where the consumeFilter expression in the
- *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
+ *       associated _AdaptiveProvisioningPeer_ object evaluates to true. If not
+ *       specified, there is no limit. If specified, it must be 1 or more.
  *
  * Returns:
  *
@@ -339,17 +358,12 @@ afw_function_execute_journal_get_next_for_consumer(
 {
     const afw_value_string_t *adapterId;
     const afw_value_string_t *consumerId;
-    const afw_value_integer_t *limit_arg;
     afw_size_t limit;
     const afw_object_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(consumerId, 2, string);
-    limit = 0;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit_arg, 3, integer);
-        limit = (afw_size_t)limit_arg->internal;
-    }
+    limit = impl_get_limit(x, 3);
     
     result = afw_adapter_journal_get_next_for_consumer(
         &adapterId->internal, &consumerId->internal, limit, x->p, x->xctx);
@@ -406,7 +420,8 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  *   limit - (optional integer) The maximum number of entries that will be
  *       scanned for an entry where the consumeFilter expression in the
- *       associated _AdaptiveProvisioningPeer_ object evaluates to true.
+ *       associated _AdaptiveProvisioningPeer_ object evaluates to true. If not
+ *       specified, there is no limit. If specified, it must be 1 or more.
  *
  * Returns:
  *
@@ -419,18 +434,13 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
     const afw_value_string_t *adapterId;
     const afw_value_string_t *consumerId;
     const afw_value_string_t *cursor;
-    const afw_value_integer_t *limit_arg;
     afw_size_t limit;
     const afw_object_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(consumerId, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(cursor, 3, string);
-    limit = 0;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit_arg, 4, integer);
-        limit = (afw_size_t)limit_arg->internal;
-    }
+    limit = impl_get_limit(x, 4);
     
     result = afw_adapter_journal_get_next_for_consumer_after_cursor(
         &adapterId->internal, &consumerId->internal, &cursor->internal,

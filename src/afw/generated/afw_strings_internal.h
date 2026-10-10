@@ -13393,32 +13393,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__3787eb4a9491 \
-    "The maximum number of entries that will be scanned for an entry where the consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3787eb4a9491 */
-#define afw_s_zz__3787eb4a9491 \
-    (&afw_self_v_zz__3787eb4a9491.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3787eb4a9491 */
-#define afw_self_s_zz__3787eb4a9491 \
-    (afw_self_v_zz__3787eb4a9491.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3787eb4a9491 */
-extern const afw_value_string_t \
-    afw_self_v_zz__3787eb4a9491;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3787eb4a9491 */
-#define afw_z_zz__3787eb4a9491 \
-    (afw_self_v_zz__3787eb4a9491.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3787eb4a9491 */
-#define afw_v_zz__3787eb4a9491 \
-    (&afw_self_v_zz__3787eb4a9491.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__37a9e0125e6b \
     "function get_object (\n    adapterId: string,\n    objectType: string,\n    objectId: string,\n    options?: object, // _AdaptiveObjectOptions_\n    adapterTypeSpecific?: object\n): object;\n"
 
@@ -20045,6 +20019,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__544d6cdb50fb */
 #define afw_v_zz__544d6cdb50fb \
     (&afw_self_v_zz__544d6cdb50fb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__54a0ad0ac690 \
+    "The maximum number of entries that will be scanned for an entry where the consumeFilter expression in the associated _AdaptiveProvisioningPeer_ object evaluates to true. If not specified, there is no limit. If specified, it must be 1 or more."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__54a0ad0ac690 */
+#define afw_s_zz__54a0ad0ac690 \
+    (&afw_self_v_zz__54a0ad0ac690.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__54a0ad0ac690 */
+#define afw_self_s_zz__54a0ad0ac690 \
+    (afw_self_v_zz__54a0ad0ac690.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__54a0ad0ac690 */
+extern const afw_value_string_t \
+    afw_self_v_zz__54a0ad0ac690;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__54a0ad0ac690 */
+#define afw_z_zz__54a0ad0ac690 \
+    (afw_self_v_zz__54a0ad0ac690.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__54a0ad0ac690 */
+#define afw_v_zz__54a0ad0ac690 \
+    (&afw_self_v_zz__54a0ad0ac690.pub)
 
 
 

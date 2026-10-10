@@ -91,7 +91,8 @@ class journal
      *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
-     *                       true.
+     *                       true. If not specified, there is no limit. If
+     *                       specified, it must be 1 or more.
      *
      * @return object Response object.
      */
@@ -241,7 +242,8 @@ class journal
      *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
-     *                       true.
+     *                       true. If not specified, there is no limit. If
+     *                       specified, it must be 1 or more.
      *
      * @return object Response object.
      */
@@ -292,7 +294,8 @@ class journal
      *                       scanned for an entry where the consumeFilter
      *                       expression in the associated
      *                       _AdaptiveProvisioningPeer_ object evaluates to
-     *                       true.
+     *                       true. If not specified, there is no limit. If
+     *                       specified, it must be 1 or more.
      *
      * @return object Response object.
      */
