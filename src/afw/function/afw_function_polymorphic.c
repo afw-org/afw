@@ -59,6 +59,26 @@ impl_is_subset_array(
 }
 
 
+/*
+ * The data type of a set function's array. An empty array with no data
+ * type (the literal []) is an empty set of the function's data type
+ * (subset<string>([], ["a"]) threw "must have a data type that matches").
+ */
+static const afw_data_type_t *
+impl_set_array_data_type(
+    const afw_array_t *array,
+    afw_function_execute_t *x)
+{
+    const afw_data_type_t *data_type;
+
+    data_type = afw_array_get_data_type(array, x->xctx);
+    if (!data_type && afw_array_get_count(array, x->xctx) == 0) {
+        data_type = x->data_type;
+    }
+    return data_type;
+}
+
+
 /* Add non-duplicates. */
 static void
 impl_add_nondups_to_array(
@@ -1058,9 +1078,9 @@ afw_function_execute_intersection(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
-    data_type = afw_array_get_data_type(array1->internal, x->xctx);
+    data_type = impl_set_array_data_type(array1->internal, x);
     if (!data_type ||
-        data_type != afw_array_get_data_type(array2->internal, x->xctx))
+        data_type != impl_set_array_data_type(array2->internal, x))
     {
         AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type of the same type",
@@ -2212,8 +2232,8 @@ afw_function_execute_set_equals(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
-    data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
-    data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
+    data_type_1 = impl_set_array_data_type(array1->internal, x);
+    data_type_2 = impl_set_array_data_type(array2->internal, x);
     if (!data_type_1 || data_type_1 != data_type_2) {
         AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type that matches", x->xctx);
@@ -2494,8 +2514,8 @@ afw_function_execute_subset(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
-    data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
-    data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
+    data_type_1 = impl_set_array_data_type(array1->internal, x);
+    data_type_2 = impl_set_array_data_type(array2->internal, x);
     if (!data_type_1 || data_type_1 != data_type_2) {
         AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type that matches", x->xctx);
@@ -2674,7 +2694,7 @@ afw_function_execute_union(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
 
-    data_type = afw_array_get_data_type(array1->internal, x->xctx);
+    data_type = impl_set_array_data_type(array1->internal, x);
     if (!data_type)
     {
         AFW_THROW_ERROR_Z(argument_error,
@@ -2690,7 +2710,7 @@ afw_function_execute_union(
         result->internal, x->xctx);
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arrayn, i, array);
-        if (afw_array_get_data_type(arrayn->internal, x->xctx) != data_type) {
+        if (impl_set_array_data_type(arrayn->internal, x) != data_type) {
             AFW_THROW_ERROR_Z(argument_error,
                 "all arrays must have the same data type",
                 x->xctx);
