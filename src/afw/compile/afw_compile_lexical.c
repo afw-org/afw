@@ -967,8 +967,10 @@ impl_parse_number(afw_compile_parser_t *parser)
     afw_boolean_t is_integer;
     afw_boolean_t is_zero;
     afw_boolean_t leading_dot;
+    afw_boolean_t integer_out_of_range;
     afw_utf8_octet_t o;
     afw_code_point_t cp;
+    double d;
 
     afw_compile_save_cursor(start_offset);
     negative = 0;
@@ -976,6 +978,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     is_integer = true;
     is_zero = true;
     leading_dot = false;
+    integer_out_of_range = false;
 
     /* Determine if negative and handle reserved identifiers. */
     o = afw_compile_get_octet(parser);
@@ -1065,15 +1068,20 @@ impl_parse_number(afw_compile_parser_t *parser)
                 parser->cursor--;
                 break;
             }
-            if (negative < AFW_INTEGER_MIN / 10)
+            /*
+             * Too large for an integer is only an error if no fraction
+             * or exponent follows (99999999999999999999.5 is a double).
+             */
+            if (integer_out_of_range) {
+                continue;
+            }
+            if (negative < AFW_INTEGER_MIN / 10 ||
+                negative * 10 < AFW_INTEGER_MIN + (o - '0'))
             {
-                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+                integer_out_of_range = true;
+                continue;
             }
             negative = (negative * 10);
-            if (negative < AFW_INTEGER_MIN + (o - '0'))
-            {
-                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
-            }
             negative -= (o - '0');
         }
     }
@@ -1199,6 +1207,9 @@ impl_parse_number(afw_compile_parser_t *parser)
      *       frameworks treats integers as afw_integer_t.
      */
     if (is_integer) {
+        if (integer_out_of_range) {
+            AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+        }
         parser->token->type = afw_compile_token_type_integer;
         if (is_negative) {
             n = negative;
@@ -1232,10 +1243,18 @@ impl_parse_number(afw_compile_parser_t *parser)
             memcpy(scratch, parser->full_source->s + start_offset, n);
             scratch[n] = 0;
             errno = 0;
-            parser->token->number = impl_double_literal(parser,
-                strtod(scratch, NULL));
+            d = strtod(scratch, NULL);
+            /*
+             * ERANGE is an error for overflow and for underflow to 0, not
+             * for a subnormal result (glibc sets it for those too).
+             */
+            if (errno != 0 &&
+                (errno != ERANGE || d == 0.0 || !afw_number_is_finite(d)))
+            {
+                goto error;
+            }
+            parser->token->number = impl_double_literal(parser, d);
         }
-        if (errno != 0) goto error;
     }
 
     return true;
