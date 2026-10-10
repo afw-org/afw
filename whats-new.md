@@ -249,6 +249,10 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **Query filters (`retrieve_objects`, REST queries):** a nested `and` / `or` skipped every filter of the group after its first: `and(and(a, b), c)` was `and(a, c)`. A relation on a property the object does not have is false and the filter goes on (`or(missing=x, objectType=y)` matched nothing for objects without `missing`). `out`, `differ`, and `excludes` threw *Error occurred processing query filter*; they are not `in`, not `match`, not `contains`. A string value for a boolean property is read as a boolean (`allowEntity=false` matched `true`), and a string listed in `in` / `out` is converted to the property's data type (it was *data type mismatch*). `convert_AdaptiveQueryCriteria_to_query_string` wrote a list as `(a),b)`; it writes `(a,b)`. In a query string, a list item starting with `-` (`n=in=(-1,2)`) was an *Invalid array item* error.
 
+**Set functions:** an empty literal array `[]` is an empty set of the function's data type: `subset<string>([], ["a"])` is `true`, and `union` / `intersection` / `set_equals` accept `[]` (they threw *must have a data type*).
+
+**Integer literal `9223372036854775808`** (2^63) is *Integer is out of range* like any larger integer (it was *Invalid number*); `-9223372036854775808` still compiles.
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
