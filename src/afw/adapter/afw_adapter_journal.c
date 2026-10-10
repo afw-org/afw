@@ -281,9 +281,9 @@ afw_adapter_journal_advance_cursor_for_consumer(
 
 
 /*
- * Journal - mark entry consumed by consumer. Authorized as modify of
+ * Journal - mark entry consumed by consumer. Authorized as read of
  * mark_consumed:<consumer_id>:<cursor>, the special objectId of its REST
- * form.
+ * form, like the other consumer operations that change the peer.
  */
 AFW_DEFINE(void)
 afw_adapter_journal_mark_consumed(
@@ -302,7 +302,7 @@ afw_adapter_journal_mark_consumed(
     afw_adapter_internal_journal_authorize(adapter_id,
         afw_utf8_printf(xctx->p, xctx, "mark_consumed:%ku:%ku",
             consumer_id, cursor),
-        afw_authorization_action_id_modify, NULL, xctx);
+        afw_authorization_action_id_read, NULL, xctx);
 
     afw_memory_clear(&impl_request);
     afw_adapter_journal_mark_entry_consumed(journal, &impl_request,
