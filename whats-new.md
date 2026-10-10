@@ -280,6 +280,8 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 
 **LMDB stores integers outside 32 bits:** writing an object with an integer below -2147483647 or above 2147483647 (a millisecond timestamp, an id) to an LMDB adapter failed with "Unexpected error in UBJSON converting 64-bit integer."; the UBJSON encoder had no 64-bit case. It writes int64 now (the reader already read it).
 
+**`return` from a nested `{ }` on a later loop trip:** `while (true) { abs(-7); { if (i == 1) return i; } i = 1; }` returned `7` (or a closure pushed earlier in the trip), not `1`: the value returned was the one an earlier trip had already left as the result, and that was taken for no result.
+
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 
 A get or retrieve on an adapter that is not running starts it. When another request finished that start first, the read threw `can not be started.  Service is running`. It now uses the running adapter. A manual `service_start()` of a running service still throws.
