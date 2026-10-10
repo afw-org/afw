@@ -1666,7 +1666,14 @@ afw_uri_parse(
 
         case impl_state_authority_determine:
 
-            if (c == end || AFW_URI_OCTET_IS(type, GEN_DELIM)) {
+            /*
+             * The authority ends at '/', '?', '#', or the end; it has a
+             * userinfo if an '@' comes first. A ':' (user:password, or the
+             * port) or '[' does not end the look.
+             */
+            if (c == end || *c == '/' || *c == '?' || *c == '#' ||
+                *c == '@')
+            {
                 state = (c != end && *c == '@')
                     ? impl_state_authority_userinfo_begin
                     : impl_state_authority_host_begin;
@@ -1727,7 +1734,9 @@ afw_uri_parse(
 
         case impl_state_authority_reg_name:
 
-            if (c == end || *c == '/' || *c == ':') {
+            if (c == end || *c == '/' || *c == ':' || *c == '?' ||
+                *c == '#')
+            {
                 parsed->original_host.len =
                     c - (const afw_octet_t *)parsed->original_host.s;
                 parsed->host =
@@ -1744,7 +1753,9 @@ afw_uri_parse(
 
         case impl_state_authority_host_v4:
 
-            if (c == end || *c == '/' || *c == ':') {
+            if (c == end || *c == '/' || *c == ':' || *c == '?' ||
+                *c == '#')
+            {
                 parsed->original_host.len =
                     c - (const afw_octet_t *)parsed->original_host.s;
                 parsed->host = &parsed->original_host; /* v4 not encoded. */
@@ -1798,7 +1809,9 @@ afw_uri_parse(
             if (c == end || !AFW_URI_OCTET_IS(type, DIGIT)) {
                 parsed->port.len =
                     c - (const afw_octet_t *)parsed->port.s;
-                if (c != end && *c != '/') goto error;
+                if (c != end && *c != '/' && *c != '?' && *c != '#') {
+                    goto error;
+                }
                 state = impl_state_path_begin;
                 break;
             }
