@@ -100,7 +100,7 @@ static const afw_getopt_option_t opts[] = {
     AFW_GETOPT_OPTION("expression", 'x', true,
         "The first string to evaluate."),
     AFW_GETOPT_OPTION("extension", 'e', true,
-        "Load extension."),
+        "Load extension (repeat for more)."),
     AFW_GETOPT_OPTION("help", 'h', false,
         "Print this help and exit successfully."),
     AFW_GETOPT_OPTION("local", 'l', true,
@@ -677,8 +677,17 @@ process_args_getopt(afw_command_self_t *self, int argc, const char * const *argv
             break;
 
         case 'e':
-            self->extension_z = option_arg;
-            self->extension.len = strlen(self->extension_z);
+            if (self->extension_count >= AFW_COMMAND_EXTENSIONS_MAX) {
+                rv = fprintf(stderr, "Error: More than %d -e options.\n",
+                    AFW_COMMAND_EXTENSIONS_MAX);
+                if (rv < 0) exit(EXIT_FAILURE);
+                return EXIT_FAILURE;
+            }
+            if (self->extension_count == 0) {
+                self->extension_z = option_arg;
+                self->extension.len = strlen(self->extension_z);
+            }
+            self->extensions_z[self->extension_count++] = option_arg;
             break;
 
         case 'k':
@@ -929,6 +938,7 @@ main(int argc, const char * const *argv) {
     const afw_memory_t *conf_file;
     const afw_value_t *conf;
     const char *s;
+    afw_size_t i;
 
     /* Create Adaptive Framework environment for command. */
     AFW_ENVIRONMENT_CREATE(xctx, argc, argv, &create_error);
@@ -969,9 +979,11 @@ main(int argc, const char * const *argv) {
 
         /* environment:: / process:: created at env create; pushed on base xctx. */
 
-        /* If extension specified, load it. */
-        if (self->extension.len > 0) {
-            afw_environment_load_extension(&self->extension,
+        /* Load each extension specified, in order. */
+        for (i = 0; i < self->extension_count; i++) {
+            afw_environment_load_extension(
+                afw_utf8_create(self->extensions_z[i],
+                    AFW_UTF8_Z_LEN, xctx->p, xctx),
                 NULL, NULL, xctx);
         }
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-afw table-driven getopt: help, version, unknown flag, missing argument.
+afw table-driven getopt: help, version, unknown flag, missing argument,
+repeated -e.
 """
 
 from __future__ import print_function
@@ -108,6 +109,21 @@ def run():
             error=None if bad_ok else (
                 "returncode={} stderr={!r}".format(
                     bad.returncode, bad_err[:400])),
+        ))
+        two = _run(["-e", "afw_yaml", "-e", "afw_ubjson", "-x", "1"])
+        two_err = (two.stderr or b"").decode("utf-8", errors="replace")
+        two_ok = (
+            two.returncode == 0
+            and "Extension 'afw_yaml' loaded." in two_err
+            and "Extension 'afw_ubjson' loaded." in two_err
+        )
+        tests.append(_case(
+            "extension-repeated",
+            "afw -e A -e B loads both (the second -e replaced the first)",
+            passed=two_ok,
+            error=None if two_ok else (
+                "returncode={} stderr={!r}".format(
+                    two.returncode, two_err[:400])),
         ))
     except FileNotFoundError as e:
         tests.append(_case(

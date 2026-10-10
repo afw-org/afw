@@ -257,6 +257,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **YAML (`afw_yaml`):** a sequence with no indentation under a key (`key:` then `- a` lines, what most YAML writers produce) took the first entry as the value and then failed *Unexpected token inside map*; a plain key that looks like a number, boolean or null (`1:`, `1e30:`, `true:`) is that text (the mapping saw no key). Writing: a scalar document is `--- 42` (`---42` is the string `"---42"` to every YAML reader, AFW's too); a key that needs quotes (`a #b`, `%p`, ` x`, `{a}`, `yes`, `n`, `1`) is JSON-quoted (it made a file no reader could load, or a key of another type); a double always has a `.` and a signed exponent (`1e10` was written `10000000000` and read back as an integer, `-0.0` as `-0`) in the fewest digits that read back exactly; a multi-line string is a literal block only when it reads back exactly (`|-`, or `|` for one final line break), else JSON-quoted (`|+` read back an extra line break, and `|1+` for a leading space read back another string).
 
+**`afw -e A -e B`** loads both extensions (the second `-e` replaced the first, so `-e afw_yaml -e afw_ubjson` loaded only `afw_ubjson`).
+
 **Set functions:** an empty literal array `[]` is an empty set of the function's data type: `subset<string>([], ["a"])` is `true`, and `union` / `intersection` / `set_equals` accept `[]` (they threw *must have a data type*).
 
 **Integer literal `9223372036854775808`** (2^63) is *Integer is out of range* like any larger integer (it was *Invalid number*); `-9223372036854775808` still compiles.

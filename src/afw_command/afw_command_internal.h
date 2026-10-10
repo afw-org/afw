@@ -35,6 +35,9 @@ AFW_BEGIN_DECLARES
 /**
  * @brief Self typedef for afw_command self
  */
+/** Most -e options afw takes. */
+#define AFW_COMMAND_EXTENSIONS_MAX 32
+
 typedef struct afw_command_self_s {
     afw_xctx_t *xctx;
     int index_first_non_option;
@@ -60,6 +63,14 @@ typedef struct afw_command_self_s {
         afw_utf8_t extension;
         const afw_utf8_z_t * extension_z;
     };
+
+    /*
+     * Every -e, in order (extension above is the first). A second -e
+     * replaced the first, so -e afw_yaml -e afw_ubjson loaded only
+     * afw_ubjson.
+     */
+    const afw_utf8_z_t *extensions_z[AFW_COMMAND_EXTENSIONS_MAX];
+    afw_size_t extension_count;
 
     union {
         afw_utf8_t type_in;
