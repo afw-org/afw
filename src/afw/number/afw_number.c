@@ -427,7 +427,8 @@ afw_number_parse(
      */
     if (is_double) *is_double = true;
     if (!d) return -1;
-    number = 0;
+    /* Zero keeps its sign (-0.0). */
+    number = (is_negative) ? -0.0 : 0.0;
     if (!zero) {
         afw_size_t n = (afw_size_t)(c - cursor);
         char *scratch;
@@ -437,7 +438,14 @@ afw_number_parse(
         scratch[n] = 0;
         errno = 0;
         number = strtod(scratch, NULL);
-        if (errno != 0) {
+        /*
+         * ERANGE is an error for overflow and for underflow to 0, not for
+         * a subnormal result (glibc sets it for those too).
+         */
+        if (errno != 0 &&
+            (errno != ERANGE || number == 0.0 ||
+                !afw_number_is_finite(number)))
+        {
             return -1;
         }
     }

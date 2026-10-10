@@ -179,3 +179,16 @@ let n = 0;
 for (let i = 0; i < 50; i = i + 1) { if (boolean({i: i})) { n = n + 1; } }
 assert(n === 50, "every object");
 return 0;
+
+//?
+//? test: double-from-string-subnormal-and-negative-zero
+//? description: double() of a subnormal string works and "-0.0" keeps its sign
+//? expect: 0
+//? source: ...
+
+assert(double("4.9E-324") === 5e-324, "subnormal");
+assert(double("2.2250738585072011e-308") < double("2.2250738585072014e-308"), "largest subnormal");
+assert(string(double("-0.0")) === "-0.0E0", string(double("-0.0")));
+assert(string(double("0.0")) === "0.0E0");
+assert(string(double(string(-0.0))) === string(-0.0), "round trip -0.0");
+return 0;
