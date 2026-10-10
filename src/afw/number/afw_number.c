@@ -16,6 +16,33 @@
 #include <string.h>
 #include <errno.h>
 
+/* strtod of text the caller has already checked the syntax of. */
+AFW_DEFINE(afw_boolean_t)
+afw_number_strtod(
+    const afw_utf8_octet_t *s, afw_size_t len,
+    afw_double_t *d,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    char buffer[64];
+    char *scratch;
+
+    scratch = (len < sizeof(buffer))
+        ? buffer
+        : afw_pool_malloc(p, len + 1, xctx);
+    memcpy(scratch, s, len);
+    scratch[len] = 0;
+    errno = 0;
+    *d = strtod(scratch, NULL);
+
+    /*
+     * ERANGE is an error for overflow and for underflow to 0, not for a
+     * subnormal result (glibc sets it for those too).
+     */
+    return errno == 0 ||
+        (errno == ERANGE && *d != 0.0 && afw_number_is_finite(*d));
+}
+
+
 /* Convert a double to utf8 in specified pool. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_number_double_to_utf8(
@@ -427,17 +454,12 @@ afw_number_parse(
      */
     if (is_double) *is_double = true;
     if (!d) return -1;
-    number = 0;
+    /* Zero keeps its sign (-0.0). */
+    number = (is_negative) ? -0.0 : 0.0;
     if (!zero) {
-        afw_size_t n = (afw_size_t)(c - cursor);
-        char *scratch;
-
-        scratch = afw_pool_malloc(p, n + 1, xctx);
-        memcpy(scratch, cursor, n);
-        scratch[n] = 0;
-        errno = 0;
-        number = strtod(scratch, NULL);
-        if (errno != 0) {
+        if (!afw_number_strtod(cursor, (afw_size_t)(c - cursor),
+            &number, p, xctx))
+        {
             return -1;
         }
     }

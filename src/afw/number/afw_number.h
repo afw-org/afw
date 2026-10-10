@@ -126,6 +126,23 @@ afw_number_parse(
 
 
 /**
+ * @brief strtod of text the caller has already checked the syntax of.
+ * @param s number text (what strtod reads).
+ * @param len of s.
+ * @param d set to the double.
+ * @param p for scratch when s is long.
+ * @param xctx of caller.
+ * @return false if the value overflows or underflows to 0 (a subnormal
+ *    result is fine).
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_number_strtod(
+    const afw_utf8_octet_t *s, afw_size_t len,
+    afw_double_t *d,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+/**
  * @brief Convert a double to utf8 in specified pool.
  * @param d is double to convert.
  * @param p to use for result.

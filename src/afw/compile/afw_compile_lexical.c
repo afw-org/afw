@@ -1226,7 +1226,7 @@ impl_parse_number(afw_compile_parser_t *parser)
 
 
     /*
-     * Not integer, create a double value. Use strtod to convert number if it
+     * Not integer, create a double value (afw_number_strtod) if it
      * is not zero.
      */
     parser->token->type = afw_compile_token_type_number;
@@ -1235,26 +1235,13 @@ impl_parse_number(afw_compile_parser_t *parser)
             is_negative ? -0.0 : 0.0);
     }
     else {
+        if (!afw_number_strtod(
+            parser->full_source->s + start_offset,
+            parser->cursor - start_offset, &d, parser->p, parser->xctx))
         {
-            afw_size_t n = parser->cursor - start_offset;
-            char *scratch;
-
-            scratch = afw_pool_malloc(parser->p, n + 1, parser->xctx);
-            memcpy(scratch, parser->full_source->s + start_offset, n);
-            scratch[n] = 0;
-            errno = 0;
-            d = strtod(scratch, NULL);
-            /*
-             * ERANGE is an error for overflow and for underflow to 0, not
-             * for a subnormal result (glibc sets it for those too).
-             */
-            if (errno != 0 &&
-                (errno != ERANGE || d == 0.0 || !afw_number_is_finite(d)))
-            {
-                goto error;
-            }
-            parser->token->number = impl_double_literal(parser, d);
+            goto error;
         }
+        parser->token->number = impl_double_literal(parser, d);
     }
 
     return true;
