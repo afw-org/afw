@@ -63,9 +63,23 @@ afw_number_double_to_utf8(
     char *pdst = &dst[0];
     char *epos;
     const char *exponent;
+    int precision;
 
     if (afw_number_is_finite(d)) {
-        sprintf(s, "%#.16E", d);
+
+        /*
+         * The fewest digits that read back as the same double: 0.1 is
+         * 1.0E-1 (it was always 17 digits, 1.0000000000000001E-1).
+         */
+        for (precision = 0; precision < 16; precision++) {
+            sprintf(s, "%#.*E", precision, d);
+            if (strtod(s, NULL) == d) {
+                break;
+            }
+        }
+        if (precision == 16) {
+            sprintf(s, "%#.16E", d);
+        }
 
         /*
          * Exponent: drop the '+' and the leading zeros sprintf writes,

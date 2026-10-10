@@ -259,6 +259,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **`afw -e A -e B`** loads both extensions (the second `-e` replaced the first, so `-e afw_yaml -e afw_ubjson` loaded only `afw_ubjson`).
 
+**Double text:** `string()`, `stringify`, and JSON output write a double in the fewest digits that read back as the same value: `0.1` is `1.0E-1` (it was always 17 digits, `1.0000000000000001E-1`). The value is the same; only the text is shorter.
+
 **Set functions:** an empty literal array `[]` is an empty set of the function's data type: `subset<string>([], ["a"])` is `true`, and `union` / `intersection` / `set_equals` accept `[]` (they threw *must have a data type*).
 
 **Integer literal `9223372036854775808`** (2^63) is *Integer is out of range* like any larger integer (it was *Invalid number*); `-9223372036854775808` still compiles.
