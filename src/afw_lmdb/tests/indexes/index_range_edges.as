@@ -59,7 +59,7 @@ assert(count("gt", "ab") === 2, "gt ab");
 return 0;
 
 //? test: index_planner_terms_without_cursor
-//? description: an or with a term no index answers, inside an and, is tested on the and's other cursors (it crashed); ne/in on an indexed property get no cursor (they threw "Unable to create cursor for this operator").
+//? description: an or with a term no index answers, inside an and, is tested on the and's other cursors (it crashed); out/ne/in on an indexed property get no cursor (they threw "Unable to create cursor for this operator").
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
@@ -79,6 +79,12 @@ const crashed = retrieve_objects("lmdb", ot, { filter: { op: "and", filters: [
     ] }
 ] } });
 assert(length(crashed) === 1, "and(b, n, or(b, n))");
+
+const out = retrieve_objects("lmdb", ot, { filter: { op: "and", filters: [
+    { op: "eq", property: "n_pl", value: -1 },
+    { op: "out", property: "n_pl", value: [0] }
+] } });
+assert(length(out) === 2, "and(eq, out) on one indexed property");
 
 const ne = retrieve_objects("lmdb", ot, { filter: { op: "and", filters: [
     { op: "ne", property: "n_pl", value: 0 },
