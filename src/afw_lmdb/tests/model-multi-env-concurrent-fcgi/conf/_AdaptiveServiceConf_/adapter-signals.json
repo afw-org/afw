@@ -1,0 +1,13 @@
+{
+    "serviceId": "adapter-signals",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "signals",
+        "description": "Signals between concurrent requests: a file adapter has no transactions, so another request sees a write at once",
+        "root": "signals/",
+        "filenameSuffix": ".json",
+        "contentType": "json"
+    }
+}

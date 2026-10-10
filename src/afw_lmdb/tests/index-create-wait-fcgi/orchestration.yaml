@@ -17,6 +17,11 @@
 # With dbLock gone, the index open is an ordinary write on lmdbB that the
 # wait graph sees: the alias case is refused at once, and in the pair the
 # holder (whose wait closes the cycle) is refused and indexer finishes.
+#
+# The pair signal each other through the file adapter "signals" (no
+# transactions, so a write is seen at once), so they overlap however slow
+# the run; indexer cannot signal from inside index_create, so holder gives
+# it 2s to start waiting on lmdbB.
 version: 1
 description: LMDB index_create against writes that hold environments
 host: afwfcgi
@@ -43,19 +48,26 @@ tests:
     expect: refused
 
   - name: indexer
-    description: lmdbA first, then index_create on lmdbB while holder still holds lmdbB.
+    description: >-
+      lmdbA first; once holder signals that it holds lmdbB, signals and
+      calls index_create on lmdbB, which waits for holder's request.
     sourceType: script
     source: |
-      function spin(duration: string): void {
-          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration(duration));
+      function waitFor(signal: string): void {
+          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          // A body of its own: each try's allocations are freed with it.
           while (true) {
+              let found: boolean = false;
+              try { get_object("signals", "Signal", signal); found = true; }
+              catch (e) { }
+              if (found) { break; }
               const now = now_utc();
-              if (now >= until) { break; }
+              if (now >= until) { throw "timed out waiting for " + signal; }
           }
       }
-      spin("PT0.2S");
       add_object("lmdbA", "Row", {k: "x"}, "x1");
-      spin("PT0.3S");
+      waitFor("holder-holds-b");
+      add_object("signals", "Signal", {}, "indexer-indexing");
       // Retroactive: the scan runs once holder's request has ended, so
       // it indexes holder's committed row too.
       index_create("lmdbB", "k", undefined, ["Row"], undefined, undefined, true, false);
@@ -63,12 +75,31 @@ tests:
     expect: created
 
   - name: holder
-    description: lmdbB first, then (after indexer waits on lmdbB) lmdbA. Refused.
+    description: >-
+      lmdbB first and signals; once indexer signals, gives index_create
+      2s to start waiting on lmdbB, then writes lmdbA. Refused.
     sourceType: script
     source: |
+      function waitFor(signal: string): void {
+          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          // A body of its own: each try's allocations are freed with it.
+          while (true) {
+              let found: boolean = false;
+              try { get_object("signals", "Signal", signal); found = true; }
+              catch (e) { }
+              if (found) { break; }
+              const now = now_utc();
+              if (now >= until) { throw "timed out waiting for " + signal; }
+          }
+      }
       add_object("lmdbB", "Row", {k: "h"}, "h1");
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT1S"));
+      add_object("signals", "Signal", {}, "holder-holds-b");
+      waitFor("indexer-indexing");
+      // Each pass reads a file, a system call: under valgrind a loop
+      // without one can keep indexer's thread from running at all.
+      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT2S"));
       while (true) {
+          try { get_object("signals", "Signal", "never"); } catch (e) { }
           const now = now_utc();
           if (now >= until) { break; }
       }

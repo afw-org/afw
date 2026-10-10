@@ -90,19 +90,31 @@ tests:
 
   - name: hold-a-then-b
     description: >-
-      Write lmdbA, hold it about half a second, then write lmdbB. Runs
-      next to hold-b-then-a, so one of the two must be refused. The
-      refused one records it in the environment it already holds.
+      Write lmdbA, signal, wait for hold-b-then-a's signal that it
+      holds lmdbB, then write lmdbB. Signals go through the file
+      adapter "signals" (no transactions, so another request sees
+      them at once), so the two always overlap however slow the run.
+      Whichever reaches for its second environment last closes the
+      cycle and is refused; it records that in the environment it
+      already holds.
     skip: $opposite_order_skip
     sourceType: script
     source: |
-      add_object("lmdbA", "Pair", {by: "a-then-b"}, "a-then-b");
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT0.5S"));
-      // A body of its own: each iteration's scope frees its now_utc().
-      while (true) {
-          const now = now_utc();
-          if (now >= until) { break; }
+      function waitFor(signal: string): void {
+          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          // A body of its own: each try's allocations are freed with it.
+          while (true) {
+              let found: boolean = false;
+              try { get_object("signals", "Signal", signal); found = true; }
+              catch (e) { }
+              if (found) { break; }
+              const now = now_utc();
+              if (now >= until) { throw "timed out waiting for " + signal; }
+          }
       }
+      add_object("lmdbA", "Pair", {by: "a-then-b"}, "a-then-b");
+      add_object("signals", "Signal", {}, "a-then-b-holds");
+      waitFor("b-then-a-holds");
       try {
           add_object("lmdbB", "Pair", {by: "a-then-b"}, "a-then-b");
       }
@@ -114,17 +126,26 @@ tests:
     expect: true
 
   - name: hold-b-then-a
-    description: The mirror of hold-a-then-b.
+    description: >-
+      The mirror of hold-a-then-b.
     skip: $opposite_order_skip
     sourceType: script
     source: |
-      add_object("lmdbB", "Pair", {by: "b-then-a"}, "b-then-a");
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT0.5S"));
-      // A body of its own: each iteration's scope frees its now_utc().
-      while (true) {
-          const now = now_utc();
-          if (now >= until) { break; }
+      function waitFor(signal: string): void {
+          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          // A body of its own: each try's allocations are freed with it.
+          while (true) {
+              let found: boolean = false;
+              try { get_object("signals", "Signal", signal); found = true; }
+              catch (e) { }
+              if (found) { break; }
+              const now = now_utc();
+              if (now >= until) { throw "timed out waiting for " + signal; }
+          }
       }
+      add_object("lmdbB", "Pair", {by: "b-then-a"}, "b-then-a");
+      add_object("signals", "Signal", {}, "b-then-a-holds");
+      waitFor("a-then-b-holds");
       try {
           add_object("lmdbA", "Pair", {by: "b-then-a"}, "b-then-a");
       }

@@ -27,7 +27,13 @@ tests:
       const s = repeat<string>("xxxx", 1000);
       for (let i = 0; i < 2000; i = i + 1) {
           try {
-              add_object("lmdb", "Fill", {s: s});
+              // UUID-shaped ids from i: an id that is not a UUID gets a
+              // random internal UUID, and random keys fill the 1MB map a
+              // little differently each run.
+              const n = "000000000000" + string(i);
+              add_object("lmdb", "Fill", {s: s},
+                  "00000000-0000-4000-8000-" +
+                  substring<string>(n, length(n) - 12, length(n)));
           }
           catch (e) {
               break;

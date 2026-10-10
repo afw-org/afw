@@ -152,6 +152,10 @@ unless the hole is C-only (then the probe above):
 - VFS adapter: `src/afw_vfs/tests/` (`vfs_test.as`, `vfs_multimap.as`, `vfs_phase4.as`; issue #79) — rules **`afw-vfs`**. Keep fixtures small (no multi‑MB permanent assets).
 - Process env / #71: `miscellaneous/environment_variables.as`, `environment_variables_external.py` (non-UTF-8 via setenv helper); `afw --local`: `src/afw_command/tests/local_test_3_*` — rules **`afw-environment-variables`**.
 
+## Concurrent requests in orchestrated leaves (timing)
+
+To make two `afwfcgi` requests overlap (a `parallel` phase), do not spin on `now_utc()` for a fixed time: under `--env-mode valgrind` threads run one at a time without fair scheduling, and a loop with no system call can keep the other request from running at all (the overlap never happens; the test fails or, worse, passes without testing anything). Signal between the requests instead: a file adapter (no transactions, so another request sees a write at once) and a wait loop that polls it with `get_object`, each pass in its own loop body so its allocations are freed. Where one side cannot signal (it is waiting inside one call), give it a short settle that also reads a file each pass. Examples: `src/afw_lmdb/tests/model-multi-env-concurrent-fcgi/` (`hold-a-then-b`), `journal-consumer-fcgi/`, `index-create-wait-fcgi/`. LMDB object ids that are not UUIDs get a random internal UUID: use UUID-shaped ids where the data layout must be the same every run (`commit-error-fcgi`).
+
 ## Model adapter tests
 
 | Group | Environment | Notes |
