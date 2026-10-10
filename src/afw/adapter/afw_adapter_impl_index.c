@@ -472,6 +472,39 @@ impl_index_value_as_key_utf8(
 }
 
 /*
+ * The key of a filter entry's value. A query string's values are all
+ * strings: on a property whose object type says integer or double, a
+ * string value is that number's key (n=gt=9 sought the string "9" among
+ * the integers' sortable keys: it found nothing, and n=lt=10 found
+ * everything). A string that is not a number stays a string.
+ */
+static const afw_utf8_t *
+impl_index_entry_value_as_key_utf8(
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+    const afw_data_type_t *data_type;
+
+    value = entry->value;
+    data_type = (entry->pt) ? entry->pt->data_type : NULL;
+    if (data_type && afw_value_is_string(value) &&
+        (afw_data_type_is_integer(data_type) ||
+        afw_data_type_is_double(data_type)))
+    {
+        AFW_TRY {
+            value = afw_value_convert(value, data_type, false, p, xctx);
+        }
+        AFW_CATCH_UNHANDLED {
+            value = entry->value;
+        }
+        AFW_ENDTRY;
+    }
+
+    return impl_index_value_as_key_utf8(value, p, xctx);
+}
+
+/*
  * Get the literal starts-with prefix of a match entry, if any.
  *
  * Patterns compiled for the match operator use XML Schema Datatype regex
@@ -1403,6 +1436,25 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
     (_x != AFW_QUERY_CRITERIA_FALSE && _x != AFW_QUERY_CRITERIA_TRUE)
 
 /*
+ * Whether an index cursor can answer this entry's operator: eq, lt, le,
+ * gt, ge, or a match that is a literal "starts with".
+ */
+static afw_boolean_t
+impl_index_op_is_sargable(
+    const afw_query_criteria_filter_entry_t *entry,
+    afw_boolean_t is_starts_with)
+{
+    return
+        entry->op_id == afw_query_criteria_filter_op_id_eq ||
+        entry->op_id == afw_query_criteria_filter_op_id_lt ||
+        entry->op_id == afw_query_criteria_filter_op_id_le ||
+        entry->op_id == afw_query_criteria_filter_op_id_gt ||
+        entry->op_id == afw_query_criteria_filter_op_id_ge ||
+        is_starts_with;
+}
+
+
+/*
  * afw_boolean_t afw_adapter_impl_index_sargable_entry()
  *
  * This recursive function takes a filter entry and evaluates
@@ -1441,15 +1493,7 @@ AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_sargable_entry(
         impl_index_match_literal_prefix(entry, xctx->p, xctx) != NULL;
 
     /* For now, we will only evaluate certain operations for sargability */
-    if (! (
-            entry->op_id == afw_query_criteria_filter_op_id_eq  ||
-            entry->op_id == afw_query_criteria_filter_op_id_lt  ||
-            entry->op_id == afw_query_criteria_filter_op_id_le ||
-            entry->op_id == afw_query_criteria_filter_op_id_gt  ||
-            entry->op_id == afw_query_criteria_filter_op_id_ge ||
-            is_starts_with
-        )
-        )
+    if (!impl_index_op_is_sargable(entry, is_starts_with))
         return false;
 
     /* Determine if this property is indexed */
@@ -1664,6 +1708,20 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list_merge(
     afw_size_t merged_size;
     int i, j;
 
+    /*
+     * An "or" with a side that has no cursors (not indexable) can't be
+     * answered from cursors at all: return no cursors, so an enclosing
+     * "and" takes its other side (afw_adapter_impl_index_cursor_list_join).
+     * This returned NULL when this_list was empty, and the join
+     * dereferenced it; returning the other side would lose objects.
+     */
+    if (!this_list || this_list->count == 0 ||
+        !that_list || that_list->count == 0)
+    {
+        return afw_vector_create(impl_index_cursor_p_vector_t,
+            8, xctx->p, xctx);
+    }
+
     merged_size = this_list->count + that_list->count;
     merged_list = NULL;
     temp = that_list;
@@ -1776,16 +1834,22 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
        the index implementation, same as it already is today. */
     value_string = (literal_prefix)
         ? literal_prefix
-        : impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
+        : impl_index_entry_value_as_key_utf8(entry, xctx->p, xctx);
 
     cursor_operator = (literal_prefix)
         ? AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH
         : (int)entry->op_id;
 
-    /* Determine if this property is indexed */
-    indexDefinition = afw_adapter_impl_index_get_index_definition(
-        instance, object_type_id,
-        entry->property_name, xctx);
+    /*
+     * Determine if this property is indexed. Only an operator an index
+     * can answer gets a cursor (out, ne, in, ... on an indexed property
+     * threw "Unable to create cursor for this operator"); the rest is
+     * tested on the objects the other cursors find.
+     */
+    indexDefinition = (impl_index_op_is_sargable(entry, literal_prefix != NULL))
+        ? afw_adapter_impl_index_get_index_definition(
+            instance, object_type_id, entry->property_name, xctx)
+        : NULL;
     if (indexDefinition)
     {
         /* if the indexDefinition is case-insensitive, then we need
@@ -1911,7 +1975,7 @@ static int afw_adapter_impl_index_compare(
     /* use the internal utf-8 string representation; integer/double
        get the sortable encoding so lt/le/gt/ge below compare
        numerically, not lexicographically (issue #251) */
-    property_value = impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
+    property_value = impl_index_entry_value_as_key_utf8(entry, xctx->p, xctx);
 
     /* can't compare Objects */
     if (afw_value_is_object(value)) {
