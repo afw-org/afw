@@ -266,6 +266,10 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 
 **Model adapter queries:** `in` / `out` on a model object type threw (*Can't down convert an array with more than one entry* or *array required for 'in' operator*): the list was squeezed to one value when mapped to the adapter's property. A string value on a boolean model property (`flag=false` in a query string) matched `true`.
 
+## YAML read and write (overnight 2026-10-10)
+
+**YAML (`afw_yaml`):** a sequence with no indentation under a key (`key:` then `- a` lines, what most YAML writers produce) took the first entry as the value and then failed *Unexpected token inside map*; a plain key that looks like a number, boolean or null (`1:`, `1e30:`, `true:`) is that text (the mapping saw no key). Writing: a scalar document is `--- 42` (`---42` is the string `"---42"` to every YAML reader, AFW's too); a key that needs quotes (`a #b`, `%p`, ` x`, `{a}`, `yes`, `n`, `1`) is JSON-quoted (it made a file no reader could load, or a key of another type); a double always has a `.` and a signed exponent (`1e10` was written `10000000000` and read back as an integer, `-0.0` as `-0`) in the fewest digits that read back exactly; a multi-line string is a literal block only when it reads back exactly (`|-`, or `|` for one final line break), else JSON-quoted (`|+` read back an extra line break, and `|1+` for a leading space read back another string).
+
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 
 A get or retrieve on an adapter that is not running starts it. When another request finished that start first, the read threw `can not be started.  Service is running`. It now uses the running adapter. A manual `service_start()` of a running service still throws.
