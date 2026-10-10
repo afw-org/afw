@@ -950,6 +950,12 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
         if (*(parser->token.s) == ')') {
             break;
         }
+
+        /*
+         * Anything else is an error: it was skipped, so in=(a+b,c) was the
+         * list a, b, c.
+         */
+        IMPL_STRING_THROW_ERROR_Z("Expecting ',' or ')' in list");
     }
 
     /* Return list of strings. from_c_array copies internals. */

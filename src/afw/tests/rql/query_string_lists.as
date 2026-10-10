@@ -63,3 +63,26 @@ for (const style of [0, 1, 2, 3]) {
         qs);
 }
 return 0;
+
+//? test: list-separator-required
+//? description: items in a list are separated by ',' only (in=(a+b,c) was the list a, b, c)
+//? expect: 0
+//? source: ...
+
+function err(q) {
+    try {
+        convert_query_string_to_AdaptiveQueryCriteria(q, "afw",
+            "_AdaptiveObjectType_");
+    }
+    catch (e) {
+        return e.message;
+    }
+    return "parsed";
+}
+assert(includes(err("objectType=in=(a+b,c)"), "Expecting ',' or ')' in list"), "+");
+assert(includes(err("objectType=in=(a&b)"), "Expecting ',' or ')' in list"), "&");
+assert(includes(err("objectType=in=(a,b"), "Expecting ',' or ')' in list"), "no )");
+assert(stringify(convert_query_string_to_AdaptiveQueryCriteria(
+    "objectType=in=(a%2Bb,c)", "afw", "_AdaptiveObjectType_").filter.value)
+    === '["a+b","c"]', "encoded +");
+return 0;
