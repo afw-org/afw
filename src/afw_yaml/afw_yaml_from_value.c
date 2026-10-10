@@ -384,19 +384,10 @@ void convert_integer_to_yaml(
 static void
 impl_double_to_yaml(char *s, double d)
 {
-    int precision;
     char *e;
     char tail[32];
 
-    for (precision = 1; precision < 17; precision++) {
-        sprintf(s, "%.*G", precision, d);
-        if (strtod(s, NULL) == d) {
-            break;
-        }
-    }
-    if (precision == 17) {
-        sprintf(s, "%.17G", d);
-    }
+    sprintf(s, "%.*G", afw_number_double_shortest_digits(d), d);
 
     if (!strchr(s, '.')) {
         e = strchr(s, 'E');
@@ -414,8 +405,9 @@ impl_double_to_yaml(char *s, double d)
 
 /*
  * Finite doubles are YAML floats in the fewest digits that read back
- * (impl_double_to_yaml). Non-finite values are quoted strings (NaN / INF), matching JSON helpers. YAML 1.2 Core
- * Schema does not treat plain 1 as boolean — no special-case quoting needed.
+ * (impl_double_to_yaml). Non-finite values are quoted strings (NaN / INF),
+ * matching JSON helpers. YAML 1.2 Core Schema does not treat plain 1 as
+ * boolean — no special-case quoting needed.
  */
 void convert_number_to_yaml(
     from_value_wa_t *wa,

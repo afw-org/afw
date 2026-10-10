@@ -90,7 +90,7 @@ def run():
             const w = {
                 "a #b": 1, "%p": 2, " x": 3, "{a}": 4, "- x": 5,
                 "yes": 6, "n": 7, "1": 8, "plain_key-1": 9,
-                big: 1e10, negzero: -0.0, tenth: 0.1, tiny: 1e-300,
+                big: 1e10, negzero: -0.0, tenth: 0.1, tiny: 5e-324,
                 keep: "a\\n\\n", clip: "a\\nb\\n", strip: "a\\nb",
                 lead: "  lead\\n", blank: "\\n", tab: "x\\n\\ty"
             };
