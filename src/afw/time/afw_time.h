@@ -370,6 +370,19 @@ afw_time_now_local(
 
 
 /**
+ * @brief Time zone offset east of UTC in minutes.
+ * @param time_zone to read.
+ * @return offset in minutes (-05:30 is -330), or 0 when there is no time
+ *    zone.
+ *
+ * The sign of a time zone is on its hours, so use this instead of adding
+ * hours and minutes.
+ */
+AFW_DECLARE(afw_integer_t)
+afw_time_zone_offset_minutes(const afw_time_zone_t *time_zone);
+
+
+/**
  * @brief Convert time normalize to utc to microseconds.
  * @param time to convert.
  * @param xctx of caller.

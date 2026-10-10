@@ -51,3 +51,42 @@ assert(string(add_yearMonthDuration<date>(date("2020-12-15"), yearMonthDuration(
 assert(string(subtract_yearMonthDuration<date>(date("2020-12-15"), yearMonthDuration("P12M"))) ===
     "2019-12-15");
 return 0;
+
+//?
+//? test: compare-date-time-across-time-zones
+//? description: equal instants in different time zones are equal, and order is by instant
+//? expect: 0
+//? source: ...
+
+assert(dateTime("1932-04-02T02:54:04+05:30") == dateTime("1932-04-01T16:24:04-05:00"), "+05:30 vs -05:00");
+assert(dateTime("2046-01-02T18:08:37+14:00") == dateTime("2046-01-01T23:08:37-05:00"), "+14:00 vs -05:00");
+assert(dateTime("1921-03-25T14:54:59Z") == dateTime("1921-03-25T20:24:59+05:30"), "Z vs +05:30");
+assert(dateTime("2020-01-01T00:30:00+01:00") < dateTime("2019-12-31T23:45:00Z"), "earlier instant, later date");
+assert(dateTime("2019-12-31T23:45:00Z") > dateTime("2020-01-01T00:30:00+01:00"));
+assert(dateTime("2020-01-01T00:00:00.5Z") > dateTime("2020-01-01T01:00:00+01:00"), "microseconds");
+return 0;
+
+//?
+//? test: compare-time-across-time-zones
+//? description: times with time zones compare as UTC
+//? expect: 0
+//? source: ...
+
+assert(time("12:00:00+05:30") == time("06:30:00Z"), "+05:30");
+assert(time("12:00:00-05:00") == time("17:00:00Z"), "-05:00");
+assert(time("12:00:00-05:00") > time("12:00:00Z"), "later in UTC");
+assert(time("10:00:00+01:00") < time("09:30:00Z"), "09:00Z < 09:30Z");
+return 0;
+
+//?
+//? test: in-range-time-negative-half-hour-offset
+//? description: in_range<time> converts a -05:30 time to UTC like compare does (it added the 30 minutes instead of subtracting them)
+//? expect: 0
+//? source: ...
+
+assert(time("12:00:00-05:30") == time("17:30:00Z"), "compare");
+assert(in_range<time>(time("05:00:00-05:30"), time("10:20:00Z"), time("10:40:00Z")), "-05:30 in range");
+assert(!in_range<time>(time("05:00:00-05:30"), time("09:20:00Z"), time("09:40:00Z")), "-05:30 not at 09:30Z");
+assert(in_range<time>(time("05:00:00+05:30"), time("23:20:00Z"), time("23:40:00Z")), "+05:30 in range");
+return 0;
+
