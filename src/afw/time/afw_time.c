@@ -1612,8 +1612,13 @@ impl_fQuotient2(afw_integer_t a, unsigned int b)
 {
     afw_integer_t result;
 
+    /*
+     * Floor of a / b. C division truncates toward zero, so a negative a
+     * needs b - 1 more (not b: -60 / 60 is -1, not -2, which made
+     * modulo give 60 seconds, hour 24, or month 13).
+     */
     if (a < 0) {
-        result = (a - (afw_integer_t)b) / b;
+        result = (a - ((afw_integer_t)b - 1)) / (afw_integer_t)b;
     }
     else {
         result = a / b;
