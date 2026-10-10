@@ -2282,6 +2282,7 @@ afw_function_execute_split(
     afw_integer_t limit;
     afw_utf8_t remaining;
     afw_utf8_t split;
+    afw_boolean_t more;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
     AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
@@ -2310,8 +2311,14 @@ afw_function_execute_split(
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
     if (separator) {
-        /* Find separator only at code-point boundaries (#153). */
-        for (count = 0; count < limit && remaining.len > 0; count++) {
+        /*
+         * Find separator only at code-point boundaries (#153). There is one
+         * more piece than separators, as in ECMAScript: "a," is ["a", ""]
+         * and "" is [""] (the piece after a trailing separator was lost).
+         */
+        more = true;
+        for (count = 0; count < limit && more; count++) {
+            more = false;
             split.s = remaining.s;
             split.len = remaining.len;
             for (;;) {
@@ -2323,6 +2330,7 @@ afw_function_execute_split(
                     split.len = remaining.s - split.s;
                     remaining.s += separator->len;
                     remaining.len -= separator->len;
+                    more = true;
                     break;
                 }
                 {
