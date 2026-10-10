@@ -908,9 +908,15 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
         /* Get next token. */
         impl_get_token(parser);
 
-        /* If token is '+' or '-', remember sign and get another token. */
+        /*
+         * If token is a '+' delimiter, remember sign and get another token.
+         * '-' is not a delimiter, so -1 is one string token (taking its
+         * '-' as a sign read the ',' after it as the value).
+         */
         memset(&sign, 0, sizeof(afw_utf8_t));
-        if (*(parser->token.s) == '+' || *(parser->token.s) == '-') {
+        if (parser->token_type == impl_token_type_delimiter &&
+            *(parser->token.s) == '+')
+        {
             sign.s = parser->token.s;
             sign.len = parser->token.len;
             impl_get_token(parser);
@@ -2653,6 +2659,9 @@ impl_entry_to_query_string(
                     s = afw_uri_encode(s,
                         AFW_URI_OCTET_ENCODE_COMPONENT_VALUE, p, xctx);
                     afw_writer_write_utf8(w, s, xctx);
+                }
+                /* After the list (it was after the first item: (a),b)). */
+                if (!first_time) {
                     afw_writer_write_z(w, ")", xctx);
                 }
             }
