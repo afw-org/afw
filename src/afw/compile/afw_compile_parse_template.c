@@ -292,18 +292,15 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
         cp = afw_compile_get_code_point();
 
         /*
-         * '\#' and '\$' suppress '#{' / '${' openers (same idea as Template).
-         * Other backslash escapes use normal string unescape.
+         * An escape is text (\` does not end the string, and \$ or \#
+         * does not open a substitution); a LineContinuation is nothing.
+         * Same escapes as string literals.
          */
         if (cp == '\\') {
-            afw_compile_save_cursor(previous_cursor2);
-            cp2 = afw_compile_get_code_point();
-            if (cp2 == '$' || cp2 == '#') {
-                afw_compile_internal_s_push_code_point(parser, cp2);
-                continue;
+            if (afw_compile_get_escaped_code_point(&cp)) {
+                afw_compile_internal_s_push_code_point(parser, cp);
             }
-            afw_compile_restore_cursor(previous_cursor);
-            cp = afw_compile_get_unescaped_code_point();
+            continue;
         }
 
         /* If '${' or '#{', indicate substitution and restore cursor. */

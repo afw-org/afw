@@ -818,8 +818,8 @@ if (afw_compile_is_at_eof()) \
 #define afw_compile_get_code_point() \
     afw_compile_get_code_point_impl(parser)
 
-#define afw_compile_get_unescaped_code_point() \
-    afw_compile_get_unescaped_code_point_impl(parser)
+#define afw_compile_get_escaped_code_point(_cp) \
+    afw_compile_get_escaped_code_point_impl(parser, _cp)
 
 #define afw_compile_next_raw_starts_with(_s) \
     afw_compile_next_raw_starts_with_impl(parser, _s)
@@ -929,8 +929,15 @@ afw_compile_get_octet(afw_compile_parser_t *parser);
 afw_code_point_t
 afw_compile_get_code_point_impl(afw_compile_parser_t *parser);
 
-afw_code_point_t
-afw_compile_get_unescaped_code_point_impl(afw_compile_parser_t *parser);
+/*
+ * Cursor is after a '\' in a string or template string. Set *cp to the
+ * escape's code point and return true, or return false for a
+ * LineContinuation (no character).
+ */
+afw_boolean_t
+afw_compile_get_escaped_code_point_impl(
+    afw_compile_parser_t *parser,
+    afw_code_point_t *cp);
 
 afw_boolean_t
 afw_compile_is_reserved_word(
