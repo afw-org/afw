@@ -49,6 +49,17 @@ Index **data** (lookup keys) live in named DBs: `Index#<objectType>#<key>`. An i
 
 Migration for old scripts: `object` / `variable_get("object")` → `current::object` / `variable_get("current::object")`.
 
+## Queries through index definitions (#516)
+
+An index decides what its name means in a query, on **every** plan: cursor, re-test, dedup, and the adapter's scan. Pad: [`designs/issue-516-index-meaning.md`](../../designs/issue-516-index-meaning.md).
+
+- **Computed name** = definition with a `value` script (maybe `filter`). A relation tests the script's result; an object the filter leaves out has no value. `index_create` refuses `filter` without `value`, and a script on a key an object type in `objectType` declares; a query throws when the object type declares it later (object types are cached per request).
+- **Case-insensitive** compares lowercased values for every relation; `match` patterns are lowercased except escapes.
+- **Pay per use:** `afw_adapter_impl_index_query_test_create` returns NULL when the filter names no computed or case-insensitive index; then `afw_query_criteria_test_object` as before. Any new scan path in an adapter with an indexer must create the test per object type and use `afw_adapter_impl_index_query_test_object` (LMDB: `afw_lmdb_adapter_session_dump_objects`).
+- **One walker:** do not copy `afw_query_criteria_test_object`; pass a hook to `afw_query_criteria_test_object_cb`.
+- **Dedup is by key** (`afw_adapter_impl_index_applies`): the object's keys through the definition vs `impl_index_entry_seek_key`. Keep it the cursor's exact set.
+- Index scripts: a property read works as is; an operator or array literal needs `return …;`.
+
 ## Default LMDB without indexes
 
 CRUD + dump retrieve work with **empty** `indexDefinitions` (indexer walk is no-op). Tests under `tests/adapter/` / `tests/journal/` do **not** require indexes.
