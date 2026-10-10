@@ -293,7 +293,8 @@ impl_afw_value_decompile(
         afw_value_decompile_value(self->body, writer, xctx);
     }
     else {
-        afw_writer_write_z(writer, "{}", xctx);
+        /* Empty body ({ } is omitted at compile). "{}" would be an object. */
+        afw_writer_write_z(writer, "#block()", xctx);
     }
 
     /*
