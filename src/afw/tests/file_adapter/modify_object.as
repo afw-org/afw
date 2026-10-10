@@ -166,3 +166,33 @@ assert(message !== "no error", "add_value under a string");
 assert(get_object("file", "TestObjectType1", id).a === "top");
 delete_object("file", "TestObjectType1", id);
 return 0;
+
+//?
+//? test: modify_object_remove_last_value_and_paths
+//? description: remove_value of a property's only value removes the property (it was stored as null); remove_property through a value that is not an object is silent (it threw a typesafe error); set_property through one says which name is not an object.
+//? expect: 0
+//? source: ...
+
+const id: string = generate_uuid();
+add_object("file", "TestObjectType1",
+    { "s": "x", "o": { "p": 1 }, "a": [1] }, id);
+modify_object("file", "TestObjectType1", id, [["remove_value", "s", "x"]]);
+modify_object("file", "TestObjectType1", id, [["remove_value", ["o", "p"], 1]]);
+let o: object = get_object("file", "TestObjectType1", id);
+assert(!property_exists(o, "s"), "s: " + stringify(o));
+assert(!property_exists(o.o, "p"), "o.p: " + stringify(o));
+
+modify_object("file", "TestObjectType1", id, [["remove_property", ["a", "x"]]]);
+o = get_object("file", "TestObjectType1", id);
+assert(stringify(o.a) === "[1]", "a: " + stringify(o));
+
+let message: any = "no error";
+try {
+    modify_object("file", "TestObjectType1", id, [["set_property", ["a", "x"], 1]]);
+}
+catch (err) {
+    message = err.message;
+}
+assert(message === "Property 'a' in the path is not an object", message);
+delete_object("file", "TestObjectType1", id);
+return 0;

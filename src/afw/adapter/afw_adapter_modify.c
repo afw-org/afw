@@ -80,14 +80,34 @@ impl_find_object(
     const afw_object_t *result;
     const afw_object_t *object;
     const afw_object_path_property_name_entry_t *entry;
+    const afw_value_t *value;
 
     result = entity;
     *property_name = &first_property_name_entry->property_name.pub;
     for (entry = first_property_name_entry; entry->next; entry = entry->next)
     {
         *property_name = &entry->next->property_name.pub;
-        object = afw_object_get_property_as_object_internal(result,
+
+        /*
+         * A path through a value that is not an object finds nothing
+         * (remove_property is silent then; it threw a typesafe error), and
+         * can not be created through.
+         */
+        value = afw_object_get_property(result,
             &entry->property_name.pub, xctx);
+        object = NULL;
+        if (value && afw_value_is_object(value)) {
+            object = ((const afw_value_object_t *)value)->internal;
+        }
+        else if (value) {
+            if (!create_if_necessary) {
+                result = NULL;
+                break;
+            }
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Property '%ku' in the path is not an object",
+                &entry->property_name.internal);
+        }
         if (!object) {
             if (create_if_necessary) {
                 object = afw_object_create_embedded(result,
@@ -487,9 +507,18 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                             "Error: Value does not exist for property '%ku'",
                             s);
                     }
+                    /*
+                     * The property's only value: remove the property
+                     * (setting it to NULL stored a null, so the object
+                     * kept "p": null).
+                     */
                     else {
-                        impl_set_property(object, first_property_name_entry,
-                            NULL, xctx);
+                        obj = impl_find_object(&property_name, false, object,
+                            first_property_name_entry, xctx);
+                        if (obj) {
+                            afw_object_remove_property(obj, property_name,
+                                xctx);
+                        }
                     }
                 }
             }

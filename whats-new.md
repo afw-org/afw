@@ -261,6 +261,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **Double text:** `string()`, `stringify`, and JSON output write a double in the fewest digits that read back as the same value: `0.1` is `1.0E-1` (it was always 17 digits, `1.0000000000000001E-1`). The value is the same; only the text is shorter.
 
+**`modify_object`:** `remove_value` of a property's only value removes the property (the object kept it as `null`). `remove_property` through a value that is not an object does nothing, as when the path is missing (it threw a typesafe error); `set_property` / `add_value` through one says *Property 'a' in the path is not an object*.
+
 **Set functions:** an empty literal array `[]` is an empty set of the function's data type: `subset<string>([], ["a"])` is `true`, and `union` / `intersection` / `set_equals` accept `[]` (they threw *must have a data type*).
 
 **Integer literal `9223372036854775808`** (2^63) is *Integer is out of range* like any larger integer (it was *Invalid number*); `-9223372036854775808` still compiles.
