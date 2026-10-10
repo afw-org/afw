@@ -61,9 +61,9 @@ safe_evaluate(index_remove("lmdb", "kind"), null);
 return 0;
 
 
-//? test: index_match_unsupported_pattern_on_indexed_property_throws
-//? description: A non-literal-prefix match pattern on an indexed property, combined with another sargable clause, still throws rather than silently mishandling the index (it is not translatable to a b-tree range scan).
-//? expect: error:Unable to create cursor for this operator
+//? test: index_match_unsupported_pattern_on_indexed_property
+//? description: A non-literal-prefix match pattern on an indexed property, combined with another sargable clause, gets no index cursor (it is not translatable to a b-tree range scan); the other clause's cursor finds the candidates and the whole filter is tested on them. It used to throw "Unable to create cursor for this operator".
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
@@ -73,12 +73,14 @@ index_create("lmdb", "status", undefined, [ot], undefined, undefined, false, fal
 index_create("lmdb", "name", undefined, [ot], undefined, undefined, false, false);
 
 add_object("lmdb", ot, { name: "apple", status: "active" }, generate_uuid());
+add_object("lmdb", ot, { name: "pear", status: "active" }, generate_uuid());
+add_object("lmdb", ot, { name: "crabapple", status: "inactive" }, generate_uuid());
 
 // ".*apple" is not the "<literal>.*" shape (the wildcard isn't at the
 // end), so it cannot be reduced to an index range scan. Anding it with a
 // sargable clause on another indexed property makes the overall filter
-// sargable, forcing the planner to attempt an index cursor for this leaf
-// too -- which must throw, not silently full-scan or return wrong results.
+// sargable: the status cursor finds the candidates and the match is
+// tested on them.
 const objects: array = retrieve_objects("lmdb", ot, { "filter": {
     "op": "and",
     "filters": [
@@ -86,5 +88,7 @@ const objects: array = retrieve_objects("lmdb", ot, { "filter": {
         { "op": "match", "property": "name", "value": ".*apple" }
     ]
 }});
+assert(length(objects) === 1, "one active apple");
+assert(objects[0].name === "apple");
 
 return 0;
