@@ -92,6 +92,18 @@ impl_apply_optional_size_limit(
  * get_cb: C NULL = not this frame; non-NULL = defined here (use
  * afw_value_undefined for present undefined — permanent singleton).
  */
+/*
+ * Values of current:: variables that do not change for the xctx, made
+ * once when the qualifier is pushed. Made per read, each read would add
+ * to the xctx's pool until the xctx is released.
+ */
+typedef struct impl_current_values_s {
+    const afw_value_t *pid;
+    const afw_value_t *xctx_uuid;
+    const afw_value_t *program_name;
+} impl_current_values_t;
+
+
 static const afw_value_t *
 impl_current_get_variable_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
@@ -99,25 +111,22 @@ impl_current_get_variable_cb(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    afw_integer_t pid;
+    const impl_current_values_t *values;
 
-    (void)entry;
-
+    values = entry->data;
     result = NULL;
     if (afw_utf8_equal(name, afw_s_mode)) {
         /* Always defined on app current; mode is set at env create. */
         result = xctx->mode ? xctx->mode : afw_value_undefined;
     }
     else if (afw_utf8_equal(name, afw_s_pid)) {
-        pid = afw_os_get_pid();
-        result = afw_value_create_unmanaged_integer(pid, xctx->p, xctx);
+        result = values->pid;
     }
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_unmanaged_string(xctx->uuid, xctx->p, xctx);
+        result = values->xctx_uuid;
     }
     else if (afw_utf8_equal(name, afw_s_programName)) {
-        result = afw_value_create_unmanaged_string(
-            &xctx->env->program_name, xctx->p, xctx);
+        result = values->program_name;
     }
 
     return result;
@@ -169,11 +178,19 @@ void
 afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
 {
     const afw_environment_t *env = xctx->env;
+    impl_current_values_t *values;
 
     /* Push current:: qualifier. */
+    values = afw_pool_calloc_type(xctx->p, impl_current_values_t, xctx);
+    values->pid = afw_value_create_unmanaged_integer(afw_os_get_pid(),
+        xctx->p, xctx);
+    values->xctx_uuid = afw_value_create_unmanaged_string(xctx->uuid,
+        xctx->p, xctx);
+    values->program_name = afw_value_create_unmanaged_string(
+        &xctx->env->program_name, xctx->p, xctx);
     afw_xctx_qualifier_stack_qualifier_push(afw_s_current, NULL, true,
         impl_current_get_variable_cb, impl_current_contribute_variables_cb,
-        NULL, xctx->p, xctx);
+        values, xctx->p, xctx);
 
     /*
      * Process ambient qualifiers (environment::, process::). Objects are
