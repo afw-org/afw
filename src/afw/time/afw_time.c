@@ -1126,6 +1126,15 @@ afw_dayTimeDuration_internal_to_utf8(
     /* Next is always 'P'. */
     *c++ = 'P';
 
+    /* Zero is "PT0S" ("P" alone is not a dayTimeDuration). */
+    if (days == 0 && hours == 0 && minutes == 0 && seconds == 0 &&
+        microseconds == 0)
+    {
+        *c++ = 'T';
+        *c++ = '0';
+        *c++ = 'S';
+    }
+
     /* If hours, put number of hours followed by 'H'. */
     if (days != 0) {
         c += afw_number_integer_set_u8(days, c, end - c,
@@ -1395,6 +1404,12 @@ afw_yearMonthDuration_internal_to_utf8(
 
     /* Next is always 'P'. */
     *c++ = 'P';
+
+    /* Zero is "P0M" ("P" alone is not a yearMonthDuration). */
+    if (years == 0 && months == 0) {
+        *c++ = '0';
+        *c++ = 'M';
+    }
 
     /* If years, put number of years followed by 'Y'. */
     if (years != 0) {

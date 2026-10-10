@@ -150,3 +150,19 @@ for (const x of [1e10, 2e-10, 1e100, 1e300, 1.7976931348623157e308,
     assert(double(string(x)) === x, "round trip " + string(x));
 }
 return 0;
+
+//?
+//? test: zero-duration-string-round-trip
+//? description: a zero duration prints a form its constructor reads back (it printed "P")
+//? expect: 0
+//? source: ...
+
+assert(string(dayTimeDuration("P0D")) === "PT0S", string(dayTimeDuration("P0D")));
+assert(string(dayTimeDuration("PT0S")) === "PT0S");
+assert(string(yearMonthDuration("P0Y")) === "P0M", string(yearMonthDuration("P0Y")));
+assert(string(yearMonthDuration("P0M")) === "P0M");
+assert(dayTimeDuration(string(dayTimeDuration("P0D"))) == dayTimeDuration("P0D"));
+assert(yearMonthDuration(string(yearMonthDuration("P0M"))) == yearMonthDuration("P0M"));
+assert(stringify([dayTimeDuration("PT0S")]) === "[\"PT0S\"]");
+assert(string(dayTimeDuration("P1D")) === "P1D", "nonzero unchanged");
+return 0;
