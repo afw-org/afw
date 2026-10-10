@@ -434,7 +434,7 @@ afw_compile_parse_OptionalDefineTarget(
     }
 
     /* If there is a let or const, block specified and not NULL, make one. */
-    if (define_function && block && !*block) {
+    if (*define_function && block && !*block) {
         *block = afw_compile_parse_link_new_value_block(
             parser, start_offset);
     }
