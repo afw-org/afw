@@ -472,6 +472,39 @@ impl_index_value_as_key_utf8(
 }
 
 /*
+ * The key of a filter entry's value. A query string's values are all
+ * strings: on a property whose object type says integer or double, a
+ * string value is that number's key (n=gt=9 sought the string "9" among
+ * the integers' sortable keys: it found nothing, and n=lt=10 found
+ * everything). A string that is not a number stays a string.
+ */
+static const afw_utf8_t *
+impl_index_entry_value_as_key_utf8(
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+    const afw_data_type_t *data_type;
+
+    value = entry->value;
+    data_type = (entry->pt) ? entry->pt->data_type : NULL;
+    if (data_type && afw_value_is_string(value) &&
+        (afw_data_type_is_integer(data_type) ||
+        afw_data_type_is_double(data_type)))
+    {
+        AFW_TRY {
+            value = afw_value_convert(value, data_type, false, p, xctx);
+        }
+        AFW_CATCH_UNHANDLED {
+            value = entry->value;
+        }
+        AFW_ENDTRY;
+    }
+
+    return impl_index_value_as_key_utf8(value, p, xctx);
+}
+
+/*
  * Get the literal starts-with prefix of a match entry, if any.
  *
  * Patterns compiled for the match operator use XML Schema Datatype regex
@@ -1801,7 +1834,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
        the index implementation, same as it already is today. */
     value_string = (literal_prefix)
         ? literal_prefix
-        : impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
+        : impl_index_entry_value_as_key_utf8(entry, xctx->p, xctx);
 
     cursor_operator = (literal_prefix)
         ? AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH
@@ -1942,7 +1975,7 @@ static int afw_adapter_impl_index_compare(
     /* use the internal utf-8 string representation; integer/double
        get the sortable encoding so lt/le/gt/ge below compare
        numerically, not lexicographically (issue #251) */
-    property_value = impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
+    property_value = impl_index_entry_value_as_key_utf8(entry, xctx->p, xctx);
 
     /* can't compare Objects */
     if (afw_value_is_object(value)) {

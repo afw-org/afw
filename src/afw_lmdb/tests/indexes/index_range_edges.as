@@ -93,3 +93,31 @@ const ne = retrieve_objects("lmdb", ot, { filter: { op: "and", filters: [
 ] } });
 assert(length(ne) === 2, "and(ne, eq, in) on one indexed property");
 return 0;
+
+//? test: index_query_string_value_typed
+//? description: a query string's values are strings; on a property whose object type says integer, an indexed range or eq seeks the integer (n=gt=9 found nothing, n=lt=10 found everything).
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const ot: string = "TestIndexQueryStringTyped";
+add_object("lmdb", "_AdaptiveObjectType_", {
+    propertyTypes: { n_qs: { dataType: "integer", allowQuery: true } }
+}, ot);
+index_create("lmdb", "n_qs", undefined, [ot], undefined, undefined, false, false);
+for (const n of [-3, 2, 9, 10, 100]) {
+    add_object("lmdb", ot, { n_qs: n }, generate_uuid());
+}
+
+function count(qs: string): integer {
+    return length(retrieve_objects("lmdb", ot, { urlEncodedRQLString: qs }));
+}
+
+assert(count("n_qs=gt=9") === 2, "n_qs=gt=9");
+assert(count("n_qs=lt=10") === 3, "n_qs=lt=10");
+assert(count("n_qs=-3") === 1, "n_qs=-3");
+assert(count("gt(n_qs,9)") === 2, "gt(n_qs,9)");
+assert(count("n_qs=ge=x") === 0, "a value that is not an integer");
+assert(length(retrieve_objects("lmdb", ot, { filter:
+    { op: "le", property: "n_qs", value: "9" } })) === 3, "filter object, string value");
+return 0;
