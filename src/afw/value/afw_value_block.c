@@ -87,6 +87,58 @@ afw_value_block_evaluate_statements(
 }
 
 
+void
+afw_value_block_scope_enter(
+    afw_value_block_scope_t *block_scope,
+    const afw_value_block_t *block,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    /* Push value on evaluation stack. */
+    afw_xctx_evaluation_stack_push_value(
+        (const afw_value_t *)block, xctx);
+    block_scope->block = block;
+    block_scope->saved_contextual = xctx->error->contextual;
+    xctx->error->contextual = block->contextual;
+
+    /*
+     * Every `{ }` is a frame. Top still starts with current NULL
+     * (compiled_value sentinel).
+     */
+    block_scope->scope = afw_pool_scope_create(block,
+        afw_pool_scope_internal_current(xctx), p, xctx);
+    afw_pool_scope_activate(block_scope->scope, xctx);
+}
+
+
+void
+afw_value_block_scope_leave(
+    afw_value_block_scope_t *block_scope,
+    afw_xctx_t *xctx)
+{
+    /*
+     * return/break/continue only set flow. Leaving the `{ }` promotes
+     * last_statement_non_void_value, then pops. Labeled break/continue
+     * keep flowing until the matching loop consumes them; each enclosing
+     * `{ }` still deactivates here.
+     */
+    if (afw_pool_scope_internal_current(xctx) == block_scope->scope) {
+        afw_pool_scope_deactivate(block_scope->scope, xctx);
+    }
+    afw_pool_scope_release(block_scope->scope, xctx);
+}
+
+
+void
+afw_value_block_scope_finish(
+    afw_value_block_scope_t *block_scope,
+    afw_xctx_t *xctx)
+{
+    afw_xctx_evaluation_stack_pop_value(xctx);
+    xctx->error->contextual = block_scope->saved_contextual;
+}
+
+
 const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
@@ -96,15 +148,8 @@ afw_value_block_evaluate_block(
     afw_boolean_t as_value)
 {
     const afw_value_t *saved_script_result;
-    const afw_compile_value_contextual_t *saved_contextual;
-    const afw_pool_t *eval_p;
-    const afw_pool_scope_t *scope;
+    afw_value_block_scope_t block_scope;
 
-    /* Push value on evaluation stack. */
-    afw_xctx_evaluation_stack_push_value(
-        (const afw_value_t *)self, xctx);
-    saved_contextual = xctx->error->contextual;
-    xctx->error->contextual = self->contextual;
     saved_script_result = NULL;
     /*
      * Evaluating a block as a value must not change the caller's last.
@@ -116,34 +161,16 @@ afw_value_block_evaluate_block(
         xctx->script_result = afw_value_undefined;
     }
 
-    /*
-     * Every `{ }` is a frame. Top still starts with current NULL
-     * (compiled_value sentinel).
-     */
-    scope = afw_pool_scope_create(self,
-        afw_pool_scope_internal_current(xctx), p, xctx);
-    afw_pool_scope_activate(scope, xctx);
-    eval_p = scope->p;
+    afw_value_block_scope_enter(&block_scope, self, p, xctx);
     AFW_TRY{
         afw_value_block_evaluate_statements(
-            x, self, 0, eval_p, xctx);
+            x, self, 0, block_scope.scope->p, xctx);
     }
     AFW_FINALLY{
-        /*
-         * return/break/continue only set flow. This FINALLY leaves
-         * the `{ }`: promote last_statement_non_void_value, then pop. Labeled
-         * break/continue keep flowing until the matching loop
-         * consumes them; each enclosing `{ }` still deactivates here.
-         */
-        if (afw_pool_scope_internal_current(xctx) == scope) {
-            afw_pool_scope_deactivate(scope, xctx);
-        }
-        afw_pool_scope_release(scope, xctx);
+        afw_value_block_scope_leave(&block_scope, xctx);
     }
     AFW_ENDTRY;
-
-    afw_xctx_evaluation_stack_pop_value(xctx);
-    xctx->error->contextual = saved_contextual;
+    afw_value_block_scope_finish(&block_scope, xctx);
 
     if (as_value) {
         const afw_value_t *result;
