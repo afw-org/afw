@@ -77,7 +77,7 @@ export function afwJournalAddEntry(client : any, entry : object, adapterId? : st
  * @param {integer} limit - The maximum number of entries that will be scanned
  *     for an entry where the consumeFilter expression in the associated
  *     _AdaptiveProvisioningPeer_ object evaluates to true. If not specified,
- *     there is no limit.
+ *     there is no limit. If specified, it must be 1 or more.
  * 
  * @returns {object} Response object.
  */
@@ -210,7 +210,7 @@ export function afwJournalGetNextAfterCursor(client : any, cursor : string, adap
  * @param {integer} limit - The maximum number of entries that will be scanned
  *     for an entry where the consumeFilter expression in the associated
  *     _AdaptiveProvisioningPeer_ object evaluates to true. If not specified,
- *     there is no limit.
+ *     there is no limit. If specified, it must be 1 or more.
  * 
  * @returns {object} Response object.
  */
@@ -258,7 +258,7 @@ export function afwJournalGetNextForConsumer(client : any, consumerId : string, 
  * @param {integer} limit - The maximum number of entries that will be scanned
  *     for an entry where the consumeFilter expression in the associated
  *     _AdaptiveProvisioningPeer_ object evaluates to true. If not specified,
- *     there is no limit.
+ *     there is no limit. If specified, it must be 1 or more.
  * 
  * @returns {object} Response object.
  */

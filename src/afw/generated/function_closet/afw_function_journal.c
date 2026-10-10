@@ -114,7 +114,7 @@ afw_function_execute_journal_add_entry(
  *   limit - (optional integer) The maximum number of entries that will be
  *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true. If not
- *       specified, there is no limit.
+ *       specified, there is no limit. If specified, it must be 1 or more.
  *
  * Returns:
  *
@@ -325,7 +325,7 @@ afw_function_execute_journal_get_next_after_cursor(
  *   limit - (optional integer) The maximum number of entries that will be
  *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true. If not
- *       specified, there is no limit.
+ *       specified, there is no limit. If specified, it must be 1 or more.
  *
  * Returns:
  *
@@ -390,7 +390,7 @@ afw_function_execute_journal_get_next_for_consumer(
  *   limit - (optional integer) The maximum number of entries that will be
  *       scanned for an entry where the consumeFilter expression in the
  *       associated _AdaptiveProvisioningPeer_ object evaluates to true. If not
- *       specified, there is no limit.
+ *       specified, there is no limit. If specified, it must be 1 or more.
  *
  * Returns:
  *

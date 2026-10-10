@@ -83,7 +83,7 @@ def journal_advance_cursor_for_consumer(session, consumerId, adapterId=None, lim
         limit (int): The maximum number of entries that will be scanned for an
             entry where the consumeFilter expression in the associated
             _AdaptiveProvisioningPeer_ object evaluates to true. If not
-            specified, there is no limit.
+            specified, there is no limit. If specified, it must be 1 or more.
 
     Returns:
         dict: Response object.
@@ -256,7 +256,7 @@ def journal_get_next_for_consumer(session, consumerId, adapterId=None, limit=Non
         limit (int): The maximum number of entries that will be scanned for an
             entry where the consumeFilter expression in the associated
             _AdaptiveProvisioningPeer_ object evaluates to true. If not
-            specified, there is no limit.
+            specified, there is no limit. If specified, it must be 1 or more.
 
     Returns:
         dict: Response object.
@@ -312,7 +312,7 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
         limit (int): The maximum number of entries that will be scanned for an
             entry where the consumeFilter expression in the associated
             _AdaptiveProvisioningPeer_ object evaluates to true. If not
-            specified, there is no limit.
+            specified, there is no limit. If specified, it must be 1 or more.
 
     Returns:
         dict: Response object.

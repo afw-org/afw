@@ -282,7 +282,7 @@ return 0;
 
 
 //? test: consumer-scan-limit
-//? description: limit stops a consumer scan early; the next call resumes where it stopped (built-in and REST forms)
+//? description: limit stops a consumer scan early; the next call resumes where it stopped (built-in and REST forms); a limit below 1 is an error in both
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -324,6 +324,19 @@ for (const bad of [":0", ":x", ":", ":2:3"]) {
     assert(safe_evaluate(get_object("journal", t,
         "get_next_for_consumer:" + peer + bad), "error") == "error",
         "limit '" + bad + "' is an error");
+}
+
+// Bad built-in limits: the same rule, 1 or more.
+for (const bad of [0, -1]) {
+    let id: any = "no error";
+    try { journal_get_next_for_consumer("journal", peer, bad); } catch (e) { id = e.id; }
+    assert(id === "argument_error", "limit " + string(bad) + ", got " + string(id));
+    id = "no error";
+    try { journal_get_next_for_consumer_after_cursor("journal", peer, "1", bad); } catch (e) { id = e.id; }
+    assert(id === "argument_error", "after_cursor limit " + string(bad) + ", got " + string(id));
+    id = "no error";
+    try { journal_advance_cursor_for_consumer("journal", peer, bad); } catch (e) { id = e.id; }
+    assert(id === "argument_error", "advance limit " + string(bad) + ", got " + string(id));
 }
 
 return 0;
