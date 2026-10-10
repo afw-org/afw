@@ -231,6 +231,8 @@ Memory in one long evaluation, and error positions (overnight 2026-10-10). A loo
 
 **Zero durations print a valid form:** `string()` / `stringify()` of a zero `dayTimeDuration` is now `PT0S` and of a zero `yearMonthDuration` `P0M`; both printed `P`, which their constructors (and a JSON reader) reject. **`boolean()` of an object is `true`** (like a non-empty string); it read a byte of the object's address and inverted it, so `boolean({a: 1})` was usually `false`.
 
+**dateTime / date arithmetic borrows correctly:** subtracting a duration (or adding a negative one) that borrowed exactly a whole minute, hour, day, or year could give second `60`, minute `60`, hour `24`, or month `13` (`subtract_dayTimeDuration<dateTime>("…T14:59:32Z", "P189DT15H81M92S")` was `…T22:36:60Z`). It now carries into the next unit.
+
 A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are now those of the error in the whole source. They used to be counted inside the text of the expression that threw, so almost every error said line 1.
 
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
