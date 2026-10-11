@@ -82,16 +82,21 @@ Definitions are **not** written in the adapter conf stanza. They are stored **in
 The first recommended index is often for ObjectType. To add an index, stop the server (or any other process using that LMDB path), then for example:
 
 ````
-  afw -f afw.conf -x "index_create('lmdb', 'surname', 'current::object.get(\"surname\")', ['VaultIdentityData'], undefined, ['case-insensitive-string'], false, false)"
+  afw -f afw.conf -x "index_create('lmdb', 'surname', undefined, ['VaultIdentityData'], undefined, ['case-insensitive-string'], true, false)"
 ````
 
-Where:
+Where (in parameter order):
 
 * ```` afw.conf ```` — AFW configuration that loads the LMDB adapter
 * ```` lmdb ```` — adapter id
-* ```` VaultIdentityData ```` — objectType filter for the definition
-* ```` surname ```` — index key (also the default property name if `value` is omitted)
-* Filter/value scripts (issue #54): **`current::object`**, **`current::objectId`**, **`current::objectType`**, **`current::key`**. Bare ambient `object` is not set.
+* ```` surname ```` — index key: the property queries name
+* ```` undefined ```` — `value` script; omitted, so the property named by the key is indexed
+* ```` VaultIdentityData ```` — object types the definition applies to
+* ```` undefined ```` — `filter` script; omitted, so every object of those types is indexed
+* ```` case-insensitive-string ```` — options
+* ```` true ```` — retroactive: index the objects already in the database
+* ```` false ```` — test: really create it
+* Filter/value scripts (issue #54): **`current::object`**, **`current::objectId`**, **`current::objectType`**, **`current::key`**. Bare ambient `object` is not set. Read a property with `property_get(current::object, "surname")` or `current::object.surname`; objects have no `.get()` method.
 * Lookup data lives in LMDB named DBs of the form **`Index#<objectType>#<key>`**.
 
 Note: `index_create` / retroactive rebuild still has known txn/persistence issues in some session setups; track with GitHub #54 / #57.
