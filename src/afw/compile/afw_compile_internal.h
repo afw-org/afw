@@ -486,6 +486,14 @@ struct afw_compile_internal_parser_s {
     /* continue statement allowed in loop. */
     afw_boolean_t continue_allowed;
 
+    /*
+     * An operand already parsed (a name, call, or member access read as
+     * a possible statement) that afw_compile_parse_Prefixed() returns
+     * once, so afw_compile_parse_Expression() can continue with the
+     * operators after it (#542).
+     */
+    const afw_value_t *pending_left_value;
+
     /* Active loop labels for break/continue Identifier (issue #62). */
     afw_compile_loop_label_t *loop_labels;
 
