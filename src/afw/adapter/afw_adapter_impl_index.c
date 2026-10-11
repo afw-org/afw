@@ -408,6 +408,31 @@ impl_index_double_as_sortable_utf8(
 }
 
 /*
+ * One "\0" byte: the empty string's index key, and the escape in front
+ * of a text that starts with "\0".
+ */
+static const afw_utf8_t impl_index_key_nul = { "", 1 };
+
+/*
+ * The index key of a text. Index keys can't be empty (LMDB), and the
+ * empty string was skipped, so an index query never found "" (eq "",
+ * lt/le walking down, ge "") (#544). A key is the text, except that ""
+ * is "\0" and a text that starts with "\0" gets another "\0" in front.
+ * Every key stays distinct and in the texts' byte order ("" first), so
+ * cursors and the dedup compare keys as before.
+ */
+static const afw_utf8_t *
+impl_index_key_from_text(
+    const afw_utf8_t *text, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    if (text->len > 0 && text->s[0] != '\0') {
+        return text;
+    }
+
+    return afw_utf8_concat(p, xctx, &impl_index_key_nul, text, NULL);
+}
+
+/*
  * Returns the utf8 text used as an index key/comparison value for
  * `value`. Integer and double values get the fixed-width sortable
  * encoding above so lt/le/gt/ge walk keys in numeric order; LMDB (and
@@ -430,7 +455,8 @@ impl_index_value_as_key_utf8(
             afw_value_as_double_internal(value, p, xctx), p, xctx);
     }
 
-    return afw_value_convert_to_utf8(value, p, xctx);
+    return impl_index_key_from_text(
+        afw_value_convert_to_utf8(value, p, xctx), p, xctx);
 }
 
 /*
@@ -547,7 +573,7 @@ impl_index_entry_seek_key(
     const afw_utf8_t *key;
 
     key = (literal_prefix)
-        ? literal_prefix
+        ? impl_index_key_from_text(literal_prefix, p, xctx)
         : impl_index_entry_value_as_key_utf8(entry, p, xctx);
     if (afw_adapter_impl_index_option_case_insensitive(
         indexDefinition, xctx))
@@ -2461,11 +2487,6 @@ static afw_boolean_t afw_adapter_impl_index_applies(
         key = impl_index_value_as_key_utf8(values[i], p, xctx);
         if (case_insensitive) {
             key = afw_utf8_to_lower(key, p, xctx);
-        }
-
-        /* An empty value is never an index key. */
-        if (key->len == 0) {
-            continue;
         }
 
         if (literal_prefix) {

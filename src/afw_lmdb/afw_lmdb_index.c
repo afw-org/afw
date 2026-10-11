@@ -454,8 +454,9 @@ void impl_afw_adapter_impl_index_add(
     const afw_utf8_t *database;
 
     /* we will get an error if we try to add a key of length 0 */
-    /** @fixme this basically avoids indexing an empty string, so
-    we should determine if this is an error condition or not
+    /*
+     * LMDB keys can't be empty. Core never passes one: the empty string's
+     * key is "\0" (impl_index_key_from_text, #544).
      */
     if (value->len == 0) {
         return;
@@ -546,8 +547,9 @@ void impl_afw_adapter_impl_index_delete(
     afw_rc_t rc;
 
     /* we will get an error if we try to delete a key of length 0 */
-    /** @fixme this basically avoids indexing an empty string, so
-    we should determine if this is an error condition or not
+    /*
+     * LMDB keys can't be empty. Core never passes one: the empty string's
+     * key is "\0" (impl_index_key_from_text, #544).
      */
     if (value->len == 0) {
         return;
