@@ -67336,7 +67336,7 @@ impl_index_create_parameter_6 = {
     &afw_self_v_string,
     &afw_self_v_options,
     NULL,
-    &afw_self_v_zz__Indexing_options_,
+    &afw_self_v_zz__6b197b50dbe5,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,

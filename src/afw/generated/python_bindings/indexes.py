@@ -36,7 +36,12 @@ def index_create(session, key, adapterId=None, value=None, objectType=None, filt
             current:: variables as value (issue #54). If omitted, the filter
             is always true. A filter needs a value script: an object the
             filter leaves out has no value under the computed name.
-        options (list): Indexing options.
+        options (list): Indexing options: unique (each value at most once),
+            case-insensitive-string (compare strings case-insensitively),
+            sort-reverse, and integer or double (the index's values are
+            numbers, so a string query value such as a query string's is the
+            number's key when no object type gives the property's data type;
+            it must agree with a data type an object type declares).
         retroactive (bool): Retroactively generate indexes for existing
             objects.
         test (bool): Test create (don't actually perform).

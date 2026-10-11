@@ -14769,7 +14769,12 @@ afw_function_definition_index_create;
  *       always true. A filter needs a value script: an object the filter leaves
  *       out has no value under the computed name.
  *
- *   options - (optional string[]) Indexing options.
+ *   options - (optional string[]) Indexing options: unique (each value at most
+ *       once), case-insensitive-string (compare strings case-insensitively),
+ *       sort-reverse, and integer or double (the index's values are numbers, so
+ *       a string query value such as a query string's is the number's key when
+ *       no object type gives the property's data type; it must agree with a
+ *       data type an object type declares).
  *
  *   retroactive - (optional boolean) Retroactively generate indexes for
  *       existing objects.

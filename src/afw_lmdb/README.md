@@ -93,7 +93,7 @@ Where (in parameter order):
 * ```` undefined ```` — `value` script; omitted, so the property named by the key is indexed
 * ```` VaultIdentityData ```` — object types the definition applies to
 * ```` undefined ```` — `filter` script; omitted, so every object of those types is indexed
-* ```` case-insensitive-string ```` — options
+* ```` case-insensitive-string ```` — options (also `unique`, and `integer` or `double` when the values are numbers and no object type says so)
 * ```` true ```` — retroactive: index the objects already in the database
 * ```` false ```` — test: really create it
 * Filter/value scripts (issue #54): **`current::object`**, **`current::objectId`**, **`current::objectType`**, **`current::key`**. Bare ambient `object` is not set. Read a property with `property_get(current::object, "surname")` or `current::object.surname`; objects have no `.get()` method.
