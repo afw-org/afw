@@ -8401,32 +8401,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__21b4289837b2 \
-    "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nEach object is passed to the callback as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__21b4289837b2 */
-#define afw_s_zz__21b4289837b2 \
-    (&afw_self_v_zz__21b4289837b2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__21b4289837b2 */
-#define afw_self_s_zz__21b4289837b2 \
-    (afw_self_v_zz__21b4289837b2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__21b4289837b2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__21b4289837b2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__21b4289837b2 */
-#define afw_z_zz__21b4289837b2 \
-    (afw_self_v_zz__21b4289837b2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__21b4289837b2 */
-#define afw_v_zz__21b4289837b2 \
-    (&afw_self_v_zz__21b4289837b2.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__21e05f313a5e \
     "function one_and_only<string> (\n    array: array[]\n): string;\n"
 
@@ -141023,6 +140997,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d244c34d5dd5 */
 #define afw_v_zz__d244c34d5dd5 \
     (&afw_self_v_zz__d244c34d5dd5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d2694bae4de0 \
+    "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nEach object is passed to the callback as it's retrieved.\n\nThere is no bound on how many objects are visited or how long the retrieve runs: maxObjects applies only to retrieve_objects and retrieve_objects_with_uri, which collect into an array. To stop early, return true from objectCallback. A callback that writes into the store it is retrieving can keep the retrieve going.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d2694bae4de0 */
+#define afw_s_zz__d2694bae4de0 \
+    (&afw_self_v_zz__d2694bae4de0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d2694bae4de0 */
+#define afw_self_s_zz__d2694bae4de0 \
+    (afw_self_v_zz__d2694bae4de0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d2694bae4de0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d2694bae4de0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d2694bae4de0 */
+#define afw_z_zz__d2694bae4de0 \
+    (afw_self_v_zz__d2694bae4de0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d2694bae4de0 */
+#define afw_v_zz__d2694bae4de0 \
+    (&afw_self_v_zz__d2694bae4de0.pub)
 
 
 

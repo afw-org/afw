@@ -1,7 +1,7 @@
 {
     "brief": "Retrieve adaptive objects",
     "category": "adapter",
-    "description": "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nEach object is passed to the callback as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.",
+    "description": "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nEach object is passed to the callback as it's retrieved.\n\nThere is no bound on how many objects are visited or how long the retrieve runs: maxObjects applies only to retrieve_objects and retrieve_objects_with_uri, which collect into an array. To stop early, return true from objectCallback. A callback that writes into the store it is retrieving can keep the retrieve going.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.",
     "functionId": "retrieve_objects_to_callback",
     "functionLabel": "retrieve_objects_to_callback",
     "parameters": [

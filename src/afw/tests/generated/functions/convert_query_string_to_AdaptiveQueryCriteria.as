@@ -19,7 +19,7 @@ convert_query_string_to_AdaptiveQueryCriteria(
 //?
 //? test: convert_query_string_to_AdaptiveQueryCriteria-error-objectType-required
 //? description: throws when objectType is specified without adapterId
-//? expect: error:objectType parameter is required if adapterId is specified
+//? expect: error:adapterId parameter is required if objectType is specified
 //? source: ...
 
 convert_query_string_to_AdaptiveQueryCriteria(

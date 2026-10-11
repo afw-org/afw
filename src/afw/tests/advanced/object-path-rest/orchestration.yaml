@@ -183,3 +183,33 @@ tests:
       path: /files/Thing/nested
       body: [["set_property", ["n", "x"], 1]]
     expectStatus: 400
+
+  # #573: a query the client got wrong is a syntax error (400), not 500.
+  - name: query-sort-twice-is-bad-request
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/?sort(+n)&sort(-n)
+    expectStatus: 400
+
+  - name: query-bad-relation-is-bad-request
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/?n=eq=
+    expectStatus: 400
+
+  - name: query-good-is-ok
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/?select(n)&n=eq=1
+    expectStatus: 200
+
+  # A '?' inside the query: the path stops at the first '?' only.
+  - name: query-with-second-question-mark
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/?n=eq=a?b
+    expectStatus: 200

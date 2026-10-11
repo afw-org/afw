@@ -1039,6 +1039,12 @@ afw_function_execute_retrieve_objects(
  * 
  * Each object is passed to the callback as it's retrieved.
  * 
+ * There is no bound on how many objects are visited or how long the retrieve
+ * runs: maxObjects applies only to retrieve_objects and
+ * retrieve_objects_with_uri, which collect into an array. To stop early, return
+ * true from objectCallback. A callback that writes into the store it is
+ * retrieving can keep the retrieve going.
+ * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 

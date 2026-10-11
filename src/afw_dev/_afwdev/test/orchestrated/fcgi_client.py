@@ -71,11 +71,14 @@ def default_fcgi_params(path, method="POST", body=b"", overrides=None):
     if not path.startswith("/"):
         path = "/" + path
 
+    # nginx parity: $uri / $document_uri have no query; $request_uri has it.
+    uri, _, query = path.partition("?")
+
     now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     params = {
         "IGNORE_URI_PREFIX": "/",
-        "URI": path,
-        "QUERY_STRING": "",
+        "URI": uri,
+        "QUERY_STRING": query,
         "REQUEST_METHOD": method,
         "CONTENT_TYPE": "application/json",
         "CONTENT_LENGTH": str(len(body)),
@@ -84,7 +87,7 @@ def default_fcgi_params(path, method="POST", body=b"", overrides=None):
         "PATH_INFO": "",
         "PATH_TRANSLATED": "",
         "REQUEST_URI": path,
-        "DOCUMENT_URI": path,
+        "DOCUMENT_URI": uri,
         "DOCUMENT_ROOT": "",
         "SERVER_PROTOCOL": "HTTP/1.1",
         "GATEWAY_INTERFACE": "CGI/1.1",
