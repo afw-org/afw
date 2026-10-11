@@ -1472,11 +1472,11 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     s = afw_object_get_property_as_string_internal(filter_object,
         afw_v_op, parser->xctx);
     if (!s) {
-        AFW_THROW_ERROR_Z(general, "Missing \"op\" property", parser->xctx);
+        AFW_THROW_ERROR_Z(bad_request, "Missing \"op\" property", parser->xctx);
     }
     rql_op = impl_find_rql_op(s);
     if (!rql_op) {
-        AFW_THROW_ERROR_FZ(general, parser->xctx,
+        AFW_THROW_ERROR_FZ(bad_request, parser->xctx,
             "Property \"op\" value is not valid: '%ku'",
             s);
     }
@@ -1504,8 +1504,8 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         filters_list = afw_object_get_property_as_array_internal(filter_object,
             afw_v_filters, parser->xctx);
         if (!filters_list) {
-            AFW_THROW_ERROR_Z(general,
-                "Property \"filters\" for this op",
+            AFW_THROW_ERROR_Z(bad_request,
+                "Property \"filters\" is required for this op",
                 parser->xctx);
         }
 
@@ -1520,7 +1520,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                 break;
             }
             if (!afw_value_is_object(value)) {
-                AFW_THROW_ERROR_Z(general,
+                AFW_THROW_ERROR_Z(bad_request,
                     "Property \"filters\" array entries must be objects",
                     parser->xctx);
             }
@@ -1568,7 +1568,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->property_name = afw_object_get_property_as_string_internal(
             filter_object, afw_v_property, parser->xctx);
         if (!entry->property_name) {
-            AFW_THROW_ERROR_FZ(general, parser->xctx,
+            AFW_THROW_ERROR_FZ(bad_request, parser->xctx,
                 "Filter operator '%ku' requires a property",
                 entry->op_name);
         }
@@ -1577,7 +1577,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                 parser->criteria->object_type,
                 entry->property_name, parser->xctx);
             if (!entry->pt || !entry->pt->allow_query) {
-                AFW_THROW_ERROR_FZ(general, parser->xctx,
+                AFW_THROW_ERROR_FZ(bad_request, parser->xctx,
                     "Property '%ku' cannot be queried",
                     entry->property_name);
             }
@@ -1587,7 +1587,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
             filter_object, afw_v_value, parser->xctx);
         /* Testing an object compares to it; NULL was dereferenced. */
         if (!entry->value) {
-            AFW_THROW_ERROR_FZ(general, parser->xctx,
+            AFW_THROW_ERROR_FZ(bad_request, parser->xctx,
                 "Filter operator '%ku' requires a value",
                 entry->op_name);
         }
@@ -1596,7 +1596,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         /* If match or differ (not match), compile expression. */
         if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
             if (!entry->value || !afw_value_is_string(entry->value)) {
-                AFW_THROW_ERROR_Z(general,
+                AFW_THROW_ERROR_Z(bad_request,
                     "Value for match operator must be a string",
                     parser->xctx);
             }
@@ -1605,7 +1605,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                 parser->p, parser->xctx);
             entry->op_specific = xmlRegexpCompile(s_z);
             if (entry->op_specific == NULL) {
-                AFW_THROW_ERROR_Z(general, "regexp syntax error",
+                AFW_THROW_ERROR_Z(syntax, "regexp syntax error",
                     parser->xctx);
             }
             afw_pool_register_cleanup(parser->p,
@@ -1673,11 +1673,11 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
             result = curr;
         }
         name = afw_value_as_string_internal(value, parser->p, parser->xctx);
-        if (name->len <= 2 ||
+        if (name->len < 2 ||
             (*name->s != '+' && *name->s != '-')
             )
         {
-            AFW_THROW_ERROR_Z(general,
+            AFW_THROW_ERROR_Z(bad_request,
                 "sort property name is missing or does not start with "
                 "'+' or '-'",
                 parser->xctx);
@@ -1796,7 +1796,7 @@ impl_compare_value(
             if (data_type &&
                 afw_value_get_data_type(v2, xctx) != data_type)
             {
-                AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
             is_true = afw_value_equal(entry_value, v2, xctx);
             if (is_true) {
@@ -1814,7 +1814,7 @@ impl_compare_value(
             if (data_type &&
                 afw_value_get_data_type(v2, xctx) != data_type)
             {
-                AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
             is_true = !afw_value_equal(entry_value, v2, xctx);
             if (!is_true) {
@@ -1832,7 +1832,7 @@ impl_compare_value(
             if (data_type &&
                 afw_value_get_data_type(v2, xctx) != data_type)
             {
-                AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
             is_true = afw_value_compare(v2, entry_value, xctx) < 0;
             if (is_true) {
@@ -1850,7 +1850,7 @@ impl_compare_value(
             if (data_type &&
                 afw_value_get_data_type(v2, xctx) != data_type)
             {
-                AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
             is_true = afw_value_compare(v2, entry_value, xctx) <= 0;
             if (is_true) {
@@ -1868,7 +1868,7 @@ impl_compare_value(
             if (data_type &&
                 afw_value_get_data_type(v2, xctx) != data_type)
             {
-                AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
             is_true = afw_value_compare(v2, entry_value, xctx) > 0;
             if (is_true) {
@@ -1886,7 +1886,7 @@ impl_compare_value(
             if (data_type &&
                 afw_value_get_data_type(v2, xctx) != data_type)
             {
-                AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
             is_true = afw_value_compare(v2, entry_value, xctx) >= 0;
             if (is_true) {
@@ -1898,7 +1898,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_in:        
 
         if (!afw_value_is_array(entry_value)) {
-            AFW_THROW_ERROR_Z(general, "array required for 'in' operator", xctx);
+            AFW_THROW_ERROR_Z(bad_request, "array required for 'in' operator", xctx);
         }
         
         /* get our list of property values to compare */
@@ -1927,7 +1927,7 @@ impl_compare_value(
                     afw_value_get_data_type(v2, xctx))
                 {
                     if (!afw_value_is_string(v2)) {
-                        AFW_THROW_ERROR_Z(general, "data type mismatch",
+                        AFW_THROW_ERROR_Z(bad_request, "data type mismatch",
                             xctx);
                     }
                     AFW_TRY {
@@ -2091,7 +2091,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
             /* If "sort(", parser sort criteria. It can only occur once. */
             if (afw_utf8_z_starts_with(parser.c, "sort(")) {
                 if (parser.criteria->first_sort) {
-                    AFW_THROW_ERROR_Z(general,
+                    AFW_THROW_ERROR_Z(syntax,
                         "sort() specified multiple times in query string",
                         xctx);
                 }
@@ -2102,7 +2102,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
             /* If "select(", parser select criteria. It can only occur once. */
             else if (afw_utf8_z_starts_with(parser.c, "select(")) {
                 if (parser.criteria->select) {
-                    AFW_THROW_ERROR_Z(general,
+                    AFW_THROW_ERROR_Z(syntax,
                         "select() specified multiple times in query string",
                         xctx);
                 }
@@ -2113,7 +2113,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
             /* If "limit(", parser limit criteria. It can only occur once.
             else if (afw_utf8_z_starts_with(parser.c, "select(")) {
                 if (parser.criteria->limit) {
-                    AFW_THROW_ERROR_Z(general,
+                    AFW_THROW_ERROR_Z(syntax,
                         "limit() specified multiple times in query string",
                         xctx);
                 }
@@ -2125,7 +2125,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
             /* Anything else must be a filter. */
             else {
                 if (parser.criteria->filter) {
-                    AFW_THROW_ERROR_Z(general,
+                    AFW_THROW_ERROR_Z(syntax,
                         "Filter in query string is malformed", xctx);
                 }
                 impl_parse_string_filter(&parser,
@@ -2148,7 +2148,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
             if ((parser.token_type != impl_token_type_delimiter) ||
                 (*(parser.token.s) != '&'))
             {
-                AFW_THROW_ERROR_Z(general,
+                AFW_THROW_ERROR_Z(syntax,
                     "query filter is malformed", xctx);
             }
         }
@@ -2189,7 +2189,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
                 break;
             }
             if (!afw_value_equal(property_name, afw_v_urlEncodedRQLString, xctx)) {
-                AFW_THROW_ERROR_Z(general,
+                AFW_THROW_ERROR_Z(bad_request,
                     "Property urlEncodedRQLString must be specified alone",
                     xctx);
             }
@@ -2246,7 +2246,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
 
         /* unknown property */
         else {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(bad_request, xctx,
                 "Unknown query criteria property '%ku'",
                 afw_object_property_name_display_utf8(
                         property_name, xctx));
@@ -2315,7 +2315,7 @@ afw_query_criteria_test_object_cb(
             if (afw_value_is_object(value) ||
                 afw_value_is_object(test_entry->value))
             {
-                AFW_THROW_ERROR_Z(general,
+                AFW_THROW_ERROR_Z(bad_request,
                     "Object values are not supported in query string",
                     xctx);
             }

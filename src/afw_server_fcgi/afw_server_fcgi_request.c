@@ -168,6 +168,7 @@ afw_server_fcgi_internal_create_request(
                     self->pub.uri = afw_utf8_create(
                         self->pub.uri->s, c - self->pub.uri->s,
                         xctx->p, xctx);
+                    break;
                 }
             }
         }

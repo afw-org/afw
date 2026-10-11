@@ -311,6 +311,20 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 - New `afw_value_convert_lexical()`: `afw_value_convert()` that reads a string for a boolean slot with the boolean parser.
 - An optimized (Release) build compiles: locals changed inside `AFW_TRY` and read after a throw are `volatile`, and the package compile options add `-fno-strict-aliasing` ([#562](https://github.com/afw-org/afw/issues/562)).
 
+## Query errors and service restart (2026-10-11)
+
+**Script authors**
+- A **failed `service_restart()` throws** ([#525](https://github.com/afw-org/afw/issues/525)): when the new instance does not start, the restart throws `Service '…' was not restarted and is still running the previous instance.` followed by the start error (with that error's id). The service stays **`running`** on the previous instance. It used to return normally, show `status: "error"` while the old instance kept serving, and then refuse the next restart.
+- **Query errors are 400s** ([#573](https://github.com/afw-org/afw/issues/573)): a query string the client got wrong (`sort()` or `select()` twice, a malformed filter) is **`syntax`**; a query criteria object the client got wrong (missing or unknown `op`, no `value`, an unknown criteria property, a sort name without `+` or `-`, `in` without an array) is **`bad_request`**. They were `general` (500). A criteria object sort on a one-letter property (`"+a"`) is accepted.
+- `convert_AdaptiveQueryCriteria_to_query_string` and `convert_query_string_to_AdaptiveQueryCriteria`: a bad style, or an `objectType` without an `adapterId`, is **`argument_error`**; an adapter or object type that is not found is **`not_found`**.
+- `retrieve_objects_to_callback` has **no bound** on objects visited or time; `maxObjects` does not apply. Return `true` from the callback to stop ([#499](https://github.com/afw-org/afw/issues/499)).
+
+**Operators**
+- `afwfcgi`: a request URI with a second `?` in its query (`/x?a?b`) cut the path with a length taken from two unrelated buffers. The path now stops at the first `?`.
+- `_AdaptiveService_` status fields are read and written under one lock, so a read during a start or restart sees a consistent status and message ([#571](https://github.com/afw-org/afw/issues/571)).
+
+[↑ Highlights](#highlights)
+
 ## LMDB index queries and 64-bit integers (overnight 2026-10-10)
 
 **LMDB index queries:** with an index on the property, `lt` the first key returned that key, `gt` the last key returned it, `le` below every key returned the first one, `le` took one of several objects with an equal value, and `gt "a"` skipped `"ab"` when no object had `"a"` (keys were compared by prefix). An `and` holding an `or` with a term no index answers crashed the process, and `out` / `ne` / `in` (or a `match` that is not a literal prefix) on an indexed property inside an `and` threw *Unable to create cursor for this operator*; such a term is now tested on the objects the other terms' cursors find. A query string's value (always a string) on an indexed property whose object type says integer or double is that number's key: `n=gt=9` found nothing and `n=lt=10` found everything. Still open: [#544](https://github.com/afw-org/afw/issues/544) (empty strings are not index keys; string values without an object type).

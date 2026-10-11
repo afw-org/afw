@@ -78,7 +78,12 @@ struct afw_service_s {
     /** @brief The source location associated with the conf property. */
     const afw_utf8_t *conf_source_location;
 
-    /** @brief The status of the service. */
+    /**
+     * @brief The status of the service.
+     *
+     * status, start_time, status_message, and status_debug are read and
+     * written under status_mutex.
+     */
     afw_service_status_t status;
 
     /** @brief Start time. */
@@ -98,8 +103,16 @@ struct afw_service_s {
      */
     const afw_utf8_t *status_debug;
 
-    /** @brief Mutex used when changing status. */
+    /** @brief Held across a whole start, stop, or restart. */
     afw_thread_mutex_t *mutex;
+
+    /**
+     * @brief Guards the status fields.
+     *
+     * A leaf lock, held only to read or write them. Nothing is taken or
+     * thrown while it is held. Readers copy what they need under it.
+     */
+    afw_thread_mutex_t *status_mutex;
 
     /** @brief Has a service conf object. */
     afw_boolean_t has_service_conf;
@@ -114,8 +127,11 @@ struct afw_service_s {
      */
     afw_integer_t reference_count;
 
-    /** @brief Registered at some point (conf was ceded to the type). */
+    /** @brief Registered at some point. */
     afw_boolean_t registered;
+
+    /** @brief conf->p was ceded to the service type's start or restart. */
+    afw_boolean_t conf_ceded;
 };
 
 
