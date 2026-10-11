@@ -127,12 +127,18 @@ bag<dayTimeDuration>(function (x) { return x; })
 
 //?
 //? test: function-to-string
-//? description: string() of a script function is its unit's source
+//? description: string() of a script function is its own source (#498)
 //? expect: 0
 //? source: ...
 
-const s = string(function (x) { return x; });
-assert(index_of(s, "function (x)") >= 0);
+const f = function (x) { return x; };
+function h(y) { return y * 2; }
+const o = { m: function (a: integer, b: integer): integer { return a + b; } };
+assert(string(function (x) { return x; }) === "function (x) { return x; }");
+assert(string(f) === "function (x) { return x; }");
+assert(string(h) === "function h(y) { return y * 2; }");
+assert(string(o.m) ===
+    "function (a: integer, b: integer): integer { return a + b; }");
 return 0;
 
 //?

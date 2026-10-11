@@ -1297,9 +1297,14 @@ afw_compile_parse_FunctionSignature(
     const afw_value_string_t **function_name_value,
     const afw_value_type_t **return_type);
 
+/*
+ * start_offset is where the definition's source starts (its 'function'
+ * token): string() of the function is that source (#498).
+ */
 const afw_value_t *
 afw_compile_parse_FunctionSignatureAndBody(
     afw_compile_parser_t *parser,
+    afw_size_t start_offset,
     const afw_value_string_t **function_name_value,
     const afw_value_type_t **return_type);
 
