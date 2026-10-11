@@ -500,14 +500,8 @@ afw_function_execute_open_file(
     resolved_path = afw_file_path_resolve_rootFilePaths(
         &path->internal, x->p, x->xctx);
 
-    /*
-     * Copy streamId into the xctx pool so lookup by stream() remains valid
-     * for the life of the stream table (not just the open_file call pool).
-     */
-    stream = afw_stream_fd_open_and_create(
-        afw_utf8_create(
-            streamId->internal.s, streamId->internal.len,
-            x->xctx->p, x->xctx),
+    /* The stream keeps its own copy of streamId until close(). */
+    stream = afw_stream_fd_open_and_create(&streamId->internal,
         resolved_path, &mode->internal,
         autoFlush && autoFlush->internal, x->p, x->xctx);
 
