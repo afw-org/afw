@@ -40,8 +40,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     array/afw_array.h
     array/afw_array_impl.h
     ascii/afw_ascii.h
-    associative_array/afw_associative_array.h
-    associative_array/afw_associative_array_template.h
     atomic/afw_atomic.h
     authorization/afw_authorization.h
     authorization/afw_authorization_impl.h
@@ -123,7 +121,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_log_factory_impl_declares.h
     generated/afw_log_impl_declares.h
     generated/afw_memory_region_impl_declares.h
-    generated/afw_object_associative_array_impl_declares.h
     generated/afw_object_impl_declares.h
     generated/afw_object_setter_impl_declares.h
     generated/afw_pool_impl_declares.h
@@ -198,7 +195,6 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/application
     ${CMAKE_CURRENT_SOURCE_DIR}/array
     ${CMAKE_CURRENT_SOURCE_DIR}/ascii
-    ${CMAKE_CURRENT_SOURCE_DIR}/associative_array
     ${CMAKE_CURRENT_SOURCE_DIR}/atomic
     ${CMAKE_CURRENT_SOURCE_DIR}/authorization
     ${CMAKE_CURRENT_SOURCE_DIR}/binary_search
@@ -270,7 +266,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     array/afw_array_impl.c
     array/afw_array_memory.c
     ascii/afw_ascii.c
-    associative_array/afw_associative_array.c
     atomic/afw_atomic.c
     authorization/afw_authorization.c
     authorization/afw_authorization_handler_type_script.c
@@ -407,7 +402,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     object/afw_object_impl.c
     object/afw_object_impl_property_meta.c
     object/afw_object_memory.c
-    object/afw_object_memory_associative_array.c
     object/afw_object_meta.c
     object/afw_object_meta_accessor.c
     object/afw_object_options.c

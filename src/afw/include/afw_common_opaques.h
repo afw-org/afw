@@ -454,15 +454,6 @@ typedef struct afw_object_meta_object_s
 afw_object_meta_object_t;
 
 /**
- * Opaque typedef for afw_model_associative_array_t.
- *
- * See afw_associative_array.c for struct and more information. This is used
- * by AFW_ASSOCIATIVE_ARRAY_TEMPLATE() in afw_model.h.
- */
-typedef struct afw_model_associative_array_s
-afw_model_associative_array_t;
-
-/**
  * @brief Opaque `afw_model_t`.
  *
  * See afw_model_internal.h for struct and more information.
