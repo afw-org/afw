@@ -538,15 +538,15 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
             &objectType_value->internal,
             journal_entry, x->xctx);
         if (!object_type) {
-            AFW_THROW_ERROR_FZ(general, x->xctx,
+            AFW_THROW_ERROR_FZ(not_found, x->xctx,
                 "adapterId '%ku' objectType '%ku' is not found or invalid",
                 &adapterId_value->internal,
                 &objectType_value->internal);
         }
     }
     else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        AFW_THROW_ERROR_Z(general,
-            "objectType parameter is required if adapterId is specified",
+        AFW_THROW_ERROR_Z(argument_error,
+            "adapterId parameter is required if objectType is specified",
             x->xctx);
     }
 
@@ -557,8 +557,8 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
         if (style_value->internal < 0 ||
             style_value->internal > afw_query_criteria_style_max)
         {
-            AFW_THROW_ERROR_Z(general, "invalid value for style parameter",
-                x->xctx);
+            AFW_THROW_ERROR_Z(argument_error,
+                "invalid value for style parameter", x->xctx);
         }
         style = (afw_query_criteria_style_t)style_value->internal;
     }
@@ -638,15 +638,15 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
             &objectType_value->internal,
             journal_entry, x->xctx);
         if (!object_type) {
-            AFW_THROW_ERROR_FZ(general, x->xctx,
+            AFW_THROW_ERROR_FZ(not_found, x->xctx,
                 "adapterId '%ku' objectType '%ku' is not found or invalid",
                 &adapterId_value->internal,
                 &objectType_value->internal);
         }
     }
     else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        AFW_THROW_ERROR_Z(general,
-            "objectType parameter is required if adapterId is specified",
+        AFW_THROW_ERROR_Z(argument_error,
+            "adapterId parameter is required if objectType is specified",
             x->xctx);
     }
 
@@ -1811,6 +1811,12 @@ afw_function_execute_retrieve_objects(
  * adapterId, which match the type specified by objectType.
  * 
  * Each object is passed to the callback as it's retrieved.
+ * 
+ * There is no bound on how many objects are visited or how long the retrieve
+ * runs: maxObjects applies only to retrieve_objects and
+ * retrieve_objects_with_uri, which collect into an array. To stop early, return
+ * true from objectCallback. A callback that writes into the store it is
+ * retrieving can keep the retrieve going.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
