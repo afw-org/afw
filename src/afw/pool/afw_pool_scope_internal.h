@@ -94,18 +94,6 @@ AFW_VECTOR_STRUCT(afw_pool_scope_p_vector_s, const afw_pool_scope_t *);
     : NULL)
 
 /**
- * @brief Scope that invoked the current frame, or NULL.
- *
- * The entry under current. Compiled-value sentinel is NULL, so a
- * top-level call has no Adaptive caller. After a script function
- * body, nested `{ }` have unwound and this is the caller `{ }`.
- */
-#define afw_pool_scope_internal_of_caller(_xctx) \
-    ((_xctx->scope_stack->count >= 2) \
-    ? _xctx->scope_stack->entries[_xctx->scope_stack->count - 2] \
-    : NULL)
-
-/**
  * @brief Store a non-void statement result on the current scope.
  * @param value statement result.
  * @param xctx of caller.

@@ -193,12 +193,12 @@ impl_evaluate_loop_body(
         return afw_value_void;
     }
     if (afw_value_is_block(body)) {
-        const afw_value_t *saved_script_result;
+        afw_size_t saved_write_count;
 
-        saved_script_result = xctx->script_result;
+        saved_write_count = xctx->script_result_write_count;
         afw_value_block_evaluate_block(x,
             (const afw_value_block_t *)body, p, xctx, false);
-        if (xctx->script_result != saved_script_result) {
+        if (xctx->script_result_write_count != saved_write_count) {
             afw_pool_scope_clear_last_statement_non_void_value(xctx);
         }
         return afw_value_void;
@@ -965,7 +965,7 @@ impl_evaluate_trip(
     afw_xctx_t *xctx)
 {
     afw_function_execute_t *x = trip->x;
-    const afw_value_t *saved_script_result;
+    afw_size_t saved_write_count;
     afw_value_block_scope_t block_scope;
     afw_boolean_t more;
 
@@ -981,7 +981,7 @@ impl_evaluate_trip(
         return !trip->after || trip->after(trip, x->p, xctx);
     }
 
-    saved_script_result = xctx->script_result;
+    saved_write_count = xctx->script_result_write_count;
     afw_value_block_scope_enter(&block_scope,
         (const afw_value_block_t *)trip->body, x->p, xctx);
     AFW_TRY{
@@ -1002,7 +1002,7 @@ impl_evaluate_trip(
     afw_value_block_scope_finish(&block_scope, xctx);
 
     /* As impl_evaluate_loop_body: the body wrote script_result. */
-    if (xctx->script_result != saved_script_result) {
+    if (xctx->script_result_write_count != saved_write_count) {
         afw_pool_scope_clear_last_statement_non_void_value(xctx);
     }
     trip->result = impl_keep_if_return(trip->result, afw_value_void, xctx);

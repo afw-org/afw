@@ -43,7 +43,7 @@ Permanent values (compiled into object code, registered constants) are neither: 
 
 - Reference counted and fully managed have the same caller contract. They differ in how deep the counting goes.
 - **Mutable means `get_setter` returns a setter.** `set_immutable` turns it off. No other mutability mechanism.
-- Typical uses. Reference counted: adapter results, journal entries, conf objects (build, set meta, hand off; the consumer releases). Fully managed: script variables, script-built containers, values that outlive a scope. A script that changes a reference-counted object gets a fully managed face (#17).
+- Typical uses. Reference counted: adapter results, journal entries, conf objects (build, set meta, hand off; the consumer releases). Fully managed: script variables, results meant to be modified, values that outlive a scope (see [`lifetime-principles.md`](lifetime-principles.md) *The story*). A script that changes a reference-counted object gets a fully managed face (#17).
 - `create_unmanaged_new_p` / `create_unmanaged_cede_p` create **reference counted** objects despite the name. Renames happen in the step that touches each function.
 
 **No exceptions.** Once the rules are written, there are no per-kind special cases outside an inf. Each inf enforces its kind's rules (throw on `release` of pooled, no setter when immutable, copy on `get_reference` of pooled). Callers never inspect an inf or `is_managed`.

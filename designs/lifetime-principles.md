@@ -10,6 +10,22 @@ Code and tests remain ground truth. If the tree and this story disagree, fix the
 
 ---
 
+## The story
+
+If a lifetime rule is complicated, it is probably wrong. Complications belong inside the methods of an interface, and those stay simple and consistent.
+
+1. **Most memory is temporary.** What evaluating a `{ }` makes lives in that scope's pool and goes when the scope deactivates.
+2. **What must outlive a scope is kept by reference.** Values in frame slots, the script result, and values held by managed objects and arrays are managed values. They live in `p->managed_p`, and their last release frees them.
+3. **`get_assignable_value` is how a value becomes keepable.** It returns a managed value, and the caller owns one reference to it. That value keeps everything it uses alive for as long as it lives. `get_assignable_value` of a managed value returns the same value with one more reference, so an object or array stays the same object or array wherever it is assigned.
+4. **A function can do whatever it needs inside.** It may create, keep, and release values however it likes; that is its own business, not a special case. The rule is at its edges: it does not release its parameters, and its caller does not release its result. If it keeps anything past its own temporaries, it deals with that lifetime itself. If it returns a managed value, it registers that value's release on the caller's pool. Whether a result is unmanaged in dest `p` or managed with a registered release is the function's choice; the caller can not tell and does not ask.
+   - **The modifiable-result rule: a result meant to be modified is managed.** When a function's definition says its result can be modified (`create_array`), it returns a managed value with its release registered on the caller's pool. Until someone keeps it, it is as temporary as anything else in the scope; when someone does, `get_assignable_value` returns the same array or object with one more reference, so it stays the same array or object from scope to scope.
+5. **The read rule: a read keeps what it read until its scope ends.** A slot, property, or element holds the only reference to its value, so user code that runs later in the same expression (`s + g()` where `g` reassigns `s`, `o.k + g()` where `g` replaces `o.k`) could free a value that is still in use. Evaluating a variable (`symbol_reference`) or a property or element (`reference_by_key`) takes a reference to the value it reads, if that value is counted, and registers its release on the dest pool, which is the scope's pool (`afw_value_hold_read`). A value that is not counted (pooled, permanent) can not be freed by later code and is returned as is; a read never copies (assigning it copies, through `get_assignable_value`). Each read registers its own release, so there is no duplicate check. Scopes are short-lived (each loop trip has its own), so this costs little.
+6. **No one outside a method asks what kind a value is.** Each kind's behavior is in its own methods.
+
+These points settle [#556](https://github.com/afw-org/afw/issues/556) (2026-10-11). Read them before changing how a value is kept. History that kept flipping: script wrappers held their elements but pinned dest `p` ([PR #235](https://github.com/afw-org/afw/pull/235)); [a433f9dd](https://github.com/afw-org/afw/commit/a433f9ddbf63246c0142565a9b5bc99f04c811e1) made them plain unmanaged on the false assumption that everything put in them lasts for dest `p`, which reads did not until the read rule. Do not reopen a point here to fix a symptom; find the method that breaks it.
+
+---
+
 ## Words
 
 Say **reference** for a value or scope lifetime (`get_reference` / `release`).
@@ -18,7 +34,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 **Kind:** every value, object, and array is one of four kinds: **permanent**, **pooled**, **reference counted**, **fully managed** (next section). Code names still say **unmanaged** (= pooled) and **managed** (= fully managed); `create_unmanaged_new_p` / `create_unmanaged_cede_p` make **reference counted** objects despite the name. Names change when a #476 step touches them.
 
-**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`) are leftovers in the tree, not a second protocol.
+**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” `release_value_at_cleanup` is not one of these: despite its name it is the current way a function returns a managed value its caller does not release ("`p` takes my reference", *The story*, a function's edges; *How a function honors the contract*). `afw_pool_scope_release_value_at_cleanup` is the same after resolving dest `p` to the nearest scope pool (`for_scope_lifetime`).
 
 **Smell:** extra-hold, special case, extra bump, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest, caching dest `p` on the xctx (`script_result_p`). If a leak needs a new flag or a third way to keep a value alive, stop.
 
@@ -35,7 +51,7 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 | **Reference counted** | its own pool (`new_p` / `cede_p`); its count is that pool's count | count bump | last release destroys its pool and everything in it | **no** | dead end (holds only plain values in its own pool) |
 | **Fully managed** | the owner pool (`p->managed_p`); every value it holds is itself counted | count bump | last release releases each value it holds, then frees itself | yes (replaced values are released) | walked |
 
-- **Reference counted** vs **fully managed**: same caller contract; they differ in how deep the counting goes. Reference counted is for build, hand off, read, release (adapter results, journal entries, conf objects). Fully managed is for values that change or outlive a scope (script variables, script-built containers). A script that changes a reference-counted object gets a fully managed face (#17).
+- **Reference counted** vs **fully managed**: same caller contract; they differ in how deep the counting goes. Reference counted is for build, hand off, read, release (adapter results, journal entries, conf objects). Fully managed is for values that change or outlive a scope (frame slots, the script result, what managed containers hold, and results meant to be modified). A script that changes a reference-counted object gets a fully managed face (#17).
 - **Mutable means `get_setter` returns a setter.** `set_immutable` turns it off. There is no other mutability mechanism.
 - **Hand-off.** A reference-counted object's builder fills it (properties, meta) and hands it to its consumer; after that it is immutable and the consumer releases it. Adapter results are handed off at the end of `afw_adapter_internal_process_object_from_adapter`.
 - **Owner.** `p->managed_p` is the owner of fully managed values: the job heap for a request, `adapter->p` when evaluating in adapter config. A fully managed value has one owner; counts are not atomic. Values crossing owners are copied, or borrowed when the owner outlives the borrower. (Temporary atomic counts or locks are acceptable as a bridge until worker threads, #343.)
@@ -61,6 +77,7 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
 
   Not value copies: `afw_pool_scope_clone` (loop frame), `afw_utf8_clone`, `afw_object_meta_clone_and_set`. The per-type `afw_value_clone_<type>_{managed,unmanaged}` are data-type internals behind `to_managed` / `create_pooled_copy`.
 - **Closures are made in one place:** storing a script function (`get_assignable_value` of the definition) makes a binding of the definition, the captured frame (if any), and the compile unit.
+- **A `#{ }` is its own unit.** A compile-time substitution compiles as an independent unit (its own pool, nothing shared with the template around it), so nothing in it sees outside it. A function it returns references that unit, not the template's; the template holding the function does not hold itself, and the function can outlive the template ([#556](https://github.com/afw-org/afw/issues/556)). This was the original design ([418f4097](https://github.com/afw-org/afw/commit/418f4097)); [6fd952b8](https://github.com/afw-org/afw/commit/6fd952b86831030ece29133207fa77bc5290115b) (#287 experiment) had made it share the template's unit so a returned function would keep that unit, which left the function pointing into memory it did not reference. Do not share it again.
 - **A compiled value is counted:** compile returns it at RC 1 and registers that release on dest `p`. Evaluation changes nothing in a unit except that count (a closure references the unit its definition lives in). A unit compiled into a multithreaded pool (a model's `on*` script, evaluated by many request threads at once) uses `afw_value_compiled_value_multithreaded_inf`: the same methods with an atomic count. Other units use `afw_value_compiled_value_inf` with a plain count ([#496](https://github.com/afw-org/afw/issues/496)).
 - **`is_managed` is a capability.** The `is_managed` inf variable on `afw_value`, `afw_object`, and `afw_array` (`afw_*_is_managed()`) says "this implementation is fully managed", so any implementation, including future ones, can declare it. A module's own identity check (`afw_object_is_memory_managed`) is only for guarding a cast to that module's private struct.
 - **`_take` means the callee takes ownership of the caller's reference.** The caller owns one reference to the value (for example a `create_managed` result) and must not release it after the call. Same convention as GLib (`g_value_take_string()` beside `g_value_set_string()`), GObject Introspection `(transfer full)`, and CPython's "steals a reference". The plain form (`set_property`, `push_value`) adds the container's own reference; the caller keeps and releases its own.
@@ -131,7 +148,7 @@ Register last-release of the **returned** value only. The container’s last RC 
 
 Evaluate of a compiled value is **caller does not release**. Dest `p` is the `p` passed to that evaluate. If the result is managed, register last-release of that one hold on that dest `p`. `last_statement_non_void_value` is a pointer at this frame’s last non-void statement; it requires `scope->p`. `xctx->script_result` is the managed isolate of the running script result; it does not require the current scope. Isolate dest is dest `p` of the caller that writes the slot (`script_result_set(value, p, xctx)`: `scope->p` at deactivate, `original_scope->p` at clone, evaluate dest `p` for a non-block script-function body). Nested `evaluate(compile())` parks `script_result`. Managed bytes follow that dest `p->managed_p`. There is no dest-pool field on the xctx.
 
-`for_p_lifetime` last-releases on exact dest `p` (evaluate return, script return onto the caller). `for_scope_lifetime` is that after resolving dest to the nearest scope in dest `p`’s pool-parent chain (walk parent, not `managed_p`). Throw if dest `p` is a job heap (`p == p->managed_p`). That throw is a probe. Do not take dest off the current xctx frame.
+`for_p_lifetime` last-releases on exact dest `p` (evaluate return, script function return: the dest `p` its evaluate was given, not the caller's scope pool, [#556](https://github.com/afw-org/afw/issues/556)). `for_scope_lifetime` is that after resolving dest to the nearest scope in dest `p`’s pool-parent chain (walk parent, not `managed_p`). Throw if dest `p` is a job heap (`p == p->managed_p`). That throw is a probe. Do not take dest off the current xctx frame.
 
 ---
 
@@ -154,7 +171,7 @@ What `get_assignable_value` returns, by world:
 
 Compile-unit literals are **unmanaged in the unit** (not permanent): a store copies them, so nothing keeps a pointer into a unit that can die. Literals whose text is a registered constant (`strings.txt` → environment string literals, common integers) are permanent. A top-level object literal is unmanaged in the unit's pool, not an entity with its own pool (only `afw_compile_json_to_object` with `cede_p` makes one).
 
-Script-built containers (object literal with expressions, construct/spread, `add_properties` with no target, `array()`, `create_array()`) are plain unmanaged values in dest `p`. Temporaries die with the scope pool; a store copies them. There are no unmanaged faces.
+Arrays and objects a function builds each time it is evaluated (`array(…)`, which `[s, g()]` compiles to; object expressions `{p: o.k}`; construct/spread; `add_properties` with no target) follow *The story*'s rule for a function's edges: unmanaged in dest `p` or managed with a registered release, the function's choice. A result meant to be modified (`create_array`) is managed. There are no unmanaged faces.
 
 ---
 
@@ -164,13 +181,15 @@ Script-built containers (object literal with expressions, construct/spread, `add
 
 A **managed container** holds **one reference** to each value it holds (object property and array element the same) and `release`s those when it goes. Those values are ordinary managed values. The same value can be held by more than one container. Unmanaged object/array is pointers in dest `p`, bulk-free.
 
-Methods that return a held value are **caller does not release**. If the caller wants that value past dest `p`, they `get_reference` / `get_assignable_value`. The caller does not special-case object vs array or get vs pop. Internals (unlink, leave the reference, `remove` `release`s, `pop` / `shift` last-release dest `p`) are how-to.
+C methods that return a held value (`afw_object_get_property`, `afw_array_get_entry_value`, …) are **caller does not release**, and the value lasts while the container holds it. If the caller wants that value past dest `p`, they `get_reference` / `get_assignable_value`. Evaluating a read is different: it lasts for dest `p` (the read rule). The caller does not special-case object vs array or get vs pop. Internals (unlink, leave the reference, `remove` `release`s, `pop` / `shift` last-release dest `p`) are how-to.
 
 ---
 
 ## Pools, scopes, and cycles
 
 **A release registered on a pool must not keep that pool alive.** "Caller does not release" by registering last-release on dest `p` is sound only if the registered value does not, directly or through what it references, keep dest `p` alive. Otherwise the cleanup waits for the pool and the pool waits for the cleanup. The pool tree is for storage and the end-of-xctx backstop; lifetime between values is references.
+
+**A pool's registered releases run when its owner is done with it**, not when the pool finally dies: something else may keep the pool alive (a closure keeps the scope it captured), and a registered release may hold that same something, so waiting for the pool would wait forever. For a scope, the owner is done at deactivation, and that is when its registered releases run ([#556](https://github.com/afw-org/afw/issues/556); while a throw is processed they wait for the delayed release, #496). Other pools have no such moment yet: their registered releases run at their last release, which is safe only while nothing registered on them keeps them alive; nothing found does today ([#559](https://github.com/afw-org/afw/issues/559)). A fix there gives other pools an "owner is done" moment, or lets the cycle collector see registered releases; it does not change the scope case.
 
 **A managed value references everything it points into that has its own lifetime.** A closure binding references its captured scope **and** the compile unit its definition lives in. Do not rely on some pool happening to outlive the pointer.
 
@@ -202,12 +221,12 @@ Methods that return a held value are **caller does not release**. If the caller 
 
 Probes that find these are in [`agent-support.md`](agent-support.md) (*Leftover RC / pool never dies*).
 
-If the answer is a new register last-release, a new flag, or a helper around assign, stop.
+If the answer is a new register last-release that the story does not call for, a new flag, or a helper around assign, stop.
 
 ---
 
 ## Using this pad
 
-C sittings make the tree match this file. Until last RC of every managed value completes the walk, a fix in one place can show leftover in another. That is expected. Do not add extra-hold or register last-release on a method that returns a held value to hide it. Re-measure the RSS lab after each vertical. #2 stays open.
+C sittings make the tree match this file. Until last RC of every managed value completes the walk, a fix in one place can show leftover in another. That is expected. Do not add extra-hold or register last-release on a C method that returns a held value to hide it (reads register by the read rule; that is the rule, not a patch). Re-measure the RSS lab after each vertical. #2 stays open.
 
 Not the #2 scoreboard. Not the RSS lab table. Not a license to rewrite heap free lists.

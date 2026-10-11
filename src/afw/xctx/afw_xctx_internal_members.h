@@ -134,3 +134,12 @@
      * restores this occupant.
      */
     const afw_value_t *script_result;
+
+    /**
+     * Count of writes to script_result (afw_xctx_script_result_set_value
+     * stores a value). A caller that needs to know whether a nested `{ }`
+     * wrote script_result compares this count, not the pointer: a nested
+     * return of the value already there (return i after an earlier trip's
+     * i = 1 left it) is a write with the same pointer.
+     */
+    afw_size_t script_result_write_count;

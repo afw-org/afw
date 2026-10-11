@@ -497,3 +497,20 @@ for (let j = 1; j < length(r); j = j + 1) {
     if (r[j - 1].k == r[j].k) { assert(r[j - 1].i < r[j].i, "stable at " + string(j)); }
 }
 return 0;
+
+//?
+//? test: reduce-keeps-only-the-current-accumulator
+//? description: ...
+reduce frees each accumulator once the next one is made, so memory follows
+the result, not the sum of every accumulator (#517: it grew with the square
+of the length, about 8.8 MB for 4000 entries).
+//? expect: 0
+//? source: ...
+
+let a = create_array(4000);
+let start = pool_bytes_in_use();
+let r = reduce(function (acc, x) { return acc + "x"; }, "", a);
+let used = pool_bytes_in_use() - start;
+assert(length(r) === 4000);
+assert(used < 200000, "reduce memory: " + string(used));
+return 0;

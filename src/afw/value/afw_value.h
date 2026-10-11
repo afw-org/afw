@@ -1341,6 +1341,27 @@ afw_value_pooled_get_for_p_lifetime(
 
 
 /**
+ * @brief Keep a value just read from a slot, property, or element.
+ * @param value read, or NULL.
+ * @param p dest pool of the read (the scope's pool).
+ * @param xctx of caller.
+ * @return the value to use. Caller does not release.
+ *
+ * The read rule (designs/lifetime-principles.md, The story): a counted
+ * value gets one reference of its own, released with p, so later code
+ * in the same expression that replaces the slot, property, or element
+ * can not free it. A value that is not counted (pooled, permanent) can
+ * not be freed that way and is returned as is; it is never copied. Each
+ * read registers its own release, so no duplicate check.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_hold_read(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief release for a value that is not counted (no-op).
  * @param instance value.
  * @param xctx of caller.

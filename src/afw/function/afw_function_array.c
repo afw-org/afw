@@ -303,12 +303,20 @@ afw_function_execute_create_array(
             AFW_CREATE_ARRAY_MAX_LENGTH);
     }
 
-    array = afw_array_create_unmanaged(x->p, x->xctx);
+    /*
+     * A result meant to be modified is managed (the modifiable-result
+     * rule, lifetime-principles.md): create_managed RC 1, last-release of
+     * that hold on dest p. Keeping it references it, so it stays the
+     * same array.
+     */
+    array = ((const afw_value_array_t *)
+        afw_pool_scope_release_value_at_cleanup(
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
+            x->p, x->xctx))->internal;
     for (i = 0; i < n; i++) {
         afw_array_push_value(array, afw_value_undefined, x->xctx);
     }
 
-    /* Dual face on the instance; no extra heap header. */
     return array->value;
 }
 
