@@ -44,8 +44,8 @@
             "mappedObjectType": "Person",
             "propertyTypes": {
                 "employeeEmail": {
-                    "mappedPropertyName": "fullName",
-                    "onGetValue": "${current::mappedPropertyName}@mycorp.com"
+                    "mappedPropertyName": "uid",
+                    "onGetProperty": "return current::mappedValue + '@mycorp.com';"
                 }
             }
         }
@@ -55,9 +55,11 @@
     <header>Model Functions</header>
     <paragraph>
         In the previous example, you'll notice a special property called 
-        <literal>onGetValue</literal>. This is one of many <literal>on</literal> 
-        functions that can be declared in an Adaptive Model to compute object 
-        and property values on particular adapter functions.
+        <literal>onGetProperty</literal>. This is one of many <literal>on</literal> 
+        scripts that can be declared in an Adaptive Model to compute object 
+        and property values on particular adapter functions. Here it reads
+        the mapped object's <literal>uid</literal> as
+        <literal>current::mappedValue</literal> and returns an email address.
     </paragraph>
     <paragraph>
         Here is a table of more of these functions:
@@ -113,8 +115,11 @@
     <header>Qualified Variables</header>    
     <paragraph>
         The following lists some qualified variables that can be used during
-        model processing "on" functions. For a complete list of variables, refer
-        to the Developer Guide on Adaptive Models.
+        model processing "on" functions. Each <literal>on</literal> script has
+        its own list, in the object types named
+        <literal>_AdaptiveModelCurrentOn...</literal> of the object type
+        reference. These are the variables of
+        <literal>onGetObject</literal>:
     </paragraph>    
     <object-type-table propertyColumn="Variable" objectTypeId="_AdaptiveModelCurrentOnGetObject_" />                            
 </doc>

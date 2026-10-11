@@ -95,7 +95,9 @@
         <term>
             <identifier>Adaptive Request Handler</identifier>
             <definition>
-                
+                A request handler decides how requests whose URI begins with a configured
+                prefix are processed. The adapter request handler provided by core serves
+                adaptive objects over HTTP and performs POST /afw actions.
             </definition>
         </term>
         <term>
@@ -157,13 +159,18 @@
         <term>
             <identifier>Adaptive Context</identifier>
             <definition>
-                
+                A context type describes the qualified variables that are available while
+                Adaptive Framework evaluates scripts in a particular situation, such as a
+                request, an authorization check or a model's on* script.
             </definition>
         </term>
         <term>
             <identifier>Adaptive Flag</identifier>
             <definition>
-                
+                A named switch that turns on optional behavior, usually tracing or debug
+                output, for example trace:adapterId:lmdb. Flags are set with the flag_set
+                function, or for every execution context with the application's
+                defaultFlags.
             </definition>
         </term>
         <term>
@@ -212,32 +219,55 @@
                 of accessing adaptive objects for its associated backend. For instance, adapterType ldap provides
                 a way to access objects via a ldap server and provides an _AdaptiveObjectType_ object for each
                 object class which is manufactured from information derived from the ldap schema. In the case of
-                adapterType dbd, the adapter provides an object for each row in a table and an _AdaptiveObjectType_
-                object for each table.
+                adapterType file, each object is a file in a directory named for its object type.
+            </definition>
+        </term>
+        <term>
+            <identifier>Adapter Index</identifier>
+            <definition>
+                A definition, kept by an adapter that supports indexes such as LMDB, that names a property or
+                a computed value and lets queries on that name be answered from sorted keys instead of reading
+                every object. Indexes are managed with index_create, index_list and index_remove.
+            </definition>
+        </term>
+        <term>
+            <identifier>Configuration Entry</identifier>
+            <definition>
+                An object in the configuration file, or in the conf property of an _AdaptiveServiceConf_ object,
+                whose type property (adapter, application, authorizationHandler, extension, log or
+                requestHandler) says what it configures.
             </definition>
         </term>
         <term>
             <identifier>Log</identifier>
             <definition>
-                
+                A destination for the messages Adaptive Framework produces, such as standard
+                output or syslog. Each log is configured with an entry of type log and runs
+                as a service.
             </definition>
         </term>
         <term>
             <identifier>Authorization Handler</identifier>
             <definition>
-                
+                A service that takes part in authorization decisions. The script handler
+                provided by core decides by evaluating an Adaptive Script that returns
+                permit, deny or notApplicable.
             </definition>
         </term>
         <term>
             <identifier>Content Type</identifier>
             <definition>
-                
+                An implementation that converts adaptive values to and from an external
+                representation, such as JSON, YAML or UBJSON. Content types are used for
+                files, configuration and HTTP request and response bodies.
             </definition>
         </term>
         <term>
             <identifier>Qualified Variable</identifier>
             <definition>
-                
+                A variable whose name has a qualifier, written qualifier::name, such as
+                current::object or app::supportEmail. The qualifier says which set of
+                variables the name belongs to.
             </definition>
         </term>
         <term>

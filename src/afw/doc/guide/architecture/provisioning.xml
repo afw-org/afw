@@ -35,7 +35,7 @@
             more Provisioning Peers. The Journal Interface routines provide all
             of the necessary functions to provision in and out of the Journal.
             For more details on the Journal interface functions, see 
-            <link src="/Reference/Function/journal">Journal</link>.
+            <link href="../../reference/functions/journal/index.html">Journal functions</link>.
         </paragraph> 
         <paragraph>
             A <literal>Producer</literal> is anything that produces an event 

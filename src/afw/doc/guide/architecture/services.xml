@@ -13,7 +13,7 @@
     <paragraph>
         When Adapters, Logs or authorizationHandlers are configured in 
         Adaptive Framework, we bundle a configuration object into an object 
-        instance of <literal>_AdaptiveServiceConf_</literal>. These is used 
+        instance of <literal>_AdaptiveServiceConf_</literal>. This is used 
         to create what's known as a <literal>Service</literal>. A service is 
         something that can be started, stopped or restarted by Adaptive 
         Framework. This allows an administrator to change configuration options 
@@ -38,12 +38,22 @@
             "maxreaders": 126,
             "mode": 384,
             "path": "/afw/lmdb"
+        },
+        "limits": {
+            "size": { "soft": 500, "hard": 1000 },
+            "time": { "soft": 3600, "hard": 14400 }
         }
     }
 }
     </code>
     <paragraph>
         This particular configuration will create a LMDB adapter immediately 
-        upon startup.
+        upon startup. A service id is its configuration type and id joined
+        with a dash, here <literal>adapter-lmdb</literal>. Services defined
+        in the configuration file itself are <literal>permanent</literal>:
+        they start with the application and cannot be stopped. The
+        Configuration chapter of the Administrative Guide describes where
+        service objects are kept and the other <literal>startup</literal>
+        values.
     </paragraph>
 </doc>

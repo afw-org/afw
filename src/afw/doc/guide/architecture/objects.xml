@@ -64,15 +64,15 @@
             contain information about them. "First Name" and "Last Name" have a 
             <literal>dataType</literal> of <literal>string</literal> and 
             <literal>Age</literal> is described as an 
-            <literal>integer</literal>. Both have additional 
-            <literal>description</literal> properties that provide additional:
+            <literal>integer</literal>. Each also has a 
+            <literal>description</literal> property that explains it:
         </paragraph>
         <code>
 {
     "propertyTypes": {
         "First Name": {
             "dataType": "string",
-            "description" "This is a person's first name."
+            "description": "This is a person's first name."
         },
         "Last Name": {
             "dataType": "string",
@@ -96,12 +96,12 @@
             this example also has an Object Type, called 
             <literal>_AdaptiveObjectType_</literal>, which describes how an
             Adaptive Object Type is structured. Likewise, the object type 
-            <literal>_AdaptivePropertyType_</literal>, is used to describe how 
-            an Adaptive Property Type is structured. These two special objects
+            <literal>_AdaptiveValueMeta_</literal> is used to describe how 
+            each Adaptive Property Type is structured. These special objects
             are defined by Core as compiled object definitions. We can change
             the Person Object Type, because it's an object not defined to core,
             but we cannot change "_AdaptiveObjectType_" or
-            "_AdaptivePropertyType_" without recompiling Adaptive Framework.
+            "_AdaptiveValueMeta_" without recompiling Adaptive Framework.
         </paragraph>
     </section> 
     <section>
@@ -111,7 +111,7 @@
             its Property Types can describe an instance of an Object. We also  
             introduced the idea that Object Types and Property Types are also
             objects, themselves, described by "_AdaptiveObjectType_" and
-            "_AdaptivePropertyType_" and defined as compiled-in objects to
+            "_AdaptiveValueMeta_" and defined as compiled-in objects to
             Adaptive Framework Core. Let's first look at what makes an Adaptive
             Property Type, using the example from the previous section. The
             Adaptive Property "First Name" had a Property Type definition that
@@ -148,11 +148,11 @@
             the entity, optionally followed by a slash-separated representation
             of embedded properties.
         </paragraph>
-        <code><![CDATA[/<adapterId</<objectType</objectId
-/<adapterId</<objectType</objectId/propertyName
-/<adapterId</<objectType</objectId/propertyNameA/propertyNameB]]></code>        
+        <code><![CDATA[/<adapterId>/<objectTypeId>/<objectId>
+/<adapterId>/<objectTypeId>/<objectId>/<propertyName>
+/<adapterId>/<objectTypeId>/<objectId>/<propertyNameA>/<propertyNameB>]]></code>        
         <paragraph>
-            If the property value is a list, a property name can be followed 
+            If the property value is an array, a property name can be followed 
             with a zero based integer index enclosed in square brackets 
             (<literal>[n]</literal>).
         </paragraph>                        
@@ -263,13 +263,24 @@
         <paragraph>
             Adaptive Objects also allow for inheritance, so that Adaptive Objects 
             can borrow properties from other Adaptive Objects. This is done 
-            through a special "meta" property called <literal>parentPaths</literal>:
+            through a special "meta" property called <literal>parentPaths</literal>.
+            Given this object, <literal>/registry/Person/jdoe</literal>:
+        </paragraph>
+        <code>
+{
+    "first": "John",
+    "last": "Doe",
+    "age": 42
+}
+        </code>
+        <paragraph>
+            another object can name it as its parent:
         </paragraph>
         <code>
 {
     "_meta_": {
         "parentPaths": [
-            "/registry/_AdaptiveObjectType_/Person"
+            "/registry/Person/jdoe"
         ]
     },
     "employeeId": "12345",

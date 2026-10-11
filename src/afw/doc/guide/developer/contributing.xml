@@ -4,7 +4,7 @@
     <paragraph>
         GitHub hosts the Adaptive Framework source code repository. We use 
         the  
-        <link src="https://nvie.com/posts/a-successful-git-branching-model/">
+        <link href="https://nvie.com/posts/a-successful-git-branching-model/">
             GitFlow branching model
         </link> to track the development and releases of the framework. The 
         main branch is the default and most current version of the framework. 
