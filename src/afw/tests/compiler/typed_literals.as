@@ -76,6 +76,50 @@ assert(d.typedLiteralShortForm === undefined);
 return 0;
 
 //?
+//? test: retrieve-suffixes
+//? description: retrieve /afw/_AdaptiveTypedLiteralSuffix_ matches the data types with typedLiteral
+//? expect: 0
+//? source: ...
+
+let expected = [];
+for (const t of retrieve_objects("afw", "_AdaptiveDataType_")) {
+    if (t.typedLiteral) {
+        expected = [...expected, t.dataType];
+        if (t.typedLiteralShortForm !== undefined) {
+            expected = [...expected, t.typedLiteralShortForm];
+        }
+    }
+}
+
+let ids = [];
+for (const o of retrieve_objects("afw", "_AdaptiveTypedLiteralSuffix_",
+    undefined, {"objectId": true}))
+{
+    const id = meta(o).objectId;
+    assert(id === o.dataType || id === o.typedLiteralShortForm, id);
+    assert(get_object("afw", "_AdaptiveDataType_", o.dataType).typedLiteral,
+        id);
+    ids = [...ids, id];
+}
+assert(length(ids) === length(expected), "count");
+for (const id of expected) {
+    assert(includes(ids, id), id);
+}
+assert(!includes(ids, "integer"), "integer");
+assert(!includes(ids, "string"), "string");
+
+let dateTimeIds = [];
+for (const o of retrieve_objects("afw", "_AdaptiveTypedLiteralSuffix_",
+    {"urlEncodedRQLString": "dataType=dateTime"}, {"objectId": true}))
+{
+    dateTimeIds = [...dateTimeIds, meta(o).objectId];
+}
+assert(length(dateTimeIds) === 2, "dateTime count");
+assert(includes(dateTimeIds, "dateTime") && includes(dateTimeIds, "dt"),
+    "dateTime ids");
+return 0;
+
+//?
 //? test: contexts
 //? description: single quotes, escapes, arrays, objects, switch, templates
 //? expect: 0

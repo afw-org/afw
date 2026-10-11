@@ -767,9 +767,9 @@ impl_parse_TypedLiteral(afw_compile_parser_t *parser)
     /* Suffix must be a registered typed literal suffix. */
     suffix = impl_get_identifier(parser);
     data_type = afw_environment_get_typed_literal_suffix(
-        &suffix->internal, parser->xctx);
+        &suffix->internal, xctx);
     if (!data_type) {
-        if (afw_environment_get_data_type(&suffix->internal, parser->xctx)) {
+        if (afw_environment_get_data_type(&suffix->internal, xctx)) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Data type '%ku' does not have a typed literal",
                 &suffix->internal);
@@ -781,13 +781,13 @@ impl_parse_TypedLiteral(afw_compile_parser_t *parser)
 
     /* Parse the text with the data type. Bad text is a syntax error. */
     message = NULL;
-    value = afw_value_common_allocate(data_type, parser->p, parser->xctx);
+    value = afw_value_common_allocate(data_type, parser->p, xctx);
     AFW_TRY {
         afw_data_type_utf8_to_internal(data_type, &value->internal,
-            &parser->token->string->internal, parser->p, parser->xctx);
+            &parser->token->string->internal, parser->p, xctx);
     }
     AFW_CATCH_UNHANDLED {
-        message = afw_utf8_printf(parser->p, parser->xctx, "%s",
+        message = afw_utf8_printf(parser->p, xctx, "%s",
             (AFW_ERROR_THROWN->message_z)
             ? AFW_ERROR_THROWN->message_z : "");
     }
