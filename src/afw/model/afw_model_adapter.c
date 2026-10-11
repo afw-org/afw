@@ -479,9 +479,8 @@ impl_convert_select(
 
 
 /*
- * A filter value as the model property's data type. A string read as a
- * boolean is its lexical form: afw_value_convert reads a string as a
- * boolean by truthiness, so mb=false matched true.
+ * A filter value as the model property's data type. A string is its
+ * lexical form (afw_value_convert_lexical): mb=false means false.
  */
 static const afw_value_t *
 impl_convert_filter_value(
@@ -489,18 +488,10 @@ impl_convert_filter_value(
     const afw_data_type_t *data_type,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_common_t *result;
-
     if (!data_type || afw_value_get_data_type(value, xctx) == data_type) {
         return value;
     }
-    if (afw_value_is_string(value) && afw_data_type_is_boolean(data_type)) {
-        result = afw_value_common_allocate(data_type, p, xctx);
-        afw_data_type_utf8_to_internal(data_type, &result->internal,
-            &((const afw_value_string_t *)value)->internal, p, xctx);
-        return &result->pub;
-    }
-    return afw_value_convert(value, data_type, false, p, xctx);
+    return afw_value_convert_lexical(value, data_type, false, p, xctx);
 }
 
 

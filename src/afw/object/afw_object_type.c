@@ -359,7 +359,7 @@ afw_object_type_property_type_normalize(
                 xctx);
         }
 
-        result = afw_value_convert(value, data_type, true, p, xctx);
+        result = afw_value_convert_lexical(value, data_type, true, p, xctx);
     }
 
     /* Make user object id set for objects. */
