@@ -679,6 +679,7 @@ afw_compile_parse_FunctionSignature(
 const afw_value_t *
 afw_compile_parse_FunctionSignatureAndBody(
     afw_compile_parser_t *parser,
+    afw_size_t start_offset,
     const afw_value_string_t **function_name_value,
     const afw_value_type_t **return_type)
 {
@@ -686,10 +687,8 @@ afw_compile_parse_FunctionSignatureAndBody(
     const afw_value_block_t *block;
     const afw_value_block_t *enclosing_block;
     const afw_value_script_function_signature_t *signature;
-    afw_size_t start_offset;
 
     block = NULL;
-    afw_compile_save_offset(start_offset);
 
     enclosing_block = parser->compiled_value->current_block;
 
@@ -774,7 +773,10 @@ afw_compile_parse_FunctionSignatureAndBody(
 const afw_value_t *
 afw_compile_parse_Lambda(afw_compile_parser_t *parser)
 {
-    afw_compile_get_token();
+    afw_size_t start_offset;
+
+    /* A lambda's source starts at 'function'. */
+    afw_compile_get_token_and_save_offset(start_offset);
 
     /* Return NULL if this is not a lambda function. */
     if (!afw_compile_token_is(identifier)) {
@@ -798,7 +800,7 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
 
     /* Return lambda definition. */
     return afw_compile_parse_FunctionSignatureAndBody(
-        parser, NULL, NULL);
+        parser, start_offset, NULL, NULL);
 }
 
 

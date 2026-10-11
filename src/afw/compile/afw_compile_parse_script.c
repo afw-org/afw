@@ -1568,7 +1568,10 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
     afw_value_block_symbol_t *symbol;
     const afw_value_type_t *return_type;
     afw_size_t start_offset;
+    afw_size_t function_offset;
 
+    /* The current token is 'function', where the definition's source starts. */
+    afw_compile_save_offset(function_offset);
     afw_compile_save_cursor(start_offset);
     afw_compile_get_token();
     if (!afw_compile_token_is_unqualified_identifier()) {
@@ -1579,7 +1582,7 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = &afw_function_definition_const.pub;
     argv[2] = afw_compile_parse_FunctionSignatureAndBody(
-        parser, &function_name_value, &return_type);
+        parser, function_offset, &function_name_value, &return_type);
     argv[1] = NULL;
     if (function_name_value) {
         symbol = afw_compile_parse_add_symbol_entry(parser,

@@ -762,7 +762,6 @@ impl_afw_data_type_double_compare_internal(
 
 
 /* Data type function to utf8. */
-/* Note: some other impl_* functions call with instance and p set to NULL. */
 static const afw_utf8_t *
 impl_afw_data_type_function_internal_to_utf8(
     const afw_data_type_t * instance,
@@ -772,6 +771,7 @@ impl_afw_data_type_function_internal_to_utf8(
 {
     const afw_value_t *value;
     const afw_utf8_t *result;
+    afw_utf8_t source;
 
     /* cType is const afw_value_t *: from_internal points at one. */
     value = *(const afw_value_t * const *)from_internal;
@@ -792,8 +792,14 @@ impl_afw_data_type_function_internal_to_utf8(
             functionId->internal;
     }
     else if (afw_value_is_script_function_definition(value)) {
-        result = ((const afw_value_script_function_definition_t *)value)->
-            contextual->compiled_value->full_source;
+        /*
+         * Its own source, like ECMAScript Function.prototype.toString.
+         * Copied into p: the string can outlive the function's unit.
+         */
+        afw_value_contextual_resolve_value_source(&source,
+            ((const afw_value_script_function_definition_t *)value)->
+                contextual);
+        result = afw_utf8_clone(&source, p, xctx);
     }
     else {
         result = afw_s_a_empty_string;
@@ -858,7 +864,7 @@ impl_afw_data_type_function_clone_internal(
     const afw_value_t *value;
 
     s = impl_afw_data_type_function_internal_to_utf8(
-        NULL, from_internal, NULL, xctx);
+        instance, from_internal, p, xctx);
     value = afw_value_create_unmanaged_string(s, p, xctx);
     memcpy(to_internal, (const void *)&value, sizeof(afw_value_t *));
 }
