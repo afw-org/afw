@@ -7,115 +7,16 @@
     <section>
         <title>afw</title>
         <paragraph>
-            This is an executable command-line tool that provides an 
-            interactive way to run Adaptive templates and scripts. It 
-            takes the following arguments:
-        </paragraph>
-        <table>
-            <columns>
-                <column>Option</column>
-                <column>Argument(s)</column>
-                <column>Description</column>
-            </columns>
-            <rows>
-                <row>
-                    <column>-k, --check</column>
-                    <column/>
-                    <column>Parse but don't evaluate.</column>
-                </row>                    
-                <row>
-                    <column>-f, --conf</column>
-                    <column>filename</column>
-                    <column>Specifies the configuration file.</column>
-                </row>
-                <row>
-                    <column>-x, --expression</column>
-                    <column>expression</column>
-                    <column>Expression to evaluate.</column>
-                </row>
-                <row>
-                    <column>-e, --extension</column>
-                    <column>extension</column>
-                    <column>Load extension (repeat for more).</column>
-                </row>
-                <row>
-                    <column>-h, --help</column>
-                    <column/>
-                    <column>Print this help and exit successfully.</column>
-                </row>
-                <row>
-                    <column>-p, --parenthesized</column>
-                    <column/>
-                    <column>**DEPRECATED**, use -s p.</column>
-                </row>
-                <row>
-                    <column>-s, --syntax</column>
-                    <column>syntax</column>
-                    <column>Expression syntax (e|expression, p|parenthesized, t|template).</column>
-                </row>
-                <row>
-                    <column>-t, --type</column>
-                    <column>content-type</column>
-                    <column>Content type of the configuration file.</column>
-                </row>
-            </rows>
-            <row>
-                    <column>-v, --version</column>
-                    <column/>
-                    <column>Print version and exit successfully.</column>
-                </row>
-        </table>
-        <paragraph>
-            A line ending with "\" will be combined with the line that follows to form one logical line.
+            This is an executable command-line tool that provides an
+            interactive way to run Adaptive expressions, scripts,
+            templates, and test scripts, and a "local" mode used by the
+            AFW Python and Perl adaptive function bindings.
         </paragraph>
         <paragraph>
-            When option -s e or -s t is specified, the input is evaluated one logical line at a time.
-        </paragraph>
-        <paragraph>
-            When option -s p is specified, logical lines are evaluated up to the expression's closing parenthesis (')'). The 
-            parenthesized expression can be preceded by any amount of whitespace, including comments, and followed by whitespace up 
-            to the end of the line.
-        </paragraph>
-        <paragraph>
-          The conf option (-f) is used to specify the path to a configuration file. By default, this file should be encoded with
-          a relaxed json syntax, which accepts standard json, plus allows block comments (/* ... */), line
-          comments (//), unquoted property names, and several other conveniences.
-        </paragraph>
-        <paragraph>
-            The type option (-t) can be used to specify a content type other than the default. If the content type is not part of 
-            AFW core, use the extension option (-e) to load the appropriate extension.
-        </paragraph>
-        <paragraph>
-            If the -f option is not specified, only core AFW functionality is available.
-        </paragraph>
-        <paragraph>
-            The optional adaptive expression specified by expression option (-x) is evaluated first. If -x is specified and [FILE] 
-            is not specified, afw will end after evaluating the expression.
-        </paragraph>
-        <paragraph>
-            If neither -x or [FILE] is specified, input is read from stdin. Each line read from stdin is evaluated as an adaptive 
-            expressions until either a line containing only "exit" or end of file is encountered.
-        </paragraph>
-        <paragraph>
-            The result of evaluating each expression is converted to a string and written to stdout. If the local option (-l) is 
-            not specified, a newline is written after the result.
-        </paragraph>
-        <paragraph>
-            If the -l option is specified, both input and output must/will be one or more chunks. Each chunk is preceded with a decimal 
-            length of the chunk followed by a \n. When errors are written, the length is preceded with a minus sign (-) and the chunk 
-            will contain the json representation of the error object. A line containing only 0\n is used to indicate the end of an 
-            expression on input and the end of the result or error from the evaluation of the expression on output.
-        </paragraph>
-        <paragraph>
-            For example, when the -l option is specified, to add 2 plus 2:
-        </paragraph>
-        <code>8\nadd(2,2)0\n</code>
-        <paragraph>
-            The output will be:
-        </paragraph>
-        <code>1\n40\n</code>
-        <paragraph>
-            The -l option is used by the AFW Python and Perl adaptive function bindings to provide "local" support.
+            Its options, syntaxes, and local mode protocol are in the afw
+            reference:
+            <link href="../../../../afw_command/html/reference/usage.html">afw Usage</link>
+            (the same text as afw --help).
         </paragraph>
     </section>
     <section>
