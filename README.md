@@ -39,7 +39,7 @@ comprehensive steps towards building and running Adaptive Framework at this stag
 
  * [Building on Linux](/src/afw/doc/building_on_linux.md)
  * [Building on Windows](/src/afw/doc/building_on_windows.md) 
- * [Building on MacOS](/src/afw/doc/building_on_mac)
+ * [Building on MacOS](/src/afw/doc/building_on_mac.md)
 
 We also have public Docker images available:
 
