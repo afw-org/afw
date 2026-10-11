@@ -927,22 +927,22 @@ afw_function_execute_reduce(
     AFW_TRY {
 
         /* Visit the entries there at the start, like map and filter. */
-        remaining = afw_array_get_count(array->internal, x->xctx);
+        remaining = afw_array_get_count(array->internal, xctx);
         for (iterator = NULL; remaining > 0; remaining--) {
             f_argv[2] = afw_array_get_next_value(array->internal,
-                &iterator, x->xctx);
+                &iterator, xctx);
             if (!f_argv[2]) {
                 break;
             }
             f_argv[1] = accumulator;
-            next_p = afw_pool_create(x->p, x->xctx);
+            next_p = afw_pool_create(x->p, xctx);
             next = afw_value_get_assignable(
-                afw_value_evaluate(call, next_p, x->xctx), x->p, x->xctx);
-            afw_value_release(kept, x->xctx);
+                afw_value_evaluate(call, next_p, xctx), x->p, xctx);
+            afw_value_release(kept, xctx);
             kept = next;
             accumulator = kept;
             if (step_p) {
-                afw_pool_release(step_p, x->xctx);
+                afw_pool_release(step_p, xctx);
             }
             step_p = next_p;
             next_p = NULL;
@@ -950,17 +950,17 @@ afw_function_execute_reduce(
 
         /* Caller does not release: dest p takes the kept reference. */
         if (kept) {
-            afw_pool_release_value_at_cleanup(kept, x->p, x->xctx);
+            afw_pool_release_value_at_cleanup(kept, x->p, xctx);
             kept = NULL;
         }
     }
     AFW_FINALLY {
-        afw_value_release(kept, x->xctx);
+        afw_value_release(kept, xctx);
         if (next_p) {
-            afw_pool_release(next_p, x->xctx);
+            afw_pool_release(next_p, xctx);
         }
         if (step_p) {
-            afw_pool_release(step_p, x->xctx);
+            afw_pool_release(step_p, xctx);
         }
     }
     AFW_ENDTRY;

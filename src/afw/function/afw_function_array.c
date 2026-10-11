@@ -304,9 +304,10 @@ afw_function_execute_create_array(
     }
 
     /*
-     * A result meant to be modified is managed (lifetime-principles.md,
-     * The story, point 4): create_managed RC 1, last-release of that hold
-     * on dest p. Keeping it references it, so it stays the same array.
+     * A result meant to be modified is managed (the modifiable-result
+     * rule, lifetime-principles.md): create_managed RC 1, last-release of
+     * that hold on dest p. Keeping it references it, so it stays the
+     * same array.
      */
     array = ((const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(

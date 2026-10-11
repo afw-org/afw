@@ -801,7 +801,7 @@ afw_pool_scope_get_reference(
 /*
  * A scope's registered releases run when it deactivates, not when its
  * pool dies. A closure can keep the pool alive past deactivation, and a
- * release registered on the pool (a read, story point 5 in
+ * release registered on the pool (a read, by the read rule in
  * lifetime-principles.md) may hold that same closure, so waiting for the
  * pool would wait forever. Nothing evaluated in the scope is reachable
  * after it deactivates. While a throw is processed they wait for the
