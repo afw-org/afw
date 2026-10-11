@@ -34,7 +34,7 @@ Say **reference** for a value or scope lifetime (`get_reference` / `release`).
 
 **Kind:** every value, object, and array is one of four kinds: **permanent**, **pooled**, **reference counted**, **fully managed** (next section). Code names still say **unmanaged** (= pooled) and **managed** (= fully managed); `create_unmanaged_new_p` / `create_unmanaged_cede_p` make **reference counted** objects despite the name. Names change when a #476 step touches them.
 
-**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” Residual C names (`release_value_at_cleanup`) are leftovers in the tree, not a second protocol.
+**Obsolete for the contract:** extra-hold, extra bump, temp, pin, bridge, dangerous crack, “caller expects unmanaged/managed.” `release_value_at_cleanup` is not one of these: despite its name it is the current way a function returns a managed value its caller does not release ("`p` takes my reference", *The story* point 4; *How a function honors the contract*). `afw_pool_scope_release_value_at_cleanup` is the same after resolving dest `p` to the nearest scope pool (`for_scope_lifetime`).
 
 **Smell:** extra-hold, special case, extra bump, helpers around assign/GET/clone as a leak fix, treating `xctx->p` as an implicit dest, caching dest `p` on the xctx (`script_result_p`). If a leak needs a new flag or a third way to keep a value alive, stop.
 
@@ -148,7 +148,7 @@ Register last-release of the **returned** value only. The container’s last RC 
 
 Evaluate of a compiled value is **caller does not release**. Dest `p` is the `p` passed to that evaluate. If the result is managed, register last-release of that one hold on that dest `p`. `last_statement_non_void_value` is a pointer at this frame’s last non-void statement; it requires `scope->p`. `xctx->script_result` is the managed isolate of the running script result; it does not require the current scope. Isolate dest is dest `p` of the caller that writes the slot (`script_result_set(value, p, xctx)`: `scope->p` at deactivate, `original_scope->p` at clone, evaluate dest `p` for a non-block script-function body). Nested `evaluate(compile())` parks `script_result`. Managed bytes follow that dest `p->managed_p`. There is no dest-pool field on the xctx.
 
-`for_p_lifetime` last-releases on exact dest `p` (evaluate return, script return onto the caller). `for_scope_lifetime` is that after resolving dest to the nearest scope in dest `p`’s pool-parent chain (walk parent, not `managed_p`). Throw if dest `p` is a job heap (`p == p->managed_p`). That throw is a probe. Do not take dest off the current xctx frame.
+`for_p_lifetime` last-releases on exact dest `p` (evaluate return, script function return: the dest `p` its evaluate was given, not the caller's scope pool, [#556](https://github.com/afw-org/afw/issues/556)). `for_scope_lifetime` is that after resolving dest to the nearest scope in dest `p`’s pool-parent chain (walk parent, not `managed_p`). Throw if dest `p` is a job heap (`p == p->managed_p`). That throw is a probe. Do not take dest off the current xctx frame.
 
 ---
 

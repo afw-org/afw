@@ -112,7 +112,7 @@ Callers:
 - **Keep alive** → `get_reference` (matching `release`).
 - **Fill a slot** (assign, param, overlay set, `return` / call result) → `get_assignable_value` (matching `release`).
 - **Operators / `+`** → pointer. Do not wrap at execute.
-- **Call / `return`:** isolate **before** the callee frame dies (`script_result_set` at deactivate, dest `scope->p`). Everyday `evaluate()` is caller does not release. Script return is `get_assignable_for_p_lifetime` on the caller; no leftover wrapper inf.
+- **Call / `return`:** isolate **before** the callee frame dies (`script_result_set` at deactivate, dest `scope->p`). Everyday `evaluate()` is caller does not release. Script return is `get_assignable_for_p_lifetime` on the dest `p` of its evaluate (was the caller's scope pool until [#556](https://github.com/afw-org/afw/issues/556)); no leftover wrapper inf.
 
 **Script return (no FRV wrapper):** `return()` is `set_last_statement_non_void_value` (pointer). Pin is `get_assignable_for_p_lifetime` on the **caller** while the callee frame is alive. Do **not** reopen unique consume, eval-stack leftover, or `#function_return_value`. Parameter window: `evaluate_for_parameter` (raw eval) then park the **occupant** in the parameter-number slot (`pop_parameter_number(VALUE)` replaces `#`). `pop_value` / rewind `release` parked occupants. One live marker pair per function while that parameter is being evaluated; after pop, `[call]` + 0 or more returns to top. Do **not** extra-push while a marker is on top. Do **not** hop `compiled_value` on assign to `unevaluated`. `meta()` does not evaluate argv first (property `key`). Script `meta()` snapshots are immutable. Array look-through: not a goal. Model mapped modify tuples: hold. Map: [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md).
 
@@ -190,7 +190,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **`compiled_value` evaluate:** caller does not release. Park `script_result`. Nested `evaluate(compile())` parks `script_result`. If `script_result` is set, that is the result (managed in dest `p->managed_p` of the isolate write: `scope->p` at deactivate). Register last-release of that one hold on this evaluate dest `p` and return as-is. No `clone_unmanaged`. Permanents skip the register.
 
-**Function return:** pin on the caller (`get_assignable_for_p_lifetime`). No wrapper inf. Parameter args are a **frame** (replace into param slots); rewind = deactivate that frame.
+**Function return:** `get_assignable_for_p_lifetime` on the dest `p` of its evaluate (was the caller's scope until [#556](https://github.com/afw-org/afw/issues/556)). No wrapper inf. Parameter args are a **frame** (replace into param slots); rewind = deactivate that frame.
 
 **`xctx->p`:** one ST job heap for that run (request, CLI), created `*_as_managed_p`. Base xctx `p` is `env->p` (MT process heap). Tracker = leftover list on the ancestor heap. Unmarked heap/MT create **inherits** `managed_p`; `*_as_managed_p` is `managed_p = self`. Managed values allocate in dest `p->managed_p`. Compile units are their own ST heap (`heap_create`, inherit, 4k min). Evaluation `{ }` is `scope_create` (ST heap, 4k, inherit, throw delay). Heap chunks come from the thread `afw_memory_region`. The job-heap free list skips a walk when its largest free block is too small ([PR #375](https://github.com/afw-org/afw/pull/375)). Size buckets stay off. Live pool map: [`remaining-apr.md`](remaining-apr.md).
 
