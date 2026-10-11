@@ -220,10 +220,8 @@ tests:
       start-up write transaction would wait forever on the writer mutex
       this request holds (before the LMDB wait graph, the request hung
       holding the service's mutex), so it is refused and the new instance
-      fails to start. FIXME (beta-backlog.md): service_restart does not
-      throw when the new instance fails; the service is left in "error"
-      while the old instance keeps serving, and service_restart then
-      refuses it ("not running"). This pins that.
+      fails to start. service_restart throws with that error, and the
+      service stays running on the old instance (#525).
     sourceType: script
     source: |
       add_object("lmdbA", "OrderRow", {item: "r"}, "r1");
@@ -234,26 +232,21 @@ tests:
       catch (e) {
           thrown = e.message;
       }
+      assert(thrown !== null, "service_restart did not throw");
+      assert(includes<string>(thrown, "a new instance of it (a restart)"),
+          thrown);
       const svc = get_object("afw", "_AdaptiveService_", "adapter-lmdbA");
-      assert(includes<string>(svc.statusMessage, "a new instance of it (a restart)"),
-          svc.statusMessage);
-      return [thrown, svc.status];
-    expect: [null, error]
+      return [includes<string>(thrown, "was not restarted"), svc.status,
+          svc.statusMessage === undefined];
+    expect: [true, running, true]
 
   - name: restart-after-write-recover
-    description: r1 committed and lmdbA still served; service_start (not restart) brings the service back.
+    description: r1 committed and lmdbA still served; a restart in a request of its own works.
     sourceType: script
     source: |
       const item = get_object("lmdbA", "OrderRow", "r1").item;
-      let restart = null;
-      try {
-          service_restart("adapter-lmdbA");
-      }
-      catch (e) {
-          restart = includes<string>(e.message, "not running");
-      }
-      return [item, restart, service_start("adapter-lmdbA").status];
-    expect: ["r", true, running]
+      return [item, service_restart("adapter-lmdbA").status];
+    expect: ["r", running]
 
   - name: restart-alone
     description: A restart in a request of its own works.

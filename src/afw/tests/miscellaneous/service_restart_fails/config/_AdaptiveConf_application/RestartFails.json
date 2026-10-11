@@ -1,0 +1,4 @@
+{
+    "title": "RestartFails",
+    "description": "service_restart of a file adapter whose new conf does not start."
+}

@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-things",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "root": "things/",
+        "contentType": "json",
+        "filenameSuffix": ".json",
+        "adapterId": "things"
+    }
+}
