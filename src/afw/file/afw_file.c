@@ -109,6 +109,7 @@ afw_file_from_memory(
     const afw_utf8_t * file_path,
     const afw_memory_t * from_memory,
     afw_file_mode_t mode,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_utf8_z_t *file_path_z;
@@ -121,7 +122,7 @@ afw_file_from_memory(
      * Make afw_u8_z copy of name with '\' changed to '/'.  Remember location
      * of last slash.
      */
-    file_path_z = afw_pool_calloc(xctx->p, file_path->len + 1, xctx);
+    file_path_z = afw_pool_calloc(p, file_path->len + 1, xctx);
     last_slash = NULL;
     for (i = file_path->s, o = file_path_z, count = file_path->len;
         count > 0;
@@ -141,7 +142,7 @@ afw_file_from_memory(
     case afw_file_mode_write_new:
         if (last_slash) {
             *last_slash = 0;
-            afw_file_mkdir_p(file_path_z, xctx);
+            afw_file_mkdir_p(file_path_z, p, xctx);
             *last_slash = '/';
         }
         break;
@@ -154,17 +155,18 @@ afw_file_from_memory(
     };
 
     afw_file_write_whole(file_path_z, from_memory->ptr, from_memory->size,
-        mode, xctx);
+        mode, p, xctx);
 }
 
 
 /* Delete file. */
 AFW_DEFINE(void) afw_file_delete(
     const afw_utf8_t * file_path,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_utf8_z_t *file_path_z;
 
-    file_path_z = afw_utf8_to_utf8_z(file_path, xctx->p, xctx);
+    file_path_z = afw_utf8_to_utf8_z(file_path, p, xctx);
     afw_file_unlink(file_path_z, xctx);
 }

@@ -172,6 +172,7 @@ afw_file_to_memory(
  * @param file_path file path
  * @param from_memory memory to write.
  * @param mode file open mode.
+ * @param p for scratch.
  * @param xctx of caller.
  *
  * Uses afw_file_write_whole(), so readers never see a partial file.
@@ -182,6 +183,7 @@ afw_file_from_memory(
     const afw_utf8_t * file_path,
     const afw_memory_t * from_memory,
     afw_file_mode_t mode,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -193,6 +195,7 @@ afw_file_from_memory(
  * @param mode afw_file_mode_write (create or replace),
  *    afw_file_mode_write_new (conflict error if it exists), or
  *    afw_file_mode_write_existing (not_found error if it is missing).
+ * @param p for scratch.
  * @param xctx of caller.
  *
  * The bytes go to a hidden temporary file in the same directory, which
@@ -208,17 +211,20 @@ afw_file_write_whole(
     const void *buf,
     afw_size_t n,
     afw_file_mode_t mode,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
  * @brief Delete file.
  * @param file_path file path
+ * @param p for scratch.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_file_delete(
     const afw_utf8_t * file_path,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -257,10 +263,14 @@ afw_file_stat(
 
 /**
  * @brief Create directories in path (mkdir -p). Existing dir is OK.
+ * @param path_z directory path.
+ * @param p for scratch.
+ * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_file_mkdir_p(
     const afw_utf8_z_t *path_z,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

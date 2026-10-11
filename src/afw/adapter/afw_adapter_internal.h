@@ -173,6 +173,7 @@ afw_adapter_internal_journal_authorize(
     const afw_utf8_t *object_id,
     const afw_value_t *action_id_value,
     const afw_object_t *object,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

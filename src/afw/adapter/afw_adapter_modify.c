@@ -887,7 +887,8 @@ afw_adapter_modify_object(
         afw_v_entries, entries, xctx);
 
     /* Parse entries. */
-    entry = afw_adapter_modify_entries_from_list(entries, xctx->p, xctx);
+    entry = afw_adapter_modify_entries_from_list(entries, impl_request.p,
+        xctx);
 
     /* Get an active session with adapter. */
     session = afw_adapter_session_get_cached(adapter_id, true, xctx);
@@ -939,22 +940,24 @@ afw_adapter_modify_using_update_object(
     const afw_array_t *entry;
     const afw_value_t *entry_value;
     const afw_value_t *property_name_value;
+    const afw_pool_t *p;
 
-    /* Convert update_object to list of modify entries. */
-    entries = afw_array_create_unmanaged_of(afw_data_type_array, xctx->p, xctx);
+    /* Convert update_object to list of modify entries, for this call. */
+    p = journal_entry->p;
+    entries = afw_array_create_unmanaged_of(afw_data_type_array, p, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(update_object,
         &iterator, &property_name, xctx)))
     {
         /* Add ["set_property", <property name>, value]. */
-        entry = afw_array_create_unmanaged(xctx->p, xctx);
+        entry = afw_array_create_unmanaged(p, xctx);
         afw_array_push_value(entry,
             &impl_value_set_property.pub,
             xctx);
         property_name_value = property_name;
         afw_array_push_value(entry, property_name_value, xctx);
         afw_array_push_value(entry, value, xctx);
-        entry_value = afw_value_create_unmanaged_array(entry, xctx->p, xctx);
+        entry_value = afw_value_create_unmanaged_array(entry, p, xctx);
         afw_array_push_value(entries, entry_value, xctx);
     }
 

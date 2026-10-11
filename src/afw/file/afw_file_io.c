@@ -167,6 +167,7 @@ afw_file_stat(
 AFW_DEFINE(void)
 afw_file_mkdir_p(
     const afw_utf8_z_t *path_z,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     char *buf;
@@ -179,7 +180,7 @@ afw_file_mkdir_p(
         AFW_THROW_ERROR_Z(general, "mkdir_p: empty path", xctx);
     }
     len = strlen(path_z);
-    buf = afw_pool_malloc(xctx->p, len + 1, xctx);
+    buf = afw_pool_malloc(p, len + 1, xctx);
     memcpy(buf, path_z, len + 1);
     while (len > 1 && buf[len - 1] == '/') {
         buf[--len] = 0;
@@ -641,6 +642,7 @@ afw_file_write_whole(
     const void *buf,
     afw_size_t n,
     afw_file_mode_t mode,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_utf8_z_t *last_slash;
@@ -685,7 +687,7 @@ afw_file_write_whole(
         afw_size_t dir_len;
 
         dir_len = (afw_size_t)(last_slash - path_z) + 1;
-        dir = afw_pool_malloc(xctx->p, dir_len + 1, xctx);
+        dir = afw_pool_malloc(p, dir_len + 1, xctx);
         memcpy(dir, path_z, dir_len);
         dir[dir_len] = 0;
         dir_z = dir;
@@ -695,8 +697,8 @@ afw_file_write_whole(
         dir_z = "./";
         base_z = path_z;
     }
-    uuid = afw_uuid_create_utf8(xctx->p, xctx);
-    temp_z = afw_utf8_z_printf(xctx->p, xctx, "%s.%s.%ku.tmp",
+    uuid = afw_uuid_create_utf8(p, xctx);
+    temp_z = afw_utf8_z_printf(p, xctx, "%s.%s.%ku.tmp",
         dir_z, base_z, uuid);
 
     fd = -1;

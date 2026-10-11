@@ -469,6 +469,20 @@ impl_afw_adapter_session_get_object(
 
 
 /*
+ * Scratch for one write: the caller's per-call pool (impl_request->p),
+ * not xctx->p, which lasts for the whole request (#539).
+ */
+static const afw_pool_t *
+impl_scratch_p(
+    const afw_adapter_impl_request_t *impl_request,
+    afw_xctx_t *xctx)
+{
+    return (impl_request && impl_request->p) ? impl_request->p : xctx->p;
+}
+
+
+
+/*
  * Implementation of method add_object for interface afw_adapter_session.
  */
 const afw_utf8_t *
@@ -482,22 +496,23 @@ impl_afw_adapter_session_add_object(
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
+    const afw_pool_t *p = impl_scratch_p(impl_request, xctx);
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
     const afw_utf8_t *object_id;
 
     object_id = (suggested_object_id)
         ? suggested_object_id
-        : afw_uuid_create_utf8(xctx->p, xctx);
+        : afw_uuid_create_utf8(p, xctx);
 
     full_path = impl_get_full_path(adapter, object_type_id, object_id,
-        xctx->p, xctx);
+        p, xctx);
     raw = afw_content_type_object_to_raw(adapter->content_type,
         object, &afw_object_options_essential_with_whitespace,
-        xctx->p, xctx);
+        p, xctx);
     AFW_LOCK_BEGIN(adapter->write_lock) {
         afw_file_from_memory(full_path, raw, afw_file_mode_write_new,
-            xctx);
+            p, xctx);
     }
     AFW_LOCK_END;
 
@@ -520,6 +535,7 @@ impl_afw_adapter_session_modify_object(
 {
     afw_file_internal_adapter_t *adapter =
         (afw_file_internal_adapter_t *)self->adapter;
+    const afw_pool_t *p = impl_scratch_p(impl_request, xctx);
     const afw_object_t *object;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
@@ -539,17 +555,17 @@ impl_afw_adapter_session_modify_object(
     }
 
     full_path = impl_get_full_path(adapter, object_type_id, object_id,
-        xctx->p, xctx);
+        p, xctx);
 
     /* Read, change, and write as one step for other writers. */
     AFW_LOCK_BEGIN(adapter->write_lock) {
 
         /* Get object to modify. */
-        raw = afw_file_to_memory(full_path, 0, xctx->p, xctx);
+        raw = afw_file_to_memory(full_path, 0, p, xctx);
         object = afw_content_type_raw_to_object(
             adapter->content_type, raw, full_path,
             &adapter->pub.adapter_id,
-            object_type_id, object_id, false, xctx->p, xctx);
+            object_type_id, object_id, false, p, xctx);
 
         /* An empty file has no object (get_object answers not_found too). */
         if (!object) {
@@ -563,9 +579,9 @@ impl_afw_adapter_session_modify_object(
         /* Write modified object. */
         raw = afw_content_type_object_to_raw(adapter->content_type,
             object, &afw_object_options_essential_with_whitespace,
-            xctx->p, xctx);
+            p, xctx);
         afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
-            xctx);
+            p, xctx);
     }
     AFW_LOCK_END;
 }
@@ -585,6 +601,7 @@ impl_afw_adapter_session_replace_object(
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
+    const afw_pool_t *p = impl_scratch_p(impl_request, xctx);
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
 
@@ -594,15 +611,15 @@ impl_afw_adapter_session_replace_object(
     }
 
     full_path = impl_get_full_path(adapter, object_type_id,
-        object_id, xctx->p, xctx);
+        object_id, p, xctx);
 
     /* Write updated object. Not found if there is no object to replace. */
     raw = afw_content_type_object_to_raw(adapter->content_type,
         replacement_object, &afw_object_options_essential_with_whitespace,
-        xctx->p, xctx);
+        p, xctx);
     AFW_LOCK_BEGIN(adapter->write_lock) {
         afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
-            xctx);
+            p, xctx);
     }
     AFW_LOCK_END;
 }
@@ -621,12 +638,13 @@ impl_afw_adapter_session_delete_object(
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
+    const afw_pool_t *p = impl_scratch_p(impl_request, xctx);
     const afw_utf8_t *full_path;
 
     full_path = impl_get_full_path(adapter, object_type_id, object_id,
-        xctx->p, xctx);
+        p, xctx);
     AFW_LOCK_BEGIN(adapter->write_lock) {
-        afw_file_delete(full_path, xctx);
+        afw_file_delete(full_path, p, xctx);
     }
     AFW_LOCK_END;
 }
