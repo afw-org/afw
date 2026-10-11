@@ -37,24 +37,26 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
     afw_compile_get_token();
     if (afw_compile_token_is(compile_time_substitute_start))
     {
-        /* Include '{' of '#{' in compile time substitution parse. */
-        (parser->token->token_source_offset)--;
-
         /*
-         * Same shared as the outer unit so the nested graph lives there.
-         * Result may be a function that still needs that unit (conf on*).
-         * Do not make a child unit.
+         * Its own unit, sharing nothing with the outer unit: nothing in
+         * #{ } sees outside it. A function it returns references this
+         * unit, so the function can outlive the outer unit, and the outer
+         * unit holding that function does not hold itself (#556).
          */
         result = afw_compile_to_value_with_callback(
             NULL,
             impl_compile_time_template_get_cb,
             parser,
+            /*
+             * The script is read from just after '#{' (the token's offset
+             * is its '#'), and its error offsets count from there.
+             */
             afw_compile_create_source_location_impl(
                 parser,
-                parser->token->token_source_offset),
+                parser->token->token_source_offset + 2),
             afw_compile_type_script,
             afw_compile_residual_check_to_close_brace,
-            parser->shared,
+            NULL,
             parser->p,
             parser->xctx);
     }

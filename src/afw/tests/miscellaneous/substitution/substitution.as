@@ -442,7 +442,7 @@ return #{outer};
 //?
 //? test: compile_time_throw
 //? description: throw inside compile-time substitution fails at compile time
-//? expect: error:Error during compile at offset 7 around line 2 column 7: boom
+//? expect: error:Error during compile at offset 8 around line 2 column 8: boom
 //? source: ...
 
 return #{ throw "boom"; };
@@ -511,3 +511,34 @@ return #{ return #{1 + 2;}; };
 
 const outer = 42;
 return `${outer}`;
+//?
+//? test: compile_time_cannot_see_runtime_variable
+//? description: Nothing inside #{ } sees outside it (#556)
+//? expect: error
+//? source: ...
+
+let x = 5;
+return evaluate(compile(template("#{ return x; }")));
+
+//?
+//? test: compile_time_error_location
+//? description: ...
+An error inside #{ } is located at the start of its script, just after
+'#{', and its offsets count from there (#556).
+//? expect: 0
+//? source: ...
+
+function location(t) {
+    try {
+        evaluate(compile(template(t)));
+    }
+    catch (e) {
+        return e.sourceLocation;
+    }
+    return "no error";
+}
+assert(ends_with(location("#{ return x; }"), "+2"), location("#{ return x; }"));
+assert(ends_with(location("ab#{ return x; }"), "+4"), location("ab#{ return x; }"));
+assert(ends_with(location("ab\ncd #{ return x; }"), "[2:6]"),
+    location("ab\ncd #{ return x; }"));
+return 0;
