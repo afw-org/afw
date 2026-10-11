@@ -387,21 +387,18 @@ impl_afw_value_optional_evaluate(
         }
 
         /*
-         * Caller does not release. Isolate dest is dest p of this
-         * evaluate (caller scope->p, or p when there is no Adaptive
-         * caller). get_assignable of unmanaged; already-managed
-         * registered on that p is returned as-is. Register last-release
-         * of that one hold on dest p.
+         * Caller does not release: the result lasts for dest p, the p
+         * passed to this evaluate (not the caller's scope pool; a
+         * built-in such as reduce may pass a shorter-lived p, #517).
+         * get_assignable of unmanaged; already-managed registered on p
+         * is returned as-is. Register last-release of that one hold on p.
          */
         if (result &&
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
-            const afw_pool_scope_t *caller;
-
-            caller = afw_pool_scope_internal_of_caller(xctx);
             result = afw_pool_scope_get_assignable_for_p_lifetime(
-                result, caller ? caller->p : p, xctx);
+                result, p, xctx);
         }
     }
 

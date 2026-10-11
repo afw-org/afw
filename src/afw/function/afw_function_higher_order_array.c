@@ -126,8 +126,12 @@ impl_over_array(
         typed_slot = *e.entry_arg_ptr;
         remaining = afw_array_get_count(e.array, e.xctx);
         for (iterator = NULL; remaining > 0; remaining--) {
-            entry_value = afw_array_get_next_value(
-                e.array, &iterator, e.xctx);
+            /*
+             * The functor may replace this entry in the array; keep it
+             * for the callback that uses it after (the read rule).
+             */
+            entry_value = afw_value_hold_read(afw_array_get_next_value(
+                e.array, &iterator, e.xctx), e.p, e.xctx);
             if (!entry_value) {
                 break;
             }
@@ -172,8 +176,8 @@ impl_over_array(
     else {
         remaining = afw_array_get_count(e.array, e.xctx);
         for (iterator = NULL; remaining > 0; remaining--) {
-            *e.entry_arg_ptr = afw_array_get_next_value(
-                e.array, &iterator, e.xctx);
+            *e.entry_arg_ptr = afw_value_hold_read(afw_array_get_next_value(
+                e.array, &iterator, e.xctx), e.p, e.xctx);
             if (!*e.entry_arg_ptr) {
                 break;
             }
@@ -897,7 +901,12 @@ afw_function_execute_reduce(
     const afw_iterator_old_t *iterator;
     const afw_value_t * f_argv[3];
     const afw_value_t *call;
+    const afw_value_t *kept;
+    const afw_value_t *next;
+    const afw_pool_t *step_p;
+    const afw_pool_t *next_p;
     afw_size_t remaining;
+    afw_xctx_t *xctx = x->xctx;
 
     f_argv[0] = afw_function_evaluate_function_parameter(
         x->argv[1], x->p, x->xctx);
@@ -906,16 +915,55 @@ afw_function_execute_reduce(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(accumulator, 2);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 3, array);
 
-    /* Visit the entries there at the start, like map and filter. */
-    remaining = afw_array_get_count(array->internal, x->xctx);
-    for (iterator = NULL; remaining > 0; remaining--) {
-        f_argv[2] = afw_array_get_next_value(array->internal, &iterator, x->xctx);
-        if (!f_argv[2]) {
-            break;
+    /*
+     * Each step evaluates into its own pool, and only the current
+     * accumulator is kept, by its assignable value: a step's pool and
+     * the accumulator before it go when the next step is done, so memory
+     * does not grow with every accumulator made (#517).
+     */
+    kept = NULL;
+    step_p = NULL;
+    next_p = NULL;
+    AFW_TRY {
+
+        /* Visit the entries there at the start, like map and filter. */
+        remaining = afw_array_get_count(array->internal, x->xctx);
+        for (iterator = NULL; remaining > 0; remaining--) {
+            f_argv[2] = afw_array_get_next_value(array->internal,
+                &iterator, x->xctx);
+            if (!f_argv[2]) {
+                break;
+            }
+            f_argv[1] = accumulator;
+            next_p = afw_pool_create(x->p, x->xctx);
+            next = afw_value_get_assignable(
+                afw_value_evaluate(call, next_p, x->xctx), x->p, x->xctx);
+            afw_value_release(kept, x->xctx);
+            kept = next;
+            accumulator = kept;
+            if (step_p) {
+                afw_pool_release(step_p, x->xctx);
+            }
+            step_p = next_p;
+            next_p = NULL;
         }
-        f_argv[1] = accumulator;
-        accumulator = afw_value_evaluate(call, x->p, x->xctx);
+
+        /* Caller does not release: dest p takes the kept reference. */
+        if (kept) {
+            afw_pool_release_value_at_cleanup(kept, x->p, x->xctx);
+            kept = NULL;
+        }
     }
+    AFW_FINALLY {
+        afw_value_release(kept, x->xctx);
+        if (next_p) {
+            afw_pool_release(next_p, x->xctx);
+        }
+        if (step_p) {
+            afw_pool_release(step_p, x->xctx);
+        }
+    }
+    AFW_ENDTRY;
 
     return accumulator;
 }
@@ -1063,8 +1111,10 @@ afw_function_execute_sort(
     ctx.entries = afw_pool_malloc(ctx.p,
         sizeof(const impl_sort_entry_t *) * ctx.count, ctx.xctx);
     for (iterator = NULL, i = 0; i < ctx.count; i++) {
-        entry[i].value = afw_array_get_next_value(array->internal,
-            &iterator, ctx.xctx);
+        /* The compare function may replace entries (the read rule). */
+        entry[i].value = afw_value_hold_read(
+            afw_array_get_next_value(array->internal, &iterator, ctx.xctx),
+            ctx.p, ctx.xctx);
         entry[i].index = i;
         ctx.entries[i] = &entry[i];
     }

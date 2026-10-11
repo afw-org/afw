@@ -176,3 +176,38 @@ let used = pool_bytes_in_use() - start;
 assert(g() === 999);
 assert(used < 1000000, "closures read in their own frame are freed: " + string(used));
 return 0;
+
+//?
+//? test: filter-callback-replaces-entry
+//? description: filter keeps an entry the predicate replaced in the array
+//? expect: 0
+//? source: ...
+
+let a = ["abcdefghijklmnop", "bbbbbbbbbbbbbbbbbbbb"];
+let r = filter(function (x) { a[1] = "z"; return true; }, a);
+assert(r[0] === "abcdefghijklmnop");
+assert(r[1] === "z");
+return 0;
+
+//?
+//? test: find-callback-replaces-entry
+//? description: find returns an entry the predicate replaced in the array
+//? expect: 0
+//? source: ...
+
+let a = ["abcdefghijklmnop", "bbbbbbbbbbbbbbbbbbbb"];
+assert(find(function (x) { a[0] = "z"; return true; }, a) === "abcdefghijklmnop");
+return 0;
+
+//?
+//? test: sort-compare-replaces-entries
+//? description: sort keeps entries the compare function replaced in the array
+//? expect: 0
+//? source: ...
+
+let a = ["dddddddddddddddd", "bbbbbbbbbbbbbbbbb", "cccccccccccccccc"];
+let r = sort(function (x, y) { a[0] = "z"; a[1] = "z"; a[2] = "z"; return x < y; }, a);
+assert(r[0] === "bbbbbbbbbbbbbbbbb");
+assert(r[1] === "cccccccccccccccc");
+assert(r[2] === "dddddddddddddddd");
+return 0;
