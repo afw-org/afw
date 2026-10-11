@@ -772,11 +772,13 @@ impl_start_cb(
          */
         if (!ctx->restart) {
             service = impl_service_retain(service_id, xctx);
+            status = (service)
+                ? impl_status_get(service, xctx)
+                : afw_service_status_ready_to_start;
             if (service &&
-                (status = impl_status_get(service, xctx),
                 status != afw_service_status_error &&
                 !(ctx->manual_start &&
-                    status == afw_service_status_stopped))
+                    status == afw_service_status_stopped)
                 )
             {
                 impl_service_release(service, xctx);
@@ -956,11 +958,11 @@ impl_add_runtime_service_info_to_object(
     afw_boolean_t can_start = false;
     afw_boolean_t can_stop = false;
     afw_boolean_t can_restart = false;
-    impl_status_snapshot_t status;
+    impl_status_snapshot_t snapshot;
 
     /* One consistent copy of the status fields. */
     if (service) {
-        impl_status_snapshot(service, &status, xctx);
+        impl_status_snapshot(service, &snapshot, xctx);
     }
 
     afw_object_meta_set_ids(object,
@@ -1063,7 +1065,7 @@ impl_add_runtime_service_info_to_object(
             startup == afw_service_startup_immediate)
         {
             if (service) {
-                switch (status.status) {
+                switch (snapshot.status) {
 
                 case afw_service_status_error:
                 case afw_service_status_ready_to_start:
@@ -1109,19 +1111,19 @@ impl_add_runtime_service_info_to_object(
          * is running, allow it to be stopped.
          */
         if (service->has_service_conf && !service_conf &&
-            status.status == afw_service_status_running)
+            snapshot.status == afw_service_status_running)
         {
             can_stop = true;
         }
 
         afw_object_set_property(object,
             afw_v_status,
-            afw_service_status_as_value(status.status),
+            afw_service_status_as_value(snapshot.status),
             xctx);
 
         afw_object_set_property(object,
             afw_v_statusDescription,
-            afw_service_status_description_as_value(status.status),
+            afw_service_status_description_as_value(snapshot.status),
             xctx);
 
         if (service->source_location && service->source_location->len > 0) {
@@ -1130,20 +1132,20 @@ impl_add_runtime_service_info_to_object(
         }
 
         afw_object_set_property_as_dateTime_internal(object,
-            afw_v_startTime, &status.start_time, xctx);
+            afw_v_startTime, &snapshot.start_time, xctx);
 
 
         /* The object can outlive the caller's service reference. */
-        if (status.status_message && status.status_message->len > 0) {
+        if (snapshot.status_message && snapshot.status_message->len > 0) {
             afw_object_set_property_as_string_internal(object,
                 afw_v_statusMessage,
-                afw_utf8_clone(status.status_message, p, xctx), xctx);
+                afw_utf8_clone(snapshot.status_message, p, xctx), xctx);
         }
 
-        if (status.status_debug && status.status_debug->len > 0) {
+        if (snapshot.status_debug && snapshot.status_debug->len > 0) {
             afw_object_set_property_as_string_internal(object,
                 afw_v_statusDebug,
-                afw_utf8_clone(status.status_debug, p, xctx), xctx);
+                afw_utf8_clone(snapshot.status_debug, p, xctx), xctx);
         }
 
     }
