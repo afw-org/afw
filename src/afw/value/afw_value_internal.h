@@ -473,6 +473,8 @@ struct afw_value_closure_binding_s {
     /* Compile unit the definition lives in, or NULL. Referenced. */
     const afw_value_t *compiled_value;
     afw_size_t reference_count;
+    /* In this xctx's possible roots (afw_reference_possible_root). */
+    afw_boolean_t buffered;
 };
 
 

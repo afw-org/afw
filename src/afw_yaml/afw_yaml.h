@@ -34,12 +34,6 @@
 
 AFW_BEGIN_DECLARES
 
-/** yaml_parser rv source id */
-#define AFW_ERROR_RV_SOURCE_ID_Z_yaml_parser "yaml_parser"
-
-/** yaml_token_type rv source id */
-#define AFW_ERROR_RV_SOURCE_ID_Z_yaml_token_type "yaml_token_type"
-
 #define AFW_YAML_Q_CONTENT_TYPE       "application/x-yaml"
 #define AFW_YAML_S_CONTENT_TYPE       afw_s_a_application_yaml
 #define AFW_YAML_Q_CONTENT_TYPE_SHORT "yaml"

@@ -133,6 +133,9 @@ struct afw_pool_internal_self_s {
      */
     afw_integer_t reference_count;
 
+    /** @brief In this xctx's possible roots (a scope; see afw_reference). */
+    afw_boolean_t buffered;
+
     /**
      * @brief True while this pool holds one reference on its parent.
      *

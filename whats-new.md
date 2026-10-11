@@ -272,6 +272,18 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 
 **YAML (`afw_yaml`):** a sequence with no indentation under a key (`key:` then `- a` lines, what most YAML writers produce) took the first entry as the value and then failed *Unexpected token inside map*; a plain key that looks like a number, boolean or null (`1:`, `1e30:`, `true:`) is that text (the mapping saw no key). Writing: a scalar document is `--- 42` (`---42` is the string `"---42"` to every YAML reader, AFW's too); a key that needs quotes (`a #b`, `%p`, ` x`, `{a}`, `yes`, `n`, `1`) is JSON-quoted (it made a file no reader could load, or a key of another type); a double always has a `.` and a signed exponent (`1e10` was written `10000000000` and read back as an integer, `-0.0` as `-0`) in the fewest digits that read back exactly; a multi-line string is a literal block only when it reads back exactly (`|-`, or `|` for one final line break), else JSON-quoted (`|+` read back an extra line break, and `|1+` for a leading space read back another string).
 
+## YAML reader on libyaml events (issue [#553](https://github.com/afw-org/afw/issues/553))
+
+**YAML (`afw_yaml`) reading** now follows libyaml's structure (events) instead of rebuilding it from tokens. What changes for a file or request body:
+- An **alias to a mapping** (`b: *m`) is the mapping. It used to be dropped. An alias to a scalar can be a key.
+- A **key with no value** (`a:`) is `null`; it used to fail. An explicit document end (`...`) works.
+- **`!!str 123`** (and `! 123`) is the string `"123"`. Other tags are not applied.
+- `<<: *b` is a key named `<<` (YAML 1.2 has no merge key); it used to be dropped.
+- **Parse errors are `syntax`** (HTTP 400), not `general`, with libyaml's message and a line and column counted from 1: more than one document, no document, an alias that names no anchor, a key that is not a scalar, a `_meta_` that is not a mapping.
+- Aliases that stand for more than 1,000,000 nodes in all (a few lines of nested aliases can stand for billions) are refused as `syntax`.
+
+**C programmers:** `afw_reference_possible_root()` and `afw_reference_forget()` are macros that take the address of the instance's `afw_boolean_t buffered` flag (false on create), so an instance already in the possible roots costs one test ([#563](https://github.com/afw-org/afw/issues/563)). `AFW_ERROR_RV_SOURCE_ID_Z_yaml_parser` and `_yaml_token_type` are removed from `afw_yaml.h`.
+
 ## Script function to string (issue [#498](https://github.com/afw-org/afw/issues/498))
 
 **changed**: `string()` of a script function is that function's own source, like ECMAScript `Function.prototype.toString`: `string(function (x) { return x; })` is `"function (x) { return x; }"`, and for `function h(y) { ... }` it starts at `function h`. It was the source of the whole script the function was in. A variable holding a function converts the same way.

@@ -187,6 +187,8 @@ struct afw_memory_internal_array_s {
      * idle. Last extra hold walks remaining slot_store'd elements.
      */
     afw_integer_t reference_count;
+    /* In this xctx's possible roots (afw_reference_possible_root). */
+    afw_boolean_t buffered;
     afw_boolean_t immutable;
     afw_boolean_t generic;
     afw_boolean_t unmanaged;
@@ -1182,10 +1184,11 @@ impl_afw_array_managed_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
-        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
+        afw_reference_possible_root(&self->pub.ref, self->pub.p,
+            &self->buffered, xctx);
         return;
     }
-    afw_reference_forget(&self->pub.ref, xctx);
+    afw_reference_forget(&self->pub.ref, &self->buffered, xctx);
     /*
      * One walk: release every held element (nested object/array
      * the same as scalar), then the vector, then the header.

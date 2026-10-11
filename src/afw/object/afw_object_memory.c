@@ -1257,10 +1257,11 @@ impl_afw_object_managed_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
-        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
+        afw_reference_possible_root(&self->pub.ref, self->pub.p,
+            &self->buffered, xctx);
         return;
     }
-    afw_reference_forget(&self->pub.ref, xctx);
+    afw_reference_forget(&self->pub.ref, &self->buffered, xctx);
     /*
      * One walk: release every held property (nested object/array
      * the same as scalar), then names, then free_memory entries.
