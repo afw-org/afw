@@ -187,12 +187,15 @@ o = get_object("file", "TestObjectType1", id);
 assert(stringify(o.a) === "[1]", "a: " + stringify(o));
 
 let message: any = "no error";
+let code: any = "no error";
 try {
     modify_object("file", "TestObjectType1", id, [["set_property", ["a", "x"], 1]]);
 }
 catch (err) {
     message = err.message;
+    code = err.id;
 }
 assert(message === "Property 'a' in the path is not an object", message);
+assert(code === "bad_request", code);
 delete_object("file", "TestObjectType1", id);
 return 0;
