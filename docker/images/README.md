@@ -87,13 +87,14 @@ architecture support will make use of the `--push` option. This instructs
 Docker to push the multi-arch platform images to the remote container registry
 on GitHub to be stored. By default, GitHub, DockerHub, etc will store multi-
 arch platform images because they have the ability to store manifest lists. 
-Your local Docker Desktop currently does not, and trying to build a multi-arch
-image without pushing it will only keep them around in build cache, as any 
-attempt to store them with `--load` will result in the error message 
+A local Docker engine (Docker Engine or Docker Desktop) using the classic image
+store does not, and trying to build a multi-arch image without pushing it will
+only keep them around in build cache, as any attempt to store them with 
+`--load` will result in the error message 
 
 `ERROR: docker exporter does not currently support exporting manifest lists`.   
 
-If your Docker Desktop engine supports `containerd` to store images, along with
+If your local engine uses the `containerd` image store, which keeps 
 architecture manifests, then you can build for multi-platform locally without 
 having to push them to a remote repository.
 
