@@ -633,6 +633,10 @@ afw_xctx_release(
             instance->error_processing_count,
             instance->error_delaying_release_first ? "yes" : "no");
     }
+    if (instance->p) {
+        afw_pool_internal_report_pending_releases(instance->p,
+            "afw_xctx_release", xctx);
+    }
 #endif
     afw_reference_collector_release((afw_xctx_t *)instance);
     region = instance->thread ? instance->thread->memory_region : NULL;
