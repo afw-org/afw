@@ -103,7 +103,7 @@ impl_call_function(
                 if ((*a)->data_type &&
                     (*a)->data_type != afw_value_quick_data_type(argv[i]))
                 {
-                    argv[i] = afw_value_convert(argv[i],
+                    argv[i] = afw_value_convert_lexical(argv[i],
                         (*a)->data_type, true, p, xctx);
                 }
             }
@@ -125,7 +125,7 @@ impl_call_function(
                 if (*a && (*a)->data_type &&
                     (*a)->data_type != afw_value_quick_data_type(argv[i]))
                 {
-                    argv[i] = afw_value_convert(argv[i],
+                    argv[i] = afw_value_convert_lexical(argv[i],
                         (*a)->data_type, true, p, xctx);
                 }
             }

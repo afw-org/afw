@@ -133,3 +133,20 @@ assert(b.TestString1 === "This is a test string.",
     "reconcilable get is a face; store is not write-through");
 
 return 0;
+
+//?
+//? test: get_object_normalize_boolean_text
+//? description: normalize reads text for a boolean property with the boolean parser (#552)
+//? skip: false
+//? expect: array(false, true, false)
+//? source: ...
+
+add_object("file", "TestObjectType1", {TestBoolean1: "false"}, "BoolTextFalse");
+add_object("file", "TestObjectType1", {TestBoolean1: "true"}, "BoolTextTrue");
+add_object("file", "TestObjectType1", {TestBoolean1: "0"}, "BoolTextZero");
+
+return [
+    get_object("file", "TestObjectType1", "BoolTextFalse", {normalize: true}).TestBoolean1,
+    get_object("file", "TestObjectType1", "BoolTextTrue", {normalize: true}).TestBoolean1,
+    get_object("file", "TestObjectType1", "BoolTextZero", {normalize: true}).TestBoolean1
+];
