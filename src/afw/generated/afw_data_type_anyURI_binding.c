@@ -349,7 +349,9 @@ afw_data_type_anyURI_direct = {
     true,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    true,
+    AFW_UTF8_LITERAL("uri")
 };
 
 /* Permanent empty array of anyURI. */

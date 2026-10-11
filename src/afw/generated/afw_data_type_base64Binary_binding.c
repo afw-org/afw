@@ -349,7 +349,9 @@ afw_data_type_base64Binary_direct = {
     true,
     true,
     false,
-    NULL
+    NULL,
+    true,
+    AFW_UTF8_LITERAL("b64")
 };
 
 /* Permanent empty array of base64Binary. */

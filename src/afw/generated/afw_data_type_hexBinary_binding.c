@@ -349,7 +349,9 @@ afw_data_type_hexBinary_direct = {
     true,
     true,
     false,
-    NULL
+    NULL,
+    true,
+    AFW_UTF8_LITERAL("hex")
 };
 
 /* Permanent empty array of hexBinary. */

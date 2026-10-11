@@ -6321,6 +6321,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__19555d48cd1d \
+    "If true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__19555d48cd1d */
+#define afw_s_zz__19555d48cd1d \
+    (&afw_self_v_zz__19555d48cd1d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__19555d48cd1d */
+#define afw_self_s_zz__19555d48cd1d \
+    (afw_self_v_zz__19555d48cd1d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__19555d48cd1d */
+extern const afw_value_string_t \
+    afw_self_v_zz__19555d48cd1d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__19555d48cd1d */
+#define afw_z_zz__19555d48cd1d \
+    (afw_self_v_zz__19555d48cd1d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__19555d48cd1d */
+#define afw_v_zz__19555d48cd1d \
+    (&afw_self_v_zz__19555d48cd1d.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__1955cb1f1f11 \
     "function bag<base64Binary> (\n    ...values: base64Binary[]\n): base64Binary[];\n"
 
@@ -12817,6 +12843,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3543fd2d1400 */
 #define afw_v_zz__3543fd2d1400 \
     (&afw_self_v_zz__3543fd2d1400.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__35863a33d978 \
+    "Optional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__35863a33d978 */
+#define afw_s_zz__35863a33d978 \
+    (&afw_self_v_zz__35863a33d978.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__35863a33d978 */
+#define afw_self_s_zz__35863a33d978 \
+    (afw_self_v_zz__35863a33d978.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__35863a33d978 */
+extern const afw_value_string_t \
+    afw_self_v_zz__35863a33d978;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__35863a33d978 */
+#define afw_z_zz__35863a33d978 \
+    (afw_self_v_zz__35863a33d978.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__35863a33d978 */
+#define afw_v_zz__35863a33d978 \
+    (&afw_self_v_zz__35863a33d978.pub)
 
 
 
@@ -23221,6 +23273,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__613a502d1972 \
+    "A typed literal suffix. The object id is the suffix: a data type id or its typed literal short form that can follow a string literal in a script."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__613a502d1972 */
+#define afw_s_zz__613a502d1972 \
+    (&afw_self_v_zz__613a502d1972.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__613a502d1972 */
+#define afw_self_s_zz__613a502d1972 \
+    (afw_self_v_zz__613a502d1972.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__613a502d1972 */
+extern const afw_value_string_t \
+    afw_self_v_zz__613a502d1972;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__613a502d1972 */
+#define afw_z_zz__613a502d1972 \
+    (afw_self_v_zz__613a502d1972.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__613a502d1972 */
+#define afw_v_zz__613a502d1972 \
+    (&afw_self_v_zz__613a502d1972.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__61508ffcced5 \
     "function is_in<string> (\n    value: string,\n    array: string[]\n): boolean;\n"
 
@@ -31381,6 +31459,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__81c8e3f9d57f */
 #define afw_v_zz__81c8e3f9d57f \
     (&afw_self_v_zz__81c8e3f9d57f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__81ee405248cc \
+    "Short form of the data type id that can be used as the suffix, if the data type has one."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__81ee405248cc */
+#define afw_s_zz__81ee405248cc \
+    (&afw_self_v_zz__81ee405248cc.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__81ee405248cc */
+#define afw_self_s_zz__81ee405248cc \
+    (afw_self_v_zz__81ee405248cc.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__81ee405248cc */
+extern const afw_value_string_t \
+    afw_self_v_zz__81ee405248cc;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__81ee405248cc */
+#define afw_z_zz__81ee405248cc \
+    (afw_self_v_zz__81ee405248cc.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__81ee405248cc */
+#define afw_v_zz__81ee405248cc \
+    (&afw_self_v_zz__81ee405248cc.pub)
 
 
 
@@ -68981,6 +69085,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Optional_short_form_of_the_data_type_id \
+    "Optional short form of the data type id"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_short_form_of_the_data_type_id */
+#define afw_s_zz__Optional_short_form_of_the_data_type_id \
+    (&afw_self_v_zz__Optional_short_form_of_the_data_type_id.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_short_form_of_the_data_type_id */
+#define afw_self_s_zz__Optional_short_form_of_the_data_type_id \
+    (afw_self_v_zz__Optional_short_form_of_the_data_type_id.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Optional_short_form_of_the_data_type_id */
+extern const afw_value_string_t \
+    afw_self_v_zz__Optional_short_form_of_the_data_type_id;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Optional_short_form_of_the_data_type_id */
+#define afw_z_zz__Optional_short_form_of_the_data_type_id \
+    (afw_self_v_zz__Optional_short_form_of_the_data_type_id.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Optional_short_form_of_the_data_type_id */
+#define afw_v_zz__Optional_short_form_of_the_data_type_id \
+    (&afw_self_v_zz__Optional_short_form_of_the_data_type_id.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal \
+    "Optional short form of the data type id in a typed literal"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal */
+#define afw_s_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal \
+    (&afw_self_v_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal */
+#define afw_self_s_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal \
+    (afw_self_v_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal */
+extern const afw_value_string_t \
+    afw_self_v_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal */
+#define afw_z_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal \
+    (afw_self_v_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal */
+#define afw_v_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal \
+    (&afw_self_v_zz__Optional_short_form_of_the_data_type_id_in_a_typed_literal.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Optional_throw_data \
     "Optional throw data"
 
@@ -89413,6 +89569,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Type_of_request_handler_ */
 #define afw_v_zz__Type_of_request_handler_ \
     (&afw_self_v_zz__Type_of_request_handler_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Typed_Literal \
+    "Typed Literal"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Typed_Literal */
+#define afw_s_zz__Typed_Literal \
+    (&afw_self_v_zz__Typed_Literal.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Typed_Literal */
+#define afw_self_s_zz__Typed_Literal \
+    (afw_self_v_zz__Typed_Literal.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Typed_Literal */
+extern const afw_value_string_t \
+    afw_self_v_zz__Typed_Literal;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Typed_Literal */
+#define afw_z_zz__Typed_Literal \
+    (afw_self_v_zz__Typed_Literal.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Typed_Literal */
+#define afw_v_zz__Typed_Literal \
+    (&afw_self_v_zz__Typed_Literal.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Typed_Literal_Short_Form \
+    "Typed Literal Short Form"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Typed_Literal_Short_Form */
+#define afw_s_zz__Typed_Literal_Short_Form \
+    (&afw_self_v_zz__Typed_Literal_Short_Form.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Typed_Literal_Short_Form */
+#define afw_self_s_zz__Typed_Literal_Short_Form \
+    (afw_self_v_zz__Typed_Literal_Short_Form.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Typed_Literal_Short_Form */
+extern const afw_value_string_t \
+    afw_self_v_zz__Typed_Literal_Short_Form;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Typed_Literal_Short_Form */
+#define afw_z_zz__Typed_Literal_Short_Form \
+    (afw_self_v_zz__Typed_Literal_Short_Form.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Typed_Literal_Short_Form */
+#define afw_v_zz__Typed_Literal_Short_Form \
+    (&afw_self_v_zz__Typed_Literal_Short_Form.pub)
 
 
 
@@ -129925,6 +130133,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ae0cfa1b9b9c \
+    "Id of the data type that parses the text of a typed literal with this suffix."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ae0cfa1b9b9c */
+#define afw_s_zz__ae0cfa1b9b9c \
+    (&afw_self_v_zz__ae0cfa1b9b9c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ae0cfa1b9b9c */
+#define afw_self_s_zz__ae0cfa1b9b9c \
+    (afw_self_v_zz__ae0cfa1b9b9c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ae0cfa1b9b9c */
+extern const afw_value_string_t \
+    afw_self_v_zz__ae0cfa1b9b9c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ae0cfa1b9b9c */
+#define afw_z_zz__ae0cfa1b9b9c \
+    (afw_self_v_zz__ae0cfa1b9b9c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ae0cfa1b9b9c */
+#define afw_v_zz__ae0cfa1b9b9c \
+    (&afw_self_v_zz__ae0cfa1b9b9c.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ae0d40767cbf \
     "High-water of memoryRegionBytesInUse since environment create. Same as /afw/_AdaptiveProcess_/current."
 
@@ -147445,6 +147679,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__edf807e9fb62 */
 #define afw_v_zz__edf807e9fb62 \
     (&afw_self_v_zz__edf807e9fb62.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__ee0ec0510a3a \
+    "Script can write a value of this data type as a typed literal"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ee0ec0510a3a */
+#define afw_s_zz__ee0ec0510a3a \
+    (&afw_self_v_zz__ee0ec0510a3a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ee0ec0510a3a */
+#define afw_self_s_zz__ee0ec0510a3a \
+    (afw_self_v_zz__ee0ec0510a3a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ee0ec0510a3a */
+extern const afw_value_string_t \
+    afw_self_v_zz__ee0ec0510a3a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ee0ec0510a3a */
+#define afw_z_zz__ee0ec0510a3a \
+    (afw_self_v_zz__ee0ec0510a3a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ee0ec0510a3a */
+#define afw_v_zz__ee0ec0510a3a \
+    (&afw_self_v_zz__ee0ec0510a3a.pub)
 
 
 

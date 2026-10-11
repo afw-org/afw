@@ -1035,8 +1035,8 @@ RelaxedJson ::= Double | Integer | RelaxedList | RelaxedObject | String | 'true'
 
 /* From afw_compile_parse_value.c                                             */
 
-ScalarLiteral ::= Double | Integer | String | 'true' | 'false' | 'null'
-/* This may want to include Datatype(Literal) at some point too.              */
+ScalarLiteral ::= Double | Integer | String | TypedLiteral | 'true' |
+        'false' | 'null'
 
 Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
 
@@ -1149,6 +1149,16 @@ UnicodeCodePoint ::= #x0-#x10FFFF
 UnicodeNonControl ::= (UnicodeCodePoint - [^\#x0-#x1f] )
 
 UnicodeNonSpaceNonControl ::= (UnicodeCodePoint - [^\#x0-#x20] )
+
+/* From afw_compile_lexical.c                                                 */
+/* A typed literal is a String immediately followed (no whitespace) by a      */
+/* data type id or its typed literal short form. The text of the String       */
+/* is parsed by that data type. Script syntaxes only (not JSON or relaxed     */
+/* JSON).                                                                     */
+
+TypedLiteral ::= String DataTypeSuffix
+
+DataTypeSuffix ::= Identifier
 
 /* From afw_compile_lexical.c                                                 */
 /* Only DecimalIntegerLiteral is allowed in strict mode.                      */

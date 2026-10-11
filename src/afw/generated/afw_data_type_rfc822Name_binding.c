@@ -349,7 +349,9 @@ afw_data_type_rfc822Name_direct = {
     false,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    true,
+    AFW_UTF8_LITERAL("rfc822")
 };
 
 /* Permanent empty array of rfc822Name. */

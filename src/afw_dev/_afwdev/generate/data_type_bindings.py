@@ -1553,9 +1553,18 @@ def write_c_section(fd, prefix, obj):
     # iterator_return_data_type (const afw_data_type_t *; generate id or NULL)
     irt = obj.get('iteratorReturnDataType')
     if irt:
-        fd.write('    &afw_data_type_' + irt + '_direct\n')
+        fd.write('    &afw_data_type_' + irt + '_direct,\n')
     else:
-        fd.write('    NULL\n')
+        fd.write('    NULL,\n')
+
+    # typed_literal
+    if obj.get('typedLiteral', False) == True:
+        fd.write('    true,\n')
+    else:
+        fd.write('    false,\n')
+
+    # typed_literal_short_form
+    fd.write('    AFW_UTF8_LITERAL("' + obj.get('typedLiteralShortForm', '') + '")\n')
 
     fd.write('};\n')
 

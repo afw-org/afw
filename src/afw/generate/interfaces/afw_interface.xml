@@ -2582,6 +2582,22 @@ const afw_content_type_t *
       </description>
     </variable>
 
+    <variable name="typed_literal" type="afw_boolean_t">
+      <description>
+        If true, a script can write a value of this data type as a typed
+        literal: a string literal followed, with no whitespace, by the data
+        type id or typed_literal_short_form. Registering the data type
+        registers both in the typed_literal_suffix registry.
+      </description>
+    </variable>
+
+    <variable name="typed_literal_short_form" type="afw_utf8_t">
+      <description>
+        Optional short form of the data type id for a typed literal. len 0
+        if none. Only used if typed_literal is true.
+      </description>
+    </variable>
+
     <method name="internal_to_utf8">
 
       <description>Convert from cType value to const afw_utf8_t *.</description>

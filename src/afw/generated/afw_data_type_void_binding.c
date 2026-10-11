@@ -172,7 +172,9 @@ afw_data_type_void_direct = {
     false,
     true,
     true,
-    NULL
+    NULL,
+    false,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Data type struct for void. */

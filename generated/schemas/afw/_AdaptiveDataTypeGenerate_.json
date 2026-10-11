@@ -130,6 +130,19 @@
                     "markdownDescription": "**Special**\n\nSpecial data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
                     "title": "Special",
                     "type": "boolean"
+                },
+                "typedLiteral": {
+                    "default": false,
+                    "description": "If true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type.",
+                    "markdownDescription": "**Typed Literal**\n\nIf true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type.",
+                    "title": "Typed Literal",
+                    "type": "boolean"
+                },
+                "typedLiteralShortForm": {
+                    "description": "Optional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error.",
+                    "markdownDescription": "**Typed Literal Short Form**\n\nOptional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error.",
+                    "title": "Typed Literal Short Form",
+                    "type": "string"
                 }
             },
             "title": "_AdaptiveDataTypeGenerate_",
@@ -262,6 +275,19 @@
                     "markdownDescription": "**Special**\n\nSpecial data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
                     "title": "Special",
                     "type": "boolean"
+                },
+                "typedLiteral": {
+                    "default": false,
+                    "description": "If true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type.",
+                    "markdownDescription": "**Typed Literal**\n\nIf true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type.",
+                    "title": "Typed Literal",
+                    "type": "boolean"
+                },
+                "typedLiteralShortForm": {
+                    "description": "Optional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error.",
+                    "markdownDescription": "**Typed Literal Short Form**\n\nOptional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error.",
+                    "title": "Typed Literal Short Form",
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -396,6 +422,19 @@
             "markdownDescription": "**Special**\n\nSpecial data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
             "title": "Special",
             "type": "boolean"
+        },
+        "typedLiteral": {
+            "default": false,
+            "description": "If true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type.",
+            "markdownDescription": "**Typed Literal**\n\nIf true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type.",
+            "title": "Typed Literal",
+            "type": "boolean"
+        },
+        "typedLiteralShortForm": {
+            "description": "Optional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error.",
+            "markdownDescription": "**Typed Literal Short Form**\n\nOptional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error.",
+            "title": "Typed Literal Short Form",
+            "type": "string"
         }
     },
     "title": "_AdaptiveDataTypeGenerate_",

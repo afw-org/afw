@@ -281,7 +281,9 @@ afw_data_type_dateTime_direct = {
     true,
     true,
     false,
-    NULL
+    NULL,
+    true,
+    AFW_UTF8_LITERAL("dt")
 };
 
 /* Permanent empty array of dateTime. */

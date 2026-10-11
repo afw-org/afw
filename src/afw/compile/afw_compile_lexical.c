@@ -48,6 +48,9 @@ impl_double_literal(afw_compile_parser_t *parser, afw_double_t d);
 static void
 impl_parse_String(afw_compile_parser_t *parser);
 
+static void
+impl_parse_TypedLiteral(afw_compile_parser_t *parser);
+
 static afw_boolean_t
 impl_parse_number(afw_compile_parser_t *parser);
 
@@ -713,6 +716,90 @@ impl_parse_String(afw_compile_parser_t *parser)
     parser->token->string = afw_compile_get_string_literal(
         parser,
         parser->s->entries, parser->s->count);
+}
+
+
+
+/*ebnf>>>
+ *
+ *# A typed literal is a String immediately followed (no whitespace) by a
+ *# data type id or its typed literal short form. The text of the String
+ *# is parsed by that data type. Script syntaxes only (not JSON or relaxed
+ *# JSON).
+ *
+ * TypedLiteral ::= String DataTypeSuffix
+ *
+ * DataTypeSuffix ::= Identifier
+ *
+ *<<<ebnf*/
+/*
+ * Called after impl_parse_String for a quoted string. If an identifier
+ * starts right after the closing quote, look it up as a typed literal
+ * suffix and parse the string's text with that data type.
+ */
+static void
+impl_parse_TypedLiteral(afw_compile_parser_t *parser)
+{
+    afw_size_t save;
+    afw_code_point_t cp;
+    const afw_value_string_t *suffix;
+    const afw_data_type_t *data_type;
+    afw_value_common_t *value;
+    const afw_utf8_t * volatile message;
+    afw_xctx_t *xctx = parser->xctx;
+
+    /* JSON and relaxed JSON leave the identifier for a parse error. */
+    if (afw_compile_is_at_eof() ||
+        parser->compile_type == afw_compile_type_json ||
+        parser->compile_type == afw_compile_type_relaxed_json)
+    {
+        return;
+    }
+
+    /* Return if an identifier does not start right after the quote. */
+    afw_compile_save_cursor(save);
+    cp = afw_compile_get_code_point();
+    afw_compile_restore_cursor(save);
+    if (cp < 0 || !afw_code_point_is_identifier_start(cp)) {
+        return;
+    }
+
+    /* Suffix must be a registered typed literal suffix. */
+    suffix = impl_get_identifier(parser);
+    data_type = afw_environment_get_typed_literal_suffix(
+        &suffix->internal, parser->xctx);
+    if (!data_type) {
+        if (afw_environment_get_data_type(&suffix->internal, parser->xctx)) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Data type '%ku' does not have a typed literal",
+                &suffix->internal);
+        }
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "'%ku' is not a typed literal suffix",
+            &suffix->internal);
+    }
+
+    /* Parse the text with the data type. Bad text is a syntax error. */
+    message = NULL;
+    value = afw_value_common_allocate(data_type, parser->p, parser->xctx);
+    AFW_TRY {
+        afw_data_type_utf8_to_internal(data_type, &value->internal,
+            &parser->token->string->internal, parser->p, parser->xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        message = afw_utf8_printf(parser->p, parser->xctx, "%s",
+            (AFW_ERROR_THROWN->message_z)
+            ? AFW_ERROR_THROWN->message_z : "");
+    }
+    AFW_ENDTRY;
+    if (message) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "Invalid %ku typed literal: %ku",
+            &data_type->data_type_id, message);
+    }
+
+    parser->token->type = afw_compile_token_type_typed_literal;
+    parser->token->typed_literal = &value->pub;
 }
 
 
@@ -1822,6 +1909,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
     case '\'':
         afw_compile_restore_cursor(entry_cursor);
         impl_parse_String(parser);
+        impl_parse_TypedLiteral(parser);
         break;
 
     case '`':

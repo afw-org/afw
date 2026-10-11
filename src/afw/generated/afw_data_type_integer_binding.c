@@ -281,7 +281,9 @@ afw_data_type_integer_direct = {
     true,
     true,
     false,
-    NULL
+    NULL,
+    false,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Permanent empty array of integer. */

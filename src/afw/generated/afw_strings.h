@@ -8739,6 +8739,32 @@ afw_self_v__AdaptiveTestScriptTestResult_;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q__AdaptiveTypedLiteralSuffix_ \
+    "_AdaptiveTypedLiteralSuffix_"
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveTypedLiteralSuffix_ */
+#define afw_s__AdaptiveTypedLiteralSuffix_ \
+    (&afw_self_v__AdaptiveTypedLiteralSuffix_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveTypedLiteralSuffix_ */
+#define afw_self_s__AdaptiveTypedLiteralSuffix_ \
+    (afw_self_v__AdaptiveTypedLiteralSuffix_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q__AdaptiveTypedLiteralSuffix_ */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v__AdaptiveTypedLiteralSuffix_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q__AdaptiveTypedLiteralSuffix_ */
+#define afw_z__AdaptiveTypedLiteralSuffix_ \
+    (afw_self_v__AdaptiveTypedLiteralSuffix_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q__AdaptiveTypedLiteralSuffix_ */
+#define afw_v__AdaptiveTypedLiteralSuffix_ \
+    (&afw_self_v__AdaptiveTypedLiteralSuffix_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q__AdaptiveValueInf_ \
     "_AdaptiveValueInf_"
 
@@ -97737,6 +97763,58 @@ afw_self_v_typeCheckCompileOnly;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_typedLiteral \
+    "typedLiteral"
+
+/** @brief 'afw_utf8_t' for AFW_Q_typedLiteral */
+#define afw_s_typedLiteral \
+    (&afw_self_v_typedLiteral.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_typedLiteral */
+#define afw_self_s_typedLiteral \
+    (afw_self_v_typedLiteral.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_typedLiteral */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_typedLiteral;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_typedLiteral */
+#define afw_z_typedLiteral \
+    (afw_self_v_typedLiteral.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_typedLiteral */
+#define afw_v_typedLiteral \
+    (&afw_self_v_typedLiteral.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_typedLiteralShortForm \
+    "typedLiteralShortForm"
+
+/** @brief 'afw_utf8_t' for AFW_Q_typedLiteralShortForm */
+#define afw_s_typedLiteralShortForm \
+    (&afw_self_v_typedLiteralShortForm.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_typedLiteralShortForm */
+#define afw_self_s_typedLiteralShortForm \
+    (afw_self_v_typedLiteralShortForm.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_typedLiteralShortForm */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_typedLiteralShortForm;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_typedLiteralShortForm */
+#define afw_z_typedLiteralShortForm \
+    (afw_self_v_typedLiteralShortForm.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_typedLiteralShortForm */
+#define afw_v_typedLiteralShortForm \
+    (&afw_self_v_typedLiteralShortForm.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_typedValues \
     "typedValues"
 
@@ -97759,6 +97837,58 @@ afw_self_v_typedValues;
 /** @brief 'const afw_value_t *' for AFW_Q_typedValues */
 #define afw_v_typedValues \
     (&afw_self_v_typedValues.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_typed_literal \
+    "typed_literal"
+
+/** @brief 'afw_utf8_t' for AFW_Q_typed_literal */
+#define afw_s_typed_literal \
+    (&afw_self_v_typed_literal.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_typed_literal */
+#define afw_self_s_typed_literal \
+    (afw_self_v_typed_literal.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_typed_literal */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_typed_literal;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_typed_literal */
+#define afw_z_typed_literal \
+    (afw_self_v_typed_literal.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_typed_literal */
+#define afw_v_typed_literal \
+    (&afw_self_v_typed_literal.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_typed_literal_short_form \
+    "typed_literal_short_form"
+
+/** @brief 'afw_utf8_t' for AFW_Q_typed_literal_short_form */
+#define afw_s_typed_literal_short_form \
+    (&afw_self_v_typed_literal_short_form.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_typed_literal_short_form */
+#define afw_self_s_typed_literal_short_form \
+    (afw_self_v_typed_literal_short_form.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_typed_literal_short_form */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_typed_literal_short_form;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_typed_literal_short_form */
+#define afw_z_typed_literal_short_form \
+    (afw_self_v_typed_literal_short_form.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_typed_literal_short_form */
+#define afw_v_typed_literal_short_form \
+    (&afw_self_v_typed_literal_short_form.pub)
 
 
 

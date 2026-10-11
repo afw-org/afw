@@ -281,7 +281,9 @@ afw_data_type_time_direct = {
     true,
     true,
     false,
-    NULL
+    NULL,
+    true,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Permanent empty array of time. */

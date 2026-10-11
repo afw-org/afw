@@ -1,5 +1,4 @@
 {
-    "editor.inlayHints.enabled": "off",
     "C_Cpp.intelliSenseEngine": "disabled",
     "cSpell.words": [
         "Accordian",
@@ -30,6 +29,7 @@
         "./src/afw/generated",
         "./src/afw_client/python"
     ],
+    "editor.inlayHints.enabled": "off",
     "json.schemas": [
         {
             "fileMatch": [
@@ -516,6 +516,12 @@
                 "/src/*/generate*/objects/_AdaptiveStringLiteral_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveStringLiteral_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveTypedLiteralSuffix_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveTypedLiteralSuffix_.json"
         }
     ],
     "python.analysis.extraPaths": [
