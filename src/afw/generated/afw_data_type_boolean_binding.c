@@ -246,12 +246,20 @@ impl_empty_array_of_boolean;
 const afw_value_array_t
 impl_value_empty_array_of_boolean;
 
+/* Data type id boolean as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_boolean = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("boolean")
+};
+
 /* Data type boolean instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_boolean_direct = {
     &afw_data_type_boolean_inf,
     (const afw_object_t *)&impl_data_type_object_boolean,
     AFW_UTF8_LITERAL("boolean"),
+    (const afw_value_t *)&impl_data_type_id_value_boolean,
     AFW_UTF8_LITERAL("A boolean value"),
     AFW_UTF8_LITERAL("Data type 'boolean' holds a boolean value. Its to_string() value is 'true' or 'false'. Its from_string() true value can be mixed case 't', 'true' or '1'. Its from_string() false value can be mixed case 'f', 'false' or '0'. Converting a value of another data type to boolean (boolean(), a boolean parameter) is ECMAScript Boolean() instead: a string is true unless it is empty, so 'false' converts to true; undefined, null, 0, and NaN are false; an object or array is true."),
     AFW_UTF8_LITERAL(""),

@@ -150,6 +150,8 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
 
     /* Get xctx's UUID. */
     xctx->uuid = afw_uuid_create_utf8(xctx->p, xctx);
+    xctx->uuid_value = afw_value_create_unmanaged_string(xctx->uuid,
+        xctx->p, xctx);
 
     /* Create a properties object. */
     xctx->properties = afw_object_create_unmanaged(

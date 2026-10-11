@@ -314,12 +314,20 @@ impl_empty_array_of_script;
 const afw_value_array_t
 impl_value_empty_array_of_script;
 
+/* Data type id script as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_script = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("script")
+};
+
 /* Data type script instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_script_direct = {
     &afw_data_type_script_inf,
     (const afw_object_t *)&impl_data_type_object_script,
     AFW_UTF8_LITERAL("script"),
+    (const afw_value_t *)&impl_data_type_id_value_script,
     AFW_UTF8_LITERAL("An adaptive script"),
     AFW_UTF8_LITERAL("Data type 'script' holds the source for an adaptive script."),
     AFW_UTF8_LITERAL("SourceParameter"),

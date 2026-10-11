@@ -314,12 +314,20 @@ impl_empty_array_of_json;
 const afw_value_array_t
 impl_value_empty_array_of_json;
 
+/* Data type id json as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_json = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("json")
+};
+
 /* Data type json instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_json_direct = {
     &afw_data_type_json_inf,
     (const afw_object_t *)&impl_data_type_object_json,
     AFW_UTF8_LITERAL("json"),
+    (const afw_value_t *)&impl_data_type_id_value_json,
     AFW_UTF8_LITERAL("JSON source"),
     AFW_UTF8_LITERAL("Data type 'json' holds the source for a JSON value."),
     AFW_UTF8_LITERAL("SourceParameter"),

@@ -314,12 +314,20 @@ impl_empty_array_of_string;
 const afw_value_array_t
 impl_value_empty_array_of_string;
 
+/* Data type id string as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_string = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("string")
+};
+
 /* Data type string instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_string_direct = {
     &afw_data_type_string_inf,
     (const afw_object_t *)&impl_data_type_object_string,
     AFW_UTF8_LITERAL("string"),
+    (const afw_value_t *)&impl_data_type_id_value_string,
     AFW_UTF8_LITERAL("A string"),
     AFW_UTF8_LITERAL("Data type 'string' holds a sequence of Unicode code points as defined at http://www.unicode.org."),
     AFW_UTF8_LITERAL("MediaType"),

@@ -246,12 +246,20 @@ impl_empty_array_of_integer;
 const afw_value_array_t
 impl_value_empty_array_of_integer;
 
+/* Data type id integer as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_integer = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("integer")
+};
+
 /* Data type integer instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_integer_direct = {
     &afw_data_type_integer_inf,
     (const afw_object_t *)&impl_data_type_object_integer,
     AFW_UTF8_LITERAL("integer"),
+    (const afw_value_t *)&impl_data_type_id_value_integer,
     AFW_UTF8_LITERAL("An integer"),
     AFW_UTF8_LITERAL("Data type 'integer' holds a positive or negative whole number. The string value of a negative integer is preceded with a minus sign ('-'). A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input."),
     AFW_UTF8_LITERAL(""),

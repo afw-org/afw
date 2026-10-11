@@ -234,12 +234,20 @@ impl_empty_array_of_unevaluated;
 const afw_value_array_t
 impl_value_empty_array_of_unevaluated;
 
+/* Data type id unevaluated as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_unevaluated = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("unevaluated")
+};
+
 /* Data type unevaluated instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_unevaluated_direct = {
     &afw_data_type_unevaluated_inf,
     (const afw_object_t *)&impl_data_type_object_unevaluated,
     AFW_UTF8_LITERAL("unevaluated"),
+    (const afw_value_t *)&impl_data_type_id_value_unevaluated,
     AFW_UTF8_LITERAL("An unevaluated value produced by compile"),
     AFW_UTF8_LITERAL("This is a value produced by any of the Adaptive compile functions that can be evaluated using the evaluate() function."),
     AFW_UTF8_LITERAL("Type"),

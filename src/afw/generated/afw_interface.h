@@ -2916,6 +2916,11 @@ struct afw_data_type_s {
     afw_utf8_t data_type_id;
 
     /**
+     * Id of this data type as a permanent string value.
+     */
+    const afw_value_t * data_type_id_value;
+
+    /**
      * This is a predicate for the data type with the first letter capitalized
      * and without a trailing period.
      */

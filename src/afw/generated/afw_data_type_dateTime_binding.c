@@ -246,12 +246,20 @@ impl_empty_array_of_dateTime;
 const afw_value_array_t
 impl_value_empty_array_of_dateTime;
 
+/* Data type id dateTime as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_dateTime = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("dateTime")
+};
+
 /* Data type dateTime instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_dateTime_direct = {
     &afw_data_type_dateTime_inf,
     (const afw_object_t *)&impl_data_type_object_dateTime,
     AFW_UTF8_LITERAL("dateTime"),
+    (const afw_value_t *)&impl_data_type_id_value_dateTime,
     AFW_UTF8_LITERAL("A date and time"),
     AFW_UTF8_LITERAL("Data type 'dateTime' is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone."),
     AFW_UTF8_LITERAL(""),

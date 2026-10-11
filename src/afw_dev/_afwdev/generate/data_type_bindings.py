@@ -1429,6 +1429,14 @@ def write_c_section(fd, prefix, obj):
     fd.write('const afw_value_array_t\n')
     fd.write('impl_value_empty_array_of_' + id + ';\n')
     
+    # Data type id as a permanent value (data_type_id_value)
+    fd.write('\n/* Data type id ' + id + ' as a value. */\n')
+    fd.write('static const afw_value_string_t\n')
+    fd.write('impl_data_type_id_value_' + id + ' = {\n')
+    fd.write('    {&afw_value_permanent_string_inf},\n')
+    fd.write('    AFW_UTF8_LITERAL("' + id + '")\n')
+    fd.write('};\n')
+
     # Data type (public const object)
     fd.write('\n/* Data type ' + id + ' instance. */\n')
     fd.write(define_data + '(afw_data_type_t)\n')
@@ -1440,6 +1448,9 @@ def write_c_section(fd, prefix, obj):
 
     # data_type_id
     fd.write('    AFW_UTF8_LITERAL("' + id + '"),\n')
+
+    # data_type_id_value
+    fd.write('    (const afw_value_t *)&impl_data_type_id_value_' + id + ',\n')
 
     # brief
     if obj.get('brief') is not None:

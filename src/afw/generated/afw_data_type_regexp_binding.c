@@ -314,12 +314,20 @@ impl_empty_array_of_regexp;
 const afw_value_array_t
 impl_value_empty_array_of_regexp;
 
+/* Data type id regexp as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_regexp = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("regexp")
+};
+
 /* Data type regexp instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_regexp_direct = {
     &afw_data_type_regexp_inf,
     (const afw_object_t *)&impl_data_type_object_regexp,
     AFW_UTF8_LITERAL("regexp"),
+    (const afw_value_t *)&impl_data_type_id_value_regexp,
     AFW_UTF8_LITERAL("An regular expression"),
     AFW_UTF8_LITERAL("Data type 'regexp' holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F."),
     AFW_UTF8_LITERAL("SourceParameter"),

@@ -314,12 +314,20 @@ impl_empty_array_of_anyURI;
 const afw_value_array_t
 impl_value_empty_array_of_anyURI;
 
+/* Data type id anyURI as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_anyURI = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("anyURI")
+};
+
 /* Data type anyURI instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_anyURI_direct = {
     &afw_data_type_anyURI_inf,
     (const afw_object_t *)&impl_data_type_object_anyURI,
     AFW_UTF8_LITERAL("anyURI"),
+    (const afw_value_t *)&impl_data_type_id_value_anyURI,
     AFW_UTF8_LITERAL("A Uniform Resource Identifier Reference (URI)"),
     AFW_UTF8_LITERAL("Data type 'anyURI' holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier."),
     AFW_UTF8_LITERAL(""),

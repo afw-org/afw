@@ -137,12 +137,20 @@ impl_empty_array_of_void;
 const afw_value_array_t
 impl_value_empty_array_of_void;
 
+/* Data type id void as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_void = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("void")
+};
+
 /* Data type void instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_void_direct = {
     &afw_data_type_void_inf,
     (const afw_object_t *)&impl_data_type_object_void,
     AFW_UTF8_LITERAL("void"),
+    (const afw_value_t *)&impl_data_type_id_value_void,
     AFW_UTF8_LITERAL("No value"),
     AFW_UTF8_LITERAL("Return type for functions that do not produce a value. Built-in and script functions declared void yield the permanent void singleton (not undefined). A void variable may still hold undefined (or null if compile::strictNullChecks is not set)."),
     AFW_UTF8_LITERAL(""),

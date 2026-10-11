@@ -314,12 +314,20 @@ impl_empty_array_of_ia5String;
 const afw_value_array_t
 impl_value_empty_array_of_ia5String;
 
+/* Data type id ia5String as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_ia5String = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("ia5String")
+};
+
 /* Data type ia5String instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_ia5String_direct = {
     &afw_data_type_ia5String_inf,
     (const afw_object_t *)&impl_data_type_object_ia5String,
     AFW_UTF8_LITERAL("ia5String"),
+    (const afw_value_t *)&impl_data_type_id_value_ia5String,
     AFW_UTF8_LITERAL("An ASN.1 value"),
     AFW_UTF8_LITERAL("Data type 'ia5String' holds a string restricted to the ASN.1 notation. It is used to represent ISO 646 (IA5) characters, which contains precisely 128 characters."),
     AFW_UTF8_LITERAL(""),

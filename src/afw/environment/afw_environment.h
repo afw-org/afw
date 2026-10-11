@@ -494,6 +494,9 @@ struct afw_environment_conf_type_s {
     /** @brief Id property name for instances of this conf type. */
     const afw_utf8_t *id_property_name;
 
+    /** @brief id_property_name as a value, or NULL. */
+    const afw_value_t *id_property_name_value;
+
     /** @brief Registry type for instances of this conf type. */
     const afw_utf8_t *id_registry_type_id;
 
@@ -502,6 +505,9 @@ struct afw_environment_conf_type_s {
 
     /** @brief Subtype property name for instances of this conf type. */
     const afw_utf8_t *subtype_property_name;
+
+    /** @brief subtype_property_name as a value, or NULL. */
+    const afw_value_t *subtype_property_name_value;
 
     /** @brief Subtype registry type for instances of this conf type. */
     const afw_utf8_t *subtype_registry_type_id;

@@ -314,12 +314,20 @@ impl_empty_array_of_xpathExpression;
 const afw_value_array_t
 impl_value_empty_array_of_xpathExpression;
 
+/* Data type id xpathExpression as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_xpathExpression = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("xpathExpression")
+};
+
 /* Data type xpathExpression instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_xpathExpression_direct = {
     &afw_data_type_xpathExpression_inf,
     (const afw_object_t *)&impl_data_type_object_xpathExpression,
     AFW_UTF8_LITERAL("xpathExpression"),
+    (const afw_value_t *)&impl_data_type_id_value_xpathExpression,
     AFW_UTF8_LITERAL("A XPath expression"),
     AFW_UTF8_LITERAL("Data type 'xpathExpression' holds an XML Path Language (XPath) expression. An xpath expression provides the ability to navigate around the tree representation of an XML document."),
     AFW_UTF8_LITERAL(""),

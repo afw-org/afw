@@ -571,6 +571,10 @@ afw_environment_create(
         }
         env->process_args = args_array;
         env->process_pid = (afw_integer_t)afw_os_get_pid();
+        env->process_pid_value = afw_value_create_unmanaged_integer(
+            env->process_pid, p, xctx);
+        env->program_name_value = afw_value_create_unmanaged_string(
+            &env->program_name, p, xctx);
         cwd = afw_os_getcwd(p, xctx);
         env->process_cwd = cwd;
         env->afw_version = afw_version_string();
@@ -1219,6 +1223,17 @@ afw_environment_create_and_register_conf_type(
         afw_utf8_clone(subtype_registry_type_id, p, xctx);
     conf_type->subtype_runtime_object_type_id =
         afw_utf8_clone(subtype_runtime_object_type_id, p, xctx);
+
+    if (conf_type->id_property_name) {
+        conf_type->id_property_name_value =
+            afw_value_create_unmanaged_string(
+                conf_type->id_property_name, p, xctx);
+    }
+    if (conf_type->subtype_property_name) {
+        conf_type->subtype_property_name_value =
+            afw_value_create_unmanaged_string(
+                conf_type->subtype_property_name, p, xctx);
+    }
 
     conf_type->is_unique = is_unique;
 

@@ -314,12 +314,20 @@ impl_empty_array_of_ipAddress;
 const afw_value_array_t
 impl_value_empty_array_of_ipAddress;
 
+/* Data type id ipAddress as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_ipAddress = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("ipAddress")
+};
+
 /* Data type ipAddress instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_ipAddress_direct = {
     &afw_data_type_ipAddress_inf,
     (const afw_object_t *)&impl_data_type_object_ipAddress,
     AFW_UTF8_LITERAL("ipAddress"),
+    (const afw_value_t *)&impl_data_type_id_value_ipAddress,
     AFW_UTF8_LITERAL("An IP address"),
     AFW_UTF8_LITERAL("Data type 'ipAddress' holds an Internet Protocol address (IP address)."),
     AFW_UTF8_LITERAL(""),

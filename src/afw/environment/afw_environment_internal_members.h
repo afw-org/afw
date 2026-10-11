@@ -54,6 +54,12 @@
     /** @brief pid at environment create. */
     afw_integer_t process_pid;
 
+    /** @brief process_pid as a value (current::pid, process::pid). */
+    const afw_value_t *process_pid_value;
+
+    /** @brief program_name as a value (current::programName). */
+    const afw_value_t *program_name_value;
+
     /** @brief Start time at environment create. */
     const afw_dateTime_t *process_start_time;
 
