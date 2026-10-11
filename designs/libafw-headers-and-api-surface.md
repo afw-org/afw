@@ -38,7 +38,7 @@ afw_internal.h    ← libafw .c only (defines xctx/env internal-member flags fir
 
 `afw_xctx_s` and `afw_environment_s` are **one type, two views**. Public `afw.h` sees a prefix (fields public macros and hosts load). Core `.c` files include `afw_internal.h`, which `#define`s `AFW_XCTX_INTERNAL_MEMBERS` / `AFW_ENVIRONMENT_INTERNAL_MEMBERS` **before** `afw.h`, so the same struct grows a tail from `afw_xctx_internal_members.h` / `afw_environment_internal_members.h`. Do not `sizeof` / copy an xctx or env. C probes that need tail fields (e.g. heap `chunk_min`) must `-D` the env flag and `-I` the module dir; installed `afw.h` is the short view.
 
-Public prefix still includes `xctx->evaluation_stack` (`AFW_TRY` rewind), `env->log` / `terminating` / compile and debug-evaluation flag indexes (`AFW_LOG`, type-check macros). Header static inlines are gone except `afw_associative_array_template.h`.
+Public prefix still includes `xctx->evaluation_stack` (`AFW_TRY` rewind), `env->log` / `terminating` / compile and debug-evaluation flag indexes (`AFW_LOG`, type-check macros). Header static inlines are gone (the last, `afw_associative_array_template.h`, went with #478).
 
 ### Version / ABI
 

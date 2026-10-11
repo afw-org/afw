@@ -128,20 +128,6 @@ struct afw_model_internal_context_s {
 
 
 
-/**
- * @brief Define afw_model_internal_object_type_associative_array template.
- *
- * This defines afw_model_internal_object_type_associative_array_t and associated
- * typesafe afw_associative_array functions.
- *
- * See afw_associative_array_template.h for more information.
- */
-AFW_ASSOCIATIVE_ARRAY_TEMPLATE(
-    afw_model_associative_array,
-    afw_model_object_type_t)
-
-
-
 struct afw_model_internal_s {
 
     /** @brief Pool used for model. */

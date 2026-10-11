@@ -105,6 +105,10 @@ _LEFTOVER_HEADER_EXACT = frozenset((
     'afw_function_bindings.h',
     'afw_const_objects.h',
     'afw_generated.h',
+    # Removed (#478).
+    'afw_associative_array.h',
+    'afw_associative_array_template.h',
+    'afw_object_associative_array_impl_declares.h',
 ))
 
 

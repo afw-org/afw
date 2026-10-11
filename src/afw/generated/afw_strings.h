@@ -40745,32 +40745,6 @@ afw_self_v_afw_object;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afw_object_associative_array \
-    "afw_object_associative_array"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afw_object_associative_array */
-#define afw_s_afw_object_associative_array \
-    (&afw_self_v_afw_object_associative_array.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afw_object_associative_array */
-#define afw_self_s_afw_object_associative_array \
-    (afw_self_v_afw_object_associative_array.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afw_object_associative_array */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afw_object_associative_array;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afw_object_associative_array */
-#define afw_z_afw_object_associative_array \
-    (afw_self_v_afw_object_associative_array.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afw_object_associative_array */
-#define afw_v_afw_object_associative_array \
-    (&afw_self_v_afw_object_associative_array.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afw_object_setter \
     "afw_object_setter"
 

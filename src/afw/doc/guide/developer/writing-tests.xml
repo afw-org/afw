@@ -170,7 +170,6 @@ def run():
             Live examples (after you have the closet copy): 
             <literal>src/afw/tests/advanced/pool_alloc/</literal>, 
             <literal>array_view_index/</literal>, 
-            <literal>associative_array_set/</literal>, 
             <literal>utf8_icu_bound/</literal>, and 
             <literal>src/afw_ldap/tests/ldap_filter/</literal>.
         </paragraph>
