@@ -151,7 +151,24 @@ CompilerInternalTemplateDefinition ::=
     '#template_definition' '(' Expression ( ',' Expression )* ')'
 
 /* From afw_compile_parse_compiler_internal.c                                 */
-/* #script_function( param* , body [, returnType] ) — decompile form.         */
+/* #compound_assign( op , target , value ) — decompile form of                */
+/* target op= value when the target has subscripts (a[f()] += 1). It          */
+/* compiles to assign(target, op(target, value)) with one target, as          */
+/* op= does, so the subscripts are evaluated once (#512, #541). op is         */
+/* the name of the operator's function.                                       */
+
+CompoundAssignCompilerInternalOperator ::=
+    'add' | 'subtract' | 'multiply' | 'divide' | 'mod' | 'pow' |
+    'and' | 'or' | 'nullish_coalescing'
+
+CompilerInternalCompoundAssign ::=
+    '#compound_assign' '(' CompoundAssignCompilerInternalOperator ','
+        Expression ',' Expression ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* #script_function name? ( param* , body [, returnType] ) — decompile form.  */
+/* The optional name is a named function's own name: bound in its             */
+/* parameter block, so the body can call itself (#541).                       */
 /* Param symbols are introduced before the body is parsed.                    */
 /* A name or Pattern is a parameter only when followed by '?', ':', '=',      */
 /* or ',' (or after '...'); otherwise it starts the body Expression.          */
@@ -179,7 +196,8 @@ ScriptFunctionCompilerInternalArgs ::=
     Expression ( ',' Type )?
 
 CompilerInternalScriptFunction ::=
-    '#script_function' '(' ScriptFunctionCompilerInternalArgs ')'
+    '#script_function' ( FunctionName - ReservedWords )?
+        '(' ScriptFunctionCompilerInternalArgs ')'
 
 /* From afw_compile_parse_compiler_internal.c                                 */
 /* Switch default-clause marker (unique permanent null). Optional "()".       */
@@ -223,6 +241,7 @@ CompilerInternalValue ::=
     CompilerInternalInterface |
     CompilerInternalListExpression |
     CompilerInternalScriptFunction |
+    CompilerInternalCompoundAssign |
     CompilerInternalTemplateDefinition |
     CompilerInternalSwitchDefault |
     CompilerInternalStatements |
