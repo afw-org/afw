@@ -22285,32 +22285,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__5cafd1851524 \
-    "Adaptive script (expression-like; must return a value) used to calculate the index value(s). While evaluating, current::object, current::objectId, current::objectType, and current::key are available (issue #54). If omitted, the property named by key is indexed."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5cafd1851524 */
-#define afw_s_zz__5cafd1851524 \
-    (&afw_self_v_zz__5cafd1851524.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5cafd1851524 */
-#define afw_self_s_zz__5cafd1851524 \
-    (afw_self_v_zz__5cafd1851524.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5cafd1851524 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5cafd1851524;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5cafd1851524 */
-#define afw_z_zz__5cafd1851524 \
-    (afw_self_v_zz__5cafd1851524.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5cafd1851524 */
-#define afw_v_zz__5cafd1851524 \
-    (&afw_self_v_zz__5cafd1851524.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__5d0944b04e77 \
     "A compiler option for the compiler id with this property name."
 
@@ -26155,6 +26129,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6b070d485684 */
 #define afw_v_zz__6b070d485684 \
     (&afw_self_v_zz__6b070d485684.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__6b197b50dbe5 \
+    "Indexing options: unique (each value at most once), case-insensitive-string (compare strings case-insensitively), sort-reverse, and integer or double (the index's values are numbers, so a string query value such as a query string's is the number's key when no object type gives the property's data type; it must agree with a data type an object type declares)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_s_zz__6b197b50dbe5 \
+    (&afw_self_v_zz__6b197b50dbe5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_self_s_zz__6b197b50dbe5 \
+    (afw_self_v_zz__6b197b50dbe5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6b197b50dbe5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__6b197b50dbe5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_z_zz__6b197b50dbe5 \
+    (afw_self_v_zz__6b197b50dbe5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_v_zz__6b197b50dbe5 \
+    (&afw_self_v_zz__6b197b50dbe5.pub)
 
 
 
@@ -34891,6 +34891,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8e97026f8db1 */
 #define afw_v_zz__8e97026f8db1 \
     (&afw_self_v_zz__8e97026f8db1.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8ed1dc8f7165 \
+    "Name queries use. Without a value script, the property it indexes. With a value or filter script, a computed name: a query on it means what the scripts give, so it must be a name objects don't have (an object type in objectType must not declare it)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8ed1dc8f7165 */
+#define afw_s_zz__8ed1dc8f7165 \
+    (&afw_self_v_zz__8ed1dc8f7165.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8ed1dc8f7165 */
+#define afw_self_s_zz__8ed1dc8f7165 \
+    (afw_self_v_zz__8ed1dc8f7165.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8ed1dc8f7165 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8ed1dc8f7165;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8ed1dc8f7165 */
+#define afw_z_zz__8ed1dc8f7165 \
+    (afw_self_v_zz__8ed1dc8f7165.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8ed1dc8f7165 */
+#define afw_v_zz__8ed1dc8f7165 \
+    (&afw_self_v_zz__8ed1dc8f7165.pub)
 
 
 
@@ -61259,32 +61285,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Indexing_options_ \
-    "Indexing options."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Indexing_options_ */
-#define afw_s_zz__Indexing_options_ \
-    (&afw_self_v_zz__Indexing_options_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Indexing_options_ */
-#define afw_self_s_zz__Indexing_options_ \
-    (afw_self_v_zz__Indexing_options_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Indexing_options_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Indexing_options_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Indexing_options_ */
-#define afw_z_zz__Indexing_options_ \
-    (afw_self_v_zz__Indexing_options_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Indexing_options_ */
-#define afw_v_zz__Indexing_options_ \
-    (&afw_self_v_zz__Indexing_options_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Indicates_if_entries_are_automatically_added_for_this_type_ \
     "Indicates if entries are automatically added for this type."
 
@@ -66611,32 +66611,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Name_of_c_callback_function */
 #define afw_v_zz__Name_of_c_callback_function \
     (&afw_self_v_zz__Name_of_c_callback_function.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Name_of_the_property_index_to_be_created_ \
-    "Name of the property index to be created."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Name_of_the_property_index_to_be_created_ */
-#define afw_s_zz__Name_of_the_property_index_to_be_created_ \
-    (&afw_self_v_zz__Name_of_the_property_index_to_be_created_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Name_of_the_property_index_to_be_created_ */
-#define afw_self_s_zz__Name_of_the_property_index_to_be_created_ \
-    (afw_self_v_zz__Name_of_the_property_index_to_be_created_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Name_of_the_property_index_to_be_created_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Name_of_the_property_index_to_be_created_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Name_of_the_property_index_to_be_created_ */
-#define afw_z_zz__Name_of_the_property_index_to_be_created_ \
-    (afw_self_v_zz__Name_of_the_property_index_to_be_created_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Name_of_the_property_index_to_be_created_ */
-#define afw_v_zz__Name_of_the_property_index_to_be_created_ \
-    (&afw_self_v_zz__Name_of_the_property_index_to_be_created_.pub)
 
 
 
@@ -146851,32 +146825,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__eba95b0e01db \
-    "Adaptive script that must return a boolean to decide whether this index applies to a particular object. Uses the same current:: variables as value (issue #54). If omitted, the filter is always true."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eba95b0e01db */
-#define afw_s_zz__eba95b0e01db \
-    (&afw_self_v_zz__eba95b0e01db.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eba95b0e01db */
-#define afw_self_s_zz__eba95b0e01db \
-    (afw_self_v_zz__eba95b0e01db.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__eba95b0e01db */
-extern const afw_value_string_t \
-    afw_self_v_zz__eba95b0e01db;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__eba95b0e01db */
-#define afw_z_zz__eba95b0e01db \
-    (afw_self_v_zz__eba95b0e01db.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__eba95b0e01db */
-#define afw_v_zz__eba95b0e01db \
-    (&afw_self_v_zz__eba95b0e01db.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__eba9c2faa6e2 \
     "Return the current resident set size of this process in kilobytes (Linux /proc/self/statm). A hint at APR and OS usage; APR does not return pages to the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process RSS."
 
@@ -147887,6 +147835,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ef5a6f97690c */
 #define afw_v_zz__ef5a6f97690c \
     (&afw_self_v_zz__ef5a6f97690c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__efd27e097676 \
+    "Adaptive script that must return a boolean to decide whether this index applies to a particular object. Uses the same current:: variables as value (issue #54). If omitted, the filter is always true. A filter needs a value script: an object the filter leaves out has no value under the computed name."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__efd27e097676 */
+#define afw_s_zz__efd27e097676 \
+    (&afw_self_v_zz__efd27e097676.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__efd27e097676 */
+#define afw_self_s_zz__efd27e097676 \
+    (afw_self_v_zz__efd27e097676.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__efd27e097676 */
+extern const afw_value_string_t \
+    afw_self_v_zz__efd27e097676;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__efd27e097676 */
+#define afw_z_zz__efd27e097676 \
+    (afw_self_v_zz__efd27e097676.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__efd27e097676 */
+#define afw_v_zz__efd27e097676 \
+    (&afw_self_v_zz__efd27e097676.pub)
 
 
 
@@ -152593,6 +152567,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fac3a5f9fd2a */
 #define afw_v_zz__fac3a5f9fd2a \
     (&afw_self_v_zz__fac3a5f9fd2a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__fac734de4ac0 \
+    "Adaptive script (expression-like; must return a value) used to calculate the index value(s). While evaluating, current::object, current::objectId, current::objectType, and current::key are available (issue #54). If omitted, the property named by key is indexed. A property read works as is (current::object.given); an operator or an array literal needs return (return current::object.department == \"ENG\";)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fac734de4ac0 */
+#define afw_s_zz__fac734de4ac0 \
+    (&afw_self_v_zz__fac734de4ac0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fac734de4ac0 */
+#define afw_self_s_zz__fac734de4ac0 \
+    (afw_self_v_zz__fac734de4ac0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__fac734de4ac0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__fac734de4ac0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fac734de4ac0 */
+#define afw_z_zz__fac734de4ac0 \
+    (afw_self_v_zz__fac734de4ac0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__fac734de4ac0 */
+#define afw_v_zz__fac734de4ac0 \
+    (&afw_self_v_zz__fac734de4ac0.pub)
 
 
 

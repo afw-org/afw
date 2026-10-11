@@ -146,6 +146,55 @@ AFW_DECLARE(void) afw_adapter_impl_index_query(
     const afw_pool_t * pool,
     afw_xctx_t *xctx);
 
+/**
+ * @brief A query filter tested through an adapter's index definitions.
+ *
+ * An index definition with a value script (a computed name, maybe with a
+ * filter script) or the case-insensitive-string option gives its name
+ * another meaning than the object's property. Index cursors find what
+ * the index holds; the re-test of an index query and an adapter's scan
+ * test those names the same way, so every plan gives the same answer
+ * (issue #516).
+ */
+typedef struct afw_adapter_impl_index_query_test_s
+    afw_adapter_impl_index_query_test_t;
+
+/**
+ * @brief Create a query test for criteria on object_type_id.
+ * @param instance Index instance (NULL returns NULL).
+ * @param object_type_id Object type of the objects tested.
+ * @param criteria Parsed query criteria.
+ * @param p Pool for the test; scripts are compiled into it once.
+ * @param xctx of caller.
+ * @return The test, or NULL when no relation names a computed or
+ *    case-insensitive index: use afw_query_criteria_test_object(), at no
+ *    extra cost per object.
+ *
+ * Throws when an object type now declares a computed index's name.
+ */
+AFW_DECLARE(const afw_adapter_impl_index_query_test_t *)
+afw_adapter_impl_index_query_test_create(
+    const afw_adapter_impl_index_t * instance,
+    const afw_utf8_t * object_type_id,
+    const afw_query_criteria_t * criteria,
+    const afw_pool_t * p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Test object with a query test.
+ * @param test From afw_adapter_impl_index_query_test_create().
+ * @param object Object to test.
+ * @param p to use.
+ * @param xctx of caller.
+ * @return True if object passes.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_adapter_impl_index_query_test_object(
+    const afw_adapter_impl_index_query_test_t * test,
+    const afw_object_t * object,
+    const afw_pool_t * p,
+    afw_xctx_t *xctx);
+
 AFW_DECLARE(void) afw_adapter_impl_index_open_definitions(
     const afw_adapter_impl_index_t * indexer,
     const afw_object_t             * indexDefinitions,

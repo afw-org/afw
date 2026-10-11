@@ -604,6 +604,8 @@ void afw_lmdb_adapter_session_dump_objects(
 {
     const afw_object_t *object;
     afw_utf8_t object_type;
+    const afw_utf8_t *test_object_type_id;
+    const afw_adapter_impl_index_query_test_t *test;
     const afw_pool_t *obj_p;
     const afw_utf8_t *object_id;
     const afw_utf8_t *alias;
@@ -653,6 +655,16 @@ void afw_lmdb_adapter_session_dump_objects(
             "Error getting cursor for primary database.", xctx);
     }
 
+    /*
+     * Names an index gives another meaning (a value script, or
+     * case-insensitive) are tested through the index definitions of the
+     * object's type, as an index query does (issue #516). test is NULL
+     * when the filter names none; a scan of every type gets one test
+     * per type.
+     */
+    test = NULL;
+    test_object_type_id = NULL;
+
     /* loop until we hit the end of our cursor */
     do {
         raw.ptr = data.mv_data;
@@ -696,9 +708,18 @@ void afw_lmdb_adapter_session_dump_objects(
             }
         }
 
+        if (criteria && session->indexer && (!test_object_type_id ||
+            !afw_utf8_equal(test_object_type_id, &object_type)))
+        {
+            test_object_type_id = afw_utf8_clone(&object_type, p, xctx);
+            test = afw_adapter_impl_index_query_test_create(
+                session->indexer, test_object_type_id, criteria, p, xctx);
+        }
+
         abandon = false;
-        if (afw_query_criteria_test_object(object, criteria,
-            p, xctx)) 
+        if ((test)
+            ? afw_adapter_impl_index_query_test_object(test, object, p, xctx)
+            : afw_query_criteria_test_object(object, criteria, p, xctx))
         {
             afw_object_meta_set_ids(object, &session->adapter->pub.adapter_id,
                 &object_type, object_id, xctx);

@@ -1788,8 +1788,8 @@ void afw_lmdb_internal_cursor_reset(
      * that value, and lt/le walk backwards (MDB_PREV), so they start on
      * the last duplicate of their first key.
      *
-     * An empty string is never an index key (LMDB keys can't be empty):
-     * every key is greater than it.
+     * An empty key is never in the index (LMDB keys can't be empty; core
+     * makes the empty string's key "\0", #544): every key is greater.
      */
     switch (self->operator) {
         case afw_query_criteria_filter_op_id_ne:

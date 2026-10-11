@@ -344,6 +344,54 @@ afw_query_criteria_test_object(
 
 
 /**
+ * @brief Get the value a filter relation tests.
+ * @param obj Object being tested.
+ * @param entry Relation entry being tested.
+ * @param test_entry Set to the entry to compare with: entry (the default),
+ *    or a copy of entry with another value (for example lowercased).
+ * @param data From afw_query_criteria_test_object_cb().
+ * @param p to use.
+ * @param xctx of caller.
+ * @return The value, or NULL if obj has none (the relation is false).
+ *
+ * afw_query_criteria_test_object() reads entry->property_name from the
+ * object. An adapter index gives some names another meaning (a value
+ * script, case-insensitive compare); its re-test and scans pass this
+ * callback so every plan answers the same.
+ */
+typedef const afw_value_t *
+(*afw_query_criteria_get_value_cb_t)(
+    const afw_object_t *obj,
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_query_criteria_filter_entry_t **test_entry,
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Test object against query criteria, getting values with a callback.
+ * @param obj Object to be tested.
+ * @param criteria Parsed query criteria.
+ * @param get_value Gets the value each relation tests.
+ * @param data Passed to get_value.
+ * @param p to use.
+ * @param xctx of caller.
+ * @return True if object passes test.
+ *
+ * The same test as afw_query_criteria_test_object().
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_query_criteria_test_object_cb(
+    const afw_object_t *obj,
+    const afw_query_criteria_t *criteria,
+    afw_query_criteria_get_value_cb_t get_value,
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Convert query criteria to a _AdaptiveQueryCriteria_ object.
  * @param criteria produced by a afw_query_criteria_parse_*() functions.
  * @param p to use for result.

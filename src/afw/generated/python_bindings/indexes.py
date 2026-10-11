@@ -19,18 +19,29 @@ def index_create(session, key, adapterId=None, value=None, objectType=None, filt
 
     Args:
         adapterId (str): Id of adapter.
-        key (str): Name of the property index to be created.
+        key (str): Name queries use. Without a value script, the property it
+            indexes. With a value or filter script, a computed name: a query
+            on it means what the scripts give, so it must be a name objects
+            don't have (an object type in objectType must not declare it).
         value (str): Adaptive script (expression-like; must return a value)
             used to calculate the index value(s). While evaluating,
             current::object, current::objectId, current::objectType, and
             current::key are available (issue #54). If omitted, the property
-            named by key is indexed.
+            named by key is indexed. A property read works as is
+            (current::object.given); an operator or an array literal needs
+            return (return current::object.department == "ENG";).
         objectType (list): Object type id(s) this index may apply to.
         filter (str): Adaptive script that must return a boolean to decide
             whether this index applies to a particular object. Uses the same
             current:: variables as value (issue #54). If omitted, the filter
-            is always true.
-        options (list): Indexing options.
+            is always true. A filter needs a value script: an object the
+            filter leaves out has no value under the computed name.
+        options (list): Indexing options: unique (each value at most once),
+            case-insensitive-string (compare strings case-insensitively),
+            sort-reverse, and integer or double (the index's values are
+            numbers, so a string query value such as a query string's is the
+            number's key when no object type gives the property's data type;
+            it must agree with a data type an object type declares).
         retroactive (bool): Retroactively generate indexes for existing
             objects.
         test (bool): Test create (don't actually perform).

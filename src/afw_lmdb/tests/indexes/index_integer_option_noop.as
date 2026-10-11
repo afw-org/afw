@@ -2,11 +2,11 @@
 //?
 //? testScript: index_integer_option_noop.as
 //? customPurpose: Part of lmdb tests
-//? description: The (removed) "integer" index option is a harmless no-op -- range queries on an integer-property index still return numerically correct results via the sortable-text key encoding, not a mismatched MDB_INTEGERKEY database (issue #266).
+//? description: The "integer" index option no longer sets MDB_INTEGERKEY (issue #266): range queries on an integer-property index stay numerically correct via the sortable-text key encoding. Since #544 the option says the index's values are integers, for string query values (index_number_option.as).
 //? sourceType: script
 //?
 //? test: index_integer_option_noop_range
-//? description: Passing options: ["integer"] no longer sets MDB_INTEGERKEY against a sortable-text key; lt/le/gt/ge range queries remain numerically correct.
+//? description: options: ["integer"] does not set MDB_INTEGERKEY against a sortable-text key; lt/le/gt/ge range queries remain numerically correct.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
