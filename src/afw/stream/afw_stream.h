@@ -270,13 +270,16 @@ afw_stream_fd_create(
 
 /**
  * @brief Open a file and create a stream for it.
- * @param streamId
+ * @param streamId (copied).
  * @param path
  * @param mode
  * @param auto_flush
- * @param p to use.
+ * @param p to use for scratch while opening.
  * @param xctx of caller.
  * @return stream
+ *
+ * The stream owns a pool on xctx->p; afw_stream_release() closes the file
+ * and releases it. A stream not released is closed when the xctx ends.
  */
 AFW_DECLARE(const afw_stream_t *)
 afw_stream_fd_open_and_create(

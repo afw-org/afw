@@ -32,6 +32,8 @@ afw_stream_fd_self_s {
     afw_boolean_t allow_write;
     afw_boolean_t auto_flush;
     afw_boolean_t close_on_release;
+    /* Pool the stream owns (open_and_create), released with it. */
+    const afw_pool_t *own_p;
     /* Last direction on an update ("+") stream; see impl_switch_to. */
     enum { impl_last_none, impl_last_read, impl_last_write } last;
 } afw_stream_fd_self_t;
@@ -141,13 +143,23 @@ impl_afw_stream_release(
     FILE *f;
     int err;
 
+    const afw_pool_t *own_p;
+
     if (self->close_on_release && self->fd) {
         f = self->fd;
         self->fd = NULL;
         if (fclose(f) != 0) {
+            /* The message names streamId, so own_p waits for the xctx. */
             err = errno;
             impl_throw_stdio("fclose()", self->pub.streamId, err, xctx);
         }
+    }
+
+    /* Last: self lives in own_p. */
+    if (self->own_p) {
+        own_p = self->own_p;
+        self->own_p = NULL;
+        afw_pool_release(own_p, xctx);
     }
 }
 
@@ -226,6 +238,30 @@ impl_afw_stream_write(
 
 
 
+static void
+impl_init(
+    afw_stream_fd_self_t *self,
+    FILE *fd,
+    const afw_utf8_t *streamId,
+    afw_boolean_t allow_read,
+    afw_boolean_t allow_write,
+    afw_boolean_t auto_flush,
+    afw_boolean_t close_on_release,
+    const afw_pool_t *p)
+{
+    self->pub.inf = &impl_afw_stream_inf;
+    self->pub.p = p;
+    self->pub.streamId = streamId;
+    self->pub.write_cb = allow_write ? impl_afw_stream_fd_write_cb : NULL;
+    self->fd = fd;
+    self->allow_read = allow_read;
+    self->allow_write = allow_write;
+    self->auto_flush = auto_flush;
+    self->close_on_release = close_on_release;
+}
+
+
+
 /* Create a stream to a file descriptor. */
 AFW_DEFINE(const afw_stream_t *)
 afw_stream_fd_create(
@@ -242,17 +278,27 @@ afw_stream_fd_create(
 
     /* Instance lives on the xctx job: the stream table keeps it past dest p. */
     self = afw_pool_calloc_type(xctx->p, afw_stream_fd_self_t, xctx);
-    self->pub.inf = &impl_afw_stream_inf;
-    self->pub.p = p;
-    self->pub.streamId = streamId;
-    self->pub.write_cb = allow_write ? impl_afw_stream_fd_write_cb : NULL;
-    self->fd = fd;
-    self->allow_read = allow_read;
-    self->allow_write = allow_write;
-    self->auto_flush = auto_flush;
-    self->close_on_release = close_on_release;
+    impl_init(self, fd, streamId, allow_read, allow_write, auto_flush,
+        close_on_release, p);
 
     return (const afw_stream_t *)self;
+}
+
+
+
+/* A stream still open when its pool goes (the xctx ended) is closed. */
+static void
+impl_close_at_pool_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_stream_fd_self_t *self = data;
+    FILE *f;
+
+    if (self->fd) {
+        f = self->fd;
+        self->fd = NULL;
+        (void)fclose(f);
+    }
 }
 
 
@@ -268,6 +314,8 @@ afw_stream_fd_open_and_create(
     afw_xctx_t *xctx)
 {
     const afw_stream_t *stream;
+    const afw_pool_t *stream_p;
+    afw_stream_fd_self_t *self;
     const afw_utf8_z_t *path_z;
     const afw_utf8_z_t *mode_z;
     const afw_utf8_z_t *c;
@@ -285,22 +333,6 @@ afw_stream_fd_open_and_create(
             "streamId '%ku' invalid mode '%s'", streamId, mode_z);
     }
 
-    fd = fopen(path_z, mode_z);
-    if (!fd) {
-        err = errno;
-        if (err == 0) {
-            err = EIO;
-        }
-        if (err == ENOENT) {
-            AFW_THROW_ERROR_RV_FZ(not_found, errno, err, xctx,
-                "streamId '%ku' failed to open %s: %ks",
-                streamId, path_z, strerror(err));
-        }
-        AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
-            "streamId '%ku' failed to open %s: %ks",
-            streamId, path_z, strerror(err));
-    }
-
     allow_read = false;
     allow_write = false;
     for (c = mode_z; *c; c++) {
@@ -316,8 +348,43 @@ afw_stream_fd_open_and_create(
         }
     }
 
-    stream = afw_stream_fd_create(fd, streamId,
-        allow_read, allow_write, auto_flush, true, p, xctx);
+    /*
+     * The stream lives in the stream table until close() releases it, so
+     * it owns a pool on the xctx job heap. Its cleanup closes a file still
+     * open when the xctx ends.
+     */
+    stream_p = afw_pool_tracker_create(xctx->p, xctx);
+    AFW_TRY {
+        self = afw_pool_calloc_type(stream_p, afw_stream_fd_self_t, xctx);
+        impl_init(self, NULL, afw_utf8_clone(streamId, stream_p, xctx),
+            allow_read, allow_write, auto_flush, true, stream_p);
+        afw_pool_register_cleanup(stream_p, self, NULL,
+            impl_close_at_pool_cleanup, xctx);
 
+        fd = fopen(path_z, mode_z);
+        if (!fd) {
+            err = errno;
+            if (err == 0) {
+                err = EIO;
+            }
+            if (err == ENOENT) {
+                AFW_THROW_ERROR_RV_FZ(not_found, errno, err, xctx,
+                    "streamId '%ku' failed to open %s: %ks",
+                    streamId, path_z, strerror(err));
+            }
+            AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                "streamId '%ku' failed to open %s: %ks",
+                streamId, path_z, strerror(err));
+        }
+        self->fd = fd;
+        self->own_p = stream_p;
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_pool_release(stream_p, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
+
+    stream = &self->pub;
     return stream;
 }
