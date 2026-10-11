@@ -51243,6 +51243,12 @@ afw_self_v_zz___flagId__string____setTo___boolean___void = {
 };
 
 const afw_value_string_t
+afw_self_v_zz___fno_strict_aliasing = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___fno_strict_aliasing)
+};
+
+const afw_value_string_t
 afw_self_v_zz___fsigned_char = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___fsigned_char)

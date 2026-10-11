@@ -150153,6 +150153,7 @@ impl_1447_list_GNU_values[] = {
     afw_v_zz___Wno_missing_field_initializers,
     afw_v_zz___Wno_sign_compare,
     afw_v_zz___Wno_unused_parameter,
+    afw_v_zz___fno_strict_aliasing,
     afw_v_zz___fsigned_char,
     afw_v_zz___g,
     afw_v_zz___std_c11
@@ -150169,7 +150170,7 @@ impl_1447_list_GNU = {
         (const afw_value_t *)&impl_1447_list_GNU__value
     },
     &afw_data_type_string_direct,
-    11,
+    12,
     impl_1447_list_GNU_values
 };
 

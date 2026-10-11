@@ -133,10 +133,10 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_script_function_definition_t *script;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     const afw_value_t *saved_script_result;
     const afw_pool_scope_t *enclosing_lexical_scope;
-    const afw_pool_scope_t *parameter_scope;
+    const afw_pool_scope_t * volatile parameter_scope;
     const afw_pool_scope_t *caller_scope;
     const afw_value_t *value;
     const afw_value_script_function_parameter_t *const *params;

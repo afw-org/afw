@@ -247,12 +247,12 @@ afw_crypto_function_execute_crypto_hmac(
     const afw_memory_t *data;
     afw_crypto_alg_kind_t kind;
     const EVP_MD *md;
-    afw_crypto_resolved_key_t *rk = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
     unsigned char out[EVP_MAX_MD_SIZE];
     unsigned int out_len = 0;
     afw_memory_t mem;
     afw_octet_t *copy;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(algorithm, 1, string);
@@ -349,11 +349,11 @@ afw_crypto_function_execute_crypto_hmac_verify(
     const afw_memory_t *mac;
     afw_crypto_alg_kind_t kind;
     const EVP_MD *md;
-    afw_crypto_resolved_key_t *rk = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
     unsigned char out[EVP_MAX_MD_SIZE];
     unsigned int out_len = 0;
-    int ok = 0;
-    const afw_value_t *result = NULL;
+    volatile int ok = 0;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(algorithm, 1, string);
@@ -457,8 +457,8 @@ afw_crypto_function_execute_crypto_import_key(
     afw_integer_t length_bits;
     const afw_array_t *usages;
     afw_boolean_t extractable;
-    afw_crypto_resolved_key_t *rk = NULL;
-    const afw_value_t *result = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(key_source, 1);
@@ -707,8 +707,8 @@ afw_crypto_function_execute_crypto_encrypt(
     const afw_memory_t *plaintext;
     const afw_memory_t *iv_in;
     const afw_memory_t *aad;
-    afw_crypto_resolved_key_t *rk = NULL;
-    EVP_CIPHER_CTX *ctx = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
+    EVP_CIPHER_CTX * volatile ctx = NULL;
     const EVP_CIPHER *cipher;
     unsigned char iv_buf[AFW_CRYPTO_AES_GCM_IV_LEN];
     unsigned char tag[AFW_CRYPTO_AES_GCM_TAG_LEN];
@@ -719,7 +719,7 @@ afw_crypto_function_execute_crypto_encrypt(
     const afw_object_t *result_obj;
     afw_memory_t mem;
     afw_size_t iv_len;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     memset(tag, 0, sizeof(tag));
@@ -923,14 +923,14 @@ afw_crypto_function_execute_crypto_decrypt(
     const afw_memory_t *iv;
     const afw_memory_t *tag;
     const afw_memory_t *aad;
-    afw_crypto_resolved_key_t *rk = NULL;
-    EVP_CIPHER_CTX *ctx = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
+    EVP_CIPHER_CTX * volatile ctx = NULL;
     const EVP_CIPHER *cipher;
     unsigned char *out = NULL;
     int out_len = 0;
     int len = 0;
     afw_memory_t mem;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(algorithm, 1, object);
@@ -1095,21 +1095,21 @@ afw_crypto_function_execute_crypto_derive_key(
 {
     const afw_value_object_t *algorithm;
     const afw_value_t *base_key_v;
-    const afw_value_t *usages_v = NULL;
-    const afw_value_boolean_t *extractable_v = NULL;
+    const afw_value_t * volatile usages_v = NULL;
+    const afw_value_boolean_t * volatile extractable_v = NULL;
     const afw_object_t *alg_obj;
     const afw_value_t *v;
     const afw_memory_t *salt;
     afw_integer_t iterations;
     afw_integer_t length_octets;
-    afw_crypto_resolved_key_t *rk = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
     unsigned char *out;
     const afw_array_t *usages;
     afw_boolean_t extractable;
     const afw_utf8_t *alg_name;
     afw_crypto_alg_kind_t store_alg;
     afw_integer_t length_bits;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(algorithm, 1, object);
@@ -1278,8 +1278,8 @@ afw_crypto_function_execute_crypto_seal(
     const afw_value_t *key_v;
     const afw_value_t *data_v;
     const afw_memory_t *plaintext;
-    afw_crypto_resolved_key_t *rk = NULL;
-    EVP_CIPHER_CTX *ctx = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
+    EVP_CIPHER_CTX * volatile ctx = NULL;
     const EVP_CIPHER *cipher;
     unsigned char iv_buf[AFW_CRYPTO_AES_GCM_IV_LEN];
     unsigned char tag[AFW_CRYPTO_AES_GCM_TAG_LEN];
@@ -1289,7 +1289,7 @@ afw_crypto_function_execute_crypto_seal(
     afw_integer_t key_bits = 0;
     const afw_object_t *result_obj;
     afw_memory_t mem;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     memset(tag, 0, sizeof(tag));
@@ -1440,8 +1440,8 @@ afw_crypto_function_execute_crypto_unseal(
     const afw_memory_t *iv;
     const afw_memory_t *tag;
     const afw_memory_t *ciphertext;
-    afw_crypto_resolved_key_t *rk = NULL;
-    EVP_CIPHER_CTX *ctx = NULL;
+    afw_crypto_resolved_key_t * volatile rk = NULL;
+    EVP_CIPHER_CTX * volatile ctx = NULL;
     const EVP_CIPHER *cipher;
     unsigned char *out = NULL;
     int out_len = 0;
@@ -1449,7 +1449,7 @@ afw_crypto_function_execute_crypto_unseal(
     afw_memory_t mem;
     const afw_utf8_t *json_s;
     const afw_value_t *parsed;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(key_v, 1);

@@ -564,8 +564,8 @@ afw_curl_internal_http_post(
 {
     CURL *curl = NULL;
     CURLcode res;
-    const afw_object_t * result = NULL;
-    struct curl_slist *curl_headers = NULL;
+    const afw_object_t * volatile result = NULL;
+    struct curl_slist * volatile curl_headers = NULL;
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
@@ -758,8 +758,8 @@ afw_curl_internal_http_get(
 {
     CURL *curl = NULL;
     CURLcode res;
-    const afw_object_t * result = NULL;
-    struct curl_slist * curl_headers = NULL;
+    const afw_object_t * volatile result = NULL;
+    struct curl_slist * volatile curl_headers = NULL;
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t * value;
@@ -895,8 +895,8 @@ afw_curl_internal_http_delete(
 {
     CURL *curl = NULL;
     CURLcode res;
-    const afw_object_t *result = NULL;
-    struct curl_slist *curl_headers = NULL;
+    const afw_object_t * volatile result = NULL;
+    struct curl_slist * volatile curl_headers = NULL;
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
@@ -1033,8 +1033,8 @@ afw_curl_internal_http_put(
 {
     CURL *curl = NULL;
     CURLcode res;
-    const afw_object_t * result = NULL;
-    struct curl_slist *curl_headers = NULL;
+    const afw_object_t * volatile result = NULL;
+    struct curl_slist * volatile curl_headers = NULL;
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
@@ -1220,8 +1220,8 @@ afw_curl_internal_http_patch(
 {
     CURL *curl = NULL;
     CURLcode res;
-    const afw_object_t * result = NULL;
-    struct curl_slist *curl_headers = NULL;
+    const afw_object_t * volatile result = NULL;
+    struct curl_slist * volatile curl_headers = NULL;
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
@@ -1403,8 +1403,8 @@ afw_curl_internal_http_head(
 {
     CURL *curl = NULL;
     CURLcode res;
-    const afw_object_t * result = NULL;
-    struct curl_slist *curl_headers = NULL;
+    const afw_object_t * volatile result = NULL;
+    struct curl_slist * volatile curl_headers = NULL;
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
@@ -1534,8 +1534,8 @@ afw_curl_internal_http_options(
 {
     CURL *curl = NULL;
     CURLcode res;
-    const afw_object_t * result = NULL;
-    struct curl_slist *curl_headers = NULL;
+    const afw_object_t * volatile result = NULL;
+    struct curl_slist * volatile curl_headers = NULL;
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
@@ -1669,7 +1669,7 @@ afw_curl_internal_smtp_send(
 {
     CURL * curl = NULL;
     CURLcode res = CURLE_OK;
-    struct curl_slist * recipients = NULL;
+    struct curl_slist * volatile recipients = NULL;
     const afw_iterator_old_t * iterator;
     const afw_value_t * value;
     afw_curl_internal_script_cb_t * reader = NULL;

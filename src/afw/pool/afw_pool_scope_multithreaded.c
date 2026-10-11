@@ -68,7 +68,7 @@ impl_mt_scope_calloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_heap_internal_calloc(self, size, xctx);
@@ -83,7 +83,7 @@ impl_mt_scope_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_heap_internal_malloc(self, size, xctx);
@@ -98,7 +98,7 @@ impl_mt_scope_calloc_no_throw(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_heap_internal_calloc_no_throw(self, size, xctx);
@@ -113,7 +113,7 @@ impl_mt_scope_malloc_no_throw(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_heap_internal_malloc_no_throw(self, size, xctx);

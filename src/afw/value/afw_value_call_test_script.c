@@ -189,7 +189,7 @@ impl_afw_value_optional_evaluate(
         error_in_evaluate_expect,
         error_in_compile_source,
         error_in_evaluate_source
-    } error_in;
+    } volatile error_in;
 
     afw_boolean_t found;
 
@@ -518,7 +518,7 @@ impl_afw_value_produce_compiler_listing(
     afw_integer_t sourceUTF8OctetLengthInTestScript;
     afw_integer_t upToTestsUTF8OctetOffsetInTestScript;
     afw_boolean_t found;
-    afw_boolean_t test_begin;
+    volatile afw_boolean_t test_begin;
 
     p = writer->p; // Use writer's pool.
     test_script_object = self->test_script_object_value->internal;

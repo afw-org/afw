@@ -379,7 +379,7 @@ impl_normalize_value(
 {
     afw_object_view_internal_view_t *view = self->view;
     const afw_pool_t *p = view->p;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
 
     AFW_TRY {
         result = afw_object_type_property_type_normalize(

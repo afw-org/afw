@@ -241,7 +241,7 @@ impl_read_file_object(
     afw_xctx_t *xctx)
 {
     const afw_vfs_adapter_internal_t *adapter;
-    const afw_object_t *object;
+    const afw_object_t * volatile object;
     const afw_utf8_z_t *file_path_z;
     const afw_utf8_t *data_string;
     const afw_memory_t *data_binary;
@@ -251,10 +251,10 @@ impl_read_file_object(
     afw_file_info_t info;
     afw_file_dir_t *dir;
     afw_file_dirent_t ent;
-    afw_octet_t *buff;
-    afw_size_t size;
-    afw_size_t size_read;
-    int fd;
+    afw_octet_t * volatile buff;
+    volatile afw_size_t size;
+    volatile afw_size_t size_read;
+    volatile int fd;
 
     (void)impl_request;
 

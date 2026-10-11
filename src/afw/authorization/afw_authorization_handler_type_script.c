@@ -172,7 +172,7 @@ impl_afw_authorization_handler_check(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     int top;
 
     top = afw_xctx_qualifier_stack_top_get(xctx);

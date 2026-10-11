@@ -106,7 +106,7 @@ afw_utf8_icu_error_name_z(int rv)
  */
 AFW_DEFINE(const afw_utf8_t *)
 afw_utf8_nfc(
-    const afw_utf8_octet_t *s, afw_size_t len,
+    const afw_utf8_octet_t * volatile s, volatile afw_size_t len,
     afw_utf8_nfc_option_t option,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -114,7 +114,7 @@ afw_utf8_nfc(
     int32_t i, length;
     const afw_utf8_octet_t *string;
     UNormalizationCheckResult is_nfc;
-    const afw_utf8_t *result;
+    const afw_utf8_t * volatile result;
     afw_utf8_t *new_result;
     afw_utf8_octet_t *result_s;
     UErrorCode errorCode;

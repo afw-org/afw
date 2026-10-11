@@ -339,7 +339,7 @@ afw_log_get_properties_object(
     afw_xctx_t *xctx)
 {
     const afw_log_t *current;
-    const afw_object_t *snapshot;
+    const afw_object_t * volatile snapshot;
 
     if (!log || !log->properties) {
         return NULL;
@@ -373,8 +373,8 @@ afw_log_add_to_environment(
     impl_log_entry_t *e;
     impl_log_head_t *head;
     const afw_pool_t *p;
-    impl_afw_log_self_t *env_log;
-    const afw_log_t *old;
+    impl_afw_log_self_t * volatile env_log;
+    const afw_log_t * volatile old;
 
     /* Use p of environment. */
     p = xctx->env->p;
@@ -623,7 +623,7 @@ impl_afw_log_write(
     afw_xctx_t *xctx)
 {
     impl_format_write_t wa;
-    afw_boolean_t lock_held;
+    volatile afw_boolean_t lock_held;
     afw_boolean_t log_found;
 
     wa.self = (impl_afw_log_self_t *)self;

@@ -70,7 +70,7 @@ afw_compile_and_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_t *compiled_value;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
 
     /** @todo more needs to be thought about for memory usage. Only
      * result needs to be saved, but anything "done" in the script
@@ -159,7 +159,7 @@ impl_compile_to_value_with_callback(
     afw_xctx_t *xctx)
 {
     afw_compile_parser_t *parser;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     const afw_value_t * *interim  = NULL;
     const afw_utf8_octet_t *line_begin;
     const afw_utf8_octet_t *cursor;
@@ -344,11 +344,11 @@ afw_compile_json_to_object(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_boolean_t cede_p,
-    const afw_pool_t * p,
+    const afw_pool_t * volatile p,
     afw_xctx_t *xctx)
 {
     afw_compile_parser_t *parser;
-    const afw_object_t *result = NULL;
+    const afw_object_t * volatile result = NULL;
     const afw_value_t *value;
     const afw_pool_t *parser_p;
 

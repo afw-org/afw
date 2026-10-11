@@ -478,9 +478,9 @@ int afw_lmdb_internal_txn_begin(
 {
     afw_lmdb_shared_env_t *shared = adapter->shared;
     afw_lmdb_write_txn_t *e;
-    afw_boolean_t top_level_write;
-    afw_boolean_t refused;
-    int rc;
+    volatile afw_boolean_t top_level_write;
+    volatile afw_boolean_t refused;
+    volatile int rc;
 
     /* Record the wait first, or refuse it. A nested txn waits for none. */
     top_level_write = !parent && !(flags & MDB_RDONLY);
@@ -942,7 +942,7 @@ static const afw_uuid_t * afw_lmdb_internal_try_uuid_from_utf8(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_uuid_t *uuid = NULL;
+    const afw_uuid_t * volatile uuid = NULL;
 
     AFW_TRY {
         uuid = afw_uuid_from_utf8(object_id, p, xctx);
