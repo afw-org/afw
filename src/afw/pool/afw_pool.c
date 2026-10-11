@@ -389,6 +389,17 @@ void
 afw_pool_internal_run_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     afw_pool_cleanup_t *e;
+    const afw_value_t *value;
+
+    /*
+     * Released values first, newest first. Pop each before releasing
+     * it: a release may register more on this pool, which are popped
+     * next.
+     */
+    while (self->released_value_count > 0) {
+        value = self->released_values[--(self->released_value_count)];
+        afw_value_release(value, xctx);
+    }
 
     /*
      * Detach the list first. A callback may last-release this pool
@@ -829,52 +840,64 @@ afw_pool_subtree_chunk_bytes(const afw_pool_t *instance)
 }
 
 
-/* Release the value registered with afw_pool_release_value_at_cleanup(). */
+/* Make room for one more released value (inline entries are full). */
 static void
-impl_release_value_at_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)data2;
-    (void)p;
-    afw_value_release((const afw_value_t *)data, xctx);
-}
-
-
-AFW_DEFINE(afw_boolean_t)
-afw_pool_is_value_release_registered(
-    const afw_value_t *value,
-    const afw_pool_t *p,
+impl_grow_released_values(
+    afw_pool_internal_self_t *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_self_t *self;
-    afw_pool_cleanup_t *e;
+    const afw_value_t **values;
+    afw_size_t capacity;
 
-    (void)xctx;
-    if (!value || !p) {
-        return false;
+    if (!self->released_values) {
+        self->released_values = self->released_values_inline;
+        self->released_value_capacity =
+            AFW_POOL_INTERNAL_RELEASED_VALUES_INLINE;
+        return;
     }
-    self = (afw_pool_internal_self_t *)p;
-    for (e = self->first_cleanup; e; e = e->next_cleanup) {
-        if (e->cleanup == impl_release_value_at_cleanup &&
-            e->data == (void *)value &&
-            e->data2 == NULL)
-        {
-            return true;
-        }
+    capacity = self->released_value_capacity * 2;
+    values = afw_pool_malloc(&self->pub,
+        capacity * sizeof(const afw_value_t *), xctx);
+    memcpy((void *)values, (const void *)self->released_values,
+        self->released_value_count * sizeof(const afw_value_t *));
+    if (self->released_values != self->released_values_inline) {
+        afw_pool_free_memory(&self->pub, (void *)self->released_values,
+            self->released_value_capacity * sizeof(const afw_value_t *),
+            xctx);
     }
-    return false;
+    self->released_values = values;
+    self->released_value_capacity = capacity;
 }
 
 
-/* Register one release of value, run when p is destroyed. */
+/* Register one release of value, run when p's cleanups run. */
 AFW_DEFINE(void)
 afw_pool_register_value_release(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_pool_register_cleanup(p, (void *)value, NULL,
-        impl_release_value_at_cleanup, xctx);
+    afw_pool_internal_self_t *self;
+    const afw_pool_internal_inf_implementation_specific_t *spec;
+
+    self = (afw_pool_internal_self_t *)p;
+    spec = p->inf->rti.implementation_specific;
+    if (spec && spec->is_multithreaded) {
+        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
+            if (self->released_value_count ==
+                self->released_value_capacity)
+            {
+                impl_grow_released_values(self, xctx);
+            }
+            self->released_values[self->released_value_count++] = value;
+        }
+        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_END;
+        return;
+    }
+    if (self->released_value_count == self->released_value_capacity) {
+        impl_grow_released_values(self, xctx);
+    }
+    self->released_values[self->released_value_count++] = value;
 }
 
 
@@ -890,20 +913,6 @@ afw_pool_release_value_at_cleanup(
     }
     afw_value_get_for_p_lifetime(value, p, xctx);
     afw_value_release(value, xctx);
-}
-
-
-AFW_DEFINE(void)
-afw_pool_deregister_value_at_cleanup(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!value || !p) {
-        return;
-    }
-    afw_pool_deregister_cleanup(p, (void *)value, NULL,
-        impl_release_value_at_cleanup, xctx);
 }
 
 

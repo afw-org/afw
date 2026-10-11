@@ -360,7 +360,7 @@ afw_pool_thread_create(
 /**
  * @brief Release a value when a pool is destroyed.
  * @param value to release at cleanup. NULL is a no-op.
- * @param p pool whose destroy runs the release.
+ * @param p pool whose cleanups run the release (a scope: deactivate).
  * @param xctx of caller.
  *
  * p takes over the caller's reference: afw_value_get_for_p_lifetime()
@@ -383,9 +383,9 @@ afw_pool_release_value_at_cleanup(
 
 
 /**
- * @brief Register one release of value, run when p is destroyed.
+ * @brief Register one release of value, run when p's cleanups run.
  * @param value counted value the caller has one reference to.
- * @param p pool whose destroy runs the release.
+ * @param p pool whose cleanups run the release (a scope: deactivate).
  * @param xctx of caller.
  *
  * No checks. For get_for_p_lifetime implementations; other callers use
@@ -393,30 +393,6 @@ afw_pool_release_value_at_cleanup(
  */
 AFW_DECLARE(void)
 afw_pool_register_value_release(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Remove a release registered by
- *    afw_pool_release_value_at_cleanup().
- *
- * No-op if this value is not registered on p. After this, the
- * caller owns that hold again.
- */
-AFW_DECLARE(void)
-afw_pool_deregister_value_at_cleanup(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief True if this value already has a cleanup release on p.
- */
-AFW_DECLARE(afw_boolean_t)
-afw_pool_is_value_release_registered(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

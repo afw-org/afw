@@ -64,7 +64,7 @@ Decided in [#476](https://github.com/afw-org/afw/issues/476) (pad [`issue-476-re
   |---|---|---|---|---|
   | `get_reference(x)` | keep this exact instance; caller releases | error | bump, self | self |
   | `get_assignable_value(x, p)` | a value I own, to store (script may change it); caller releases | fully managed copy | bump, self | scalar: self; object/array: fully managed face (ECMAScript-style mutability) |
-  | `get_for_p_lifetime(x, p)` | lasts as long as `p`; caller does not release | copy, release registered on `p` | bump, release registered on `p` (once per `p`) | self, nothing registered |
+  | `get_for_p_lifetime(x, p)` | lasts as long as `p`; caller does not release | copy, release registered on `p` | bump, release registered on `p` (each call) | self, nothing registered |
 
   `afw_pool_release_value_at_cleanup(v, p)` ("p takes my reference") is `get_for_p_lifetime` then `release`. All three methods and `release` are mandatory; values that are not counted share `afw_value_not_counted_*`.
 - **Copies by intent** (#476 step 2b):

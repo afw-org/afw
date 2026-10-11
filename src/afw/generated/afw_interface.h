@@ -8632,8 +8632,8 @@ struct afw_value_inf_s {
  *
  * Return a value that lasts as long as p. Caller does not release.
  * Permanent and compiler values return self and register nothing.
- * A counted value gets one more reference, released when p is
- * destroyed (at most one registration per value per p). A pooled
+ * A counted value gets one more reference, released when p's
+ * cleanups run (one registration per call). A pooled
  * value returns a fully managed copy whose release is registered on
  * p. Use for results that must outlive the scope that made them.
  * @param instance Pointer to this adaptive value instance.
