@@ -191,6 +191,72 @@ afw_pool_internal_counts_on_thread(const afw_pool_internal_self_t *self)
     return !afw_pool_internal_is_multithreaded(&self->pub);
 }
 
+#ifdef AFW_DEBUG_POOL
+static afw_size_t
+impl_report_pending_releases(
+    const afw_pool_internal_self_t *self,
+    const afw_utf8_z_t *when_z,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_internal_self_t *child;
+    const afw_value_t *first;
+    const afw_utf8_t *pool_id;
+    const afw_utf8_t *first_id;
+    afw_size_t reported;
+
+    reported = 0;
+    /*
+     * Only its creator's reference is normal here: the pool dies with
+     * the job heap and runs its releases then. More means something else
+     * still holds it, possibly a value registered on it.
+     */
+    if (self->released_value_count > 0 && self->reference_count > 1 &&
+        !afw_pool_internal_is_scope(&self->pub))
+    {
+        first = self->released_values[0];
+        pool_id = &self->pub.inf->rti.implementation_id;
+        first_id = (first && first->inf)
+            ? &first->inf->rti.implementation_id
+            : afw_s_a_empty_string;
+        fprintf(stderr,
+            "%s: pool " AFW_INTEGER_FMT " (%.*s, parent " AFW_INTEGER_FMT
+            ") is referenced " AFW_INTEGER_FMT " times and has "
+            AFW_SIZE_T_FMT " registered releases (first %.*s)\n",
+            when_z,
+            self->pool_number,
+            (int)pool_id->len, pool_id->s,
+            self->parent ? self->parent->pool_number : (afw_integer_t)0,
+            (afw_integer_t)self->reference_count,
+            self->released_value_count,
+            (int)first_id->len, first_id->s);
+        reported++;
+    }
+    for (child = self->first_child; child; child = child->next_sibling) {
+        reported += impl_report_pending_releases(child, when_z, xctx);
+    }
+    return reported;
+}
+
+
+afw_size_t
+afw_pool_internal_report_pending_releases(
+    const afw_pool_t *p, const afw_utf8_z_t *when_z, afw_xctx_t *xctx)
+{
+    const afw_pool_internal_self_t *self;
+    const afw_pool_internal_self_t *child;
+    afw_size_t reported;
+
+    /* p itself is ending now; report what is still alive under it. */
+    self = (const afw_pool_internal_self_t *)p;
+    reported = 0;
+    for (child = self->first_child; child; child = child->next_sibling) {
+        reported += impl_report_pending_releases(child, when_z, xctx);
+    }
+    return reported;
+}
+#endif
+
+
 void
 afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self)
 {
