@@ -66,15 +66,20 @@
         <header>Query Criteria</header>
         <paragraph>
             For <literal>retrieve_objects()</literal> calls, you may also specify a query criteria, which is passed along 
-            to the <literal>retrieve_objects()</literal>. This is useful if you need to narrow down the search xctx of 
+            to the <literal>retrieve_objects()</literal>. This is useful if you need to narrow down the results of 
             the <literal>retrieve_objects()</literal>, or use an index to obtain performance.
+            The query string is URL encoded RQL, for example
+            <literal>GET /lmdb/Person/?sn=Hopper</literal> or
+            <literal>GET /lmdb/Person/?and(eq(dept,ENG),ge(age,40))</literal>.
+            See the Indexes chapter of the Administrative Guide for how
+            queries use indexes.
         </paragraph>
         <header>Object Options</header>
         <paragraph>
             For both GET requests, you may additionally specify object options to instruct the server 
             on how to construct the object or objects that are being returned. For a complete list of 
             options, see the Object Type description for 
-            <link href="../../reference/object_types/_AdaptiveQueryCriteria_.html">_AdaptiveQueryCriteria_</link>.
+            <link href="../../reference/object_types/_AdaptiveObjectOptions_.html">_AdaptiveObjectOptions_</link>.
         </paragraph>
         <header>Content Types</header>
         <paragraph>

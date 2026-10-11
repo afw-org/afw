@@ -24,7 +24,7 @@
             Visual Studio Code, or VS Code, is an IDE created and maintained by 
             Microsoft. It's a powerful editor that uses an extension 
             marketplace to provide additional functionality to its core 
-            features. One such feature is Remote Containers, which allows VS 
+            features. One such feature is Dev Containers, which allows VS 
             Code to interact with Docker. This allows you to setup a custom 
             development environment inside a Docker container. For 
             instructions on installing VS Code, please visit 
@@ -49,7 +49,7 @@
             <code>code</code>
             <paragraph>
                 Using the Command Palette (Show All Commands), bring up a list 
-                of command options and select: <literal>Remote-Containers: 
+                of command options and select: <literal>Dev Containers: 
                 Clone Repository in Named Container Volume...</literal>
             </paragraph>            
             <paragraph>
@@ -93,8 +93,10 @@
                 <item>Start: nginx</item>
                 <item>Start: afwfcgi</item>
                 <item>Start: Administrative Web Application</item>
-                <item>afwdev: Generate</item>
-                <item>afwdev: Core Tests</item>
+                <item>Clean: Everything</item>
+                <item>Generate: *</item>
+                <item>Test: Run Core Tests</item>
+                <item>Test: Run React Component Tests</item>
             </list>
         </section>
         <section>

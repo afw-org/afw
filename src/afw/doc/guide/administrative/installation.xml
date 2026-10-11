@@ -12,10 +12,10 @@
             Docker is a virtualization tool that can be used to quickly install and use 
             products from pre-built images. To pull the images that have already been 
             built and released, please visit the GitHub project repository for the 
-            latest Release links. There images that can be used to run a 
+            latest Release links. There are images that can be used to run a 
             production instance of Adaptive Framework and one for demo purposes. There 
-            are two additional images, afw-dev-base and afw-base that are used 
-            internally for GitHub workflows, but may also be  used to build the first 
+            are two additional images, afw-dev-base and afw-base, that are used 
+            internally for GitHub workflows, but may also be used to build the first 
             three images from scratch.
         </paragraph>
         <table>
@@ -76,45 +76,11 @@
                 environments. For more information, visit:  
                 <link href="https://www.docker.com" text="https://www.docker.com" />
             </paragraph>
-            <header>Using Docker Compose Orchestration</header>            
             <paragraph>
-                Docker Compose is a simple orchestration tool, which can be used to run 
-                multiple containers as services. By grouping multiple containers together, 
-                Docker Compose can start and stop them all at once, while also handling 
-                any special networking requirements between the containers. This is 
-                useful for <literal>afwfcgi</literal> and <literal>afw-admin</literal>, 
-                which need to be able to communicate with each other.
+                The <link href="deployment.html" text="Deployment" /> chapter
+                describes how to run these images, alone or together under
+                an orchestrator such as Docker Compose.
             </paragraph>
-            <paragraph>
-                Below is a sample configuration file <literal>docker-compose.yml</literal> to 
-                run <literal>afw-admin</literal> and <literal>afwfcgi</literal>:
-            </paragraph>
-            <code>version "3.7"
-services:
-
-    afwfcgi:
-        image: "afwfcgi"
-        volumes:
-            - afw:/afw
-
-    admin:
-        image: "afw-admin"
-        ports:
-            - "80:80"
-        links:
-            - afwfcgi
-
-volumes:
-    afw
-            </code>
-            <paragraph>
-                To initialize and start both services in the background:
-            </paragraph>
-            <code>docker-compose up -d</code>
-            <paragraph>
-                To stop both services:
-            </paragraph>
-            <code>docker-compose stop</code>
         </section>
         <section>
             <title>Building Docker Images</title>
@@ -124,40 +90,34 @@ volumes:
                 this section.
             </paragraph>
             <paragraph>
-                After cloning the source, navigate to the <literal>docker/images</literal> 
-                directory where Dockerfile configurations reside. The examples in this 
-                section use Alpine Linux as the base distribution, but you may also 
-                use the other platforms available. Alpine Linux is a nice 
-                distribution base to use, because it minimizes software packages 
-                in order to provide a very compact, secure image.
+                The Dockerfiles live under <literal>docker/images</literal>,
+                one directory per image and one Dockerfile per distribution
+                (for example <literal>Dockerfile.alpine</literal> and
+                <literal>Dockerfile.ubuntu</literal>). The order to build
+                them in, with complete commands including multi-architecture
+                builds, is in <literal>docker/images/README.md</literal>. In
+                short, from the top of the source tree:
             </paragraph>
-            <header>Building afw-dev-base Image</header>        
-            <paragraph>
-                The <literal>afw-dev-base</literal> image contains all of the software 
-                that Adaptive Framework depends on for building. It includes the gcc 
-                compiler, build tools, python and other dependency packages.
-            </paragraph>    
-            <code>cd docker/images/builder
-# Build an Alpine-based builder image
-docker build -t afw-dev-base:alpine -f Dockerfile.alpine .</code>
-            <paragraph>
-                With the <literal>afw-dev-base</literal> built, we can now use it for 
-                the next step: building from source.
-            </paragraph>
-            <code>docker run --rm -v /path/to/repo:/input -v /path/to/output:/output afw-dev-base:alpine</code>
-            <paragraph>
-                This previous step of running the <literal>afw-dev-base</literal> image 
-                will use two mount points:  input, output. The input should be 
-                the path to the repository and the output can be anywhere in your 
-                file system that you want the builder to write out a distribution 
-                file (.tar for Alpine, .rpm for RockyLinux, or .deb for Ubuntu). This 
-                file is required for the next steps.
-            </paragraph>
-            <header>Building afwfcgi Image</header>            
-            <code>cd docker/images/afwfcgi 
+            <code>export OS="alpine"
 
-# Build an Alpine-based image            
-docker build --build-arg BIN=&lt;alpine-based .tar file&gt; -t afwfcgi:alpine -f Dockerfile.alpine .</code>
+# 1. Base images: what Adaptive Framework needs to run, and to build.
+docker build -f docker/images/afw-base/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw-base:${OS} docker/images/afw-base
+docker build -f docker/images/afw-dev-base/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw-dev-base:${OS} .
+
+# 2. Optional: build the source and copy out installable packages
+#    (.tar, .rpm or .deb, one folder per architecture).
+docker build -f docker/images/builder/Dockerfile.${OS} -o type=local,dest=. .
+
+# 3. The all-in-one image.
+docker build -f docker/images/afw/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw:${OS} .</code>
+            <paragraph>
+                Alpine Linux is a nice distribution base to use, because it
+                minimizes software packages in order to provide a very
+                compact, secure image.
+            </paragraph>
         </section>
      </section>
      <section>
@@ -180,7 +140,10 @@ docker build --build-arg BIN=&lt;alpine-based .tar file&gt; -t afwfcgi:alpine -f
             <code># Fetch source for Adaptive Framework
 git clone https://github.com/afw-org/afw.git</code>
             <header>Install AdaptiveFramework Core dependencies</header>
-            <code># libxml2
+            <code># build tools
+sudo apt-get install -y cmake pkg-config python3-venv
+
+# libxml2
 sudo apt-get install -y libxml2 libxml2-dev
 
 # libicu for Unicode support
@@ -188,15 +151,21 @@ sudo apt-get install -y libicu-dev
 
 # libunwind and elfutils for stack trace
 sudo apt-get install -y libunwind-setjmp0-dev elfutils libdw-dev</code>
-            <header>Install AdaptiveFramework Adapter dependencies</header>
-            <code># LightningDB Adapter
+            <header>Install AdaptiveFramework Extension dependencies</header>
+            <code># LMDB adapter (afw_lmdb)
 sudo apt-get install -y liblmdb-dev
 
-# need OpenSSL and CURL for DynamoDB adapter dependencies
+# LDAP adapter (afw_ldap)
+sudo apt-get install -y libldap2-dev
+
+# curl functions (afw_curl) and crypto functions (afw_crypto)
 sudo apt-get install -y libcurl4-openssl-dev libssl-dev
 
-# YAML
-sudo apt-get install -y libyaml-dev</code>
+# YAML content type (afw_yaml)
+sudo apt-get install -y libyaml-dev
+
+# line editing and history in the interactive afw command (optional)
+sudo apt-get install -y libedit-dev</code>
             <header>Install HTTP stack</header>
             <code># FastCGI library
 sudo apt-get install -y libfcgi-dev
@@ -207,16 +176,26 @@ sudo apt-get install -y nginx</code>
             <code># debugging
 sudo apt-get install -y gdb
 sudo apt-get install -y valgrind
-sudo apt-get install -y lsof
-
-# python stuff
-pip install -r python-requirements.txt</code>
+sudo apt-get install -y lsof</code>
+            <header>Python packages</header>
+            <paragraph>
+                <literal>afwdev</literal>, which builds Adaptive Framework,
+                needs the packages in <literal>python-requirements.txt</literal>.
+                Ubuntu 24.04 refuses a system-wide <literal>pip install</literal>,
+                so install them in a virtual environment and keep it on
+                <literal>PATH</literal> while building:
+            </paragraph>
+            <code>python3 -m venv ~/afw-venv
+. ~/afw-venv/bin/activate
+pip install -r afw/python-requirements.txt</code>
             <header>Building Adaptive Framework</header>
             <code>cd afw
 ./afwdev build --install</code>            
             <header>TL;DR</header>
-            <code>sudo apt-get install git libxml2 libxml2-dev libicu-dev libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev libyaml-dev libfcgi-dev nginx libunwind-setjmp0-dev elfutils libdw-dev
+            <code>sudo apt-get install git cmake pkg-config python3-venv libxml2 libxml2-dev libicu-dev libunwind-setjmp0-dev elfutils libdw-dev liblmdb-dev libldap2-dev libcurl4-openssl-dev libssl-dev libyaml-dev libedit-dev libfcgi-dev nginx
 git clone https://github.com/afw-org/afw.git
+python3 -m venv ~/afw-venv &amp;&amp; . ~/afw-venv/bin/activate
+pip install -r afw/python-requirements.txt
 cd afw
 ./afwdev build --install</code>            
             <header>Building Web Applications</header>
@@ -229,5 +208,23 @@ cd afw
             Installation Verification is a process designed to ensure your installation was 
             done correctly. 
         </paragraph>
+        <paragraph>
+            Check that the commands run and report their versions:
+        </paragraph>
+        <code>afw --version
+afwfcgi --version</code>
+        <paragraph>
+            Evaluate an expression with the core only, then with your
+            configuration file. The second command also proves that every
+            entry in the file is valid and that its services start:
+        </paragraph>
+        <code>afw -x 'add(2, 2)'
+afw -f /etc/afw.conf -x 'retrieve_objects("afw", "_AdaptiveService_")'</code>
+        <paragraph>
+            Finally, with <literal>afwfcgi</literal> running behind the web
+            server, request an object of the core adapter (the sample Nginx
+            configuration in the Appendix listens on port 8080):
+        </paragraph>
+        <code>curl 'http://localhost:8080/afw/_AdaptiveAdapter_;whitespace/afw'</code>
     </section>  
 </doc>

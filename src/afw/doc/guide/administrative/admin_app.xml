@@ -2,24 +2,100 @@
 <doc>
     <title>Administrative Web App</title>
     <paragraph>
-        This is the web application, developed using Javascript and Adaptive 
+        This is the web application, developed using Javascript and Adaptive
         Layouts to create this interactive app. The Administrative Web
-        Application is not required for functionality, but it may be helpful 
+        Application is not required for functionality, but it may be helpful
         for quickly developing your Adaptive Application.
     </paragraph>
+    <paragraph>
+        The app is served by a web server such as Nginx (see the sample
+        configuration in the Appendix) at
+        <literal>/apps/afw/admin/</literal>, and talks to
+        <literal>afwfcgi</literal> through the same server: it reads objects
+        with REST requests and calls functions with
+        <literal>POST /afw</literal> actions. Everything it does is therefore
+        subject to the application's authorization, and anything it shows
+        can also be reached with <literal>afw</literal> or REST.
+    </paragraph>
     <section>
-        <title>Home</title>            
+        <title>Home</title>
+        <paragraph>
+            The starting page, with a short description of, and a link to,
+            each of the sections below.
+        </paragraph>
     </section>
     <section>
-        <title>Objects</title>            
+        <title>Objects</title>
+        <paragraph>
+            Browse, query and edit the objects of any adapter: choose an
+            adapter and object type, filter the list with a query, and open
+            an object to view or change it. Objects can also be created,
+            uploaded and edited in batches.
+        </paragraph>
     </section>
     <section>
-        <title>Admin</title>            
+        <title>Admin</title>
+        <paragraph>
+            Manage the running application:
+        </paragraph>
+        <list>
+            <item>
+                <literal>Status</literal>, <literal>Server</literal> and
+                <literal>Application</literal> show the state of the server
+                and the application configuration.
+            </item>
+            <item>
+                <literal>Services</literal> lists every service and lets you
+                add, edit, start, stop and restart those defined in the
+                configuration adapter. <literal>Adapters</literal>,
+                <literal>Logs</literal> and <literal>Authorization
+                Handlers</literal> show each kind of service. The editor of an
+                LMDB adapter has an Indexes tab (see the
+                <link href="indexes.html" text="Indexes" /> chapter).
+            </item>
+            <item>
+                <literal>Request Handlers</literal> and
+                <literal>Extensions</literal> show what is configured and
+                loaded.
+            </item>
+            <item>
+                <literal>Schema</literal> edits the object types of an
+                adapter, and <literal>Models</literal> edits Adaptive Models.
+            </item>
+            <item>
+                <literal>Provisioning</literal> and
+                <literal>Authorization</literal> are placeholders for future
+                pages; configure authorization as described in the
+                <link href="authorization_handlers.html" text="Authorization" />
+                chapter.
+            </item>
+        </list>
     </section>
     <section>
-        <title>Documentation</title>            
+        <title>Documentation</title>
+        <paragraph>
+            A reference built from the running instance: functions, data
+            types, layout components and the object types of each adapter,
+            with schema diagrams. Because it is generated live, it includes
+            what extensions and models add.
+        </paragraph>
     </section>
     <section>
-        <title>Tools</title>            
+        <title>Tools</title>
+        <list>
+            <item>
+                <literal>Fiddle</literal> evaluates Adaptive Scripts,
+                expressions and templates on the server, which is a quick way
+                to run administrative functions such as
+                <literal>index_create</literal>.
+            </item>
+            <item>
+                <literal>Requests</literal> composes and sends requests to the
+                server and shows the responses.
+            </item>
+            <item>
+                <literal>Layouts</literal> designs object layouts.
+            </item>
+        </list>
     </section>
 </doc>

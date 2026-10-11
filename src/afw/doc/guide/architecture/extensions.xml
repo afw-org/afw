@@ -16,7 +16,12 @@
         These allow for other technologies to be integrated in a way that they
         can seem like a part of the core, as first-class citizens.  
     </paragraph>
-    <paragraph>Extensions included with the framework:</paragraph>
+    <paragraph>
+        Extensions included with the framework are listed below. Each is
+        loaded on demand, the first time a configuration entry or script uses
+        something it registers; see the Configuration chapter of the
+        Administrative Guide.
+    </paragraph>
     <table>
         <columns>
             <column>Extension</column>
@@ -27,6 +32,16 @@
                 <column>afw_components</column>
                 <column>Layout Components</column>
             </row>      
+            <row>
+                <column>afw_crypto</column>
+                <column>Cryptographic functions (digests, HMACs, keys,
+                encryption), using OpenSSL</column>
+            </row>
+            <row>
+                <column>afw_curl</column>
+                <column>HTTP requests and sending mail over SMTP, using
+                libcurl</column>
+            </row>
             <row>
                 <column>afw_ldap</column>
                 <column>Lightweight Directory Access Protocol</column>
@@ -42,10 +57,10 @@
             <row>
                 <column>afw_vfs</column>
                 <column>
-                    Virtual File System adapter (<code>adapterType</code>
-                    <code>vfs</code>): host files as
-                    <code>_AdaptiveFile_vfs</code> objects via
-                    <code>vfsMap</code>
+                    Virtual File System adapter (<literal>adapterType</literal>
+                    <literal>vfs</literal>): host files as
+                    <literal>_AdaptiveFile_vfs</literal> objects via
+                    <literal>vfsMap</literal>
                 </column>
             </row>      
             <row>

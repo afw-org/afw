@@ -14,7 +14,7 @@
     <paragraph>
         The following sections describe a few interfaces that are significant 
         to discussion of the Adaptive Framework architecture. For a more 
-        comprehensive list, refer to the Developer Guide.
+        comprehensive list, refer to the Doxygen reference.
     </paragraph>
     <section>
         <title>Request Handlers</title>
@@ -38,7 +38,7 @@
             convenient and useful.  
             They allow you to encode and decode all properties of an Adaptive
             Object, including their Adaptive Values. The following content types
-            are provided by core:
+            are provided by core and the extensions shipped with it:
         </paragraph>           
         <table>
             <columns>
@@ -48,19 +48,21 @@
             <rows>
                 <row>
                     <column>JSON</column>
-                    <column>Javascript Object Notation</column>
+                    <column>Javascript Object Notation (core)</column>
                 </row>
                 <row>
-                    <column>XML</column>
-                    <column>Extensible Markup Language</column>
+                    <column>application/x-afw</column>
+                    <column>A response made of framed streams, such as the
+                    result and console output, used by the Javascript client
+                    of the Administrative Web App (core)</column>
                 </row>
                 <row>
                     <column>UBJSON</column>
-                    <column>Universal Binary JSON</column>
+                    <column>Universal Binary JSON (afw_ubjson)</column>
                 </row>
                 <row>
                     <column>YAML</column>
-                    <column>YAML Ain't Markup Language</column>
+                    <column>YAML Ain't Markup Language (afw_yaml)</column>
                 </row>
             </rows>
         </table>             

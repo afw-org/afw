@@ -68,6 +68,18 @@ def generate_sidenav(docsHtml, relative_root_path, category, doc=None, title=Non
     }
 
 
+# Relative paths from the directory of a doc's pages (srcdir/html/<dirname of
+# href>/) back up to the docs root and to srcdir/html. A doc href such as
+# guide/architecture/index.xml is two directories deep, reference/index.xml
+# is one.
+def doc_relative_roots(href):
+    dirname = os.path.dirname(href)
+    depth = len(dirname.split('/')) if dirname else 0
+    doc_root = "/".join([".."] * (depth + 2))
+    html_root = "../" * depth
+    return doc_root, html_root
+
+
 def generate_doc_links(src_doc_dir, href):
 
     doc_links = []
@@ -440,19 +452,22 @@ def generate_doc_html_content(options, cwd, path, docsHtml, element, level):
     
 
     elif tag == 'steps':
-        content += docsHtml.steps(
-            generate_doc_html_content(
-                options, 
-                cwd, 
-                path, 
-                docsHtml, 
-                element, 
+        steps = ""
+        for node in element.iterchildren():
+            steps += generate_doc_html_content(
+                options,
+                cwd,
+                path,
+                docsHtml,
+                node,
                 level + 1
             )
-        )
+        content += docsHtml.steps(steps)
 
     elif tag == "step":
-        content += docsHtml.step(get_text(element))        
+        content += docsHtml.step(
+            generate_doc_html_content_or_text(
+                options, cwd, path, docsHtml, level, element))
 
     elif tag == 'header':
         if level == 0:
@@ -525,8 +540,11 @@ def generate_doc_html_content(options, cwd, path, docsHtml, element, level):
         if text is None:
             text = get_text(element)  
 
-        if not text:
-            msg.error("    Could not find 'text' attribute for link: " + href)  
+        if not href:
+            msg.error("    Could not find 'href' attribute for link: " + str(text))
+
+        elif not text:
+            msg.error("    Could not find 'text' attribute for link: " + href)
 
         else:
             content += docsHtml.link(text, href)
@@ -622,7 +640,7 @@ def generate_html_doc(docsHtml, options, label, href, doc_label):
                         if section_doc.find("title") is not None:
                             title = section_doc.find("title").text   
 
-                        doc_root = "../../../.."
+                        doc_root, html_root = doc_relative_roots(href)
                         breadcrumbs = docsHtml.breadcrumbs([
                             {
                                 "href": doc_root + "/index.html",
@@ -637,7 +655,7 @@ def generate_html_doc(docsHtml, options, label, href, doc_label):
                             }
                         ])                                                                        
 
-                        nav_items = generate_sidenav(docsHtml, "../../", label, doc_label, title)
+                        nav_items = generate_sidenav(docsHtml, html_root, label, doc_label, title)
 
                         content = generate_doc_html_content(
                             options, 
@@ -697,27 +715,15 @@ def generate_html_docs(options, docsHtml):
     doc_output_dir = options.get('build_directory_docs')      
 
     html_output_dir = os.path.join(doc_output_dir, srcdir, 'html')
-    doc_root = "../../../.."      
 
     # look for index.xml
-    index_xml = os.path.join(src_doc_dir, "index.xml")      
+    index_xml = os.path.join(src_doc_dir, "index.xml")
     if os.path.exists(index_xml):
         with nfc.open(index_xml, 'r') as fp:
             docs = etree.parse(fp)
 
             for category in docs.iterfind("category"):
-                label = category.get("label")                
-                nav_items = generate_sidenav(docsHtml, "../../", label)    
-
-                breadcrumbs = docsHtml.breadcrumbs([
-                    {
-                        "href": doc_root + "/index.html",
-                        "text": "Docs"
-                    },
-                    {
-                        "text": label
-                    }
-                ])                
+                label = category.get("label")
 
                 # iterate children of category
                 for child in category.iterchildren():
@@ -726,6 +732,18 @@ def generate_html_docs(options, docsHtml):
                     tag = child.tag                    
 
                     if tag == "doc":           
+
+                        doc_root, html_root = doc_relative_roots(doc_href)
+                        nav_items = generate_sidenav(docsHtml, html_root, label)
+                        breadcrumbs = docsHtml.breadcrumbs([
+                            {
+                                "href": doc_root + "/index.html",
+                                "text": "Docs"
+                            },
+                            {
+                                "text": label
+                            }
+                        ])
 
                         index_html = generate_html_doc(docsHtml, options, label, doc_href, doc_label)                              
                         

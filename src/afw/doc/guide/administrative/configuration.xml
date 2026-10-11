@@ -1,4 +1,410 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <doc>
     <title>Configuration</title>
+    <paragraph>
+        An Adaptive Framework application is configured by a configuration
+        file, usually named <literal>afw.conf</literal>, and optionally by
+        service configuration objects kept in a configuration adapter. This
+        chapter describes the file, each type of entry it can hold, and how
+        services are configured and started.
+    </paragraph>
+    <section>
+        <title>The Configuration File</title>
+        <paragraph>
+            Both <literal>afw</literal> and <literal>afwfcgi</literal> read the
+            configuration file named by their <literal>-f</literal> option.
+            <literal>afwfcgi</literal> reads <literal>afw.conf</literal> in its
+            working directory when <literal>-f</literal> is not given;
+            <literal>afw</literal> without <literal>-f</literal> runs with only
+            core functionality.
+        </paragraph>
+        <paragraph>
+            The file holds an array of configuration entries. Each entry is an
+            object whose <literal>type</literal> property says what it
+            configures. Entries are processed in order, so an entry can use
+            anything an earlier entry set up. By default the file is parsed as
+            relaxed JSON: standard JSON plus block comments
+            (<literal>/* ... */</literal>), line comments
+            (<literal>//</literal>), unquoted property names and trailing
+            commas. Use the <literal>-t</literal> option to read it in another
+            content type, such as <literal>yaml</literal>; the extension that
+            provides it is loaded on demand (see Extensions below).
+        </paragraph>
+        <code><![CDATA[/* Adaptive Framework configuration. */
+[
+    // Adapter holding configuration objects.
+    {
+        type           : "adapter",
+        adapterId      : "conf",
+        adapterType    : "file",
+        contentType    : "json",
+        filenameSuffix : ".json",
+        root           : "/var/lib/afw/config/"
+    },
+
+    // Serve every URI through the adapter request handler.
+    {
+        type               : "requestHandler",
+        uriPrefix          : "/",
+        requestHandlerType : "adapter"
+    },
+
+    {
+        type          : "application",
+        applicationId : "MyApplication",
+        title         : "My Application",
+        confAdapterId : "conf"
+    }
+]]]></code>
+        <paragraph>
+            Every entry also accepts the common properties below. The
+            <literal>sourceLocation</literal> property is added by Adaptive
+            Framework, as the file path and entry number, and is used in error
+            messages, so an error names the entry that caused it.
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_" />
+        <paragraph>
+            The configuration types available are:
+        </paragraph>
+        <table>
+            <columns>
+                <column>type</column>
+                <column>Configures</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>adapter</literal></column>
+                    <column>An adapter: a store of objects, chosen by
+                    <literal>adapterType</literal>.</column>
+                </row>
+                <row>
+                    <column><literal>application</literal></column>
+                    <column>The application itself. There is at most one
+                    application entry.</column>
+                </row>
+                <row>
+                    <column><literal>authorizationHandler</literal></column>
+                    <column>A handler that makes authorization decisions,
+                    chosen by <literal>authorizationHandlerType</literal>.</column>
+                </row>
+                <row>
+                    <column><literal>extension</literal></column>
+                    <column>An extension to load.</column>
+                </row>
+                <row>
+                    <column><literal>log</literal></column>
+                    <column>A destination for log messages, chosen by
+                    <literal>logType</literal>.</column>
+                </row>
+                <row>
+                    <column><literal>requestHandler</literal></column>
+                    <column>How requests under a URI prefix are processed,
+                    chosen by <literal>requestHandlerType</literal>.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            Configuration errors, such as a missing required property, are
+            logged one per line with the entry and property they concern
+            (for example <literal>afw.conf entry 1.env.mode> value
+            required</literal>), and the application does not start.
+        </paragraph>
+    </section>
+    <section>
+        <title>Application</title>
+        <paragraph>
+            The <literal>application</literal> entry names the application and
+            sets application-wide behavior: the configuration adapter, the
+            extensions to load at startup, authorization control, qualified
+            variables available to every script, file paths, and limits. At
+            run time this entry can be read as the object
+            <literal>/afw/_AdaptiveApplication_/current</literal>.
+        </paragraph>
+        <paragraph>
+            When the application has a <literal>confAdapterId</literal>,
+            the object <literal>_AdaptiveConf_application/&lt;applicationId&gt;</literal>
+            in that adapter, if there is one, adds properties to the entry.
+            For the file adapter in the example above, that is
+            <literal>/var/lib/afw/config/_AdaptiveConf_application/MyApplication.json</literal>.
+            A property set in the configuration file wins, and a different
+            value for it in the object is logged as a warning.
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_application" />
+        <header>Qualified variables</header>
+        <paragraph>
+            Variables in <literal>qualifiedVariables</literal> are available to
+            every script and template under their qualifier. For example,
+            <literal>qualifiedVariables: { app: { supportEmail: "help@example.com" } }</literal>
+            makes <literal>app::supportEmail</literal> available. Values may
+            be expressions or templates that are evaluated when they are read.
+        </paragraph>
+        <header>Root file paths</header>
+        <paragraph>
+            <literal>rootFilePaths</literal> maps a path prefix to a host
+            directory, such as
+            <literal>rootFilePaths: { data: "/var/lib/afw/data/" }</literal>.
+            Script file functions (<literal>open_file</literal>,
+            <literal>compile_from_file</literal>,
+            <literal>eval_from_file</literal>) take a path such as
+            <literal>data/report.txt</literal>, which resolves under the
+            directory of the longest matching prefix. A path that matches no
+            prefix, contains <literal>..</literal>, or leaves its root is
+            refused.
+        </paragraph>
+        <header>Limits and memory</header>
+        <paragraph>
+            The <literal>limit*</literal>, <literal>*ChunkMin</literal>,
+            <literal>memoryRegion*</literal> and
+            <literal>threadStackBytes</literal> properties override built-in
+            defaults that suit most applications. Change them when a
+            measurement calls for it, for example raising
+            <literal>limitRequestPoolBytes</literal> when large requests fail
+            with <literal>payload_too_large</literal>.
+        </paragraph>
+    </section>
+    <section>
+        <title>Adapters</title>
+        <paragraph>
+            An <literal>adapter</literal> entry creates an adapter, identified
+            by its <literal>adapterId</literal>, of the type named by
+            <literal>adapterType</literal>. The properties every adapter
+            accepts are below; each adapter type adds its own, described in
+            the <link href="adapters.html" text="Adapters" /> chapter.
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_adapter" />
+        <paragraph>
+            The adapter <literal>afw</literal> always exists. It is provided by
+            core and holds the runtime objects: object types, functions, data
+            types, services and the rest of the running configuration.
+        </paragraph>
+    </section>
+    <section>
+        <title>Extensions</title>
+        <paragraph>
+            An extension is a shared library that registers more adapter
+            types, log types, content types, functions or data types. An
+            extension shipped with Adaptive Framework is usually loaded on
+            demand: the first time a configuration entry or script uses
+            something the extension registers, such as
+            <literal>adapterType: "lmdb"</literal>, core finds the extension
+            that provides it in its manifest and loads it. An
+            <literal>extension</literal> entry, the application's
+            <literal>extensions</literal> property, or the
+            <literal>-e</literal> option of <literal>afw</literal> and
+            <literal>afwfcgi</literal> loads one explicitly, which is needed
+            for an extension that is not in a manifest.
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_extension" />
+        <code><![CDATA[{
+    type        : "extension",
+    extensionId : "afw_yaml"
+}]]></code>
+    </section>
+    <section>
+        <title>Logs</title>
+        <paragraph>
+            A <literal>log</literal> entry sends log messages to a destination.
+            The <literal>standard</literal> log type writes to standard output;
+            <literal>syslog</literal> (Linux) and <literal>event_log</literal>
+            (Windows) write to the system log. Each priority property, such as
+            <literal>info</literal> or <literal>debug</literal>, includes the
+            messages of that priority; <literal>filter</literal> and
+            <literal>format</literal> are scripts and templates that select
+            and shape messages.
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_log" />
+        <paragraph>
+            A log is a service named <literal>log-</literal> followed by its
+            <literal>logId</literal>. This entry writes messages of priority
+            info and more severe to standard output:
+        </paragraph>
+        <code><![CDATA[{
+    type    : "log",
+    logId   : "console",
+    logType : "standard",
+    err     : true,
+    warning : true,
+    notice  : true,
+    info    : true
+}]]></code>
+        <paragraph>
+            The <literal>syslog</literal> log type accepts the properties
+            below, but at present it always logs with facility
+            <literal>daemon</literal> and the process name, whatever
+            <literal>ident</literal>, <literal>facility</literal> and the
+            <literal>option*</literal> properties say.
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_log_syslog" />
+    </section>
+    <section>
+        <title>Request Handlers</title>
+        <paragraph>
+            A <literal>requestHandler</literal> entry decides how
+            <literal>afwfcgi</literal> processes the requests whose URI begins
+            with <literal>uriPrefix</literal>. The request handler type
+            provided by core is <literal>adapter</literal>, which serves the
+            objects of the configured adapters over HTTP (see the Web Services
+            chapter of the Developer Guide). Requests for
+            <literal>POST /afw</literal> actions, used by the Administrative
+            Web App and language bindings, are served by the same handler.
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_requestHandler" />
+        <header>requestHandlerType adapter</header>
+        <object-type-table objectTypeId="_AdaptiveConf_requestHandler_adapter" />
+    </section>
+    <section>
+        <title>Authorization Handlers</title>
+        <paragraph>
+            An <literal>authorizationHandler</literal> entry adds a handler
+            that takes part in authorization decisions. Its properties, and
+            the application's <literal>authorizationControl</literal>, are
+            described in the
+            <link href="authorization_handlers.html" text="Authorization" />
+            chapter.
+        </paragraph>
+    </section>
+    <section>
+        <title>Services</title>
+        <paragraph>
+            Adapters, logs and authorization handlers run as
+            <literal>services</literal>, which have a status and can be
+            started, stopped and restarted while the application runs. Each
+            service has an id made of its configuration type and id joined
+            with a dash: the adapter <literal>lmdb</literal> is the service
+            <literal>adapter-lmdb</literal>. Services are listed as
+            <literal>_AdaptiveService_</literal> objects in the
+            <literal>afw</literal> adapter, and the Administrative Web App
+            manages them under Admin, Services.
+        </paragraph>
+        <paragraph>
+            Services can be defined in two places:
+        </paragraph>
+        <list>
+            <item>
+                An entry in the configuration file is a
+                <literal>permanent</literal> service. It starts with the
+                application and cannot be stopped or changed without
+                restarting the application.
+            </item>
+            <item>
+                An <literal>_AdaptiveServiceConf_</literal> object in the
+                adapter named by the application's
+                <literal>confAdapterId</literal> is a service that can be
+                changed, stopped, started and restarted at run time. Its
+                <literal>conf</literal> property holds the same entry that
+                would be written in the configuration file.
+            </item>
+        </list>
+        <object-type-table objectTypeId="_AdaptiveServiceConf_" />
+        <paragraph>
+            The values of <literal>startup</literal> are:
+        </paragraph>
+        <table>
+            <columns>
+                <column>startup</column>
+                <column>Meaning</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>immediate</literal></column>
+                    <column>Started when the application starts; can be
+                    stopped and started by hand.</column>
+                </row>
+                <row>
+                    <column><literal>manual</literal></column>
+                    <column>Started and stopped by hand only. This is the
+                    default.</column>
+                </row>
+                <row>
+                    <column><literal>disabled</literal></column>
+                    <column>Cannot be started.</column>
+                </row>
+                <row>
+                    <column><literal>permanent</literal></column>
+                    <column>Reported for services defined in the
+                    configuration file. Not allowed in an
+                    <literal>_AdaptiveServiceConf_</literal> object.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            For example, with the configuration file shown at the start of
+            this chapter, this object stored as
+            <literal>/var/lib/afw/config/_AdaptiveServiceConf_/adapter-lmdb.json</literal>
+            starts an LMDB adapter with the application:
+        </paragraph>
+        <code><![CDATA[{
+    "serviceId": "adapter-lmdb",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "lmdb",
+        "adapterId": "lmdb",
+        "env": {
+            "path": "/var/lib/afw/lmdb",
+            "mode": 384,
+            "maxreaders": 126,
+            "maxdbs": 128,
+            "mapsize": 104857600
+        },
+        "limits": {
+            "size": { "soft": 500, "hard": 1000 },
+            "time": { "soft": 3600, "hard": 14400 }
+        }
+    }
+}]]></code>
+    </section>
+    <section>
+        <title>Values From the Environment</title>
+        <paragraph>
+            Properties whose data type is <literal>template</literal>, such as
+            the file adapter's <literal>root</literal>, the LMDB adapter's
+            <literal>env.path</literal> and an extension's
+            <literal>modulePath</literal>, are evaluated when the entry is
+            processed. They can use process environment variables, so one
+            configuration file can serve several deployments:
+        </paragraph>
+        <code><![CDATA[{
+    type        : "adapter",
+    adapterId   : "data",
+    adapterType : "file",
+    contentType : "json",
+    root        : "${environment::AFW_DATA_ROOT}/objects/"
+}]]></code>
+    </section>
+    <section>
+        <title>Inspecting the Running Configuration</title>
+        <paragraph>
+            The <literal>afw</literal> adapter shows what the running
+            application was configured with. These are useful from
+            <literal>afw</literal>, the REST interface, or the Administrative
+            Web App:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Object or objects</column>
+                <column>Shows</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>/afw/_AdaptiveApplication_/current</literal></column>
+                    <column>The application entry</column>
+                </row>
+                <row>
+                    <column><literal>/afw/_AdaptiveService_/</literal></column>
+                    <column>Every service, with its startup, status and
+                    configuration</column>
+                </row>
+                <row>
+                    <column><literal>/afw/_AdaptiveAdapter_/</literal></column>
+                    <column>The running adapters and their metrics</column>
+                </row>
+                <row>
+                    <column><literal>/afw/_AdaptiveExtension_/</literal></column>
+                    <column>The loaded extensions</column>
+                </row>
+            </rows>
+        </table>
+        <code><![CDATA[afw -f afw.conf -x 'retrieve_objects("afw", "_AdaptiveService_")']]></code>
+    </section>
 </doc>
