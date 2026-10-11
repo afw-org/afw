@@ -72,7 +72,7 @@ struct afw_pool_internal_self_s {
 
     afw_pool_t pub;
 
-    /** @brief Debug id: thread->pool_number at create. */
+    /** @brief Debug id: the creating thread's pool_number at create. */
     afw_integer_t pool_number;
 
     /**
@@ -329,7 +329,8 @@ afw_boolean_t
 afw_pool_internal_counts_on_thread(const afw_pool_internal_self_t *self);
 
 void
-afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self);
+afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
 
 void
 afw_pool_internal_account_alloc(

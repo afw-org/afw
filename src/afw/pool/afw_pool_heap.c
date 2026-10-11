@@ -423,7 +423,7 @@ afw_pool_heap_internal_create_self(
     }
     afw_pool_heap_internal_init_bins(heap);
     self->thread = thread;
-    afw_pool_internal_assign_pool_number(self);
+    afw_pool_internal_assign_pool_number(self, xctx);
 
     if (afw_parent) {
         parent_self = (afw_pool_internal_self_t *)afw_parent;
@@ -787,11 +787,17 @@ afw_pool_heap_internal_take_from_free_list_or_chunk(
     heap->bump = NULL;
     heap->remaining = 0;
 
-    /* Resource limits are checked once per chunk, not per malloc. */
+    /*
+     * Resource limits are checked once per chunk, not per malloc. The
+     * request pool limit is on the bytes counted on the pool's thread;
+     * a multithreaded heap counts on no thread.
+     */
     if (!unhandled && xctx->error_processing_count == 0) {
         afw_xctx_check_resource_limits(xctx, 0);
-        afw_xctx_internal_check_request_pool_bytes(xctx,
-            heap->common.thread, total);
+        if (afw_pool_internal_counts_on_thread(&heap->common)) {
+            afw_xctx_internal_check_request_pool_bytes(xctx,
+                heap->common.thread, total);
+        }
     }
 
     region = heap->memory_region;

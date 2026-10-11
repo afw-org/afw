@@ -307,7 +307,7 @@ afw_pool_heap_internal_multithreaded_create_self(
     }
     afw_pool_heap_internal_init_bins(heap);
     self->thread = thread;
-    afw_pool_internal_assign_pool_number(self);
+    afw_pool_internal_assign_pool_number(self, xctx);
     if (afw_parent) {
         parent_self = (afw_pool_internal_self_t *)afw_parent;
         afw_pool_internal_link_as_child(parent_self, self, xctx);

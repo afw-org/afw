@@ -166,7 +166,7 @@ afw_function_execute_flag_get_defaults(
     array = afw_array_create_unmanaged_of(afw_data_type_string,
         x->p, x->xctx);
 
-    AFW_LOCK_BEGIN(xctx->env->flags_lock) {
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         if (env_internal->default_flag_ids) {
             for (flag_id = env_internal->default_flag_ids; *flag_id; flag_id++)
             {
