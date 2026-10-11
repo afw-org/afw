@@ -234,12 +234,20 @@ impl_empty_array_of_function;
 const afw_value_array_t
 impl_value_empty_array_of_function;
 
+/* Data type id function as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_function = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("function")
+};
+
 /* Data type function instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_function_direct = {
     &afw_data_type_function_inf,
     (const afw_object_t *)&impl_data_type_object_function,
     AFW_UTF8_LITERAL("function"),
+    (const afw_value_t *)&impl_data_type_id_value_function,
     AFW_UTF8_LITERAL("A function"),
     AFW_UTF8_LITERAL("This is an Adaptive Script function definition, the name of a built-in Adaptive function, or the name of a qualified variable that holds a function value. If dataTypeParameterType is specified, the function must match that signature."),
     AFW_UTF8_LITERAL("FunctionSignature"),

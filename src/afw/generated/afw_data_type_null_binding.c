@@ -246,12 +246,20 @@ impl_empty_array_of_null;
 const afw_value_array_t
 impl_value_empty_array_of_null;
 
+/* Data type id null as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_null = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("null")
+};
+
 /* Data type null instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_null_direct = {
     &afw_data_type_null_inf,
     (const afw_object_t *)&impl_data_type_object_null,
     AFW_UTF8_LITERAL("null"),
+    (const afw_value_t *)&impl_data_type_id_value_null,
     AFW_UTF8_LITERAL("Intentional absence of value"),
     AFW_UTF8_LITERAL("Data type 'null' is a special data type that represents the intentional absence of a value. It is also used internally to represent special singleton values."),
     AFW_UTF8_LITERAL(""),

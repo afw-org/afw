@@ -314,12 +314,20 @@ impl_empty_array_of_hexBinary;
 const afw_value_array_t
 impl_value_empty_array_of_hexBinary;
 
+/* Data type id hexBinary as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_hexBinary = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("hexBinary")
+};
+
 /* Data type hexBinary instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_hexBinary_direct = {
     &afw_data_type_hexBinary_inf,
     (const afw_object_t *)&impl_data_type_object_hexBinary,
     AFW_UTF8_LITERAL("hexBinary"),
+    (const afw_value_t *)&impl_data_type_id_value_hexBinary,
     AFW_UTF8_LITERAL("A binary value whose string value is character hex encoded"),
     AFW_UTF8_LITERAL("Data type 'hexBinary' holds binary data. Its string value is character hex encoded."),
     AFW_UTF8_LITERAL("MediaType"),

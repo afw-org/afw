@@ -246,12 +246,20 @@ impl_empty_array_of_time;
 const afw_value_array_t
 impl_value_empty_array_of_time;
 
+/* Data type id time as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_time = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("time")
+};
+
 /* Data type time instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_time_direct = {
     &afw_data_type_time_inf,
     (const afw_object_t *)&impl_data_type_object_time,
     AFW_UTF8_LITERAL("time"),
+    (const afw_value_t *)&impl_data_type_id_value_time,
     AFW_UTF8_LITERAL("A time"),
     AFW_UTF8_LITERAL("Data type 'time' is ISO 8601 extended format hh:mm:ss with an optional time zone."),
     AFW_UTF8_LITERAL(""),

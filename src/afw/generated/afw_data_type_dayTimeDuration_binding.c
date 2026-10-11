@@ -246,12 +246,20 @@ impl_empty_array_of_dayTimeDuration;
 const afw_value_array_t
 impl_value_empty_array_of_dayTimeDuration;
 
+/* Data type id dayTimeDuration as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_dayTimeDuration = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("dayTimeDuration")
+};
+
 /* Data type dayTimeDuration instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_dayTimeDuration_direct = {
     &afw_data_type_dayTimeDuration_inf,
     (const afw_object_t *)&impl_data_type_object_dayTimeDuration,
     AFW_UTF8_LITERAL("dayTimeDuration"),
+    (const afw_value_t *)&impl_data_type_id_value_dayTimeDuration,
     AFW_UTF8_LITERAL("A day time duration"),
     AFW_UTF8_LITERAL("Data type 'dayTimeDuration' is an ISO 8601 extended format DTnHnMnS."),
     AFW_UTF8_LITERAL(""),

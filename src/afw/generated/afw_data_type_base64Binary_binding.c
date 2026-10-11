@@ -314,12 +314,20 @@ impl_empty_array_of_base64Binary;
 const afw_value_array_t
 impl_value_empty_array_of_base64Binary;
 
+/* Data type id base64Binary as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_base64Binary = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("base64Binary")
+};
+
 /* Data type base64Binary instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_base64Binary_direct = {
     &afw_data_type_base64Binary_inf,
     (const afw_object_t *)&impl_data_type_object_base64Binary,
     AFW_UTF8_LITERAL("base64Binary"),
+    (const afw_value_t *)&impl_data_type_id_value_base64Binary,
     AFW_UTF8_LITERAL("A binary value whose string value is base64 encoded"),
     AFW_UTF8_LITERAL("Data type 'base64Binary' holds binary data. Its string value is base64 encoded."),
     AFW_UTF8_LITERAL("MediaType"),

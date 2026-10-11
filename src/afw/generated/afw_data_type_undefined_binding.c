@@ -137,12 +137,20 @@ impl_empty_array_of_undefined;
 const afw_value_array_t
 impl_value_empty_array_of_undefined;
 
+/* Data type id undefined as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_undefined = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("undefined")
+};
+
 /* Data type undefined instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_undefined_direct = {
     &afw_data_type_undefined_inf,
     (const afw_object_t *)&impl_data_type_object_undefined,
     AFW_UTF8_LITERAL("undefined"),
+    (const afw_value_t *)&impl_data_type_id_value_undefined,
     AFW_UTF8_LITERAL("An undefined value"),
     AFW_UTF8_LITERAL("This is a special data type that is used for the single internal value used to represent undefined values.  It is not a valid data type for any other purpose."),
     AFW_UTF8_LITERAL(""),

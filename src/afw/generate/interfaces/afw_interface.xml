@@ -2418,6 +2418,10 @@ const afw_content_type_t *
       <description>Id of this data type.</description>
     </variable>
 
+    <variable name="data_type_id_value" type="const afw_value_t *">
+      <description>Id of this data type as a permanent string value.</description>
+    </variable>
+
     <variable name="brief" type="afw_utf8_t">
       <description>
         This is a predicate for the data type with the first letter capitalized

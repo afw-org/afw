@@ -237,9 +237,7 @@ afw_environment_prepare_conf_type_properties(
     subtype = NULL;
     if (conf_type->subtype_property_name) {
         subtype = afw_object_get_property_as_string_internal(
-            properties,
-            afw_value_create_unmanaged_string(
-                conf_type->subtype_property_name, properties->p, xctx), xctx);
+            properties, conf_type->subtype_property_name_value, xctx);
         if (!subtype || subtype->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -254,9 +252,7 @@ afw_environment_prepare_conf_type_properties(
     id = afw_s_current;
     if (conf_type->id_property_name) {
         id = afw_object_get_property_as_string_internal(
-            properties,
-            afw_value_create_unmanaged_string(
-                conf_type->id_property_name, properties->p, xctx), xctx);
+            properties, conf_type->id_property_name_value, xctx);
         if (!id || id->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT

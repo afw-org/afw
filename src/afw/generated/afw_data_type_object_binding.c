@@ -317,12 +317,20 @@ impl_empty_array_of_object;
 const afw_value_array_t
 impl_value_empty_array_of_object;
 
+/* Data type id object as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_object = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("object")
+};
+
 /* Data type object instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_object_direct = {
     &afw_data_type_object_inf,
     (const afw_object_t *)&impl_data_type_object_object,
     AFW_UTF8_LITERAL("object"),
+    (const afw_value_t *)&impl_data_type_id_value_object,
     AFW_UTF8_LITERAL("An adaptive object"),
     AFW_UTF8_LITERAL("Data type 'object' holds an adaptive object."),
     AFW_UTF8_LITERAL("ObjectType"),

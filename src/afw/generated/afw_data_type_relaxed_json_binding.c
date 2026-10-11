@@ -314,12 +314,20 @@ impl_empty_array_of_relaxed_json;
 const afw_value_array_t
 impl_value_empty_array_of_relaxed_json;
 
+/* Data type id relaxed_json as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_relaxed_json = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("relaxed_json")
+};
+
 /* Data type relaxed_json instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_relaxed_json_direct = {
     &afw_data_type_relaxed_json_inf,
     (const afw_object_t *)&impl_data_type_object_relaxed_json,
     AFW_UTF8_LITERAL("relaxed_json"),
+    (const afw_value_t *)&impl_data_type_id_value_relaxed_json,
     AFW_UTF8_LITERAL("Relaxed JSON source"),
     AFW_UTF8_LITERAL("Data type 'relaxed_json' holds the source for a relaxed JSON value."),
     AFW_UTF8_LITERAL("SourceParameter"),

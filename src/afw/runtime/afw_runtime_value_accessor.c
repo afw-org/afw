@@ -213,7 +213,7 @@ afw_runtime_value_accessor_data_type_id(
     if (!data_type) {
         return NULL;
     }
-    return afw_value_create_unmanaged_string(&data_type->data_type_id, p, xctx);
+    return data_type->data_type_id_value;
 }
 
 
@@ -888,8 +888,7 @@ afw_runtime_value_accessor_env_pid(
     if (!xctx || !xctx->env) {
         return NULL;
     }
-    return afw_value_create_unmanaged_integer(
-        xctx->env->process_pid, p, xctx);
+    return xctx->env->process_pid_value;
 }
 
 
@@ -925,8 +924,7 @@ afw_runtime_value_accessor_env_program_name(
     if (!xctx || !xctx->env || xctx->env->program_name.len == 0) {
         return NULL;
     }
-    return afw_value_create_unmanaged_string(
-        &xctx->env->program_name, p, xctx);
+    return xctx->env->program_name_value;
 }
 
 

@@ -134,7 +134,7 @@ impl_log_current_variable_get_cb(
     }
 
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_unmanaged_string(xctx->uuid, wa->p, xctx);
+        result = xctx->uuid_value;
     }
 
     else if (afw_utf8_equal(name, afw_s_source)) {
