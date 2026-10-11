@@ -15,6 +15,7 @@ Coverage:
   - non-object YAML root rejected for adapter object load
   - plain scalar typing (integer vs double, null/~, quoted, partial number)
   - mapping/sequence parse depth: modest, limit (256), over limit
+  - libyaml events (#553): aliases, empty values, documents, tags, errors
 """
 
 from __future__ import annotations
@@ -449,5 +450,73 @@ def run():
                 detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
             )
         )
+
+        # #553: the reader works on libyaml events. Each case is a file
+        # and a script expression that must be true for it; an error case
+        # expects that error id.
+        event_cases = [
+            ("ev_alias_map", "a: &m {p: 1}\nb: *m\n",
+                "o.a.p === 1 && o.b.p === 1",
+                "an alias to a mapping is a property value"),
+            ("ev_alias_seq", "a: &s [1, 2]\nb: *s\n",
+                "length(o.b) === 2 && o.b[1] === 2",
+                "an alias to a sequence"),
+            ("ev_alias_scalar_key", "k: &k name\n*k : 2\n",
+                "o.k === 'name' && o.name === 2",
+                "an alias to a scalar can be a key"),
+            ("ev_alias_in_seq", "a:\n- &i {x: 1}\n- *i\n",
+                "o.a[0].x === 1 && o.a[1].x === 1",
+                "an alias to a mapping inside a sequence"),
+            ("ev_empty_value", "a:\nb: 1\n",
+                "is_nullish(o.a) && o.b === 1",
+                "a key with no value is null"),
+            ("ev_doc_end", "---\na: 1\n...\n",
+                "o.a === 1",
+                "explicit document start and end"),
+            ("ev_indentless", "a:\n- x: 1\n  y: 2\n- - 3\nb: 4\n",
+                "o.a[0].y === 2 && o.a[1][0] === 3 && o.b === 4",
+                "a sequence with no indentation under a key, then a key"),
+            ("ev_typed_keys", "1: a\ntrue: b\nnull: c\n",
+                "o['1'] === 'a' && o['true'] === 'b' && o['null'] === 'c'",
+                "a key is its text"),
+            ("ev_tag_str", "a: !!str 123\nb: ! true\nc: 5\n",
+                "o.a === '123' && o.b === 'true' && o.c === 5",
+                "!!str and ! make a string"),
+            ("ev_two_docs", "a: 1\n---\nb: 2\n", "syntax",
+                "more than one document is a syntax error"),
+            ("ev_no_doc", "# only a comment\n", "syntax",
+                "no document is a syntax error"),
+            ("ev_undefined_alias", "a: *nope\n", "syntax",
+                "an alias naming no anchor is a syntax error"),
+            ("ev_complex_key", "? [a, b]\n: 1\n", "syntax",
+                "a key that is not a scalar is a syntax error"),
+            ("ev_bad_indent", "a:\n  b: 1\n c: 2\n", "syntax",
+                "a libyaml parse error is a syntax error"),
+            ("ev_alias_expansion", "a0: &a0 [x, x, x, x, x, x, x, x, x, x]\na1: &a1 [*a0, *a0, *a0, *a0, *a0, *a0, *a0, *a0, *a0, *a0]\na2: &a2 [*a1, *a1, *a1, *a1, *a1, *a1, *a1, *a1, *a1, *a1]\na3: &a3 [*a2, *a2, *a2, *a2, *a2, *a2, *a2, *a2, *a2, *a2]\na4: &a4 [*a3, *a3, *a3, *a3, *a3, *a3, *a3, *a3, *a3, *a3]\na5: &a5 [*a4, *a4, *a4, *a4, *a4, *a4, *a4, *a4, *a4, *a4]\na6: &a6 [*a5, *a5, *a5, *a5, *a5, *a5, *a5, *a5, *a5, *a5]\na7: &a7 [*a6, *a6, *a6, *a6, *a6, *a6, *a6, *a6, *a6, *a6]\na8: &a8 [*a7, *a7, *a7, *a7, *a7, *a7, *a7, *a7, *a7, *a7]\n", "syntax",
+                "aliases that stand for a billion nodes are refused"),
+        ]
+        for name, content, check, desc in event_cases:
+            _write(os.path.join(ot_dir, name + ".yaml"), content)
+            if check == "syntax":
+                script = (
+                    'try { get_object("yamlfile", "YamlOt", "%s"); }\n'
+                    'catch (e) { return e.id === "syntax" ? 0 : e.id; }\n'
+                    'return "no error";\n' % name)
+            else:
+                script = (
+                    'let o = get_object("yamlfile", "YamlOt", "%s");\n'
+                    'assert(%s, stringify(o));\n'
+                    'return 0;\n' % (name, check))
+            code, out, err = _yaml_script(script)
+            body = out.strip()
+            tests.append(
+                _case(
+                    "file_adapter_yaml_" + name,
+                    desc,
+                    code == 0 and body == "0",
+                    detail="exit=%s body=%r stderr=%r"
+                    % (code, body, err[-500:]),
+                )
+            )
 
     return {"description": description, "tests": tests}
