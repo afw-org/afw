@@ -588,7 +588,120 @@ impl_parse_compiler_internal_template_definition(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# #script_function( param* , body [, returnType] ) — decompile form.
+ *# #compound_assign( op , target , value ) — decompile form of
+ *# target op= value when the target has subscripts (a[f()] += 1). It
+ *# compiles to assign(target, op(target, value)) with one target, as
+ *# op= does, so the subscripts are evaluated once (#512, #541). op is
+ *# the name of the operator's function.
+ *
+ * CompoundAssignCompilerInternalOperator ::=
+ *     'add' | 'subtract' | 'multiply' | 'divide' | 'mod' | 'pow' |
+ *     'and' | 'or' | 'nullish_coalescing'
+ *
+ * CompilerInternalCompoundAssign ::=
+ *     '#compound_assign' '(' CompoundAssignCompilerInternalOperator ','
+ *         Expression ',' Expression ')'
+ *
+ *<<<ebnf*/
+static const afw_value_t *
+impl_parse_compiler_internal_compound_assign(afw_compile_parser_t *parser)
+{
+    static const afw_value_function_definition_t * const ops[] = {
+        &afw_function_definition_add,
+        &afw_function_definition_subtract,
+        &afw_function_definition_multiply,
+        &afw_function_definition_divide,
+        &afw_function_definition_mod,
+        &afw_function_definition_pow,
+        &afw_function_definition_and,
+        &afw_function_definition_or,
+        &afw_function_definition_nullish_coalescing,
+        NULL
+    };
+    const afw_compile_value_contextual_t *contextual;
+    const afw_value_function_definition_t *op;
+    const afw_value_t *target;
+    const afw_value_t *value;
+    const afw_value_t *op_call;
+    const afw_value_t **argv;
+    const afw_utf8_t *name;
+    afw_size_t i;
+
+    contextual = afw_compile_create_contextual_to_cursor(
+        parser->token->token_source_offset);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(open_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '(' after #compound_assign");
+    }
+
+    op = NULL;
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        name = afw_compile_token_identifier_name();
+        for (i = 0; ops[i]; i++) {
+            if (afw_utf8_equal(name, &ops[i]->functionId->internal)) {
+                op = ops[i];
+                break;
+            }
+        }
+    }
+    if (!op) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "#compound_assign operator must be add, subtract, multiply, "
+            "divide, mod, pow, and, or, or nullish_coalescing");
+    }
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(comma)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' after #compound_assign "
+            "operator");
+    }
+    target = afw_compile_parse_Expression(parser);
+    if (!afw_value_is_reference_by_key(target) &&
+        !afw_value_is_symbol_reference(target))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "#compound_assign target must be a variable or a reference");
+    }
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(comma)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' after #compound_assign "
+            "target");
+    }
+    value = afw_compile_parse_Expression(parser);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after #compound_assign "
+            "value");
+    }
+
+    /* op(target, value), then assign(target, that): one target. */
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3,
+        parser->xctx);
+    argv[0] = &op->pub;
+    argv[1] = target;
+    argv[2] = value;
+    op_call = afw_value_call_built_in_function_create(contextual,
+        2, argv, true, parser->p, parser->xctx);
+
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3,
+        parser->xctx);
+    argv[0] = &afw_function_definition_assign.pub;
+    argv[1] = target;
+    argv[2] = op_call;
+    return afw_value_call_built_in_function_create(contextual,
+        2, argv, true, parser->p, parser->xctx);
+}
+
+
+/*ebnf>>>
+ *
+ *# #script_function name? ( param* , body [, returnType] ) — decompile form.
+ *# The optional name is a named function's own name: bound in its
+ *# parameter block, so the body can call itself (#541).
  *# Param symbols are introduced before the body is parsed.
  *# A name or Pattern is a parameter only when followed by '?', ':', '=',
  *# or ',' (or after '...'); otherwise it starts the body Expression.
@@ -616,7 +729,8 @@ impl_parse_compiler_internal_template_definition(afw_compile_parser_t *parser)
  *     Expression ( ',' Type )?
  *
  * CompilerInternalScriptFunction ::=
- *     '#script_function' '(' ScriptFunctionCompilerInternalArgs ')'
+ *     '#script_function' ( FunctionName - ReservedWords )?
+ *         '(' ScriptFunctionCompilerInternalArgs ')'
  *
  *<<<ebnf*/
 static const afw_value_t *
@@ -635,6 +749,7 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
     afw_boolean_t have_body;
     afw_boolean_t is_rest;
     afw_boolean_t is_identifier_name;
+    const afw_value_string_t *function_name_value;
 
     start_offset = parser->token->token_source_offset;
     enclosing_block = parser->compiled_value->current_block;
@@ -646,7 +761,20 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
     body = NULL;
     have_body = false;
 
+    /* Optional name of a named function. */
+    function_name_value = NULL;
     afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        if (afw_compile_is_reserved_word(parser,
+            afw_compile_token_identifier_name()))
+        {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Function name can not be a reserved word");
+        }
+        function_name_value = (const afw_value_string_t *)
+            afw_compile_token_identifier_name_value();
+        afw_compile_get_token();
+    }
     if (!afw_compile_token_is(open_parenthesis)) {
         AFW_COMPILE_THROW_ERROR_Z(
             "Expecting '(' after #script_function");
@@ -655,9 +783,17 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
     /*
      * Always open a parameter block (even with zero params) so the function
      * has a stable signature->block whose parent is the defining scope.
+     * A name is the first symbol there, as for 'function name(...)'.
      */
     block = afw_compile_parse_link_new_value_block(parser, start_offset);
     signature->block = block;
+    if (function_name_value) {
+        symbol = afw_compile_parse_add_symbol_entry(parser,
+            function_name_value);
+        symbol->symbol_type = afw_value_block_symbol_type_function;
+        signature->function_name_symbol = symbol;
+        signature->function_name_value = function_name_value;
+    }
 
     for (;;) {
         afw_compile_get_token();
@@ -1012,6 +1148,7 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
  *     CompilerInternalInterface |
  *     CompilerInternalListExpression |
  *     CompilerInternalScriptFunction |
+ *     CompilerInternalCompoundAssign |
  *     CompilerInternalTemplateDefinition |
  *     CompilerInternalSwitchDefault |
  *     CompilerInternalStatements |
@@ -1052,6 +1189,10 @@ afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
 
     if (impl_compiler_internal_name_is(parser, "script_function")) {
         return impl_parse_compiler_internal_script_function(parser);
+    }
+
+    if (impl_compiler_internal_name_is(parser, "compound_assign")) {
+        return impl_parse_compiler_internal_compound_assign(parser);
     }
 
     if (impl_compiler_internal_name_is(parser, "template_definition")) {

@@ -158,7 +158,7 @@ return 0;
 
 const src = "function f() {}\nconst g = function (a) {};\nreturn [f(), g(1)];";
 const d1 = decompile(compile<script>(script(src)));
-assert(includes(d1, "#script_function(#block())"), d1);
+assert(includes(d1, "#script_function f(#block())"), d1);
 const d2 = decompile(compile<script>(script(d1)));
 assert(d1 == d2);
 const r = evaluate(compile<script>(script(d1)));

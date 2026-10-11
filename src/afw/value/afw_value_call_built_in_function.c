@@ -329,6 +329,149 @@ impl_afw_value_produce_compiler_listing(
 
 
 /*
+ * True if value's decompiled text can be followed by '?.' (a name, a call,
+ * or a member access): the parser's postfix loop starts from those.
+ */
+static afw_boolean_t
+impl_can_start_chain(const afw_value_t *value)
+{
+    return afw_value_is_symbol_reference(value) ||
+        afw_value_is_call(value) ||
+        afw_value_is_call_built_in_function(value) ||
+        afw_value_is_call_script_function(value) ||
+        afw_value_is_reference_by_key(value);
+}
+
+
+/*
+ * Evaluate-once forms (#512, #541). The compiler shares one value between
+ * two arguments and the runtime evaluates it once:
+ *
+ *   base?.[key] / base?.(args) is optional_chaining(base, base[key]) or
+ *   optional_chaining(base, base(args)) with one base;
+ *
+ *   target op= value is assign(target, op(target, value)) with one target.
+ *
+ * Text that wrote the shared value twice would compile two, evaluated
+ * twice. Write these as text that compiles to one. Return false to use the
+ * plain call form.
+ */
+static afw_boolean_t
+impl_decompile_evaluate_once(
+    const afw_value_call_built_in_function_t *self,
+    const afw_utf8_t *fid,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *base;
+    const afw_value_t *arg2;
+    const afw_value_reference_by_key_t *ref;
+    const afw_value_call_t *call;
+    const afw_value_call_built_in_function_t *op;
+
+    if (self->args.argc != 2) {
+        return false;
+    }
+
+    if (afw_utf8_equal_utf8_z(fid, "optional_chaining")) {
+        base = self->args.argv[1];
+        arg2 = self->args.argv[2];
+        if (!impl_can_start_chain(base)) {
+            return false;
+        }
+        if (afw_value_is_reference_by_key(arg2)) {
+            ref = (const afw_value_reference_by_key_t *)arg2;
+            if (ref->aggregate_value != base) {
+                return false;
+            }
+            afw_value_decompile_value(base, writer, xctx);
+            afw_writer_write_z(writer, "?.[", xctx);
+            afw_value_decompile_value(ref->key, writer, xctx);
+            afw_writer_write_z(writer, "]", xctx);
+            return true;
+        }
+        if (afw_value_is_call(arg2)) {
+            call = (const afw_value_call_t *)arg2;
+            if (call->function_value != base) {
+                return false;
+            }
+            afw_value_decompile_value(base, writer, xctx);
+            afw_writer_write_z(writer, "?.", xctx);
+            afw_value_decompile_call_args(writer, 1, &call->args, xctx);
+            return true;
+        }
+        return false;
+    }
+
+    if (afw_utf8_equal_utf8_z(fid, "assign")) {
+        if (!afw_value_is_reference_by_key(self->args.argv[1]) ||
+            !afw_value_is_call_built_in_function(self->args.argv[2]))
+        {
+            return false;
+        }
+        op = (const afw_value_call_built_in_function_t *)
+            self->args.argv[2];
+        if (op->args.argc != 2 ||
+            op->args.argv[1] != self->args.argv[1])
+        {
+            return false;
+        }
+        afw_writer_write_z(writer, "#compound_assign(", xctx);
+        afw_writer_write_utf8(writer, &op->function->functionId->internal,
+            xctx);
+        afw_writer_write_z(writer, ",", xctx);
+        afw_value_decompile_value(self->args.argv[1], writer, xctx);
+        afw_writer_write_z(writer, ",", xctx);
+        afw_value_decompile_value(op->args.argv[2], writer, xctx);
+        afw_writer_write_z(writer, ")", xctx);
+        return true;
+    }
+
+    return false;
+}
+
+
+/* True if a block of this compile unit binds name. */
+static afw_boolean_t
+impl_name_is_bound_in_unit(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_utf8_t *name)
+{
+    const afw_value_block_t *block;
+    const afw_value_block_symbol_t *symbol;
+
+    if (!contextual || !contextual->compiled_value) {
+        return false;
+    }
+
+    /* Depth first over the block tree, without a stack. */
+    block = contextual->compiled_value->top_block;
+    while (block) {
+        for (symbol = block->first_entry; symbol;
+            symbol = symbol->next_entry)
+        {
+            if (symbol->name && afw_utf8_equal(&symbol->name->internal, name))
+            {
+                return true;
+            }
+        }
+        if (block->first_child_block) {
+            block = block->first_child_block;
+            continue;
+        }
+        while (block && !block->next_sibling_block) {
+            block = block->parent_block;
+        }
+        if (block) {
+            block = block->next_sibling_block;
+        }
+    }
+
+    return false;
+}
+
+
+/*
  * Implementation of method decompile for interface afw_value.
  *
  * For const/let, a bare symbol_reference target (e.g. function statement)
@@ -348,7 +491,18 @@ impl_afw_value_decompile(
     afw_boolean_t is_try;
     afw_value_string_t kind;
 
+    /*
+     * A variable or function of the same name in this unit would take the
+     * call when the text is compiled again (let add = 5; ... add(x, 2)),
+     * so write the built-in qualified (#541).
+     */
     fid = &self->function->functionId->internal;
+    if (impl_decompile_evaluate_once(self, fid, writer, xctx)) {
+        return;
+    }
+    if (impl_name_is_bound_in_unit(self->args.contextual, fid)) {
+        afw_writer_write_z(writer, "fn::", xctx);
+    }
     afw_writer_write_utf8(writer, fid, xctx);
 
     is_const_or_let =

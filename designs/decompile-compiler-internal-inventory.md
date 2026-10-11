@@ -23,7 +23,7 @@ Usual pattern: decompile writes `#` + `implementation_id` (`afw_value_decompile_
 | Position | Entry | Allowed names |
 |----------|--------|----------------|
 | Statement | `afw_compile_parse_CompilerInternalStatement` | `block`; known rejects `closure_binding`, `function_thunk` |
-| Value / expression | `afw_compile_parse_CompilerInternalValue` | `block`, `assignment_target`, `type`, `interface`, `list_expression`, `script_function`, `template_definition`, `switch_default`, `statements`; same known rejects |
+| Value / expression | `afw_compile_parse_CompilerInternalValue` | `block`, `assignment_target`, `type`, `interface`, `list_expression`, `script_function`, `compound_assign`, `template_definition`, `switch_default`, `statements`; same known rejects |
 
 Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statement vs value wording differs).
 
@@ -35,7 +35,8 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | `#assignment_target` | Yes (`afw_value_assignment_target`, try/catch paths) | Value only | Yes | Kind string + Pattern (`const`/`let`/…) |
 | `#type` | Yes (`afw_value_script_type_declaration`) | Value only | Yes | `#type("Name", Type)` — reserves the name before Type (self-ref). No-op at evaluate (void). |
 | `#interface` | Yes (same value as `#type`, `is_interface`) | Value only | Yes | `#interface("Name", {…}, Base…)` — body is an object type literal; further Types are extends. Shared kind is a judgement (see above), not a leftover. |
-| `#script_function` | Yes (`afw_value_script_function`) | Value | Yes | Params surface-like: name/`…`/Pattern/`?`/`=`/`: Type`; body; optional return Type |
+| `#script_function` | Yes (`afw_value_script_function`) | Value | Yes | Optional function name after `#script_function` (a named function's own name, bound in its parameter block, so a named function expression can call itself; #541). Params surface-like: name/`…`/Pattern/`?`/`=`/`: Type`; body; optional return Type |
+| `#compound_assign` | Yes (`assign` call whose rhs is `op(target, …)` with the same by-key target) | Value | Yes | `#compound_assign(op, target, value)` = `target op= value` with one target, so subscripts evaluate once (#512, #541). `op` is `add` … `nullish_coalescing`. A plain variable target still decompiles as `assign(x, add(x, 1))`. |
 | `#template_definition` | Yes (`afw_value_template_definition`) | Value | Yes | Parts: strings + nested expressions/`#block` |
 | `#list_expression` | Partial | Value | Accept yes | **Call-site spreads** decompile as surface `...expr` via `afw_value_decompile_call_args` (not `#list_expression`). Accept still parses `#list_expression(expr)` (list_expression node). |
 | `#statements` | Yes (for / switch clause lists) | Value | Yes | Unevaluated statement list for control-flow builtins |
@@ -51,6 +52,8 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 - Synthetic name: `afw_value_decompile_write_synthetic_function_name` → `#` + `implementation_id`.
 - Call spreads: `afw_value_decompile_call_args` prefers `...` over wrapping `#list_expression`.
 - Patterns in `#script_function` params: surface Pattern, not nested `#assignment_target` (see `afw_value_decompile_assignment_pattern`).
+- `optional_chaining(base, base[key])` / `optional_chaining(base, base(args))` with one base decompile as surface `base?.[key]` / `base?.(args)` when base is a name, call, or member access, so base evaluates once (#541).
+- A built-in call is written `fn::name(…)` when a block of its compile unit binds `name` (a local named like the built-in would take the call on recompile; #541).
 
 ## Gaps / decisions (current)
 
