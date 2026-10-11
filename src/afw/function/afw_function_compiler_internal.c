@@ -2423,6 +2423,19 @@ afw_function_execute_try(
                                 "try catch: error variable '%ku' not found in catch block",
                                 err_name);
                         }
+                        /*
+                         * Decompile declares the name with a leading
+                         * #assignment_target in the catch block. It is the
+                         * binding, not a statement: evaluated, its value
+                         * could be the script result and outlive the
+                         * catch scope (#541).
+                         */
+                        if (block->statement_count > 0 &&
+                            afw_value_is_assignment_target(
+                                block->statements[0]))
+                        {
+                            stmt_start = 1;
+                        }
                     }
                     else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
                         err_target = x->argv[4];

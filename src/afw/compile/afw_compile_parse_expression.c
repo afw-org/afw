@@ -175,11 +175,24 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                         afw_compile_get_token();
                         if (afw_compile_token_is(open_angle_bracket)) {
                             afw_compile_get_token();
-                            if (!afw_compile_token_is_unqualified_identifier())
+                            /*
+                             * null and undefined are data types, lexed as
+                             * keywords (is<null>, decompile of is_null).
+                             */
+                            if (afw_compile_token_is(null)) {
+                                type_id = afw_s_null;
+                            }
+                            else if (afw_compile_token_is(undefined)) {
+                                type_id = afw_s_undefined;
+                            }
+                            else if (
+                                afw_compile_token_is_unqualified_identifier())
                             {
+                                type_id = afw_compile_token_identifier();
+                            }
+                            else {
                                 AFW_COMPILE_THROW_ERROR_Z("Expecting dataType");
                             }
-                            type_id = afw_compile_token_identifier();
                             afw_compile_get_token();
                             if (!afw_compile_token_is(close_angle_bracket)) {
                                 AFW_COMPILE_THROW_ERROR_Z("Expecting '>'");

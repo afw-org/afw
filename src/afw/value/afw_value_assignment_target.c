@@ -307,6 +307,7 @@ impl_afw_value_produce_compiler_listing(
 static void
 impl_decompile_pattern(
     const afw_value_t *value,
+    afw_boolean_t with_types,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);
 
@@ -315,6 +316,7 @@ static void
 impl_decompile_binding_name_and_type(
     const afw_value_t *target_value,
     const afw_value_type_t *element_type,
+    afw_boolean_t with_types,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
@@ -336,7 +338,9 @@ impl_decompile_binding_name_and_type(
         if (!type) {
             type = &sym->symbol->type;
         }
-        afw_value_decompile_optional_type(type, writer, xctx);
+        if (with_types) {
+            afw_value_decompile_optional_type(type, writer, xctx);
+        }
         return;
     }
 
@@ -350,19 +354,24 @@ impl_decompile_binding_name_and_type(
             if (!type && sym) {
                 type = &sym->symbol->type;
             }
-            afw_value_decompile_optional_type(type, writer, xctx);
+            if (with_types) {
+                afw_value_decompile_optional_type(type, writer, xctx);
+            }
             return;
         }
     }
 
-    impl_decompile_pattern(target_value, writer, xctx);
-    afw_value_decompile_optional_type(element_type, writer, xctx);
+    impl_decompile_pattern(target_value, with_types, writer, xctx);
+    if (with_types) {
+        afw_value_decompile_optional_type(element_type, writer, xctx);
+    }
 }
 
 
 static void
 impl_decompile_list_pattern(
     const afw_compile_list_destructure_t *ld,
+    afw_boolean_t with_types,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
@@ -384,7 +393,7 @@ impl_decompile_list_pattern(
         }
         if (ae->assignment_target) {
             impl_decompile_binding_name_and_type(ae->assignment_target,
-                ae->type, writer, xctx);
+                ae->type, with_types, writer, xctx);
             if (ae->default_value) {
                 afw_writer_write_z(writer,
                     writer->tab ? " = " : "=", xctx);
@@ -402,7 +411,7 @@ impl_decompile_list_pattern(
         }
         afw_writer_write_z(writer, "...", xctx);
         impl_decompile_binding_name_and_type(ld->rest, ld->rest_type,
-            writer, xctx);
+            with_types, writer, xctx);
     }
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
@@ -415,6 +424,7 @@ impl_decompile_list_pattern(
 static void
 impl_decompile_object_pattern(
     const afw_compile_object_destructure_t *od,
+    afw_boolean_t with_types,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
@@ -462,7 +472,7 @@ impl_decompile_object_pattern(
             ae = ap->assignment_element;
             if (ae && ae->assignment_target) {
                 impl_decompile_binding_name_and_type(ae->assignment_target,
-                    ae->type, writer, xctx);
+                    ae->type, with_types, writer, xctx);
                 if (ae->default_value) {
                     afw_writer_write_z(writer,
                         writer->tab ? " = " : "=", xctx);
@@ -474,7 +484,7 @@ impl_decompile_object_pattern(
         else {
             afw_value_decompile(
                 (const afw_value_t *)ap->symbol_reference, writer, xctx);
-            if (ap->symbol_reference) {
+            if (ap->symbol_reference && with_types) {
                 afw_value_decompile_optional_type(
                     &ap->symbol_reference->symbol->type, writer, xctx);
             }
@@ -494,7 +504,7 @@ impl_decompile_object_pattern(
         }
         afw_writer_write_z(writer, "...", xctx);
         impl_decompile_binding_name_and_type(od->rest, od->rest_type,
-            writer, xctx);
+            with_types, writer, xctx);
     }
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
@@ -507,6 +517,7 @@ impl_decompile_object_pattern(
 static void
 impl_decompile_pattern(
     const afw_value_t *value,
+    afw_boolean_t with_types,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
@@ -518,9 +529,11 @@ impl_decompile_pattern(
 
     if (afw_value_is_symbol_reference(value)) {
         afw_value_decompile(value, writer, xctx);
-        afw_value_decompile_optional_type(
-            &((const afw_value_symbol_reference_t *)value)->symbol->type,
-            writer, xctx);
+        if (with_types) {
+            afw_value_decompile_optional_type(
+                &((const afw_value_symbol_reference_t *)value)->symbol->type,
+                writer, xctx);
+        }
         return;
     }
 
@@ -531,15 +544,17 @@ impl_decompile_pattern(
             impl_decompile_binding_name_and_type(
                 (const afw_value_t *)
                     at->assignment_target->symbol_reference,
-                NULL, writer, xctx);
+                NULL, with_types, writer, xctx);
             break;
         case afw_compile_assignment_target_type_list_destructure:
             impl_decompile_list_pattern(
-                at->assignment_target->list_destructure, writer, xctx);
+                at->assignment_target->list_destructure, with_types,
+                writer, xctx);
             break;
         case afw_compile_assignment_target_type_object_destructure:
             impl_decompile_object_pattern(
-                at->assignment_target->object_destructure, writer, xctx);
+                at->assignment_target->object_destructure, with_types,
+                writer, xctx);
             break;
         case afw_compile_assignment_target_type_max_type:
         default:
@@ -563,7 +578,7 @@ afw_value_decompile_assignment_pattern(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    impl_decompile_pattern(instance, writer, xctx);
+    impl_decompile_pattern(instance, true, writer, xctx);
 }
 
 
@@ -601,7 +616,12 @@ impl_afw_value_decompile(
         afw_writer_write_eol(writer, xctx);
     }
 
-    impl_decompile_pattern(&self->pub, writer, xctx);
+    /* Types only where the target declares (let, const), not on an
+     * assignment to existing variables. */
+    impl_decompile_pattern(&self->pub,
+        self->assignment_target->assignment_type !=
+            afw_compile_assignment_type_assign_only,
+        writer, xctx);
 
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
