@@ -315,7 +315,7 @@ afw_stream_fd_open_and_create(
 {
     const afw_stream_t *stream;
     const afw_pool_t *stream_p;
-    afw_stream_fd_self_t *self;
+    afw_stream_fd_self_t * volatile self;
     const afw_utf8_z_t *path_z;
     const afw_utf8_z_t *mode_z;
     const afw_utf8_z_t *c;
