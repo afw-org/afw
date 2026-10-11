@@ -104,7 +104,7 @@ impl_find_object(
                 result = NULL;
                 break;
             }
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(bad_request, xctx,
                 "Property '%ku' in the path is not an object",
                 &entry->property_name.internal);
         }
@@ -293,7 +293,7 @@ afw_adapter_modify_entries_from_list(
     return entries;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(bad_request, xctx,
         "Modify entry tuple number %d is invalid",
         (int)ary->count + 1);
 
@@ -325,7 +325,7 @@ afw_adapter_modify_entries_to_list(
         /* Entry type. */
         value = afw_adapter_modify_entry_type_value((*e)->type);
         if (!value) {
-            AFW_THROW_ERROR_Z(general, "Invalid type", xctx);
+            AFW_THROW_ERROR_Z(bad_request, "Invalid type", xctx);
         }
         afw_array_push_value(tuple, value, xctx);
 
@@ -424,7 +424,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
         case afw_adapter_modify_entry_type_add_value:
 
             if (!afw_value_is_defined_and_evaluated(value)) {
-                AFW_THROW_ERROR_FZ(general, xctx,
+                AFW_THROW_ERROR_FZ(bad_request, xctx,
                     "add_value '%ku' must be a defined and evaluated value",
                     &first_property_name_entry->property_name.internal);
             }
@@ -503,7 +503,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                     if (!afw_value_equal(value, old_value, xctx)) {
                         s = afw_object_path_make_property_name_expression(
                             first_property_name_entry, p, xctx);
-                        AFW_THROW_ERROR_FZ(general, xctx,
+                        AFW_THROW_ERROR_FZ(bad_request, xctx,
                             "Error: Value does not exist for property '%ku'",
                             s);
                     }
@@ -527,7 +527,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                 /* There are no values that exist for this property */
                 s = afw_object_path_make_property_name_expression(
                     first_property_name_entry, p, xctx);
-                AFW_THROW_ERROR_FZ(general, xctx,
+                AFW_THROW_ERROR_FZ(bad_request, xctx,
                     "Error: Value does not exist for property %ku",
                     s);
             }
@@ -549,7 +549,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
 
         /* Invalid modify type. */
         default:
-            AFW_THROW_ERROR_FZ(general, xctx, "Invalid modify type %d",
+            AFW_THROW_ERROR_FZ(bad_request, xctx, "Invalid modify type %d",
                 (*entry)->type);
         }
     }
@@ -573,7 +573,7 @@ impl_add_reconcile_property(
 
     if (embedding_pt && !embedding_pt->allow_write) {
         //return; /** @fixme Ignore these on reconcile???
-        AFW_THROW_ERROR_FZ(general, wa->xctx,
+        AFW_THROW_ERROR_FZ(bad_request, wa->xctx,
             "Property %ku can not be modified",
             embedding_property_name);
         //*/
@@ -581,7 +581,7 @@ impl_add_reconcile_property(
 
     if (pt && !pt->allow_write) {
         // return; /** @fixme Ignore these on reconcile???
-        AFW_THROW_ERROR_FZ(general, wa->xctx,
+        AFW_THROW_ERROR_FZ(bad_request, wa->xctx,
             "Property %ku can not be modified",
             afw_object_property_name_display_utf8(
                     property_name, wa->xctx));
@@ -656,7 +656,7 @@ impl_reconcile_object(
         pt = afw_object_type_property_type_get(object_type,
             property_name, wa->xctx);
         if (!pt) {
-            AFW_THROW_ERROR_FZ(general, wa->xctx,
+            AFW_THROW_ERROR_FZ(bad_request, wa->xctx,
                 "Missing property type for '%ku'",
                 afw_object_property_name_display_utf8(
                     property_name, wa->xctx));
@@ -734,7 +734,7 @@ impl_reconcile_object(
                         wa->xctx);
                 }
                 if (!property_object_type) {
-                    AFW_THROW_ERROR_Z(general,
+                    AFW_THROW_ERROR_Z(bad_request,
                         "object type needed to reconcile embedded object",
                         wa->xctx);
                 }
@@ -808,7 +808,7 @@ afw_adapter_modify_needed_to_reconcile(
 
     if (!original_path || !path || !afw_utf8_equal(original_path, path)) 
     {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(bad_request,
             "reconcile expects original and modified "
             "paths to match",
             xctx);
@@ -817,7 +817,7 @@ afw_adapter_modify_needed_to_reconcile(
     /* Parse path and make sure it is an entity. */
     parsed_path = afw_object_path_parse(path, NULL, NULL, p, xctx);
     if (!parsed_path || parsed_path->first_property_name) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(bad_request,
             "reconcile_object() expects path to be an entity",
             xctx);
     }
@@ -828,7 +828,7 @@ afw_adapter_modify_needed_to_reconcile(
     object_type = afw_adapter_get_object_type(*adapter_id, *object_type_id,
         journal_entry, xctx);
     if (!object_type) {
-        AFW_THROW_ERROR_FZ(general, xctx,
+        AFW_THROW_ERROR_FZ(bad_request, xctx,
             "Object type '%ku' does not exist in Adapter '%ku'",
             *object_type_id,
             *adapter_id);
@@ -887,7 +887,8 @@ afw_adapter_modify_object(
         afw_v_entries, entries, xctx);
 
     /* Parse entries. */
-    entry = afw_adapter_modify_entries_from_list(entries, xctx->p, xctx);
+    entry = afw_adapter_modify_entries_from_list(entries, impl_request.p,
+        xctx);
 
     /* Get an active session with adapter. */
     session = afw_adapter_session_get_cached(adapter_id, true, xctx);
@@ -939,22 +940,24 @@ afw_adapter_modify_using_update_object(
     const afw_array_t *entry;
     const afw_value_t *entry_value;
     const afw_value_t *property_name_value;
+    const afw_pool_t *p;
 
-    /* Convert update_object to list of modify entries. */
-    entries = afw_array_create_unmanaged_of(afw_data_type_array, xctx->p, xctx);
+    /* Convert update_object to list of modify entries, for this call. */
+    p = journal_entry->p;
+    entries = afw_array_create_unmanaged_of(afw_data_type_array, p, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(update_object,
         &iterator, &property_name, xctx)))
     {
         /* Add ["set_property", <property name>, value]. */
-        entry = afw_array_create_unmanaged(xctx->p, xctx);
+        entry = afw_array_create_unmanaged(p, xctx);
         afw_array_push_value(entry,
             &impl_value_set_property.pub,
             xctx);
         property_name_value = property_name;
         afw_array_push_value(entry, property_name_value, xctx);
         afw_array_push_value(entry, value, xctx);
-        entry_value = afw_value_create_unmanaged_array(entry, xctx->p, xctx);
+        entry_value = afw_value_create_unmanaged_array(entry, p, xctx);
         afw_array_push_value(entries, entry_value, xctx);
     }
 

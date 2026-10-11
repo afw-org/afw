@@ -54,10 +54,10 @@ impl_set_instance_active(
     afw_xctx_t *xctx)
 {
     afw_adapter_id_anchor_t *anchor;
-    afw_adapter_id_anchor_t *stopping;
+    afw_adapter_id_anchor_t * volatile stopping;
 
     stopping = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         /*
          * Get anchor.  If not already registered, make a new one
@@ -112,7 +112,7 @@ impl_set_instance_active(
 
     }
 
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     /*
      * Drop the generation's own count. That count was not a
@@ -131,9 +131,9 @@ impl_get_reference(
     afw_xctx_t *xctx)
 {
     afw_adapter_id_anchor_t *anchor;
-    const afw_adapter_t *instance;
+    const afw_adapter_t * volatile instance;
 
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         instance = NULL;
         anchor = (afw_adapter_id_anchor_t *)
@@ -146,7 +146,7 @@ impl_get_reference(
         }
     }
 
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     return instance;
 }
@@ -202,12 +202,12 @@ afw_adapter_get_metrics_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *object = (const afw_object_t *)data;
+    const afw_object_t * volatile object = (const afw_object_t *)data;
     afw_runtime_object_indirect_t *indirect =
         (afw_runtime_object_indirect_t *)object;
     afw_adapter_impl_t *impl = (afw_adapter_impl_t *)indirect->internal;
-    const afw_adapter_t *held;
-    const afw_object_t *snapshot;
+    const afw_adapter_t * volatile held;
+    const afw_object_t * volatile snapshot;
 
     /*
      * Shared counters (getObjectCount and the rest) are a snapshot.
@@ -222,11 +222,11 @@ afw_adapter_get_metrics_object(
 
     held = NULL;
     snapshot = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
         held = afw_adapter_internal_pin_for_pool_lock_held(
             impl->adapter, p, xctx);
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     if (!held) {
         return NULL;
@@ -395,10 +395,10 @@ impl_adapter_release_reference(
 {
     afw_adapter_id_anchor_t *anchor;
     afw_adapter_id_anchor_t *previous_anchor;
-    afw_boolean_t destroy;
+    volatile afw_boolean_t destroy;
 
     destroy = false;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         /* Find anchor for this adapter instance. */
         for (
@@ -425,7 +425,7 @@ impl_adapter_release_reference(
         }
     }
 
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     if (destroy) {
         afw_adapter_destroy(instance, xctx);
@@ -658,9 +658,9 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
     afw_hash_table_index_t hi;
     const void * key;
     afw_size_t klen;
-    afw_size_t i;
+    volatile afw_size_t i;
     afw_error_t first_error;
-    afw_boolean_t have_error;
+    volatile afw_boolean_t have_error;
 
     cache = xctx->cache;
     if (!cache) {
@@ -738,7 +738,7 @@ afw_adapter_get_object_type(
     afw_adapter_internal_session_cache_t *session_cache;
     afw_object_type_property_type_t *property_type;
     const afw_adapter_t *adapter;
-    const afw_pool_t *p;
+    const afw_pool_t * volatile p;
     afw_boolean_t final_result;
     const afw_utf8_t *key;
 
@@ -1018,9 +1018,9 @@ impl_afw_service_type_related_instance_count (
 {
     afw_adapter_id_anchor_t *anchor;
     afw_adapter_id_anchor_t *stopping;
-    afw_integer_t result = 0;
+    volatile afw_integer_t result = 0;
 
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         anchor = (afw_adapter_id_anchor_t *)
             afw_environment_get_adapter_id(id, xctx);
@@ -1039,7 +1039,7 @@ impl_afw_service_type_related_instance_count (
             }
         }
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     return result;
 }

@@ -832,8 +832,8 @@ do {\
     afw_try_t this_TRY; \
     afw_try_t this_FINALLY_TRY; \
     afw_error_t this_THROWN_ERROR; \
-    afw_boolean_t this_ERROR_OCCURRED = false; \
-    afw_boolean_t this_ERROR_CAUGHT = false; \
+    volatile afw_boolean_t this_ERROR_OCCURRED = false; \
+    volatile afw_boolean_t this_ERROR_CAUGHT = false; \
     (void)this_FINALLY_TRY; \
     this_TRY.prev = xctx->current_try;\
     xctx->current_try = &this_TRY;\

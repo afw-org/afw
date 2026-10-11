@@ -1591,3 +1591,30 @@ write_internal(sn, hexBinary("FF0A"));
 close(sn);
 sn = open_file("bad_utf8_ln", "data/bad_utf8_ln.bin", "r");
 return readln(sn);
+
+//? test: open-close-does-not-grow
+//? description: Each open_file / close pair gives its memory back (#560)
+//? expect: true
+//? source: ...
+
+function run(n: integer): integer {
+    const s = pool_bytes_in_use();
+    for (const z of create_array(n)) {
+        close(open_file("ln", "data/include_root/x.txt", "r"));
+    }
+    return pool_bytes_in_use() - s;
+}
+
+run(50);
+const few = run(100);
+const many = run(1000);
+assert(many - few < 1024, "100: " + string(few) + ", 1000: " + string(many));
+return true;
+
+//? test: open-without-close-at-end
+//? description: A stream left open is closed when the xctx ends (no error)
+//? expect: true
+//? source: ...
+
+open_file("left-open", "data/include_root/x.txt", "r");
+return true;

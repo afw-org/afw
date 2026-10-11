@@ -79,8 +79,13 @@ struct afw_environment_s {
     /** @brief Open file descriptor used for writing standard output. Default stdout. */
     FILE *stdout_fd;
 
-    /** @brief Indicates that environment is terminating. */
-    afw_boolean_t terminating;
+    /**
+     * @brief Indicates that environment is terminating.
+     *
+     * Atomic: a signal handler sets it (afw, afwfcgi) and every thread
+     * reads it.
+     */
+    AFW_ATOMIC afw_boolean_t terminating;
 
     /** @brief Flag index of compile:noImplicitAny. */
     afw_size_t flag_index_compile_noImplicitAny_active;
@@ -494,6 +499,9 @@ struct afw_environment_conf_type_s {
     /** @brief Id property name for instances of this conf type. */
     const afw_utf8_t *id_property_name;
 
+    /** @brief id_property_name as a value, or NULL. */
+    const afw_value_t *id_property_name_value;
+
     /** @brief Registry type for instances of this conf type. */
     const afw_utf8_t *id_registry_type_id;
 
@@ -502,6 +510,9 @@ struct afw_environment_conf_type_s {
 
     /** @brief Subtype property name for instances of this conf type. */
     const afw_utf8_t *subtype_property_name;
+
+    /** @brief subtype_property_name as a value, or NULL. */
+    const afw_value_t *subtype_property_name_value;
 
     /** @brief Subtype registry type for instances of this conf type. */
     const afw_utf8_t *subtype_registry_type_id;

@@ -60,6 +60,9 @@
             "description": "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the number of threads that are available.",
             "label": "Concurrent",
             "required": true,
+            "runtime": {
+                "valueAccessor": "atomic_integer"
+            },
             "unique": false
         },
         "peakPoolBytesInUse": {
@@ -92,7 +95,8 @@
             "label": "Max Concurrent",
             "required": true,
             "runtime": {
-                "memberName": "max_concurrent"
+                "memberName": "max_concurrent",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -269,7 +273,8 @@
             "label": "Request Count",
             "required": true,
             "runtime": {
-                "memberName": "request_count"
+                "memberName": "request_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -314,7 +319,8 @@
             "label": "Thread Count",
             "required": true,
             "runtime": {
-                "memberName": "thread_count"
+                "memberName": "thread_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -326,7 +332,8 @@
             "label": "Unhandled Errors",
             "required": true,
             "runtime": {
-                "memberName": "unhandled_errors"
+                "memberName": "unhandled_errors",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         }

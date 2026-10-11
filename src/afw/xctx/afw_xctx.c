@@ -150,6 +150,8 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
 
     /* Get xctx's UUID. */
     xctx->uuid = afw_uuid_create_utf8(xctx->p, xctx);
+    xctx->uuid_value = afw_value_create_unmanaged_string(xctx->uuid,
+        xctx->p, xctx);
 
     /* Create a properties object. */
     xctx->properties = afw_object_create_unmanaged(
@@ -630,6 +632,10 @@ afw_xctx_release(
             ", delayed scope pools %s\n",
             instance->error_processing_count,
             instance->error_delaying_release_first ? "yes" : "no");
+    }
+    if (instance->p) {
+        afw_pool_internal_report_pending_releases(instance->p,
+            "afw_xctx_release", xctx);
     }
 #endif
     afw_reference_collector_release((afw_xctx_t *)instance);

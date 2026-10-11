@@ -126,7 +126,7 @@ impl_internal_additional_register_indirect(
     afw_xctx_t *xctx)
 {
     afw_environment_internal_t *env;
-    afw_environment_registry_type_t *type;
+    afw_environment_registry_type_t * volatile type;
 
     env = (afw_environment_internal_t *)xctx->env;
 
@@ -571,6 +571,10 @@ afw_environment_create(
         }
         env->process_args = args_array;
         env->process_pid = (afw_integer_t)afw_os_get_pid();
+        env->process_pid_value = afw_value_create_unmanaged_integer(
+            env->process_pid, p, xctx);
+        env->program_name_value = afw_value_create_unmanaged_string(
+            &env->program_name, p, xctx);
         cwd = afw_os_getcwd(p, xctx);
         env->process_cwd = cwd;
         env->afw_version = afw_version_string();
@@ -703,13 +707,6 @@ afw_environment_create(
             afw_s_a_lock_log_list_description,
             true, xctx);
 
-    /* Create flags lock. */
-    env->flags_lock  =
-        afw_lock_create_and_register(
-            afw_s_a_lock_flags,
-            afw_s_a_lock_flags_brief,
-            afw_s_a_lock_flags_description,
-            true, xctx);
 
     /*
      * Adaptive Framework app should have a AFW_TRY right after call to create
@@ -761,7 +758,7 @@ afw_environment_create_registry_type(
     void * register_additional_param,
     afw_xctx_t *xctx)
 {
-    afw_environment_registry_type_t *type;
+    afw_environment_registry_type_t * volatile type;
     afw_environment_internal_t *env;
 
     env = (afw_environment_internal_t *)xctx->env;
@@ -818,7 +815,7 @@ afw_environment_get_registry_type_by_id(
     afw_boolean_t load_extension,
     afw_xctx_t *xctx)
 {
-    afw_environment_registry_type_t *type;
+    afw_environment_registry_type_t * volatile type;
     afw_environment_internal_t *env;
     impl_check_manifest_cb_context_t ctx;
 
@@ -853,7 +850,7 @@ afw_environment_get_registry_type_by_number(
     afw_xctx_t *xctx)
 {
     afw_environment_internal_t *env;
-    afw_environment_registry_type_t *type;
+    afw_environment_registry_type_t * volatile type;
 
     env = (afw_environment_internal_t *)xctx->env;
 
@@ -1030,7 +1027,7 @@ afw_environment_registry_key_exists(
     afw_xctx_t *xctx)
 {
     afw_environment_registry_type_t *type;
-    afw_boolean_t result;
+    volatile afw_boolean_t result;
     afw_environment_internal_t *env;
 
     env = (afw_environment_internal_t *)xctx->env;
@@ -1062,7 +1059,7 @@ afw_environment_registry_get(
     afw_xctx_t *xctx)
 {
     afw_environment_registry_type_t *type;
-    void *result;
+    void * volatile result;
     afw_environment_internal_t *env;
     impl_check_manifest_cb_context_t ctx;
 
@@ -1220,6 +1217,17 @@ afw_environment_create_and_register_conf_type(
     conf_type->subtype_runtime_object_type_id =
         afw_utf8_clone(subtype_runtime_object_type_id, p, xctx);
 
+    if (conf_type->id_property_name) {
+        conf_type->id_property_name_value =
+            afw_value_create_unmanaged_string(
+                conf_type->id_property_name, p, xctx);
+    }
+    if (conf_type->subtype_property_name) {
+        conf_type->subtype_property_name_value =
+            afw_value_create_unmanaged_string(
+                conf_type->subtype_property_name, p, xctx);
+    }
+
     conf_type->is_unique = is_unique;
 
     afw_environment_registry_register(
@@ -1233,13 +1241,13 @@ afw_environment_create_and_register_conf_type(
 /* Load and initialize environment extension. */
 AFW_DEFINE(const afw_extension_t *)
 afw_environment_load_extension(
-    const afw_utf8_t *extension_id,
-    const afw_utf8_t *module_path,
-    const afw_object_t *properties,
+    const afw_utf8_t * volatile extension_id,
+    const afw_utf8_t * volatile module_path,
+    const afw_object_t * volatile properties,
     afw_xctx_t *xctx)
 {
     afw_os_dso_t *dso_handle;
-    const afw_extension_t *extension;
+    const afw_extension_t * volatile extension;
     const afw_utf8_z_t *path_z;
     const afw_extension_t **extension_instance;
     const afw_pool_t *p;
@@ -1453,7 +1461,7 @@ afw_environment_load_extension(
 AFW_DEFINE(void)
 afw_environment_register_data_type(
     const afw_utf8_t *data_type_id,
-    const afw_data_type_t *data_type,
+    const afw_data_type_t * volatile data_type,
     afw_xctx_t *xctx)
 {
     afw_data_type_t *dt;
@@ -1603,7 +1611,7 @@ impl_resolve_function(
 AFW_DEFINE(void)
 afw_environment_register_function(
     const afw_utf8_t *function_id,
-    const afw_value_function_definition_t *function,
+    const afw_value_function_definition_t * volatile function,
     afw_xctx_t *xctx)
 {
     afw_value_function_definition_t *f;
@@ -1793,7 +1801,7 @@ afw_environment_get_qualified_function(
     const afw_utf8_t *name,
     afw_xctx_t *xctx)
 {
-    const afw_value_function_definition_t *result;
+    const afw_value_function_definition_t * volatile result;
     int *method_number;
     afw_environment_internal_t *env;
     const afw_data_type_t *data_type;
@@ -1838,7 +1846,7 @@ afw_environment_registry_get_data_type_method(
     afw_integer_t dataTypeMethodNumber,
     afw_xctx_t *xctx)
 {
-    const afw_value_function_definition_t *result;
+    const afw_value_function_definition_t * volatile result;
     afw_environment_data_type_method_p_vector_t *d;
     afw_environment_internal_t *env;
 

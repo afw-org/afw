@@ -1015,14 +1015,14 @@ afw_value_create_string_from_u8z(
 AFW_DEFINE(const afw_value_t *)
 afw_value_evaluate_with_additional_untrusted_qualified_variables(
     const afw_value_t *value,
-    const afw_value_t *untrusted_qualified_variables,
+    const afw_value_t * volatile untrusted_qualified_variables,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
     const afw_object_t *object;
     const afw_value_t *property_name;
     const afw_object_t *qualifier_object;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     int top;
 
     result = NULL;
@@ -1074,6 +1074,29 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
 
     return result;
 }
+
+
+/* Convert a value that may be text for a typed slot. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_convert_lexical(
+    const afw_value_t *value,
+    const afw_data_type_t *to_data_type,
+    afw_boolean_t required,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_common_t *result;
+
+    if (value && to_data_type && afw_value_is_string(value) &&
+        afw_data_type_is_boolean(to_data_type))
+    {
+        result = afw_value_common_allocate(to_data_type, p, xctx);
+        afw_data_type_utf8_to_internal(to_data_type, &result->internal,
+            &((const afw_value_string_t *)value)->internal, p, xctx);
+        return &result->pub;
+    }
+    return afw_value_convert(value, to_data_type, required, p, xctx);
+}
+
 
 
 /* Convert a value to a value/data type. */

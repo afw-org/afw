@@ -134,7 +134,7 @@ impl_log_current_variable_get_cb(
     }
 
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_unmanaged_string(xctx->uuid, wa->p, xctx);
+        result = xctx->uuid_value;
     }
 
     else if (afw_utf8_equal(name, afw_s_source)) {
@@ -339,7 +339,7 @@ afw_log_get_properties_object(
     afw_xctx_t *xctx)
 {
     const afw_log_t *current;
-    const afw_object_t *snapshot;
+    const afw_object_t * volatile snapshot;
 
     if (!log || !log->properties) {
         return NULL;
@@ -373,13 +373,18 @@ afw_log_add_to_environment(
     impl_log_entry_t *e;
     impl_log_head_t *head;
     const afw_pool_t *p;
-    impl_afw_log_self_t *env_log;
-    const afw_log_t *old;
+    impl_afw_log_self_t * volatile env_log;
+    const afw_log_t * volatile old;
 
     /* Use p of environment. */
     p = xctx->env->p;
     old = NULL;
 
+    /*
+     * Registering takes environment_lock, and code holding it writes
+     * log lines (active_log_list_lock), so take it first.
+     */
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
     AFW_LOCK_BEGIN(xctx->env->active_log_list_lock) {
 
         /* Register log.  Will throw error if already registered. */
@@ -428,6 +433,8 @@ afw_log_add_to_environment(
         }
         head->last_log = e;
 
+    }
+    AFW_LOCK_END;
     }
     AFW_LOCK_END;
 
@@ -623,7 +630,7 @@ impl_afw_log_write(
     afw_xctx_t *xctx)
 {
     impl_format_write_t wa;
-    afw_boolean_t lock_held;
+    volatile afw_boolean_t lock_held;
     afw_boolean_t log_found;
 
     wa.self = (impl_afw_log_self_t *)self;

@@ -99,7 +99,6 @@ impl_current_get_variable_cb(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    afw_integer_t pid;
 
     (void)entry;
 
@@ -109,15 +108,13 @@ impl_current_get_variable_cb(
         result = xctx->mode ? xctx->mode : afw_value_undefined;
     }
     else if (afw_utf8_equal(name, afw_s_pid)) {
-        pid = afw_os_get_pid();
-        result = afw_value_create_unmanaged_integer(pid, xctx->p, xctx);
+        result = xctx->env->process_pid_value;
     }
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_unmanaged_string(xctx->uuid, xctx->p, xctx);
+        result = xctx->uuid_value;
     }
     else if (afw_utf8_equal(name, afw_s_programName)) {
-        result = afw_value_create_unmanaged_string(
-            &xctx->env->program_name, xctx->p, xctx);
+        result = xctx->env->program_name_value;
     }
 
     return result;
@@ -455,7 +452,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     const afw_utf8_t *detail_source_location;
     const afw_object_t *object;
     const afw_utf8_t *s;
-    afw_boolean_t error;
+    volatile afw_boolean_t error;
 
     /* Only one application conf allowed. */
     if (env->application_object) {

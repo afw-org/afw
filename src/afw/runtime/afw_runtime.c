@@ -470,7 +470,7 @@ afw_runtime_object_create_indirect(
 AFW_DEFINE(void)
 afw_runtime_env_create_and_set_indirect_object_using_inf(
     const afw_object_inf_t *inf,
-    const afw_utf8_t *object_id,
+    const afw_utf8_t * volatile object_id,
     void * internal,
     afw_runtime_object_cb_t cb,
     afw_boolean_t overwrite,
@@ -656,7 +656,7 @@ impl_clone_under_environment_lock(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *clone;
+    const afw_object_t * volatile clone;
     const afw_value_t *value;
 
     clone = NULL;
@@ -765,7 +765,7 @@ impl_find_object(
     afw_xctx_t *xctx)
 {
     const impl_ht_object_entry *entry;
-    const afw_object_t *result;
+    const afw_object_t * volatile result;
     const afw_xctx_t *c;
     afw_void_hash_table_t *ht;
 

@@ -256,11 +256,10 @@ Created at environment create (non-exhaustive):
 
 | Lock | Typical use |
 |------|-------------|
-| `environment_lock` | Registry register/get mutations |
+| `environment_lock` | Registry register/get mutations; flags (registration and defaults) |
 | `adapter_id_anchor_lock` | Adapter anchors / stopping list (used by stopping accessor) |
 | `authorization_handler_id_anchor_rw_lock` | Auth handler anchors / stopping |
 | `active_log_list_lock` | Active logs |
-| `flags_lock` | Flags |
 
 MT pool methods take the thread `afw_memory_region` mutex (no env `multithreaded_pool_lock`).
 

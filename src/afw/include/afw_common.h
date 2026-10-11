@@ -256,7 +256,6 @@ AFW_CALLING_CONVENTION_ELLIPSIS
 #endif
 
 /* Include template headers. */
-#include "afw_associative_array_template.h"
 
 /**
  * @brief Macro to avoid unused variable warning

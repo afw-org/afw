@@ -1012,6 +1012,64 @@ impl_evaluate_trip(
 
 
 /*
+ * Compound assignment (target op= rhs) to a reference by key: evaluate its
+ * aggregate and key once and use them for both the read and the store, so
+ * subscripts run once. Hold them until the store, since the rhs may
+ * reassign what they came from.
+ */
+static const afw_value_t *
+impl_assign_compound_by_key(
+    const afw_value_reference_by_key_t *ref,
+    const afw_value_call_built_in_function_t *call,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t * volatile result;
+    afw_value_reference_by_key_t *once_target;
+    afw_value_call_built_in_function_t *once_call;
+    const afw_value_t **argv;
+    const afw_value_t *once_aggregate;
+    const afw_value_t * volatile once_key;
+
+    once_key = NULL;
+    once_aggregate = afw_value_get_assignable(
+        afw_value_evaluate(ref->aggregate_value, p, xctx), p, xctx);
+    AFW_TRY {
+        once_key = afw_value_get_assignable(
+            afw_value_evaluate(ref->key, p, xctx), p, xctx);
+
+        once_target = afw_pool_malloc_type(p,
+            afw_value_reference_by_key_t, xctx);
+        afw_memory_copy(once_target, ref);
+        once_target->aggregate_value = once_aggregate;
+        once_target->key = once_key;
+
+        argv = afw_pool_malloc(p, sizeof(afw_value_t *) * 3, xctx);
+        argv[0] = call->args.argv[0];
+        argv[1] = &once_target->pub;
+        argv[2] = call->args.argv[2];
+        once_call = afw_pool_malloc_type(p,
+            afw_value_call_built_in_function_t, xctx);
+        afw_memory_copy(once_call, call);
+        once_call->args.argv = argv;
+        once_call->optimized_value = &once_call->pub;
+
+        result = impl_assign(&once_target->pub, &once_call->pub,
+            afw_compile_assignment_type_assign_only,
+            p, xctx);
+    }
+    AFW_FINALLY {
+        afw_value_release(once_key, xctx);
+        afw_value_release(once_aggregate, xctx);
+    }
+    AFW_ENDTRY;
+
+    return result;
+}
+
+
+
+/*
  * Adaptive function: assign
  *
  * afw_function_execute_assign
@@ -1053,61 +1111,20 @@ afw_function_execute_assign(
     const afw_pool_t *p = x->p;
     const afw_value_t *result;
     const afw_value_call_built_in_function_t *call;
-    const afw_value_reference_by_key_t *ref;
-    afw_value_reference_by_key_t *once_target;
-    afw_value_call_built_in_function_t *once_call;
-    const afw_value_t **argv;
-    const afw_value_t *once_aggregate;
-    const afw_value_t *once_key;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
 
     /*
      * Compound assignment (target op= rhs) compiles as
-     * assign(target, op(target, rhs)) with one target tree (#512). For a
-     * reference by key, evaluate its aggregate and key once and use them
-     * for both the read and the store, so subscripts run once. Hold them
-     * until the store, since the rhs may reassign what they came from.
+     * assign(target, op(target, rhs)) with one target tree (#512).
      */
     call = (const afw_value_call_built_in_function_t *)AFW_FUNCTION_ARGV(2);
     if (afw_value_is_reference_by_key(x->argv[1]) &&
         afw_value_is_call_built_in_function(&call->pub) &&
         call->args.argc == 2 && call->args.argv[1] == x->argv[1])
     {
-        ref = (const afw_value_reference_by_key_t *)x->argv[1];
-        once_key = NULL;
-        once_aggregate = afw_value_get_assignable(
-            afw_value_evaluate(ref->aggregate_value, p, xctx), p, xctx);
-        AFW_TRY {
-            once_key = afw_value_get_assignable(
-                afw_value_evaluate(ref->key, p, xctx), p, xctx);
-
-            once_target = afw_pool_malloc_type(p,
-                afw_value_reference_by_key_t, xctx);
-            afw_memory_copy(once_target, ref);
-            once_target->aggregate_value = once_aggregate;
-            once_target->key = once_key;
-
-            argv = afw_pool_malloc(p, sizeof(afw_value_t *) * 3, xctx);
-            argv[0] = call->args.argv[0];
-            argv[1] = &once_target->pub;
-            argv[2] = call->args.argv[2];
-            once_call = afw_pool_malloc_type(p,
-                afw_value_call_built_in_function_t, xctx);
-            afw_memory_copy(once_call, call);
-            once_call->args.argv = argv;
-            once_call->optimized_value = &once_call->pub;
-
-            result = impl_assign(&once_target->pub, &once_call->pub,
-                afw_compile_assignment_type_assign_only,
-                p, xctx);
-        }
-        AFW_FINALLY {
-            afw_value_release(once_key, xctx);
-            afw_value_release(once_aggregate, xctx);
-        }
-        AFW_ENDTRY;
-        return result;
+        return impl_assign_compound_by_key(
+            (const afw_value_reference_by_key_t *)x->argv[1], call, p, xctx);
     }
 
     /* Same door as let/const: impl_assign evaluates the RHS.
@@ -1403,7 +1420,7 @@ afw_function_execute_for(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_pool_scope_t *previous_iterator_scope;
+    const afw_pool_scope_t * volatile previous_iterator_scope;
     const afw_value_t *increment;
     impl_trip_t trip;
 
@@ -1553,7 +1570,7 @@ afw_function_execute_for_of(
     const afw_value_t *iterable;
     const afw_value_t *value;
     const afw_pool_t *trip_p;
-    const afw_pool_scope_t *previous_iterator_scope;
+    const afw_pool_scope_t * volatile previous_iterator_scope;
     afw_iterator_t iterator;
     impl_trip_t trip;
 
@@ -2368,7 +2385,7 @@ afw_function_execute_try(
                  * Bind the error after the catch frame exists. Do not
                  * call evaluate_block: it would create the scope again.
                  */
-                const afw_pool_scope_t *catch_scope;
+                const afw_pool_scope_t * volatile catch_scope;
                 const afw_pool_t *eval_p;
                 const afw_error_t *caught_error = &this_THROWN_ERROR;
                 const afw_value_block_t *block =
@@ -2422,6 +2439,19 @@ afw_function_execute_try(
                             AFW_THROW_ERROR_FZ(general, xctx,
                                 "try catch: error variable '%ku' not found in catch block",
                                 err_name);
+                        }
+                        /*
+                         * Decompile declares the name with a leading
+                         * #assignment_target in the catch block. It is the
+                         * binding, not a statement: evaluated, its value
+                         * could be the script result and outlive the
+                         * catch scope (#541).
+                         */
+                        if (block->statement_count > 0 &&
+                            afw_value_is_assignment_target(
+                                block->statements[0]))
+                        {
+                            stmt_start = 1;
                         }
                     }
                     else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {

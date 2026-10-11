@@ -15,7 +15,8 @@
             "-Wno-sign-compare",
             "-Wno-implicit-fallthrough",
             "-Werror",
-            "-fsigned-char"
+            "-fsigned-char",
+            "-fno-strict-aliasing"
         ]
     },
     "copyright": "Copyright (c) 2010-2024 Clemson University",

@@ -280,6 +280,25 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 
 **Conversion to boolean works like ECMAScript `Boolean()`** on the value as JSON carries it, in `boolean()` and wherever a value is converted to boolean (a typed `boolean` parameter, for example): `undefined` and `null` are `false` (they threw); a number is `false` for 0, -0, and NaN; a string, and any value written as a string in JSON (`anyURI`, `dateTime`, `base64Binary`, ...), is `false` only when empty, so `"false"` and `"0"` are `true`; an object, array, or function is `true` (`boolean([])` threw, `boolean([0])` was `false` and so was a one-entry array for a `boolean` parameter, `boolean(dateTime(...))` threw). Converting an object to boolean read a byte of the object's address and inverted it, so `boolean({a: 1})` was usually `false`. Reading **text** as a boolean (a query filter value, a model property, the data type's own parser) still takes `"false"`, `"f"`, and `"0"` as `false`.
 
+## Fixes from PR [#570](https://github.com/afw-org/afw/pull/570) (2026-10-11)
+
+**Script authors**
+- **Text for a boolean slot** is read with the boolean parser ([#552](https://github.com/afw-org/afw/issues/552)): a POST `/afw` action parameter or a typed boolean property given `"false"` or `"0"` is `false` (it was `true` after the conversion change above). `boolean("false")` is still `true`.
+- **`${x + 1}`** and other substitutions or `afw -x` / `-s expression` input that start with a name, call, or member access can go on with operators: `${o.a * 3}`, `abs(1) + 2` ([#542](https://github.com/afw-org/afw/issues/542)). An expression that starts with `[` (`afw -x '[1, 2]'`) still does not parse.
+- **`is<null>(x)`** parses (`null` is a data type).
+- **Decompile** round trips more forms: a call of a function expression, optional typed parameters, destructuring into existing variables, a `catch` or empty `if` branch as the last statement ([#541](https://github.com/afw-org/afw/issues/541)).
+- **`open_file` / `close`** in a loop no longer grows memory, and a stream left open is closed when the request ends ([#560](https://github.com/afw-org/afw/issues/560)). Adapter writes (`add_object`, `modify_object`, …) in a loop stay flat too ([#539](https://github.com/afw-org/afw/issues/539)), and so do reads of `current::pid`, `xctxUUID`, and `programName` ([#546](https://github.com/afw-org/afw/issues/546)).
+
+**Operators and clients**
+- A URI or object path the client got wrong (`%FF`, not NFC, a parse error) is **400 `syntax`**, not 500; a bad modify / update / PATCH-style POST body is **400 `bad_request`** ([#537](https://github.com/afw-org/afw/issues/537)).
+
+**C programmers** (rebuild extension DSOs and commands against this install)
+- `afw_data_type_t` has a new member, `data_type_id_value`, after `data_type_id` (generated).
+- `afw_file_from_memory`, `afw_file_write_whole`, `afw_file_mkdir_p`, and `afw_file_delete` take a `p` before `xctx`.
+- `afw_associative_array` and the `afw_object_associative_array` interface are **removed** ([#478](https://github.com/afw-org/afw/issues/478)); use `afw_hash_table`.
+- New `afw_value_convert_lexical()`: `afw_value_convert()` that reads a string for a boolean slot with the boolean parser.
+- An optimized (Release) build compiles: locals changed inside `AFW_TRY` and read after a throw are `volatile`, and the package compile options add `-fno-strict-aliasing` ([#562](https://github.com/afw-org/afw/issues/562)).
+
 ## LMDB index queries and 64-bit integers (overnight 2026-10-10)
 
 **LMDB index queries:** with an index on the property, `lt` the first key returned that key, `gt` the last key returned it, `le` below every key returned the first one, `le` took one of several objects with an equal value, and `gt "a"` skipped `"ab"` when no object had `"a"` (keys were compared by prefix). An `and` holding an `or` with a term no index answers crashed the process, and `out` / `ne` / `in` (or a `match` that is not a literal prefix) on an indexed property inside an `and` threw *Unable to create cursor for this operator*; such a term is now tested on the objects the other terms' cursors find. A query string's value (always a string) on an indexed property whose object type says integer or double is that number's key: `n=gt=9` found nothing and `n=lt=10` found everything. Still open: [#544](https://github.com/afw-org/afw/issues/544) (empty strings are not index keys; string values without an object type).

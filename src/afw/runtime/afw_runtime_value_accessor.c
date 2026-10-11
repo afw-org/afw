@@ -213,7 +213,7 @@ afw_runtime_value_accessor_data_type_id(
     if (!data_type) {
         return NULL;
     }
-    return afw_value_create_unmanaged_string(&data_type->data_type_id, p, xctx);
+    return data_type->data_type_id_value;
 }
 
 
@@ -318,7 +318,7 @@ afw_runtime_value_accessor_stopping_adapter_instances(
     const afw_adapter_id_anchor_t *anchor;
     const afw_adapter_id_anchor_t *stopping;
     afw_size_t count;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     afw_integer_t *entry;
     const afw_utf8_t *adapter_id;
     const afw_array_t *list;
@@ -326,7 +326,7 @@ afw_runtime_value_accessor_stopping_adapter_instances(
     /* A copy is required since it may change by a different thread. */
     adapter_id = *(const afw_utf8_t **)internal;
     result = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         anchor = afw_environment_get_adapter_id(adapter_id, xctx);
         if (!anchor) {
@@ -361,7 +361,7 @@ afw_runtime_value_accessor_stopping_adapter_instances(
         result = afw_value_create_unmanaged_array(list, p, xctx);
     }
 
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     return result;
 }
@@ -400,7 +400,7 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
     const afw_authorization_handler_id_anchor_t *anchor;
     const afw_authorization_handler_id_anchor_t *stopping;
     afw_size_t count;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     afw_integer_t *entry;
     const afw_utf8_t *authorization_handler_id;
     const afw_array_t *list;
@@ -479,7 +479,7 @@ afw_runtime_value_accessor_adapter_reference_count(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_integer_t integer;
+    volatile afw_integer_t integer;
 
     (void)prop;
 
@@ -487,10 +487,10 @@ afw_runtime_value_accessor_adapter_reference_count(
         return NULL;
     }
 
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
         integer = *(const afw_integer_t *)internal;
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     return afw_value_create_unmanaged_integer(integer, p, xctx);
 }
@@ -527,7 +527,7 @@ afw_runtime_value_accessor_authorization_handler_reference_count(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_integer_t integer;
+    volatile afw_integer_t integer;
 
     (void)prop;
 
@@ -888,8 +888,7 @@ afw_runtime_value_accessor_env_pid(
     if (!xctx || !xctx->env) {
         return NULL;
     }
-    return afw_value_create_unmanaged_integer(
-        xctx->env->process_pid, p, xctx);
+    return xctx->env->process_pid_value;
 }
 
 
@@ -925,8 +924,48 @@ afw_runtime_value_accessor_env_program_name(
     if (!xctx || !xctx->env || xctx->env->program_name.len == 0) {
         return NULL;
     }
-    return afw_value_create_unmanaged_string(
-        &xctx->env->program_name, p, xctx);
+    return xctx->env->program_name_value;
+}
+
+
+/* --- atomic_integer ------------------------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_atomic_integer =
+    AFW_UTF8_LITERAL("Map an AFW_ATOMIC afw_integer_t member as integer");
+
+static const afw_utf8_t
+impl_description_atomic_integer =
+    AFW_UTF8_LITERAL(
+        "internal points to an AFW_ATOMIC afw_integer_t that other threads "
+        "change. Returns an integer value of an atomic load in the caller "
+        "pool.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_atomic_integer = {
+    .key = afw_s_atomic_integer,
+    .function = afw_runtime_value_accessor_atomic_integer,
+    .brief = &impl_brief_atomic_integer,
+    .description = &impl_description_atomic_integer,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_atomic_integer(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_integer_t integer;
+
+    (void)prop;
+
+    if (!internal) {
+        return NULL;
+    }
+
+    integer = *(const AFW_ATOMIC afw_integer_t *)internal;
+    return afw_value_create_unmanaged_integer(integer, p, xctx);
 }
 
 
@@ -996,9 +1035,9 @@ afw_runtime_value_accessor_adapter_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adapter_t *adapter;
-    const afw_adapter_t *held;
-    const afw_object_t *metrics_object;
+    const afw_adapter_t * volatile adapter;
+    const afw_adapter_t * volatile held;
+    const afw_object_t * volatile metrics_object;
 
     (void)prop;
 
@@ -1008,7 +1047,7 @@ afw_runtime_value_accessor_adapter_metrics(
 
     metrics_object = NULL;
     held = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
         adapter = *(const afw_adapter_t * const *)internal;
         if (adapter && adapter->impl) {
             metrics_object = adapter->impl->metrics_object;
@@ -1018,7 +1057,7 @@ afw_runtime_value_accessor_adapter_metrics(
             }
         }
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     if (!metrics_object) {
         return NULL;
@@ -1075,9 +1114,9 @@ afw_runtime_value_accessor_adapter_properties(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_adapter_id_anchor_t *anchor;
-    const afw_adapter_t *adapter;
-    const afw_adapter_t *held;
-    const afw_object_t *properties;
+    const afw_adapter_t * volatile adapter;
+    const afw_adapter_t * volatile held;
+    const afw_object_t * volatile properties;
 
     if (!internal) {
         return NULL;
@@ -1089,7 +1128,7 @@ afw_runtime_value_accessor_adapter_properties(
      */
     adapter = NULL;
     held = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
         if (internal && prop && prop->offset != (afw_size_t)-1) {
             anchor = (const afw_adapter_id_anchor_t *)(
                 (const char *)internal - prop->offset);
@@ -1100,7 +1139,7 @@ afw_runtime_value_accessor_adapter_properties(
             }
         }
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     if (!adapter) {
         return NULL;
@@ -1162,7 +1201,7 @@ afw_runtime_value_accessor_authorization_handler_properties(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_authorization_handler_id_anchor_t *anchor;
-    const afw_authorization_handler_t *held;
+    const afw_authorization_handler_t * volatile held;
     const afw_object_t *properties;
 
     held = NULL;
@@ -1582,11 +1621,11 @@ afw_runtime_value_accessor_adapter_additional_metrics(
     }
 
     held = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
         held = afw_adapter_internal_pin_for_pool_lock_held(
             impl->adapter, p, xctx);
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     if (!held) {
         return NULL;
@@ -1707,6 +1746,7 @@ impl_core_value_accessor_infos[] = {
     &impl_info_service_startup,
     &impl_info_service_status,
     &impl_info_uint32,
+    &impl_info_atomic_integer,
     &impl_info_adapter_additional_metrics,
     &impl_info_afw_components_extension_loaded,
     &impl_info_value,

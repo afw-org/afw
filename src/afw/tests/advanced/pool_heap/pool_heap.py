@@ -193,6 +193,11 @@ def run():
     if debug_pool:
         cases.extend([
             (
+                "debug_pending_release_report",
+                "AFW_DEBUG_POOL: a non-scope pool held beyond its creator "
+                "with registered releases is reported (#559)",
+            ),
+            (
                 "debug_free_wrong_size",
                 "AFW_DEBUG_POOL: free with the wrong size throws",
             ),
@@ -220,6 +225,13 @@ def run():
         tests = []
         result["tests"] = tests
     if not debug_pool:
+        tests.append({
+            "test": "debug_pending_release_report",
+            "description": "AFW_DEBUG_POOL: a non-scope pool held beyond its creator with registered releases is reported (#559)",
+            "passed": True,
+            "skip": True,
+            "skipReason": "libafw built without AFW_DEBUG_POOL",
+        })
         tests.append({
             "test": "debug_free_wrong_size",
             "description": "AFW_DEBUG_POOL + debug:pool: free with the wrong size throws",

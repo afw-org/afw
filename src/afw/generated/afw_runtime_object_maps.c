@@ -70,8 +70,8 @@ impl_properties__AdaptiveAdapterMetrics_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_additional,
@@ -90,8 +90,8 @@ impl_properties__AdaptiveAdapterMetrics_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_getObjectCount,
@@ -100,8 +100,8 @@ impl_properties__AdaptiveAdapterMetrics_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_modifyObjectCount,
@@ -110,8 +110,8 @@ impl_properties__AdaptiveAdapterMetrics_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_replaceObjectCount,
@@ -120,8 +120,8 @@ impl_properties__AdaptiveAdapterMetrics_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_retrieveObjectsCount,
@@ -130,8 +130,8 @@ impl_properties__AdaptiveAdapterMetrics_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_updateObjectCount,
@@ -140,8 +140,8 @@ impl_properties__AdaptiveAdapterMetrics_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     }
 };
 
@@ -4734,8 +4734,8 @@ impl_properties__AdaptiveServer_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_maxConcurrent,
@@ -4744,8 +4744,8 @@ impl_properties__AdaptiveServer_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_memoryRegionBytesInUse,
@@ -4934,8 +4934,8 @@ impl_properties__AdaptiveServer_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_rss,
@@ -4984,8 +4984,8 @@ impl_properties__AdaptiveServer_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     },
     {
         afw_v_unhandledErrors,
@@ -4994,8 +4994,8 @@ impl_properties__AdaptiveServer_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_atomic_integer,
+        afw_runtime_value_accessor_atomic_integer
     }
 };
 

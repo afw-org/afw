@@ -164,7 +164,7 @@ impl_afw_adapter_session_retrieve_objects(
     afw_xctx_t *xctx)
 {
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
-    MDB_txn * txn;
+    MDB_txn * volatile txn;
     impl_retrieve_cb_ctx_t ctx;
     volatile afw_boolean_t scan;
 
@@ -313,7 +313,7 @@ impl_afw_adapter_session_add_object(
     AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
-    const afw_utf8_t *suggested_object_id,
+    const afw_utf8_t * volatile suggested_object_id,
     const afw_object_t *object,
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)

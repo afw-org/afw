@@ -88,6 +88,11 @@ struct afw_xctx_s {
     const afw_utf8_t *uuid;
 
     /**
+     * uuid as a value (current::xctxUUID, log xctxUUID).
+     */
+    const afw_value_t *uuid_value;
+
+    /**
      * The execution context (xctx) properties. This is an untyped object.
      */
     const afw_object_t *properties;

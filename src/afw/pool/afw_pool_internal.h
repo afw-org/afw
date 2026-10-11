@@ -72,7 +72,7 @@ struct afw_pool_internal_self_s {
 
     afw_pool_t pub;
 
-    /** @brief Debug id: thread->pool_number at create. */
+    /** @brief Debug id: the creating thread's pool_number at create. */
     afw_integer_t pool_number;
 
     /**
@@ -329,7 +329,24 @@ afw_boolean_t
 afw_pool_internal_counts_on_thread(const afw_pool_internal_self_t *self);
 
 void
-afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self);
+afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+#ifdef AFW_DEBUG_POOL
+/*
+ * Report, to stderr, each pool under p that is not a scope, still has
+ * registered releases, and is referenced by more than its creator (#559).
+ * Called when an xctx is released: such a pool's releases run only when
+ * it dies, so if a registered value keeps the pool alive
+ * (lifetime-principles.md, "A pool's registered releases run when its
+ * owner is done with it"), they wait for each other. A pool only its
+ * creator holds dies with the job heap and is not reported. Returns the
+ * number of pools reported.
+ */
+afw_size_t
+afw_pool_internal_report_pending_releases(
+    const afw_pool_t *p, const afw_utf8_z_t *when_z, afw_xctx_t *xctx);
+#endif
 
 void
 afw_pool_internal_account_alloc(

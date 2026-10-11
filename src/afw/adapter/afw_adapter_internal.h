@@ -26,7 +26,30 @@
 AFW_BEGIN_DECLARES
 
 /**
- * Adapter id registry entry. Protect with env->adapter_id_anchor_lock.
+ * @brief Begin a section under env->adapter_id_anchor_lock.
+ *
+ * Anchors are environment registry entries: every section under the
+ * anchor lock reads the registry, which takes environment_lock, and a
+ * registry miss holds environment_lock while it loads an extension,
+ * which can get an adapter. So environment_lock (recursive) is taken
+ * first and the anchor lock inside it, never the reverse. Uses xctx
+ * from the enclosing function. Follow the body with
+ * AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
+ */
+#define AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN \
+AFW_LOCK_BEGIN(xctx->env->environment_lock) { \
+AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock)
+
+/** @brief End of AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN. */
+#define AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END \
+AFW_LOCK_END; \
+} \
+AFW_LOCK_END
+
+
+/**
+ * Adapter id registry entry. Protect with
+ * AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN / _END.
  */
 struct afw_adapter_id_anchor_s {
     const afw_utf8_t *adapter_id;
@@ -150,6 +173,7 @@ afw_adapter_internal_journal_authorize(
     const afw_utf8_t *object_id,
     const afw_value_t *action_id_value,
     const afw_object_t *object,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

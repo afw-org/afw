@@ -110,7 +110,7 @@ impl_afw_value_optional_evaluate(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     const afw_value_t *saved_script_result;
     afw_size_t count;
 

@@ -609,8 +609,8 @@ int afw_lmdb_internal_reader_list(
     xctx)      \
 do { \
     MDB_txn * this_txn = NULL; \
-    bool this_txnHandled = false; \
-    bool this_txnOwner = false; \
+    volatile bool this_txnHandled = false; \
+    volatile bool this_txnOwner = false; \
     const afw_lmdb_adapter_t * this_adapter = adapter; \
     const afw_lmdb_adapter_session_t * this_session = session; \
     afw_xctx_t * this_xctx = xctx; \
@@ -741,10 +741,10 @@ do { \
 do { \
     MDB_txn * this_txn = NULL; \
     MDB_txn * this_ambient_txn = NULL; \
-    MDB_txn * this_saved_currTxn = NULL; \
-    bool this_txnHandled = false; \
-    bool this_txnOwner = false; \
-    bool this_txnNested = false; \
+    MDB_txn * volatile this_saved_currTxn = NULL; \
+    volatile bool this_txnHandled = false; \
+    volatile bool this_txnOwner = false; \
+    volatile bool this_txnNested = false; \
     const afw_lmdb_adapter_t * this_adapter = adapter; \
     const afw_lmdb_adapter_session_t * this_session = session; \
     afw_xctx_t * this_xctx = xctx; \

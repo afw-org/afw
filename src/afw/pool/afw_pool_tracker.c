@@ -107,7 +107,7 @@ afw_pool_internal_tracker_create(
         ? parent->pub.managed_p
         : &parent->pub;
     self->thread = parent->thread;
-    afw_pool_internal_assign_pool_number(self);
+    afw_pool_internal_assign_pool_number(self, xctx);
     self->reference_count = 1;
     afw_pool_internal_link_as_child(parent, self, xctx);
 

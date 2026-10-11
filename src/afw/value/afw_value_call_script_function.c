@@ -133,10 +133,10 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_script_function_definition_t *script;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     const afw_value_t *saved_script_result;
     const afw_pool_scope_t *enclosing_lexical_scope;
-    const afw_pool_scope_t *parameter_scope;
+    const afw_pool_scope_t * volatile parameter_scope;
     const afw_pool_scope_t *caller_scope;
     const afw_value_t *value;
     const afw_value_script_function_parameter_t *const *params;
@@ -516,27 +516,26 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_utf8_t *name;
     const afw_value_t *callee;
 
-    name = NULL;
-    if (self->script_function_definition &&
-        self->script_function_definition->signature &&
-        self->script_function_definition->signature->function_name_value)
-    {
-        name = &self->script_function_definition->signature->
-            function_name_value->internal;
+    /*
+     * The callee as written: a name in scope (a declared function) or a
+     * function expression. A function's own name is not always in scope
+     * where it is called: (function f(n) { ... })(3).
+     */
+    callee = self->args.argv ? self->args.argv[0] : NULL;
+    if (!callee && self->script_function_definition) {
+        callee = (const afw_value_t *)self->script_function_definition;
     }
 
-    if (name) {
-        afw_writer_write_utf8(writer, name, xctx);
+    /* A call can follow a name, not a #script_function(...) form. */
+    if (callee && afw_value_is_symbol_reference(callee)) {
+        afw_value_decompile_value(callee, writer, xctx);
     }
     else {
-        callee = self->args.argv ? self->args.argv[0] : NULL;
-        if (!callee && self->script_function_definition) {
-            callee = (const afw_value_t *)self->script_function_definition;
-        }
+        afw_writer_write_z(writer, "(", xctx);
         afw_value_decompile_value(callee, writer, xctx);
+        afw_writer_write_z(writer, ")", xctx);
     }
     afw_value_decompile_call_args(writer, 1, &self->args, xctx);
 }

@@ -73,7 +73,7 @@ def run():
         "afw_pool.h",
         "afw_strings.h",
         "afw_data_type_bindings.h",
-        "afw_associative_array_template.h",
+        "afw_common.h",
     )
     leftovers = (
         "afw_pool_internal.h",
@@ -88,6 +88,7 @@ def run():
         "afw_array_template.h",
         "skeleton_adapter.h",
         "afw_curl_declare_helpers.h",
+        "afw_associative_array_template.h",
     )
     classified = (
         is_leftover_installed_header("afw_pool.h") is False

@@ -68,7 +68,7 @@ impl_mt_tracker_afw_pool_calloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_internal_tracker_calloc(self, size, xctx);
@@ -83,7 +83,7 @@ impl_mt_tracker_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_internal_tracker_malloc(self, size, xctx);

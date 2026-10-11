@@ -133,9 +133,9 @@ const afw_value_t *
 afw_function_execute_requiresExecuteAccess_wrapper(
     afw_function_execute_t *x)
 {
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     afw_xctx_t *xctx = x->xctx;
-    const afw_object_t *obj = NULL;
+    const afw_object_t * volatile obj = NULL;
     afw_function_execute_t *temp_x;
     const afw_value_t **argv;
     afw_size_t argc;

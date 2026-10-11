@@ -1069,7 +1069,7 @@ afw_uri_decode(
     if (!afw_utf8_is_nfc((const afw_utf8_octet_t *)
         decoded->ptr, decoded->size, p, xctx))
     {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(syntax,
             "Only URIs that can be decoded to NFC Unicode are supported",
             xctx);
     }
@@ -1093,7 +1093,7 @@ afw_uri_decode_create(
     if (!afw_utf8_is_nfc((const afw_utf8_octet_t *)
         decoded->ptr, decoded->size, p, xctx))
     {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(syntax,
             "Only URIs that can be decoded to NFC Unicode are supported",
             xctx);
     }
@@ -1278,7 +1278,7 @@ afw_uri_parse_next_token(
     return;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(syntax, xctx,
         "Error parsing URI '%ku' at offset %d",
         self->uri,
         (int)(self->c - (const afw_octet_t *)self->uri->s));
@@ -1926,7 +1926,7 @@ afw_uri_parse(
     return parsed;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(syntax, xctx,
         "Error parsing URI '%ku' at offset %d",
         uri, (int)(c - (const afw_octet_t *)uri->s));
 }

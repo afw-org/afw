@@ -555,7 +555,7 @@ impl_index_entry_value_as_key_utf8(
     afw_boolean_t *exact,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_value_t *value;
+    const afw_value_t * volatile value;
     const afw_data_type_t *data_type;
 
     *exact = true;

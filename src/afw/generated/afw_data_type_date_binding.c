@@ -246,12 +246,20 @@ impl_empty_array_of_date;
 const afw_value_array_t
 impl_value_empty_array_of_date;
 
+/* Data type id date as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_date = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("date")
+};
+
 /* Data type date instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_date_direct = {
     &afw_data_type_date_inf,
     (const afw_object_t *)&impl_data_type_object_date,
     AFW_UTF8_LITERAL("date"),
+    (const afw_value_t *)&impl_data_type_id_value_date,
     AFW_UTF8_LITERAL("A date"),
     AFW_UTF8_LITERAL("Data type 'date' holds a calendar date in format CCYY-MM-DD."),
     AFW_UTF8_LITERAL(""),

@@ -19,6 +19,7 @@
 #include "afw.h"
 #include "afw_request_impl.h"
 #include <fcgiapp.h>
+#include <errno.h>
 #include <signal.h>
 #include <unistd.h>
 #include <string.h>
@@ -77,8 +78,10 @@ impl_handle_shutdown_signal(int signum)
     afw_integer_t count;
     afw_server_fcgi_internal_server_thread_t *server_thread;
     const afw_thread_t *thread;
+    int saved_errno;
 
     (void)signum;
+    saved_errno = errno;
 
     if (impl_server_xctx && impl_server_xctx->env) {
         env = (afw_environment_t *)impl_server_xctx->env;
@@ -87,25 +90,21 @@ impl_handle_shutdown_signal(int signum)
 
     FCGX_ShutdownPending();
 
-    if (impl_shutdown_waking) {
-        return;
-    }
-    impl_shutdown_waking = 1;
-
-    if (!impl_server || !impl_server->threads) {
-        return;
-    }
-
-    for (count = 1, server_thread = impl_server->threads;
-        count <= impl_server->pub.thread_count;
-        count++, server_thread++)
-    {
-        thread = server_thread->thread;
-        if (!thread || !thread->os_thread) {
-            continue;
+    if (!impl_shutdown_waking && impl_server && impl_server->threads) {
+        impl_shutdown_waking = 1;
+        for (count = 1, server_thread = impl_server->threads;
+            count <= impl_server->pub.thread_count;
+            count++, server_thread++)
+        {
+            thread = server_thread->thread;
+            if (!thread || !thread->os_thread) {
+                continue;
+            }
+            afw_os_thread_kill(thread->os_thread, SIGUSR1);
         }
-        afw_os_thread_kill(thread->os_thread, SIGUSR1);
     }
+
+    errno = saved_errno;
 }
 
 
@@ -325,7 +324,7 @@ impl_afw_server_request_thread_start(const afw_thread_t *thread,
     afw_server_fcgi_internal_server_thread_t *server_thread = arg;
     afw_server_fcgi_internal_t * server = server_thread->server;
     afw_xctx_t *xctx = thread->xctx;
-    afw_xctx_t *request_session_xctx = NULL;
+    afw_xctx_t * volatile request_session_xctx = NULL;
     afw_integer_t request_count;
     afw_integer_t concurrent;
     afw_integer_t max_concurrent;    

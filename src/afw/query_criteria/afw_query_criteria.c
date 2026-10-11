@@ -1697,9 +1697,8 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
 
 /*
  * A filter value as the data type of the property it is compared with.
- * A string is a lexical form, read with the data type's parser: a query
- * for b=false means false (afw_value_convert reads a string as a boolean
- * by truthiness, so "false" was true). Throws if it does not convert.
+ * A string is a lexical form: a query for b=false means false. Throws if
+ * it does not convert.
  */
 static const afw_value_t *
 impl_filter_value_as(
@@ -1708,21 +1707,10 @@ impl_filter_value_as(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_common_t *result;
-
     if (afw_value_get_data_type(filter_value, xctx) == data_type) {
         return filter_value;
     }
-    if (data_type && afw_value_is_string(filter_value) &&
-        afw_data_type_is_boolean(data_type))
-    {
-        result = afw_value_common_allocate(data_type, p, xctx);
-        afw_data_type_utf8_to_internal(data_type, &result->internal,
-            &((const afw_value_string_t *)filter_value)->internal,
-            p, xctx);
-        return &result->pub;
-    }
-    return afw_value_convert(filter_value, data_type, false, p, xctx);
+    return afw_value_convert_lexical(filter_value, data_type, false, p, xctx);
 }
 
 
@@ -1733,13 +1721,13 @@ impl_compare_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_boolean_t is_true;
+    volatile afw_boolean_t is_true;
     const afw_iterator_old_t *iterator, *iterator2;
     const afw_value_t *entry_value;
     const afw_value_t *v1;
     const afw_value_t *v2;
     const afw_data_type_t *data_type;
-    const afw_array_t *list, *entry_list;
+    const afw_array_t * volatile list, *entry_list;
     const afw_value_t *entry_value_converted;
     const afw_utf8_t *s2;
     const xmlChar *s_z;

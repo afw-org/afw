@@ -179,13 +179,13 @@ impl_refresh_default_flags(afw_xctx_t *xctx)
     afw_environment_internal_t *internal_env =
         (afw_environment_internal_t *)xctx->env;
     const afw_utf8_t * const * flag_id;
-    const afw_pool_t *temp_p = NULL;
+    const afw_pool_t * volatile temp_p = NULL;
     afw_boolean_t *flags;
     afw_size_t flags_count;
 
     if (!internal_env->default_flag_ids) return;
 
-    AFW_LOCK_BEGIN(xctx->env->flags_lock) {
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         temp_p = afw_pool_tracker_create(xctx->p, xctx);
         flags_count = env->flags_count_allocated;
         flags = afw_pool_calloc(temp_p, sizeof(afw_boolean_t) * flags_count,
@@ -746,7 +746,7 @@ afw_flag_environment_register_flag(
     afw_boolean_t *flags;
     afw_flag_t **flag_by_index;
 
-    AFW_LOCK_BEGIN(env->flags_lock)
+    AFW_LOCK_BEGIN(env->environment_lock)
     {
         if (afw_environment_get_flag(flag_id, xctx)) {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -863,7 +863,7 @@ afw_flag_add_included_by(
             xctx);
     }
 
-    AFW_LOCK_BEGIN(xctx->env->flags_lock) {
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         impl_flag_add_included_by(flag, included_by, xctx);
     }
     AFW_LOCK_END;
@@ -888,7 +888,7 @@ afw_flag_set_default(
     const afw_utf8_t **new_id;
     afw_size_t count;
 
-    AFW_LOCK_BEGIN(xctx->env->flags_lock) {
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         /* Locate flag_id in defaults. */
         count = 0;
         if (internal_env->default_flag_ids) {
@@ -994,7 +994,7 @@ afw_flag_set_default_flag_ids(
     const afw_utf8_t *s;
     const afw_iterator_old_t *iterator;
 
-    AFW_LOCK_BEGIN(xctx->env->flags_lock) {
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         p = afw_pool_create(xctx->env->p, xctx);
         count = afw_array_get_count(default_flag_ids, xctx);
         ids = afw_pool_malloc(p, (count + 1) * sizeof(afw_utf8_t *), xctx);

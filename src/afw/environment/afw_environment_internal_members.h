@@ -54,6 +54,12 @@
     /** @brief pid at environment create. */
     afw_integer_t process_pid;
 
+    /** @brief process_pid as a value (current::pid, process::pid). */
+    const afw_value_t *process_pid_value;
+
+    /** @brief program_name as a value (current::programName). */
+    const afw_value_t *program_name_value;
+
     /** @brief Start time at environment create. */
     const afw_dateTime_t *process_start_time;
 
@@ -256,7 +262,11 @@
     /**
      * @brief Lock for whole environment.
      *
-     * Recursive. Service stop and restart hold it only while changing
+     * Recursive. It also guards flag registration and flag defaults
+     * (afw_flag.c): registering a flag reads and writes the registry,
+     * and a registry miss can load an extension that registers flags,
+     * so one lock keeps the two from taking locks in opposite orders.
+     * Service stop and restart hold it only while changing
      * status or the service registry pointer, using AFW_LOCK_BEGIN /
      * AFW_LOCK_END. That section calls get_service and register_service,
      * which lock it again. It must not call adapter or conf code.
@@ -292,10 +302,6 @@
      */
     const afw_lock_t *active_log_list_lock;
 
-    /**
-     * @brief Lock for protecting changes to flags (internal to afw_flag.c).
-     */
-    const afw_lock_t *flags_lock;
 
     /*---------- FLAGS ----------*/
 

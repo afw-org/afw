@@ -137,12 +137,20 @@ impl_empty_array_of_any;
 const afw_value_array_t
 impl_value_empty_array_of_any;
 
+/* Data type id any as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_any = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("any")
+};
+
 /* Data type any instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_any_direct = {
     &afw_data_type_any_inf,
     (const afw_object_t *)&impl_data_type_object_any,
     AFW_UTF8_LITERAL("any"),
+    (const afw_value_t *)&impl_data_type_id_value_any,
     AFW_UTF8_LITERAL("Unrestricted type"),
     AFW_UTF8_LITERAL("Any value can be assigned as the value of data type 'any'. The actual data type is the data type of the value. Data type 'unknown' or a more specific data type is preferred over data type 'any' since 'any' only detects type check errors during evaluation."),
     AFW_UTF8_LITERAL(""),

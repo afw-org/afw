@@ -207,7 +207,7 @@ impl_add_adapted_properties_from_adapter(
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
-    const afw_model_property_type_t * *pt;
+    const afw_model_property_type_t * * volatile pt;
     afw_boolean_t use_default_processing;
 
     /* Process each property in object_type that is not in object. */
@@ -479,9 +479,8 @@ impl_convert_select(
 
 
 /*
- * A filter value as the model property's data type. A string read as a
- * boolean is its lexical form: afw_value_convert reads a string as a
- * boolean by truthiness, so mb=false matched true.
+ * A filter value as the model property's data type. A string is its
+ * lexical form (afw_value_convert_lexical): mb=false means false.
  */
 static const afw_value_t *
 impl_convert_filter_value(
@@ -489,18 +488,10 @@ impl_convert_filter_value(
     const afw_data_type_t *data_type,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_common_t *result;
-
     if (!data_type || afw_value_get_data_type(value, xctx) == data_type) {
         return value;
     }
-    if (afw_value_is_string(value) && afw_data_type_is_boolean(data_type)) {
-        result = afw_value_common_allocate(data_type, p, xctx);
-        afw_data_type_utf8_to_internal(data_type, &result->internal,
-            &((const afw_value_string_t *)value)->internal, p, xctx);
-        return &result->pub;
-    }
-    return afw_value_convert(value, data_type, false, p, xctx);
+    return afw_value_convert_lexical(value, data_type, false, p, xctx);
 }
 
 
@@ -1162,7 +1153,7 @@ impl_afw_adapter_session_retrieve_objects(
     afw_hash_table_index_t hi;
     afw_model_object_type_t *model_object_type;
     afw_utf8_t id;
-    afw_boolean_t use_default_processing;
+    volatile afw_boolean_t use_default_processing;
 
     afw_memory_clear(&cb_ctx);
     cb_ctx.p = p;
@@ -1288,7 +1279,7 @@ impl_afw_adapter_session_get_object(
     afw_model_internal_object_cb_context_t cb_ctx;
     const afw_object_t *object;
     const afw_object_t *mapped_object;
-    afw_boolean_t use_default_processing;
+    volatile afw_boolean_t use_default_processing;
 
     afw_memory_clear(&cb_ctx);
     cb_ctx.p = p;
@@ -1402,6 +1393,38 @@ impl_afw_adapter_session_get_object(
  * does further appropriated processing on returned object.  ctx must be
  * initialized before call.
  */
+/* Evaluate a property type's onSetProperty for a value being set. */
+static const afw_value_t *
+impl_evaluate_on_set_property(
+    afw_model_internal_context_t *ctx,
+    const afw_model_property_type_t *pt,
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t * volatile result;
+    int top;
+
+    ctx->property_level.model_property_type = pt;
+    ctx->property_level.value = value;
+    top = afw_xctx_qualifier_stack_top_get(xctx);
+    AFW_TRY {
+        afw_model_internal_push_property_level_current(ctx,
+            &ctx->session_self->adapter->
+                instance_skeleton__AdaptiveModelCurrentOnSetProperty_,
+            xctx);
+        result = afw_value_evaluate(pt->onSetProperty, p, xctx);
+    }
+    AFW_FINALLY {
+        afw_xctx_qualifier_stack_top_set(top, xctx);
+    }
+    AFW_ENDTRY;
+
+    return result;
+}
+
+
+
 const afw_object_t *
 afw_model_internal_create_basic_to_adapter_mapped_object(
     afw_model_internal_context_t *ctx,
@@ -1416,7 +1439,6 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
     const afw_model_property_type_t *pt;
     const afw_model_property_type_t * const *pts;
     const afw_iterator_old_t *iterator;
-    int top;
 
     /* */
     result = afw_object_create_unmanaged(p, xctx);
@@ -1451,21 +1473,8 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
         {
             mapped_value = value;
             if (pt->onSetProperty) {
-                ctx->property_level.model_property_type = pt;
-                ctx->property_level.value = value;
-                top = afw_xctx_qualifier_stack_top_get(xctx);
-                AFW_TRY {
-                    afw_model_internal_push_property_level_current(ctx,
-                        &ctx->session_self->adapter->
-                            instance_skeleton__AdaptiveModelCurrentOnSetProperty_,
-                        xctx);
-                    mapped_value = afw_value_evaluate(
-                        pt->onSetProperty, p, xctx);
-                }
-                AFW_FINALLY {
-                    afw_xctx_qualifier_stack_top_set(top, xctx);
-                }
-                AFW_ENDTRY;
+                mapped_value = impl_evaluate_on_set_property(ctx, pt, value,
+                    p, xctx);
                 if (mapped_value == ctx->useDefaultProcessing_value) {
                     mapped_value = value;
                 }
@@ -1514,7 +1523,7 @@ afw_model_internal_complete_ctx_default_add_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value;
+    const afw_value_t * volatile value;
     int top;
 
     /* Create basic mapped object. */
@@ -1557,7 +1566,7 @@ impl_afw_adapter_session_add_object(
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx;
-    const afw_utf8_t *mapped_object_id;
+    const afw_utf8_t * volatile mapped_object_id;
     const afw_object_t *journal_entry;
     const afw_value_t *value;
     int top;
@@ -1650,7 +1659,6 @@ afw_model_internal_complete_ctx_default_modify_object(
     const afw_utf8_t *mapped_property_name;
     const afw_model_property_type_t *model_property_type;
     const afw_value_t *value;
-    int top;
 
     /* Make a mapped entries list (array of tuples). */
     ctx->mapped_entries = afw_array_create_with_options(
@@ -1698,23 +1706,8 @@ afw_model_internal_complete_ctx_default_modify_object(
         if ((*entry)->value) {
             value = (*entry)->value;
             if (model_property_type->onSetProperty) {
-                ctx->property_level.model_property_type =
-                    model_property_type;
-                ctx->property_level.value = value;
-                top = afw_xctx_qualifier_stack_top_get(xctx);
-                AFW_TRY {
-                    afw_model_internal_push_property_level_current(ctx,
-                        &ctx->session_self->adapter->
-                            instance_skeleton__AdaptiveModelCurrentOnSetProperty_,
-                        xctx);
-                    value = afw_value_evaluate(
-                        model_property_type->onSetProperty,
-                        ctx->p, xctx);
-                }
-                AFW_FINALLY {
-                    afw_xctx_qualifier_stack_top_set(top, xctx);
-                }
-                AFW_ENDTRY;
+                value = impl_evaluate_on_set_property(ctx,
+                    model_property_type, value, ctx->p, xctx);
                 afw_memory_clear(&ctx->property_level);
             }
             afw_array_push_value(mapped_entry, value, xctx);
@@ -2098,7 +2091,7 @@ impl_afw_adapter_object_type_cache_get(
 {
     afw_model_internal_adapter_session_self_t * session =
         (afw_model_internal_adapter_session_self_t *)self->session;
-    const afw_object_type_t *result;
+    const afw_object_type_t * volatile result;
     afw_model_t *model = (afw_model_t *)session->model;
 
     *final_result = false;

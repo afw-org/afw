@@ -1636,6 +1636,30 @@ afw_value_convert(
 
 
 /**
+ * @brief Convert a value that may be text for a typed slot.
+ * @param value to evaluate and convert, if needed.
+ * @param to_data_type of the slot.
+ * @param required if false returns NULL if value is NULL.
+ * @param p to hold converted value.
+ * @param xctx of caller.
+ * @return converted value.  If not conversion needed, value passed.
+ *
+ * Like afw_value_convert(), except that a string for a boolean slot is
+ * read with the boolean data type's parser ("false" and "0" are false),
+ * not by truthiness as boolean() does. Use it where a value arrives as
+ * text for a slot of a known data type: action parameters, typed object
+ * properties, query filter values, model property mapping.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_convert_lexical(
+    const afw_value_t *value,
+    const afw_data_type_t *to_data_type,
+    afw_boolean_t required,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Convert a value to a string value.
  * @param value to evaluate and convert, if needed.
  * @param allow_undefined if true returns 'undefined' if value is NULL. 

@@ -314,12 +314,20 @@ impl_empty_array_of_objectId;
 const afw_value_array_t
 impl_value_empty_array_of_objectId;
 
+/* Data type id objectId as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_objectId = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("objectId")
+};
+
 /* Data type objectId instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_objectId_direct = {
     &afw_data_type_objectId_inf,
     (const afw_object_t *)&impl_data_type_object_objectId,
     AFW_UTF8_LITERAL("objectId"),
+    (const afw_value_t *)&impl_data_type_id_value_objectId,
     AFW_UTF8_LITERAL("An adaptive object's object id"),
     AFW_UTF8_LITERAL("Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adapter id and object type id."),
     AFW_UTF8_LITERAL("ObjectType"),

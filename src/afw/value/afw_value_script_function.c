@@ -263,18 +263,22 @@ impl_afw_value_decompile(
         if (param->is_rest) {
             afw_writer_write_z(writer, "...", xctx);
         }
+        /* Order as parsed: name or Pattern, '?', ':' Type, '=' default. */
         if (param->assignment_target) {
             /* Surface Pattern (not #assignment_target wrapper). */
             afw_value_decompile_assignment_pattern(
                 param->assignment_target, writer, xctx);
+            if (param->is_optional && !param->default_value) {
+                afw_writer_write_z(writer, "?", xctx);
+            }
         }
         else {
             /* Bare identifier (not a string) so Type annotations use ':'. */
             afw_writer_write_utf8(writer, &param->name->internal, xctx);
+            if (param->is_optional && !param->default_value) {
+                afw_writer_write_z(writer, "?", xctx);
+            }
             afw_value_decompile_optional_type(param->type, writer, xctx);
-        }
-        if (param->is_optional && !param->default_value) {
-            afw_writer_write_z(writer, "?", xctx);
         }
         if (param->default_value) {
             afw_writer_write_z(writer, writer->tab ? " = " : "=", xctx);

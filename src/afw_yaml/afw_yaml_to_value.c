@@ -514,9 +514,9 @@ impl_yaml_to_value(
     afw_xctx_t *xctx)
 {
     yaml_token_t *token;
-    const afw_value_t *value = NULL;
+    const afw_value_t * volatile value = NULL;
     afw_yaml_parser_t parser;
-    afw_boolean_t parser_initialized;
+    volatile afw_boolean_t parser_initialized;
 
     memset(&parser, 0, sizeof(afw_yaml_parser_t));
     parser.embedding_object = NULL;

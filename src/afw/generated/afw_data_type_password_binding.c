@@ -314,12 +314,20 @@ impl_empty_array_of_password;
 const afw_value_array_t
 impl_value_empty_array_of_password;
 
+/* Data type id password as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_password = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("password")
+};
+
 /* Data type password instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_password_direct = {
     &afw_data_type_password_inf,
     (const afw_object_t *)&impl_data_type_object_password,
     AFW_UTF8_LITERAL("password"),
+    (const afw_value_t *)&impl_data_type_id_value_password,
     AFW_UTF8_LITERAL("A password"),
     AFW_UTF8_LITERAL("Data type 'password' holds a secret series of characters that enables a user to access a file, computer, or program."),
     AFW_UTF8_LITERAL(""),

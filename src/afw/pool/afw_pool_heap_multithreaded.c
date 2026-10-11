@@ -72,7 +72,7 @@ impl_mt_afw_pool_calloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_heap_internal_calloc(self, size, xctx);
@@ -87,7 +87,7 @@ impl_mt_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
+    void * volatile result;
 
     AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
         result = afw_pool_heap_internal_malloc(self, size, xctx);
@@ -307,7 +307,7 @@ afw_pool_heap_internal_multithreaded_create_self(
     }
     afw_pool_heap_internal_init_bins(heap);
     self->thread = thread;
-    afw_pool_internal_assign_pool_number(self);
+    afw_pool_internal_assign_pool_number(self, xctx);
     if (afw_parent) {
         parent_self = (afw_pool_internal_self_t *)afw_parent;
         afw_pool_internal_link_as_child(parent_self, self, xctx);

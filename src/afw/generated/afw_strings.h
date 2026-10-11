@@ -14693,84 +14693,6 @@ afw_self_v_a_lock_file_journal_anchor_description;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_a_lock_flags \
-    "environment:flags"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_flags */
-#define afw_s_a_lock_flags \
-    (&afw_self_v_a_lock_flags.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_flags */
-#define afw_self_s_a_lock_flags \
-    (afw_self_v_a_lock_flags.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_lock_flags */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_flags;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_flags */
-#define afw_z_a_lock_flags \
-    (afw_self_v_a_lock_flags.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_lock_flags */
-#define afw_v_a_lock_flags \
-    (&afw_self_v_a_lock_flags.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_lock_flags_brief \
-    "Environment flags lock"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_flags_brief */
-#define afw_s_a_lock_flags_brief \
-    (&afw_self_v_a_lock_flags_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_flags_brief */
-#define afw_self_s_a_lock_flags_brief \
-    (afw_self_v_a_lock_flags_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_lock_flags_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_flags_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_flags_brief */
-#define afw_z_a_lock_flags_brief \
-    (afw_self_v_a_lock_flags_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_lock_flags_brief */
-#define afw_v_a_lock_flags_brief \
-    (&afw_self_v_a_lock_flags_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_lock_flags_description \
-    "This lock is used internally when accessing environment flags memory."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_flags_description */
-#define afw_s_a_lock_flags_description \
-    (&afw_self_v_a_lock_flags_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_flags_description */
-#define afw_self_s_a_lock_flags_description \
-    (afw_self_v_a_lock_flags_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_lock_flags_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_flags_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_flags_description */
-#define afw_z_a_lock_flags_description \
-    (afw_self_v_a_lock_flags_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_lock_flags_description */
-#define afw_v_a_lock_flags_description \
-    (&afw_self_v_a_lock_flags_description.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_a_lock_log_list \
     "environment:log_list"
 
@@ -40823,32 +40745,6 @@ afw_self_v_afw_object;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afw_object_associative_array \
-    "afw_object_associative_array"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afw_object_associative_array */
-#define afw_s_afw_object_associative_array \
-    (&afw_self_v_afw_object_associative_array.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afw_object_associative_array */
-#define afw_self_s_afw_object_associative_array \
-    (afw_self_v_afw_object_associative_array.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afw_object_associative_array */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afw_object_associative_array;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afw_object_associative_array */
-#define afw_z_afw_object_associative_array \
-    (afw_self_v_afw_object_associative_array.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afw_object_associative_array */
-#define afw_v_afw_object_associative_array \
-    (&afw_self_v_afw_object_associative_array.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afw_object_setter \
     "afw_object_setter"
 
@@ -44173,6 +44069,32 @@ afw_self_v_at_least_one_member_of_yearMonthDuration;
 /** @brief 'const afw_value_t *' for AFW_Q_at_least_one_member_of_yearMonthDuration */
 #define afw_v_at_least_one_member_of_yearMonthDuration \
     (&afw_self_v_at_least_one_member_of_yearMonthDuration.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_atomic_integer \
+    "atomic_integer"
+
+/** @brief 'afw_utf8_t' for AFW_Q_atomic_integer */
+#define afw_s_atomic_integer \
+    (&afw_self_v_atomic_integer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_atomic_integer */
+#define afw_self_s_atomic_integer \
+    (afw_self_v_atomic_integer.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_atomic_integer */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_atomic_integer;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_atomic_integer */
+#define afw_z_atomic_integer \
+    (afw_self_v_atomic_integer.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_atomic_integer */
+#define afw_v_atomic_integer \
+    (&afw_self_v_atomic_integer.pub)
 
 
 

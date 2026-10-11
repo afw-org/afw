@@ -246,12 +246,20 @@ impl_empty_array_of_yearMonthDuration;
 const afw_value_array_t
 impl_value_empty_array_of_yearMonthDuration;
 
+/* Data type id yearMonthDuration as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_yearMonthDuration = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("yearMonthDuration")
+};
+
 /* Data type yearMonthDuration instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_yearMonthDuration_direct = {
     &afw_data_type_yearMonthDuration_inf,
     (const afw_object_t *)&impl_data_type_object_yearMonthDuration,
     AFW_UTF8_LITERAL("yearMonthDuration"),
+    (const afw_value_t *)&impl_data_type_id_value_yearMonthDuration,
     AFW_UTF8_LITERAL("A year month duration"),
     AFW_UTF8_LITERAL("Data type 'yearMonthDuration' is an ISO 8601 extended format PnYnMn."),
     AFW_UTF8_LITERAL(""),

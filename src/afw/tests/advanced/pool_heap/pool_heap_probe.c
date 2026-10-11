@@ -657,6 +657,42 @@ impl_leftover_child_heap(afw_xctx_t *xctx)
 }
 
 #ifdef AFW_DEBUG_POOL
+/*
+ * #559: a non-scope pool still held by more than its creator, with a
+ * registered release, is reported; one only its creator holds is not.
+ */
+static int
+impl_debug_pending_release_report(afw_xctx_t *xctx)
+{
+    static const afw_utf8_t s = AFW_UTF8_LITERAL("pending");
+    const afw_pool_t *heap;
+    const afw_value_t *value;
+    afw_size_t held;
+    afw_size_t creator_only;
+
+    heap = afw_pool_create(xctx->p, xctx);
+    afw_pool_get_reference(heap, xctx);
+    value = afw_value_string_create_managed(&s, heap, xctx);
+    afw_pool_register_value_release(value, heap, xctx);
+
+    held = afw_pool_internal_report_pending_releases(xctx->p,
+        "pool_heap_probe", xctx);
+    afw_pool_release(heap, xctx);
+    creator_only = afw_pool_internal_report_pending_releases(xctx->p,
+        "pool_heap_probe", xctx);
+    afw_pool_release(heap, xctx);
+
+    if (held != 1) {
+        return impl_fail("debug_pending_release_report",
+            "held pool not reported once");
+    }
+    if (creator_only != 0) {
+        return impl_fail("debug_pending_release_report",
+            "pool only its creator holds was reported");
+    }
+    return 0;
+}
+
 static int
 impl_debug_free_wrong_size(afw_xctx_t *xctx)
 {
@@ -1480,6 +1516,9 @@ main(int argc, char **argv)
         rc = impl_tracker_return_chunk(xctx);
     }
 #ifdef AFW_DEBUG_POOL
+    else if (strcmp(case_name, "debug_pending_release_report") == 0) {
+        rc = impl_debug_pending_release_report(xctx);
+    }
     else if (strcmp(case_name, "debug_free_wrong_size") == 0) {
         rc = impl_debug_free_wrong_size(xctx);
     }
@@ -1503,6 +1542,7 @@ main(int argc, char **argv)
             "thread_parent_hold|"
             "double_free_throws|tracker_return_chunk"
 #ifdef AFW_DEBUG_POOL
+            "|debug_pending_release_report"
             "|debug_free_wrong_size|debug_free_wrong_pool"
             "|debug_free_poisons_user"
 #endif

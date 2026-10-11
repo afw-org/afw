@@ -35051,32 +35051,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__900284d06de8 \
-    "Associative array of adaptive objects (keyed object map) for C-side\n      structures. Distinct from adaptive object properties. Call methods\n      via afw_object_associative_array_*() macros. See group afw_object and\n      associative_array helpers."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__900284d06de8 */
-#define afw_s_zz__900284d06de8 \
-    (&afw_self_v_zz__900284d06de8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__900284d06de8 */
-#define afw_self_s_zz__900284d06de8 \
-    (afw_self_v_zz__900284d06de8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__900284d06de8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__900284d06de8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__900284d06de8 */
-#define afw_z_zz__900284d06de8 \
-    (afw_self_v_zz__900284d06de8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__900284d06de8 */
-#define afw_v_zz__900284d06de8 \
-    (&afw_self_v_zz__900284d06de8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__901ae96513cd \
     "function in_range <dataType>(\n    time: dataType,\n    startTime: dataType,\n    endTime: dataType\n): boolean;\n"
 
@@ -120977,6 +120951,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___flagId__string____setTo___boolean___void */
 #define afw_v_zz___flagId__string____setTo___boolean___void \
     (&afw_self_v_zz___flagId__string____setTo___boolean___void.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___fno_strict_aliasing \
+    "-fno-strict-aliasing"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_s_zz___fno_strict_aliasing \
+    (&afw_self_v_zz___fno_strict_aliasing.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_self_s_zz___fno_strict_aliasing \
+    (afw_self_v_zz___fno_strict_aliasing.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___fno_strict_aliasing */
+extern const afw_value_string_t \
+    afw_self_v_zz___fno_strict_aliasing;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_z_zz___fno_strict_aliasing \
+    (afw_self_v_zz___fno_strict_aliasing.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_v_zz___fno_strict_aliasing \
+    (&afw_self_v_zz___fno_strict_aliasing.pub)
 
 
 

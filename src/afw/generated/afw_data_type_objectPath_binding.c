@@ -314,12 +314,20 @@ impl_empty_array_of_objectPath;
 const afw_value_array_t
 impl_value_empty_array_of_objectPath;
 
+/* Data type id objectPath as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_objectPath = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("objectPath")
+};
+
 /* Data type objectPath instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_objectPath_direct = {
     &afw_data_type_objectPath_inf,
     (const afw_object_t *)&impl_data_type_object_objectPath,
     AFW_UTF8_LITERAL("objectPath"),
+    (const afw_value_t *)&impl_data_type_id_value_objectPath,
     AFW_UTF8_LITERAL("An adaptive object's object path"),
     AFW_UTF8_LITERAL("Data type 'objectPath' is the path within the same instance of Adaptive Framework of an object. Its for is /<adapterId>/<objectType>/<objectId> where <adapterId> is an adapter id, <objectType> is the object id of an object type, and <objectId> is the id of an object."),
     AFW_UTF8_LITERAL(""),

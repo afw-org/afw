@@ -538,28 +538,6 @@ typedef struct afw_service_type_inf_s
 afw_service_type_inf_t;
 
 /**
- * @brief Opaque instance type for interface `afw_object_associative_array`.
- *
- * Public name is `afw_object_associative_array_t`. Full
- * `struct afw_object_associative_array_s` is in the generated
- * interface header. Call methods via
- * `afw_object_associative_array_<method>(…)` macros, not by
- * assuming a single private layout beyond the published
- * struct (implementations may embed/extend in .c).
- */
-typedef struct afw_object_associative_array_s
-afw_object_associative_array_t;
-
-/**
- * @brief Vtable/inf type for interface `afw_object_associative_array`.
- *
- * Public name is `afw_object_associative_array_inf_t`.
- * Instance `inf` points here; call macros use it.
- */
-typedef struct afw_object_associative_array_inf_s
-afw_object_associative_array_inf_t;
-
-/**
  * @brief Opaque instance type for interface `afw_request_handler_factory`.
  *
  * Public name is `afw_request_handler_factory_t`. Full

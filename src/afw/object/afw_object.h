@@ -750,17 +750,6 @@ afw_object_merge(
 
 
 /**
- * @brief Create memory object associative array.
- * @param p to use for associative array.
- * @param xctx of caller.
- * @return object associative array instance.
- */
-AFW_DECLARE(const afw_object_associative_array_t *)
-afw_object_memory_associative_array_create(
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-
-/**
  * Memory object create options. Pool-world only (not memory_managed
  * frames). 0 = live in p. Optional flags:
  *

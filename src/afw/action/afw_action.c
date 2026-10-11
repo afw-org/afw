@@ -103,7 +103,7 @@ impl_call_function(
                 if ((*a)->data_type &&
                     (*a)->data_type != afw_value_quick_data_type(argv[i]))
                 {
-                    argv[i] = afw_value_convert(argv[i],
+                    argv[i] = afw_value_convert_lexical(argv[i],
                         (*a)->data_type, true, p, xctx);
                 }
             }
@@ -125,7 +125,7 @@ impl_call_function(
                 if (*a && (*a)->data_type &&
                     (*a)->data_type != afw_value_quick_data_type(argv[i]))
                 {
-                    argv[i] = afw_value_convert(argv[i],
+                    argv[i] = afw_value_convert_lexical(argv[i],
                         (*a)->data_type, true, p, xctx);
                 }
             }
@@ -254,7 +254,7 @@ AFW_DEFINE(const afw_object_t *)
 afw_action_perform(
     const afw_object_t *request,
     const afw_content_type_t *response_content_type,
-    const afw_object_t *response,
+    const afw_object_t * volatile response,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_array_t *actions;

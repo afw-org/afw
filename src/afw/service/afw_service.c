@@ -152,7 +152,7 @@ impl_service_retain(
     const afw_utf8_t *service_id,
     afw_xctx_t *xctx)
 {
-    afw_service_t *service;
+    afw_service_t * volatile service;
 
     service = NULL;
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
@@ -180,7 +180,7 @@ impl_service_release(
     afw_service_t *service,
     afw_xctx_t *xctx)
 {
-    const afw_pool_t *free_p;
+    const afw_pool_t * volatile free_p;
 
     if (!service) {
         return;
@@ -215,7 +215,7 @@ impl_service_is_current(
     afw_service_t *service,
     afw_xctx_t *xctx)
 {
-    afw_boolean_t result;
+    volatile afw_boolean_t result;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         AFW_LOCK_BEGIN(xctx->env->service_lock) {
@@ -245,7 +245,7 @@ impl_register_service(
     afw_xctx_t *xctx)
 {
     afw_service_t *previous;
-    const afw_pool_t *free_p;
+    const afw_pool_t * volatile free_p;
 
     previous = NULL;
     free_p = NULL;
@@ -587,10 +587,10 @@ impl_start_cb(
     afw_xctx_t *xctx)
 {
     impl_start_context_t *ctx = context;
-    const afw_pool_t *p;
-    const afw_utf8_t *service_id;
+    const afw_pool_t * volatile p;
+    const afw_utf8_t * volatile service_id;
     const afw_utf8_t *startup;
-    afw_service_t *service;
+    afw_service_t * volatile service;
     const afw_object_t *conf;
     const afw_utf8_t *source_location;
     afw_boolean_t startable;
@@ -746,8 +746,8 @@ void
 afw_service_internal_start_initial_services(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adapter_session_t *session;
-    const afw_pool_t *retrieve_p;
+    const afw_adapter_session_t * volatile session;
+    const afw_pool_t * volatile retrieve_p;
     impl_start_context_t ctx;
 
     /* The application conf pool is not the retrieve pool. */
@@ -1039,12 +1039,12 @@ impl_AdaptiveService_cb(
     afw_xctx_t *xctx)
 {
     impl_AdaptiveService_context_t *ctx = context;
-    const afw_utf8_t *service_id;
+    const afw_utf8_t * volatile service_id;
     const afw_service_t *service;
     afw_boolean_t meetsCriteria;
     const afw_pool_t *p;
     const afw_object_t *conf_property;
-    const afw_object_t *object;
+    const afw_object_t * volatile object;
     const afw_utf8_t *s;
     const afw_utf8_t *stable_id;
     const afw_utf8_t *error_message;
@@ -1333,7 +1333,7 @@ afw_service_get_object(
 {
     impl_AdaptiveService_context_t ctx;
     const afw_adapter_session_t *session;
-    const afw_object_t *result = NULL;
+    const afw_object_t * volatile result = NULL;
     const afw_service_t *service;
     const afw_utf8_t *error_message;
 
@@ -1562,7 +1562,7 @@ afw_service_stop(
     const afw_utf8_t *service_id,
     afw_xctx_t *xctx)
 {
-    afw_service_t *service;
+    afw_service_t * volatile service;
     const afw_utf8_t *description;
 
     /* The caller's id may live in a pool this stop releases. */
@@ -1664,11 +1664,11 @@ afw_service_restart(
     const afw_utf8_t *service_id,
     afw_xctx_t *xctx)
 {
-    afw_service_t *service;
+    afw_service_t * volatile service;
     const afw_service_t *current;
     const afw_adapter_session_t *session;
-    afw_boolean_t error;
-    afw_boolean_t restarted;
+    volatile afw_boolean_t error;
+    volatile afw_boolean_t restarted;
     const afw_pool_t *p;
     impl_start_context_t ctx;
 

@@ -303,7 +303,7 @@ afw_function_execute_evaluate_with_retry(
     afw_xctx_t *xctx = x->xctx;
     const afw_value_t *value;
     const afw_value_integer_t *limit_value;
-    afw_integer_t limit;
+    volatile afw_integer_t limit;
     afw_integer_t failures;
     afw_boolean_t success;
 
@@ -393,7 +393,7 @@ afw_function_execute_safe_evaluate(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_value_t *value;
+    const afw_value_t * volatile value;
 
     value = NULL;
     AFW_TRY {
@@ -1352,10 +1352,10 @@ afw_function_execute_compile_from_file(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_t *result = NULL;
+    const afw_value_t * volatile result = NULL;
     const afw_value_string_t *file_value;
     const afw_value_string_t *compile_type_value;
-    afw_compile_type_t compile_type = afw_compile_type_script;
+    volatile afw_compile_type_t compile_type = afw_compile_type_script;
     const afw_utf8_t *file;
     const afw_utf8_t *compile_type_string;
     afw_include_self_t *self;

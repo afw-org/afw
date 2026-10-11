@@ -137,12 +137,20 @@ impl_empty_array_of_unknown;
 const afw_value_array_t
 impl_value_empty_array_of_unknown;
 
+/* Data type id unknown as a value. */
+static const afw_value_string_t
+impl_data_type_id_value_unknown = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL("unknown")
+};
+
 /* Data type unknown instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_unknown_direct = {
     &afw_data_type_unknown_inf,
     (const afw_object_t *)&impl_data_type_object_unknown,
     AFW_UTF8_LITERAL("unknown"),
+    (const afw_value_t *)&impl_data_type_id_value_unknown,
     AFW_UTF8_LITERAL("Type-safe unknown value"),
     AFW_UTF8_LITERAL("Any value can be assigned as the value of data type 'unknown'. The actual data type is the data type of the value. Most 'type check' errors can be detected during compile to reduce the number of errors detected during evaluation."),
     AFW_UTF8_LITERAL(""),

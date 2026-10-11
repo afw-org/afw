@@ -158,3 +158,28 @@ tests:
       method: GET
       path: /files/Thing/a[b
     expectStatus: 400
+
+  # #537: a URI the client got wrong is a syntax error (400), not 500.
+  - name: bad-utf8-escape-is-bad-request
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/%FF
+    expectStatus: 400
+
+  - name: not-nfc-is-bad-request
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/c%CC%81
+    expectStatus: 400
+
+  # #537: a modify entry the client got wrong is bad_request (400).
+  # POST with an array body is modify.
+  - name: modify-bad-entry-is-bad-request
+    feed:
+      kind: rest
+      method: POST
+      path: /files/Thing/nested
+      body: [["set_property", ["n", "x"], 1]]
+    expectStatus: 400
