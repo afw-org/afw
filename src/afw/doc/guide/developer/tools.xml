@@ -52,10 +52,11 @@ code .</code>
                 which can take a while.
             </paragraph>
             <paragraph>
-                Development happens on <literal>develop</literal>. GitHub's
-                default branch, <literal>main</literal>, is far behind it,
-                including the Dev Container configuration, so always check
-                out <literal>develop</literal> before opening the container.
+                At the time of this writing, current development, including
+                the Dev Container configuration, is on
+                <literal>develop</literal>, and GitHub's default branch,
+                <literal>main</literal>, is behind it. For now, check out
+                <literal>develop</literal> before opening the container.
             </paragraph>            
             <paragraph>
                 The container bind-mounts the folder that holds your clone
@@ -170,8 +171,8 @@ afwdev test -j</code>
                 <step>
                     Enter the repository URL,
                     <literal>https://github.com/afw-org/afw.git</literal>.
-                    VS Code clones GitHub's default branch,
-                    <literal>main</literal>.
+                    VS Code clones GitHub's default branch (currently
+                    <literal>main</literal>).
                 </step>
                 <step>
                     Create a new volume or choose an existing one, and accept
