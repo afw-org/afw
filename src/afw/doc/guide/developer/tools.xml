@@ -15,7 +15,8 @@
             Docker containers. Visit 
             <link href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</link> 
             for installation and configuration instructions for your Operating 
-            System.
+            System. On Windows, see <literal>Windows with WSL 2</literal>
+            below for the setup we have verified.
         </paragraph>
     </section>    
     <section>
@@ -31,51 +32,159 @@
             <link href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</link>.
         </paragraph>
         <section>
-            <title>Clone the Repository in a Container Volume</title>
+            <title>Open the Repository in the Dev Container</title>
             <paragraph>
-                We recommend that you clone the source repository inside a 
-                Docker volume and develop from within this container 
-                environment. This will provide you with all of the tools 
-                you will need for development, along with a experience that is 
-                consistent and well tested with what we have used for 
-                development. By using a Docker Volume for storage, you will 
-                also gain some file system performance when running under 
-                MacOS or Windows, over bind-mounted volumes.
+                The repository includes a Dev Container configuration
+                (<literal>.devcontainer</literal>). It builds a container with
+                all of the tools you need for development, the same
+                environment we use and test with. Clone the repository onto a
+                Linux file system, check out the <literal>develop</literal>
+                branch, and open the folder in VS Code:
+            </paragraph>
+            <code>git clone https://github.com/afw-org/afw.git
+cd afw
+git checkout develop
+code .</code>
+            <paragraph>
+                Then, from the Command Palette (Show All Commands), select
+                <literal>Dev Containers: Reopen in Container</literal>. The
+                first time, Docker downloads and builds the development image,
+                which can take a while.
             </paragraph>
             <paragraph>
-                After you have installed everything, begin, by opening VS Code, 
-                either by launching by command-line (or from a GUI shortcut):
-            </paragraph>
-            <code>code</code>
-            <paragraph>
-                Using the Command Palette (Show All Commands), bring up a list 
-                of command options and select: <literal>Dev Containers: 
-                Clone Repository in Named Container Volume...</literal>
+                Development happens on <literal>develop</literal>. GitHub's
+                default branch, <literal>main</literal>, is far behind it,
+                including the Dev Container configuration, so always check
+                out <literal>develop</literal> before opening the container.
             </paragraph>            
             <paragraph>
-                This will prompt you for the url to the GitHub repository. 
+                The container bind-mounts the folder that holds your clone
+                (the clone's parent folder) at <literal>/workspaces</literal>,
+                so the repository is at <literal>/workspaces/afw</literal>, and
+                anything you clone next to it, such as your own extensions, is
+                there too. Your files and git history stay on the host:
+                rebuilding or deleting the container does not touch them.
+            </paragraph>
+            <paragraph>
+                Where to put the clone:
             </paragraph>
             <list>
                 <item>
-                    Enter 
-                    <literal>https://github.com/afw-org/afw.git</literal>
+                    Linux: anywhere, for example in your home directory.
                 </item>
                 <item>
-                    Select <literal>Create a new volume...</literal>
+                    MacOS: anywhere. Docker Desktop shares host folders with
+                    the container through virtiofs, which makes a
+                    bind-mounted clone fast. Older Docker Desktop releases
+                    made bind mounts slow on MacOS, which is why this guide
+                    used to recommend a Docker volume instead.
                 </item>
                 <item>
-                    Accept the default name 
-                    <literal>vsc-remote-containers</literal>
-                </item>
-                <item>
-                    Accept the default repository name 
-                    <literal>afw</literal>
+                    Windows: inside a WSL 2 Linux distribution, for example
+                    <literal>~/afw</literal> in Ubuntu. Do not clone onto the
+                    Windows file system (a Windows folder, or
+                    <literal>/mnt/c</literal> from WSL): the container is slow
+                    on it, and a clone made by Git for Windows can have
+                    Windows line endings. See <literal>Windows with WSL 2</literal>
+                    below.
                 </item>
             </list>            
+        </section>
+        <section>
+            <title>Windows with WSL 2</title>
             <paragraph>
-                The first time this is performed, Docker may take a long time 
-                to download the appropriate software dependencies.
+                The setup we have verified on Windows runs Docker Engine
+                inside WSL 2 Ubuntu, with Docker Desktop uninstalled. VS Code
+                itself runs on Windows and reaches the clone through its WSL
+                extension. Docker Desktop with its WSL 2 backend and a clone
+                on the WSL file system should also work, but has not been
+                tried.
             </paragraph>
+            <steps>
+                <step>
+                    In an Ubuntu terminal, install Docker Engine:
+                    <literal>curl -fsSL https://get.docker.com -o get-docker.sh</literal>
+                    then <literal>sudo sh get-docker.sh</literal>.
+                </step>
+                <step>
+                    Let your user run Docker:
+                    <literal>sudo groupadd docker</literal> (the group may
+                    already exist), then
+                    <literal>sudo usermod -aG docker $USER</literal>.
+                </step>
+                <step>
+                    If your home directory is now owned by root, give it
+                    back: <literal>sudo chown -R $USER:$USER $HOME</literal>.
+                </step>
+                <step>
+                    From PowerShell, run <literal>wsl --shutdown</literal> so
+                    the group change takes effect, then open a new Ubuntu
+                    terminal.
+                </step>
+                <step>
+                    Clone the repository, check out
+                    <literal>develop</literal> and run
+                    <literal>code .</literal> as shown above, then select
+                    <literal>Dev Containers: Reopen in Container</literal>.
+                </step>
+            </steps>
+            <paragraph>
+                If <literal>./afwdev</literal> fails with
+                <literal>not found</literal>, the file was checked out with
+                Windows (CRLF) line endings, so its
+                <literal>#!/bin/sh</literal> line names an interpreter that
+                does not exist. Clone inside WSL instead, or, in an existing
+                clone, run <literal>rm afwdev</literal> then
+                <literal>git checkout afwdev</literal> to check it out again
+                with Linux line endings.
+            </paragraph>
+        </section>
+        <section>
+            <title>The First Build</title>
+            <paragraph>
+                In the container's terminal, build and install everything,
+                then run the tests:
+            </paragraph>
+            <code>./afwdev build --fulldev
+afwdev test -j</code>
+            <paragraph>
+                For day-to-day C work, <literal>./afwdev build --cdev</literal>
+                is quicker: it builds and installs the C runtime, the
+                extensions and <literal>afwdev</literal>, but not the
+                documentation or the administrative web application.
+            </paragraph>
+        </section>
+        <section>
+            <title>Clone into a Container Volume</title>
+            <paragraph>
+                If you would rather not keep a clone on the host, VS Code can
+                clone the repository into a Docker volume. The source then
+                lives only in that volume: host tools cannot see it, and
+                deleting the volume deletes your work.
+            </paragraph>
+            <steps>
+                <step>
+                    From the Command Palette, select
+                    <literal>Dev Containers: Clone Repository in Named Container Volume...</literal>
+                </step>
+                <step>
+                    Enter the repository URL,
+                    <literal>https://github.com/afw-org/afw.git</literal>.
+                    VS Code clones GitHub's default branch,
+                    <literal>main</literal>.
+                </step>
+                <step>
+                    Create a new volume or choose an existing one, and accept
+                    the default repository name <literal>afw</literal>.
+                </step>
+                <step>
+                    When the container is running, run
+                    <literal>git checkout develop</literal> in its terminal,
+                    then select <literal>Dev Containers: Rebuild Container</literal>
+                    so the container is built from the
+                    <literal>develop</literal> configuration.
+                </step>
+            </steps>
         </section>
         <section>
             <title>Using the VS Code Tasks</title>
@@ -107,17 +216,23 @@
                 a workspace to contain both core and your extensions and apps.                  
             </paragraph>
             <paragraph>
-                You can do so by selecting <literal>File -> Save Workspace As
-                </literal> from the menu bar. This will prompt you for a 
-                location within your Docker Volume to save the workspace 
-                file (<literal>afw.code-workspace</literal> by default). 
-                Choose a location outside of all of your project 
-                repository paths. For example, <literal>/workspaces</literal>.
+                Clone those repositories next to <literal>afw</literal>, so
+                they share its parent folder. In the container they appear
+                under <literal>/workspaces</literal>. With a container volume,
+                clone them into <literal>/workspaces</literal> from the
+                container's terminal.
+            </paragraph>
+            <paragraph>
+                Then select <literal>File -> Save Workspace As...</literal>
+                from the menu bar and save the workspace file
+                (<literal>afw.code-workspace</literal> by default) outside of
+                all of your repository folders, for example in
+                <literal>/workspaces</literal>.
             </paragraph>
             <paragraph>
                 Once you have saved the workspace, you can add additional 
                 project repository folders to your workspace by using the 
-                <literal>File->Add Folder to Workspace...</literal> command.                  
+                <literal>File -> Add Folder to Workspace...</literal> command.
             </paragraph>
         </section>
     </section>
