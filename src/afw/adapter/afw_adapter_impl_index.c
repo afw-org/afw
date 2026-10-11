@@ -205,6 +205,10 @@ impl_index_current_variables[] = {
  *          unique                  - reject/skip duplicate index values
  *          sort-reverse            - store index values in reverse order
  *          case-insensitive-string - fold string values for comparison
+ *          integer / double        - the index's values are numbers: a
+ *                                    string query value is the number's
+ *                                    key when no object type says so
+ *                                    (#544; one of the two at most)
  *
  *      Aspirational (parsed nowhere / not yet implemented):
  *
@@ -342,6 +346,52 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
 }
 
 /*
+ * The data type the "integer" or "double" option gives an index, or
+ * NULL (#544). A query string gives every value as a string; with no
+ * object type to say a property is a number, this option makes "9" the
+ * key of the number 9. Both options at once is an error.
+ */
+static const afw_data_type_t *
+impl_index_option_data_type(
+    const afw_object_t * indexDefinition,
+    afw_xctx_t        * xctx)
+{
+    const afw_array_t  * options;
+    const afw_value_t * option;
+    const afw_iterator_old_t * option_iterator;
+    const afw_utf8_t * option_str;
+    const afw_data_type_t * data_type;
+
+    data_type = NULL;
+    options = afw_object_get_property_as_array_internal(
+        indexDefinition, afw_v_options, xctx);
+    for (option_iterator = NULL; options; ) {
+        option = afw_array_get_next_value(options, &option_iterator, xctx);
+        if (!option) {
+            break;
+        }
+        if (!afw_value_is_string(option)) {
+            continue;
+        }
+        option_str = (const afw_utf8_t *)AFW_VALUE_INTERNAL(option);
+        if (afw_utf8_equal(option_str, afw_s_integer) ||
+            afw_utf8_equal(option_str, afw_s_double))
+        {
+            if (data_type) {
+                AFW_THROW_ERROR_Z(general,
+                    "An index can have only one of the options integer "
+                    "and double", xctx);
+            }
+            data_type = (afw_utf8_equal(option_str, afw_s_integer))
+                ? afw_data_type_integer
+                : afw_data_type_double;
+        }
+    }
+
+    return data_type;
+}
+
+/*
  * Encodes a signed 64-bit integer as a fixed-width (20-digit),
  * zero-padded decimal string whose byte-lexicographic order matches
  * numeric order.
@@ -408,6 +458,31 @@ impl_index_double_as_sortable_utf8(
 }
 
 /*
+ * One "\0" byte: the empty string's index key, and the escape in front
+ * of a text that starts with "\0".
+ */
+static const afw_utf8_t impl_index_key_nul = { "", 1 };
+
+/*
+ * The index key of a text. Index keys can't be empty (LMDB), and the
+ * empty string was skipped, so an index query never found "" (eq "",
+ * lt/le walking down, ge "") (#544). A key is the text, except that ""
+ * is "\0" and a text that starts with "\0" gets another "\0" in front.
+ * Every key stays distinct and in the texts' byte order ("" first), so
+ * cursors and the dedup compare keys as before.
+ */
+static const afw_utf8_t *
+impl_index_key_from_text(
+    const afw_utf8_t *text, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    if (text->len > 0 && text->s[0] != '\0') {
+        return text;
+    }
+
+    return afw_utf8_concat(p, xctx, &impl_index_key_nul, text, NULL);
+}
+
+/*
  * Returns the utf8 text used as an index key/comparison value for
  * `value`. Integer and double values get the fixed-width sortable
  * encoding above so lt/le/gt/ge walk keys in numeric order; LMDB (and
@@ -430,35 +505,80 @@ impl_index_value_as_key_utf8(
             afw_value_as_double_internal(value, p, xctx), p, xctx);
     }
 
-    return afw_value_convert_to_utf8(value, p, xctx);
+    return impl_index_key_from_text(
+        afw_value_convert_to_utf8(value, p, xctx), p, xctx);
+}
+
+/*
+ * The index key of an object's value, lowercased for a case-insensitive
+ * index. Writing an index and the dedup (afw_adapter_impl_index_applies)
+ * make keys here. A value keeps its own data type's key: an index whose
+ * values mix integers and doubles orders them apart, as a scan compares
+ * them apart (it converts the filter value to each object's type).
+ */
+static const afw_utf8_t *
+impl_index_object_value_key(
+    const afw_object_t *indexDefinition,
+    const afw_value_t *value,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t *key;
+
+    key = impl_index_value_as_key_utf8(value, p, xctx);
+    if (afw_adapter_impl_index_option_case_insensitive(
+        indexDefinition, xctx))
+    {
+        key = afw_utf8_to_lower(key, p, xctx);
+    }
+
+    return key;
 }
 
 /*
  * The key of a filter entry's value. A query string's values are all
- * strings: on a property whose object type says integer or double, a
- * string value is that number's key (n=gt=9 sought the string "9" among
- * the integers' sortable keys: it found nothing, and n=lt=10 found
- * everything). A string that is not a number stays a string.
+ * strings: on an index whose integer / double option, or else whose
+ * property's object type, says integer or double, a string value is
+ * that number's key (n=gt=9 sought the string "9" among the integers'
+ * sortable keys: it found nothing, and n=lt=10 found everything), and
+ * on a double index an integer value is that double's key, as a scan
+ * converts the filter value to each object's type (#544).
+ *
+ * A string that doesn't convert ("x", or "9" for a double: double("9")
+ * is not a double) stays a string. A scan finds no number for it, but
+ * its key's range can hold number keys, so *exact is set false: the
+ * index query re-tests what that cursor returns. Otherwise true.
  */
 static const afw_utf8_t *
 impl_index_entry_value_as_key_utf8(
+    const afw_object_t *indexDefinition,
     const afw_query_criteria_filter_entry_t *entry,
+    afw_boolean_t *exact,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *value;
     const afw_data_type_t *data_type;
 
+    *exact = true;
     value = entry->value;
-    data_type = (entry->pt) ? entry->pt->data_type : NULL;
-    if (data_type && afw_value_is_string(value) &&
-        (afw_data_type_is_integer(data_type) ||
-        afw_data_type_is_double(data_type)))
+    data_type = impl_index_option_data_type(indexDefinition, xctx);
+    if (!data_type && entry->pt) {
+        data_type = entry->pt->data_type;
+    }
+    if (!afw_data_type_is_integer(data_type) &&
+        !afw_data_type_is_double(data_type))
+    {
+        data_type = NULL;
+    }
+
+    if (data_type && (afw_value_is_string(value) ||
+        (afw_data_type_is_double(data_type) && afw_value_is_integer(value))))
     {
         AFW_TRY {
             value = afw_value_convert(value, data_type, false, p, xctx);
         }
         AFW_CATCH_UNHANDLED {
             value = entry->value;
+            *exact = false;
         }
         AFW_ENDTRY;
     }
@@ -541,14 +661,17 @@ impl_index_entry_seek_key(
     const afw_object_t *indexDefinition,
     const afw_query_criteria_filter_entry_t *entry,
     const afw_utf8_t *literal_prefix,
+    afw_boolean_t *exact,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *key;
 
+    *exact = true;
     key = (literal_prefix)
-        ? literal_prefix
-        : impl_index_entry_value_as_key_utf8(entry, p, xctx);
+        ? impl_index_key_from_text(literal_prefix, p, xctx)
+        : impl_index_entry_value_as_key_utf8(indexDefinition, entry,
+            exact, p, xctx);
     if (afw_adapter_impl_index_option_case_insensitive(
         indexDefinition, xctx))
     {
@@ -590,23 +713,15 @@ void afw_adapter_impl_index_apply(
     const int            operation,
     afw_xctx_t        * xctx)
 {
-    afw_boolean_t       case_sensitive;
     afw_boolean_t       unique;
     const afw_utf8_t  * value_string;
 
-    case_sensitive = !afw_adapter_impl_index_option_case_insensitive(
-        indexDefinition, xctx);
     unique = afw_adapter_impl_index_option_unique(indexDefinition, xctx);
 
     /* Generate the utf8 value of the index; this will be used as the
-        index key in the underlying database.
-     */
-    value_string = impl_index_value_as_key_utf8(value, object->p, xctx);
-    if (!case_sensitive) {
-        /* For case-insensitive indexes, lower-case it so we will always
-            do case-insensitive comparisons */
-        value_string = afw_utf8_to_lower(value_string, object->p, xctx);
-    }
+        index key in the underlying database. */
+    value_string = impl_index_object_value_key(indexDefinition, value,
+        object->p, xctx);
 
     /* figure out which operation we are doing */
     if (operation == afw_adapter_impl_index_mode_add) {
@@ -1135,6 +1250,8 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     const afw_iterator_old_t           * object_type_iterator;
     const afw_utf8_t                   * object_type_id;
     const afw_object_type_t            * object_type;
+    const afw_object_type_property_type_t * property_type;
+    const afw_data_type_t              * option_data_type;
 
     session = afw_adapter_session_get_cached(adapterId, false, xctx);
 
@@ -1222,6 +1339,43 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     if (options)
         afw_object_set_property_as_array_internal(indexDefinition,
             afw_v_options, options, xctx);
+
+    /*
+     * The integer / double option says what the index's values are when
+     * no object type does (#544). It throws for both options; an object
+     * type that declares key as another data type contradicts it.
+     */
+    option_data_type = impl_index_option_data_type(indexDefinition, xctx);
+    if (option_data_type && objectType) {
+        const afw_value_string_t key_value = AFW_VALUE_STRING_UNMANAGED(key);
+
+        for (object_type_iterator = NULL;;) {
+            object_type_id = afw_array_of_string_get_next_internal(
+                objectType, &object_type_iterator, xctx);
+            if (!object_type_id) {
+                break;
+            }
+            object_type = afw_adapter_get_object_type(adapterId,
+                object_type_id, afw_object_create_unmanaged(pool, xctx),
+                xctx);
+            property_type = (object_type)
+                ? afw_object_type_property_type_get(object_type,
+                    &key_value.pub, xctx)
+                : NULL;
+            if (property_type &&
+                property_type != object_type->other_properties &&
+                property_type->data_type &&
+                property_type->data_type != option_data_type)
+            {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Object type '%ku' declares property '%ku' as %ku, "
+                    "but the index option says %ku",
+                    object_type_id, key,
+                    &property_type->data_type->data_type_id,
+                    &option_data_type->data_type_id);
+            }
+        }
+    }
 
     ctx.instance = indexer;
     ctx.key = key;
@@ -1903,6 +2057,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     const afw_utf8_t *literal_prefix = NULL;
     int cursor_operator;
     afw_boolean_t unique;
+    afw_boolean_t exact = true;
 
     /* allocate our cursor_list that will contain a conjunction
         of cursors, representing this particular decision branch. */
@@ -1942,7 +2097,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
            seeks on that prefix instead of the raw regex pattern text.
            A case-insensitive index seeks the lowercased key. */
         value_string = impl_index_entry_seek_key(indexDefinition, entry,
-            literal_prefix, xctx->p, xctx);
+            literal_prefix, &exact, xctx->p, xctx);
         unique = afw_adapter_impl_index_option_unique(
             indexDefinition, xctx);
 
@@ -1955,7 +2110,8 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     }
 
     if (cursor) {
-        cursor->inner_join = true;
+        /* A value that didn't convert to the index's number type: re-test. */
+        cursor->inner_join = exact;
          
         /* remember the afw_query_criteria_filter_entry for later */ 
         cursor->filter_entry = entry;
@@ -2414,7 +2570,7 @@ static afw_boolean_t afw_adapter_impl_index_applies(
     const afw_value_t *value;
     const afw_value_t * const *values;
     const afw_value_t *single[2];
-    afw_boolean_t case_insensitive;
+    afw_boolean_t exact;
     int compare;
     int i;
 
@@ -2428,9 +2584,7 @@ static afw_boolean_t afw_adapter_impl_index_applies(
         ? impl_index_match_literal_prefix(entry, p, xctx)
         : NULL;
     seek_key = impl_index_entry_seek_key(indexDefinition, entry,
-        literal_prefix, p, xctx);
-    case_insensitive = afw_adapter_impl_index_option_case_insensitive(
-        indexDefinition, xctx);
+        literal_prefix, &exact, p, xctx);
 
     /* What the index holds for object, as afw_adapter_impl_index_try(). */
     name = impl_index_query_test_name(test, entry);
@@ -2458,15 +2612,8 @@ static afw_boolean_t afw_adapter_impl_index_applies(
     }
 
     for (i = 0; values[i]; i++) {
-        key = impl_index_value_as_key_utf8(values[i], p, xctx);
-        if (case_insensitive) {
-            key = afw_utf8_to_lower(key, p, xctx);
-        }
-
-        /* An empty value is never an index key. */
-        if (key->len == 0) {
-            continue;
-        }
+        key = impl_index_object_value_key(indexDefinition, values[i],
+            p, xctx);
 
         if (literal_prefix) {
             if (key->len >= seek_key->len &&

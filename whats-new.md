@@ -292,6 +292,12 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 - **Cost:** a query that names no computed or case-insensitive index is tested exactly as before. Value and filter scripts are compiled once per query, not once per object.
 - In an index script, a property read works as is (`current::object.given`); an operator or an array literal needs `return …;` (`return current::object.department == "ENG";`).
 
+## Empty strings and numbers in indexes (issue [#544](https://github.com/afw-org/afw/issues/544))
+
+**An empty string is an index key like any other value.** It was never written to an index (LMDB keys can't be empty), so with an index on the property `eq ""`, `lt` / `le` (which include `""`) and `ge ""` missed every object whose value is `""`, while the same filter without the index found them. Its key is now a single `\0`; a value that itself starts with `\0` gets another `\0` in front, so keys stay distinct and in order. **Existing indexes** hold no entries for `""`: remove and create such an index again (`retroactive` true) to add them.
+
+**Number indexes without an object type: options `integer` and `double`.** A query string's values are all strings, and integer and double index keys are a sortable text of the number. With no object type to say a property is a number, `n=gt=9` on an indexed integer property sought the text `"9"` among those keys: it found nothing, and `n=lt=10` found everything. `index_create(..., options: ["integer"])` (or `["double"]`) now says the index holds numbers, so a string value that reads as one is that number's key. It is the only way for a computed name, which no object type may declare (#516). A string that doesn't read as one (`"x"`, or `"9"` for a double: `double("9")` is not a double, write `"9.0"`) finds no number, as a scan doesn't. `index_create` refuses both options together, and an option that contradicts a data type an object type declares. An index whose values mix integers and doubles compares them apart, as a scan does. The `integer` option used to be accepted and ignored (#266).
+
 ## Service start and restart (issue [#411](https://github.com/afw-org/afw/issues/411))
 
 A get or retrieve on an adapter that is not running starts it. When another request finished that start first, the read threw `can not be started.  Service is running`. It now uses the running adapter. A manual `service_start()` of a running service still throws.

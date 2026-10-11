@@ -59,6 +59,7 @@ An index decides what its name means in a query, on **every** plan: cursor, re-t
 - **One walker:** do not copy `afw_query_criteria_test_object`; pass a hook to `afw_query_criteria_test_object_cb`.
 - **Dedup is by key** (`afw_adapter_impl_index_applies`): the object's keys through the definition vs `impl_index_entry_seek_key`. Keep it the cursor's exact set.
 - Index scripts: a property read works as is; an operator or array literal needs `return …;`.
+- **Keys (#544):** `""` is key `"\0"` (a text led by `"\0"` gets another; `impl_index_key_from_text`). Options `integer` / `double` give a string query value the number's key when no object type does (`impl_index_entry_value_as_key_utf8`, option first, then `entry->pt`); a value that doesn't convert sets the cursor's `inner_join` false so it is re-tested.
 
 ## Default LMDB without indexes
 

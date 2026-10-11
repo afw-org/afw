@@ -26133,6 +26133,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__6b197b50dbe5 \
+    "Indexing options: unique (each value at most once), case-insensitive-string (compare strings case-insensitively), sort-reverse, and integer or double (the index's values are numbers, so a string query value such as a query string's is the number's key when no object type gives the property's data type; it must agree with a data type an object type declares)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_s_zz__6b197b50dbe5 \
+    (&afw_self_v_zz__6b197b50dbe5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_self_s_zz__6b197b50dbe5 \
+    (afw_self_v_zz__6b197b50dbe5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6b197b50dbe5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__6b197b50dbe5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_z_zz__6b197b50dbe5 \
+    (afw_self_v_zz__6b197b50dbe5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6b197b50dbe5 */
+#define afw_v_zz__6b197b50dbe5 \
+    (&afw_self_v_zz__6b197b50dbe5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__6b26d45d92d5 \
     "function regexp_match <dataType>(\n    value: dataType,\n    regexp: string\n): boolean;\n"
 
@@ -61255,32 +61281,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Index_related_functions_that_act_on_adaptive_objects_ */
 #define afw_v_zz__Index_related_functions_that_act_on_adaptive_objects_ \
     (&afw_self_v_zz__Index_related_functions_that_act_on_adaptive_objects_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Indexing_options_ \
-    "Indexing options."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Indexing_options_ */
-#define afw_s_zz__Indexing_options_ \
-    (&afw_self_v_zz__Indexing_options_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Indexing_options_ */
-#define afw_self_s_zz__Indexing_options_ \
-    (afw_self_v_zz__Indexing_options_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Indexing_options_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Indexing_options_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Indexing_options_ */
-#define afw_z_zz__Indexing_options_ \
-    (afw_self_v_zz__Indexing_options_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Indexing_options_ */
-#define afw_v_zz__Indexing_options_ \
-    (&afw_self_v_zz__Indexing_options_.pub)
 
 
 
