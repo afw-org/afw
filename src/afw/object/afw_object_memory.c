@@ -192,22 +192,13 @@ afw_object_create_wrapper_managed(
         afw_object_create_managed(p, xctx);
     self->wrapped = wrapped;
     afw_object_get_reference(wrapped, xctx);
-    p = self->pub.p;
-    if (wrapped->meta.meta_object) {
-        self->pub.meta.meta_object = wrapped->meta.meta_object;
-    }
-    if (wrapped->meta.object_uri) {
-        self->pub.meta.object_uri = afw_utf8_clone(
-            wrapped->meta.object_uri, p, xctx);
-    }
-    if (wrapped->meta.id) {
-        self->pub.meta.id = afw_utf8_clone(
-            wrapped->meta.id, p, xctx);
-    }
-    if (wrapped->meta.object_type_uri) {
-        self->pub.meta.object_type_uri = afw_utf8_clone(
-            wrapped->meta.object_type_uri, p, xctx);
-    }
+
+    /*
+     * The reference on wrapped does not keep every pool its meta lives
+     * in (an object view's object meta is in the view's pool), so copy
+     * the meta as a managed copy does (#532, #502).
+     */
+    afw_object_copy_meta_into_managed(&self->pub, wrapped, xctx);
     return (const afw_object_t *)self;
 }
 
