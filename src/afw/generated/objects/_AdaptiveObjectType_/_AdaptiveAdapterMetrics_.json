@@ -16,7 +16,8 @@
             "label": "Add Object Count",
             "required": true,
             "runtime": {
-                "memberName": "add_object_count"
+                "memberName": "add_object_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -39,7 +40,8 @@
             "label": "Delete Object Count",
             "required": true,
             "runtime": {
-                "memberName": "delete_object_count"
+                "memberName": "delete_object_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -50,7 +52,8 @@
             "label": "Get Object Count",
             "required": true,
             "runtime": {
-                "memberName": "get_object_count"
+                "memberName": "get_object_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -61,7 +64,8 @@
             "label": "Modify Object Count",
             "required": true,
             "runtime": {
-                "memberName": "modify_object_count"
+                "memberName": "modify_object_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -72,7 +76,8 @@
             "label": "Replace Object Count",
             "required": true,
             "runtime": {
-                "memberName": "replace_object_count"
+                "memberName": "replace_object_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -83,7 +88,8 @@
             "label": "Retrieve Objects Count",
             "required": true,
             "runtime": {
-                "memberName": "retrieve_objects_count"
+                "memberName": "retrieve_objects_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         },
@@ -94,7 +100,8 @@
             "label": "Update Object Count",
             "required": true,
             "runtime": {
-                "memberName": "update_object_count"
+                "memberName": "update_object_count",
+                "valueAccessor": "atomic_integer"
             },
             "unique": false
         }

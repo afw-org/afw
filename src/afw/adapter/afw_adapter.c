@@ -57,7 +57,7 @@ impl_set_instance_active(
     afw_adapter_id_anchor_t * volatile stopping;
 
     stopping = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         /*
          * Get anchor.  If not already registered, make a new one
@@ -112,7 +112,7 @@ impl_set_instance_active(
 
     }
 
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     /*
      * Drop the generation's own count. That count was not a
@@ -133,7 +133,7 @@ impl_get_reference(
     afw_adapter_id_anchor_t *anchor;
     const afw_adapter_t * volatile instance;
 
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         instance = NULL;
         anchor = (afw_adapter_id_anchor_t *)
@@ -146,7 +146,7 @@ impl_get_reference(
         }
     }
 
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     return instance;
 }
@@ -222,11 +222,11 @@ afw_adapter_get_metrics_object(
 
     held = NULL;
     snapshot = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
         held = afw_adapter_internal_pin_for_pool_lock_held(
             impl->adapter, p, xctx);
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     if (!held) {
         return NULL;
@@ -398,7 +398,7 @@ impl_adapter_release_reference(
     volatile afw_boolean_t destroy;
 
     destroy = false;
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         /* Find anchor for this adapter instance. */
         for (
@@ -425,7 +425,7 @@ impl_adapter_release_reference(
         }
     }
 
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     if (destroy) {
         afw_adapter_destroy(instance, xctx);
@@ -1020,7 +1020,7 @@ impl_afw_service_type_related_instance_count (
     afw_adapter_id_anchor_t *stopping;
     volatile afw_integer_t result = 0;
 
-    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_BEGIN {
 
         anchor = (afw_adapter_id_anchor_t *)
             afw_environment_get_adapter_id(id, xctx);
@@ -1039,7 +1039,7 @@ impl_afw_service_type_related_instance_count (
             }
         }
     }
-    AFW_LOCK_END;
+    AFW_ADAPTER_INTERNAL_ANCHOR_LOCK_END;
 
     return result;
 }

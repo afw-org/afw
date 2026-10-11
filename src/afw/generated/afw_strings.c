@@ -3411,24 +3411,6 @@ afw_self_v_a_lock_file_journal_anchor_description = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_flags = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_a_lock_flags)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_flags_brief = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_a_lock_flags_brief)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_flags_description = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_a_lock_flags_description)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_log_list = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_log_list)
@@ -10212,6 +10194,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_yearMonthDuration)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_atomic_integer = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_atomic_integer)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -64000,6 +63988,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_at_least_one_member_of_time,
     &afw_self_v_at_least_one_member_of_x500Name,
     &afw_self_v_at_least_one_member_of_yearMonthDuration,
+    &afw_self_v_atomic_integer,
     &afw_self_v_authority,
     &afw_self_v_authorization,
     &afw_self_v_authorizationAdapterCreate,

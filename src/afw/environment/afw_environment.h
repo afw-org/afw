@@ -79,8 +79,13 @@ struct afw_environment_s {
     /** @brief Open file descriptor used for writing standard output. Default stdout. */
     FILE *stdout_fd;
 
-    /** @brief Indicates that environment is terminating. */
-    afw_boolean_t terminating;
+    /**
+     * @brief Indicates that environment is terminating.
+     *
+     * Atomic: a signal handler sets it (afw, afwfcgi) and every thread
+     * reads it.
+     */
+    AFW_ATOMIC afw_boolean_t terminating;
 
     /** @brief Flag index of compile:noImplicitAny. */
     afw_size_t flag_index_compile_noImplicitAny_active;

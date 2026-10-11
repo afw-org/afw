@@ -703,13 +703,6 @@ afw_environment_create(
             afw_s_a_lock_log_list_description,
             true, xctx);
 
-    /* Create flags lock. */
-    env->flags_lock  =
-        afw_lock_create_and_register(
-            afw_s_a_lock_flags,
-            afw_s_a_lock_flags_brief,
-            afw_s_a_lock_flags_description,
-            true, xctx);
 
     /*
      * Adaptive Framework app should have a AFW_TRY right after call to create

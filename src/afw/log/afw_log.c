@@ -380,6 +380,11 @@ afw_log_add_to_environment(
     p = xctx->env->p;
     old = NULL;
 
+    /*
+     * Registering takes environment_lock, and code holding it writes
+     * log lines (active_log_list_lock), so take it first.
+     */
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
     AFW_LOCK_BEGIN(xctx->env->active_log_list_lock) {
 
         /* Register log.  Will throw error if already registered. */
@@ -428,6 +433,8 @@ afw_log_add_to_environment(
         }
         head->last_log = e;
 
+    }
+    AFW_LOCK_END;
     }
     AFW_LOCK_END;
 

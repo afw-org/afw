@@ -191,15 +191,23 @@ afw_pool_internal_counts_on_thread(const afw_pool_internal_self_t *self)
     return !afw_pool_internal_is_multithreaded(&self->pub);
 }
 
+/*
+ * Number from the creating thread's count, which only that thread
+ * changes. self->thread is inherited from the parent, and a
+ * multithreaded parent has children created on every thread.
+ */
 void
-afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self)
+afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx)
 {
     afw_thread_t *thread;
 
-    if (!self->thread) {
+    thread = (afw_thread_t *)((xctx && xctx->thread)
+        ? xctx->thread
+        : self->thread);
+    if (!thread) {
         return;
     }
-    thread = (afw_thread_t *)self->thread;
     self->pool_number = ++thread->pool_number;
 }
 
@@ -476,6 +484,63 @@ afw_pool_internal_run_child_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 }
 
 
+/*
+ * A child's hold on its parent (holds_parent). A multithreaded parent's
+ * count and destroying flag change on other threads, so they are read
+ * under its lock, with the get_reference or release they decide.
+ */
+static afw_boolean_t
+impl_hold_parent(afw_pool_internal_self_t *parent, afw_xctx_t *xctx)
+{
+    volatile afw_boolean_t held;
+
+    if (!afw_pool_internal_is_multithreaded(&parent->pub)) {
+        if (parent->destroying) {
+            return false;
+        }
+        afw_pool_get_reference(&parent->pub, xctx);
+        return true;
+    }
+
+    held = false;
+    AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(parent) {
+        if (!parent->destroying) {
+            afw_pool_get_reference(&parent->pub, xctx);
+            held = true;
+        }
+    }
+    AFW_POOL_INTERNAL_MULTITHREADED_LOCK_END;
+    return held;
+}
+
+
+/* Give back a child's hold on its parent. Returns true if the parent died. */
+static afw_boolean_t
+impl_release_parent(afw_pool_internal_self_t *parent, afw_xctx_t *xctx)
+{
+    volatile afw_boolean_t dies;
+
+    if (!afw_pool_internal_is_multithreaded(&parent->pub)) {
+        if (parent->destroying) {
+            return false;
+        }
+        dies = (parent->reference_count == 1);
+        afw_pool_release(&parent->pub, xctx);
+        return dies;
+    }
+
+    dies = false;
+    AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(parent) {
+        if (!parent->destroying) {
+            dies = (parent->reference_count == 1);
+            afw_pool_release(&parent->pub, xctx);
+        }
+    }
+    AFW_POOL_INTERNAL_MULTITHREADED_LOCK_END;
+    return dies;
+}
+
+
 const afw_pool_t *
 afw_pool_internal_release_common(
     AFW_POOL_SELF_T *self,
@@ -495,9 +560,8 @@ afw_pool_internal_release_common(
         parent = self->parent;
         if (self->reference_count == 1 && self->holds_parent) {
             self->holds_parent = false;
-            if (parent && !parent->destroying) {
-                parent_dies = (parent->reference_count == 1);
-                afw_pool_release(&parent->pub, xctx);
+            if (parent) {
+                parent_dies = impl_release_parent(parent, xctx);
                 if (parent_dies) {
                     return NULL;
                 }
@@ -546,11 +610,9 @@ afw_pool_internal_get_reference(
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
     self->reference_count++;
-    if (self->reference_count == 2 && !self->holds_parent &&
-        self->parent && !self->parent->destroying)
+    if (self->reference_count == 2 && !self->holds_parent && self->parent)
     {
-        self->holds_parent = true;
-        afw_pool_get_reference(&self->parent->pub, xctx);
+        self->holds_parent = impl_hold_parent(self->parent, xctx);
     }
 }
 

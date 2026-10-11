@@ -183,7 +183,8 @@ afw_reference_check(
 AFW_DEFINE(afw_boolean_t)
 afw_reference_check_is_enabled(void)
 {
-    static int enabled = -1;
+    /* Atomic: any thread can be the first to ask. */
+    static AFW_ATOMIC int enabled = -1;
 
     if (enabled < 0) {
         enabled = getenv("AFW_REFERENCE_CHECK") ? 1 : 0;
@@ -223,22 +224,26 @@ typedef struct {
 
 #define IMPL_TOMB ((const afw_reference_t *)1)
 
-static int impl_threshold = -1;
+/* Atomic: any thread can be the first to ask. */
+static AFW_ATOMIC int impl_threshold = -1;
 
 
 static afw_size_t
 impl_collect_threshold(void)
 {
     const char *v;
+    int threshold;
 
-    if (impl_threshold < 0) {
+    threshold = impl_threshold;
+    if (threshold < 0) {
         v = getenv("AFW_REFERENCE_COLLECT");
-        impl_threshold = (v) ? atoi(v) : IMPL_DEFAULT_COLLECT_THRESHOLD;
-        if (impl_threshold < 0) {
-            impl_threshold = 0;
+        threshold = (v) ? atoi(v) : IMPL_DEFAULT_COLLECT_THRESHOLD;
+        if (threshold < 0) {
+            threshold = 0;
         }
+        impl_threshold = threshold;
     }
-    return (afw_size_t)impl_threshold;
+    return (afw_size_t)threshold;
 }
 
 

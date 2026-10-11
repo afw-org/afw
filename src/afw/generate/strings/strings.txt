@@ -162,9 +162,6 @@ a_lock_log_list=environment:log_list
 a_lock_log_list_brief=Environment log list lock
 a_lock_log_list_description=This lock is used internally when accessing environment log list memory.
 
-a_lock_flags=environment:flags
-a_lock_flags_brief=Environment flags lock
-a_lock_flags_description=This lock is used internally when accessing environment flags memory.
 
 a_flag_unspecified=unspecified
 a_flag_unspecified_brief=Never set
@@ -336,6 +333,7 @@ L
 SS
 NS
 BS
+atomic_integer
 size
 uint32
 env_pool_stat
