@@ -4708,7 +4708,7 @@ afw_function_definition_retrieve_objects_to_callback = {
     &afw_self_v_retrieveObjectsToCallback,
     &afw_self_v_afwRetrieveObjectsToCallback,
     &afw_self_v_zz__Retrieve_adaptive_objects,
-    &afw_self_v_zz__21b4289837b2,
+    &afw_self_v_zz__d2694bae4de0,
     &afw_self_v_zz__2cc732747d25,
     &afw_self_v_zz__e2cf253b9e2c,
     NULL,

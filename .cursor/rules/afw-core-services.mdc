@@ -30,7 +30,7 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 
 - `retrieve_objects` / `retrieve_objects_with_uri` — optional **`maxObjects`** (default **0** = unlimited). A positive cap → **`payload_too_large`** when exceeded, if the request pool still has room to throw. Enforced in `function/afw_function_adapter.c` when adding to the array, **not** in the session wrapper. Request memory is **`limitRequestPoolBytes`** (`payload_too_large` when the cap trips with room to throw, or **`memory`** if allocation fails).
 
-**Progressive** paths (`retrieve_objects_to_response` / `_to_stream` / `_to_callback`) are not limited by `maxObjects`. Release-after-write is **#127**. They are optional write-as-you-go APIs, not a client conversion requirement.
+**Progressive** paths (`retrieve_objects_to_response` / `_to_stream` / `_to_callback`) are not limited by `maxObjects`. Unbounded by design ([#499](https://github.com/afw-org/afw/issues/499)): `_to_callback` stops when its callback returns true; a time bound belongs to cooperative evaluation stop ([#490](https://github.com/afw-org/afw/issues/490)), not to retrieve. Release-after-write is **#127**. They are optional write-as-you-go APIs, not a client conversion requirement.
 
 Session wrapper (`adapter/afw_adapter_impl.c`) handles **auth** (`query` always; per-object `read` if `checkIndividualObjectReadAccess`) and special/no_dupe CBs — **not** the array size policy.
 
