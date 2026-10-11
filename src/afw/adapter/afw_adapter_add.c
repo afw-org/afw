@@ -81,7 +81,8 @@ afw_adapter_add_object(
                     &session->adapter->adapter_id);
             }
             afw_adapter_internal_journal_authorize(adapter_id, NULL,
-                afw_authorization_action_id_create, object, xctx);
+                afw_authorization_action_id_create, object,
+                impl_request.p, xctx);
             object_id = afw_adapter_journal_add_entry(journal,
                 &impl_request, object, xctx);
         }

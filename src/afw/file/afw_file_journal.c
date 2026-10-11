@@ -314,7 +314,10 @@ impl_afw_adapter_journal_add_entry_internal(
     afw_size_t lock_len;
     afw_off_t offset;
     afw_endian_big_uint64_t encoded_len_be;
-    const afw_pool_t *p = xctx->p;
+    /* Scratch for this write: the caller's per-call pool (#539). */
+    const afw_pool_t *p = (impl_request && impl_request->p)
+        ? impl_request->p
+        : xctx->p;
     afw_boolean_t first_entry;
     afw_error_footprint_t footprint;
 
@@ -323,7 +326,7 @@ impl_afw_adapter_journal_add_entry_internal(
     /* Encode object using content type of adapter. */
     /** @fixme is this the right options to use?  Probably not. */
     encoded = afw_content_type_object_to_raw(
-        adapter->content_type, entry, NULL, xctx->p, xctx);
+        adapter->content_type, entry, NULL, p, xctx);
     encoded_len_be = afw_endian_native_to_big_uint64(encoded->size);
 
     /* Determine relative path from root for this entry. */
@@ -339,7 +342,7 @@ impl_afw_adapter_journal_add_entry_internal(
         O_RDWR | O_CREAT, 0666);
     if (lock_fd < 0 && errno == ENOENT) {
         AFW_ERROR_FOOTPRINT("mkdir_p()");
-        afw_file_mkdir_p(adapter->journal_dir_path_z, xctx);
+        afw_file_mkdir_p(adapter->journal_dir_path_z, p, xctx);
         lock_fd = afw_file_open(adapter->journal_lock_file_path_z,
             O_RDWR | O_CREAT, xctx);
     }
@@ -356,12 +359,12 @@ impl_afw_adapter_journal_add_entry_internal(
         sizeof(afw_adapter_journal_lock_t), xctx);
     first_entry = (lock_len == 0);
     if (first_entry) {
-        first_entry_save_path = afw_utf8_concat(xctx->p, xctx,
+        first_entry_save_path = afw_utf8_concat(p, xctx,
             adapter->root, &impl_s_path_to_first, NULL);
         temp_raw.ptr = (const afw_octet_t *)relative_entry_path_z;
         temp_raw.size = strlen(relative_entry_path_z);
         afw_file_from_memory(first_entry_save_path, &temp_raw,
-            afw_file_mode_write, xctx);
+            afw_file_mode_write, p, xctx);
     }
 
     /* Make sure lock record was completely read. */
@@ -423,7 +426,7 @@ impl_afw_adapter_journal_add_entry_internal(
         full_entry_dir_path_z = impl_journal_path_z(
             adapter->root, ymd, p, xctx);
         AFW_ERROR_FOOTPRINT("mkdir_p()");
-        afw_file_mkdir_p(full_entry_dir_path_z, xctx);
+        afw_file_mkdir_p(full_entry_dir_path_z, p, xctx);
     }
 
     /* Open journal entry file. */
@@ -438,7 +441,7 @@ impl_afw_adapter_journal_add_entry_internal(
      */
     AFW_ERROR_FOOTPRINT("seek()");
     offset = afw_file_seek(entry_fd, 0, SEEK_END, xctx);
-    cursor = afw_utf8_printf(xctx->p, xctx,
+    cursor = afw_utf8_printf(p, xctx,
         "%02d%02d%02d%02d%02d_" AFW_INTEGER_FMT,
         lock.century, lock.year, lock.month, lock.day, lock.hour,
         (afw_integer_t)offset);

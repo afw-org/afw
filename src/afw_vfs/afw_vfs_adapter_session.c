@@ -1046,7 +1046,7 @@ impl_afw_adapter_session_add_object(
     /* If directory, make it recursively. Property data is ignored. */
     if (is_directory) {
 
-        afw_file_mkdir_p(path.s_z, xctx);
+        afw_file_mkdir_p(path.s_z, xctx->p, xctx);
     }
 
     /* If regular file, get data property and write to file. */

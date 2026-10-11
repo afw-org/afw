@@ -857,6 +857,23 @@ impl_afw_adapter_session_destroy(
 
 
 
+/*
+ * Scratch for one adapter call: the caller's per-call pool (the journal
+ * entry's request, impl_request->p), not the session's xctx->p, which
+ * lasts for the whole request (#539).
+ */
+static const afw_pool_t *
+impl_scratch_p(
+    AFW_ADAPTER_SESSION_SELF_T *self,
+    const afw_adapter_impl_request_t *impl_request)
+{
+    return (impl_request && impl_request->p)
+        ? impl_request->p
+        : self->pub.p;
+}
+
+
+
 static void
 impl_check_authorization(
     impl_request_context_t *ctx,
@@ -1319,14 +1336,14 @@ impl_afw_adapter_session_add_object(
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = self->pub.p;
+    ctx.p = impl_scratch_p(self, impl_request);
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
         ctx.resource_id = impl_request->resource_id;
     }
     if (!ctx.resource_id) {
-        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+        ctx.resource_id = afw_utf8_printf(ctx.p, xctx,
             "/%ku/%ku/%ku",
             &adapter->adapter_id,
             object_type_id,
@@ -1383,14 +1400,14 @@ impl_afw_adapter_session_modify_object(
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = self->pub.p;
+    ctx.p = impl_scratch_p(self, impl_request);
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
         ctx.resource_id = impl_request->resource_id;
     }
     if (!ctx.resource_id) {
-        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+        ctx.resource_id = afw_utf8_printf(ctx.p, xctx,
             "/%ku/%ku/%ku",
             &adapter->adapter_id,
             object_type_id,
@@ -1444,14 +1461,14 @@ impl_afw_adapter_session_replace_object(
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = self->pub.p;
+    ctx.p = impl_scratch_p(self, impl_request);
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
         ctx.resource_id = impl_request->resource_id;
     }
     if (!ctx.resource_id) {
-        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+        ctx.resource_id = afw_utf8_printf(ctx.p, xctx,
             "/%ku/%ku/%ku",
             &adapter->adapter_id,
             object_type_id,
@@ -1504,14 +1521,14 @@ impl_afw_adapter_session_delete_object(
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = self->pub.p;
+    ctx.p = impl_scratch_p(self, impl_request);
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
         ctx.resource_id = impl_request->resource_id;
     }
     if (!ctx.resource_id) {
-        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+        ctx.resource_id = afw_utf8_printf(ctx.p, xctx,
             "/%ku/%ku/%ku",
             &adapter->adapter_id,
             object_type_id,
