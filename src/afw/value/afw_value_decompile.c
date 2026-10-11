@@ -80,13 +80,13 @@ afw_value_decompile_call_args(
             /*
              * A missing argument (an empty then, an omitted empty loop
              * body) followed by others is an empty position, which
-             * recompiles as missing. Last, it is undefined (a trailing
-             * empty position is not an argument), which a function treats
-             * as not present.
+             * recompiles as missing. Last, it is the empty block it came
+             * from (a trailing empty position is not an argument). Not
+             * undefined: as a statement, undefined is a value, and it
+             * would become the script result (#541).
              */
             if (i == args->argc) {
-                afw_value_decompile_value(afw_value_undefined, writer,
-                    xctx);
+                afw_writer_write_z(writer, "#block()", xctx);
             }
         }
         else if (args->argv[i] && afw_value_is_array_expression(args->argv[i])) {
