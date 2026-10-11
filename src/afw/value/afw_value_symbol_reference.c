@@ -89,7 +89,7 @@ impl_afw_value_optional_evaluate(
      */
     result = afw_pool_scope_symbol_get_value(self->symbol, xctx);
     if (result) {
-        result = afw_value_get_for_p_lifetime(result, p, xctx);
+        result = afw_value_hold_read(result, p, xctx);
     }
 
     /* Pop value from evaluation stack and return result. */

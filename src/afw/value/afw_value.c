@@ -230,6 +230,21 @@ afw_value_pooled_get_for_p_lifetime(
 }
 
 
+/* Keep a value just read: a reference of its own for a counted value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_hold_read(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (value && afw_value_get_reference_count(value, xctx) > 0) {
+        value = afw_value_get_reference(value, xctx);
+        afw_pool_register_value_release(value, p, xctx);
+    }
+    return value;
+}
+
+
 /* release for values that are not counted. */
 AFW_DEFINE(void)
 afw_value_not_counted_release(

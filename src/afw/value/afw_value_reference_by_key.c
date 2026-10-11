@@ -127,7 +127,7 @@ impl_afw_value_optional_evaluate(
          * replace it (lifetime-principles.md, The story, point 5).
          */
         if (v) {
-            v = afw_value_get_for_p_lifetime(v, p, xctx);
+            v = afw_value_hold_read(v, p, xctx);
         }
         /* Missing is NULL; evaluate() returns it as-is and we still pop. */
         result = afw_value_evaluate(v, p, xctx);
@@ -155,7 +155,7 @@ impl_afw_value_optional_evaluate(
         }
         /* The array holds the only reference to the entry (point 5). */
         else {
-            result = afw_value_get_for_p_lifetime(result, p, xctx);
+            result = afw_value_hold_read(result, p, xctx);
         }
     }
 
