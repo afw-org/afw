@@ -455,7 +455,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     const afw_utf8_t *detail_source_location;
     const afw_object_t *object;
     const afw_utf8_t *s;
-    afw_boolean_t error;
+    volatile afw_boolean_t error;
 
     /* Only one application conf allowed. */
     if (env->application_object) {

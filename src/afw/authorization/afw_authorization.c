@@ -407,7 +407,7 @@ afw_authorization_internal_set_control(
 AFW_DEFINE(const afw_value_t *)
 afw_authorization_check(
     afw_boolean_t enforce,
-    const afw_value_t *request_id_value,
+    const afw_value_t * volatile request_id_value,
     const afw_value_t *resource_id_value,
     const afw_value_t *object_value,
     const afw_value_t *action_id_value,
@@ -420,17 +420,17 @@ afw_authorization_check(
     const afw_utf8_t *request_id;
     const afw_utf8_t *resource_id;
     const afw_utf8_t *action_id;
-    const afw_utf8_t *decision_id;
+    const afw_utf8_t * volatile decision_id;
     const afw_utf8_t *decision_id2;
     const afw_authorization_control_t *ctl;
     const afw_utf8_t *s;
     const afw_utf8_t *s2;
     const afw_object_t *obj;
-    const afw_value_t *check;
+    const afw_value_t * volatile check;
     afw_authorization_internal_authorizationCheck_context_t ctx;
-    const afw_authorization_handler_id_anchor_t *anchor; 
+    const afw_authorization_handler_id_anchor_t * volatile anchor; 
     const afw_authorization_handler_t *ah;
-    const char * property_name;
+    const char * volatile property_name;
     const afw_utf8_t *current_decider;
     const afw_utf8_t *final_decider;
     afw_boolean_t final_result;
@@ -911,7 +911,7 @@ impl_set_instance_active(
     afw_xctx_t *xctx)
 {
     afw_authorization_handler_id_anchor_t *anchor;
-    afw_authorization_handler_id_anchor_t *stopping;
+    afw_authorization_handler_id_anchor_t * volatile stopping;
     afw_authorization_handler_id_anchor_t *prev;
     afw_authorization_handler_id_anchor_t *curr;
     afw_authorization_control_t *control;
@@ -1060,7 +1060,7 @@ impl_get_reference(
     afw_xctx_t *xctx)
 {
     afw_authorization_handler_id_anchor_t *anchor;
-    const afw_authorization_handler_t *instance;
+    const afw_authorization_handler_t * volatile instance;
 
     /* Increment mutates the anchor; write lock matches release. */
     AFW_LOCK_WRITE_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
@@ -1098,8 +1098,8 @@ afw_authorization_handler_get_properties_object(
     afw_xctx_t *xctx)
 {
     afw_authorization_handler_id_anchor_t *anchor;
-    const afw_object_t *snapshot;
-    afw_boolean_t pinned;
+    const afw_object_t * volatile snapshot;
+    volatile afw_boolean_t pinned;
 
     if (!instance || !instance->properties) {
         return NULL;
@@ -1179,7 +1179,7 @@ afw_authorization_handler_release(
 {
     afw_authorization_handler_id_anchor_t *anchor;
     afw_authorization_handler_id_anchor_t *previous_anchor;
-    afw_boolean_t destroy;
+    volatile afw_boolean_t destroy;
 
     destroy = false;
     AFW_LOCK_WRITE_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
@@ -1305,7 +1305,7 @@ impl_afw_service_type_related_instance_count (
 {
     afw_authorization_handler_id_anchor_t *anchor;
     afw_authorization_handler_id_anchor_t *stopping;
-    afw_integer_t result = 0;
+    volatile afw_integer_t result = 0;
 
     AFW_LOCK_READ_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
 

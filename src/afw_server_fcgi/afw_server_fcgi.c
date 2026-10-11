@@ -325,7 +325,7 @@ impl_afw_server_request_thread_start(const afw_thread_t *thread,
     afw_server_fcgi_internal_server_thread_t *server_thread = arg;
     afw_server_fcgi_internal_t * server = server_thread->server;
     afw_xctx_t *xctx = thread->xctx;
-    afw_xctx_t *request_session_xctx = NULL;
+    afw_xctx_t * volatile request_session_xctx = NULL;
     afw_integer_t request_count;
     afw_integer_t concurrent;
     afw_integer_t max_concurrent;    

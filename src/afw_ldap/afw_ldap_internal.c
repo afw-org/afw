@@ -199,7 +199,7 @@ const afw_object_t *
 afw_ldap_internal_create_object_from_entry(
     afw_ldap_internal_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
-    const afw_utf8_t *object_id,
+    const afw_utf8_t * volatile object_id,
     LDAPMessage *e,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

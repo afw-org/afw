@@ -120981,6 +120981,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___fno_strict_aliasing \
+    "-fno-strict-aliasing"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_s_zz___fno_strict_aliasing \
+    (&afw_self_v_zz___fno_strict_aliasing.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_self_s_zz___fno_strict_aliasing \
+    (afw_self_v_zz___fno_strict_aliasing.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___fno_strict_aliasing */
+extern const afw_value_string_t \
+    afw_self_v_zz___fno_strict_aliasing;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_z_zz___fno_strict_aliasing \
+    (afw_self_v_zz___fno_strict_aliasing.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___fno_strict_aliasing */
+#define afw_v_zz___fno_strict_aliasing \
+    (&afw_self_v_zz___fno_strict_aliasing.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___fsigned_char \
     "-fsigned-char"
 

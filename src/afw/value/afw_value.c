@@ -1015,14 +1015,14 @@ afw_value_create_string_from_u8z(
 AFW_DEFINE(const afw_value_t *)
 afw_value_evaluate_with_additional_untrusted_qualified_variables(
     const afw_value_t *value,
-    const afw_value_t *untrusted_qualified_variables,
+    const afw_value_t * volatile untrusted_qualified_variables,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
     const afw_object_t *object;
     const afw_value_t *property_name;
     const afw_object_t *qualifier_object;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     int top;
 
     result = NULL;

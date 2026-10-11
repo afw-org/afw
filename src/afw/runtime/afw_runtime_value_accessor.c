@@ -318,7 +318,7 @@ afw_runtime_value_accessor_stopping_adapter_instances(
     const afw_adapter_id_anchor_t *anchor;
     const afw_adapter_id_anchor_t *stopping;
     afw_size_t count;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     afw_integer_t *entry;
     const afw_utf8_t *adapter_id;
     const afw_array_t *list;
@@ -400,7 +400,7 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
     const afw_authorization_handler_id_anchor_t *anchor;
     const afw_authorization_handler_id_anchor_t *stopping;
     afw_size_t count;
-    const afw_value_t *result;
+    const afw_value_t * volatile result;
     afw_integer_t *entry;
     const afw_utf8_t *authorization_handler_id;
     const afw_array_t *list;
@@ -479,7 +479,7 @@ afw_runtime_value_accessor_adapter_reference_count(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_integer_t integer;
+    volatile afw_integer_t integer;
 
     (void)prop;
 
@@ -527,7 +527,7 @@ afw_runtime_value_accessor_authorization_handler_reference_count(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_integer_t integer;
+    volatile afw_integer_t integer;
 
     (void)prop;
 
@@ -996,9 +996,9 @@ afw_runtime_value_accessor_adapter_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adapter_t *adapter;
-    const afw_adapter_t *held;
-    const afw_object_t *metrics_object;
+    const afw_adapter_t * volatile adapter;
+    const afw_adapter_t * volatile held;
+    const afw_object_t * volatile metrics_object;
 
     (void)prop;
 
@@ -1075,9 +1075,9 @@ afw_runtime_value_accessor_adapter_properties(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_adapter_id_anchor_t *anchor;
-    const afw_adapter_t *adapter;
-    const afw_adapter_t *held;
-    const afw_object_t *properties;
+    const afw_adapter_t * volatile adapter;
+    const afw_adapter_t * volatile held;
+    const afw_object_t * volatile properties;
 
     if (!internal) {
         return NULL;
@@ -1162,7 +1162,7 @@ afw_runtime_value_accessor_authorization_handler_properties(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_authorization_handler_id_anchor_t *anchor;
-    const afw_authorization_handler_t *held;
+    const afw_authorization_handler_t * volatile held;
     const afw_object_t *properties;
 
     held = NULL;

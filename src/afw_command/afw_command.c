@@ -484,7 +484,7 @@ impl_get_input(afw_command_self_t *self, afw_xctx_t *xctx)
 static afw_boolean_t
 impl_evaluate(
     afw_command_self_t *self,
-    const afw_utf8_t *input,
+    const afw_utf8_t * volatile input,
     int *exit_code)
 {
     const afw_value_t *value;

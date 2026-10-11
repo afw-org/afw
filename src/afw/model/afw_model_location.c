@@ -109,7 +109,7 @@ afw_model_location_get_model(
     const afw_utf8_t *model_id,
     afw_xctx_t *xctx)
 {
-    const afw_model_t *model;
+    const afw_model_t * volatile model;
     afw_model_location_t *model_location;
 
     model = NULL;

@@ -179,7 +179,7 @@ impl_refresh_default_flags(afw_xctx_t *xctx)
     afw_environment_internal_t *internal_env =
         (afw_environment_internal_t *)xctx->env;
     const afw_utf8_t * const * flag_id;
-    const afw_pool_t *temp_p = NULL;
+    const afw_pool_t * volatile temp_p = NULL;
     afw_boolean_t *flags;
     afw_size_t flags_count;
 

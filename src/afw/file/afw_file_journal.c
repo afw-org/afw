@@ -503,7 +503,7 @@ impl_afw_adapter_journal_add_entry(
     afw_file_internal_adapter_session_t * session = 
         (afw_file_internal_adapter_session_t *)self->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
-    const afw_utf8_t *result;
+    const afw_utf8_t * volatile result;
 
     AFW_LOCK_WRITE_BEGIN(adapter->journal_rw_lock) {
 

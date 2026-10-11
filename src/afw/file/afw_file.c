@@ -46,7 +46,7 @@ afw_file_insure_full_path(const afw_utf8_t *path,
 AFW_DEFINE(const afw_memory_t *)
 afw_file_to_memory(
     const afw_utf8_t * file_path,
-    afw_size_t file_size,
+    volatile afw_size_t file_size,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {

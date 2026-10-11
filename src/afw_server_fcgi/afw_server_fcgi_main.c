@@ -171,7 +171,7 @@ int main(int argc, const char * const * argv) {
     const afw_request_handler_t *director;
     afw_xctx_t *xctx;
     self_args_t args;
-    int rv;
+    volatile int rv;
     const afw_value_t *conf;
     const afw_memory_t *conf_file;
 

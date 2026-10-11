@@ -190,9 +190,9 @@ afw_adapter_impl_create_cede_p(
 {
     afw_adapter_impl_t *impl;
     afw_adapter_t *adapter;
-    const afw_adapter_session_t *temp_session;
+    const afw_adapter_session_t * volatile temp_session;
     const afw_utf8_t *s;
-    const afw_authorization_handler_t *authorization_handler;
+    const afw_authorization_handler_t * volatile authorization_handler;
     afw_boolean_t b;
     afw_boolean_t found;
 
@@ -496,7 +496,7 @@ afw_adapter_impl_is_journal_entry_applicable(
 {
     const afw_utf8_t *peerIdInEntry;
     const afw_utf8_t *peerIdInConsumer;
-    afw_boolean_t is_applicable;
+    volatile afw_boolean_t is_applicable;
     const afw_value_t *entry_value;
     const afw_value_t *eval;
     int top;
@@ -709,7 +709,7 @@ impl_afw_adapter_object_type_cache_get(
     afw_boolean_t *final_result,
     afw_xctx_t *xctx)
 {
-    const afw_object_type_t *result;
+    const afw_object_type_t * volatile result;
     const afw_adapter_t *adapter;
     afw_adapter_impl_t *impl;
 

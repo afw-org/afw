@@ -198,7 +198,7 @@ impl_afw_adapter_impl_index_update_index_definitions (
     const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
     const afw_pool_t *pool;
-    MDB_txn *txn;
+    MDB_txn * volatile txn;
 
     /* clone this object with our adapter's memory pool */
     pool = adapter->pub.p;
