@@ -73,3 +73,65 @@ const d1 = decompile(compile<script>(script(src)));
 assert(index_of(d1, "#block()") >= 0, d1);
 return evaluate(compile<script>(script(d1))) ===
     evaluate(compile<script>(script(src)));
+
+//? test: named-function-expression
+//? description: a named function expression keeps its name, so its body can call itself
+//? expect: true
+//? source: ...
+
+const src = "return (function hanoi(n) { if (n <= 0) { return 0; } return hanoi(n - 1) * 2 + 1; })(4);";
+const d1 = decompile(compile<script>(script(src)));
+assert(includes<string>(d1, "#script_function hanoi("), d1);
+assert(decompile(compile<script>(script(d1))) === d1, "fixed point");
+return evaluate(compile<script>(script(d1))) === 15;
+
+//? test: local-named-like-a-built-in
+//? description: a built-in call is written fn::name when a local of that name is in the unit
+//? expect: true
+//? source: ...
+
+const src = "let array = [1, 2]; let add = 5; let i = 0; return [i, at(array, i), add + 1];";
+const d1 = decompile(compile<script>(script(src)));
+assert(includes<string>(d1, "fn::array("), d1);
+assert(includes<string>(d1, "fn::add("), d1);
+assert(!includes<string>(d1, "fn::at("), d1);
+assert(decompile(compile<script>(script(d1))) === d1, "fixed point");
+return stringify(evaluate(compile<script>(script(d1)))) === "[0,1,6]";
+
+//? test: compound-assign-subscript-once
+//? description: a[f()] += 1 decompiles to #compound_assign, which evaluates f() once
+//? expect: true
+//? source: ...
+
+const src = "let n = 0; function f() { n = n + 1; return 0; } let a = [1]; a[f()] += 1; a[f()]++; return [a, n];";
+const d1 = decompile(compile<script>(script(src)));
+assert(includes<string>(d1, "#compound_assign(add,a[f()],1)"), d1);
+assert(decompile(compile<script>(script(d1))) === d1, "fixed point");
+return stringify(evaluate(compile<script>(script(d1)))) === "[[3],2]";
+
+//? test: optional-chaining-base-once
+//? description: o()?.x?.y decompiles with ?. so o() is called once
+//? expect: true
+//? source: ...
+
+const src = "let n = 0; function o() { n = n + 1; return {x: {y: 3}, f: function () { return 4; }}; } return [o()?.x?.y, o()?.f?.(), n];";
+const d1 = decompile(compile<script>(script(src)));
+assert(includes<string>(d1, "o()?.[\"x\"]?.[\"y\"]"), d1);
+assert(decompile(compile<script>(script(d1))) === d1, "fixed point");
+return stringify(evaluate(compile<script>(script(d1)))) === "[3,4,2]";
+
+//? test: compound-assign-form-errors
+//? description: #compound_assign takes an operator name and a variable or reference
+//? expect: true
+//? source: ...
+
+let bad = 0;
+for (const s of [
+    "let a = [1]; #compound_assign(concat, a[0], 1);",
+    "#compound_assign(add, 1, 2);",
+    "let a = [1]; #compound_assign(add, a[0]);"
+]) {
+    try { compile<script>(script(s)); }
+    catch (e) { if (e.id === "syntax") { bad = bad + 1; } }
+}
+return bad === 3;

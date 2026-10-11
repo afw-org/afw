@@ -246,6 +246,12 @@ impl_afw_value_decompile(
     afw_boolean_t write_returns;
 
     afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
+    /* A named function's own name, so its body can call it (#541). */
+    if (self->signature && self->signature->function_name_value) {
+        afw_writer_write_z(writer, " ", xctx);
+        afw_writer_write_utf8(writer,
+            &self->signature->function_name_value->internal, xctx);
+    }
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
         afw_writer_increment_indent(writer, xctx);
