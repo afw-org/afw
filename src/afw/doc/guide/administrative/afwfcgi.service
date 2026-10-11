@@ -6,8 +6,8 @@ Type=simple
 ExecStart=/usr/local/bin/afwfcgi -n 10 -p /var/run/afw.sock -f /etc/afw.conf
 ExecStartPost=/bin/sleep 2
 ExecStartPost=/usr/bin/chown nginx:nginx /var/run/afw.sock
-StandardOutput=syslog
-StandardError=syslog
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

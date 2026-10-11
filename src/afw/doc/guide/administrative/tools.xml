@@ -37,34 +37,45 @@
                 <row>
                     <column>-f</column>
                     <column>filename</column>
-                    <column>Specifies the configuration file to use.</column>
+                    <column>Specifies the configuration file to use. Default: afw.conf in the working directory.</column>
                 </row>
                 <row>
                     <column>-p</column>
                     <column>path</column>
-                    <column>Specifies a file path to use for Unix domain socket.</column>
+                    <column>Specifies where to listen for FastCGI connections: a file path for a Unix domain socket, or :port for a TCP port. Default: :9345.</column>
                 </row> 
                 <row>
                     <column>-n</column>
                     <column>threads</column>
-                    <column>Specifies the number of request threads to start. Stack size follows application configuration threadStackBytes when set; otherwise the larger of 2MiB, four times limitCStackHeadroomBytes, and the process stack limit (ulimit -s). A typical 8MiB process stack limit yields 8MiB per thread. The afw command uses the process stack.</column>
+                    <column>Specifies the number of request threads to start. Default: 1. Stack size follows application configuration threadStackBytes when set; otherwise the larger of 2MiB, four times limitCStackHeadroomBytes, and the process stack limit (ulimit -s). A typical 8MiB process stack limit yields 8MiB per thread. The afw command uses the process stack.</column>
                 </row>
                 <row>
                     <column>-e</column>
                     <column>extension</column>
-                    <column>Loads an extension prior to starting.</column>
+                    <column>Loads an extension prior to starting. May be repeated.</column>
                 </row> 
                 <row>
                     <column>-t</column>
                     <column>content-type</column>
-                    <column>Specifies the content-type to use for the configuration file.</column>
+                    <column>Specifies the content-type to use for the configuration file. Default: json, which accepts relaxed JSON.</column>
                 </row> 
                 <row>
-                    <column>-d</column>
-                    <column>level</column>
-                    <column>Specifies a debug level.</column>
-                </row>  
+                    <column>--help</column>
+                    <column>-</column>
+                    <column>Prints usage and exits.</column>
+                </row>
+                <row>
+                    <column>--version</column>
+                    <column>-</column>
+                    <column>Prints the version and exits.</column>
+                </row>
             </rows>
         </table>
+        <paragraph>
+            On SIGTERM or SIGINT, afwfcgi stops accepting new requests, lets
+            each request thread finish the request it is processing, removes
+            its Unix domain socket and exits.
+        </paragraph>
+        <code>afwfcgi -n 10 -p /var/run/afw.sock -f /etc/afw.conf</code>
     </section>   
 </doc>   

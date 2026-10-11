@@ -2,7 +2,17 @@
 <doc>
     <title>Introduction</title>
     <paragraph>
-        The Administrative Guide is written for users are interested in 
-        deploying and configuring an application using Adaptive Framework.
+        The Administrative Guide is written for people who deploy and
+        configure an application that uses Adaptive Framework.
+    </paragraph>
+    <paragraph>
+        Start with Installation, then Configuration, which describes the
+        <literal>afw.conf</literal> file and the services it defines, and
+        Deployment, which puts afwfcgi, a web server and the data together
+        with containers or on a host. The
+        Adapters, Indexes and Authorization chapters cover each part in
+        detail. Tools describes the <literal>afw</literal> and
+        <literal>afwfcgi</literal> commands, and the Appendix holds sample
+        configuration files for Adaptive Framework, Nginx and systemd.
     </paragraph>
 </doc>

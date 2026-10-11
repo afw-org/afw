@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Indexes</title>
+    <paragraph>
+        An index lets an adapter answer a query from a sorted list of keys
+        instead of reading every object of a type. Indexes are optional: an
+        adapter returns the same objects for a query with or without them,
+        only faster with them. This chapter describes how to define indexes,
+        what they mean in a query, and how to see whether a query used one.
+    </paragraph>
+    <paragraph>
+        Indexes are provided by the LMDB adapter. Index functions on an
+        adapter that does not support indexes fail with
+        <literal>unable to get index interface</literal>.
+    </paragraph>
+    <section>
+        <title>Index Definitions</title>
+        <paragraph>
+            An index definition has a <literal>key</literal>, the name queries
+            use, and optionally:
+        </paragraph>
+        <list>
+            <item>
+                <literal>objectType</literal>: the object types it applies
+                to. Without it, it applies to every object type.
+            </item>
+            <item>
+                <literal>value</literal>: a script that computes the values
+                to index. Without it, the property named by the key is
+                indexed.
+            </item>
+            <item>
+                <literal>filter</literal>: a script that decides whether an
+                object is indexed.
+            </item>
+            <item>
+                <literal>options</literal>: how values are compared and
+                stored (see Options below).
+            </item>
+        </list>
+        <paragraph>
+            Definitions are not part of the adapter's configuration entry.
+            The adapter stores them in its own database, so they last across
+            restarts and move with the database files. They are managed with
+            three functions:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Function</column>
+                <column>Does</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>index_create(adapterId, key, value, objectType, filter, options, retroactive, test)</literal></column>
+                    <column>Adds a definition. With <literal>retroactive</literal>
+                    true, the objects already in the database are indexed
+                    too; without it, only objects written from now on are.
+                    The <literal>test</literal> parameter is meant to check
+                    a definition without saving it, but it is ignored at
+                    present: the definition is saved either way.</column>
+                </row>
+                <row>
+                    <column><literal>index_list(adapterId, objectType)</literal></column>
+                    <column>Returns the definitions, as an object keyed by
+                    index key, optionally only those for one object
+                    type.</column>
+                </row>
+                <row>
+                    <column><literal>index_remove(adapterId, key)</literal></column>
+                    <column>Removes a definition and its keys.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            The full parameter descriptions are in the function reference,
+            category <literal>indexes</literal>.
+        </paragraph>
+        <header>Where to run them</header>
+        <paragraph>
+            Run index functions in the process that serves the adapter, so
+            that it sees the new definition at once:
+        </paragraph>
+        <list>
+            <item>
+                In the Administrative Web App, open Admin, Services, select
+                the LMDB adapter's service, and use its Indexes tab to list,
+                add and remove indexes.
+            </item>
+            <item>
+                From a script run by <literal>afwfcgi</literal>, such as the
+                Fiddle tool or a <literal>POST /afw</literal> action.
+            </item>
+            <item>
+                With the <literal>afw</literal> command when no server is
+                using the database, for example while it is stopped:
+            </item>
+        </list>
+        <code><![CDATA[afw -f afw.conf -x 'index_create("lmdb", "sn", undefined, ["Person"], undefined, ["case-insensitive-string"], true, false)']]></code>
+        <paragraph>
+            A retroactive create returns how many objects it read and
+            indexed, for example
+            <literal>{ "num_processed": 3, "num_indexed": 3 }</literal>.
+            Creating a key that already exists returns
+            <literal>{ "message": "An index definition by this key already exists." }</literal>
+            and changes nothing; remove it first to redefine it.
+        </paragraph>
+    </section>
+    <section>
+        <title>Indexing a Property</title>
+        <paragraph>
+            The simplest index names a property and the object types that
+            have it. With these objects:
+        </paragraph>
+        <code><![CDATA[add_object("lmdb", "Person", { givenName: "Ada",   sn: "Lovelace", dept: "ENG",  age: 36 }, "ada");
+add_object("lmdb", "Person", { givenName: "Alan",  sn: "Turing",   dept: "MATH", age: 41 }, "alan");
+add_object("lmdb", "Person", { givenName: "Grace", sn: "Hopper",   dept: "ENG",  age: 85 }, "grace");
+
+index_create("lmdb", "dept", undefined, ["Person"], undefined, undefined, true, false);]]></code>
+        <paragraph>
+            a query on <literal>dept</literal> reads the index:
+        </paragraph>
+        <code><![CDATA[retrieve_objects("lmdb", "Person", {
+    filter: { op: "eq", property: "dept", value: "ENG" }
+});
+
+// The same query as a URL encoded RQL string, the form REST requests use:
+retrieve_objects("lmdb", "Person", { urlEncodedRQLString: "dept=ENG" });]]></code>
+        <paragraph>
+            Over REST the query is
+            <literal>GET /lmdb/Person/?dept=ENG</literal>.
+        </paragraph>
+    </section>
+    <section>
+        <title>Options</title>
+        <table>
+            <columns>
+                <column>Option</column>
+                <column>Meaning</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>case-insensitive-string</literal></column>
+                    <column>Strings are compared without regard to case, in
+                    every relation on the key, <literal>match</literal>
+                    included. With it on <literal>sn</literal>,
+                    <literal>sn eq "HOPPER"</literal> finds
+                    <literal>"Hopper"</literal>.</column>
+                </row>
+                <row>
+                    <column><literal>unique</literal></column>
+                    <column>Each value may be held by one object only. A
+                    write that would give a second object the same value
+                    fails.</column>
+                </row>
+                <row>
+                    <column><literal>sort-reverse</literal></column>
+                    <column>The index keeps its keys in reverse
+                    order.</column>
+                </row>
+                <row>
+                    <column><literal>integer</literal>, <literal>double</literal></column>
+                    <column>The index holds numbers. A query value given as a
+                    string, as every value in a query string is, is compared
+                    as that number. Without the option, that happens only
+                    when an object type declares the property's data type;
+                    the option must agree with such a declaration. When a
+                    query value does not convert to a number, each object
+                    the index finds is tested against the query
+                    instead.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            <literal>unique</literal> and <literal>sort-reverse</literal> fix
+            how the index's database is created. After
+            <literal>index_remove</literal>, creating the same key again with
+            different values of these options needs a restart of the
+            application first; <literal>index_create</literal> says so when
+            it happens.
+        </paragraph>
+    </section>
+    <section>
+        <title>Computed Indexes</title>
+        <paragraph>
+            An index with a <literal>value</literal> script defines a
+            <literal>computed name</literal>: a name objects do not have,
+            whose value for each object is what the script returns. Queries
+            on that name mean what the script gives, whether the adapter
+            answers them from the index or by reading objects. While the
+            scripts run, these variables describe the object being indexed:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Variable</column>
+                <column>Value</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>current::object</literal></column>
+                    <column>The object</column>
+                </row>
+                <row>
+                    <column><literal>current::objectId</literal></column>
+                    <column>Its object id</column>
+                </row>
+                <row>
+                    <column><literal>current::objectType</literal></column>
+                    <column>Its object type id</column>
+                </row>
+                <row>
+                    <column><literal>current::key</literal></column>
+                    <column>The index key</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            A script that only reads a property can be written as is, such as
+            <literal>current::object.givenName</literal>. A script with an
+            operator or an array literal needs <literal>return</literal>:
+        </paragraph>
+        <code><![CDATA[index_create("lmdb", "fullName",
+    "return current::object.givenName + ' ' + current::object.sn;",
+    ["Person"], undefined, undefined, true, false);
+
+retrieve_objects("lmdb", "Person", {
+    filter: { op: "eq", property: "fullName", value: "Ada Lovelace" }
+});]]></code>
+        <paragraph>
+            A <literal>filter</literal> script returns a boolean and limits
+            the objects that have a value under the name. Objects the filter
+            leaves out have no value, so no relation on the name is true for
+            them:
+        </paragraph>
+        <code><![CDATA[index_create("lmdb", "seniorAge",
+    "current::object.age",
+    ["Person"],
+    "return (current::object.age ?? 0) >= 40;",
+    ["integer"], true, false);
+
+// Alan and Grace; Ada is not indexed under seniorAge.
+retrieve_objects("lmdb", "Person", { urlEncodedRQLString: "seniorAge=ge=40" });]]></code>
+        <paragraph>
+            <literal>index_create</literal> enforces these rules:
+        </paragraph>
+        <list>
+            <item>
+                A <literal>filter</literal> needs a <literal>value</literal>
+                script. A filter on a plain property index would hide objects
+                that have the property from queries.
+            </item>
+            <item>
+                A computed name must not be a property declared by an object
+                type in <literal>objectType</literal>. If an object type
+                declares it later, queries on it fail until the conflict is
+                removed.
+            </item>
+            <item>
+                For an object type that declares its properties, a query may
+                only name declared properties unless the object type's
+                <literal>otherProperties</literal> allows queries, so a
+                computed name on such an object type needs that.
+            </item>
+        </list>
+        <paragraph>
+            Scripts run on every write of an object the index applies to. A
+            script that throws makes the write fail, so guard properties that
+            may be missing, as <literal>?? 0</literal> does above.
+        </paragraph>
+    </section>
+    <section>
+        <title>How Queries Use Indexes</title>
+        <paragraph>
+            The adapter uses an index when it can answer the filter from
+            indexed keys, and reads every object of the type otherwise. In
+            both cases the same objects are returned.
+        </paragraph>
+        <list>
+            <item>
+                A relation on an indexed key can use the index when it is
+                <literal>eq</literal>, <literal>lt</literal>,
+                <literal>le</literal>, <literal>gt</literal>,
+                <literal>ge</literal>, or a <literal>match</literal> whose
+                pattern starts with literal text.
+            </item>
+            <item>
+                An <literal>and</literal> can use the index when one of its
+                terms can; the objects found are then tested against the
+                other terms.
+            </item>
+            <item>
+                An <literal>or</literal> can use indexes only when every term
+                can. An object found by more than one term is returned
+                once.
+            </item>
+            <item>
+                The empty string is a value like any other and can be found
+                with <literal>eq ""</literal>.
+            </item>
+        </list>
+        <paragraph>
+            Indexes on properties whose values are arrays hold one key per
+            element. At present a query on such a property can return
+            different objects depending on whether the adapter used the
+            index, so do not rely on queries of array-valued properties yet.
+        </paragraph>
+        <header>Seeing which plan a query used</header>
+        <paragraph>
+            Set the trace flag <literal>trace:adapterId:</literal> followed
+            by the adapter id to log how each retrieve was answered:
+        </paragraph>
+        <code><![CDATA[flag_set(["trace:adapterId:lmdb"], true);
+retrieve_objects("lmdb", "Person", { filter: { op: "eq", property: "sn", value: "HOPPER" } });]]></code>
+        <code><![CDATA[retrieve_objects: using index query
+index query test: sn through its index definition (case-insensitive)]]></code>
+        <paragraph>
+            A query that could not use an index logs
+            <literal>retrieve_objects: using full scan (not sargable)</literal>.
+            Add an index on a key that such queries use often.
+        </paragraph>
+    </section>
+    <section>
+        <title>Tuning</title>
+        <paragraph>
+            When a query combines several indexed terms, the LMDB adapter
+            estimates how many keys each term matches and orders the terms
+            by that estimate, which reduces the work of removing duplicate
+            results. The adapter configuration's <literal>index</literal>
+            property chooses how range and "starts with" terms are estimated.
+            It changes only the order in which indexes are read, never which
+            objects are returned, and the default suits most databases.
+        </paragraph>
+        <object-type-table srcdir="afw_lmdb" objectTypeId="_AdaptiveConf_adapter_lmdb_index" />
+        <code><![CDATA[{
+    type        : "adapter",
+    adapterId   : "lmdb",
+    adapterType : "lmdb",
+    index       : { cardinalityStrategy : "probe", cardinalityProbeCap : 100 },
+    ...
+}]]></code>
+    </section>
+</doc>
