@@ -571,6 +571,9 @@ PragmaStatement ::=
 /*    VariableReference                                                       */
 /*    ReferenceByIndex                                                        */
 /*    ReferenceByName                                                         */
+/*                                                                            */
+/* Where an expression is allowed, '[' starts an array literal unless an      */
+/* assignment operator, '++', or '--' follows its ']' (#572).                 */
 
 AssignmentExpression ::= Expression
 

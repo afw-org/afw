@@ -349,6 +349,79 @@ impl_compile_check_assign_target(
 }
 
 
+static afw_boolean_t
+impl_token_is_assignment_operator(const afw_compile_parser_t *parser)
+{
+    switch (parser->token->type) {
+    case afw_compile_token_type_equal:
+    case afw_compile_token_type_plus_equal:
+    case afw_compile_token_type_minus_equal:
+    case afw_compile_token_type_multiply_equal:
+    case afw_compile_token_type_divide_equal:
+    case afw_compile_token_type_modulus_equal:
+    case afw_compile_token_type_exponentiation_equal:
+    case afw_compile_token_type_and_equal:
+    case afw_compile_token_type_or_equal:
+    case afw_compile_token_type_nullish_equal:
+        return true;
+    default:
+        return false;
+    }
+}
+
+
+/*
+ * The next token is '['. Look ahead, without building values, to the
+ * matching ']' and return true if an assignment operator, '++', or '--'
+ * follows it: then the '[' starts a destructuring target
+ * ([a, b] = f()). Otherwise it is an array literal that starts an
+ * expression ([1, 2], [1, 2] == x). Each scanned token may be a template
+ * string, so a backtick reads as one string, not as code. The cursor is
+ * restored to the '['.
+ */
+static afw_boolean_t
+impl_bracket_starts_assignment_target(afw_compile_parser_t *parser)
+{
+    afw_size_t saved;
+    afw_size_t depth;
+    afw_boolean_t result;
+
+    afw_compile_save_cursor(saved);
+    result = false;
+    afw_compile_get_token();
+    for (depth = 1; depth > 0;) {
+        afw_compile_next_can_be_template_string();
+        afw_compile_get_token();
+        switch (parser->token->type) {
+        case afw_compile_token_type_open_bracket:
+        case afw_compile_token_type_open_brace:
+        case afw_compile_token_type_open_parenthesis:
+            depth++;
+            break;
+        case afw_compile_token_type_close_bracket:
+        case afw_compile_token_type_close_brace:
+        case afw_compile_token_type_close_parenthesis:
+            depth--;
+            break;
+        case afw_compile_token_type_end:
+            depth = 0;
+            break;
+        default:
+            break;
+        }
+    }
+    if (parser->token->type != afw_compile_token_type_end) {
+        afw_compile_get_token();
+        result = impl_token_is_assignment_operator(parser) ||
+            afw_compile_token_is(increment) ||
+            afw_compile_token_is(decrement);
+    }
+    afw_compile_restore_cursor(saved);
+
+    return result;
+}
+
+
 /*ebnf>>>
  *
  *#
@@ -356,6 +429,9 @@ impl_compile_check_assign_target(
  *#    VariableReference
  *#    ReferenceByIndex
  *#    ReferenceByName
+ *#
+ *# Where an expression is allowed, '[' starts an array literal unless an
+ *# assignment operator, '++', or '--' follows its ']' (#572).
  *
  * AssignmentExpression ::= Expression
  *
@@ -367,6 +443,7 @@ afw_compile_parse_AssignmentExpression(
     afw_boolean_t *just_expression_okay)
 {
     const afw_value_t *result;
+    afw_boolean_t is_bracket;
  
     /* Initialize was_expression to false. */
     if (was_expression) {
@@ -378,9 +455,23 @@ afw_compile_parse_AssignmentExpression(
         afw_compile_token_is(open_brace) ||
         afw_compile_token_is(open_angle_bracket))
     {
+        is_bracket = afw_compile_token_is(open_bracket);
         afw_compile_reuse_token();
-        result = afw_compile_parse_AssignmentTarget(parser,
-            afw_compile_assignment_type_assign_only);
+
+        /*
+         * Where an expression is allowed, '[' is an array literal unless
+         * an assignment operator, '++', or '--' follows its ']' (#572).
+         */
+        if (was_expression && is_bracket &&
+            !impl_bracket_starts_assignment_target(parser))
+        {
+            result = afw_compile_parse_Expression(parser);
+            *just_expression_okay = true;
+        }
+        else {
+            result = afw_compile_parse_AssignmentTarget(parser,
+                afw_compile_assignment_type_assign_only);
+        }
     }
     else {
         afw_compile_reuse_token();
@@ -494,28 +585,6 @@ afw_compile_parse_OptionalDefineAssignment(
     }
 
     return result;
-}
-
-
-
-static afw_boolean_t
-impl_token_is_assignment_operator(const afw_compile_parser_t *parser)
-{
-    switch (parser->token->type) {
-    case afw_compile_token_type_equal:
-    case afw_compile_token_type_plus_equal:
-    case afw_compile_token_type_minus_equal:
-    case afw_compile_token_type_multiply_equal:
-    case afw_compile_token_type_divide_equal:
-    case afw_compile_token_type_modulus_equal:
-    case afw_compile_token_type_exponentiation_equal:
-    case afw_compile_token_type_and_equal:
-    case afw_compile_token_type_or_equal:
-    case afw_compile_token_type_nullish_equal:
-        return true;
-    default:
-        return false;
-    }
 }
 
 
@@ -659,6 +728,15 @@ afw_compile_parse_AssignmentOperation(
     }
 
     if (function) {
+        /* [a, b] += x and ({a} += x) have no meaning. */
+        if (afw_value_is_assignment_target(target) &&
+            ((const afw_value_assignment_target_t *)target)->
+                assignment_target->target_type !=
+                afw_compile_assignment_target_type_symbol_reference)
+        {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "A destructuring target can only be assigned with '='");
+        }
         if (expression_is_one) {
             result = afw_integer_v_one;
         }
@@ -2605,9 +2683,10 @@ afw_compile_parse_StatementList(
         if (statement) {
             /*
              * Multi let/const is an array of calls in this block (no extra
-             * scope). Flatten so each binding is its own statement.
+             * scope). Flatten so each binding is its own statement. An
+             * expression value that is an array ([1, 2]) is one value.
              */
-            if (afw_value_is_array(statement)) {
+            if (afw_value_is_array(statement) && !was_expression_value) {
                 const afw_iterator_old_t *iterator;
                 const afw_value_t *one;
 
