@@ -138,3 +138,41 @@ let i = 0;
 for (i = 0; i < 3; i = i + 1) { at([{n: i}], 0); }
 assert(i === 3);
 return 0;
+
+//?
+//? test: closure-read-in-its-own-unit-frame
+//? description: ...
+Reading a closure in the frame it captured registers its release on that
+frame's pool while the closure holds the frame. The scope runs that
+release when it deactivates, so the cycle collector can free the closure
+and its frame (#556).
+//? expect: 0
+//? source: ...
+
+let g = 0;
+let start = pool_bytes_in_use();
+for (let i = 0; i < 1000; i = i + 1) {
+    g = eval<string>("function a() { return 7; } let b = a; return b;");
+}
+let used = pool_bytes_in_use() - start;
+assert(g() === 7);
+assert(used < 1000000, "closures read in their own frame are freed: " + string(used));
+return 0;
+
+//?
+//? test: closure-read-in-its-own-loop-trip-frame
+//? description: a function defined and read in each loop trip stays flat (guard; does not need the deactivation order)
+//? expect: 0
+//? source: ...
+
+let g = 0;
+let start = pool_bytes_in_use();
+for (let i = 0; i < 1000; i = i + 1) {
+    function a() { return i; }
+    let b = a;
+    g = b;
+}
+let used = pool_bytes_in_use() - start;
+assert(g() === 999);
+assert(used < 1000000, "closures read in their own frame are freed: " + string(used));
+return 0;
