@@ -8602,7 +8602,10 @@ struct afw_value_inf_s {
  * @brief Call method `get_assignable_value` of interface `afw_value`.
  *
  * Occupant for a slot (assign, param, overlay, call result). Matching
- * optional_release. Managed returns self (bump). Unmanaged promotes
+ * optional_release. The result holds what it manages until its last
+ * release, which releases all of it; get_assignable_value of the
+ * result returns the result (bump). Managed returns self (bump). Unmanaged
+ * promotes
  * or clones to managed in p->managed_p. Permanent scalar is as-is;
  * permanent object/array is a managed wrapper/clone. Missing method
  * is a no-op (return instance).

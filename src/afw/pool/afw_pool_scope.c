@@ -798,6 +798,39 @@ afw_pool_scope_get_reference(
 }
 
 
+/*
+ * A scope's registered releases run when it deactivates, not when its
+ * pool dies. A closure can keep the pool alive past deactivation, and a
+ * release registered on the pool (a read, story point 5 in
+ * lifetime-principles.md) may hold that same closure, so waiting for the
+ * pool would wait forever. Nothing evaluated in the scope is reachable
+ * after it deactivates. While a throw is processed they wait for the
+ * delayed release instead, so a catch can still read what the error
+ * points to (#496).
+ */
+static void
+impl_deactivate_run_cleanups(
+    const afw_pool_scope_t *scope,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *self;
+
+    if (xctx->error_processing_count > 0) {
+        return;
+    }
+    self = (afw_pool_internal_self_t *)scope->p;
+    if (afw_pool_internal_is_multithreaded(scope->p)) {
+        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
+            afw_pool_internal_run_cleanups(self, xctx);
+        }
+        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_END;
+    }
+    else {
+        afw_pool_internal_run_cleanups(self, xctx);
+    }
+}
+
+
 void
 afw_pool_scope_deactivate(
     const afw_pool_scope_t *scope,
@@ -821,6 +854,7 @@ afw_pool_scope_deactivate(
         afw_xctx_script_result_set(scope->last_statement_non_void_value, scope->p, xctx);
     }
     afw_vector_pop(xctx->scope_stack, xctx);
+    impl_deactivate_run_cleanups(scope, xctx);
     if (afw_reference_check_is_enabled()) {
         afw_reference_check(&scope->pub.ref, xctx);
     }

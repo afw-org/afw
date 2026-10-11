@@ -121,6 +121,14 @@ impl_afw_value_optional_evaluate(
         key = afw_object_require_string_property_name(key, xctx);
 
         v = afw_object_get_property(object_value->internal, key, xctx);
+        /*
+         * The object holds the only reference to the property's value, so
+         * keep it for dest p: later code in the same expression may
+         * replace it (lifetime-principles.md, The story, point 5).
+         */
+        if (v) {
+            v = afw_value_get_for_p_lifetime(v, p, xctx);
+        }
         /* Missing is NULL; evaluate() returns it as-is and we still pop. */
         result = afw_value_evaluate(v, p, xctx);
     }
@@ -144,6 +152,10 @@ impl_afw_value_optional_evaluate(
             ((const afw_value_integer_t *)key)->internal, xctx);
         if (!result) {
             result = afw_value_undefined;
+        }
+        /* The array holds the only reference to the entry (point 5). */
+        else {
+            result = afw_value_get_for_p_lifetime(result, p, xctx);
         }
     }
 

@@ -82,8 +82,15 @@ impl_afw_value_optional_evaluate(
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
-    /* Get value of symbol. */
+    /*
+     * Get value of symbol. The slot holds the only reference to it, so
+     * keep it for dest p: later code in the same expression may assign
+     * the variable (lifetime-principles.md, The story, point 5).
+     */
     result = afw_pool_scope_symbol_get_value(self->symbol, xctx);
+    if (result) {
+        result = afw_value_get_for_p_lifetime(result, p, xctx);
+    }
 
     /* Pop value from evaluation stack and return result. */
     afw_xctx_evaluation_stack_pop_value(xctx);
