@@ -201,7 +201,7 @@ impl_parse_scalar(impl_parser_t *parser, afw_xctx_t *xctx)
     else {
         /*
          * Full-string number only (rejects "123foo"). Prefer integer
-         * when the token has no fractional/exponent form.
+         * when the scalar has no fractional/exponent form.
          */
         nlen = afw_number_parse(s, len, &i, &d, &is_double,
             parser->p, xctx);
