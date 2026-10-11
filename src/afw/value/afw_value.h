@@ -1316,8 +1316,8 @@ afw_value_not_counted_get_for_p_lifetime(
  * @param instance value.
  * @param p pool the result must last for.
  * @param xctx of caller.
- * @return instance with one more reference, released when p is
- *     destroyed (none added if one is already registered on p).
+ * @return instance with one more reference, released when p's
+ *     cleanups run (one registration per call).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_counted_get_for_p_lifetime(

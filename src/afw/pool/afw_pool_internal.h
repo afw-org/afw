@@ -65,6 +65,9 @@ typedef struct afw_pool_internal_debug_prefix_s {
 typedef struct afw_pool_internal_self_s
 afw_pool_internal_self_t;
 
+/** Inline entries of afw_pool_internal_self_t released_values. */
+#define AFW_POOL_INTERNAL_RELEASED_VALUES_INLINE 8
+
 struct afw_pool_internal_self_s {
 
     afw_pool_t pub;
@@ -99,6 +102,28 @@ struct afw_pool_internal_self_s {
 
     /** @brief First cleanup function. */
     afw_pool_cleanup_t *first_cleanup;
+
+    /**
+     * @brief Values this pool releases when its cleanups run.
+     *
+     * One reference each (afw_pool_register_value_release). A plain
+     * array, so a read (the read rule) costs one store, not a cleanup
+     * entry. Starts as released_values_inline (NULL means that); grown
+     * by doubling in this pool. Released before the cleanup functions,
+     * newest first.
+     */
+    const afw_value_t **released_values;
+
+    /** @brief Entries used in released_values. */
+    afw_size_t released_value_count;
+
+    /** @brief Entries allocated for released_values. */
+    afw_size_t released_value_capacity;
+
+    /** @brief First entries of released_values, so most scopes never
+     *  allocate one. */
+    const afw_value_t *released_values_inline[
+        AFW_POOL_INTERNAL_RELEASED_VALUES_INLINE];
 
     /**
      * @brief Reference count.

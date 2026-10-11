@@ -206,9 +206,6 @@ afw_value_counted_get_for_p_lifetime(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (afw_pool_is_value_release_registered(instance, p, xctx)) {
-        return instance;
-    }
     instance = afw_value_get_reference(instance, xctx);
     afw_pool_register_value_release(instance, p, xctx);
     return instance;

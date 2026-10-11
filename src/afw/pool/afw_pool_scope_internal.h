@@ -187,11 +187,11 @@ afw_pool_scope_release_value_at_cleanup(
  * frame is alive, or evaluate dest p when there is no Adaptive
  * caller. for_scope_lifetime is this after resolving dest to a
  * scope.
- * get_assignable of unmanaged; already-managed registered on that
- * p is returned as-is. Register last-release of that one hold on
- * dest p. Not for a fresh create_managed — that is already RC 1.
- * Permanents and a value already registered on this p are returned
- * unchanged (no second bump). Do not dest xctx->p.
+ * afw_value_get_for_p_lifetime(): a counted value gets one more
+ * reference, released when dest p's cleanups run; a pooled value a
+ * fully managed copy. Not for a fresh create_managed — that is
+ * already RC 1. Permanents are returned unchanged. Do not dest
+ * xctx->p.
  */
 const afw_value_t *
 afw_pool_scope_get_assignable_for_p_lifetime(
