@@ -77,6 +77,8 @@ struct afw_object_internal_memory_object_s {
      * references that pin the object's pool (see impl_afw_object_release).
      */
     afw_integer_t reference_count;
+    /* In this xctx's possible roots (afw_reference_possible_root). */
+    afw_boolean_t buffered;
 
     afw_boolean_t immutable;
     /*

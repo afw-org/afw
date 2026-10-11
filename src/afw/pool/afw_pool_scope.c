@@ -109,7 +109,7 @@ impl_error_delaying_release(
 static void
 impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
-    afw_reference_forget(&self->pub.ref, xctx);
+    afw_reference_forget(&self->pub.ref, &self->buffered, xctx);
     afw_pool_heap_internal_teardown_store(self, xctx);
 }
 
@@ -200,7 +200,7 @@ afw_pool_internal_scope_release(
     }
     if (self->reference_count > 1 && self->parent) {
         afw_reference_possible_root(&self->pub.ref, &self->parent->pub,
-            xctx);
+            &self->buffered, xctx);
     }
     if (self->reference_count == 1 && !self->destroying) {
         scope->releasing_frame = true;

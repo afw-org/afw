@@ -211,9 +211,18 @@ typedef struct {
     afw_size_t cap;
 } impl_cc_list_t;
 
+/*
+ * A possible root and its buffered flag. The flag is in the instance,
+ * which forget takes out of the roots before it is freed.
+ */
 typedef struct {
-    /* Possible roots: open addressing set; NULL empty, tombstone 1. */
-    const afw_reference_t **roots;
+    const afw_reference_t *node;
+    afw_boolean_t *buffered;
+} impl_root_t;
+
+typedef struct {
+    /* Possible roots: open addressing set; node NULL empty, tombstone 1. */
+    impl_root_t *roots;
     afw_size_t roots_cap;
     afw_size_t roots_used;      /* live + tombstones */
     afw_size_t roots_live;
@@ -261,12 +270,12 @@ impl_list_add(impl_cc_list_t *list, const afw_reference_t *node)
 static void impl_roots_grow(impl_collector_t *c);
 
 
-static const afw_reference_t **
+static impl_root_t *
 impl_roots_slot(impl_collector_t *c, const afw_reference_t *node,
     afw_boolean_t create)
 {
     afw_size_t i;
-    const afw_reference_t **tomb = NULL;
+    impl_root_t *tomb = NULL;
 
     if (create && (c->roots_used + 1) * 2 > c->roots_cap) {
         impl_roots_grow(c);
@@ -277,7 +286,7 @@ impl_roots_slot(impl_collector_t *c, const afw_reference_t *node,
     for (i = impl_hash(node, c->roots_cap);;
         i = (i + 1) & (c->roots_cap - 1))
     {
-        if (!c->roots[i]) {
+        if (!c->roots[i].node) {
             if (!create) {
                 return NULL;
             }
@@ -287,12 +296,12 @@ impl_roots_slot(impl_collector_t *c, const afw_reference_t *node,
             c->roots_used++;
             return &c->roots[i];
         }
-        if (c->roots[i] == IMPL_TOMB) {
+        if (c->roots[i].node == IMPL_TOMB) {
             if (!tomb) {
                 tomb = &c->roots[i];
             }
         }
-        else if (c->roots[i] == node) {
+        else if (c->roots[i].node == node) {
             return &c->roots[i];
         }
     }
@@ -302,7 +311,7 @@ impl_roots_slot(impl_collector_t *c, const afw_reference_t *node,
 static void
 impl_roots_grow(impl_collector_t *c)
 {
-    const afw_reference_t **old = c->roots;
+    impl_root_t *old = c->roots;
     afw_size_t old_cap = c->roots_cap;
     afw_size_t i;
 
@@ -311,8 +320,8 @@ impl_roots_grow(impl_collector_t *c)
     c->roots_used = 0;
     c->roots_live = 0;
     for (i = 0; i < old_cap; i++) {
-        if (old[i] && old[i] != IMPL_TOMB) {
-            *impl_roots_slot(c, old[i], true) = old[i];
+        if (old[i].node && old[i].node != IMPL_TOMB) {
+            *impl_roots_slot(c, old[i].node, true) = old[i];
             c->roots_live++;
         }
     }
@@ -321,13 +330,14 @@ impl_roots_grow(impl_collector_t *c)
 
 
 AFW_DEFINE(void)
-afw_reference_possible_root(
+afw_reference_internal_possible_root(
     const afw_reference_t *instance,
     const afw_pool_t *owner,
+    afw_boolean_t *buffered,
     afw_xctx_t *xctx)
 {
     impl_collector_t *c;
-    const afw_reference_t **slot;
+    impl_root_t *slot;
 
     /*
      * Only an owner that is this xctx's single-threaded job heap. Its
@@ -356,28 +366,33 @@ afw_reference_possible_root(
         return;
     }
     slot = impl_roots_slot(c, instance, true);
-    if (*slot != instance) {
-        *slot = instance;
+    if (slot->node != instance) {
+        slot->node = instance;
+        slot->buffered = buffered;
         c->roots_live++;
     }
+    *buffered = true;
 }
 
 
 AFW_DEFINE(void)
-afw_reference_forget(
+afw_reference_internal_forget(
     const afw_reference_t *instance,
+    afw_boolean_t *buffered,
     afw_xctx_t *xctx)
 {
     impl_collector_t *c;
-    const afw_reference_t **slot;
+    impl_root_t *slot;
 
+    *buffered = false;
     c = (xctx) ? xctx->reference_collector : NULL;
     if (!c || c->roots_live == 0) {
         return;
     }
     slot = impl_roots_slot(c, instance, false);
     if (slot) {
-        *slot = IMPL_TOMB;
+        slot->node = IMPL_TOMB;
+        slot->buffered = NULL;
         c->roots_live--;
     }
 }
@@ -388,10 +403,17 @@ afw_reference_collector_release(
     afw_xctx_t *xctx)
 {
     impl_collector_t *c;
+    afw_size_t i;
 
     c = xctx->reference_collector;
     if (c) {
         xctx->reference_collector = NULL;
+        /* Roots are alive (forget takes them out before a free). */
+        for (i = 0; i < c->roots_cap; i++) {
+            if (c->roots[i].node && c->roots[i].node != IMPL_TOMB) {
+                *c->roots[i].buffered = false;
+            }
+        }
         free(c->roots);
         free(c);
     }
@@ -481,8 +503,9 @@ afw_reference_collect(
 
     /* Take the roots; the set starts over. */
     for (i = 0; i < c->roots_cap; i++) {
-        if (c->roots[i] && c->roots[i] != IMPL_TOMB) {
-            impl_list_add(&roots, c->roots[i]);
+        if (c->roots[i].node && c->roots[i].node != IMPL_TOMB) {
+            impl_list_add(&roots, c->roots[i].node);
+            *c->roots[i].buffered = false;
         }
     }
     memset(c->roots, 0, c->roots_cap * sizeof(*c->roots));

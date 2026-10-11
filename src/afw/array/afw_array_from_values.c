@@ -521,10 +521,11 @@ impl_afw_array_managed_from_values_release(
     }
     self->reference_count--;
     if (self->reference_count != 0) {
-        afw_reference_possible_root(&self->pub.ref, self->pub.p, xctx);
+        afw_reference_possible_root(&self->pub.ref, self->pub.p,
+            &self->buffered, xctx);
         return;
     }
-    afw_reference_forget(&self->pub.ref, xctx);
+    afw_reference_forget(&self->pub.ref, &self->buffered, xctx);
     if (self->values) {
         for (i = 0; i < self->count; i++) {
             if (self->values[i]) {

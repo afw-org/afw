@@ -82,7 +82,7 @@ impl_afw_value_release(
     }
     if (self->reference_count == 1) {
         self->reference_count = 0;
-        afw_reference_forget(&self->pub.ref, xctx);
+        afw_reference_forget(&self->pub.ref, &self->buffered, xctx);
         if (self->enclosing_lexical_scope) {
             afw_pool_scope_release(self->enclosing_lexical_scope, xctx);
         }
@@ -92,7 +92,8 @@ impl_afw_value_release(
         return;
     }
     self->reference_count--;
-    afw_reference_possible_root(&self->pub.ref, self->p, xctx);
+    afw_reference_possible_root(&self->pub.ref, self->p,
+        &self->buffered, xctx);
 }
 
 /*

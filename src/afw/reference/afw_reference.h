@@ -58,32 +58,67 @@ afw_reference_check_is_enabled(void);
 
 /**
  * @brief Record a counted instance whose release left its count above 0.
- * @param instance counted instance that can be part of a cycle.
- * @param owner pool that owns it (its p->managed_p).
- * @param xctx of caller.
+ * @param _instance counted instance that can be part of a cycle.
+ * @param _owner pool that owns it (its p->managed_p).
+ * @param _buffered address of the instance's buffered flag.
+ * @param _xctx of caller.
  *
  * Only an instance owned by this xctx (owner == xctx->p) is recorded:
  * cycle collection runs per owner. Called by implementations, not by
  * callers.
+ *
+ * Every counted instance that can be a possible root has an
+ * afw_boolean_t buffered field, false on create. It is true while the
+ * instance is in the possible roots, so an instance that is already
+ * there costs one test (Bacon & Rajan's buffered bit). The collector
+ * keeps the flag's address with the instance and clears it when the
+ * instance leaves the roots, without asking what kind it is (#563).
  */
-AFW_DECLARE(void)
-afw_reference_possible_root(
-    const afw_reference_t *instance,
-    const afw_pool_t *owner,
-    afw_xctx_t *xctx);
+#define afw_reference_possible_root(_instance, _owner, _buffered, _xctx) \
+    ((*(_buffered)) \
+        ? (void)0 \
+        : afw_reference_internal_possible_root( \
+            (_instance), (_owner), (_buffered), (_xctx)))
 
 
 /**
  * @brief Forget a counted instance that is being freed.
- * @param instance being freed.
- * @param xctx of caller.
+ * @param _instance being freed.
+ * @param _buffered address of the instance's buffered flag.
+ * @param _xctx of caller.
  *
  * Called by implementations at last release, so no freed instance stays
- * a possible root.
+ * a possible root. One test unless the instance is in the roots.
+ */
+#define afw_reference_forget(_instance, _buffered, _xctx) \
+    ((*(_buffered)) \
+        ? afw_reference_internal_forget( \
+            (_instance), (_buffered), (_xctx)) \
+        : (void)0)
+
+
+/**
+ * @brief afw_reference_possible_root() when the instance is not buffered.
+ *
+ * Use afw_reference_possible_root().
  */
 AFW_DECLARE(void)
-afw_reference_forget(
+afw_reference_internal_possible_root(
     const afw_reference_t *instance,
+    const afw_pool_t *owner,
+    afw_boolean_t *buffered,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief afw_reference_forget() when the instance is buffered.
+ *
+ * Use afw_reference_forget().
+ */
+AFW_DECLARE(void)
+afw_reference_internal_forget(
+    const afw_reference_t *instance,
+    afw_boolean_t *buffered,
     afw_xctx_t *xctx);
 
 

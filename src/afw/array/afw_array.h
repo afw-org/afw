@@ -359,6 +359,8 @@ typedef struct afw_array_from_values_self_s {
     const afw_value_t *const *values;
     /* Managed inf only. Permanent/unmanaged leave this 0. */
     afw_size_t reference_count;
+    /* In this xctx's possible roots (afw_reference_possible_root). */
+    afw_boolean_t buffered;
 } afw_array_from_values_self_t;
 
 
