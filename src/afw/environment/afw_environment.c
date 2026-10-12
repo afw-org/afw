@@ -1917,6 +1917,26 @@ afw_environment_get_qualified_function(
 }
 
 
+/* Is name the untyped id of a data type method? */
+AFW_DEFINE(afw_boolean_t)
+afw_environment_is_data_type_method_id(
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    afw_environment_internal_t *env;
+    volatile afw_boolean_t result;
+
+    env = (afw_environment_internal_t *)xctx->env;
+    AFW_LOCK_BEGIN(xctx->env->environment_lock) {
+        result = afw_hash_table_get(env->data_type_method_number_ht,
+            name->s, name->len) != NULL;
+    }
+    AFW_LOCK_END;
+
+    return result;
+}
+
+
 /* Get the function associated with a data type method. */
 AFW_DEFINE(const afw_value_function_definition_t *)
 afw_environment_registry_get_data_type_method(

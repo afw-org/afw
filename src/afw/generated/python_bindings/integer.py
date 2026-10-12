@@ -68,6 +68,37 @@ def add_integer(session, values):
 
     return response['actions'][0]['result']
 
+def as_integer(session, value):
+    """
+    Asserts that value is dataType integer
+
+    Returns value unchanged if it is dataType integer. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    integer from a value of another data type, write a typed literal or call a
+    to_ function. This is usually written value as integer.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        int: value, which is dataType integer
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_integer",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_integer(session, array1, array2):
     """
     Checks for at least one value in common
@@ -409,7 +440,8 @@ def is_integer(session, value):
     """
     Checks whether value is dataType integer
 
-    Checks whether value is dataType integer and return the boolean result.
+    Checks whether value is dataType integer and returns the boolean result.
+    This can also be written `is<integer>(value`).
 
     Args:
         value (object): Value to check
@@ -421,7 +453,7 @@ def is_integer(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<integer>",
+        "function": "is_integer",
         "value": value
     }
 

@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType boolean. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * boolean from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as boolean.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {boolean} value, which is dataType boolean
+ */
+export function afwAsBoolean(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_boolean";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in boolean array1 is in boolean
  * array2.
  * 
@@ -204,7 +224,8 @@ export function afwIntersectionBoolean(client : any, array1 : any[], array2 : an
 }
 
 /**
- * Checks whether value is dataType boolean and return the boolean result.
+ * Checks whether value is dataType boolean and returns the boolean result.
+ * This can also be written `is<boolean>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -214,7 +235,7 @@ export function afwIsBoolean(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<boolean>";
+    _action["function"] = "is_boolean";
     _action["value"] = value;
 
     return client.perform(_action);

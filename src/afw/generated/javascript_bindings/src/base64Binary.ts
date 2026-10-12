@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType base64Binary. Otherwise,
+ * including when value is undefined, throws an error. It never converts: to
+ * get a base64Binary from a value of another data type, write a typed literal
+ * or call a to_ function. This is usually written value as base64Binary.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {base64Binary} value, which is dataType base64Binary
+ */
+export function afwAsBase64Binary(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_base64Binary";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in base64Binary array1 is in
  * base64Binary array2.
  * 
@@ -219,8 +239,8 @@ export function afwIntersectionBase64Binary(client : any, array1 : any[], array2
 }
 
 /**
- * Checks whether value is dataType base64Binary and return the boolean
- * result.
+ * Checks whether value is dataType base64Binary and returns the boolean
+ * result. This can also be written `is<base64Binary>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -230,7 +250,7 @@ export function afwIsBase64Binary(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<base64Binary>";
+    _action["function"] = "is_base64Binary";
     _action["value"] = value;
 
     return client.perform(_action);

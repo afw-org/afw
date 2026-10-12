@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsIpAddress",
+    "brief": "Asserts that value is dataType ipAddress",
+    "camelCaseFunctionLabel": "asIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType ipAddress. Otherwise, including when value is undefined, throws an error. It never converts: to get a ipAddress from a value of another data type, write a typed literal or call a to_ function. This is usually written value as ipAddress.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_ipAddress",
+    "functionLabel": "as_ipAddress",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "ipAddress",
+        "description": "value, which is dataType ipAddress"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

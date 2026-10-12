@@ -15,6 +15,7 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_properties 
     apply_object_options 
+    as_object 
     bag_object 
     bag_size_object 
     clone_object 
@@ -81,6 +82,20 @@ Object used to produce result.
 
 Object options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
 information.
+
+=head3 as_object
+
+Returns value unchanged if it is dataType object. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a object from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as object.
+Asserts that value is dataType object
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_object
 
@@ -198,7 +213,8 @@ Checks for greater than
 
 =head3 is_object
 
-Checks whether value is dataType object and return the boolean result.
+Checks whether value is dataType object and returns the boolean result. This
+can also be written `is<object>(value`).
 Checks whether value is dataType object
 
 =head4 Parameters
@@ -450,6 +466,17 @@ sub apply_object_options {
     return $request->getResult();
 }
 
+sub as_object {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_object");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub bag_object {
     my ($values) = @_;
 
@@ -560,7 +587,7 @@ sub is_object {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<object>");
+    $request->set("function" => "is_object");
     $request->set("value", $value);
 
     return $request->getResult();

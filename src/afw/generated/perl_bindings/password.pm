@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_password 
     bag_password 
     bag_size_password 
     eq_password 
@@ -35,6 +36,20 @@ afw::password - Perl module for password functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_password
+
+Returns value unchanged if it is dataType password. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a password from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as password.
+Asserts that value is dataType password
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_password
 
@@ -116,7 +131,8 @@ Checks for greater than
 
 =head3 is_password
 
-Checks whether value is dataType password and return the boolean result.
+Checks whether value is dataType password and returns the boolean result. This
+can also be written `is<password>(value`).
 Checks whether value is dataType password
 
 =head4 Parameters
@@ -208,6 +224,17 @@ A password value.
 
 =cut
 
+sub as_password {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_password");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub bag_password {
     my ($values) = @_;
 
@@ -285,7 +312,7 @@ sub is_password {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<password>");
+    $request->set("function" => "is_password");
     $request->set("value", $value);
 
     return $request->getResult();

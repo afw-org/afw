@@ -11,6 +11,38 @@
 import requests
 import json
 
+def as_base64Binary(session, value):
+    """
+    Asserts that value is dataType base64Binary
+
+    Returns value unchanged if it is dataType base64Binary. Otherwise,
+    including when value is undefined, throws an error. It never converts: to
+    get a base64Binary from a value of another data type, write a typed
+    literal or call a to_ function. This is usually written value as
+    base64Binary.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType base64Binary
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_base64Binary",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_base64Binary(session, array1, array2):
     """
     Checks for at least one value in common
@@ -320,8 +352,8 @@ def is_base64Binary(session, value):
     """
     Checks whether value is dataType base64Binary
 
-    Checks whether value is dataType base64Binary and return the boolean
-    result.
+    Checks whether value is dataType base64Binary and returns the boolean
+    result. This can also be written `is<base64Binary>(value`).
 
     Args:
         value (object): Value to check
@@ -333,7 +365,7 @@ def is_base64Binary(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<base64Binary>",
+        "function": "is_base64Binary",
         "value": value
     }
 

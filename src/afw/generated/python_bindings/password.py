@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_password(session, value):
+    """
+    Asserts that value is dataType password
+
+    Returns value unchanged if it is dataType password. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    password from a value of another data type, write a typed literal or call
+    a to_ function. This is usually written value as password.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType password
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_password",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_password(session, values=None):
     """
     Makes an array from values
@@ -200,7 +231,8 @@ def is_password(session, value):
     """
     Checks whether value is dataType password
 
-    Checks whether value is dataType password and return the boolean result.
+    Checks whether value is dataType password and returns the boolean result.
+    This can also be written `is<password>(value`).
 
     Args:
         value (object): Value to check
@@ -212,7 +244,7 @@ def is_password(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<password>",
+        "function": "is_password",
         "value": value
     }
 

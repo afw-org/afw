@@ -538,9 +538,13 @@ Equality ::= Comparison
   ( ('==' | '===' | '!=' | '!==' ) Comparison )*
 
 /* From afw_compile_parse_expression.c                                        */
+/* 'v as T' asserts that v is T and returns v. Unlike TypeScript, it checks   */
+/* at run time: it throws if v is not T, and it never converts. Type is       */
+/* only a DataType that has an as_<dataType> function for now.                */
 
 Comparison ::= Factor (
-     ('<' | '<=' | '>' | '>=' ) Factor )*
+     ( ('<' | '<=' | '>' | '>=' ) Factor ) |
+     ( 'as' Type ) )*
 
 /* From afw_compile_parse_expression.c                                        */
 
@@ -1216,6 +1220,7 @@ Identifier ::= IdentifierStart IdentifierContinue*
 ReservedWords ::= (
      PredefinedConstReservedWords |
      StatementReservedWords |
+     OperatorReservedWords |
      UnusedButReservedWords )
 
 /* From afw_compile_lexical.c                                                 */
@@ -1234,6 +1239,11 @@ StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
      'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
 
 /* From afw_compile_lexical.c                                                 */
+/* Operator keywords: 'as' in 'v as T' (Comparison).                          */
+
+OperatorReservedWords ::= 'as'
+
+/* From afw_compile_lexical.c                                                 */
 /* Not implemented as syntax today; reserved for possible future surface or   */
 /* to block awkward identifiers. Keep 'var' and 'with' reserved even though   */
 /* Adaptive Script does not implement those keywords.                         */
@@ -1249,7 +1259,7 @@ StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
 /* operator). Mutate arrays with splice and related helpers; remove object    */
 /* properties through Adaptive object/adapter APIs, not a delete keyword.     */
 
-UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
+UnusedButReservedWords ::= ( 'async' | 'await' | 'class' | 'delete' |
      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
      'this' | 'typeof' | 'var' | 'with' )
 

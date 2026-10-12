@@ -26,6 +26,31 @@ class dnsName
     }
 
     /**
+     * as_dnsName()
+     *
+     * Returns value unchanged if it is dataType dnsName. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * dnsName from a value of another data type, write a typed literal or
+     * call a to_ function. This is usually written value as dnsName.
+     *
+     * @param $value Value to assert
+     *
+     * @return dnsName value, which is dataType dnsName
+     */
+    public function as_dnsName(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_dnsName");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_dnsName()
      *
      * Takes any number of dnsName values and returns an array of dnsName.
@@ -199,7 +224,8 @@ class dnsName
     /**
      * is_dnsName()
      *
-     * Checks whether value is dataType dnsName and return the boolean result.
+     * Checks whether value is dataType dnsName and returns the boolean
+     * result. This can also be written `is<dnsName>(value`).
      *
      * @param $value Value to check
      *
@@ -209,7 +235,7 @@ class dnsName
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<dnsName>");
+        $request->set("function", "is_dnsName");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

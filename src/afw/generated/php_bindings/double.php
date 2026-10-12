@@ -71,6 +71,31 @@ class double
     }
 
     /**
+     * as_double()
+     *
+     * Returns value unchanged if it is dataType double. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * double from a value of another data type, write a typed literal or call
+     * a to_ function. This is usually written value as double.
+     *
+     * @param $value Value to assert
+     *
+     * @return double value, which is dataType double
+     */
+    public function as_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_double");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_double()
      *
      * Returns boolean true if at least one value in double array1 is in
@@ -388,7 +413,8 @@ class double
     /**
      * is_double()
      *
-     * Checks whether value is dataType double and return the boolean result.
+     * Checks whether value is dataType double and returns the boolean result.
+     * This can also be written `is<double>(value`).
      *
      * @param $value Value to check
      *
@@ -398,7 +424,7 @@ class double
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<double>");
+        $request->set("function", "is_double");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

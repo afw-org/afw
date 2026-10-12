@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_base64Binary 
     at_least_one_member_of_base64Binary 
     bag_base64Binary 
     bag_size_base64Binary 
@@ -43,6 +44,20 @@ afw::base64Binary - Perl module for base64Binary functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_base64Binary
+
+Returns value unchanged if it is dataType base64Binary. Otherwise, including
+when value is undefined, throws an error. It never converts: to get a
+base64Binary from a value of another data type, write a typed literal or call
+a to_ function. This is usually written value as base64Binary.
+Asserts that value is dataType base64Binary
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_base64Binary
 
@@ -179,7 +194,8 @@ The second array.
 
 =head3 is_base64Binary
 
-Checks whether value is dataType base64Binary and return the boolean result.
+Checks whether value is dataType base64Binary and returns the boolean result.
+This can also be written `is<base64Binary>(value`).
 Checks whether value is dataType base64Binary
 
 =head4 Parameters
@@ -328,6 +344,17 @@ Two or more arrays.
 
 =cut
 
+sub as_base64Binary {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_base64Binary");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_base64Binary {
     my ($array1, $array2) = @_;
 
@@ -451,7 +478,7 @@ sub is_base64Binary {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<base64Binary>");
+    $request->set("function" => "is_base64Binary");
     $request->set("value", $value);
 
     return $request->getResult();

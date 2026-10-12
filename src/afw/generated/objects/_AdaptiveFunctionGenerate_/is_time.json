@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType time and return the boolean result.",
-    "functionId": "is<time>",
+    "description": "Checks whether value is dataType time and returns the boolean result. This can also be written is<time>(value).",
+    "functionId": "is_time",
     "functionLabel": "is_time",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

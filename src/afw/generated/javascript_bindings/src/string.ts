@@ -39,6 +39,26 @@ export function afwAddString(client : any, string : string, values : any) : any 
 }
 
 /**
+ * Returns value unchanged if it is dataType string. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a string
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as string.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {string} value, which is dataType string
+ */
+export function afwAsString(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_string";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in string array1 is in string
  * array2.
  * 
@@ -403,7 +423,8 @@ export function afwIsInString(client : any, value : string, array : any[]) : any
 }
 
 /**
- * Checks whether value is dataType string and return the boolean result.
+ * Checks whether value is dataType string and returns the boolean result.
+ * This can also be written `is<string>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -413,7 +434,7 @@ export function afwIsString(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<string>";
+    _action["function"] = "is_string";
     _action["value"] = value;
 
     return client.perform(_action);

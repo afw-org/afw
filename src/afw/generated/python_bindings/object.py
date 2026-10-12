@@ -78,6 +78,37 @@ def apply_object_options(session, object, options=None):
 
     return response['actions'][0]['result']
 
+def as_object(session, value):
+    """
+    Asserts that value is dataType object
+
+    Returns value unchanged if it is dataType object. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    object from a value of another data type, write a typed literal or call a
+    to_ function. This is usually written value as object.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        dict: value, which is dataType object
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_object",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_object(session, values=None):
     """
     Makes an array from values
@@ -355,7 +386,8 @@ def is_object(session, value):
     """
     Checks whether value is dataType object
 
-    Checks whether value is dataType object and return the boolean result.
+    Checks whether value is dataType object and returns the boolean result.
+    This can also be written `is<object>(value`).
 
     Args:
         value (object): Value to check
@@ -367,7 +399,7 @@ def is_object(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<object>",
+        "function": "is_object",
         "value": value
     }
 

@@ -26,6 +26,32 @@ class yearMonthDuration
     }
 
     /**
+     * as_yearMonthDuration()
+     *
+     * Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a yearMonthDuration from a value of another data type, write a
+     * typed literal or call a to_ function. This is usually written value as
+     * yearMonthDuration.
+     *
+     * @param $value Value to assert
+     *
+     * @return yearMonthDuration value, which is dataType yearMonthDuration
+     */
+    public function as_yearMonthDuration(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_yearMonthDuration");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_yearMonthDuration()
      *
      * Returns boolean true if at least one value in yearMonthDuration array1
@@ -254,8 +280,9 @@ class yearMonthDuration
     /**
      * is_yearMonthDuration()
      *
-     * Checks whether value is dataType yearMonthDuration and return the
-     * boolean result.
+     * Checks whether value is dataType yearMonthDuration and returns the
+     * boolean result. This can also be written
+     * `is<yearMonthDuration>(value`).
      *
      * @param $value Value to check
      *
@@ -265,7 +292,7 @@ class yearMonthDuration
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<yearMonthDuration>");
+        $request->set("function", "is_yearMonthDuration");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

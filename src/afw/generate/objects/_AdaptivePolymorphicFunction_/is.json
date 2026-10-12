@@ -2,7 +2,8 @@
     "brief": "Checks whether value is dataType <dataType>",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType <dataType> and return the boolean result.",
+    "dataTypeRequired": true,
+    "description": "Checks whether value is dataType <dataType> and returns the boolean result. This can also be written is<<dataType>>(value).",
     "functionId": "is",
     "functionLabel": "is",
     "parameters": [

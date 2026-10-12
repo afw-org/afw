@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_dnsName(session, value):
+    """
+    Asserts that value is dataType dnsName
+
+    Returns value unchanged if it is dataType dnsName. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    dnsName from a value of another data type, write a typed literal or call a
+    to_ function. This is usually written value as dnsName.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType dnsName
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_dnsName",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_dnsName(session, values=None):
     """
     Makes an array from values
@@ -228,7 +259,8 @@ def is_dnsName(session, value):
     """
     Checks whether value is dataType dnsName
 
-    Checks whether value is dataType dnsName and return the boolean result.
+    Checks whether value is dataType dnsName and returns the boolean result.
+    This can also be written `is<dnsName>(value`).
 
     Args:
         value (object): Value to check
@@ -240,7 +272,7 @@ def is_dnsName(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<dnsName>",
+        "function": "is_dnsName",
         "value": value
     }
 

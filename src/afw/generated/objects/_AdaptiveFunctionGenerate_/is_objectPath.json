@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isObjectPath",
     "category": "objectPath",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType objectPath and return the boolean result.",
-    "functionId": "is<objectPath>",
+    "description": "Checks whether value is dataType objectPath and returns the boolean result. This can also be written is<objectPath>(value).",
+    "functionId": "is_objectPath",
     "functionLabel": "is_objectPath",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

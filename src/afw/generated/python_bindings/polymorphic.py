@@ -863,35 +863,6 @@ def intersection(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def is_(session, value):
-    """
-    Checks whether value is dataType <dataType>
-
-    Checks whether value is dataType `<dataType>` and return the boolean
-    result.
-
-    Args:
-        value (object): Value to check
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "is",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def is_in(session, value, array):
     """
     Checks whether a value is in an array

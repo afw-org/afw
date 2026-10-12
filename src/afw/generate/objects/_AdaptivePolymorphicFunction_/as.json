@@ -1,0 +1,59 @@
+{
+    "brief": "Asserts that value is dataType <dataType>",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "dataTypeRequired": true,
+    "description": "Returns value unchanged if it is dataType <dataType>. Otherwise, including when value is undefined, throws an error. It never converts: to get a <dataType> from a value of another data type, write a typed literal or call a to_ function. This is usually written value as <dataType>.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as",
+    "functionLabel": "as",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "array",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "function",
+        "hexBinary",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "null",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration",
+        "unevaluated"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_as",
+    "pure": true,
+    "returns": {
+        "description": "value, which is dataType <dataType>",
+        "polymorphicDataType": true
+    }
+}

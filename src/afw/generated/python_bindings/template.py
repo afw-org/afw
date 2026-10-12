@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_template(session, value):
+    """
+    Asserts that value is dataType template
+
+    Returns value unchanged if it is dataType template. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    template from a value of another data type, write a typed literal or call
+    a to_ function. This is usually written value as template.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType template
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_template",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_size_template(session, value):
     """
     Returns the number of values in a bag
@@ -281,7 +312,8 @@ def is_template(session, value):
     """
     Checks whether value is dataType template
 
-    Checks whether value is dataType template and return the boolean result.
+    Checks whether value is dataType template and returns the boolean result.
+    This can also be written `is<template>(value`).
 
     Args:
         value (object): Value to check
@@ -293,7 +325,7 @@ def is_template(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<template>",
+        "function": "is_template",
         "value": value
     }
 

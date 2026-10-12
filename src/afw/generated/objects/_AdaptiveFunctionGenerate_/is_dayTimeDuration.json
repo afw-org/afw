@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType dayTimeDuration and return the boolean result.",
-    "functionId": "is<dayTimeDuration>",
+    "description": "Checks whether value is dataType dayTimeDuration and returns the boolean result. This can also be written is<dayTimeDuration>(value).",
+    "functionId": "is_dayTimeDuration",
     "functionLabel": "is_dayTimeDuration",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

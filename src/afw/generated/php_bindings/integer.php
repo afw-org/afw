@@ -71,6 +71,31 @@ class integer
     }
 
     /**
+     * as_integer()
+     *
+     * Returns value unchanged if it is dataType integer. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * integer from a value of another data type, write a typed literal or
+     * call a to_ function. This is usually written value as integer.
+     *
+     * @param $value Value to assert
+     *
+     * @return integer value, which is dataType integer
+     */
+    public function as_integer(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_integer");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_integer()
      *
      * Returns boolean true if at least one value in integer array1 is in
@@ -344,7 +369,8 @@ class integer
     /**
      * is_integer()
      *
-     * Checks whether value is dataType integer and return the boolean result.
+     * Checks whether value is dataType integer and returns the boolean
+     * result. This can also be written `is<integer>(value`).
      *
      * @param $value Value to check
      *
@@ -354,7 +380,7 @@ class integer
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<integer>");
+        $request->set("function", "is_integer");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

@@ -38,6 +38,26 @@ export function afwAddYearMonthDurationDate(client : any, arg1 : any, arg2 : any
 }
 
 /**
+ * Returns value unchanged if it is dataType date. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a date from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as date.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {date} value, which is dataType date
+ */
+export function afwAsDate(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_date";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in date array1 is in date
  * array2.
  * 
@@ -225,7 +245,8 @@ export function afwIntersectionDate(client : any, array1 : any[], array2 : any[]
 }
 
 /**
- * Checks whether value is dataType date and return the boolean result.
+ * Checks whether value is dataType date and returns the boolean result. This
+ * can also be written `is<date>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -235,7 +256,7 @@ export function afwIsDate(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<date>";
+    _action["function"] = "is_date";
     _action["value"] = value;
 
     return client.perform(_action);

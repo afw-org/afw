@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType double and return the boolean result.",
-    "functionId": "is<double>",
+    "description": "Checks whether value is dataType double and returns the boolean result. This can also be written is<double>(value).",
+    "functionId": "is_double",
     "functionLabel": "is_double",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

@@ -26,6 +26,32 @@ class dayTimeDuration
     }
 
     /**
+     * as_dayTimeDuration()
+     *
+     * Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a dayTimeDuration from a value of another data type, write a
+     * typed literal or call a to_ function. This is usually written value as
+     * dayTimeDuration.
+     *
+     * @param $value Value to assert
+     *
+     * @return dayTimeDuration value, which is dataType dayTimeDuration
+     */
+    public function as_dayTimeDuration(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_dayTimeDuration");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_dayTimeDuration()
      *
      * Returns boolean true if at least one value in dayTimeDuration array1 is
@@ -252,8 +278,8 @@ class dayTimeDuration
     /**
      * is_dayTimeDuration()
      *
-     * Checks whether value is dataType dayTimeDuration and return the boolean
-     * result.
+     * Checks whether value is dataType dayTimeDuration and returns the
+     * boolean result. This can also be written `is<dayTimeDuration>(value`).
      *
      * @param $value Value to check
      *
@@ -263,7 +289,7 @@ class dayTimeDuration
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<dayTimeDuration>");
+        $request->set("function", "is_dayTimeDuration");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

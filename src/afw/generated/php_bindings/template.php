@@ -26,6 +26,32 @@ class template
     }
 
     /**
+     * as_template()
+     *
+     * Returns value unchanged if it is dataType template. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a template from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * template.
+     *
+     * @param $value Value to assert
+     *
+     * @return template value, which is dataType template
+     */
+    public function as_template(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_template");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_size_template()
      *
      * This returns the integer number of values in array.
@@ -266,8 +292,8 @@ class template
     /**
      * is_template()
      *
-     * Checks whether value is dataType template and return the boolean
-     * result.
+     * Checks whether value is dataType template and returns the boolean
+     * result. This can also be written `is<template>(value`).
      *
      * @param $value Value to check
      *
@@ -277,7 +303,7 @@ class template
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<template>");
+        $request->set("function", "is_template");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

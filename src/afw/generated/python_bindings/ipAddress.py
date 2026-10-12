@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_ipAddress(session, value):
+    """
+    Asserts that value is dataType ipAddress
+
+    Returns value unchanged if it is dataType ipAddress. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    ipAddress from a value of another data type, write a typed literal or call
+    a to_ function. This is usually written value as ipAddress.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType ipAddress
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_ipAddress",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_ipAddress(session, values=None):
     """
     Makes an array from values
@@ -259,7 +290,8 @@ def is_ipAddress(session, value):
     """
     Checks whether value is dataType ipAddress
 
-    Checks whether value is dataType ipAddress and return the boolean result.
+    Checks whether value is dataType ipAddress and returns the boolean result.
+    This can also be written `is<ipAddress>(value`).
 
     Args:
         value (object): Value to check
@@ -271,7 +303,7 @@ def is_ipAddress(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<ipAddress>",
+        "function": "is_ipAddress",
         "value": value
     }
 

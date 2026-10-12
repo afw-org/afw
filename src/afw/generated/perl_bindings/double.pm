@@ -15,6 +15,7 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     abs_double 
     add_double 
+    as_double 
     at_least_one_member_of_double 
     bag_double 
     bag_size_double 
@@ -78,6 +79,20 @@ Add
 
     $values
 
+
+=head3 as_double
+
+Returns value unchanged if it is dataType double. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a double from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as double.
+Asserts that value is dataType double
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_double
 
@@ -249,7 +264,8 @@ Number to check
 
 =head3 is_double
 
-Checks whether value is dataType double and return the boolean result.
+Checks whether value is dataType double and returns the boolean result. This
+can also be written `is<double>(value`).
 Checks whether value is dataType double
 
 =head4 Parameters
@@ -531,6 +547,17 @@ sub add_double {
     return $request->getResult();
 }
 
+sub as_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_double");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_double {
     my ($array1, $array2) = @_;
 
@@ -688,7 +715,7 @@ sub is_double {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<double>");
+    $request->set("function" => "is_double");
     $request->set("value", $value);
 
     return $request->getResult();

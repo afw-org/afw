@@ -22,6 +22,14 @@ def get_data_type(data_type_list, dataType):
     return result
 
 
+def get_untyped_function_id(obj):
+    # untypedFunctionId names the data type method. It defaults to functionId
+    # up to '<' (is_T functions of a dataTypeRequired family set it).
+    untypedFunctionId = obj.get('untypedFunctionId')
+    if untypedFunctionId is None:
+        untypedFunctionId = obj['functionId'].split('<')[0]
+    return untypedFunctionId
+
 def sort_category_functionLabel_cb(obj):
     category = obj.get('category')
     if category is None:
@@ -643,7 +651,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 useExecuteFunction.append(obj)
 
             if obj.get('dataTypeMethod', False) == True:
-                id = obj['functionId'].split('<')[0]
+                id = get_untyped_function_id(obj)
                 if not id in dataTypeMethod:
                     dataTypeMethod.append(id)
 
@@ -877,7 +885,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             if untypedFunctionId is None:
                 fd.write('    NULL,\n')
             else:
-                untypedFunctionId = untypedFunctionId.split('<')[0]
+                untypedFunctionId = get_untyped_function_id(obj)
                 fd.write('    &' + get_string_label(options, untypedFunctionId, 'self_v') + ',\n')
 
             # functionLabel
@@ -1090,7 +1098,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             if obj.get('dataTypeMethod', False) == True:
                 if options['core']:
                     fd.write('    ' + prefix + 'data_type_method_number_' + \
-                        obj.get('functionId').split('<')[0] + ',\n')
+                        get_untyped_function_id(obj) + ',\n')
                 else:
                     fd.write('    0, /* Assigned in a copy during function registration. */\n')
             else:
@@ -1159,9 +1167,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             if obj.get('category', '') == 'polymorphic':
                 polymorphic_functions.append(obj)
             elif obj.get('dataTypeMethod', False) and obj.get('useExecuteFunction') is not None:
-                polymorphicFunctionId = obj.get('functionId').split('<')[0]
+                polymorphicFunctionId = get_untyped_function_id(obj)
                 if obj.get('useExecuteFunction') == options['prefix'] + 'function_execute_' + polymorphicFunctionId:
-                    polymorphic_skeleton_needed[obj.get('functionId').split('<')[0]] = True
+                    polymorphic_skeleton_needed[polymorphicFunctionId] = True
 
         if len(polymorphic_skeleton_needed) > 1:
             filename = options['prefix'] + 'function_polymorphic.c'

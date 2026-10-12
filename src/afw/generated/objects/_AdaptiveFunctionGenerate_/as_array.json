@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsArray",
+    "brief": "Asserts that value is dataType array",
+    "camelCaseFunctionLabel": "asArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType array. Otherwise, including when value is undefined, throws an error. It never converts: to get a array from a value of another data type, write a typed literal or call a to_ function. This is usually written value as array.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_array",
+    "functionLabel": "as_array",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "value, which is dataType array"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

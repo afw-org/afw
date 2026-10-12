@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType rfc822Name. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * rfc822Name from a value of another data type, write a typed literal or call
+ * a to_ function. This is usually written value as rfc822Name.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {rfc822Name} value, which is dataType rfc822Name
+ */
+export function afwAsRfc822Name(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_rfc822Name";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in rfc822Name array1 is in
  * rfc822Name array2.
  * 
@@ -203,7 +223,8 @@ export function afwIsInRfc822Name(client : any, value : any, array : any[]) : an
 }
 
 /**
- * Checks whether value is dataType rfc822Name and return the boolean result.
+ * Checks whether value is dataType rfc822Name and returns the boolean result.
+ * This can also be written `is<rfc822Name>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -213,7 +234,7 @@ export function afwIsRfc822Name(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<rfc822Name>";
+    _action["function"] = "is_rfc822Name";
     _action["value"] = value;
 
     return client.perform(_action);

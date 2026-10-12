@@ -26,6 +26,32 @@ class xpathExpression
     }
 
     /**
+     * as_xpathExpression()
+     *
+     * Returns value unchanged if it is dataType xpathExpression. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a xpathExpression from a value of another data type, write a
+     * typed literal or call a to_ function. This is usually written value as
+     * xpathExpression.
+     *
+     * @param $value Value to assert
+     *
+     * @return xpathExpression value, which is dataType xpathExpression
+     */
+    public function as_xpathExpression(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_xpathExpression");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_size_xpathExpression()
      *
      * This returns the integer number of values in array.
@@ -268,8 +294,8 @@ class xpathExpression
     /**
      * is_xpathExpression()
      *
-     * Checks whether value is dataType xpathExpression and return the boolean
-     * result.
+     * Checks whether value is dataType xpathExpression and returns the
+     * boolean result. This can also be written `is<xpathExpression>(value`).
      *
      * @param $value Value to check
      *
@@ -279,7 +305,7 @@ class xpathExpression
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<xpathExpression>");
+        $request->set("function", "is_xpathExpression");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

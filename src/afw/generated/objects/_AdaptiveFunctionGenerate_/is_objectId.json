@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isObjectId",
     "category": "objectId",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType objectId and return the boolean result.",
-    "functionId": "is<objectId>",
+    "description": "Checks whether value is dataType objectId and returns the boolean result. This can also be written is<objectId>(value).",
+    "functionId": "is_objectId",
     "functionLabel": "is_objectId",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

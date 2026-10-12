@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType date and return the boolean result.",
-    "functionId": "is<date>",
+    "description": "Checks whether value is dataType date and returns the boolean result. This can also be written is<date>(value).",
+    "functionId": "is_date",
     "functionLabel": "is_date",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

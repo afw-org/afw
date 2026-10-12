@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType yearMonthDuration and return the boolean result.",
-    "functionId": "is<yearMonthDuration>",
+    "description": "Checks whether value is dataType yearMonthDuration and returns the boolean result. This can also be written is<yearMonthDuration>(value).",
+    "functionId": "is_yearMonthDuration",
     "functionLabel": "is_yearMonthDuration",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

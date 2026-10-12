@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType string and return the boolean result.",
-    "functionId": "is<string>",
+    "description": "Checks whether value is dataType string and returns the boolean result. This can also be written is<string>(value).",
+    "functionId": "is_string",
     "functionLabel": "is_string",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

@@ -14,6 +14,7 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     anyURI 
+    as_anyURI 
     at_least_one_member_of_anyURI 
     bag_anyURI 
     bag_size_anyURI 
@@ -67,6 +68,20 @@ Convert to data type anyURI
     $value
 
 Value to convert
+
+=head3 as_anyURI
+
+Returns value unchanged if it is dataType anyURI. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a anyURI from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as anyURI.
+Asserts that value is dataType anyURI
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_anyURI
 
@@ -233,7 +248,8 @@ The second array.
 
 =head3 is_anyURI
 
-Checks whether value is dataType anyURI and return the boolean result.
+Checks whether value is dataType anyURI and returns the boolean result. This
+can also be written `is<anyURI>(value`).
 Checks whether value is dataType anyURI
 
 =head4 Parameters
@@ -583,6 +599,17 @@ sub anyURI {
     return $request->getResult();
 }
 
+sub as_anyURI {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_anyURI");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_anyURI {
     my ($array1, $array2) = @_;
 
@@ -726,7 +753,7 @@ sub is_anyURI {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<anyURI>");
+    $request->set("function" => "is_anyURI");
     $request->set("value", $value);
 
     return $request->getResult();

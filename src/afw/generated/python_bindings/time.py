@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_time(session, value):
+    """
+    Asserts that value is dataType time
+
+    Returns value unchanged if it is dataType time. Otherwise, including when
+    value is undefined, throws an error. It never converts: to get a time from
+    a value of another data type, write a typed literal or call a to_
+    function. This is usually written value as time.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType time
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_time",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_time(session, array1, array2):
     """
     Checks for at least one value in common
@@ -336,7 +367,8 @@ def is_time(session, value):
     """
     Checks whether value is dataType time
 
-    Checks whether value is dataType time and return the boolean result.
+    Checks whether value is dataType time and returns the boolean result. This
+    can also be written `is<time>(value`).
 
     Args:
         value (object): Value to check
@@ -348,7 +380,7 @@ def is_time(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<time>",
+        "function": "is_time",
         "value": value
     }
 

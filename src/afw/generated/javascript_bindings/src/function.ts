@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType function. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * function from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as function.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {function} value, which is dataType function
+ */
+export function afwAsFunction(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_function";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of function values and returns an array of function.
  * 
  * @param {array} values -
@@ -140,7 +160,8 @@ export function afwGtFunction(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks whether value is dataType function and return the boolean result.
+ * Checks whether value is dataType function and returns the boolean result.
+ * This can also be written `is<function>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -150,7 +171,7 @@ export function afwIsFunction(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<function>";
+    _action["function"] = "is_function";
     _action["value"] = value;
 
     return client.perform(_action);

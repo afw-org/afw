@@ -26,6 +26,32 @@ class rfc822Name
     }
 
     /**
+     * as_rfc822Name()
+     *
+     * Returns value unchanged if it is dataType rfc822Name. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a rfc822Name from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * rfc822Name.
+     *
+     * @param $value Value to assert
+     *
+     * @return rfc822Name value, which is dataType rfc822Name
+     */
+    public function as_rfc822Name(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_rfc822Name");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_rfc822Name()
      *
      * Returns boolean true if at least one value in rfc822Name array1 is in
@@ -253,8 +279,8 @@ class rfc822Name
     /**
      * is_rfc822Name()
      *
-     * Checks whether value is dataType rfc822Name and return the boolean
-     * result.
+     * Checks whether value is dataType rfc822Name and returns the boolean
+     * result. This can also be written `is<rfc822Name>(value`).
      *
      * @param $value Value to check
      *
@@ -264,7 +290,7 @@ class rfc822Name
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<rfc822Name>");
+        $request->set("function", "is_rfc822Name");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

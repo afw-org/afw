@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsBoolean",
+    "brief": "Asserts that value is dataType boolean",
+    "camelCaseFunctionLabel": "asBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType boolean. Otherwise, including when value is undefined, throws an error. It never converts: to get a boolean from a value of another data type, write a typed literal or call a to_ function. This is usually written value as boolean.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_boolean",
+    "functionLabel": "as_boolean",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "value, which is dataType boolean"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

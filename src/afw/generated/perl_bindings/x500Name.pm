@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_x500Name 
     at_least_one_member_of_x500Name 
     bag_size_x500Name 
     bag_x500Name 
@@ -44,6 +45,20 @@ afw::x500Name - Perl module for x500Name functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_x500Name
+
+Returns value unchanged if it is dataType x500Name. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a x500Name from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as x500Name.
+Asserts that value is dataType x500Name
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_x500Name
 
@@ -171,7 +186,8 @@ Checks whether a value is in an array
 
 =head3 is_x500Name
 
-Checks whether value is dataType x500Name and return the boolean result.
+Checks whether value is dataType x500Name and returns the boolean result. This
+can also be written `is<x500Name>(value`).
 Checks whether value is dataType x500Name
 
 =head4 Parameters
@@ -344,6 +360,17 @@ Value to convert
 
 =cut
 
+sub as_x500Name {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_x500Name");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_x500Name {
     my ($array1, $array2) = @_;
 
@@ -457,7 +484,7 @@ sub is_x500Name {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<x500Name>");
+    $request->set("function" => "is_x500Name");
     $request->set("value", $value);
 
     return $request->getResult();

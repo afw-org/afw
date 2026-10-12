@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isIpAddress",
     "category": "ipAddress",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType ipAddress and return the boolean result.",
-    "functionId": "is<ipAddress>",
+    "description": "Checks whether value is dataType ipAddress and returns the boolean result. This can also be written is<ipAddress>(value).",
+    "functionId": "is_ipAddress",
     "functionLabel": "is_ipAddress",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

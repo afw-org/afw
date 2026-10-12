@@ -26,6 +26,32 @@ class base64Binary
     }
 
     /**
+     * as_base64Binary()
+     *
+     * Returns value unchanged if it is dataType base64Binary. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a base64Binary from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * base64Binary.
+     *
+     * @param $value Value to assert
+     *
+     * @return base64Binary value, which is dataType base64Binary
+     */
+    public function as_base64Binary(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_base64Binary");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_base64Binary()
      *
      * Returns boolean true if at least one value in base64Binary array1 is in
@@ -273,8 +299,8 @@ class base64Binary
     /**
      * is_base64Binary()
      *
-     * Checks whether value is dataType base64Binary and return the boolean
-     * result.
+     * Checks whether value is dataType base64Binary and returns the boolean
+     * result. This can also be written `is<base64Binary>(value`).
      *
      * @param $value Value to check
      *
@@ -284,7 +310,7 @@ class base64Binary
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<base64Binary>");
+        $request->set("function", "is_base64Binary");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

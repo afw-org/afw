@@ -26,6 +26,31 @@ class time
     }
 
     /**
+     * as_time()
+     *
+     * Returns value unchanged if it is dataType time. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * time from a value of another data type, write a typed literal or call a
+     * to_ function. This is usually written value as time.
+     *
+     * @param $value Value to assert
+     *
+     * @return time value, which is dataType time
+     */
+    public function as_time(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_time");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_time()
      *
      * Returns boolean true if at least one value in time array1 is in time
@@ -290,7 +315,8 @@ class time
     /**
      * is_time()
      *
-     * Checks whether value is dataType time and return the boolean result.
+     * Checks whether value is dataType time and returns the boolean result.
+     * This can also be written `is<time>(value`).
      *
      * @param $value Value to check
      *
@@ -300,7 +326,7 @@ class time
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<time>");
+        $request->set("function", "is_time");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

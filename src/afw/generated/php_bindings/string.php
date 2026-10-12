@@ -51,6 +51,31 @@ class string
     }
 
     /**
+     * as_string()
+     *
+     * Returns value unchanged if it is dataType string. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * string from a value of another data type, write a typed literal or call
+     * a to_ function. This is usually written value as string.
+     *
+     * @param $value Value to assert
+     *
+     * @return string value, which is dataType string
+     */
+    public function as_string(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_string");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_string()
      *
      * Returns boolean true if at least one value in string array1 is in
@@ -507,7 +532,8 @@ class string
     /**
      * is_string()
      *
-     * Checks whether value is dataType string and return the boolean result.
+     * Checks whether value is dataType string and returns the boolean result.
+     * This can also be written `is<string>(value`).
      *
      * @param $value Value to check
      *
@@ -517,7 +543,7 @@ class string
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<string>");
+        $request->set("function", "is_string");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

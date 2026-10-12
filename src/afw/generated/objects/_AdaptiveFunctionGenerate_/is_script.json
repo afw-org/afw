@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isScript",
     "category": "script",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType script and return the boolean result.",
-    "functionId": "is<script>",
+    "description": "Checks whether value is dataType script and returns the boolean result. This can also be written is<script>(value).",
+    "functionId": "is_script",
     "functionLabel": "is_script",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

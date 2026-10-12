@@ -35,6 +35,26 @@ export function afwAnyURI(client : any, value : any) : any {
 }
 
 /**
+ * Returns value unchanged if it is dataType anyURI. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a anyURI
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as anyURI.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {anyURI} value, which is dataType anyURI
+ */
+export function afwAsAnyURI(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_anyURI";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in anyURI array1 is in anyURI
  * array2.
  * 
@@ -275,7 +295,8 @@ export function afwIntersectionAnyURI(client : any, array1 : any[], array2 : any
 }
 
 /**
- * Checks whether value is dataType anyURI and return the boolean result.
+ * Checks whether value is dataType anyURI and returns the boolean result.
+ * This can also be written `is<anyURI>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -285,7 +306,7 @@ export function afwIsAnyURI(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<anyURI>";
+    _action["function"] = "is_anyURI";
     _action["value"] = value;
 
     return client.perform(_action);

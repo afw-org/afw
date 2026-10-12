@@ -26,6 +26,31 @@ class script
     }
 
     /**
+     * as_script()
+     *
+     * Returns value unchanged if it is dataType script. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * script from a value of another data type, write a typed literal or call
+     * a to_ function. This is usually written value as script.
+     *
+     * @param $value Value to assert
+     *
+     * @return script value, which is dataType script
+     */
+    public function as_script(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_script");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_script()
      *
      * Takes any number of script values and returns an array of script.
@@ -266,7 +291,8 @@ class script
     /**
      * is_script()
      *
-     * Checks whether value is dataType script and return the boolean result.
+     * Checks whether value is dataType script and returns the boolean result.
+     * This can also be written `is<script>(value`).
      *
      * @param $value Value to check
      *
@@ -276,7 +302,7 @@ class script
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<script>");
+        $request->set("function", "is_script");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

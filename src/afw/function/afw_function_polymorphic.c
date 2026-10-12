@@ -3084,7 +3084,9 @@ afw_function_execute_encode_as_hexBinary(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Checks whether value is dataType `<dataType>` and return the boolean result.
+ * Checks whether value is dataType `<dataType>` and returns the boolean
+ * result. There is no is function: each is_<dataType> is a plain function
+ * (dataTypeRequired), also written is<dataType>.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3099,7 +3101,7 @@ afw_function_execute_encode_as_hexBinary(
  * Declaration:
  *
  * ```
- *   function is <dataType>(
+ *   function is_<dataType>(
  *       value: any
  *   ): boolean;
  * ```
@@ -3129,6 +3131,55 @@ afw_function_execute_is(
     return (x->data_type == data_type)
         ? afw_boolean_v_true
         : afw_boolean_v_false;
+}
+
+
+
+/*
+ * Common polymorphic function for as
+ *
+ * afw_function_execute_as
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Returns value unchanged if it is dataType `<dataType>`. Otherwise,
+ * including when value is undefined, throws an error. It never converts.
+ * There is no as function: each as_<dataType> is a plain function
+ * (dataTypeRequired), usually written value as <dataType>.
+ *
+ * The parameter is any, not `<dataType>`, so the built-in parameter check
+ * does not throw first: this error says how to get a `<dataType>` instead
+ * (afw_value_type_assertion_mismatch_z), the same words as the compile time
+ * check under typeCheck.
+ *
+ * Supported `<dataType>`: the same as is_<dataType>.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_<dataType>(
+ *       value: any
+ *   ): <dataType>;
+ * ```
+ */
+const afw_value_t *
+afw_function_execute_as(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *arg;
+    const afw_data_type_t *data_type;
+
+    AFW_FUNCTION_EVALUATE_PARAMETER(arg, 1);
+
+    data_type = (arg) ? afw_value_get_data_type(arg, x->xctx) : NULL;
+    if (data_type != x->data_type) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Type assertion failed: %s",
+            afw_value_type_assertion_mismatch_z(x->data_type, data_type, arg,
+                x->p, x->xctx));
+    }
+
+    return arg;
 }
 
 

@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType ipAddress. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * ipAddress from a value of another data type, write a typed literal or call
+ * a to_ function. This is usually written value as ipAddress.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {ipAddress} value, which is dataType ipAddress
+ */
+export function afwAsIpAddress(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_ipAddress";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of ipAddress values and returns an array of ipAddress.
  * 
  * @param {array} values -
@@ -178,7 +198,8 @@ export function afwIsInIpAddress(client : any, value : any, array : any[]) : any
 }
 
 /**
- * Checks whether value is dataType ipAddress and return the boolean result.
+ * Checks whether value is dataType ipAddress and returns the boolean result.
+ * This can also be written `is<ipAddress>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -188,7 +209,7 @@ export function afwIsIpAddress(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<ipAddress>";
+    _action["function"] = "is_ipAddress";
     _action["value"] = value;
 
     return client.perform(_action);

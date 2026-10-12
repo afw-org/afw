@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_rfc822Name 
     at_least_one_member_of_rfc822Name 
     bag_rfc822Name 
     bag_size_rfc822Name 
@@ -44,6 +45,20 @@ afw::rfc822Name - Perl module for rfc822Name functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_rfc822Name
+
+Returns value unchanged if it is dataType rfc822Name. Otherwise, including
+when value is undefined, throws an error. It never converts: to get a
+rfc822Name from a value of another data type, write a typed literal or call a
+to_ function. This is usually written value as rfc822Name.
+Asserts that value is dataType rfc822Name
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_rfc822Name
 
@@ -171,7 +186,8 @@ Checks whether a value is in an array
 
 =head3 is_rfc822Name
 
-Checks whether value is dataType rfc822Name and return the boolean result.
+Checks whether value is dataType rfc822Name and returns the boolean result.
+This can also be written `is<rfc822Name>(value`).
 Checks whether value is dataType rfc822Name
 
 =head4 Parameters
@@ -345,6 +361,17 @@ Two or more arrays.
 
 =cut
 
+sub as_rfc822Name {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_rfc822Name");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_rfc822Name {
     my ($array1, $array2) = @_;
 
@@ -458,7 +485,7 @@ sub is_rfc822Name {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<rfc822Name>");
+    $request->set("function" => "is_rfc822Name");
     $request->set("value", $value);
 
     return $request->getResult();

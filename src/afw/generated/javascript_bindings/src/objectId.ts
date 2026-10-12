@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType objectId. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * objectId from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as objectId.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {objectId} value, which is dataType objectId
+ */
+export function afwAsObjectId(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_objectId";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of objectId values and returns an array of objectId.
  * 
  * @param {array} values -
@@ -140,7 +160,8 @@ export function afwGtObjectId(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks whether value is dataType objectId and return the boolean result.
+ * Checks whether value is dataType objectId and returns the boolean result.
+ * This can also be written `is<objectId>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -150,7 +171,7 @@ export function afwIsObjectId(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<objectId>";
+    _action["function"] = "is_objectId";
     _action["value"] = value;
 
     return client.perform(_action);

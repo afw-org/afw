@@ -53,6 +53,26 @@ export function afwAddDouble(client : any, values : number) : any {
 }
 
 /**
+ * Returns value unchanged if it is dataType double. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a double
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as double.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {double} value, which is dataType double
+ */
+export function afwAsDouble(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_double";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in double array1 is in double
  * array2.
  * 
@@ -308,7 +328,8 @@ export function afwIsNaN(client : any, number : number) : any {
 }
 
 /**
- * Checks whether value is dataType double and return the boolean result.
+ * Checks whether value is dataType double and returns the boolean result.
+ * This can also be written `is<double>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -318,7 +339,7 @@ export function afwIsDouble(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<double>";
+    _action["function"] = "is_double";
     _action["value"] = value;
 
     return client.perform(_action);

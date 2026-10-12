@@ -2211,6 +2211,47 @@ afw_function_definition_anyURI;
  * __________
  */
 
+/** @brief Function definition as_anyURI */
+extern const afw_value_function_definition_t
+afw_function_definition_as_anyURI;
+
+/**
+ * @brief Adaptive Function `as_anyURI`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType anyURI. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a anyURI from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as anyURI.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_anyURI(
+ *       value: any
+ *   ): anyURI;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (anyURI) value, which is dataType anyURI.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<anyURI> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_anyURI;
@@ -2634,15 +2675,16 @@ afw_function_definition_intersection_anyURI;
  * __________
  */
 
-/** @brief Function definition is<anyURI> */
+/** @brief Function definition is_anyURI */
 extern const afw_value_function_definition_t
 afw_function_definition_is_anyURI;
 
 /**
- * @brief Adaptive Function `is<anyURI>`
+ * @brief Adaptive Function `is_anyURI`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType anyURI and return the boolean result.
+ * Checks whether value is dataType anyURI and returns the boolean result. This
+ * can also be written `is<anyURI>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2650,7 +2692,7 @@ afw_function_definition_is_anyURI;
  * Declaration:
  *
  * ```
- *   function is<anyURI>(
+ *   function is_anyURI(
  *       value: any
  *   ): boolean;
  * ```
@@ -3587,6 +3629,47 @@ const afw_value_t *
 afw_function_execute_array(
     afw_function_execute_t *x);
 
+/** @brief Function definition as_array */
+extern const afw_value_function_definition_t
+afw_function_definition_as_array;
+
+/**
+ * @brief Adaptive Function `as_array`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType array. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a array from a
+ * value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as array.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_array(
+ *       value: any
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (array) value, which is dataType array.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at */
 extern const afw_value_function_definition_t
 afw_function_definition_at;
@@ -4003,15 +4086,16 @@ afw_function_definition_includes_array;
  * __________
  */
 
-/** @brief Function definition is<array> */
+/** @brief Function definition is_array */
 extern const afw_value_function_definition_t
 afw_function_definition_is_array;
 
 /**
- * @brief Adaptive Function `is<array>`
+ * @brief Adaptive Function `is_array`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType array and return the boolean result.
+ * Checks whether value is dataType array and returns the boolean result. This
+ * can also be written `is<array>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4019,7 +4103,7 @@ afw_function_definition_is_array;
  * Declaration:
  *
  * ```
- *   function is<array>(
+ *   function is_array(
  *       value: any
  *   ): boolean;
  * ```
@@ -4650,6 +4734,47 @@ afw_function_execute_authorization_check(
  * @{
  */
 
+/** @brief Function definition as_base64Binary */
+extern const afw_value_function_definition_t
+afw_function_definition_as_base64Binary;
+
+/**
+ * @brief Adaptive Function `as_base64Binary`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType base64Binary. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * base64Binary from a value of another data type, write a typed literal or call
+ * a to_ function. This is usually written value as base64Binary.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_base64Binary(
+ *       value: any
+ *   ): base64Binary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (base64Binary) value, which is dataType base64Binary.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<base64Binary> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_base64Binary;
@@ -5024,15 +5149,16 @@ afw_function_definition_intersection_base64Binary;
  * __________
  */
 
-/** @brief Function definition is<base64Binary> */
+/** @brief Function definition is_base64Binary */
 extern const afw_value_function_definition_t
 afw_function_definition_is_base64Binary;
 
 /**
- * @brief Adaptive Function `is<base64Binary>`
+ * @brief Adaptive Function `is_base64Binary`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType base64Binary and return the boolean result.
+ * Checks whether value is dataType base64Binary and returns the boolean result.
+ * This can also be written `is<base64Binary>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5040,7 +5166,7 @@ afw_function_definition_is_base64Binary;
  * Declaration:
  *
  * ```
- *   function is<base64Binary>(
+ *   function is_base64Binary(
  *       value: any
  *   ): boolean;
  * ```
@@ -5452,6 +5578,47 @@ afw_function_definition_union_base64Binary;
  * @{
  */
 
+/** @brief Function definition as_boolean */
+extern const afw_value_function_definition_t
+afw_function_definition_as_boolean;
+
+/**
+ * @brief Adaptive Function `as_boolean`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType boolean. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a boolean from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as boolean.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_boolean(
+ *       value: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (boolean) value, which is dataType boolean.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<boolean> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_boolean;
@@ -5796,15 +5963,16 @@ afw_function_definition_intersection_boolean;
  * __________
  */
 
-/** @brief Function definition is<boolean> */
+/** @brief Function definition is_boolean */
 extern const afw_value_function_definition_t
 afw_function_definition_is_boolean;
 
 /**
- * @brief Adaptive Function `is<boolean>`
+ * @brief Adaptive Function `is_boolean`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType boolean and return the boolean result.
+ * Checks whether value is dataType boolean and returns the boolean result. This
+ * can also be written `is<boolean>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5812,7 +5980,7 @@ afw_function_definition_is_boolean;
  * Declaration:
  *
  * ```
- *   function is<boolean>(
+ *   function is_boolean(
  *       value: any
  *   ): boolean;
  * ```
@@ -7857,6 +8025,47 @@ const afw_value_t *
 afw_function_execute_add_yearMonthDuration_dateTime(
     afw_function_execute_t *x);
 
+/** @brief Function definition as_dateTime */
+extern const afw_value_function_definition_t
+afw_function_definition_as_dateTime;
+
+/**
+ * @brief Adaptive Function `as_dateTime`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType dateTime. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a dateTime
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as dateTime.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_dateTime(
+ *       value: any
+ *   ): dateTime;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (dateTime) value, which is dataType dateTime.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<dateTime> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_dateTime;
@@ -8203,15 +8412,16 @@ afw_function_definition_intersection_dateTime;
  * __________
  */
 
-/** @brief Function definition is<dateTime> */
+/** @brief Function definition is_dateTime */
 extern const afw_value_function_definition_t
 afw_function_definition_is_dateTime;
 
 /**
- * @brief Adaptive Function `is<dateTime>`
+ * @brief Adaptive Function `is_dateTime`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType dateTime and return the boolean result.
+ * Checks whether value is dataType dateTime and returns the boolean result.
+ * This can also be written `is<dateTime>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8219,7 +8429,7 @@ afw_function_definition_is_dateTime;
  * Declaration:
  *
  * ```
- *   function is<dateTime>(
+ *   function is_dateTime(
  *       value: any
  *   ): boolean;
  * ```
@@ -8822,6 +9032,47 @@ const afw_value_t *
 afw_function_execute_add_yearMonthDuration_date(
     afw_function_execute_t *x);
 
+/** @brief Function definition as_date */
+extern const afw_value_function_definition_t
+afw_function_definition_as_date;
+
+/**
+ * @brief Adaptive Function `as_date`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType date. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a date from a
+ * value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as date.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_date(
+ *       value: any
+ *   ): date;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (date) value, which is dataType date.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<date> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_date;
@@ -9166,15 +9417,16 @@ afw_function_definition_intersection_date;
  * __________
  */
 
-/** @brief Function definition is<date> */
+/** @brief Function definition is_date */
 extern const afw_value_function_definition_t
 afw_function_definition_is_date;
 
 /**
- * @brief Adaptive Function `is<date>`
+ * @brief Adaptive Function `is_date`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType date and return the boolean result.
+ * Checks whether value is dataType date and returns the boolean result. This
+ * can also be written `is<date>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9182,7 +9434,7 @@ afw_function_definition_is_date;
  * Declaration:
  *
  * ```
- *   function is<date>(
+ *   function is_date(
  *       value: any
  *   ): boolean;
  * ```
@@ -9710,6 +9962,47 @@ afw_function_definition_union_date;
  * @{
  */
 
+/** @brief Function definition as_dayTimeDuration */
+extern const afw_value_function_definition_t
+afw_function_definition_as_dayTimeDuration;
+
+/**
+ * @brief Adaptive Function `as_dayTimeDuration`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
+ * including when value is undefined, throws an error. It never converts: to get
+ * a dayTimeDuration from a value of another data type, write a typed literal or
+ * call a to_ function. This is usually written value as dayTimeDuration.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_dayTimeDuration(
+ *       value: any
+ *   ): dayTimeDuration;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (dayTimeDuration) value, which is dataType dayTimeDuration.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<dayTimeDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_dayTimeDuration;
@@ -10052,16 +10345,16 @@ afw_function_definition_intersection_dayTimeDuration;
  * __________
  */
 
-/** @brief Function definition is<dayTimeDuration> */
+/** @brief Function definition is_dayTimeDuration */
 extern const afw_value_function_definition_t
 afw_function_definition_is_dayTimeDuration;
 
 /**
- * @brief Adaptive Function `is<dayTimeDuration>`
+ * @brief Adaptive Function `is_dayTimeDuration`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType dayTimeDuration and return the boolean
- * result.
+ * Checks whether value is dataType dayTimeDuration and returns the boolean
+ * result. This can also be written `is<dayTimeDuration>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10069,7 +10362,7 @@ afw_function_definition_is_dayTimeDuration;
  * Declaration:
  *
  * ```
- *   function is<dayTimeDuration>(
+ *   function is_dayTimeDuration(
  *       value: any
  *   ): boolean;
  * ```
@@ -10481,6 +10774,47 @@ afw_function_definition_union_dayTimeDuration;
  * @{
  */
 
+/** @brief Function definition as_dnsName */
+extern const afw_value_function_definition_t
+afw_function_definition_as_dnsName;
+
+/**
+ * @brief Adaptive Function `as_dnsName`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType dnsName. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a dnsName from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as dnsName.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_dnsName(
+ *       value: any
+ *   ): dnsName;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (dnsName) value, which is dataType dnsName.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<dnsName> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_dnsName;
@@ -10745,15 +11079,16 @@ afw_function_definition_gt_dnsName;
  * __________
  */
 
-/** @brief Function definition is<dnsName> */
+/** @brief Function definition is_dnsName */
 extern const afw_value_function_definition_t
 afw_function_definition_is_dnsName;
 
 /**
- * @brief Adaptive Function `is<dnsName>`
+ * @brief Adaptive Function `is_dnsName`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType dnsName and return the boolean result.
+ * Checks whether value is dataType dnsName and returns the boolean result. This
+ * can also be written `is<dnsName>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10761,7 +11096,7 @@ afw_function_definition_is_dnsName;
  * Declaration:
  *
  * ```
- *   function is<dnsName>(
+ *   function is_dnsName(
  *       value: any
  *   ): boolean;
  * ```
@@ -11164,6 +11499,47 @@ afw_function_definition_add_double;
 const afw_value_t *
 afw_function_execute_add_double(
     afw_function_execute_t *x);
+
+/** @brief Function definition as_double */
+extern const afw_value_function_definition_t
+afw_function_definition_as_double;
+
+/**
+ * @brief Adaptive Function `as_double`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType double. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a double from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as double.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_double(
+ *       value: any
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (double) value, which is dataType double.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
 
 /** @brief Function definition at_least_one_member_of<double> */
 extern const afw_value_function_definition_t
@@ -11643,15 +12019,16 @@ const afw_value_t *
 afw_function_execute_is_NaN(
     afw_function_execute_t *x);
 
-/** @brief Function definition is<double> */
+/** @brief Function definition is_double */
 extern const afw_value_function_definition_t
 afw_function_definition_is_double;
 
 /**
- * @brief Adaptive Function `is<double>`
+ * @brief Adaptive Function `is_double`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType double and return the boolean result.
+ * Checks whether value is dataType double and returns the boolean result. This
+ * can also be written `is<double>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11659,7 +12036,7 @@ afw_function_definition_is_double;
  * Declaration:
  *
  * ```
- *   function is<double>(
+ *   function is_double(
  *       value: any
  *   ): boolean;
  * ```
@@ -12418,6 +12795,47 @@ afw_function_definition_union_double;
  * @{
  */
 
+/** @brief Function definition as_function */
+extern const afw_value_function_definition_t
+afw_function_definition_as_function;
+
+/**
+ * @brief Adaptive Function `as_function`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType function. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a function
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as function.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_function(
+ *       value: any
+ *   ): function;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (function) value, which is dataType function.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<function> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_function;
@@ -12644,15 +13062,16 @@ afw_function_definition_gt_function;
  * __________
  */
 
-/** @brief Function definition is<function> */
+/** @brief Function definition is_function */
 extern const afw_value_function_definition_t
 afw_function_definition_is_function;
 
 /**
- * @brief Adaptive Function `is<function>`
+ * @brief Adaptive Function `is_function`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType function and return the boolean result.
+ * Checks whether value is dataType function and returns the boolean result.
+ * This can also be written `is<function>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12660,7 +13079,7 @@ afw_function_definition_is_function;
  * Declaration:
  *
  * ```
- *   function is<function>(
+ *   function is_function(
  *       value: any
  *   ): boolean;
  * ```
@@ -12844,6 +13263,47 @@ afw_function_definition_nex_function;
  * hexBinary adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition as_hexBinary */
+extern const afw_value_function_definition_t
+afw_function_definition_as_hexBinary;
+
+/**
+ * @brief Adaptive Function `as_hexBinary`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType hexBinary. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * hexBinary from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as hexBinary.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_hexBinary(
+ *       value: any
+ *   ): hexBinary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (hexBinary) value, which is dataType hexBinary.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
  */
 
 /** @brief Function definition at_least_one_member_of<hexBinary> */
@@ -13220,15 +13680,16 @@ afw_function_definition_intersection_hexBinary;
  * __________
  */
 
-/** @brief Function definition is<hexBinary> */
+/** @brief Function definition is_hexBinary */
 extern const afw_value_function_definition_t
 afw_function_definition_is_hexBinary;
 
 /**
- * @brief Adaptive Function `is<hexBinary>`
+ * @brief Adaptive Function `is_hexBinary`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType hexBinary and return the boolean result.
+ * Checks whether value is dataType hexBinary and returns the boolean result.
+ * This can also be written `is<hexBinary>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13236,7 +13697,7 @@ afw_function_definition_is_hexBinary;
  * Declaration:
  *
  * ```
- *   function is<hexBinary>(
+ *   function is_hexBinary(
  *       value: any
  *   ): boolean;
  * ```
@@ -14218,6 +14679,47 @@ afw_function_execute_sort(
  * @{
  */
 
+/** @brief Function definition as_ia5String */
+extern const afw_value_function_definition_t
+afw_function_definition_as_ia5String;
+
+/**
+ * @brief Adaptive Function `as_ia5String`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType ia5String. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * ia5String from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as ia5String.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_ia5String(
+ *       value: any
+ *   ): ia5String;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (ia5String) value, which is dataType ia5String.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<ia5String> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_ia5String;
@@ -14482,15 +14984,16 @@ afw_function_definition_ia5String;
  * __________
  */
 
-/** @brief Function definition is<ia5String> */
+/** @brief Function definition is_ia5String */
 extern const afw_value_function_definition_t
 afw_function_definition_is_ia5String;
 
 /**
- * @brief Adaptive Function `is<ia5String>`
+ * @brief Adaptive Function `is_ia5String`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType ia5String and return the boolean result.
+ * Checks whether value is dataType ia5String and returns the boolean result.
+ * This can also be written `is<ia5String>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14498,7 +15001,7 @@ afw_function_definition_is_ia5String;
  * Declaration:
  *
  * ```
- *   function is<ia5String>(
+ *   function is_ia5String(
  *       value: any
  *   ): boolean;
  * ```
@@ -14950,6 +15453,47 @@ const afw_value_t *
 afw_function_execute_add_integer(
     afw_function_execute_t *x);
 
+/** @brief Function definition as_integer */
+extern const afw_value_function_definition_t
+afw_function_definition_as_integer;
+
+/**
+ * @brief Adaptive Function `as_integer`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType integer. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a integer from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as integer.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_integer(
+ *       value: any
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (integer) value, which is dataType integer.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<integer> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_integer;
@@ -15364,15 +15908,16 @@ afw_function_definition_is_in_integer;
  * __________
  */
 
-/** @brief Function definition is<integer> */
+/** @brief Function definition is_integer */
 extern const afw_value_function_definition_t
 afw_function_definition_is_integer;
 
 /**
- * @brief Adaptive Function `is<integer>`
+ * @brief Adaptive Function `is_integer`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType integer and return the boolean result.
+ * Checks whether value is dataType integer and returns the boolean result. This
+ * can also be written `is<integer>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15380,7 +15925,7 @@ afw_function_definition_is_integer;
  * Declaration:
  *
  * ```
- *   function is<integer>(
+ *   function is_integer(
  *       value: any
  *   ): boolean;
  * ```
@@ -16001,6 +16546,47 @@ afw_function_definition_union_integer;
  * @{
  */
 
+/** @brief Function definition as_ipAddress */
+extern const afw_value_function_definition_t
+afw_function_definition_as_ipAddress;
+
+/**
+ * @brief Adaptive Function `as_ipAddress`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType ipAddress. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * ipAddress from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as ipAddress.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_ipAddress(
+ *       value: any
+ *   ): ipAddress;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (ipAddress) value, which is dataType ipAddress.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<ipAddress> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_ipAddress;
@@ -16303,15 +16889,16 @@ afw_function_definition_is_in_ipAddress;
  * __________
  */
 
-/** @brief Function definition is<ipAddress> */
+/** @brief Function definition is_ipAddress */
 extern const afw_value_function_definition_t
 afw_function_definition_is_ipAddress;
 
 /**
- * @brief Adaptive Function `is<ipAddress>`
+ * @brief Adaptive Function `is_ipAddress`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType ipAddress and return the boolean result.
+ * Checks whether value is dataType ipAddress and returns the boolean result.
+ * This can also be written `is<ipAddress>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16319,7 +16906,7 @@ afw_function_definition_is_ipAddress;
  * Declaration:
  *
  * ```
- *   function is<ipAddress>(
+ *   function is_ipAddress(
  *       value: any
  *   ): boolean;
  * ```
@@ -18328,6 +18915,47 @@ afw_function_execute_model_returnObject_signature(
  * @{
  */
 
+/** @brief Function definition as_null */
+extern const afw_value_function_definition_t
+afw_function_definition_as_null;
+
+/**
+ * @brief Adaptive Function `as_null`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType null. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a null from a
+ * value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as null.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_null(
+ *       value: any
+ *   ): null;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (null) value, which is dataType null.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<null> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_null;
@@ -18396,15 +19024,16 @@ afw_function_definition_bag_size_null;
  * __________
  */
 
-/** @brief Function definition is<null> */
+/** @brief Function definition is_null */
 extern const afw_value_function_definition_t
 afw_function_definition_is_null;
 
 /**
- * @brief Adaptive Function `is<null>`
+ * @brief Adaptive Function `is_null`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType null and return the boolean result.
+ * Checks whether value is dataType null and returns the boolean result. This
+ * can also be written `is<null>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18412,7 +19041,7 @@ afw_function_definition_is_null;
  * Declaration:
  *
  * ```
- *   function is<null>(
+ *   function is_null(
  *       value: any
  *   ): boolean;
  * ```
@@ -18473,6 +19102,47 @@ afw_function_definition_to_string_null;
  * objectId adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition as_objectId */
+extern const afw_value_function_definition_t
+afw_function_definition_as_objectId;
+
+/**
+ * @brief Adaptive Function `as_objectId`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType objectId. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a objectId
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as objectId.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_objectId(
+ *       value: any
+ *   ): objectId;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (objectId) value, which is dataType objectId.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
  */
 
 /** @brief Function definition bag<objectId> */
@@ -18701,15 +19371,16 @@ afw_function_definition_gt_objectId;
  * __________
  */
 
-/** @brief Function definition is<objectId> */
+/** @brief Function definition is_objectId */
 extern const afw_value_function_definition_t
 afw_function_definition_is_objectId;
 
 /**
- * @brief Adaptive Function `is<objectId>`
+ * @brief Adaptive Function `is_objectId`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType objectId and return the boolean result.
+ * Checks whether value is dataType objectId and returns the boolean result.
+ * This can also be written `is<objectId>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18717,7 +19388,7 @@ afw_function_definition_is_objectId;
  * Declaration:
  *
  * ```
- *   function is<objectId>(
+ *   function is_objectId(
  *       value: any
  *   ): boolean;
  * ```
@@ -18976,6 +19647,47 @@ afw_function_definition_to_string_objectId;
  * @{
  */
 
+/** @brief Function definition as_objectPath */
+extern const afw_value_function_definition_t
+afw_function_definition_as_objectPath;
+
+/**
+ * @brief Adaptive Function `as_objectPath`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType objectPath. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * objectPath from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as objectPath.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_objectPath(
+ *       value: any
+ *   ): objectPath;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (objectPath) value, which is dataType objectPath.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<objectPath> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_objectPath;
@@ -19202,15 +19914,16 @@ afw_function_definition_gt_objectPath;
  * __________
  */
 
-/** @brief Function definition is<objectPath> */
+/** @brief Function definition is_objectPath */
 extern const afw_value_function_definition_t
 afw_function_definition_is_objectPath;
 
 /**
- * @brief Adaptive Function `is<objectPath>`
+ * @brief Adaptive Function `is_objectPath`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType objectPath and return the boolean result.
+ * Checks whether value is dataType objectPath and returns the boolean result.
+ * This can also be written `is<objectPath>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19218,7 +19931,7 @@ afw_function_definition_is_objectPath;
  * Declaration:
  *
  * ```
- *   function is<objectPath>(
+ *   function is_objectPath(
  *       value: any
  *   ): boolean;
  * ```
@@ -19555,6 +20268,47 @@ const afw_value_t *
 afw_function_execute_apply_object_options(
     afw_function_execute_t *x);
 
+/** @brief Function definition as_object */
+extern const afw_value_function_definition_t
+afw_function_definition_as_object;
+
+/**
+ * @brief Adaptive Function `as_object`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType object. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a object from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as object.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_object(
+ *       value: any
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (object) value, which is dataType object.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<object> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_object;
@@ -19885,15 +20639,16 @@ afw_function_definition_gt_object;
  * __________
  */
 
-/** @brief Function definition is<object> */
+/** @brief Function definition is_object */
 extern const afw_value_function_definition_t
 afw_function_definition_is_object;
 
 /**
- * @brief Adaptive Function `is<object>`
+ * @brief Adaptive Function `is_object`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType object and return the boolean result.
+ * Checks whether value is dataType object and returns the boolean result. This
+ * can also be written `is<object>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19901,7 +20656,7 @@ afw_function_definition_is_object;
  * Declaration:
  *
  * ```
- *   function is<object>(
+ *   function is_object(
  *       value: any
  *   ): boolean;
  * ```
@@ -20463,6 +21218,47 @@ afw_function_execute_values(
  * @{
  */
 
+/** @brief Function definition as_password */
+extern const afw_value_function_definition_t
+afw_function_definition_as_password;
+
+/**
+ * @brief Adaptive Function `as_password`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType password. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a password
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as password.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_password(
+ *       value: any
+ *   ): password;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (password) value, which is dataType password.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<password> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_password;
@@ -20689,15 +21485,16 @@ afw_function_definition_gt_password;
  * __________
  */
 
-/** @brief Function definition is<password> */
+/** @brief Function definition is_password */
 extern const afw_value_function_definition_t
 afw_function_definition_is_password;
 
 /**
- * @brief Adaptive Function `is<password>`
+ * @brief Adaptive Function `is_password`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType password and return the boolean result.
+ * Checks whether value is dataType password and returns the boolean result.
+ * This can also be written `is<password>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20705,7 +21502,7 @@ afw_function_definition_is_password;
  * Declaration:
  *
  * ```
- *   function is<password>(
+ *   function is_password(
  *       value: any
  *   ): boolean;
  * ```
@@ -22120,47 +22917,6 @@ afw_function_definition_intersection;
  *   (``<Type>`[]`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
- *
- * __________
- */
-
-/** @brief Function definition is */
-extern const afw_value_function_definition_t
-afw_function_definition_is;
-
-/**
- * @brief Adaptive Function `is`
- * @param x function execute parameter.
- *
- * Checks whether value is dataType `<dataType>` and return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration, unevaluated.
- *
- * Declaration:
- *
- * ```
- *   function is <dataType>(
- *       value: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to check.
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_is()
  *
  * __________
  */
@@ -24890,6 +25646,47 @@ afw_function_definition_relaxedJson;
  * @{
  */
 
+/** @brief Function definition as_rfc822Name */
+extern const afw_value_function_definition_t
+afw_function_definition_as_rfc822Name;
+
+/**
+ * @brief Adaptive Function `as_rfc822Name`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType rfc822Name. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * rfc822Name from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as rfc822Name.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_rfc822Name(
+ *       value: any
+ *   ): rfc822Name;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (rfc822Name) value, which is dataType rfc822Name.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<rfc822Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_rfc822Name;
@@ -25230,15 +26027,16 @@ afw_function_definition_is_in_rfc822Name;
  * __________
  */
 
-/** @brief Function definition is<rfc822Name> */
+/** @brief Function definition is_rfc822Name */
 extern const afw_value_function_definition_t
 afw_function_definition_is_rfc822Name;
 
 /**
- * @brief Adaptive Function `is<rfc822Name>`
+ * @brief Adaptive Function `is_rfc822Name`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType rfc822Name and return the boolean result.
+ * Checks whether value is dataType rfc822Name and returns the boolean result.
+ * This can also be written `is<rfc822Name>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25246,7 +26044,7 @@ afw_function_definition_is_rfc822Name;
  * Declaration:
  *
  * ```
- *   function is<rfc822Name>(
+ *   function is_rfc822Name(
  *       value: any
  *   ): boolean;
  * ```
@@ -25733,6 +26531,47 @@ afw_function_definition_union_rfc822Name;
  * @{
  */
 
+/** @brief Function definition as_script */
+extern const afw_value_function_definition_t
+afw_function_definition_as_script;
+
+/**
+ * @brief Adaptive Function `as_script`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType script. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a script from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as script.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_script(
+ *       value: any
+ *   ): script;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (script) value, which is dataType script.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag<script> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_script;
@@ -26053,15 +26892,16 @@ afw_function_definition_gt_script;
  * __________
  */
 
-/** @brief Function definition is<script> */
+/** @brief Function definition is_script */
 extern const afw_value_function_definition_t
 afw_function_definition_is_script;
 
 /**
- * @brief Adaptive Function `is<script>`
+ * @brief Adaptive Function `is_script`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType script and return the boolean result.
+ * Checks whether value is dataType script and returns the boolean result. This
+ * can also be written `is<script>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26069,7 +26909,7 @@ afw_function_definition_is_script;
  * Declaration:
  *
  * ```
- *   function is<script>(
+ *   function is_script(
  *       value: any
  *   ): boolean;
  * ```
@@ -26859,6 +27699,47 @@ const afw_value_t *
 afw_function_execute_add_string(
     afw_function_execute_t *x);
 
+/** @brief Function definition as_string */
+extern const afw_value_function_definition_t
+afw_function_definition_as_string;
+
+/**
+ * @brief Adaptive Function `as_string`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType string. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a string from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_string(
+ *       value: any
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (string) value, which is dataType string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<string> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_string;
@@ -27509,15 +28390,16 @@ afw_function_definition_is_in_string;
  * __________
  */
 
-/** @brief Function definition is<string> */
+/** @brief Function definition is_string */
 extern const afw_value_function_definition_t
 afw_function_definition_is_string;
 
 /**
- * @brief Adaptive Function `is<string>`
+ * @brief Adaptive Function `is_string`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType string and return the boolean result.
+ * Checks whether value is dataType string and returns the boolean result. This
+ * can also be written `is<string>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27525,7 +28407,7 @@ afw_function_definition_is_string;
  * Declaration:
  *
  * ```
- *   function is<string>(
+ *   function is_string(
  *       value: any
  *   ): boolean;
  * ```
@@ -29044,6 +29926,47 @@ afw_function_definition_url_encode_string;
  * @{
  */
 
+/** @brief Function definition as_template */
+extern const afw_value_function_definition_t
+afw_function_definition_as_template;
+
+/**
+ * @brief Adaptive Function `as_template`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType template. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a template
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as template.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_template(
+ *       value: any
+ *   ): template;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (template) value, which is dataType template.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag_size<template> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_size_template;
@@ -29364,15 +30287,16 @@ afw_function_definition_gt_template;
  * __________
  */
 
-/** @brief Function definition is<template> */
+/** @brief Function definition is_template */
 extern const afw_value_function_definition_t
 afw_function_definition_is_template;
 
 /**
- * @brief Adaptive Function `is<template>`
+ * @brief Adaptive Function `is_template`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType template and return the boolean result.
+ * Checks whether value is dataType template and returns the boolean result.
+ * This can also be written `is<template>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29380,7 +30304,7 @@ afw_function_definition_is_template;
  * Declaration:
  *
  * ```
- *   function is<template>(
+ *   function is_template(
  *       value: any
  *   ): boolean;
  * ```
@@ -29639,6 +30563,47 @@ afw_function_definition_to_string_template;
  * time adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition as_time */
+extern const afw_value_function_definition_t
+afw_function_definition_as_time;
+
+/**
+ * @brief Adaptive Function `as_time`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType time. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a time from a
+ * value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as time.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_time(
+ *       value: any
+ *   ): time;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (time) value, which is dataType time.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
  */
 
 /** @brief Function definition at_least_one_member_of<time> */
@@ -30028,15 +30993,16 @@ afw_function_definition_is_in_time;
  * __________
  */
 
-/** @brief Function definition is<time> */
+/** @brief Function definition is_time */
 extern const afw_value_function_definition_t
 afw_function_definition_is_time;
 
 /**
- * @brief Adaptive Function `is<time>`
+ * @brief Adaptive Function `is_time`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType time and return the boolean result.
+ * Checks whether value is dataType time and returns the boolean result. This
+ * can also be written `is<time>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30044,7 +31010,7 @@ afw_function_definition_is_time;
  * Declaration:
  *
  * ```
- *   function is<time>(
+ *   function is_time(
  *       value: any
  *   ): boolean;
  * ```
@@ -30536,15 +31502,18 @@ afw_function_definition_union_time;
  * @{
  */
 
-/** @brief Function definition is<unevaluated> */
+/** @brief Function definition as_unevaluated */
 extern const afw_value_function_definition_t
-afw_function_definition_is_unevaluated;
+afw_function_definition_as_unevaluated;
 
 /**
- * @brief Adaptive Function `is<unevaluated>`
+ * @brief Adaptive Function `as_unevaluated`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType unevaluated and return the boolean result.
+ * Returns value unchanged if it is dataType unevaluated. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * unevaluated from a value of another data type, write a typed literal or call
+ * a to_ function. This is usually written value as unevaluated.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30552,7 +31521,46 @@ afw_function_definition_is_unevaluated;
  * Declaration:
  *
  * ```
- *   function is<unevaluated>(
+ *   function as_unevaluated(
+ *       value: any
+ *   ): unevaluated;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (unevaluated) value, which is dataType unevaluated.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
+/** @brief Function definition is_unevaluated */
+extern const afw_value_function_definition_t
+afw_function_definition_is_unevaluated;
+
+/**
+ * @brief Adaptive Function `is_unevaluated`
+ * @param x function execute parameter.
+ *
+ * Checks whether value is dataType unevaluated and returns the boolean result.
+ * This can also be written `is<unevaluated>(value`).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function is_unevaluated(
  *       value: any
  *   ): boolean;
  * ```
@@ -30660,6 +31668,47 @@ afw_function_execute_metas(
  * x500Name adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition as_x500Name */
+extern const afw_value_function_definition_t
+afw_function_definition_as_x500Name;
+
+/**
+ * @brief Adaptive Function `as_x500Name`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType x500Name. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a x500Name
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as x500Name.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_x500Name(
+ *       value: any
+ *   ): x500Name;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (x500Name) value, which is dataType x500Name.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
  */
 
 /** @brief Function definition at_least_one_member_of<x500Name> */
@@ -31002,15 +32051,16 @@ afw_function_definition_is_in_x500Name;
  * __________
  */
 
-/** @brief Function definition is<x500Name> */
+/** @brief Function definition is_x500Name */
 extern const afw_value_function_definition_t
 afw_function_definition_is_x500Name;
 
 /**
- * @brief Adaptive Function `is<x500Name>`
+ * @brief Adaptive Function `is_x500Name`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType x500Name and return the boolean result.
+ * Checks whether value is dataType x500Name and returns the boolean result.
+ * This can also be written `is<x500Name>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31018,7 +32068,7 @@ afw_function_definition_is_x500Name;
  * Declaration:
  *
  * ```
- *   function is<x500Name>(
+ *   function is_x500Name(
  *       value: any
  *   ): boolean;
  * ```
@@ -31504,6 +32554,47 @@ afw_function_definition_x500Name;
  * @{
  */
 
+/** @brief Function definition as_xpathExpression */
+extern const afw_value_function_definition_t
+afw_function_definition_as_xpathExpression;
+
+/**
+ * @brief Adaptive Function `as_xpathExpression`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType xpathExpression. Otherwise,
+ * including when value is undefined, throws an error. It never converts: to get
+ * a xpathExpression from a value of another data type, write a typed literal or
+ * call a to_ function. This is usually written value as xpathExpression.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_xpathExpression(
+ *       value: any
+ *   ): xpathExpression;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (xpathExpression) value, which is dataType xpathExpression.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition bag_size<xpathExpression> */
 extern const afw_value_function_definition_t
 afw_function_definition_bag_size_xpathExpression;
@@ -31826,16 +32917,16 @@ afw_function_definition_gt_xpathExpression;
  * __________
  */
 
-/** @brief Function definition is<xpathExpression> */
+/** @brief Function definition is_xpathExpression */
 extern const afw_value_function_definition_t
 afw_function_definition_is_xpathExpression;
 
 /**
- * @brief Adaptive Function `is<xpathExpression>`
+ * @brief Adaptive Function `is_xpathExpression`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType xpathExpression and return the boolean
- * result.
+ * Checks whether value is dataType xpathExpression and returns the boolean
+ * result. This can also be written `is<xpathExpression>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31843,7 +32934,7 @@ afw_function_definition_is_xpathExpression;
  * Declaration:
  *
  * ```
- *   function is<xpathExpression>(
+ *   function is_xpathExpression(
  *       value: any
  *   ): boolean;
  * ```
@@ -32212,6 +33303,47 @@ afw_function_execute_xpath_node_match(
  * @{
  */
 
+/** @brief Function definition as_yearMonthDuration */
+extern const afw_value_function_definition_t
+afw_function_definition_as_yearMonthDuration;
+
+/**
+ * @brief Adaptive Function `as_yearMonthDuration`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
+ * including when value is undefined, throws an error. It never converts: to get
+ * a yearMonthDuration from a value of another data type, write a typed literal
+ * or call a to_ function. This is usually written value as yearMonthDuration.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_yearMonthDuration(
+ *       value: any
+ *   ): yearMonthDuration;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (yearMonthDuration) value, which is dataType yearMonthDuration.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of<yearMonthDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_yearMonthDuration;
@@ -32554,16 +33686,16 @@ afw_function_definition_is_in_yearMonthDuration;
  * __________
  */
 
-/** @brief Function definition is<yearMonthDuration> */
+/** @brief Function definition is_yearMonthDuration */
 extern const afw_value_function_definition_t
 afw_function_definition_is_yearMonthDuration;
 
 /**
- * @brief Adaptive Function `is<yearMonthDuration>`
+ * @brief Adaptive Function `is_yearMonthDuration`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType yearMonthDuration and return the boolean
- * result.
+ * Checks whether value is dataType yearMonthDuration and returns the boolean
+ * result. This can also be written `is<yearMonthDuration>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32571,7 +33703,7 @@ afw_function_definition_is_yearMonthDuration;
  * Declaration:
  *
  * ```
- *   function is<yearMonthDuration>(
+ *   function is_yearMonthDuration(
  *       value: any
  *   ): boolean;
  * ```
@@ -32978,6 +34110,7 @@ afw_function_definition_yearMonthDuration;
  * @brief Data type method id map for afw_
  */
 #define AFW_DATA_TYPE_METHOD_ID_MAP(_XX)                                       \
+    _XX(as)                                                                    \
     _XX(at_least_one_member_of)                                                \
     _XX(bag)                                                                   \
     _XX(bag_size)                                                              \
@@ -33182,6 +34315,44 @@ afw_function_execute_all_of(
  */
 const afw_value_t *
 afw_function_execute_any_of(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_as
+ *
+ * Implementation for functions:
+ *
+ * as_anyURI
+ * as_array
+ * as_base64Binary
+ * as_boolean
+ * as_dateTime
+ * as_date
+ * as_dayTimeDuration
+ * as_dnsName
+ * as_double
+ * as_function
+ * as_hexBinary
+ * as_ia5String
+ * as_integer
+ * as_ipAddress
+ * as_null
+ * as_objectId
+ * as_objectPath
+ * as_object
+ * as_password
+ * as_rfc822Name
+ * as_script
+ * as_string
+ * as_template
+ * as_time
+ * as_unevaluated
+ * as_x500Name
+ * as_xpathExpression
+ * as_yearMonthDuration
+ */
+const afw_value_t *
+afw_function_execute_as(
     afw_function_execute_t *x);
 
 /**
@@ -33628,35 +34799,34 @@ afw_function_execute_intersection(
  *
  * Implementation for functions:
  *
- * is<anyURI>
- * is<array>
- * is<base64Binary>
- * is<boolean>
- * is<dateTime>
- * is<date>
- * is<dayTimeDuration>
- * is<dnsName>
- * is<double>
- * is<function>
- * is<hexBinary>
- * is<ia5String>
- * is<integer>
- * is<ipAddress>
- * is<null>
- * is<objectId>
- * is<objectPath>
- * is<object>
- * is<password>
- * is
- * is<rfc822Name>
- * is<script>
- * is<string>
- * is<template>
- * is<time>
- * is<unevaluated>
- * is<x500Name>
- * is<xpathExpression>
- * is<yearMonthDuration>
+ * is_anyURI
+ * is_array
+ * is_base64Binary
+ * is_boolean
+ * is_dateTime
+ * is_date
+ * is_dayTimeDuration
+ * is_dnsName
+ * is_double
+ * is_function
+ * is_hexBinary
+ * is_ia5String
+ * is_integer
+ * is_ipAddress
+ * is_null
+ * is_objectId
+ * is_objectPath
+ * is_object
+ * is_password
+ * is_rfc822Name
+ * is_script
+ * is_string
+ * is_template
+ * is_time
+ * is_unevaluated
+ * is_x500Name
+ * is_xpathExpression
+ * is_yearMonthDuration
  */
 const afw_value_t *
 afw_function_execute_is(

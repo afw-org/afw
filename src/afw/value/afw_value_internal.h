@@ -1162,6 +1162,31 @@ void
 afw_value_register_core_value_infs(afw_xctx_t *xctx);
 
 
+/**
+ * @brief Message for a type assertion (`v as T`, `as_T(v)`) that failed.
+ * @param expected data type T.
+ * @param got data type of the value, or NULL if the value is undefined.
+ * @param value the value if known (run time, or a literal at compile time),
+ *     else NULL. A short string value is shown in the typed literal hint.
+ * @param p for the result.
+ * @param xctx of caller.
+ * @return "expected T but got S", followed by how to get a T instead when
+ *     there is a way: a typed literal if S is string and T has one, and
+ *     to_T(v) if to_T is defined for S.
+ *
+ * Implemented in afw_value_type_check.c. Used by afw_function_execute_as at
+ * run time and by the compile time typeCheck of as_T calls, so both say it
+ * in the same words.
+ */
+const afw_utf8_z_t *
+afw_value_type_assertion_mismatch_z(
+    const afw_data_type_t *expected,
+    const afw_data_type_t *got,
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

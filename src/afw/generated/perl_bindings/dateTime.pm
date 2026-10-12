@@ -15,6 +15,7 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_dayTimeDuration_dateTime 
     add_yearMonthDuration_dateTime 
+    as_dateTime 
     at_least_one_member_of_dateTime 
     bag_dateTime 
     bag_size_dateTime 
@@ -74,6 +75,20 @@ Add duration
 
     $arg2
 
+
+=head3 as_dateTime
+
+Returns value unchanged if it is dataType dateTime. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a dateTime from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as dateTime.
+Asserts that value is dataType dateTime
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_dateTime
 
@@ -204,7 +219,8 @@ The second array.
 
 =head3 is_dateTime
 
-Checks whether value is dataType dateTime and return the boolean result.
+Checks whether value is dataType dateTime and returns the boolean result. This
+can also be written `is<dateTime>(value`).
 Checks whether value is dataType dateTime
 
 =head4 Parameters
@@ -436,6 +452,17 @@ sub add_yearMonthDuration_dateTime {
     return $request->getResult();
 }
 
+sub as_dateTime {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_dateTime");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_dateTime {
     my ($array1, $array2) = @_;
 
@@ -548,7 +575,7 @@ sub is_dateTime {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<dateTime>");
+    $request->set("function" => "is_dateTime");
     $request->set("value", $value);
 
     return $request->getResult();

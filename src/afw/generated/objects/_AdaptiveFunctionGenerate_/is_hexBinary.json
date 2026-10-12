@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType hexBinary and return the boolean result.",
-    "functionId": "is<hexBinary>",
+    "description": "Checks whether value is dataType hexBinary and returns the boolean result. This can also be written is<hexBinary>(value).",
+    "functionId": "is_hexBinary",
     "functionLabel": "is_hexBinary",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

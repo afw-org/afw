@@ -18,6 +18,27 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
+ * including when value is undefined, throws an error. It never converts: to
+ * get a yearMonthDuration from a value of another data type, write a typed
+ * literal or call a to_ function. This is usually written value as
+ * yearMonthDuration.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {yearMonthDuration} value, which is dataType yearMonthDuration
+ */
+export function afwAsYearMonthDuration(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_yearMonthDuration";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in yearMonthDuration array1 is
  * in yearMonthDuration array2.
  * 
@@ -205,8 +226,8 @@ export function afwIsInYearMonthDuration(client : any, value : any, array : any[
 }
 
 /**
- * Checks whether value is dataType yearMonthDuration and return the boolean
- * result.
+ * Checks whether value is dataType yearMonthDuration and returns the boolean
+ * result. This can also be written `is<yearMonthDuration>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -216,7 +237,7 @@ export function afwIsYearMonthDuration(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<yearMonthDuration>";
+    _action["function"] = "is_yearMonthDuration";
     _action["value"] = value;
 
     return client.perform(_action);

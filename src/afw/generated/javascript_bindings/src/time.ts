@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType time. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a time from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as time.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {time} value, which is dataType time
+ */
+export function afwAsTime(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_time";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in time array1 is in time
  * array2.
  * 
@@ -236,7 +256,8 @@ export function afwIsInTime(client : any, value : any, array : any[]) : any {
 }
 
 /**
- * Checks whether value is dataType time and return the boolean result.
+ * Checks whether value is dataType time and returns the boolean result. This
+ * can also be written `is<time>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -246,7 +267,7 @@ export function afwIsTime(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<time>";
+    _action["function"] = "is_time";
     _action["value"] = value;
 
     return client.perform(_action);

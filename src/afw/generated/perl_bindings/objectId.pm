@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_objectId 
     bag_objectId 
     bag_size_objectId 
     eq_objectId 
@@ -35,6 +36,20 @@ afw::objectId - Perl module for objectId functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_objectId
+
+Returns value unchanged if it is dataType objectId. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a objectId from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as objectId.
+Asserts that value is dataType objectId
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_objectId
 
@@ -116,7 +131,8 @@ Checks for greater than
 
 =head3 is_objectId
 
-Checks whether value is dataType objectId and return the boolean result.
+Checks whether value is dataType objectId and returns the boolean result. This
+can also be written `is<objectId>(value`).
 Checks whether value is dataType objectId
 
 =head4 Parameters
@@ -208,6 +224,17 @@ A objectId value.
 
 =cut
 
+sub as_objectId {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_objectId");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub bag_objectId {
     my ($values) = @_;
 
@@ -285,7 +312,7 @@ sub is_objectId {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<objectId>");
+    $request->set("function" => "is_objectId");
     $request->set("value", $value);
 
     return $request->getResult();

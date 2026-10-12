@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType password. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * password from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as password.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {password} value, which is dataType password
+ */
+export function afwAsPassword(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_password";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of password values and returns an array of password.
  * 
  * @param {array} values -
@@ -140,7 +160,8 @@ export function afwGtPassword(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks whether value is dataType password and return the boolean result.
+ * Checks whether value is dataType password and returns the boolean result.
+ * This can also be written `is<password>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -150,7 +171,7 @@ export function afwIsPassword(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<password>";
+    _action["function"] = "is_password";
     _action["value"] = value;
 
     return client.perform(_action);

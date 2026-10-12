@@ -26,6 +26,32 @@ class objectId
     }
 
     /**
+     * as_objectId()
+     *
+     * Returns value unchanged if it is dataType objectId. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a objectId from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * objectId.
+     *
+     * @param $value Value to assert
+     *
+     * @return objectId value, which is dataType objectId
+     */
+    public function as_objectId(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_objectId");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_objectId()
      *
      * Takes any number of objectId values and returns an array of objectId.
@@ -177,8 +203,8 @@ class objectId
     /**
      * is_objectId()
      *
-     * Checks whether value is dataType objectId and return the boolean
-     * result.
+     * Checks whether value is dataType objectId and returns the boolean
+     * result. This can also be written `is<objectId>(value`).
      *
      * @param $value Value to check
      *
@@ -188,7 +214,7 @@ class objectId
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<objectId>");
+        $request->set("function", "is_objectId");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

@@ -81,6 +81,31 @@ class object
     }
 
     /**
+     * as_object()
+     *
+     * Returns value unchanged if it is dataType object. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * object from a value of another data type, write a typed literal or call
+     * a to_ function. This is usually written value as object.
+     *
+     * @param $value Value to assert
+     *
+     * @return object value, which is dataType object
+     */
+    public function as_object(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_object");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_object()
      *
      * Takes any number of object values and returns an array of object.
@@ -302,7 +327,8 @@ class object
     /**
      * is_object()
      *
-     * Checks whether value is dataType object and return the boolean result.
+     * Checks whether value is dataType object and returns the boolean result.
+     * This can also be written `is<object>(value`).
      *
      * @param $value Value to check
      *
@@ -312,7 +338,7 @@ class object
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<object>");
+        $request->set("function", "is_object");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

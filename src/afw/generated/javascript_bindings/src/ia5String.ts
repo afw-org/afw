@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType ia5String. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * ia5String from a value of another data type, write a typed literal or call
+ * a to_ function. This is usually written value as ia5String.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {ia5String} value, which is dataType ia5String
+ */
+export function afwAsIa5String(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_ia5String";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of ia5String values and returns an array of ia5String.
  * 
  * @param {array} values -
@@ -157,7 +177,8 @@ export function afwIa5String(client : any, value : any) : any {
 }
 
 /**
- * Checks whether value is dataType ia5String and return the boolean result.
+ * Checks whether value is dataType ia5String and returns the boolean result.
+ * This can also be written `is<ia5String>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -167,7 +188,7 @@ export function afwIsIa5String(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<ia5String>";
+    _action["function"] = "is_ia5String";
     _action["value"] = value;
 
     return client.perform(_action);

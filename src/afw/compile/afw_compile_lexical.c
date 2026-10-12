@@ -1438,6 +1438,7 @@ impl_parse_identifier(afw_compile_parser_t *parser)
  * ReservedWords ::= (
  *      PredefinedConstReservedWords |
  *      StatementReservedWords |
+ *      OperatorReservedWords |
  *      UnusedButReservedWords )
  *
  *<<<ebnf*/
@@ -1508,6 +1509,15 @@ afw_compile_is_reserved_word(
 
 /*ebnf>>>
  *
+ *# Operator keywords: 'as' in 'v as T' (Comparison).
+ * OperatorReservedWords ::= 'as'
+ *
+ *<<<ebnf*/
+
+        v == (const afw_value_string_t *)afw_v_as           ||
+
+/*ebnf>>>
+ *
  *# Not implemented as syntax today; reserved for possible future surface or
  *# to block awkward identifiers. Keep 'var' and 'with' reserved even though
  *# Adaptive Script does not implement those keywords.
@@ -1522,13 +1532,12 @@ afw_compile_is_reserved_word(
  *# same object-model reasons (no sparse "punch a hole" / property-remove
  *# operator). Mutate arrays with splice and related helpers; remove object
  *# properties through Adaptive object/adapter APIs, not a delete keyword.
- * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
+ * UnusedButReservedWords ::= ( 'async' | 'await' | 'class' | 'delete' |
  *      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
  *      'this' | 'typeof' | 'var' | 'with' )
  *
  *<<<ebnf*/
 
-        v == (const afw_value_string_t *)afw_v_as           ||
         v == (const afw_value_string_t *)afw_v_async        ||
         v == (const afw_value_string_t *)afw_v_await        ||
         v == (const afw_value_string_t *)afw_v_class        ||

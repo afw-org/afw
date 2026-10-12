@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isNull",
     "category": "null",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType null and return the boolean result.",
-    "functionId": "is<null>",
+    "description": "Checks whether value is dataType null and returns the boolean result. This can also be written is<null>(value).",
+    "functionId": "is_null",
     "functionLabel": "is_null",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

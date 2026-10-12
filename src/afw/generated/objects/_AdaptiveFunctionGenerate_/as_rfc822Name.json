@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsRfc822Name",
+    "brief": "Asserts that value is dataType rfc822Name",
+    "camelCaseFunctionLabel": "asRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType rfc822Name. Otherwise, including when value is undefined, throws an error. It never converts: to get a rfc822Name from a value of another data type, write a typed literal or call a to_ function. This is usually written value as rfc822Name.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_rfc822Name",
+    "functionLabel": "as_rfc822Name",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "rfc822Name",
+        "description": "value, which is dataType rfc822Name"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

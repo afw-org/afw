@@ -18,6 +18,27 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType xpathExpression. Otherwise,
+ * including when value is undefined, throws an error. It never converts: to
+ * get a xpathExpression from a value of another data type, write a typed
+ * literal or call a to_ function. This is usually written value as
+ * xpathExpression.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {xpathExpression} value, which is dataType xpathExpression
+ */
+export function afwAsXpathExpression(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_xpathExpression";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * This returns the integer number of values in array.
  * 
  * @param {array} value -
@@ -203,8 +224,8 @@ export function afwGtXpathExpression(client : any, arg1 : any, arg2 : any) : any
 }
 
 /**
- * Checks whether value is dataType xpathExpression and return the boolean
- * result.
+ * Checks whether value is dataType xpathExpression and returns the boolean
+ * result. This can also be written `is<xpathExpression>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -214,7 +235,7 @@ export function afwIsXpathExpression(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<xpathExpression>";
+    _action["function"] = "is_xpathExpression";
     _action["value"] = value;
 
     return client.perform(_action);

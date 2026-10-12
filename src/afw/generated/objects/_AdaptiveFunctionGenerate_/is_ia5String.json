@@ -4,8 +4,8 @@
     "camelCaseFunctionLabel": "isIa5String",
     "category": "ia5String",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType ia5String and return the boolean result.",
-    "functionId": "is<ia5String>",
+    "description": "Checks whether value is dataType ia5String and returns the boolean result. This can also be written is<ia5String>(value).",
+    "functionId": "is_ia5String",
     "functionLabel": "is_ia5String",
     "parameters": [
         {
@@ -17,5 +17,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

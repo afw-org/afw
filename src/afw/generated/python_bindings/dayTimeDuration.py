@@ -11,6 +11,38 @@
 import requests
 import json
 
+def as_dayTimeDuration(session, value):
+    """
+    Asserts that value is dataType dayTimeDuration
+
+    Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
+    including when value is undefined, throws an error. It never converts: to
+    get a dayTimeDuration from a value of another data type, write a typed
+    literal or call a to_ function. This is usually written value as
+    dayTimeDuration.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType dayTimeDuration
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_dayTimeDuration",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_dayTimeDuration(session, array1, array2):
     """
     Checks for at least one value in common
@@ -292,8 +324,8 @@ def is_dayTimeDuration(session, value):
     """
     Checks whether value is dataType dayTimeDuration
 
-    Checks whether value is dataType dayTimeDuration and return the boolean
-    result.
+    Checks whether value is dataType dayTimeDuration and returns the boolean
+    result. This can also be written `is<dayTimeDuration>(value`).
 
     Args:
         value (object): Value to check
@@ -305,7 +337,7 @@ def is_dayTimeDuration(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<dayTimeDuration>",
+        "function": "is_dayTimeDuration",
         "value": value
     }
 

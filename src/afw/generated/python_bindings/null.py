@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_null(session, value):
+    """
+    Asserts that value is dataType null
+
+    Returns value unchanged if it is dataType null. Otherwise, including when
+    value is undefined, throws an error. It never converts: to get a null from
+    a value of another data type, write a typed literal or call a to_
+    function. This is usually written value as null.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        None: value, which is dataType null
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_null",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_null(session, values=None):
     """
     Makes an array from values
@@ -73,7 +104,8 @@ def is_null(session, value):
     """
     Checks whether value is dataType null
 
-    Checks whether value is dataType null and return the boolean result.
+    Checks whether value is dataType null and returns the boolean result. This
+    can also be written `is<null>(value`).
 
     Args:
         value (object): Value to check
@@ -85,7 +117,7 @@ def is_null(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<null>",
+        "function": "is_null",
         "value": value
     }
 

@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType template. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * template from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as template.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {template} value, which is dataType template
+ */
+export function afwAsTemplate(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_template";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * This returns the integer number of values in array.
  * 
  * @param {array} value -
@@ -201,7 +221,8 @@ export function afwGtTemplate(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks whether value is dataType template and return the boolean result.
+ * Checks whether value is dataType template and returns the boolean result.
+ * This can also be written `is<template>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -211,7 +232,7 @@ export function afwIsTemplate(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<template>";
+    _action["function"] = "is_template";
     _action["value"] = value;
 
     return client.perform(_action);
