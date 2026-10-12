@@ -47,7 +47,7 @@
 #include "afw_data_type_objectPath_binding.h"
 #include "afw_data_type_password_binding.h"
 #include "afw_data_type_regexp_binding.h"
-#include "afw_data_type_relaxed_json_binding.h"
+#include "afw_data_type_relaxedJson_binding.h"
 #include "afw_data_type_rfc822Name_binding.h"
 #include "afw_data_type_script_binding.h"
 #include "afw_data_type_string_binding.h"
@@ -87,7 +87,7 @@
     _XX(objectPath) \
     _XX(password) \
     _XX(regexp) \
-    _XX(relaxed_json) \
+    _XX(relaxedJson) \
     _XX(rfc822Name) \
     _XX(script) \
     _XX(string) \

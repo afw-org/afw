@@ -28,6 +28,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Index filter/value scripts using bare `object` | **`current::object`** (and `objectId` / `objectType` / `key`). [Index `current::`](#adapter-index-filtervalue-current-issue-54--partial) |
 | `index_create` with a `filter` but no `value` | A `value` script and a name objects don't have (a computed name). `index_create` also refuses a script on a key an object type declares. [Index queries](#index-queries-mean-what-the-index-holds-issue-516) |
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
+| Data type and compile type `relaxed_json` (`relaxed_json(…)`, `compile<relaxed_json>`, `compileType` / `compile_from_file` `"relaxed_json"`) | **`relaxedJson`**, camelCase like the other data type ids. [#581](https://github.com/afw-org/afw/issues/581) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | Authorization handlers that deny what they do not recognize, where a journal is used | Journal operations are now **authorized like object operations**, on **`/<adapter>/_AdaptiveJournalEntry_/…`**: **`create`** on `…/` (add an entry), **`read`** on everything else: `…/<cursor>` (the entry at a cursor) and the special objectId of the other operations (`…/get_first`, `…/get_next_for_consumer:<consumer_id>`, `…/mark_consumed:<consumer_id>:<cursor>`, …). A built-in and its REST form are checked on the same path, without any `:<limit>`, so a handler can permit one consumer and not another. Mark consumed over REST is `GET …/mark_consumed:<consumer_id>:<cursor>`, the same as `journal_mark_consumed()`; consumer forms with no `:<limit>` have no limit, the same as the built-ins. A limit, REST or built-in, must be 1 or more (a built-in limit of 0 or less is now **`argument_error`**; it used to mean no limit). Entries an adapter writes for its own object changes are not checked. [#520](https://github.com/afw-org/afw/issues/520) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
@@ -659,7 +660,7 @@ Adaptive **`array`** is a **dense** ordered sequence of values (not an object, n
 
 | Topic | Behavior |
 |-------|----------|
-| **Literal elision** | `['a', ,'b']` has length **3**; the middle slot is **undefined** (same as writing `undefined`). Allowed in **script** and **`relaxed_json`**. |
+| **Literal elision** | `['a', ,'b']` has length **3**; the middle slot is **undefined** (same as writing `undefined`). Allowed in **script** and **`relaxedJson`**. |
 | **Strict JSON** | Elision and trailing commas remain **invalid** (RFC JSON). |
 | **`a[i] =`** | Replace when `0 ≤ i < length`. **Append** when `i === length`. **Error** if `i > length` (no gap fill). |
 | **`create_array(n)`** | New array of length **n** filled with **undefined** (`n` from **0** to **1_000_000**). Renamed from `empty_array`. |
@@ -679,7 +680,7 @@ Many Adaptive **data types** have a same-named **conversion function** `T(value)
 | Kind | Examples | Notes |
 |------|----------|--------|
 | **Classic convert** | `integer`, `boolean`, `double`, dates, binaries, XACML-ish stringy types, … | Shared `afw_function_execute_convert` |
-| **Source-holding** | `json`, `relaxed_json`, `script`, `template`, `regexp`, `xpathExpression` | Value holds **source text** of that kind; does **not** compile. Polymorphic **`compile`** compiles it. Good property types for source fields. |
+| **Source-holding** | `json`, `relaxedJson`, `script`, `template`, `regexp`, `xpathExpression` | Value holds **source text** of that kind; does **not** compile. Polymorphic **`compile`** compiles it. Good property types for source fields. |
 | **`string(...)`** | convert + optional multi-arg **concat** | One arg ≈ convert-to-string |
 | **`object(x)`** | JSON text → object, or object unchanged | Not an object-literal constructor (`{…}`) |
 | **`array(...)`** | **Constructor** from elements / spread | **Not** a conversion function |

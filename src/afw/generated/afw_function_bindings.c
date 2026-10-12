@@ -32628,7 +32628,7 @@ impl_compile_from_file_parameter_2 = {
     NULL,
     &afw_self_v_compileType,
     NULL,
-    &afw_self_v_zz__f58fad6636c4,
+    &afw_self_v_zz__aa3ed74b5ebd,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -33014,7 +33014,7 @@ impl_eval_from_file_parameter_2 = {
     NULL,
     &afw_self_v_compileType,
     NULL,
-    &afw_self_v_zz__f58fad6636c4,
+    &afw_self_v_zz__aa3ed74b5ebd,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -97075,7 +97075,7 @@ static const afw_utf8_t
 impl_compile_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("json"),
     AFW_UTF8_LITERAL("regexp"),
-    AFW_UTF8_LITERAL("relaxed_json"),
+    AFW_UTF8_LITERAL("relaxedJson"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("xpathExpression"),
@@ -112262,41 +112262,41 @@ impl_object__regexp__value = {
     (const afw_object_t *)&impl_object__regexp
 };
 
-/* ---------- compile<relaxed_json> ---------- */
+/* ---------- compile<relaxedJson> ---------- */
 
 static const afw_utf8_t
-impl_object_path__compile_relaxed_json =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/compile_relaxed_json");
+impl_object_path__compile_relaxedJson =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/compile_relaxedJson");
 
 static const afw_value_object_t
-impl_object__compile_relaxed_json__value;
+impl_object__compile_relaxedJson__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__compile_relaxed_json = {
+impl_object__compile_relaxedJson = {
     {
         {&afw_runtime_inf__AdaptiveFunction_},
         NULL,
-        (const afw_value_t *)&impl_object__compile_relaxed_json__value,
+        (const afw_value_t *)&impl_object__compile_relaxedJson__value,
         {
             NULL,
             NULL,
-            &afw_self_s_compile_relaxed_json,
+            &afw_self_s_compile_relaxedJson,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__compile_relaxed_json
+            &impl_object_path__compile_relaxedJson
         }
     },
-    (void *)&afw_function_definition_compile_relaxed_json
+    (void *)&afw_function_definition_compile_relaxedJson
 };
 
 static const afw_value_object_t
-impl_compile_relaxed_json_returns__value;
+impl_compile_relaxedJson_returns__value;
 
 static const afw_value_function_parameter_t
-impl_compile_relaxed_json_returns = {
+impl_compile_relaxedJson_returns = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_compile_relaxed_json_returns__value,
+        (const afw_value_t *)&impl_compile_relaxedJson_returns__value,
         {
             NULL,
             NULL,
@@ -112320,20 +112320,20 @@ impl_compile_relaxed_json_returns = {
 };
 
 static const afw_value_object_t
-impl_compile_relaxed_json_returns__value = {
+impl_compile_relaxedJson_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_compile_relaxed_json_returns
+    (const afw_object_t *)&impl_compile_relaxedJson_returns
 };
 
 static const afw_value_object_t
-impl_compile_relaxed_json_parameter_1__value;
+impl_compile_relaxedJson_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_compile_relaxed_json_parameter_1 = {
+impl_compile_relaxedJson_parameter_1 = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_compile_relaxed_json_parameter_1__value,
+        (const afw_value_t *)&impl_compile_relaxedJson_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112342,12 +112342,12 @@ impl_compile_relaxed_json_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_relaxed_json_direct,
-    &afw_self_v_relaxed_json,
+    &afw_data_type_relaxedJson_direct,
+    &afw_self_v_relaxedJson,
     NULL,
     &afw_self_v_source,
     &afw_self_v_zz__Source_to_compile,
-    &afw_self_v_zz__relaxed_json_string_to_compile,
+    &afw_self_v_zz__relaxedJson_string_to_compile,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -112357,20 +112357,20 @@ impl_compile_relaxed_json_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_compile_relaxed_json_parameter_1__value = {
+impl_compile_relaxedJson_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_compile_relaxed_json_parameter_1
+    (const afw_object_t *)&impl_compile_relaxedJson_parameter_1
 };
 
 static const afw_value_object_t
-impl_compile_relaxed_json_parameter_2__value;
+impl_compile_relaxedJson_parameter_2__value;
 
 static const afw_value_function_parameter_t
-impl_compile_relaxed_json_parameter_2 = {
+impl_compile_relaxedJson_parameter_2 = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_compile_relaxed_json_parameter_2__value,
+        (const afw_value_t *)&impl_compile_relaxedJson_parameter_2__value,
         {
             NULL,
             NULL,
@@ -112394,20 +112394,20 @@ impl_compile_relaxed_json_parameter_2 = {
 };
 
 static const afw_value_object_t
-impl_compile_relaxed_json_parameter_2__value = {
+impl_compile_relaxedJson_parameter_2__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_compile_relaxed_json_parameter_2
+    (const afw_object_t *)&impl_compile_relaxedJson_parameter_2
 };
 
 static const afw_value_function_parameter_t *
-impl_compile_relaxed_json_parameters[] = {
-    &impl_compile_relaxed_json_parameter_1,
-    &impl_compile_relaxed_json_parameter_2,
+impl_compile_relaxedJson_parameters[] = {
+    &impl_compile_relaxedJson_parameter_1,
+    &impl_compile_relaxedJson_parameter_2,
     NULL
 };
 
 static const afw_utf8_z_t *
-impl_compile_relaxed_json_errorsThrown[] = {
+impl_compile_relaxedJson_errorsThrown[] = {
     "error", "syntax",
     "reason", "source could not be compiled",
     NULL,
@@ -112415,33 +112415,33 @@ impl_compile_relaxed_json_errorsThrown[] = {
 };
 
 const afw_value_function_definition_t
-afw_function_definition_compile_relaxed_json = {
+afw_function_definition_compile_relaxedJson = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__compile_relaxed_json,
-    &afw_self_v_relaxed_json,
-    &afw_self_v_zz__compile_relaxed_json_,
-    &afw_self_v_zz___afw__AdaptiveFunction__compile_relaxed_json_,
+    (const afw_object_t *)&impl_object__compile_relaxedJson,
+    &afw_self_v_relaxedJson,
+    &afw_self_v_zz__compile_relaxedJson_,
+    &afw_self_v_zz___afw__AdaptiveFunction__compile_relaxedJson_,
     &afw_self_v_compile,
-    &afw_self_v_compile_relaxed_json,
+    &afw_self_v_compile_relaxedJson,
     &afw_self_v_compileRelaxedJson,
     &afw_self_v_afwCompileRelaxedJson,
-    &afw_self_v_zz__Compile_relaxed_json_value,
-    &afw_self_v_zz__2bb7c06c0a3b,
-    &afw_self_v_zz___source__relaxed_json__listing___any___unevaluated,
-    &afw_self_v_zz__6f87aaf9b209,
+    &afw_self_v_zz__Compile_relaxedJson_value,
+    &afw_self_v_zz__5db802f09810,
+    &afw_self_v_zz___source__relaxedJson__listing___any___unevaluated,
+    &afw_self_v_zz__b00c9c04a7ae,
     NULL,
-    afw_function_execute_compile_relaxed_json,
-    afw_function_execute_compile_relaxed_json,
+    afw_function_execute_compile_relaxedJson,
+    afw_function_execute_compile_relaxedJson,
     NULL,
     &afw_integer_self_v_one,
     &afw_integer_self_v_2,
-    &impl_compile_relaxed_json_parameters[0],
+    &impl_compile_relaxedJson_parameters[0],
     2,
-    &impl_compile_relaxed_json_returns,
+    &impl_compile_relaxedJson_returns,
     NULL,
-    &afw_data_type_relaxed_json_direct,
-    &afw_self_v_relaxed_json,
-    &impl_compile_relaxed_json_errorsThrown[0],
+    &afw_data_type_relaxedJson_direct,
+    &afw_self_v_relaxedJson,
+    &impl_compile_relaxedJson_errorsThrown[0],
     NULL,
     afw_data_type_method_number_compile,
     &afw_boolean_self_v_false,
@@ -112454,46 +112454,46 @@ afw_function_definition_compile_relaxed_json = {
 };
 
 static const afw_value_object_t
-impl_object__compile_relaxed_json__value = {
+impl_object__compile_relaxedJson__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__compile_relaxed_json
+    (const afw_object_t *)&impl_object__compile_relaxedJson
 };
 
-/* ---------- relaxed_json ---------- */
+/* ---------- relaxedJson ---------- */
 
 static const afw_utf8_t
-impl_object_path__relaxed_json =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/relaxed_json");
+impl_object_path__relaxedJson =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/relaxedJson");
 
 static const afw_value_object_t
-impl_object__relaxed_json__value;
+impl_object__relaxedJson__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__relaxed_json = {
+impl_object__relaxedJson = {
     {
         {&afw_runtime_inf__AdaptiveFunction_},
         NULL,
-        (const afw_value_t *)&impl_object__relaxed_json__value,
+        (const afw_value_t *)&impl_object__relaxedJson__value,
         {
             NULL,
             NULL,
-            &afw_self_s_relaxed_json,
+            &afw_self_s_relaxedJson,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__relaxed_json
+            &impl_object_path__relaxedJson
         }
     },
-    (void *)&afw_function_definition_relaxed_json
+    (void *)&afw_function_definition_relaxedJson
 };
 
 static const afw_value_object_t
-impl_relaxed_json_returns__value;
+impl_relaxedJson_returns__value;
 
 static const afw_value_function_parameter_t
-impl_relaxed_json_returns = {
+impl_relaxedJson_returns = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_relaxed_json_returns__value,
+        (const afw_value_t *)&impl_relaxedJson_returns__value,
         {
             NULL,
             NULL,
@@ -112502,8 +112502,8 @@ impl_relaxed_json_returns = {
             NULL,
         }
     },
-    &afw_data_type_relaxed_json_direct,
-    &afw_self_v_relaxed_json,
+    &afw_data_type_relaxedJson_direct,
+    &afw_self_v_relaxedJson,
     NULL,
     NULL,
     NULL,
@@ -112517,20 +112517,20 @@ impl_relaxed_json_returns = {
 };
 
 static const afw_value_object_t
-impl_relaxed_json_returns__value = {
+impl_relaxedJson_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_relaxed_json_returns
+    (const afw_object_t *)&impl_relaxedJson_returns
 };
 
 static const afw_value_object_t
-impl_relaxed_json_parameter_1__value;
+impl_relaxedJson_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_relaxed_json_parameter_1 = {
+impl_relaxedJson_parameter_1 = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_relaxed_json_parameter_1__value,
+        (const afw_value_t *)&impl_relaxedJson_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112554,19 +112554,19 @@ impl_relaxed_json_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_relaxed_json_parameter_1__value = {
+impl_relaxedJson_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_relaxed_json_parameter_1
+    (const afw_object_t *)&impl_relaxedJson_parameter_1
 };
 
 static const afw_value_function_parameter_t *
-impl_relaxed_json_parameters[] = {
-    &impl_relaxed_json_parameter_1,
+impl_relaxedJson_parameters[] = {
+    &impl_relaxedJson_parameter_1,
     NULL
 };
 
 static const afw_utf8_z_t *
-impl_relaxed_json_errorsThrown[] = {
+impl_relaxedJson_errorsThrown[] = {
     "error", "conversion_error",
     "reason", "value could not be converted",
     NULL,
@@ -112574,33 +112574,33 @@ impl_relaxed_json_errorsThrown[] = {
 };
 
 const afw_value_function_definition_t
-afw_function_definition_relaxed_json = {
+afw_function_definition_relaxedJson = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__relaxed_json,
-    &afw_self_v_relaxed_json,
-    &afw_self_v_relaxed_json,
-    &afw_self_v_zz___afw__AdaptiveFunction__relaxed_json,
-    &afw_self_v_relaxed_json,
-    &afw_self_v_relaxed_json,
+    (const afw_object_t *)&impl_object__relaxedJson,
+    &afw_self_v_relaxedJson,
+    &afw_self_v_relaxedJson,
+    &afw_self_v_zz___afw__AdaptiveFunction__relaxedJson,
+    &afw_self_v_relaxedJson,
+    &afw_self_v_relaxedJson,
     &afw_self_v_relaxedJson,
     &afw_self_v_afwRelaxedJson,
-    &afw_self_v_zz__Convert_to_data_type_relaxed_json,
-    &afw_self_v_zz__f3c2b44584fc,
-    &afw_self_v_zz___value__any___relaxed_json,
-    &afw_self_v_zz__function_relaxed_json_______value__any____relaxed_json__,
+    &afw_self_v_zz__Convert_to_data_type_relaxedJson,
+    &afw_self_v_zz__68558e746107,
+    &afw_self_v_zz___value__any___relaxedJson,
+    &afw_self_v_zz__function_relaxedJson_______value__any____relaxedJson__,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
     NULL,
     &afw_integer_self_v_one,
     &afw_integer_self_v_one,
-    &impl_relaxed_json_parameters[0],
+    &impl_relaxedJson_parameters[0],
     1,
-    &impl_relaxed_json_returns,
+    &impl_relaxedJson_returns,
     NULL,
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_relaxed_json_errorsThrown[0],
+    &impl_relaxedJson_errorsThrown[0],
     NULL,
     0, /* Not a data type method. */
     &afw_boolean_self_v_false,
@@ -112613,9 +112613,9 @@ afw_function_definition_relaxed_json = {
 };
 
 static const afw_value_object_t
-impl_object__relaxed_json__value = {
+impl_object__relaxedJson__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__relaxed_json
+    (const afw_object_t *)&impl_object__relaxedJson
 };
 
 /* ---------- at_least_one_member_of<rfc822Name> ---------- */
@@ -150261,8 +150261,8 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_regexp,
     &afw_function_definition_nex_regexp,
     &afw_function_definition_regexp,
-    &afw_function_definition_compile_relaxed_json,
-    &afw_function_definition_relaxed_json,
+    &afw_function_definition_compile_relaxedJson,
+    &afw_function_definition_relaxedJson,
     &afw_function_definition_at_least_one_member_of_rfc822Name,
     &afw_function_definition_bag_rfc822Name,
     &afw_function_definition_bag_size_rfc822Name,

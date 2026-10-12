@@ -14,7 +14,7 @@
 | Surface | Elision `['a', ,'b']` |
 |---------|------------------------|
 | Script / template | Allowed → middle **undefined** (dense) |
-| `relaxed_json` | Same as script |
+| `relaxedJson` | Same as script |
 | Strict `json` | **Forbidden** (RFC JSON) |
 
 Holes are **not** a third state: elision inserts **`undefined`**.

@@ -751,7 +751,7 @@ impl_parse_TypedLiteral(afw_compile_parser_t *parser)
     /* JSON and relaxed JSON leave the identifier for a parse error. */
     if (afw_compile_is_at_eof() ||
         parser->compile_type == afw_compile_type_json ||
-        parser->compile_type == afw_compile_type_relaxed_json)
+        parser->compile_type == afw_compile_type_relaxedJson)
     {
         return;
     }

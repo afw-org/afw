@@ -50,7 +50,7 @@ export function afwAssert(client : any, assertion : boolean, reason? : string) :
  *     that root).
  * 
  * @param {string} compileType - The compile type, used by the parser to
- *     determine how to compile the data. For example, 'json', 'relaxed_json',
+ *     determine how to compile the data. For example, 'json', 'relaxedJson',
  *     'script', 'template'
  * 
  * @returns {any}
@@ -111,7 +111,7 @@ export function afwDecompile(client : any, value : any, whitespace? : any) : any
  *     that root).
  * 
  * @param {string} compileType - The compile type, used by the parser to
- *     determine how to compile the data. For example, 'json', 'relaxed_json',
+ *     determine how to compile the data. For example, 'json', 'relaxedJson',
  *     'script', 'template'
  * 
  * @returns {any}

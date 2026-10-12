@@ -23,7 +23,7 @@
     "polymorphicDataTypes": [
         "json",
         "regexp",
-        "relaxed_json",
+        "relaxedJson",
         "script",
         "template",
         "xpathExpression"

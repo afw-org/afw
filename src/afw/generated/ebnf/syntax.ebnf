@@ -36,7 +36,7 @@
 /* A parameter passed to the adaptive compiler determines the first           */
 /* production used for parse.                                                 */
 /*                                                                            */
-/* Json - afw_compile_type_json and afw_compile_type_relaxed_json             */
+/* Json - afw_compile_type_json and afw_compile_type_relaxedJson              */
 /*                                                                            */
 /* Script - afw_compile_type_script                                           */
 /*                                                                            */
@@ -277,7 +277,7 @@ DataType ::=
    'objectPath' |
    'password' |
    'regexp' |
-   'relaxed_json' |
+   'relaxedJson' |
    'rfc822Name' |
    'script' |
    'string' |
@@ -910,7 +910,7 @@ TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
 /* Default is script or the one specified in TestScriptDefinition             */
 
 TestSourceType ::= TestScriptLineStart 'source_type:'
-    ( 'json' | 'relaxed_json' | 'script' | 'template' )
+    ( 'json' | 'relaxedJson' | 'script' | 'template' )
 
 TestSource ::= TestScriptLineStart 'source:' TestScriptValue
 
@@ -956,7 +956,7 @@ List ::=
    ']'
 /* Relaxed / script: optional elision (hole → undefined) and trailing comma.  */
 /* Elision is a missing element between commas (or after '[' before a comma), */
-/* not a third array state. Same rules for script ListValue and relaxed_json. */
+/* not a third array state. Same rules for script ListValue and relaxedJson.  */
 /* Elision is written here as empty alternative between commas.               */
 
 RelaxedList ::=

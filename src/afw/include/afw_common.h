@@ -622,9 +622,9 @@ typedef _Bool afw_boolean_t;
         "Datatype Appendix F and builds an automata suitable for testing "      \
         "strings against that regular expression ")                             \
                                                                                 \
-    _XX(relaxed_json,                                                            \
+    _XX(relaxedJson,                                                            \
         string,                                                                 \
-        &afw_function_definition_compile_relaxed_json,                          \
+        &afw_function_definition_compile_relaxedJson,                          \
         "1) Allows inline and block comments\n"                                 \
         "2) Allows property names to be unquoted if they start with '_',\n"     \
         "   '$', 'a-z', 'A-Z', or char > 127 followed by any of those or\n"     \

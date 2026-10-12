@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Data Type relaxed_json
+ * Adaptive Data Type relaxedJson
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,51 +16,51 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_DATA_TYPE_RELAXED_JSON_BINDING_H__
-#define __AFW_DATA_TYPE_RELAXED_JSON_BINDING_H__
+#ifndef __AFW_DATA_TYPE_RELAXEDJSON_BINDING_H__
+#define __AFW_DATA_TYPE_RELAXEDJSON_BINDING_H__
 
 
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
 
 /**
- * @defgroup afw_c_api_data_type_relaxed_json relaxed_json
+ * @defgroup afw_c_api_data_type_relaxedJson relaxedJson
  * @ingroup afw_c_api_data_types
  *
- * Adaptive Data Type relaxed_json
+ * Adaptive Data Type relaxedJson
  *
  * @{
  */
 
 /**
- * @file afw_data_type_relaxed_json_binding.h
- * @brief Generated header for adaptive data type `relaxed_json`.
+ * @file afw_data_type_relaxedJson_binding.h
+ * @brief Generated header for adaptive data type `relaxedJson`.
  */
 
 AFW_BEGIN_DECLARES
 
-/** @brief Quoted data type id for relaxed_json */
-#define AFW_DATA_TYPE_ID_Q_relaxed_json "relaxed_json"
+/** @brief Quoted data type id for relaxedJson */
+#define AFW_DATA_TYPE_ID_Q_relaxedJson "relaxedJson"
 
-/** @brief Unquoted data type id for relaxed_json */
-#define AFW_DATA_TYPE_ID_U_relaxed_json relaxed_json
+/** @brief Unquoted data type id for relaxedJson */
+#define AFW_DATA_TYPE_ID_U_relaxedJson relaxedJson
 
-/** @brief String for data type id relaxed_json */
-#define AFW_DATA_TYPE_ID_S_relaxed_json afw_s_relaxed_json
+/** @brief String for data type id relaxedJson */
+#define AFW_DATA_TYPE_ID_S_relaxedJson afw_s_relaxedJson
 
-/** @brief Quoted c type for data type id relaxed_json */
-#define AFW_DATA_TYPE_CTYPE_Q_relaxed_json "afw_utf8_t"
+/** @brief Quoted c type for data type id relaxedJson */
+#define AFW_DATA_TYPE_CTYPE_Q_relaxedJson "afw_utf8_t"
 
-/** @brief Adaptive string value for "relaxed_json". */
+/** @brief Adaptive string value for "relaxedJson". */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_data_type_relaxed_json_id_value;
+afw_data_type_relaxedJson_id_value;
 
-/** @brief Data type struct for relaxed_json. */
+/** @brief Data type struct for relaxedJson. */
 AFW_DECLARE_CONST_DATA(afw_data_type_t *)
-afw_data_type_relaxed_json;
+afw_data_type_relaxedJson;
 
 /**
- * @brief Unmanaged evaluated value inf for data type relaxed_json.
+ * @brief Unmanaged evaluated value inf for data type relaxedJson.
  *
  * Lifetime is the containing pool. get_reference and
  * optional_release throw (scalar, object, array).
@@ -70,10 +70,10 @@ afw_data_type_relaxed_json;
  * clone_managed.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_relaxed_json_inf;
+afw_value_unmanaged_relaxedJson_inf;
 
 /**
- * @brief Managed evaluated value inf for data type relaxed_json.
+ * @brief Managed evaluated value inf for data type relaxedJson.
  *
  * Start-at-1 holdable in p->managed_p (caller must release).
  * get_reference / get_assignable_value bump. Scalar
@@ -82,10 +82,10 @@ afw_value_unmanaged_relaxed_json_inf;
  * has no extra header).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_relaxed_json_inf;
+afw_value_managed_relaxedJson_inf;
 
 /**
- * @brief Managed slice value inf for data type relaxed_json.
+ * @brief Managed slice value inf for data type relaxedJson.
  *
  * Slice of a managed value: get_reference containing at create.
  * Header in p->managed_p. Slice starts at 1. get_reference bumps
@@ -93,10 +93,10 @@ afw_value_managed_relaxed_json_inf;
  * and free_memorys the slice header via the stored p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_slice_relaxed_json_inf;
+afw_value_managed_slice_relaxedJson_inf;
 
 /**
- * @brief Permanent (life of afw environment) value inf for data type relaxed_json.
+ * @brief Permanent (life of afw environment) value inf for data type relaxedJson.
  *
  * Lifetime is the afw environment / static const storage.
  * optional_release is NULL. Scalar get_reference /
@@ -105,81 +105,81 @@ afw_value_managed_slice_relaxed_json_inf;
  * (object) or managed clone (array).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_permanent_relaxed_json_inf;
+afw_value_permanent_relaxedJson_inf;
 
 /**
- * @brief Macro to determine if data type is relaxed_json.
+ * @brief Macro to determine if data type is relaxedJson.
  * @param _A_DATA_TYPE to test.
  * @return boolean result.
  */
-#define afw_data_type_is_relaxed_json(_A_DATA_TYPE) \
+#define afw_data_type_is_relaxedJson(_A_DATA_TYPE) \
 ( \
     (_A_DATA_TYPE) && \
-    (_A_DATA_TYPE) == afw_data_type_relaxed_json \
+    (_A_DATA_TYPE) == afw_data_type_relaxedJson \
 )
 
 /**
- * @brief True if _A_VALUE is an evaluated relaxed_json value.
+ * @brief True if _A_VALUE is an evaluated relaxedJson value.
  * @param _A_VALUE to test.
  * @return boolean result.
  *
  * For evaluated values only. When true, it is safe to cast _A_VALUE to
- * `const afw_value_relaxed_json_t *`.
- * If you want to know if the value will be relaxed_json when fully
+ * `const afw_value_relaxedJson_t *`.
+ * If you want to know if the value will be relaxedJson when fully
  * evaluated (not necessarily cast-safe yet), use
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, relaxed_json, xctx)` instead.
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(_A_VALUE, relaxedJson, xctx)` instead.
  */
-#define afw_value_is_relaxed_json(_A_VALUE) \
+#define afw_value_is_relaxedJson(_A_VALUE) \
 ( \
     (_A_VALUE) && \
-    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_relaxed_json\
+    (_A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_relaxedJson\
 )
 
 /**
- * @brief True if _A_VALUE is an evaluated array of relaxed_json.
+ * @brief True if _A_VALUE is an evaluated array of relaxedJson.
  * @param _A_VALUE to test.
  * @return boolean result.
  *
  * When true, _A_VALUE is an evaluated array (`const afw_value_array_t *`)
- * whose element data type is relaxed_json.
+ * whose element data type is relaxedJson.
  */
-#define afw_value_is_array_of_relaxed_json(_A_VALUE) \
+#define afw_value_is_array_of_relaxedJson(_A_VALUE) \
 ( \
     afw_value_is_array(_A_VALUE) && \
     afw_array_get_data_type( \
         ((const afw_value_array_t *)(_A_VALUE))->internal, \
-        xctx) == afw_data_type_relaxed_json \
+        xctx) == afw_data_type_relaxedJson \
 )
 
 /**
- * @brief Convert data type relaxed_json string to afw_utf8_t *.
+ * @brief Convert data type relaxedJson string to afw_utf8_t *.
  * @param to_internal place to return result.  Must be sizeof(afw_utf8_t).
  * @param from_utf8 to convert.
  * @param p to use for returned internal.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_data_type_relaxed_json_to_internal(
+afw_data_type_relaxedJson_to_internal(
     afw_utf8_t *to_internal,
     const afw_utf8_t *from_utf8,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Convert data type relaxed_json internal representation to utf-8.
+ * @brief Convert data type relaxedJson internal representation to utf-8.
  * @param internal (const afw_utf8_t *) to convert.
  * @param p to use for returned string.
  * @param xctx of caller.
  * @return (const afw_utf8_t *) normalized string representation of value.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_data_type_relaxed_json_to_utf8(
+afw_data_type_relaxedJson_to_utf8(
     const afw_utf8_t * internal,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-/** @brief struct for data type relaxed_json values. */
-struct afw_value_relaxed_json_s {
+/** @brief struct for data type relaxedJson values. */
+struct afw_value_relaxedJson_s {
     /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
     union {
         const afw_value_inf_t *inf;
@@ -190,12 +190,12 @@ struct afw_value_relaxed_json_s {
     afw_utf8_t internal;
 };
 
-/** @brief struct for managed data type relaxed_json values.
+/** @brief struct for managed data type relaxedJson values.
  *
- * This is the same as afw_value_relaxed_json_s with the addition of a
+ * This is the same as afw_value_relaxedJson_s with the addition of a
  * reference count. This is intended for internal use only.
  */
-struct afw_value_relaxed_json_managed_s {
+struct afw_value_relaxedJson_managed_s {
     /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
     union {
         const afw_value_inf_t *inf;
@@ -212,11 +212,11 @@ struct afw_value_relaxed_json_managed_s {
     afw_size_t reference_count;
 };
 
-/** @brief struct for managed slice data type relaxed_json values.
+/** @brief struct for managed slice data type relaxedJson values.
  *
  * A view into a containing managed value. Holds that value.
  */
-struct afw_value_relaxed_json_managed_slice_s {
+struct afw_value_relaxedJson_managed_slice_s {
     /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
     union {
         const afw_value_inf_t *inf;
@@ -227,7 +227,7 @@ struct afw_value_relaxed_json_managed_slice_s {
     afw_utf8_t internal;
 
     /** @brief  Containing managed value that owns the buffer. */
-    const afw_value_relaxed_json_managed_t *containing_value;
+    const afw_value_relaxedJson_managed_t *containing_value;
 
     /** @brief  Pool used at create (p->managed_p). */
     const afw_pool_t *p;
@@ -237,53 +237,53 @@ struct afw_value_relaxed_json_managed_slice_s {
 };
 
 /**
- * @brief Typesafe cast to evaluated relaxed_json value.
+ * @brief Typesafe cast to evaluated relaxedJson value.
  * @param value (const afw_value_t *). Evaluated if needed.
  * @param p dest pool for evaluate.
  * @param xctx of caller.
- * @return (const afw_value_relaxed_json_t *)
+ * @return (const afw_value_relaxedJson_t *)
  *
  * Throws if missing or wrong type. Use ->internal for the C
- * payload, or afw_value_as_relaxed_json_internal().
+ * payload, or afw_value_as_relaxedJson_internal().
  */
-AFW_DECLARE(const afw_value_relaxed_json_t *)
-afw_value_as_relaxed_json(
+AFW_DECLARE(const afw_value_relaxedJson_t *)
+afw_value_as_relaxedJson(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Typesafe peel of data type relaxed_json internal.
+ * @brief Typesafe peel of data type relaxedJson internal.
  * @param value (const afw_value_t *).
  * @param p dest pool for evaluate.
  * @param xctx of caller.
  * @return (const afw_utf8_t *)
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_relaxed_json_internal(
+afw_value_as_relaxedJson_internal(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for data type relaxed_json value.
+ * @brief Allocate function for data type relaxedJson value.
  * @param p to use for returned value.
  * @param xctx of caller.
- * @return Allocated afw_value_relaxed_json_t with unmanaged inf set.
+ * @return Allocated afw_value_relaxedJson_t with unmanaged inf set.
  *
  * Unmanaged: lifetime is pool p; no value refcount.
  * Caller fills internal after allocate.
  *
  * Kind: pooled in p. Caller does not release.
  */
-AFW_DECLARE(afw_value_relaxed_json_t *)
-afw_value_relaxed_json_allocate(
+AFW_DECLARE(afw_value_relaxedJson_t *)
+afw_value_relaxedJson_allocate(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
-#define afw_value_allocate_unmanaged_relaxed_json afw_value_relaxed_json_allocate
+#define afw_value_allocate_unmanaged_relaxedJson afw_value_relaxedJson_allocate
 
 /**
- * @brief Create function for managed data type relaxed_json value.
+ * @brief Create function for managed data type relaxedJson value.
  * @param internal.
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
@@ -298,15 +298,15 @@ afw_value_relaxed_json_allocate(
  * Kind: fully managed. Caller releases (RC 1).
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_relaxed_json_create_managed(
+afw_value_relaxedJson_create_managed(
     const afw_utf8_t * internal,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
-#define afw_value_create_managed_relaxed_json afw_value_relaxed_json_create_managed
+#define afw_value_create_managed_relaxedJson afw_value_relaxedJson_create_managed
 
 /**
- * @brief Deep clone an evaluated relaxed_json value unmanaged into p.
- * @param value evaluated relaxed_json.
+ * @brief Deep clone an evaluated relaxedJson value unmanaged into p.
+ * @param value evaluated relaxedJson.
  * @param p dest pool.
  * @param xctx of caller.
  * @return unmanaged clone in p, or value if permanent.
@@ -317,14 +317,14 @@ afw_value_relaxed_json_create_managed(
  * does not release.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_clone_relaxed_json_unmanaged(
+afw_value_clone_relaxedJson_unmanaged(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Clone an evaluated relaxed_json value managed in p->managed_p.
- * @param value evaluated relaxed_json.
+ * @brief Clone an evaluated relaxedJson value managed in p->managed_p.
+ * @param value evaluated relaxedJson.
  * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return managed value (bump if already managed).
@@ -335,13 +335,13 @@ afw_value_clone_relaxed_json_unmanaged(
  * Caller releases.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_clone_relaxed_json_managed(
+afw_value_clone_relaxedJson_managed(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Create a managed slice of a managed data type relaxed_json value.
+ * @brief Create a managed slice of a managed data type relaxedJson value.
  * @param containing_value managed (or managed_slice) value with cType afw_utf8_t.
  * @param offset into containing value's internal.
  * @param len of slice.
@@ -355,16 +355,16 @@ afw_value_clone_relaxed_json_managed(
  * containing_value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_relaxed_json_create_managed_slice(
+afw_value_relaxedJson_create_managed_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
-#define afw_value_create_managed_relaxed_json_slice afw_value_relaxed_json_create_managed_slice
+#define afw_value_create_managed_relaxedJson_slice afw_value_relaxedJson_create_managed_slice
 
 /**
- * @brief Create function for unmanaged data type relaxed_json value.
+ * @brief Create function for unmanaged data type relaxedJson value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
@@ -378,53 +378,53 @@ afw_value_relaxed_json_create_managed_slice(
  * Kind: pooled in p. Caller does not release.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_relaxed_json_create(const afw_utf8_t * internal,
+afw_value_relaxedJson_create(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
-#define afw_value_create_unmanaged_relaxed_json afw_value_relaxed_json_create
+#define afw_value_create_unmanaged_relaxedJson afw_value_relaxedJson_create
 
 /**
- * @brief Get property as relaxed_json value.
+ * @brief Get property as relaxedJson value.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param xctx of caller.
- * @return (const afw_value_relaxed_json_t *) or NULL if missing.
+ * @return (const afw_value_relaxedJson_t *) or NULL if missing.
  *
- * Does not evaluate. Throws if present but not relaxed_json.
+ * Does not evaluate. Throws if present but not relaxedJson.
  */
-#define afw_object_get_property_as_relaxed_json( \
+#define afw_object_get_property_as_relaxedJson( \
     _object, _property_name, _xctx) \
-afw_object_get_property_as_relaxed_json_source( \
+afw_object_get_property_as_relaxedJson_source( \
     _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
- * @brief Get property as relaxed_json value.
+ * @brief Get property as relaxedJson value.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_value_relaxed_json_t *) or NULL if missing.
+ * @return (const afw_value_relaxedJson_t *) or NULL if missing.
  */
-AFW_DECLARE(const afw_value_relaxed_json_t *)
-afw_object_get_property_as_relaxed_json_source(
+AFW_DECLARE(const afw_value_relaxedJson_t *)
+afw_object_get_property_as_relaxedJson_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get property as relaxed_json internal.
+ * @brief Get property as relaxedJson internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param xctx of caller.
  * @return const afw_utf8_t *.
  */
-#define afw_object_get_property_as_relaxed_json_internal( \
+#define afw_object_get_property_as_relaxedJson_internal( \
     _object, _property_name, _xctx) \
-afw_object_get_property_as_relaxed_json_internal_source( \
+afw_object_get_property_as_relaxedJson_internal_source( \
     _object, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
- * @brief Get property as relaxed_json internal.
+ * @brief Get property as relaxedJson internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param source_z file:line.
@@ -432,36 +432,36 @@ afw_object_get_property_as_relaxed_json_internal_source( \
  * @return const afw_utf8_t *.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_object_get_property_as_relaxed_json_internal_source(
+afw_object_get_property_as_relaxedJson_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property as relaxed_json value.
+ * @brief Get next property as relaxedJson value.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param xctx of caller.
- * @return (const afw_value_relaxed_json_t *) or NULL if no more.
+ * @return (const afw_value_relaxedJson_t *) or NULL if no more.
  */
-#define afw_object_get_next_property_as_relaxed_json( \
+#define afw_object_get_next_property_as_relaxedJson( \
     _object, _iterator, _property_name, _xctx) \
-afw_object_get_next_property_as_relaxed_json_source( \
+afw_object_get_next_property_as_relaxedJson_source( \
     _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
- * @brief Get next property as relaxed_json value.
+ * @brief Get next property as relaxedJson value.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_value_relaxed_json_t *) or NULL if no more.
+ * @return (const afw_value_relaxedJson_t *) or NULL if no more.
  */
-AFW_DECLARE(const afw_value_relaxed_json_t *)
-afw_object_get_next_property_as_relaxed_json_source(
+AFW_DECLARE(const afw_value_relaxedJson_t *)
+afw_object_get_next_property_as_relaxedJson_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
@@ -469,20 +469,20 @@ afw_object_get_next_property_as_relaxed_json_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property as relaxed_json internal.
+ * @brief Get next property as relaxedJson internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param xctx of caller.
  * @return const afw_utf8_t *.
  */
-#define afw_object_get_next_property_as_relaxed_json_internal( \
+#define afw_object_get_next_property_as_relaxedJson_internal( \
     _object, _iterator, _property_name, _xctx) \
-afw_object_get_next_property_as_relaxed_json_internal_source( \
+afw_object_get_next_property_as_relaxedJson_internal_source( \
     _object, _iterator, _property_name, AFW__FILE_LINE__, _xctx)
 
 /**
- * @brief Get next property as relaxed_json internal.
+ * @brief Get next property as relaxedJson internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
@@ -491,7 +491,7 @@ afw_object_get_next_property_as_relaxed_json_internal_source( \
  * @return const afw_utf8_t *.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_object_get_next_property_as_relaxed_json_internal_source(
+afw_object_get_next_property_as_relaxedJson_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
@@ -499,23 +499,23 @@ afw_object_get_next_property_as_relaxed_json_internal_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property as relaxed_json value.
+ * @brief Set property as relaxedJson value.
  * @param object of property to set.
  * @param property_name of property to set.
  * @param value to set.
  * @param xctx of caller.
  *
- * Compile-time type check for const afw_value_relaxed_json_t *.
+ * Compile-time type check for const afw_value_relaxedJson_t *.
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_relaxed_json(
+afw_object_set_property_as_relaxedJson(
     const afw_object_t *object,
     const afw_value_t *property_name,
-    const afw_value_relaxed_json_t *value,
+    const afw_value_relaxedJson_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property as relaxed_json internal.
+ * @brief Set property as relaxedJson internal.
  * @param object of property to set.
  * @param property_name of property to set.
  * @param internal of value to set.
@@ -528,56 +528,56 @@ afw_object_set_property_as_relaxed_json(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_relaxed_json_internal(
+afw_object_set_property_as_relaxedJson_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next relaxed_json value from array of relaxed_json.
+ * @brief Get next relaxedJson value from array of relaxedJson.
  * @param instance of array.
  * @param iterator.
  * @param xctx of caller.
- * @return (const afw_value_relaxed_json_t *) or NULL.
+ * @return (const afw_value_relaxedJson_t *) or NULL.
  *
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
-#define afw_array_of_relaxed_json_get_next( \
+#define afw_array_of_relaxedJson_get_next( \
     _array, _iterator, _xctx) \
-    afw_array_of_relaxed_json_get_next_source( \
+    afw_array_of_relaxedJson_get_next_source( \
     _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
- * @brief Get next relaxed_json value from array of relaxed_json.
+ * @brief Get next relaxedJson value from array of relaxedJson.
  * @param instance of array.
  * @param iterator.
  * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_value_relaxed_json_t *) or NULL.
+ * @return (const afw_value_relaxedJson_t *) or NULL.
  */
-AFW_DECLARE(const afw_value_relaxed_json_t *)
-afw_array_of_relaxed_json_get_next_source(
+AFW_DECLARE(const afw_value_relaxedJson_t *)
+afw_array_of_relaxedJson_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next relaxed_json internal from array of relaxed_json.
+ * @brief Get next relaxedJson internal from array of relaxedJson.
  * @param instance of array.
  * @param iterator.
  * @param xctx of caller.
  * @return (const afw_utf8_t *) or NULL.
  */
-#define afw_array_of_relaxed_json_get_next_internal( \
+#define afw_array_of_relaxedJson_get_next_internal( \
     _array, _iterator, _xctx) \
-    afw_array_of_relaxed_json_get_next_internal_source( \
+    afw_array_of_relaxedJson_get_next_internal_source( \
     _array, _iterator, AFW__FILE_LINE__, _xctx)
 
 /**
- * @brief Get next relaxed_json internal from array of relaxed_json.
+ * @brief Get next relaxedJson internal from array of relaxedJson.
  * @param instance of array.
  * @param iterator.
  * @param source_z file:line.
@@ -585,85 +585,85 @@ afw_array_of_relaxed_json_get_next_source(
  * @return (const afw_utf8_t *) or NULL.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_array_of_relaxed_json_get_next_internal_source(
+afw_array_of_relaxedJson_get_next_internal_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 
 /**
- * @brief Add a relaxed_json value to array of relaxed_json.
+ * @brief Add a relaxedJson value to array of relaxedJson.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_array_of_relaxed_json_add(
+afw_array_of_relaxedJson_add(
     const afw_array_t *instance,
-    const afw_value_relaxed_json_t *value,
+    const afw_value_relaxedJson_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Add a relaxed_json internal to array of relaxed_json.
+ * @brief Add a relaxedJson internal to array of relaxedJson.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_array_of_relaxed_json_add_internal(
+afw_array_of_relaxedJson_add_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove a relaxed_json value from array of relaxed_json.
+ * @brief Remove a relaxedJson value from array of relaxedJson.
  * @param instance of array.
  * @param value to remove.
  * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_array_of_relaxed_json_remove(
+afw_array_of_relaxedJson_remove(
     const afw_array_t *instance,
-    const afw_value_relaxed_json_t *value,
+    const afw_value_relaxedJson_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove a relaxed_json internal from array of relaxed_json.
+ * @brief Remove a relaxedJson internal from array of relaxedJson.
  * @param instance of array.
  * @param value to remove.
  * @param p dest pool for search-key wrap.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_array_of_relaxed_json_remove_internal(
+afw_array_of_relaxedJson_remove_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Public data type relaxed_json struct instance.
+ * @brief Public data type relaxedJson struct instance.
  *
- * Prefer afw_data_type_relaxed_json when a pointer is enough and you are not
+ * Prefer afw_data_type_relaxedJson when a pointer is enough and you are not
  * initializing static data that must reference the struct object.
  */
 AFW_DECLARE_CONST_DATA(afw_data_type_t)
-afw_data_type_relaxed_json_direct;
+afw_data_type_relaxedJson_direct;
 
 /**
- * @brief Public data type relaxed_json inf.
+ * @brief Public data type relaxedJson inf.
  *
  * Defined with the data type implementation; managed by the generated
  * data type instance.
  */
 AFW_DECLARE_CONST_DATA(afw_data_type_inf_t)
-afw_data_type_relaxed_json_inf;
+afw_data_type_relaxedJson_inf;
 
 AFW_END_DECLARES
 
 /** @} */
 
 
-#endif /* __AFW_DATA_TYPE_RELAXED_JSON_BINDING_H__ */
+#endif /* __AFW_DATA_TYPE_RELAXEDJSON_BINDING_H__ */

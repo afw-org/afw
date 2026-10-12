@@ -7208,7 +7208,7 @@ afw_function_definition_compile_from_file;
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
- *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *       For example, 'json', 'relaxedJson', 'script', 'template'.
  *
  * Returns:
  *
@@ -7301,7 +7301,7 @@ afw_function_definition_eval_from_file;
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
- *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *       For example, 'json', 'relaxedJson', 'script', 'template'.
  *
  * Returns:
  *
@@ -21348,7 +21348,7 @@ afw_function_definition_compile;
  *
  * Supported `<dataType>`:
  *
- *   json, regexp, relaxed_json, script, template, xpathExpression.
+ *   json, regexp, relaxedJson, script, template, xpathExpression.
  *
  * Declaration:
  *
@@ -24781,22 +24781,22 @@ afw_function_definition_regexp;
 /** @} */
 
 
-/** @addtogroup afw_functions_relaxed_json relaxed_json functions
+/** @addtogroup afw_functions_relaxedJson relaxedJson functions
  *
- * relaxed_json adaptive functions.
+ * relaxedJson adaptive functions.
  *
  * @{
  */
 
-/** @brief Function definition compile<relaxed_json> */
+/** @brief Function definition compile<relaxedJson> */
 extern const afw_value_function_definition_t
-afw_function_definition_compile_relaxed_json;
+afw_function_definition_compile_relaxedJson;
 
 /**
- * @brief Adaptive Function `compile<relaxed_json>`
+ * @brief Adaptive Function `compile<relaxedJson>`
  * @param x function execute parameter.
  *
- * Compile relaxed_json value and return either an unevaluated adaptive value or
+ * Compile relaxedJson value and return either an unevaluated adaptive value or
  * a string containing the compiler listing. The listing is a human-oriented
  * dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle
  * and debugging — not pure JSON (use stringify) and not Adaptive compiled-form
@@ -24808,15 +24808,15 @@ afw_function_definition_compile_relaxed_json;
  * Declaration:
  *
  * ```
- *   function compile<relaxed_json>(
- *       source: relaxed_json,
+ *   function compile<relaxedJson>(
+ *       source: relaxedJson,
  *       listing?: any
  *   ): unevaluated;
  * ```
  *
  * Parameters:
  *
- *   source - (relaxed_json) relaxed_json string to compile.
+ *   source - (relaxedJson) relaxedJson string to compile.
  *
  *   listing - (optional any) If specified, a human compiler listing is produced
  *       instead of an unevaluated compiled value (tree + ---Symbols; not
@@ -24837,20 +24837,20 @@ afw_function_definition_compile_relaxed_json;
  *   syntax - source could not be compiled
  */
 const afw_value_t *
-afw_function_execute_compile_relaxed_json(
+afw_function_execute_compile_relaxedJson(
     afw_function_execute_t *x);
 
-/** @brief Function definition relaxed_json */
+/** @brief Function definition relaxedJson */
 extern const afw_value_function_definition_t
-afw_function_definition_relaxed_json;
+afw_function_definition_relaxedJson;
 
 /**
- * @brief Adaptive Function `relaxed_json`
+ * @brief Adaptive Function `relaxedJson`
  * @param x function execute parameter.
  *
- * Converts value to data type relaxed_json returning relaxed_json result. Holds
- * relaxed JSON source text as a relaxed_json value (does not parse/compile).
- * Use polymorphic compile to compile the source.
+ * Converts value to data type relaxedJson returning relaxedJson result. Holds
+ * relaxed JSON source text as a relaxedJson value (does not parse/compile). Use
+ * polymorphic compile to compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24858,9 +24858,9 @@ afw_function_definition_relaxed_json;
  * Declaration:
  *
  * ```
- *   function relaxed_json(
+ *   function relaxedJson(
  *       value: any
- *   ): relaxed_json;
+ *   ): relaxedJson;
  * ```
  *
  * Parameters:
@@ -24869,7 +24869,7 @@ afw_function_definition_relaxed_json;
  *
  * Returns:
  *
- *   (relaxed_json) Converted value.
+ *   (relaxedJson) Converted value.
  *
  * Errors thrown:
  *
@@ -33335,7 +33335,7 @@ afw_function_execute_clone(
  * password
  * to_string<password>
  * regexp
- * relaxed_json
+ * relaxedJson
  * rfc822Name
  * to_string<rfc822Name>
  * script

@@ -113,12 +113,12 @@ return 0;
 
 //?
 //? test: listing-relaxed-json-typed
-//? description: compile<relaxed_json> listing last-releases the unit
+//? description: compile<relaxedJson> listing last-releases the unit
 //? skip: false
 //? expect: 0
 //? source: ...
 
-const L = compile<relaxed_json>(relaxed_json("[1, 2,]"), 2);
+const L = compile<relaxedJson>(relaxedJson("[1, 2,]"), 2);
 assert(is_string(L));
 assert(includes(L, "1"));
 return 0;

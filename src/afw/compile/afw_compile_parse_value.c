@@ -27,7 +27,7 @@
  *
  *# Relaxed / script: optional elision (hole → undefined) and trailing comma.
  *# Elision is a missing element between commas (or after '[' before a comma),
- *# not a third array state. Same rules for script ListValue and relaxed_json.
+ *# not a third array state. Same rules for script ListValue and relaxedJson.
  *# Elision is written here as empty alternative between commas.
  * RelaxedList ::=
  *    '['
@@ -121,7 +121,7 @@ afw_compile_parse_List(
         /* Spread operator (script expressions only). */
         if (allow_expression && afw_compile_token_is(ellipsis)) {
             if ((parser)->compile_type == afw_compile_type_json ||
-                (parser)->compile_type == afw_compile_type_relaxed_json)
+                (parser)->compile_type == afw_compile_type_relaxedJson)
             {
                 AFW_COMPILE_THROW_ERROR_Z(
                     "'...' is not allowed as json list entry");

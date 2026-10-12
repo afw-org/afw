@@ -2589,7 +2589,7 @@ IMPL_DATA_TYPE_INF(
     impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
-    relaxed_json,         /* data type id      */
+    relaxedJson,         /* data type id      */
     utf8,                 /* to utf8           */
     utf8,                 /* to internal       */
     utf8,                 /* compare           */

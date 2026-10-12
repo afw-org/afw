@@ -975,7 +975,7 @@
                 {
                     "canBeUndefined": false,
                     "dataType": "string",
-                    "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'",
+                    "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxedJson', 'script', 'template'",
                     "minArgs": -1,
                     "name": "compileType",
                     "optional": true,
@@ -2048,24 +2048,24 @@
         },
         {
             "afwCamelCaseFunctionLabel": "afwRelaxedJson",
-            "brief": "Convert to data type relaxed_json",
+            "brief": "Convert to data type relaxedJson",
             "camelCaseFunctionLabel": "relaxedJson",
-            "category": "relaxed_json",
+            "category": "relaxedJson",
             "dataType": "",
             "dataTypeMethodNumber": 0,
             "deprecated": false,
-            "description": "Converts value to data type relaxed_json returning relaxed_json result. Holds relaxed JSON source text as a relaxed_json value (does not parse/compile). Use polymorphic compile to compile the source.",
+            "description": "Converts value to data type relaxedJson returning relaxedJson result. Holds relaxed JSON source text as a relaxedJson value (does not parse/compile). Use polymorphic compile to compile the source.",
             "errorsThrown": [
                 {
                     "error": "conversion_error",
                     "reason": "value could not be converted"
                 }
             ],
-            "functionDeclaration": "function relaxed_json (\n    value: any\n): relaxed_json;\n",
-            "functionId": "relaxed_json",
-            "functionLabel": "relaxed_json",
-            "functionResourceId": "/afw/_AdaptiveFunction_/relaxed_json",
-            "functionSignature": "(value: any): relaxed_json",
+            "functionDeclaration": "function relaxedJson (\n    value: any\n): relaxedJson;\n",
+            "functionId": "relaxedJson",
+            "functionLabel": "relaxedJson",
+            "functionResourceId": "/afw/_AdaptiveFunction_/relaxedJson",
+            "functionSignature": "(value: any): relaxedJson",
             "maxNumberOfParameters": 1,
             "numberOfRequiredParameters": 1,
             "parameters": [
@@ -2085,7 +2085,7 @@
             "requiresExecuteAccess": false,
             "returns": {
                 "canBeUndefined": false,
-                "dataType": "relaxed_json",
+                "dataType": "relaxedJson",
                 "description": "Converted value",
                 "minArgs": -1,
                 "optional": false,
@@ -2094,7 +2094,7 @@
             },
             "scriptSupport": false,
             "signatureOnly": false,
-            "untypedFunctionId": "relaxed_json"
+            "untypedFunctionId": "relaxedJson"
         },
         {
             "afwCamelCaseFunctionLabel": "afwBagObject",
@@ -23152,7 +23152,7 @@
                 {
                     "canBeUndefined": false,
                     "dataType": "string",
-                    "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'",
+                    "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxedJson', 'script', 'template'",
                     "minArgs": -1,
                     "name": "compileType",
                     "optional": true,
@@ -38608,32 +38608,32 @@
         },
         {
             "afwCamelCaseFunctionLabel": "afwCompileRelaxedJson",
-            "brief": "Compile relaxed_json value",
+            "brief": "Compile relaxedJson value",
             "camelCaseFunctionLabel": "compileRelaxedJson",
-            "category": "relaxed_json",
-            "dataType": "relaxed_json",
+            "category": "relaxedJson",
+            "dataType": "relaxedJson",
             "dataTypeMethodNumber": 64,
             "deprecated": false,
-            "description": "Compile relaxed_json value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
+            "description": "Compile relaxedJson value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
             "errorsThrown": [
                 {
                     "error": "syntax",
                     "reason": "source could not be compiled"
                 }
             ],
-            "functionDeclaration": "function compile<relaxed_json> (\n    source: relaxed_json,\n    listing?: any\n): unevaluated;\n",
-            "functionId": "compile<relaxed_json>",
-            "functionLabel": "compile_relaxed_json",
-            "functionResourceId": "/afw/_AdaptiveFunction_/compile<relaxed_json>",
-            "functionSignature": "(source: relaxed_json, listing?: any): unevaluated",
+            "functionDeclaration": "function compile<relaxedJson> (\n    source: relaxedJson,\n    listing?: any\n): unevaluated;\n",
+            "functionId": "compile<relaxedJson>",
+            "functionLabel": "compile_relaxedJson",
+            "functionResourceId": "/afw/_AdaptiveFunction_/compile<relaxedJson>",
+            "functionSignature": "(source: relaxedJson, listing?: any): unevaluated",
             "maxNumberOfParameters": 2,
             "numberOfRequiredParameters": 1,
             "parameters": [
                 {
                     "brief": "Source to compile",
                     "canBeUndefined": false,
-                    "dataType": "relaxed_json",
-                    "description": "relaxed_json string to compile",
+                    "dataType": "relaxedJson",
+                    "description": "relaxedJson string to compile",
                     "minArgs": -1,
                     "name": "source",
                     "optional": false,
@@ -38877,7 +38877,7 @@
             "polymorphicDataTypes": [
                 "json",
                 "regexp",
-                "relaxed_json",
+                "relaxedJson",
                 "script",
                 "template",
                 "xpathExpression"

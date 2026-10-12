@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for relaxed_json
+ * afw_function_execute_* functions for relaxedJson
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_relaxed_json.c
- * @brief Adaptive function execute implementations for category `relaxed_json`.
+ * @file afw_function_relaxedJson.c
+ * @brief afw_function_execute_* functions for relaxedJson.
  */
 
 #include "afw.h"
@@ -16,13 +16,13 @@
 
 
 /*
- * Adaptive function: compile<relaxed_json>
+ * Adaptive function: compile<relaxedJson>
  *
- * afw_function_execute_compile_relaxed_json
+ * afw_function_execute_compile_relaxedJson
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Compile relaxed_json value and return either an unevaluated adaptive value or
+ * Compile relaxedJson value and return either an unevaluated adaptive value or
  * a string containing the compiler listing. The listing is a human-oriented
  * dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle
  * and debugging — not pure JSON (use stringify) and not Adaptive compiled-form
@@ -34,15 +34,15 @@
  * Declaration:
  *
  * ```
- *   function compile<relaxed_json>(
- *       source: relaxed_json,
+ *   function compile<relaxedJson>(
+ *       source: relaxedJson,
  *       listing?: any
  *   ): unevaluated;
  * ```
  *
  * Parameters:
  *
- *   source - (relaxed_json) relaxed_json string to compile.
+ *   source - (relaxedJson) relaxedJson string to compile.
  *
  *   listing - (optional any) If specified, a human compiler listing is produced
  *       instead of an unevaluated compiled value (tree + ---Symbols; not
@@ -63,31 +63,9 @@
  *   syntax - source could not be compiled
  */
 const afw_value_t *
-afw_function_execute_compile_relaxed_json(
+afw_function_execute_compile_relaxedJson(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *json;
-    const afw_value_t *result;
-    const afw_value_t *compiled;
-    const afw_utf8_t *listing;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(json, 1, string);
-
-    result = afw_compile_to_value(
-        &json->internal, AFW_FUNCTION_SOURCE_LOCATION,
-        afw_compile_type_relaxed_json,
-        NULL, x->p, x->xctx);
-
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-        listing = afw_function_evaluate_whitespace_parameter(x, 2);
-        compiled = result;
-        result = afw_value_create_unmanaged_string(
-            afw_value_compiler_listing_to_string(compiled, listing,
-                x->p, x->xctx),
-            x->p, x->xctx);
-        /* Listing is a copy in dest p. Compile result lasts for dest p. */
-        return result;
-    }
-
-    return result;
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }

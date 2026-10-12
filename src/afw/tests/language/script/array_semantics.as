@@ -406,11 +406,11 @@ return 0;
 
 //?
 //? test: relaxed-json-elision-allowed
-//? description: relaxed_json accepts elision as undefined
+//? description: relaxedJson accepts elision as undefined
 //? expect: 0
 //? source: ...
 
-let v = compile(relaxed_json("[1,,2]"));
+let v = compile(relaxedJson("[1,,2]"));
 assert(length(v) === 3);
 assert(v[0] === 1 && v[1] === undefined && v[2] === 2);
 return 0;

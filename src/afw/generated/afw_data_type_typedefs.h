@@ -602,30 +602,30 @@ typedef struct afw_value_regexp_managed_slice_s
 /** @} */
 
 /**
- * @addtogroup afw_c_api_data_type_relaxed_json
+ * @addtogroup afw_c_api_data_type_relaxedJson
  * @{
  */
 
-/** @brief Typedef for data type relaxed_json internal. */
-typedef afw_utf8_t afw_data_type_relaxed_json_internal_t;
+/** @brief Typedef for data type relaxedJson internal. */
+typedef afw_utf8_t afw_data_type_relaxedJson_internal_t;
 
-/** @brief Typedef for data type relaxed_json parameter. */
-typedef const afw_utf8_t * afw_data_type_relaxed_json_parameter_t;
+/** @brief Typedef for data type relaxedJson parameter. */
+typedef const afw_utf8_t * afw_data_type_relaxedJson_parameter_t;
 
-/** @brief Typedef for data type relaxed_json return. */
-typedef const afw_utf8_t * afw_data_type_relaxed_json_return_t;
+/** @brief Typedef for data type relaxedJson return. */
+typedef const afw_utf8_t * afw_data_type_relaxedJson_return_t;
 
-/** @brief Typedef for data type relaxed_json value. */
-typedef struct afw_value_relaxed_json_s
-    afw_value_relaxed_json_t;
+/** @brief Typedef for data type relaxedJson value. */
+typedef struct afw_value_relaxedJson_s
+    afw_value_relaxedJson_t;
 
-/** @brief Typedef for data type relaxed_json managed value. */
-typedef struct afw_value_relaxed_json_managed_s
-    afw_value_relaxed_json_managed_t;
+/** @brief Typedef for data type relaxedJson managed value. */
+typedef struct afw_value_relaxedJson_managed_s
+    afw_value_relaxedJson_managed_t;
 
-/** @brief Typedef for data type relaxed_json managed slice value. */
-typedef struct afw_value_relaxed_json_managed_slice_s
-    afw_value_relaxed_json_managed_slice_t;
+/** @brief Typedef for data type relaxedJson managed slice value. */
+typedef struct afw_value_relaxedJson_managed_slice_s
+    afw_value_relaxedJson_managed_slice_t;
 
 /** @} */
 

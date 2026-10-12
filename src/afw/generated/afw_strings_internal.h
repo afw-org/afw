@@ -10611,32 +10611,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2bb7c06c0a3b \
-    "Compile relaxed_json value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2bb7c06c0a3b */
-#define afw_s_zz__2bb7c06c0a3b \
-    (&afw_self_v_zz__2bb7c06c0a3b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2bb7c06c0a3b */
-#define afw_self_s_zz__2bb7c06c0a3b \
-    (afw_self_v_zz__2bb7c06c0a3b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2bb7c06c0a3b */
-extern const afw_value_string_t \
-    afw_self_v_zz__2bb7c06c0a3b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2bb7c06c0a3b */
-#define afw_z_zz__2bb7c06c0a3b \
-    (afw_self_v_zz__2bb7c06c0a3b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2bb7c06c0a3b */
-#define afw_v_zz__2bb7c06c0a3b \
-    (&afw_self_v_zz__2bb7c06c0a3b.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2bcee359990a \
     "This is script to evaluate to determine whether to allow the requested access to the specified resourceId and/or object."
 
@@ -22493,6 +22467,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5db802f09810 \
+    "Compile relaxedJson value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5db802f09810 */
+#define afw_s_zz__5db802f09810 \
+    (&afw_self_v_zz__5db802f09810.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5db802f09810 */
+#define afw_self_s_zz__5db802f09810 \
+    (afw_self_v_zz__5db802f09810.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5db802f09810 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5db802f09810;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5db802f09810 */
+#define afw_z_zz__5db802f09810 \
+    (afw_self_v_zz__5db802f09810.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5db802f09810 */
+#define afw_v_zz__5db802f09810 \
+    (&afw_self_v_zz__5db802f09810.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5dbdf96717e8 \
     "Checks whether boolean value is in array of boolean array and returns the boolean result. Empty array yields false."
 
@@ -25405,6 +25405,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__68558e746107 \
+    "Converts value to data type relaxedJson returning relaxedJson result. Holds relaxed JSON source text as a relaxedJson value (does not parse/compile). Use polymorphic compile to compile the source."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__68558e746107 */
+#define afw_s_zz__68558e746107 \
+    (&afw_self_v_zz__68558e746107.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__68558e746107 */
+#define afw_self_s_zz__68558e746107 \
+    (afw_self_v_zz__68558e746107.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__68558e746107 */
+extern const afw_value_string_t \
+    afw_self_v_zz__68558e746107;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__68558e746107 */
+#define afw_z_zz__68558e746107 \
+    (afw_self_v_zz__68558e746107.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__68558e746107 */
+#define afw_v_zz__68558e746107 \
+    (&afw_self_v_zz__68558e746107.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__68689038f14a \
     "function le<integer> (\n    arg1: integer,\n    arg2: any\n): boolean;\n"
 
@@ -27325,32 +27351,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6f6abdf89543 */
 #define afw_v_zz__6f6abdf89543 \
     (&afw_self_v_zz__6f6abdf89543.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__6f87aaf9b209 \
-    "function compile<relaxed_json> (\n    source: relaxed_json,\n    listing?: any\n): unevaluated;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6f87aaf9b209 */
-#define afw_s_zz__6f87aaf9b209 \
-    (&afw_self_v_zz__6f87aaf9b209.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6f87aaf9b209 */
-#define afw_self_s_zz__6f87aaf9b209 \
-    (afw_self_v_zz__6f87aaf9b209.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__6f87aaf9b209 */
-extern const afw_value_string_t \
-    afw_self_v_zz__6f87aaf9b209;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6f87aaf9b209 */
-#define afw_z_zz__6f87aaf9b209 \
-    (afw_self_v_zz__6f87aaf9b209.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__6f87aaf9b209 */
-#define afw_v_zz__6f87aaf9b209 \
-    (&afw_self_v_zz__6f87aaf9b209.pub)
 
 
 
@@ -47739,28 +47739,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Compile_relaxed_json_value \
-    "Compile relaxed_json value"
+#define AFW_Q_zz__Compile_relaxedJson_value \
+    "Compile relaxedJson value"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_relaxed_json_value */
-#define afw_s_zz__Compile_relaxed_json_value \
-    (&afw_self_v_zz__Compile_relaxed_json_value.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_relaxedJson_value */
+#define afw_s_zz__Compile_relaxedJson_value \
+    (&afw_self_v_zz__Compile_relaxedJson_value.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_relaxed_json_value */
-#define afw_self_s_zz__Compile_relaxed_json_value \
-    (afw_self_v_zz__Compile_relaxed_json_value.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_relaxedJson_value */
+#define afw_self_s_zz__Compile_relaxedJson_value \
+    (afw_self_v_zz__Compile_relaxedJson_value.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Compile_relaxed_json_value */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Compile_relaxedJson_value */
 extern const afw_value_string_t \
-    afw_self_v_zz__Compile_relaxed_json_value;
+    afw_self_v_zz__Compile_relaxedJson_value;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Compile_relaxed_json_value */
-#define afw_z_zz__Compile_relaxed_json_value \
-    (afw_self_v_zz__Compile_relaxed_json_value.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Compile_relaxedJson_value */
+#define afw_z_zz__Compile_relaxedJson_value \
+    (afw_self_v_zz__Compile_relaxedJson_value.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_relaxed_json_value */
-#define afw_v_zz__Compile_relaxed_json_value \
-    (&afw_self_v_zz__Compile_relaxed_json_value.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_relaxedJson_value */
+#define afw_v_zz__Compile_relaxedJson_value \
+    (&afw_self_v_zz__Compile_relaxedJson_value.pub)
 
 
 
@@ -49169,28 +49169,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Convert_to_data_type_relaxed_json \
-    "Convert to data type relaxed_json"
+#define AFW_Q_zz__Convert_to_data_type_relaxedJson \
+    "Convert to data type relaxedJson"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Convert_to_data_type_relaxed_json */
-#define afw_s_zz__Convert_to_data_type_relaxed_json \
-    (&afw_self_v_zz__Convert_to_data_type_relaxed_json.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Convert_to_data_type_relaxedJson */
+#define afw_s_zz__Convert_to_data_type_relaxedJson \
+    (&afw_self_v_zz__Convert_to_data_type_relaxedJson.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Convert_to_data_type_relaxed_json */
-#define afw_self_s_zz__Convert_to_data_type_relaxed_json \
-    (afw_self_v_zz__Convert_to_data_type_relaxed_json.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Convert_to_data_type_relaxedJson */
+#define afw_self_s_zz__Convert_to_data_type_relaxedJson \
+    (afw_self_v_zz__Convert_to_data_type_relaxedJson.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Convert_to_data_type_relaxed_json */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Convert_to_data_type_relaxedJson */
 extern const afw_value_string_t \
-    afw_self_v_zz__Convert_to_data_type_relaxed_json;
+    afw_self_v_zz__Convert_to_data_type_relaxedJson;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Convert_to_data_type_relaxed_json */
-#define afw_z_zz__Convert_to_data_type_relaxed_json \
-    (afw_self_v_zz__Convert_to_data_type_relaxed_json.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Convert_to_data_type_relaxedJson */
+#define afw_z_zz__Convert_to_data_type_relaxedJson \
+    (afw_self_v_zz__Convert_to_data_type_relaxedJson.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Convert_to_data_type_relaxed_json */
-#define afw_v_zz__Convert_to_data_type_relaxed_json \
-    (&afw_self_v_zz__Convert_to_data_type_relaxed_json.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Convert_to_data_type_relaxedJson */
+#define afw_v_zz__Convert_to_data_type_relaxedJson \
+    (&afw_self_v_zz__Convert_to_data_type_relaxedJson.pub)
 
 
 
@@ -96567,28 +96567,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__compile_relaxed_json_ \
-    "/afw/_AdaptiveFunction_/compile<relaxed_json>"
+#define AFW_Q_zz___afw__AdaptiveFunction__compile_relaxedJson_ \
+    "/afw/_AdaptiveFunction_/compile<relaxedJson>"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxed_json_ */
-#define afw_s_zz___afw__AdaptiveFunction__compile_relaxed_json_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__compile_relaxed_json_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxedJson_ */
+#define afw_s_zz___afw__AdaptiveFunction__compile_relaxedJson_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__compile_relaxedJson_.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxed_json_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__compile_relaxed_json_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__compile_relaxed_json_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxedJson_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__compile_relaxedJson_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__compile_relaxedJson_.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxed_json_ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxedJson_ */
 extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__compile_relaxed_json_;
+    afw_self_v_zz___afw__AdaptiveFunction__compile_relaxedJson_;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxed_json_ */
-#define afw_z_zz___afw__AdaptiveFunction__compile_relaxed_json_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__compile_relaxed_json_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxedJson_ */
+#define afw_z_zz___afw__AdaptiveFunction__compile_relaxedJson_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__compile_relaxedJson_.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxed_json_ */
-#define afw_v_zz___afw__AdaptiveFunction__compile_relaxed_json_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__compile_relaxed_json_.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__compile_relaxedJson_ */
+#define afw_v_zz___afw__AdaptiveFunction__compile_relaxedJson_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__compile_relaxedJson_.pub)
 
 
 
@@ -109723,28 +109723,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__relaxed_json \
-    "/afw/_AdaptiveFunction_/relaxed_json"
+#define AFW_Q_zz___afw__AdaptiveFunction__relaxedJson \
+    "/afw/_AdaptiveFunction_/relaxedJson"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__relaxed_json */
-#define afw_s_zz___afw__AdaptiveFunction__relaxed_json \
-    (&afw_self_v_zz___afw__AdaptiveFunction__relaxed_json.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__relaxedJson */
+#define afw_s_zz___afw__AdaptiveFunction__relaxedJson \
+    (&afw_self_v_zz___afw__AdaptiveFunction__relaxedJson.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__relaxed_json */
-#define afw_self_s_zz___afw__AdaptiveFunction__relaxed_json \
-    (afw_self_v_zz___afw__AdaptiveFunction__relaxed_json.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__relaxedJson */
+#define afw_self_s_zz___afw__AdaptiveFunction__relaxedJson \
+    (afw_self_v_zz___afw__AdaptiveFunction__relaxedJson.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__relaxed_json */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__relaxedJson */
 extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__relaxed_json;
+    afw_self_v_zz___afw__AdaptiveFunction__relaxedJson;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__relaxed_json */
-#define afw_z_zz___afw__AdaptiveFunction__relaxed_json \
-    (afw_self_v_zz___afw__AdaptiveFunction__relaxed_json.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__relaxedJson */
+#define afw_z_zz___afw__AdaptiveFunction__relaxedJson \
+    (afw_self_v_zz___afw__AdaptiveFunction__relaxedJson.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__relaxed_json */
-#define afw_v_zz___afw__AdaptiveFunction__relaxed_json \
-    (&afw_self_v_zz___afw__AdaptiveFunction__relaxed_json.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__relaxedJson */
+#define afw_v_zz___afw__AdaptiveFunction__relaxedJson \
+    (&afw_self_v_zz___afw__AdaptiveFunction__relaxedJson.pub)
 
 
 
@@ -122073,28 +122073,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___source__relaxed_json__listing___any___unevaluated \
-    "(source: relaxed_json, listing?: any): unevaluated"
+#define AFW_Q_zz___source__relaxedJson__listing___any___unevaluated \
+    "(source: relaxedJson, listing?: any): unevaluated"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___source__relaxed_json__listing___any___unevaluated */
-#define afw_s_zz___source__relaxed_json__listing___any___unevaluated \
-    (&afw_self_v_zz___source__relaxed_json__listing___any___unevaluated.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___source__relaxedJson__listing___any___unevaluated */
+#define afw_s_zz___source__relaxedJson__listing___any___unevaluated \
+    (&afw_self_v_zz___source__relaxedJson__listing___any___unevaluated.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___source__relaxed_json__listing___any___unevaluated */
-#define afw_self_s_zz___source__relaxed_json__listing___any___unevaluated \
-    (afw_self_v_zz___source__relaxed_json__listing___any___unevaluated.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___source__relaxedJson__listing___any___unevaluated */
+#define afw_self_s_zz___source__relaxedJson__listing___any___unevaluated \
+    (afw_self_v_zz___source__relaxedJson__listing___any___unevaluated.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___source__relaxed_json__listing___any___unevaluated */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___source__relaxedJson__listing___any___unevaluated */
 extern const afw_value_string_t \
-    afw_self_v_zz___source__relaxed_json__listing___any___unevaluated;
+    afw_self_v_zz___source__relaxedJson__listing___any___unevaluated;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___source__relaxed_json__listing___any___unevaluated */
-#define afw_z_zz___source__relaxed_json__listing___any___unevaluated \
-    (afw_self_v_zz___source__relaxed_json__listing___any___unevaluated.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___source__relaxedJson__listing___any___unevaluated */
+#define afw_z_zz___source__relaxedJson__listing___any___unevaluated \
+    (afw_self_v_zz___source__relaxedJson__listing___any___unevaluated.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___source__relaxed_json__listing___any___unevaluated */
-#define afw_v_zz___source__relaxed_json__listing___any___unevaluated \
-    (&afw_self_v_zz___source__relaxed_json__listing___any___unevaluated.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___source__relaxedJson__listing___any___unevaluated */
+#define afw_v_zz___source__relaxedJson__listing___any___unevaluated \
+    (&afw_self_v_zz___source__relaxedJson__listing___any___unevaluated.pub)
 
 
 
@@ -123425,28 +123425,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__any___relaxed_json \
-    "(value: any): relaxed_json"
+#define AFW_Q_zz___value__any___relaxedJson \
+    "(value: any): relaxedJson"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any___relaxed_json */
-#define afw_s_zz___value__any___relaxed_json \
-    (&afw_self_v_zz___value__any___relaxed_json.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any___relaxedJson */
+#define afw_s_zz___value__any___relaxedJson \
+    (&afw_self_v_zz___value__any___relaxedJson.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any___relaxed_json */
-#define afw_self_s_zz___value__any___relaxed_json \
-    (afw_self_v_zz___value__any___relaxed_json.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__any___relaxedJson */
+#define afw_self_s_zz___value__any___relaxedJson \
+    (afw_self_v_zz___value__any___relaxedJson.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__any___relaxed_json */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___value__any___relaxedJson */
 extern const afw_value_string_t \
-    afw_self_v_zz___value__any___relaxed_json;
+    afw_self_v_zz___value__any___relaxedJson;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__any___relaxed_json */
-#define afw_z_zz___value__any___relaxed_json \
-    (afw_self_v_zz___value__any___relaxed_json.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__any___relaxedJson */
+#define afw_z_zz___value__any___relaxedJson \
+    (afw_self_v_zz___value__any___relaxedJson.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__any___relaxed_json */
-#define afw_v_zz___value__any___relaxed_json \
-    (&afw_self_v_zz___value__any___relaxed_json.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___value__any___relaxedJson */
+#define afw_v_zz___value__any___relaxedJson \
+    (&afw_self_v_zz___value__any___relaxedJson.pub)
 
 
 
@@ -128885,6 +128885,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__aa3ed74b5ebd \
+    "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxedJson', 'script', 'template'"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__aa3ed74b5ebd */
+#define afw_s_zz__aa3ed74b5ebd \
+    (&afw_self_v_zz__aa3ed74b5ebd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__aa3ed74b5ebd */
+#define afw_self_s_zz__aa3ed74b5ebd \
+    (afw_self_v_zz__aa3ed74b5ebd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__aa3ed74b5ebd */
+extern const afw_value_string_t \
+    afw_self_v_zz__aa3ed74b5ebd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__aa3ed74b5ebd */
+#define afw_z_zz__aa3ed74b5ebd \
+    (afw_self_v_zz__aa3ed74b5ebd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__aa3ed74b5ebd */
+#define afw_v_zz__aa3ed74b5ebd \
+    (&afw_self_v_zz__aa3ed74b5ebd.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__aa4d535ac959 \
     "function slice (\n    array: array,\n    startIndex?: integer,\n    endIndex?: integer\n): array;\n"
 
@@ -130961,6 +130987,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__at_least_one_member_of_yearMonthDuration_ */
 #define afw_v_zz__at_least_one_member_of_yearMonthDuration_ \
     (&afw_self_v_zz__at_least_one_member_of_yearMonthDuration_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b00c9c04a7ae \
+    "function compile<relaxedJson> (\n    source: relaxedJson,\n    listing?: any\n): unevaluated;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b00c9c04a7ae */
+#define afw_s_zz__b00c9c04a7ae \
+    (&afw_self_v_zz__b00c9c04a7ae.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b00c9c04a7ae */
+#define afw_self_s_zz__b00c9c04a7ae \
+    (afw_self_v_zz__b00c9c04a7ae.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b00c9c04a7ae */
+extern const afw_value_string_t \
+    afw_self_v_zz__b00c9c04a7ae;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b00c9c04a7ae */
+#define afw_z_zz__b00c9c04a7ae \
+    (afw_self_v_zz__b00c9c04a7ae.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b00c9c04a7ae */
+#define afw_v_zz__b00c9c04a7ae \
+    (&afw_self_v_zz__b00c9c04a7ae.pub)
 
 
 
@@ -140429,28 +140481,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__compile_relaxed_json_ \
-    "compile<relaxed_json>"
+#define AFW_Q_zz__compile_relaxedJson_ \
+    "compile<relaxedJson>"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__compile_relaxed_json_ */
-#define afw_s_zz__compile_relaxed_json_ \
-    (&afw_self_v_zz__compile_relaxed_json_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__compile_relaxedJson_ */
+#define afw_s_zz__compile_relaxedJson_ \
+    (&afw_self_v_zz__compile_relaxedJson_.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__compile_relaxed_json_ */
-#define afw_self_s_zz__compile_relaxed_json_ \
-    (afw_self_v_zz__compile_relaxed_json_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__compile_relaxedJson_ */
+#define afw_self_s_zz__compile_relaxedJson_ \
+    (afw_self_v_zz__compile_relaxedJson_.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__compile_relaxed_json_ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__compile_relaxedJson_ */
 extern const afw_value_string_t \
-    afw_self_v_zz__compile_relaxed_json_;
+    afw_self_v_zz__compile_relaxedJson_;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__compile_relaxed_json_ */
-#define afw_z_zz__compile_relaxed_json_ \
-    (afw_self_v_zz__compile_relaxed_json_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__compile_relaxedJson_ */
+#define afw_z_zz__compile_relaxedJson_ \
+    (afw_self_v_zz__compile_relaxedJson_.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__compile_relaxed_json_ */
-#define afw_v_zz__compile_relaxed_json_ \
-    (&afw_self_v_zz__compile_relaxed_json_.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__compile_relaxedJson_ */
+#define afw_v_zz__compile_relaxedJson_ \
+    (&afw_self_v_zz__compile_relaxedJson_.pub)
 
 
 
@@ -150803,32 +150855,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f3c2b44584fc \
-    "Converts value to data type relaxed_json returning relaxed_json result. Holds relaxed JSON source text as a relaxed_json value (does not parse/compile). Use polymorphic compile to compile the source."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f3c2b44584fc */
-#define afw_s_zz__f3c2b44584fc \
-    (&afw_self_v_zz__f3c2b44584fc.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f3c2b44584fc */
-#define afw_self_s_zz__f3c2b44584fc \
-    (afw_self_v_zz__f3c2b44584fc.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f3c2b44584fc */
-extern const afw_value_string_t \
-    afw_self_v_zz__f3c2b44584fc;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f3c2b44584fc */
-#define afw_z_zz__f3c2b44584fc \
-    (afw_self_v_zz__f3c2b44584fc.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f3c2b44584fc */
-#define afw_v_zz__f3c2b44584fc \
-    (&afw_self_v_zz__f3c2b44584fc.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f3c6fe064e18 \
     "function lt<function> (\n    arg1: function,\n    arg2: function\n): boolean;\n"
 
@@ -151215,32 +151241,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f55be86add6a */
 #define afw_v_zz__f55be86add6a \
     (&afw_self_v_zz__f55be86add6a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f58fad6636c4 \
-    "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f58fad6636c4 */
-#define afw_s_zz__f58fad6636c4 \
-    (&afw_self_v_zz__f58fad6636c4.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f58fad6636c4 */
-#define afw_self_s_zz__f58fad6636c4 \
-    (afw_self_v_zz__f58fad6636c4.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f58fad6636c4 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f58fad6636c4;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f58fad6636c4 */
-#define afw_z_zz__f58fad6636c4 \
-    (afw_self_v_zz__f58fad6636c4.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f58fad6636c4 */
-#define afw_v_zz__f58fad6636c4 \
-    (&afw_self_v_zz__f58fad6636c4.pub)
 
 
 
@@ -157069,28 +157069,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__function_relaxed_json_______value__any____relaxed_json__ \
-    "function relaxed_json (\n    value: any\n): relaxed_json;\n"
+#define AFW_Q_zz__function_relaxedJson_______value__any____relaxedJson__ \
+    "function relaxedJson (\n    value: any\n): relaxedJson;\n"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_relaxed_json_______value__any____relaxed_json__ */
-#define afw_s_zz__function_relaxed_json_______value__any____relaxed_json__ \
-    (&afw_self_v_zz__function_relaxed_json_______value__any____relaxed_json__.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_relaxedJson_______value__any____relaxedJson__ */
+#define afw_s_zz__function_relaxedJson_______value__any____relaxedJson__ \
+    (&afw_self_v_zz__function_relaxedJson_______value__any____relaxedJson__.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_relaxed_json_______value__any____relaxed_json__ */
-#define afw_self_s_zz__function_relaxed_json_______value__any____relaxed_json__ \
-    (afw_self_v_zz__function_relaxed_json_______value__any____relaxed_json__.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_relaxedJson_______value__any____relaxedJson__ */
+#define afw_self_s_zz__function_relaxedJson_______value__any____relaxedJson__ \
+    (afw_self_v_zz__function_relaxedJson_______value__any____relaxedJson__.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__function_relaxed_json_______value__any____relaxed_json__ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_relaxedJson_______value__any____relaxedJson__ */
 extern const afw_value_string_t \
-    afw_self_v_zz__function_relaxed_json_______value__any____relaxed_json__;
+    afw_self_v_zz__function_relaxedJson_______value__any____relaxedJson__;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_relaxed_json_______value__any____relaxed_json__ */
-#define afw_z_zz__function_relaxed_json_______value__any____relaxed_json__ \
-    (afw_self_v_zz__function_relaxed_json_______value__any____relaxed_json__.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_relaxedJson_______value__any____relaxedJson__ */
+#define afw_z_zz__function_relaxedJson_______value__any____relaxedJson__ \
+    (afw_self_v_zz__function_relaxedJson_______value__any____relaxedJson__.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__function_relaxed_json_______value__any____relaxed_json__ */
-#define afw_v_zz__function_relaxed_json_______value__any____relaxed_json__ \
-    (&afw_self_v_zz__function_relaxed_json_______value__any____relaxed_json__.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_relaxedJson_______value__any____relaxedJson__ */
+#define afw_v_zz__function_relaxedJson_______value__any____relaxedJson__ \
+    (&afw_self_v_zz__function_relaxedJson_______value__any____relaxedJson__.pub)
 
 
 
@@ -165909,28 +165909,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__relaxed_json_string_to_compile \
-    "relaxed_json string to compile"
+#define AFW_Q_zz__relaxedJson_string_to_compile \
+    "relaxedJson string to compile"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__relaxed_json_string_to_compile */
-#define afw_s_zz__relaxed_json_string_to_compile \
-    (&afw_self_v_zz__relaxed_json_string_to_compile.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__relaxedJson_string_to_compile */
+#define afw_s_zz__relaxedJson_string_to_compile \
+    (&afw_self_v_zz__relaxedJson_string_to_compile.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__relaxed_json_string_to_compile */
-#define afw_self_s_zz__relaxed_json_string_to_compile \
-    (afw_self_v_zz__relaxed_json_string_to_compile.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__relaxedJson_string_to_compile */
+#define afw_self_s_zz__relaxedJson_string_to_compile \
+    (afw_self_v_zz__relaxedJson_string_to_compile.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__relaxed_json_string_to_compile */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__relaxedJson_string_to_compile */
 extern const afw_value_string_t \
-    afw_self_v_zz__relaxed_json_string_to_compile;
+    afw_self_v_zz__relaxedJson_string_to_compile;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__relaxed_json_string_to_compile */
-#define afw_z_zz__relaxed_json_string_to_compile \
-    (afw_self_v_zz__relaxed_json_string_to_compile.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__relaxedJson_string_to_compile */
+#define afw_z_zz__relaxedJson_string_to_compile \
+    (afw_self_v_zz__relaxedJson_string_to_compile.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__relaxed_json_string_to_compile */
-#define afw_v_zz__relaxed_json_string_to_compile \
-    (&afw_self_v_zz__relaxed_json_string_to_compile.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__relaxedJson_string_to_compile */
+#define afw_v_zz__relaxedJson_string_to_compile \
+    (&afw_self_v_zz__relaxedJson_string_to_compile.pub)
 
 
 

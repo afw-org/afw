@@ -3343,7 +3343,7 @@ impl_test_script_get_next_key_value(
  *
  *# Default is script or the one specified in TestScriptDefinition
  * TestSourceType ::= TestScriptLineStart 'source_type:'
- *     ( 'json' | 'relaxed_json' | 'script' | 'template' )
+ *     ( 'json' | 'relaxedJson' | 'script' | 'template' )
  *
  * TestSource ::= TestScriptLineStart 'source:' TestScriptValue
  *

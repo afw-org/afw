@@ -162455,7 +162455,7 @@ static const afw_runtime_const_object_instance_t
 impl_1570;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/relaxed_json
+ * /afw/_AdaptiveFunctionCategory_/relaxedJson
  */
 
 static const afw_runtime_property_t
@@ -162467,7 +162467,7 @@ impl_1570_property_brief = {
 static const afw_runtime_property_t
 impl_1570_property_category = {
     afw_v_category,
-    &afw_self_v_relaxed_json.pub
+    &afw_self_v_relaxedJson.pub
 };
 
 static const afw_runtime_property_t
@@ -162514,7 +162514,7 @@ impl_1570_meta_object__value = {
 
 static const afw_utf8_t
 impl_1570_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/relaxed_json");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/relaxedJson");
 
 static const afw_value_object_t
 impl_1570__value;
@@ -162528,7 +162528,7 @@ impl_1570 = {
         {
             (const afw_object_t *)&impl_1570_meta_object,
             NULL,
-            &afw_self_s_relaxed_json,
+            &afw_self_s_relaxedJson,
             &afw_self_s__AdaptiveFunctionCategory_,
             &impl_1570_meta_path
         }

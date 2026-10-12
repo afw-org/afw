@@ -1,44 +1,44 @@
 #!/usr/bin/env perl
 
 #**
-# @file relaxed_json.pm
+# @file relaxedJson.pm
 # @ingroup afw_bindings_perl
-# @brief This file contains the Perl bindings for the relaxed_json category.
+# @brief This file contains the Perl bindings for the relaxedJson category.
 #*
 
-package afw::relaxed_json;
+package afw::relaxedJson;
 use strict;
 use warnings;
 
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
-    compile_relaxed_json 
-    relaxed_json 
+    compile_relaxedJson 
+    relaxedJson 
 );
 
 =head1 NAME
 
-afw::relaxed_json - Perl module for relaxed_json functions
+afw::relaxedJson - Perl module for relaxedJson functions
 
 =head2 Functions
 
 The following functions are exported by default
 
-=head3 compile_relaxed_json
+=head3 compile_relaxedJson
 
-Compile relaxed_json value and return either an unevaluated adaptive value or
-a string containing the compiler listing. The listing is a human-oriented dump
+Compile relaxedJson value and return either an unevaluated adaptive value or a
+string containing the compiler listing. The listing is a human-oriented dump
 (value tree interleaved with source, plus ---Symbols tables) for Fiddle and
 debugging — not pure JSON (use stringify) and not Adaptive compiled-form text
 (use decompile).
-Compile relaxed_json value
+Compile relaxedJson value
 
 =head4 Parameters
 
     $source
 
-relaxed_json string to compile
+relaxedJson string to compile
 
     $listing
 
@@ -50,12 +50,12 @@ This parameter can be an integer between 0 and 10 or a string that is used for
 indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
 
-=head3 relaxed_json
+=head3 relaxedJson
 
-Converts value to data type relaxed_json returning relaxed_json result. Holds
-relaxed JSON source text as a relaxed_json value (does not parse/compile). Use
+Converts value to data type relaxedJson returning relaxedJson result. Holds
+relaxed JSON source text as a relaxedJson value (does not parse/compile). Use
 polymorphic compile to compile the source.
-Convert to data type relaxed_json
+Convert to data type relaxedJson
 
 =head4 Parameters
 
@@ -65,12 +65,12 @@ Value to convert
 
 =cut
 
-sub compile_relaxed_json {
+sub compile_relaxedJson {
     my ($source, $listing) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "compile<relaxed_json>");
+    $request->set("function" => "compile<relaxedJson>");
     $request->set("source", $source);
 
     if (defined $listing)
@@ -79,12 +79,12 @@ sub compile_relaxed_json {
     return $request->getResult();
 }
 
-sub relaxed_json {
+sub relaxedJson {
     my ($value) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "relaxed_json");
+    $request->set("function" => "relaxedJson");
     $request->set("value", $value);
 
     return $request->getResult();

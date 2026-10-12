@@ -33,7 +33,7 @@ export * from "./password";
 export * from "./polymorphic";
 export * from "./random";
 export * from "./regexp";
-export * from "./relaxed_json";
+export * from "./relaxedJson";
 export * from "./rfc822Name";
 export * from "./script";
 export * from "./stream";

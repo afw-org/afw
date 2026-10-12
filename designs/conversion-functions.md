@@ -33,7 +33,7 @@ A **type name** for annotations (`: integer`) is independent of whether a conver
 
 ## Source-holding types
 
-`json`, `relaxed_json`, `script`, `template`, `regexp`, `xpathExpression` (and similar):
+`json`, `relaxedJson`, `script`, `template`, `regexp`, `xpathExpression` (and similar):
 
 - Type-named convert produces a value that **holds source text** of that kind.
 - It does **not** compile or evaluate the source.

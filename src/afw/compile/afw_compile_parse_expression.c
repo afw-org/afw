@@ -44,7 +44,7 @@
  *    'objectPath' |
  *    'password' |
  *    'regexp' |
- *    'relaxed_json' |
+ *    'relaxedJson' |
  *    'rfc822Name' |
  *    'script' |
  *    'string' |

@@ -178,10 +178,10 @@ afw_register_data_type_infs(
         &afw_value_unmanaged_regexp_inf,
         xctx);
 
-    /* Register value inf id evaluated_relaxed_json */
+    /* Register value inf id evaluated_relaxedJson */
     afw_environment_register_value_inf(
-        &afw_value_unmanaged_relaxed_json_inf.rti.implementation_id,
-        &afw_value_unmanaged_relaxed_json_inf,
+        &afw_value_unmanaged_relaxedJson_inf.rti.implementation_id,
+        &afw_value_unmanaged_relaxedJson_inf,
         xctx);
 
     /* Register value inf id evaluated_rfc822Name */

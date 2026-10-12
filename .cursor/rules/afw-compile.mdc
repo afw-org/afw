@@ -27,7 +27,7 @@ Public entry for Adaptive syntaxes. Output is an **`afw_value_t`** (usually `com
 
 | Type | Parser | Result |
 |------|--------|--------|
-| `json` / `relaxed_json` | `parse_Json` | Direct value (object/list/scalar) |
+| `json` / `relaxedJson` | `parse_Json` | Direct value (object/list/scalar) |
 | `script` | `parse_Script` | `compiled_value` |
 | `template` | `parse_Template` | `compiled_value` |
 | `test_script` | `parse_TestScript` | `compiled_value` |

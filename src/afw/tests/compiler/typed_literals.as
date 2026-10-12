@@ -192,11 +192,11 @@ catch (e) {
 assert(includes(e1, "Array values must be separated with a comma"), "json");
 let e2 = "compiled";
 try {
-    compile<relaxed_json>(relaxed_json('["2026-10-11"date]'));
+    compile<relaxedJson>(relaxedJson('["2026-10-11"date]'));
 }
 catch (e) {
     e2 = e.message;
 }
 assert(includes(e2, "Array values must be separated with a comma"),
-    "relaxed_json");
+    "relaxedJson");
 return 0;

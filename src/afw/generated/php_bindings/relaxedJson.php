@@ -2,23 +2,23 @@
 
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * PHP Bindings for relaxed_json
+ * PHP Bindings for relaxedJson
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file relaxed_json.php
+ * @file relaxedJson.php
  * @ingroup afw_bindings_php
- * @brief Class definition for function category relaxed_json
+ * @brief Class definition for function category relaxedJson
  */
-class relaxed_json
+class relaxedJson
 {
     private $session;
 
     /**
-     * Constructs the relaxed_json class, using a session.
+     * Constructs the relaxedJson class, using a session.
      */
     public function __construct($session = null)
     {
@@ -26,15 +26,15 @@ class relaxed_json
     }
 
     /**
-     * compile_relaxed_json()
+     * compile_relaxedJson()
      *
-     * Compile relaxed_json value and return either an unevaluated adaptive
+     * Compile relaxedJson value and return either an unevaluated adaptive
      * value or a string containing the compiler listing. The listing is a
      * human-oriented dump (value tree interleaved with source, plus
      * ---Symbols tables) for Fiddle and debugging — not pure JSON (use
      * stringify) and not Adaptive compiled-form text (use decompile).
      *
-     * @param relaxed_json $source relaxed_json string to compile
+     * @param relaxedJson $source relaxedJson string to compile
      * @param $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
      *                  ---Symbols; not recompilable). Use decompile() for
@@ -49,11 +49,11 @@ class relaxed_json
      *
      * @return unevaluated
      */
-    public function compile_relaxed_json(, $source, $listing = null)
+    public function compile_relaxedJson(, $source, $listing = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "compile<relaxed_json>");
+        $request->set("function", "compile<relaxedJson>");
 
         /* pass along required parameters to the request payload */
         $request->set("source", $source);
@@ -66,21 +66,21 @@ class relaxed_json
     }
 
     /**
-     * relaxed_json()
+     * relaxedJson()
      *
-     * Converts value to data type relaxed_json returning relaxed_json result.
-     * Holds relaxed JSON source text as a relaxed_json value (does not
+     * Converts value to data type relaxedJson returning relaxedJson result.
+     * Holds relaxed JSON source text as a relaxedJson value (does not
      * parse/compile). Use polymorphic compile to compile the source.
      *
      * @param $value Value to convert
      *
-     * @return relaxed_json Converted value
+     * @return relaxedJson Converted value
      */
-    public function relaxed_json(, $value)
+    public function relaxedJson(, $value)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "relaxed_json");
+        $request->set("function", "relaxedJson");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

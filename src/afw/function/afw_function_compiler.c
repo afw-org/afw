@@ -1336,7 +1336,7 @@ int impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
- *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *       For example, 'json', 'relaxedJson', 'script', 'template'.
  *
  * Returns:
  *
@@ -1370,8 +1370,8 @@ afw_function_execute_compile_from_file(
         compile_type_string = &compile_type_value->internal;
         if (afw_utf8_compare(compile_type_string, afw_s_json) == 0)
             compile_type = afw_compile_type_json;
-        else if (afw_utf8_compare(compile_type_string, afw_s_relaxed_json) == 0)
-            compile_type = afw_compile_type_relaxed_json;
+        else if (afw_utf8_compare(compile_type_string, afw_s_relaxedJson) == 0)
+            compile_type = afw_compile_type_relaxedJson;
         else if (afw_utf8_compare(compile_type_string, afw_s_script) == 0)
             compile_type = afw_compile_type_script;
         else if (afw_utf8_compare(compile_type_string, afw_s_template) == 0)
@@ -1453,7 +1453,7 @@ afw_function_execute_compile_from_file(
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
- *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *       For example, 'json', 'relaxedJson', 'script', 'template'.
  *
  * Returns:
  *
