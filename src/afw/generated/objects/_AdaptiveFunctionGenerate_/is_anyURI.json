@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType anyURI and returns the boolean result. This can also be written is<anyURI>(value).",
+    "description": "Checks whether value is dataType anyURI and returns the boolean result. It is false for undefined. This can also be written is<anyURI>(value).",
     "functionId": "is_anyURI",
     "functionLabel": "is_anyURI",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }

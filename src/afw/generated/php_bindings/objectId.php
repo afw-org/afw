@@ -204,7 +204,8 @@ class objectId
      * is_objectId()
      *
      * Checks whether value is dataType objectId and returns the boolean
-     * result. This can also be written `is<objectId>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<objectId>(value`).
      *
      * @param $value Value to check
      *

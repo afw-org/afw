@@ -232,7 +232,8 @@ def is_objectPath(session, value):
     Checks whether value is dataType objectPath
 
     Checks whether value is dataType objectPath and returns the boolean
-    result. This can also be written `is<objectPath>(value`).
+    result. It is false for undefined. This can also be written
+    `is<objectPath>(value`).
 
     Args:
         value (object): Value to check

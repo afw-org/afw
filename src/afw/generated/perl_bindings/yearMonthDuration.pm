@@ -187,7 +187,8 @@ Checks whether a value is in an array
 =head3 is_yearMonthDuration
 
 Checks whether value is dataType yearMonthDuration and returns the boolean
-result. This can also be written `is<yearMonthDuration>(value`).
+result. It is false for undefined. This can also be written
+`is<yearMonthDuration>(value`).
 Checks whether value is dataType yearMonthDuration
 
 =head4 Parameters

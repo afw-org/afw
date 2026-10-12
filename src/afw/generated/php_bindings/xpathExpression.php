@@ -295,7 +295,8 @@ class xpathExpression
      * is_xpathExpression()
      *
      * Checks whether value is dataType xpathExpression and returns the
-     * boolean result. This can also be written `is<xpathExpression>(value`).
+     * boolean result. It is false for undefined. This can also be written
+     * `is<xpathExpression>(value`).
      *
      * @param $value Value to check
      *

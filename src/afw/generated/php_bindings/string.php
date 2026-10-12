@@ -533,7 +533,8 @@ class string
      * is_string()
      *
      * Checks whether value is dataType string and returns the boolean result.
-     * This can also be written `is<string>(value`).
+     * It is false for undefined. This can also be written
+     * `is<string>(value`).
      *
      * @param $value Value to check
      *

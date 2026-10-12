@@ -161,7 +161,7 @@ export function afwGtObjectId(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Checks whether value is dataType objectId and returns the boolean result.
- * This can also be written `is<objectId>(value`).
+ * It is false for undefined. This can also be written `is<objectId>(value`).
  * 
  * @param {} value - Value to check
  * 

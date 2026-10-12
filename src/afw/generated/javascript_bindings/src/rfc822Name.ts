@@ -224,7 +224,8 @@ export function afwIsInRfc822Name(client : any, value : any, array : any[]) : an
 
 /**
  * Checks whether value is dataType rfc822Name and returns the boolean result.
- * This can also be written `is<rfc822Name>(value`).
+ * It is false for undefined. This can also be written
+ * `is<rfc822Name>(value`).
  * 
  * @param {} value - Value to check
  * 

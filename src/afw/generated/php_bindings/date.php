@@ -305,7 +305,7 @@ class date
      * is_date()
      *
      * Checks whether value is dataType date and returns the boolean result.
-     * This can also be written `is<date>(value`).
+     * It is false for undefined. This can also be written `is<date>(value`).
      *
      * @param $value Value to check
      *

@@ -224,7 +224,7 @@ export function afwIsInX500Name(client : any, value : any, array : any[]) : any 
 
 /**
  * Checks whether value is dataType x500Name and returns the boolean result.
- * This can also be written `is<x500Name>(value`).
+ * It is false for undefined. This can also be written `is<x500Name>(value`).
  * 
  * @param {} value - Value to check
  * 

@@ -251,7 +251,8 @@ class ipAddress
      * is_ipAddress()
      *
      * Checks whether value is dataType ipAddress and returns the boolean
-     * result. This can also be written `is<ipAddress>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<ipAddress>(value`).
      *
      * @param $value Value to check
      *

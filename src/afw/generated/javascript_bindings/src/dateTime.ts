@@ -266,7 +266,7 @@ export function afwIntersectionDateTime(client : any, array1 : any[], array2 : a
 
 /**
  * Checks whether value is dataType dateTime and returns the boolean result.
- * This can also be written `is<dateTime>(value`).
+ * It is false for undefined. This can also be written `is<dateTime>(value`).
  * 
  * @param {} value - Value to check
  * 

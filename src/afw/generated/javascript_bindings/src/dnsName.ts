@@ -177,8 +177,8 @@ export function afwGtDnsName(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks whether value is dataType dnsName and returns the boolean result.
- * This can also be written `is<dnsName>(value`).
+ * Checks whether value is dataType dnsName and returns the boolean result. It
+ * is false for undefined. This can also be written `is<dnsName>(value`).
  * 
  * @param {} value - Value to check
  * 

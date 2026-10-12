@@ -325,7 +325,8 @@ def is_rfc822Name(session, value):
     Checks whether value is dataType rfc822Name
 
     Checks whether value is dataType rfc822Name and returns the boolean
-    result. This can also be written `is<rfc822Name>(value`).
+    result. It is false for undefined. This can also be written
+    `is<rfc822Name>(value`).
 
     Args:
         value (object): Value to check

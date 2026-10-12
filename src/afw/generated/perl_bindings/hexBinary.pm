@@ -194,8 +194,8 @@ The second array.
 
 =head3 is_hexBinary
 
-Checks whether value is dataType hexBinary and returns the boolean result.
-This can also be written `is<hexBinary>(value`).
+Checks whether value is dataType hexBinary and returns the boolean result. It
+is false for undefined. This can also be written `is<hexBinary>(value`).
 Checks whether value is dataType hexBinary
 
 =head4 Parameters

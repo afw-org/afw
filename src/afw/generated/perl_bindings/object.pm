@@ -213,8 +213,8 @@ Checks for greater than
 
 =head3 is_object
 
-Checks whether value is dataType object and returns the boolean result. This
-can also be written `is<object>(value`).
+Checks whether value is dataType object and returns the boolean result. It is
+false for undefined. This can also be written `is<object>(value`).
 Checks whether value is dataType object
 
 =head4 Parameters

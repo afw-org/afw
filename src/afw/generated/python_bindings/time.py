@@ -367,8 +367,8 @@ def is_time(session, value):
     """
     Checks whether value is dataType time
 
-    Checks whether value is dataType time and returns the boolean result. This
-    can also be written `is<time>(value`).
+    Checks whether value is dataType time and returns the boolean result. It
+    is false for undefined. This can also be written `is<time>(value`).
 
     Args:
         value (object): Value to check

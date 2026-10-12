@@ -325,7 +325,7 @@ def is_x500Name(session, value):
     Checks whether value is dataType x500Name
 
     Checks whether value is dataType x500Name and returns the boolean result.
-    This can also be written `is<x500Name>(value`).
+    It is false for undefined. This can also be written `is<x500Name>(value`).
 
     Args:
         value (object): Value to check

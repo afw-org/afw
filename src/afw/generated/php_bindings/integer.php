@@ -370,7 +370,8 @@ class integer
      * is_integer()
      *
      * Checks whether value is dataType integer and returns the boolean
-     * result. This can also be written `is<integer>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<integer>(value`).
      *
      * @param $value Value to check
      *

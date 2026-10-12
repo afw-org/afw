@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isNull",
     "category": "null",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType null and returns the boolean result. This can also be written is<null>(value).",
+    "description": "Checks whether value is dataType null and returns the boolean result. It is false for undefined. This can also be written is<null>(value).",
     "functionId": "is_null",
     "functionLabel": "is_null",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }

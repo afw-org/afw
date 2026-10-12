@@ -161,7 +161,8 @@ export function afwGtObjectPath(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Checks whether value is dataType objectPath and returns the boolean result.
- * This can also be written `is<objectPath>(value`).
+ * It is false for undefined. This can also be written
+ * `is<objectPath>(value`).
  * 
  * @param {} value - Value to check
  * 

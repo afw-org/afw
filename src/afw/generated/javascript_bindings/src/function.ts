@@ -161,7 +161,7 @@ export function afwGtFunction(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Checks whether value is dataType function and returns the boolean result.
- * This can also be written `is<function>(value`).
+ * It is false for undefined. This can also be written `is<function>(value`).
  * 
  * @param {} value - Value to check
  * 

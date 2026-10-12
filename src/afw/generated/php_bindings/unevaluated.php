@@ -55,7 +55,8 @@ class unevaluated
      * is_unevaluated()
      *
      * Checks whether value is dataType unevaluated and returns the boolean
-     * result. This can also be written `is<unevaluated>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<unevaluated>(value`).
      *
      * @param $value Value to check
      *

@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isArray",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType array and returns the boolean result. This can also be written is<array>(value).",
+    "description": "Checks whether value is dataType array and returns the boolean result. It is false for undefined. This can also be written is<array>(value).",
     "functionId": "is_array",
     "functionLabel": "is_array",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }

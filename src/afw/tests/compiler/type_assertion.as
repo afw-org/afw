@@ -315,17 +315,86 @@ return 0;
 
 //?
 //? test: decompile
-//? description: v as T compiles to as_T(v), which decompiles and compiles again to the same thing
+//? description: as_T(v) decompiles to (v as T), which compiles again to the same thing, also as a chain base
 //? expect: 0
 //? source: ...
 
 const text = decompile(compile<script>(script(
-    "return function (x) { return [x as integer, is<integer>(x), as_object({a: x})?.a]; };")));
-assert(includes(text, "as_integer(x)"), text);
+    "return function (x) { return [x as integer, as_integer(x), is<integer>(x), as_object({a: x})?.a, (({a: x}) as object).a]; };")));
+assert(includes(text, "(x as integer),(x as integer)"), text);
 assert(includes(text, "is_integer(x)"), text);
-assert(includes(text, "as_object("), text);
+assert(includes(text, "({\"a\":x} as object)?.[\"a\"]"), text);
 const g: function = evaluate(compile<script>(script(text)));
-assert(stringify(g(1)) === "[1,true,1]");
+assert(stringify(g(1)) === "[1,1,true,1,1]");
+assert(decompile(compile<script>(script(text))) === text, "same text again");
+return 0;
+
+//?
+//? test: is-and-as-agree
+//? description: is<T>(v) is true exactly when v as T does not throw, including undefined
+//? expect: 0
+//? source: ...
+
+const types = ["anyURI", "array", "boolean", "date", "double", "function",
+    "integer", "null", "object", "string"];
+const values = ["https://example.com/"anyURI, [1], true, "2026-10-11"date,
+    1.5, add, 1, null, {a: 1}, "text", undefined];
+for (const t of types) {
+    const is_t: function = evaluate(compile<script>(script(
+        "return function (v) { return is<" + t + ">(v); };")));
+    const as_t: function = evaluate(compile<script>(script(
+        "return function (v) { return v as " + t + "; };")));
+    for (const v of values) {
+        let passed = true;
+        try {
+            as_t(v);
+        }
+        catch (e) {
+            passed = false;
+        }
+        assert(is_t(v) === passed, t + " " + stringify(v ?? "undefined"));
+    }
+}
+assert(is_string(undefined) === false);
+assert(is_null(undefined) === false);
+assert(is<integer>(undefined) === false);
+return 0;
+
+//?
+//? test: built-in-functions-are-functions
+//? description: a built-in function value is a function, like a script function
+//? expect: 0
+//? source: ...
+
+const f = function (a) { return a; };
+assert(is<function>(add));
+assert(!is<object>(add));
+assert((add as function) == add);
+assert(is<function>(abs<integer>));
+assert(add == add);
+assert(add !== subtract);
+assert(string(add) === "add");
+assert(is<function>(f) && f == f);
+
+// keys and to_string take an object and a convertible value, not a function.
+let message = "";
+try {
+    message = stringify(keys(add));
+}
+catch (e) {
+    message = e.message;
+}
+assert(includes(message, "must evaluate to data type 'object' but evaluated to be 'function'"), message);
+try {
+    message = to_string(add);
+}
+catch (e) {
+    message = e.message;
+}
+assert(includes(message, "'to_string' is not a method of data type 'function'"), message);
+
+// The function's metadata object.
+assert(get_object("afw", "_AdaptiveFunction_", "add").functionId === "add");
 return 0;
 
 //?

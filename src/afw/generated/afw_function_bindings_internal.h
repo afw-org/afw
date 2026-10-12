@@ -2683,8 +2683,8 @@ afw_function_definition_is_anyURI;
  * @brief Adaptive Function `is_anyURI`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType anyURI and returns the boolean result. This
- * can also be written `is<anyURI>(value`).
+ * Checks whether value is dataType anyURI and returns the boolean result. It is
+ * false for undefined. This can also be written `is<anyURI>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4094,8 +4094,8 @@ afw_function_definition_is_array;
  * @brief Adaptive Function `is_array`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType array and returns the boolean result. This
- * can also be written `is<array>(value`).
+ * Checks whether value is dataType array and returns the boolean result. It is
+ * false for undefined. This can also be written `is<array>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5158,7 +5158,8 @@ afw_function_definition_is_base64Binary;
  * @param x function execute parameter.
  *
  * Checks whether value is dataType base64Binary and returns the boolean result.
- * This can also be written `is<base64Binary>(value`).
+ * It is false for undefined. This can also be written
+ * `is<base64Binary>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5971,8 +5972,8 @@ afw_function_definition_is_boolean;
  * @brief Adaptive Function `is_boolean`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType boolean and returns the boolean result. This
- * can also be written `is<boolean>(value`).
+ * Checks whether value is dataType boolean and returns the boolean result. It
+ * is false for undefined. This can also be written `is<boolean>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8420,8 +8421,8 @@ afw_function_definition_is_dateTime;
  * @brief Adaptive Function `is_dateTime`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType dateTime and returns the boolean result.
- * This can also be written `is<dateTime>(value`).
+ * Checks whether value is dataType dateTime and returns the boolean result. It
+ * is false for undefined. This can also be written `is<dateTime>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9425,8 +9426,8 @@ afw_function_definition_is_date;
  * @brief Adaptive Function `is_date`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType date and returns the boolean result. This
- * can also be written `is<date>(value`).
+ * Checks whether value is dataType date and returns the boolean result. It is
+ * false for undefined. This can also be written `is<date>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10354,7 +10355,8 @@ afw_function_definition_is_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Checks whether value is dataType dayTimeDuration and returns the boolean
- * result. This can also be written `is<dayTimeDuration>(value`).
+ * result. It is false for undefined. This can also be written
+ * `is<dayTimeDuration>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11087,8 +11089,8 @@ afw_function_definition_is_dnsName;
  * @brief Adaptive Function `is_dnsName`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType dnsName and returns the boolean result. This
- * can also be written `is<dnsName>(value`).
+ * Checks whether value is dataType dnsName and returns the boolean result. It
+ * is false for undefined. This can also be written `is<dnsName>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12027,8 +12029,8 @@ afw_function_definition_is_double;
  * @brief Adaptive Function `is_double`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType double and returns the boolean result. This
- * can also be written `is<double>(value`).
+ * Checks whether value is dataType double and returns the boolean result. It is
+ * false for undefined. This can also be written `is<double>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13070,8 +13072,8 @@ afw_function_definition_is_function;
  * @brief Adaptive Function `is_function`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType function and returns the boolean result.
- * This can also be written `is<function>(value`).
+ * Checks whether value is dataType function and returns the boolean result. It
+ * is false for undefined. This can also be written `is<function>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13688,8 +13690,8 @@ afw_function_definition_is_hexBinary;
  * @brief Adaptive Function `is_hexBinary`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType hexBinary and returns the boolean result.
- * This can also be written `is<hexBinary>(value`).
+ * Checks whether value is dataType hexBinary and returns the boolean result. It
+ * is false for undefined. This can also be written `is<hexBinary>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14992,8 +14994,8 @@ afw_function_definition_is_ia5String;
  * @brief Adaptive Function `is_ia5String`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType ia5String and returns the boolean result.
- * This can also be written `is<ia5String>(value`).
+ * Checks whether value is dataType ia5String and returns the boolean result. It
+ * is false for undefined. This can also be written `is<ia5String>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15916,8 +15918,8 @@ afw_function_definition_is_integer;
  * @brief Adaptive Function `is_integer`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType integer and returns the boolean result. This
- * can also be written `is<integer>(value`).
+ * Checks whether value is dataType integer and returns the boolean result. It
+ * is false for undefined. This can also be written `is<integer>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16897,8 +16899,8 @@ afw_function_definition_is_ipAddress;
  * @brief Adaptive Function `is_ipAddress`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType ipAddress and returns the boolean result.
- * This can also be written `is<ipAddress>(value`).
+ * Checks whether value is dataType ipAddress and returns the boolean result. It
+ * is false for undefined. This can also be written `is<ipAddress>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19032,8 +19034,8 @@ afw_function_definition_is_null;
  * @brief Adaptive Function `is_null`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType null and returns the boolean result. This
- * can also be written `is<null>(value`).
+ * Checks whether value is dataType null and returns the boolean result. It is
+ * false for undefined. This can also be written `is<null>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19379,8 +19381,8 @@ afw_function_definition_is_objectId;
  * @brief Adaptive Function `is_objectId`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType objectId and returns the boolean result.
- * This can also be written `is<objectId>(value`).
+ * Checks whether value is dataType objectId and returns the boolean result. It
+ * is false for undefined. This can also be written `is<objectId>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19923,7 +19925,7 @@ afw_function_definition_is_objectPath;
  * @param x function execute parameter.
  *
  * Checks whether value is dataType objectPath and returns the boolean result.
- * This can also be written `is<objectPath>(value`).
+ * It is false for undefined. This can also be written `is<objectPath>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20647,8 +20649,8 @@ afw_function_definition_is_object;
  * @brief Adaptive Function `is_object`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType object and returns the boolean result. This
- * can also be written `is<object>(value`).
+ * Checks whether value is dataType object and returns the boolean result. It is
+ * false for undefined. This can also be written `is<object>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21493,8 +21495,8 @@ afw_function_definition_is_password;
  * @brief Adaptive Function `is_password`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType password and returns the boolean result.
- * This can also be written `is<password>(value`).
+ * Checks whether value is dataType password and returns the boolean result. It
+ * is false for undefined. This can also be written `is<password>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26036,7 +26038,7 @@ afw_function_definition_is_rfc822Name;
  * @param x function execute parameter.
  *
  * Checks whether value is dataType rfc822Name and returns the boolean result.
- * This can also be written `is<rfc822Name>(value`).
+ * It is false for undefined. This can also be written `is<rfc822Name>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26900,8 +26902,8 @@ afw_function_definition_is_script;
  * @brief Adaptive Function `is_script`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType script and returns the boolean result. This
- * can also be written `is<script>(value`).
+ * Checks whether value is dataType script and returns the boolean result. It is
+ * false for undefined. This can also be written `is<script>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28398,8 +28400,8 @@ afw_function_definition_is_string;
  * @brief Adaptive Function `is_string`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType string and returns the boolean result. This
- * can also be written `is<string>(value`).
+ * Checks whether value is dataType string and returns the boolean result. It is
+ * false for undefined. This can also be written `is<string>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30295,8 +30297,8 @@ afw_function_definition_is_template;
  * @brief Adaptive Function `is_template`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType template and returns the boolean result.
- * This can also be written `is<template>(value`).
+ * Checks whether value is dataType template and returns the boolean result. It
+ * is false for undefined. This can also be written `is<template>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31001,8 +31003,8 @@ afw_function_definition_is_time;
  * @brief Adaptive Function `is_time`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType time and returns the boolean result. This
- * can also be written `is<time>(value`).
+ * Checks whether value is dataType time and returns the boolean result. It is
+ * false for undefined. This can also be written `is<time>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31552,7 +31554,7 @@ afw_function_definition_is_unevaluated;
  * @param x function execute parameter.
  *
  * Checks whether value is dataType unevaluated and returns the boolean result.
- * This can also be written `is<unevaluated>(value`).
+ * It is false for undefined. This can also be written `is<unevaluated>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32059,8 +32061,8 @@ afw_function_definition_is_x500Name;
  * @brief Adaptive Function `is_x500Name`
  * @param x function execute parameter.
  *
- * Checks whether value is dataType x500Name and returns the boolean result.
- * This can also be written `is<x500Name>(value`).
+ * Checks whether value is dataType x500Name and returns the boolean result. It
+ * is false for undefined. This can also be written `is<x500Name>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32926,7 +32928,8 @@ afw_function_definition_is_xpathExpression;
  * @param x function execute parameter.
  *
  * Checks whether value is dataType xpathExpression and returns the boolean
- * result. This can also be written `is<xpathExpression>(value`).
+ * result. It is false for undefined. This can also be written
+ * `is<xpathExpression>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -33695,7 +33698,8 @@ afw_function_definition_is_yearMonthDuration;
  * @param x function execute parameter.
  *
  * Checks whether value is dataType yearMonthDuration and returns the boolean
- * result. This can also be written `is<yearMonthDuration>(value`).
+ * result. It is false for undefined. This can also be written
+ * `is<yearMonthDuration>(value`).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

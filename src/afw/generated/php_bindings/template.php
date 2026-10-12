@@ -293,7 +293,8 @@ class template
      * is_template()
      *
      * Checks whether value is dataType template and returns the boolean
-     * result. This can also be written `is<template>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<template>(value`).
      *
      * @param $value Value to check
      *

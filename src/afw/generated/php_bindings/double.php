@@ -414,7 +414,8 @@ class double
      * is_double()
      *
      * Checks whether value is dataType double and returns the boolean result.
-     * This can also be written `is<double>(value`).
+     * It is false for undefined. This can also be written
+     * `is<double>(value`).
      *
      * @param $value Value to check
      *

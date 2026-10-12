@@ -176,8 +176,8 @@ Checks for greater than
 
 =head3 is_script
 
-Checks whether value is dataType script and returns the boolean result. This
-can also be written `is<script>(value`).
+Checks whether value is dataType script and returns the boolean result. It is
+false for undefined. This can also be written `is<script>(value`).
 Checks whether value is dataType script
 
 =head4 Parameters

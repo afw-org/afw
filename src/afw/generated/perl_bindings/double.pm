@@ -264,8 +264,8 @@ Number to check
 
 =head3 is_double
 
-Checks whether value is dataType double and returns the boolean result. This
-can also be written `is<double>(value`).
+Checks whether value is dataType double and returns the boolean result. It is
+false for undefined. This can also be written `is<double>(value`).
 Checks whether value is dataType double
 
 =head4 Parameters

@@ -238,8 +238,8 @@ Checks whether a value is in an array
 
 =head3 is_integer
 
-Checks whether value is dataType integer and returns the boolean result. This
-can also be written `is<integer>(value`).
+Checks whether value is dataType integer and returns the boolean result. It is
+false for undefined. This can also be written `is<integer>(value`).
 Checks whether value is dataType integer
 
 =head4 Parameters

@@ -327,7 +327,7 @@ def is_boolean(session, value):
     Checks whether value is dataType boolean
 
     Checks whether value is dataType boolean and returns the boolean result.
-    This can also be written `is<boolean>(value`).
+    It is false for undefined. This can also be written `is<boolean>(value`).
 
     Args:
         value (object): Value to check

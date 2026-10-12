@@ -131,8 +131,8 @@ Checks for greater than
 
 =head3 is_objectPath
 
-Checks whether value is dataType objectPath and returns the boolean result.
-This can also be written `is<objectPath>(value`).
+Checks whether value is dataType objectPath and returns the boolean result. It
+is false for undefined. This can also be written `is<objectPath>(value`).
 Checks whether value is dataType objectPath
 
 =head4 Parameters

@@ -226,7 +226,8 @@ class ia5String
      * is_ia5String()
      *
      * Checks whether value is dataType ia5String and returns the boolean
-     * result. This can also be written `is<ia5String>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<ia5String>(value`).
      *
      * @param $value Value to check
      *

@@ -195,7 +195,7 @@ The second array.
 =head3 is_base64Binary
 
 Checks whether value is dataType base64Binary and returns the boolean result.
-This can also be written `is<base64Binary>(value`).
+It is false for undefined. This can also be written `is<base64Binary>(value`).
 Checks whether value is dataType base64Binary
 
 =head4 Parameters

@@ -222,7 +222,7 @@ export function afwGtTemplate(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Checks whether value is dataType template and returns the boolean result.
- * This can also be written `is<template>(value`).
+ * It is false for undefined. This can also be written `is<template>(value`).
  * 
  * @param {} value - Value to check
  * 

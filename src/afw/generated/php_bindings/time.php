@@ -316,7 +316,7 @@ class time
      * is_time()
      *
      * Checks whether value is dataType time and returns the boolean result.
-     * This can also be written `is<time>(value`).
+     * It is false for undefined. This can also be written `is<time>(value`).
      *
      * @param $value Value to check
      *

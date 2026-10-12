@@ -390,7 +390,7 @@ class array
      * is_array()
      *
      * Checks whether value is dataType array and returns the boolean result.
-     * This can also be written `is<array>(value`).
+     * It is false for undefined. This can also be written `is<array>(value`).
      *
      * @param $value Value to check
      *

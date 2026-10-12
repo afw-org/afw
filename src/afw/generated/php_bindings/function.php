@@ -204,7 +204,8 @@ class function
      * is_function()
      *
      * Checks whether value is dataType function and returns the boolean
-     * result. This can also be written `is<function>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<function>(value`).
      *
      * @param $value Value to check
      *

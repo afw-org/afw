@@ -227,7 +227,8 @@ export function afwIsInYearMonthDuration(client : any, value : any, array : any[
 
 /**
  * Checks whether value is dataType yearMonthDuration and returns the boolean
- * result. This can also be written `is<yearMonthDuration>(value`).
+ * result. It is false for undefined. This can also be written
+ * `is<yearMonthDuration>(value`).
  * 
  * @param {} value - Value to check
  * 

@@ -328,7 +328,8 @@ class object
      * is_object()
      *
      * Checks whether value is dataType object and returns the boolean result.
-     * This can also be written `is<object>(value`).
+     * It is false for undefined. This can also be written
+     * `is<object>(value`).
      *
      * @param $value Value to check
      *

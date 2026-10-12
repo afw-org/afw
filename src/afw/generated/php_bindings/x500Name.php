@@ -279,7 +279,8 @@ class x500Name
      * is_x500Name()
      *
      * Checks whether value is dataType x500Name and returns the boolean
-     * result. This can also be written `is<x500Name>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<x500Name>(value`).
      *
      * @param $value Value to check
      *

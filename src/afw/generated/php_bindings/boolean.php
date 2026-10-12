@@ -280,7 +280,8 @@ class boolean
      * is_boolean()
      *
      * Checks whether value is dataType boolean and returns the boolean
-     * result. This can also be written `is<boolean>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<boolean>(value`).
      *
      * @param $value Value to check
      *

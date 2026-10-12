@@ -183,7 +183,8 @@ Checks for greater than
 =head3 is_xpathExpression
 
 Checks whether value is dataType xpathExpression and returns the boolean
-result. This can also be written `is<xpathExpression>(value`).
+result. It is false for undefined. This can also be written
+`is<xpathExpression>(value`).
 Checks whether value is dataType xpathExpression
 
 =head4 Parameters

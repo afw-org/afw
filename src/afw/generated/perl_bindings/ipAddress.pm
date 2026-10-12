@@ -159,8 +159,8 @@ Checks whether a value is in an array
 
 =head3 is_ipAddress
 
-Checks whether value is dataType ipAddress and returns the boolean result.
-This can also be written `is<ipAddress>(value`).
+Checks whether value is dataType ipAddress and returns the boolean result. It
+is false for undefined. This can also be written `is<ipAddress>(value`).
 Checks whether value is dataType ipAddress
 
 =head4 Parameters

@@ -199,7 +199,7 @@ export function afwIsInIpAddress(client : any, value : any, array : any[]) : any
 
 /**
  * Checks whether value is dataType ipAddress and returns the boolean result.
- * This can also be written `is<ipAddress>(value`).
+ * It is false for undefined. This can also be written `is<ipAddress>(value`).
  * 
  * @param {} value - Value to check
  * 

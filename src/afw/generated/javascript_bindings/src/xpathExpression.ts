@@ -225,7 +225,8 @@ export function afwGtXpathExpression(client : any, arg1 : any, arg2 : any) : any
 
 /**
  * Checks whether value is dataType xpathExpression and returns the boolean
- * result. This can also be written `is<xpathExpression>(value`).
+ * result. It is false for undefined. This can also be written
+ * `is<xpathExpression>(value`).
  * 
  * @param {} value - Value to check
  * 

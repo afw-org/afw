@@ -423,8 +423,8 @@ export function afwIsInString(client : any, value : string, array : any[]) : any
 }
 
 /**
- * Checks whether value is dataType string and returns the boolean result.
- * This can also be written `is<string>(value`).
+ * Checks whether value is dataType string and returns the boolean result. It
+ * is false for undefined. This can also be written `is<string>(value`).
  * 
  * @param {} value - Value to check
  * 

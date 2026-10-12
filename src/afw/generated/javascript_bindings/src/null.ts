@@ -74,8 +74,8 @@ export function afwBagSizeNull(client : any, value : any[]) : any {
 }
 
 /**
- * Checks whether value is dataType null and returns the boolean result. This
- * can also be written `is<null>(value`).
+ * Checks whether value is dataType null and returns the boolean result. It is
+ * false for undefined. This can also be written `is<null>(value`).
  * 
  * @param {} value - Value to check
  * 

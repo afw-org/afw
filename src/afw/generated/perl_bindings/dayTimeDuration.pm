@@ -184,7 +184,8 @@ The second array.
 =head3 is_dayTimeDuration
 
 Checks whether value is dataType dayTimeDuration and returns the boolean
-result. This can also be written `is<dayTimeDuration>(value`).
+result. It is false for undefined. This can also be written
+`is<dayTimeDuration>(value`).
 Checks whether value is dataType dayTimeDuration
 
 =head4 Parameters

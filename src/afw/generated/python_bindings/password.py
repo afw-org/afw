@@ -232,7 +232,7 @@ def is_password(session, value):
     Checks whether value is dataType password
 
     Checks whether value is dataType password and returns the boolean result.
-    This can also be written `is<password>(value`).
+    It is false for undefined. This can also be written `is<password>(value`).
 
     Args:
         value (object): Value to check

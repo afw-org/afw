@@ -257,8 +257,8 @@ Index in the array to start search.
 
 =head3 is_array
 
-Checks whether value is dataType array and returns the boolean result. This
-can also be written `is<array>(value`).
+Checks whether value is dataType array and returns the boolean result. It is
+false for undefined. This can also be written `is<array>(value`).
 Checks whether value is dataType array
 
 =head4 Parameters

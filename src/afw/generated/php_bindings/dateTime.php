@@ -332,7 +332,8 @@ class dateTime
      * is_dateTime()
      *
      * Checks whether value is dataType dateTime and returns the boolean
-     * result. This can also be written `is<dateTime>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<dateTime>(value`).
      *
      * @param $value Value to check
      *

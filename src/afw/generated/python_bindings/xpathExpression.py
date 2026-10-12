@@ -315,7 +315,8 @@ def is_xpathExpression(session, value):
     Checks whether value is dataType xpathExpression
 
     Checks whether value is dataType xpathExpression and returns the boolean
-    result. This can also be written `is<xpathExpression>(value`).
+    result. It is false for undefined. This can also be written
+    `is<xpathExpression>(value`).
 
     Args:
         value (object): Value to check

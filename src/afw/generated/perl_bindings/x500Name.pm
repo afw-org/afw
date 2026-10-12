@@ -186,8 +186,8 @@ Checks whether a value is in an array
 
 =head3 is_x500Name
 
-Checks whether value is dataType x500Name and returns the boolean result. This
-can also be written `is<x500Name>(value`).
+Checks whether value is dataType x500Name and returns the boolean result. It
+is false for undefined. This can also be written `is<x500Name>(value`).
 Checks whether value is dataType x500Name
 
 =head4 Parameters

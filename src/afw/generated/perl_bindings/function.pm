@@ -129,8 +129,8 @@ Checks for greater than
 
 =head3 is_function
 
-Checks whether value is dataType function and returns the boolean result. This
-can also be written `is<function>(value`).
+Checks whether value is dataType function and returns the boolean result. It
+is false for undefined. This can also be written `is<function>(value`).
 Checks whether value is dataType function
 
 =head4 Parameters

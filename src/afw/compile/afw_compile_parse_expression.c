@@ -287,6 +287,11 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
  *#
  * Evaluation ::=
  *    EntryFunctionLambdaOrVariableReference ( '?.'? Parameters )?
+ *    EvaluationChain
+ *
+ *# The calls, member accesses, and '->' calls that follow an Evaluation or
+ *# a ParenthesizedExpression.
+ * EvaluationChain ::=
  *    (
  *        ( '?.'? ParametersExceptFirst ) |
  *        (
@@ -301,12 +306,13 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
  *    )*
  *
  *<<<ebnf*/
-/* Parse Evaluation.  Returns NULL if not an evaluation. */
-const afw_value_t *
-afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
+/* Parse the EvaluationChain that follows result. */
+static const afw_value_t *
+impl_parse_EvaluationChain(
+    afw_compile_parser_t *parser,
+    const afw_value_t *result)
 {
     const afw_compile_value_contextual_t *contextual;
-    const afw_value_t *result;
     const afw_value_t *use_function_self;
     const afw_value_t *optional_chaining_arg0;
     afw_compile_args_t *args;
@@ -315,13 +321,6 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
     afw_size_t argc;
     afw_size_t start_offset;
 
-    afw_compile_save_offset(start_offset);
-    result = afw_compile_parse_EntryFunctionLambdaOrVariableReference(parser);
-    if (!result) {
-        return NULL;
-    }
-
-    /* Parse rest of expression */
     for (use_function_self = NULL;;)
     {
         afw_compile_save_offset(start_offset);
@@ -440,6 +439,22 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
 
     /* Return value. */
     return result;
+}
+
+
+
+/* Parse Evaluation.  Returns NULL if not an evaluation. */
+const afw_value_t *
+afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
+{
+    const afw_value_t *result;
+
+    result = afw_compile_parse_EntryFunctionLambdaOrVariableReference(parser);
+    if (!result) {
+        return NULL;
+    }
+
+    return impl_parse_EvaluationChain(parser, result);
 }
 
 
@@ -920,19 +935,15 @@ afw_compile_parse_Parameters(
 
 /*ebnf>>>
  *
- * ParenthesizedExpression ::= '(' Expression ')' Parameters*
+ *# A parenthesized expression can be called and its members accessed, like
+ *# an Evaluation: (v as object).name, (a ?? b)?.[k], (f)(x).
+ * ParenthesizedExpression ::= '(' Expression ')' EvaluationChain
  *
  *<<<ebnf*/
 const afw_value_t *
 afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
-    const afw_compile_value_contextual_t *contextual;
-    afw_compile_args_t *args;
-    const afw_value_t **argv;
-    afw_size_t argc;
-    afw_size_t start_offset;
-
 
     /* Parse ( expression ) */
     afw_compile_get_token();
@@ -945,19 +956,7 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
     }
 
-    /* Parse optional Parameters. */
-    while (afw_compile_peek_next_token_is(open_parenthesis)) {
-        afw_compile_save_offset(start_offset);
-        args = afw_compile_args_create(parser);
-        afw_compile_args_add_value(args, result); /* Function argv[0] */
-        afw_compile_parse_Parameters(parser, args);
-        afw_compile_args_finalize(args, &argc, &argv);
-        contextual = afw_compile_create_contextual_to_cursor(start_offset);
-        result = afw_value_call_create(contextual, argc - 1, argv, true,
-            parser->p, parser->xctx);
-    }
-
-    return result;
+    return impl_parse_EvaluationChain(parser, result);
 }
 
 

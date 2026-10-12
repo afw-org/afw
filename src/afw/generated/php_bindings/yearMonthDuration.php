@@ -281,7 +281,7 @@ class yearMonthDuration
      * is_yearMonthDuration()
      *
      * Checks whether value is dataType yearMonthDuration and returns the
-     * boolean result. This can also be written
+     * boolean result. It is false for undefined. This can also be written
      * `is<yearMonthDuration>(value`).
      *
      * @param $value Value to check

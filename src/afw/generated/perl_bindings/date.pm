@@ -202,8 +202,8 @@ The second array.
 
 =head3 is_date
 
-Checks whether value is dataType date and returns the boolean result. This can
-also be written `is<date>(value`).
+Checks whether value is dataType date and returns the boolean result. It is
+false for undefined. This can also be written `is<date>(value`).
 Checks whether value is dataType date
 
 =head4 Parameters

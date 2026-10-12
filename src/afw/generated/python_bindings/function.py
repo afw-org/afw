@@ -232,7 +232,7 @@ def is_function(session, value):
     Checks whether value is dataType function
 
     Checks whether value is dataType function and returns the boolean result.
-    This can also be written `is<function>(value`).
+    It is false for undefined. This can also be written `is<function>(value`).
 
     Args:
         value (object): Value to check

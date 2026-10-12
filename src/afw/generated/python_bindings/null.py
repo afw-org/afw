@@ -104,8 +104,8 @@ def is_null(session, value):
     """
     Checks whether value is dataType null
 
-    Checks whether value is dataType null and returns the boolean result. This
-    can also be written `is<null>(value`).
+    Checks whether value is dataType null and returns the boolean result. It
+    is false for undefined. This can also be written `is<null>(value`).
 
     Args:
         value (object): Value to check

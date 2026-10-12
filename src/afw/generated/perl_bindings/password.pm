@@ -131,8 +131,8 @@ Checks for greater than
 
 =head3 is_password
 
-Checks whether value is dataType password and returns the boolean result. This
-can also be written `is<password>(value`).
+Checks whether value is dataType password and returns the boolean result. It
+is false for undefined. This can also be written `is<password>(value`).
 Checks whether value is dataType password
 
 =head4 Parameters

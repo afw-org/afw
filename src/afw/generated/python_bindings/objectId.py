@@ -232,7 +232,7 @@ def is_objectId(session, value):
     Checks whether value is dataType objectId
 
     Checks whether value is dataType objectId and returns the boolean result.
-    This can also be written `is<objectId>(value`).
+    It is false for undefined. This can also be written `is<objectId>(value`).
 
     Args:
         value (object): Value to check

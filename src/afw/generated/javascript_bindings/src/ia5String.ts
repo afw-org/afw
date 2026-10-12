@@ -178,7 +178,7 @@ export function afwIa5String(client : any, value : any) : any {
 
 /**
  * Checks whether value is dataType ia5String and returns the boolean result.
- * This can also be written `is<ia5String>(value`).
+ * It is false for undefined. This can also be written `is<ia5String>(value`).
  * 
  * @param {} value - Value to check
  * 

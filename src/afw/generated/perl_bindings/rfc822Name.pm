@@ -186,8 +186,8 @@ Checks whether a value is in an array
 
 =head3 is_rfc822Name
 
-Checks whether value is dataType rfc822Name and returns the boolean result.
-This can also be written `is<rfc822Name>(value`).
+Checks whether value is dataType rfc822Name and returns the boolean result. It
+is false for undefined. This can also be written `is<rfc822Name>(value`).
 Checks whether value is dataType rfc822Name
 
 =head4 Parameters

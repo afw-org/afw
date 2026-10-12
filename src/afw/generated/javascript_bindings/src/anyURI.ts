@@ -295,8 +295,8 @@ export function afwIntersectionAnyURI(client : any, array1 : any[], array2 : any
 }
 
 /**
- * Checks whether value is dataType anyURI and returns the boolean result.
- * This can also be written `is<anyURI>(value`).
+ * Checks whether value is dataType anyURI and returns the boolean result. It
+ * is false for undefined. This can also be written `is<anyURI>(value`).
  * 
  * @param {} value - Value to check
  * 

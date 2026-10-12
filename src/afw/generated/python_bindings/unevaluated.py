@@ -47,7 +47,8 @@ def is_unevaluated(session, value):
     Checks whether value is dataType unevaluated
 
     Checks whether value is dataType unevaluated and returns the boolean
-    result. This can also be written `is<unevaluated>(value`).
+    result. It is false for undefined. This can also be written
+    `is<unevaluated>(value`).
 
     Args:
         value (object): Value to check

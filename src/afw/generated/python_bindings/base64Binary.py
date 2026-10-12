@@ -353,7 +353,8 @@ def is_base64Binary(session, value):
     Checks whether value is dataType base64Binary
 
     Checks whether value is dataType base64Binary and returns the boolean
-    result. This can also be written `is<base64Binary>(value`).
+    result. It is false for undefined. This can also be written
+    `is<base64Binary>(value`).
 
     Args:
         value (object): Value to check

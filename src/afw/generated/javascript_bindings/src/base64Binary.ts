@@ -240,7 +240,8 @@ export function afwIntersectionBase64Binary(client : any, array1 : any[], array2
 
 /**
  * Checks whether value is dataType base64Binary and returns the boolean
- * result. This can also be written `is<base64Binary>(value`).
+ * result. It is false for undefined. This can also be written
+ * `is<base64Binary>(value`).
  * 
  * @param {} value - Value to check
  * 

@@ -315,8 +315,8 @@ export function afwIncludesArray(client : any, array : any[], searchElement : an
 }
 
 /**
- * Checks whether value is dataType array and returns the boolean result. This
- * can also be written `is<array>(value`).
+ * Checks whether value is dataType array and returns the boolean result. It
+ * is false for undefined. This can also be written `is<array>(value`).
  * 
  * @param {} value - Value to check
  * 

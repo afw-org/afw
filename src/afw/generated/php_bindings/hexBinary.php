@@ -299,7 +299,8 @@ class hexBinary
      * is_hexBinary()
      *
      * Checks whether value is dataType hexBinary and returns the boolean
-     * result. This can also be written `is<hexBinary>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<hexBinary>(value`).
      *
      * @param $value Value to check
      *

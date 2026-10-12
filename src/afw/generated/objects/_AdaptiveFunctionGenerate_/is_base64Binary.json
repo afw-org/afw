@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType base64Binary and returns the boolean result. This can also be written is<base64Binary>(value).",
+    "description": "Checks whether value is dataType base64Binary and returns the boolean result. It is false for undefined. This can also be written is<base64Binary>(value).",
     "functionId": "is_base64Binary",
     "functionLabel": "is_base64Binary",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }

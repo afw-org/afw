@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isTemplate",
     "category": "template",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType template and returns the boolean result. This can also be written is<template>(value).",
+    "description": "Checks whether value is dataType template and returns the boolean result. It is false for undefined. This can also be written is<template>(value).",
     "functionId": "is_template",
     "functionLabel": "is_template",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }

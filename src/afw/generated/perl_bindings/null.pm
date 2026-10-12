@@ -64,8 +64,8 @@ Returns the number of values in a bag
 
 =head3 is_null
 
-Checks whether value is dataType null and returns the boolean result. This can
-also be written `is<null>(value`).
+Checks whether value is dataType null and returns the boolean result. It is
+false for undefined. This can also be written `is<null>(value`).
 Checks whether value is dataType null
 
 =head4 Parameters

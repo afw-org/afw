@@ -248,8 +248,8 @@ The second array.
 
 =head3 is_anyURI
 
-Checks whether value is dataType anyURI and returns the boolean result. This
-can also be written `is<anyURI>(value`).
+Checks whether value is dataType anyURI and returns the boolean result. It is
+false for undefined. This can also be written `is<anyURI>(value`).
 Checks whether value is dataType anyURI
 
 =head4 Parameters

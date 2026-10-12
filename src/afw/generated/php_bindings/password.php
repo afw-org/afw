@@ -204,7 +204,8 @@ class password
      * is_password()
      *
      * Checks whether value is dataType password and returns the boolean
-     * result. This can also be written `is<password>(value`).
+     * result. It is false for undefined. This can also be written
+     * `is<password>(value`).
      *
      * @param $value Value to check
      *

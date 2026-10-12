@@ -351,7 +351,8 @@ def is_hexBinary(session, value):
     Checks whether value is dataType hexBinary
 
     Checks whether value is dataType hexBinary and returns the boolean result.
-    This can also be written `is<hexBinary>(value`).
+    It is false for undefined. This can also be written
+    `is<hexBinary>(value`).
 
     Args:
         value (object): Value to check

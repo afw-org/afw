@@ -371,16 +371,16 @@ impl_token_is_assignment_operator(const afw_compile_parser_t *parser)
 
 
 /*
- * The next token is '['. Look ahead, without building values, to the
- * matching ']' and return true if an assignment operator, '++', or '--'
- * follows it: then the '[' starts a destructuring target
- * ([a, b] = f()). Otherwise it is an array literal that starts an
- * expression ([1, 2], [1, 2] == x). Each scanned token may be a template
- * string, so a backtick reads as one string, not as code. The cursor is
- * restored to the '['.
+ * The next token is '[' or '{'. Look ahead, without building values, to
+ * the matching ']' or '}' and return true if an assignment operator, '++',
+ * or '--' follows it: then it starts a destructuring target
+ * ([a, b] = f(), ({a, b} = o)). Otherwise it is an array or object
+ * literal that starts an expression ([1, 2] == x, ({a: 1}).a). Each
+ * scanned token may be a template string, so a backtick reads as one
+ * string, not as code. The cursor is restored to the '[' or '{'.
  */
 static afw_boolean_t
-impl_bracket_starts_assignment_target(afw_compile_parser_t *parser)
+impl_pattern_starts_assignment_target(afw_compile_parser_t *parser)
 {
     afw_size_t saved;
     afw_size_t depth;
@@ -463,7 +463,7 @@ afw_compile_parse_AssignmentExpression(
          * an assignment operator, '++', or '--' follows its ']' (#572).
          */
         if (was_expression && is_bracket &&
-            !impl_bracket_starts_assignment_target(parser))
+            !impl_pattern_starts_assignment_target(parser))
         {
             result = afw_compile_parse_Expression(parser);
             *just_expression_okay = true;
@@ -802,9 +802,21 @@ afw_compile_parse_Assignment(
 
 /*ebnf>>>
  *
+ *# An object destructure needs the parentheses ({a, b} = o), since a
+ *# statement that starts with '{' is a block. A list destructure may have
+ *# them too ([a, b] = arr). '(' followed by '{' or '[' is a destructure
+ *# only if an assignment operator follows the matching '}' or ']';
+ *# otherwise the statement is an expression, such as ({a: 1}).a.
+ *
  * AssignmentStatement ::=
  *    (
- *        ( '(' AssignmentObjectDestructureTarget '=' Assignment ')' ) |
+ *        (
+ *            '('
+ *            ( AssignmentObjectDestructureTarget |
+ *              AssignmentListDestructureTarget )
+ *            '=' Assignment
+ *            ')'
+ *        ) |
  *        Assignment
  *    )
  *    ';'
@@ -816,17 +828,25 @@ afw_compile_parse_AssignmentStatement(
     afw_boolean_t *was_expression)
 {
     const afw_value_t *result;
-    afw_boolean_t is_object_destructuring;
+    afw_boolean_t is_parenthesized_destructuring;
+    afw_size_t open_parenthesis_offset;
 
-    /*
-     * An object destructure for an assignment statement requires parentheses
-     * around the everything up to statement terminator.
-     */
-    is_object_destructuring = false;
+    is_parenthesized_destructuring = false;
     if (afw_compile_token_is(open_parenthesis)) {
+        afw_compile_save_offset(open_parenthesis_offset);
         afw_compile_get_token();
-        if afw_compile_token_is(open_brace) {
-            is_object_destructuring = true;
+        if (afw_compile_token_is(open_brace) ||
+            afw_compile_token_is(open_bracket))
+        {
+            afw_compile_reuse_token();
+            is_parenthesized_destructuring =
+                impl_pattern_starts_assignment_target(parser);
+
+            /* The '{' or '[', or the '(' again for an expression. */
+            if (!is_parenthesized_destructuring) {
+                afw_compile_restore_cursor(open_parenthesis_offset);
+            }
+            afw_compile_get_token();
         }
         else {
             afw_compile_reuse_token();
@@ -834,10 +854,10 @@ afw_compile_parse_AssignmentStatement(
     }
 
     result = afw_compile_parse_Assignment(parser,
-        is_object_destructuring ? NULL : was_expression);
+        is_parenthesized_destructuring ? NULL : was_expression);
 
-    /* Check for close parenthesis if object destructuring. */
-    if (is_object_destructuring) {
+    /* Check for close parenthesis if destructuring. */
+    if (is_parenthesized_destructuring) {
         afw_compile_get_token();
         if (!afw_compile_token_is(close_parenthesis)) {
             AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");

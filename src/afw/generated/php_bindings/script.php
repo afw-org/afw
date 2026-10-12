@@ -292,7 +292,8 @@ class script
      * is_script()
      *
      * Checks whether value is dataType script and returns the boolean result.
-     * This can also be written `is<script>(value`).
+     * It is false for undefined. This can also be written
+     * `is<script>(value`).
      *
      * @param $value Value to check
      *

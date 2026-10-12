@@ -224,8 +224,8 @@ export function afwIntersectionBoolean(client : any, array1 : any[], array2 : an
 }
 
 /**
- * Checks whether value is dataType boolean and returns the boolean result.
- * This can also be written `is<boolean>(value`).
+ * Checks whether value is dataType boolean and returns the boolean result. It
+ * is false for undefined. This can also be written `is<boolean>(value`).
  * 
  * @param {} value - Value to check
  * 

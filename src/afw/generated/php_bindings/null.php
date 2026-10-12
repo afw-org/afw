@@ -100,7 +100,7 @@ class null
      * is_null()
      *
      * Checks whether value is dataType null and returns the boolean result.
-     * This can also be written `is<null>(value`).
+     * It is false for undefined. This can also be written `is<null>(value`).
      *
      * @param $value Value to check
      *

@@ -238,7 +238,7 @@ export function afwIntersectionHexBinary(client : any, array1 : any[], array2 : 
 
 /**
  * Checks whether value is dataType hexBinary and returns the boolean result.
- * This can also be written `is<hexBinary>(value`).
+ * It is false for undefined. This can also be written `is<hexBinary>(value`).
  * 
  * @param {} value - Value to check
  * 

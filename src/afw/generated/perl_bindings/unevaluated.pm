@@ -42,7 +42,7 @@ Value to assert
 =head3 is_unevaluated
 
 Checks whether value is dataType unevaluated and returns the boolean result.
-This can also be written `is<unevaluated>(value`).
+It is false for undefined. This can also be written `is<unevaluated>(value`).
 Checks whether value is dataType unevaluated
 
 =head4 Parameters
