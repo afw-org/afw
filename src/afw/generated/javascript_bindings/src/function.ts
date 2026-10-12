@@ -18,6 +18,28 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of function from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType function, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<function>(`...values).
+ * 
+ * @param {} values - A value of dataType function, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of function.
+ */
+export function afwArrayFunction(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_function";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType function. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * function from a value of another data type, write a typed literal or call a

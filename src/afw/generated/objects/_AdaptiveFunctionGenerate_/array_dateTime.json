@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwArrayDateTime",
+    "brief": "Construct an array of dateTime from values or spread arrays",
+    "camelCaseFunctionLabel": "arrayDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Construct a new array of dateTime from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType dateTime, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<dateTime>(...values).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a value is not dataType <dataType>"
+        }
+    ],
+    "functionId": "array_dateTime",
+    "functionLabel": "array_dateTime",
+    "parameters": [
+        {
+            "description": "A value of dataType dateTime, or ... followed by an expression that results in an array, every entry of which is included.",
+            "minArgs": 0,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "dateTime",
+        "description": "The constructed array of dateTime."
+    },
+    "untypedFunctionId": "array",
+    "useExecuteFunction": "afw_function_execute_array_of_data_type"
+}

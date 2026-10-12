@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwArrayX500Name",
+    "brief": "Construct an array of x500Name from values or spread arrays",
+    "camelCaseFunctionLabel": "arrayX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Construct a new array of x500Name from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType x500Name, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<x500Name>(...values).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a value is not dataType <dataType>"
+        }
+    ],
+    "functionId": "array_x500Name",
+    "functionLabel": "array_x500Name",
+    "parameters": [
+        {
+            "description": "A value of dataType x500Name, or ... followed by an expression that results in an array, every entry of which is included.",
+            "minArgs": 0,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "x500Name",
+        "description": "The constructed array of x500Name."
+    },
+    "untypedFunctionId": "array",
+    "useExecuteFunction": "afw_function_execute_array_of_data_type"
+}

@@ -119,9 +119,37 @@ afw_function_execute_add_entries(
  *
  *   (array) The constructed array.
  */
-const afw_value_t *
-afw_function_execute_array(
-    afw_function_execute_t *x)
+/* A value for an array of data_type (NULL: any data type). */
+static void
+impl_push_constructed(
+    afw_function_execute_t *x,
+    const afw_array_t *array,
+    const afw_data_type_t *data_type,
+    afw_size_t n,
+    const afw_value_t *value)
+{
+    const afw_data_type_t *got;
+
+    if (data_type && !afw_value_is_undefined(value)) {
+        got = afw_value_get_data_type(value, x->xctx);
+        if (got != data_type) {
+            AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+                "Argument " AFW_SIZE_T_FMT " of array<%ku>: %s",
+                n, &data_type->data_type_id,
+                afw_value_type_assertion_mismatch_z(data_type, got, value,
+                    x->p, x->xctx));
+        }
+    }
+    afw_array_push_value(array, value, x->xctx);
+}
+
+
+
+/* array() and array<dataType>(): data_type NULL makes an untyped array. */
+static const afw_value_t *
+impl_construct_array(
+    afw_function_execute_t *x,
+    const afw_data_type_t *data_type)
 {
     afw_size_t n;
     const afw_array_t *array;
@@ -132,7 +160,7 @@ afw_function_execute_array(
     const afw_iterator_old_t *iterator;
 
     /* Construct a new array with elements passed as arguments. */
-    array = afw_array_create_unmanaged(x->p, x->xctx);
+    array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
     for (n = 1, arg = &x->argv[1]; n <= x->argc; n++, arg++) {
         value = afw_value_evaluate(*arg, x->p, x->xctx);
 
@@ -146,7 +174,7 @@ afw_function_execute_array(
                         break;
                     }
                     entry = afw_value_evaluate(entry, x->p, x->xctx);
-                    afw_array_push_value(array, entry, x->xctx);
+                    impl_push_constructed(x, array, data_type, n, entry);
                 }
             }
         }
@@ -157,13 +185,52 @@ afw_function_execute_array(
          * would end iteration of the array early.
          */
         else {
-            afw_array_push_value(array,
-                (value) ? value : afw_value_undefined, x->xctx);
+            impl_push_constructed(x, array, data_type, n,
+                (value) ? value : afw_value_undefined);
         }
     }
 
     /* Dual face on the instance; no extra heap header. */
     return array->value;
+}
+
+
+
+const afw_value_t *
+afw_function_execute_array(
+    afw_function_execute_t *x)
+{
+    return impl_construct_array(x, NULL);
+}
+
+
+
+/*
+ * Common polymorphic function for array
+ *
+ * afw_function_execute_array_of_data_type
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Construct a new array of `<dataType>`, the same as array() except that
+ * the new array is typed. There is no polymorphic array function: each
+ * array_<dataType> is a plain function (dataTypeRequired), usually written
+ * array<dataType>(...values). Its parameter is not typed, so a value of
+ * another data type gets this error, which says how to get a `<dataType>`.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_<dataType>(
+ *       ...values: any[]
+ *   ): <dataType>[];
+ * ```
+ */
+const afw_value_t *
+afw_function_execute_array_of_data_type(
+    afw_function_execute_t *x)
+{
+    return impl_construct_array(x, x->data_type);
 }
 
 

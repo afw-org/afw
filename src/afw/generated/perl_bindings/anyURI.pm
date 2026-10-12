@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_anyURI 
     as_anyURI 
     at_least_one_member_of_anyURI 
     bag_anyURI 
@@ -56,6 +57,22 @@ afw::anyURI - Perl module for anyURI functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_anyURI
+
+Construct a new array of anyURI from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType anyURI, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<anyURI>(`...values).
+Construct an array of anyURI from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType anyURI, or ... followed by an expression that results in
+an array, every entry of which is included.
 
 =head3 as_anyURI
 
@@ -575,6 +592,17 @@ URI encode
 The anyURI value to URL encode.
 
 =cut
+
+sub array_anyURI {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_anyURI");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
 
 sub as_anyURI {
     my ($value) = @_;

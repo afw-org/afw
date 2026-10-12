@@ -123,7 +123,7 @@ afw_array_clone(
     const afw_value_t *entry;
 
     to = afw_array_create_managed(
-        afw_array_get_data_type(from, xctx), p, xctx);
+        afw_array_get_declared_data_type(from, xctx), p, xctx);
     for (iterator = NULL;;) {
         entry = afw_array_get_next_value(from, &iterator, xctx);
         if (!entry) {

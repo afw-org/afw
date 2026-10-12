@@ -57,9 +57,11 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
  * @param xctx of caller.
  * @return Pointer to interface pointer of new value array.
  * 
- * If data_type is NULL and only values of a single evaluated
- * data type are added, afw_array_get_data_type() will return
- * that data type.
+ * If data_type is NULL, afw_array_get_data_type() returns the data
+ * type of every value it holds (undefined holes aside), or NULL if they
+ * differ or there are none. Adding and removing values keeps this up to
+ * date without walking the array. If data_type is not NULL, adding a
+ * value of another data type throws.
  *
  * Kind: pooled when options is 0 (lives in p; caller does not release).
  * Reference counted with new_p or cede_p (owns its pool; caller
@@ -182,6 +184,23 @@ afw_array_is_memory(const afw_array_t *array);
 
 
 /**
+ * @brief Data type a copy of array is created with.
+ * @param array to copy.
+ * @param xctx of caller.
+ * @return data type the array was created with (NULL for a generic memory
+ *    array), or afw_array_get_data_type() for another implementation.
+ *
+ * A generic memory array that holds only integers today is still generic:
+ * a copy of it can hold a string. afw_array_get_data_type() is what it
+ * holds now; use it to check a value, and this to copy one.
+ */
+AFW_DECLARE(const afw_data_type_t *)
+afw_array_get_declared_data_type(
+    const afw_array_t *array,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Base array under a memory face, or array itself if not a face.
  * @param array may be NULL.
  * @return wrapped base if create_wrapper_* face; else array; NULL if array NULL.
@@ -217,9 +236,9 @@ afw_array_as_value(
  * @param xctx of caller.
  * @return Pointer to interface pointer of new value array.
  *
- * If data_type is NULL and only values of a single evaluated
- * data type are added, afw_array_get_data_type() will return
- * that data type.
+ * If data_type is NULL, afw_array_get_data_type() returns the data
+ * type of every value it holds, or NULL. See
+ * afw_array_create_with_options().
  *
  * Kind: pooled (lives and dies with p). Caller does not release.
  */

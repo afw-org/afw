@@ -50,6 +50,35 @@ class date
     }
 
     /**
+     * array_date()
+     *
+     * Construct a new array of date from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType date, and adding a value of another
+     * data type to the array later throws. A value of another data type is an
+     * error, never converted. This is usually written
+     * `array<date>(`...values).
+     *
+     * @param $values A value of dataType date, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of date.
+     */
+    public function array_date(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_date");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_date()
      *
      * Returns value unchanged if it is dataType date. Otherwise, including

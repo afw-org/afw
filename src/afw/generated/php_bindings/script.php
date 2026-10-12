@@ -26,6 +26,35 @@ class script
     }
 
     /**
+     * array_script()
+     *
+     * Construct a new array of script from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType script, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<script>(`...values).
+     *
+     * @param $values A value of dataType script, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of script.
+     */
+    public function array_script(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_script");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_script()
      *
      * Returns value unchanged if it is dataType script. Otherwise, including

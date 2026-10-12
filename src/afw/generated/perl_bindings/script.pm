@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_script 
     as_script 
     bag_script 
     bag_size_script 
@@ -37,6 +38,22 @@ afw::script - Perl module for script functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_script
+
+Construct a new array of script from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType script, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<script>(`...values).
+Construct an array of script from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType script, or ... followed by an expression that results in
+an array, every entry of which is included.
 
 =head3 as_script
 
@@ -257,6 +274,17 @@ Convert to data type script
 Value to convert
 
 =cut
+
+sub array_script {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_script");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
 
 sub as_script {
     my ($value) = @_;

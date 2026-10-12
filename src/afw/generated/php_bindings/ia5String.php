@@ -26,6 +26,35 @@ class ia5String
     }
 
     /**
+     * array_ia5String()
+     *
+     * Construct a new array of ia5String from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType ia5String, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<ia5String>(`...values).
+     *
+     * @param $values A value of dataType ia5String, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of ia5String.
+     */
+    public function array_ia5String(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_ia5String");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_ia5String()
      *
      * Returns value unchanged if it is dataType ia5String. Otherwise,

@@ -51,6 +51,35 @@ class string
     }
 
     /**
+     * array_string()
+     *
+     * Construct a new array of string from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType string, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<string>(`...values).
+     *
+     * @param $values A value of dataType string, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of string.
+     */
+    public function array_string(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_string");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_string()
      *
      * Returns value unchanged if it is dataType string. Otherwise, including

@@ -217,10 +217,12 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                     /*
                      * name<dataType> names a data type method of a
                      * polymorphic function, or of a dataTypeRequired
-                     * family (is), which has no function named name. A
-                     * reserved word (as) is never a function name.
+                     * family (is, array). Such a family has no function
+                     * named name, unless a plain function shares the name
+                     * (array() next to array<dataType>()). A reserved word
+                     * (as) is never a function name.
                      */
-                    data_type_required = !function &&
+                    data_type_required =
                         afw_environment_is_data_type_method_id(
                             untyped_function_id, parser->xctx) &&
                         !afw_compile_is_reserved_word(parser,

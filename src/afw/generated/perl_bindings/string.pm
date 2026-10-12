@@ -14,6 +14,7 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     add_string 
+    array_string 
     as_string 
     at_least_one_member_of_string 
     bag_size_string 
@@ -100,6 +101,22 @@ Add (concatenate) strings
 
     $values
 
+
+=head3 array_string
+
+Construct a new array of string from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType string, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<string>(`...values).
+Construct an array of string from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType string, or ... followed by an expression that results in
+an array, every entry of which is included.
 
 =head3 as_string
 
@@ -979,6 +996,17 @@ sub add_string {
 
     $request->set("function" => "add<string>");
     $request->set("string", $string);
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
+sub array_string {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_string");
     $request->set("values", $values);
 
     return $request->getResult();

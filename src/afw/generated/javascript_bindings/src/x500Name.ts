@@ -18,6 +18,28 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of x500Name from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType x500Name, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<x500Name>(`...values).
+ * 
+ * @param {} values - A value of dataType x500Name, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of x500Name.
+ */
+export function afwArrayX500Name(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_x500Name";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType x500Name. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * x500Name from a value of another data type, write a typed literal or call a

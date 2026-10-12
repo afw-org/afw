@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_objectId 
     as_objectId 
     bag_objectId 
     bag_size_objectId 
@@ -35,6 +36,22 @@ afw::objectId - Perl module for objectId functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_objectId
+
+Construct a new array of objectId from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType objectId, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<objectId>(`...values).
+Construct an array of objectId from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType objectId, or ... followed by an expression that results in
+an array, every entry of which is included.
 
 =head3 as_objectId
 
@@ -211,6 +228,17 @@ Converts value to string
 A objectId value.
 
 =cut
+
+sub array_objectId {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_objectId");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
 
 sub as_objectId {
     my ($value) = @_;

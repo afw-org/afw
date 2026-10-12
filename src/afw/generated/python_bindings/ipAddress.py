@@ -11,6 +11,41 @@
 import requests
 import json
 
+def array_ipAddress(session, values):
+    """
+    Construct an array of ipAddress from values or spread arrays
+
+    Construct a new array of ipAddress from the given values, the same as
+    array() except that the new array is typed: each value, and each entry of
+    a spread array, must be dataType ipAddress, and adding a value of another
+    data type to the array later throws. A value of another data type is an
+    error, never converted. This is usually written
+    `array<ipAddress>(`...values).
+
+    Args:
+        values (object): A value of dataType ipAddress, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of ipAddress.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_ipAddress",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_ipAddress(session, value):
     """
     Asserts that value is dataType ipAddress

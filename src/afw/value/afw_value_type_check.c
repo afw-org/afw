@@ -610,8 +610,27 @@ impl_array_elements_assignable(
     afw_size_t i;
     const afw_value_t *elem;
 
+    const afw_data_type_t *want;
+    const afw_data_type_t *got;
+
     if (!element_type || afw_value_type_is_any(element_type)) {
         return true;
+    }
+
+    /*
+     * T[] of a data type: the array knows the data type of all it holds
+     * without a walk. Holes only matter under strictNullChecks.
+     */
+    want = afw_value_type_get_leaf_data_type(
+        impl_peel_reference(element_type));
+    if (want) {
+        got = afw_array_get_data_type(arr, xctx);
+        if (got == want && !impl_strict_null_checks(contextual, xctx)) {
+            return true;
+        }
+        if (got && got != want) {
+            return false;
+        }
     }
 
     count = afw_array_get_count(arr, xctx);

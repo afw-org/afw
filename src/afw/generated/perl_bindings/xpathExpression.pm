@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_xpathExpression 
     as_xpathExpression 
     bag_size_xpathExpression 
     bag_xpathExpression 
@@ -41,6 +42,22 @@ afw::xpathExpression - Perl module for xpathExpression functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_xpathExpression
+
+Construct a new array of xpathExpression from the given values, the same as
+array() except that the new array is typed: each value, and each entry of a
+spread array, must be dataType xpathExpression, and adding a value of another
+data type to the array later throws. A value of another data type is an error,
+never converted. This is usually written `array<xpathExpression>(`...values).
+Construct an array of xpathExpression from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType xpathExpression, or ... followed by an expression that
+results in an array, every entry of which is included.
 
 =head3 as_xpathExpression
 
@@ -317,6 +334,17 @@ Checks whether two node-sets or their children have an equal node
 
 
 =cut
+
+sub array_xpathExpression {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_xpathExpression");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
 
 sub as_xpathExpression {
     my ($value) = @_;

@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_dayTimeDuration 
     as_dayTimeDuration 
     at_least_one_member_of_dayTimeDuration 
     bag_dayTimeDuration 
@@ -42,6 +43,22 @@ afw::dayTimeDuration - Perl module for dayTimeDuration functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_dayTimeDuration
+
+Construct a new array of dayTimeDuration from the given values, the same as
+array() except that the new array is typed: each value, and each entry of a
+spread array, must be dataType dayTimeDuration, and adding a value of another
+data type to the array later throws. A value of another data type is an error,
+never converted. This is usually written `array<dayTimeDuration>(`...values).
+Construct an array of dayTimeDuration from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType dayTimeDuration, or ... followed by an expression that
+results in an array, every entry of which is included.
 
 =head3 as_dayTimeDuration
 
@@ -322,6 +339,17 @@ Returns union of two or more string arrays
 Two or more arrays.
 
 =cut
+
+sub array_dayTimeDuration {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_dayTimeDuration");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
 
 sub as_dayTimeDuration {
     my ($value) = @_;

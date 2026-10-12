@@ -26,6 +26,35 @@ class dayTimeDuration
     }
 
     /**
+     * array_dayTimeDuration()
+     *
+     * Construct a new array of dayTimeDuration from the given values, the
+     * same as array() except that the new array is typed: each value, and
+     * each entry of a spread array, must be dataType dayTimeDuration, and
+     * adding a value of another data type to the array later throws. A value
+     * of another data type is an error, never converted. This is usually
+     * written `array<dayTimeDuration>(`...values).
+     *
+     * @param $values A value of dataType dayTimeDuration, or ... followed by
+     *                 an expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of dayTimeDuration.
+     */
+    public function array_dayTimeDuration(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_dayTimeDuration");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_dayTimeDuration()
      *
      * Returns value unchanged if it is dataType dayTimeDuration. Otherwise,

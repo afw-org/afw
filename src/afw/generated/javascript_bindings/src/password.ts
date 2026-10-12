@@ -18,6 +18,28 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of password from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType password, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<password>(`...values).
+ * 
+ * @param {} values - A value of dataType password, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of password.
+ */
+export function afwArrayPassword(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_password";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType password. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * password from a value of another data type, write a typed literal or call a

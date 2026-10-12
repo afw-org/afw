@@ -71,6 +71,35 @@ class integer
     }
 
     /**
+     * array_integer()
+     *
+     * Construct a new array of integer from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType integer, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<integer>(`...values).
+     *
+     * @param $values A value of dataType integer, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of integer.
+     */
+    public function array_integer(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_integer");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_integer()
      *
      * Returns value unchanged if it is dataType integer. Otherwise, including

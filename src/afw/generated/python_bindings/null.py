@@ -11,6 +11,40 @@
 import requests
 import json
 
+def array_null(session, values):
+    """
+    Construct an array of null from values or spread arrays
+
+    Construct a new array of null from the given values, the same as array()
+    except that the new array is typed: each value, and each entry of a spread
+    array, must be dataType null, and adding a value of another data type to
+    the array later throws. A value of another data type is an error, never
+    converted. This is usually written `array<null>(`...values).
+
+    Args:
+        values (object): A value of dataType null, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of null.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_null",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_null(session, value):
     """
     Asserts that value is dataType null

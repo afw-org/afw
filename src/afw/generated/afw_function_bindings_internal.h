@@ -2173,6 +2173,49 @@ afw_function_execute_service_stop(
  * @{
  */
 
+/** @brief Function definition array_anyURI */
+extern const afw_value_function_definition_t
+afw_function_definition_array_anyURI;
+
+/**
+ * @brief Adaptive Function `array_anyURI`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of anyURI from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType anyURI, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<anyURI>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_anyURI(
+ *       ...values: any[]
+ *   ): anyURI[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType anyURI, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (anyURI[]) The constructed array of anyURI.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_anyURI */
 extern const afw_value_function_definition_t
 afw_function_definition_as_anyURI;
@@ -3591,6 +3634,49 @@ const afw_value_t *
 afw_function_execute_array(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_array */
+extern const afw_value_function_definition_t
+afw_function_definition_array_array;
+
+/**
+ * @brief Adaptive Function `array_array`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of array from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType array, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<array>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_array(
+ *       ...values: any[]
+ *   ): array[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType array, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (array[]) The constructed array of array.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_array */
 extern const afw_value_function_definition_t
 afw_function_definition_as_array;
@@ -4696,6 +4782,51 @@ afw_function_execute_authorization_check(
  * @{
  */
 
+/** @brief Function definition array_base64Binary */
+extern const afw_value_function_definition_t
+afw_function_definition_array_base64Binary;
+
+/**
+ * @brief Adaptive Function `array_base64Binary`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of base64Binary from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType base64Binary, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<base64Binary>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_base64Binary(
+ *       ...values: any[]
+ *   ): base64Binary[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType base64Binary, or ... followed
+ *       by an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (base64Binary[]) The constructed array of base64Binary.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_base64Binary */
 extern const afw_value_function_definition_t
 afw_function_definition_as_base64Binary;
@@ -5502,6 +5633,49 @@ afw_function_definition_union_base64Binary;
  * boolean adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_boolean */
+extern const afw_value_function_definition_t
+afw_function_definition_array_boolean;
+
+/**
+ * @brief Adaptive Function `array_boolean`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of boolean from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType boolean, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<boolean>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_boolean(
+ *       ...values: any[]
+ *   ): boolean[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType boolean, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (boolean[]) The constructed array of boolean.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_boolean */
@@ -7991,6 +8165,50 @@ const afw_value_t *
 afw_function_execute_add_yearMonthDuration_dateTime(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_dateTime */
+extern const afw_value_function_definition_t
+afw_function_definition_array_dateTime;
+
+/**
+ * @brief Adaptive Function `array_dateTime`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of dateTime from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType dateTime, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<dateTime>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_dateTime(
+ *       ...values: any[]
+ *   ): dateTime[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType dateTime, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (dateTime[]) The constructed array of dateTime.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_dateTime */
 extern const afw_value_function_definition_t
 afw_function_definition_as_dateTime;
@@ -8961,6 +9179,49 @@ const afw_value_t *
 afw_function_execute_add_yearMonthDuration_date(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_date */
+extern const afw_value_function_definition_t
+afw_function_definition_array_date;
+
+/**
+ * @brief Adaptive Function `array_date`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of date from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType date, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<date>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_date(
+ *       ...values: any[]
+ *   ): date[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType date, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (date[]) The constructed array of date.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_date */
 extern const afw_value_function_definition_t
 afw_function_definition_as_date;
@@ -9853,6 +10114,51 @@ afw_function_definition_union_date;
  * @{
  */
 
+/** @brief Function definition array_dayTimeDuration */
+extern const afw_value_function_definition_t
+afw_function_definition_array_dayTimeDuration;
+
+/**
+ * @brief Adaptive Function `array_dayTimeDuration`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of dayTimeDuration from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType dayTimeDuration, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<dayTimeDuration>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_dayTimeDuration(
+ *       ...values: any[]
+ *   ): dayTimeDuration[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType dayTimeDuration, or ...
+ *       followed by an expression that results in an array, every entry of
+ *       which is included.
+ *
+ * Returns:
+ *
+ *   (dayTimeDuration[]) The constructed array of dayTimeDuration.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_dayTimeDuration */
 extern const afw_value_function_definition_t
 afw_function_definition_as_dayTimeDuration;
@@ -10629,6 +10935,49 @@ afw_function_definition_union_dayTimeDuration;
  * @{
  */
 
+/** @brief Function definition array_dnsName */
+extern const afw_value_function_definition_t
+afw_function_definition_array_dnsName;
+
+/**
+ * @brief Adaptive Function `array_dnsName`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of dnsName from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType dnsName, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<dnsName>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_dnsName(
+ *       ...values: any[]
+ *   ): dnsName[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType dnsName, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (dnsName[]) The constructed array of dnsName.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_dnsName */
 extern const afw_value_function_definition_t
 afw_function_definition_as_dnsName;
@@ -11316,6 +11665,49 @@ afw_function_definition_add_double;
 const afw_value_t *
 afw_function_execute_add_double(
     afw_function_execute_t *x);
+
+/** @brief Function definition array_double */
+extern const afw_value_function_definition_t
+afw_function_definition_array_double;
+
+/**
+ * @brief Adaptive Function `array_double`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of double from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType double, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<double>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_double(
+ *       ...values: any[]
+ *   ): double[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType double, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (double[]) The constructed array of double.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
 
 /** @brief Function definition as_double */
 extern const afw_value_function_definition_t
@@ -12583,6 +12975,50 @@ afw_function_definition_union_double;
  * @{
  */
 
+/** @brief Function definition array_function */
+extern const afw_value_function_definition_t
+afw_function_definition_array_function;
+
+/**
+ * @brief Adaptive Function `array_function`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of function from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType function, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<function>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_function(
+ *       ...values: any[]
+ *   ): function[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType function, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (function[]) The constructed array of function.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_function */
 extern const afw_value_function_definition_t
 afw_function_definition_as_function;
@@ -13052,6 +13488,50 @@ afw_function_definition_nex_function;
  * hexBinary adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_hexBinary */
+extern const afw_value_function_definition_t
+afw_function_definition_array_hexBinary;
+
+/**
+ * @brief Adaptive Function `array_hexBinary`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of hexBinary from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType hexBinary, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<hexBinary>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_hexBinary(
+ *       ...values: any[]
+ *   ): hexBinary[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType hexBinary, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (hexBinary[]) The constructed array of hexBinary.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_hexBinary */
@@ -14431,6 +14911,50 @@ afw_function_execute_sort(
  * @{
  */
 
+/** @brief Function definition array_ia5String */
+extern const afw_value_function_definition_t
+afw_function_definition_array_ia5String;
+
+/**
+ * @brief Adaptive Function `array_ia5String`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of ia5String from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType ia5String, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<ia5String>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_ia5String(
+ *       ...values: any[]
+ *   ): ia5String[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType ia5String, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (ia5String[]) The constructed array of ia5String.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_ia5String */
 extern const afw_value_function_definition_t
 afw_function_definition_as_ia5String;
@@ -15167,6 +15691,49 @@ afw_function_definition_add_integer;
 const afw_value_t *
 afw_function_execute_add_integer(
     afw_function_execute_t *x);
+
+/** @brief Function definition array_integer */
+extern const afw_value_function_definition_t
+afw_function_definition_array_integer;
+
+/**
+ * @brief Adaptive Function `array_integer`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of integer from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType integer, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<integer>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_integer(
+ *       ...values: any[]
+ *   ): integer[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType integer, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (integer[]) The constructed array of integer.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
 
 /** @brief Function definition as_integer */
 extern const afw_value_function_definition_t
@@ -16223,6 +16790,50 @@ afw_function_definition_union_integer;
  * ipAddress adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_ipAddress */
+extern const afw_value_function_definition_t
+afw_function_definition_array_ipAddress;
+
+/**
+ * @brief Adaptive Function `array_ipAddress`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of ipAddress from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType ipAddress, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<ipAddress>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_ipAddress(
+ *       ...values: any[]
+ *   ): ipAddress[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType ipAddress, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (ipAddress[]) The constructed array of ipAddress.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_ipAddress */
@@ -18557,6 +19168,49 @@ afw_function_execute_model_returnObject_signature(
  * @{
  */
 
+/** @brief Function definition array_null */
+extern const afw_value_function_definition_t
+afw_function_definition_array_null;
+
+/**
+ * @brief Adaptive Function `array_null`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of null from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType null, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<null>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_null(
+ *       ...values: any[]
+ *   ): null[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType null, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (null[]) The constructed array of null.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_null */
 extern const afw_value_function_definition_t
 afw_function_definition_as_null;
@@ -18744,6 +19398,50 @@ afw_function_definition_to_string_null;
  * objectId adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_objectId */
+extern const afw_value_function_definition_t
+afw_function_definition_array_objectId;
+
+/**
+ * @brief Adaptive Function `array_objectId`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of objectId from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType objectId, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<objectId>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_objectId(
+ *       ...values: any[]
+ *   ): objectId[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType objectId, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (objectId[]) The constructed array of objectId.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_objectId */
@@ -19250,6 +19948,50 @@ afw_function_definition_to_string_objectId;
  * objectPath adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_objectPath */
+extern const afw_value_function_definition_t
+afw_function_definition_array_objectPath;
+
+/**
+ * @brief Adaptive Function `array_objectPath`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of objectPath from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType objectPath, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<objectPath>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_objectPath(
+ *       ...values: any[]
+ *   ): objectPath[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType objectPath, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (objectPath[]) The constructed array of objectPath.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_objectPath */
@@ -19835,6 +20577,49 @@ afw_function_definition_apply_object_options;
 const afw_value_t *
 afw_function_execute_apply_object_options(
     afw_function_execute_t *x);
+
+/** @brief Function definition array_object */
+extern const afw_value_function_definition_t
+afw_function_definition_array_object;
+
+/**
+ * @brief Adaptive Function `array_object`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of object from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType object, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<object>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_object(
+ *       ...values: any[]
+ *   ): object[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType object, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (object[]) The constructed array of object.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
 
 /** @brief Function definition as_object */
 extern const afw_value_function_definition_t
@@ -20784,6 +21569,50 @@ afw_function_execute_values(
  * password adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_password */
+extern const afw_value_function_definition_t
+afw_function_definition_array_password;
+
+/**
+ * @brief Adaptive Function `array_password`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of password from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType password, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<password>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_password(
+ *       ...values: any[]
+ *   ): password[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType password, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (password[]) The constructed array of password.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_password */
@@ -25428,6 +26257,50 @@ afw_function_definition_relaxedJson;
  * @{
  */
 
+/** @brief Function definition array_rfc822Name */
+extern const afw_value_function_definition_t
+afw_function_definition_array_rfc822Name;
+
+/**
+ * @brief Adaptive Function `array_rfc822Name`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of rfc822Name from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType rfc822Name, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<rfc822Name>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_rfc822Name(
+ *       ...values: any[]
+ *   ): rfc822Name[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType rfc822Name, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (rfc822Name[]) The constructed array of rfc822Name.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_rfc822Name */
 extern const afw_value_function_definition_t
 afw_function_definition_as_rfc822Name;
@@ -26274,6 +27147,49 @@ afw_function_definition_union_rfc822Name;
  * script adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_script */
+extern const afw_value_function_definition_t
+afw_function_definition_array_script;
+
+/**
+ * @brief Adaptive Function `array_script`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of script from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType script, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<script>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_script(
+ *       ...values: any[]
+ *   ): script[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType script, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (script[]) The constructed array of script.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_script */
@@ -27443,6 +28359,49 @@ afw_function_definition_add_string;
 const afw_value_t *
 afw_function_execute_add_string(
     afw_function_execute_t *x);
+
+/** @brief Function definition array_string */
+extern const afw_value_function_definition_t
+afw_function_definition_array_string;
+
+/**
+ * @brief Adaptive Function `array_string`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of string from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType string, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<string>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_string(
+ *       ...values: any[]
+ *   ): string[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType string, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (string[]) The constructed array of string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
 
 /** @brief Function definition as_string */
 extern const afw_value_function_definition_t
@@ -29902,6 +30861,50 @@ afw_function_definition_url_encode_string;
  * @{
  */
 
+/** @brief Function definition array_template */
+extern const afw_value_function_definition_t
+afw_function_definition_array_template;
+
+/**
+ * @brief Adaptive Function `array_template`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of template from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType template, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<template>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_template(
+ *       ...values: any[]
+ *   ): template[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType template, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (template[]) The constructed array of template.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_template */
 extern const afw_value_function_definition_t
 afw_function_definition_as_template;
@@ -30540,6 +31543,49 @@ afw_function_definition_to_string_template;
  * time adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_time */
+extern const afw_value_function_definition_t
+afw_function_definition_array_time;
+
+/**
+ * @brief Adaptive Function `array_time`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of time from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType time, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<time>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_time(
+ *       ...values: any[]
+ *   ): time[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType time, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (time[]) The constructed array of time.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_time */
@@ -31610,6 +32656,50 @@ afw_function_execute_metas(
  * @{
  */
 
+/** @brief Function definition array_x500Name */
+extern const afw_value_function_definition_t
+afw_function_definition_array_x500Name;
+
+/**
+ * @brief Adaptive Function `array_x500Name`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of x500Name from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType x500Name, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<x500Name>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_x500Name(
+ *       ...values: any[]
+ *   ): x500Name[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType x500Name, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (x500Name[]) The constructed array of x500Name.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_x500Name */
 extern const afw_value_function_definition_t
 afw_function_definition_as_x500Name;
@@ -32457,6 +33547,51 @@ afw_function_definition_union_x500Name;
  * @{
  */
 
+/** @brief Function definition array_xpathExpression */
+extern const afw_value_function_definition_t
+afw_function_definition_array_xpathExpression;
+
+/**
+ * @brief Adaptive Function `array_xpathExpression`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of xpathExpression from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType xpathExpression, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<xpathExpression>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_xpathExpression(
+ *       ...values: any[]
+ *   ): xpathExpression[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType xpathExpression, or ...
+ *       followed by an expression that results in an array, every entry of
+ *       which is included.
+ *
+ * Returns:
+ *
+ *   (xpathExpression[]) The constructed array of xpathExpression.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_xpathExpression */
 extern const afw_value_function_definition_t
 afw_function_definition_as_xpathExpression;
@@ -33206,6 +34341,51 @@ afw_function_execute_xpath_node_match(
  * yearMonthDuration adaptive functions.
  *
  * @{
+ */
+
+/** @brief Function definition array_yearMonthDuration */
+extern const afw_value_function_definition_t
+afw_function_definition_array_yearMonthDuration;
+
+/**
+ * @brief Adaptive Function `array_yearMonthDuration`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of yearMonthDuration from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType yearMonthDuration, and adding a value of
+ * another data type to the array later throws. A value of another data type is
+ * an error, never converted. This is usually written
+ * `array<yearMonthDuration>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_yearMonthDuration(
+ *       ...values: any[]
+ *   ): yearMonthDuration[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType yearMonthDuration, or ...
+ *       followed by an expression that results in an array, every entry of
+ *       which is included.
+ *
+ * Returns:
+ *
+ *   (yearMonthDuration[]) The constructed array of yearMonthDuration.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
  */
 
 /** @brief Function definition as_yearMonthDuration */
@@ -33978,6 +35158,7 @@ afw_function_definition_union_yearMonthDuration;
  * @brief Data type method id map for afw_
  */
 #define AFW_DATA_TYPE_METHOD_ID_MAP(_XX)                                       \
+    _XX(array)                                                                 \
     _XX(as)                                                                    \
     _XX(at_least_one_member_of)                                                \
     _XX(bag)                                                                   \
@@ -34193,6 +35374,43 @@ afw_function_execute_all_of(
  */
 const afw_value_t *
 afw_function_execute_any_of(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_array_of_data_type
+ *
+ * Implementation for functions:
+ *
+ * array_anyURI
+ * array_array
+ * array_base64Binary
+ * array_boolean
+ * array_dateTime
+ * array_date
+ * array_dayTimeDuration
+ * array_dnsName
+ * array_double
+ * array_function
+ * array_hexBinary
+ * array_ia5String
+ * array_integer
+ * array_ipAddress
+ * array_null
+ * array_objectId
+ * array_objectPath
+ * array_object
+ * array_password
+ * array_rfc822Name
+ * array_script
+ * array_string
+ * array_template
+ * array_time
+ * array_x500Name
+ * array_xpathExpression
+ * array_yearMonthDuration
+ */
+const afw_value_t *
+afw_function_execute_array_of_data_type(
     afw_function_execute_t *x);
 
 /**

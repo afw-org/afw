@@ -67,6 +67,28 @@ export function afwArray(client : any, values : any) : any {
 }
 
 /**
+ * Construct a new array of array from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType array, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<array>(`...values).
+ * 
+ * @param {} values - A value of dataType array, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of array.
+ */
+export function afwArrayArray(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_array";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType array. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a array from
  * a value of another data type, write a typed literal or call a to_T

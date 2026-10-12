@@ -26,6 +26,35 @@ class x500Name
     }
 
     /**
+     * array_x500Name()
+     *
+     * Construct a new array of x500Name from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType x500Name, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<x500Name>(`...values).
+     *
+     * @param $values A value of dataType x500Name, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of x500Name.
+     */
+    public function array_x500Name(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_x500Name");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_x500Name()
      *
      * Returns value unchanged if it is dataType x500Name. Otherwise,

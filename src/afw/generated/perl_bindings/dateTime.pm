@@ -15,6 +15,7 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_dayTimeDuration_dateTime 
     add_yearMonthDuration_dateTime 
+    array_dateTime 
     as_dateTime 
     at_least_one_member_of_dateTime 
     bag_dateTime 
@@ -74,6 +75,22 @@ Add duration
 
     $arg2
 
+
+=head3 array_dateTime
+
+Construct a new array of dateTime from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType dateTime, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<dateTime>(`...values).
+Construct an array of dateTime from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType dateTime, or ... followed by an expression that results in
+an array, every entry of which is included.
 
 =head3 as_dateTime
 
@@ -436,6 +453,17 @@ sub add_yearMonthDuration_dateTime {
     $request->set("function" => "add_yearMonthDuration<dateTime>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub array_dateTime {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_dateTime");
+    $request->set("values", $values);
 
     return $request->getResult();
 }
