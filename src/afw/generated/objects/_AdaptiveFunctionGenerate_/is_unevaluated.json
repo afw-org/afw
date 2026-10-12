@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isUnevaluated",
     "category": "unevaluated",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType unevaluated and return the boolean result.",
-    "functionId": "is<unevaluated>",
+    "description": "Checks whether value is dataType unevaluated and returns the boolean result. It is false for undefined. This can also be written is<unevaluated>(value).",
+    "functionId": "is_unevaluated",
     "functionLabel": "is_unevaluated",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }
@@ -17,5 +18,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

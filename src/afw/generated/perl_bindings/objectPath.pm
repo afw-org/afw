@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_objectPath 
     bag_objectPath 
     bag_size_objectPath 
     eq_objectPath 
@@ -35,6 +36,20 @@ afw::objectPath - Perl module for objectPath functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_objectPath
+
+Returns value unchanged if it is dataType objectPath. Otherwise, including
+when value is undefined, throws an error. It never converts: to get a
+objectPath from a value of another data type, write a typed literal or call a
+to_ function. This is usually written value as objectPath.
+Asserts that value is dataType objectPath
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_objectPath
 
@@ -116,7 +131,8 @@ Checks for greater than
 
 =head3 is_objectPath
 
-Checks whether value is dataType objectPath and return the boolean result.
+Checks whether value is dataType objectPath and returns the boolean result. It
+is false for undefined. This can also be written `is<objectPath>(value`).
 Checks whether value is dataType objectPath
 
 =head4 Parameters
@@ -209,6 +225,17 @@ A objectPath value.
 
 =cut
 
+sub as_objectPath {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_objectPath");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub bag_objectPath {
     my ($values) = @_;
 
@@ -286,7 +313,7 @@ sub is_objectPath {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<objectPath>");
+    $request->set("function" => "is_objectPath");
     $request->set("value", $value);
 
     return $request->getResult();

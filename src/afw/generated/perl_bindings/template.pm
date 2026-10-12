@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_template 
     bag_size_template 
     bag_template 
     compile_template 
@@ -37,6 +38,20 @@ afw::template - Perl module for template functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_template
+
+Returns value unchanged if it is dataType template. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a template from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as template.
+Asserts that value is dataType template
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_size_template
 
@@ -162,7 +177,8 @@ Checks for greater than
 
 =head3 is_template
 
-Checks whether value is dataType template and return the boolean result.
+Checks whether value is dataType template and returns the boolean result. It
+is false for undefined. This can also be written `is<template>(value`).
 Checks whether value is dataType template
 
 =head4 Parameters
@@ -255,6 +271,17 @@ Converts value to string
 A template value.
 
 =cut
+
+sub as_template {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_template");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
 
 sub bag_size_template {
     my ($value) = @_;
@@ -361,7 +388,7 @@ sub is_template {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<template>");
+    $request->set("function" => "is_template");
     $request->set("value", $value);
 
     return $request->getResult();

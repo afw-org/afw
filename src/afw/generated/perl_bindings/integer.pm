@@ -15,6 +15,7 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     abs_integer 
     add_integer 
+    as_integer 
     at_least_one_member_of_integer 
     bag_integer 
     bag_size_integer 
@@ -72,6 +73,20 @@ Add
 
     $values
 
+
+=head3 as_integer
+
+Returns value unchanged if it is dataType integer. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a integer from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as integer.
+Asserts that value is dataType integer
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_integer
 
@@ -223,7 +238,8 @@ Checks whether a value is in an array
 
 =head3 is_integer
 
-Checks whether value is dataType integer and return the boolean result.
+Checks whether value is dataType integer and returns the boolean result. It is
+false for undefined. This can also be written `is<integer>(value`).
 Checks whether value is dataType integer
 
 =head4 Parameters
@@ -455,6 +471,17 @@ sub add_integer {
     return $request->getResult();
 }
 
+sub as_integer {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_integer");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_integer {
     my ($array1, $array2) = @_;
 
@@ -591,7 +618,7 @@ sub is_integer {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<integer>");
+    $request->set("function" => "is_integer");
     $request->set("value", $value);
 
     return $request->getResult();

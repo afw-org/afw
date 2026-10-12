@@ -15,6 +15,7 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_entries 
     array 
+    as_array 
     at 
     bag_array 
     bag_size_array 
@@ -86,6 +87,20 @@ A value can refer to any adaptable value belonging to any data type or an
 array expression. In the case of an array expression, indicated by '...'
 followed by an expression that results in an array, every element within that
 array is included in the newly created array.
+
+=head3 as_array
+
+Returns value unchanged if it is dataType array. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a array from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as array.
+Asserts that value is dataType array
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at
 
@@ -242,7 +257,8 @@ Index in the array to start search.
 
 =head3 is_array
 
-Checks whether value is dataType array and return the boolean result.
+Checks whether value is dataType array and returns the boolean result. It is
+false for undefined. This can also be written `is<array>(value`).
 Checks whether value is dataType array
 
 =head4 Parameters
@@ -491,6 +507,17 @@ sub array {
     return $request->getResult();
 }
 
+sub as_array {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_array");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at {
     my ($array, $index) = @_;
 
@@ -628,7 +655,7 @@ sub is_array {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<array>");
+    $request->set("function" => "is_array");
     $request->set("value", $value);
 
     return $request->getResult();

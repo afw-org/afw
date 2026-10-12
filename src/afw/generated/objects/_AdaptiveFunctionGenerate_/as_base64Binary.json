@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsBase64Binary",
+    "brief": "Asserts that value is dataType base64Binary",
+    "camelCaseFunctionLabel": "asBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType base64Binary. Otherwise, including when value is undefined, throws an error. It never converts: to get a base64Binary from a value of another data type, write a typed literal or call a to_ function. This is usually written value as base64Binary.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_base64Binary",
+    "functionLabel": "as_base64Binary",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "value, which is dataType base64Binary"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

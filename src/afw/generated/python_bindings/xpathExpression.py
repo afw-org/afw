@@ -11,6 +11,38 @@
 import requests
 import json
 
+def as_xpathExpression(session, value):
+    """
+    Asserts that value is dataType xpathExpression
+
+    Returns value unchanged if it is dataType xpathExpression. Otherwise,
+    including when value is undefined, throws an error. It never converts: to
+    get a xpathExpression from a value of another data type, write a typed
+    literal or call a to_ function. This is usually written value as
+    xpathExpression.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType xpathExpression
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_xpathExpression",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_size_xpathExpression(session, value):
     """
     Returns the number of values in a bag
@@ -282,8 +314,9 @@ def is_xpathExpression(session, value):
     """
     Checks whether value is dataType xpathExpression
 
-    Checks whether value is dataType xpathExpression and return the boolean
-    result.
+    Checks whether value is dataType xpathExpression and returns the boolean
+    result. It is false for undefined. This can also be written
+    `is<xpathExpression>(value`).
 
     Args:
         value (object): Value to check
@@ -295,7 +328,7 @@ def is_xpathExpression(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<xpathExpression>",
+        "function": "is_xpathExpression",
         "value": value
     }
 

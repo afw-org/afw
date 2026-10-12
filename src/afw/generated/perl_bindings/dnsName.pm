@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_dnsName 
     bag_dnsName 
     bag_size_dnsName 
     dnsName 
@@ -38,6 +39,20 @@ afw::dnsName - Perl module for dnsName functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_dnsName
+
+Returns value unchanged if it is dataType dnsName. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a dnsName from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as dnsName.
+Asserts that value is dataType dnsName
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_dnsName
 
@@ -130,7 +145,8 @@ Checks for greater than
 
 =head3 is_dnsName
 
-Checks whether value is dataType dnsName and return the boolean result.
+Checks whether value is dataType dnsName and returns the boolean result. It is
+false for undefined. This can also be written `is<dnsName>(value`).
 Checks whether value is dataType dnsName
 
 =head4 Parameters
@@ -250,6 +266,17 @@ A dnsName value.
 
 =cut
 
+sub as_dnsName {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_dnsName");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub bag_dnsName {
     my ($values) = @_;
 
@@ -338,7 +365,7 @@ sub is_dnsName {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<dnsName>");
+    $request->set("function" => "is_dnsName");
     $request->set("value", $value);
 
     return $request->getResult();

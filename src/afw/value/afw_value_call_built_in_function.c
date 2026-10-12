@@ -500,6 +500,22 @@ impl_afw_value_decompile(
     if (impl_decompile_evaluate_once(self, fid, writer, xctx)) {
         return;
     }
+
+    /*
+     * as_T(v) is written (v as T). The parentheses keep it one operand
+     * wherever it is written, such as before '.' or '?.'.
+     */
+    if (self->function->execute_implementation == afw_function_execute_as &&
+        self->function->data_type && self->args.argc == 1)
+    {
+        afw_writer_write_z(writer, "(", xctx);
+        afw_value_decompile_value(self->args.argv[1], writer, xctx);
+        afw_writer_write_z(writer, " as ", xctx);
+        afw_writer_write_utf8(writer,
+            &self->function->data_type->data_type_id, xctx);
+        afw_writer_write_z(writer, ")", xctx);
+        return;
+    }
     if (impl_name_is_bound_in_unit(self->args.contextual, fid)) {
         afw_writer_write_z(writer, "fn::", xctx);
     }

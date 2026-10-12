@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_dayTimeDuration 
     at_least_one_member_of_dayTimeDuration 
     bag_dayTimeDuration 
     bag_size_dayTimeDuration 
@@ -42,6 +43,20 @@ afw::dayTimeDuration - Perl module for dayTimeDuration functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_dayTimeDuration
+
+Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
+including when value is undefined, throws an error. It never converts: to get
+a dayTimeDuration from a value of another data type, write a typed literal or
+call a to_ function. This is usually written value as dayTimeDuration.
+Asserts that value is dataType dayTimeDuration
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_dayTimeDuration
 
@@ -168,8 +183,9 @@ The second array.
 
 =head3 is_dayTimeDuration
 
-Checks whether value is dataType dayTimeDuration and return the boolean
-result.
+Checks whether value is dataType dayTimeDuration and returns the boolean
+result. It is false for undefined. This can also be written
+`is<dayTimeDuration>(value`).
 Checks whether value is dataType dayTimeDuration
 
 =head4 Parameters
@@ -318,6 +334,17 @@ Two or more arrays.
 
 =cut
 
+sub as_dayTimeDuration {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_dayTimeDuration");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_dayTimeDuration {
     my ($array1, $array2) = @_;
 
@@ -430,7 +457,7 @@ sub is_dayTimeDuration {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<dayTimeDuration>");
+    $request->set("function" => "is_dayTimeDuration");
     $request->set("value", $value);
 
     return $request->getResult();

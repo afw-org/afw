@@ -81,6 +81,37 @@ def array(session, values):
 
     return response['actions'][0]['result']
 
+def as_array(session, value):
+    """
+    Asserts that value is dataType array
+
+    Returns value unchanged if it is dataType array. Otherwise, including when
+    value is undefined, throws an error. It never converts: to get a array
+    from a value of another data type, write a typed literal or call a to_
+    function. This is usually written value as array.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        list: value, which is dataType array
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_array",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at(session, array, index):
     """
     Value at array index
@@ -427,7 +458,8 @@ def is_array(session, value):
     """
     Checks whether value is dataType array
 
-    Checks whether value is dataType array and return the boolean result.
+    Checks whether value is dataType array and returns the boolean result. It
+    is false for undefined. This can also be written `is<array>(value`).
 
     Args:
         value (object): Value to check
@@ -439,7 +471,7 @@ def is_array(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<array>",
+        "function": "is_array",
         "value": value
     }
 

@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_ia5String 
     bag_ia5String 
     bag_size_ia5String 
     eq_ia5String 
@@ -35,6 +36,20 @@ afw::ia5String - Perl module for ia5String functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_ia5String
+
+Returns value unchanged if it is dataType ia5String. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a ia5String
+from a value of another data type, write a typed literal or call a to_
+function. This is usually written value as ia5String.
+Asserts that value is dataType ia5String
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_ia5String
 
@@ -127,7 +142,8 @@ Value to convert
 
 =head3 is_ia5String
 
-Checks whether value is dataType ia5String and return the boolean result.
+Checks whether value is dataType ia5String and returns the boolean result. It
+is false for undefined. This can also be written `is<ia5String>(value`).
 Checks whether value is dataType ia5String
 
 =head4 Parameters
@@ -207,6 +223,17 @@ Converts value to string
 A ia5String value.
 
 =cut
+
+sub as_ia5String {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_ia5String");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
 
 sub bag_ia5String {
     my ($values) = @_;
@@ -296,7 +323,7 @@ sub is_ia5String {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<ia5String>");
+    $request->set("function" => "is_ia5String");
     $request->set("value", $value);
 
     return $request->getResult();

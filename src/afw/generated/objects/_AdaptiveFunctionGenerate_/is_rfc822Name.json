@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType rfc822Name and return the boolean result.",
-    "functionId": "is<rfc822Name>",
+    "description": "Checks whether value is dataType rfc822Name and returns the boolean result. It is false for undefined. This can also be written is<rfc822Name>(value).",
+    "functionId": "is_rfc822Name",
     "functionLabel": "is_rfc822Name",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }
@@ -17,5 +18,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

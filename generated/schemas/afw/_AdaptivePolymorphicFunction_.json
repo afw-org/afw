@@ -471,6 +471,13 @@
                     "title": "Method Number",
                     "type": "integer"
                 },
+                "dataTypeRequired": {
+                    "default": false,
+                    "description": "If true, no function is registered for functionId itself. Each data type specific function is a plain function whose functionId is functionId_dataType, such as is_string, and functionId<dataType>, such as is<string>, is another way to call it. Use this when the data type is what the function is about (is, as), not the data type of its first parameter.",
+                    "markdownDescription": "**Data Type Required**\n\nIf true, no function is registered for functionId itself. Each data type specific function is a plain function whose functionId is functionId_dataType, such as is_string, and functionId<dataType>, such as is<string>, is another way to call it. Use this when the data type is what the function is about (is, as), not the data type of its first parameter.",
+                    "title": "Data Type Required",
+                    "type": "boolean"
+                },
                 "deprecated": {
                     "default": false,
                     "description": "This indicates that the function is deprecated and may go away at some point.",
@@ -675,6 +682,13 @@
                     "title": "Data Type Method",
                     "type": "boolean"
                 },
+                "dataTypeRequired": {
+                    "default": false,
+                    "description": "If true, no function is registered for functionId itself. Each data type specific function is a plain function whose functionId is functionId_dataType, such as is_string, and functionId<dataType>, such as is<string>, is another way to call it. Use this when the data type is what the function is about (is, as), not the data type of its first parameter.",
+                    "markdownDescription": "**Data Type Required**\n\nIf true, no function is registered for functionId itself. Each data type specific function is a plain function whose functionId is functionId_dataType, such as is_string, and functionId<dataType>, such as is<string>, is another way to call it. Use this when the data type is what the function is about (is, as), not the data type of its first parameter.",
+                    "title": "Data Type Required",
+                    "type": "boolean"
+                },
                 "errorsThrown": {
                     "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "items": {
@@ -766,6 +780,13 @@
             "markdownDescription": "**Method Number**\n\nThis is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
             "title": "Method Number",
             "type": "integer"
+        },
+        "dataTypeRequired": {
+            "default": false,
+            "description": "If true, no function is registered for functionId itself. Each data type specific function is a plain function whose functionId is functionId_dataType, such as is_string, and functionId<dataType>, such as is<string>, is another way to call it. Use this when the data type is what the function is about (is, as), not the data type of its first parameter.",
+            "markdownDescription": "**Data Type Required**\n\nIf true, no function is registered for functionId itself. Each data type specific function is a plain function whose functionId is functionId_dataType, such as is_string, and functionId<dataType>, such as is<string>, is another way to call it. Use this when the data type is what the function is about (is, as), not the data type of its first parameter.",
+            "title": "Data Type Required",
+            "type": "boolean"
         },
         "deprecated": {
             "default": false,

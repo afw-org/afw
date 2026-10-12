@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType hexBinary. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * hexBinary from a value of another data type, write a typed literal or call
+ * a to_ function. This is usually written value as hexBinary.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {hexBinary} value, which is dataType hexBinary
+ */
+export function afwAsHexBinary(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_hexBinary";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in hexBinary array1 is in
  * hexBinary array2.
  * 
@@ -217,7 +237,8 @@ export function afwIntersectionHexBinary(client : any, array1 : any[], array2 : 
 }
 
 /**
- * Checks whether value is dataType hexBinary and return the boolean result.
+ * Checks whether value is dataType hexBinary and returns the boolean result.
+ * It is false for undefined. This can also be written `is<hexBinary>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -227,7 +248,7 @@ export function afwIsHexBinary(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<hexBinary>";
+    _action["function"] = "is_hexBinary";
     _action["value"] = value;
 
     return client.perform(_action);

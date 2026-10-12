@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_yearMonthDuration 
     at_least_one_member_of_yearMonthDuration 
     bag_size_yearMonthDuration 
     bag_yearMonthDuration 
@@ -42,6 +43,20 @@ afw::yearMonthDuration - Perl module for yearMonthDuration functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_yearMonthDuration
+
+Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
+including when value is undefined, throws an error. It never converts: to get
+a yearMonthDuration from a value of another data type, write a typed literal
+or call a to_ function. This is usually written value as yearMonthDuration.
+Asserts that value is dataType yearMonthDuration
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_yearMonthDuration
 
@@ -171,8 +186,9 @@ Checks whether a value is in an array
 
 =head3 is_yearMonthDuration
 
-Checks whether value is dataType yearMonthDuration and return the boolean
-result.
+Checks whether value is dataType yearMonthDuration and returns the boolean
+result. It is false for undefined. This can also be written
+`is<yearMonthDuration>(value`).
 Checks whether value is dataType yearMonthDuration
 
 =head4 Parameters
@@ -319,6 +335,17 @@ Value to convert
 
 =cut
 
+sub as_yearMonthDuration {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_yearMonthDuration");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_yearMonthDuration {
     my ($array1, $array2) = @_;
 
@@ -432,7 +459,7 @@ sub is_yearMonthDuration {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<yearMonthDuration>");
+    $request->set("function" => "is_yearMonthDuration");
     $request->set("value", $value);
 
     return $request->getResult();

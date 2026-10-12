@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsDate",
+    "brief": "Asserts that value is dataType date",
+    "camelCaseFunctionLabel": "asDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType date. Otherwise, including when value is undefined, throws an error. It never converts: to get a date from a value of another data type, write a typed literal or call a to_ function. This is usually written value as date.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_date",
+    "functionLabel": "as_date",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "date",
+        "description": "value, which is dataType date"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

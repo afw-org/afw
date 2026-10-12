@@ -26,6 +26,32 @@ class ipAddress
     }
 
     /**
+     * as_ipAddress()
+     *
+     * Returns value unchanged if it is dataType ipAddress. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a ipAddress from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * ipAddress.
+     *
+     * @param $value Value to assert
+     *
+     * @return ipAddress value, which is dataType ipAddress
+     */
+    public function as_ipAddress(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_ipAddress");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_ipAddress()
      *
      * Takes any number of ipAddress values and returns an array of ipAddress.
@@ -224,8 +250,9 @@ class ipAddress
     /**
      * is_ipAddress()
      *
-     * Checks whether value is dataType ipAddress and return the boolean
-     * result.
+     * Checks whether value is dataType ipAddress and returns the boolean
+     * result. It is false for undefined. This can also be written
+     * `is<ipAddress>(value`).
      *
      * @param $value Value to check
      *
@@ -235,7 +262,7 @@ class ipAddress
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<ipAddress>");
+        $request->set("function", "is_ipAddress");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

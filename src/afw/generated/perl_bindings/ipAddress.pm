@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_ipAddress 
     bag_ipAddress 
     bag_size_ipAddress 
     eq_ipAddress 
@@ -38,6 +39,20 @@ afw::ipAddress - Perl module for ipAddress functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_ipAddress
+
+Returns value unchanged if it is dataType ipAddress. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a ipAddress
+from a value of another data type, write a typed literal or call a to_
+function. This is usually written value as ipAddress.
+Asserts that value is dataType ipAddress
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_ipAddress
 
@@ -144,7 +159,8 @@ Checks whether a value is in an array
 
 =head3 is_ipAddress
 
-Checks whether value is dataType ipAddress and return the boolean result.
+Checks whether value is dataType ipAddress and returns the boolean result. It
+is false for undefined. This can also be written `is<ipAddress>(value`).
 Checks whether value is dataType ipAddress
 
 =head4 Parameters
@@ -250,6 +266,17 @@ A ipAddress value.
 
 =cut
 
+sub as_ipAddress {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_ipAddress");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub bag_ipAddress {
     my ($values) = @_;
 
@@ -350,7 +377,7 @@ sub is_ipAddress {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<ipAddress>");
+    $request->set("function" => "is_ipAddress");
     $request->set("value", $value);
 
     return $request->getResult();

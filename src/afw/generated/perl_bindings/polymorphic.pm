@@ -40,7 +40,6 @@ our @EXPORT_OK = qw(
     includes 
     index_of 
     intersection 
-    is 
     is_in 
     last_index_of 
     le 
@@ -484,17 +483,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 is
-
-Checks whether value is dataType `<dataType>` and return the boolean result.
-Checks whether value is dataType <dataType>
-
-=head4 Parameters
-
-    $value
-
-Value to check
 
 =head3 is_in
 
@@ -1437,17 +1425,6 @@ sub intersection {
     $request->set("function" => "intersection");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub is_ {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "is");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

@@ -9374,6 +9374,165 @@ impl_object__anyURI__value = {
     (const afw_object_t *)&impl_object__anyURI
 };
 
+/* ---------- as_anyURI ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_anyURI =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_anyURI");
+
+static const afw_value_object_t
+impl_object__as_anyURI__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_anyURI = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_anyURI__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_anyURI,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_anyURI
+        }
+    },
+    (void *)&afw_function_definition_as_anyURI
+};
+
+static const afw_value_object_t
+impl_as_anyURI_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_anyURI_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_anyURI_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_anyURI,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_anyURI_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_anyURI_returns
+};
+
+static const afw_value_object_t
+impl_as_anyURI_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_anyURI_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_anyURI_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_anyURI_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_anyURI_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_anyURI_parameters[] = {
+    &impl_as_anyURI_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_anyURI_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_anyURI = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_anyURI,
+    &afw_self_v_anyURI,
+    &afw_self_v_as_anyURI,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_anyURI,
+    &afw_self_v_as,
+    &afw_self_v_as_anyURI,
+    &afw_self_v_asAnyURI,
+    &afw_self_v_afwAsAnyURI,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_anyURI,
+    &afw_self_v_zz__3b0365bef5f7,
+    &afw_self_v_zz___value__any___anyURI,
+    &afw_self_v_zz__function_as_anyURI_______value__any____anyURI__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_anyURI_parameters[0],
+    1,
+    &impl_as_anyURI_returns,
+    NULL,
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    &impl_as_anyURI_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_anyURI__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_anyURI
+};
+
 /* ---------- at_least_one_member_of<anyURI> ---------- */
 
 static const afw_utf8_t
@@ -11461,7 +11620,7 @@ impl_object__intersection_anyURI__value = {
     (const afw_object_t *)&impl_object__intersection_anyURI
 };
 
-/* ---------- is<anyURI> ---------- */
+/* ---------- is_anyURI ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_anyURI =
@@ -11549,7 +11708,7 @@ impl_is_anyURI_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -11572,16 +11731,16 @@ afw_function_definition_is_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_anyURI,
     &afw_self_v_anyURI,
-    &afw_self_v_zz__is_anyURI_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_anyURI_,
+    &afw_self_v_is_anyURI,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_anyURI,
     &afw_self_v_is,
     &afw_self_v_is_anyURI,
     &afw_self_v_isAnyURI,
     &afw_self_v_afwIsAnyURI,
     &afw_self_v_zz__Checks_whether_value_is_dataType_anyURI,
-    &afw_self_v_zz__ea77b069e413,
+    &afw_self_v_zz__76244534be6e,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_anyURI________value__any____boolean__,
+    &afw_self_v_zz__function_is_anyURI_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -16027,6 +16186,165 @@ impl_object__array__value = {
     (const afw_object_t *)&impl_object__array
 };
 
+/* ---------- as_array ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_array");
+
+static const afw_value_object_t
+impl_object__as_array__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_array = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_array__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_array,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_array
+        }
+    },
+    (void *)&afw_function_definition_as_array
+};
+
+static const afw_value_object_t
+impl_as_array_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_array_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_array_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_array,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_array_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_array_returns
+};
+
+static const afw_value_object_t
+impl_as_array_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_array_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_array_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_array_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_array_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_array_parameters[] = {
+    &impl_as_array_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_array_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_array = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_array,
+    &afw_self_v_array,
+    &afw_self_v_as_array,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_array,
+    &afw_self_v_as,
+    &afw_self_v_as_array,
+    &afw_self_v_asArray,
+    &afw_self_v_afwAsArray,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_array,
+    &afw_self_v_zz__0b7fddb6c4db,
+    &afw_self_v_zz___value__any___array,
+    &afw_self_v_zz__function_as_array_______value__any____array__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_array_parameters[0],
+    1,
+    &impl_as_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    &impl_as_array_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_array__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_array
+};
+
 /* ---------- at ---------- */
 
 static const afw_utf8_t
@@ -17970,7 +18288,7 @@ impl_object__includes_array__value = {
     (const afw_object_t *)&impl_object__includes_array
 };
 
-/* ---------- is<array> ---------- */
+/* ---------- is_array ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_array =
@@ -18058,7 +18376,7 @@ impl_is_array_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -18081,16 +18399,16 @@ afw_function_definition_is_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_array,
     &afw_self_v_array,
-    &afw_self_v_zz__is_array_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_array_,
+    &afw_self_v_is_array,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_array,
     &afw_self_v_is,
     &afw_self_v_is_array,
     &afw_self_v_isArray,
     &afw_self_v_afwIsArray,
     &afw_self_v_zz__Checks_whether_value_is_dataType_array,
-    &afw_self_v_zz__d3886f701c74,
+    &afw_self_v_zz__e344802a65de,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_array________value__any____boolean__,
+    &afw_self_v_zz__function_is_array_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -21040,6 +21358,165 @@ impl_object__authorization_check__value = {
     (const afw_object_t *)&impl_object__authorization_check
 };
 
+/* ---------- as_base64Binary ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_base64Binary =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_base64Binary");
+
+static const afw_value_object_t
+impl_object__as_base64Binary__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_base64Binary = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_base64Binary__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_base64Binary
+        }
+    },
+    (void *)&afw_function_definition_as_base64Binary
+};
+
+static const afw_value_object_t
+impl_as_base64Binary_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_base64Binary_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_base64Binary_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_base64Binary_direct,
+    &afw_self_v_base64Binary,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_base64Binary,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_base64Binary_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_base64Binary_returns
+};
+
+static const afw_value_object_t
+impl_as_base64Binary_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_base64Binary_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_base64Binary_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_base64Binary_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_base64Binary_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_base64Binary_parameters[] = {
+    &impl_as_base64Binary_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_base64Binary_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_base64Binary = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_base64Binary,
+    &afw_self_v_base64Binary,
+    &afw_self_v_as_base64Binary,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_base64Binary,
+    &afw_self_v_as,
+    &afw_self_v_as_base64Binary,
+    &afw_self_v_asBase64Binary,
+    &afw_self_v_afwAsBase64Binary,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_base64Binary,
+    &afw_self_v_zz__9180ea03c12d,
+    &afw_self_v_zz___value__any___base64Binary,
+    &afw_self_v_zz__function_as_base64Binary_______value__any____base64Binary__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_base64Binary_parameters[0],
+    1,
+    &impl_as_base64Binary_returns,
+    NULL,
+    &afw_data_type_base64Binary_direct,
+    &afw_self_v_base64Binary,
+    &impl_as_base64Binary_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_base64Binary__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_base64Binary
+};
+
 /* ---------- at_least_one_member_of<base64Binary> ---------- */
 
 static const afw_utf8_t
@@ -22794,7 +23271,7 @@ impl_object__intersection_base64Binary__value = {
     (const afw_object_t *)&impl_object__intersection_base64Binary
 };
 
-/* ---------- is<base64Binary> ---------- */
+/* ---------- is_base64Binary ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_base64Binary =
@@ -22882,7 +23359,7 @@ impl_is_base64Binary_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -22905,16 +23382,16 @@ afw_function_definition_is_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_base64Binary,
     &afw_self_v_base64Binary,
-    &afw_self_v_zz__is_base64Binary_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_base64Binary_,
+    &afw_self_v_is_base64Binary,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_base64Binary,
     &afw_self_v_is,
     &afw_self_v_is_base64Binary,
     &afw_self_v_isBase64Binary,
     &afw_self_v_afwIsBase64Binary,
     &afw_self_v_zz__Checks_whether_value_is_dataType_base64Binary,
-    &afw_self_v_zz__506ba7dd8ca1,
+    &afw_self_v_zz__2619264ddf0b,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_base64Binary________value__any____boolean__,
+    &afw_self_v_zz__function_is_base64Binary_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -24737,6 +25214,165 @@ impl_object__union_base64Binary__value = {
     (const afw_object_t *)&impl_object__union_base64Binary
 };
 
+/* ---------- as_boolean ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_boolean =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_boolean");
+
+static const afw_value_object_t
+impl_object__as_boolean__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_boolean = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_boolean__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_boolean,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_boolean
+        }
+    },
+    (void *)&afw_function_definition_as_boolean
+};
+
+static const afw_value_object_t
+impl_as_boolean_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_boolean_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_boolean_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    &afw_self_v_boolean,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_boolean,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_boolean_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_boolean_returns
+};
+
+static const afw_value_object_t
+impl_as_boolean_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_boolean_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_boolean_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_boolean_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_boolean_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_boolean_parameters[] = {
+    &impl_as_boolean_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_boolean_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_boolean = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_boolean,
+    &afw_self_v_boolean,
+    &afw_self_v_as_boolean,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_boolean,
+    &afw_self_v_as,
+    &afw_self_v_as_boolean,
+    &afw_self_v_asBoolean,
+    &afw_self_v_afwAsBoolean,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_boolean,
+    &afw_self_v_zz__e461da0b759e,
+    &afw_self_v_zz___value__any___boolean,
+    &afw_self_v_zz__function_as_boolean_______value__any____boolean__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_boolean_parameters[0],
+    1,
+    &impl_as_boolean_returns,
+    NULL,
+    &afw_data_type_boolean_direct,
+    &afw_self_v_boolean,
+    &impl_as_boolean_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_boolean__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_boolean
+};
+
 /* ---------- at_least_one_member_of<boolean> ---------- */
 
 static const afw_utf8_t
@@ -26340,7 +26976,7 @@ impl_object__intersection_boolean__value = {
     (const afw_object_t *)&impl_object__intersection_boolean
 };
 
-/* ---------- is<boolean> ---------- */
+/* ---------- is_boolean ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_boolean =
@@ -26428,7 +27064,7 @@ impl_is_boolean_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -26451,16 +27087,16 @@ afw_function_definition_is_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_boolean,
     &afw_self_v_boolean,
-    &afw_self_v_zz__is_boolean_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_boolean_,
+    &afw_self_v_is_boolean,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_boolean,
     &afw_self_v_is,
     &afw_self_v_is_boolean,
     &afw_self_v_isBoolean,
     &afw_self_v_afwIsBoolean,
     &afw_self_v_zz__Checks_whether_value_is_dataType_boolean,
-    &afw_self_v_zz__34d4fe88fe88,
+    &afw_self_v_zz__b5baba2be6d7,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_boolean________value__any____boolean__,
+    &afw_self_v_zz__function_is_boolean_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -35510,6 +36146,165 @@ impl_object__add_yearMonthDuration_dateTime__value = {
     (const afw_object_t *)&impl_object__add_yearMonthDuration_dateTime
 };
 
+/* ---------- as_dateTime ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_dateTime =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_dateTime");
+
+static const afw_value_object_t
+impl_object__as_dateTime__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_dateTime = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_dateTime__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_dateTime,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_dateTime
+        }
+    },
+    (void *)&afw_function_definition_as_dateTime
+};
+
+static const afw_value_object_t
+impl_as_dateTime_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_dateTime_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_dateTime_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_dateTime_direct,
+    &afw_self_v_dateTime,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_dateTime,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_dateTime_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_dateTime_returns
+};
+
+static const afw_value_object_t
+impl_as_dateTime_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_dateTime_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_dateTime_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_dateTime_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_dateTime_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_dateTime_parameters[] = {
+    &impl_as_dateTime_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_dateTime_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_dateTime = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_dateTime,
+    &afw_self_v_dateTime,
+    &afw_self_v_as_dateTime,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_dateTime,
+    &afw_self_v_as,
+    &afw_self_v_as_dateTime,
+    &afw_self_v_asDateTime,
+    &afw_self_v_afwAsDateTime,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_dateTime,
+    &afw_self_v_zz__0edf956a7139,
+    &afw_self_v_zz___value__any___dateTime,
+    &afw_self_v_zz__function_as_dateTime_______value__any____dateTime__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_dateTime_parameters[0],
+    1,
+    &impl_as_dateTime_returns,
+    NULL,
+    &afw_data_type_dateTime_direct,
+    &afw_self_v_dateTime,
+    &impl_as_dateTime_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_dateTime__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_dateTime
+};
+
 /* ---------- at_least_one_member_of<dateTime> ---------- */
 
 static const afw_utf8_t
@@ -37113,7 +37908,7 @@ impl_object__intersection_dateTime__value = {
     (const afw_object_t *)&impl_object__intersection_dateTime
 };
 
-/* ---------- is<dateTime> ---------- */
+/* ---------- is_dateTime ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_dateTime =
@@ -37201,7 +37996,7 @@ impl_is_dateTime_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -37224,16 +38019,16 @@ afw_function_definition_is_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_dateTime,
     &afw_self_v_dateTime,
-    &afw_self_v_zz__is_dateTime_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_dateTime_,
+    &afw_self_v_is_dateTime,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_dateTime,
     &afw_self_v_is,
     &afw_self_v_is_dateTime,
     &afw_self_v_isDateTime,
     &afw_self_v_afwIsDateTime,
     &afw_self_v_zz__Checks_whether_value_is_dataType_dateTime,
-    &afw_self_v_zz__523d3c4f37a7,
+    &afw_self_v_zz__f07efb00b879,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_dateTime________value__any____boolean__,
+    &afw_self_v_zz__function_is_dateTime_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -39925,6 +40720,165 @@ impl_object__add_yearMonthDuration_date__value = {
     (const afw_object_t *)&impl_object__add_yearMonthDuration_date
 };
 
+/* ---------- as_date ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_date =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_date");
+
+static const afw_value_object_t
+impl_object__as_date__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_date = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_date__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_date,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_date
+        }
+    },
+    (void *)&afw_function_definition_as_date
+};
+
+static const afw_value_object_t
+impl_as_date_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_date_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_date_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_date_direct,
+    &afw_self_v_date,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_date,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_date_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_date_returns
+};
+
+static const afw_value_object_t
+impl_as_date_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_date_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_date_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_date_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_date_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_date_parameters[] = {
+    &impl_as_date_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_date_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_date = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_date,
+    &afw_self_v_date,
+    &afw_self_v_as_date,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_date,
+    &afw_self_v_as,
+    &afw_self_v_as_date,
+    &afw_self_v_asDate,
+    &afw_self_v_afwAsDate,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_date,
+    &afw_self_v_zz__a640b234cc62,
+    &afw_self_v_zz___value__any___date,
+    &afw_self_v_zz__function_as_date_______value__any____date__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_date_parameters[0],
+    1,
+    &impl_as_date_returns,
+    NULL,
+    &afw_data_type_date_direct,
+    &afw_self_v_date,
+    &impl_as_date_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_date__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_date
+};
+
 /* ---------- at_least_one_member_of<date> ---------- */
 
 static const afw_utf8_t
@@ -41528,7 +42482,7 @@ impl_object__intersection_date__value = {
     (const afw_object_t *)&impl_object__intersection_date
 };
 
-/* ---------- is<date> ---------- */
+/* ---------- is_date ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_date =
@@ -41616,7 +42570,7 @@ impl_is_date_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -41639,16 +42593,16 @@ afw_function_definition_is_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_date,
     &afw_self_v_date,
-    &afw_self_v_zz__is_date_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_date_,
+    &afw_self_v_is_date,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_date,
     &afw_self_v_is,
     &afw_self_v_is_date,
     &afw_self_v_isDate,
     &afw_self_v_afwIsDate,
     &afw_self_v_zz__Checks_whether_value_is_dataType_date,
-    &afw_self_v_zz__b384b85410ef,
+    &afw_self_v_zz__d0596938601f,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_date________value__any____boolean__,
+    &afw_self_v_zz__function_is_date_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -43962,6 +44916,165 @@ impl_object__union_date__value = {
     (const afw_object_t *)&impl_object__union_date
 };
 
+/* ---------- as_dayTimeDuration ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_dayTimeDuration =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_dayTimeDuration");
+
+static const afw_value_object_t
+impl_object__as_dayTimeDuration__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_dayTimeDuration = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_dayTimeDuration__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_dayTimeDuration
+        }
+    },
+    (void *)&afw_function_definition_as_dayTimeDuration
+};
+
+static const afw_value_object_t
+impl_as_dayTimeDuration_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_dayTimeDuration_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_dayTimeDuration_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_dayTimeDuration_direct,
+    &afw_self_v_dayTimeDuration,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_dayTimeDuration,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_dayTimeDuration_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_dayTimeDuration_returns
+};
+
+static const afw_value_object_t
+impl_as_dayTimeDuration_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_dayTimeDuration_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_dayTimeDuration_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_dayTimeDuration_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_dayTimeDuration_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_dayTimeDuration_parameters[] = {
+    &impl_as_dayTimeDuration_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_dayTimeDuration_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_dayTimeDuration = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_dayTimeDuration,
+    &afw_self_v_dayTimeDuration,
+    &afw_self_v_as_dayTimeDuration,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_dayTimeDuration,
+    &afw_self_v_as,
+    &afw_self_v_as_dayTimeDuration,
+    &afw_self_v_asDayTimeDuration,
+    &afw_self_v_afwAsDayTimeDuration,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_dayTimeDuration,
+    &afw_self_v_zz__51cee46ff8d7,
+    &afw_self_v_zz___value__any___dayTimeDuration,
+    &afw_self_v_zz__574903803f0c,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_dayTimeDuration_parameters[0],
+    1,
+    &impl_as_dayTimeDuration_returns,
+    NULL,
+    &afw_data_type_dayTimeDuration_direct,
+    &afw_self_v_dayTimeDuration,
+    &impl_as_dayTimeDuration_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_dayTimeDuration__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_dayTimeDuration
+};
+
 /* ---------- at_least_one_member_of<dayTimeDuration> ---------- */
 
 static const afw_utf8_t
@@ -45565,7 +46678,7 @@ impl_object__intersection_dayTimeDuration__value = {
     (const afw_object_t *)&impl_object__intersection_dayTimeDuration
 };
 
-/* ---------- is<dayTimeDuration> ---------- */
+/* ---------- is_dayTimeDuration ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_dayTimeDuration =
@@ -45653,7 +46766,7 @@ impl_is_dayTimeDuration_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -45676,16 +46789,16 @@ afw_function_definition_is_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_dayTimeDuration,
     &afw_self_v_dayTimeDuration,
-    &afw_self_v_zz__is_dayTimeDuration_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_dayTimeDuration_,
+    &afw_self_v_is_dayTimeDuration,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_dayTimeDuration,
     &afw_self_v_is,
     &afw_self_v_is_dayTimeDuration,
     &afw_self_v_isDayTimeDuration,
     &afw_self_v_afwIsDayTimeDuration,
     &afw_self_v_zz__Checks_whether_value_is_dataType_dayTimeDuration,
-    &afw_self_v_zz__cfc1a8dcc913,
+    &afw_self_v_zz__1a198459d30f,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_dayTimeDuration________value__any____boolean__,
+    &afw_self_v_zz__function_is_dayTimeDuration_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -47508,6 +48621,165 @@ impl_object__union_dayTimeDuration__value = {
     (const afw_object_t *)&impl_object__union_dayTimeDuration
 };
 
+/* ---------- as_dnsName ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_dnsName =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_dnsName");
+
+static const afw_value_object_t
+impl_object__as_dnsName__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_dnsName = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_dnsName__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_dnsName,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_dnsName
+        }
+    },
+    (void *)&afw_function_definition_as_dnsName
+};
+
+static const afw_value_object_t
+impl_as_dnsName_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_dnsName_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_dnsName_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_dnsName_direct,
+    &afw_self_v_dnsName,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_dnsName,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_dnsName_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_dnsName_returns
+};
+
+static const afw_value_object_t
+impl_as_dnsName_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_dnsName_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_dnsName_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_dnsName_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_dnsName_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_dnsName_parameters[] = {
+    &impl_as_dnsName_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_dnsName_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_dnsName = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_dnsName,
+    &afw_self_v_dnsName,
+    &afw_self_v_as_dnsName,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_dnsName,
+    &afw_self_v_as,
+    &afw_self_v_as_dnsName,
+    &afw_self_v_asDnsName,
+    &afw_self_v_afwAsDnsName,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_dnsName,
+    &afw_self_v_zz__ba26e008d02d,
+    &afw_self_v_zz___value__any___dnsName,
+    &afw_self_v_zz__function_as_dnsName_______value__any____dnsName__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_dnsName_parameters[0],
+    1,
+    &impl_as_dnsName_returns,
+    NULL,
+    &afw_data_type_dnsName_direct,
+    &afw_self_v_dnsName,
+    &impl_as_dnsName_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_dnsName__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_dnsName
+};
+
 /* ---------- bag<dnsName> ---------- */
 
 static const afw_utf8_t
@@ -48733,7 +50005,7 @@ impl_object__gt_dnsName__value = {
     (const afw_object_t *)&impl_object__gt_dnsName
 };
 
-/* ---------- is<dnsName> ---------- */
+/* ---------- is_dnsName ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_dnsName =
@@ -48821,7 +50093,7 @@ impl_is_dnsName_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -48844,16 +50116,16 @@ afw_function_definition_is_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_dnsName,
     &afw_self_v_dnsName,
-    &afw_self_v_zz__is_dnsName_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_dnsName_,
+    &afw_self_v_is_dnsName,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_dnsName,
     &afw_self_v_is,
     &afw_self_v_is_dnsName,
     &afw_self_v_isDnsName,
     &afw_self_v_afwIsDnsName,
     &afw_self_v_zz__Checks_whether_value_is_dataType_dnsName,
-    &afw_self_v_zz__195288c8e570,
+    &afw_self_v_zz__383dcc7a7466,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_dnsName________value__any____boolean__,
+    &afw_self_v_zz__function_is_dnsName_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -50636,6 +51908,165 @@ static const afw_value_object_t
 impl_object__add_double__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__add_double
+};
+
+/* ---------- as_double ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_double =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_double");
+
+static const afw_value_object_t
+impl_object__as_double__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_double = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_double__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_double,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_double
+        }
+    },
+    (void *)&afw_function_definition_as_double
+};
+
+static const afw_value_object_t
+impl_as_double_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_double_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_double_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_double_direct,
+    &afw_self_v_double,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_double,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_double_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_double_returns
+};
+
+static const afw_value_object_t
+impl_as_double_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_double_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_double_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_double_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_double_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_double_parameters[] = {
+    &impl_as_double_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_double_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_double = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_double,
+    &afw_self_v_double,
+    &afw_self_v_as_double,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_double,
+    &afw_self_v_as,
+    &afw_self_v_as_double,
+    &afw_self_v_asDouble,
+    &afw_self_v_afwAsDouble,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_double,
+    &afw_self_v_zz__2bf3d34a3099,
+    &afw_self_v_zz___value__any___double,
+    &afw_self_v_zz__function_as_double_______value__any____double__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_double_parameters[0],
+    1,
+    &impl_as_double_returns,
+    NULL,
+    &afw_data_type_double_direct,
+    &afw_self_v_double,
+    &impl_as_double_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_double__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_double
 };
 
 /* ---------- at_least_one_member_of<double> ---------- */
@@ -52883,7 +54314,7 @@ impl_object__is_NaN__value = {
     (const afw_object_t *)&impl_object__is_NaN
 };
 
-/* ---------- is<double> ---------- */
+/* ---------- is_double ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_double =
@@ -52971,7 +54402,7 @@ impl_is_double_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -52994,16 +54425,16 @@ afw_function_definition_is_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_double,
     &afw_self_v_double,
-    &afw_self_v_zz__is_double_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_double_,
+    &afw_self_v_is_double,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_double,
     &afw_self_v_is,
     &afw_self_v_is_double,
     &afw_self_v_isDouble,
     &afw_self_v_afwIsDouble,
     &afw_self_v_zz__Checks_whether_value_is_dataType_double,
-    &afw_self_v_zz__57d6b56c3b2e,
+    &afw_self_v_zz__3a1c0a7132c1,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_double________value__any____boolean__,
+    &afw_self_v_zz__function_is_double_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -56450,6 +57881,165 @@ impl_object__union_double__value = {
     (const afw_object_t *)&impl_object__union_double
 };
 
+/* ---------- as_function ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_function =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_function");
+
+static const afw_value_object_t
+impl_object__as_function__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_function = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_function__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_function,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_function
+        }
+    },
+    (void *)&afw_function_definition_as_function
+};
+
+static const afw_value_object_t
+impl_as_function_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_function_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_function_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_function,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_function_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_function_returns
+};
+
+static const afw_value_object_t
+impl_as_function_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_function_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_function_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_function_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_function_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_function_parameters[] = {
+    &impl_as_function_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_function_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_function = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_function,
+    &afw_self_v_function,
+    &afw_self_v_as_function,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_function,
+    &afw_self_v_as,
+    &afw_self_v_as_function,
+    &afw_self_v_asFunction,
+    &afw_self_v_afwAsFunction,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_function,
+    &afw_self_v_zz__1b0b5addf5df,
+    &afw_self_v_zz___value__any___function,
+    &afw_self_v_zz__function_as_function_______value__any____function__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_function_parameters[0],
+    1,
+    &impl_as_function_returns,
+    NULL,
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &impl_as_function_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_function__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_function
+};
+
 /* ---------- bag<function> ---------- */
 
 static const afw_utf8_t
@@ -57516,7 +59106,7 @@ impl_object__gt_function__value = {
     (const afw_object_t *)&impl_object__gt_function
 };
 
-/* ---------- is<function> ---------- */
+/* ---------- is_function ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_function =
@@ -57604,7 +59194,7 @@ impl_is_function_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -57627,16 +59217,16 @@ afw_function_definition_is_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_function,
     &afw_self_v_function,
-    &afw_self_v_zz__is_function_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_function_,
+    &afw_self_v_is_function,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_function,
     &afw_self_v_is,
     &afw_self_v_is_function,
     &afw_self_v_isFunction,
     &afw_self_v_afwIsFunction,
     &afw_self_v_zz__Checks_whether_value_is_dataType_function,
-    &afw_self_v_zz__d16c0c6a59ad,
+    &afw_self_v_zz__cd1724b158da,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_function________value__any____boolean__,
+    &afw_self_v_zz__function_is_function_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -58429,6 +60019,165 @@ static const afw_value_object_t
 impl_object__nex_function__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__nex_function
+};
+
+/* ---------- as_hexBinary ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_hexBinary =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_hexBinary");
+
+static const afw_value_object_t
+impl_object__as_hexBinary__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_hexBinary = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_hexBinary__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_hexBinary
+        }
+    },
+    (void *)&afw_function_definition_as_hexBinary
+};
+
+static const afw_value_object_t
+impl_as_hexBinary_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_hexBinary_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_hexBinary_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_hexBinary_direct,
+    &afw_self_v_hexBinary,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_hexBinary,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_hexBinary_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_hexBinary_returns
+};
+
+static const afw_value_object_t
+impl_as_hexBinary_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_hexBinary_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_hexBinary_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_hexBinary_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_hexBinary_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_hexBinary_parameters[] = {
+    &impl_as_hexBinary_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_hexBinary_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_hexBinary = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_hexBinary,
+    &afw_self_v_hexBinary,
+    &afw_self_v_as_hexBinary,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_hexBinary,
+    &afw_self_v_as,
+    &afw_self_v_as_hexBinary,
+    &afw_self_v_asHexBinary,
+    &afw_self_v_afwAsHexBinary,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_hexBinary,
+    &afw_self_v_zz__c443043eac12,
+    &afw_self_v_zz___value__any___hexBinary,
+    &afw_self_v_zz__function_as_hexBinary_______value__any____hexBinary__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_hexBinary_parameters[0],
+    1,
+    &impl_as_hexBinary_returns,
+    NULL,
+    &afw_data_type_hexBinary_direct,
+    &afw_self_v_hexBinary,
+    &impl_as_hexBinary_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_hexBinary__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_hexBinary
 };
 
 /* ---------- at_least_one_member_of<hexBinary> ---------- */
@@ -60185,7 +61934,7 @@ impl_object__intersection_hexBinary__value = {
     (const afw_object_t *)&impl_object__intersection_hexBinary
 };
 
-/* ---------- is<hexBinary> ---------- */
+/* ---------- is_hexBinary ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_hexBinary =
@@ -60273,7 +62022,7 @@ impl_is_hexBinary_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -60296,16 +62045,16 @@ afw_function_definition_is_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_hexBinary,
     &afw_self_v_hexBinary,
-    &afw_self_v_zz__is_hexBinary_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_hexBinary_,
+    &afw_self_v_is_hexBinary,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_hexBinary,
     &afw_self_v_is,
     &afw_self_v_is_hexBinary,
     &afw_self_v_isHexBinary,
     &afw_self_v_afwIsHexBinary,
     &afw_self_v_zz__Checks_whether_value_is_dataType_hexBinary,
-    &afw_self_v_zz__6d82e6087433,
+    &afw_self_v_zz__db5186c03a88,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_hexBinary________value__any____boolean__,
+    &afw_self_v_zz__function_is_hexBinary_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -64775,6 +66524,165 @@ impl_object__sort__value = {
     (const afw_object_t *)&impl_object__sort
 };
 
+/* ---------- as_ia5String ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_ia5String =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_ia5String");
+
+static const afw_value_object_t
+impl_object__as_ia5String__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_ia5String = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_ia5String__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_ia5String,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_ia5String
+        }
+    },
+    (void *)&afw_function_definition_as_ia5String
+};
+
+static const afw_value_object_t
+impl_as_ia5String_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_ia5String_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_ia5String_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_ia5String_direct,
+    &afw_self_v_ia5String,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_ia5String,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_ia5String_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_ia5String_returns
+};
+
+static const afw_value_object_t
+impl_as_ia5String_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_ia5String_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_ia5String_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_ia5String_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_ia5String_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_ia5String_parameters[] = {
+    &impl_as_ia5String_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_ia5String_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_ia5String = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_ia5String,
+    &afw_self_v_ia5String,
+    &afw_self_v_as_ia5String,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_ia5String,
+    &afw_self_v_as,
+    &afw_self_v_as_ia5String,
+    &afw_self_v_asIa5String,
+    &afw_self_v_afwAsIa5String,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_ia5String,
+    &afw_self_v_zz__a83beb3e4878,
+    &afw_self_v_zz___value__any___ia5String,
+    &afw_self_v_zz__function_as_ia5String_______value__any____ia5String__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_ia5String_parameters[0],
+    1,
+    &impl_as_ia5String_returns,
+    NULL,
+    &afw_data_type_ia5String_direct,
+    &afw_self_v_ia5String,
+    &impl_as_ia5String_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_ia5String__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_ia5String
+};
+
 /* ---------- bag<ia5String> ---------- */
 
 static const afw_utf8_t
@@ -66000,7 +67908,7 @@ impl_object__ia5String__value = {
     (const afw_object_t *)&impl_object__ia5String
 };
 
-/* ---------- is<ia5String> ---------- */
+/* ---------- is_ia5String ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_ia5String =
@@ -66088,7 +67996,7 @@ impl_is_ia5String_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -66111,16 +68019,16 @@ afw_function_definition_is_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_ia5String,
     &afw_self_v_ia5String,
-    &afw_self_v_zz__is_ia5String_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_ia5String_,
+    &afw_self_v_is_ia5String,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_ia5String,
     &afw_self_v_is,
     &afw_self_v_is_ia5String,
     &afw_self_v_isIa5String,
     &afw_self_v_afwIsIa5String,
     &afw_self_v_zz__Checks_whether_value_is_dataType_ia5String,
-    &afw_self_v_zz__70de85d6ee2c,
+    &afw_self_v_zz__fb41c6ece7c1,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_ia5String________value__any____boolean__,
+    &afw_self_v_zz__function_is_ia5String_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -68175,6 +70083,165 @@ impl_object__add_integer__value = {
     (const afw_object_t *)&impl_object__add_integer
 };
 
+/* ---------- as_integer ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_integer =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_integer");
+
+static const afw_value_object_t
+impl_object__as_integer__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_integer = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_integer__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_integer,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_integer
+        }
+    },
+    (void *)&afw_function_definition_as_integer
+};
+
+static const afw_value_object_t
+impl_as_integer_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_integer_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_integer_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_integer,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_integer_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_integer_returns
+};
+
+static const afw_value_object_t
+impl_as_integer_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_integer_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_integer_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_integer_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_integer_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_integer_parameters[] = {
+    &impl_as_integer_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_integer_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_integer = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_integer,
+    &afw_self_v_integer,
+    &afw_self_v_as_integer,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_integer,
+    &afw_self_v_as,
+    &afw_self_v_as_integer,
+    &afw_self_v_asInteger,
+    &afw_self_v_afwAsInteger,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_integer,
+    &afw_self_v_zz__42688ff196e7,
+    &afw_self_v_zz___value__any___integer,
+    &afw_self_v_zz__function_as_integer_______value__any____integer__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_integer_parameters[0],
+    1,
+    &impl_as_integer_returns,
+    NULL,
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    &impl_as_integer_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_integer__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_integer
+};
+
 /* ---------- at_least_one_member_of<integer> ---------- */
 
 static const afw_utf8_t
@@ -70156,7 +72223,7 @@ impl_object__is_in_integer__value = {
     (const afw_object_t *)&impl_object__is_in_integer
 };
 
-/* ---------- is<integer> ---------- */
+/* ---------- is_integer ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_integer =
@@ -70244,7 +72311,7 @@ impl_is_integer_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -70267,16 +72334,16 @@ afw_function_definition_is_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_integer,
     &afw_self_v_integer,
-    &afw_self_v_zz__is_integer_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_integer_,
+    &afw_self_v_is_integer,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_integer,
     &afw_self_v_is,
     &afw_self_v_is_integer,
     &afw_self_v_isInteger,
     &afw_self_v_afwIsInteger,
     &afw_self_v_zz__Checks_whether_value_is_dataType_integer,
-    &afw_self_v_zz__fbe33175e4b2,
+    &afw_self_v_zz__b3e754ad2ca8,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_integer________value__any____boolean__,
+    &afw_self_v_zz__function_is_integer_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -73051,6 +75118,165 @@ impl_object__union_integer__value = {
     (const afw_object_t *)&impl_object__union_integer
 };
 
+/* ---------- as_ipAddress ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_ipAddress =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_ipAddress");
+
+static const afw_value_object_t
+impl_object__as_ipAddress__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_ipAddress = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_ipAddress__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_ipAddress
+        }
+    },
+    (void *)&afw_function_definition_as_ipAddress
+};
+
+static const afw_value_object_t
+impl_as_ipAddress_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_ipAddress_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_ipAddress_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_ipAddress_direct,
+    &afw_self_v_ipAddress,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_ipAddress,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_ipAddress_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_ipAddress_returns
+};
+
+static const afw_value_object_t
+impl_as_ipAddress_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_ipAddress_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_ipAddress_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_ipAddress_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_ipAddress_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_ipAddress_parameters[] = {
+    &impl_as_ipAddress_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_ipAddress_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_ipAddress = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_ipAddress,
+    &afw_self_v_ipAddress,
+    &afw_self_v_as_ipAddress,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_ipAddress,
+    &afw_self_v_as,
+    &afw_self_v_as_ipAddress,
+    &afw_self_v_asIpAddress,
+    &afw_self_v_afwAsIpAddress,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_ipAddress,
+    &afw_self_v_zz__f793233d0c8a,
+    &afw_self_v_zz___value__any___ipAddress,
+    &afw_self_v_zz__function_as_ipAddress_______value__any____ipAddress__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_ipAddress_parameters[0],
+    1,
+    &impl_as_ipAddress_returns,
+    NULL,
+    &afw_data_type_ipAddress_direct,
+    &afw_self_v_ipAddress,
+    &impl_as_ipAddress_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_ipAddress__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_ipAddress
+};
+
 /* ---------- bag<ipAddress> ---------- */
 
 static const afw_utf8_t
@@ -74465,7 +76691,7 @@ impl_object__is_in_ipAddress__value = {
     (const afw_object_t *)&impl_object__is_in_ipAddress
 };
 
-/* ---------- is<ipAddress> ---------- */
+/* ---------- is_ipAddress ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_ipAddress =
@@ -74553,7 +76779,7 @@ impl_is_ipAddress_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -74576,16 +76802,16 @@ afw_function_definition_is_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_ipAddress,
     &afw_self_v_ipAddress,
-    &afw_self_v_zz__is_ipAddress_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_ipAddress_,
+    &afw_self_v_is_ipAddress,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_ipAddress,
     &afw_self_v_is,
     &afw_self_v_is_ipAddress,
     &afw_self_v_isIpAddress,
     &afw_self_v_afwIsIpAddress,
     &afw_self_v_zz__Checks_whether_value_is_dataType_ipAddress,
-    &afw_self_v_zz__890a8edfcb47,
+    &afw_self_v_zz__412a2a71ad05,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_ipAddress________value__any____boolean__,
+    &afw_self_v_zz__function_is_ipAddress_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -83207,6 +85433,165 @@ impl_object__model_returnObject_signature__value = {
     (const afw_object_t *)&impl_object__model_returnObject_signature
 };
 
+/* ---------- as_null ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_null =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_null");
+
+static const afw_value_object_t
+impl_object__as_null__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_null = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_null__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_null,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_null
+        }
+    },
+    (void *)&afw_function_definition_as_null
+};
+
+static const afw_value_object_t
+impl_as_null_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_null_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_null_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_null_direct,
+    &afw_self_v_null,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_null,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_null_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_null_returns
+};
+
+static const afw_value_object_t
+impl_as_null_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_null_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_null_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_null_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_null_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_null_parameters[] = {
+    &impl_as_null_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_null_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_null = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_null,
+    &afw_self_v_null,
+    &afw_self_v_as_null,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_null,
+    &afw_self_v_as,
+    &afw_self_v_as_null,
+    &afw_self_v_asNull,
+    &afw_self_v_afwAsNull,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_null,
+    &afw_self_v_zz__aeb11937c84e,
+    &afw_self_v_zz___value__any___null,
+    &afw_self_v_zz__function_as_null_______value__any____null__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_null_parameters[0],
+    1,
+    &impl_as_null_returns,
+    NULL,
+    &afw_data_type_null_direct,
+    &afw_self_v_null,
+    &impl_as_null_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_null__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_null
+};
+
 /* ---------- bag<null> ---------- */
 
 static const afw_utf8_t
@@ -83509,7 +85894,7 @@ impl_object__bag_size_null__value = {
     (const afw_object_t *)&impl_object__bag_size_null
 };
 
-/* ---------- is<null> ---------- */
+/* ---------- is_null ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_null =
@@ -83597,7 +85982,7 @@ impl_is_null_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -83620,16 +86005,16 @@ afw_function_definition_is_null = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_null,
     &afw_self_v_null,
-    &afw_self_v_zz__is_null_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_null_,
+    &afw_self_v_is_null,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_null,
     &afw_self_v_is,
     &afw_self_v_is_null,
     &afw_self_v_isNull,
     &afw_self_v_afwIsNull,
     &afw_self_v_zz__Checks_whether_value_is_dataType_null,
-    &afw_self_v_zz__acff5a3ed68e,
+    &afw_self_v_zz__ebfe5b7134f6,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_null________value__any____boolean__,
+    &afw_self_v_zz__function_is_null_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -83809,6 +86194,165 @@ static const afw_value_object_t
 impl_object__to_string_null__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_string_null
+};
+
+/* ---------- as_objectId ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_objectId =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_objectId");
+
+static const afw_value_object_t
+impl_object__as_objectId__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_objectId = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_objectId__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_objectId,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_objectId
+        }
+    },
+    (void *)&afw_function_definition_as_objectId
+};
+
+static const afw_value_object_t
+impl_as_objectId_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_objectId_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_objectId_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_objectId_direct,
+    &afw_self_v_objectId,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_objectId,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_objectId_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_objectId_returns
+};
+
+static const afw_value_object_t
+impl_as_objectId_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_objectId_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_objectId_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_objectId_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_objectId_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_objectId_parameters[] = {
+    &impl_as_objectId_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_objectId_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_objectId = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_objectId,
+    &afw_self_v_objectId,
+    &afw_self_v_as_objectId,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_objectId,
+    &afw_self_v_as,
+    &afw_self_v_as_objectId,
+    &afw_self_v_asObjectId,
+    &afw_self_v_afwAsObjectId,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_objectId,
+    &afw_self_v_zz__eb1aaacc57d1,
+    &afw_self_v_zz___value__any___objectId,
+    &afw_self_v_zz__function_as_objectId_______value__any____objectId__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_objectId_parameters[0],
+    1,
+    &impl_as_objectId_returns,
+    NULL,
+    &afw_data_type_objectId_direct,
+    &afw_self_v_objectId,
+    &impl_as_objectId_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_objectId__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_objectId
 };
 
 /* ---------- bag<objectId> ---------- */
@@ -84877,7 +87421,7 @@ impl_object__gt_objectId__value = {
     (const afw_object_t *)&impl_object__gt_objectId
 };
 
-/* ---------- is<objectId> ---------- */
+/* ---------- is_objectId ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_objectId =
@@ -84965,7 +87509,7 @@ impl_is_objectId_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -84988,16 +87532,16 @@ afw_function_definition_is_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_objectId,
     &afw_self_v_objectId,
-    &afw_self_v_zz__is_objectId_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_objectId_,
+    &afw_self_v_is_objectId,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_objectId,
     &afw_self_v_is,
     &afw_self_v_is_objectId,
     &afw_self_v_isObjectId,
     &afw_self_v_afwIsObjectId,
     &afw_self_v_zz__Checks_whether_value_is_dataType_objectId,
-    &afw_self_v_zz__7633d6bd4fa8,
+    &afw_self_v_zz__660362e603c7,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_objectId________value__any____boolean__,
+    &afw_self_v_zz__function_is_objectId_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -86102,6 +88646,165 @@ impl_object__to_string_objectId__value = {
     (const afw_object_t *)&impl_object__to_string_objectId
 };
 
+/* ---------- as_objectPath ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_objectPath =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_objectPath");
+
+static const afw_value_object_t
+impl_object__as_objectPath__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_objectPath = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_objectPath__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_objectPath,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_objectPath
+        }
+    },
+    (void *)&afw_function_definition_as_objectPath
+};
+
+static const afw_value_object_t
+impl_as_objectPath_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_objectPath_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_objectPath_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_objectPath_direct,
+    &afw_self_v_objectPath,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_objectPath,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_objectPath_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_objectPath_returns
+};
+
+static const afw_value_object_t
+impl_as_objectPath_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_objectPath_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_objectPath_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_objectPath_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_objectPath_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_objectPath_parameters[] = {
+    &impl_as_objectPath_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_objectPath_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_objectPath = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_objectPath,
+    &afw_self_v_objectPath,
+    &afw_self_v_as_objectPath,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_objectPath,
+    &afw_self_v_as,
+    &afw_self_v_as_objectPath,
+    &afw_self_v_asObjectPath,
+    &afw_self_v_afwAsObjectPath,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_objectPath,
+    &afw_self_v_zz__9952aae8aa61,
+    &afw_self_v_zz___value__any___objectPath,
+    &afw_self_v_zz__function_as_objectPath_______value__any____objectPath__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_objectPath_parameters[0],
+    1,
+    &impl_as_objectPath_returns,
+    NULL,
+    &afw_data_type_objectPath_direct,
+    &afw_self_v_objectPath,
+    &impl_as_objectPath_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_objectPath__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_objectPath
+};
+
 /* ---------- bag<objectPath> ---------- */
 
 static const afw_utf8_t
@@ -87168,7 +89871,7 @@ impl_object__gt_objectPath__value = {
     (const afw_object_t *)&impl_object__gt_objectPath
 };
 
-/* ---------- is<objectPath> ---------- */
+/* ---------- is_objectPath ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_objectPath =
@@ -87256,7 +89959,7 @@ impl_is_objectPath_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -87279,16 +89982,16 @@ afw_function_definition_is_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_objectPath,
     &afw_self_v_objectPath,
-    &afw_self_v_zz__is_objectPath_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_objectPath_,
+    &afw_self_v_is_objectPath,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_objectPath,
     &afw_self_v_is,
     &afw_self_v_is_objectPath,
     &afw_self_v_isObjectPath,
     &afw_self_v_afwIsObjectPath,
     &afw_self_v_zz__Checks_whether_value_is_dataType_objectPath,
-    &afw_self_v_zz__477dcea28df0,
+    &afw_self_v_zz__08adee116565,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_objectPath________value__any____boolean__,
+    &afw_self_v_zz__function_is_objectPath_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -88775,6 +91478,165 @@ static const afw_value_object_t
 impl_object__apply_object_options__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__apply_object_options
+};
+
+/* ---------- as_object ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_object =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_object");
+
+static const afw_value_object_t
+impl_object__as_object__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_object = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_object__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_object,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_object
+        }
+    },
+    (void *)&afw_function_definition_as_object
+};
+
+static const afw_value_object_t
+impl_as_object_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_object_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_object_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    &afw_self_v_object,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_object,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_object_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_object_returns
+};
+
+static const afw_value_object_t
+impl_as_object_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_object_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_object_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_object_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_object_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_object_parameters[] = {
+    &impl_as_object_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_object_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_object = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_object,
+    &afw_self_v_object,
+    &afw_self_v_as_object,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_object,
+    &afw_self_v_as,
+    &afw_self_v_as_object,
+    &afw_self_v_asObject,
+    &afw_self_v_afwAsObject,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_object,
+    &afw_self_v_zz__825c47e2640a,
+    &afw_self_v_zz___value__any___object,
+    &afw_self_v_zz__function_as_object_______value__any____object__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_object_parameters[0],
+    1,
+    &impl_as_object_returns,
+    NULL,
+    &afw_data_type_object_direct,
+    &afw_self_v_object,
+    &impl_as_object_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_object
 };
 
 /* ---------- bag<object> ---------- */
@@ -90296,7 +93158,7 @@ impl_object__gt_object__value = {
     (const afw_object_t *)&impl_object__gt_object
 };
 
-/* ---------- is<object> ---------- */
+/* ---------- is_object ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_object =
@@ -90384,7 +93246,7 @@ impl_is_object_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -90407,16 +93269,16 @@ afw_function_definition_is_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_object,
     &afw_self_v_object,
-    &afw_self_v_zz__is_object_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_object_,
+    &afw_self_v_is_object,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_object,
     &afw_self_v_is,
     &afw_self_v_is_object,
     &afw_self_v_isObject,
     &afw_self_v_afwIsObject,
     &afw_self_v_zz__Checks_whether_value_is_dataType_object,
-    &afw_self_v_zz__7205557feb65,
+    &afw_self_v_zz__0a11e0645429,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_object________value__any____boolean__,
+    &afw_self_v_zz__function_is_object_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -93039,6 +95901,165 @@ impl_object__values__value = {
     (const afw_object_t *)&impl_object__values
 };
 
+/* ---------- as_password ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_password =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_password");
+
+static const afw_value_object_t
+impl_object__as_password__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_password = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_password__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_password,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_password
+        }
+    },
+    (void *)&afw_function_definition_as_password
+};
+
+static const afw_value_object_t
+impl_as_password_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_password_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_password_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_password_direct,
+    &afw_self_v_password,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_password,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_password_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_password_returns
+};
+
+static const afw_value_object_t
+impl_as_password_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_password_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_password_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_password_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_password_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_password_parameters[] = {
+    &impl_as_password_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_password_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_password = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_password,
+    &afw_self_v_password,
+    &afw_self_v_as_password,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_password,
+    &afw_self_v_as,
+    &afw_self_v_as_password,
+    &afw_self_v_asPassword,
+    &afw_self_v_afwAsPassword,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_password,
+    &afw_self_v_zz__e11a0a123b90,
+    &afw_self_v_zz___value__any___password,
+    &afw_self_v_zz__function_as_password_______value__any____password__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_password_parameters[0],
+    1,
+    &impl_as_password_returns,
+    NULL,
+    &afw_data_type_password_direct,
+    &afw_self_v_password,
+    &impl_as_password_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_password__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_password
+};
+
 /* ---------- bag<password> ---------- */
 
 static const afw_utf8_t
@@ -94105,7 +97126,7 @@ impl_object__gt_password__value = {
     (const afw_object_t *)&impl_object__gt_password
 };
 
-/* ---------- is<password> ---------- */
+/* ---------- is_password ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_password =
@@ -94193,7 +97214,7 @@ impl_is_password_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -94216,16 +97237,16 @@ afw_function_definition_is_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_password,
     &afw_self_v_password,
-    &afw_self_v_zz__is_password_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_password_,
+    &afw_self_v_is_password,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_password,
     &afw_self_v_is,
     &afw_self_v_is_password,
     &afw_self_v_isPassword,
     &afw_self_v_afwIsPassword,
     &afw_self_v_zz__Checks_whether_value_is_dataType_password,
-    &afw_self_v_zz__8b81c0fb2175,
+    &afw_self_v_zz__70d2da8b2399,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_password________value__any____boolean__,
+    &afw_self_v_zz__function_is_password_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -100513,190 +103534,6 @@ static const afw_value_object_t
 impl_object__intersection__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__intersection
-};
-
-/* ---------- is ---------- */
-
-static const afw_utf8_t
-impl_object_path__is =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/is");
-
-static const afw_value_object_t
-impl_object__is__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__is = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__is__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_is,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__is
-        }
-    },
-    (void *)&afw_function_definition_is
-};
-
-static const afw_value_object_t
-impl_is_returns__value;
-
-static const afw_value_function_parameter_t
-impl_is_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_is_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_is_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_is_returns
-};
-
-static const afw_value_object_t
-impl_is_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_is_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_is_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__Value_to_check,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_is_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_is_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_is_parameters[] = {
-    &impl_is_parameter_1,
-    NULL
-};
-
-static const afw_utf8_t
-impl_is_polymorphicDataTypes[] = {
-    AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL("base64Binary"),
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL("date"),
-    AFW_UTF8_LITERAL("dateTime"),
-    AFW_UTF8_LITERAL("dayTimeDuration"),
-    AFW_UTF8_LITERAL("dnsName"),
-    AFW_UTF8_LITERAL("double"),
-    AFW_UTF8_LITERAL("function"),
-    AFW_UTF8_LITERAL("hexBinary"),
-    AFW_UTF8_LITERAL("ia5String"),
-    AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("null"),
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("objectId"),
-    AFW_UTF8_LITERAL("objectPath"),
-    AFW_UTF8_LITERAL("password"),
-    AFW_UTF8_LITERAL("rfc822Name"),
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL("template"),
-    AFW_UTF8_LITERAL("time"),
-    AFW_UTF8_LITERAL("x500Name"),
-    AFW_UTF8_LITERAL("xpathExpression"),
-    AFW_UTF8_LITERAL("yearMonthDuration"),
-    AFW_UTF8_LITERAL("unevaluated"),
-    { NULL }
-};
-
-const afw_value_function_definition_t
-afw_function_definition_is = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__is,
-    &afw_self_v_polymorphic,
-    &afw_self_v_is,
-    &afw_self_v_zz___afw__AdaptiveFunction__is,
-    &afw_self_v_is,
-    &afw_self_v_is,
-    &afw_self_v_is,
-    &afw_self_v_afwIs,
-    &afw_self_v_zz__Checks_whether_value_is_dataType__dataType_,
-    &afw_self_v_zz__b66ee12f258a,
-    &afw_self_v_zz___dataType__value__any___boolean,
-    &afw_self_v_zz__function_is__dataType_______value__any____boolean__,
-    NULL,
-    afw_function_execute_is,
-    afw_function_execute_is,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_is_parameters[0],
-    1,
-    &impl_is_returns,
-    &impl_is_polymorphicDataTypes[0],
-    NULL,
-    &afw_self_v_a_empty_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_is,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__is__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__is
 };
 
 /* ---------- is_in ---------- */
@@ -112618,6 +115455,165 @@ impl_object__relaxedJson__value = {
     (const afw_object_t *)&impl_object__relaxedJson
 };
 
+/* ---------- as_rfc822Name ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_rfc822Name =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_rfc822Name");
+
+static const afw_value_object_t
+impl_object__as_rfc822Name__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_rfc822Name = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_rfc822Name__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_rfc822Name
+        }
+    },
+    (void *)&afw_function_definition_as_rfc822Name
+};
+
+static const afw_value_object_t
+impl_as_rfc822Name_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_rfc822Name_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_rfc822Name_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_rfc822Name_direct,
+    &afw_self_v_rfc822Name,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_rfc822Name,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_rfc822Name_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_rfc822Name_returns
+};
+
+static const afw_value_object_t
+impl_as_rfc822Name_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_rfc822Name_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_rfc822Name_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_rfc822Name_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_rfc822Name_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_rfc822Name_parameters[] = {
+    &impl_as_rfc822Name_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_rfc822Name_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_rfc822Name = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_rfc822Name,
+    &afw_self_v_rfc822Name,
+    &afw_self_v_as_rfc822Name,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_rfc822Name,
+    &afw_self_v_as,
+    &afw_self_v_as_rfc822Name,
+    &afw_self_v_asRfc822Name,
+    &afw_self_v_afwAsRfc822Name,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_rfc822Name,
+    &afw_self_v_zz__421d8d37f98d,
+    &afw_self_v_zz___value__any___rfc822Name,
+    &afw_self_v_zz__function_as_rfc822Name_______value__any____rfc822Name__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_rfc822Name_parameters[0],
+    1,
+    &impl_as_rfc822Name_returns,
+    NULL,
+    &afw_data_type_rfc822Name_direct,
+    &afw_self_v_rfc822Name,
+    &impl_as_rfc822Name_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_rfc822Name__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_rfc822Name
+};
+
 /* ---------- at_least_one_member_of<rfc822Name> ---------- */
 
 static const afw_utf8_t
@@ -114251,7 +117247,7 @@ impl_object__is_in_rfc822Name__value = {
     (const afw_object_t *)&impl_object__is_in_rfc822Name
 };
 
-/* ---------- is<rfc822Name> ---------- */
+/* ---------- is_rfc822Name ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_rfc822Name =
@@ -114339,7 +117335,7 @@ impl_is_rfc822Name_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -114362,16 +117358,16 @@ afw_function_definition_is_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_rfc822Name,
     &afw_self_v_rfc822Name,
-    &afw_self_v_zz__is_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_rfc822Name_,
+    &afw_self_v_is_rfc822Name,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_rfc822Name,
     &afw_self_v_is,
     &afw_self_v_is_rfc822Name,
     &afw_self_v_isRfc822Name,
     &afw_self_v_afwIsRfc822Name,
     &afw_self_v_zz__Checks_whether_value_is_dataType_rfc822Name,
-    &afw_self_v_zz__db019d505608,
+    &afw_self_v_zz__a4539a6e32cc,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_rfc822Name________value__any____boolean__,
+    &afw_self_v_zz__function_is_rfc822Name_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -116542,6 +119538,165 @@ impl_object__union_rfc822Name__value = {
     (const afw_object_t *)&impl_object__union_rfc822Name
 };
 
+/* ---------- as_script ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_script =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_script");
+
+static const afw_value_object_t
+impl_object__as_script__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_script = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_script__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_script,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_script
+        }
+    },
+    (void *)&afw_function_definition_as_script
+};
+
+static const afw_value_object_t
+impl_as_script_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_script_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_script_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_script_direct,
+    &afw_self_v_script,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_script,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_script_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_script_returns
+};
+
+static const afw_value_object_t
+impl_as_script_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_script_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_script_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_script_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_script_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_script_parameters[] = {
+    &impl_as_script_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_script_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_script = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_script,
+    &afw_self_v_script,
+    &afw_self_v_as_script,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_script,
+    &afw_self_v_as,
+    &afw_self_v_as_script,
+    &afw_self_v_asScript,
+    &afw_self_v_afwAsScript,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_script,
+    &afw_self_v_zz__56c0d6e92c7a,
+    &afw_self_v_zz___value__any___script,
+    &afw_self_v_zz__function_as_script_______value__any____script__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_script_parameters[0],
+    1,
+    &impl_as_script_returns,
+    NULL,
+    &afw_data_type_script_direct,
+    &afw_self_v_script,
+    &impl_as_script_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_script__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_script
+};
+
 /* ---------- bag<script> ---------- */
 
 static const afw_utf8_t
@@ -117994,7 +121149,7 @@ impl_object__gt_script__value = {
     (const afw_object_t *)&impl_object__gt_script
 };
 
-/* ---------- is<script> ---------- */
+/* ---------- is_script ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_script =
@@ -118082,7 +121237,7 @@ impl_is_script_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -118105,16 +121260,16 @@ afw_function_definition_is_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_script,
     &afw_self_v_script,
-    &afw_self_v_zz__is_script_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_script_,
+    &afw_self_v_is_script,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_script,
     &afw_self_v_is,
     &afw_self_v_is_script,
     &afw_self_v_isScript,
     &afw_self_v_afwIsScript,
     &afw_self_v_zz__Checks_whether_value_is_dataType_script,
-    &afw_self_v_zz__ffe1fb857f0e,
+    &afw_self_v_zz__1d99846af99f,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_script________value__any____boolean__,
+    &afw_self_v_zz__function_is_script_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -121658,6 +124813,165 @@ impl_object__add_string__value = {
     (const afw_object_t *)&impl_object__add_string
 };
 
+/* ---------- as_string ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_string");
+
+static const afw_value_object_t
+impl_object__as_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_string
+        }
+    },
+    (void *)&afw_function_definition_as_string
+};
+
+static const afw_value_object_t
+impl_as_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_string,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_string_returns
+};
+
+static const afw_value_object_t
+impl_as_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_string_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_string_parameters[] = {
+    &impl_as_string_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_string_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_string,
+    &afw_self_v_string,
+    &afw_self_v_as_string,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_string,
+    &afw_self_v_as,
+    &afw_self_v_as_string,
+    &afw_self_v_asString,
+    &afw_self_v_afwAsString,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_string,
+    &afw_self_v_zz__f47ca7c66b41,
+    &afw_self_v_zz___value__any___string,
+    &afw_self_v_zz__function_as_string_______value__any____string__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_string_parameters[0],
+    1,
+    &impl_as_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    &impl_as_string_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_string
+};
+
 /* ---------- at_least_one_member_of<string> ---------- */
 
 static const afw_utf8_t
@@ -124773,7 +128087,7 @@ impl_object__is_in_string__value = {
     (const afw_object_t *)&impl_object__is_in_string
 };
 
-/* ---------- is<string> ---------- */
+/* ---------- is_string ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_string =
@@ -124861,7 +128175,7 @@ impl_is_string_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -124884,16 +128198,16 @@ afw_function_definition_is_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_string,
     &afw_self_v_string,
-    &afw_self_v_zz__is_string_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_string_,
+    &afw_self_v_is_string,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_string,
     &afw_self_v_is,
     &afw_self_v_is_string,
     &afw_self_v_isString,
     &afw_self_v_afwIsString,
     &afw_self_v_zz__Checks_whether_value_is_dataType_string,
-    &afw_self_v_zz__e04eac92f172,
+    &afw_self_v_zz__cc6b743868ce,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_string________value__any____boolean__,
+    &afw_self_v_zz__function_is_string_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -131777,6 +135091,165 @@ impl_object__url_encode_string__value = {
     (const afw_object_t *)&impl_object__url_encode_string
 };
 
+/* ---------- as_template ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_template =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_template");
+
+static const afw_value_object_t
+impl_object__as_template__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_template = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_template__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_template,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_template
+        }
+    },
+    (void *)&afw_function_definition_as_template
+};
+
+static const afw_value_object_t
+impl_as_template_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_template_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_template_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_template_direct,
+    &afw_self_v_template,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_template,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_template_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_template_returns
+};
+
+static const afw_value_object_t
+impl_as_template_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_template_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_template_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_template_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_template_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_template_parameters[] = {
+    &impl_as_template_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_template_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_template = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_template,
+    &afw_self_v_template,
+    &afw_self_v_as_template,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_template,
+    &afw_self_v_as,
+    &afw_self_v_as_template,
+    &afw_self_v_asTemplate,
+    &afw_self_v_afwAsTemplate,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_template,
+    &afw_self_v_zz__0d12d7baf77b,
+    &afw_self_v_zz___value__any___template,
+    &afw_self_v_zz__function_as_template_______value__any____template__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_template_parameters[0],
+    1,
+    &impl_as_template_returns,
+    NULL,
+    &afw_data_type_template_direct,
+    &afw_self_v_template,
+    &impl_as_template_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_template__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_template
+};
+
 /* ---------- bag_size<template> ---------- */
 
 static const afw_utf8_t
@@ -133229,7 +136702,7 @@ impl_object__gt_template__value = {
     (const afw_object_t *)&impl_object__gt_template
 };
 
-/* ---------- is<template> ---------- */
+/* ---------- is_template ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_template =
@@ -133317,7 +136790,7 @@ impl_is_template_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -133340,16 +136813,16 @@ afw_function_definition_is_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_template,
     &afw_self_v_template,
-    &afw_self_v_zz__is_template_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_template_,
+    &afw_self_v_is_template,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_template,
     &afw_self_v_is,
     &afw_self_v_is_template,
     &afw_self_v_isTemplate,
     &afw_self_v_afwIsTemplate,
     &afw_self_v_zz__Checks_whether_value_is_dataType_template,
-    &afw_self_v_zz__759fa4c094d5,
+    &afw_self_v_zz__062d32a4a7b1,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_template________value__any____boolean__,
+    &afw_self_v_zz__function_is_template_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -134452,6 +137925,165 @@ static const afw_value_object_t
 impl_object__to_string_template__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_string_template
+};
+
+/* ---------- as_time ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_time =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_time");
+
+static const afw_value_object_t
+impl_object__as_time__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_time = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_time__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_time,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_time
+        }
+    },
+    (void *)&afw_function_definition_as_time
+};
+
+static const afw_value_object_t
+impl_as_time_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_time_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_time_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_time_direct,
+    &afw_self_v_time,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_time,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_time_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_time_returns
+};
+
+static const afw_value_object_t
+impl_as_time_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_time_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_time_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_time_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_time_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_time_parameters[] = {
+    &impl_as_time_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_time_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_time = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_time,
+    &afw_self_v_time,
+    &afw_self_v_as_time,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_time,
+    &afw_self_v_as,
+    &afw_self_v_as_time,
+    &afw_self_v_asTime,
+    &afw_self_v_afwAsTime,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_time,
+    &afw_self_v_zz__209489f10ae9,
+    &afw_self_v_zz___value__any___time,
+    &afw_self_v_zz__function_as_time_______value__any____time__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_time_parameters[0],
+    1,
+    &impl_as_time_returns,
+    NULL,
+    &afw_data_type_time_direct,
+    &afw_self_v_time,
+    &impl_as_time_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_time__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_time
 };
 
 /* ---------- at_least_one_member_of<time> ---------- */
@@ -136314,7 +139946,7 @@ impl_object__is_in_time__value = {
     (const afw_object_t *)&impl_object__is_in_time
 };
 
-/* ---------- is<time> ---------- */
+/* ---------- is_time ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_time =
@@ -136402,7 +140034,7 @@ impl_is_time_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -136425,16 +140057,16 @@ afw_function_definition_is_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_time,
     &afw_self_v_time,
-    &afw_self_v_zz__is_time_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_time_,
+    &afw_self_v_is_time,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_time,
     &afw_self_v_is,
     &afw_self_v_is_time,
     &afw_self_v_isTime,
     &afw_self_v_afwIsTime,
     &afw_self_v_zz__Checks_whether_value_is_dataType_time,
-    &afw_self_v_zz__68078d9dbfeb,
+    &afw_self_v_zz__2a322980ecc6,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_time________value__any____boolean__,
+    &afw_self_v_zz__function_is_time_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -138529,7 +142161,166 @@ impl_object__union_time__value = {
     (const afw_object_t *)&impl_object__union_time
 };
 
-/* ---------- is<unevaluated> ---------- */
+/* ---------- as_unevaluated ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_unevaluated =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_unevaluated");
+
+static const afw_value_object_t
+impl_object__as_unevaluated__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_unevaluated = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_unevaluated__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_unevaluated,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_unevaluated
+        }
+    },
+    (void *)&afw_function_definition_as_unevaluated
+};
+
+static const afw_value_object_t
+impl_as_unevaluated_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_unevaluated_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_unevaluated_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_unevaluated_direct,
+    &afw_self_v_unevaluated,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_unevaluated,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_unevaluated_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_unevaluated_returns
+};
+
+static const afw_value_object_t
+impl_as_unevaluated_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_unevaluated_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_unevaluated_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_unevaluated_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_unevaluated_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_unevaluated_parameters[] = {
+    &impl_as_unevaluated_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_unevaluated_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_unevaluated = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_unevaluated,
+    &afw_self_v_unevaluated,
+    &afw_self_v_as_unevaluated,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_unevaluated,
+    &afw_self_v_as,
+    &afw_self_v_as_unevaluated,
+    &afw_self_v_asUnevaluated,
+    &afw_self_v_afwAsUnevaluated,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_unevaluated,
+    &afw_self_v_zz__68f917c06265,
+    &afw_self_v_zz___value__any___unevaluated,
+    &afw_self_v_zz__function_as_unevaluated_______value__any____unevaluated__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_unevaluated_parameters[0],
+    1,
+    &impl_as_unevaluated_returns,
+    NULL,
+    &afw_data_type_unevaluated_direct,
+    &afw_self_v_unevaluated,
+    &impl_as_unevaluated_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_unevaluated__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_unevaluated
+};
+
+/* ---------- is_unevaluated ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_unevaluated =
@@ -138617,7 +142408,7 @@ impl_is_unevaluated_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -138640,16 +142431,16 @@ afw_function_definition_is_unevaluated = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_unevaluated,
     &afw_self_v_unevaluated,
-    &afw_self_v_zz__is_unevaluated_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_unevaluated_,
+    &afw_self_v_is_unevaluated,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_unevaluated,
     &afw_self_v_is,
     &afw_self_v_is_unevaluated,
     &afw_self_v_isUnevaluated,
     &afw_self_v_afwIsUnevaluated,
     &afw_self_v_zz__Checks_whether_value_is_dataType_unevaluated,
-    &afw_self_v_zz__a5f53d672e91,
+    &afw_self_v_zz__ea48b5aacddf,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_unevaluated________value__any____boolean__,
+    &afw_self_v_zz__function_is_unevaluated_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -138980,6 +142771,165 @@ static const afw_value_object_t
 impl_object__metas__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__metas
+};
+
+/* ---------- as_x500Name ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_x500Name =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_x500Name");
+
+static const afw_value_object_t
+impl_object__as_x500Name__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_x500Name = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_x500Name__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_x500Name,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_x500Name
+        }
+    },
+    (void *)&afw_function_definition_as_x500Name
+};
+
+static const afw_value_object_t
+impl_as_x500Name_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_x500Name_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_x500Name_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_x500Name_direct,
+    &afw_self_v_x500Name,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_x500Name,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_x500Name_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_x500Name_returns
+};
+
+static const afw_value_object_t
+impl_as_x500Name_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_x500Name_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_x500Name_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_x500Name_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_x500Name_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_x500Name_parameters[] = {
+    &impl_as_x500Name_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_x500Name_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_x500Name = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_x500Name,
+    &afw_self_v_x500Name,
+    &afw_self_v_as_x500Name,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_x500Name,
+    &afw_self_v_as,
+    &afw_self_v_as_x500Name,
+    &afw_self_v_asX500Name,
+    &afw_self_v_afwAsX500Name,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_x500Name,
+    &afw_self_v_zz__50b51dd1c2ef,
+    &afw_self_v_zz___value__any___x500Name,
+    &afw_self_v_zz__function_as_x500Name_______value__any____x500Name__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_x500Name_parameters[0],
+    1,
+    &impl_as_x500Name_returns,
+    NULL,
+    &afw_data_type_x500Name_direct,
+    &afw_self_v_x500Name,
+    &impl_as_x500Name_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_x500Name__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_x500Name
 };
 
 /* ---------- at_least_one_member_of<x500Name> ---------- */
@@ -140615,7 +144565,7 @@ impl_object__is_in_x500Name__value = {
     (const afw_object_t *)&impl_object__is_in_x500Name
 };
 
-/* ---------- is<x500Name> ---------- */
+/* ---------- is_x500Name ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_x500Name =
@@ -140703,7 +144653,7 @@ impl_is_x500Name_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -140726,16 +144676,16 @@ afw_function_definition_is_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_x500Name,
     &afw_self_v_x500Name,
-    &afw_self_v_zz__is_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_x500Name_,
+    &afw_self_v_is_x500Name,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_x500Name,
     &afw_self_v_is,
     &afw_self_v_is_x500Name,
     &afw_self_v_isX500Name,
     &afw_self_v_afwIsX500Name,
     &afw_self_v_zz__Checks_whether_value_is_dataType_x500Name,
-    &afw_self_v_zz__8e31e2ba12f0,
+    &afw_self_v_zz__b215c31b309e,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_x500Name________value__any____boolean__,
+    &afw_self_v_zz__function_is_x500Name_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -142906,6 +146856,165 @@ impl_object__x500Name__value = {
     (const afw_object_t *)&impl_object__x500Name
 };
 
+/* ---------- as_xpathExpression ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_xpathExpression =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_xpathExpression");
+
+static const afw_value_object_t
+impl_object__as_xpathExpression__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_xpathExpression = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_xpathExpression__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_xpathExpression
+        }
+    },
+    (void *)&afw_function_definition_as_xpathExpression
+};
+
+static const afw_value_object_t
+impl_as_xpathExpression_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_xpathExpression_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_xpathExpression_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_xpathExpression_direct,
+    &afw_self_v_xpathExpression,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_xpathExpression,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_xpathExpression_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_xpathExpression_returns
+};
+
+static const afw_value_object_t
+impl_as_xpathExpression_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_xpathExpression_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_xpathExpression_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_xpathExpression_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_xpathExpression_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_xpathExpression_parameters[] = {
+    &impl_as_xpathExpression_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_xpathExpression_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_xpathExpression = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_xpathExpression,
+    &afw_self_v_xpathExpression,
+    &afw_self_v_as_xpathExpression,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_xpathExpression,
+    &afw_self_v_as,
+    &afw_self_v_as_xpathExpression,
+    &afw_self_v_asXpathExpression,
+    &afw_self_v_afwAsXpathExpression,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_xpathExpression,
+    &afw_self_v_zz__e9eb159cae2e,
+    &afw_self_v_zz___value__any___xpathExpression,
+    &afw_self_v_zz__1afed3c6dcef,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_xpathExpression_parameters[0],
+    1,
+    &impl_as_xpathExpression_returns,
+    NULL,
+    &afw_data_type_xpathExpression_direct,
+    &afw_self_v_xpathExpression,
+    &impl_as_xpathExpression_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_xpathExpression__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_xpathExpression
+};
+
 /* ---------- bag_size<xpathExpression> ---------- */
 
 static const afw_utf8_t
@@ -144358,7 +148467,7 @@ impl_object__gt_xpathExpression__value = {
     (const afw_object_t *)&impl_object__gt_xpathExpression
 };
 
-/* ---------- is<xpathExpression> ---------- */
+/* ---------- is_xpathExpression ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_xpathExpression =
@@ -144446,7 +148555,7 @@ impl_is_xpathExpression_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -144469,16 +148578,16 @@ afw_function_definition_is_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_xpathExpression,
     &afw_self_v_xpathExpression,
-    &afw_self_v_zz__is_xpathExpression_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_xpathExpression_,
+    &afw_self_v_is_xpathExpression,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_xpathExpression,
     &afw_self_v_is,
     &afw_self_v_is_xpathExpression,
     &afw_self_v_isXpathExpression,
     &afw_self_v_afwIsXpathExpression,
     &afw_self_v_zz__Checks_whether_value_is_dataType_xpathExpression,
-    &afw_self_v_zz__9bb4350abe85,
+    &afw_self_v_zz__cdc21368e557,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_xpathExpression________value__any____boolean__,
+    &afw_self_v_zz__function_is_xpathExpression_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -146110,6 +150219,165 @@ static const afw_value_object_t
 impl_object__xpath_node_match__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__xpath_node_match
+};
+
+/* ---------- as_yearMonthDuration ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_yearMonthDuration =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_yearMonthDuration");
+
+static const afw_value_object_t
+impl_object__as_yearMonthDuration__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_yearMonthDuration = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_yearMonthDuration__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_yearMonthDuration
+        }
+    },
+    (void *)&afw_function_definition_as_yearMonthDuration
+};
+
+static const afw_value_object_t
+impl_as_yearMonthDuration_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_yearMonthDuration_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_yearMonthDuration_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_yearMonthDuration_direct,
+    &afw_self_v_yearMonthDuration,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_yearMonthDuration,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_yearMonthDuration_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_yearMonthDuration_returns
+};
+
+static const afw_value_object_t
+impl_as_yearMonthDuration_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_yearMonthDuration_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_yearMonthDuration_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_yearMonthDuration_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_yearMonthDuration_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_yearMonthDuration_parameters[] = {
+    &impl_as_yearMonthDuration_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_yearMonthDuration_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_yearMonthDuration = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_yearMonthDuration,
+    &afw_self_v_yearMonthDuration,
+    &afw_self_v_as_yearMonthDuration,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_yearMonthDuration,
+    &afw_self_v_as,
+    &afw_self_v_as_yearMonthDuration,
+    &afw_self_v_asYearMonthDuration,
+    &afw_self_v_afwAsYearMonthDuration,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_yearMonthDuration,
+    &afw_self_v_zz__340aa875f6c0,
+    &afw_self_v_zz___value__any___yearMonthDuration,
+    &afw_self_v_zz__62147ac07b4b,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_yearMonthDuration_parameters[0],
+    1,
+    &impl_as_yearMonthDuration_returns,
+    NULL,
+    &afw_data_type_yearMonthDuration_direct,
+    &afw_self_v_yearMonthDuration,
+    &impl_as_yearMonthDuration_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_yearMonthDuration__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_yearMonthDuration
 };
 
 /* ---------- at_least_one_member_of<yearMonthDuration> ---------- */
@@ -147745,7 +152013,7 @@ impl_object__is_in_yearMonthDuration__value = {
     (const afw_object_t *)&impl_object__is_in_yearMonthDuration
 };
 
-/* ---------- is<yearMonthDuration> ---------- */
+/* ---------- is_yearMonthDuration ---------- */
 
 static const afw_utf8_t
 impl_object_path__is_yearMonthDuration =
@@ -147833,7 +152101,7 @@ impl_is_yearMonthDuration_parameter_1 = {
     &afw_self_v_zz__Value_to_check,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     NULL
@@ -147856,16 +152124,16 @@ afw_function_definition_is_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_yearMonthDuration,
     &afw_self_v_yearMonthDuration,
-    &afw_self_v_zz__is_yearMonthDuration_,
-    &afw_self_v_zz___afw__AdaptiveFunction__is_yearMonthDuration_,
+    &afw_self_v_is_yearMonthDuration,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_yearMonthDuration,
     &afw_self_v_is,
     &afw_self_v_is_yearMonthDuration,
     &afw_self_v_isYearMonthDuration,
     &afw_self_v_afwIsYearMonthDuration,
     &afw_self_v_zz__Checks_whether_value_is_dataType_yearMonthDuration,
-    &afw_self_v_zz__f825cf42c3c8,
+    &afw_self_v_zz__d850ebff637d,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__function_is_yearMonthDuration________value__any____boolean__,
+    &afw_self_v_zz__function_is_yearMonthDuration_______value__any____boolean__,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -149698,6 +153966,7 @@ impl_function_bindings[] = {
     &afw_function_definition_service_start,
     &afw_function_definition_service_stop,
     &afw_function_definition_anyURI,
+    &afw_function_definition_as_anyURI,
     &afw_function_definition_at_least_one_member_of_anyURI,
     &afw_function_definition_bag_anyURI,
     &afw_function_definition_bag_size_anyURI,
@@ -149733,6 +154002,7 @@ impl_function_bindings[] = {
     &afw_function_definition_url_encode_anyURI,
     &afw_function_definition_add_entries,
     &afw_function_definition_array,
+    &afw_function_definition_as_array,
     &afw_function_definition_at,
     &afw_function_definition_bag_array,
     &afw_function_definition_bag_size_array,
@@ -149760,6 +154030,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_string_array,
     &afw_function_definition_unshift,
     &afw_function_definition_authorization_check,
+    &afw_function_definition_as_base64Binary,
     &afw_function_definition_at_least_one_member_of_base64Binary,
     &afw_function_definition_bag_base64Binary,
     &afw_function_definition_bag_size_base64Binary,
@@ -149781,6 +154052,7 @@ impl_function_bindings[] = {
     &afw_function_definition_subset_base64Binary,
     &afw_function_definition_to_string_base64Binary,
     &afw_function_definition_union_base64Binary,
+    &afw_function_definition_as_boolean,
     &afw_function_definition_at_least_one_member_of_boolean,
     &afw_function_definition_bag_boolean,
     &afw_function_definition_bag_size_boolean,
@@ -149836,6 +154108,7 @@ impl_function_bindings[] = {
     &afw_function_definition_test_value,
     &afw_function_definition_add_dayTimeDuration_dateTime,
     &afw_function_definition_add_yearMonthDuration_dateTime,
+    &afw_function_definition_as_dateTime,
     &afw_function_definition_at_least_one_member_of_dateTime,
     &afw_function_definition_bag_dateTime,
     &afw_function_definition_bag_size_dateTime,
@@ -149861,6 +154134,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_string_dateTime,
     &afw_function_definition_union_dateTime,
     &afw_function_definition_add_yearMonthDuration_date,
+    &afw_function_definition_as_date,
     &afw_function_definition_at_least_one_member_of_date,
     &afw_function_definition_bag_date,
     &afw_function_definition_bag_size_date,
@@ -149884,6 +154158,7 @@ impl_function_bindings[] = {
     &afw_function_definition_subtract_yearMonthDuration_date,
     &afw_function_definition_to_string_date,
     &afw_function_definition_union_date,
+    &afw_function_definition_as_dayTimeDuration,
     &afw_function_definition_at_least_one_member_of_dayTimeDuration,
     &afw_function_definition_bag_dayTimeDuration,
     &afw_function_definition_bag_size_dayTimeDuration,
@@ -149904,6 +154179,7 @@ impl_function_bindings[] = {
     &afw_function_definition_subset_dayTimeDuration,
     &afw_function_definition_to_string_dayTimeDuration,
     &afw_function_definition_union_dayTimeDuration,
+    &afw_function_definition_as_dnsName,
     &afw_function_definition_bag_dnsName,
     &afw_function_definition_bag_size_dnsName,
     &afw_function_definition_dnsName,
@@ -149922,6 +154198,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_string_dnsName,
     &afw_function_definition_abs_double,
     &afw_function_definition_add_double,
+    &afw_function_definition_as_double,
     &afw_function_definition_at_least_one_member_of_double,
     &afw_function_definition_bag_double,
     &afw_function_definition_bag_size_double,
@@ -149956,6 +154233,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_integer_double,
     &afw_function_definition_to_string_double,
     &afw_function_definition_union_double,
+    &afw_function_definition_as_function,
     &afw_function_definition_bag_function,
     &afw_function_definition_bag_size_function,
     &afw_function_definition_eq_function,
@@ -149967,6 +154245,7 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_function,
     &afw_function_definition_ne_function,
     &afw_function_definition_nex_function,
+    &afw_function_definition_as_hexBinary,
     &afw_function_definition_at_least_one_member_of_hexBinary,
     &afw_function_definition_bag_hexBinary,
     &afw_function_definition_bag_size_hexBinary,
@@ -150001,6 +154280,7 @@ impl_function_bindings[] = {
     &afw_function_definition_reduce,
     &afw_function_definition_some,
     &afw_function_definition_sort,
+    &afw_function_definition_as_ia5String,
     &afw_function_definition_bag_ia5String,
     &afw_function_definition_bag_size_ia5String,
     &afw_function_definition_eq_ia5String,
@@ -150019,6 +154299,7 @@ impl_function_bindings[] = {
     &afw_function_definition_index_remove,
     &afw_function_definition_abs_integer,
     &afw_function_definition_add_integer,
+    &afw_function_definition_as_integer,
     &afw_function_definition_at_least_one_member_of_integer,
     &afw_function_definition_bag_integer,
     &afw_function_definition_bag_size_integer,
@@ -150047,6 +154328,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_double_integer,
     &afw_function_definition_to_string_integer,
     &afw_function_definition_union_integer,
+    &afw_function_definition_as_ipAddress,
     &afw_function_definition_bag_ipAddress,
     &afw_function_definition_bag_size_ipAddress,
     &afw_function_definition_eq_ipAddress,
@@ -150102,10 +154384,12 @@ impl_function_bindings[] = {
     &afw_function_definition_model_mapBackObject_signature,
     &afw_function_definition_model_mapObject_signature,
     &afw_function_definition_model_returnObject_signature,
+    &afw_function_definition_as_null,
     &afw_function_definition_bag_null,
     &afw_function_definition_bag_size_null,
     &afw_function_definition_is_null,
     &afw_function_definition_to_string_null,
+    &afw_function_definition_as_objectId,
     &afw_function_definition_bag_objectId,
     &afw_function_definition_bag_size_objectId,
     &afw_function_definition_eq_objectId,
@@ -150119,6 +154403,7 @@ impl_function_bindings[] = {
     &afw_function_definition_nex_objectId,
     &afw_function_definition_objectId,
     &afw_function_definition_to_string_objectId,
+    &afw_function_definition_as_objectPath,
     &afw_function_definition_bag_objectPath,
     &afw_function_definition_bag_size_objectPath,
     &afw_function_definition_eq_objectPath,
@@ -150134,6 +154419,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_string_objectPath,
     &afw_function_definition_add_properties,
     &afw_function_definition_apply_object_options,
+    &afw_function_definition_as_object,
     &afw_function_definition_bag_object,
     &afw_function_definition_bag_size_object,
     &afw_function_definition_clone_object,
@@ -150158,6 +154444,7 @@ impl_function_bindings[] = {
     &afw_function_definition_property_is_not_null,
     &afw_function_definition_to_string_object,
     &afw_function_definition_values,
+    &afw_function_definition_as_password,
     &afw_function_definition_bag_password,
     &afw_function_definition_bag_size_password,
     &afw_function_definition_eq_password,
@@ -150198,7 +154485,6 @@ impl_function_bindings[] = {
     &afw_function_definition_includes,
     &afw_function_definition_index_of,
     &afw_function_definition_intersection,
-    &afw_function_definition_is,
     &afw_function_definition_is_in,
     &afw_function_definition_last_index_of,
     &afw_function_definition_le,
@@ -150263,6 +154549,7 @@ impl_function_bindings[] = {
     &afw_function_definition_regexp,
     &afw_function_definition_compile_relaxedJson,
     &afw_function_definition_relaxedJson,
+    &afw_function_definition_as_rfc822Name,
     &afw_function_definition_at_least_one_member_of_rfc822Name,
     &afw_function_definition_bag_rfc822Name,
     &afw_function_definition_bag_size_rfc822Name,
@@ -150285,6 +154572,7 @@ impl_function_bindings[] = {
     &afw_function_definition_subset_rfc822Name,
     &afw_function_definition_to_string_rfc822Name,
     &afw_function_definition_union_rfc822Name,
+    &afw_function_definition_as_script,
     &afw_function_definition_bag_script,
     &afw_function_definition_bag_size_script,
     &afw_function_definition_compile_script,
@@ -150313,6 +154601,7 @@ impl_function_bindings[] = {
     &afw_function_definition_write_internal,
     &afw_function_definition_writeln,
     &afw_function_definition_add_string,
+    &afw_function_definition_as_string,
     &afw_function_definition_at_least_one_member_of_string,
     &afw_function_definition_bag_size_string,
     &afw_function_definition_bag_string,
@@ -150370,6 +154659,7 @@ impl_function_bindings[] = {
     &afw_function_definition_union_string,
     &afw_function_definition_url_decode,
     &afw_function_definition_url_encode_string,
+    &afw_function_definition_as_template,
     &afw_function_definition_bag_size_template,
     &afw_function_definition_bag_template,
     &afw_function_definition_compile_template,
@@ -150385,6 +154675,7 @@ impl_function_bindings[] = {
     &afw_function_definition_nex_template,
     &afw_function_definition_template,
     &afw_function_definition_to_string_template,
+    &afw_function_definition_as_time,
     &afw_function_definition_at_least_one_member_of_time,
     &afw_function_definition_bag_size_time,
     &afw_function_definition_bag_time,
@@ -150408,9 +154699,11 @@ impl_function_bindings[] = {
     &afw_function_definition_time,
     &afw_function_definition_to_string_time,
     &afw_function_definition_union_time,
+    &afw_function_definition_as_unevaluated,
     &afw_function_definition_is_unevaluated,
     &afw_function_definition_meta,
     &afw_function_definition_metas,
+    &afw_function_definition_as_x500Name,
     &afw_function_definition_at_least_one_member_of_x500Name,
     &afw_function_definition_bag_size_x500Name,
     &afw_function_definition_bag_x500Name,
@@ -150433,6 +154726,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_string_x500Name,
     &afw_function_definition_union_x500Name,
     &afw_function_definition_x500Name,
+    &afw_function_definition_as_xpathExpression,
     &afw_function_definition_bag_size_xpathExpression,
     &afw_function_definition_bag_xpathExpression,
     &afw_function_definition_compile_xpathExpression,
@@ -150451,6 +154745,7 @@ impl_function_bindings[] = {
     &afw_function_definition_xpath_node_count,
     &afw_function_definition_xpath_node_eq,
     &afw_function_definition_xpath_node_match,
+    &afw_function_definition_as_yearMonthDuration,
     &afw_function_definition_at_least_one_member_of_yearMonthDuration,
     &afw_function_definition_bag_size_yearMonthDuration,
     &afw_function_definition_bag_yearMonthDuration,

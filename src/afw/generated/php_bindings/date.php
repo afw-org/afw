@@ -50,6 +50,31 @@ class date
     }
 
     /**
+     * as_date()
+     *
+     * Returns value unchanged if it is dataType date. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * date from a value of another data type, write a typed literal or call a
+     * to_ function. This is usually written value as date.
+     *
+     * @param $value Value to assert
+     *
+     * @return date value, which is dataType date
+     */
+    public function as_date(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_date");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_date()
      *
      * Returns boolean true if at least one value in date array1 is in date
@@ -279,7 +304,8 @@ class date
     /**
      * is_date()
      *
-     * Checks whether value is dataType date and return the boolean result.
+     * Checks whether value is dataType date and returns the boolean result.
+     * It is false for undefined. This can also be written `is<date>(value`).
      *
      * @param $value Value to check
      *
@@ -289,7 +315,7 @@ class date
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<date>");
+        $request->set("function", "is_date");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

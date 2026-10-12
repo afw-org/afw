@@ -26,6 +26,31 @@ class boolean
     }
 
     /**
+     * as_boolean()
+     *
+     * Returns value unchanged if it is dataType boolean. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * boolean from a value of another data type, write a typed literal or
+     * call a to_ function. This is usually written value as boolean.
+     *
+     * @param $value Value to assert
+     *
+     * @return boolean value, which is dataType boolean
+     */
+    public function as_boolean(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_boolean");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_boolean()
      *
      * Returns boolean true if at least one value in boolean array1 is in
@@ -254,7 +279,9 @@ class boolean
     /**
      * is_boolean()
      *
-     * Checks whether value is dataType boolean and return the boolean result.
+     * Checks whether value is dataType boolean and returns the boolean
+     * result. It is false for undefined. This can also be written
+     * `is<boolean>(value`).
      *
      * @param $value Value to check
      *
@@ -264,7 +291,7 @@ class boolean
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<boolean>");
+        $request->set("function", "is_boolean");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

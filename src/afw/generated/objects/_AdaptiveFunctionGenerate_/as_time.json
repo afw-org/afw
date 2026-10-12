@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsTime",
+    "brief": "Asserts that value is dataType time",
+    "camelCaseFunctionLabel": "asTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType time. Otherwise, including when value is undefined, throws an error. It never converts: to get a time from a value of another data type, write a typed literal or call a to_ function. This is usually written value as time.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_time",
+    "functionLabel": "as_time",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "time",
+        "description": "value, which is dataType time"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

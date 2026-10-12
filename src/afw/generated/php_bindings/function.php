@@ -26,6 +26,32 @@ class function
     }
 
     /**
+     * as_function()
+     *
+     * Returns value unchanged if it is dataType function. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a function from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * function.
+     *
+     * @param $value Value to assert
+     *
+     * @return function value, which is dataType function
+     */
+    public function as_function(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_function");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_function()
      *
      * Takes any number of function values and returns an array of function.
@@ -177,8 +203,9 @@ class function
     /**
      * is_function()
      *
-     * Checks whether value is dataType function and return the boolean
-     * result.
+     * Checks whether value is dataType function and returns the boolean
+     * result. It is false for undefined. This can also be written
+     * `is<function>(value`).
      *
      * @param $value Value to check
      *
@@ -188,7 +215,7 @@ class function
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<function>");
+        $request->set("function", "is_function");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

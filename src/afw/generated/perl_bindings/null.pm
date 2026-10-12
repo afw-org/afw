@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_null 
     bag_null 
     bag_size_null 
     is_null 
@@ -26,6 +27,20 @@ afw::null - Perl module for null functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_null
+
+Returns value unchanged if it is dataType null. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a null from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as null.
+Asserts that value is dataType null
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_null
 
@@ -49,7 +64,8 @@ Returns the number of values in a bag
 
 =head3 is_null
 
-Checks whether value is dataType null and return the boolean result.
+Checks whether value is dataType null and returns the boolean result. It is
+false for undefined. This can also be written `is<null>(value`).
 Checks whether value is dataType null
 
 =head4 Parameters
@@ -71,6 +87,17 @@ Converts value to string
 A null value.
 
 =cut
+
+sub as_null {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_null");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
 
 sub bag_null {
     my ($values) = @_;
@@ -101,7 +128,7 @@ sub is_null {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<null>");
+    $request->set("function" => "is_null");
     $request->set("value", $value);
 
     return $request->getResult();

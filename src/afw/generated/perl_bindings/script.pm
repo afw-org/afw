@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_script 
     bag_script 
     bag_size_script 
     compile_script 
@@ -36,6 +37,20 @@ afw::script - Perl module for script functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_script
+
+Returns value unchanged if it is dataType script. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a script from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as script.
+Asserts that value is dataType script
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_script
 
@@ -161,7 +176,8 @@ Checks for greater than
 
 =head3 is_script
 
-Checks whether value is dataType script and return the boolean result.
+Checks whether value is dataType script and returns the boolean result. It is
+false for undefined. This can also be written `is<script>(value`).
 Checks whether value is dataType script
 
 =head4 Parameters
@@ -241,6 +257,17 @@ Convert to data type script
 Value to convert
 
 =cut
+
+sub as_script {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_script");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
 
 sub bag_script {
     my ($values) = @_;
@@ -347,7 +374,7 @@ sub is_script {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<script>");
+    $request->set("function" => "is_script");
     $request->set("value", $value);
 
     return $request->getResult();

@@ -53,6 +53,26 @@ export function afwAddInteger(client : any, values : number) : any {
 }
 
 /**
+ * Returns value unchanged if it is dataType integer. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * integer from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as integer.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {integer} value, which is dataType integer
+ */
+export function afwAsInteger(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_integer";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in integer array1 is in integer
  * array2.
  * 
@@ -275,7 +295,8 @@ export function afwIsInInteger(client : any, value : number, array : any[]) : an
 }
 
 /**
- * Checks whether value is dataType integer and return the boolean result.
+ * Checks whether value is dataType integer and returns the boolean result. It
+ * is false for undefined. This can also be written `is<integer>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -285,7 +306,7 @@ export function afwIsInteger(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<integer>";
+    _action["function"] = "is_integer";
     _action["value"] = value;
 
     return client.perform(_action);

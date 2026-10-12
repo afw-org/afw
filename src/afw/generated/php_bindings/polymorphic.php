@@ -737,29 +737,6 @@ class polymorphic
     }
 
     /**
-     * is()
-     *
-     * Checks whether value is dataType `<dataType>` and return the boolean
-     * result.
-     *
-     * @param $value Value to check
-     *
-     * @return boolean
-     */
-    public function is(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "is");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * is_in()
      *
      * Checks whether `<dataType>` value is in array of `<dataType>` array and

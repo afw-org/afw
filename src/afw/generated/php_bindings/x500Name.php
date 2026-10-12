@@ -26,6 +26,32 @@ class x500Name
     }
 
     /**
+     * as_x500Name()
+     *
+     * Returns value unchanged if it is dataType x500Name. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a x500Name from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * x500Name.
+     *
+     * @param $value Value to assert
+     *
+     * @return x500Name value, which is dataType x500Name
+     */
+    public function as_x500Name(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_x500Name");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_x500Name()
      *
      * Returns boolean true if at least one value in x500Name array1 is in
@@ -252,8 +278,9 @@ class x500Name
     /**
      * is_x500Name()
      *
-     * Checks whether value is dataType x500Name and return the boolean
-     * result.
+     * Checks whether value is dataType x500Name and returns the boolean
+     * result. It is false for undefined. This can also be written
+     * `is<x500Name>(value`).
      *
      * @param $value Value to check
      *
@@ -263,7 +290,7 @@ class x500Name
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<x500Name>");
+        $request->set("function", "is_x500Name");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

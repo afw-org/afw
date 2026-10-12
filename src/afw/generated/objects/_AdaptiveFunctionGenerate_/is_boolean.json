@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isBoolean",
     "category": "boolean",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType boolean and return the boolean result.",
-    "functionId": "is<boolean>",
+    "description": "Checks whether value is dataType boolean and returns the boolean result. It is false for undefined. This can also be written is<boolean>(value).",
+    "functionId": "is_boolean",
     "functionLabel": "is_boolean",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }
@@ -17,5 +18,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

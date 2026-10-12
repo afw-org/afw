@@ -1438,6 +1438,22 @@ afw_environment_get_qualified_function(
 
 
 /**
+ * @brief Is name the untyped id of a data type method?
+ * @param name untyped function id, such as is.
+ * @param xctx of caller.
+ * @return true if some data type has a method with this untyped id, so
+ *     name<dataType> can name a function.
+ *
+ * A dataTypeRequired family (is, as) has data type methods but no function
+ * registered as name; this tells it from a name that is not a function.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_environment_is_data_type_method_id(
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Get the function associated with a data type method.
  * @param data_type to check.
  * @param dataTypeMethodNumber to retrieve.

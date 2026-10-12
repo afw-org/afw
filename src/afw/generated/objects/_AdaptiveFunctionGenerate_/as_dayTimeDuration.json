@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsDayTimeDuration",
+    "brief": "Asserts that value is dataType dayTimeDuration",
+    "camelCaseFunctionLabel": "asDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType dayTimeDuration. Otherwise, including when value is undefined, throws an error. It never converts: to get a dayTimeDuration from a value of another data type, write a typed literal or call a to_ function. This is usually written value as dayTimeDuration.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_dayTimeDuration",
+    "functionLabel": "as_dayTimeDuration",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "dayTimeDuration",
+        "description": "value, which is dataType dayTimeDuration"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_hexBinary 
     at_least_one_member_of_hexBinary 
     bag_hexBinary 
     bag_size_hexBinary 
@@ -43,6 +44,20 @@ afw::hexBinary - Perl module for hexBinary functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_hexBinary
+
+Returns value unchanged if it is dataType hexBinary. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a hexBinary
+from a value of another data type, write a typed literal or call a to_
+function. This is usually written value as hexBinary.
+Asserts that value is dataType hexBinary
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_hexBinary
 
@@ -179,7 +194,8 @@ The second array.
 
 =head3 is_hexBinary
 
-Checks whether value is dataType hexBinary and return the boolean result.
+Checks whether value is dataType hexBinary and returns the boolean result. It
+is false for undefined. This can also be written `is<hexBinary>(value`).
 Checks whether value is dataType hexBinary
 
 =head4 Parameters
@@ -327,6 +343,17 @@ Two or more arrays.
 
 =cut
 
+sub as_hexBinary {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_hexBinary");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_hexBinary {
     my ($array1, $array2) = @_;
 
@@ -450,7 +477,7 @@ sub is_hexBinary {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<hexBinary>");
+    $request->set("function" => "is_hexBinary");
     $request->set("value", $value);
 
     return $request->getResult();

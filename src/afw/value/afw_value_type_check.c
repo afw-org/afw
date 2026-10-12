@@ -1750,6 +1750,42 @@ afw_value_type_check_function_type_call(
 
 
 
+/*
+ * A type assertion (v as T, as_T(v)) declares its parameter any, so the
+ * formal checks do not reject a value known not to be T. Reject it here in
+ * the same words as the run time error (afw_function_execute_as).
+ */
+static void
+impl_check_type_assertion(
+    const afw_data_type_t *expected,
+    const afw_value_t *arg,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *got;
+
+    if (!arg) {
+        return;
+    }
+    got = afw_value_is_undefined(arg)
+        ? afw_data_type_undefined
+        : impl_arg_result_data_type(arg, xctx);
+    if (!got ||
+        got == expected ||
+        got == afw_data_type_any ||
+        got == afw_data_type_unknown)
+    {
+        return;
+    }
+
+    AFW_THROW_ERROR_FZ(syntax, xctx,
+        "Type error in type assertion: %s",
+        afw_value_type_assertion_mismatch_z(expected,
+            (got == afw_data_type_undefined) ? NULL : got,
+            arg, xctx->p, xctx));
+}
+
+
+
 AFW_DEFINE(void)
 afw_value_type_check_adaptive_function_call(
     const afw_value_function_definition_t *function,
@@ -1792,6 +1828,12 @@ afw_value_type_check_adaptive_function_call(
                 "compiler_script"))))
     {
         return;
+    }
+
+    if (function->execute_implementation == afw_function_execute_as &&
+        function->data_type && argc >= 1)
+    {
+        impl_check_type_assertion(function->data_type, argv[1], xctx);
     }
 
     fn = function;
@@ -1887,4 +1929,75 @@ afw_value_type_check_adaptive_function_call(
             break;
         }
     }
+}
+
+
+
+/* A string longer than this is shown as "..." in the typed literal hint. */
+#define IMPL_ASSERTION_HINT_MAX_STRING 40
+
+static const afw_utf8_t
+impl_quoted_ellipsis = AFW_UTF8_LITERAL("\"...\"");
+
+/* Message for a failed type assertion. See afw_value_internal.h. */
+const afw_utf8_z_t *
+afw_value_type_assertion_mismatch_z(
+    const afw_data_type_t *expected,
+    const afw_data_type_t *got,
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *got_id;
+    const afw_utf8_t *literal;
+    const afw_utf8_t *to_id;
+    const afw_utf8_z_t *literal_hint;
+    const afw_utf8_z_t *to_hint;
+    const afw_value_string_t *s;
+
+    got_id = got ? &got->data_type_id : afw_s_undefined;
+
+    /* A string that could be written as a typed literal of expected. */
+    literal_hint = NULL;
+    if (got == afw_data_type_string && expected->typed_literal) {
+        literal = NULL;
+        if (value && afw_value_is_string(value)) {
+            s = (const afw_value_string_t *)value;
+            if (s->internal.len <= IMPL_ASSERTION_HINT_MAX_STRING) {
+                literal = afw_json_utf8_string_create(&s->internal, p, xctx);
+            }
+        }
+        literal_hint = afw_utf8_z_printf(p, xctx, "%ku%ku",
+            literal ? literal : &impl_quoted_ellipsis,
+            &expected->data_type_id);
+    }
+
+    /*
+     * A to_T conversion from got. Not from null: null is not a missing T to
+     * convert (to_string(null) is "null").
+     */
+    to_hint = NULL;
+    if (got && got != afw_data_type_null) {
+        to_id = afw_utf8_printf(p, xctx, "to_%ku", &expected->data_type_id);
+        if (afw_environment_get_qualified_function(
+            &got->data_type_id, to_id, xctx))
+        {
+            to_hint = afw_utf8_z_printf(p, xctx, "%ku(v)", to_id);
+        }
+    }
+
+    if (literal_hint && to_hint) {
+        return afw_utf8_z_printf(p, xctx,
+            "expected %ku but got %ku; write %s or %s",
+            &expected->data_type_id, got_id, literal_hint, to_hint);
+    }
+    if (literal_hint || to_hint) {
+        return afw_utf8_z_printf(p, xctx,
+            "expected %ku but got %ku; write %s",
+            &expected->data_type_id, got_id,
+            literal_hint ? literal_hint : to_hint);
+    }
+    return afw_utf8_z_printf(p, xctx,
+        "expected %ku but got %ku",
+        &expected->data_type_id, got_id);
 }

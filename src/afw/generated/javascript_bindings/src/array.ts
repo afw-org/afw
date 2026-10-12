@@ -67,6 +67,26 @@ export function afwArray(client : any, values : any) : any {
 }
 
 /**
+ * Returns value unchanged if it is dataType array. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a array from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as array.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {array} value, which is dataType array
+ */
+export function afwAsArray(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_array";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Return the value at a zero-based index in an array. Negative indexes count
  * from the end (-1 is the last element). If the index is out of range, the
  * result is undefined. Bracket indexing a[index] uses the same out-of-range
@@ -295,7 +315,8 @@ export function afwIncludesArray(client : any, array : any[], searchElement : an
 }
 
 /**
- * Checks whether value is dataType array and return the boolean result.
+ * Checks whether value is dataType array and returns the boolean result. It
+ * is false for undefined. This can also be written `is<array>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -305,7 +326,7 @@ export function afwIsArray(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<array>";
+    _action["function"] = "is_array";
     _action["value"] = value;
 
     return client.perform(_action);

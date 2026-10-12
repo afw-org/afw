@@ -72,6 +72,37 @@ def add_yearMonthDuration_dateTime(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def as_dateTime(session, value):
+    """
+    Asserts that value is dataType dateTime
+
+    Returns value unchanged if it is dataType dateTime. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    dateTime from a value of another data type, write a typed literal or call
+    a to_ function. This is usually written value as dateTime.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType dateTime
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_dateTime",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_dateTime(session, array1, array2):
     """
     Checks for at least one value in common
@@ -357,7 +388,8 @@ def is_dateTime(session, value):
     """
     Checks whether value is dataType dateTime
 
-    Checks whether value is dataType dateTime and return the boolean result.
+    Checks whether value is dataType dateTime and returns the boolean result.
+    It is false for undefined. This can also be written `is<dateTime>(value`).
 
     Args:
         value (object): Value to check
@@ -369,7 +401,7 @@ def is_dateTime(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<dateTime>",
+        "function": "is_dateTime",
         "value": value
     }
 

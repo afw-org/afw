@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_time 
     at_least_one_member_of_time 
     bag_size_time 
     bag_time 
@@ -45,6 +46,20 @@ afw::time - Perl module for time functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_time
+
+Returns value unchanged if it is dataType time. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a time from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as time.
+Asserts that value is dataType time
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_time
 
@@ -196,7 +211,8 @@ Checks whether a value is in an array
 
 =head3 is_time
 
-Checks whether value is dataType time and return the boolean result.
+Checks whether value is dataType time and returns the boolean result. It is
+false for undefined. This can also be written `is<time>(value`).
 Checks whether value is dataType time
 
 =head4 Parameters
@@ -372,6 +388,17 @@ Two or more arrays.
 
 =cut
 
+sub as_time {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_time");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_time {
     my ($array1, $array2) = @_;
 
@@ -498,7 +525,7 @@ sub is_time {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<time>");
+    $request->set("function" => "is_time");
     $request->set("value", $value);
 
     return $request->getResult();

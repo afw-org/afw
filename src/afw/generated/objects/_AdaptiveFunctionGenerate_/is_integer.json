@@ -4,11 +4,12 @@
     "camelCaseFunctionLabel": "isInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Checks whether value is dataType integer and return the boolean result.",
-    "functionId": "is<integer>",
+    "description": "Checks whether value is dataType integer and returns the boolean result. It is false for undefined. This can also be written is<integer>(value).",
+    "functionId": "is_integer",
     "functionLabel": "is_integer",
     "parameters": [
         {
+            "canBeUndefined": true,
             "description": "Value to check",
             "name": "value"
         }
@@ -17,5 +18,6 @@
     "returns": {
         "dataType": "boolean"
     },
+    "untypedFunctionId": "is",
     "useExecuteFunction": "afw_function_execute_is"
 }

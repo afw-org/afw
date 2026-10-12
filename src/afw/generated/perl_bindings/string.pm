@@ -14,6 +14,7 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     add_string 
+    as_string 
     at_least_one_member_of_string 
     bag_size_string 
     bag_string 
@@ -94,6 +95,20 @@ Add (concatenate) strings
 
     $values
 
+
+=head3 as_string
+
+Returns value unchanged if it is dataType string. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a string from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as string.
+Asserts that value is dataType string
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_string
 
@@ -344,7 +359,8 @@ Checks whether a value is in an array
 
 =head3 is_string
 
-Checks whether value is dataType string and return the boolean result.
+Checks whether value is dataType string and returns the boolean result. It is
+false for undefined. This can also be written `is<string>(value`).
 Checks whether value is dataType string
 
 =head4 Parameters
@@ -877,6 +893,17 @@ sub add_string {
     return $request->getResult();
 }
 
+sub as_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_string");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_string {
     my ($array1, $array2) = @_;
 
@@ -1091,7 +1118,7 @@ sub is_string {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<string>");
+    $request->set("function" => "is_string");
     $request->set("value", $value);
 
     return $request->getResult();

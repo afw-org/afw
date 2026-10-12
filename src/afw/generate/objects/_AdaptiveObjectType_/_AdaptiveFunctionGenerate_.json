@@ -220,6 +220,14 @@
             "description": "This is a signature with an unimplemented execute function.",
             "label": "Signature Only"
         },
+        "untypedFunctionId": {
+            "allowQuery": true,
+            "brief": "The function's id without <dataType>",
+            "dataType": "string",
+            "description": "The id that names the data type method for this function. If not specified, it is functionId up to the first '<'. Data type specific functions of a polymorphic function with dataTypeRequired set this, since their functionId is <untypedFunctionId>_<dataType>.",
+            "label": "Untyped Function Id",
+            "required": false
+        },
         "useExecuteFunction": {
             "allowQuery": true,
             "brief": "Execute function label",

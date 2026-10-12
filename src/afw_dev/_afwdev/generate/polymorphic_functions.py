@@ -34,14 +34,25 @@ def generate(options):
         if polymorphic_function['parameters'][0].get('dataType') is not None and polymorphic_function['parameters'][0].get('dataType') != 'array':
             msg.error_exit('Polymorphic function ' +  functionId + ' parameter 1 can not have dataType\n')
 
-        # Include polymorphic version
-        msg.info('Including function ' + functionId + ' polymorphic version')
-        if polymorphic_function.get('polymorphicExecuteFunctionEvaluatesFirstParameter') is None:
-            polymorphic_function['useExecuteFunction'] = 'AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING'
+        # With dataTypeRequired, there is no polymorphic version. Each data
+        # type specific version is a plain function X_T, and X<T> is another
+        # way to call it (the data type method X of T).
+        dataTypeRequired = polymorphic_function.get('dataTypeRequired', False)
+        if dataTypeRequired:
+            if not polymorphic_function.get('dataTypeMethod', False):
+                msg.error_exit('Polymorphic function ' + functionId + ' with dataTypeRequired must be a dataTypeMethod\n')
+            if not polymorphic_function.get('polymorphicExecuteFunction'):
+                msg.error_exit('Polymorphic function ' + functionId + ' with dataTypeRequired must have a polymorphicExecuteFunction\n')
+
         else:
-            polymorphic_function['useExecuteFunction'] = polymorphic_function['polymorphicExecuteFunction']
-        with nfc.open(functions_dir_path + functionId + '.json', mode='w') as fd:
-            fd.write(nfc.json_dumps(polymorphic_function, sort_keys=True, indent=4))
+            # Include polymorphic version
+            msg.info('Including function ' + functionId + ' polymorphic version')
+            if polymorphic_function.get('polymorphicExecuteFunctionEvaluatesFirstParameter') is None:
+                polymorphic_function['useExecuteFunction'] = 'AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING'
+            else:
+                polymorphic_function['useExecuteFunction'] = polymorphic_function['polymorphicExecuteFunction']
+            with nfc.open(functions_dir_path + functionId + '.json', mode='w') as fd:
+                fd.write(nfc.json_dumps(polymorphic_function, sort_keys=True, indent=4))
 
         # Include data type specific version
         for dataType in polymorphic_function.get('polymorphicDataTypes', []):
@@ -75,8 +86,12 @@ def generate(options):
             if polymorphic_function.get('details') is not None:
                 function['details'] = polymorphic_function.get('details')
 
-            # functionId
-            function['functionId'] = polymorphic_function['functionId'] + '<' + dataType + '>'
+            # functionId and untypedFunctionId
+            if dataTypeRequired:
+                function['functionId'] = polymorphic_function['functionId'] + '_' + dataType
+                function['untypedFunctionId'] = polymorphic_function['functionId']
+            else:
+                function['functionId'] = polymorphic_function['functionId'] + '<' + dataType + '>'
 
             # functionLabel
             function['functionLabel'] = polymorphic_function['functionId'] + '_' + dataType

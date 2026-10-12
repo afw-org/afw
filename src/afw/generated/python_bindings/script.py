@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_script(session, value):
+    """
+    Asserts that value is dataType script
+
+    Returns value unchanged if it is dataType script. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    script from a value of another data type, write a typed literal or call a
+    to_ function. This is usually written value as script.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType script
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_script",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_script(session, values=None):
     """
     Makes an array from values
@@ -281,7 +312,8 @@ def is_script(session, value):
     """
     Checks whether value is dataType script
 
-    Checks whether value is dataType script and return the boolean result.
+    Checks whether value is dataType script and returns the boolean result. It
+    is false for undefined. This can also be written `is<script>(value`).
 
     Args:
         value (object): Value to check
@@ -293,7 +325,7 @@ def is_script(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<script>",
+        "function": "is_script",
         "value": value
     }
 

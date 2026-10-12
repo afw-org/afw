@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_boolean 
     at_least_one_member_of_boolean 
     bag_boolean 
     bag_size_boolean 
@@ -42,6 +43,20 @@ afw::boolean - Perl module for boolean functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_boolean
+
+Returns value unchanged if it is dataType boolean. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a boolean from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as boolean.
+Asserts that value is dataType boolean
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_boolean
 
@@ -170,7 +185,8 @@ The second array.
 
 =head3 is_boolean
 
-Checks whether value is dataType boolean and return the boolean result.
+Checks whether value is dataType boolean and returns the boolean result. It is
+false for undefined. This can also be written `is<boolean>(value`).
 Checks whether value is dataType boolean
 
 =head4 Parameters
@@ -318,6 +334,17 @@ Two or more arrays.
 
 =cut
 
+sub as_boolean {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_boolean");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_boolean {
     my ($array1, $array2) = @_;
 
@@ -430,7 +457,7 @@ sub is_boolean {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<boolean>");
+    $request->set("function" => "is_boolean");
     $request->set("value", $value);
 
     return $request->getResult();

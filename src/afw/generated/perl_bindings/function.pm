@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_function 
     bag_function 
     bag_size_function 
     eq_function 
@@ -33,6 +34,20 @@ afw::function - Perl module for function functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_function
+
+Returns value unchanged if it is dataType function. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a function from
+a value of another data type, write a typed literal or call a to_ function.
+This is usually written value as function.
+Asserts that value is dataType function
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_function
 
@@ -114,7 +129,8 @@ Checks for greater than
 
 =head3 is_function
 
-Checks whether value is dataType function and return the boolean result.
+Checks whether value is dataType function and returns the boolean result. It
+is false for undefined. This can also be written `is<function>(value`).
 Checks whether value is dataType function
 
 =head4 Parameters
@@ -182,6 +198,17 @@ Checks for not equal value or type
 
 
 =cut
+
+sub as_function {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_function");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
 
 sub bag_function {
     my ($values) = @_;
@@ -260,7 +287,7 @@ sub is_function {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<function>");
+    $request->set("function" => "is_function");
     $request->set("value", $value);
 
     return $request->getResult();

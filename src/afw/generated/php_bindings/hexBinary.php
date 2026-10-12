@@ -26,6 +26,32 @@ class hexBinary
     }
 
     /**
+     * as_hexBinary()
+     *
+     * Returns value unchanged if it is dataType hexBinary. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a hexBinary from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * hexBinary.
+     *
+     * @param $value Value to assert
+     *
+     * @return hexBinary value, which is dataType hexBinary
+     */
+    public function as_hexBinary(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_hexBinary");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_hexBinary()
      *
      * Returns boolean true if at least one value in hexBinary array1 is in
@@ -272,8 +298,9 @@ class hexBinary
     /**
      * is_hexBinary()
      *
-     * Checks whether value is dataType hexBinary and return the boolean
-     * result.
+     * Checks whether value is dataType hexBinary and returns the boolean
+     * result. It is false for undefined. This can also be written
+     * `is<hexBinary>(value`).
      *
      * @param $value Value to check
      *
@@ -283,7 +310,7 @@ class hexBinary
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<hexBinary>");
+        $request->set("function", "is_hexBinary");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

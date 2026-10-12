@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_x500Name(session, value):
+    """
+    Asserts that value is dataType x500Name
+
+    Returns value unchanged if it is dataType x500Name. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    x500Name from a value of another data type, write a typed literal or call
+    a to_ function. This is usually written value as x500Name.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType x500Name
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_x500Name",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_x500Name(session, array1, array2):
     """
     Checks for at least one value in common
@@ -293,7 +324,8 @@ def is_x500Name(session, value):
     """
     Checks whether value is dataType x500Name
 
-    Checks whether value is dataType x500Name and return the boolean result.
+    Checks whether value is dataType x500Name and returns the boolean result.
+    It is false for undefined. This can also be written `is<x500Name>(value`).
 
     Args:
         value (object): Value to check
@@ -305,7 +337,7 @@ def is_x500Name(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<x500Name>",
+        "function": "is_x500Name",
         "value": value
     }
 

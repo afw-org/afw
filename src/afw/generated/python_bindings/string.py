@@ -42,6 +42,37 @@ def add_string(session, string, values):
 
     return response['actions'][0]['result']
 
+def as_string(session, value):
+    """
+    Asserts that value is dataType string
+
+    Returns value unchanged if it is dataType string. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    string from a value of another data type, write a typed literal or call a
+    to_ function. This is usually written value as string.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        str: value, which is dataType string
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_string",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_string(session, array1, array2):
     """
     Checks for at least one value in common
@@ -584,7 +615,8 @@ def is_string(session, value):
     """
     Checks whether value is dataType string
 
-    Checks whether value is dataType string and return the boolean result.
+    Checks whether value is dataType string and returns the boolean result. It
+    is false for undefined. This can also be written `is<string>(value`).
 
     Args:
         value (object): Value to check
@@ -596,7 +628,7 @@ def is_string(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<string>",
+        "function": "is_string",
         "value": value
     }
 

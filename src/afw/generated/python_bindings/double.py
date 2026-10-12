@@ -68,6 +68,37 @@ def add_double(session, values):
 
     return response['actions'][0]['result']
 
+def as_double(session, value):
+    """
+    Asserts that value is dataType double
+
+    Returns value unchanged if it is dataType double. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    double from a value of another data type, write a typed literal or call a
+    to_ function. This is usually written value as double.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        float: value, which is dataType double
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_double",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_double(session, array1, array2):
     """
     Checks for at least one value in common
@@ -464,7 +495,8 @@ def is_double(session, value):
     """
     Checks whether value is dataType double
 
-    Checks whether value is dataType double and return the boolean result.
+    Checks whether value is dataType double and returns the boolean result. It
+    is false for undefined. This can also be written `is<double>(value`).
 
     Args:
         value (object): Value to check
@@ -476,7 +508,7 @@ def is_double(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<double>",
+        "function": "is_double",
         "value": value
     }
 

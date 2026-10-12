@@ -41,6 +41,37 @@ def add_yearMonthDuration_date(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def as_date(session, value):
+    """
+    Asserts that value is dataType date
+
+    Returns value unchanged if it is dataType date. Otherwise, including when
+    value is undefined, throws an error. It never converts: to get a date from
+    a value of another data type, write a typed literal or call a to_
+    function. This is usually written value as date.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType date
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_date",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_date(session, array1, array2):
     """
     Checks for at least one value in common
@@ -325,7 +356,8 @@ def is_date(session, value):
     """
     Checks whether value is dataType date
 
-    Checks whether value is dataType date and return the boolean result.
+    Checks whether value is dataType date and returns the boolean result. It
+    is false for undefined. This can also be written `is<date>(value`).
 
     Args:
         value (object): Value to check
@@ -337,7 +369,7 @@ def is_date(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<date>",
+        "function": "is_date",
         "value": value
     }
 

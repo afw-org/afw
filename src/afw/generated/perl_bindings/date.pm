@@ -14,6 +14,7 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     add_yearMonthDuration_date 
+    as_date 
     at_least_one_member_of_date 
     bag_date 
     bag_size_date 
@@ -59,6 +60,20 @@ Add duration
 
     $arg2
 
+
+=head3 as_date
+
+Returns value unchanged if it is dataType date. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a date from a
+value of another data type, write a typed literal or call a to_ function. This
+is usually written value as date.
+Asserts that value is dataType date
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 at_least_one_member_of_date
 
@@ -187,7 +202,8 @@ The second array.
 
 =head3 is_date
 
-Checks whether value is dataType date and return the boolean result.
+Checks whether value is dataType date and returns the boolean result. It is
+false for undefined. This can also be written `is<date>(value`).
 Checks whether value is dataType date
 
 =head4 Parameters
@@ -391,6 +407,17 @@ sub add_yearMonthDuration_date {
     return $request->getResult();
 }
 
+sub as_date {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_date");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_date {
     my ($array1, $array2) = @_;
 
@@ -503,7 +530,7 @@ sub is_date {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<date>");
+    $request->set("function" => "is_date");
     $request->set("value", $value);
 
     return $request->getResult();

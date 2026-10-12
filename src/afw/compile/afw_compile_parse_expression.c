@@ -126,6 +126,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
     afw_value_block_symbol_t *symbol;
     const afw_value_function_definition_t *function;
     const afw_utf8_t *type_id, *untyped_function_id;
+    afw_boolean_t data_type_required;
 
     afw_compile_save_offset(start_offset);
     result = afw_compile_parse_Lambda(parser);
@@ -172,15 +173,28 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                             NULL,
                             untyped_function_id,
                             parser->xctx);
-                    if (function &&
-                        afw_value_is_boolean_true(function->polymorphic))
+
+                    /*
+                     * name<dataType> names a data type method of a
+                     * polymorphic function, or of a dataTypeRequired
+                     * family (is), which has no function named name. A
+                     * reserved word (as) is never a function name.
+                     */
+                    data_type_required = !function &&
+                        afw_environment_is_data_type_method_id(
+                            untyped_function_id, parser->xctx) &&
+                        !afw_compile_is_reserved_word(parser,
+                            untyped_function_id);
+                    if (data_type_required ||
+                        (function &&
+                        afw_value_is_boolean_true(function->polymorphic)))
                     {
                         afw_compile_get_token();
                         if (afw_compile_token_is(open_angle_bracket)) {
                             afw_compile_get_token();
                             /*
                              * null and undefined are data types, lexed as
-                             * keywords (is<null>, decompile of is_null).
+                             * keywords (is<null>).
                              */
                             if (afw_compile_token_is(null)) {
                                 type_id = afw_s_null;
@@ -212,6 +226,14 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                         else {
                             afw_compile_reuse_token();
                         }
+                    }
+                    if (!function && data_type_required) {
+                        AFW_COMPILE_THROW_ERROR_FZ(
+                            "Built-in function '%ku' needs a data type, "
+                            "such as %ku<string> or %ku_string",
+                            untyped_function_id,
+                            untyped_function_id,
+                            untyped_function_id);
                     }
                     if (!function) {
                         AFW_COMPILE_THROW_ERROR_FZ(
@@ -265,6 +287,11 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
  *#
  * Evaluation ::=
  *    EntryFunctionLambdaOrVariableReference ( '?.'? Parameters )?
+ *    EvaluationChain
+ *
+ *# The calls, member accesses, and '->' calls that follow an Evaluation or
+ *# a ParenthesizedExpression.
+ * EvaluationChain ::=
  *    (
  *        ( '?.'? ParametersExceptFirst ) |
  *        (
@@ -279,12 +306,13 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
  *    )*
  *
  *<<<ebnf*/
-/* Parse Evaluation.  Returns NULL if not an evaluation. */
-const afw_value_t *
-afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
+/* Parse the EvaluationChain that follows result. */
+static const afw_value_t *
+impl_parse_EvaluationChain(
+    afw_compile_parser_t *parser,
+    const afw_value_t *result)
 {
     const afw_compile_value_contextual_t *contextual;
-    const afw_value_t *result;
     const afw_value_t *use_function_self;
     const afw_value_t *optional_chaining_arg0;
     afw_compile_args_t *args;
@@ -293,13 +321,6 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
     afw_size_t argc;
     afw_size_t start_offset;
 
-    afw_compile_save_offset(start_offset);
-    result = afw_compile_parse_EntryFunctionLambdaOrVariableReference(parser);
-    if (!result) {
-        return NULL;
-    }
-
-    /* Parse rest of expression */
     for (use_function_self = NULL;;)
     {
         afw_compile_save_offset(start_offset);
@@ -418,6 +439,22 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
 
     /* Return value. */
     return result;
+}
+
+
+
+/* Parse Evaluation.  Returns NULL if not an evaluation. */
+const afw_value_t *
+afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
+{
+    const afw_value_t *result;
+
+    result = afw_compile_parse_EntryFunctionLambdaOrVariableReference(parser);
+    if (!result) {
+        return NULL;
+    }
+
+    return impl_parse_EvaluationChain(parser, result);
 }
 
 
@@ -898,19 +935,15 @@ afw_compile_parse_Parameters(
 
 /*ebnf>>>
  *
- * ParenthesizedExpression ::= '(' Expression ')' Parameters*
+ *# A parenthesized expression can be called and its members accessed, like
+ *# an Evaluation: (v as object).name, (a ?? b)?.[k], (f)(x).
+ * ParenthesizedExpression ::= '(' Expression ')' EvaluationChain
  *
  *<<<ebnf*/
 const afw_value_t *
 afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
-    const afw_compile_value_contextual_t *contextual;
-    afw_compile_args_t *args;
-    const afw_value_t **argv;
-    afw_size_t argc;
-    afw_size_t start_offset;
-
 
     /* Parse ( expression ) */
     afw_compile_get_token();
@@ -923,19 +956,7 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
     }
 
-    /* Parse optional Parameters. */
-    while (afw_compile_peek_next_token_is(open_parenthesis)) {
-        afw_compile_save_offset(start_offset);
-        args = afw_compile_args_create(parser);
-        afw_compile_args_add_value(args, result); /* Function argv[0] */
-        afw_compile_parse_Parameters(parser, args);
-        afw_compile_args_finalize(args, &argc, &argv);
-        contextual = afw_compile_create_contextual_to_cursor(start_offset);
-        result = afw_value_call_create(contextual, argc - 1, argv, true,
-            parser->p, parser->xctx);
-    }
-
-    return result;
+    return impl_parse_EvaluationChain(parser, result);
 }
 
 
@@ -1596,6 +1617,14 @@ afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
         return afw_compile_parse_ParenthesizedOrFunctionType(parser);
     }
 
+    /* null and undefined are data types, lexed as keywords. */
+    if (afw_compile_token_is(null)) {
+        return impl_type_data_type(parser, afw_data_type_null);
+    }
+    if (afw_compile_token_is(undefined)) {
+        return impl_type_data_type(parser, afw_data_type_undefined);
+    }
+
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting Type");
     }
@@ -1970,10 +1999,95 @@ afw_compile_parse_Equality(afw_compile_parser_t *parser)
 }
 
 
+/*
+ * Parse the Type after 'as' and return the as_<dataType> call that asserts
+ * value is that type. start_offset is the offset of 'as'.
+ */
+static const afw_value_t *
+impl_parse_as(
+    afw_compile_parser_t *parser,
+    const afw_value_t *value,
+    afw_size_t start_offset)
+{
+    const afw_value_type_t *type;
+    const afw_data_type_t *data_type;
+    const afw_value_function_definition_t *function;
+    const afw_value_t **argv;
+    const afw_value_t *result;
+
+    type = afw_compile_parse_Type(parser);
+
+    /* A type alias of a data type (type Day = date) is that data type. */
+    while (type->kind == afw_value_type_kind_reference &&
+        type->reference.resolved)
+    {
+        type = type->reference.resolved;
+    }
+
+    /*
+     * Other Types (T[], unions, objects, interfaces) will check at run time
+     * with afw_value_type_is_assignable() later.
+     */
+    data_type = afw_value_type_get_leaf_data_type(type);
+    if (!data_type) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'as' supports a data type only; other Types are not "
+            "supported yet");
+    }
+
+    if (data_type == afw_data_type_undefined) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'as undefined' is not supported; test with v === undefined");
+    }
+
+    function = afw_environment_get_qualified_function(
+        &data_type->data_type_id, afw_s_as, parser->xctx);
+    if (!function) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "'as %ku' is not supported; there is no as_%ku",
+            &data_type->data_type_id, &data_type->data_type_id);
+    }
+
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
+        parser->xctx);
+    argv[0] = &function->pub;
+    argv[1] = value;
+    result = afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        1, argv, true, parser->p, parser->xctx);
+
+    /*
+     * TypeScript reads v as T + 1 as (v as T) + 1. Here the operators of
+     * Factor and Term bind tighter than 'as', so ask for the parentheses.
+     */
+    afw_compile_next_can_be_operator();
+    afw_compile_get_token();
+    if (afw_compile_token_is(add) ||
+        afw_compile_token_is(subtract) ||
+        afw_compile_token_is(multiply) ||
+        afw_compile_token_is(divide) ||
+        afw_compile_token_is(modulus) ||
+        afw_compile_token_is(exponentiation))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Write (v as T) in parentheses to use it as an operand of an "
+            "arithmetic operator");
+    }
+    afw_compile_reuse_token();
+
+    return result;
+}
+
+
+
 /*ebnf>>>
  *
- * Comparison ::= Factor ( 
- *      ('<' | '<=' | '>' | '>=' ) Factor )*
+ *# 'v as T' asserts that v is T and returns v. Unlike TypeScript, it checks
+ *# at run time: it throws if v is not T, and it never converts. Type is
+ *# only a DataType that has an as_<dataType> function for now.
+ * Comparison ::= Factor (
+ *      ( ('<' | '<=' | '>' | '>=' ) Factor ) |
+ *      ( 'as' Type ) )*
  *
  *<<<ebnf*/
 const afw_value_t *
@@ -1986,42 +2100,48 @@ afw_compile_parse_Comparison(afw_compile_parser_t *parser)
 
     result = afw_compile_parse_Factor(parser);
 
-    afw_compile_next_can_be_operator();
-    afw_compile_get_token_and_save_offset(start_offset);
+    for (;;) {
+        afw_compile_next_can_be_operator();
+        afw_compile_get_token_and_save_offset(start_offset);
 
-    switch (parser->token->type) {
+        if (afw_compile_token_is_name(afw_v_as)) {
+            result = impl_parse_as(parser, result, start_offset);
+            continue;
+        }
 
-    case afw_compile_token_type_less_than:
-        function = &afw_function_definition_lt;
-        break;
+        switch (parser->token->type) {
 
-    case afw_compile_token_type_less_than_or_equal_to:
-        function = &afw_function_definition_le;
-        break;
+        case afw_compile_token_type_less_than:
+            function = &afw_function_definition_lt;
+            break;
 
-    case afw_compile_token_type_greater_than:
-        function = &afw_function_definition_gt;
-        break;
+        case afw_compile_token_type_less_than_or_equal_to:
+            function = &afw_function_definition_le;
+            break;
 
-    case afw_compile_token_type_greater_than_or_equal_to:
-        function = &afw_function_definition_ge;
-        break;
+        case afw_compile_token_type_greater_than:
+            function = &afw_function_definition_gt;
+            break;
 
-    default:
-        afw_compile_reuse_token();
-        return result;
+        case afw_compile_token_type_greater_than_or_equal_to:
+            function = &afw_function_definition_ge;
+            break;
+
+        default:
+            afw_compile_reuse_token();
+            return result;
+        }
+
+        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3,
+            parser->xctx);
+        argv[0] = &function->pub;
+        argv[1] = result;
+        argv[2] = afw_compile_parse_Factor(parser);
+
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            2, argv, true, parser->p, parser->xctx);
     }
-
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
-    argv[0] = &function->pub;
-    argv[1] = result;
-    argv[2] = afw_compile_parse_Factor(parser);
-
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, true, parser->p, parser->xctx);
-
-    return result;
 }
 
 

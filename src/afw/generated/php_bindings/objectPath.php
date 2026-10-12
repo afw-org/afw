@@ -26,6 +26,32 @@ class objectPath
     }
 
     /**
+     * as_objectPath()
+     *
+     * Returns value unchanged if it is dataType objectPath. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a objectPath from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * objectPath.
+     *
+     * @param $value Value to assert
+     *
+     * @return objectPath value, which is dataType objectPath
+     */
+    public function as_objectPath(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_objectPath");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_objectPath()
      *
      * Takes any number of objectPath values and returns an array of
@@ -178,8 +204,9 @@ class objectPath
     /**
      * is_objectPath()
      *
-     * Checks whether value is dataType objectPath and return the boolean
-     * result.
+     * Checks whether value is dataType objectPath and returns the boolean
+     * result. It is false for undefined. This can also be written
+     * `is<objectPath>(value`).
      *
      * @param $value Value to check
      *
@@ -189,7 +216,7 @@ class objectPath
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<objectPath>");
+        $request->set("function", "is_objectPath");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

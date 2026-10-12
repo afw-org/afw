@@ -76,6 +76,32 @@ class dateTime
     }
 
     /**
+     * as_dateTime()
+     *
+     * Returns value unchanged if it is dataType dateTime. Otherwise,
+     * including when value is undefined, throws an error. It never converts:
+     * to get a dateTime from a value of another data type, write a typed
+     * literal or call a to_ function. This is usually written value as
+     * dateTime.
+     *
+     * @param $value Value to assert
+     *
+     * @return dateTime value, which is dataType dateTime
+     */
+    public function as_dateTime(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_dateTime");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_dateTime()
      *
      * Returns boolean true if at least one value in dateTime array1 is in
@@ -305,8 +331,9 @@ class dateTime
     /**
      * is_dateTime()
      *
-     * Checks whether value is dataType dateTime and return the boolean
-     * result.
+     * Checks whether value is dataType dateTime and returns the boolean
+     * result. It is false for undefined. This can also be written
+     * `is<dateTime>(value`).
      *
      * @param $value Value to check
      *
@@ -316,7 +343,7 @@ class dateTime
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<dateTime>");
+        $request->set("function", "is_dateTime");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

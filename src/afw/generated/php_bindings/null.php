@@ -26,6 +26,31 @@ class null
     }
 
     /**
+     * as_null()
+     *
+     * Returns value unchanged if it is dataType null. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * null from a value of another data type, write a typed literal or call a
+     * to_ function. This is usually written value as null.
+     *
+     * @param $value Value to assert
+     *
+     * @return null value, which is dataType null
+     */
+    public function as_null(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_null");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_null()
      *
      * Takes any number of null values and returns an array of null.
@@ -74,7 +99,8 @@ class null
     /**
      * is_null()
      *
-     * Checks whether value is dataType null and return the boolean result.
+     * Checks whether value is dataType null and returns the boolean result.
+     * It is false for undefined. This can also be written `is<null>(value`).
      *
      * @param $value Value to check
      *
@@ -84,7 +110,7 @@ class null
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<null>");
+        $request->set("function", "is_null");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

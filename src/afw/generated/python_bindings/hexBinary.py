@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_hexBinary(session, value):
+    """
+    Asserts that value is dataType hexBinary
+
+    Returns value unchanged if it is dataType hexBinary. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    hexBinary from a value of another data type, write a typed literal or call
+    a to_ function. This is usually written value as hexBinary.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType hexBinary
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_hexBinary",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_hexBinary(session, array1, array2):
     """
     Checks for at least one value in common
@@ -319,7 +350,9 @@ def is_hexBinary(session, value):
     """
     Checks whether value is dataType hexBinary
 
-    Checks whether value is dataType hexBinary and return the boolean result.
+    Checks whether value is dataType hexBinary and returns the boolean result.
+    It is false for undefined. This can also be written
+    `is<hexBinary>(value`).
 
     Args:
         value (object): Value to check
@@ -331,7 +364,7 @@ def is_hexBinary(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<hexBinary>",
+        "function": "is_hexBinary",
         "value": value
     }
 

@@ -269,6 +269,12 @@
                     "title": "Signature Only",
                     "type": "boolean"
                 },
+                "untypedFunctionId": {
+                    "description": "The id that names the data type method for this function. If not specified, it is functionId up to the first '<'. Data type specific functions of a polymorphic function with dataTypeRequired set this, since their functionId is <untypedFunctionId>_<dataType>.",
+                    "markdownDescription": "**Untyped Function Id**\n\nThe id that names the data type method for this function. If not specified, it is functionId up to the first '<'. Data type specific functions of a polymorphic function with dataTypeRequired set this, since their functionId is <untypedFunctionId>_<dataType>.",
+                    "title": "Untyped Function Id",
+                    "type": "string"
+                },
                 "useExecuteFunction": {
                     "description": "This is the label in the C source of the execute function used for this function.",
                     "markdownDescription": "**Use Execute Function**\n\nThis is the label in the C source of the execute function used for this function.",
@@ -493,6 +499,12 @@
                     "markdownDescription": "**Signature Only**\n\nThis is a signature with an unimplemented execute function.",
                     "title": "Signature Only",
                     "type": "boolean"
+                },
+                "untypedFunctionId": {
+                    "description": "The id that names the data type method for this function. If not specified, it is functionId up to the first '<'. Data type specific functions of a polymorphic function with dataTypeRequired set this, since their functionId is <untypedFunctionId>_<dataType>.",
+                    "markdownDescription": "**Untyped Function Id**\n\nThe id that names the data type method for this function. If not specified, it is functionId up to the first '<'. Data type specific functions of a polymorphic function with dataTypeRequired set this, since their functionId is <untypedFunctionId>_<dataType>.",
+                    "title": "Untyped Function Id",
+                    "type": "string"
                 },
                 "useExecuteFunction": {
                     "description": "This is the label in the C source of the execute function used for this function.",
@@ -869,6 +881,12 @@
             "markdownDescription": "**Signature Only**\n\nThis is a signature with an unimplemented execute function.",
             "title": "Signature Only",
             "type": "boolean"
+        },
+        "untypedFunctionId": {
+            "description": "The id that names the data type method for this function. If not specified, it is functionId up to the first '<'. Data type specific functions of a polymorphic function with dataTypeRequired set this, since their functionId is <untypedFunctionId>_<dataType>.",
+            "markdownDescription": "**Untyped Function Id**\n\nThe id that names the data type method for this function. If not specified, it is functionId up to the first '<'. Data type specific functions of a polymorphic function with dataTypeRequired set this, since their functionId is <untypedFunctionId>_<dataType>.",
+            "title": "Untyped Function Id",
+            "type": "string"
         },
         "useExecuteFunction": {
             "description": "This is the label in the C source of the execute function used for this function.",

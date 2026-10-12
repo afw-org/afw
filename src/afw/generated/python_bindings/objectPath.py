@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_objectPath(session, value):
+    """
+    Asserts that value is dataType objectPath
+
+    Returns value unchanged if it is dataType objectPath. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    objectPath from a value of another data type, write a typed literal or
+    call a to_ function. This is usually written value as objectPath.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType objectPath
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_objectPath",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_objectPath(session, values=None):
     """
     Makes an array from values
@@ -200,7 +231,9 @@ def is_objectPath(session, value):
     """
     Checks whether value is dataType objectPath
 
-    Checks whether value is dataType objectPath and return the boolean result.
+    Checks whether value is dataType objectPath and returns the boolean
+    result. It is false for undefined. This can also be written
+    `is<objectPath>(value`).
 
     Args:
         value (object): Value to check
@@ -212,7 +245,7 @@ def is_objectPath(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<objectPath>",
+        "function": "is_objectPath",
         "value": value
     }
 

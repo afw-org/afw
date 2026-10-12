@@ -54,13 +54,17 @@
 
 /*
  * Implementation of method get_data_type for interface afw_value.
+ *
+ * A built-in function is a function, like a script function or closure,
+ * not the _AdaptiveFunction_ object that describes it (get that with
+ * get_object("afw", "_AdaptiveFunction_", id)).
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    return afw_data_type_object;
+    return afw_data_type_function;
 }
 
 

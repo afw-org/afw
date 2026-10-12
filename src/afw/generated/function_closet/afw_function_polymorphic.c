@@ -719,51 +719,6 @@ afw_function_execute_intersection(
 
 
 /*
- * Common polymorphic function for is
- *
- * afw_function_execute_is
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * Checks whether value is dataType `<dataType>` and return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration, unevaluated.
- *
- * Declaration:
- *
- * ```
- *   function is <dataType>(
- *       value: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to check.
- *
- * Returns:
- *
- *   (boolean)
- */
-const afw_value_t *
-afw_function_execute_is(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
  * Common polymorphic function for is_in
  *
  * afw_function_execute_is_in

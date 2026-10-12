@@ -18,6 +18,27 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
+ * including when value is undefined, throws an error. It never converts: to
+ * get a dayTimeDuration from a value of another data type, write a typed
+ * literal or call a to_ function. This is usually written value as
+ * dayTimeDuration.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {dayTimeDuration} value, which is dataType dayTimeDuration
+ */
+export function afwAsDayTimeDuration(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_dayTimeDuration";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in dayTimeDuration array1 is in
  * dayTimeDuration array2.
  * 
@@ -202,8 +223,9 @@ export function afwIntersectionDayTimeDuration(client : any, array1 : any[], arr
 }
 
 /**
- * Checks whether value is dataType dayTimeDuration and return the boolean
- * result.
+ * Checks whether value is dataType dayTimeDuration and returns the boolean
+ * result. It is false for undefined. This can also be written
+ * `is<dayTimeDuration>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -213,7 +235,7 @@ export function afwIsDayTimeDuration(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<dayTimeDuration>";
+    _action["function"] = "is_dayTimeDuration";
     _action["value"] = value;
 
     return client.perform(_action);

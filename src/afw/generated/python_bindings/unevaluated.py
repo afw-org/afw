@@ -11,12 +11,44 @@
 import requests
 import json
 
+def as_unevaluated(session, value):
+    """
+    Asserts that value is dataType unevaluated
+
+    Returns value unchanged if it is dataType unevaluated. Otherwise,
+    including when value is undefined, throws an error. It never converts: to
+    get a unevaluated from a value of another data type, write a typed literal
+    or call a to_ function. This is usually written value as unevaluated.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType unevaluated
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_unevaluated",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def is_unevaluated(session, value):
     """
     Checks whether value is dataType unevaluated
 
-    Checks whether value is dataType unevaluated and return the boolean
-    result.
+    Checks whether value is dataType unevaluated and returns the boolean
+    result. It is false for undefined. This can also be written
+    `is<unevaluated>(value`).
 
     Args:
         value (object): Value to check
@@ -28,7 +60,7 @@ def is_unevaluated(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<unevaluated>",
+        "function": "is_unevaluated",
         "value": value
     }
 

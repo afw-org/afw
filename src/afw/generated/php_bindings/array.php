@@ -85,6 +85,31 @@ class array
     }
 
     /**
+     * as_array()
+     *
+     * Returns value unchanged if it is dataType array. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * array from a value of another data type, write a typed literal or call
+     * a to_ function. This is usually written value as array.
+     *
+     * @param $value Value to assert
+     *
+     * @return array value, which is dataType array
+     */
+    public function as_array(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_array");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at()
      *
      * Return the value at a zero-based index in an array. Negative indexes
@@ -364,7 +389,8 @@ class array
     /**
      * is_array()
      *
-     * Checks whether value is dataType array and return the boolean result.
+     * Checks whether value is dataType array and returns the boolean result.
+     * It is false for undefined. This can also be written `is<array>(value`).
      *
      * @param $value Value to check
      *
@@ -374,7 +400,7 @@ class array
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<array>");
+        $request->set("function", "is_array");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

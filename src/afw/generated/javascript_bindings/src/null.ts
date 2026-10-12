@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType null. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a null from
+ * a value of another data type, write a typed literal or call a to_ function.
+ * This is usually written value as null.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {null} value, which is dataType null
+ */
+export function afwAsNull(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_null";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of null values and returns an array of null.
  * 
  * @param {array} values -
@@ -54,7 +74,8 @@ export function afwBagSizeNull(client : any, value : any[]) : any {
 }
 
 /**
- * Checks whether value is dataType null and return the boolean result.
+ * Checks whether value is dataType null and returns the boolean result. It is
+ * false for undefined. This can also be written `is<null>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -64,7 +85,7 @@ export function afwIsNull(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<null>";
+    _action["function"] = "is_null";
     _action["value"] = value;
 
     return client.perform(_action);

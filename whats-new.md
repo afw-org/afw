@@ -29,6 +29,8 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `index_create` with a `filter` but no `value` | A `value` script and a name objects don't have (a computed name). `index_create` also refuses a script on a key an object type declares. [Index queries](#index-queries-mean-what-the-index-holds-issue-516) |
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | Data type and compile type `relaxed_json` (`relaxed_json(…)`, `compile<relaxed_json>`, `compileType` / `compile_from_file` `"relaxed_json"`) | **`relaxedJson`**, camelCase like the other data type ids. [#581](https://github.com/afw-org/afw/issues/581) |
+| `keys(add)`, `to_string(add)`, or another object function on a built-in function value | A built-in function value is now a **`function`**, like a script function (it reported `object`, its `_AdaptiveFunction_` metadata). `keys(add)` and `to_string(add)` throw; `string(add)` is `"add"`. For the metadata, `get_object("afw", "_AdaptiveFunction_", "add")`. [Type assertion](#type-assertion-v-as-t-issue-582) |
+| `is(v)` with no data type (it always returned false) | **`is<T>(v)`** or **`is_T(v)`**. `is(v)` is now a compile error, *Built-in function 'is' needs a data type*. The function id of `is_T` is now `is_T` (it was `is<T>`), so a request or client binding that names `is<integer>` by id names `is_integer`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | Authorization handlers that deny what they do not recognize, where a journal is used | Journal operations are now **authorized like object operations**, on **`/<adapter>/_AdaptiveJournalEntry_/…`**: **`create`** on `…/` (add an entry), **`read`** on everything else: `…/<cursor>` (the entry at a cursor) and the special objectId of the other operations (`…/get_first`, `…/get_next_for_consumer:<consumer_id>`, `…/mark_consumed:<consumer_id>:<cursor>`, …). A built-in and its REST form are checked on the same path, without any `:<limit>`, so a handler can permit one consumer and not another. Mark consumed over REST is `GET …/mark_consumed:<consumer_id>:<cursor>`, the same as `journal_mark_consumed()`; consumer forms with no `:<limit>` have no limit, the same as the built-ins. A limit, REST or built-in, must be 1 or more (a built-in limit of 0 or less is now **`argument_error`**; it used to mean no limit). Entries an adapter writes for its own object changes are not checked. [#520](https://github.com/afw-org/afw/issues/520) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
@@ -125,6 +127,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | Area | What changed |
 |------|----------------|
 | [**Typed literals**](#typed-literals-issue-581) ([#581](https://github.com/afw-org/afw/issues/581)) | `"2026-10-11T12:00:00Z"dateTime`, `'…'dt`, `"https://example.com/"uri`: a string literal plus a data type suffix, read at compile time; bad text is a compile error |
+| [**Type assertion `v as T`**](#type-assertion-v-as-t-issue-582) ([#582](https://github.com/afw-org/afw/issues/582)) | `v as date` returns `v` if it is a date and throws if not, saying how to get one (`"…"date`, `to_date(v)`); it never converts. One `as_T(v)` function per data type. `is<T>` needs its data type |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -564,13 +567,47 @@ assert(is<dateTime>(when) && when == same);
 
 `integer`, `double`, `boolean`, `string`, `object`, and `array` have their own literals. `retrieve_objects("afw", "_AdaptiveTypedLiteralSuffix_")` lists every suffix at run time (object id = suffix, properties `dataType` and `typedLiteralShortForm`).
 
-Existing `dateTime("…")`-style calls still work. They are replaced by typed literals, `v as T`, and `to_T(s)` in later steps of [#580](https://github.com/afw-org/afw/issues/580) ([#589](https://github.com/afw-org/afw/issues/589)), so new script should use typed literals now.
+Existing `dateTime("…")`-style calls still work. They are replaced by typed literals, [`v as T`](#type-assertion-v-as-t-issue-582), and `to_T(s)` in later steps of [#580](https://github.com/afw-org/afw/issues/580) ([#589](https://github.com/afw-org/afw/issues/589)), so new script should use typed literals now.
 
 **Data type authors (C / metadata):** `_AdaptiveDataType_` has two new properties, **`typedLiteral`** (boolean) and **`typedLiteralShortForm`**, carried on `afw_data_type_t` as `typed_literal` / `typed_literal_short_form`. Registering a data type registers its id and short form as suffixes (`afw_environment_get_typed_literal_suffix()`). A suffix that is already registered, or a short form that is another data type's id, **fails at startup**. Core uses short forms like `dt` and `ip`, so give an extension's data types longer short forms or a prefix of your own.
 
 Also on this branch: data type and compile type **`relaxed_json` is now `relaxedJson`** (see [Must change](#script-authors)).
 
 Handbook: [#590](https://github.com/afw-org/afw/issues/590). Tests: `src/afw/tests/compiler/typed_literals.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Type assertion `v as T` (issue [#582](https://github.com/afw-org/afw/issues/582))
+
+`v as T` asserts that `v` is data type `T`: it returns `v` if it is, and throws **`argument_error`** if it is not. It **never converts**. The error says how to get a `T` instead when there is a way:
+
+```adaptive
+const d = "2026-10-11"date as date;   // a date
+"2026-10-11" as date;   // Type assertion failed: expected date but got string; write "2026-10-11"date or to_date(v)
+5 as double;            // Type assertion failed: expected double but got integer; write to_double(v)
+null as string;         // Type assertion failed: expected string but got null
+```
+
+- Spelled and placed like a TypeScript type assertion: `as` binds like a comparison, so `a + b as integer` asserts the sum and `x as T == y` is `(x as T) == y`. Unlike TypeScript, it is checked at run time. Arithmetic after it needs parentheses: `(v as integer) + 1` (*Write (v as T) in parentheses …*).
+- `null` is its own data type, so `null as string` is an error and `null as null` is fine. `undefined as T` is an error (*expected string but got undefined*). There is no `as undefined`: test with `v === undefined`.
+- For now `T` is a data type, or a `type` alias of one. Other Types (`v as string[]`, `v as integer | null`, interfaces) and `as any` are a compile error. They will check at run time later.
+- Under **`#compile typeCheck`** (or `compile:typeCheck`), a value whose type is already known not to be `T` is a compile error with the same hint: *Type error in type assertion: expected date but got string; …*.
+- Each `v as T` is the function **`as_T(v)`**, one for each data type that has `is_T`; `as_T(v)` can be called directly. `decompile` writes `(v as T)`. `as` is a keyword, so there is no `as<T>(v)`.
+- To use the asserted value, put it in parentheses: `(v as object).name`, `(s as string)->length()`. Any parenthesized expression can now be called and have its members accessed, as in TypeScript: `(a ?? b)?.[k]`, `({a: 1}).a`, `([1, 2])[0]` (they used to be syntax errors).
+
+**`is<T>` needs its data type.** `is(v)`, which was accepted and always returned false, is now a compile error. `is<T>(v)` and `is_T(v)` are **false for undefined** (they threw *can not be undefined*), so `is<T>(v)` is true exactly when `v as T` does not throw. The data type specific functions of `is` and `as` are plain functions named `is_T` and `as_T`, so their **function id** is `is_integer`, not `is<integer>` (see [Must change](#script-authors)).
+
+A **built-in function value is a `function`**, like a script function: `is<function>(add)` is true and `add as function` passes. It used to report `object` (see [Must change](#script-authors)).
+
+Type annotations accept `null` and `undefined` as data types too (`let x: integer | null = null;`).
+
+A statement that starts with `(` and then `{` or `[` destructures only if an assignment operator follows the matching `}` or `]`: `({a, b} = o);` as before, and now also `([a, b] = arr);`. Otherwise it is an expression, so `({a: 1});` gets the same error as `[1];` (an expression statement must be a call), not *Invalid assignment target*.
+
+**Metadata authors:** `_AdaptivePolymorphicFunction_` has a new **`dataTypeRequired`** flag (used by `is` and `as`). With it, no function is registered for the id itself, and each `X_T` is a plain function with function id `X_T` and **`untypedFunctionId`** `X` (a new optional `_AdaptiveFunctionGenerate_` property), so `X<T>` still names it.
+
+Handbook: [#590](https://github.com/afw-org/afw/issues/590). Tests: `src/afw/tests/compiler/type_assertion.as`, `src/afw/tests/language/script/parenthesized_expression.as`.
 
 [↑ Highlights](#highlights)
 

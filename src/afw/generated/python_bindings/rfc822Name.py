@@ -11,6 +11,37 @@
 import requests
 import json
 
+def as_rfc822Name(session, value):
+    """
+    Asserts that value is dataType rfc822Name
+
+    Returns value unchanged if it is dataType rfc822Name. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    rfc822Name from a value of another data type, write a typed literal or
+    call a to_ function. This is usually written value as rfc822Name.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType rfc822Name
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_rfc822Name",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_rfc822Name(session, array1, array2):
     """
     Checks for at least one value in common
@@ -293,7 +324,9 @@ def is_rfc822Name(session, value):
     """
     Checks whether value is dataType rfc822Name
 
-    Checks whether value is dataType rfc822Name and return the boolean result.
+    Checks whether value is dataType rfc822Name and returns the boolean
+    result. It is false for undefined. This can also be written
+    `is<rfc822Name>(value`).
 
     Args:
         value (object): Value to check
@@ -305,7 +338,7 @@ def is_rfc822Name(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<rfc822Name>",
+        "function": "is_rfc822Name",
         "value": value
     }
 

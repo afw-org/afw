@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType objectPath. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * objectPath from a value of another data type, write a typed literal or call
+ * a to_ function. This is usually written value as objectPath.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {objectPath} value, which is dataType objectPath
+ */
+export function afwAsObjectPath(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_objectPath";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of objectPath values and returns an array of objectPath.
  * 
  * @param {array} values -
@@ -140,7 +160,9 @@ export function afwGtObjectPath(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks whether value is dataType objectPath and return the boolean result.
+ * Checks whether value is dataType objectPath and returns the boolean result.
+ * It is false for undefined. This can also be written
+ * `is<objectPath>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -150,7 +172,7 @@ export function afwIsObjectPath(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<objectPath>";
+    _action["function"] = "is_objectPath";
     _action["value"] = value;
 
     return client.perform(_action);

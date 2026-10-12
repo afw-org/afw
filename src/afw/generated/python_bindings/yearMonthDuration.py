@@ -11,6 +11,38 @@
 import requests
 import json
 
+def as_yearMonthDuration(session, value):
+    """
+    Asserts that value is dataType yearMonthDuration
+
+    Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
+    including when value is undefined, throws an error. It never converts: to
+    get a yearMonthDuration from a value of another data type, write a typed
+    literal or call a to_ function. This is usually written value as
+    yearMonthDuration.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType yearMonthDuration
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_yearMonthDuration",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_yearMonthDuration(session, array1, array2):
     """
     Checks for at least one value in common
@@ -294,8 +326,9 @@ def is_yearMonthDuration(session, value):
     """
     Checks whether value is dataType yearMonthDuration
 
-    Checks whether value is dataType yearMonthDuration and return the boolean
-    result.
+    Checks whether value is dataType yearMonthDuration and returns the boolean
+    result. It is false for undefined. This can also be written
+    `is<yearMonthDuration>(value`).
 
     Args:
         value (object): Value to check
@@ -307,7 +340,7 @@ def is_yearMonthDuration(session, value):
     request = session.Request()
 
     action = {
-        "function": "is<yearMonthDuration>",
+        "function": "is_yearMonthDuration",
         "value": value
     }
 

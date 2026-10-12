@@ -20,6 +20,14 @@
             "label": "Data Type Method",
             "required": false
         },
+        "dataTypeRequired": {
+            "allowQuery": true,
+            "brief": "A data type is required",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "If true, no function is registered for functionId itself. Each data type specific function is a plain function whose functionId is functionId_dataType, such as is_string, and functionId<dataType>, such as is<string>, is another way to call it. Use this when the data type is what the function is about (is, as), not the data type of its first parameter.",
+            "label": "Data Type Required"
+        },
         "errorsThrown": {
             "brief": "Errors thrown by this function",
             "dataType": "array",

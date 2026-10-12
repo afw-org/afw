@@ -64,6 +64,26 @@ export function afwApplyObjectOptions(client : any, object : object, options? : 
 }
 
 /**
+ * Returns value unchanged if it is dataType object. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a object
+ * from a value of another data type, write a typed literal or call a to_
+ * function. This is usually written value as object.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {object} value, which is dataType object
+ */
+export function afwAsObject(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_object";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of object values and returns an array of object.
  * 
  * @param {array} values -
@@ -241,7 +261,8 @@ export function afwGtObject(client : any, arg1 : object, arg2 : object) : any {
 }
 
 /**
- * Checks whether value is dataType object and return the boolean result.
+ * Checks whether value is dataType object and returns the boolean result. It
+ * is false for undefined. This can also be written `is<object>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -251,7 +272,7 @@ export function afwIsObject(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<object>";
+    _action["function"] = "is_object";
     _action["value"] = value;
 
     return client.perform(_action);

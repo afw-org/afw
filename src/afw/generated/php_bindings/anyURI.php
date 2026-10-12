@@ -48,6 +48,31 @@ class anyURI
     }
 
     /**
+     * as_anyURI()
+     *
+     * Returns value unchanged if it is dataType anyURI. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * anyURI from a value of another data type, write a typed literal or call
+     * a to_ function. This is usually written value as anyURI.
+     *
+     * @param $value Value to assert
+     *
+     * @return anyURI value, which is dataType anyURI
+     */
+    public function as_anyURI(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_anyURI");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_anyURI()
      *
      * Returns boolean true if at least one value in anyURI array1 is in
@@ -335,7 +360,9 @@ class anyURI
     /**
      * is_anyURI()
      *
-     * Checks whether value is dataType anyURI and return the boolean result.
+     * Checks whether value is dataType anyURI and returns the boolean result.
+     * It is false for undefined. This can also be written
+     * `is<anyURI>(value`).
      *
      * @param $value Value to check
      *
@@ -345,7 +372,7 @@ class anyURI
     {
         $request = $this->$session->request();
 
-        $request->set("function", "is<anyURI>");
+        $request->set("function", "is_anyURI");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

@@ -593,24 +593,6 @@ export function afwIntersection(client : any, array1 : any[], array2 : any[]) : 
 }
 
 /**
- * Checks whether value is dataType `<dataType>` and return the boolean
- * result.
- * 
- * @param {} value - Value to check
- * 
- * @returns {boolean}
- */
-export function afwIs(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "is";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Checks whether `<dataType>` value is in array of `<dataType>` array and
  * returns the boolean result. Empty array yields false.
  * 

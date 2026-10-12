@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    as_xpathExpression 
     bag_size_xpathExpression 
     bag_xpathExpression 
     compile_xpathExpression 
@@ -40,6 +41,20 @@ afw::xpathExpression - Perl module for xpathExpression functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 as_xpathExpression
+
+Returns value unchanged if it is dataType xpathExpression. Otherwise,
+including when value is undefined, throws an error. It never converts: to get
+a xpathExpression from a value of another data type, write a typed literal or
+call a to_ function. This is usually written value as xpathExpression.
+Asserts that value is dataType xpathExpression
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 bag_size_xpathExpression
 
@@ -167,8 +182,9 @@ Checks for greater than
 
 =head3 is_xpathExpression
 
-Checks whether value is dataType xpathExpression and return the boolean
-result.
+Checks whether value is dataType xpathExpression and returns the boolean
+result. It is false for undefined. This can also be written
+`is<xpathExpression>(value`).
 Checks whether value is dataType xpathExpression
 
 =head4 Parameters
@@ -301,6 +317,17 @@ Checks whether two node-sets or their children have an equal node
 
 =cut
 
+sub as_xpathExpression {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_xpathExpression");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub bag_size_xpathExpression {
     my ($value) = @_;
 
@@ -406,7 +433,7 @@ sub is_xpathExpression {
 
     my $request = $session->request()
 
-    $request->set("function" => "is<xpathExpression>");
+    $request->set("function" => "is_xpathExpression");
     $request->set("value", $value);
 
     return $request->getResult();

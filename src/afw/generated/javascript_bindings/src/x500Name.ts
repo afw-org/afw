@@ -18,6 +18,26 @@ interface IAnyObject {
 }
 
 /**
+ * Returns value unchanged if it is dataType x500Name. Otherwise, including
+ * when value is undefined, throws an error. It never converts: to get a
+ * x500Name from a value of another data type, write a typed literal or call a
+ * to_ function. This is usually written value as x500Name.
+ * 
+ * @param {} value - Value to assert
+ * 
+ * @returns {x500Name} value, which is dataType x500Name
+ */
+export function afwAsX500Name(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "as_x500Name";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in x500Name array1 is in
  * x500Name array2.
  * 
@@ -203,7 +223,8 @@ export function afwIsInX500Name(client : any, value : any, array : any[]) : any 
 }
 
 /**
- * Checks whether value is dataType x500Name and return the boolean result.
+ * Checks whether value is dataType x500Name and returns the boolean result.
+ * It is false for undefined. This can also be written `is<x500Name>(value`).
  * 
  * @param {} value - Value to check
  * 
@@ -213,7 +234,7 @@ export function afwIsX500Name(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "is<x500Name>";
+    _action["function"] = "is_x500Name";
     _action["value"] = value;
 
     return client.perform(_action);
