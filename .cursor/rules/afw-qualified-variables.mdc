@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Qualified variables (stack + issue #9 snapshots)
 
-Use when editing the **qualifier stack**, `qualifier()` / `qualifiers()`, push/contribute sites, or model/app context bags.
+Use when editing the **qualifier stack**, `qualifier()` / `qualifiers()`, push/contribute sites, or model/app context variables.
 
 ## Two access paths
 
@@ -15,7 +15,7 @@ Use when editing the **qualifier stack**, `qualifier()` / `qualifiers()`, push/c
 | **`qualifier::name` (get)** | Hot path. Walk **most recent → older** matching **visible** frames; first frame whose **`get_cb` returns non-NULL** wins for that name. |
 | **`qualifier(q)` / `qualifiers()`** | Debug / tools / tests. Build a **fresh memory object** via **`contribute_cb`** (not a live proxy). Not for tight production loops. |
 
-Same stack, same visibility rules, same **first defining frame per name** semantics — not a second security model. Snapshot materializes bags; get answers one name.
+Same stack, same visibility rules, same **first defining frame per name** semantics — not a second security model. Snapshot materializes objects; get answers one name.
 
 ### get_cb contract
 
@@ -61,7 +61,7 @@ Frame `secure` = how the entry was **pushed** (never push client context as trus
 
 ## Model / authoring
 
-- Model `on*` hooks document bags via generate OT **`contextType`** and short property descriptions (`afw-model-adapter`). Optional `qualifier("current")` is debug/tools only.
+- Model `on*` hooks document their variables via generate OT **`contextType`** and short property descriptions (`afw-model-adapter`). Optional `qualifier("current")` is debug/tools only.
 - **custom::** multi-layer redesign still deferred (residual names under property-level `on*` risk) — see beta-backlog.
 
 ## Script-facing: catalogs vs working objects

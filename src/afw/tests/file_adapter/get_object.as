@@ -70,7 +70,7 @@ return 0;
 //? test: get_object-mutable-face-no-clone
 //? description: ...
 Issue #17: get_object returns a mutable face — set properties without clone().
-Second get still sees store data (mutation stays on the face, not the bag).
+Second get still sees store data (mutation stays on the face, not the stored object).
 //? skip: false
 //? expect: 0
 //? source: ...

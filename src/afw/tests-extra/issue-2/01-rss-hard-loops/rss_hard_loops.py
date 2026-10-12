@@ -110,7 +110,7 @@ WORKLOADS = [
           max_in_use_b_s=128 * 1024),
     _flat("managed_create_assign",
           "create_managed extra-hold then assign "
-          "(reverse/slice/filter/map/sort/bag/keys/entries/…)"),
+          "(reverse/slice/filter/map/sort/array/keys/entries/…)"),
     _flat("managed_create_unassigned",
           "create_managed extra-hold never assigned (last stmt add())"),
     _flat("clone_assign",

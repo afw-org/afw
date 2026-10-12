@@ -61,7 +61,7 @@ Short form first; “means in practice” second. Several of these are already e
 |--------|-------------------|
 | **Values first** | Adaptive values (`afw_value`) are central — script, compile results, calls, closures, much data. For memory and eval questions, think **value policy** before ad-hoc C free lists. |
 | **Pools and escape are the memory story** | Hierarchical pools / subpools for bulk lifetime; refcount / managed policy for what **escapes**. Short request teardown was the proven path; long-running work must be honest about escape (**#2**). |
-| **Immutability first (script graph)** | Eval is a value graph evaluated lazily; mutation is deliberate, not “everything is a mutable bag.” |
+| **Immutability first (script graph)** | Eval is a value graph evaluated lazily; mutation is deliberate, not “everything is mutable state.” |
 | **Adaptive on its own terms** | Teach and document Adaptive as itself. Borrow familiarity carefully; do not pretend it is TypeScript/JS or revive **bag** language for objects. **Object** + **properties**; **array** for ordered collections. |
 | **Interfaces are the developer API** | Call macros and generated contracts are what builders should learn first — not `inf` arrow spelunking as the primary teaching path. |
 | **Discover what you registered** | What lives in the environment should be **readable as runtime objects** (`adapterId=afw`). Registration without a discoverable face is a half-story. |

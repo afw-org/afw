@@ -7,7 +7,7 @@
 //?
 //? test: all_of-1
 //? description: ...
-True because the first argument (10) is greater than all of the elements of the bag (9,3,4 and 2).
+True because the first argument (10) is greater than all of the elements of the array (9,3,4 and 2).
 //? expect: boolean(true)
 //? source: ...
 
@@ -25,7 +25,7 @@ all_of(
 //?
 //? test: all_of-2
 //? description: ...
-false because the first argument (10) is not greater than all of the elements of the bag (9,3,4 and 2).
+false because the first argument (10) is not greater than all of the elements of the array (9,3,4 and 2).
 //? expect: boolean(false)
 //? source: ...
 

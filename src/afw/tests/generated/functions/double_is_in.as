@@ -6,7 +6,7 @@
 //? sourceType: script
 //?
 //? test: is_in<double>-1
-//? description: In bag
+//? description: In array
 //? expect: boolean(true)
 //? source: ...
 
@@ -22,7 +22,7 @@ is_in<double>(
 
 //?
 //? test: is_in<double>-2
-//? description: In bag
+//? description: In array
 //? expect: boolean(true)
 //? source: ...
 
@@ -38,7 +38,7 @@ is_in<double>(
 
 //?
 //? test: is_in<double>-3
-//? description: Not in bag
+//? description: Not in array
 //? expect: boolean(false)
 //? source: ...
 

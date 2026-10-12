@@ -134,7 +134,7 @@ afw_array_to_managed(
 
 
 /**
- * @brief True if array is the new managed memory bag (p->managed_p, slots).
+ * @brief True if array is a managed memory array (p->managed_p, slots).
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory_managed(const afw_array_t *array);

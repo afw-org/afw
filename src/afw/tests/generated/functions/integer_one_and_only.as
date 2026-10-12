@@ -8,7 +8,7 @@
 //? test: one_and_only<integer>-1
 //? description: ...
 
-            Integer one and only for bag:
+            Integer one and only for array:
             { 1 }
         
 //? expect: 1
@@ -24,7 +24,7 @@ one_and_only<integer>(
 //? test: one_and_only<integer>-2
 //? description: ...
 
-            Integer one and only for bag:
+            Integer one and only for array:
             { 1, 2, 3, 4, 5 }
         
 //? expect: error
@@ -44,7 +44,7 @@ one_and_only<integer>(
 //? test: one_and_only<integer>-3
 //? description: ...
 
-            Integer one and only for bag:
+            Integer one and only for array:
             { }
         
 //? expect: error

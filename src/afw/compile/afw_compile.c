@@ -521,7 +521,7 @@ afw_compile_templates(
                 detail_source_location, true, shared, xctx);
         }
 
-        /** @fixme Support bags and lists? */
+        /** @fixme Support arrays? */
     }
 }
 

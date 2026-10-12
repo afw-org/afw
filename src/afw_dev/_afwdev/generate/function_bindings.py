@@ -213,7 +213,7 @@ def function_arg(fd, arg):
     if arg.get('polymorphicDataType', False) == True:
         line += '`<Type>`'
     elif arg.get('polymorphicDataTypeParameter', False) == True:
-        # e.g. bag values: ArrayOf specialized element → `<Type>`[]
+        # e.g. array<T> values: array of specialized element → `<Type>`[]
         if arg.get('dataType') == 'array':
             line += '`<Type>`[]'
         else:

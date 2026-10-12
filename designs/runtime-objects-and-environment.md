@@ -368,7 +368,7 @@ Permanent static object
   path: /afw/_AdaptiveEnvironmentRegistry_/current
   get_property(registryTypePropertyName)
     → resolve registry type by property name
-    → afw_object_create(xctx->p)          // request/xctx pool bag
+    → afw_object_create(xctx->p)          // request/xctx pool object
     → afw_runtime_foreach(object_type_id) // each registered entry
     → set property objectId → object
     → return unmanaged object value
@@ -382,7 +382,7 @@ Implications:
 - Same data is available as typed retrieve (`/afw/_AdaptiveFunction_/…`, etc.) without building the aggregation shell.
 - Nested entries are still normal runtime objects (const or mapped); the shell does not deep-clone their property payloads.
 
-This is the right mental model for admin “big object” behavior: **composition + materialize-on-get**, not one giant static bag of the whole process.
+This is the right mental model for admin “big object” behavior: **composition + materialize-on-get**, not one giant static object of the whole process.
 
 ### 7.4 Custom retrieve/get
 

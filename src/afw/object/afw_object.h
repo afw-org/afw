@@ -637,7 +637,7 @@ afw_object_get_property_to_null_terminated_values(
  * @param xctx of caller.
  * @return NULL terminated list of strings or NULL if value is NULL.
  *
- * The value can be a list, bag, or scalar.
+ * The value can be an array or a single value.
  */
 AFW_DECLARE(const afw_utf8_t * const *)
 afw_object_get_property_convert_to_null_terminated_utf8(
@@ -848,7 +848,7 @@ afw_object_create_wrapper_managed(
  * @return managed object (reference count 1), or from if already
  *     this managed implementation (get_reference).
  *
- * Deep clone into a managed memory bag. Nested objects become
+ * Deep clone into a managed memory object. Nested objects become
  * managed embedded (embedding_object + id so path composes). Nested
  * arrays are afw_array_to_managed. A new property name is
  * get_assignable_value (names do not change on replace). Sideband
@@ -979,7 +979,7 @@ afw_object_is_memory_wrapper(const afw_object_t *object);
 
 
 /**
- * @brief True if object is the new managed memory bag (p->managed_p, slots).
+ * @brief True if object is a managed memory object (p->managed_p, slots).
  * @param object to test (may be NULL).
  */
 AFW_DECLARE(afw_boolean_t)

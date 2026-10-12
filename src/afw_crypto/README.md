@@ -29,7 +29,7 @@ The srcdir is optional (`optionalChoiceDefault: true` in `afw-package.json`).
 | `crypto_hmac` / `crypto_hmac_verify` | HMAC-SHA-256 / HMAC-SHA-512 |
 | `crypto_import_key` / `crypto_generate_key` / `crypto_export_key` / `crypto_destroy_key` | Process keystore |
 | `crypto_encrypt` / `crypto_decrypt` | AES-GCM (auto IV; tag on algorithm object) — **hard path** |
-| `crypto_seal` / `crypto_unseal` | AES-GCM convenience bag — **easy path** |
+| `crypto_seal` / `crypto_unseal` | AES-GCM convenience object — **easy path** |
 | `crypto_derive_key` | PBKDF2-HMAC-SHA256 (default 600000 iterations, min 100000) |
 
 Binary parameters accept **base64Binary** or **hexBinary**. Keys may be:
@@ -51,7 +51,7 @@ Encrypt/decrypt/seal/unseal work on **octets** (`base64Binary` / `hexBinary`).
 - **`string(binary)`** / display formatting → base64 (or hex) **printable text**, not the UTF-8 of the octets.
 - **`decode_to_string(binary)`** → octets as UTF-8 (throws if invalid). Use for passwords and any binary that is really UTF-8 text.
 - **`encode_as_base64Binary(text)`** → UTF-8 string as binary before encrypt/seal.
-- **`stringify(value)`** → **pure JSON** text from an evaluated value. Binary properties emit as base64 **JSON strings**; use for portable sealed bags. Optional replacer function or property-name array; optional whitespace.
+- **`stringify(value)`** → **pure JSON** text from an evaluated value. Binary properties emit as base64 **JSON strings**; use for portable sealed objects. Optional replacer function or property-name array; optional whitespace.
 - **`decompile(value)`** → Adaptive **compiled form** as text (e.g. `"…"base64Binary`), not pure JSON.
 
 ### Easy path: `crypto_seal` / `crypto_unseal`

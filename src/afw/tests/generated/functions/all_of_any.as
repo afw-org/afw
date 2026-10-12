@@ -7,7 +7,7 @@
 //?
 //? test: all_of_any-1
 //? description: ...
-true because each of the elements of the first bag is greater than at least one of the elements of the second bag. 
+true because each of the elements of the first array is greater than at least one of the elements of the second array. 
 //? expect: boolean(true)
 //? source: ...
 
@@ -27,7 +27,7 @@ all_of_any(
 //?
 //? test: all_of_any-2
 //? description: ...
-false because each of the elements of the first bag is not greater than at least one of the elements of the second bag. 
+false because each of the elements of the first array is not greater than at least one of the elements of the second array. 
 //? expect: boolean(false)
 //? source: ...
 

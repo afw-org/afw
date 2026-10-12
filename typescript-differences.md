@@ -212,7 +212,7 @@ How Adaptive Script **works** for these items — not a temporary “not yet” 
 | `for-in` | Use `keys` / `values` / `entries` + `for-of` |
 | Full advanced TypeScript type system | No merge-bar for generics, `keyof`, conditionals, mapped types, `ReadonlyArray`, etc. |
 | TypeScript **`Array<T>`** type spelling | Use **`T[]` only**; same meaning in TypeScript, one form in Adaptive |
-| **Index signatures** on object types (`{ [key: string]: T }`, numeric keys, or known fields plus an open tail) | Script object types list **known properties** only. Free-form bags: use data types **`object`** or **`any`**, or leave type checking off for that unit. Schemas the framework owns: **Adaptive object types** and adapters — script `interface` is not that catalog. The Adaptive **JavaScript client** may use index signatures when typing open Adaptive objects in the host app; that is a different layer. The index form is not Adaptive Script type syntax. |
+| **Index signatures** on object types (`{ [key: string]: T }`, numeric keys, or known fields plus an open tail) | Script object types list **known properties** only. Free-form objects: use data types **`object`** or **`any`**, or leave type checking off for that unit. Schemas the framework owns: **Adaptive object types** and adapters — script `interface` is not that catalog. The Adaptive **JavaScript client** may use index signatures when typing open Adaptive objects in the host app; that is a different layer. The index form is not Adaptive Script type syntax. |
 | **Literal types** (`"read"`, `1`, `true` as types; unions like `"a" \| "b"`) | Type leaves are Adaptive **data types** only. There is no TypeScript-style value-level type lattice and no control-flow narrowing for discriminants. Use `string` / `integer` / `boolean` (and ordinary unions of those); check specific values at run time when needed; framework vocabularies often live as **allowed values** on Adaptive property / object types (same spirit as generated UI props that stay `string` with a prose list). |
 | **`readonly` in script types** (properties, tuples, arrays, `ReadonlyArray`-style forms) | Not part of the Adaptive Script type language. Non-writable **Adaptive object** properties use Adaptive object types / property meta (for example **allow write**), enforced on **write paths at run time** and reflected in the admin UI — not a script type modifier. In script, use **`const`** and runtime helpers such as **freeze** for bindings and values. |
 | **Richer tuple types** (optional elements such as `[T, U?]`, rest such as `[T, ...U[]]`, labeled `[x: T, y: U]`) | Adaptive Script has **fixed-length** tuples only: `[T, U, …]` with length and per-position checks. Open-ended sequences use **`T[]`**. Optional structure often fits an object shape better than a variable-length tuple. Rest on **function** parameter types is separate and already exists. |
@@ -274,7 +274,7 @@ Strings stay **immutable** (no `s[i] = …`). Character access is via functions 
 
 | You want (TS habit) | Adaptive |
 |---------------------|----------|
-| Options bag parameter | Pattern formal + default `= {}` |
+| Options object parameter | Pattern formal + default `= {}` |
 | Optional property type | `port?: integer` |
 | `obj.method(a)` | `method(obj, a)` or `obj->method(a)` when available |
 | `Object.keys` / `entries` | `keys(o)` / `entries(o)` |

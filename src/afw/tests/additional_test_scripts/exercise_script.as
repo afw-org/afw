@@ -11,7 +11,7 @@
 //? source: ...
 
 
-// Grab-bag script. Prefer assert() over print().
+// Miscellaneous script. Prefer assert() over print().
 
 let s: string;
 

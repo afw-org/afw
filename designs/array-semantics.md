@@ -7,7 +7,7 @@
 
 - Ordered **dense** sequence of values (data type **`array`**).
 - **Not** an object: no property model, no sparse “missing index,” no ES exotic array.
-- XACML **bag-*** builtins may **store** arrays and apply bag **function** semantics; script still sees `array`.
+- XACML-derived set builtins (`is_in`, `union`, `intersection`, `subset`, …) take arrays and apply multiset **function** semantics; script sees `array`.
 
 ## Literals and content types
 

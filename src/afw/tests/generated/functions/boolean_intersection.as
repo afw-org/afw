@@ -8,7 +8,7 @@
 //? test: intersection<boolean>-1
 //? description: ...
 
-            Boolean intersection of two empty bags.
+            Boolean intersection of two empty arrays.
         
 //? expect: ...
 
@@ -28,7 +28,7 @@ intersection<boolean>(
 //? test: intersection<boolean>-2
 //? description: ...
 
-            Boolean intersection of bags:
+            Boolean intersection of arrays:
             { 'true', 'true', 'false' },
             { 'false', 'true' }
         
@@ -57,7 +57,7 @@ intersection<boolean>(
 //? test: intersection<boolean>-3
 //? description: ...
 
-            Boolean intersection of bags:
+            Boolean intersection of arrays:
             { 'false', 'false', 'false', 'false' },
             { 'false', 'true' }
         
@@ -86,7 +86,7 @@ intersection<boolean>(
 //? test: intersection<boolean>-4
 //? description: ...
 
-            Boolean intersection of bags:
+            Boolean intersection of arrays:
             { 'true' },
             { 'false', 'false', 'false', 'false' }
         

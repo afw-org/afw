@@ -65,7 +65,7 @@ impl_over_array(
      * walked sequence; only then fall back to materializing the first
      * keyless-iterator value (utf8 code points) via convert_to_array_sequence
      * (#153). Do not materialize every string arg — filter/find/any_of
-     * pass scalar string thresholds next to the bag.
+     * pass scalar string thresholds next to the array.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
         functor_argv[e.n] = afw_value_evaluate(
@@ -236,7 +236,7 @@ impl_of(
 }
 
 static const afw_value_t *
-impl_bag_of_bag(
+impl_array_of_array(
     afw_function_execute_t *x,
     afw_boolean_t all_1, afw_boolean_t all_2)
 {
@@ -409,7 +409,7 @@ const afw_value_t *
 afw_function_execute_all_of_all(
     afw_function_execute_t *x)
 {
-    return impl_bag_of_bag(x, true, true);
+    return impl_array_of_array(x, true, true);
 }
 
 
@@ -455,7 +455,7 @@ const afw_value_t *
 afw_function_execute_all_of_any(
     afw_function_execute_t *x)
 {
-    return impl_bag_of_bag(x, true, false);
+    return impl_array_of_array(x, true, false);
 }
 
 
@@ -548,7 +548,7 @@ const afw_value_t *
 afw_function_execute_any_of_all(
     afw_function_execute_t *x)
 {
-    return impl_bag_of_bag(x, false, true);
+    return impl_array_of_array(x, false, true);
 }
 
 
@@ -594,7 +594,7 @@ const afw_value_t *
 afw_function_execute_any_of_any(
     afw_function_execute_t *x)
 {
-    return impl_bag_of_bag(x, false, false);
+    return impl_array_of_array(x, false, false);
 }
 
 

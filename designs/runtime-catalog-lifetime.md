@@ -28,7 +28,7 @@
 
 1. **Const / permanent** — e.g. large generated `afw_const_objects.c` (object types, metadata). Process lifetime, immutable, paid once at load.
 2. **Runtime mapped** — `afw_runtime` object maps: property get → **accessor** over **offset into live C struct** (or custom accessor). Immutable (`get_setter` NULL). Release/get_reference often no-ops.
-3. **Custom “current” shells** — e.g. `/afw/_AdaptiveEnvironmentRegistry_/current`: permanent shell; **properties materialize** nested bags of registered entries on get.
+3. **Custom “current” shells** — e.g. `/afw/_AdaptiveEnvironmentRegistry_/current`: permanent shell; **properties materialize** nested objects of registered entries on get.
 
 Default value accessor path (`afw_runtime_value_accessor_default`): builds an Adaptive value with `afw_value_common_create` — **memcpy of the data-type’s internal size**. Scalars are snapshotted bits; `afw_utf8_t` copies the struct (pointer + len) so **bytes still live where `s` points**; pointer types copy the pointer.
 
@@ -36,7 +36,7 @@ Default value accessor path (`afw_runtime_value_accessor_default`): builds an Ad
 
 - **Between two property gets:** no full-tree consistency; mid-update possible if env mutates. After boot, registries are mostly append-only / controlled reregister.
 - **Dangling pointers:** mainly if something **unloads/frees** while a request still holds a value that points into that memory — not typical steady-state admin browse.
-- **Not** the same as #17 shared mutable bags.
+- **Not** the same as #17 shared mutable objects and arrays.
 
 ### Materialize cost (the “huge object” worry)
 

@@ -786,7 +786,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             (!afw_value_is_integer(value) ||
             ((afw_value_integer_t *)value)->internal != 0))
         {
-            s = afw_value_convert_to_casted_utf8(value, p, xctx);
+            s = afw_value_decompile_to_string(value, NULL, p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Application onApplicationStartupComplete script returned value "
                 "other than 0 - %ku",

@@ -63,7 +63,7 @@ def run():
 
     again = get_string_label(opts, long_a, 'Q')
     tests.append(_case(
-        'reuse-same-bag',
+        'reuse-same-label',
         'same value in one generate reuses the label',
         again == core,
         None if again == core else again,

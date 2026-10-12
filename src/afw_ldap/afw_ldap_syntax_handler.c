@@ -1055,7 +1055,7 @@ impl_syntax_handler_list_unknown_to_ber(
     void *data, const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    /* Bag binary will handle afw_utf8_t and afw_memory_t. */
+    /* List binary will handle afw_utf8_t and afw_memory_t. */
     return impl_syntax_handler_list_binary_to_ber(
         attribute_type, data, value, p, xctx);
 }

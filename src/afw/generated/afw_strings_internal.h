@@ -757,6 +757,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__02b711da613e \
+    "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object. During evaluation, current:: includes property-level names (contextType modelGetProperty: mappedObject, mappedValue, mappedPropertyName, … as applicable). qualifier(\"current\") can snapshot them for debug/tools (not for hot paths)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__02b711da613e */
+#define afw_s_zz__02b711da613e \
+    (&afw_self_v_zz__02b711da613e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__02b711da613e */
+#define afw_self_s_zz__02b711da613e \
+    (afw_self_v_zz__02b711da613e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__02b711da613e */
+extern const afw_value_string_t \
+    afw_self_v_zz__02b711da613e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__02b711da613e */
+#define afw_z_zz__02b711da613e \
+    (afw_self_v_zz__02b711da613e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__02b711da613e */
+#define afw_v_zz__02b711da613e \
+    (&afw_self_v_zz__02b711da613e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__02bbedb42abb \
     "Checks for template arg1 is greater than template arg2 and return the boolean result."
 
@@ -6971,6 +6997,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__1a5f5a3c05df \
+    "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests. Uses the same property-level current:: variables as onGetProperty (contextType modelGetProperty). qualifier(\"current\") can snapshot it for debug/tools."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1a5f5a3c05df */
+#define afw_s_zz__1a5f5a3c05df \
+    (&afw_self_v_zz__1a5f5a3c05df.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1a5f5a3c05df */
+#define afw_self_s_zz__1a5f5a3c05df \
+    (afw_self_v_zz__1a5f5a3c05df.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1a5f5a3c05df */
+extern const afw_value_string_t \
+    afw_self_v_zz__1a5f5a3c05df;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1a5f5a3c05df */
+#define afw_z_zz__1a5f5a3c05df \
+    (afw_self_v_zz__1a5f5a3c05df.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1a5f5a3c05df */
+#define afw_v_zz__1a5f5a3c05df \
+    (&afw_self_v_zz__1a5f5a3c05df.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__1a6eb1386c17 \
     "Process-wide count of memory_region allocations currently handed out to heaps. Same as /afw/_AdaptiveProcess_/current."
 
@@ -11803,32 +11855,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2dc7fae172c8 */
 #define afw_v_zz__2dc7fae172c8 \
     (&afw_self_v_zz__2dc7fae172c8.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__2dd6b0a43f5d \
-    "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object. During evaluation, current:: includes property-level names (contextType modelGetProperty: mappedObject, mappedValue, mappedPropertyName, … as applicable). qualifier(\"current\") can snapshot that bag for debug/tools (not for hot paths)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2dd6b0a43f5d */
-#define afw_s_zz__2dd6b0a43f5d \
-    (&afw_self_v_zz__2dd6b0a43f5d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2dd6b0a43f5d */
-#define afw_self_s_zz__2dd6b0a43f5d \
-    (afw_self_v_zz__2dd6b0a43f5d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2dd6b0a43f5d */
-extern const afw_value_string_t \
-    afw_self_v_zz__2dd6b0a43f5d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2dd6b0a43f5d */
-#define afw_z_zz__2dd6b0a43f5d \
-    (afw_self_v_zz__2dd6b0a43f5d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2dd6b0a43f5d */
-#define afw_v_zz__2dd6b0a43f5d \
-    (&afw_self_v_zz__2dd6b0a43f5d.pub)
 
 
 
@@ -17137,32 +17163,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__45deb50bb964 \
-    "Mutable face for an adaptive array used as a growable sequence (vector)\n      and as a double-ended queue (stack/queue). Obtained when the array\n      implementation allows mutation; NULL from get_setter means immutable.\n      Call methods via afw_array_setter_*() macros. Convenience helpers\n      afw_array_*() on the array instance call through get_setter. See group\n      afw_array.\n\n      Indexes are afw_integer_t. Non-negative values are zero-based from the\n      start. Negative values count from the end (-1 is the last element for\n      get/set/remove, or insert before the last element for insert). After\n      that adjustment, insert allows index equal to the current count (append);\n      set and remove_value_by_index require a valid existing element index.\n\n      End operations: push_value appends (LIFO push / FIFO enqueue);\n      pop_value removes and returns the last value (LIFO pop);\n      shift_value removes and returns the first value (FIFO dequeue).\n      There is no separate unshift method on this interface; use\n      insert_value(instance, 0, value, xctx) to insert at the front\n      (unshift). Content remove_value removes the first equal value\n      (bag-style), not by position."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__45deb50bb964 */
-#define afw_s_zz__45deb50bb964 \
-    (&afw_self_v_zz__45deb50bb964.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__45deb50bb964 */
-#define afw_self_s_zz__45deb50bb964 \
-    (afw_self_v_zz__45deb50bb964.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__45deb50bb964 */
-extern const afw_value_string_t \
-    afw_self_v_zz__45deb50bb964;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__45deb50bb964 */
-#define afw_z_zz__45deb50bb964 \
-    (afw_self_v_zz__45deb50bb964.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__45deb50bb964 */
-#define afw_v_zz__45deb50bb964 \
-    (&afw_self_v_zz__45deb50bb964.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__4617975e00ca \
     "Add <dataType> arg1 to yearMonthDuration arg2 and return the <dataType> result."
 
@@ -20071,32 +20071,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__51db08ff7e92 */
 #define afw_v_zz__51db08ff7e92 \
     (&afw_self_v_zz__51db08ff7e92.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__522a0d9ff7e1 \
-    "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used. During evaluation, current:: is available; contextType modelModifyObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__522a0d9ff7e1 */
-#define afw_s_zz__522a0d9ff7e1 \
-    (&afw_self_v_zz__522a0d9ff7e1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__522a0d9ff7e1 */
-#define afw_self_s_zz__522a0d9ff7e1 \
-    (afw_self_v_zz__522a0d9ff7e1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__522a0d9ff7e1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__522a0d9ff7e1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__522a0d9ff7e1 */
-#define afw_z_zz__522a0d9ff7e1 \
-    (afw_self_v_zz__522a0d9ff7e1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__522a0d9ff7e1 */
-#define afw_v_zz__522a0d9ff7e1 \
-    (&afw_self_v_zz__522a0d9ff7e1.pub)
 
 
 
@@ -23195,28 +23169,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__5e14545c8f95 \
-    "Resolves or supplies variables for a qualifier / context (e.g. custom\n      or request-scoped bags). Used by the qualifier stack and context\n      registration. Call methods via afw_variable_handler_*() macros.\n      See group afw_context and afw_xctx."
+#define AFW_Q_zz__5e289f862800 \
+    "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used. During evaluation, current:: is available; contextType modelReplaceObject documents those variables. qualifier(\"current\") can snapshot it for debug/tools."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5e14545c8f95 */
-#define afw_s_zz__5e14545c8f95 \
-    (&afw_self_v_zz__5e14545c8f95.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5e289f862800 */
+#define afw_s_zz__5e289f862800 \
+    (&afw_self_v_zz__5e289f862800.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5e14545c8f95 */
-#define afw_self_s_zz__5e14545c8f95 \
-    (afw_self_v_zz__5e14545c8f95.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5e289f862800 */
+#define afw_self_s_zz__5e289f862800 \
+    (afw_self_v_zz__5e289f862800.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5e14545c8f95 */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5e289f862800 */
 extern const afw_value_string_t \
-    afw_self_v_zz__5e14545c8f95;
+    afw_self_v_zz__5e289f862800;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5e14545c8f95 */
-#define afw_z_zz__5e14545c8f95 \
-    (afw_self_v_zz__5e14545c8f95.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5e289f862800 */
+#define afw_z_zz__5e289f862800 \
+    (afw_self_v_zz__5e289f862800.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5e14545c8f95 */
-#define afw_v_zz__5e14545c8f95 \
-    (&afw_self_v_zz__5e14545c8f95.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5e289f862800 */
+#define afw_v_zz__5e289f862800 \
+    (&afw_self_v_zz__5e289f862800.pub)
 
 
 
@@ -25249,6 +25223,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__64cdee48b813 \
+    "Resolves or supplies variables for a qualifier / context (e.g. custom\n      or request-scoped variables). Used by the qualifier stack and context\n      registration. Call methods via afw_variable_handler_*() macros.\n      See group afw_context and afw_xctx."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__64cdee48b813 */
+#define afw_s_zz__64cdee48b813 \
+    (&afw_self_v_zz__64cdee48b813.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__64cdee48b813 */
+#define afw_self_s_zz__64cdee48b813 \
+    (afw_self_v_zz__64cdee48b813.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__64cdee48b813 */
+extern const afw_value_string_t \
+    afw_self_v_zz__64cdee48b813;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__64cdee48b813 */
+#define afw_z_zz__64cdee48b813 \
+    (afw_self_v_zz__64cdee48b813.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__64cdee48b813 */
+#define afw_v_zz__64cdee48b813 \
+    (&afw_self_v_zz__64cdee48b813.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__64e1c985456d \
     "A value of dataType dayTimeDuration, or ... followed by an expression that results in an array, every entry of which is included."
 
@@ -26155,6 +26155,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__673a54793eb2 */
 #define afw_v_zz__673a54793eb2 \
     (&afw_self_v_zz__673a54793eb2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__679df6edd41c \
+    "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add). Uses contextType modelInitialObjectId for current:: variables; qualifier(\"current\") can snapshot them for debug/tools."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__679df6edd41c */
+#define afw_s_zz__679df6edd41c \
+    (&afw_self_v_zz__679df6edd41c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__679df6edd41c */
+#define afw_self_s_zz__679df6edd41c \
+    (afw_self_v_zz__679df6edd41c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__679df6edd41c */
+extern const afw_value_string_t \
+    afw_self_v_zz__679df6edd41c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__679df6edd41c */
+#define afw_z_zz__679df6edd41c \
+    (afw_self_v_zz__679df6edd41c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__679df6edd41c */
+#define afw_v_zz__679df6edd41c \
+    (&afw_self_v_zz__679df6edd41c.pub)
 
 
 
@@ -31749,32 +31775,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__7f2dd9e179dd \
-    "/**\n * onGetObject\n *\n * Return an object, nullish if not found, or current::useDefaultProcessing\n * (requires mappedAdapterId on the model adapter conf).\n *\n * Notable current:: variables: adapterId, objectType, objectId,\n * mappedAdapterId (if configured), mapBackObject, useDefaultProcessing.\n * Debug: qualifier(\"current\") snapshots the bag.\n */\nreturn current::useDefaultProcessing;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7f2dd9e179dd */
-#define afw_s_zz__7f2dd9e179dd \
-    (&afw_self_v_zz__7f2dd9e179dd.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7f2dd9e179dd */
-#define afw_self_s_zz__7f2dd9e179dd \
-    (afw_self_v_zz__7f2dd9e179dd.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7f2dd9e179dd */
-extern const afw_value_string_t \
-    afw_self_v_zz__7f2dd9e179dd;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7f2dd9e179dd */
-#define afw_z_zz__7f2dd9e179dd \
-    (afw_self_v_zz__7f2dd9e179dd.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7f2dd9e179dd */
-#define afw_v_zz__7f2dd9e179dd \
-    (&afw_self_v_zz__7f2dd9e179dd.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__7f3d96615b2c \
     "This is the object to add. Variable current::object can be used to access this value in model expressions."
 
@@ -32087,32 +32087,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8020191d986e \
-    "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available; contextType modelDeleteObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8020191d986e */
-#define afw_s_zz__8020191d986e \
-    (&afw_self_v_zz__8020191d986e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8020191d986e */
-#define afw_self_s_zz__8020191d986e \
-    (afw_self_v_zz__8020191d986e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8020191d986e */
-extern const afw_value_string_t \
-    afw_self_v_zz__8020191d986e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8020191d986e */
-#define afw_z_zz__8020191d986e \
-    (afw_self_v_zz__8020191d986e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8020191d986e */
-#define afw_v_zz__8020191d986e \
-    (&afw_self_v_zz__8020191d986e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__802f205c553d \
     "Determine if xpathExpression arg1 is not equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if you want true to be returned if arg1 and arg2's data type don't match."
 
@@ -32265,32 +32239,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__80d4e53e955c */
 #define afw_v_zz__80d4e53e955c \
     (&afw_self_v_zz__80d4e53e955c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__80fc3822b1d5 \
-    "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used. During evaluation, current:: is available; contextType modelReplaceObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__80fc3822b1d5 */
-#define afw_s_zz__80fc3822b1d5 \
-    (&afw_self_v_zz__80fc3822b1d5.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__80fc3822b1d5 */
-#define afw_self_s_zz__80fc3822b1d5 \
-    (afw_self_v_zz__80fc3822b1d5.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__80fc3822b1d5 */
-extern const afw_value_string_t \
-    afw_self_v_zz__80fc3822b1d5;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__80fc3822b1d5 */
-#define afw_z_zz__80fc3822b1d5 \
-    (afw_self_v_zz__80fc3822b1d5.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__80fc3822b1d5 */
-#define afw_v_zz__80fc3822b1d5 \
-    (&afw_self_v_zz__80fc3822b1d5.pub)
 
 
 
@@ -34401,6 +34349,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__897b07e9f607 \
+    "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used. During evaluation, current:: is available; contextType modelRetrieveObjects documents those variables (queryCriteria, returnObject, mapBackObject, …). qualifier(\"current\") can snapshot it for debug/tools."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__897b07e9f607 */
+#define afw_s_zz__897b07e9f607 \
+    (&afw_self_v_zz__897b07e9f607.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__897b07e9f607 */
+#define afw_self_s_zz__897b07e9f607 \
+    (afw_self_v_zz__897b07e9f607.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__897b07e9f607 */
+extern const afw_value_string_t \
+    afw_self_v_zz__897b07e9f607;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__897b07e9f607 */
+#define afw_z_zz__897b07e9f607 \
+    (afw_self_v_zz__897b07e9f607.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__897b07e9f607 */
+#define afw_v_zz__897b07e9f607 \
+    (&afw_self_v_zz__897b07e9f607.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__898bbde778db \
     "Factory that creates request_handler instances of one handler type.\n      Registered with the environment; conf constructs handlers used by the\n      director. Call methods via afw_request_handler_factory_*() macros.\n      See group afw_request."
 
@@ -35701,32 +35675,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8d9e9965f5fb \
-    "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used. During evaluation, current:: is available; contextType modelRetrieveObjects documents that bag (queryCriteria, returnObject, mapBackObject, …). qualifier(\"current\") can snapshot it for debug/tools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8d9e9965f5fb */
-#define afw_s_zz__8d9e9965f5fb \
-    (&afw_self_v_zz__8d9e9965f5fb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8d9e9965f5fb */
-#define afw_self_s_zz__8d9e9965f5fb \
-    (afw_self_v_zz__8d9e9965f5fb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8d9e9965f5fb */
-extern const afw_value_string_t \
-    afw_self_v_zz__8d9e9965f5fb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8d9e9965f5fb */
-#define afw_z_zz__8d9e9965f5fb \
-    (afw_self_v_zz__8d9e9965f5fb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8d9e9965f5fb */
-#define afw_v_zz__8d9e9965f5fb \
-    (&afw_self_v_zz__8d9e9965f5fb.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8da32697a564 \
     "Returns value unchanged if it is dataType script. Otherwise, including when value is undefined, throws an error. It never converts: to get a script from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as script."
 
@@ -35957,32 +35905,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8e8a1dee5be3 */
 #define afw_v_zz__8e8a1dee5be3 \
     (&afw_self_v_zz__8e8a1dee5be3.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__8e97026f8db1 \
-    "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelAddObject documents that bag. For debug/tools, qualifier(\"current\") returns a snapshot object of the current bag (not for hot paths)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8e97026f8db1 */
-#define afw_s_zz__8e97026f8db1 \
-    (&afw_self_v_zz__8e97026f8db1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8e97026f8db1 */
-#define afw_self_s_zz__8e97026f8db1 \
-    (afw_self_v_zz__8e97026f8db1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8e97026f8db1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8e97026f8db1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8e97026f8db1 */
-#define afw_z_zz__8e97026f8db1 \
-    (afw_self_v_zz__8e97026f8db1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8e97026f8db1 */
-#define afw_v_zz__8e97026f8db1 \
-    (&afw_self_v_zz__8e97026f8db1.pub)
 
 
 
@@ -38171,32 +38093,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__992faf58ce12 \
-    "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests. Uses the same property-level current:: bag as onGetProperty (contextType modelGetProperty). qualifier(\"current\") can snapshot it for debug/tools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__992faf58ce12 */
-#define afw_s_zz__992faf58ce12 \
-    (&afw_self_v_zz__992faf58ce12.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__992faf58ce12 */
-#define afw_self_s_zz__992faf58ce12 \
-    (afw_self_v_zz__992faf58ce12.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__992faf58ce12 */
-extern const afw_value_string_t \
-    afw_self_v_zz__992faf58ce12;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__992faf58ce12 */
-#define afw_z_zz__992faf58ce12 \
-    (afw_self_v_zz__992faf58ce12.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__992faf58ce12 */
-#define afw_v_zz__992faf58ce12 \
-    (&afw_self_v_zz__992faf58ce12.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__993369862f4b \
     "The user making the request, as reported by their ident daemon"
 
@@ -38921,6 +38817,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9c8b595d6db9 */
 #define afw_v_zz__9c8b595d6db9 \
     (&afw_self_v_zz__9c8b595d6db9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9ca6151170bb \
+    "Mutable face for an adaptive array used as a growable sequence (vector)\n      and as a double-ended queue (stack/queue). Obtained when the array\n      implementation allows mutation; NULL from get_setter means immutable.\n      Call methods via afw_array_setter_*() macros. Convenience helpers\n      afw_array_*() on the array instance call through get_setter. See group\n      afw_array.\n\n      Indexes are afw_integer_t. Non-negative values are zero-based from the\n      start. Negative values count from the end (-1 is the last element for\n      get/set/remove, or insert before the last element for insert). After\n      that adjustment, insert allows index equal to the current count (append);\n      set and remove_value_by_index require a valid existing element index.\n\n      End operations: push_value appends (LIFO push / FIFO enqueue);\n      pop_value removes and returns the last value (LIFO pop);\n      shift_value removes and returns the first value (FIFO dequeue).\n      There is no separate unshift method on this interface; use\n      insert_value(instance, 0, value, xctx) to insert at the front\n      (unshift). Content remove_value removes the first equal value,\n      not the value at a position."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9ca6151170bb */
+#define afw_s_zz__9ca6151170bb \
+    (&afw_self_v_zz__9ca6151170bb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9ca6151170bb */
+#define afw_self_s_zz__9ca6151170bb \
+    (afw_self_v_zz__9ca6151170bb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9ca6151170bb */
+extern const afw_value_string_t \
+    afw_self_v_zz__9ca6151170bb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9ca6151170bb */
+#define afw_z_zz__9ca6151170bb \
+    (afw_self_v_zz__9ca6151170bb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9ca6151170bb */
+#define afw_v_zz__9ca6151170bb \
+    (&afw_self_v_zz__9ca6151170bb.pub)
 
 
 
@@ -128313,32 +128235,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a1e1455f272a \
-    "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelGetObject documents that bag. For debug/tools, qualifier(\"current\") returns a snapshot of the current bag (not for hot paths)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a1e1455f272a */
-#define afw_s_zz__a1e1455f272a \
-    (&afw_self_v_zz__a1e1455f272a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a1e1455f272a */
-#define afw_self_s_zz__a1e1455f272a \
-    (afw_self_v_zz__a1e1455f272a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a1e1455f272a */
-extern const afw_value_string_t \
-    afw_self_v_zz__a1e1455f272a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a1e1455f272a */
-#define afw_z_zz__a1e1455f272a \
-    (afw_self_v_zz__a1e1455f272a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a1e1455f272a */
-#define afw_v_zz__a1e1455f272a \
-    (&afw_self_v_zz__a1e1455f272a.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a2212a9ae6d8 \
     "<dataType>(base: dataType, exponent_1: dataType, ...exponent_rest: dataType[]): dataType"
 
@@ -128465,6 +128361,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a285bf02335a */
 #define afw_v_zz__a285bf02335a \
     (&afw_self_v_zz__a285bf02335a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__a292ac7e3610 \
+    "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelGetObject documents those variables. For debug/tools, qualifier(\"current\") returns a snapshot of the current:: variables (not for hot paths)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a292ac7e3610 */
+#define afw_s_zz__a292ac7e3610 \
+    (&afw_self_v_zz__a292ac7e3610.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a292ac7e3610 */
+#define afw_self_s_zz__a292ac7e3610 \
+    (afw_self_v_zz__a292ac7e3610.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a292ac7e3610 */
+extern const afw_value_string_t \
+    afw_self_v_zz__a292ac7e3610;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a292ac7e3610 */
+#define afw_z_zz__a292ac7e3610 \
+    (afw_self_v_zz__a292ac7e3610.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a292ac7e3610 */
+#define afw_v_zz__a292ac7e3610 \
+    (&afw_self_v_zz__a292ac7e3610.pub)
 
 
 
@@ -138245,6 +138167,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__c7a60a0ac90e \
+    "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelAddObject documents those variables. For debug/tools, qualifier(\"current\") returns a snapshot object of the current:: variables (not for hot paths)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c7a60a0ac90e */
+#define afw_s_zz__c7a60a0ac90e \
+    (&afw_self_v_zz__c7a60a0ac90e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c7a60a0ac90e */
+#define afw_self_s_zz__c7a60a0ac90e \
+    (afw_self_v_zz__c7a60a0ac90e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c7a60a0ac90e */
+extern const afw_value_string_t \
+    afw_self_v_zz__c7a60a0ac90e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c7a60a0ac90e */
+#define afw_z_zz__c7a60a0ac90e \
+    (afw_self_v_zz__c7a60a0ac90e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c7a60a0ac90e */
+#define afw_v_zz__c7a60a0ac90e \
+    (&afw_self_v_zz__c7a60a0ac90e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__c7a60d3f8d08 \
     "Caller-defined iterator over a dense or sequential stream of adaptive\n      values without keys (array elements, string code points, …).\n\n      defined_instance_storage: the public afw_iterator_t is fixed-size\n      storage the caller provides (typically on the stack). A host method\n      initializes it (sets inf and cursor), e.g.\n      afw_array_initialize_iterator(array, &it, xctx). Do not release\n      the instance. Implementations use only the published fields.\n\n      After host initialize:\n      - get_next — next value, or NULL when done (same idea as\n        afw_array_get_next_value returning NULL)\n      - get_by_index — dense index; does not advance get_next cursor\n      - get_count — dense length when indexable\n\n      For key+value walks (e.g. object properties), use\n      afw_iterator_with_key instead.\n\n      Call methods via afw_iterator_*() macros. Legacy array/object\n      get_next_* cursors remain afw_iterator_old_t until migrated."
 
@@ -138583,6 +138531,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__c841f7d7e8f0 \
+    "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object. During evaluation, current:: includes property-level names (contextType modelSetProperty: object, propertyName, value, … as applicable). qualifier(\"current\") can snapshot them for debug/tools."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c841f7d7e8f0 */
+#define afw_s_zz__c841f7d7e8f0 \
+    (&afw_self_v_zz__c841f7d7e8f0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c841f7d7e8f0 */
+#define afw_self_s_zz__c841f7d7e8f0 \
+    (afw_self_v_zz__c841f7d7e8f0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c841f7d7e8f0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__c841f7d7e8f0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c841f7d7e8f0 */
+#define afw_z_zz__c841f7d7e8f0 \
+    (afw_self_v_zz__c841f7d7e8f0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c841f7d7e8f0 */
+#define afw_v_zz__c841f7d7e8f0 \
+    (&afw_self_v_zz__c841f7d7e8f0.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__c84a7aef01c9 \
     "Returns an array of dayTimeDuration contains all of the unique values in two or more array of dayTimeDuration values."
 
@@ -138605,6 +138579,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c84a7aef01c9 */
 #define afw_v_zz__c84a7aef01c9 \
     (&afw_self_v_zz__c84a7aef01c9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__c84f42916970 \
+    "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used. During evaluation, current:: is available; contextType modelModifyObject documents those variables. qualifier(\"current\") can snapshot it for debug/tools."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c84f42916970 */
+#define afw_s_zz__c84f42916970 \
+    (&afw_self_v_zz__c84f42916970.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c84f42916970 */
+#define afw_self_s_zz__c84f42916970 \
+    (afw_self_v_zz__c84f42916970.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c84f42916970 */
+extern const afw_value_string_t \
+    afw_self_v_zz__c84f42916970;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c84f42916970 */
+#define afw_z_zz__c84f42916970 \
+    (afw_self_v_zz__c84f42916970.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c84f42916970 */
+#define afw_v_zz__c84f42916970 \
+    (&afw_self_v_zz__c84f42916970.pub)
 
 
 
@@ -138787,6 +138787,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c9a13fe5d690 */
 #define afw_v_zz__c9a13fe5d690 \
     (&afw_self_v_zz__c9a13fe5d690.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__c9c2eb9ec354 \
+    "/**\n * onGetObject\n *\n * Return an object, nullish if not found, or current::useDefaultProcessing\n * (requires mappedAdapterId on the model adapter conf).\n *\n * Notable current:: variables: adapterId, objectType, objectId,\n * mappedAdapterId (if configured), mapBackObject, useDefaultProcessing.\n * Debug: qualifier(\"current\") snapshots them.\n */\nreturn current::useDefaultProcessing;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c9c2eb9ec354 */
+#define afw_s_zz__c9c2eb9ec354 \
+    (&afw_self_v_zz__c9c2eb9ec354.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c9c2eb9ec354 */
+#define afw_self_s_zz__c9c2eb9ec354 \
+    (afw_self_v_zz__c9c2eb9ec354.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c9c2eb9ec354 */
+extern const afw_value_string_t \
+    afw_self_v_zz__c9c2eb9ec354;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c9c2eb9ec354 */
+#define afw_z_zz__c9c2eb9ec354 \
+    (afw_self_v_zz__c9c2eb9ec354.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c9c2eb9ec354 */
+#define afw_v_zz__c9c2eb9ec354 \
+    (&afw_self_v_zz__c9c2eb9ec354.pub)
 
 
 
@@ -140477,32 +140503,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cf1a0be16906 */
 #define afw_v_zz__cf1a0be16906 \
     (&afw_self_v_zz__cf1a0be16906.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__cf727d2c50b9 \
-    "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add). Uses contextType modelInitialObjectId for current:: variables; qualifier(\"current\") can snapshot that bag for debug/tools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cf727d2c50b9 */
-#define afw_s_zz__cf727d2c50b9 \
-    (&afw_self_v_zz__cf727d2c50b9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cf727d2c50b9 */
-#define afw_self_s_zz__cf727d2c50b9 \
-    (afw_self_v_zz__cf727d2c50b9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cf727d2c50b9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__cf727d2c50b9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cf727d2c50b9 */
-#define afw_z_zz__cf727d2c50b9 \
-    (afw_self_v_zz__cf727d2c50b9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cf727d2c50b9 */
-#define afw_v_zz__cf727d2c50b9 \
-    (&afw_self_v_zz__cf727d2c50b9.pub)
 
 
 
@@ -145343,32 +145343,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e2170eb3b2b8 \
-    "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object. During evaluation, current:: includes property-level names (contextType modelSetProperty: object, propertyName, value, … as applicable). qualifier(\"current\") can snapshot that bag for debug/tools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e2170eb3b2b8 */
-#define afw_s_zz__e2170eb3b2b8 \
-    (&afw_self_v_zz__e2170eb3b2b8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e2170eb3b2b8 */
-#define afw_self_s_zz__e2170eb3b2b8 \
-    (afw_self_v_zz__e2170eb3b2b8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e2170eb3b2b8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e2170eb3b2b8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e2170eb3b2b8 */
-#define afw_z_zz__e2170eb3b2b8 \
-    (afw_self_v_zz__e2170eb3b2b8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e2170eb3b2b8 */
-#define afw_v_zz__e2170eb3b2b8 \
-    (&afw_self_v_zz__e2170eb3b2b8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e22203ede0cb \
     "function all_of_any (\n    predicate: (value1: any, value2: any) => boolean,\n    array1: array,\n    array2: array\n): boolean;\n"
 
@@ -146041,6 +146015,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e3b72eb7aaf6 */
 #define afw_v_zz__e3b72eb7aaf6 \
     (&afw_self_v_zz__e3b72eb7aaf6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__e3c28fd12235 \
+    "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available; contextType modelDeleteObject documents those variables. qualifier(\"current\") can snapshot it for debug/tools."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e3c28fd12235 */
+#define afw_s_zz__e3c28fd12235 \
+    (&afw_self_v_zz__e3c28fd12235.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e3c28fd12235 */
+#define afw_self_s_zz__e3c28fd12235 \
+    (afw_self_v_zz__e3c28fd12235.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__e3c28fd12235 */
+extern const afw_value_string_t \
+    afw_self_v_zz__e3c28fd12235;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e3c28fd12235 */
+#define afw_z_zz__e3c28fd12235 \
+    (afw_self_v_zz__e3c28fd12235.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__e3c28fd12235 */
+#define afw_v_zz__e3c28fd12235 \
+    (&afw_self_v_zz__e3c28fd12235.pub)
 
 
 

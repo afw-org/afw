@@ -8,7 +8,7 @@
 //? test: intersection<double>-1
 //? description: ...
 
-            Double intersection of bags:
+            Double intersection of arrays:
             { '52.40215', '-15.8' },
             { '18.255' }
         
@@ -33,7 +33,7 @@ intersection<double>(
 //? test: intersection<double>-2
 //? description: ...
 
-            Double intersection of bags:
+            Double intersection of arrays:
             { },
             { '18.255' }
         
@@ -56,7 +56,7 @@ intersection<double>(
 //? test: intersection<double>-3
 //? description: ...
 
-            Double intersection of bags:
+            Double intersection of arrays:
             {
                 '2000.0215', '11', '-11.2151', '961518', '99', '-102.1651054', '-586.055', '98600', '0.15387',
                 '512618', '-512618', '.0215200', '11516.105155', '-11', '51081', '0.99999999999', '-102',

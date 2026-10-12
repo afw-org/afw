@@ -126,7 +126,7 @@ def run():
                 expected_props.update(ot_local_property_names(load_ot(aid, root)))
         except FileNotFoundError:
             expected_props = set()
-        # _meta_ is added as optional instance bag on closed composites
+        # _meta_ is added as optional instance object on closed composites
         expected_props.add('_meta_')
         missing_props = sorted(expected_props - prop_names)
         tests.append(make_test(

@@ -28,7 +28,7 @@ return 0;
 //?
 //? test: easy_seal_unseal_json_string
 //? description: ...
-JSON-friendly bag (base64 strings) via stringify, then unseal from JSON
+JSON-friendly object (base64 strings) via stringify, then unseal from JSON
 string — portable file/conf shape without Adaptive base64Binary typed literals.
 //? expect: 0
 //? source: ...
@@ -38,14 +38,14 @@ const key = crypto_generate_key("AES-GCM");
 const sealed = crypto_seal(key, encode_as_base64Binary("secret-pass"));
 
 /* Pure JSON: iv/tag/ciphertext as base64 *strings* (not typed Adaptive binary) */
-const bag = {
+const portable = {
     "algorithm": sealed.algorithm,
     "keyLength": sealed.keyLength,
     "iv": string(sealed.iv),
     "tag": string(sealed.tag),
     "ciphertext": string(sealed.ciphertext)
 };
-const jsonText = stringify(bag);
+const jsonText = stringify(portable);
 
 const plain = crypto_unseal(key, jsonText);
 assert(decode_to_string(plain) === "secret-pass");
@@ -66,14 +66,14 @@ return 0;
 
 const key = crypto_generate_key("AES-GCM");
 const sealed = crypto_seal(key, encode_as_base64Binary("file-secret"));
-const bag = {
+const portable = {
     "algorithm": sealed.algorithm,
     "iv": string(sealed.iv),
     "tag": string(sealed.tag),
     "ciphertext": string(sealed.ciphertext)
 };
 const sn = open_file("seal-out", "data/easy_seal.json", "w");
-write(sn, stringify(bag));
+write(sn, stringify(portable));
 close(sn);
 
 const sn2 = open_file("seal-in", "data/easy_seal.json", "r");
@@ -86,7 +86,7 @@ return 0;
 
 //?
 //? test: hard_encrypt_decrypt_manual
-//? description: hard path — crypto_encrypt / crypto_decrypt with algorithm bag
+//? description: hard path — crypto_encrypt / crypto_decrypt with algorithm object
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw

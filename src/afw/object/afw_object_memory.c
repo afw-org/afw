@@ -33,7 +33,7 @@
 #include "afw_object_setter_impl_declares.h"
 #undef impl_afw_object_setter_set_property_take
 
-/* Managed bag: separate inf, no extra ifs on set/release. */
+/* Managed object: separate inf, no extra ifs on set/release. */
 static void
 impl_afw_object_managed_release(
     AFW_OBJECT_SELF_T *self, afw_xctx_t *xctx);
@@ -229,7 +229,7 @@ impl_is_meta_object(const afw_object_t *o)
 }
 
 
-/* True if from is a name/value memory bag we can walk via first_property. */
+/* True if from is a name/value memory object we can walk via first_property. */
 static afw_boolean_t
 impl_is_memory_property_list(const afw_object_t *o)
 {
@@ -243,7 +243,7 @@ impl_is_memory_property_list(const afw_object_t *o)
 }
 
 
-/* True if meta is an afw_object_meta_object_t (meta with a delta bag). */
+/* True if meta is an afw_object_meta_object_t (meta with a delta object). */
 static afw_boolean_t
 impl_is_object_meta(const afw_object_t *meta)
 {
@@ -254,7 +254,7 @@ impl_is_object_meta(const afw_object_t *meta)
 
 
 static const afw_object_t *
-impl_meta_delta_bag(const afw_object_t *from)
+impl_meta_delta_object(const afw_object_t *from)
 {
     const afw_object_t *meta;
 
@@ -282,7 +282,7 @@ impl_copy_meta_delta_into_managed(
     const afw_value_t *value;
     const afw_value_t *cloned;
 
-    src = impl_meta_delta_bag(from);
+    src = impl_meta_delta_object(from);
     if (!src) {
         return;
     }

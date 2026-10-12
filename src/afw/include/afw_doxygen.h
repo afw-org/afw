@@ -828,7 +828,7 @@
  * context (used by authorization, adapters, and script evaluation).
  *
  * Distinct from `afw_xctx` (execution context). Context registration
- * supplies variable bags that script sees as qualifiers.
+ * supplies variables that script sees as qualifiers.
  */
 
 /**

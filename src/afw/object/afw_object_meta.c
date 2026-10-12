@@ -124,7 +124,7 @@ afw_object_meta_clone_and_set(
     }
     p = instance->p;
 
-    /* get_path() reads object_uri, not only the meta_object bag. */
+    /* get_path() reads object_uri, not only the meta_object. */
     if (!self->meta.object_uri) {
         path = from->meta.object_uri;
         if (!path) {
@@ -309,7 +309,7 @@ afw_object_meta_get_path(
  * With metaFull, meta get can surface propertyTypes from a permanent object
  * type graph (p == NULL). Option/normalize processing must only mutate
  * instance-owned meta on instance->p (views always have a pool). Materialize
- * clones when the resolved bag or entry is permanent.
+ * clones when the resolved array or entry is permanent.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_object_meta_get_property_type(
@@ -377,7 +377,7 @@ afw_object_meta_get_property_type(
     }
     else if (!property_type->p) {
         /*
-         * Bag was cloned but entries can still be permanent (shallow
+         * Array was cloned but entries can still be permanent (shallow
          * nested object values). Replace with a pooled clone.
          */
         property_type = afw_object_create_pooled_copy(property_type,

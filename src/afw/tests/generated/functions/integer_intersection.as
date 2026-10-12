@@ -8,7 +8,7 @@
 //? test: intersection<integer>-1
 //? description: ...
 
-            Integer intersection of bags:
+            Integer intersection of arrays:
             {
                 '200', '11', '-11.2', '96', '99', '-102', '-586.5', '986', '387', '512618', '-512618', '200', 
                 '11', '-11', '96', '99', '-102', '-586', '986', '-0.0', '0'
@@ -62,7 +62,7 @@ intersection<integer>(
 //? test: intersection<integer>-2
 //? description: ...
 
-            Integer intersection of bags:
+            Integer intersection of arrays:
             { '11', '1024', '-11', '-1024', '0', '512618', '1' },
             {
                 '11', '-11.2', '96', '-102', '-586.5', '986', '387', '512618',
@@ -113,7 +113,7 @@ intersection<integer>(
 //? test: intersection<integer>-3
 //? description: ...
 
-            Integer intersection of bags:
+            Integer intersection of arrays:
             { '11', '1024', '-11', '-1024', '0', '512618', '1' },
             { '11',  '-1' }
         

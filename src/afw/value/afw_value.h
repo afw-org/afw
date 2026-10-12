@@ -1765,28 +1765,6 @@ afw_value_convert_to_utf8(
 
 
 /**
- * @brief Convert value to casted utf8 in specified pool.
- * @param value to convert.
- * @param p is pool to use for result.
- * @param xctx of caller.
- * 
- * Convert value to a utf8 string that is of the form:
- * 
- * `<datatype>("<string>")`
- *
- * Where `<datatype>` is the data type of value and `<string>` is the
- * quoted string representation of the value.
- *
- * For list values the result if "list(" followed by comma separated
- * result of recursively calling this function, followed by ")".
- */
-AFW_DECLARE(const afw_utf8_t *)
-afw_value_convert_to_casted_utf8(
-    const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
-
-
-
-/**
  * @brief Pooled copy of a value in p.
  * @param value to copy.
  * @param p pool for the copy.
@@ -2314,7 +2292,7 @@ afw_value_symbol_reference_create(
  *    otherwise hexBinary with a copy of the same bytes.
  *
  * Does not throw for invalid UTF-8. Use this for process environment,
- * FCGI/CGI parameters, and similar external byte bags. Do not construct
+ * FCGI/CGI parameters, and similar external bytes. Do not construct
  * string values from untrusted bytes any other way.
  *
  * Empty or NULL input yields an empty string value.

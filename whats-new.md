@@ -43,7 +43,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `process::maxPoolBytesInUse` / `maxPoolChunkBytes` | **`peakPoolBytesInUse`** / **`peakPoolChunkBytes`**. Policy caps are **`limitEvaluationStackCount`**, **`limitRequestPoolBytes`**, **`limitCStackHeadroomBytes`**. Request-thread stack is **`threadStackBytes`**. [Telemetry](#process-telemetry-and-request-caps-issue-329) |
 | `const x = compile(…)` then use `x` as a string/function | **`compile()` stores a unit.** Run it with **`evaluate(x)`** (or `evaluate(compile(…))`). **`app::name`** still evaluates on get (`#{…}` / `${…}` / call). [Templates](#compile-time-template-substitutions-issue-97) |
 | Log conf **`custom`** | **Gone** (it was never loaded). Use **`app::`** or log **`format`** / **`filter`**. Model **`custom::`** is unchanged. |
-| Converting a string to `function` (`bag<function>("add")`, a `function`-typed conversion of a string) | Throws **`conversion_error`**. Pass the function value, or a name where the function takes one. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
+| Converting a string to `function` (`array<function>("add")`, a `function`-typed conversion of a string) | Throws **`conversion_error`**. Pass the function value, or a name where the function takes one. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | Shell scripts that expect `afw script.as` to exit 0 after a script error | **`afw` exits 1** when a script, test_script, `-x` expression, or piped input ends with an uncaught error. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | `replace_object` on the file adapter to create an object | Use **`add_object`**. `replace_object` and `modify_object` of a missing object are **`not_found`** (the file adapter used to create it). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | `evaluate_with_retry(value, limit)` with a limit above 10, or 0 | The limit is **1 to 10** (**`argument_error`** otherwise) and optional (default **1** retry). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
@@ -790,7 +790,7 @@ Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and
 | **`length` / `substring` / `index_of` / …** | Indexes and length are **code points** (as before; kept consistent). |
 | **`s[i]`** | Read one code point as a **one-code-point string**; out of range → **undefined** (soft, like arrays). Negative indexes count from the end. **No** `s[i] = …` (immutable). |
 | **`for-of`** | Walks **code points** (same element shape as `s[i]`). Also still walks **arrays**. Not plain objects. |
-| **Array formals / HOFs** | When a built-in expects an **array of values** (e.g. `map` / `filter` / `reduce`) or a script formal is **`array` / `T[]` / tuple**, a utf8 value is accepted as that sequence (temporary materialize). Does **not** permanently retype the string to `array`. **XACML bag** formals still treat a scalar string as **bag-of-one**, not code-point expansion. |
+| **Array formals / HOFs** | When a built-in expects an **array of values** (e.g. `map` / `filter` / `reduce`) or a script formal is **`array` / `T[]` / tuple**, a utf8 value is accepted as that sequence (temporary materialize). Does **not** permanently retype the string to `array`. A string is never read as a one-entry array ([#583](#no-hidden-conversions-issue-583)). |
 | **Search** | `includes` (with optional start), `replace`, and non-empty `split` search at **code-point boundaries**. |
 | **Empty-match `replace`** | An empty `match` is a match at a **code-point boundary** (including start and end). Default `limit` 1 inserts at the start; `limit = -1` inserts at every boundary. See [#190](#empty-match-replace-issue-190). |
 | **Substring / replace / repeat returns** | Polymorphic string ops return **`string`**, not the input’s specialized utf8 type. |
@@ -887,13 +887,13 @@ Under the hood a face is a **memory wrapper** (local sets; get falls through or 
 
 | Path | Notes |
 |------|--------|
-| **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
+| **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time objects and arrays |
 | **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including reconcilable views). `reconcile_object` sees overlay sets; the store is not write-through until you persist. |
 | **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
 | **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
 | **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** |
 | **`journal_get_*`**, **consumer** gets, **after_cursor**, **advance** | Response objects are faces |
-| **Catalog qualifiers** (`environment::`, `process::`, `request::`, …) | **Read-only** in script (C may still write the bag). `qualifier()` / `qualifiers()` are copies. |
+| **Catalog qualifiers** (`environment::`, `process::`, `request::`, …) | **Read-only** in script (C may still write the object). `qualifier()` / `qualifiers()` are copies. |
 
 Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
 
@@ -1154,7 +1154,7 @@ Also available as methods when useful, e.g. `obj->keys()`, `obj->freeze()`.
 | **`every(predicate, array, …)`** | Same behavior as **`all_of`** (all pass) |
 | **`some(predicate, array, …)`** | Same behavior as **`any_of`** (any passes) |
 
-Prefer **`all_of` / `any_of`** when you need the multi-array / bag-style quantifier family; **`every` / `some`** are convenient names for the common single-array case.
+Prefer **`all_of` / `any_of`** when you need the multi-array quantifier family; **`every` / `some`** are convenient names for the common single-array case.
 
 ### C array face (for extension authors)
 
@@ -1583,9 +1583,9 @@ const all = qualifiers();
 | **Hot path unchanged** | Everyday `current::objectId` / `environment::HOME` still goes through stack **`get_cb`** only. Snapshots use a separate **`contribute_cb`** path intended for debug, tools, and tests—not tight production loops. |
 | **First defining frame wins** | Both **get** (`qualifier::name`) and **snapshots** walk matching visible frames **newest → older**. The first frame that **defines** a name wins for that name. Get continues while a frame’s `get_cb` returns C `NULL` (not defined here); a present value—including permanent **`afw_value_undefined`** / **`afw_value_null`**—stops the walk. Snapshots contribute the same way (most recent definition wins per property). Nested pushes are cleaned up with the stack (e.g. `AFW_TRY`). |
 | **`includeUntrusted`** | Optional boolean, default **false**. **Default** matches normal `qualifier::name` visibility right now. While the xctx is **secure**, set **true** so the snapshot matches what you would see with `::` if you were **less secure** (trusted **and** untrusted frames—not untrusted-only). When already not secure, true and false are the same. |
-| **Can be large** | Snapshots copy variable bags into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
+| **Can be large** | Snapshots copy variables into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
 
-Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log `current::`, context tables) contribute their known variable sets.
+Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime objects, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log `current::`, context tables) contribute their known variable sets.
 
 ### Multi-frame get aligned with snapshots
 
@@ -1815,13 +1815,13 @@ const home = environment::HOME;
 
 See [Process telemetry](#process-telemetry-and-request-caps-issue-329).
 
-Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these bags; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
+Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these variables; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
 
 **Deprecated on `current::`:** `current::pid` and `current::programName` still work but prefer **`process::pid`** and **`process::programName`**. Keep **`current::mode`** and **`current::xctxUUID`** — execution context, not process identity.
 
 ### Log conf `format` / `filter` context types
 
-Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta). Log conf has no `custom` bag.
+Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write variables (`current::message` / `source` / `xctxUUID`, `log::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta). Log conf has no `custom` bag.
 
 [↑ Highlights](#highlights)
 
@@ -1852,7 +1852,7 @@ Optional loadable extension **`afw_crypto`** (`libafwcrypto`, OpenSSL **libcrypt
 | `crypto_hmac` / `crypto_hmac_verify` | HMAC-SHA-256 / HMAC-SHA-512 |
 | `crypto_import_key` / `crypto_generate_key` / `crypto_export_key` / `crypto_destroy_key` | Process keystore handles |
 | `crypto_encrypt` / `crypto_decrypt` | AES-GCM (auto IV; tag on algorithm object) — hard path |
-| `crypto_seal` / `crypto_unseal` | AES-GCM sealed bag / unseal (object or pure JSON string) — easy path |
+| `crypto_seal` / `crypto_unseal` | AES-GCM sealed object / unseal (object or pure JSON string) — easy path |
 | `crypto_derive_key` | PBKDF2-HMAC-SHA256 (default **600000** iterations, min 100000) |
 
 Binary args accept **base64Binary** or **hexBinary**. Keys may be raw binary, a CryptoKey (`keyId`), or a reference such as `{ "from": "environment", "name": "APP_KEY", "encoding": "base64" }` (**live `getenv`**, not ambient `environment::`) or `{ "from": "file", "path": "…" }` under **`rootFilePaths`**.
@@ -1879,7 +1879,7 @@ Combined with `open_file` / `read*` and `crypto_decrypt`, conf can avoid a clear
 }"
 ```
 
-Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy bag path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with **`stringify(sealed)`** (binary fields become base64 JSON strings) then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
+Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with **`stringify(sealed)`** (binary fields become base64 JSON strings) then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
 
 Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`, `crypto_seal_unseal.as`.
 
@@ -1912,7 +1912,7 @@ These are easy to confuse; they do different jobs:
 
 - If you previously relied on `stringify` for Adaptive-looking forms such as `date("…")` or `base64Binary("…")`, switch those call sites to **`decompile`**.
 - If you needed UTF-8 text from binary, use **`decode_to_string`**, not `stringify` or `string`.
-- Sealed crypto bags can be stored with **`stringify(sealed)`** directly; you no longer need a hand-built bag of `string(iv)` / `string(tag)` / … for pure JSON (that pattern still works).
+- Sealed crypto objects can be stored with **`stringify(sealed)`** directly; you no longer need a hand-built object of `string(iv)` / `string(tag)` / … for pure JSON (that pattern still works).
 - Use **listing** to inspect compile structure in Fiddle; use **decompile** for Adaptive compiled form as text; use **stringify** for portable JSON.
 - Multi-byte Unicode in **evaluated** strings now survives **`stringify`** / Fiddle JSON (see **UTF-8 in JSON results** above).
 
@@ -2274,7 +2274,7 @@ If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-ba
 
 ### Default values from `property_get` / `variable_get`
 
-Mutable inline defaults for `property_get` / `variable_get` (issue **[#110](https://github.com/afw-org/afw/issues/110)**) are isolated because each `{}` / `[]` is still a raw bag when assignable runs, so later mutations do not poison other calls. A default that is already a variable is **identity** (same occupant). Regression tests in `property_get.as` / `variable_get.as` lock both behaviors.
+Mutable inline defaults for `property_get` / `variable_get` (issue **[#110](https://github.com/afw-org/afw/issues/110)**) are isolated because each `{}` / `[]` is still a raw object or array when assignable runs, so later mutations do not poison other calls. A default that is already a variable is **identity** (same occupant). Regression tests in `property_get.as` / `variable_get.as` lock both behaviors.
 
 ### Type and pattern parse nesting
 

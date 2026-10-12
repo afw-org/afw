@@ -45,7 +45,7 @@ Index **data** (lookup keys) live in named DBs: `Index#<objectType>#<key>`. An i
 
 - Pattern: `afw_context_push_cb_variables(afw_s_current, …)` (auth-style), not model-scale context.
 - If **`value`** is omitted → index property named **`key`** (no script; no need for `current::`).
-- **Do not** put the indexed object on **`custom::`**. `custom::` = conf maintainer bags for components that run authored scripts (e.g. model). Ambient unqualified **`object`** (old scope push) is gone; bare `object` / `variable_get("object")` only works for **lexical** `object`, not index context.
+- **Do not** put the indexed object on **`custom::`**. `custom::` = conf maintainer variables for components that run authored scripts (e.g. model). Ambient unqualified **`object`** (old scope push) is gone; bare `object` / `variable_get("object")` only works for **lexical** `object`, not index context.
 
 Migration for old scripts: `object` / `variable_get("object")` → `current::object` / `variable_get("current::object")`.
 

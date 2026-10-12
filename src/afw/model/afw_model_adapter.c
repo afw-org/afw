@@ -1702,7 +1702,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             &model_property_type->mapped_property_name.pub, xctx);
 
         /* Add value if there is one. */
-        /** @fixme Might should call to_mapped_value with single values from bag or list. */
+        /** @fixme Might should call to_mapped_value with each value of an array. */
         if ((*entry)->value) {
             value = (*entry)->value;
             if (model_property_type->onSetProperty) {

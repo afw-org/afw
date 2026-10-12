@@ -8,7 +8,7 @@
 //? test: union<string>-1
 //? description: ...
 
-            String union of two empty bags.
+            String union of two empty arrays.
         
 //? expect: ...
 
@@ -28,7 +28,7 @@ union<string>(
 //? test: union<string>-2
 //? description: ...
 
-            String union of bags:
+            String union of arrays:
             { 'one', 'two', 'three' },
             { 'one', 'three' }
         
@@ -58,7 +58,7 @@ union<string>(
 //? test: union<string>-3
 //? description: ...
 
-            String union of bags:
+            String union of arrays:
             { 'one', 'two', 'three' },
             { 'four', 'five' }
         
@@ -90,7 +90,7 @@ union<string>(
 //? test: union<string>-4
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'three', 'four' }
         
@@ -121,7 +121,7 @@ union<string>(
 //? test: union<string>-5
 //? description: ...
 
-            String union of bags:
+            String union of arrays:
             {
             'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
             'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',

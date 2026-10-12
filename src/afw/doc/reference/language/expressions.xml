@@ -96,7 +96,7 @@ return `${outer}`;   /* → 42 */
         <header>Templates in application conf</header>
         <paragraph>
             Application <literal>qualifiedVariables</literal> (and the same
-            shape of qualifier bag on a script authorization handler) are
+            shape of qualifier variables on a script authorization handler) are
             templates compiled when that conf is loaded.
             Accessing <literal>app::name</literal> (or the handler’s
             qualifier) evaluates the compiled template in the current

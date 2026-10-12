@@ -79,7 +79,7 @@
         snapshots in long-running scripts.
     </paragraph>
     <paragraph>
-        Adaptive Models expose a rich <literal>current::</literal> bag during
+        Adaptive Models expose a rich set of <literal>current::</literal> variables during
         <literal>on*</literal> hooks. The documented set for each hook is the
         property's <literal>contextType</literal> (for example
         <literal>modelGetObject</literal> or <literal>modelGetProperty</literal>

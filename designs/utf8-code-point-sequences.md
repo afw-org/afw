@@ -51,7 +51,7 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 | **`replace`**, **split** (non-empty separator), **`afw_utf8_contains`** | **Fixed** — search advances by code point (still `memcmp` of full needle) |
 | Empty-match **`replace`** | **Fixed (#190)** — insert at each code-point boundary (including start and end); `limit = -1` must terminate |
 | **`to_lower` / `compare_ignore_case`** | **Bound (P4)** — `U8_NEXT` / `U8_APPEND`; throw on truncated. Compare walks each string with its own offset (mixed-width ignore-case, e.g. `"iX"` vs `"İX"`). [#206](https://github.com/afw-org/afw/issues/206). |
-| XACML bag formals | **Not** code-point expand (bag-of-one scalar); see `convert_to_array_sequence` notes |
+| Set-function array formals (`is_in`, `intersection`, …) | A string is never a one-entry array (#583); see `convert_to_array_sequence` notes |
 
 ## Goals
 

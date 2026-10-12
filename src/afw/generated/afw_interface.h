@@ -3036,7 +3036,7 @@ struct afw_data_type_s {
     afw_boolean_t relationalCompares;
 
     /**
-     * This is a scalar value (not Bag, List, Object, etc.).
+     * This is a scalar value (not an array, object, etc.).
      */
     afw_boolean_t scalar;
 
@@ -3425,8 +3425,8 @@ struct afw_data_type_inf_s {
  * shift_value removes and returns the first value (FIFO dequeue).
  * There is no separate unshift method on this interface; use
  * insert_value(instance, 0, value, xctx) to insert at the front
- * (unshift). Content remove_value removes the first equal value
- * (bag-style), not by position.
+ * (unshift). Content remove_value removes the first equal value,
+ * not the value at a position.
  *
  * @{
  */
@@ -8647,7 +8647,7 @@ struct afw_value_inf_s {
  * @addtogroup afw_variable_handler_interface afw_variable_handler
  *
  * Resolves or supplies variables for a qualifier / context (e.g. custom
- * or request-scoped bags). Used by the qualifier stack and context
+ * or request-scoped variables). Used by the qualifier stack and context
  * registration. Call methods via afw_variable_handler_*() macros.
  * See group afw_context and afw_xctx.
  *

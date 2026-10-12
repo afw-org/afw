@@ -351,7 +351,7 @@ All four fixed with the Python diagram generator; the docs build now warns about
 - **`index_try`** pushes **`current::object` / `objectId` / `objectType` / `key`** for filter/value (auth-style `push_cb_variables` + stack restore).
 - Old ambient unqualified `object` push was already dead; we did not remove a live shim.
 - Migration: bare `object` / `variable_get("object")` for *index* context → `current::object` / `variable_get("current::object")` (lexical `object` still works in normal scripts).
-- No conf **`custom`** for LMDB indexes (custom = maintainer bags where compiled units run, e.g. model).
+- No conf **`custom`** for LMDB indexes (custom = maintainer variables where compiled units run, e.g. model).
 - Smoke `src/afw_lmdb/tests/adapter/index_current.as` **skipped**.
 - `whats-new.md`: honest **partial** note only.
 
@@ -443,9 +443,9 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 #### Heritage / product framing (remember)
 
-- **Original Adaptive functions** largely map **XACML v3** (shorter Adaptive names): `all_of` / `any_of` / `*_all` / `*_any`, `bag` / `bag_size` / `one_and_only`, typed polymorphic ops, etc. Maintainer once had a full C XACML v3 compliance engine; abandoned as product but designed **AFW so XACML can map onto Adaptive**.
+- **Original Adaptive functions** largely map **XACML v3** (shorter Adaptive names): `all_of` / `any_of` / `*_all` / `*_any`, `one_and_only`, `is_in`, set functions, typed polymorphic ops (XACML `bag` / `bag-size` are `array<T>` / `length`), etc. Maintainer once had a full C XACML v3 compliance engine; abandoned as product but designed **AFW so XACML can map onto Adaptive**.
 - **XACML extension** (other repo, started): thin layer — register XACML functions/types/combining algs in the **AFW environment** pointing at existing Adaptive execute paths; XACML compile looks up registry. Core stays Adaptive; XACML is not a second type system in base.
-- **Bag vs array:** There is **no** separate `bag` data type (old bag type caused pain; then **list**, then **array** for script/JSON familiarity — #48 leftovers). **Bag is real as semantics + bag-oriented functions** (multiset / XACML algebra “under the covers”); **runtime representation is `array`**. Touchy “don’t call bags arrays” people still get bag *functions*; script people get one sequence type.
+- **XACML bag is an AFW array:** there is **no** separate `bag` data type (old bag type caused pain; then **list**, then **array** for script/JSON familiarity — #48 leftovers). The multiset / XACML set algebra lives on as **functions** over arrays (`is_in`, `union`, `intersection`, …); `bag` / `bag_size` are now `array<T>` / `length` (#583). XACML id → AFW function table: #598.
 - **ECMAScript / TypeScript:** Adaptive Script is **not** ES/TS and must differ where the problem set requires it; **avoid unmotivated differences**. Maintainer/beta decision notes: root [`typescript-differences.md`](typescript-differences.md) (Should fix / Will not do; **not** Jeremy’s polished differences doc — see **#22** for that). test262-derived tests help ES programmers — not to make AFW into ES.
 - **Docs rule:** Core user/reference docs should **not** need to say “ECMAScript” or “XACML” except (1) Jeremy’s differences doc / language-compare material, (2) future **XACML extension** docs. Describe Adaptive on its own terms. Maintainer dumps (this file, `designs/`) may still mention heritage.
 
@@ -474,7 +474,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 |------|----------------|
 | Structural array ops (`slice`, `join`, `add_entries`, future `at`/`push`/`pop`/…) | `afw_function_array.c` + category `array` metadata |
 | HOFs (`all_of`, `filter`, `map`, …; future `every`/`some`) | `afw_function_higher_order_array.c` |
-| `length` / `bag_size` / `bag` / `clone` / poly `includes` | `afw_function_polymorphic.c` |
+| `length` / `array<T>` / `one_and_only` / `clone` / poly `includes` | `afw_function_polymorphic.c` |
 | Object `keys`/`values`/`entries`, object freeze | `afw_function_object.c` (or poly freeze) |
 | C mutability | `afw_array_*` + interface XML `afw_array_setter` |
 | generate names | snake_case `functionId`/`functionLabel`; camel auto for JS bindings |

@@ -8,7 +8,7 @@
 //? test: intersection<string>-1
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { },
             { }
         
@@ -30,7 +30,7 @@ intersection<string>(
 //? test: intersection<string>-2
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'one', 'three' }
         
@@ -59,7 +59,7 @@ intersection<string>(
 //? test: intersection<string>-3
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'four', 'five' }
         
@@ -86,7 +86,7 @@ intersection<string>(
 //? test: intersection<string>-4
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'three', 'four' }
         
@@ -114,7 +114,7 @@ intersection<string>(
 //? test: intersection<string>-5
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             {
                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',

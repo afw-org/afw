@@ -8,7 +8,7 @@
 //? test: union<boolean>-1
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { },
             { }
         
@@ -30,7 +30,7 @@ union<boolean>(
 //? test: union<boolean>-2
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'true', 'true', 'false' },
             { 'false', 'true' }
         
@@ -59,7 +59,7 @@ union<boolean>(
 //? test: union<boolean>-3
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'false', 'false', 'false', 'true' },
             { }
         
@@ -87,7 +87,7 @@ union<boolean>(
 //? test: union<boolean>-4
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'false' },
             { 'false', 'false', 'false', 'false' }
         
@@ -115,7 +115,7 @@ union<boolean>(
 //? test: union<boolean>-5
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'true', 'true', 'true', 'true', 'true' },
             { 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true' }
         

@@ -494,7 +494,7 @@ afw_compile_parse_Object(
                     }
                     use_construct = true;
                     /*
-                     * Stop embedding children into the compile-time bag; entries
+                     * Stop embedding children into the compile-time object; entries
                      * hold values and evaluate attaches them after name eval.
                      */
                     parser->embedding_object = NULL;

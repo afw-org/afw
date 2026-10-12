@@ -23,19 +23,19 @@ def new_label():
 def _const_array_element_value_expr(options, element_type, value):
     """C expression for an interned permanent value of one array element."""
     if element_type == 'integer':
-        bag = str(value)
+        text = str(value)
         label_pref = None
         if value == 0:
             label_pref = 'zero'
         elif value == 1:
             label_pref = 'one'
         return get_string_label(
-            options, bag, 'v', dataType='integer',
+            options, text, 'v', dataType='integer',
             labelPreference=label_pref)
     if element_type == 'boolean':
-        bag = 'true' if value else 'false'
+        text = 'true' if value else 'false'
         return get_string_label(
-            options, bag, 'v', dataType='boolean')
+            options, text, 'v', dataType='boolean')
     return get_string_label(
         options, value, 'v', dataType=element_type)
 
@@ -155,14 +155,14 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
             # JSON bool before int (bool is a subclass of int in Python).
             dataType = 'boolean'
             use_shared_scalar = True
-            bag = 'true' if prop else 'false'
+            text = 'true' if prop else 'false'
             value_expr = (
                 '&' + get_string_label(
-                    options, bag, 'self_v', dataType='boolean') + '.pub')
+                    options, text, 'self_v', dataType='boolean') + '.pub')
         elif isinstance(prop, int):
             dataType = 'integer'
             use_shared_scalar = True
-            bag = str(prop)
+            text = str(prop)
             # Prefer conventional labels when first registration (after seed
             # these match integer::zero / integer::one from strings.txt).
             label_pref = None
@@ -172,17 +172,17 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
                 label_pref = 'one'
             value_expr = (
                 '&' + get_string_label(
-                    options, bag, 'self_v', dataType='integer',
+                    options, text, 'self_v', dataType='integer',
                     labelPreference=label_pref) + '.pub')
         elif isinstance(prop, float):
             dataType = 'double'
             use_shared_scalar = True
-            # C initializer text stored in the bag; must match a strings.txt
+            # C initializer text; must match a strings.txt
             # double:: value text to share that permanent (e.g. 1.0e1).
-            bag = str(prop)
+            text = str(prop)
             value_expr = (
                 '&' + get_string_label(
-                    options, bag, 'self_v', dataType='double') + '.pub')
+                    options, text, 'self_v', dataType='double') + '.pub')
         elif isinstance(prop, list):
             dataType = 'array'
             elementType = 'string'

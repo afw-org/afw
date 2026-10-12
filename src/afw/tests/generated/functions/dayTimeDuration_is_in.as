@@ -6,7 +6,7 @@
 //? sourceType: script
 //?
 //? test: is_in<dayTimeDuration>-1
-//? description: P3DT10H30M is in bag
+//? description: P3DT10H30M is in array
 //? expect: boolean(true)
 //? source: ...
 
@@ -23,7 +23,7 @@ is_in<dayTimeDuration>(
 
 //?
 //? test: is_in<dayTimeDuration>-2
-//? description: P3DT10H30M is not in bag
+//? description: P3DT10H30M is not in array
 //? expect: boolean(false)
 //? source: ...
 

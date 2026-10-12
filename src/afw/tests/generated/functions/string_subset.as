@@ -8,7 +8,7 @@
 //? test: subset<string>-1
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { },
             { }
         
@@ -26,7 +26,7 @@ subset<string>(
 //? test: subset<string>-2
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { 'one', 'three', 'one', 'three' },
             { 'one', 'one', 'one', 'two', 'two', 'two', 'three', 'three', 'three' }
         
@@ -57,7 +57,7 @@ subset<string>(
 //? test: subset<string>-3
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { 'one', 'two', 'three' },
             { 'four', 'five' }
         
@@ -80,7 +80,7 @@ subset<string>(
 //? test: subset<string>-4
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { 'one', 'two', 'three' },
             { 'one', 'two', 'four' }
         
@@ -104,7 +104,7 @@ subset<string>(
 //? test: subset<string>-5
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             {
                 'two', 'four', 'six', 'eight', 'ten',
                 'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'

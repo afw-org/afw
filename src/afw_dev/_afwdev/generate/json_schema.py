@@ -576,7 +576,7 @@ def _convert_object_type(ctx, needed, object_type, object_type_object,
         # the inheritance chain (validators use properties= merged map).
         merged = _merged_instance_properties(
             ctx, needed, object_type, object_type_object)
-        # Optional adaptive instance meta bag (common on real objects).
+        # Optional adaptive instance meta object (common on real objects).
         merged.setdefault('_meta_', {
             'type': 'object',
             'additionalProperties': True,
