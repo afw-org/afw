@@ -17,6 +17,7 @@
 .gitignore text eol=lf
 .gitattributes text eol=lf
 configure.additional text eol=lf
+afwdev text eol=lf
 *.bat text eol=crlf
 *.vcxproj text eol=crlf
 *.sln text eol=crlf

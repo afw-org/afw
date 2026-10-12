@@ -1,33 +1,123 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <doc>
-    <title>Authorization Handlers</title>
+    <title>Authorization</title>
     <paragraph>
-        This chapter goes through the different Authorization Handlers and 
-        when each one is appropriate to use. It also shows how to configure 
-        each of them.
+        This chapter describes how an application decides whether a request
+        may access a resource: the application's authorization control and
+        the authorization handlers that take part in each decision. The
+        Authorization chapter of the Architecture Guide explains the model
+        behind it.
     </paragraph>
     <section>
-        <title>Policy</title>
+        <title>How a Decision Is Made</title>
         <paragraph>
-            This handler performs authorization through policies.
+            Each check asks whether an action may be performed on a resource.
+            The resource is a path such as
+            <literal>/objects/Note/n1</literal>, or
+            <literal>/afw/_AdaptiveFunction_/service_restart</literal> for a
+            function call. The action is one of <literal>create</literal>,
+            <literal>read</literal>, <literal>query</literal>,
+            <literal>modify</literal>, <literal>delete</literal> and
+            <literal>execute</literal>.
         </paragraph>
-        <section>
-            <title>Features</title>
-        </section>
-        <section>
-            <title>Configuration Parameters</title>
-        </section>
+        <steps>
+            <step>
+                The application's <literal>initialAuthorizationCheck</literal>
+                runs first, if there is one. A result of
+                <literal>permit</literal> or <literal>deny</literal> is the
+                final decision.
+            </step>
+            <step>
+                Otherwise each running authorization handler is asked, in
+                <literal>priority</literal> order, and their decisions are
+                combined.
+            </step>
+            <step>
+                If the final result is still <literal>notApplicable</literal>,
+                access is permitted, unless the application's
+                <literal>denyIfNotApplicable</literal> is true.
+            </step>
+        </steps>
+        <paragraph>
+            Checks apply to requests from clients (user mode) and, when
+            <literal>checkIntermediateMode</literal> is true, to the accesses
+            a model adapter makes on a client's behalf. Code running in core
+            mode is checked only by <literal>coreAuthorizationCheck</literal>,
+            if one is given. A denied request fails with error
+            <literal>denied</literal>, for example
+            <literal>Access 'delete' to '/objects/Note/n1' is not permitted</literal>.
+        </paragraph>
+    </section>
+    <section>
+        <title>Authorization Control</title>
+        <paragraph>
+            The application entry's <literal>authorizationControl</literal>
+            property controls checking for the whole application:
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveAuthorizationControl_" />
+        <paragraph>
+            A check script returns an object whose
+            <literal>decisionId</literal> is <literal>permit</literal>,
+            <literal>deny</literal> or <literal>notApplicable</literal>. While
+            it runs, <literal>current::actionId</literal>,
+            <literal>current::resourceId</literal>,
+            <literal>current::object</literal> (the object, or for
+            <literal>execute</literal> the function and its arguments, when
+            there is one) and <literal>current::requestId</literal> describe
+            the access, and request properties such as
+            <literal>request::REMOTE_ADDR</literal> are available.
+        </paragraph>
+        <code><![CDATA[{
+    type          : "application",
+    applicationId : "MyApplication",
+    authorizationControl : {
+        // No request may start, stop or restart services.
+        initialAuthorizationCheck : "if (current::actionId === 'execute' && starts_with(current::resourceId, '/afw/_AdaptiveFunction_/service_')) { return { decisionId: 'deny' }; } return { decisionId: 'notApplicable' };"
+    }
+}]]></code>
+    </section>
+    <section>
+        <title>Authorization Handlers</title>
+        <paragraph>
+            An <literal>authorizationHandler</literal> entry adds a handler,
+            identified by <literal>authorizationHandlerId</literal>, of the
+            type named by <literal>authorizationHandlerType</literal>. A
+            handler is a service named <literal>authorizationHandler-</literal>
+            followed by its id. These properties are common to every handler:
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveConf_authorizationHandler" />
+        <paragraph>
+            A handler's decision does not replace an earlier handler's
+            permit or deny unless <literal>allowDenyOverride</literal> or
+            <literal>allowPermitOverride</literal> says it may. A
+            <literal>required</literal> handler that is not running makes
+            checks fail rather than skip it.
+        </paragraph>
     </section>
     <section>
         <title>Script</title>
         <paragraph>
-            This handler performs authorization by executing an adaptive script.
+            The <literal>script</literal> handler, provided by core, decides
+            by running the Adaptive Script in
+            <literal>authorizationCheck</literal>, with the same
+            <literal>current::</literal> variables and result as the
+            application's check scripts.
         </paragraph>
-        <section>
-            <title>Features</title>
-        </section>
-        <section>
-            <title>Configuration Parameters</title>
-        </section>
-    </section>    
+        <object-type-table objectTypeId="_AdaptiveConf_authorizationHandler_script" />
+        <paragraph>
+            This handler refuses deletes in the adapter
+            <literal>objects</literal> and has no opinion on anything else:
+        </paragraph>
+        <code><![CDATA[{
+    type                     : "authorizationHandler",
+    authorizationHandlerId   : "no-delete",
+    authorizationHandlerType : "script",
+    authorizationCheck       : "if (current::actionId === 'delete' && starts_with(current::resourceId, '/objects/')) { return { decisionId: 'deny' }; } return { decisionId: 'notApplicable' };"
+}]]></code>
+        <paragraph>
+            Values in <literal>qualifiedVariables</literal> are available to
+            the script under their qualifier, which keeps lists such as
+            allowed users out of the script text.
+        </paragraph>
+    </section>
 </doc>

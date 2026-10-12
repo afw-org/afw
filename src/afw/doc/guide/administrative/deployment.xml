@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Deployment</title>
+    <paragraph>
+        A running Adaptive Framework application has three parts:
+        <literal>afwfcgi</literal>, which runs the application and answers
+        requests; a web server, which serves the Administrative Web App and
+        the documentation and forwards everything else to
+        <literal>afwfcgi</literal>; and the data the application keeps, its
+        configuration files and databases. This chapter describes how to put
+        those parts together, with containers or on a host.
+    </paragraph>
+    <section>
+        <title>Choosing a Layout</title>
+        <table>
+            <columns>
+                <column>Layout</column>
+                <column>Use it for</column>
+            </columns>
+            <rows>
+                <row>
+                    <column>One container, image <literal>afw</literal></column>
+                    <column>A single host, a demonstration, or trying
+                    Adaptive Framework out. nginx, the Administrative Web App
+                    and <literal>afwfcgi</literal> run in one
+                    container.</column>
+                </row>
+                <row>
+                    <column>Separate containers, images
+                    <literal>afwfcgi</literal> and
+                    <literal>afw-admin</literal></column>
+                    <column>Orchestrated deployments. Each part is its own,
+                    smaller image, and the orchestrator decides where each
+                    runs and how many there are. A deployment that needs no
+                    admin app runs <literal>afwfcgi</literal> behind its own
+                    web server.</column>
+                </row>
+                <row>
+                    <column>On a host, without containers</column>
+                    <column>Installing from source or packages, with
+                    <literal>afwfcgi</literal> run by systemd behind
+                    nginx.</column>
+                </row>
+            </rows>
+        </table>
+    </section>
+    <section>
+        <title>Images</title>
+        <table>
+            <columns>
+                <column>Image</column>
+                <column>Runs</column>
+                <column>Listens on</column>
+                <column>Environment</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>afw</literal></column>
+                    <column>nginx, the Administrative Web App, the
+                    documentation and <literal>afwfcgi</literal>, started by
+                    supervisord. nginx reaches <literal>afwfcgi</literal>
+                    through a Unix socket in the container.</column>
+                    <column>8080 (HTTP)</column>
+                    <column><literal>BOOTSTRAP=false</literal> skips filling
+                    an empty <literal>/afw</literal> volume.</column>
+                </row>
+                <row>
+                    <column><literal>afwfcgi</literal></column>
+                    <column><literal>afwfcgi -f /afw/afw.conf</literal></column>
+                    <column>9345 (FastCGI)</column>
+                    <column><literal>NUM_THREADS</literal>: request threads,
+                    default 25.</column>
+                </row>
+                <row>
+                    <column><literal>afw-admin</literal></column>
+                    <column>nginx with the Administrative Web App and the
+                    documentation. Other requests go to the
+                    <literal>afwfcgi</literal> named by
+                    <literal>AFWFCGI</literal>.</column>
+                    <column>8080 (HTTP)</column>
+                    <column><literal>AFWFCGI</literal>: where
+                    <literal>afwfcgi</literal> listens, default
+                    <literal>afwfcgi:9345</literal>.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            <literal>afw-base</literal>, <literal>afw-dev-base</literal> and
+            <literal>afw-dev</literal> are building blocks for the images above
+            and for development; see the Installation chapter.
+        </paragraph>
+    </section>
+    <section>
+        <title>The /afw Volume</title>
+        <paragraph>
+            The <literal>afw</literal> and <literal>afwfcgi</literal> images
+            keep everything that changes in <literal>/afw</literal>. Mount a
+            volume there to keep it when the container is replaced. When the
+            container starts and <literal>/afw/afw.conf</literal> does not
+            exist, the image copies its default configuration into the
+            volume, so a new, empty volume starts with a working application:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Path</column>
+                <column>Holds</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>afw.conf</literal></column>
+                    <column>The configuration file. It defines the
+                    configuration adapter <literal>conf</literal>, the request
+                    handler, and the application.</column>
+                </row>
+                <row>
+                    <column><literal>config/_AdaptiveServiceConf_/</literal></column>
+                    <column>One file per service: the adapters below (and,
+                    in <literal>afw</literal>, a demonstration model adapter
+                    and a VFS adapter). Add, change or remove services here
+                    or with the Administrative Web App.</column>
+                </row>
+                <row>
+                    <column><literal>config/_AdaptiveConf_application/</literal></column>
+                    <column>More application properties, such as the
+                    extensions to load, merged into the application entry of
+                    <literal>afw.conf</literal>.</column>
+                </row>
+                <row>
+                    <column><literal>lmdb/</literal></column>
+                    <column>The LMDB database of adapter
+                    <literal>lmdb</literal>.</column>
+                </row>
+                <row>
+                    <column><literal>files/</literal>, <literal>layouts/</literal>,
+                    <literal>models/</literal>, <literal>auth/</literal></column>
+                    <column>File adapters for objects, layouts, models and
+                    policies.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            To deploy your own application, put your
+            <literal>afw.conf</literal> and service files in the volume
+            before the first start, or edit the copied defaults. The
+            Configuration chapter describes both.
+        </paragraph>
+    </section>
+    <section>
+        <title>Separate Containers</title>
+        <paragraph>
+            This Docker Compose file runs <literal>afwfcgi</literal> with its
+            data on a volume, and <literal>afw-admin</literal> in front of it.
+            Only <literal>afw-admin</literal> publishes a port. It finds
+            <literal>afwfcgi</literal> by its service name on the Compose
+            network, which is the default of <literal>AFWFCGI</literal>, so
+            naming the service <literal>afwfcgi</literal> is all the wiring
+            needed:
+        </paragraph>
+        <code><![CDATA[services:
+
+    afwfcgi:
+        image: ghcr.io/afw-org/afwfcgi
+        environment:
+            NUM_THREADS: "10"
+        volumes:
+            - afw:/afw
+
+    admin:
+        image: ghcr.io/afw-org/afw-admin
+        ports:
+            - "8080:8080"
+
+volumes:
+    afw: {}]]></code>
+        <paragraph>
+            <literal>afw-admin</literal> looks the name up for each request,
+            not once at start, so the two can start in either order, and
+            <literal>afwfcgi</literal> can be restarted or replaced without
+            restarting <literal>afw-admin</literal>; requests made while it is
+            down get <literal>502 Bad Gateway</literal>. Set
+            <literal>AFWFCGI</literal> when the service has another name or
+            port (<literal>AFWFCGI: "backend:9400"</literal>), or to
+            <literal>unix:</literal> and a socket path when both share a
+            socket.
+        </paragraph>
+        <code><![CDATA[docker compose up -d      # start both in the background
+docker compose logs -f    # follow their output
+docker compose down       # stop and remove the containers; the volume stays]]></code>
+        <paragraph>
+            The same parts map onto other orchestrators: a service for
+            <literal>afwfcgi</literal> on port 9345 with a persistent volume
+            at <literal>/afw</literal>, and any number of web front ends that
+            forward to it. On Kubernetes, give <literal>AFWFCGI</literal> the
+            Service's full name, such as
+            <literal>afwfcgi.&lt;namespace&gt;.svc.cluster.local:9345</literal>:
+            nginx's resolver does not apply DNS search domains, so the short
+            name is not found.
+        </paragraph>
+    </section>
+    <section>
+        <title>One Container</title>
+        <code><![CDATA[docker run -d --name afw -p 8080:8080 -v afw:/afw ghcr.io/afw-org/afw]]></code>
+        <paragraph>
+            Then open <literal>http://localhost:8080/</literal>, which
+            redirects to the Administrative Web App. The default
+            configuration of this image is a demonstration: it loads several
+            extensions and starts a model adapter <literal>vault</literal>
+            over the LMDB adapter.
+        </paragraph>
+    </section>
+    <section>
+        <title>On a Host</title>
+        <paragraph>
+            After installing (see Installation), run
+            <literal>afwfcgi</literal> as a service and put nginx in front of
+            it. The Appendix has a sample systemd unit, which starts
+            <literal>afwfcgi -n 10 -p /var/run/afw.sock -f /etc/afw.conf</literal>
+            and gives the socket to the nginx user, and a sample nginx
+            configuration. <literal>./afwdev build --js --docs --install</literal>
+            installs the Administrative Web App and the documentation under
+            <literal>/usr/share/nginx/html</literal> (choose another directory
+            with <literal>--web-root</literal>), where the sample
+            configuration serves <literal>/apps</literal> and
+            <literal>/docs</literal> from.
+        </paragraph>
+    </section>
+    <section>
+        <title>The Web Server</title>
+        <paragraph>
+            Whatever serves HTTP in front of <literal>afwfcgi</literal>,
+            nginx or another FastCGI client, it must:
+        </paragraph>
+        <list>
+            <item>
+                Pass the FastCGI parameters <literal>REQUEST_METHOD</literal>,
+                <literal>REQUEST_URI</literal> (or
+                <literal>PATH_INFO</literal>), <literal>QUERY_STRING</literal>,
+                <literal>CONTENT_TYPE</literal> and
+                <literal>CONTENT_LENGTH</literal>, and the request headers.
+                Every parameter is also available to scripts as a
+                <literal>request::</literal> variable, such as
+                <literal>request::REMOTE_ADDR</literal>.
+            </item>
+            <item>
+                Leave <literal>CONTENT_LENGTH</literal> out when a request has
+                no body. With nginx, write
+                <literal>fastcgi_param CONTENT_LENGTH $content_length if_not_empty;</literal>;
+                an empty value makes <literal>afwfcgi</literal> answer
+                <literal>400 Invalid Content-Length.</literal>
+            </item>
+            <item>
+                Allow request bodies and response times as large as the
+                application needs (<literal>client_max_body_size</literal>,
+                <literal>fastcgi_read_timeout</literal>).
+            </item>
+            <item>
+                Serve <literal>/apps/</literal> and <literal>/docs/</literal>
+                as static files, if the admin app and documentation are
+                deployed, and forward everything else.
+            </item>
+        </list>
+    </section>
+    <section>
+        <title>Running in Production</title>
+        <list>
+            <item>
+                <strong>Authorization.</strong> The images' default
+                configuration defines no authorization, so every request
+                that reaches <literal>afwfcgi</literal> is permitted,
+                including changes to services. Configure authorization (see
+                the Authorization chapter) and authentication in the web
+                server before exposing a deployment.
+            </item>
+            <item>
+                <strong>One process per LMDB database.</strong> Run one
+                <literal>afwfcgi</literal> for each LMDB database directory and
+                scale it with request threads (<literal>-n</literal> or
+                <literal>NUM_THREADS</literal>), not by starting more
+                containers on the same volume.
+            </item>
+            <item>
+                <strong>Stopping.</strong> On SIGTERM, which
+                <literal>docker stop</literal> and systemd send,
+                <literal>afwfcgi</literal> stops taking new requests and exits
+                when the current ones finish.
+            </item>
+            <item>
+                <strong>Logs.</strong> The images write
+                <literal>afwfcgi</literal> output to standard output, where
+                <literal>docker logs</literal> and the orchestrator collect
+                it. Add a <literal>log</literal> service for the messages you
+                want (see Configuration).
+            </item>
+            <item>
+                <strong>Checking it.</strong> A request for
+                <literal>/afw/_AdaptiveService_/</literal> lists every service
+                and its status.
+            </item>
+        </list>
+    </section>
+</doc>

@@ -1,7 +1,9 @@
+# Template: at container start the nginx image's entrypoint substitutes
+# the environment variables AFWFCGI and NGINX_LOCAL_RESOLVERS (only those,
+# see NGINX_ENVSUBST_FILTER in the Dockerfile) and writes the result to
+# /etc/nginx/nginx.conf. Other $names are nginx variables, left alone.
 user root root;
 worker_processes auto;
-
-env AFWFCGI;
 
 events {
     worker_connections 1024;
@@ -14,8 +16,17 @@ http {
     # customize the log format
     log_format    simple_format     '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent';
 
+    # The container's DNS servers (Docker's, or the cluster's), so the
+    # afwfcgi name below is looked up per request: nginx starts before
+    # afwfcgi is reachable, and follows it when it restarts at a new address.
+    resolver ${NGINX_LOCAL_RESOLVERS} valid=10s;
+
     server {
         listen 8080;
+
+        # Where the Dockerfile unpacks the apps and docs (this nginx's own
+        # default is /etc/nginx/html).
+        root /usr/share/nginx/html;
         
         access_log /dev/stdout simple_format;
         error_log /dev/stdout warn;
@@ -53,7 +64,9 @@ http {
 
         # Proxy everything else at / to afwfcgi
         location / {
-            fastcgi_pass ${AFWFCGI};
+            # host:port of afwfcgi (default afwfcgi:9345), or unix:/path.
+            set $afwfcgi ${AFWFCGI};
+            fastcgi_pass $afwfcgi;
 	        fastcgi_read_timeout 600s;
 	        fastcgi_send_timeout 600s;
 
@@ -63,7 +76,8 @@ http {
             fastcgi_param   QUERY_STRING            $query_string;
             fastcgi_param   REQUEST_METHOD          $request_method;
             fastcgi_param   CONTENT_TYPE            $content_type;
-            fastcgi_param   CONTENT_LENGTH          $content_length;
+            # Only when the request has a body; afwfcgi refuses an empty one.
+            fastcgi_param   CONTENT_LENGTH          $content_length if_not_empty;
     
             fastcgi_param   SCRIPT_FILENAME         $document_root$fastcgi_script_name;
             fastcgi_param   SCRIPT_NAME             $fastcgi_script_name;

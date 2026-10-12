@@ -3,7 +3,15 @@
     <title>Adapters</title>
     <paragraph>
         This chapter goes over the various Adapters, how and when each should
-        be used, and how to configure them.
+        be used, and how to configure them. Every adapter is configured by an
+        entry with <literal>type: "adapter"</literal>, either in
+        <literal>afw.conf</literal> or as a service; see the
+        <link href="configuration.html" text="Configuration" /> chapter for
+        the properties all adapters share, such as
+        <literal>journalAdapterId</literal> and
+        <literal>authorizationHandlerId</literal>. An adapter type provided
+        by an extension, such as <literal>lmdb</literal>, loads its extension
+        the first time it is used.
     </paragraph>
     <section>
         <title>Adaptive Framework Core</title>
@@ -15,6 +23,16 @@
             generates runtime objects that exist from configurations and 
             environment. Objects from the Core adapter are read-only.
         </paragraph>
+        <paragraph>
+            Useful object types in this adapter include
+            <literal>_AdaptiveObjectType_</literal>,
+            <literal>_AdaptiveFunction_</literal>,
+            <literal>_AdaptiveDataType_</literal>,
+            <literal>_AdaptiveService_</literal>,
+            <literal>_AdaptiveAdapter_</literal> and
+            <literal>_AdaptiveApplication_</literal>. It needs no
+            configuration entry.
+        </paragraph>
     </section>
     <section>
         <title>File</title>
@@ -24,6 +42,38 @@
         </paragraph>
         <section>
             <title>Features</title>
+            <list>
+                <item>
+                    Each object is one file,
+                    <literal>&lt;root&gt;&lt;objectType&gt;/&lt;objectId&gt;&lt;filenameSuffix&gt;</literal>,
+                    in the content type named by <literal>contentType</literal>.
+                    Files can be edited by hand and kept in version control,
+                    which makes the file adapter a good home for
+                    configuration, models and layouts.
+                </item>
+                <item>
+                    Supports every object operation. Queries read every file
+                    of the object type; there are no indexes.
+                </item>
+                <item>
+                    Can serve as a journal: another adapter, or the file
+                    adapter itself, can name it as its
+                    <literal>journalAdapterId</literal>.
+                </item>
+                <item>
+                    <literal>isModelLocation</literal> and
+                    <literal>isPolicyLocation</literal> let it hold
+                    <literal>_AdaptiveModel_</literal> and policy objects.
+                </item>
+            </list>
+            <code><![CDATA[{
+    type           : "adapter",
+    adapterId      : "objects",
+    adapterType    : "file",
+    contentType    : "json",
+    filenameSuffix : ".json",
+    root           : "/var/lib/afw/objects/"
+}]]></code>
         </section>
         <section>
             <title>Configuration Parameters</title>    
@@ -35,9 +85,28 @@
         <paragraph>
             This adapter provides access to adaptive objects stored in 
             Lightweight Directory Access Protocol (LDAP) compliant databases.
+            It is provided by the <literal>afw_ldap</literal> extension.
         </paragraph>
         <section>
             <title>Features</title>
+            <list>
+                <item>
+                    The directory's schema is read when the adapter starts and
+                    presented as object types, so LDAP object classes can be
+                    queried and edited like any other objects.
+                </item>
+                <item>
+                    Supports get, retrieve, add, modify and delete.
+                    <literal>replace_object</literal> is not supported,
+                    because the directory maintains some attributes
+                    itself.
+                </item>
+                <item>
+                    <literal>url</literal> and <literal>bindParameters</literal>
+                    are templates evaluated when the adapter starts, so
+                    credentials can come from the environment.
+                </item>
+            </list>
         </section>
         <section>
             <title>Configuration Parameters</title>
@@ -48,10 +117,51 @@
         <title>LMDB</title>
         <paragraph>
             This adapter allows adaptive objects to be stored in the 
-            memory-mapped key-value database, LMDB.
+            memory-mapped key-value database, LMDB. It is provided by the
+            <literal>afw_lmdb</literal> extension.
         </paragraph>
         <section>
             <title>Features</title>
+            <list>
+                <item>
+                    Fast, transactional storage in one database directory,
+                    shared safely by every thread of the process.
+                </item>
+                <item>
+                    Supports every object operation, can serve as another
+                    adapter's journal, and supports
+                    <literal>isModelLocation</literal>.
+                </item>
+                <item>
+                    Supports indexes, which make queries on indexed
+                    properties fast. See the
+                    <link href="indexes.html" text="Indexes" /> chapter.
+                </item>
+                <item>
+                    <literal>env</literal> and <literal>limits</literal> are
+                    required, as are every property of
+                    <literal>env</literal>. <literal>env.path</literal> is a
+                    template, and <literal>env.mapsize</literal>, the largest
+                    size the database can grow to, should be a multiple of
+                    the operating system page size.
+                </item>
+            </list>
+            <code><![CDATA[{
+    type        : "adapter",
+    adapterId   : "lmdb",
+    adapterType : "lmdb",
+    env         : {
+        path       : "/var/lib/afw/lmdb",
+        mode       : 384,          // 0600 in decimal
+        maxreaders : 126,
+        maxdbs     : 128,
+        mapsize    : 1073741824    // 1 GiB
+    },
+    limits      : {
+        size : { soft : 500,  hard : 1000 },
+        time : { soft : 3600, hard : 14400 }
+    }
+}]]></code>
         </section>
         <section>
             <title>Configuration Parameters</title>
@@ -67,6 +177,36 @@
         </paragraph>
         <section>
             <title>Features</title>
+            <list>
+                <item>
+                    Loads the <literal>_AdaptiveModel_</literal> named by
+                    <literal>modelId</literal> from the adapter named by
+                    <literal>modelLocationAdapterId</literal>, which must
+                    have <literal>isModelLocation</literal> set.
+                </item>
+                <item>
+                    With <literal>mappedAdapterId</literal>, maps object
+                    types and properties onto that adapter and forwards
+                    each operation to it. Without it, every operation used
+                    must be implemented by the model's
+                    <literal>on*</literal> scripts.
+                </item>
+                <item>
+                    <literal>custom</literal> provides
+                    <literal>custom::</literal> variables to the model's
+                    scripts.
+                </item>
+                <item>
+                    Compiled scripts are cached on the model location
+                    adapter. After changing an <literal>_AdaptiveModel_</literal>,
+                    restart the model location adapter (stopping the model
+                    adapter first) to use the new scripts.
+                </item>
+            </list>
+            <paragraph>
+                See the Models chapter of the Architecture Guide for what a
+                model contains.
+            </paragraph>
         </section>
         <section>
             <title>Configuration Parameters</title>
@@ -77,69 +217,69 @@
         <title>VFS</title>
         <paragraph>
             The VFS (Virtual File System) adapter, provided by the
-            <code>afw_vfs</code> extension, exposes host files and directories
-            as adaptive objects of type <code>_AdaptiveFile_vfs</code>. Use it
+            <literal>afw_vfs</literal> extension, exposes host files and directories
+            as adaptive objects of type <literal>_AdaptiveFile_vfs</literal>. Use it
             when scripts or services need adapter-style CRUD on filesystem
-            content rather than stream I/O via <code>open_file</code> and
-            <code>rootFilePaths</code>.
+            content rather than stream I/O via <literal>open_file</literal> and
+            <literal>rootFilePaths</literal>.
         </paragraph>
         <section>
             <title>Features</title>
             <list>
                 <item>
-                    Object type <code>_AdaptiveFile_vfs</code> only. Directory
-                    objectIds end with <code>/</code>; regular files do not.
+                    Object type <literal>_AdaptiveFile_vfs</literal> only. Directory
+                    objectIds end with <literal>/</literal>; regular files do not.
                 </item>
                 <item>
-                    File content is the <code>data</code> property (UTF-8
-                    string or <code>hexBinary</code>). Directories list entry
-                    names in <code>data</code>. Omitted <code>data</code> on
+                    File content is the <literal>data</literal> property (UTF-8
+                    string or <literal>hexBinary</literal>). Directories list entry
+                    names in <literal>data</literal>. Omitted <literal>data</literal> on
                     add/replace of a file defaults to an empty file.
                 </item>
                 <item>
                     Reads and writes load or replace the entire file (subject
-                    to <code>maxReadBytes</code>). Writes use a temporary file
+                    to <literal>maxReadBytes</literal>). Writes use a temporary file
                     then rename so shorter content does not leave stale bytes.
                 </item>
                 <item>
-                    Optional <code>markExecutable</code> patterns mark matching
+                    Optional <literal>markExecutable</literal> patterns mark matching
                     vfsPaths executable after write (platform permitting).
                 </item>
                 <item>
-                    <code>retrieve_objects</code> supports adapter-specific
-                    options: <code>subdirectory</code>, <code>recursive</code>,
-                    <code>suffix</code>, and <code>includeHidden</code>.
+                    <literal>retrieve_objects</literal> supports adapter-specific
+                    options: <literal>subdirectory</literal>, <literal>recursive</literal>,
+                    <literal>suffix</literal>, and <literal>includeHidden</literal>.
                 </item>
             </list>
         </section>
         <section>
             <title>vfsMap and paths</title>
             <paragraph>
-                Configure one or more <code>vfsMap</code> entries of the form
-                <code>objectId_prefix=host/directory/</code>. An empty prefix
+                Configure one or more <literal>vfsMap</literal> entries of the form
+                <literal>objectId_prefix=host/directory/</literal>. An empty prefix
                 maps the adapter root. Non-empty prefixes must end with
-                <code>/</code>; host paths must exist as directories and end
-                with <code>/</code> (a trailing backslash is accepted on
+                <literal>/</literal>; host paths must exist as directories and end
+                with <literal>/</literal> (a trailing backslash is accepted on
                 Windows).
             </paragraph>
             <paragraph>
                 For any objectId, the map entry with the longest matching
                 prefix is used (path boundary matching, same idea as
-                application <code>rootFilePaths</code>). Host roots are
+                application <literal>rootFilePaths</literal>). Host roots are
                 canonicalized at adapter start; resolved host paths must stay
                 under that root. ObjectIds must not contain path segments
-                <code>.</code> or <code>..</code>, or backslash.
+                <literal>.</literal> or <literal>..</literal>, or backslash.
             </paragraph>
             <paragraph>
-                When <code>subdirectory</code> is set on retrieve, only map
+                When <literal>subdirectory</literal> is set on retrieve, only map
                 entries whose prefix matches that path are used; the remainder
                 after the prefix is resolved under that entry's host directory
                 (the map key is not applied twice to the host path).
             </paragraph>
             <paragraph>
-                Names beginning with <code>.</code> are hidden from directory
+                Names beginning with <literal>.</literal> are hidden from directory
                 listings and retrieve by default; set
-                <code>includeHidden</code> to include them. Directory delete is
+                <literal>includeHidden</literal> to include them. Directory delete is
                 non-recursive (the directory must be empty).
             </paragraph>
             <paragraph>
@@ -179,9 +319,9 @@
 ]]></code>
             <paragraph>
                 Regression coverage lives under
-                <code>src/afw_vfs/tests/</code>
-                (<code>vfs_test.as</code>, <code>vfs_multimap.as</code>,
-                <code>vfs_phase4.as</code>).
+                <literal>src/afw_vfs/tests/</literal>
+                (<literal>vfs_test.as</literal>, <literal>vfs_multimap.as</literal>,
+                <literal>vfs_phase4.as</literal>).
             </paragraph>
         </section>
         <section>
