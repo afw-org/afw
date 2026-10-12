@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<ipAddress>(
-    ipAddress("194.153.205.26"),
-    ipAddress("194.153.205.26")
+    "194.153.205.26"ipAddress,
+    "194.153.205.26"ipAddress
 )
 
 //?
@@ -22,8 +22,8 @@ eq<ipAddress>(
 //? source: ...
 
 eq<ipAddress>(
-    ipAddress("194.153.205.26:22"),
-    ipAddress("194.153.205.26:22")
+    "194.153.205.26:22"ipAddress,
+    "194.153.205.26:22"ipAddress
 )
 
 //?
@@ -33,8 +33,8 @@ eq<ipAddress>(
 //? source: ...
 
 eq<ipAddress>(
-    ipAddress("194.28.0.0/16"),
-    ipAddress("194.28.0.0/16")
+    "194.28.0.0/16"ipAddress,
+    "194.28.0.0/16"ipAddress
 )
 
 //?
@@ -44,8 +44,8 @@ eq<ipAddress>(
 //? source: ...
 
 eq<ipAddress>(
-    ipAddress("2001:0f68:0000:0000:0000:0000:1986:69af"),
-    ipAddress("2001:0f68:0000:0000:0000:0000:1986:69af")
+    "2001:0f68:0000:0000:0000:0000:1986:69af"ipAddress,
+    "2001:0f68:0000:0000:0000:0000:1986:69af"ipAddress
 )
 
 //?
@@ -55,8 +55,8 @@ eq<ipAddress>(
 //? source: ...
 
 eq<ipAddress>(
-    ipAddress("2001:f68::1986:69af"),
-    ipAddress("2001:f68::1986:69af")
+    "2001:f68::1986:69af"ipAddress,
+    "2001:f68::1986:69af"ipAddress
 )
 
 //?
@@ -66,8 +66,8 @@ eq<ipAddress>(
 //? source: ...
 
 eq<ipAddress>(
-    ipAddress("[2001:f68::1986:69af]:80-90"),
-    ipAddress("[2001:f68::1986:69af]:80-90")
+    "[2001:f68::1986:69af]:80-90"ipAddress,
+    "[2001:f68::1986:69af]:80-90"ipAddress
 )
 
 //?
@@ -77,7 +77,7 @@ eq<ipAddress>(
 //? source: ...
 
 eq<ipAddress>(
-    ipAddress("2001:db8:1234:5678::9/64"),
-    ipAddress("2001:db8:1234:5678::9/64")
+    "2001:db8:1234:5678::9/64"ipAddress,
+    "2001:db8:1234:5678::9/64"ipAddress
 )
 

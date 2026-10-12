@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<dayTimeDuration>-1
 //? description: One
-//? expect: dayTimeDuration("PT1M30.5S")
+//? expect: "PT1M30.5S"dayTimeDuration
 //? source: ...
 
 one_and_only<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("PT1M30.5S")
+        "PT1M30.5S"dayTimeDuration
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<dayTimeDuration>(
 
 one_and_only<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("PT1M30.5S"),
-        dayTimeDuration("PT1M40.5S")
+        "PT1M30.5S"dayTimeDuration,
+        "PT1M40.5S"dayTimeDuration
     )
 )
 

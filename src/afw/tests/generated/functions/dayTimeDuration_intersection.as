@@ -10,27 +10,27 @@
 //? expect: ...
 
 bag<dayTimeDuration>(
-    dayTimeDuration("-P1DT10H30M"),
-    dayTimeDuration("P1DT10H30M")
+    "-P1DT10H30M"dayTimeDuration,
+    "P1DT10H30M"dayTimeDuration
 )
 
 //? source: ...
 
 intersection<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("-P1DT10H30M"),
-        dayTimeDuration("P1DT10H30M"),
-        dayTimeDuration("-P1DT10H30M"),
-        dayTimeDuration("P1DT10H30M"),
-        dayTimeDuration("-P1DT10H35M")
+        "-P1DT10H30M"dayTimeDuration,
+        "P1DT10H30M"dayTimeDuration,
+        "-P1DT10H30M"dayTimeDuration,
+        "P1DT10H30M"dayTimeDuration,
+        "-P1DT10H35M"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("-P1DT10H30M"),
-        dayTimeDuration("P1DT10H30M"),
-        dayTimeDuration("P1DT10H30M"),
-        dayTimeDuration("P1DT10H30M"),
-        dayTimeDuration("P1DT10H30M"),
-        dayTimeDuration("P1DT30M")
+        "-P1DT10H30M"dayTimeDuration,
+        "P1DT10H30M"dayTimeDuration,
+        "P1DT10H30M"dayTimeDuration,
+        "P1DT10H30M"dayTimeDuration,
+        "P1DT10H30M"dayTimeDuration,
+        "P1DT30M"dayTimeDuration
     )
 )
 
@@ -42,12 +42,12 @@ intersection<dayTimeDuration>(
 
 intersection<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("x"),
-        dayTimeDuration("x")
+        "x"dayTimeDuration,
+        "x"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("x"),
-        dayTimeDuration("x")
+        "x"dayTimeDuration,
+        "x"dayTimeDuration
     )
 )
 

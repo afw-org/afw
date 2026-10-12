@@ -347,34 +347,6 @@ def gt_integer(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def integer(session, value):
-    """
-    Convert to data type integer
-
-    Converts value to data type integer returning integer result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        int: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "integer",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def intersection_integer(session, array1, array2):
     """
     Returns intersection of two arrays

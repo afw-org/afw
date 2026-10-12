@@ -569,34 +569,6 @@ def regexp_match_rfc822Name(session, value, regexp):
 
     return response['actions'][0]['result']
 
-def rfc822Name(session, value):
-    """
-    Convert to data type rfc822Name
-
-    Converts value to data type rfc822Name returning rfc822Name result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "rfc822Name",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def set_equals_rfc822Name(session, array1, array2):
     """
     Checks whether two arrays are subsets of each other

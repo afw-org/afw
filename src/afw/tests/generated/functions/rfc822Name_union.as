@@ -10,20 +10,20 @@
 //? expect: ...
 
 bag<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart"),
-    rfc822Name("localPart@DOMAINPart2")
+    "localPart@DOMAINPart"rfc822Name,
+    "localPart@DOMAINPart2"rfc822Name
 )
 
 //? source: ...
 
 union<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINPart")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINPart"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart2"),
-        rfc822Name("localPart@DOMAINPart")
+        "localPart@DOMAINPart2"rfc822Name,
+        "localPart@DOMAINPart"rfc822Name
     )
 )
 
@@ -33,21 +33,21 @@ union<rfc822Name>(
 //? expect: ...
 
 bag<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart"),
-    rfc822Name("localPart@DOMAINPart2"),
-    rfc822Name("localPart@DOMAINPart3")
+    "localPart@DOMAINPart"rfc822Name,
+    "localPart@DOMAINPart2"rfc822Name,
+    "localPart@DOMAINPart3"rfc822Name
 )
 
 //? source: ...
 
 union<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINPart2")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINPart2"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart2"),
-        rfc822Name("localPart@DOMAINPart3")
+        "localPart@DOMAINPart2"rfc822Name,
+        "localPart@DOMAINPart3"rfc822Name
     )
 )
 

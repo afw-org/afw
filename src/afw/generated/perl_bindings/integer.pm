@@ -24,7 +24,6 @@ our @EXPORT_OK = qw(
     eqx_integer 
     ge_integer 
     gt_integer 
-    integer 
     intersection_integer 
     is_in_integer 
     is_integer 
@@ -194,17 +193,6 @@ Checks for greater than
 
     $arg2
 
-
-=head3 integer
-
-Converts value to data type integer returning integer result.
-Convert to data type integer
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 intersection_integer
 
@@ -576,17 +564,6 @@ sub gt_integer {
     $request->set("function" => "gt<integer>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub integer {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "integer");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

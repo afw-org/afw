@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<anyURI>-1
 //? description: x
-//? expect: anyURI("http://datypic.com")
+//? expect: "http://datypic.com"anyURI
 //? source: ...
 
 one_and_only<anyURI>(
     bag<anyURI>(
-        anyURI("http://datypic.com")
+        "http://datypic.com"anyURI
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<anyURI>(
 
 one_and_only<anyURI>(
     bag<anyURI>(
-        anyURI("http://datypic.com"),
-        anyURI("http://datypic.coms")
+        "http://datypic.com"anyURI,
+        "http://datypic.coms"anyURI
     )
 )
 

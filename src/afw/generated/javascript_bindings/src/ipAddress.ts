@@ -161,23 +161,6 @@ export function afwGtIpAddress(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type ipAddress returning ipAddress result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {ipAddress} Converted value
- */
-export function afwIpAddress(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "ipAddress";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Checks whether ipAddress value is in array of ipAddress array and returns
  * the boolean result. Empty array yields false.
  * 

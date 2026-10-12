@@ -11,7 +11,7 @@
 //? source: ...
 
 starts_with<anyURI>(
-    anyURI("http://www.w3schools.com/images/smiley.gif"),
+    "http://www.w3schools.com/images/smiley.gif"anyURI,
     string("http://www.w3")
 )
 
@@ -22,7 +22,7 @@ starts_with<anyURI>(
 //? source: ...
 
 starts_with<anyURI>(
-    anyURI("http://www.w3schools.com/images/smiley.gif"),
+    "http://www.w3schools.com/images/smiley.gif"anyURI,
     string("http://ww.w3")
 )
 
@@ -33,6 +33,6 @@ starts_with<anyURI>(
 //? source: ...
 
 starts_with<anyURI>(
-    anyURI("x")
+    "x"anyURI
 )
 

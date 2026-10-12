@@ -11,13 +11,13 @@
 //? source: ...
 
 is_in<dayTimeDuration>(
-    dayTimeDuration("P3DT10H30M"),
+    "P3DT10H30M"dayTimeDuration,
     bag<dayTimeDuration>(
-        dayTimeDuration("P3DT10H"),
-        dayTimeDuration("P3DT10H31M"),
-        dayTimeDuration("P3DT10H30M"),
-        dayTimeDuration("P3D"),
-        dayTimeDuration("P3DT10H30M")
+        "P3DT10H"dayTimeDuration,
+        "P3DT10H31M"dayTimeDuration,
+        "P3DT10H30M"dayTimeDuration,
+        "P3D"dayTimeDuration,
+        "P3DT10H30M"dayTimeDuration
     )
 )
 
@@ -28,13 +28,13 @@ is_in<dayTimeDuration>(
 //? source: ...
 
 is_in<dayTimeDuration>(
-    dayTimeDuration("P3DT10H30M"),
+    "P3DT10H30M"dayTimeDuration,
     bag<dayTimeDuration>(
-        dayTimeDuration("-P3DT10H30M"),
-        dayTimeDuration("P4DT10H30M"),
-        dayTimeDuration("P3DT10H3M"),
-        dayTimeDuration("P3DT10H3M"),
-        dayTimeDuration("P3D")
+        "-P3DT10H30M"dayTimeDuration,
+        "P4DT10H30M"dayTimeDuration,
+        "P3DT10H3M"dayTimeDuration,
+        "P3DT10H3M"dayTimeDuration,
+        "P3D"dayTimeDuration
     )
 )
 
@@ -45,10 +45,10 @@ is_in<dayTimeDuration>(
 //? source: ...
 
 is_in<dayTimeDuration>(
-    dayTimeDuration("x"),
+    "x"dayTimeDuration,
     bag<dayTimeDuration>(
-        dayTimeDuration("x"),
-        dayTimeDuration("x")
+        "x"dayTimeDuration,
+        "x"dayTimeDuration
     )
 )
 

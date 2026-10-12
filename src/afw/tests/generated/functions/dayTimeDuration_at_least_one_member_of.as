@@ -12,14 +12,14 @@
 
 at_least_one_member_of<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("P3DT10H30M"),
-        dayTimeDuration("P3DT10H10M")
+        "P3DT10H30M"dayTimeDuration,
+        "P3DT10H10M"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("P3D"),
-        dayTimeDuration("P3DT10H30M30S"),
-        dayTimeDuration("P3D"),
-        dayTimeDuration("P3DT10H30M")
+        "P3D"dayTimeDuration,
+        "P3DT10H30M30S"dayTimeDuration,
+        "P3D"dayTimeDuration,
+        "P3DT10H30M"dayTimeDuration
     )
 )
 
@@ -31,11 +31,11 @@ at_least_one_member_of<dayTimeDuration>(
 
 at_least_one_member_of<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("P3D")
+        "P3D"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("P3DT10H30M30S"),
-        dayTimeDuration("P3DT10H30M")
+        "P3DT10H30M30S"dayTimeDuration,
+        "P3DT10H30M"dayTimeDuration
     )
 )
 
@@ -47,12 +47,12 @@ at_least_one_member_of<dayTimeDuration>(
 
 at_least_one_member_of<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("x"),
-        dayTimeDuration("x")
+        "x"dayTimeDuration,
+        "x"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("x"),
-        dayTimeDuration("x")
+        "x"dayTimeDuration,
+        "x"dayTimeDuration
     )
 )
 

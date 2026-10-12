@@ -20,27 +20,27 @@
 
 at_least_one_member_of<integer>(
     bag<integer>(
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(387),
-        integer(512618),
-        integer(-512618),
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(-0),
-        integer(0)
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        387,
+        512618,
+        -512618,
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        -0,
+        0
     ),
     bag<integer>(
     )
@@ -62,31 +62,31 @@ at_least_one_member_of<integer>(
 
 at_least_one_member_of<integer>(
     bag<integer>(
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(387),
-        integer(512618),
-        integer(-512618),
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(-0),
-        integer(0)
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        387,
+        512618,
+        -512618,
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        -0,
+        0
     ),
     bag<integer>(
-        integer(1024),
-        integer(-1024)
+        1024,
+        -1024
     )
 )
 
@@ -106,27 +106,27 @@ at_least_one_member_of<integer>(
 
 at_least_one_member_of<integer>(
     bag<integer>(
-        integer(1024),
-        integer(-1024),
-        integer(-512618),
-        integer(1)
+        1024,
+        -1024,
+        -512618,
+        1
     ),
     bag<integer>(
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(387),
-        integer(512618),
-        integer(-512618),
-        integer(11),
-        integer(96),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(-0)
+        11,
+        -11,
+        96,
+        -102,
+        -586,
+        986,
+        387,
+        512618,
+        -512618,
+        11,
+        96,
+        -102,
+        -586,
+        986,
+        -0
     )
 )
 
@@ -143,18 +143,18 @@ at_least_one_member_of<integer>(
 
 at_least_one_member_of<integer>(
     bag<integer>(
-        integer(-1),
-        integer(11),
-        integer(1024),
-        integer(-11),
-        integer(-1024),
-        integer(0),
-        integer(-512618),
-        integer(1)
+        -1,
+        11,
+        1024,
+        -11,
+        -1024,
+        0,
+        -512618,
+        1
     ),
     bag<integer>(
-        integer(512618),
-        integer(1)
+        512618,
+        1
     )
 )
 

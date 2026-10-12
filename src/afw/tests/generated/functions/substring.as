@@ -12,7 +12,7 @@
 
 substring(
     string("hello"),
-    integer(-1)
+    -1
 )
 
 //?
@@ -23,7 +23,7 @@ substring(
 
 substring(
     string("hello"),
-    integer(10)
+    10
 )
 
 //?
@@ -34,6 +34,6 @@ substring(
 
 substring(
     string("hello"),
-    integer(3),
-    integer(2)
+    3,
+    2
 )

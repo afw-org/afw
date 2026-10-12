@@ -466,23 +466,6 @@ export function afwSubsetTime(client : any, array1 : any[], array2 : any[]) : an
 }
 
 /**
- * Converts value to data type time returning time result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {time} Converted value
- */
-export function afwTime(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "time";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Converts time value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  * 

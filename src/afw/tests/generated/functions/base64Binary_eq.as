@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("0f+41A=="),
-    base64Binary("0f+41A==")
+    "0f+41A=="base64Binary,
+    "0f+41A=="base64Binary
 )
 
 //?
@@ -22,8 +22,8 @@ eq<base64Binary>(
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("0F+41A=="),
-    base64Binary("0E+41A==")
+    "0F+41A=="base64Binary,
+    "0E+41A=="base64Binary
 )
 
 //?
@@ -33,7 +33,7 @@ eq<base64Binary>(
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("x"),
-    base64Binary("x")
+    "x"base64Binary,
+    "x"base64Binary
 )
 

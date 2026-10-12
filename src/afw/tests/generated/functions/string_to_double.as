@@ -7,7 +7,7 @@
 //?
 //? test: to_double<string>-1
 //? description: double from string test 1.2
-//? expect: double(1.2)
+//? expect: 1.2
 //? source: ...
 
 to_double<string>(
@@ -17,7 +17,7 @@ to_double<string>(
 //?
 //? test: to_double<string>-2
 //? description: double from string test 1.23E4
-//? expect: double(1.23E4)
+//? expect: 1.23E4
 //? source: ...
 
 to_double<string>(
@@ -27,7 +27,7 @@ to_double<string>(
 //?
 //? test: to_double<string>-3
 //? description: double from string test -INF
-//? expect: double(-Infinity)
+//? expect: -Infinity
 //? source: ...
 
 to_double<string>(

@@ -7,7 +7,7 @@
 //?
 //? test: to_x500Name<string>-1
 //? description: Convert string to x500Name
-//? expect: x500Name("cn=John Smith,ou=Finance,o=Acme")
+//? expect: "cn=John Smith,ou=Finance,o=Acme"x500Name
 //? source: ...
 
 to_x500Name<string>(

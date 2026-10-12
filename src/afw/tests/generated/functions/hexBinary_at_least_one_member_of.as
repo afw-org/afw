@@ -12,18 +12,18 @@
 
 at_least_one_member_of<hexBinary>(
     bag<hexBinary>(
-        hexBinary("0FB80BB6"),
-        hexBinary("0FB80BB0"),
-        hexBinary("0FB80BB1"),
-        hexBinary("0FB80BBA"),
-        hexBinary("0FB80BBb")
+        "0FB80BB6"hexBinary,
+        "0FB80BB0"hexBinary,
+        "0FB80BB1"hexBinary,
+        "0FB80BBA"hexBinary,
+        "0FB80BBb"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("0FB80BB2"),
-        hexBinary("0FB80BB3"),
-        hexBinary("0FB80BB4"),
-        hexBinary("0FB80BB5"),
-        hexBinary("0FB80BB6")
+        "0FB80BB2"hexBinary,
+        "0FB80BB3"hexBinary,
+        "0FB80BB4"hexBinary,
+        "0FB80BB5"hexBinary,
+        "0FB80BB6"hexBinary
     )
 )
 
@@ -35,18 +35,18 @@ at_least_one_member_of<hexBinary>(
 
 at_least_one_member_of<hexBinary>(
     bag<hexBinary>(
-        hexBinary("0FB80BB7"),
-        hexBinary("0FB80BB0"),
-        hexBinary("0FB80BB1"),
-        hexBinary("0FB80BBA"),
-        hexBinary("0FB80BBb")
+        "0FB80BB7"hexBinary,
+        "0FB80BB0"hexBinary,
+        "0FB80BB1"hexBinary,
+        "0FB80BBA"hexBinary,
+        "0FB80BBb"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("0FB80BB2"),
-        hexBinary("0FB80BB3"),
-        hexBinary("0FB80BB4"),
-        hexBinary("0FB80BB5"),
-        hexBinary("0FB80BB6")
+        "0FB80BB2"hexBinary,
+        "0FB80BB3"hexBinary,
+        "0FB80BB4"hexBinary,
+        "0FB80BB5"hexBinary,
+        "0FB80BB6"hexBinary
     )
 )
 
@@ -58,12 +58,12 @@ at_least_one_member_of<hexBinary>(
 
 at_least_one_member_of<hexBinary>(
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     )
 )
 

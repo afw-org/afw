@@ -201,28 +201,6 @@ class ia5String
     }
 
     /**
-     * ia5String()
-     *
-     * Converts value to data type ia5String returning ia5String result.
-     *
-     * @param $value Value to convert
-     *
-     * @return ia5String Converted value
-     */
-    public function ia5String(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "ia5String");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * is_ia5String()
      *
      * Checks whether value is dataType ia5String and returns the boolean

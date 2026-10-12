@@ -133,35 +133,6 @@ def bag_size_dayTimeDuration(session, value):
 
     return response['actions'][0]['result']
 
-def dayTimeDuration(session, value):
-    """
-    Convert to data type dayTimeDuration
-
-    Converts value to data type dayTimeDuration returning dayTimeDuration
-    result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "dayTimeDuration",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_dayTimeDuration(session, arg1, arg2):
     """
     Checks for equal

@@ -249,28 +249,6 @@ class hexBinary
     }
 
     /**
-     * hexBinary()
-     *
-     * Converts value to data type hexBinary returning hexBinary result.
-     *
-     * @param $value Value to convert
-     *
-     * @return hexBinary Converted value
-     */
-    public function hexBinary(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "hexBinary");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * intersection_hexBinary()
      *
      * Returns an array of hexBinary with the values that are common to both

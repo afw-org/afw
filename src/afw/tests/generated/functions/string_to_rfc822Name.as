@@ -7,7 +7,7 @@
 //?
 //? test: to_rfc822Name<string>-1
 //? description: x
-//? expect: rfc822Name("localPart@DOMAINPart")
+//? expect: "localPart@DOMAINPart"rfc822Name
 //? source: ...
 
 to_rfc822Name<string>(
@@ -17,7 +17,7 @@ to_rfc822Name<string>(
 //?
 //? test: to_rfc822Name<string>-2
 //? description: x
-//? expect: rfc822Name("localPart@DOMAINPart.com")
+//? expect: "localPart@DOMAINPart.com"rfc822Name
 //? source: ...
 
 to_rfc822Name<string>(

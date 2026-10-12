@@ -7,24 +7,24 @@
 //?
 //? test: one_and_only<yearMonthDuration>-1
 //? description: x
-//? expect: yearMonthDuration("P20M")
+//? expect: "P20M"yearMonthDuration
 //? source: ...
 
 one_and_only<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P20M")
+        "P20M"yearMonthDuration
     )
 )
 
 //?
 //? test: one_and_only<yearMonthDuration>-2
 //? description: x
-//? expect: yearMonthDuration("P2Y6M")
+//? expect: "P2Y6M"yearMonthDuration
 //? source: ...
 
 one_and_only<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M")
+        "P2Y6M"yearMonthDuration
     )
 )
 

@@ -20,7 +20,7 @@ const key = crypto_derive_key({
     "hash": "SHA-256"
 }, {
     "from": "material",
-    "data": base64Binary("cGFzc3dvcmQ=") // password
+    "data": "cGFzc3dvcmQ="base64Binary // password
 }, undefined, false);
 
 assert(key.algorithm === "AES-GCM");
@@ -46,7 +46,7 @@ return 0;
 // Skip gracefully when unset by generating material instead via material ref.
 const raw = random_base64Binary(32);
 const key = crypto_import_key(raw, "AES-GCM");
-const plain = base64Binary("ZGF0YQ==");
+const plain = "ZGF0YQ=="base64Binary;
 const sealed = crypto_encrypt({ "name": "AES-GCM" }, key, plain);
 
 // Ephemeral material path (same as env after decode)

@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<time>(
-    time("12:20"),
-    time("12:20")
+    "12:20"time,
+    "12:20"time
 )
 
 //?
@@ -22,8 +22,8 @@ eq<time>(
 //? source: ...
 
 eq<time>(
-    time("12:20:00"),
-    time("12:20")
+    "12:20:00"time,
+    "12:20"time
 )
 
 //?
@@ -33,8 +33,8 @@ eq<time>(
 //? source: ...
 
 eq<time>(
-    time("12:20"),
-    time("12:20:01")
+    "12:20"time,
+    "12:20:01"time
 )
 
 //?
@@ -44,7 +44,7 @@ eq<time>(
 //? source: ...
 
 eq<time>(
-    time("x"),
-    time("x")
+    "x"time,
+    "x"time
 )
 

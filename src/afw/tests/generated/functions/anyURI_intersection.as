@@ -10,31 +10,31 @@
 //? expect: ...
 
 bag<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
-    anyURI("../prod.html#shirt"),
-    anyURI("urn:example:org")
+    "http://datypic.com/prod.html#shirt"anyURI,
+    "../prod.html#shirt"anyURI,
+    "urn:example:org"anyURI
 )
 
 //? source: ...
 
 intersection<anyURI>(
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     ),
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gifx"),
-        anyURI("http://datypic.comx"),
-        anyURI("../%C3%A9dition.htmlx"),
-        anyURI("../dition.htmlx"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gifx"anyURI,
+        "http://datypic.comx"anyURI,
+        "../%C3%A9dition.htmlx"anyURI,
+        "../dition.htmlx"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     )
 )
 
@@ -46,8 +46,8 @@ intersection<anyURI>(
 
 intersection<anyURI>(
     bag<anyURI>(
-        anyURI("x"),
-        anyURI("x")
+        "x"anyURI,
+        "x"anyURI
     )
 )
 

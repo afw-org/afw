@@ -7,13 +7,13 @@
 //?
 //? test: multiply-1
 //? description: MULTIPLY with integers
-//? expect: integer(24)
+//? expect: 24
 //? source: ...
 
 multiply(
-    integer(2),
-    integer(3),
-    integer(4)
+    2,
+    3,
+    4
 )
 
 //?
@@ -23,6 +23,6 @@ multiply(
 //? source: ...
 
 multiply(
-    integer(9223372036854775807),
-    integer(2)
+    9223372036854775807,
+    2
 )

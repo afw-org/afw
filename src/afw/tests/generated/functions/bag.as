@@ -10,18 +10,18 @@
 //? expect: ...
 
 bag<integer>(
-    integer(6),
-    integer(5),
-    integer(4),
-    integer(2)
+    6,
+    5,
+    4,
+    2
 )
 
 //? source: ...
 
 bag(
-    integer(6),
-    integer(5),
-    integer(4),
-    integer(2)
+    6,
+    5,
+    4,
+    2
 )
 

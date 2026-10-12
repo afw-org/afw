@@ -12,22 +12,22 @@
 
 set_equals<hexBinary>(
     bag<hexBinary>(
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8")
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8")
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
 )
 
@@ -39,24 +39,24 @@ set_equals<hexBinary>(
 
 set_equals<hexBinary>(
     bag<hexBinary>(
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8")
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8")
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
 )
 
@@ -68,12 +68,12 @@ set_equals<hexBinary>(
 
 set_equals<hexBinary>(
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     )
 )
 

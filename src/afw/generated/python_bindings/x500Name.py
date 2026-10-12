@@ -688,31 +688,3 @@ def union_x500Name(session, arrays):
 
     return response['actions'][0]['result']
 
-def x500Name(session, value):
-    """
-    Convert to data type x500Name
-
-    Converts value to data type x500Name returning x500Name result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "x500Name",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-

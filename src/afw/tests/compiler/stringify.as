@@ -261,17 +261,17 @@ return stringify(obj);
 //? source: ...
 
 const b = encode_as_base64Binary("hi");
-/* base64 of "hi" is aGk= — as a JSON string, not base64Binary("...") */
+/* base64 of "hi" is aGk= — as a JSON string, not "..."base64Binary */
 assert(stringify(b) == "\"aGk=\"");
 assert(stringify({ "iv": b }) == "{\"iv\":\"aGk=\"}");
 
-const d = date("2020-01-01");
+const d = "2020-01-01"date;
 assert(stringify(d) == "\"2020-01-01\"");
 assert(stringify({ "d": d }) == "{\"d\":\"2020-01-01\"}");
 
 /* Adaptive compiled form remains decompile() */
-assert(decompile(b) == "base64Binary(\"aGk=\")");
-assert(starts_with(decompile(d), "date("));
+assert(decompile(b) == "\"aGk=\"base64Binary");
+assert(decompile(d) == "\"2020-01-01\"date");
 
 /* UTF-8 of octets is decode_to_string, not stringify/string */
 assert(decode_to_string(b) == "hi");

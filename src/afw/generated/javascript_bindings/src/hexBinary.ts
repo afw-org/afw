@@ -200,23 +200,6 @@ export function afwGtHexBinary(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type hexBinary returning hexBinary result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {hexBinary} Converted value
- */
-export function afwHexBinary(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "hexBinary";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Returns an array of hexBinary with the values that are common to both array
  * of hexBinary array1 and array2.
  * 

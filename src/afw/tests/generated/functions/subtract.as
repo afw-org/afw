@@ -7,12 +7,12 @@
 //?
 //? test: subtract-1
 //? description: SUBTRACT with integers
-//? expect: integer(6)
+//? expect: 6
 //? source: ...
 
 subtract(
-    integer(10),
-    integer(4)
+    10,
+    4
 )
 
 //?
@@ -22,6 +22,6 @@ subtract(
 //? source: ...
 
 subtract(
-    integer(-9223372036854775807),
-    integer(9223372036854775807)
+    -9223372036854775807,
+    9223372036854775807
 )

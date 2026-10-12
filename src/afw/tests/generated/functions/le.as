@@ -11,6 +11,6 @@
 //? source: ...
 
 le(
-    integer(6),
+    6,
     string("6")
 )

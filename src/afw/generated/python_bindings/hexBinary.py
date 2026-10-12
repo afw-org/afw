@@ -288,34 +288,6 @@ def gt_hexBinary(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def hexBinary(session, value):
-    """
-    Convert to data type hexBinary
-
-    Converts value to data type hexBinary returning hexBinary result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "hexBinary",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def intersection_hexBinary(session, array1, array2):
     """
     Returns intersection of two arrays

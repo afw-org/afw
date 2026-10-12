@@ -11,7 +11,7 @@
 //? source: ...
 
 regexp_match<rfc822Name>(
-    rfc822Name("root@oasis.org"),
+    "root@oasis.org"rfc822Name,
     string(".*@oasis.org")
 )
 
@@ -22,7 +22,7 @@ regexp_match<rfc822Name>(
 //? source: ...
 
 regexp_match<rfc822Name>(
-    rfc822Name("root@oasis.com"),
+    "root@oasis.com"rfc822Name,
     string(".*@oasis.org")
 )
 
@@ -33,7 +33,7 @@ regexp_match<rfc822Name>(
 //? source: ...
 
 regexp_match<rfc822Name>(
-    rfc822Name("root@oasis.org"),
+    "root@oasis.org"rfc822Name,
     string(".*@oasis.org)")
 )
 

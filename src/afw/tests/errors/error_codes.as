@@ -164,49 +164,49 @@ return 0;
 //? source: ...
 
 try {
-    integer("not a number");
+    to_integer("not a number");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
 }
 try {
-    date("not a date");
+    to_date("not a date");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
 }
 try {
-    dateTime("not a dateTime");
+    to_dateTime("not a dateTime");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
 }
 try {
-    time("not a time");
+    to_time("not a time");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
 }
 try {
-    dayTimeDuration("not a duration");
+    to_dayTimeDuration("not a duration");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
 }
 try {
-    yearMonthDuration("not a duration");
+    to_yearMonthDuration("not a duration");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
 }
 try {
-    base64Binary("!!!");
+    to_base64Binary("!!!");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
 }
 try {
-    hexBinary("gg");
+    to_hexBinary("gg");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);

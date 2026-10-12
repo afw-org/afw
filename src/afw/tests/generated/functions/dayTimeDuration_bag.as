@@ -10,15 +10,15 @@
 //? expect: ...
 
 bag<dayTimeDuration>(
-    dayTimeDuration("PT10H30M"),
-    dayTimeDuration("PT10H10M")
+    "PT10H30M"dayTimeDuration,
+    "PT10H10M"dayTimeDuration
 )
 
 //? source: ...
 
 bag<dayTimeDuration>(
-    dayTimeDuration("PT10H30M"),
-    dayTimeDuration("PT10H10M")
+    "PT10H30M"dayTimeDuration,
+    "PT10H10M"dayTimeDuration
 )
 
 //?

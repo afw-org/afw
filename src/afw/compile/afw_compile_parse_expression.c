@@ -107,6 +107,46 @@ afw_compile_parse_Reference(afw_compile_parser_t *parser)
 
 
 
+/*
+ * Throw unknown built-in function. A data type id is not a function (#589):
+ * point to its typed literal and to_<dataType>().
+ */
+static void
+impl_throw_unknown_function(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *function_id)
+{
+    static const afw_utf8_t to_prefix = AFW_UTF8_LITERAL("to_");
+    const afw_data_type_t *data_type;
+    const afw_utf8_t *to_function_id;
+    afw_boolean_t has_to;
+
+    data_type = afw_environment_get_data_type(function_id, parser->xctx);
+    if (data_type) {
+        to_function_id = afw_utf8_concat(parser->p, parser->xctx,
+            &to_prefix, function_id, NULL);
+        has_to = afw_environment_get_function(to_function_id, parser->xctx)
+            != NULL;
+        if (data_type->typed_literal && has_to) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "'%ku' is a data type, not a function: "
+                "write a typed literal \"...\"%ku, or convert with %ku(value)",
+                function_id, function_id, to_function_id);
+        }
+        if (has_to) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "'%ku' is a data type, not a function: "
+                "convert with %ku(value)",
+                function_id, to_function_id);
+        }
+    }
+    AFW_COMPILE_THROW_ERROR_FZ(
+        "Unknown built-in function '%ku'",
+        function_id);
+}
+
+
+
 /*ebnf>>>
  *
  * EntryFunctionLambdaOrVariableReference ::=
@@ -236,11 +276,12 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                             untyped_function_id);
                     }
                     if (!function) {
-                        AFW_COMPILE_THROW_ERROR_FZ(
-                            "Unknown built-in function '%ku'",
-                            untyped_function_id);                        
+                        impl_throw_unknown_function(parser,
+                            untyped_function_id);
                     }
-                    result = &function->pub;
+                    else {
+                        result = &function->pub;
+                    }
                 }
 
                 /* Last, this must be a qualified variable. */

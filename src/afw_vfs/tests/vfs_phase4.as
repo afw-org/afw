@@ -15,9 +15,9 @@ const temp_directory: string = string('temp/', generate_uuid(), '/');
 const bin_id: string = string(temp_directory, 'empty.bin');
 
 add_object('vfs', '_AdaptiveFile_vfs', {}, temp_directory);
-add_object('vfs', '_AdaptiveFile_vfs', { data: hexBinary("") }, bin_id);
+add_object('vfs', '_AdaptiveFile_vfs', { data: ""hexBinary }, bin_id);
 const obj: object = get_object('vfs', '_AdaptiveFile_vfs', bin_id);
-assert(obj.data == "" || obj.data == hexBinary(""),
+assert(obj.data == "" || obj.data == ""hexBinary,
     "empty hexBinary should read as empty content");
 
 delete_object('vfs', '_AdaptiveFile_vfs', bin_id);
@@ -34,7 +34,7 @@ return 0;
 const temp_directory: string = string('temp/', generate_uuid(), '/');
 const bom_id: string = string(temp_directory, 'bom.txt');
 /* EF BB BF is UTF-8 BOM followed by ASCII 'A' (41). */
-const bom_payload = hexBinary("efbbbf41");
+const bom_payload = "efbbbf41"hexBinary;
 
 add_object('vfs', '_AdaptiveFile_vfs', {}, temp_directory);
 add_object('vfs', '_AdaptiveFile_vfs', { data: bom_payload }, bom_id);
@@ -42,8 +42,8 @@ const obj: object = get_object('vfs', '_AdaptiveFile_vfs', bom_id);
 /* NFC/create may strip BOM and return string "A", or keep binary. */
 assert(
     obj.data == "A" ||
-    obj.data == hexBinary("efbbbf41") ||
-    obj.data == hexBinary("EFBBBF41"),
+    obj.data == "efbbbf41"hexBinary ||
+    obj.data == "EFBBBF41"hexBinary,
     "BOM payload should round-trip as string A or hexBinary");
 
 delete_object('vfs', '_AdaptiveFile_vfs', bom_id);
@@ -60,12 +60,12 @@ return 0;
 const temp_directory: string = string('temp/', generate_uuid(), '/');
 const bin_id: string = string(temp_directory, 'bad.bin');
 /* Lone continuation byte is invalid UTF-8. */
-const payload = hexBinary("80");
+const payload = "80"hexBinary;
 
 add_object('vfs', '_AdaptiveFile_vfs', {}, temp_directory);
 add_object('vfs', '_AdaptiveFile_vfs', { data: payload }, bin_id);
 const obj: object = get_object('vfs', '_AdaptiveFile_vfs', bin_id);
-assert(obj.data == hexBinary("80") || obj.data == hexBinary("80"),
+assert(obj.data == "80"hexBinary || obj.data == "80"hexBinary,
     "invalid UTF-8 should return as hexBinary");
 
 delete_object('vfs', '_AdaptiveFile_vfs', bin_id);

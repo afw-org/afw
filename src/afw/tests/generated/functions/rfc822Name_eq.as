@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart"),
-    rfc822Name("localPart@dOMAINPart")
+    "localPart@DOMAINPart"rfc822Name,
+    "localPart@dOMAINPart"rfc822Name
 )
 
 //?
@@ -22,8 +22,8 @@ eq<rfc822Name>(
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart"),
-    rfc822Name("localPart@DOMAINPart")
+    "localPart@DOMAINPart"rfc822Name,
+    "localPart@DOMAINPart"rfc822Name
 )
 
 //?
@@ -33,6 +33,6 @@ eq<rfc822Name>(
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("x")
+    "x"rfc822Name
 )
 

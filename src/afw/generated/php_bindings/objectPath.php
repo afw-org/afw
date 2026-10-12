@@ -329,28 +329,6 @@ class objectPath
     }
 
     /**
-     * objectPath()
-     *
-     * Converts value to data type objectPath returning objectPath result.
-     *
-     * @param $value Value to convert
-     *
-     * @return objectPath Converted value
-     */
-    public function objectPath(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "objectPath");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * to_string_objectPath()
      *
      * Converts objectPath value to string. For array values, the to_string()

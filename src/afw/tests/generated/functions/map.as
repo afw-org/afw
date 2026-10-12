@@ -30,8 +30,8 @@ map(
 //? expect: ...
 
 bag<integer>(
-    integer(62),
-    integer(-5)
+    62,
+    -5
 )
 
 //? source: ...
@@ -39,10 +39,10 @@ bag<integer>(
 map(
     string("add"),
     bag<integer>(
-        integer(52),
-        integer(-15)
+        52,
+        -15
     ),
-    integer(10)
+    10
 )
 
 //?

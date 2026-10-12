@@ -10,21 +10,21 @@
 //? expect: ...
 
 bag<hexBinary>(
-    hexBinary("0FB80BB2"),
-    hexBinary("0FB80BB3"),
-    hexBinary("0FB80BB4"),
-    hexBinary("0FB80BB5"),
-    hexBinary("0FB80BB6")
+    "0FB80BB2"hexBinary,
+    "0FB80BB3"hexBinary,
+    "0FB80BB4"hexBinary,
+    "0FB80BB5"hexBinary,
+    "0FB80BB6"hexBinary
 )
 
 //? source: ...
 
 bag<hexBinary>(
-    hexBinary("0FB80BB2"),
-    hexBinary("0FB80BB3"),
-    hexBinary("0FB80BB4"),
-    hexBinary("0FB80BB5"),
-    hexBinary("0FB80BB6")
+    "0FB80BB2"hexBinary,
+    "0FB80BB3"hexBinary,
+    "0FB80BB4"hexBinary,
+    "0FB80BB5"hexBinary,
+    "0FB80BB6"hexBinary
 )
 
 //?
@@ -34,6 +34,6 @@ bag<hexBinary>(
 //? source: ...
 
 bag<hexBinary>(
-    hexBinary("x")
+    "x"hexBinary
 )
 

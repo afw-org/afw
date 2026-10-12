@@ -18,7 +18,7 @@ from _afwdev.test.orchestrated.runner import (
 FIXED = [["add<integer>", 2], ["concat", 2], ["length", 1],
          ["abs<integer>", 1], ["eq<string>", 2]]
 FIXED_DIGEST = (
-    "baa7618cbe0692b75f154522bd4e2c61f897215bcf66743e4506aa21aff86512")
+    "c34d899dfa866ddfa6988f120e69404c658c1178eaf91b38c294a703098efc4b")
 
 
 def run():

@@ -7,10 +7,10 @@
 //?
 //? test: negative-1
 //? description: NEGATIVE of a positive integer
-//? expect: integer(-5)
+//? expect: -5
 //? source: ...
 
-negative(integer(5))
+negative(5)
 
 //?
 //? test: negative-error-integer-overflow
@@ -18,4 +18,4 @@ negative(integer(5))
 //? expect: error:Integer negate overflow
 //? source: ...
 
-negative(integer(-9223372036854775807 - 1))
+negative(#integerMin)

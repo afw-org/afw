@@ -7,7 +7,7 @@
 //?
 //? test: to_dnsName<string>-1
 //? description: x
-//? expect: dnsName("clemson:8080")
+//? expect: "clemson:8080"dnsName
 //? source: ...
 
 to_dnsName<string>(
@@ -17,7 +17,7 @@ to_dnsName<string>(
 //?
 //? test: to_dnsName<string>-2
 //? description: x
-//? expect: dnsName("190.190.190.190:8080")
+//? expect: "190.190.190.190:8080"dnsName
 //? source: ...
 
 to_dnsName<string>(

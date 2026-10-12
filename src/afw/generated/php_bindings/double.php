@@ -216,28 +216,6 @@ class double
     }
 
     /**
-     * double()
-     *
-     * Converts value to data type double returning double result.
-     *
-     * @param $value Value to convert
-     *
-     * @return double Converted value
-     */
-    public function double(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "double");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_double()
      *
      * Determine if double arg1 is equal to the value of arg2 converted to the

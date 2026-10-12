@@ -53,7 +53,7 @@ tests:
     sourceType: script
     source: |
       function waitFor(signal: string): void {
-          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          const until = add_dayTimeDuration<dateTime>(now_utc(), "PT120S"dayTimeDuration);
           // A body of its own: each try's allocations are freed with it.
           while (true) {
               let found: boolean = false;
@@ -72,7 +72,7 @@ tests:
       // Give the writer 2s. Each pass reads a file, a system call: under
       // valgrind a loop without one can keep the writer's thread from
       // running at all.
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT2S"));
+      const until = add_dayTimeDuration<dateTime>(now_utc(), "PT2S"dayTimeDuration);
       while (true) {
           try { get_object("signals", "Signal", "never"); } catch (e) { }
           const now = now_utc();
@@ -97,7 +97,7 @@ tests:
     sourceType: script
     source: |
       function waitFor(signal: string): void {
-          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          const until = add_dayTimeDuration<dateTime>(now_utc(), "PT120S"dayTimeDuration);
           // A body of its own: each try's allocations are freed with it.
           while (true) {
               let found: boolean = false;

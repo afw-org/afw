@@ -116,23 +116,6 @@ export function afwBagSizeDate(client : any, value : any[]) : any {
 }
 
 /**
- * Converts value to data type date returning date result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {date} Converted value
- */
-export function afwDate(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "date";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if date arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.

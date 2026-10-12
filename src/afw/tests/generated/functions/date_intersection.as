@@ -10,22 +10,22 @@
 //? expect: ...
 
 bag<date>(
-    date("2004-04-12"),
-    date("1970-01-01")
+    "2004-04-12"date,
+    "1970-01-01"date
 )
 
 //? source: ...
 
 intersection<date>(
     bag<date>(
-        date("2004-04-12"),
-        date("1970-01-01"),
-        date("2004-04-12"),
-        date("2004-04-12")
+        "2004-04-12"date,
+        "1970-01-01"date,
+        "2004-04-12"date,
+        "2004-04-12"date
     ),
     bag<date>(
-        date("1970-01-01"),
-        date("2004-04-12")
+        "1970-01-01"date,
+        "2004-04-12"date
     )
 )
 
@@ -41,10 +41,10 @@ bag<date>(
 
 intersection<date>(
     bag<date>(
-        date("2004-04-12")
+        "2004-04-12"date
     ),
     bag<date>(
-        date("1970-01-01")
+        "1970-01-01"date
     )
 )
 

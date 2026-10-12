@@ -327,7 +327,7 @@ return 0;
 const s = "abc";
 assert(s->replace("", "x") === "xabc");
 assert(s->replace("", "x", -1) === "xaxbxcx");
-assert(replace(anyURI("abc"), "", "x", -1) === "xaxbxcx");
+assert(replace("abc"anyURI, "", "x", -1) === "xaxbxcx");
 /* limit larger than n+1 boundaries must stop, not spin */
 assert(replace("ab", "", "x", 100) === "xaxbx");
 const src = "abcdefghij";

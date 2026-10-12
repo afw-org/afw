@@ -7,21 +7,21 @@
 //?
 //? test: bag_size<dnsName>-1
 //? description: x
-//? expect: integer(3)
+//? expect: 3
 //? source: ...
 
 bag_size<dnsName>(
     bag<dnsName>(
-        dnsName("clemson:8080"),
-        dnsName("google"),
-        dnsName("190.190.190.190:8080")
+        "clemson:8080"dnsName,
+        "google"dnsName,
+        "190.190.190.190:8080"dnsName
     )
 )
 
 //?
 //? test: bag_size<dnsName>-2
 //? description: x
-//? expect: integer(0)
+//? expect: 0
 //? source: ...
 
 bag_size<dnsName>(

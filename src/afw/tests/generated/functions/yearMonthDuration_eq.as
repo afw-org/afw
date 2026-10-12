@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("P3Y6M"),
-    yearMonthDuration("P3Y6M")
+    "P3Y6M"yearMonthDuration,
+    "P3Y6M"yearMonthDuration
 )
 
 //?
@@ -22,8 +22,8 @@ eq<yearMonthDuration>(
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("-P0Y"),
-    yearMonthDuration("P0Y")
+    "-P0Y"yearMonthDuration,
+    "P0Y"yearMonthDuration
 )
 
 //?
@@ -33,7 +33,7 @@ eq<yearMonthDuration>(
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("-P1Y"),
-    yearMonthDuration("P0Y")
+    "-P1Y"yearMonthDuration,
+    "P0Y"yearMonthDuration
 )
 

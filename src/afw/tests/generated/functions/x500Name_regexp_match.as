@@ -11,7 +11,7 @@
 //? source: ...
 
 regexp_match<x500Name>(
-    x500Name("CN=Foo,DC=xyz,DC=bar"),
+    "CN=Foo,DC=xyz,DC=bar"x500Name,
     string("CN=Foo,DC=.*,DC=bar")
 )
 
@@ -22,7 +22,7 @@ regexp_match<x500Name>(
 //? source: ...
 
 regexp_match<x500Name>(
-    x500Name("CN=Foo,DC=xyz,DC=abc"),
+    "CN=Foo,DC=xyz,DC=abc"x500Name,
     string("CN=Foo,DC=.*,DC=bar")
 )
 
@@ -33,7 +33,7 @@ regexp_match<x500Name>(
 //? source: ...
 
 regexp_match<x500Name>(
-    x500Name("CN=Foo,DC=xyz,DC=bar"),
+    "CN=Foo,DC=xyz,DC=bar"x500Name,
     string("CN=Foo,DC=.*,DC=bar)")
 )
 

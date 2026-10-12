@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<anyURI>(
-    anyURI("http://datypic.com")
+    "http://datypic.com"anyURI
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<anyURI>(
 //? source: ...
 
 to_string<anyURI>(
-    anyURI("mailto:info@datypic.com")
+    "mailto:info@datypic.com"anyURI
 )
 
 //?
@@ -31,7 +31,7 @@ to_string<anyURI>(
 //? source: ...
 
 to_string<anyURI>(
-    anyURI("urn:example:org")
+    "urn:example:org"anyURI
 )
 
 //?
@@ -42,6 +42,6 @@ to_string<anyURI>(
 //? source: ...
 
 to_string<anyURI>(
-    anyURI("x")
+    "x"anyURI
 )
 

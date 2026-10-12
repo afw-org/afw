@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<dateTime>-1
 //? description: true
-//? expect: dateTime("2004-04-12T13:20:15.5")
+//? expect: "2004-04-12T13:20:15.5"dateTime
 //? source: ...
 
 one_and_only<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:15.5")
+        "2004-04-12T13:20:15.5"dateTime
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<dateTime>(
 
 one_and_only<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:15.5")
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:15.5"dateTime
     )
 )
 

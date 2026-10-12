@@ -11,7 +11,7 @@
 //? source: ...
 
 ends_with<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
+    "http://datypic.com/prod.html#shirt"anyURI,
     string("shirt")
 )
 
@@ -22,7 +22,7 @@ ends_with<anyURI>(
 //? source: ...
 
 ends_with<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
+    "http://datypic.com/prod.html#shirt"anyURI,
     string("shir")
 )
 
@@ -33,6 +33,6 @@ ends_with<anyURI>(
 //? source: ...
 
 ends_with<anyURI>(
-    anyURI("x")
+    "x"anyURI
 )
 

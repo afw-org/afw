@@ -7,31 +7,31 @@
 //?
 //? test: round<double>-1
 //? description: x
-//? expect: double(5.0)
+//? expect: 5.0
 //? source: ...
 
 round<double>(
-    double(5.2)
+    5.2
 )
 
 //?
 //? test: round<double>-2
 //? description: x
-//? expect: double(6.0)
+//? expect: 6.0
 //? source: ...
 
 round<double>(
-    double(5.5)
+    5.5
 )
 
 //?
 //? test: round<double>-3
 //? description: x
-//? expect: double(888888888888888886.0)
+//? expect: 888888888888888886.0
 //? source: ...
 
 round<double>(
-    double(888888888888888885.5)
+    888888888888888885.5
 )
 
 //?
@@ -41,6 +41,6 @@ round<double>(
 //? source: ...
 
 round<double>(
-    double(x.0)
+    to_double(x.0)
 )
 

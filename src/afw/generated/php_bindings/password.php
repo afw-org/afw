@@ -328,28 +328,6 @@ class password
     }
 
     /**
-     * password()
-     *
-     * Converts value to data type password returning password result.
-     *
-     * @param $value Value to convert
-     *
-     * @return password Converted value
-     */
-    public function password(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "password");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * to_string_password()
      *
      * Converts password value to string. For array values, the to_string()

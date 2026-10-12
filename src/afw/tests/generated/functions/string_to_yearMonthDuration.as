@@ -7,7 +7,7 @@
 //?
 //? test: to_yearMonthDuration<string>-1
 //? description: P2Y6M
-//? expect: yearMonthDuration("P2Y6M")
+//? expect: "P2Y6M"yearMonthDuration
 //? source: ...
 
 to_yearMonthDuration<string>(
@@ -17,7 +17,7 @@ to_yearMonthDuration<string>(
 //?
 //? test: to_yearMonthDuration<string>-2
 //? description: -P60Y
-//? expect: yearMonthDuration("-P60Y")
+//? expect: "-P60Y"yearMonthDuration
 //? source: ...
 
 to_yearMonthDuration<string>(
@@ -27,7 +27,7 @@ to_yearMonthDuration<string>(
 //?
 //? test: to_yearMonthDuration<string>-3
 //? description: P0Y
-//? expect: yearMonthDuration("P0Y")
+//? expect: "P0Y"yearMonthDuration
 //? source: ...
 
 to_yearMonthDuration<string>(

@@ -35,7 +35,7 @@ return false;
 #!/usr/bin/env afw
 
 const response = http_delete(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/delete"
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/delete"
 );
 
 return response.response_code;
@@ -67,7 +67,7 @@ return response.response_code;
 #!/usr/bin/env afw
 
 const response = http_delete(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/404"
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/404"
 );
 
 return response.response_code;
@@ -80,7 +80,7 @@ return response.response_code;
 #!/usr/bin/env afw
 
 const response = http_delete(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/500"
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/500"
 );
 
 return response.response_code;
@@ -127,7 +127,7 @@ const options = {
 };
 
 const response = http_delete(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/delete",
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/delete",
     undefined,
     options
 );

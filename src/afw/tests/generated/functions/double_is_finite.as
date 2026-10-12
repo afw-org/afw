@@ -11,7 +11,7 @@
 //? source: ...
 
 is_finite(
-    double(Infinity)
+    Infinity
 )
 
 //?
@@ -21,7 +21,7 @@ is_finite(
 //? source: ...
 
 is_finite(
-    double(-Infinity)
+    -Infinity
 )
 
 //?
@@ -31,7 +31,7 @@ is_finite(
 //? source: ...
 
 is_finite(
-    double(23.0E35)
+    23.0E35
 )
 
 //?
@@ -41,7 +41,7 @@ is_finite(
 //? source: ...
 
 is_finite(
-    double(-23.0E35)
+    -23.0E35
 )
 
 //?
@@ -51,7 +51,7 @@ is_finite(
 //? source: ...
 
 is_finite(
-    integer(20)
+    20
 )
 
 //?
@@ -61,7 +61,7 @@ is_finite(
 //? source: ...
 
 is_finite(
-    integer(-20)
+    -20
 )
 
 //?

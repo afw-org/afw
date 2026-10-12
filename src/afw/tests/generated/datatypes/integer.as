@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<integer>(
-    integer(-1),
-    integer(-1)
+    -1,
+    -1
 )
 
 //?
@@ -22,8 +22,8 @@ eq<integer>(
 //? source: ...
 
 eq<integer>(
-    integer(122),
-    integer(122)
+    122,
+    122
 )
 
 //?
@@ -33,8 +33,8 @@ eq<integer>(
 //? source: ...
 
 eq<integer>(
-    integer(1220),
-    integer(1220)
+    1220,
+    1220
 )
 
 //?
@@ -44,8 +44,8 @@ eq<integer>(
 //? source: ...
 
 eq<integer>(
-    integer(-3),
-    integer(-3)
+    -3,
+    -3
 )
 
 //?
@@ -55,7 +55,7 @@ eq<integer>(
 //? source: ...
 
 eq<integer>(
-    integer(3),
-    integer(3)
+    3,
+    3
 )
 

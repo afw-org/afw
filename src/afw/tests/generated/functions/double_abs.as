@@ -7,31 +7,31 @@
 //?
 //? test: abs<double>-1
 //? description: 3.1416
-//? expect: double(3.1416)
+//? expect: 3.1416
 //? source: ...
 
 abs<double>(
-    double(3.1416)
+    3.1416
 )
 
 //?
 //? test: abs<double>-2
 //? description: -3.1416
-//? expect: double(3.1416)
+//? expect: 3.1416
 //? source: ...
 
 abs<double>(
-    double(-3.1416)
+    -3.1416
 )
 
 //?
 //? test: abs<double>-3
 //? description: -92233720368547758
-//? expect: double(92233720368547758.0)
+//? expect: 92233720368547758.0
 //? source: ...
 
 abs<double>(
-    double(-92233720368547758.0)
+    -92233720368547758.0
 )
 
 //?
@@ -41,6 +41,6 @@ abs<double>(
 //? source: ...
 
 abs<double>(
-    double(x.0)
+    to_double(x.0)
 )
 

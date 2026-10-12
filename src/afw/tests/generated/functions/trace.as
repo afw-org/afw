@@ -10,4 +10,4 @@
 //? expect: error:Parameter 3 must be an integer between 1 and 8.
 //? source: ...
 
-trace("hi", true, integer(9))
+trace("hi", true, 9)

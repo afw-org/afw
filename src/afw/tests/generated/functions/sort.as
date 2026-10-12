@@ -10,10 +10,10 @@
 //? expect: ...
 
 bag<integer>(
-    integer(0),
-    integer(2),
-    integer(5),
-    integer(9)
+    0,
+    2,
+    5,
+    9
 )
 
 //? source: ...
@@ -21,10 +21,10 @@ bag<integer>(
 sort(
     string("le"),
     bag<integer>(
-        integer(2),
-        integer(9),
-        integer(5),
-        integer(0)
+        2,
+        9,
+        5,
+        0
     )
 )
 

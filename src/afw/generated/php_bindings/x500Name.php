@@ -571,28 +571,6 @@ class x500Name
         return $request->get_result();
     }
 
-    /**
-     * x500Name()
-     *
-     * Converts value to data type x500Name returning x500Name result.
-     *
-     * @param $value Value to convert
-     *
-     * @return x500Name Converted value
-     */
-    public function x500Name(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "x500Name");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
 }
 
 ?>

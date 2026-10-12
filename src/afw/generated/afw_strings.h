@@ -17683,32 +17683,6 @@ afw_self_v_afwAnyOfAny;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwAnyURI \
-    "afwAnyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwAnyURI */
-#define afw_s_afwAnyURI \
-    (&afw_self_v_afwAnyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwAnyURI */
-#define afw_self_s_afwAnyURI \
-    (afw_self_v_afwAnyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwAnyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwAnyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwAnyURI */
-#define afw_z_afwAnyURI \
-    (afw_self_v_afwAnyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwAnyURI */
-#define afw_v_afwAnyURI \
-    (&afw_self_v_afwAnyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwApplyObjectOptions \
     "afwApplyObjectOptions"
 
@@ -20439,32 +20413,6 @@ afw_self_v_afwBagYearMonthDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwBase64Binary \
-    "afwBase64Binary"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwBase64Binary */
-#define afw_s_afwBase64Binary \
-    (&afw_self_v_afwBase64Binary.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwBase64Binary */
-#define afw_self_s_afwBase64Binary \
-    (afw_self_v_afwBase64Binary.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwBase64Binary */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwBase64Binary;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwBase64Binary */
-#define afw_z_afwBase64Binary \
-    (afw_self_v_afwBase64Binary.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwBase64Binary */
-#define afw_v_afwBase64Binary \
-    (&afw_self_v_afwBase64Binary.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwBoolean \
     "afwBoolean"
 
@@ -21115,84 +21063,6 @@ afw_self_v_afwCreateArray;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwDate \
-    "afwDate"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDate */
-#define afw_s_afwDate \
-    (&afw_self_v_afwDate.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDate */
-#define afw_self_s_afwDate \
-    (afw_self_v_afwDate.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwDate */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwDate;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwDate */
-#define afw_z_afwDate \
-    (afw_self_v_afwDate.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwDate */
-#define afw_v_afwDate \
-    (&afw_self_v_afwDate.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwDateTime \
-    "afwDateTime"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDateTime */
-#define afw_s_afwDateTime \
-    (&afw_self_v_afwDateTime.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDateTime */
-#define afw_self_s_afwDateTime \
-    (afw_self_v_afwDateTime.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwDateTime */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwDateTime;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwDateTime */
-#define afw_z_afwDateTime \
-    (afw_self_v_afwDateTime.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwDateTime */
-#define afw_v_afwDateTime \
-    (&afw_self_v_afwDateTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwDayTimeDuration \
-    "afwDayTimeDuration"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDayTimeDuration */
-#define afw_s_afwDayTimeDuration \
-    (&afw_self_v_afwDayTimeDuration.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDayTimeDuration */
-#define afw_self_s_afwDayTimeDuration \
-    (afw_self_v_afwDayTimeDuration.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwDayTimeDuration */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwDayTimeDuration;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwDayTimeDuration */
-#define afw_z_afwDayTimeDuration \
-    (afw_self_v_afwDayTimeDuration.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwDayTimeDuration */
-#define afw_v_afwDayTimeDuration \
-    (&afw_self_v_afwDayTimeDuration.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwDebug \
     "afwDebug"
 
@@ -21453,32 +21323,6 @@ afw_self_v_afwDivideInteger;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwDnsName \
-    "afwDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDnsName */
-#define afw_s_afwDnsName \
-    (&afw_self_v_afwDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDnsName */
-#define afw_self_s_afwDnsName \
-    (afw_self_v_afwDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwDnsName */
-#define afw_z_afwDnsName \
-    (afw_self_v_afwDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwDnsName */
-#define afw_v_afwDnsName \
-    (&afw_self_v_afwDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwDoWhile \
     "afwDoWhile"
 
@@ -21501,32 +21345,6 @@ afw_self_v_afwDoWhile;
 /** @brief 'const afw_value_t *' for AFW_Q_afwDoWhile */
 #define afw_v_afwDoWhile \
     (&afw_self_v_afwDoWhile.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwDouble \
-    "afwDouble"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDouble */
-#define afw_s_afwDouble \
-    (&afw_self_v_afwDouble.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwDouble */
-#define afw_self_s_afwDouble \
-    (afw_self_v_afwDouble.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwDouble */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwDouble;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwDouble */
-#define afw_z_afwDouble \
-    (afw_self_v_afwDouble.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwDouble */
-#define afw_v_afwDouble \
-    (&afw_self_v_afwDouble.pub)
 
 
 
@@ -25535,58 +25353,6 @@ afw_self_v_afwGtYearMonthDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwHexBinary \
-    "afwHexBinary"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwHexBinary */
-#define afw_s_afwHexBinary \
-    (&afw_self_v_afwHexBinary.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwHexBinary */
-#define afw_self_s_afwHexBinary \
-    (afw_self_v_afwHexBinary.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwHexBinary */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwHexBinary;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwHexBinary */
-#define afw_z_afwHexBinary \
-    (afw_self_v_afwHexBinary.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwHexBinary */
-#define afw_v_afwHexBinary \
-    (&afw_self_v_afwHexBinary.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwIa5String \
-    "afwIa5String"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwIa5String */
-#define afw_s_afwIa5String \
-    (&afw_self_v_afwIa5String.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwIa5String */
-#define afw_self_s_afwIa5String \
-    (afw_self_v_afwIa5String.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwIa5String */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwIa5String;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwIa5String */
-#define afw_z_afwIa5String \
-    (afw_self_v_afwIa5String.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwIa5String */
-#define afw_v_afwIa5String \
-    (&afw_self_v_afwIa5String.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwIf \
     "afwIf"
 
@@ -25921,32 +25687,6 @@ afw_self_v_afwIndexRemove;
 /** @brief 'const afw_value_t *' for AFW_Q_afwIndexRemove */
 #define afw_v_afwIndexRemove \
     (&afw_self_v_afwIndexRemove.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwInteger \
-    "afwInteger"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwInteger */
-#define afw_s_afwInteger \
-    (&afw_self_v_afwInteger.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwInteger */
-#define afw_self_s_afwInteger \
-    (afw_self_v_afwInteger.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwInteger */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwInteger;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwInteger */
-#define afw_z_afwInteger \
-    (afw_self_v_afwInteger.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwInteger */
-#define afw_v_afwInteger \
-    (&afw_self_v_afwInteger.pub)
 
 
 
@@ -26337,32 +26077,6 @@ afw_self_v_afwIntersectionYearMonthDuration;
 /** @brief 'const afw_value_t *' for AFW_Q_afwIntersectionYearMonthDuration */
 #define afw_v_afwIntersectionYearMonthDuration \
     (&afw_self_v_afwIntersectionYearMonthDuration.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwIpAddress \
-    "afwIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwIpAddress */
-#define afw_s_afwIpAddress \
-    (&afw_self_v_afwIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwIpAddress */
-#define afw_self_s_afwIpAddress \
-    (afw_self_v_afwIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwIpAddress */
-#define afw_z_afwIpAddress \
-    (afw_self_v_afwIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwIpAddress */
-#define afw_v_afwIpAddress \
-    (&afw_self_v_afwIpAddress.pub)
 
 
 
@@ -32347,58 +32061,6 @@ afw_self_v_afwObject;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwObjectId \
-    "afwObjectId"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwObjectId */
-#define afw_s_afwObjectId \
-    (&afw_self_v_afwObjectId.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwObjectId */
-#define afw_self_s_afwObjectId \
-    (afw_self_v_afwObjectId.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwObjectId */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwObjectId;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwObjectId */
-#define afw_z_afwObjectId \
-    (afw_self_v_afwObjectId.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwObjectId */
-#define afw_v_afwObjectId \
-    (&afw_self_v_afwObjectId.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwObjectPath \
-    "afwObjectPath"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwObjectPath */
-#define afw_s_afwObjectPath \
-    (&afw_self_v_afwObjectPath.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwObjectPath */
-#define afw_self_s_afwObjectPath \
-    (afw_self_v_afwObjectPath.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwObjectPath */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwObjectPath;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwObjectPath */
-#define afw_z_afwObjectPath \
-    (afw_self_v_afwObjectPath.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwObjectPath */
-#define afw_v_afwObjectPath \
-    (&afw_self_v_afwObjectPath.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwOneAndOnly \
     "afwOneAndOnly"
 
@@ -32993,32 +32655,6 @@ afw_self_v_afwParseUri;
 /** @brief 'const afw_value_t *' for AFW_Q_afwParseUri */
 #define afw_v_afwParseUri \
     (&afw_self_v_afwParseUri.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwPassword \
-    "afwPassword"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwPassword */
-#define afw_s_afwPassword \
-    (&afw_self_v_afwPassword.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwPassword */
-#define afw_self_s_afwPassword \
-    (afw_self_v_afwPassword.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwPassword */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwPassword;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwPassword */
-#define afw_z_afwPassword \
-    (afw_self_v_afwPassword.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwPassword */
-#define afw_v_afwPassword \
-    (&afw_self_v_afwPassword.pub)
 
 
 
@@ -34631,32 +34267,6 @@ afw_self_v_afwReverse;
 /** @brief 'const afw_value_t *' for AFW_Q_afwReverse */
 #define afw_v_afwReverse \
     (&afw_self_v_afwReverse.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRfc822Name \
-    "afwRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRfc822Name */
-#define afw_s_afwRfc822Name \
-    (&afw_self_v_afwRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRfc822Name */
-#define afw_self_s_afwRfc822Name \
-    (afw_self_v_afwRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRfc822Name */
-#define afw_z_afwRfc822Name \
-    (afw_self_v_afwRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRfc822Name */
-#define afw_v_afwRfc822Name \
-    (&afw_self_v_afwRfc822Name.pub)
 
 
 
@@ -36477,32 +36087,6 @@ afw_self_v_afwThrow;
 /** @brief 'const afw_value_t *' for AFW_Q_afwThrow */
 #define afw_v_afwThrow \
     (&afw_self_v_afwThrow.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwTime \
-    "afwTime"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwTime */
-#define afw_s_afwTime \
-    (&afw_self_v_afwTime.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwTime */
-#define afw_self_s_afwTime \
-    (afw_self_v_afwTime.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwTime */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwTime;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwTime */
-#define afw_z_afwTime \
-    (afw_self_v_afwTime.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwTime */
-#define afw_v_afwTime \
-    (&afw_self_v_afwTime.pub)
 
 
 
@@ -39107,32 +38691,6 @@ afw_self_v_afwWriteln;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwX500Name \
-    "afwX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwX500Name */
-#define afw_s_afwX500Name \
-    (&afw_self_v_afwX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwX500Name */
-#define afw_self_s_afwX500Name \
-    (afw_self_v_afwX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwX500Name */
-#define afw_z_afwX500Name \
-    (afw_self_v_afwX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwX500Name */
-#define afw_v_afwX500Name \
-    (&afw_self_v_afwX500Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwXpathExpression \
     "afwXpathExpression"
 
@@ -39233,32 +38791,6 @@ afw_self_v_afwXpathNodeMatch;
 /** @brief 'const afw_value_t *' for AFW_Q_afwXpathNodeMatch */
 #define afw_v_afwXpathNodeMatch \
     (&afw_self_v_afwXpathNodeMatch.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwYearMonthDuration \
-    "afwYearMonthDuration"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwYearMonthDuration */
-#define afw_s_afwYearMonthDuration \
-    (&afw_self_v_afwYearMonthDuration.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwYearMonthDuration */
-#define afw_self_s_afwYearMonthDuration \
-    (afw_self_v_afwYearMonthDuration.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwYearMonthDuration */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwYearMonthDuration;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwYearMonthDuration */
-#define afw_z_afwYearMonthDuration \
-    (afw_self_v_afwYearMonthDuration.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwYearMonthDuration */
-#define afw_v_afwYearMonthDuration \
-    (&afw_self_v_afwYearMonthDuration.pub)
 
 
 

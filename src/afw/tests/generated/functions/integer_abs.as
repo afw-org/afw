@@ -7,43 +7,43 @@
 //?
 //? test: abs<integer>-1
 //? description: Absolute value of -45.6
-//? expect: integer(45)
+//? expect: 45
 //? source: ...
 
 abs<integer>(
-    integer(-45)
+    -45
 )
 
 //?
 //? test: abs<integer>-2
 //? description: Absolute value of 5556
-//? expect: integer(5556)
+//? expect: 5556
 //? source: ...
 
 abs<integer>(
-    integer(5556)
+    5556
 )
 
 //?
 //? test: abs<integer>-3
 //? description: ...
 Absolute value of -9,223,372,036,854,775,808 largest negative 64 bit integer
-//? expect: integer(9223372036854775807)
+//? expect: 9223372036854775807
 //? source: ...
 
 abs<integer>(
-    integer(-9223372036854775807)
+    -9223372036854775807
 )
 
 //?
 //? test: abs<integer>-4
 //? description: ...
 Absolute value of 9,223,372,036,854,775,807 largest positive 64 bit integer
-//? expect: integer(9223372036854775807)
+//? expect: 9223372036854775807
 //? source: ...
 
 abs<integer>(
-    integer(9223372036854775807)
+    9223372036854775807
 )
 
 //?
@@ -53,6 +53,6 @@ abs<integer>(
 //? source: ...
 
 abs<integer>(
-    integer(x)
+    to_integer(x)
 )
 

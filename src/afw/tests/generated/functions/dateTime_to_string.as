@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<dateTime>(
-    dateTime("2004-04-12T13:20:00")
+    "2004-04-12T13:20:00"dateTime
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<dateTime>(
 //? source: ...
 
 to_string<dateTime>(
-    dateTime("2004-04-12T13:20:00-05:00")
+    "2004-04-12T13:20:00-05:00"dateTime
 )
 
 //?
@@ -31,6 +31,6 @@ to_string<dateTime>(
 //? source: ...
 
 to_string<dateTime>(
-    dateTime("x")
+    "x"dateTime
 )
 

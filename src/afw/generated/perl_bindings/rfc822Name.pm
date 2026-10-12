@@ -31,7 +31,6 @@ our @EXPORT_OK = qw(
     nex_rfc822Name 
     one_and_only_rfc822Name 
     regexp_match_rfc822Name 
-    rfc822Name 
     set_equals_rfc822Name 
     subset_rfc822Name 
     to_string_rfc822Name 
@@ -294,17 +293,6 @@ Search for a match using a regular expression
 
     $regexp
 
-
-=head3 rfc822Name
-
-Converts value to data type rfc822Name returning rfc822Name result.
-Convert to data type rfc822Name
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 set_equals_rfc822Name
 
@@ -571,17 +559,6 @@ sub regexp_match_rfc822Name {
     $request->set("function" => "regexp_match<rfc822Name>");
     $request->set("value", $value);
     $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub rfc822Name {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "rfc822Name");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

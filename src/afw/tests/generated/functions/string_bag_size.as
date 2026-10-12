@@ -7,7 +7,7 @@
 //?
 //? test: bag_size<string>-1
 //? description: String bag size of 0.
-//? expect: integer(0)
+//? expect: 0
 //? source: ...
 
 bag_size<string>(
@@ -18,7 +18,7 @@ bag_size<string>(
 //?
 //? test: bag_size<string>-2
 //? description: String bag size of 2.
-//? expect: integer(2)
+//? expect: 2
 //? source: ...
 
 bag_size<string>(
@@ -31,7 +31,7 @@ bag_size<string>(
 //?
 //? test: bag_size<string>-3
 //? description: String bag size of 21.
-//? expect: integer(21)
+//? expect: 21
 //? source: ...
 
 bag_size<string>(

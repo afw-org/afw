@@ -7,28 +7,28 @@
 //?
 //? test: bag_size<rfc822Name>-1
 //? description: x
-//? expect: integer(4)
+//? expect: 4
 //? source: ...
 
 bag_size<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("LOCALPart@DomainPart.com"),
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("differentlocalPart@DOMAINPart"),
-        rfc822Name("localPart@differentDOMAINPart")
+        "LOCALPart@DomainPart.com"rfc822Name,
+        "localPart@DOMAINPart"rfc822Name,
+        "differentlocalPart@DOMAINPart"rfc822Name,
+        "localPart@differentDOMAINPart"rfc822Name
     )
 )
 
 //?
 //? test: bag_size<rfc822Name>-2
 //? description: x
-//? expect: integer(2)
+//? expect: 2
 //? source: ...
 
 bag_size<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("LOCALPart@DomainPart"),
-        rfc822Name("localPart@DOMAINPart")
+        "LOCALPart@DomainPart"rfc822Name,
+        "localPart@DOMAINPart"rfc822Name
     )
 )
 

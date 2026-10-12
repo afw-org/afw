@@ -19,7 +19,7 @@ while (length(body) < bodyLen) {
 body = substring(body, 0, bodyLen);
 
 smtp_send(
-    "smtp://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_SMTP_PORT)),
+    "smtp://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_SMTP_PORT)),
     "stub-len-" + string(bodyLen) + "@example.com",
     ["recipient@example.com"],
     body
@@ -66,7 +66,7 @@ function reader(userData, size, nitems) {
 }
 
 smtp_send(
-    "smtp://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_SMTP_PORT)),
+    "smtp://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_SMTP_PORT)),
     "stub-len-" + string(bodyLen) + "@example.com",
     ["recipient@example.com"],
     "",
@@ -96,7 +96,7 @@ while (length(body) < bodyLen) {
 body = substring(body, 0, bodyLen);
 
 smtp_send(
-    "smtp://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_SMTP_PORT)),
+    "smtp://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_SMTP_PORT)),
     "stub-len-" + string(bodyLen) + "@example.com",
     ["recipient@example.com"],
     body

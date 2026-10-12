@@ -29,7 +29,7 @@ return 0;
 //? test: easy_seal_unseal_json_string
 //? description: ...
 JSON-friendly bag (base64 strings) via stringify, then unseal from JSON
-string — portable file/conf shape without Adaptive base64Binary() literals.
+string — portable file/conf shape without Adaptive base64Binary typed literals.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
@@ -133,9 +133,9 @@ close(f);
 
 const plain = crypto_decrypt({
     "name": "AES-GCM",
-    "iv": base64Binary(ivB64),
-    "tag": base64Binary(tagB64)
-}, key, base64Binary(ctB64));
+    "iv": to_base64Binary(ivB64),
+    "tag": to_base64Binary(tagB64)
+}, key, to_base64Binary(ctB64));
 assert(decode_to_string(plain) === "line-secret");
 crypto_destroy_key(key);
 return 0;

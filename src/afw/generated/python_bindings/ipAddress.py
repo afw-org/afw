@@ -228,34 +228,6 @@ def gt_ipAddress(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def ipAddress(session, value):
-    """
-    Convert to data type ipAddress
-
-    Converts value to data type ipAddress returning ipAddress result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "ipAddress",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def is_in_ipAddress(session, value, array):
     """
     Checks whether a value is in an array

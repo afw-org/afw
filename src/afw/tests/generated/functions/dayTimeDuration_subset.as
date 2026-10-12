@@ -12,21 +12,21 @@
 
 subset<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("P1DT2H"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M")
+        "P1DT2H"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("P1DT2H"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT120M"),
-        dayTimeDuration("P0DT1H"),
-        dayTimeDuration("P0D"),
-        dayTimeDuration("-P60D"),
-        dayTimeDuration("PT1M30.5S")
+        "P1DT2H"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT120M"dayTimeDuration,
+        "P0DT1H"dayTimeDuration,
+        "P0D"dayTimeDuration,
+        "-P60D"dayTimeDuration,
+        "PT1M30.5S"dayTimeDuration
     )
 )
 
@@ -38,21 +38,21 @@ subset<dayTimeDuration>(
 
 subset<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("P1DT3H"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT20M")
+        "P1DT3H"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT20M"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("P1DT2H"),
-        dayTimeDuration("PT20M"),
-        dayTimeDuration("PT120M"),
-        dayTimeDuration("P0DT1H"),
-        dayTimeDuration("P0D"),
-        dayTimeDuration("-P60D"),
-        dayTimeDuration("PT1M30.5S")
+        "P1DT2H"dayTimeDuration,
+        "PT20M"dayTimeDuration,
+        "PT120M"dayTimeDuration,
+        "P0DT1H"dayTimeDuration,
+        "P0D"dayTimeDuration,
+        "-P60D"dayTimeDuration,
+        "PT1M30.5S"dayTimeDuration
     )
 )
 

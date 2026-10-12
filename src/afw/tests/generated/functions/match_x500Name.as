@@ -10,4 +10,4 @@
 //? expect: error:Not implemented
 //? source: ...
 
-match_x500Name(x500Name("cn=test"), regexp(".*"))
+match_x500Name("cn=test"x500Name, regexp(".*"))

@@ -11,14 +11,14 @@
 //? source: ...
 
 is_in<ipAddress>(
-    ipAddress("255.255.255.255"),
+    "255.255.255.255"ipAddress,
     bag<ipAddress>(
-        ipAddress("255.255.255.250"),
-        ipAddress("255.255.255.251"),
-        ipAddress("255.255.255.252"),
-        ipAddress("255.255.255.253"),
-        ipAddress("255.255.255.254"),
-        ipAddress("255.255.255.255")
+        "255.255.255.250"ipAddress,
+        "255.255.255.251"ipAddress,
+        "255.255.255.252"ipAddress,
+        "255.255.255.253"ipAddress,
+        "255.255.255.254"ipAddress,
+        "255.255.255.255"ipAddress
     )
 )
 
@@ -29,6 +29,6 @@ is_in<ipAddress>(
 //? source: ...
 
 is_in<ipAddress>(
-    ipAddress("x")
+    "x"ipAddress
 )
 

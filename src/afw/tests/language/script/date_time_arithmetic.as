@@ -15,10 +15,10 @@ month 13 instead of carrying into the next unit.
 //? source: ...
 
 function sub(t: string, d: string): string {
-    return string(subtract_dayTimeDuration<dateTime>(dateTime(t), dayTimeDuration(d)));
+    return string(subtract_dayTimeDuration<dateTime>(to_dateTime(t), to_dayTimeDuration(d)));
 }
 function add(t: string, d: string): string {
-    return string(add_dayTimeDuration<dateTime>(dateTime(t), dayTimeDuration(d)));
+    return string(add_dayTimeDuration<dateTime>(to_dateTime(t), to_dayTimeDuration(d)));
 }
 assert(sub("4813-01-26T14:59:32Z", "P189DT15H81M92S") === "4812-07-20T22:37:00Z",
     sub("4813-01-26T14:59:32Z", "P189DT15H81M92S"));
@@ -40,15 +40,15 @@ return 0;
 //? source: ...
 
 function ym(t: string, d: string): string {
-    return string(add_yearMonthDuration<dateTime>(dateTime(t), yearMonthDuration(d)));
+    return string(add_yearMonthDuration<dateTime>(to_dateTime(t), to_yearMonthDuration(d)));
 }
 assert(ym("9036-10-24T01:57:16Z", "-P2Y21M") === "9033-01-24T01:57:16Z",
     ym("9036-10-24T01:57:16Z", "-P2Y21M"));
 assert(ym("2020-12-15T00:00:00Z", "-P12M") === "2019-12-15T00:00:00Z",
     ym("2020-12-15T00:00:00Z", "-P12M"));
-assert(string(add_yearMonthDuration<date>(date("2020-12-15"), yearMonthDuration("-P1Y"))) ===
+assert(string(add_yearMonthDuration<date>("2020-12-15"date, "-P1Y"yearMonthDuration)) ===
     "2019-12-15");
-assert(string(subtract_yearMonthDuration<date>(date("2020-12-15"), yearMonthDuration("P12M"))) ===
+assert(string(subtract_yearMonthDuration<date>("2020-12-15"date, "P12M"yearMonthDuration)) ===
     "2019-12-15");
 return 0;
 
@@ -58,12 +58,12 @@ return 0;
 //? expect: 0
 //? source: ...
 
-assert(dateTime("1932-04-02T02:54:04+05:30") == dateTime("1932-04-01T16:24:04-05:00"), "+05:30 vs -05:00");
-assert(dateTime("2046-01-02T18:08:37+14:00") == dateTime("2046-01-01T23:08:37-05:00"), "+14:00 vs -05:00");
-assert(dateTime("1921-03-25T14:54:59Z") == dateTime("1921-03-25T20:24:59+05:30"), "Z vs +05:30");
-assert(dateTime("2020-01-01T00:30:00+01:00") < dateTime("2019-12-31T23:45:00Z"), "earlier instant, later date");
-assert(dateTime("2019-12-31T23:45:00Z") > dateTime("2020-01-01T00:30:00+01:00"));
-assert(dateTime("2020-01-01T00:00:00.5Z") > dateTime("2020-01-01T01:00:00+01:00"), "microseconds");
+assert("1932-04-02T02:54:04+05:30"dateTime == "1932-04-01T16:24:04-05:00"dateTime, "+05:30 vs -05:00");
+assert("2046-01-02T18:08:37+14:00"dateTime == "2046-01-01T23:08:37-05:00"dateTime, "+14:00 vs -05:00");
+assert("1921-03-25T14:54:59Z"dateTime == "1921-03-25T20:24:59+05:30"dateTime, "Z vs +05:30");
+assert("2020-01-01T00:30:00+01:00"dateTime < "2019-12-31T23:45:00Z"dateTime, "earlier instant, later date");
+assert("2019-12-31T23:45:00Z"dateTime > "2020-01-01T00:30:00+01:00"dateTime);
+assert("2020-01-01T00:00:00.5Z"dateTime > "2020-01-01T01:00:00+01:00"dateTime, "microseconds");
 return 0;
 
 //?
@@ -72,10 +72,10 @@ return 0;
 //? expect: 0
 //? source: ...
 
-assert(time("12:00:00+05:30") == time("06:30:00Z"), "+05:30");
-assert(time("12:00:00-05:00") == time("17:00:00Z"), "-05:00");
-assert(time("12:00:00-05:00") > time("12:00:00Z"), "later in UTC");
-assert(time("10:00:00+01:00") < time("09:30:00Z"), "09:00Z < 09:30Z");
+assert("12:00:00+05:30"time == "06:30:00Z"time, "+05:30");
+assert("12:00:00-05:00"time == "17:00:00Z"time, "-05:00");
+assert("12:00:00-05:00"time > "12:00:00Z"time, "later in UTC");
+assert("10:00:00+01:00"time < "09:30:00Z"time, "09:00Z < 09:30Z");
 return 0;
 
 //?
@@ -84,10 +84,10 @@ return 0;
 //? expect: 0
 //? source: ...
 
-assert(time("12:00:00-05:30") == time("17:30:00Z"), "compare");
-assert(in_range<time>(time("05:00:00-05:30"), time("10:20:00Z"), time("10:40:00Z")), "-05:30 in range");
-assert(!in_range<time>(time("05:00:00-05:30"), time("09:20:00Z"), time("09:40:00Z")), "-05:30 not at 09:30Z");
-assert(in_range<time>(time("05:00:00+05:30"), time("23:20:00Z"), time("23:40:00Z")), "+05:30 in range");
+assert("12:00:00-05:30"time == "17:30:00Z"time, "compare");
+assert(in_range<time>("05:00:00-05:30"time, "10:20:00Z"time, "10:40:00Z"time), "-05:30 in range");
+assert(!in_range<time>("05:00:00-05:30"time, "09:20:00Z"time, "09:40:00Z"time), "-05:30 not at 09:30Z");
+assert(in_range<time>("05:00:00+05:30"time, "23:20:00Z"time, "23:40:00Z"time), "+05:30 in range");
 return 0;
 
 //?
@@ -96,10 +96,10 @@ return 0;
 //? expect: 0
 //? source: ...
 
-assert(dayTimeDuration("P1DT32H78M108S") > dayTimeDuration("P2DT1H"), "hours past a day");
-assert(dayTimeDuration("P1DT32H") == dayTimeDuration("P2DT8H"), "PT32H in P1D");
-assert(dayTimeDuration("P3DT17H58M26.945215S") == dayTimeDuration("PT323906.945215S"), "all seconds");
-assert(dayTimeDuration("-P1DT45H") < dayTimeDuration("-P2DT20H"), "negative");
-assert(dayTimeDuration("PT1.5S") < dayTimeDuration("PT1.6S"), "microseconds");
-assert(!(dayTimeDuration("PT1.5S") == dayTimeDuration("PT1.6S")), "microseconds differ");
+assert("P1DT32H78M108S"dayTimeDuration > "P2DT1H"dayTimeDuration, "hours past a day");
+assert("P1DT32H"dayTimeDuration == "P2DT8H"dayTimeDuration, "PT32H in P1D");
+assert("P3DT17H58M26.945215S"dayTimeDuration == "PT323906.945215S"dayTimeDuration, "all seconds");
+assert("-P1DT45H"dayTimeDuration < "-P2DT20H"dayTimeDuration, "negative");
+assert("PT1.5S"dayTimeDuration < "PT1.6S"dayTimeDuration, "microseconds");
+assert(!("PT1.5S"dayTimeDuration == "PT1.6S"dayTimeDuration), "microseconds differ");
 return 0;

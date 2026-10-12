@@ -11,8 +11,8 @@
 //? source: ...
 
 ge<double>(
-    double(6.9),
-    double(5.9)
+    6.9,
+    5.9
 )
 
 //?
@@ -22,8 +22,8 @@ ge<double>(
 //? source: ...
 
 ge<double>(
-    double(5.0),
-    double(5.0)
+    5.0,
+    5.0
 )
 
 //?
@@ -33,8 +33,8 @@ ge<double>(
 //? source: ...
 
 ge<double>(
-    double(Infinity),
-    double(-Infinity)
+    Infinity,
+    -Infinity
 )
 
 //?
@@ -44,7 +44,7 @@ ge<double>(
 //? source: ...
 
 ge<double>(
-    double(6000000.0),
-    double(7000000.0)
+    6000000.0,
+    7000000.0
 )
 

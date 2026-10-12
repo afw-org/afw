@@ -233,7 +233,7 @@ if ((true != NaN) !== true) {
 */
 
 //CHECK#2
-if ((double(-1) != NaN) !== true) {
+if ((to_double(-1) != NaN) !== true) {
   throw '#2: (-1 != NaN) === true';
 }
 

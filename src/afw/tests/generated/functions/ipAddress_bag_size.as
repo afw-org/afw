@@ -7,28 +7,28 @@
 //?
 //? test: bag_size<ipAddress>-1
 //? description: x
-//? expect: integer(3)
+//? expect: 3
 //? source: ...
 
 bag_size<ipAddress>(
     bag<ipAddress>(
-        ipAddress("204.11.3.4"),
-        ipAddress("204.11.3.4"),
-        ipAddress("204.11.3.224")
+        "204.11.3.4"ipAddress,
+        "204.11.3.4"ipAddress,
+        "204.11.3.224"ipAddress
     )
 )
 
 //?
 //? test: bag_size<ipAddress>-2
 //? description: x
-//? expect: integer(3)
+//? expect: 3
 //? source: ...
 
 bag_size<ipAddress>(
     bag<ipAddress>(
-        ipAddress("204.11.3.4"),
-        ipAddress("204.11.3.5"),
-        ipAddress("204.11.3.224")
+        "204.11.3.4"ipAddress,
+        "204.11.3.5"ipAddress,
+        "204.11.3.224"ipAddress
     )
 )
 

@@ -369,7 +369,7 @@ if (("1e-10" > "1") !== true) {
 //? expect: success
 //? source: ...
 
-if ((double(0) > NaN) !== false) {
+if ((to_double(0) > NaN) !== false) {
     throw "0 > NaN !== false";
 }
 
@@ -441,7 +441,7 @@ if ((-0 > +0) !== false) {
 //? expect: success
 //? source: ...
 
-if ((+Infinity > double(0)) !== true) {
+if ((+Infinity > to_double(0)) !== true) {
     throw "'+Infinity' > 0 !== true";
 }
 
@@ -461,7 +461,7 @@ if ((+Infinity > -Infinity) !== true) {
 //? expect: success
 //? source: ...
 
-if ((double(0) > +Infinity) !== false) {
+if ((to_double(0) > +Infinity) !== false) {
     throw "0 > '+Infinity' !== false";
 }
 
@@ -521,26 +521,26 @@ if ((+Infinity > -Infinity) !== true) {
 //? expect: success
 //? source: ...
 
-if ((double(1) > 1.1) !== false) {
+if ((to_double(1) > 1.1) !== false) {
     throw "1 > 1.1 !== false";
 }
 
-if ((1.1 > double(1)) !== true) {
+if ((1.1 > to_double(1)) !== true) {
     throw "1.1 > 1 !== true";
 }
 
-if ((double(-1) > -1.1) !== true) {
+if ((to_double(-1) > -1.1) !== true) {
     throw "'-1' > '-1.1' !== true";
 }
 
-if ((-1.1 > double(-1)) !== false) {
+if ((-1.1 > to_double(-1)) !== false) {
     throw "'-1.1' > '-1' !== false";
 }
 
-if ((0.1 > double(0)) !== true) {
+if ((0.1 > to_double(0)) !== true) {
     throw "0.1 > 0 !== true";
 }
 
-if ((double(0) > -0.1) !== true) {
+if ((to_double(0) > -0.1) !== true) {
     throw "0 > '-0.1' !== true";
 }

@@ -10,4 +10,4 @@
 //? expect: error:range between min and max is out of bounds
 //? source: ...
 
-random_integer(integer(10), integer(5))
+random_integer(10, 5)

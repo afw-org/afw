@@ -59,7 +59,7 @@ obj = get_object("file", "TestObjectType1", "Test1",
 );
 
 //println(meta(meta(obj).objectId));
-assert(meta(obj).path === anyURI("/file/TestObjectType1/Test1"));
+assert(meta(obj).path === "/file/TestObjectType1/Test1"anyURI);
 assert(meta(obj).objectId === "Test1");
 assert(meta(obj).objectType === "TestObjectType1");
 assert(meta(obj).reconcilable !== undefined);
@@ -123,7 +123,7 @@ const o = get_object("file", "TestObjectType1", "Test1", {
     objectId: true
 });
 assert(meta(o).reconcilable !== undefined);
-assert(meta(o).path === anyURI("/file/TestObjectType1/Test1"));
+assert(meta(o).path === "/file/TestObjectType1/Test1"anyURI);
 assert(meta(o).objectId === "Test1");
 o.TestString1 = "face-only on reconcilable get";
 const b = get_object("file", "TestObjectType1", "Test1", {

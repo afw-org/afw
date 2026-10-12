@@ -11,15 +11,15 @@
 //? source: ...
 
 is_in<anyURI>(
-    anyURI("urn:example:org"),
+    "urn:example:org"anyURI,
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     )
 )
 
@@ -30,15 +30,15 @@ is_in<anyURI>(
 //? source: ...
 
 is_in<anyURI>(
-    anyURI("../edition.html"),
+    "../edition.html"anyURI,
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     )
 )
 
@@ -49,6 +49,6 @@ is_in<anyURI>(
 //? source: ...
 
 is_in<anyURI>(
-    anyURI("x")
+    "x"anyURI
 )
 

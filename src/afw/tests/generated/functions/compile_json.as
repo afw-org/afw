@@ -7,7 +7,7 @@
 //?
 //? test: compile_json-1
 //? description: Test compile_json with an integer.
-//? expect: integer(0)
+//? expect: 0
 //? source: ...
 
 compile_json(

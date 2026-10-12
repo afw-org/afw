@@ -10,17 +10,17 @@
 //? expect: ...
 
 bag<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme")
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name
 )
 
 //? source: ...
 
 bag<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme")
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name
 )
 
 //?
@@ -40,6 +40,6 @@ bag<x500Name>(
 //? source: ...
 
 bag<x500Name>(
-    x500Name("x")
+    "x"x500Name
 )
 

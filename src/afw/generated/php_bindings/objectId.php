@@ -328,28 +328,6 @@ class objectId
     }
 
     /**
-     * objectId()
-     *
-     * Converts value to data type objectId returning objectId result.
-     *
-     * @param $value Value to convert
-     *
-     * @return objectId Converted value
-     */
-    public function objectId(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "objectId");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * to_string_objectId()
      *
      * Converts objectId value to string. For array values, the to_string()

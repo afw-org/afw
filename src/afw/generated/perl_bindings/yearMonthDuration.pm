@@ -33,7 +33,6 @@ our @EXPORT_OK = qw(
     subset_yearMonthDuration 
     to_string_yearMonthDuration 
     union_yearMonthDuration 
-    yearMonthDuration 
 );
 
 =head1 NAME
@@ -322,18 +321,6 @@ Returns union of two or more string arrays
 
 Two or more arrays.
 
-=head3 yearMonthDuration
-
-Converts value to data type yearMonthDuration returning yearMonthDuration
-result.
-Convert to data type yearMonthDuration
-
-=head4 Parameters
-
-    $value
-
-Value to convert
-
 =cut
 
 sub as_yearMonthDuration {
@@ -567,17 +554,6 @@ sub union_yearMonthDuration {
 
     $request->set("function" => "union<yearMonthDuration>");
     $request->set("arrays", $arrays);
-
-    return $request->getResult();
-}
-
-sub yearMonthDuration {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "yearMonthDuration");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

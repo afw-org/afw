@@ -228,34 +228,6 @@ def gt_ia5String(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def ia5String(session, value):
-    """
-    Convert to data type ia5String
-
-    Converts value to data type ia5String returning ia5String result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "ia5String",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def is_ia5String(session, value):
     """
     Checks whether value is dataType ia5String

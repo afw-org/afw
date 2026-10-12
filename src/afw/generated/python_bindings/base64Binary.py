@@ -133,34 +133,6 @@ def bag_size_base64Binary(session, value):
 
     return response['actions'][0]['result']
 
-def base64Binary(session, value):
-    """
-    Convert to data type base64Binary
-
-    Converts value to data type base64Binary returning base64Binary result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "base64Binary",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def decode_to_string_base64Binary(session, value):
     """
     Decode base64Binary to string

@@ -16,7 +16,7 @@ assert(key.keyId !== undefined);
 assert(key.algorithm === "AES-GCM");
 assert(key.extractable === false);
 
-const plain = base64Binary("c2VjcmV0LXBheWxvYWQ="); // secret-payload
+const plain = "c2VjcmV0LXBheWxvYWQ="base64Binary; // secret-payload
 const sealed = crypto_encrypt({
     "name": "AES-GCM"
 }, key, plain);
@@ -49,7 +49,7 @@ return 0;
 
 const key = crypto_generate_key({ "name": "AES-GCM", "length": 256 });
 const plain = random_base64Binary(64);
-const aad = base64Binary("YWFk"); // aad
+const aad = "YWFk"base64Binary; // aad
 
 const sealed = crypto_encrypt({
     "name": "AES-GCM",

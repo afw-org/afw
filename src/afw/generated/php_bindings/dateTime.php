@@ -173,28 +173,6 @@ class dateTime
     }
 
     /**
-     * dateTime()
-     *
-     * Converts value to data type dateTime returning dateTime result.
-     *
-     * @param $value Value to convert
-     *
-     * @return dateTime Converted value
-     */
-    public function dateTime(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "dateTime");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_dateTime()
      *
      * Determine if dateTime arg1 is equal to the value of arg2 converted to

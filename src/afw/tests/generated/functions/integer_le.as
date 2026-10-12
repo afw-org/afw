@@ -11,8 +11,8 @@
 //? source: ...
 
 le<integer>(
-    integer(0),
-    integer(0)
+    0,
+    0
 )
 
 //?
@@ -22,8 +22,8 @@ le<integer>(
 //? source: ...
 
 le<integer>(
-    integer(9223372036854775806),
-    integer(9223372036854775807)
+    9223372036854775806,
+    9223372036854775807
 )
 
 //?
@@ -33,8 +33,8 @@ le<integer>(
 //? source: ...
 
 le<integer>(
-    integer(0),
-    integer(-1)
+    0,
+    -1
 )
 
 //?
@@ -44,7 +44,7 @@ le<integer>(
 //? source: ...
 
 le<integer>(
-    integer(x),
-    integer(x)
+    to_integer(x),
+    to_integer(x)
 )
 

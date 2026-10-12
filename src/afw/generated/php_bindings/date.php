@@ -147,28 +147,6 @@ class date
     }
 
     /**
-     * date()
-     *
-     * Converts value to data type date returning date result.
-     *
-     * @param $value Value to convert
-     *
-     * @return date Converted value
-     */
-    public function date(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "date");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_date()
      *
      * Determine if date arg1 is equal to the value of arg2 converted to the

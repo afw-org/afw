@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("0FB8 0F+9"),
-    base64Binary("0FB8 0F+9")
+    "0FB8 0F+9"base64Binary,
+    "0FB8 0F+9"base64Binary
 )
 
 //?
@@ -22,8 +22,8 @@ eq<base64Binary>(
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("0FB8"),
-    base64Binary("0FB8")
+    "0FB8"base64Binary,
+    "0FB8"base64Binary
 )
 
 //?
@@ -33,8 +33,8 @@ eq<base64Binary>(
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("0fb8"),
-    base64Binary("0fb8")
+    "0fb8"base64Binary,
+    "0fb8"base64Binary
 )
 
 //?
@@ -44,8 +44,8 @@ eq<base64Binary>(
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("0FB80F+9"),
-    base64Binary("0FB80F+9")
+    "0FB80F+9"base64Binary,
+    "0FB80F+9"base64Binary
 )
 
 //?
@@ -55,8 +55,8 @@ eq<base64Binary>(
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary("0F+40A=="),
-    base64Binary("0F+40A==")
+    "0F+40A=="base64Binary,
+    "0F+40A=="base64Binary
 )
 
 //?
@@ -66,7 +66,7 @@ eq<base64Binary>(
 //? source: ...
 
 eq<base64Binary>(
-    base64Binary(""),
-    base64Binary("")
+    ""base64Binary,
+    ""base64Binary
 )
 

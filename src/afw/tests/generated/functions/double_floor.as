@@ -7,30 +7,30 @@
 //?
 //? test: floor<double>-1
 //? description: 2.8
-//? expect: double(2.0)
+//? expect: 2.0
 //? source: ...
 
 floor<double>(
-    double(2.8)
+    2.8
 )
 
 //?
 //? test: floor<double>-2
 //? description: -2.8
-//? expect: double(-3.0)
+//? expect: -3.0
 //? source: ...
 
 floor<double>(
-    double(-2.8)
+    -2.8
 )
 
 //?
 //? test: floor<double>-3
 //? description: NaN
-//? expect: double(NaN)
+//? expect: NaN
 //? source: ...
 
 floor<double>(
-    double(NaN)
+    NaN
 )
 

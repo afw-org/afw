@@ -10,21 +10,21 @@
 //? expect: ...
 
 bag<yearMonthDuration>(
-    yearMonthDuration("P2Y6M"),
-    yearMonthDuration("P0Y"),
-    yearMonthDuration("P20M")
+    "P2Y6M"yearMonthDuration,
+    "P0Y"yearMonthDuration,
+    "P20M"yearMonthDuration
 )
 
 //? source: ...
 
 union<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P0Y")
+        "P2Y6M"yearMonthDuration,
+        "P0Y"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P20M")
+        "P0Y20M"yearMonthDuration,
+        "P20M"yearMonthDuration
     )
 )
 
@@ -34,21 +34,21 @@ union<yearMonthDuration>(
 //? expect: ...
 
 bag<yearMonthDuration>(
-    yearMonthDuration("P2Y6M"),
-    yearMonthDuration("P0Y"),
-    yearMonthDuration("P20M")
+    "P2Y6M"yearMonthDuration,
+    "P0Y"yearMonthDuration,
+    "P20M"yearMonthDuration
 )
 
 //? source: ...
 
 union<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P0Y")
+        "P2Y6M"yearMonthDuration,
+        "P0Y"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("P20M")
+        "P0Y"yearMonthDuration,
+        "P20M"yearMonthDuration
     )
 )
 
@@ -60,12 +60,12 @@ union<yearMonthDuration>(
 
 union<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("x"),
-        yearMonthDuration("x")
+        "x"yearMonthDuration,
+        "x"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("x"),
-        yearMonthDuration("x")
+        "x"yearMonthDuration,
+        "x"yearMonthDuration
     )
 )
 

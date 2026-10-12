@@ -10,7 +10,7 @@
 //? expect: 0
 //? source: ...
 
-assert(length(create_array(integer(3))) === 3);
+assert(length(create_array(3)) === 3);
 return 0;
 
 //?
@@ -19,4 +19,4 @@ return 0;
 //? expect: error:create_array length must be between 0 and 1000000 inclusive
 //? source: ...
 
-create_array(integer(-1))
+create_array(-1)

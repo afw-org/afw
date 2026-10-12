@@ -7,23 +7,23 @@
 //?
 //? test: divide<integer>-1
 //? description: Divide 200 by 5
-//? expect: integer(40)
+//? expect: 40
 //? source: ...
 
 divide<integer>(
-    integer(200),
-    integer(5)
+    200,
+    5
 )
 
 //?
 //? test: divide<integer>-2
 //? description: Divide 9223372036854775807 by 2
-//? expect: integer(4611686018427387903)
+//? expect: 4611686018427387903
 //? source: ...
 
 divide<integer>(
-    integer(9223372036854775807),
-    integer(2)
+    9223372036854775807,
+    2
 )
 
 //?
@@ -33,8 +33,8 @@ divide<integer>(
 //? source: ...
 
 divide<integer>(
-    integer(200),
-    integer(0)
+    200,
+    0
 )
 
 //?
@@ -44,6 +44,6 @@ divide<integer>(
 //? source: ...
 
 divide<integer>(
-    integer(x)
+    to_integer(x)
 )
 

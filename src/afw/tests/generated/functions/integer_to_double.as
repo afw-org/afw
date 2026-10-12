@@ -7,21 +7,21 @@
 //?
 //? test: to_double<integer>-1
 //? description: 9223372036854775807
-//? expect: double(9223372036854775807.0)
+//? expect: 9223372036854775807.0
 //? source: ...
 
 to_double<integer>(
-    integer(9223372036854775807)
+    9223372036854775807
 )
 
 //?
 //? test: to_double<integer>-2
 //? description: -9223372036854775807
-//? expect: double(-9223372036854775807.0)
+//? expect: -9223372036854775807.0
 //? source: ...
 
 to_double<integer>(
-    integer(-9223372036854775807)
+    -9223372036854775807
 )
 
 //?
@@ -31,6 +31,6 @@ to_double<integer>(
 //? source: ...
 
 to_double<integer>(
-    integer(x)
+    to_integer(x)
 )
 

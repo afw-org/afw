@@ -12,22 +12,22 @@
 
 set_equals<anyURI>(
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     ),
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     )
 )
 
@@ -39,24 +39,24 @@ set_equals<anyURI>(
 
 set_equals<anyURI>(
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org"),
-        anyURI("urn:example:org"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI,
+        "urn:example:org"anyURI,
+        "urn:example:org"anyURI
     ),
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     )
 )
 
@@ -68,8 +68,8 @@ set_equals<anyURI>(
 
 set_equals<anyURI>(
     bag<anyURI>(
-        anyURI("x"),
-        anyURI("x")
+        "x"anyURI,
+        "x"anyURI
     )
 )
 

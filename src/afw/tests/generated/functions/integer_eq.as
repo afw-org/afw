@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<integer>(
-    integer(-9223372036854775807),
-    integer(-9223372036854775807)
+    -9223372036854775807,
+    -9223372036854775807
 )
 
 //?
@@ -22,8 +22,8 @@ eq<integer>(
 //? source: ...
 
 eq<integer>(
-    integer(9223372036854775807),
-    integer(9223372036854775807)
+    9223372036854775807,
+    9223372036854775807
 )
 
 //?
@@ -33,8 +33,8 @@ eq<integer>(
 //? source: ...
 
 eq<integer>(
-    integer(-10),
-    integer(10)
+    -10,
+    10
 )
 
 //?
@@ -44,7 +44,7 @@ eq<integer>(
 //? source: ...
 
 eq<integer>(
-    integer(x),
-    integer(x)
+    to_integer(x),
+    to_integer(x)
 )
 

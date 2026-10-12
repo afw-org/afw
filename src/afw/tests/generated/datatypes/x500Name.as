@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<x500Name>(
-    x500Name("CN=Steve Kille,O=Isode Limited,C=GB"),
-    x500Name("CN=Steve Kille,O=Isode Limited,C=GB")
+    "CN=Steve Kille,O=Isode Limited,C=GB"x500Name,
+    "CN=Steve Kille,O=Isode Limited,C=GB"x500Name
 )
 
 //?
@@ -22,8 +22,8 @@ eq<x500Name>(
 //? source: ...
 
 eq<x500Name>(
-    x500Name("OU=Sales+CN=J. Smith,O=Widget Inc.,C=US"),
-    x500Name("OU=Sales+CN=J. Smith,O=Widget Inc.,C=US")
+    "OU=Sales+CN=J. Smith,O=Widget Inc.,C=US"x500Name,
+    "OU=Sales+CN=J. Smith,O=Widget Inc.,C=US"x500Name
 )
 
 //?
@@ -33,8 +33,8 @@ eq<x500Name>(
 //? source: ...
 
 eq<x500Name>(
-    x500Name("CN=L. Eagle,O=Sue\\, Grabbit and Runn,C=GB"),
-    x500Name("CN=L. Eagle,O=Sue\\, Grabbit and Runn,C=GB")
+    "CN=L. Eagle,O=Sue\\, Grabbit and Runn,C=GB"x500Name,
+    "CN=L. Eagle,O=Sue\\, Grabbit and Runn,C=GB"x500Name
 )
 
 //?
@@ -44,8 +44,8 @@ eq<x500Name>(
 //? source: ...
 
 eq<x500Name>(
-    x500Name("CN=Before\\0DAfter,O=Test,C=GB"),
-    x500Name("CN=Before\\0DAfter,O=Test,C=GB")
+    "CN=Before\\0DAfter,O=Test,C=GB"x500Name,
+    "CN=Before\\0DAfter,O=Test,C=GB"x500Name
 )
 
 //?
@@ -55,8 +55,8 @@ eq<x500Name>(
 //? source: ...
 
 eq<x500Name>(
-    x500Name("1.3.6.1.4.1.1466.0=#04024869,O=Test,C=GB"),
-    x500Name("1.3.6.1.4.1.1466.0=#04024869,O=Test,C=GB")
+    "1.3.6.1.4.1.1466.0=#04024869,O=Test,C=GB"x500Name,
+    "1.3.6.1.4.1.1466.0=#04024869,O=Test,C=GB"x500Name
 )
 
 //?
@@ -66,7 +66,7 @@ eq<x500Name>(
 //? source: ...
 
 eq<x500Name>(
-    x500Name("SN=Lu\\C4\\8Di\\C4\\87"),
-    x500Name("SN=Lu\\C4\\8Di\\C4\\87")
+    "SN=Lu\\C4\\8Di\\C4\\87"x500Name,
+    "SN=Lu\\C4\\8Di\\C4\\87"x500Name
 )
 

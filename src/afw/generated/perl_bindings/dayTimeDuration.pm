@@ -17,7 +17,6 @@ our @EXPORT_OK = qw(
     at_least_one_member_of_dayTimeDuration 
     bag_dayTimeDuration 
     bag_size_dayTimeDuration 
-    dayTimeDuration 
     eq_dayTimeDuration 
     eqx_dayTimeDuration 
     ge_dayTimeDuration 
@@ -95,17 +94,6 @@ Returns the number of values in a bag
 
     $value
 
-
-=head3 dayTimeDuration
-
-Converts value to data type dayTimeDuration returning dayTimeDuration result.
-Convert to data type dayTimeDuration
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 eq_dayTimeDuration
 
@@ -377,17 +365,6 @@ sub bag_size_dayTimeDuration {
     my $request = $session->request()
 
     $request->set("function" => "bag_size<dayTimeDuration>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub dayTimeDuration {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "dayTimeDuration");
     $request->set("value", $value);
 
     return $request->getResult();

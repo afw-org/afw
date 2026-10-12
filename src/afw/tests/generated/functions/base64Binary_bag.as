@@ -10,17 +10,17 @@
 //? expect: ...
 
 bag<base64Binary>(
-    base64Binary("0fa8"),
-    base64Binary("0fa80f+9"),
-    base64Binary("0F+40A==")
+    "0fa8"base64Binary,
+    "0fa80f+9"base64Binary,
+    "0F+40A=="base64Binary
 )
 
 //? source: ...
 
 bag<base64Binary>(
-    base64Binary("0fa8"),
-    base64Binary("0fa80f+9"),
-    base64Binary("0F+40A==")
+    "0fa8"base64Binary,
+    "0fa80f+9"base64Binary,
+    "0F+40A=="base64Binary
 )
 
 //?
@@ -30,6 +30,6 @@ bag<base64Binary>(
 //? source: ...
 
 bag<base64Binary>(
-    base64Binary("x")
+    "x"base64Binary
 )
 

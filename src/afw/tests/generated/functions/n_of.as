@@ -11,7 +11,7 @@
 //? source: ...
 
 n_of(
-    integer(6),
+    6,
     boolean(true),
     boolean(true),
     boolean(true),
@@ -26,7 +26,7 @@ n_of(
 //? source: ...
 
 n_of(
-    integer(2),
+    2,
     boolean(false),
     boolean(false),
     boolean(false),
@@ -41,7 +41,7 @@ n_of(
 //? source: ...
 
 n_of(
-    integer(6),
+    6,
     boolean(true),
     boolean(true),
     boolean(true),
@@ -57,7 +57,7 @@ n_of(
 //? source: ...
 
 n_of(
-    integer(x),
+    to_integer(x),
     boolean(x)
 )
 

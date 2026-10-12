@@ -12,13 +12,13 @@
 
 at_least_one_member_of<x500Name>(
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme"),
-        x500Name("cn=Johnny Smith,ou=Finance,o=Acme"),
-        x500Name("cn=Jon Smith,ou=Finance,o=Acme"),
-        x500Name("cn=Jonny Smith,ou=Finance,o=Acme")
+        "cn=John Smith,ou=Finance,o=Acme"x500Name,
+        "cn=Johnny Smith,ou=Finance,o=Acme"x500Name,
+        "cn=Jon Smith,ou=Finance,o=Acme"x500Name,
+        "cn=Jonny Smith,ou=Finance,o=Acme"x500Name
     ),
     bag<x500Name>(
-        x500Name("cn=Jonny Smith,ou=Finance,o=Acme")
+        "cn=Jonny Smith,ou=Finance,o=Acme"x500Name
     )
 )
 
@@ -30,13 +30,13 @@ at_least_one_member_of<x500Name>(
 
 at_least_one_member_of<x500Name>(
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme"),
-        x500Name("cn=Johnny Smith,ou=Finance,o=Acme"),
-        x500Name("cn=Jon Smith,ou=Finance,o=Acme"),
-        x500Name("cn=Jonny Smith,ou=Finance,o=Acme")
+        "cn=John Smith,ou=Finance,o=Acme"x500Name,
+        "cn=Johnny Smith,ou=Finance,o=Acme"x500Name,
+        "cn=Jon Smith,ou=Finance,o=Acme"x500Name,
+        "cn=Jonny Smith,ou=Finance,o=Acme"x500Name
     ),
     bag<x500Name>(
-        x500Name("cn=Lonny Smith,ou=Finance,o=Acme")
+        "cn=Lonny Smith,ou=Finance,o=Acme"x500Name
     )
 )
 
@@ -48,8 +48,8 @@ at_least_one_member_of<x500Name>(
 
 at_least_one_member_of<x500Name>(
     bag<x500Name>(
-        x500Name("x"),
-        x500Name("x")
+        "x"x500Name,
+        "x"x500Name
     )
 )
 

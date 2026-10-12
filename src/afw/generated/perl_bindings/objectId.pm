@@ -25,7 +25,6 @@ our @EXPORT_OK = qw(
     lt_objectId 
     ne_objectId 
     nex_objectId 
-    objectId 
     to_string_objectId 
 );
 
@@ -199,17 +198,6 @@ Checks for not equal value or type
     $arg2
 
 
-=head3 objectId
-
-Converts value to data type objectId returning objectId result.
-Convert to data type objectId
-
-=head4 Parameters
-
-    $value
-
-Value to convert
-
 =head3 to_string_objectId
 
 Converts objectId value to string. For array values, the to_string() value for
@@ -362,17 +350,6 @@ sub nex_objectId {
     $request->set("function" => "nex<objectId>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub objectId {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "objectId");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

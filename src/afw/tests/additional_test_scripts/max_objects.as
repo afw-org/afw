@@ -46,7 +46,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const objects = retrieve_objects_with_uri(anyURI("/afw/_AdaptiveObjectType_/"));
+const objects = retrieve_objects_with_uri("/afw/_AdaptiveObjectType_/"anyURI);
 assert(length(objects) > 100);
 return 0;
 
@@ -57,7 +57,7 @@ return 0;
 //? source: ...
 
 const objects = retrieve_objects_with_uri(
-    anyURI("/afw/_AdaptiveObjectType_/"), undefined, undefined, 0);
+    "/afw/_AdaptiveObjectType_/"anyURI, undefined, undefined, 0);
 assert(length(objects) > 100);
 return 0;
 
@@ -70,7 +70,7 @@ return 0;
 let caught = false;
 try {
     retrieve_objects_with_uri(
-        anyURI("/afw/_AdaptiveObjectType_/"), undefined, undefined, 2);
+        "/afw/_AdaptiveObjectType_/"anyURI, undefined, undefined, 2);
 } catch (e) {
     assert(e.id === "payload_too_large");
     caught = true;

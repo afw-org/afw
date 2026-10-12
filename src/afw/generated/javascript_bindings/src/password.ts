@@ -266,23 +266,6 @@ export function afwNexPassword(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type password returning password result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {password} Converted value
- */
-export function afwPassword(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "password";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Converts password value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 

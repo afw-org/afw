@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme")
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name
 )
 
 //?
@@ -22,8 +22,8 @@ eq<x500Name>(
 //? source: ...
 
 eq<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
-    x500Name("cn=Johny Smith,ou=Finance,o=Acme")
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
+    "cn=Johny Smith,ou=Finance,o=Acme"x500Name
 )
 
 //?

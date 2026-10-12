@@ -2173,44 +2173,6 @@ afw_function_execute_service_stop(
  * @{
  */
 
-/** @brief Function definition anyURI */
-extern const afw_value_function_definition_t
-afw_function_definition_anyURI;
-
-/**
- * @brief Adaptive Function `anyURI`
- * @param x function execute parameter.
- *
- * Converts value to data type anyURI returning anyURI result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function anyURI(
- *       value: any
- *   ): anyURI;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (anyURI) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition as_anyURI */
 extern const afw_value_function_definition_t
 afw_function_definition_as_anyURI;
@@ -4878,44 +4840,6 @@ afw_function_definition_bag_size_base64Binary;
  *   (integer)
  *
  * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition base64Binary */
-extern const afw_value_function_definition_t
-afw_function_definition_base64Binary;
-
-/**
- * @brief Adaptive Function `base64Binary`
- * @param x function execute parameter.
- *
- * Converts value to data type base64Binary returning base64Binary result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function base64Binary(
- *       value: any
- *   ): base64Binary;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (base64Binary) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -8215,44 +8139,6 @@ afw_function_definition_bag_size_dateTime;
  * __________
  */
 
-/** @brief Function definition dateTime */
-extern const afw_value_function_definition_t
-afw_function_definition_dateTime;
-
-/**
- * @brief Adaptive Function `dateTime`
- * @param x function execute parameter.
- *
- * Converts value to data type dateTime returning dateTime result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function dateTime(
- *       value: any
- *   ): dateTime;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (dateTime) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition eq<dateTime> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_dateTime;
@@ -9221,44 +9107,6 @@ afw_function_definition_bag_size_date;
  * __________
  */
 
-/** @brief Function definition date */
-extern const afw_value_function_definition_t
-afw_function_definition_date;
-
-/**
- * @brief Adaptive Function `date`
- * @param x function execute parameter.
- *
- * Converts value to data type date returning date result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function date(
- *       value: any
- *   ): date;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (date) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition eq<date> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_date;
@@ -10154,44 +10002,6 @@ afw_function_definition_bag_size_dayTimeDuration;
  * __________
  */
 
-/** @brief Function definition dayTimeDuration */
-extern const afw_value_function_definition_t
-afw_function_definition_dayTimeDuration;
-
-/**
- * @brief Adaptive Function `dayTimeDuration`
- * @param x function execute parameter.
- *
- * Converts value to data type dayTimeDuration returning dayTimeDuration result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function dayTimeDuration(
- *       value: any
- *   ): dayTimeDuration;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (dayTimeDuration) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition eq<dayTimeDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_dayTimeDuration;
@@ -10924,44 +10734,6 @@ afw_function_definition_bag_size_dnsName;
  *   (integer)
  *
  * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition dnsName */
-extern const afw_value_function_definition_t
-afw_function_definition_dnsName;
-
-/**
- * @brief Adaptive Function `dnsName`
- * @param x function execute parameter.
- *
- * Converts value to data type dnsName returning dnsName result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function dnsName(
- *       value: any
- *   ): dnsName;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (dnsName) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -11761,44 +11533,6 @@ afw_function_definition_divide_double;
 const afw_value_t *
 afw_function_execute_divide_double(
     afw_function_execute_t *x);
-
-/** @brief Function definition double */
-extern const afw_value_function_definition_t
-afw_function_definition_double;
-
-/**
- * @brief Adaptive Function `double`
- * @param x function execute parameter.
- *
- * Converts value to data type double returning double result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function double(
- *       value: any
- *   ): double;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (double) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
 
 /** @brief Function definition eq<double> */
 extern const afw_value_function_definition_t
@@ -13660,44 +13394,6 @@ afw_function_definition_gt_hexBinary;
  * __________
  */
 
-/** @brief Function definition hexBinary */
-extern const afw_value_function_definition_t
-afw_function_definition_hexBinary;
-
-/**
- * @brief Adaptive Function `hexBinary`
- * @param x function execute parameter.
- *
- * Converts value to data type hexBinary returning hexBinary result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function hexBinary(
- *       value: any
- *   ): hexBinary;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (hexBinary) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition intersection<hexBinary> */
 extern const afw_value_function_definition_t
 afw_function_definition_intersection_hexBinary;
@@ -15003,44 +14699,6 @@ afw_function_definition_gt_ia5String;
  * __________
  */
 
-/** @brief Function definition ia5String */
-extern const afw_value_function_definition_t
-afw_function_definition_ia5String;
-
-/**
- * @brief Adaptive Function `ia5String`
- * @param x function execute parameter.
- *
- * Converts value to data type ia5String returning ia5String result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ia5String(
- *       value: any
- *   ): ia5String;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (ia5String) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition is_ia5String */
 extern const afw_value_function_definition_t
 afw_function_definition_is_ia5String;
@@ -15847,44 +15505,6 @@ afw_function_definition_gt_integer;
  *   (boolean)
  *
  * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
-/** @brief Function definition integer */
-extern const afw_value_function_definition_t
-afw_function_definition_integer;
-
-/**
- * @brief Adaptive Function `integer`
- * @param x function execute parameter.
- *
- * Converts value to data type integer returning integer result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function integer(
- *       value: any
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (integer) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -16869,44 +16489,6 @@ afw_function_definition_gt_ipAddress;
  *   (boolean)
  *
  * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
-/** @brief Function definition ipAddress */
-extern const afw_value_function_definition_t
-afw_function_definition_ipAddress;
-
-/**
- * @brief Adaptive Function `ipAddress`
- * @param x function execute parameter.
- *
- * Converts value to data type ipAddress returning ipAddress result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ipAddress(
- *       value: any
- *   ): ipAddress;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (ipAddress) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -19625,44 +19207,6 @@ afw_function_definition_nex_objectId;
  * __________
  */
 
-/** @brief Function definition objectId */
-extern const afw_value_function_definition_t
-afw_function_definition_objectId;
-
-/**
- * @brief Adaptive Function `objectId`
- * @param x function execute parameter.
- *
- * Converts value to data type objectId returning objectId result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function objectId(
- *       value: any
- *   ): objectId;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (objectId) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition to_string<objectId> */
 extern const afw_value_function_definition_t
 afw_function_definition_to_string_objectId;
@@ -20166,44 +19710,6 @@ afw_function_definition_nex_objectPath;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition objectPath */
-extern const afw_value_function_definition_t
-afw_function_definition_objectPath;
-
-/**
- * @brief Adaptive Function `objectPath`
- * @param x function execute parameter.
- *
- * Converts value to data type objectPath returning objectPath result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function objectPath(
- *       value: any
- *   ): objectPath;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (objectPath) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -21737,44 +21243,6 @@ afw_function_definition_nex_password;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition password */
-extern const afw_value_function_definition_t
-afw_function_definition_password;
-
-/**
- * @brief Adaptive Function `password`
- * @param x function execute parameter.
- *
- * Converts value to data type password returning password result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function password(
- *       value: any
- *   ): password;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (password) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -26646,44 +26114,6 @@ afw_function_definition_regexp_match_rfc822Name;
  *   (boolean)
  *
  * Implemented by afw_function_execute_regexp_match()
- *
- * __________
- */
-
-/** @brief Function definition rfc822Name */
-extern const afw_value_function_definition_t
-afw_function_definition_rfc822Name;
-
-/**
- * @brief Adaptive Function `rfc822Name`
- * @param x function execute parameter.
- *
- * Converts value to data type rfc822Name returning rfc822Name result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function rfc822Name(
- *       value: any
- *   ): rfc822Name;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (rfc822Name) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -31929,44 +31359,6 @@ afw_function_definition_subset_time;
  * __________
  */
 
-/** @brief Function definition time */
-extern const afw_value_function_definition_t
-afw_function_definition_time;
-
-/**
- * @brief Adaptive Function `time`
- * @param x function execute parameter.
- *
- * Converts value to data type time returning time result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function time(
- *       value: any
- *   ): time;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (time) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition to_string<time> */
 extern const afw_value_function_definition_t
 afw_function_definition_to_string_time;
@@ -33051,44 +32443,6 @@ afw_function_definition_union_x500Name;
  *   (x500Name[])
  *
  * Implemented by afw_function_execute_union()
- *
- * __________
- */
-
-/** @brief Function definition x500Name */
-extern const afw_value_function_definition_t
-afw_function_definition_x500Name;
-
-/**
- * @brief Adaptive Function `x500Name`
- * @param x function execute parameter.
- *
- * Converts value to data type x500Name returning x500Name result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function x500Name(
- *       value: any
- *   ): x500Name;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (x500Name) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -34620,45 +33974,6 @@ afw_function_definition_union_yearMonthDuration;
  * __________
  */
 
-/** @brief Function definition yearMonthDuration */
-extern const afw_value_function_definition_t
-afw_function_definition_yearMonthDuration;
-
-/**
- * @brief Adaptive Function `yearMonthDuration`
- * @param x function execute parameter.
- *
- * Converts value to data type yearMonthDuration returning yearMonthDuration
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function yearMonthDuration(
- *       value: any
- *   ): yearMonthDuration;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (yearMonthDuration) Converted value.
- *
- * Errors thrown:
- *
- *   conversion_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /**
  * @brief Data type method id map for afw_
  */
@@ -35033,44 +34348,29 @@ afw_function_execute_clone(
  *
  * Implementation for functions:
  *
- * anyURI
  * to_string<anyURI>
  * to_string<array>
- * base64Binary
  * to_string<base64Binary>
  * boolean
  * to_string<boolean>
- * dateTime
  * to_string<dateTime>
- * date
  * to_string<date>
- * dayTimeDuration
  * to_string<dayTimeDuration>
- * dnsName
  * to_string<dnsName>
- * double
  * to_string<double>
- * hexBinary
  * to_string<hexBinary>
- * ia5String
  * to_string<ia5String>
- * integer
  * to_string<integer>
- * ipAddress
  * to_string<ipAddress>
  * json
  * to_string<null>
- * objectId
  * to_string<objectId>
- * objectPath
  * to_string<objectPath>
  * object
  * to_string<object>
- * password
  * to_string<password>
  * regexp
  * relaxedJson
- * rfc822Name
  * to_string<rfc822Name>
  * script
  * to_anyURI<string>
@@ -35094,14 +34394,11 @@ afw_function_execute_clone(
  * to_yearMonthDuration<string>
  * template
  * to_string<template>
- * time
  * to_string<time>
  * to_string<x500Name>
- * x500Name
  * to_string<xpathExpression>
  * xpathExpression
  * to_string<yearMonthDuration>
- * yearMonthDuration
  */
 const afw_value_t *
 afw_function_execute_convert(

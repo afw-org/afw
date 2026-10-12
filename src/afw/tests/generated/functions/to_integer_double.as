@@ -10,7 +10,7 @@
 //? expect: error:arg is not a number
 //? source: ...
 
-to_integer(double("NaN"))
+to_integer(NaN)
 
 //?
 //? test: to_integer_double-error-infinite
@@ -18,4 +18,4 @@ to_integer(double("NaN"))
 //? expect: error:arg is infinite
 //? source: ...
 
-to_integer(double("Infinity"))
+to_integer(Infinity)

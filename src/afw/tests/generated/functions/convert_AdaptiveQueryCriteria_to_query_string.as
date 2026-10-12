@@ -26,5 +26,5 @@ convert_AdaptiveQueryCriteria_to_query_string(
     {},
     undefined,
     undefined,
-    integer(999)
+    999
 )

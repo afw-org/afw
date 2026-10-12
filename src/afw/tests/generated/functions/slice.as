@@ -10,20 +10,20 @@
 //? expect: ...
 
 bag<integer>(
-    integer(2),
-    integer(9),
-    integer(5),
-    integer(0)
+    2,
+    9,
+    5,
+    0
 )
 
 //? source: ...
 
 slice(
     bag<integer>(
-        integer(2),
-        integer(9),
-        integer(5),
-        integer(0)
+        2,
+        9,
+        5,
+        0
     )
 )
 
@@ -34,21 +34,21 @@ Test slice function with integers with startIndex and endIndex.
 //? expect: ...
 
 bag<integer>(
-    integer(9),
-    integer(5)
+    9,
+    5
 )
 
 //? source: ...
 
 slice(
     bag<integer>(
-        integer(2),
-        integer(9),
-        integer(5),
-        integer(0)
+        2,
+        9,
+        5,
+        0
     ),
-    integer(1),
-    integer(3)
+    1,
+    3
 )
 
 //?
@@ -58,21 +58,21 @@ Test slice function with integers with negative startIndex and endIndex.
 //? expect: ...
 
 bag<integer>(
-    integer(9),
-    integer(5)
+    9,
+    5
 )
 
 //? source: ...
 
 slice(
     bag<integer>(
-        integer(2),
-        integer(9),
-        integer(5),
-        integer(0)
+        2,
+        9,
+        5,
+        0
     ),
-    integer(-3),
-    integer(-1)
+    -3,
+    -1
 )
 
 //?
@@ -94,6 +94,6 @@ slice(
         string("aaaaa"),
         string("nnnnn")
     ),
-    integer(2)
+    2
 )
 

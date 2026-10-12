@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<double>(
-    double(1234567.8),
-    double(1234567.8)
+    1234567.8,
+    1234567.8
 )
 
 //?
@@ -22,8 +22,8 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(1234567.0),
-    double(1234568.0)
+    1234567.0,
+    1234568.0
 )
 
 //?
@@ -33,7 +33,7 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(x.0),
-    double(x.0)
+    to_double(x.0),
+    to_double(x.0)
 )
 

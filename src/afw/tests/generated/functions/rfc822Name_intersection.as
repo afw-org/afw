@@ -16,12 +16,12 @@ bag<rfc822Name>(
 
 intersection<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINPart2")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINPart2"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart3"),
-        rfc822Name("localPart@DOMAINPart4")
+        "localPart@DOMAINPart3"rfc822Name,
+        "localPart@DOMAINPart4"rfc822Name
     )
 )
 
@@ -31,19 +31,19 @@ intersection<rfc822Name>(
 //? expect: ...
 
 bag<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart2")
+    "localPart@DOMAINPart2"rfc822Name
 )
 
 //? source: ...
 
 intersection<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINPart2")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINPart2"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart2"),
-        rfc822Name("localPart@DOMAINPart4")
+        "localPart@DOMAINPart2"rfc822Name,
+        "localPart@DOMAINPart4"rfc822Name
     )
 )
 
@@ -55,8 +55,8 @@ intersection<rfc822Name>(
 
 intersection<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("x"),
-        rfc822Name("x")
+        "x"rfc822Name,
+        "x"rfc822Name
     )
 )
 

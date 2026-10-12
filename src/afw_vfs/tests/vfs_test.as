@@ -144,7 +144,7 @@ add_object('vfs', '_AdaptiveFile_vfs', { data: "secret" }, hidden_id);
 dir = get_object('vfs', '_AdaptiveFile_vfs', temp_directory);
 assert(dir.isDirectory == true, "Directory should have isDirectory true");
 assert(!is_nullish(dir.vfsPath), "Directory should have vfsPath");
-assert(dir.vfsPath == anyURI(string('/vfs/', temp_directory)),
+assert(dir.vfsPath == to_anyURI(string('/vfs/', temp_directory)),
     "Directory vfsPath mismatch");
 assert(!is_nullish(dir.timeModified), "Directory should have timeModified");
 assert(!is_nullish(dir.data), "Directory should list entries in data");
@@ -183,7 +183,7 @@ assert(found_hidden,
 const file_obj: object = get_object('vfs', '_AdaptiveFile_vfs', file_a);
 assert(file_obj.isDirectory == false,
     "Regular file should have isDirectory false");
-assert(file_obj.vfsPath == anyURI(string('/vfs/', file_a)),
+assert(file_obj.vfsPath == to_anyURI(string('/vfs/', file_a)),
     "File vfsPath mismatch");
 assert(!is_nullish(file_obj.timeModified), "File should have timeModified");
 
@@ -224,9 +224,9 @@ add_object('vfs', '_AdaptiveFile_vfs', { data: "line1\nline2\n" }, ml_id);
 object = get_object('vfs', '_AdaptiveFile_vfs', ml_id);
 assert(object.data == "line1\nline2\n", "Multiline content mismatch");
 
-add_object('vfs', '_AdaptiveFile_vfs', { data: hexBinary("00ff") }, bin_id);
+add_object('vfs', '_AdaptiveFile_vfs', { data: "00ff"hexBinary }, bin_id);
 object = get_object('vfs', '_AdaptiveFile_vfs', bin_id);
-assert(object.data == hexBinary("00ff"), "hexBinary content mismatch");
+assert(object.data == "00ff"hexBinary, "hexBinary content mismatch");
 
 delete_object('vfs', '_AdaptiveFile_vfs', uni_id);
 delete_object('vfs', '_AdaptiveFile_vfs', ws_id);

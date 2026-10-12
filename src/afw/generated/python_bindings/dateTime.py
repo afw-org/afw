@@ -193,34 +193,6 @@ def bag_size_dateTime(session, value):
 
     return response['actions'][0]['result']
 
-def dateTime(session, value):
-    """
-    Convert to data type dateTime
-
-    Converts value to data type dateTime returning dateTime result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "dateTime",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_dateTime(session, arg1, arg2):
     """
     Checks for equal

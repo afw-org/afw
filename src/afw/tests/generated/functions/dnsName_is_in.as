@@ -11,11 +11,11 @@
 //? source: ...
 
 is_in<dnsName>(
-    dnsName("clemson"),
+    "clemson"dnsName,
     bag<dnsName>(
-        dnsName("clemson:8080"),
-        dnsName("clemsen"),
-        dnsName("google:8080")
+        "clemson:8080"dnsName,
+        "clemsen"dnsName,
+        "google:8080"dnsName
     )
 )
 
@@ -26,11 +26,11 @@ is_in<dnsName>(
 //? source: ...
 
 is_in<dnsName>(
-    dnsName("clemson"),
+    "clemson"dnsName,
     bag<dnsName>(
-        dnsName("clemson:8080"),
-        dnsName("clemson"),
-        dnsName("google:8080")
+        "clemson:8080"dnsName,
+        "clemson"dnsName,
+        "google:8080"dnsName
     )
 )
 
@@ -41,6 +41,6 @@ is_in<dnsName>(
 //? source: ...
 
 is_in<dnsName>(
-    dnsName("x")
+    "x"dnsName
 )
 

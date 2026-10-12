@@ -26,28 +26,6 @@ class anyURI
     }
 
     /**
-     * anyURI()
-     *
-     * Converts value to data type anyURI returning anyURI result.
-     *
-     * @param $value Value to convert
-     *
-     * @return anyURI Converted value
-     */
-    public function anyURI(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "anyURI");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * as_anyURI()
      *
      * Returns value unchanged if it is dataType anyURI. Otherwise, including

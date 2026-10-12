@@ -7,21 +7,21 @@
 //?
 //? test: to_integer<double>-1
 //? description: 50.0666
-//? expect: integer(50)
+//? expect: 50
 //? source: ...
 
 to_integer<double>(
-    double(50.0666)
+    50.0666
 )
 
 //?
 //? test: to_integer<double>-2
 //? description: -50.0666
-//? expect: integer(-50)
+//? expect: -50
 //? source: ...
 
 to_integer<double>(
-    double(-50.0666)
+    -50.0666
 )
 
 //?
@@ -31,6 +31,6 @@ to_integer<double>(
 //? source: ...
 
 to_integer<double>(
-    double(NaN)
+    NaN
 )
 

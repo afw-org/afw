@@ -7,44 +7,44 @@
 //?
 //? test: pow<double>-1
 //? description: 2.0 cubed
-//? expect: double(8.0)
+//? expect: 8.0
 //? source: ...
 
 pow<double>(
-    double(2.0),
-    double(3)
+    2.0,
+    3.0
 )
 
 //?
 //? test: pow<double>-2
 //? description: 2.8 cubed
-//? expect: double(21.951999999999995)
+//? expect: 21.951999999999995
 //? source: ...
 
 pow<double>(
-    double(2.8),
-    double(3)
+    2.8,
+    3.0
 )
 
 //?
 //? test: pow<double>-3
 //? description: -2.8 cubed
-//? expect: double(-21.951999999999995)
+//? expect: -21.951999999999995
 //? source: ...
 
 pow<double>(
-    double(-2.8),
-    double(3)
+    -2.8,
+    3.0
 )
 
 //?
 //? test: pow<double>-4
 //? description: NaN
-//? expect: double(NaN)
+//? expect: NaN
 //? source: ...
 
 pow<double>(
-    double(NaN),
-    double(NaN)
+    NaN,
+    NaN
 )
 

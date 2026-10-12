@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
-    dateTime("2004-04-12T13:20:00")
+    "2004-04-12T13:20:00"dateTime,
+    "2004-04-12T13:20:00"dateTime
 )
 
 //?
@@ -22,8 +22,8 @@ eq<dateTime>(
 //? source: ...
 
 eq<dateTime>(
-    dateTime("2004-04-12T13:20:15.5"),
-    dateTime("2004-04-12T13:20:15.5")
+    "2004-04-12T13:20:15.5"dateTime,
+    "2004-04-12T13:20:15.5"dateTime
 )
 
 //?
@@ -33,8 +33,8 @@ eq<dateTime>(
 //? source: ...
 
 eq<dateTime>(
-    dateTime("2004-04-12T13:20:00-05:00"),
-    dateTime("2004-04-12T13:20:00-05:00")
+    "2004-04-12T13:20:00-05:00"dateTime,
+    "2004-04-12T13:20:00-05:00"dateTime
 )
 
 //?
@@ -44,7 +44,7 @@ eq<dateTime>(
 //? source: ...
 
 eq<dateTime>(
-    dateTime("2004-04-12T13:20:00Z"),
-    dateTime("2004-04-12T13:20:00Z")
+    "2004-04-12T13:20:00Z"dateTime,
+    "2004-04-12T13:20:00Z"dateTime
 )
 

@@ -11,6 +11,6 @@
 //? source: ...
 
 union<integer>(
-    bag<integer>(integer(1)),
+    bag<integer>(1),
     bag<string>(string("1"))
 )

@@ -11,6 +11,6 @@
 //? source: ...
 
 ge(
-    integer(6),
+    6,
     string("6")
 )

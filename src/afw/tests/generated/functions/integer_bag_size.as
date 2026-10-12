@@ -7,7 +7,7 @@
 //?
 //? test: bag_size<integer>-1
 //? description: Integer bag size of 0.
-//? expect: integer(0)
+//? expect: 0
 //? source: ...
 
 bag_size<integer>(
@@ -18,45 +18,45 @@ bag_size<integer>(
 //?
 //? test: bag_size<integer>-2
 //? description: Integer bag size of 2.
-//? expect: integer(2)
+//? expect: 2
 //? source: ...
 
 bag_size<integer>(
     bag<integer>(
-        integer(52),
-        integer(-15)
+        52,
+        -15
     )
 )
 
 //?
 //? test: bag_size<integer>-3
 //? description: Integer bag size of 21.
-//? expect: integer(21)
+//? expect: 21
 //? source: ...
 
 bag_size<integer>(
     bag<integer>(
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(387),
-        integer(512618),
-        integer(-512618),
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(-0),
-        integer(0)
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        387,
+        512618,
+        -512618,
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        -0,
+        0
     )
 )
 

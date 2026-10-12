@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("username@domainname"),
-    rfc822Name("username@domainname")
+    "username@domainname"rfc822Name,
+    "username@domainname"rfc822Name
 )
 
 //?
@@ -22,8 +22,8 @@ eq<rfc822Name>(
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("foo@whatever.com"),
-    rfc822Name("foo@whatever.com")
+    "foo@whatever.com"rfc822Name,
+    "foo@whatever.com"rfc822Name
 )
 
 //?
@@ -33,8 +33,8 @@ eq<rfc822Name>(
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("fooemail@bar.com"),
-    rfc822Name("fooemail@bar.com")
+    "fooemail@bar.com"rfc822Name,
+    "fooemail@bar.com"rfc822Name
 )
 
 //?
@@ -44,8 +44,8 @@ eq<rfc822Name>(
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("userxyz@192.168.0.5"),
-    rfc822Name("userxyz@192.168.0.5")
+    "userxyz@192.168.0.5"rfc822Name,
+    "userxyz@192.168.0.5"rfc822Name
 )
 
 //?
@@ -55,7 +55,7 @@ eq<rfc822Name>(
 //? source: ...
 
 eq<rfc822Name>(
-    rfc822Name("userxyz@FEDC:BA98:7654:3210:FEDC:BA98:7654:3210"),
-    rfc822Name("userxyz@FEDC:BA98:7654:3210:FEDC:BA98:7654:3210")
+    "userxyz@FEDC:BA98:7654:3210:FEDC:BA98:7654:3210"rfc822Name,
+    "userxyz@FEDC:BA98:7654:3210:FEDC:BA98:7654:3210"rfc822Name
 )
 

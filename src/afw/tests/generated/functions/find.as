@@ -7,17 +7,17 @@
 //?
 //? test: find-1
 //? description: Test find function with integers.
-//? expect: integer(9)
+//? expect: 9
 //? source: ...
 
 find(
     string("lt"),
-    integer(4),
+    4,
     bag<integer>(
-        integer(2),
-        integer(9),
-        integer(4),
-        integer(0)
+        2,
+        9,
+        4,
+        0
     )
 )
 

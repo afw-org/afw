@@ -7,7 +7,7 @@
 //?
 //? test: to_ipAddress<string>-1
 //? description: x
-//? expect: ipAddress("204.11.3.224")
+//? expect: "204.11.3.224"ipAddress
 //? source: ...
 
 to_ipAddress<string>(
@@ -17,7 +17,7 @@ to_ipAddress<string>(
 //?
 //? test: to_ipAddress<string>-2
 //? description: x
-//? expect: ipAddress("204.0.0.224")
+//? expect: "204.0.0.224"ipAddress
 //? source: ...
 
 to_ipAddress<string>(

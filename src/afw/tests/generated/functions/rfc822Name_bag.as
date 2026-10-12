@@ -10,19 +10,19 @@
 //? expect: ...
 
 bag<rfc822Name>(
-    rfc822Name("LOCALPart@DomainPart"),
-    rfc822Name("localPart@DOMAINPart"),
-    rfc822Name("differentlocalPart@DOMAINPart"),
-    rfc822Name("localPart@differentDOMAINPart")
+    "LOCALPart@DomainPart"rfc822Name,
+    "localPart@DOMAINPart"rfc822Name,
+    "differentlocalPart@DOMAINPart"rfc822Name,
+    "localPart@differentDOMAINPart"rfc822Name
 )
 
 //? source: ...
 
 bag<rfc822Name>(
-    rfc822Name("LOCALPart@DomainPart"),
-    rfc822Name("localPart@DOMAINPart"),
-    rfc822Name("differentlocalPart@DOMAINPart"),
-    rfc822Name("localPart@differentDOMAINPart")
+    "LOCALPart@DomainPart"rfc822Name,
+    "localPart@DOMAINPart"rfc822Name,
+    "differentlocalPart@DOMAINPart"rfc822Name,
+    "localPart@differentDOMAINPart"rfc822Name
 )
 
 //?

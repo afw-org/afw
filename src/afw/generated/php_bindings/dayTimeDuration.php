@@ -124,29 +124,6 @@ class dayTimeDuration
     }
 
     /**
-     * dayTimeDuration()
-     *
-     * Converts value to data type dayTimeDuration returning dayTimeDuration
-     * result.
-     *
-     * @param $value Value to convert
-     *
-     * @return dayTimeDuration Converted value
-     */
-    public function dayTimeDuration(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "dayTimeDuration");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_dayTimeDuration()
      *
      * Determine if dayTimeDuration arg1 is equal to the value of arg2

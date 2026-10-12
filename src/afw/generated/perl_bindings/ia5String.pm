@@ -20,7 +20,6 @@ our @EXPORT_OK = qw(
     eqx_ia5String 
     ge_ia5String 
     gt_ia5String 
-    ia5String 
     is_ia5String 
     le_ia5String 
     lt_ia5String 
@@ -129,17 +128,6 @@ Checks for greater than
 
     $arg2
 
-
-=head3 ia5String
-
-Converts value to data type ia5String returning ia5String result.
-Convert to data type ia5String
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 is_ia5String
 
@@ -304,17 +292,6 @@ sub gt_ia5String {
     $request->set("function" => "gt<ia5String>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub ia5String {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "ia5String");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

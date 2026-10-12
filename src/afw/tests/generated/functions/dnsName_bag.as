@@ -10,17 +10,17 @@
 //? expect: ...
 
 bag<dnsName>(
-    dnsName("clemson:8080"),
-    dnsName("google"),
-    dnsName("190.190.190.190:8080")
+    "clemson:8080"dnsName,
+    "google"dnsName,
+    "190.190.190.190:8080"dnsName
 )
 
 //? source: ...
 
 bag<dnsName>(
-    dnsName("clemson:8080"),
-    dnsName("google"),
-    dnsName("190.190.190.190:8080")
+    "clemson:8080"dnsName,
+    "google"dnsName,
+    "190.190.190.190:8080"dnsName
 )
 
 //?

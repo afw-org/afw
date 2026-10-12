@@ -7,33 +7,33 @@
 //?
 //? test: subtract_yearMonthDuration<date>-1
 //? description: One
-//? expect: date("2001-10-12")
+//? expect: "2001-10-12"date
 //? source: ...
 
 subtract_yearMonthDuration<date>(
-    date("2004-04-12"),
-    yearMonthDuration("P2Y6M")
+    "2004-04-12"date,
+    "P2Y6M"yearMonthDuration
 )
 
 //?
 //? test: subtract_yearMonthDuration<date>-2
 //? description: Two
-//? expect: date("2006-10-12")
+//? expect: "2006-10-12"date
 //? source: ...
 
 subtract_yearMonthDuration<date>(
-    date("2004-04-12"),
-    yearMonthDuration("-P2Y6M")
+    "2004-04-12"date,
+    "-P2Y6M"yearMonthDuration
 )
 
 //?
 //? test: subtract_yearMonthDuration<date>-3
 //? description: Two
-//? expect: date("2004-04-12")
+//? expect: "2004-04-12"date
 //? source: ...
 
 subtract_yearMonthDuration<date>(
-    date("2004-04-12"),
-    yearMonthDuration("-P0Y")
+    "2004-04-12"date,
+    "-P0Y"yearMonthDuration
 )
 

@@ -7,23 +7,23 @@
 //?
 //? test: divide<double>-1
 //? description: Divide by self
-//? expect: double(1.0)
+//? expect: 1.0
 //? source: ...
 
 divide<double>(
-    double(50.0),
-    double(50.0)
+    50.0,
+    50.0
 )
 
 //?
 //? test: divide<double>-2
 //? description: Divide by 0
-//? expect: double(Infinity)
+//? expect: Infinity
 //? source: ...
 
 divide<double>(
-    double(5.0),
-    double(0.0)
+    5.0,
+    0.0
 )
 
 //?
@@ -33,7 +33,7 @@ divide<double>(
 //? source: ...
 
 divide<double>(
-    double(x.0),
-    double(x.0)
+    to_double(x.0),
+    to_double(x.0)
 )
 

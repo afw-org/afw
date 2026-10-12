@@ -427,21 +427,3 @@ export function afwUnionYearMonthDuration(client : any, arrays : any[]) : any {
     return client.perform(_action);
 }
 
-/**
- * Converts value to data type yearMonthDuration returning yearMonthDuration
- * result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {yearMonthDuration} Converted value
- */
-export function afwYearMonthDuration(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "yearMonthDuration";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-

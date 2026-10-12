@@ -10,18 +10,18 @@
 //? expect: ...
 
 bag<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
-    dateTime("2004-04-18T13:20:01")
+    "2004-04-12T13:20:00"dateTime,
+    "2004-04-18T13:20:01"dateTime
 )
 
 //? source: ...
 
 union<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:00"dateTime
     ),
     bag<dateTime>(
-        dateTime("2004-04-18T13:20:01")
+        "2004-04-18T13:20:01"dateTime
     )
 )
 
@@ -31,29 +31,29 @@ union<dateTime>(
 //? expect: ...
 
 bag<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
-    dateTime("2004-04-13T13:20:15.5"),
-    dateTime("2004-04-14T13:20:00"),
-    dateTime("2004-04-15T13:20:00"),
-    dateTime("2004-04-16T13:20:15.5"),
-    dateTime("2004-04-17T13:20:00"),
-    dateTime("2004-04-18T13:20:00")
+    "2004-04-12T13:20:00"dateTime,
+    "2004-04-13T13:20:15.5"dateTime,
+    "2004-04-14T13:20:00"dateTime,
+    "2004-04-15T13:20:00"dateTime,
+    "2004-04-16T13:20:15.5"dateTime,
+    "2004-04-17T13:20:00"dateTime,
+    "2004-04-18T13:20:00"dateTime
 )
 
 //? source: ...
 
 union<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-13T13:20:15.5"),
-        dateTime("2004-04-14T13:20:00"),
-        dateTime("2004-04-15T13:20:00")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-13T13:20:15.5"dateTime,
+        "2004-04-14T13:20:00"dateTime,
+        "2004-04-15T13:20:00"dateTime
     ),
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-16T13:20:15.5"),
-        dateTime("2004-04-17T13:20:00"),
-        dateTime("2004-04-18T13:20:00")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-16T13:20:15.5"dateTime,
+        "2004-04-17T13:20:00"dateTime,
+        "2004-04-18T13:20:00"dateTime
     )
 )
 

@@ -29,6 +29,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `index_create` with a `filter` but no `value` | A `value` script and a name objects don't have (a computed name). `index_create` also refuses a script on a key an object type declares. [Index queries](#index-queries-mean-what-the-index-holds-issue-516) |
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | Data type and compile type `relaxed_json` (`relaxed_json(…)`, `compile<relaxed_json>`, `compileType` / `compile_from_file` `"relaxed_json"`) | **`relaxedJson`**, camelCase like the other data type ids. [#581](https://github.com/afw-org/afw/issues/581) |
+| `dateTime("…")`, `integer(x)`, and the other generic `T(…)` conversion functions (`anyURI`, `base64Binary`, `date`, `dateTime`, `dayTimeDuration`, `dnsName`, `double`, `hexBinary`, `ia5String`, `integer`, `ipAddress`, `objectId`, `objectPath`, `password`, `rfc822Name`, `time`, `x500Name`, `yearMonthDuration`) | **Gone.** Text you write: typed literal `"…"dateTime`. A value you have: `to_dateTime(s)`, `to_integer(s)`, `to_double(i)`. `integer(5)` is `5`; `double(5)` is `5.0`. The compile error says which to use. `boolean`, `string`, `object`, `array`, and the source holders stay. [#589](#data-type-conversion-functions-removed-issue-589) |
 | `keys(add)`, `to_string(add)`, or another object function on a built-in function value | A built-in function value is now a **`function`**, like a script function (it reported `object`, its `_AdaptiveFunction_` metadata). `keys(add)` and `to_string(add)` throw; `string(add)` is `"add"`. For the metadata, `get_object("afw", "_AdaptiveFunction_", "add")`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `is(v)` with no data type (it always returned false) | **`is<T>(v)`** or **`is_T(v)`**. `is(v)` is now a compile error, *Built-in function 'is' needs a data type*. The function id of `is_T` is now `is_T` (it was `is<T>`), so a request or client binding that names `is<integer>` by id names `is_integer`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `to_boolean(s)` (it was truthy: `"false"` and `"x"` were `true`) | **`string_to_boolean(s)`**, which reads boolean text (`"true"` / `"false"` in any case, `"1"` / `"0"`, `t` / `f`) and throws on any other text. For ECMAScript `Boolean()` truthiness keep **`boolean(v)`**. [Conversion functions](#conversion-functions-read-text-strictly-issue-588) |
@@ -130,6 +131,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Typed literals**](#typed-literals-issue-581) ([#581](https://github.com/afw-org/afw/issues/581)) | `"2026-10-11T12:00:00Z"dateTime`, `'…'dt`, `"https://example.com/"uri`: a string literal plus a data type suffix, read at compile time; bad text is a compile error |
 | [**Type assertion `v as T`**](#type-assertion-v-as-t-issue-582) ([#582](https://github.com/afw-org/afw/issues/582)) | `v as date` returns `v` if it is a date and throws if not, saying how to get one (`"…"date`, `to_date(v)`); it never converts. One `as_T(v)` function per data type. `is<T>` needs its data type |
 | [**Conversion functions read text strictly**](#conversion-functions-read-text-strictly-issue-588) ([#588](https://github.com/afw-org/afw/issues/588)) | `to_boolean` is now `string_to_boolean` (the boolean parser, not truthiness); new `to_base64Binary`, `to_hexBinary`, `to_ia5String`, `to_objectId`, `to_objectPath`, `to_password` from a string; a boolean text of one unknown character is an error |
+| [**Data type conversion functions removed**](#data-type-conversion-functions-removed-issue-589) ([#589](https://github.com/afw-org/afw/issues/589)) | The 18 generic `T(…)` functions (`dateTime("…")`, `integer(x)`, …) are gone: write a typed literal or `to_T(v)`. `decompile` writes typed literals; `objectId` and `objectPath` have typed literals now |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -448,7 +450,7 @@ This beta line also renamed a few ids that collided with language names or read 
 
 | Was | Now | Why |
 |-----|-----|-----|
-| `cast_error` | `conversion_error` | These are conversion functions, not casts. A failed `integer("x")` or a failed convert in `eq` / `ne` uses this name. |
+| `cast_error` | `conversion_error` | These are conversion functions, not casts. A failed `to_integer("x")` or a failed convert in `eq` / `ne` uses this name. |
 | `arg_error` | `argument_error` | Spell the word. |
 | `evaluate` / `evaluation_error` | folded into `argument_error` / `undefined_value` | The leftover `evaluation_error` token was too vague. |
 | `undefined` | `undefined_value` | Do not collide with the `undefined` value / data type. A required function parameter that is `undefined` now uses this id (it was `general`). |
@@ -566,10 +568,11 @@ assert(is<dateTime>(when) && when == same);
 | `dnsName` | `dns` | | `x500Name` | `dn` |
 | `hexBinary` | `hex` | | `xpathExpression` | `xpath` |
 | `ia5String` | | | `yearMonthDuration` | |
+| `objectId` | | | `objectPath` | |
 
 `integer`, `double`, `boolean`, `string`, `object`, and `array` have their own literals. `retrieve_objects("afw", "_AdaptiveTypedLiteralSuffix_")` lists every suffix at run time (object id = suffix, properties `dataType` and `typedLiteralShortForm`).
 
-Existing `dateTime("…")`-style calls still work. They are replaced by typed literals, [`v as T`](#type-assertion-v-as-t-issue-582), and `to_T(s)` in later steps of [#580](https://github.com/afw-org/afw/issues/580) ([#589](https://github.com/afw-org/afw/issues/589)), so new script should use typed literals now.
+`objectId` and `objectPath` have typed literals since [#589](#data-type-conversion-functions-removed-issue-589), which also removed the `dateTime("…")`-style functions.
 
 **Data type authors (C / metadata):** `_AdaptiveDataType_` has two new properties, **`typedLiteral`** (boolean) and **`typedLiteralShortForm`**, carried on `afw_data_type_t` as `typed_literal` / `typed_literal_short_form`. Registering a data type registers its id and short form as suffixes (`afw_environment_get_typed_literal_suffix()`). A suffix that is already registered, or a short form that is another data type's id, **fails at startup**. Core uses short forms like `dt` and `ip`, so give an extension's data types longer short forms or a prefix of your own.
 
@@ -626,6 +629,33 @@ Handbook: [#590](https://github.com/afw-org/afw/issues/590). Tests: `src/afw/tes
 - The parsers for `anyURI`, `dnsName`, `ia5String`, `ipAddress`, `objectId`, `objectPath`, `password`, `rfc822Name`, and `x500Name` accept any text today, so their `to_T(s)` (and typed literals) do not reject anything yet ([#593](https://github.com/afw-org/afw/issues/593)).
 
 Tests: `src/afw/tests/language/script/to_t_from_string.as`, `src/afw/tests/generated/functions/string_to_boolean.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Data type conversion functions removed (issue [#589](https://github.com/afw-org/afw/issues/589))
+
+The generic conversion functions named after a data type are **gone**: `anyURI`, `base64Binary`, `date`, `dateTime`, `dayTimeDuration`, `dnsName`, `double`, `hexBinary`, `ia5String`, `integer`, `ipAddress`, `objectId`, `objectPath`, `password`, `rfc822Name`, `time`, `x500Name`, and `yearMonthDuration`. Each took any value and converted it, so `dateTime(x)` hid whether `x` was text to read or already a `dateTime`. Say which one you mean:
+
+| Was | Now |
+|-----|-----|
+| `dateTime("2026-10-11T12:00:00Z")` (text you write) | `"2026-10-11T12:00:00Z"dateTime` (typed literal; bad text is a compile error) |
+| `dateTime(s)` (a string you have) | `to_dateTime(s)` |
+| `integer("5")`, `integer(s)` | `5`, `to_integer(s)` |
+| `integer(d)` (a double) | `to_integer(d)` (truncates toward zero) |
+| `double(5)`, `double(i)` | `5.0`, `to_double(i)` |
+| `base64Binary(s)` | `"…"base64Binary`, or `to_base64Binary(s)` to read encoded text |
+| `dateTime(v)` to check that `v` is already a `dateTime` | `v as dateTime` |
+
+Calling one of them is a compile error that names the replacement: *'dateTime' is a data type, not a function: write a typed literal "..."dateTime, or convert with to_dateTime(value)*.
+
+- **Kept:** `boolean(v)` (ECMAScript `Boolean()` truthiness), `string(…)`, `object(…)`, `array(…)`, and the source holders `json`, `relaxedJson`, `script`, `template`, `regexp`, and `xpathExpression`.
+- **`objectId` and `objectPath` have typed literals:** `"oid1"objectId`, `"/afw/_AdaptiveDataType_/date"objectPath` (no short form).
+- **`decompile` writes typed literals** for every data type that has one (`"2020-01-02T03:04:05Z"dateTime`, `"^a$"regexp`, by data type id, never the short form), so its output compiles back to the same values. `json`, `relaxedJson`, `script`, and `template` values still decompile to `json("…")` and so on.
+- **Generated bindings** (Python, PHP, JavaScript) no longer have these functions.
+
+Tests: `src/afw/tests/language/script/conversion_functions.as` (`data-type-function-removed`), `src/afw/tests/compiler/decompile.as` (`decompile-typed-literal-round-trip`), `src/afw/tests/compiler/typed_literals.as`.
 
 [↑ Highlights](#highlights)
 
@@ -774,11 +804,11 @@ Not supported (by design): `for-in`, `in`, `delete`, sparse present/missing inde
 
 ## Conversion functions (type-named)
 
-Many Adaptive **data types** have a same-named **conversion function** `T(value)` that produces a value of type **T** (or fails with **`conversion_error`**). That error id was previously named `cast_error`. Meta types (`any`, `undefined`, `void`, …) never had one.
+Some Adaptive **data types** have a same-named function `T(value)` (a failed one throws **`conversion_error`**; that error id was previously named `cast_error`). The generic converts (`integer`, `double`, dates, binaries, …) are gone since [#589](#data-type-conversion-functions-removed-issue-589): use a typed literal or `to_T(v)`. Meta types (`any`, `undefined`, `void`, …) never had one.
 
 | Kind | Examples | Notes |
 |------|----------|--------|
-| **Classic convert** | `integer`, `boolean`, `double`, dates, binaries, XACML-ish stringy types, … | Shared `afw_function_execute_convert` |
+| **`boolean(v)`** | ECMAScript `Boolean()` truthiness | `string_to_boolean(s)` reads boolean text |
 | **Source-holding** | `json`, `relaxedJson`, `script`, `template`, `regexp`, `xpathExpression` | Value holds **source text** of that kind; does **not** compile. Polymorphic **`compile`** compiles it. Good property types for source fields. |
 | **`string(...)`** | convert + optional multi-arg **concat** | One arg ≈ convert-to-string |
 | **`object(x)`** | JSON text → object, or object unchanged | Not an object-literal constructor (`{…}`) |
@@ -1553,7 +1583,7 @@ retrieve_objects("data", "Person", { filter: { op: "eq", property: "status", val
 Same idea for URI form (parameter order: `uri`, `options?`, `adapterTypeSpecific?`, **`maxObjects?`**):
 
 ```adaptive
-retrieve_objects_with_uri(anyURI("/afw/_AdaptiveObjectType_/"));
+retrieve_objects_with_uri("/afw/_AdaptiveObjectType_/"anyURI);
 ```
 
 **Server memory** is not this count. Request threads are capped by **`limitRequestPoolBytes`** (default 64MiB; application conf; **0** = unlimited). That cap may throw **`payload_too_large`** when it trips with room to build the error, or a **`memory`** error if allocation fails. Either is an out-of-memory class failure; the worker stays up. A positive **`maxObjects`** is how you get a **cardinality** `payload_too_large` you can expect while the pool still has room. See [request caps](#process-telemetry-and-request-caps-issue-329).

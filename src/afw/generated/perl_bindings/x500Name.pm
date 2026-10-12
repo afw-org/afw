@@ -35,7 +35,6 @@ our @EXPORT_OK = qw(
     subset_x500Name 
     to_string_x500Name 
     union_x500Name 
-    x500Name 
 );
 
 =head1 NAME
@@ -347,17 +346,6 @@ Returns union of two or more string arrays
 
 Two or more arrays.
 
-=head3 x500Name
-
-Converts value to data type x500Name returning x500Name result.
-Convert to data type x500Name
-
-=head4 Parameters
-
-    $value
-
-Value to convert
-
 =cut
 
 sub as_x500Name {
@@ -615,17 +603,6 @@ sub union_x500Name {
 
     $request->set("function" => "union<x500Name>");
     $request->set("arrays", $arrays);
-
-    return $request->getResult();
-}
-
-sub x500Name {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "x500Name");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

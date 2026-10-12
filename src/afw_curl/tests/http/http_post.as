@@ -47,7 +47,7 @@ return false;
 #!/usr/bin/env afw
 
 const response = http_post(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
     ""
 );
 
@@ -93,7 +93,7 @@ const postHeaders = [
 
 
 const response = http_post(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
     string(postData),
     postHeaders
 );
@@ -101,7 +101,7 @@ const response = http_post(
 assert(length(response.headers) > 0);
 assert(length(response.response) > 0);
 
-const decoded = compile(json(decode_to_string(base64Binary(response.response))));
+const decoded = compile(json(decode_to_string(to_base64Binary(response.response))));
 
 assert(decoded.headers.Accept === "application/json");
 assert(decoded.json.foo === "bar");
@@ -163,7 +163,7 @@ const options = {
 };
 
 const response = http_post(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
     string(postData),
     postHeaders,
     options
@@ -213,7 +213,7 @@ function reader(userData, size, nitems) {
 }
 
 const response = http_post(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
     undefined,
     undefined,
     {
@@ -227,7 +227,7 @@ assert(userData.calls > 1);
 assert(userData.offset === bodyLen);
 assert(response.response_code === 200);
 
-const decoded = compile(json(decode_to_string(base64Binary(response.response))));
+const decoded = compile(json(decode_to_string(to_base64Binary(response.response))));
 assert(length(decoded.data) === bodyLen);
 
 return 0;

@@ -10,24 +10,24 @@
 //? expect: ...
 
 bag<hexBinary>(
-    hexBinary("0FB7"),
-    hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9")
+    "0FB7"hexBinary,
+    "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9"hexBinary
 )
 
 //? source: ...
 
 intersection<hexBinary>(
     bag<hexBinary>(
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9")
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("0fb7"),
-        hexBinary("FFB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9")
+        "0fb7"hexBinary,
+        "FFB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9"hexBinary
     )
 )
 
@@ -39,12 +39,12 @@ intersection<hexBinary>(
 
 intersection<hexBinary>(
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     ),
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     )
 )
 

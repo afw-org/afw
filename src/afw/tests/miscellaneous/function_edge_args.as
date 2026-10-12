@@ -45,7 +45,7 @@ return 0;
 //? expect: error
 //? source: ...
 
-at_least_one_member_of<anyURI>(dayTimeDuration("P1D"), continue())
+at_least_one_member_of<anyURI>("P1D"dayTimeDuration, continue())
 
 //?
 //? test: void-try-call
@@ -53,7 +53,7 @@ at_least_one_member_of<anyURI>(dayTimeDuration("P1D"), continue())
 //? expect: error
 //? source: ...
 
-one_and_only<dnsName>(try("x", 1, hexBinary("00ff"), null))
+one_and_only<dnsName>(try("x", 1, "00ff"hexBinary, null))
 
 //?
 //? test: splice-huge-counts
@@ -91,7 +91,7 @@ return 0;
 //? expect: error
 //? source: ...
 
-object(base64Binary(""))
+object(""base64Binary)
 
 //?
 //? test: date-year-overflow
@@ -99,7 +99,7 @@ object(base64Binary(""))
 //? expect: error
 //? source: ...
 
-date("99999999999-01-01")
+"99999999999-01-01"date
 
 //?
 //? test: date-from-integer-max
@@ -200,7 +200,7 @@ return 0;
 
 //?
 //? test: integer-from-string-overflow
-//? description: integer() of a string past the integer range throws; the digit sum used to overflow and could wrap back to a wrong value (2^64 gave 0)
+//? description: to_integer() of a string past the integer range throws; the digit sum used to overflow and could wrap back to a wrong value (2^64 gave 0)
 //? expect: 0
 //? source: ...
 
@@ -214,13 +214,13 @@ const bad = [
     "99999999999999999999999999999999999999"
 ];
 for (const s of bad) {
-    const r = safe_evaluate(integer(s), "error");
+    const r = safe_evaluate(to_integer(s), "error");
     assert(r === "error", s + " gave " + string(r));
 }
-assert(integer("9223372036854775807") === #integerMax);
-assert(integer("-9223372036854775808") === #integerMin);
-assert(integer("-0") === 0);
-assert(double("18446744073709551616") === 1.8446744073709552e19);
+assert(to_integer("9223372036854775807") === #integerMax);
+assert(to_integer("-9223372036854775808") === #integerMin);
+assert(to_integer("-0") === 0);
+assert(to_double("18446744073709551616") === 1.8446744073709552e19);
 return 0;
 
 //?

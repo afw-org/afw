@@ -18,43 +18,43 @@
 //? expect: ...
 
 bag<integer>(
-    integer(11),
-    integer(-11),
-    integer(0)
+    11,
+    -11,
+    0
 )
 
 //? source: ...
 
 intersection<integer>(
     bag<integer>(
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(387),
-        integer(512618),
-        integer(-512618),
-        integer(200),
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(99),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(-0),
-        integer(0)
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        387,
+        512618,
+        -512618,
+        200,
+        11,
+        -11,
+        96,
+        99,
+        -102,
+        -586,
+        986,
+        -0,
+        0
     ),
     bag<integer>(
-        integer(11),
-        integer(1024),
-        integer(-11),
-        integer(-1024),
-        integer(0)
+        11,
+        1024,
+        -11,
+        -1024,
+        0
     )
 )
 
@@ -72,40 +72,40 @@ intersection<integer>(
 //? expect: ...
 
 bag<integer>(
-    integer(11),
-    integer(-11),
-    integer(0),
-    integer(-512618)
+    11,
+    -11,
+    0,
+    -512618
 )
 
 //? source: ...
 
 intersection<integer>(
     bag<integer>(
-        integer(11),
-        integer(1024),
-        integer(-11),
-        integer(-1024),
-        integer(0),
-        integer(-512618),
-        integer(1)
+        11,
+        1024,
+        -11,
+        -1024,
+        0,
+        -512618,
+        1
     ),
     bag<integer>(
-        integer(11),
-        integer(-11),
-        integer(96),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(387),
-        integer(512618),
-        integer(-512618),
-        integer(11),
-        integer(96),
-        integer(-102),
-        integer(-586),
-        integer(986),
-        integer(-0)
+        11,
+        -11,
+        96,
+        -102,
+        -586,
+        986,
+        387,
+        512618,
+        -512618,
+        11,
+        96,
+        -102,
+        -586,
+        986,
+        -0
     )
 )
 
@@ -120,26 +120,26 @@ intersection<integer>(
 //? expect: ...
 
 bag<integer>(
-    integer(-1),
-    integer(11)
+    -1,
+    11
 )
 
 //? source: ...
 
 intersection<integer>(
     bag<integer>(
-        integer(-1),
-        integer(11),
-        integer(1024),
-        integer(-11),
-        integer(-1024),
-        integer(0),
-        integer(-512618),
-        integer(1)
+        -1,
+        11,
+        1024,
+        -11,
+        -1024,
+        0,
+        -512618,
+        1
     ),
     bag<integer>(
-        integer(11),
-        integer(-1)
+        11,
+        -1
     )
 )
 
