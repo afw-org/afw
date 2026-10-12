@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toDnsName",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to dnsName.",
+    "description": "Converts <dataType> value to dnsName. A string is read with the dnsName parser, the same parser the typed literal \"...\"dnsName uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the dnsName parser rejects the text"
         }
     ],
     "functionId": "to_dnsName",

@@ -18,7 +18,8 @@ def as_boolean(session, value):
     Returns value unchanged if it is dataType boolean. Otherwise, including
     when value is undefined, throws an error. It never converts: to get a
     boolean from a value of another data type, write a typed literal or call a
-    to_ function. This is usually written value as boolean.
+    to_T conversion function where one exists. This is usually written value
+    as boolean.
 
     Args:
         value (object): Value to assert
@@ -559,6 +560,37 @@ def set_equals_boolean(session, array1, array2):
         "function": "set_equals<boolean>",
         "array1": array1,
         "array2": array2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def string_to_boolean(session, value):
+    """
+    Reads boolean text
+
+    Reads boolean text: "true" or "false" in any case, "1" or "0", or the
+    single letter "t", "T", "f", or "F". Any other text is an error. This is
+    not boolean(), which is ECMAScript Boolean() truthiness: boolean("false")
+    is true, and string_to_boolean("false") is false.
+
+    Args:
+        value (str): Boolean text to read.
+
+    Returns:
+        bool: The boolean the text names.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "string_to_boolean",
+        "value": value
     }
 
     request.add_action(action)

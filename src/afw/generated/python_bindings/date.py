@@ -47,8 +47,9 @@ def as_date(session, value):
 
     Returns value unchanged if it is dataType date. Otherwise, including when
     value is undefined, throws an error. It never converts: to get a date from
-    a value of another data type, write a typed literal or call a to_
-    function. This is usually written value as date.
+    a value of another data type, write a typed literal or call a to_T
+    conversion function where one exists. This is usually written value as
+    date.
 
     Args:
         value (object): Value to assert

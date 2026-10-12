@@ -2,11 +2,11 @@
     "brief": "Converts string to dateTime",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to dateTime.",
+    "description": "Converts <dataType> value to dateTime. A string is read with the dateTime parser, the same parser the typed literal \"...\"dateTime uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the dateTime parser rejects the text"
         }
     ],
     "functionId": "to_dateTime",

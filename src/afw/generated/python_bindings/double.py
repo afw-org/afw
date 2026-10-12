@@ -75,7 +75,8 @@ def as_double(session, value):
     Returns value unchanged if it is dataType double. Otherwise, including
     when value is undefined, throws an error. It never converts: to get a
     double from a value of another data type, write a typed literal or call a
-    to_ function. This is usually written value as double.
+    to_T conversion function where one exists. This is usually written value
+    as double.
 
     Args:
         value (object): Value to assert
@@ -1034,7 +1035,11 @@ def to_integer_double(session, value):
     """
     Converts to integer
 
-    Truncate double value to a whole number and returns integer result.
+    Converts double value to integer. A double is truncated toward zero (1.9
+    is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
+    choice. A double that is NaN, infinite, or outside the integer range is an
+    error. A string is read as integer text, and text that is not an integer
+    ("1.5", " 1", "1x") is an error.
 
     Args:
         value (float):

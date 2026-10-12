@@ -18,7 +18,8 @@ def as_objectPath(session, value):
     Returns value unchanged if it is dataType objectPath. Otherwise, including
     when value is undefined, throws an error. It never converts: to get a
     objectPath from a value of another data type, write a typed literal or
-    call a to_ function. This is usually written value as objectPath.
+    call a to_T conversion function where one exists. This is usually written
+    value as objectPath.
 
     Args:
         value (object): Value to assert

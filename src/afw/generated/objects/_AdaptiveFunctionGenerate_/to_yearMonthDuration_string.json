@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toYearMonthDurationString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to yearMonthDuration.",
+    "description": "Converts string value to yearMonthDuration. A string is read with the yearMonthDuration parser, the same parser the typed literal \"...\"yearMonthDuration uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the yearMonthDuration parser rejects the text"
         }
     ],
     "functionId": "to_yearMonthDuration<string>",

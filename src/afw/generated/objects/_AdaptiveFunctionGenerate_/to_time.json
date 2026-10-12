@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toTime",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to time.",
+    "description": "Converts <dataType> value to time. A string is read with the time parser, the same parser the typed literal \"...\"time uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the time parser rejects the text"
         }
     ],
     "functionId": "to_time",

@@ -18,7 +18,8 @@ def as_ipAddress(session, value):
     Returns value unchanged if it is dataType ipAddress. Otherwise, including
     when value is undefined, throws an error. It never converts: to get a
     ipAddress from a value of another data type, write a typed literal or call
-    a to_ function. This is usually written value as ipAddress.
+    a to_T conversion function where one exists. This is usually written value
+    as ipAddress.
 
     Args:
         value (object): Value to assert

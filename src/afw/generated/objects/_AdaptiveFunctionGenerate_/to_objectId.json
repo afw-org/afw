@@ -1,18 +1,18 @@
 {
-    "afwCamelCaseFunctionLabel": "afwToBoolean",
-    "brief": "Converts string to boolean",
-    "camelCaseFunctionLabel": "toBoolean",
+    "afwCamelCaseFunctionLabel": "afwToObjectId",
+    "brief": "Converts string to objectId",
+    "camelCaseFunctionLabel": "toObjectId",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to boolean.",
+    "description": "Converts <dataType> value to objectId. A string is read with the objectId parser, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the objectId parser rejects the text"
         }
     ],
-    "functionId": "to_boolean",
-    "functionLabel": "to_boolean",
+    "functionId": "to_objectId",
+    "functionLabel": "to_objectId",
     "parameters": [
         {
             "name": "value",
@@ -26,7 +26,7 @@
     "polymorphicExecuteFunction": "afw_function_execute_convert",
     "pure": true,
     "returns": {
-        "dataType": "boolean"
+        "dataType": "objectId"
     },
     "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
 }

@@ -1,0 +1,29 @@
+{
+    "brief": "Converts string to objectPath",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to objectPath. A string is read with the objectPath parser, and text the parser rejects is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the objectPath parser rejects the text"
+        }
+    ],
+    "functionId": "to_objectPath",
+    "functionLabel": "to_objectPath",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "returns": {
+        "dataType": "objectPath"
+    }
+}

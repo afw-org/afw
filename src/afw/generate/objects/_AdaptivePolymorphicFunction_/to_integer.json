@@ -2,7 +2,7 @@
     "brief": "Converts to integer",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Truncate <dataType> value to a whole number and returns integer result.",
+    "description": "Converts <dataType> value to integer. A double is truncated toward zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A double that is NaN, infinite, or outside the integer range is an error. A string is read as integer text, and text that is not an integer (\"1.5\", \" 1\", \"1x\") is an error.",
     "functionId": "to_integer",
     "functionLabel": "to_integer",
     "pure": true,
@@ -25,5 +25,15 @@
     },
     "returns": {
         "dataType": "integer"
-    }
+    },
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "double is NaN, infinite, or outside the integer range"
+        },
+        {
+            "error": "conversion_error",
+            "reason": "value is not valid integer text"
+        }
+    ]
 }

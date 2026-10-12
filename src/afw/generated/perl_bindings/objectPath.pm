@@ -42,7 +42,8 @@ The following functions are exported by default
 Returns value unchanged if it is dataType objectPath. Otherwise, including
 when value is undefined, throws an error. It never converts: to get a
 objectPath from a value of another data type, write a typed literal or call a
-to_ function. This is usually written value as objectPath.
+to_T conversion function where one exists. This is usually written value as
+objectPath.
 Asserts that value is dataType objectPath
 
 =head4 Parameters

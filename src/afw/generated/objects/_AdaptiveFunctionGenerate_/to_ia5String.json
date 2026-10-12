@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToIa5String",
+    "brief": "Converts string to ia5String",
+    "camelCaseFunctionLabel": "toIa5String",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to ia5String. A string is read with the ia5String parser, the same parser the typed literal \"...\"ia5String uses, and text the parser rejects is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the ia5String parser rejects the text"
+        }
+    ],
+    "functionId": "to_ia5String",
+    "functionLabel": "to_ia5String",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "ia5String"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

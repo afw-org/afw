@@ -17,8 +17,9 @@ def as_time(session, value):
 
     Returns value unchanged if it is dataType time. Otherwise, including when
     value is undefined, throws an error. It never converts: to get a time from
-    a value of another data type, write a typed literal or call a to_
-    function. This is usually written value as time.
+    a value of another data type, write a typed literal or call a to_T
+    conversion function where one exists. This is usually written value as
+    time.
 
     Args:
         value (object): Value to assert

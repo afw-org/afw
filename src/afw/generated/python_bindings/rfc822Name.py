@@ -18,7 +18,8 @@ def as_rfc822Name(session, value):
     Returns value unchanged if it is dataType rfc822Name. Otherwise, including
     when value is undefined, throws an error. It never converts: to get a
     rfc822Name from a value of another data type, write a typed literal or
-    call a to_ function. This is usually written value as rfc822Name.
+    call a to_T conversion function where one exists. This is usually written
+    value as rfc822Name.
 
     Args:
         value (object): Value to assert

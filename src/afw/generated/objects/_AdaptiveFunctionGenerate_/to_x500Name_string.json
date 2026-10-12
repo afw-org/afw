@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toX500NameString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to x500Name.",
+    "description": "Converts string value to x500Name. A string is read with the x500Name parser, the same parser the typed literal \"...\"x500Name uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the x500Name parser rejects the text"
         }
     ],
     "functionId": "to_x500Name<string>",

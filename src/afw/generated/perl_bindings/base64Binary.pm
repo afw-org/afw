@@ -50,7 +50,8 @@ The following functions are exported by default
 Returns value unchanged if it is dataType base64Binary. Otherwise, including
 when value is undefined, throws an error. It never converts: to get a
 base64Binary from a value of another data type, write a typed literal or call
-a to_ function. This is usually written value as base64Binary.
+a to_T conversion function where one exists. This is usually written value as
+base64Binary.
 Asserts that value is dataType base64Binary
 
 =head4 Parameters

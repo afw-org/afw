@@ -21,7 +21,8 @@ interface IAnyObject {
  * Returns value unchanged if it is dataType boolean. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * boolean from a value of another data type, write a typed literal or call a
- * to_ function. This is usually written value as boolean.
+ * to_T conversion function where one exists. This is usually written value as
+ * boolean.
  * 
  * @param {} value - Value to assert
  * 
@@ -384,6 +385,26 @@ export function afwSetEqualsBoolean(client : any, array1 : any[], array2 : any[]
     _action["function"] = "set_equals<boolean>";
     _action["array1"] = array1;
     _action["array2"] = array2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Reads boolean text: "true" or "false" in any case, "1" or "0", or the
+ * single letter "t", "T", "f", or "F". Any other text is an error. This is
+ * not boolean(), which is ECMAScript Boolean() truthiness: boolean("false")
+ * is true, and string_to_boolean("false") is false.
+ * 
+ * @param {string} value - Boolean text to read.
+ * 
+ * @returns {boolean} The boolean the text names.
+ */
+export function afwStringToBoolean(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "string_to_boolean";
+    _action["value"] = value;
 
     return client.perform(_action);
 }

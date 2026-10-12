@@ -31,7 +31,8 @@ class boolean
      * Returns value unchanged if it is dataType boolean. Otherwise, including
      * when value is undefined, throws an error. It never converts: to get a
      * boolean from a value of another data type, write a typed literal or
-     * call a to_ function. This is usually written value as boolean.
+     * call a to_T conversion function where one exists. This is usually
+     * written value as boolean.
      *
      * @param $value Value to assert
      *
@@ -471,6 +472,31 @@ class boolean
         /* pass along required parameters to the request payload */
         $request->set("array1", $array1);
         $request->set("array2", $array2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * string_to_boolean()
+     *
+     * Reads boolean text: "true" or "false" in any case, "1" or "0", or the
+     * single letter "t", "T", "f", or "F". Any other text is an error. This
+     * is not boolean(), which is ECMAScript Boolean() truthiness:
+     * boolean("false") is true, and string_to_boolean("false") is false.
+     *
+     * @param string $value Boolean text to read.
+     *
+     * @return boolean The boolean the text names.
+     */
+    public function string_to_boolean(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "string_to_boolean");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

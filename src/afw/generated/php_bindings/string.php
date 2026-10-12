@@ -56,7 +56,8 @@ class string
      * Returns value unchanged if it is dataType string. Otherwise, including
      * when value is undefined, throws an error. It never converts: to get a
      * string from a value of another data type, write a typed literal or call
-     * a to_ function. This is usually written value as string.
+     * a to_T conversion function where one exists. This is usually written
+     * value as string.
      *
      * @param $value Value to assert
      *
@@ -1134,7 +1135,9 @@ class string
     /**
      * to_anyURI_string()
      *
-     * Converts string value to anyURI.
+     * Converts string value to anyURI. A string is read with the anyURI
+     * parser, the same parser the typed literal "..."anyURI uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1154,19 +1157,21 @@ class string
     }
 
     /**
-     * to_boolean_string()
+     * to_base64Binary_string()
      *
-     * Converts string value to boolean.
+     * Converts string value to base64Binary. A string is read with the
+     * base64Binary parser, the same parser the typed literal
+     * "..."base64Binary uses, and text the parser rejects is an error.
      *
      * @param string $value
      *
-     * @return boolean
+     * @return base64Binary
      */
-    public function to_boolean_string(, $value)
+    public function to_base64Binary_string(, $value)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "to_boolean<string>");
+        $request->set("function", "to_base64Binary<string>");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
@@ -1178,7 +1183,9 @@ class string
     /**
      * to_dateTime_string()
      *
-     * Converts string value to dateTime.
+     * Converts string value to dateTime. A string is read with the dateTime
+     * parser, the same parser the typed literal "..."dateTime uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1200,7 +1207,9 @@ class string
     /**
      * to_date_string()
      *
-     * Converts string value to date.
+     * Converts string value to date. A string is read with the date parser,
+     * the same parser the typed literal "..."date uses, and text the parser
+     * rejects is an error.
      *
      * @param string $value
      *
@@ -1222,7 +1231,9 @@ class string
     /**
      * to_dayTimeDuration_string()
      *
-     * Converts string value to dayTimeDuration.
+     * Converts string value to dayTimeDuration. A string is read with the
+     * dayTimeDuration parser, the same parser the typed literal
+     * "..."dayTimeDuration uses, and text the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1244,7 +1255,9 @@ class string
     /**
      * to_dnsName_string()
      *
-     * Converts string value to dnsName.
+     * Converts string value to dnsName. A string is read with the dnsName
+     * parser, the same parser the typed literal "..."dnsName uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1266,7 +1279,10 @@ class string
     /**
      * to_double_string()
      *
-     * Converts string value to double and returns double result.
+     * Converts string value to double. A string is read as double text, the
+     * same text a double literal accepts, and other text is an error: integer
+     * text such as "5" is not a double, so use to_double(to_integer(s)) for
+     * it.
      *
      * @param string $value
      *
@@ -1286,9 +1302,61 @@ class string
     }
 
     /**
+     * to_hexBinary_string()
+     *
+     * Converts string value to hexBinary. A string is read with the hexBinary
+     * parser, the same parser the typed literal "..."hexBinary uses, and text
+     * the parser rejects is an error.
+     *
+     * @param string $value
+     *
+     * @return hexBinary
+     */
+    public function to_hexBinary_string(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_hexBinary<string>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_ia5String_string()
+     *
+     * Converts string value to ia5String. A string is read with the ia5String
+     * parser, the same parser the typed literal "..."ia5String uses, and text
+     * the parser rejects is an error.
+     *
+     * @param string $value
+     *
+     * @return ia5String
+     */
+    public function to_ia5String_string(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_ia5String<string>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_integer_string()
      *
-     * Truncate string value to a whole number and returns integer result.
+     * Converts string value to integer. A double is truncated toward zero
+     * (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for
+     * another choice. A double that is NaN, infinite, or outside the integer
+     * range is an error. A string is read as integer text, and text that is
+     * not an integer ("1.5", " 1", "1x") is an error.
      *
      * @param string $value
      *
@@ -1310,7 +1378,9 @@ class string
     /**
      * to_ipAddress_string()
      *
-     * Converts string value to ipAddress.
+     * Converts string value to ipAddress. A string is read with the ipAddress
+     * parser, the same parser the typed literal "..."ipAddress uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1330,9 +1400,81 @@ class string
     }
 
     /**
+     * to_objectId_string()
+     *
+     * Converts string value to objectId. A string is read with the objectId
+     * parser, and text the parser rejects is an error.
+     *
+     * @param string $value
+     *
+     * @return objectId
+     */
+    public function to_objectId_string(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_objectId<string>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_objectPath_string()
+     *
+     * Converts string value to objectPath. A string is read with the
+     * objectPath parser, and text the parser rejects is an error.
+     *
+     * @param string $value
+     *
+     * @return objectPath
+     */
+    public function to_objectPath_string(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_objectPath<string>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_password_string()
+     *
+     * Converts string value to password. A string is read with the password
+     * parser, the same parser the typed literal "..."password uses, and text
+     * the parser rejects is an error.
+     *
+     * @param string $value
+     *
+     * @return password
+     */
+    public function to_password_string(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_password<string>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_rfc822Name_string()
      *
-     * Converts string value to rfc822Name.
+     * Converts string value to rfc822Name. A string is read with the
+     * rfc822Name parser, the same parser the typed literal "..."rfc822Name
+     * uses, and text the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1377,7 +1519,9 @@ class string
     /**
      * to_time_string()
      *
-     * Converts string value to time.
+     * Converts string value to time. A string is read with the time parser,
+     * the same parser the typed literal "..."time uses, and text the parser
+     * rejects is an error.
      *
      * @param string $value
      *
@@ -1399,7 +1543,9 @@ class string
     /**
      * to_x500Name_string()
      *
-     * Converts string value to x500Name.
+     * Converts string value to x500Name. A string is read with the x500Name
+     * parser, the same parser the typed literal "..."x500Name uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1421,7 +1567,9 @@ class string
     /**
      * to_yearMonthDuration_string()
      *
-     * Converts string value to yearMonthDuration.
+     * Converts string value to yearMonthDuration. A string is read with the
+     * yearMonthDuration parser, the same parser the typed literal
+     * "..."yearMonthDuration uses, and text the parser rejects is an error.
      *
      * @param string $value
      *

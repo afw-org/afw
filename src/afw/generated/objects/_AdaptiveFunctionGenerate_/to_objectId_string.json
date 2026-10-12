@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToObjectIdString",
+    "brief": "Converts string to objectId",
+    "camelCaseFunctionLabel": "toObjectIdString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Converts string value to objectId. A string is read with the objectId parser, and text the parser rejects is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the objectId parser rejects the text"
+        }
+    ],
+    "functionId": "to_objectId<string>",
+    "functionLabel": "to_objectId_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "objectId"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

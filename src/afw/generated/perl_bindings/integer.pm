@@ -78,8 +78,8 @@ Add
 
 Returns value unchanged if it is dataType integer. Otherwise, including when
 value is undefined, throws an error. It never converts: to get a integer from
-a value of another data type, write a typed literal or call a to_ function.
-This is usually written value as integer.
+a value of another data type, write a typed literal or call a to_T conversion
+function where one exists. This is usually written value as integer.
 Asserts that value is dataType integer
 
 =head4 Parameters
@@ -415,7 +415,9 @@ Subtract numbers
 
 =head3 to_double_integer
 
-Converts integer value to double and returns double result.
+Converts integer value to double. A string is read as double text, the same
+text a double literal accepts, and other text is an error: integer text such
+as "5" is not a double, so use to_double(to_integer(s)) for it.
 Converts to double
 
 =head4 Parameters

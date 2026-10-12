@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToHexBinaryString",
+    "brief": "Converts string to hexBinary",
+    "camelCaseFunctionLabel": "toHexBinaryString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Converts string value to hexBinary. A string is read with the hexBinary parser, the same parser the typed literal \"...\"hexBinary uses, and text the parser rejects is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the hexBinary parser rejects the text"
+        }
+    ],
+    "functionId": "to_hexBinary<string>",
+    "functionLabel": "to_hexBinary_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "hexBinary"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

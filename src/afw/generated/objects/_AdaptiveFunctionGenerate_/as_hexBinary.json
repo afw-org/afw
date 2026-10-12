@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "asHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Returns value unchanged if it is dataType hexBinary. Otherwise, including when value is undefined, throws an error. It never converts: to get a hexBinary from a value of another data type, write a typed literal or call a to_ function. This is usually written value as hexBinary.",
+    "description": "Returns value unchanged if it is dataType hexBinary. Otherwise, including when value is undefined, throws an error. It never converts: to get a hexBinary from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as hexBinary.",
     "errorsThrown": [
         {
             "error": "argument_error",

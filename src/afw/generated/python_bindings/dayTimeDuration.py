@@ -18,8 +18,8 @@ def as_dayTimeDuration(session, value):
     Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
     including when value is undefined, throws an error. It never converts: to
     get a dayTimeDuration from a value of another data type, write a typed
-    literal or call a to_ function. This is usually written value as
-    dayTimeDuration.
+    literal or call a to_T conversion function where one exists. This is
+    usually written value as dayTimeDuration.
 
     Args:
         value (object): Value to assert

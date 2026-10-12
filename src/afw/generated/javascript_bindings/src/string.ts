@@ -41,8 +41,9 @@ export function afwAddString(client : any, string : string, values : any) : any 
 /**
  * Returns value unchanged if it is dataType string. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a string
- * from a value of another data type, write a typed literal or call a to_
- * function. This is usually written value as string.
+ * from a value of another data type, write a typed literal or call a to_T
+ * conversion function where one exists. This is usually written value as
+ * string.
  * 
  * @param {} value - Value to assert
  * 
@@ -929,7 +930,9 @@ export function afwSubstringString(client : any, string : string, startIndex : n
 }
 
 /**
- * Converts string value to anyURI.
+ * Converts string value to anyURI. A string is read with the anyURI parser,
+ * the same parser the typed literal "..."anyURI uses, and text the parser
+ * rejects is an error.
  * 
  * @param {string} value -
  * 
@@ -946,24 +949,28 @@ export function afwToAnyURIString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to boolean.
+ * Converts string value to base64Binary. A string is read with the
+ * base64Binary parser, the same parser the typed literal "..."base64Binary
+ * uses, and text the parser rejects is an error.
  * 
  * @param {string} value -
  * 
- * @returns {boolean}
+ * @returns {base64Binary}
  */
-export function afwToBooleanString(client : any, value : string) : any {
+export function afwToBase64BinaryString(client : any, value : string) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "to_boolean<string>";
+    _action["function"] = "to_base64Binary<string>";
     _action["value"] = value;
 
     return client.perform(_action);
 }
 
 /**
- * Converts string value to dateTime.
+ * Converts string value to dateTime. A string is read with the dateTime
+ * parser, the same parser the typed literal "..."dateTime uses, and text the
+ * parser rejects is an error.
  * 
  * @param {string} value -
  * 
@@ -980,7 +987,9 @@ export function afwToDateTimeString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to date.
+ * Converts string value to date. A string is read with the date parser, the
+ * same parser the typed literal "..."date uses, and text the parser rejects
+ * is an error.
  * 
  * @param {string} value -
  * 
@@ -997,7 +1006,9 @@ export function afwToDateString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to dayTimeDuration.
+ * Converts string value to dayTimeDuration. A string is read with the
+ * dayTimeDuration parser, the same parser the typed literal
+ * "..."dayTimeDuration uses, and text the parser rejects is an error.
  * 
  * @param {string} value -
  * 
@@ -1014,7 +1025,9 @@ export function afwToDayTimeDurationString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to dnsName.
+ * Converts string value to dnsName. A string is read with the dnsName parser,
+ * the same parser the typed literal "..."dnsName uses, and text the parser
+ * rejects is an error.
  * 
  * @param {string} value -
  * 
@@ -1031,7 +1044,9 @@ export function afwToDnsNameString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to double and returns double result.
+ * Converts string value to double. A string is read as double text, the same
+ * text a double literal accepts, and other text is an error: integer text
+ * such as "5" is not a double, so use to_double(to_integer(s)) for it.
  * 
  * @param {string} value -
  * 
@@ -1048,7 +1063,49 @@ export function afwToDoubleString(client : any, value : string) : any {
 }
 
 /**
- * Truncate string value to a whole number and returns integer result.
+ * Converts string value to hexBinary. A string is read with the hexBinary
+ * parser, the same parser the typed literal "..."hexBinary uses, and text the
+ * parser rejects is an error.
+ * 
+ * @param {string} value -
+ * 
+ * @returns {hexBinary}
+ */
+export function afwToHexBinaryString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_hexBinary<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts string value to ia5String. A string is read with the ia5String
+ * parser, the same parser the typed literal "..."ia5String uses, and text the
+ * parser rejects is an error.
+ * 
+ * @param {string} value -
+ * 
+ * @returns {ia5String}
+ */
+export function afwToIa5StringString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_ia5String<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts string value to integer. A double is truncated toward zero (1.9 is
+ * 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
+ * choice. A double that is NaN, infinite, or outside the integer range is an
+ * error. A string is read as integer text, and text that is not an integer
+ * ("1.5", " 1", "1x") is an error.
  * 
  * @param {string} value -
  * 
@@ -1065,7 +1122,9 @@ export function afwToIntegerString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to ipAddress.
+ * Converts string value to ipAddress. A string is read with the ipAddress
+ * parser, the same parser the typed literal "..."ipAddress uses, and text the
+ * parser rejects is an error.
  * 
  * @param {string} value -
  * 
@@ -1082,7 +1141,64 @@ export function afwToIpAddressString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to rfc822Name.
+ * Converts string value to objectId. A string is read with the objectId
+ * parser, and text the parser rejects is an error.
+ * 
+ * @param {string} value -
+ * 
+ * @returns {objectId}
+ */
+export function afwToObjectIdString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_objectId<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts string value to objectPath. A string is read with the objectPath
+ * parser, and text the parser rejects is an error.
+ * 
+ * @param {string} value -
+ * 
+ * @returns {objectPath}
+ */
+export function afwToObjectPathString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_objectPath<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts string value to password. A string is read with the password
+ * parser, the same parser the typed literal "..."password uses, and text the
+ * parser rejects is an error.
+ * 
+ * @param {string} value -
+ * 
+ * @returns {password}
+ */
+export function afwToPasswordString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_password<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts string value to rfc822Name. A string is read with the rfc822Name
+ * parser, the same parser the typed literal "..."rfc822Name uses, and text
+ * the parser rejects is an error.
  * 
  * @param {string} value -
  * 
@@ -1117,7 +1233,9 @@ export function afwToStringString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to time.
+ * Converts string value to time. A string is read with the time parser, the
+ * same parser the typed literal "..."time uses, and text the parser rejects
+ * is an error.
  * 
  * @param {string} value -
  * 
@@ -1134,7 +1252,9 @@ export function afwToTimeString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to x500Name.
+ * Converts string value to x500Name. A string is read with the x500Name
+ * parser, the same parser the typed literal "..."x500Name uses, and text the
+ * parser rejects is an error.
  * 
  * @param {string} value -
  * 
@@ -1151,7 +1271,9 @@ export function afwToX500NameString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to yearMonthDuration.
+ * Converts string value to yearMonthDuration. A string is read with the
+ * yearMonthDuration parser, the same parser the typed literal
+ * "..."yearMonthDuration uses, and text the parser rejects is an error.
  * 
  * @param {string} value -
  * 

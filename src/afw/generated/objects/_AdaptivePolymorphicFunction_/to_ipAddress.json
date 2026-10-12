@@ -2,11 +2,11 @@
     "brief": "Converts string to ipAddress",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to ipAddress.",
+    "description": "Converts <dataType> value to ipAddress. A string is read with the ipAddress parser, the same parser the typed literal \"...\"ipAddress uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the ipAddress parser rejects the text"
         }
     ],
     "functionId": "to_ipAddress",

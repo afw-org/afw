@@ -21,8 +21,8 @@ interface IAnyObject {
  * Returns value unchanged if it is dataType xpathExpression. Otherwise,
  * including when value is undefined, throws an error. It never converts: to
  * get a xpathExpression from a value of another data type, write a typed
- * literal or call a to_ function. This is usually written value as
- * xpathExpression.
+ * literal or call a to_T conversion function where one exists. This is
+ * usually written value as xpathExpression.
  * 
  * @param {} value - Value to assert
  * 

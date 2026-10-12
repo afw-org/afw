@@ -1,0 +1,25 @@
+{
+    "brief": "Reads boolean text",
+    "category": "boolean",
+    "description": "Reads boolean text: \"true\" or \"false\" in any case, \"1\" or \"0\", or the single letter \"t\", \"T\", \"f\", or \"F\". Any other text is an error. This is not boolean(), which is ECMAScript Boolean() truthiness: boolean(\"false\") is true, and string_to_boolean(\"false\") is false.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "value is not valid boolean text"
+        }
+    ],
+    "functionId": "string_to_boolean",
+    "functionLabel": "string_to_boolean",
+    "parameters": [
+        {
+            "description": "Boolean text to read.",
+            "name": "value",
+            "dataType": "string"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "The boolean the text names."
+    }
+}

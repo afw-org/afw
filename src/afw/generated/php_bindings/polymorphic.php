@@ -1539,7 +1539,9 @@ class polymorphic
     /**
      * to_anyURI()
      *
-     * Converts `<dataType>` value to anyURI.
+     * Converts `<dataType>` value to anyURI. A string is read with the anyURI
+     * parser, the same parser the typed literal "..."anyURI uses, and text
+     * the parser rejects is an error.
      *
      * @param $value
      *
@@ -1559,19 +1561,21 @@ class polymorphic
     }
 
     /**
-     * to_boolean()
+     * to_base64Binary()
      *
-     * Converts `<dataType>` value to boolean.
+     * Converts `<dataType>` value to base64Binary. A string is read with the
+     * base64Binary parser, the same parser the typed literal
+     * "..."base64Binary uses, and text the parser rejects is an error.
      *
      * @param $value
      *
-     * @return boolean
+     * @return base64Binary
      */
-    public function to_boolean(, $value)
+    public function to_base64Binary(, $value)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "to_boolean");
+        $request->set("function", "to_base64Binary");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
@@ -1583,7 +1587,9 @@ class polymorphic
     /**
      * to_date()
      *
-     * Converts `<dataType>` value to date.
+     * Converts `<dataType>` value to date. A string is read with the date
+     * parser, the same parser the typed literal "..."date uses, and text the
+     * parser rejects is an error.
      *
      * @param $value
      *
@@ -1605,7 +1611,9 @@ class polymorphic
     /**
      * to_dateTime()
      *
-     * Converts `<dataType>` value to dateTime.
+     * Converts `<dataType>` value to dateTime. A string is read with the
+     * dateTime parser, the same parser the typed literal "..."dateTime uses,
+     * and text the parser rejects is an error.
      *
      * @param $value
      *
@@ -1627,7 +1635,9 @@ class polymorphic
     /**
      * to_dayTimeDuration()
      *
-     * Converts `<dataType>` value to dayTimeDuration.
+     * Converts `<dataType>` value to dayTimeDuration. A string is read with
+     * the dayTimeDuration parser, the same parser the typed literal
+     * "..."dayTimeDuration uses, and text the parser rejects is an error.
      *
      * @param $value
      *
@@ -1649,7 +1659,9 @@ class polymorphic
     /**
      * to_dnsName()
      *
-     * Converts `<dataType>` value to dnsName.
+     * Converts `<dataType>` value to dnsName. A string is read with the
+     * dnsName parser, the same parser the typed literal "..."dnsName uses,
+     * and text the parser rejects is an error.
      *
      * @param $value
      *
@@ -1671,7 +1683,10 @@ class polymorphic
     /**
      * to_double()
      *
-     * Converts `<dataType>` value to double and returns double result.
+     * Converts `<dataType>` value to double. A string is read as double text,
+     * the same text a double literal accepts, and other text is an error:
+     * integer text such as "5" is not a double, so use
+     * to_double(to_integer(s)) for it.
      *
      * @param $value
      *
@@ -1691,10 +1706,61 @@ class polymorphic
     }
 
     /**
+     * to_hexBinary()
+     *
+     * Converts `<dataType>` value to hexBinary. A string is read with the
+     * hexBinary parser, the same parser the typed literal "..."hexBinary
+     * uses, and text the parser rejects is an error.
+     *
+     * @param $value
+     *
+     * @return hexBinary
+     */
+    public function to_hexBinary(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_hexBinary");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_ia5String()
+     *
+     * Converts `<dataType>` value to ia5String. A string is read with the
+     * ia5String parser, the same parser the typed literal "..."ia5String
+     * uses, and text the parser rejects is an error.
+     *
+     * @param $value
+     *
+     * @return ia5String
+     */
+    public function to_ia5String(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_ia5String");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_integer()
      *
-     * Truncate `<dataType>` value to a whole number and returns integer
-     * result.
+     * Converts `<dataType>` value to integer. A double is truncated toward
+     * zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first
+     * for another choice. A double that is NaN, infinite, or outside the
+     * integer range is an error. A string is read as integer text, and text
+     * that is not an integer ("1.5", " 1", "1x") is an error.
      *
      * @param $value
      *
@@ -1716,7 +1782,9 @@ class polymorphic
     /**
      * to_ipAddress()
      *
-     * Converts `<dataType>` value to ipAddress.
+     * Converts `<dataType>` value to ipAddress. A string is read with the
+     * ipAddress parser, the same parser the typed literal "..."ipAddress
+     * uses, and text the parser rejects is an error.
      *
      * @param $value
      *
@@ -1736,9 +1804,81 @@ class polymorphic
     }
 
     /**
+     * to_objectId()
+     *
+     * Converts `<dataType>` value to objectId. A string is read with the
+     * objectId parser, and text the parser rejects is an error.
+     *
+     * @param $value
+     *
+     * @return objectId
+     */
+    public function to_objectId(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_objectId");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_objectPath()
+     *
+     * Converts `<dataType>` value to objectPath. A string is read with the
+     * objectPath parser, and text the parser rejects is an error.
+     *
+     * @param $value
+     *
+     * @return objectPath
+     */
+    public function to_objectPath(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_objectPath");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_password()
+     *
+     * Converts `<dataType>` value to password. A string is read with the
+     * password parser, the same parser the typed literal "..."password uses,
+     * and text the parser rejects is an error.
+     *
+     * @param $value
+     *
+     * @return password
+     */
+    public function to_password(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_password");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_rfc822Name()
      *
-     * Converts `<dataType>` value to rfc822Name.
+     * Converts `<dataType>` value to rfc822Name. A string is read with the
+     * rfc822Name parser, the same parser the typed literal "..."rfc822Name
+     * uses, and text the parser rejects is an error.
      *
      * @param $value
      *
@@ -1783,7 +1923,9 @@ class polymorphic
     /**
      * to_time()
      *
-     * Converts `<dataType>` value to time.
+     * Converts `<dataType>` value to time. A string is read with the time
+     * parser, the same parser the typed literal "..."time uses, and text the
+     * parser rejects is an error.
      *
      * @param $value
      *
@@ -1805,7 +1947,9 @@ class polymorphic
     /**
      * to_x500Name()
      *
-     * Converts `<dataType>` value to x500Name.
+     * Converts `<dataType>` value to x500Name. A string is read with the
+     * x500Name parser, the same parser the typed literal "..."x500Name uses,
+     * and text the parser rejects is an error.
      *
      * @param $value
      *
@@ -1827,7 +1971,9 @@ class polymorphic
     /**
      * to_yearMonthDuration()
      *
-     * Converts `<dataType>` value to yearMonthDuration.
+     * Converts `<dataType>` value to yearMonthDuration. A string is read with
+     * the yearMonthDuration parser, the same parser the typed literal
+     * "..."yearMonthDuration uses, and text the parser rejects is an error.
      *
      * @param $value
      *

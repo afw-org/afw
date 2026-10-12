@@ -1843,7 +1843,9 @@ def to_anyURI(session, value):
     """
     Converts string to anyURI
 
-    Converts `<dataType>` value to anyURI.
+    Converts `<dataType>` value to anyURI. A string is read with the anyURI
+    parser, the same parser the typed literal "..."anyURI uses, and text the
+    parser rejects is an error.
 
     Args:
         value (object):
@@ -1867,23 +1869,25 @@ def to_anyURI(session, value):
 
     return response['actions'][0]['result']
 
-def to_boolean(session, value):
+def to_base64Binary(session, value):
     """
-    Converts string to boolean
+    Converts string to base64Binary
 
-    Converts `<dataType>` value to boolean.
+    Converts `<dataType>` value to base64Binary. A string is read with the
+    base64Binary parser, the same parser the typed literal "..."base64Binary
+    uses, and text the parser rejects is an error.
 
     Args:
         value (object):
 
     Returns:
-        bool:
+        object:
     """
 
     request = session.Request()
 
     action = {
-        "function": "to_boolean",
+        "function": "to_base64Binary",
         "value": value
     }
 
@@ -1899,7 +1903,9 @@ def to_date(session, value):
     """
     Converts string to date
 
-    Converts `<dataType>` value to date.
+    Converts `<dataType>` value to date. A string is read with the date
+    parser, the same parser the typed literal "..."date uses, and text the
+    parser rejects is an error.
 
     Args:
         value (object):
@@ -1927,7 +1933,9 @@ def to_dateTime(session, value):
     """
     Converts string to dateTime
 
-    Converts `<dataType>` value to dateTime.
+    Converts `<dataType>` value to dateTime. A string is read with the
+    dateTime parser, the same parser the typed literal "..."dateTime uses, and
+    text the parser rejects is an error.
 
     Args:
         value (object):
@@ -1955,7 +1963,9 @@ def to_dayTimeDuration(session, value):
     """
     Converts string to dayTimeDuration
 
-    Converts `<dataType>` value to dayTimeDuration.
+    Converts `<dataType>` value to dayTimeDuration. A string is read with the
+    dayTimeDuration parser, the same parser the typed literal
+    "..."dayTimeDuration uses, and text the parser rejects is an error.
 
     Args:
         value (object):
@@ -1983,7 +1993,9 @@ def to_dnsName(session, value):
     """
     Converts string to dnsName
 
-    Converts `<dataType>` value to dnsName.
+    Converts `<dataType>` value to dnsName. A string is read with the dnsName
+    parser, the same parser the typed literal "..."dnsName uses, and text the
+    parser rejects is an error.
 
     Args:
         value (object):
@@ -2011,7 +2023,10 @@ def to_double(session, value):
     """
     Converts to double
 
-    Converts `<dataType>` value to double and returns double result.
+    Converts `<dataType>` value to double. A string is read as double text,
+    the same text a double literal accepts, and other text is an error:
+    integer text such as "5" is not a double, so use to_double(to_integer(s))
+    for it.
 
     Args:
         value (object):
@@ -2035,11 +2050,75 @@ def to_double(session, value):
 
     return response['actions'][0]['result']
 
+def to_hexBinary(session, value):
+    """
+    Converts string to hexBinary
+
+    Converts `<dataType>` value to hexBinary. A string is read with the
+    hexBinary parser, the same parser the typed literal "..."hexBinary uses,
+    and text the parser rejects is an error.
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_hexBinary",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_ia5String(session, value):
+    """
+    Converts string to ia5String
+
+    Converts `<dataType>` value to ia5String. A string is read with the
+    ia5String parser, the same parser the typed literal "..."ia5String uses,
+    and text the parser rejects is an error.
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_ia5String",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_integer(session, value):
     """
     Converts to integer
 
-    Truncate `<dataType>` value to a whole number and returns integer result.
+    Converts `<dataType>` value to integer. A double is truncated toward zero
+    (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for
+    another choice. A double that is NaN, infinite, or outside the integer
+    range is an error. A string is read as integer text, and text that is not
+    an integer ("1.5", " 1", "1x") is an error.
 
     Args:
         value (object):
@@ -2067,7 +2146,9 @@ def to_ipAddress(session, value):
     """
     Converts string to ipAddress
 
-    Converts `<dataType>` value to ipAddress.
+    Converts `<dataType>` value to ipAddress. A string is read with the
+    ipAddress parser, the same parser the typed literal "..."ipAddress uses,
+    and text the parser rejects is an error.
 
     Args:
         value (object):
@@ -2091,11 +2172,101 @@ def to_ipAddress(session, value):
 
     return response['actions'][0]['result']
 
+def to_objectId(session, value):
+    """
+    Converts string to objectId
+
+    Converts `<dataType>` value to objectId. A string is read with the
+    objectId parser, and text the parser rejects is an error.
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_objectId",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_objectPath(session, value):
+    """
+    Converts string to objectPath
+
+    Converts `<dataType>` value to objectPath. A string is read with the
+    objectPath parser, and text the parser rejects is an error.
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_objectPath",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_password(session, value):
+    """
+    Converts string to password
+
+    Converts `<dataType>` value to password. A string is read with the
+    password parser, the same parser the typed literal "..."password uses, and
+    text the parser rejects is an error.
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_password",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_rfc822Name(session, value):
     """
     Converts string to rfc822Name
 
-    Converts `<dataType>` value to rfc822Name.
+    Converts `<dataType>` value to rfc822Name. A string is read with the
+    rfc822Name parser, the same parser the typed literal "..."rfc822Name uses,
+    and text the parser rejects is an error.
 
     Args:
         value (object):
@@ -2152,7 +2323,9 @@ def to_time(session, value):
     """
     Converts string to time
 
-    Converts `<dataType>` value to time.
+    Converts `<dataType>` value to time. A string is read with the time
+    parser, the same parser the typed literal "..."time uses, and text the
+    parser rejects is an error.
 
     Args:
         value (object):
@@ -2180,7 +2353,9 @@ def to_x500Name(session, value):
     """
     Converts string to x500Name
 
-    Converts `<dataType>` value to x500Name.
+    Converts `<dataType>` value to x500Name. A string is read with the
+    x500Name parser, the same parser the typed literal "..."x500Name uses, and
+    text the parser rejects is an error.
 
     Args:
         value (object):
@@ -2208,7 +2383,9 @@ def to_yearMonthDuration(session, value):
     """
     Converts string to yearMonthDuration
 
-    Converts `<dataType>` value to yearMonthDuration.
+    Converts `<dataType>` value to yearMonthDuration. A string is read with
+    the yearMonthDuration parser, the same parser the typed literal
+    "..."yearMonthDuration uses, and text the parser rejects is an error.
 
     Args:
         value (object):

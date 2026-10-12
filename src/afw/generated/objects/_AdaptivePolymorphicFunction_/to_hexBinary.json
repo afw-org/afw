@@ -1,0 +1,29 @@
+{
+    "brief": "Converts string to hexBinary",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to hexBinary. A string is read with the hexBinary parser, the same parser the typed literal \"...\"hexBinary uses, and text the parser rejects is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the hexBinary parser rejects the text"
+        }
+    ],
+    "functionId": "to_hexBinary",
+    "functionLabel": "to_hexBinary",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "returns": {
+        "dataType": "hexBinary"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToObjectPathString",
+    "brief": "Converts string to objectPath",
+    "camelCaseFunctionLabel": "toObjectPathString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Converts string value to objectPath. A string is read with the objectPath parser, and text the parser rejects is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the objectPath parser rejects the text"
+        }
+    ],
+    "functionId": "to_objectPath<string>",
+    "functionLabel": "to_objectPath_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "objectPath"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

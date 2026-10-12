@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toAnyURI",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to anyURI.",
+    "description": "Converts <dataType> value to anyURI. A string is read with the anyURI parser, the same parser the typed literal \"...\"anyURI uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the anyURI parser rejects the text"
         }
     ],
     "functionId": "to_anyURI",

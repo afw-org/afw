@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toDayTimeDurationString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to dayTimeDuration.",
+    "description": "Converts string value to dayTimeDuration. A string is read with the dayTimeDuration parser, the same parser the typed literal \"...\"dayTimeDuration uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "the dayTimeDuration parser rejects the text"
         }
     ],
     "functionId": "to_dayTimeDuration<string>",
