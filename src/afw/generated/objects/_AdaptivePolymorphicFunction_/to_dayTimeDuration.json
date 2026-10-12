@@ -2,11 +2,11 @@
     "brief": "Converts string to dayTimeDuration",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to dayTimeDuration. A string is read as dayTimeDuration text, the same text the typed literal \"...\"dayTimeDuration accepts, and text that is not valid dayTimeDuration is an error.",
+    "description": "Converts <dataType> value to dayTimeDuration. A string is read with the dayTimeDuration parser, the same parser the typed literal \"...\"dayTimeDuration uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value is not valid dayTimeDuration text"
+            "reason": "the dayTimeDuration parser rejects the text"
         }
     ],
     "functionId": "to_dayTimeDuration",

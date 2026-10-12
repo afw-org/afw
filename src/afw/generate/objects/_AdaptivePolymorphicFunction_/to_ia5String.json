@@ -2,11 +2,11 @@
     "brief": "Converts string to ia5String",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to ia5String. A string is read as ia5String text, the same text the typed literal \"...\"ia5String accepts, and text that is not valid ia5String is an error.",
+    "description": "Converts <dataType> value to ia5String. A string is read with the ia5String parser, the same parser the typed literal \"...\"ia5String uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value is not valid ia5String text"
+            "reason": "the ia5String parser rejects the text"
         }
     ],
     "functionId": "to_ia5String",

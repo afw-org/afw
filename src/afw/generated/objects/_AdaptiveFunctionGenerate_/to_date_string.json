@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toDateString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to date. A string is read as date text, the same text the typed literal \"...\"date accepts, and text that is not valid date is an error.",
+    "description": "Converts string value to date. A string is read with the date parser, the same parser the typed literal \"...\"date uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value is not valid date text"
+            "reason": "the date parser rejects the text"
         }
     ],
     "functionId": "to_date<string>",

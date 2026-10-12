@@ -9500,7 +9500,7 @@ afw_function_definition_as_anyURI = {
     &afw_self_v_asAnyURI,
     &afw_self_v_afwAsAnyURI,
     &afw_self_v_zz__Asserts_that_value_is_dataType_anyURI,
-    &afw_self_v_zz__3b0365bef5f7,
+    &afw_self_v_zz__d35771d77e36,
     &afw_self_v_zz___value__any___anyURI,
     &afw_self_v_zz__function_as_anyURI_______value__any____anyURI__,
     NULL,
@@ -16312,7 +16312,7 @@ afw_function_definition_as_array = {
     &afw_self_v_asArray,
     &afw_self_v_afwAsArray,
     &afw_self_v_zz__Asserts_that_value_is_dataType_array,
-    &afw_self_v_zz__0b7fddb6c4db,
+    &afw_self_v_zz__fd5b4e42a8f3,
     &afw_self_v_zz___value__any___array,
     &afw_self_v_zz__function_as_array_______value__any____array__,
     NULL,
@@ -21484,7 +21484,7 @@ afw_function_definition_as_base64Binary = {
     &afw_self_v_asBase64Binary,
     &afw_self_v_afwAsBase64Binary,
     &afw_self_v_zz__Asserts_that_value_is_dataType_base64Binary,
-    &afw_self_v_zz__9180ea03c12d,
+    &afw_self_v_zz__5fdc855f6c00,
     &afw_self_v_zz___value__any___base64Binary,
     &afw_self_v_zz__function_as_base64Binary_______value__any____base64Binary__,
     NULL,
@@ -25340,7 +25340,7 @@ afw_function_definition_as_boolean = {
     &afw_self_v_asBoolean,
     &afw_self_v_afwAsBoolean,
     &afw_self_v_zz__Asserts_that_value_is_dataType_boolean,
-    &afw_self_v_zz__e461da0b759e,
+    &afw_self_v_zz__b71ff9a48250,
     &afw_self_v_zz___value__any___boolean,
     &afw_self_v_zz__function_as_boolean_______value__any____boolean__,
     NULL,
@@ -36431,7 +36431,7 @@ afw_function_definition_as_dateTime = {
     &afw_self_v_asDateTime,
     &afw_self_v_afwAsDateTime,
     &afw_self_v_zz__Asserts_that_value_is_dataType_dateTime,
-    &afw_self_v_zz__0edf956a7139,
+    &afw_self_v_zz__bd6f8138a2b4,
     &afw_self_v_zz___value__any___dateTime,
     &afw_self_v_zz__function_as_dateTime_______value__any____dateTime__,
     NULL,
@@ -41005,7 +41005,7 @@ afw_function_definition_as_date = {
     &afw_self_v_asDate,
     &afw_self_v_afwAsDate,
     &afw_self_v_zz__Asserts_that_value_is_dataType_date,
-    &afw_self_v_zz__a640b234cc62,
+    &afw_self_v_zz__267c6b78d913,
     &afw_self_v_zz___value__any___date,
     &afw_self_v_zz__function_as_date_______value__any____date__,
     NULL,
@@ -45201,7 +45201,7 @@ afw_function_definition_as_dayTimeDuration = {
     &afw_self_v_asDayTimeDuration,
     &afw_self_v_afwAsDayTimeDuration,
     &afw_self_v_zz__Asserts_that_value_is_dataType_dayTimeDuration,
-    &afw_self_v_zz__51cee46ff8d7,
+    &afw_self_v_zz__514ac92dfd10,
     &afw_self_v_zz___value__any___dayTimeDuration,
     &afw_self_v_zz__574903803f0c,
     NULL,
@@ -48906,7 +48906,7 @@ afw_function_definition_as_dnsName = {
     &afw_self_v_asDnsName,
     &afw_self_v_afwAsDnsName,
     &afw_self_v_zz__Asserts_that_value_is_dataType_dnsName,
-    &afw_self_v_zz__ba26e008d02d,
+    &afw_self_v_zz__2d049d051f02,
     &afw_self_v_zz___value__any___dnsName,
     &afw_self_v_zz__function_as_dnsName_______value__any____dnsName__,
     NULL,
@@ -52195,7 +52195,7 @@ afw_function_definition_as_double = {
     &afw_self_v_asDouble,
     &afw_self_v_afwAsDouble,
     &afw_self_v_zz__Asserts_that_value_is_dataType_double,
-    &afw_self_v_zz__2bf3d34a3099,
+    &afw_self_v_zz__3eb059fcaacb,
     &afw_self_v_zz___value__any___double,
     &afw_self_v_zz__function_as_double_______value__any____double__,
     NULL,
@@ -58177,7 +58177,7 @@ afw_function_definition_as_function = {
     &afw_self_v_asFunction,
     &afw_self_v_afwAsFunction,
     &afw_self_v_zz__Asserts_that_value_is_dataType_function,
-    &afw_self_v_zz__1b0b5addf5df,
+    &afw_self_v_zz__de996de3584d,
     &afw_self_v_zz___value__any___function,
     &afw_self_v_zz__function_as_function_______value__any____function__,
     NULL,
@@ -60317,7 +60317,7 @@ afw_function_definition_as_hexBinary = {
     &afw_self_v_asHexBinary,
     &afw_self_v_afwAsHexBinary,
     &afw_self_v_zz__Asserts_that_value_is_dataType_hexBinary,
-    &afw_self_v_zz__c443043eac12,
+    &afw_self_v_zz__48c5eeec361f,
     &afw_self_v_zz___value__any___hexBinary,
     &afw_self_v_zz__function_as_hexBinary_______value__any____hexBinary__,
     NULL,
@@ -66820,7 +66820,7 @@ afw_function_definition_as_ia5String = {
     &afw_self_v_asIa5String,
     &afw_self_v_afwAsIa5String,
     &afw_self_v_zz__Asserts_that_value_is_dataType_ia5String,
-    &afw_self_v_zz__a83beb3e4878,
+    &afw_self_v_zz__83a50dece91a,
     &afw_self_v_zz___value__any___ia5String,
     &afw_self_v_zz__function_as_ia5String_______value__any____ia5String__,
     NULL,
@@ -70379,7 +70379,7 @@ afw_function_definition_as_integer = {
     &afw_self_v_asInteger,
     &afw_self_v_afwAsInteger,
     &afw_self_v_zz__Asserts_that_value_is_dataType_integer,
-    &afw_self_v_zz__42688ff196e7,
+    &afw_self_v_zz__54a1e20170e4,
     &afw_self_v_zz___value__any___integer,
     &afw_self_v_zz__function_as_integer_______value__any____integer__,
     NULL,
@@ -75414,7 +75414,7 @@ afw_function_definition_as_ipAddress = {
     &afw_self_v_asIpAddress,
     &afw_self_v_afwAsIpAddress,
     &afw_self_v_zz__Asserts_that_value_is_dataType_ipAddress,
-    &afw_self_v_zz__f793233d0c8a,
+    &afw_self_v_zz__54a5b7648ded,
     &afw_self_v_zz___value__any___ipAddress,
     &afw_self_v_zz__function_as_ipAddress_______value__any____ipAddress__,
     NULL,
@@ -85729,7 +85729,7 @@ afw_function_definition_as_null = {
     &afw_self_v_asNull,
     &afw_self_v_afwAsNull,
     &afw_self_v_zz__Asserts_that_value_is_dataType_null,
-    &afw_self_v_zz__aeb11937c84e,
+    &afw_self_v_zz__613c67ea23f0,
     &afw_self_v_zz___value__any___null,
     &afw_self_v_zz__function_as_null_______value__any____null__,
     NULL,
@@ -86492,7 +86492,7 @@ afw_function_definition_as_objectId = {
     &afw_self_v_asObjectId,
     &afw_self_v_afwAsObjectId,
     &afw_self_v_zz__Asserts_that_value_is_dataType_objectId,
-    &afw_self_v_zz__eb1aaacc57d1,
+    &afw_self_v_zz__2c4b8039cf9a,
     &afw_self_v_zz___value__any___objectId,
     &afw_self_v_zz__function_as_objectId_______value__any____objectId__,
     NULL,
@@ -88942,7 +88942,7 @@ afw_function_definition_as_objectPath = {
     &afw_self_v_asObjectPath,
     &afw_self_v_afwAsObjectPath,
     &afw_self_v_zz__Asserts_that_value_is_dataType_objectPath,
-    &afw_self_v_zz__9952aae8aa61,
+    &afw_self_v_zz__06e24dcfeb7b,
     &afw_self_v_zz___value__any___objectPath,
     &afw_self_v_zz__function_as_objectPath_______value__any____objectPath__,
     NULL,
@@ -91776,7 +91776,7 @@ afw_function_definition_as_object = {
     &afw_self_v_asObject,
     &afw_self_v_afwAsObject,
     &afw_self_v_zz__Asserts_that_value_is_dataType_object,
-    &afw_self_v_zz__825c47e2640a,
+    &afw_self_v_zz__dc3d72df2bc4,
     &afw_self_v_zz___value__any___object,
     &afw_self_v_zz__function_as_object_______value__any____object__,
     NULL,
@@ -96197,7 +96197,7 @@ afw_function_definition_as_password = {
     &afw_self_v_asPassword,
     &afw_self_v_afwAsPassword,
     &afw_self_v_zz__Asserts_that_value_is_dataType_password,
-    &afw_self_v_zz__e11a0a123b90,
+    &afw_self_v_zz__f6c3dcac2210,
     &afw_self_v_zz___value__any___password,
     &afw_self_v_zz__function_as_password_______value__any____password__,
     NULL,
@@ -110005,7 +110005,7 @@ impl_to_anyURI_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_anyURI_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid anyURI text",
+    "reason", "the anyURI parser rejects the text",
     NULL,
     NULL
 };
@@ -110022,7 +110022,7 @@ afw_function_definition_to_anyURI = {
     &afw_self_v_toAnyURI,
     &afw_self_v_afwToAnyURI,
     &afw_self_v_zz__Converts_string_to_anyURI,
-    &afw_self_v_zz__d0103949df4c,
+    &afw_self_v_zz__bddc19975e8a,
     &afw_self_v_zz___dataType__value__dataType___anyURI,
     &afw_self_v_zz__93fa9a839162,
     NULL,
@@ -110170,7 +110170,7 @@ impl_to_base64Binary_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_base64Binary_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid base64Binary text",
+    "reason", "the base64Binary parser rejects the text",
     NULL,
     NULL
 };
@@ -110187,7 +110187,7 @@ afw_function_definition_to_base64Binary = {
     &afw_self_v_toBase64Binary,
     &afw_self_v_afwToBase64Binary,
     &afw_self_v_zz__Converts_string_to_base64Binary,
-    &afw_self_v_zz__e7a1cae1d903,
+    &afw_self_v_zz__099e83c78042,
     &afw_self_v_zz___dataType__value__dataType___base64Binary,
     &afw_self_v_zz__9e4351e9d7ac,
     NULL,
@@ -110335,7 +110335,7 @@ impl_to_date_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_date_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid date text",
+    "reason", "the date parser rejects the text",
     NULL,
     NULL
 };
@@ -110352,7 +110352,7 @@ afw_function_definition_to_date = {
     &afw_self_v_toDate,
     &afw_self_v_afwToDate,
     &afw_self_v_zz__Converts_string_to_date,
-    &afw_self_v_zz__a89b4f631561,
+    &afw_self_v_zz__8d378e2cb467,
     &afw_self_v_zz___dataType__value__dataType___date,
     &afw_self_v_zz__function_to_date__dataType_______value__dataType____date__,
     NULL,
@@ -110500,7 +110500,7 @@ impl_to_dateTime_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_dateTime_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid dateTime text",
+    "reason", "the dateTime parser rejects the text",
     NULL,
     NULL
 };
@@ -110517,7 +110517,7 @@ afw_function_definition_to_dateTime = {
     &afw_self_v_toDateTime,
     &afw_self_v_afwToDateTime,
     &afw_self_v_zz__Converts_string_to_dateTime,
-    &afw_self_v_zz__960cb1f6624a,
+    &afw_self_v_zz__b898ff6f59ca,
     &afw_self_v_zz___dataType__value__dataType___dateTime,
     &afw_self_v_zz__f3bd6cadfb3e,
     NULL,
@@ -110665,7 +110665,7 @@ impl_to_dayTimeDuration_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_dayTimeDuration_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid dayTimeDuration text",
+    "reason", "the dayTimeDuration parser rejects the text",
     NULL,
     NULL
 };
@@ -110682,7 +110682,7 @@ afw_function_definition_to_dayTimeDuration = {
     &afw_self_v_toDayTimeDuration,
     &afw_self_v_afwToDayTimeDuration,
     &afw_self_v_zz__Converts_string_to_dayTimeDuration,
-    &afw_self_v_zz__4c5d4d90e5cb,
+    &afw_self_v_zz__50713f1ff189,
     &afw_self_v_zz___dataType__value__dataType___dayTimeDuration,
     &afw_self_v_zz__dff78aa30f14,
     NULL,
@@ -110830,7 +110830,7 @@ impl_to_dnsName_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_dnsName_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid dnsName text",
+    "reason", "the dnsName parser rejects the text",
     NULL,
     NULL
 };
@@ -110847,7 +110847,7 @@ afw_function_definition_to_dnsName = {
     &afw_self_v_toDnsName,
     &afw_self_v_afwToDnsName,
     &afw_self_v_zz__Converts_string_to_dnsName,
-    &afw_self_v_zz__491f27ea19f9,
+    &afw_self_v_zz__ae4ab422ba36,
     &afw_self_v_zz___dataType__value__dataType___dnsName,
     &afw_self_v_zz__15e512dd8cfa,
     NULL,
@@ -111161,7 +111161,7 @@ impl_to_hexBinary_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_hexBinary_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid hexBinary text",
+    "reason", "the hexBinary parser rejects the text",
     NULL,
     NULL
 };
@@ -111178,7 +111178,7 @@ afw_function_definition_to_hexBinary = {
     &afw_self_v_toHexBinary,
     &afw_self_v_afwToHexBinary,
     &afw_self_v_zz__Converts_string_to_hexBinary,
-    &afw_self_v_zz__78a163607202,
+    &afw_self_v_zz__5193ccfdb44f,
     &afw_self_v_zz___dataType__value__dataType___hexBinary,
     &afw_self_v_zz__919b358748cf,
     NULL,
@@ -111326,7 +111326,7 @@ impl_to_ia5String_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_ia5String_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid ia5String text",
+    "reason", "the ia5String parser rejects the text",
     NULL,
     NULL
 };
@@ -111343,7 +111343,7 @@ afw_function_definition_to_ia5String = {
     &afw_self_v_toIa5String,
     &afw_self_v_afwToIa5String,
     &afw_self_v_zz__Converts_string_to_ia5String,
-    &afw_self_v_zz__49c05b36e5ab,
+    &afw_self_v_zz__6ea40dd01fcc,
     &afw_self_v_zz___dataType__value__dataType___ia5String,
     &afw_self_v_zz__9670269d2ad9,
     NULL,
@@ -111660,7 +111660,7 @@ impl_to_ipAddress_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_ipAddress_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid ipAddress text",
+    "reason", "the ipAddress parser rejects the text",
     NULL,
     NULL
 };
@@ -111677,7 +111677,7 @@ afw_function_definition_to_ipAddress = {
     &afw_self_v_toIpAddress,
     &afw_self_v_afwToIpAddress,
     &afw_self_v_zz__Converts_string_to_ipAddress,
-    &afw_self_v_zz__a277d5cedfb4,
+    &afw_self_v_zz__648dfd7f15f6,
     &afw_self_v_zz___dataType__value__dataType___ipAddress,
     &afw_self_v_zz__2835b84c5e7e,
     NULL,
@@ -111825,7 +111825,7 @@ impl_to_objectId_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_objectId_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid objectId text",
+    "reason", "the objectId parser rejects the text",
     NULL,
     NULL
 };
@@ -111842,7 +111842,7 @@ afw_function_definition_to_objectId = {
     &afw_self_v_toObjectId,
     &afw_self_v_afwToObjectId,
     &afw_self_v_zz__Converts_string_to_objectId,
-    &afw_self_v_zz__8836b91e5fc4,
+    &afw_self_v_zz__3064542fe9fd,
     &afw_self_v_zz___dataType__value__dataType___objectId,
     &afw_self_v_zz__dd5c168a6407,
     NULL,
@@ -111990,7 +111990,7 @@ impl_to_objectPath_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_objectPath_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid objectPath text",
+    "reason", "the objectPath parser rejects the text",
     NULL,
     NULL
 };
@@ -112007,7 +112007,7 @@ afw_function_definition_to_objectPath = {
     &afw_self_v_toObjectPath,
     &afw_self_v_afwToObjectPath,
     &afw_self_v_zz__Converts_string_to_objectPath,
-    &afw_self_v_zz__f861316c800a,
+    &afw_self_v_zz__8488324ad1e3,
     &afw_self_v_zz___dataType__value__dataType___objectPath,
     &afw_self_v_zz__8787e1841858,
     NULL,
@@ -112155,7 +112155,7 @@ impl_to_password_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_password_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid password text",
+    "reason", "the password parser rejects the text",
     NULL,
     NULL
 };
@@ -112172,7 +112172,7 @@ afw_function_definition_to_password = {
     &afw_self_v_toPassword,
     &afw_self_v_afwToPassword,
     &afw_self_v_zz__Converts_string_to_password,
-    &afw_self_v_zz__34410562c5ac,
+    &afw_self_v_zz__24a069185161,
     &afw_self_v_zz___dataType__value__dataType___password,
     &afw_self_v_zz__4651e3c72d3b,
     NULL,
@@ -112320,7 +112320,7 @@ impl_to_rfc822Name_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_rfc822Name_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid rfc822Name text",
+    "reason", "the rfc822Name parser rejects the text",
     NULL,
     NULL
 };
@@ -112337,7 +112337,7 @@ afw_function_definition_to_rfc822Name = {
     &afw_self_v_toRfc822Name,
     &afw_self_v_afwToRfc822Name,
     &afw_self_v_zz__Converts_string_to_rfc822Name,
-    &afw_self_v_zz__04f1b075e271,
+    &afw_self_v_zz__91ac1c954364,
     &afw_self_v_zz___dataType__value__dataType___rfc822Name,
     &afw_self_v_zz__fe74375c4c0b,
     NULL,
@@ -112666,7 +112666,7 @@ impl_to_time_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_time_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid time text",
+    "reason", "the time parser rejects the text",
     NULL,
     NULL
 };
@@ -112683,7 +112683,7 @@ afw_function_definition_to_time = {
     &afw_self_v_toTime,
     &afw_self_v_afwToTime,
     &afw_self_v_zz__Converts_string_to_time,
-    &afw_self_v_zz__4d78c627440c,
+    &afw_self_v_zz__fcfbfecefa2b,
     &afw_self_v_zz___dataType__value__dataType___time,
     &afw_self_v_zz__function_to_time__dataType_______value__dataType____time__,
     NULL,
@@ -112831,7 +112831,7 @@ impl_to_x500Name_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_x500Name_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid x500Name text",
+    "reason", "the x500Name parser rejects the text",
     NULL,
     NULL
 };
@@ -112848,7 +112848,7 @@ afw_function_definition_to_x500Name = {
     &afw_self_v_toX500Name,
     &afw_self_v_afwToX500Name,
     &afw_self_v_zz__Converts_string_to_x500Name,
-    &afw_self_v_zz__df44f7513ed3,
+    &afw_self_v_zz__b53a66f8b5ed,
     &afw_self_v_zz___dataType__value__dataType___x500Name,
     &afw_self_v_zz__a1c35341f811,
     NULL,
@@ -112996,7 +112996,7 @@ impl_to_yearMonthDuration_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_yearMonthDuration_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid yearMonthDuration text",
+    "reason", "the yearMonthDuration parser rejects the text",
     NULL,
     NULL
 };
@@ -113013,7 +113013,7 @@ afw_function_definition_to_yearMonthDuration = {
     &afw_self_v_toYearMonthDuration,
     &afw_self_v_afwToYearMonthDuration,
     &afw_self_v_zz__Converts_string_to_yearMonthDuration,
-    &afw_self_v_zz__2b35f9781912,
+    &afw_self_v_zz__7f710ba90457,
     &afw_self_v_zz___dataType__value__dataType___yearMonthDuration,
     &afw_self_v_zz__9709d0b538f1,
     NULL,
@@ -116587,7 +116587,7 @@ afw_function_definition_as_rfc822Name = {
     &afw_self_v_asRfc822Name,
     &afw_self_v_afwAsRfc822Name,
     &afw_self_v_zz__Asserts_that_value_is_dataType_rfc822Name,
-    &afw_self_v_zz__421d8d37f98d,
+    &afw_self_v_zz__121c0716e482,
     &afw_self_v_zz___value__any___rfc822Name,
     &afw_self_v_zz__function_as_rfc822Name_______value__any____rfc822Name__,
     NULL,
@@ -120670,7 +120670,7 @@ afw_function_definition_as_script = {
     &afw_self_v_asScript,
     &afw_self_v_afwAsScript,
     &afw_self_v_zz__Asserts_that_value_is_dataType_script,
-    &afw_self_v_zz__56c0d6e92c7a,
+    &afw_self_v_zz__8da32697a564,
     &afw_self_v_zz___value__any___script,
     &afw_self_v_zz__function_as_script_______value__any____script__,
     NULL,
@@ -125945,7 +125945,7 @@ afw_function_definition_as_string = {
     &afw_self_v_asString,
     &afw_self_v_afwAsString,
     &afw_self_v_zz__Asserts_that_value_is_dataType_string,
-    &afw_self_v_zz__f47ca7c66b41,
+    &afw_self_v_zz__0d13b139d8d3,
     &afw_self_v_zz___value__any___string,
     &afw_self_v_zz__function_as_string_______value__any____string__,
     NULL,
@@ -133543,7 +133543,7 @@ impl_to_anyURI_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_anyURI_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid anyURI text",
+    "reason", "the anyURI parser rejects the text",
     NULL,
     NULL
 };
@@ -133560,7 +133560,7 @@ afw_function_definition_to_anyURI_string = {
     &afw_self_v_toAnyURIString,
     &afw_self_v_afwToAnyURIString,
     &afw_self_v_zz__Converts_string_to_anyURI,
-    &afw_self_v_zz__5eb3a56c0100,
+    &afw_self_v_zz__5f12c88adb6a,
     &afw_self_v_zz___value__string___anyURI,
     &afw_self_v_zz__function_to_anyURI_string________value__string____anyURI__,
     NULL,
@@ -133702,7 +133702,7 @@ impl_to_base64Binary_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_base64Binary_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid base64Binary text",
+    "reason", "the base64Binary parser rejects the text",
     NULL,
     NULL
 };
@@ -133719,7 +133719,7 @@ afw_function_definition_to_base64Binary_string = {
     &afw_self_v_toBase64BinaryString,
     &afw_self_v_afwToBase64BinaryString,
     &afw_self_v_zz__Converts_string_to_base64Binary,
-    &afw_self_v_zz__c1cb4181eec1,
+    &afw_self_v_zz__30a94b20c0f6,
     &afw_self_v_zz___value__string___base64Binary,
     &afw_self_v_zz__8593c54a8238,
     NULL,
@@ -133861,7 +133861,7 @@ impl_to_dateTime_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_dateTime_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid dateTime text",
+    "reason", "the dateTime parser rejects the text",
     NULL,
     NULL
 };
@@ -133878,7 +133878,7 @@ afw_function_definition_to_dateTime_string = {
     &afw_self_v_toDateTimeString,
     &afw_self_v_afwToDateTimeString,
     &afw_self_v_zz__Converts_string_to_dateTime,
-    &afw_self_v_zz__2e87748b864a,
+    &afw_self_v_zz__66c167a9395a,
     &afw_self_v_zz___value__string___dateTime,
     &afw_self_v_zz__638d7f053752,
     NULL,
@@ -134020,7 +134020,7 @@ impl_to_date_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_date_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid date text",
+    "reason", "the date parser rejects the text",
     NULL,
     NULL
 };
@@ -134037,7 +134037,7 @@ afw_function_definition_to_date_string = {
     &afw_self_v_toDateString,
     &afw_self_v_afwToDateString,
     &afw_self_v_zz__Converts_string_to_date,
-    &afw_self_v_zz__bbfd81cea710,
+    &afw_self_v_zz__a4ef3a39a3f5,
     &afw_self_v_zz___value__string___date,
     &afw_self_v_zz__function_to_date_string________value__string____date__,
     NULL,
@@ -134179,7 +134179,7 @@ impl_to_dayTimeDuration_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_dayTimeDuration_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid dayTimeDuration text",
+    "reason", "the dayTimeDuration parser rejects the text",
     NULL,
     NULL
 };
@@ -134196,7 +134196,7 @@ afw_function_definition_to_dayTimeDuration_string = {
     &afw_self_v_toDayTimeDurationString,
     &afw_self_v_afwToDayTimeDurationString,
     &afw_self_v_zz__Converts_string_to_dayTimeDuration,
-    &afw_self_v_zz__367db3ef0c4e,
+    &afw_self_v_zz__fc44b15025de,
     &afw_self_v_zz___value__string___dayTimeDuration,
     &afw_self_v_zz__1e1dd966f54b,
     NULL,
@@ -134338,7 +134338,7 @@ impl_to_dnsName_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_dnsName_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid dnsName text",
+    "reason", "the dnsName parser rejects the text",
     NULL,
     NULL
 };
@@ -134355,7 +134355,7 @@ afw_function_definition_to_dnsName_string = {
     &afw_self_v_toDnsNameString,
     &afw_self_v_afwToDnsNameString,
     &afw_self_v_zz__Converts_string_to_dnsName,
-    &afw_self_v_zz__8632f9ced8b1,
+    &afw_self_v_zz__c54cc2f28be7,
     &afw_self_v_zz___value__string___dnsName,
     &afw_self_v_zz__function_to_dnsName_string________value__string____dnsName__,
     NULL,
@@ -134656,7 +134656,7 @@ impl_to_hexBinary_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_hexBinary_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid hexBinary text",
+    "reason", "the hexBinary parser rejects the text",
     NULL,
     NULL
 };
@@ -134673,7 +134673,7 @@ afw_function_definition_to_hexBinary_string = {
     &afw_self_v_toHexBinaryString,
     &afw_self_v_afwToHexBinaryString,
     &afw_self_v_zz__Converts_string_to_hexBinary,
-    &afw_self_v_zz__bd1eaecbad21,
+    &afw_self_v_zz__2e5ecc91d300,
     &afw_self_v_zz___value__string___hexBinary,
     &afw_self_v_zz__ce2b80f6e531,
     NULL,
@@ -134815,7 +134815,7 @@ impl_to_ia5String_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_ia5String_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid ia5String text",
+    "reason", "the ia5String parser rejects the text",
     NULL,
     NULL
 };
@@ -134832,7 +134832,7 @@ afw_function_definition_to_ia5String_string = {
     &afw_self_v_toIa5StringString,
     &afw_self_v_afwToIa5StringString,
     &afw_self_v_zz__Converts_string_to_ia5String,
-    &afw_self_v_zz__f81ea826ce01,
+    &afw_self_v_zz__e392a2124ab0,
     &afw_self_v_zz___value__string___ia5String,
     &afw_self_v_zz__1ef690e73d3e,
     NULL,
@@ -135136,7 +135136,7 @@ impl_to_ipAddress_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_ipAddress_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid ipAddress text",
+    "reason", "the ipAddress parser rejects the text",
     NULL,
     NULL
 };
@@ -135153,7 +135153,7 @@ afw_function_definition_to_ipAddress_string = {
     &afw_self_v_toIpAddressString,
     &afw_self_v_afwToIpAddressString,
     &afw_self_v_zz__Converts_string_to_ipAddress,
-    &afw_self_v_zz__0384f2d6b786,
+    &afw_self_v_zz__9ed6b15bfe0b,
     &afw_self_v_zz___value__string___ipAddress,
     &afw_self_v_zz__a4c9206f2132,
     NULL,
@@ -135295,7 +135295,7 @@ impl_to_objectId_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_objectId_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid objectId text",
+    "reason", "the objectId parser rejects the text",
     NULL,
     NULL
 };
@@ -135312,7 +135312,7 @@ afw_function_definition_to_objectId_string = {
     &afw_self_v_toObjectIdString,
     &afw_self_v_afwToObjectIdString,
     &afw_self_v_zz__Converts_string_to_objectId,
-    &afw_self_v_zz__8be21ddeeaea,
+    &afw_self_v_zz__10129f4d62e0,
     &afw_self_v_zz___value__string___objectId,
     &afw_self_v_zz__512f37c354ee,
     NULL,
@@ -135454,7 +135454,7 @@ impl_to_objectPath_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_objectPath_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid objectPath text",
+    "reason", "the objectPath parser rejects the text",
     NULL,
     NULL
 };
@@ -135471,7 +135471,7 @@ afw_function_definition_to_objectPath_string = {
     &afw_self_v_toObjectPathString,
     &afw_self_v_afwToObjectPathString,
     &afw_self_v_zz__Converts_string_to_objectPath,
-    &afw_self_v_zz__38a5cae49bec,
+    &afw_self_v_zz__ca1d522a04ea,
     &afw_self_v_zz___value__string___objectPath,
     &afw_self_v_zz__31638a47ab3b,
     NULL,
@@ -135613,7 +135613,7 @@ impl_to_password_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_password_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid password text",
+    "reason", "the password parser rejects the text",
     NULL,
     NULL
 };
@@ -135630,7 +135630,7 @@ afw_function_definition_to_password_string = {
     &afw_self_v_toPasswordString,
     &afw_self_v_afwToPasswordString,
     &afw_self_v_zz__Converts_string_to_password,
-    &afw_self_v_zz__dbb299c75d4a,
+    &afw_self_v_zz__489d8a76b075,
     &afw_self_v_zz___value__string___password,
     &afw_self_v_zz__021c891f5cf5,
     NULL,
@@ -135772,7 +135772,7 @@ impl_to_rfc822Name_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_rfc822Name_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid rfc822Name text",
+    "reason", "the rfc822Name parser rejects the text",
     NULL,
     NULL
 };
@@ -135789,7 +135789,7 @@ afw_function_definition_to_rfc822Name_string = {
     &afw_self_v_toRfc822NameString,
     &afw_self_v_afwToRfc822NameString,
     &afw_self_v_zz__Converts_string_to_rfc822Name,
-    &afw_self_v_zz__9f978eafb5f2,
+    &afw_self_v_zz__fd10d9b54d84,
     &afw_self_v_zz___value__string___rfc822Name,
     &afw_self_v_zz__169001fd6db4,
     NULL,
@@ -136082,7 +136082,7 @@ impl_to_time_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_time_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid time text",
+    "reason", "the time parser rejects the text",
     NULL,
     NULL
 };
@@ -136099,7 +136099,7 @@ afw_function_definition_to_time_string = {
     &afw_self_v_toTimeString,
     &afw_self_v_afwToTimeString,
     &afw_self_v_zz__Converts_string_to_time,
-    &afw_self_v_zz__5037c74fcb72,
+    &afw_self_v_zz__ce2f592d28c7,
     &afw_self_v_zz___value__string___time,
     &afw_self_v_zz__function_to_time_string________value__string____time__,
     NULL,
@@ -136241,7 +136241,7 @@ impl_to_x500Name_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_x500Name_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid x500Name text",
+    "reason", "the x500Name parser rejects the text",
     NULL,
     NULL
 };
@@ -136258,7 +136258,7 @@ afw_function_definition_to_x500Name_string = {
     &afw_self_v_toX500NameString,
     &afw_self_v_afwToX500NameString,
     &afw_self_v_zz__Converts_string_to_x500Name,
-    &afw_self_v_zz__f2f00bcd9b70,
+    &afw_self_v_zz__9e49bebb22ee,
     &afw_self_v_zz___value__string___x500Name,
     &afw_self_v_zz__2b35d9c2b0a9,
     NULL,
@@ -136400,7 +136400,7 @@ impl_to_yearMonthDuration_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_yearMonthDuration_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value is not valid yearMonthDuration text",
+    "reason", "the yearMonthDuration parser rejects the text",
     NULL,
     NULL
 };
@@ -136417,7 +136417,7 @@ afw_function_definition_to_yearMonthDuration_string = {
     &afw_self_v_toYearMonthDurationString,
     &afw_self_v_afwToYearMonthDurationString,
     &afw_self_v_zz__Converts_string_to_yearMonthDuration,
-    &afw_self_v_zz__dc2ffbda2b2b,
+    &afw_self_v_zz__f064eee9c0f8,
     &afw_self_v_zz___value__string___yearMonthDuration,
     &afw_self_v_zz__cf730c8eb5fa,
     NULL,
@@ -137029,7 +137029,7 @@ afw_function_definition_as_template = {
     &afw_self_v_asTemplate,
     &afw_self_v_afwAsTemplate,
     &afw_self_v_zz__Asserts_that_value_is_dataType_template,
-    &afw_self_v_zz__0d12d7baf77b,
+    &afw_self_v_zz__79d680ad00eb,
     &afw_self_v_zz___value__any___template,
     &afw_self_v_zz__function_as_template_______value__any____template__,
     NULL,
@@ -139865,7 +139865,7 @@ afw_function_definition_as_time = {
     &afw_self_v_asTime,
     &afw_self_v_afwAsTime,
     &afw_self_v_zz__Asserts_that_value_is_dataType_time,
-    &afw_self_v_zz__209489f10ae9,
+    &afw_self_v_zz__2847bdc18ba5,
     &afw_self_v_zz___value__any___time,
     &afw_self_v_zz__function_as_time_______value__any____time__,
     NULL,
@@ -144099,7 +144099,7 @@ afw_function_definition_as_unevaluated = {
     &afw_self_v_asUnevaluated,
     &afw_self_v_afwAsUnevaluated,
     &afw_self_v_zz__Asserts_that_value_is_dataType_unevaluated,
-    &afw_self_v_zz__68f917c06265,
+    &afw_self_v_zz__58392ddee5bb,
     &afw_self_v_zz___value__any___unevaluated,
     &afw_self_v_zz__function_as_unevaluated_______value__any____unevaluated__,
     NULL,
@@ -144711,7 +144711,7 @@ afw_function_definition_as_x500Name = {
     &afw_self_v_asX500Name,
     &afw_self_v_afwAsX500Name,
     &afw_self_v_zz__Asserts_that_value_is_dataType_x500Name,
-    &afw_self_v_zz__50b51dd1c2ef,
+    &afw_self_v_zz__7cb521aa8df5,
     &afw_self_v_zz___value__any___x500Name,
     &afw_self_v_zz__function_as_x500Name_______value__any____x500Name__,
     NULL,
@@ -148794,7 +148794,7 @@ afw_function_definition_as_xpathExpression = {
     &afw_self_v_asXpathExpression,
     &afw_self_v_afwAsXpathExpression,
     &afw_self_v_zz__Asserts_that_value_is_dataType_xpathExpression,
-    &afw_self_v_zz__e9eb159cae2e,
+    &afw_self_v_zz__6b0313ea129e,
     &afw_self_v_zz___value__any___xpathExpression,
     &afw_self_v_zz__1afed3c6dcef,
     NULL,
@@ -152159,7 +152159,7 @@ afw_function_definition_as_yearMonthDuration = {
     &afw_self_v_asYearMonthDuration,
     &afw_self_v_afwAsYearMonthDuration,
     &afw_self_v_zz__Asserts_that_value_is_dataType_yearMonthDuration,
-    &afw_self_v_zz__340aa875f6c0,
+    &afw_self_v_zz__cac0f10d9eb1,
     &afw_self_v_zz___value__any___yearMonthDuration,
     &afw_self_v_zz__62147ac07b4b,
     NULL,

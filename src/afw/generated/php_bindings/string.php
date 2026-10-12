@@ -56,7 +56,8 @@ class string
      * Returns value unchanged if it is dataType string. Otherwise, including
      * when value is undefined, throws an error. It never converts: to get a
      * string from a value of another data type, write a typed literal or call
-     * a to_ function. This is usually written value as string.
+     * a to_T conversion function where one exists. This is usually written
+     * value as string.
      *
      * @param $value Value to assert
      *
@@ -1134,9 +1135,9 @@ class string
     /**
      * to_anyURI_string()
      *
-     * Converts string value to anyURI. A string is read as anyURI text, the
-     * same text the typed literal "..."anyURI accepts, and text that is not
-     * valid anyURI is an error.
+     * Converts string value to anyURI. A string is read with the anyURI
+     * parser, the same parser the typed literal "..."anyURI uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1158,9 +1159,9 @@ class string
     /**
      * to_base64Binary_string()
      *
-     * Converts string value to base64Binary. A string is read as base64Binary
-     * text, the same text the typed literal "..."base64Binary accepts, and
-     * text that is not valid base64Binary is an error.
+     * Converts string value to base64Binary. A string is read with the
+     * base64Binary parser, the same parser the typed literal
+     * "..."base64Binary uses, and text the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1182,9 +1183,9 @@ class string
     /**
      * to_dateTime_string()
      *
-     * Converts string value to dateTime. A string is read as dateTime text,
-     * the same text the typed literal "..."dateTime accepts, and text that is
-     * not valid dateTime is an error.
+     * Converts string value to dateTime. A string is read with the dateTime
+     * parser, the same parser the typed literal "..."dateTime uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1206,9 +1207,9 @@ class string
     /**
      * to_date_string()
      *
-     * Converts string value to date. A string is read as date text, the same
-     * text the typed literal "..."date accepts, and text that is not valid
-     * date is an error.
+     * Converts string value to date. A string is read with the date parser,
+     * the same parser the typed literal "..."date uses, and text the parser
+     * rejects is an error.
      *
      * @param string $value
      *
@@ -1230,10 +1231,9 @@ class string
     /**
      * to_dayTimeDuration_string()
      *
-     * Converts string value to dayTimeDuration. A string is read as
-     * dayTimeDuration text, the same text the typed literal
-     * "..."dayTimeDuration accepts, and text that is not valid
-     * dayTimeDuration is an error.
+     * Converts string value to dayTimeDuration. A string is read with the
+     * dayTimeDuration parser, the same parser the typed literal
+     * "..."dayTimeDuration uses, and text the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1255,9 +1255,9 @@ class string
     /**
      * to_dnsName_string()
      *
-     * Converts string value to dnsName. A string is read as dnsName text, the
-     * same text the typed literal "..."dnsName accepts, and text that is not
-     * valid dnsName is an error.
+     * Converts string value to dnsName. A string is read with the dnsName
+     * parser, the same parser the typed literal "..."dnsName uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1304,9 +1304,9 @@ class string
     /**
      * to_hexBinary_string()
      *
-     * Converts string value to hexBinary. A string is read as hexBinary text,
-     * the same text the typed literal "..."hexBinary accepts, and text that
-     * is not valid hexBinary is an error.
+     * Converts string value to hexBinary. A string is read with the hexBinary
+     * parser, the same parser the typed literal "..."hexBinary uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1328,9 +1328,9 @@ class string
     /**
      * to_ia5String_string()
      *
-     * Converts string value to ia5String. A string is read as ia5String text,
-     * the same text the typed literal "..."ia5String accepts, and text that
-     * is not valid ia5String is an error.
+     * Converts string value to ia5String. A string is read with the ia5String
+     * parser, the same parser the typed literal "..."ia5String uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1378,9 +1378,9 @@ class string
     /**
      * to_ipAddress_string()
      *
-     * Converts string value to ipAddress. A string is read as ipAddress text,
-     * the same text the typed literal "..."ipAddress accepts, and text that
-     * is not valid ipAddress is an error.
+     * Converts string value to ipAddress. A string is read with the ipAddress
+     * parser, the same parser the typed literal "..."ipAddress uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1402,7 +1402,8 @@ class string
     /**
      * to_objectId_string()
      *
-     * Converts string value to objectId. A string is read as objectId text.
+     * Converts string value to objectId. A string is read with the objectId
+     * parser, and text the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1424,8 +1425,8 @@ class string
     /**
      * to_objectPath_string()
      *
-     * Converts string value to objectPath. A string is read as objectPath
-     * text.
+     * Converts string value to objectPath. A string is read with the
+     * objectPath parser, and text the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1447,9 +1448,9 @@ class string
     /**
      * to_password_string()
      *
-     * Converts string value to password. A string is read as password text,
-     * the same text the typed literal "..."password accepts, and text that is
-     * not valid password is an error.
+     * Converts string value to password. A string is read with the password
+     * parser, the same parser the typed literal "..."password uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1471,9 +1472,9 @@ class string
     /**
      * to_rfc822Name_string()
      *
-     * Converts string value to rfc822Name. A string is read as rfc822Name
-     * text, the same text the typed literal "..."rfc822Name accepts, and text
-     * that is not valid rfc822Name is an error.
+     * Converts string value to rfc822Name. A string is read with the
+     * rfc822Name parser, the same parser the typed literal "..."rfc822Name
+     * uses, and text the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1518,9 +1519,9 @@ class string
     /**
      * to_time_string()
      *
-     * Converts string value to time. A string is read as time text, the same
-     * text the typed literal "..."time accepts, and text that is not valid
-     * time is an error.
+     * Converts string value to time. A string is read with the time parser,
+     * the same parser the typed literal "..."time uses, and text the parser
+     * rejects is an error.
      *
      * @param string $value
      *
@@ -1542,9 +1543,9 @@ class string
     /**
      * to_x500Name_string()
      *
-     * Converts string value to x500Name. A string is read as x500Name text,
-     * the same text the typed literal "..."x500Name accepts, and text that is
-     * not valid x500Name is an error.
+     * Converts string value to x500Name. A string is read with the x500Name
+     * parser, the same parser the typed literal "..."x500Name uses, and text
+     * the parser rejects is an error.
      *
      * @param string $value
      *
@@ -1566,10 +1567,9 @@ class string
     /**
      * to_yearMonthDuration_string()
      *
-     * Converts string value to yearMonthDuration. A string is read as
-     * yearMonthDuration text, the same text the typed literal
-     * "..."yearMonthDuration accepts, and text that is not valid
-     * yearMonthDuration is an error.
+     * Converts string value to yearMonthDuration. A string is read with the
+     * yearMonthDuration parser, the same parser the typed literal
+     * "..."yearMonthDuration uses, and text the parser rejects is an error.
      *
      * @param string $value
      *

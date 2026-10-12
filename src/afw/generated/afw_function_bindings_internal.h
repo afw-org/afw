@@ -2221,8 +2221,8 @@ afw_function_definition_as_anyURI;
  *
  * Returns value unchanged if it is dataType anyURI. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a anyURI from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as anyURI.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as anyURI.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3639,8 +3639,8 @@ afw_function_definition_as_array;
  *
  * Returns value unchanged if it is dataType array. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a array from a
- * value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as array.
+ * value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4745,7 +4745,8 @@ afw_function_definition_as_base64Binary;
  * Returns value unchanged if it is dataType base64Binary. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * base64Binary from a value of another data type, write a typed literal or call
- * a to_ function. This is usually written value as base64Binary.
+ * a to_T conversion function where one exists. This is usually written value as
+ * base64Binary.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5589,8 +5590,8 @@ afw_function_definition_as_boolean;
  *
  * Returns value unchanged if it is dataType boolean. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a boolean from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as boolean.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as boolean.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8076,8 +8077,9 @@ afw_function_definition_as_dateTime;
  *
  * Returns value unchanged if it is dataType dateTime. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a dateTime
- * from a value of another data type, write a typed literal or call a to_
- * function. This is usually written value as dateTime.
+ * from a value of another data type, write a typed literal or call a to_T
+ * conversion function where one exists. This is usually written value as
+ * dateTime.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9083,8 +9085,8 @@ afw_function_definition_as_date;
  *
  * Returns value unchanged if it is dataType date. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a date from a
- * value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as date.
+ * value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as date.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10014,7 +10016,8 @@ afw_function_definition_as_dayTimeDuration;
  * Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
  * including when value is undefined, throws an error. It never converts: to get
  * a dayTimeDuration from a value of another data type, write a typed literal or
- * call a to_ function. This is usually written value as dayTimeDuration.
+ * call a to_T conversion function where one exists. This is usually written
+ * value as dayTimeDuration.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10826,8 +10829,8 @@ afw_function_definition_as_dnsName;
  *
  * Returns value unchanged if it is dataType dnsName. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a dnsName from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as dnsName.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as dnsName.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11552,8 +11555,8 @@ afw_function_definition_as_double;
  *
  * Returns value unchanged if it is dataType double. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a double from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as double.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12856,8 +12859,9 @@ afw_function_definition_as_function;
  *
  * Returns value unchanged if it is dataType function. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a function
- * from a value of another data type, write a typed literal or call a to_
- * function. This is usually written value as function.
+ * from a value of another data type, write a typed literal or call a to_T
+ * conversion function where one exists. This is usually written value as
+ * function.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13327,7 +13331,8 @@ afw_function_definition_as_hexBinary;
  * Returns value unchanged if it is dataType hexBinary. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * hexBinary from a value of another data type, write a typed literal or call a
- * to_ function. This is usually written value as hexBinary.
+ * to_T conversion function where one exists. This is usually written value as
+ * hexBinary.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14741,7 +14746,8 @@ afw_function_definition_as_ia5String;
  * Returns value unchanged if it is dataType ia5String. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * ia5String from a value of another data type, write a typed literal or call a
- * to_ function. This is usually written value as ia5String.
+ * to_T conversion function where one exists. This is usually written value as
+ * ia5String.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15514,8 +15520,8 @@ afw_function_definition_as_integer;
  *
  * Returns value unchanged if it is dataType integer. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a integer from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as integer.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as integer.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16610,7 +16616,8 @@ afw_function_definition_as_ipAddress;
  * Returns value unchanged if it is dataType ipAddress. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * ipAddress from a value of another data type, write a typed literal or call a
- * to_ function. This is usually written value as ipAddress.
+ * to_T conversion function where one exists. This is usually written value as
+ * ipAddress.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18978,8 +18985,8 @@ afw_function_definition_as_null;
  *
  * Returns value unchanged if it is dataType null. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a null from a
- * value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as null.
+ * value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as null.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19167,8 +19174,9 @@ afw_function_definition_as_objectId;
  *
  * Returns value unchanged if it is dataType objectId. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a objectId
- * from a value of another data type, write a typed literal or call a to_
- * function. This is usually written value as objectId.
+ * from a value of another data type, write a typed literal or call a to_T
+ * conversion function where one exists. This is usually written value as
+ * objectId.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19711,7 +19719,8 @@ afw_function_definition_as_objectPath;
  * Returns value unchanged if it is dataType objectPath. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * objectPath from a value of another data type, write a typed literal or call a
- * to_ function. This is usually written value as objectPath.
+ * to_T conversion function where one exists. This is usually written value as
+ * objectPath.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20331,8 +20340,8 @@ afw_function_definition_as_object;
  *
  * Returns value unchanged if it is dataType object. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a object from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as object.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as object.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21281,8 +21290,9 @@ afw_function_definition_as_password;
  *
  * Returns value unchanged if it is dataType password. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a password
- * from a value of another data type, write a typed literal or call a to_
- * function. This is usually written value as password.
+ * from a value of another data type, write a typed literal or call a to_T
+ * conversion function where one exists. This is usually written value as
+ * password.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24319,9 +24329,9 @@ afw_function_definition_to_anyURI;
  * @brief Adaptive Function `to_anyURI`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to anyURI. A string is read as anyURI text, the
- * same text the typed literal "..."anyURI accepts, and text that is not valid
- * anyURI is an error.
+ * Converts `<dataType>` value to anyURI. A string is read with the anyURI
+ * parser, the same parser the typed literal "..."anyURI uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24348,7 +24358,7 @@ afw_function_definition_to_anyURI;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid anyURI text
+ *   conversion_error - the anyURI parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24363,9 +24373,9 @@ afw_function_definition_to_base64Binary;
  * @brief Adaptive Function `to_base64Binary`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to base64Binary. A string is read as base64Binary
- * text, the same text the typed literal "..."base64Binary accepts, and text
- * that is not valid base64Binary is an error.
+ * Converts `<dataType>` value to base64Binary. A string is read with the
+ * base64Binary parser, the same parser the typed literal "..."base64Binary
+ * uses, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24392,7 +24402,7 @@ afw_function_definition_to_base64Binary;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid base64Binary text
+ *   conversion_error - the base64Binary parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24407,9 +24417,9 @@ afw_function_definition_to_date;
  * @brief Adaptive Function `to_date`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to date. A string is read as date text, the same
- * text the typed literal "..."date accepts, and text that is not valid date is
- * an error.
+ * Converts `<dataType>` value to date. A string is read with the date parser,
+ * the same parser the typed literal "..."date uses, and text the parser rejects
+ * is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24436,7 +24446,7 @@ afw_function_definition_to_date;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid date text
+ *   conversion_error - the date parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24451,9 +24461,9 @@ afw_function_definition_to_dateTime;
  * @brief Adaptive Function `to_dateTime`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to dateTime. A string is read as dateTime text,
- * the same text the typed literal "..."dateTime accepts, and text that is not
- * valid dateTime is an error.
+ * Converts `<dataType>` value to dateTime. A string is read with the dateTime
+ * parser, the same parser the typed literal "..."dateTime uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24480,7 +24490,7 @@ afw_function_definition_to_dateTime;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid dateTime text
+ *   conversion_error - the dateTime parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24495,9 +24505,9 @@ afw_function_definition_to_dayTimeDuration;
  * @brief Adaptive Function `to_dayTimeDuration`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to dayTimeDuration. A string is read as
- * dayTimeDuration text, the same text the typed literal "..."dayTimeDuration
- * accepts, and text that is not valid dayTimeDuration is an error.
+ * Converts `<dataType>` value to dayTimeDuration. A string is read with the
+ * dayTimeDuration parser, the same parser the typed literal
+ * "..."dayTimeDuration uses, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24524,7 +24534,7 @@ afw_function_definition_to_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid dayTimeDuration text
+ *   conversion_error - the dayTimeDuration parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24539,9 +24549,9 @@ afw_function_definition_to_dnsName;
  * @brief Adaptive Function `to_dnsName`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to dnsName. A string is read as dnsName text, the
- * same text the typed literal "..."dnsName accepts, and text that is not valid
- * dnsName is an error.
+ * Converts `<dataType>` value to dnsName. A string is read with the dnsName
+ * parser, the same parser the typed literal "..."dnsName uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24568,7 +24578,7 @@ afw_function_definition_to_dnsName;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid dnsName text
+ *   conversion_error - the dnsName parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24627,9 +24637,9 @@ afw_function_definition_to_hexBinary;
  * @brief Adaptive Function `to_hexBinary`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to hexBinary. A string is read as hexBinary text,
- * the same text the typed literal "..."hexBinary accepts, and text that is not
- * valid hexBinary is an error.
+ * Converts `<dataType>` value to hexBinary. A string is read with the hexBinary
+ * parser, the same parser the typed literal "..."hexBinary uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24656,7 +24666,7 @@ afw_function_definition_to_hexBinary;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid hexBinary text
+ *   conversion_error - the hexBinary parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24671,9 +24681,9 @@ afw_function_definition_to_ia5String;
  * @brief Adaptive Function `to_ia5String`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to ia5String. A string is read as ia5String text,
- * the same text the typed literal "..."ia5String accepts, and text that is not
- * valid ia5String is an error.
+ * Converts `<dataType>` value to ia5String. A string is read with the ia5String
+ * parser, the same parser the typed literal "..."ia5String uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24700,7 +24710,7 @@ afw_function_definition_to_ia5String;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid ia5String text
+ *   conversion_error - the ia5String parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24762,9 +24772,9 @@ afw_function_definition_to_ipAddress;
  * @brief Adaptive Function `to_ipAddress`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to ipAddress. A string is read as ipAddress text,
- * the same text the typed literal "..."ipAddress accepts, and text that is not
- * valid ipAddress is an error.
+ * Converts `<dataType>` value to ipAddress. A string is read with the ipAddress
+ * parser, the same parser the typed literal "..."ipAddress uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24791,7 +24801,7 @@ afw_function_definition_to_ipAddress;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid ipAddress text
+ *   conversion_error - the ipAddress parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24806,7 +24816,8 @@ afw_function_definition_to_objectId;
  * @brief Adaptive Function `to_objectId`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to objectId. A string is read as objectId text.
+ * Converts `<dataType>` value to objectId. A string is read with the objectId
+ * parser, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24833,7 +24844,7 @@ afw_function_definition_to_objectId;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid objectId text
+ *   conversion_error - the objectId parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24848,8 +24859,8 @@ afw_function_definition_to_objectPath;
  * @brief Adaptive Function `to_objectPath`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to objectPath. A string is read as objectPath
- * text.
+ * Converts `<dataType>` value to objectPath. A string is read with the
+ * objectPath parser, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24876,7 +24887,7 @@ afw_function_definition_to_objectPath;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid objectPath text
+ *   conversion_error - the objectPath parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24891,9 +24902,9 @@ afw_function_definition_to_password;
  * @brief Adaptive Function `to_password`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to password. A string is read as password text,
- * the same text the typed literal "..."password accepts, and text that is not
- * valid password is an error.
+ * Converts `<dataType>` value to password. A string is read with the password
+ * parser, the same parser the typed literal "..."password uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24920,7 +24931,7 @@ afw_function_definition_to_password;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid password text
+ *   conversion_error - the password parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24935,9 +24946,9 @@ afw_function_definition_to_rfc822Name;
  * @brief Adaptive Function `to_rfc822Name`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to rfc822Name. A string is read as rfc822Name
- * text, the same text the typed literal "..."rfc822Name accepts, and text that
- * is not valid rfc822Name is an error.
+ * Converts `<dataType>` value to rfc822Name. A string is read with the
+ * rfc822Name parser, the same parser the typed literal "..."rfc822Name uses,
+ * and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24964,7 +24975,7 @@ afw_function_definition_to_rfc822Name;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid rfc822Name text
+ *   conversion_error - the rfc822Name parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25021,9 +25032,9 @@ afw_function_definition_to_time;
  * @brief Adaptive Function `to_time`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to time. A string is read as time text, the same
- * text the typed literal "..."time accepts, and text that is not valid time is
- * an error.
+ * Converts `<dataType>` value to time. A string is read with the time parser,
+ * the same parser the typed literal "..."time uses, and text the parser rejects
+ * is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25050,7 +25061,7 @@ afw_function_definition_to_time;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid time text
+ *   conversion_error - the time parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25065,9 +25076,9 @@ afw_function_definition_to_x500Name;
  * @brief Adaptive Function `to_x500Name`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to x500Name. A string is read as x500Name text,
- * the same text the typed literal "..."x500Name accepts, and text that is not
- * valid x500Name is an error.
+ * Converts `<dataType>` value to x500Name. A string is read with the x500Name
+ * parser, the same parser the typed literal "..."x500Name uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25094,7 +25105,7 @@ afw_function_definition_to_x500Name;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid x500Name text
+ *   conversion_error - the x500Name parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25109,10 +25120,9 @@ afw_function_definition_to_yearMonthDuration;
  * @brief Adaptive Function `to_yearMonthDuration`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to yearMonthDuration. A string is read as
- * yearMonthDuration text, the same text the typed literal
- * "..."yearMonthDuration accepts, and text that is not valid yearMonthDuration
- * is an error.
+ * Converts `<dataType>` value to yearMonthDuration. A string is read with the
+ * yearMonthDuration parser, the same parser the typed literal
+ * "..."yearMonthDuration uses, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25139,7 +25149,7 @@ afw_function_definition_to_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid yearMonthDuration text
+ *   conversion_error - the yearMonthDuration parser rejects the text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25961,7 +25971,8 @@ afw_function_definition_as_rfc822Name;
  * Returns value unchanged if it is dataType rfc822Name. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * rfc822Name from a value of another data type, write a typed literal or call a
- * to_ function. This is usually written value as rfc822Name.
+ * to_T conversion function where one exists. This is usually written value as
+ * rfc822Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26845,8 +26856,8 @@ afw_function_definition_as_script;
  *
  * Returns value unchanged if it is dataType script. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a script from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as script.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as script.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28013,8 +28024,8 @@ afw_function_definition_as_string;
  *
  * Returns value unchanged if it is dataType string. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a string from
- * a value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as string.
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29599,8 +29610,8 @@ afw_function_definition_to_anyURI_string;
  * @brief Adaptive Function `to_anyURI<string>`
  * @param x function execute parameter.
  *
- * Converts string value to anyURI. A string is read as anyURI text, the same
- * text the typed literal "..."anyURI accepts, and text that is not valid anyURI
+ * Converts string value to anyURI. A string is read with the anyURI parser, the
+ * same parser the typed literal "..."anyURI uses, and text the parser rejects
  * is an error.
  *
  * This function is pure, so it will always return the same result
@@ -29624,7 +29635,7 @@ afw_function_definition_to_anyURI_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid anyURI text
+ *   conversion_error - the anyURI parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29639,9 +29650,9 @@ afw_function_definition_to_base64Binary_string;
  * @brief Adaptive Function `to_base64Binary<string>`
  * @param x function execute parameter.
  *
- * Converts string value to base64Binary. A string is read as base64Binary text,
- * the same text the typed literal "..."base64Binary accepts, and text that is
- * not valid base64Binary is an error.
+ * Converts string value to base64Binary. A string is read with the base64Binary
+ * parser, the same parser the typed literal "..."base64Binary uses, and text
+ * the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29664,7 +29675,7 @@ afw_function_definition_to_base64Binary_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid base64Binary text
+ *   conversion_error - the base64Binary parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29679,9 +29690,9 @@ afw_function_definition_to_dateTime_string;
  * @brief Adaptive Function `to_dateTime<string>`
  * @param x function execute parameter.
  *
- * Converts string value to dateTime. A string is read as dateTime text, the
- * same text the typed literal "..."dateTime accepts, and text that is not valid
- * dateTime is an error.
+ * Converts string value to dateTime. A string is read with the dateTime parser,
+ * the same parser the typed literal "..."dateTime uses, and text the parser
+ * rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29704,7 +29715,7 @@ afw_function_definition_to_dateTime_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid dateTime text
+ *   conversion_error - the dateTime parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29719,9 +29730,9 @@ afw_function_definition_to_date_string;
  * @brief Adaptive Function `to_date<string>`
  * @param x function execute parameter.
  *
- * Converts string value to date. A string is read as date text, the same text
- * the typed literal "..."date accepts, and text that is not valid date is an
- * error.
+ * Converts string value to date. A string is read with the date parser, the
+ * same parser the typed literal "..."date uses, and text the parser rejects is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29744,7 +29755,7 @@ afw_function_definition_to_date_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid date text
+ *   conversion_error - the date parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29759,9 +29770,9 @@ afw_function_definition_to_dayTimeDuration_string;
  * @brief Adaptive Function `to_dayTimeDuration<string>`
  * @param x function execute parameter.
  *
- * Converts string value to dayTimeDuration. A string is read as dayTimeDuration
- * text, the same text the typed literal "..."dayTimeDuration accepts, and text
- * that is not valid dayTimeDuration is an error.
+ * Converts string value to dayTimeDuration. A string is read with the
+ * dayTimeDuration parser, the same parser the typed literal
+ * "..."dayTimeDuration uses, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29784,7 +29795,7 @@ afw_function_definition_to_dayTimeDuration_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid dayTimeDuration text
+ *   conversion_error - the dayTimeDuration parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29799,9 +29810,9 @@ afw_function_definition_to_dnsName_string;
  * @brief Adaptive Function `to_dnsName<string>`
  * @param x function execute parameter.
  *
- * Converts string value to dnsName. A string is read as dnsName text, the same
- * text the typed literal "..."dnsName accepts, and text that is not valid
- * dnsName is an error.
+ * Converts string value to dnsName. A string is read with the dnsName parser,
+ * the same parser the typed literal "..."dnsName uses, and text the parser
+ * rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29824,7 +29835,7 @@ afw_function_definition_to_dnsName_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid dnsName text
+ *   conversion_error - the dnsName parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29879,9 +29890,9 @@ afw_function_definition_to_hexBinary_string;
  * @brief Adaptive Function `to_hexBinary<string>`
  * @param x function execute parameter.
  *
- * Converts string value to hexBinary. A string is read as hexBinary text, the
- * same text the typed literal "..."hexBinary accepts, and text that is not
- * valid hexBinary is an error.
+ * Converts string value to hexBinary. A string is read with the hexBinary
+ * parser, the same parser the typed literal "..."hexBinary uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29904,7 +29915,7 @@ afw_function_definition_to_hexBinary_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid hexBinary text
+ *   conversion_error - the hexBinary parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29919,9 +29930,9 @@ afw_function_definition_to_ia5String_string;
  * @brief Adaptive Function `to_ia5String<string>`
  * @param x function execute parameter.
  *
- * Converts string value to ia5String. A string is read as ia5String text, the
- * same text the typed literal "..."ia5String accepts, and text that is not
- * valid ia5String is an error.
+ * Converts string value to ia5String. A string is read with the ia5String
+ * parser, the same parser the typed literal "..."ia5String uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29944,7 +29955,7 @@ afw_function_definition_to_ia5String_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid ia5String text
+ *   conversion_error - the ia5String parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30002,9 +30013,9 @@ afw_function_definition_to_ipAddress_string;
  * @brief Adaptive Function `to_ipAddress<string>`
  * @param x function execute parameter.
  *
- * Converts string value to ipAddress. A string is read as ipAddress text, the
- * same text the typed literal "..."ipAddress accepts, and text that is not
- * valid ipAddress is an error.
+ * Converts string value to ipAddress. A string is read with the ipAddress
+ * parser, the same parser the typed literal "..."ipAddress uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30027,7 +30038,7 @@ afw_function_definition_to_ipAddress_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid ipAddress text
+ *   conversion_error - the ipAddress parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30042,7 +30053,8 @@ afw_function_definition_to_objectId_string;
  * @brief Adaptive Function `to_objectId<string>`
  * @param x function execute parameter.
  *
- * Converts string value to objectId. A string is read as objectId text.
+ * Converts string value to objectId. A string is read with the objectId parser,
+ * and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30065,7 +30077,7 @@ afw_function_definition_to_objectId_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid objectId text
+ *   conversion_error - the objectId parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30080,7 +30092,8 @@ afw_function_definition_to_objectPath_string;
  * @brief Adaptive Function `to_objectPath<string>`
  * @param x function execute parameter.
  *
- * Converts string value to objectPath. A string is read as objectPath text.
+ * Converts string value to objectPath. A string is read with the objectPath
+ * parser, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30103,7 +30116,7 @@ afw_function_definition_to_objectPath_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid objectPath text
+ *   conversion_error - the objectPath parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30118,9 +30131,9 @@ afw_function_definition_to_password_string;
  * @brief Adaptive Function `to_password<string>`
  * @param x function execute parameter.
  *
- * Converts string value to password. A string is read as password text, the
- * same text the typed literal "..."password accepts, and text that is not valid
- * password is an error.
+ * Converts string value to password. A string is read with the password parser,
+ * the same parser the typed literal "..."password uses, and text the parser
+ * rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30143,7 +30156,7 @@ afw_function_definition_to_password_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid password text
+ *   conversion_error - the password parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30158,9 +30171,9 @@ afw_function_definition_to_rfc822Name_string;
  * @brief Adaptive Function `to_rfc822Name<string>`
  * @param x function execute parameter.
  *
- * Converts string value to rfc822Name. A string is read as rfc822Name text, the
- * same text the typed literal "..."rfc822Name accepts, and text that is not
- * valid rfc822Name is an error.
+ * Converts string value to rfc822Name. A string is read with the rfc822Name
+ * parser, the same parser the typed literal "..."rfc822Name uses, and text the
+ * parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30183,7 +30196,7 @@ afw_function_definition_to_rfc822Name_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid rfc822Name text
+ *   conversion_error - the rfc822Name parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30233,9 +30246,9 @@ afw_function_definition_to_time_string;
  * @brief Adaptive Function `to_time<string>`
  * @param x function execute parameter.
  *
- * Converts string value to time. A string is read as time text, the same text
- * the typed literal "..."time accepts, and text that is not valid time is an
- * error.
+ * Converts string value to time. A string is read with the time parser, the
+ * same parser the typed literal "..."time uses, and text the parser rejects is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30258,7 +30271,7 @@ afw_function_definition_to_time_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid time text
+ *   conversion_error - the time parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30273,9 +30286,9 @@ afw_function_definition_to_x500Name_string;
  * @brief Adaptive Function `to_x500Name<string>`
  * @param x function execute parameter.
  *
- * Converts string value to x500Name. A string is read as x500Name text, the
- * same text the typed literal "..."x500Name accepts, and text that is not valid
- * x500Name is an error.
+ * Converts string value to x500Name. A string is read with the x500Name parser,
+ * the same parser the typed literal "..."x500Name uses, and text the parser
+ * rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30298,7 +30311,7 @@ afw_function_definition_to_x500Name_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid x500Name text
+ *   conversion_error - the x500Name parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30313,10 +30326,9 @@ afw_function_definition_to_yearMonthDuration_string;
  * @brief Adaptive Function `to_yearMonthDuration<string>`
  * @param x function execute parameter.
  *
- * Converts string value to yearMonthDuration. A string is read as
- * yearMonthDuration text, the same text the typed literal
- * "..."yearMonthDuration accepts, and text that is not valid yearMonthDuration
- * is an error.
+ * Converts string value to yearMonthDuration. A string is read with the
+ * yearMonthDuration parser, the same parser the typed literal
+ * "..."yearMonthDuration uses, and text the parser rejects is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30339,7 +30351,7 @@ afw_function_definition_to_yearMonthDuration_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value is not valid yearMonthDuration text
+ *   conversion_error - the yearMonthDuration parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30470,8 +30482,9 @@ afw_function_definition_as_template;
  *
  * Returns value unchanged if it is dataType template. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a template
- * from a value of another data type, write a typed literal or call a to_
- * function. This is usually written value as template.
+ * from a value of another data type, write a typed literal or call a to_T
+ * conversion function where one exists. This is usually written value as
+ * template.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31109,8 +31122,8 @@ afw_function_definition_as_time;
  *
  * Returns value unchanged if it is dataType time. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a time from a
- * value of another data type, write a typed literal or call a to_ function.
- * This is usually written value as time.
+ * value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as time.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32047,7 +32060,8 @@ afw_function_definition_as_unevaluated;
  * Returns value unchanged if it is dataType unevaluated. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * unevaluated from a value of another data type, write a typed literal or call
- * a to_ function. This is usually written value as unevaluated.
+ * a to_T conversion function where one exists. This is usually written value as
+ * unevaluated.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32214,8 +32228,9 @@ afw_function_definition_as_x500Name;
  *
  * Returns value unchanged if it is dataType x500Name. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a x500Name
- * from a value of another data type, write a typed literal or call a to_
- * function. This is usually written value as x500Name.
+ * from a value of another data type, write a typed literal or call a to_T
+ * conversion function where one exists. This is usually written value as
+ * x500Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -33099,7 +33114,8 @@ afw_function_definition_as_xpathExpression;
  * Returns value unchanged if it is dataType xpathExpression. Otherwise,
  * including when value is undefined, throws an error. It never converts: to get
  * a xpathExpression from a value of another data type, write a typed literal or
- * call a to_ function. This is usually written value as xpathExpression.
+ * call a to_T conversion function where one exists. This is usually written
+ * value as xpathExpression.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -33849,7 +33865,8 @@ afw_function_definition_as_yearMonthDuration;
  * Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
  * including when value is undefined, throws an error. It never converts: to get
  * a yearMonthDuration from a value of another data type, write a typed literal
- * or call a to_ function. This is usually written value as yearMonthDuration.
+ * or call a to_T conversion function where one exists. This is usually written
+ * value as yearMonthDuration.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

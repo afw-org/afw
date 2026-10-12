@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toRfc822NameString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to rfc822Name. A string is read as rfc822Name text, the same text the typed literal \"...\"rfc822Name accepts, and text that is not valid rfc822Name is an error.",
+    "description": "Converts string value to rfc822Name. A string is read with the rfc822Name parser, the same parser the typed literal \"...\"rfc822Name uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value is not valid rfc822Name text"
+            "reason": "the rfc822Name parser rejects the text"
         }
     ],
     "functionId": "to_rfc822Name<string>",

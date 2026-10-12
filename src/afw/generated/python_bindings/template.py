@@ -18,7 +18,8 @@ def as_template(session, value):
     Returns value unchanged if it is dataType template. Otherwise, including
     when value is undefined, throws an error. It never converts: to get a
     template from a value of another data type, write a typed literal or call
-    a to_ function. This is usually written value as template.
+    a to_T conversion function where one exists. This is usually written value
+    as template.
 
     Args:
         value (object): Value to assert

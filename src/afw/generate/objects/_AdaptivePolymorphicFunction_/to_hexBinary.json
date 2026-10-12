@@ -2,11 +2,11 @@
     "brief": "Converts string to hexBinary",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to hexBinary. A string is read as hexBinary text, the same text the typed literal \"...\"hexBinary accepts, and text that is not valid hexBinary is an error.",
+    "description": "Converts <dataType> value to hexBinary. A string is read with the hexBinary parser, the same parser the typed literal \"...\"hexBinary uses, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value is not valid hexBinary text"
+            "reason": "the hexBinary parser rejects the text"
         }
     ],
     "functionId": "to_hexBinary",

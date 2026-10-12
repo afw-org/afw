@@ -2,11 +2,11 @@
     "brief": "Converts string to objectPath",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to objectPath. A string is read as objectPath text.",
+    "description": "Converts <dataType> value to objectPath. A string is read with the objectPath parser, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value is not valid objectPath text"
+            "reason": "the objectPath parser rejects the text"
         }
     ],
     "functionId": "to_objectPath",

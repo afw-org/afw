@@ -18,7 +18,8 @@ def as_x500Name(session, value):
     Returns value unchanged if it is dataType x500Name. Otherwise, including
     when value is undefined, throws an error. It never converts: to get a
     x500Name from a value of another data type, write a typed literal or call
-    a to_ function. This is usually written value as x500Name.
+    a to_T conversion function where one exists. This is usually written value
+    as x500Name.
 
     Args:
         value (object): Value to assert

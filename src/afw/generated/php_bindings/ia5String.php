@@ -31,8 +31,8 @@ class ia5String
      * Returns value unchanged if it is dataType ia5String. Otherwise,
      * including when value is undefined, throws an error. It never converts:
      * to get a ia5String from a value of another data type, write a typed
-     * literal or call a to_ function. This is usually written value as
-     * ia5String.
+     * literal or call a to_T conversion function where one exists. This is
+     * usually written value as ia5String.
      *
      * @param $value Value to assert
      *

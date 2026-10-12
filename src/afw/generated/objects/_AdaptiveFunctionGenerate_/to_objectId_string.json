@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toObjectIdString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to objectId. A string is read as objectId text.",
+    "description": "Converts string value to objectId. A string is read with the objectId parser, and text the parser rejects is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value is not valid objectId text"
+            "reason": "the objectId parser rejects the text"
         }
     ],
     "functionId": "to_objectId<string>",

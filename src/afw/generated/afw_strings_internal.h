@@ -861,32 +861,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__0384f2d6b786 \
-    "Converts string value to ipAddress. A string is read as ipAddress text, the same text the typed literal \"...\"ipAddress accepts, and text that is not valid ipAddress is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0384f2d6b786 */
-#define afw_s_zz__0384f2d6b786 \
-    (&afw_self_v_zz__0384f2d6b786.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0384f2d6b786 */
-#define afw_self_s_zz__0384f2d6b786 \
-    (afw_self_v_zz__0384f2d6b786.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0384f2d6b786 */
-extern const afw_value_string_t \
-    afw_self_v_zz__0384f2d6b786;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0384f2d6b786 */
-#define afw_z_zz__0384f2d6b786 \
-    (afw_self_v_zz__0384f2d6b786.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0384f2d6b786 */
-#define afw_v_zz__0384f2d6b786 \
-    (&afw_self_v_zz__0384f2d6b786.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__0391979db77b \
     "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags."
 
@@ -1273,32 +1247,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__04d87697503c */
 #define afw_v_zz__04d87697503c \
     (&afw_self_v_zz__04d87697503c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__04f1b075e271 \
-    "Converts <dataType> value to rfc822Name. A string is read as rfc822Name text, the same text the typed literal \"...\"rfc822Name accepts, and text that is not valid rfc822Name is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__04f1b075e271 */
-#define afw_s_zz__04f1b075e271 \
-    (&afw_self_v_zz__04f1b075e271.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__04f1b075e271 */
-#define afw_self_s_zz__04f1b075e271 \
-    (afw_self_v_zz__04f1b075e271.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__04f1b075e271 */
-extern const afw_value_string_t \
-    afw_self_v_zz__04f1b075e271;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__04f1b075e271 */
-#define afw_z_zz__04f1b075e271 \
-    (afw_self_v_zz__04f1b075e271.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__04f1b075e271 */
-#define afw_v_zz__04f1b075e271 \
-    (&afw_self_v_zz__04f1b075e271.pub)
 
 
 
@@ -1767,6 +1715,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__0698ae47fdaf */
 #define afw_v_zz__0698ae47fdaf \
     (&afw_self_v_zz__0698ae47fdaf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__06e24dcfeb7b \
+    "Returns value unchanged if it is dataType objectPath. Otherwise, including when value is undefined, throws an error. It never converts: to get a objectPath from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as objectPath."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__06e24dcfeb7b */
+#define afw_s_zz__06e24dcfeb7b \
+    (&afw_self_v_zz__06e24dcfeb7b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__06e24dcfeb7b */
+#define afw_self_s_zz__06e24dcfeb7b \
+    (afw_self_v_zz__06e24dcfeb7b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__06e24dcfeb7b */
+extern const afw_value_string_t \
+    afw_self_v_zz__06e24dcfeb7b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__06e24dcfeb7b */
+#define afw_z_zz__06e24dcfeb7b \
+    (afw_self_v_zz__06e24dcfeb7b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__06e24dcfeb7b */
+#define afw_v_zz__06e24dcfeb7b \
+    (&afw_self_v_zz__06e24dcfeb7b.pub)
 
 
 
@@ -2473,6 +2447,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__099e83c78042 \
+    "Converts <dataType> value to base64Binary. A string is read with the base64Binary parser, the same parser the typed literal \"...\"base64Binary uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__099e83c78042 */
+#define afw_s_zz__099e83c78042 \
+    (&afw_self_v_zz__099e83c78042.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__099e83c78042 */
+#define afw_self_s_zz__099e83c78042 \
+    (afw_self_v_zz__099e83c78042.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__099e83c78042 */
+extern const afw_value_string_t \
+    afw_self_v_zz__099e83c78042;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__099e83c78042 */
+#define afw_z_zz__099e83c78042 \
+    (afw_self_v_zz__099e83c78042.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__099e83c78042 */
+#define afw_v_zz__099e83c78042 \
+    (&afw_self_v_zz__099e83c78042.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__09b0790a968b \
     "Read a stream up to a specified number of octets. The result will be the internal memory of a hexBinary value. n must be a non-negative integer and must not exceed 1,000,000."
 
@@ -2885,32 +2885,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__0b6a0d0b52e2 */
 #define afw_v_zz__0b6a0d0b52e2 \
     (&afw_self_v_zz__0b6a0d0b52e2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__0b7fddb6c4db \
-    "Returns value unchanged if it is dataType array. Otherwise, including when value is undefined, throws an error. It never converts: to get a array from a value of another data type, write a typed literal or call a to_ function. This is usually written value as array."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0b7fddb6c4db */
-#define afw_s_zz__0b7fddb6c4db \
-    (&afw_self_v_zz__0b7fddb6c4db.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0b7fddb6c4db */
-#define afw_self_s_zz__0b7fddb6c4db \
-    (afw_self_v_zz__0b7fddb6c4db.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0b7fddb6c4db */
-extern const afw_value_string_t \
-    afw_self_v_zz__0b7fddb6c4db;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0b7fddb6c4db */
-#define afw_z_zz__0b7fddb6c4db \
-    (afw_self_v_zz__0b7fddb6c4db.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0b7fddb6c4db */
-#define afw_v_zz__0b7fddb6c4db \
-    (&afw_self_v_zz__0b7fddb6c4db.pub)
 
 
 
@@ -3461,28 +3435,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__0d12d7baf77b \
-    "Returns value unchanged if it is dataType template. Otherwise, including when value is undefined, throws an error. It never converts: to get a template from a value of another data type, write a typed literal or call a to_ function. This is usually written value as template."
+#define AFW_Q_zz__0d13b139d8d3 \
+    "Returns value unchanged if it is dataType string. Otherwise, including when value is undefined, throws an error. It never converts: to get a string from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as string."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0d12d7baf77b */
-#define afw_s_zz__0d12d7baf77b \
-    (&afw_self_v_zz__0d12d7baf77b.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0d13b139d8d3 */
+#define afw_s_zz__0d13b139d8d3 \
+    (&afw_self_v_zz__0d13b139d8d3.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0d12d7baf77b */
-#define afw_self_s_zz__0d12d7baf77b \
-    (afw_self_v_zz__0d12d7baf77b.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0d13b139d8d3 */
+#define afw_self_s_zz__0d13b139d8d3 \
+    (afw_self_v_zz__0d13b139d8d3.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0d12d7baf77b */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__0d13b139d8d3 */
 extern const afw_value_string_t \
-    afw_self_v_zz__0d12d7baf77b;
+    afw_self_v_zz__0d13b139d8d3;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0d12d7baf77b */
-#define afw_z_zz__0d12d7baf77b \
-    (afw_self_v_zz__0d12d7baf77b.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0d13b139d8d3 */
+#define afw_z_zz__0d13b139d8d3 \
+    (afw_self_v_zz__0d13b139d8d3.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0d12d7baf77b */
-#define afw_v_zz__0d12d7baf77b \
-    (&afw_self_v_zz__0d12d7baf77b.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__0d13b139d8d3 */
+#define afw_v_zz__0d13b139d8d3 \
+    (&afw_self_v_zz__0d13b139d8d3.pub)
 
 
 
@@ -3877,32 +3851,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__0edf956a7139 \
-    "Returns value unchanged if it is dataType dateTime. Otherwise, including when value is undefined, throws an error. It never converts: to get a dateTime from a value of another data type, write a typed literal or call a to_ function. This is usually written value as dateTime."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0edf956a7139 */
-#define afw_s_zz__0edf956a7139 \
-    (&afw_self_v_zz__0edf956a7139.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0edf956a7139 */
-#define afw_self_s_zz__0edf956a7139 \
-    (afw_self_v_zz__0edf956a7139.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0edf956a7139 */
-extern const afw_value_string_t \
-    afw_self_v_zz__0edf956a7139;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0edf956a7139 */
-#define afw_z_zz__0edf956a7139 \
-    (afw_self_v_zz__0edf956a7139.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0edf956a7139 */
-#define afw_v_zz__0edf956a7139 \
-    (&afw_self_v_zz__0edf956a7139.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__0ef884702365 \
     "This is a predicate for this modeId value with the first letter capitalized and without a trailing period."
 
@@ -4185,6 +4133,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__0fe68587632b */
 #define afw_v_zz__0fe68587632b \
     (&afw_self_v_zz__0fe68587632b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__10129f4d62e0 \
+    "Converts string value to objectId. A string is read with the objectId parser, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__10129f4d62e0 */
+#define afw_s_zz__10129f4d62e0 \
+    (&afw_self_v_zz__10129f4d62e0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__10129f4d62e0 */
+#define afw_self_s_zz__10129f4d62e0 \
+    (afw_self_v_zz__10129f4d62e0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__10129f4d62e0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__10129f4d62e0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__10129f4d62e0 */
+#define afw_z_zz__10129f4d62e0 \
+    (afw_self_v_zz__10129f4d62e0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__10129f4d62e0 */
+#define afw_v_zz__10129f4d62e0 \
+    (&afw_self_v_zz__10129f4d62e0.pub)
 
 
 
@@ -4601,6 +4575,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1211438eb859 */
 #define afw_v_zz__1211438eb859 \
     (&afw_self_v_zz__1211438eb859.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__121c0716e482 \
+    "Returns value unchanged if it is dataType rfc822Name. Otherwise, including when value is undefined, throws an error. It never converts: to get a rfc822Name from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as rfc822Name."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__121c0716e482 */
+#define afw_s_zz__121c0716e482 \
+    (&afw_self_v_zz__121c0716e482.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__121c0716e482 */
+#define afw_self_s_zz__121c0716e482 \
+    (afw_self_v_zz__121c0716e482.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__121c0716e482 */
+extern const afw_value_string_t \
+    afw_self_v_zz__121c0716e482;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__121c0716e482 */
+#define afw_z_zz__121c0716e482 \
+    (afw_self_v_zz__121c0716e482.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__121c0716e482 */
+#define afw_v_zz__121c0716e482 \
+    (&afw_self_v_zz__121c0716e482.pub)
 
 
 
@@ -7127,32 +7127,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__1b0b5addf5df \
-    "Returns value unchanged if it is dataType function. Otherwise, including when value is undefined, throws an error. It never converts: to get a function from a value of another data type, write a typed literal or call a to_ function. This is usually written value as function."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1b0b5addf5df */
-#define afw_s_zz__1b0b5addf5df \
-    (&afw_self_v_zz__1b0b5addf5df.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1b0b5addf5df */
-#define afw_self_s_zz__1b0b5addf5df \
-    (afw_self_v_zz__1b0b5addf5df.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__1b0b5addf5df */
-extern const afw_value_string_t \
-    afw_self_v_zz__1b0b5addf5df;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1b0b5addf5df */
-#define afw_z_zz__1b0b5addf5df \
-    (afw_self_v_zz__1b0b5addf5df.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__1b0b5addf5df */
-#define afw_v_zz__1b0b5addf5df \
-    (&afw_self_v_zz__1b0b5addf5df.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__1b3a10b036cf \
     "Thread ST mapped chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes."
 
@@ -8609,32 +8583,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__209489f10ae9 \
-    "Returns value unchanged if it is dataType time. Otherwise, including when value is undefined, throws an error. It never converts: to get a time from a value of another data type, write a typed literal or call a to_ function. This is usually written value as time."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__209489f10ae9 */
-#define afw_s_zz__209489f10ae9 \
-    (&afw_self_v_zz__209489f10ae9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__209489f10ae9 */
-#define afw_self_s_zz__209489f10ae9 \
-    (afw_self_v_zz__209489f10ae9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__209489f10ae9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__209489f10ae9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__209489f10ae9 */
-#define afw_z_zz__209489f10ae9 \
-    (afw_self_v_zz__209489f10ae9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__209489f10ae9 */
-#define afw_v_zz__209489f10ae9 \
-    (&afw_self_v_zz__209489f10ae9.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__20bddb279665 \
     "function nex<object> (\n    arg1: object,\n    arg2: any\n): boolean;\n"
 
@@ -9337,6 +9285,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__24a069185161 \
+    "Converts <dataType> value to password. A string is read with the password parser, the same parser the typed literal \"...\"password uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__24a069185161 */
+#define afw_s_zz__24a069185161 \
+    (&afw_self_v_zz__24a069185161.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__24a069185161 */
+#define afw_self_s_zz__24a069185161 \
+    (afw_self_v_zz__24a069185161.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__24a069185161 */
+extern const afw_value_string_t \
+    afw_self_v_zz__24a069185161;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__24a069185161 */
+#define afw_z_zz__24a069185161 \
+    (afw_self_v_zz__24a069185161.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__24a069185161 */
+#define afw_v_zz__24a069185161 \
+    (&afw_self_v_zz__24a069185161.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__24b1e6ea5f4a \
     "Converts value to data type ipAddress returning ipAddress result."
 
@@ -9749,6 +9723,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__266a9f9bdbd7 */
 #define afw_v_zz__266a9f9bdbd7 \
     (&afw_self_v_zz__266a9f9bdbd7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__267c6b78d913 \
+    "Returns value unchanged if it is dataType date. Otherwise, including when value is undefined, throws an error. It never converts: to get a date from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as date."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__267c6b78d913 */
+#define afw_s_zz__267c6b78d913 \
+    (&afw_self_v_zz__267c6b78d913.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__267c6b78d913 */
+#define afw_self_s_zz__267c6b78d913 \
+    (afw_self_v_zz__267c6b78d913.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__267c6b78d913 */
+extern const afw_value_string_t \
+    afw_self_v_zz__267c6b78d913;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__267c6b78d913 */
+#define afw_z_zz__267c6b78d913 \
+    (afw_self_v_zz__267c6b78d913.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__267c6b78d913 */
+#define afw_v_zz__267c6b78d913 \
+    (&afw_self_v_zz__267c6b78d913.pub)
 
 
 
@@ -10295,6 +10295,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__283f74027f0d */
 #define afw_v_zz__283f74027f0d \
     (&afw_self_v_zz__283f74027f0d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2847bdc18ba5 \
+    "Returns value unchanged if it is dataType time. Otherwise, including when value is undefined, throws an error. It never converts: to get a time from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as time."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2847bdc18ba5 */
+#define afw_s_zz__2847bdc18ba5 \
+    (&afw_self_v_zz__2847bdc18ba5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2847bdc18ba5 */
+#define afw_self_s_zz__2847bdc18ba5 \
+    (afw_self_v_zz__2847bdc18ba5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2847bdc18ba5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2847bdc18ba5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2847bdc18ba5 */
+#define afw_z_zz__2847bdc18ba5 \
+    (afw_self_v_zz__2847bdc18ba5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2847bdc18ba5 */
+#define afw_v_zz__2847bdc18ba5 \
+    (&afw_self_v_zz__2847bdc18ba5.pub)
 
 
 
@@ -11001,32 +11027,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2b35f9781912 \
-    "Converts <dataType> value to yearMonthDuration. A string is read as yearMonthDuration text, the same text the typed literal \"...\"yearMonthDuration accepts, and text that is not valid yearMonthDuration is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b35f9781912 */
-#define afw_s_zz__2b35f9781912 \
-    (&afw_self_v_zz__2b35f9781912.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b35f9781912 */
-#define afw_self_s_zz__2b35f9781912 \
-    (afw_self_v_zz__2b35f9781912.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2b35f9781912 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2b35f9781912;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2b35f9781912 */
-#define afw_z_zz__2b35f9781912 \
-    (afw_self_v_zz__2b35f9781912.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2b35f9781912 */
-#define afw_v_zz__2b35f9781912 \
-    (&afw_self_v_zz__2b35f9781912.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2b4a01ba0b45 \
     "function gt<base64Binary> (\n    arg1: base64Binary,\n    arg2: base64Binary\n): boolean;\n"
 
@@ -11209,32 +11209,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2bf3d34a3099 \
-    "Returns value unchanged if it is dataType double. Otherwise, including when value is undefined, throws an error. It never converts: to get a double from a value of another data type, write a typed literal or call a to_ function. This is usually written value as double."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2bf3d34a3099 */
-#define afw_s_zz__2bf3d34a3099 \
-    (&afw_self_v_zz__2bf3d34a3099.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2bf3d34a3099 */
-#define afw_self_s_zz__2bf3d34a3099 \
-    (afw_self_v_zz__2bf3d34a3099.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2bf3d34a3099 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2bf3d34a3099;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2bf3d34a3099 */
-#define afw_z_zz__2bf3d34a3099 \
-    (afw_self_v_zz__2bf3d34a3099.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2bf3d34a3099 */
-#define afw_v_zz__2bf3d34a3099 \
-    (&afw_self_v_zz__2bf3d34a3099.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2bfadfcc004d \
     "Checks for base64Binary arg1 is greater than or equal to base64Binary arg2 and return the boolean result."
 
@@ -11335,6 +11309,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2c1f7189e136 */
 #define afw_v_zz__2c1f7189e136 \
     (&afw_self_v_zz__2c1f7189e136.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2c4b8039cf9a \
+    "Returns value unchanged if it is dataType objectId. Otherwise, including when value is undefined, throws an error. It never converts: to get a objectId from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as objectId."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2c4b8039cf9a */
+#define afw_s_zz__2c4b8039cf9a \
+    (&afw_self_v_zz__2c4b8039cf9a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2c4b8039cf9a */
+#define afw_self_s_zz__2c4b8039cf9a \
+    (afw_self_v_zz__2c4b8039cf9a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2c4b8039cf9a */
+extern const afw_value_string_t \
+    afw_self_v_zz__2c4b8039cf9a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2c4b8039cf9a */
+#define afw_z_zz__2c4b8039cf9a \
+    (afw_self_v_zz__2c4b8039cf9a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2c4b8039cf9a */
+#define afw_v_zz__2c4b8039cf9a \
+    (&afw_self_v_zz__2c4b8039cf9a.pub)
 
 
 
@@ -11595,6 +11595,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2cfead195975 */
 #define afw_v_zz__2cfead195975 \
     (&afw_self_v_zz__2cfead195975.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2d049d051f02 \
+    "Returns value unchanged if it is dataType dnsName. Otherwise, including when value is undefined, throws an error. It never converts: to get a dnsName from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as dnsName."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2d049d051f02 */
+#define afw_s_zz__2d049d051f02 \
+    (&afw_self_v_zz__2d049d051f02.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2d049d051f02 */
+#define afw_self_s_zz__2d049d051f02 \
+    (afw_self_v_zz__2d049d051f02.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2d049d051f02 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2d049d051f02;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2d049d051f02 */
+#define afw_z_zz__2d049d051f02 \
+    (afw_self_v_zz__2d049d051f02.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2d049d051f02 */
+#define afw_v_zz__2d049d051f02 \
+    (&afw_self_v_zz__2d049d051f02.pub)
 
 
 
@@ -11963,6 +11989,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__2e5ecc91d300 \
+    "Converts string value to hexBinary. A string is read with the hexBinary parser, the same parser the typed literal \"...\"hexBinary uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2e5ecc91d300 */
+#define afw_s_zz__2e5ecc91d300 \
+    (&afw_self_v_zz__2e5ecc91d300.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2e5ecc91d300 */
+#define afw_self_s_zz__2e5ecc91d300 \
+    (afw_self_v_zz__2e5ecc91d300.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2e5ecc91d300 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2e5ecc91d300;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2e5ecc91d300 */
+#define afw_z_zz__2e5ecc91d300 \
+    (afw_self_v_zz__2e5ecc91d300.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2e5ecc91d300 */
+#define afw_v_zz__2e5ecc91d300 \
+    (&afw_self_v_zz__2e5ecc91d300.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__2e8693a89ce2 \
     "Return true if predicate returns true for every entry of the first array in values (index order), or if that array is empty. Entries whose value is undefined are included. Same single-array behavior as all_of."
 
@@ -11985,32 +12037,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2e8693a89ce2 */
 #define afw_v_zz__2e8693a89ce2 \
     (&afw_self_v_zz__2e8693a89ce2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__2e87748b864a \
-    "Converts string value to dateTime. A string is read as dateTime text, the same text the typed literal \"...\"dateTime accepts, and text that is not valid dateTime is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2e87748b864a */
-#define afw_s_zz__2e87748b864a \
-    (&afw_self_v_zz__2e87748b864a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2e87748b864a */
-#define afw_self_s_zz__2e87748b864a \
-    (afw_self_v_zz__2e87748b864a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2e87748b864a */
-extern const afw_value_string_t \
-    afw_self_v_zz__2e87748b864a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2e87748b864a */
-#define afw_z_zz__2e87748b864a \
-    (afw_self_v_zz__2e87748b864a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2e87748b864a */
-#define afw_v_zz__2e87748b864a \
-    (&afw_self_v_zz__2e87748b864a.pub)
 
 
 
@@ -12323,6 +12349,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3060dafc4398 */
 #define afw_v_zz__3060dafc4398 \
     (&afw_self_v_zz__3060dafc4398.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__3064542fe9fd \
+    "Converts <dataType> value to objectId. A string is read with the objectId parser, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3064542fe9fd */
+#define afw_s_zz__3064542fe9fd \
+    (&afw_self_v_zz__3064542fe9fd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3064542fe9fd */
+#define afw_self_s_zz__3064542fe9fd \
+    (afw_self_v_zz__3064542fe9fd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3064542fe9fd */
+extern const afw_value_string_t \
+    afw_self_v_zz__3064542fe9fd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3064542fe9fd */
+#define afw_z_zz__3064542fe9fd \
+    (afw_self_v_zz__3064542fe9fd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3064542fe9fd */
+#define afw_v_zz__3064542fe9fd \
+    (&afw_self_v_zz__3064542fe9fd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__30a94b20c0f6 \
+    "Converts string value to base64Binary. A string is read with the base64Binary parser, the same parser the typed literal \"...\"base64Binary uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__30a94b20c0f6 */
+#define afw_s_zz__30a94b20c0f6 \
+    (&afw_self_v_zz__30a94b20c0f6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__30a94b20c0f6 */
+#define afw_self_s_zz__30a94b20c0f6 \
+    (afw_self_v_zz__30a94b20c0f6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__30a94b20c0f6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__30a94b20c0f6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__30a94b20c0f6 */
+#define afw_z_zz__30a94b20c0f6 \
+    (afw_self_v_zz__30a94b20c0f6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__30a94b20c0f6 */
+#define afw_v_zz__30a94b20c0f6 \
+    (&afw_self_v_zz__30a94b20c0f6.pub)
 
 
 
@@ -13081,32 +13159,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__340aa875f6c0 \
-    "Returns value unchanged if it is dataType yearMonthDuration. Otherwise, including when value is undefined, throws an error. It never converts: to get a yearMonthDuration from a value of another data type, write a typed literal or call a to_ function. This is usually written value as yearMonthDuration."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__340aa875f6c0 */
-#define afw_s_zz__340aa875f6c0 \
-    (&afw_self_v_zz__340aa875f6c0.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__340aa875f6c0 */
-#define afw_self_s_zz__340aa875f6c0 \
-    (afw_self_v_zz__340aa875f6c0.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__340aa875f6c0 */
-extern const afw_value_string_t \
-    afw_self_v_zz__340aa875f6c0;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__340aa875f6c0 */
-#define afw_z_zz__340aa875f6c0 \
-    (afw_self_v_zz__340aa875f6c0.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__340aa875f6c0 */
-#define afw_v_zz__340aa875f6c0 \
-    (&afw_self_v_zz__340aa875f6c0.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__342d1b486fd0 \
     "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop does not complete (void). See the related functions 'break', 'continue', 'return' and 'throw'."
 
@@ -13155,32 +13207,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__34402034f93c */
 #define afw_v_zz__34402034f93c \
     (&afw_self_v_zz__34402034f93c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__34410562c5ac \
-    "Converts <dataType> value to password. A string is read as password text, the same text the typed literal \"...\"password accepts, and text that is not valid password is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__34410562c5ac */
-#define afw_s_zz__34410562c5ac \
-    (&afw_self_v_zz__34410562c5ac.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__34410562c5ac */
-#define afw_self_s_zz__34410562c5ac \
-    (afw_self_v_zz__34410562c5ac.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__34410562c5ac */
-extern const afw_value_string_t \
-    afw_self_v_zz__34410562c5ac;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__34410562c5ac */
-#define afw_z_zz__34410562c5ac \
-    (afw_self_v_zz__34410562c5ac.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__34410562c5ac */
-#define afw_v_zz__34410562c5ac \
-    (&afw_self_v_zz__34410562c5ac.pub)
 
 
 
@@ -13701,32 +13727,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__36792b0b00f3 */
 #define afw_v_zz__36792b0b00f3 \
     (&afw_self_v_zz__36792b0b00f3.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__367db3ef0c4e \
-    "Converts string value to dayTimeDuration. A string is read as dayTimeDuration text, the same text the typed literal \"...\"dayTimeDuration accepts, and text that is not valid dayTimeDuration is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__367db3ef0c4e */
-#define afw_s_zz__367db3ef0c4e \
-    (&afw_self_v_zz__367db3ef0c4e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__367db3ef0c4e */
-#define afw_self_s_zz__367db3ef0c4e \
-    (afw_self_v_zz__367db3ef0c4e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__367db3ef0c4e */
-extern const afw_value_string_t \
-    afw_self_v_zz__367db3ef0c4e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__367db3ef0c4e */
-#define afw_z_zz__367db3ef0c4e \
-    (afw_self_v_zz__367db3ef0c4e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__367db3ef0c4e */
-#define afw_v_zz__367db3ef0c4e \
-    (&afw_self_v_zz__367db3ef0c4e.pub)
 
 
 
@@ -14433,32 +14433,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__38a5cae49bec \
-    "Converts string value to objectPath. A string is read as objectPath text."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__38a5cae49bec */
-#define afw_s_zz__38a5cae49bec \
-    (&afw_self_v_zz__38a5cae49bec.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__38a5cae49bec */
-#define afw_self_s_zz__38a5cae49bec \
-    (afw_self_v_zz__38a5cae49bec.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__38a5cae49bec */
-extern const afw_value_string_t \
-    afw_self_v_zz__38a5cae49bec;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__38a5cae49bec */
-#define afw_z_zz__38a5cae49bec \
-    (afw_self_v_zz__38a5cae49bec.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__38a5cae49bec */
-#define afw_v_zz__38a5cae49bec \
-    (&afw_self_v_zz__38a5cae49bec.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__38a7452d78e6 \
     "The internal memory of this value is written (string, hexBinary, or base64Binary)."
 
@@ -15027,32 +15001,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3af2d7c85724 */
 #define afw_v_zz__3af2d7c85724 \
     (&afw_self_v_zz__3af2d7c85724.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__3b0365bef5f7 \
-    "Returns value unchanged if it is dataType anyURI. Otherwise, including when value is undefined, throws an error. It never converts: to get a anyURI from a value of another data type, write a typed literal or call a to_ function. This is usually written value as anyURI."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3b0365bef5f7 */
-#define afw_s_zz__3b0365bef5f7 \
-    (&afw_self_v_zz__3b0365bef5f7.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3b0365bef5f7 */
-#define afw_self_s_zz__3b0365bef5f7 \
-    (afw_self_v_zz__3b0365bef5f7.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3b0365bef5f7 */
-extern const afw_value_string_t \
-    afw_self_v_zz__3b0365bef5f7;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3b0365bef5f7 */
-#define afw_z_zz__3b0365bef5f7 \
-    (afw_self_v_zz__3b0365bef5f7.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3b0365bef5f7 */
-#define afw_v_zz__3b0365bef5f7 \
-    (&afw_self_v_zz__3b0365bef5f7.pub)
 
 
 
@@ -15837,6 +15785,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__3eb059fcaacb \
+    "Returns value unchanged if it is dataType double. Otherwise, including when value is undefined, throws an error. It never converts: to get a double from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as double."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3eb059fcaacb */
+#define afw_s_zz__3eb059fcaacb \
+    (&afw_self_v_zz__3eb059fcaacb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3eb059fcaacb */
+#define afw_self_s_zz__3eb059fcaacb \
+    (afw_self_v_zz__3eb059fcaacb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3eb059fcaacb */
+extern const afw_value_string_t \
+    afw_self_v_zz__3eb059fcaacb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3eb059fcaacb */
+#define afw_z_zz__3eb059fcaacb \
+    (afw_self_v_zz__3eb059fcaacb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3eb059fcaacb */
+#define afw_v_zz__3eb059fcaacb \
+    (&afw_self_v_zz__3eb059fcaacb.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__3ebd01bb7c48 \
     "The objectId of the associated _AdaptiveProvisioningPeer_ object."
 
@@ -16461,32 +16435,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__421d8d37f98d \
-    "Returns value unchanged if it is dataType rfc822Name. Otherwise, including when value is undefined, throws an error. It never converts: to get a rfc822Name from a value of another data type, write a typed literal or call a to_ function. This is usually written value as rfc822Name."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__421d8d37f98d */
-#define afw_s_zz__421d8d37f98d \
-    (&afw_self_v_zz__421d8d37f98d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__421d8d37f98d */
-#define afw_self_s_zz__421d8d37f98d \
-    (afw_self_v_zz__421d8d37f98d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__421d8d37f98d */
-extern const afw_value_string_t \
-    afw_self_v_zz__421d8d37f98d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__421d8d37f98d */
-#define afw_z_zz__421d8d37f98d \
-    (afw_self_v_zz__421d8d37f98d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__421d8d37f98d */
-#define afw_v_zz__421d8d37f98d \
-    (&afw_self_v_zz__421d8d37f98d.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__4235aa05079d \
     "function regexp_replace <dataType>(\n    value: dataType,\n    regexp: string,\n    replacement: string,\n    limit?: integer\n): string;\n"
 
@@ -16535,32 +16483,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4253ad7db5a1 */
 #define afw_v_zz__4253ad7db5a1 \
     (&afw_self_v_zz__4253ad7db5a1.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__42688ff196e7 \
-    "Returns value unchanged if it is dataType integer. Otherwise, including when value is undefined, throws an error. It never converts: to get a integer from a value of another data type, write a typed literal or call a to_ function. This is usually written value as integer."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__42688ff196e7 */
-#define afw_s_zz__42688ff196e7 \
-    (&afw_self_v_zz__42688ff196e7.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__42688ff196e7 */
-#define afw_self_s_zz__42688ff196e7 \
-    (afw_self_v_zz__42688ff196e7.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__42688ff196e7 */
-extern const afw_value_string_t \
-    afw_self_v_zz__42688ff196e7;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__42688ff196e7 */
-#define afw_z_zz__42688ff196e7 \
-    (afw_self_v_zz__42688ff196e7.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__42688ff196e7 */
-#define afw_v_zz__42688ff196e7 \
-    (&afw_self_v_zz__42688ff196e7.pub)
 
 
 
@@ -17995,6 +17917,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__489d8a76b075 \
+    "Converts string value to password. A string is read with the password parser, the same parser the typed literal \"...\"password uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__489d8a76b075 */
+#define afw_s_zz__489d8a76b075 \
+    (&afw_self_v_zz__489d8a76b075.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__489d8a76b075 */
+#define afw_self_s_zz__489d8a76b075 \
+    (afw_self_v_zz__489d8a76b075.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__489d8a76b075 */
+extern const afw_value_string_t \
+    afw_self_v_zz__489d8a76b075;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__489d8a76b075 */
+#define afw_z_zz__489d8a76b075 \
+    (afw_self_v_zz__489d8a76b075.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__489d8a76b075 */
+#define afw_v_zz__489d8a76b075 \
+    (&afw_self_v_zz__489d8a76b075.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__48a154a2c5cb \
     "This is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'."
 
@@ -18069,6 +18017,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__48b5933abf53 */
 #define afw_v_zz__48b5933abf53 \
     (&afw_self_v_zz__48b5933abf53.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__48c5eeec361f \
+    "Returns value unchanged if it is dataType hexBinary. Otherwise, including when value is undefined, throws an error. It never converts: to get a hexBinary from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as hexBinary."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__48c5eeec361f */
+#define afw_s_zz__48c5eeec361f \
+    (&afw_self_v_zz__48c5eeec361f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__48c5eeec361f */
+#define afw_self_s_zz__48c5eeec361f \
+    (afw_self_v_zz__48c5eeec361f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__48c5eeec361f */
+extern const afw_value_string_t \
+    afw_self_v_zz__48c5eeec361f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__48c5eeec361f */
+#define afw_z_zz__48c5eeec361f \
+    (afw_self_v_zz__48c5eeec361f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__48c5eeec361f */
+#define afw_v_zz__48c5eeec361f \
+    (&afw_self_v_zz__48c5eeec361f.pub)
 
 
 
@@ -18203,32 +18177,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__491f27ea19f9 \
-    "Converts <dataType> value to dnsName. A string is read as dnsName text, the same text the typed literal \"...\"dnsName accepts, and text that is not valid dnsName is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__491f27ea19f9 */
-#define afw_s_zz__491f27ea19f9 \
-    (&afw_self_v_zz__491f27ea19f9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__491f27ea19f9 */
-#define afw_self_s_zz__491f27ea19f9 \
-    (afw_self_v_zz__491f27ea19f9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__491f27ea19f9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__491f27ea19f9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__491f27ea19f9 */
-#define afw_z_zz__491f27ea19f9 \
-    (afw_self_v_zz__491f27ea19f9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__491f27ea19f9 */
-#define afw_v_zz__491f27ea19f9 \
-    (&afw_self_v_zz__491f27ea19f9.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__494839bcfb45 \
     "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Menu_Item"
 
@@ -18355,32 +18303,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__49a733e8fc0a */
 #define afw_v_zz__49a733e8fc0a \
     (&afw_self_v_zz__49a733e8fc0a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__49c05b36e5ab \
-    "Converts <dataType> value to ia5String. A string is read as ia5String text, the same text the typed literal \"...\"ia5String accepts, and text that is not valid ia5String is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__49c05b36e5ab */
-#define afw_s_zz__49c05b36e5ab \
-    (&afw_self_v_zz__49c05b36e5ab.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__49c05b36e5ab */
-#define afw_self_s_zz__49c05b36e5ab \
-    (afw_self_v_zz__49c05b36e5ab.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__49c05b36e5ab */
-extern const afw_value_string_t \
-    afw_self_v_zz__49c05b36e5ab;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__49c05b36e5ab */
-#define afw_z_zz__49c05b36e5ab \
-    (afw_self_v_zz__49c05b36e5ab.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__49c05b36e5ab */
-#define afw_v_zz__49c05b36e5ab \
-    (&afw_self_v_zz__49c05b36e5ab.pub)
 
 
 
@@ -18931,32 +18853,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__4c5d4d90e5cb \
-    "Converts <dataType> value to dayTimeDuration. A string is read as dayTimeDuration text, the same text the typed literal \"...\"dayTimeDuration accepts, and text that is not valid dayTimeDuration is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4c5d4d90e5cb */
-#define afw_s_zz__4c5d4d90e5cb \
-    (&afw_self_v_zz__4c5d4d90e5cb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4c5d4d90e5cb */
-#define afw_self_s_zz__4c5d4d90e5cb \
-    (afw_self_v_zz__4c5d4d90e5cb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4c5d4d90e5cb */
-extern const afw_value_string_t \
-    afw_self_v_zz__4c5d4d90e5cb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4c5d4d90e5cb */
-#define afw_z_zz__4c5d4d90e5cb \
-    (afw_self_v_zz__4c5d4d90e5cb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4c5d4d90e5cb */
-#define afw_v_zz__4c5d4d90e5cb \
-    (&afw_self_v_zz__4c5d4d90e5cb.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__4c8335e57dfe \
     "If true, this function requires 'execute' authorization access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.\nNote that the construction of the current::object during authorization check requires that parameters passed in will be evaluated ahead of time. Therefore, if your function is designed to short circuit its execution path based on the value of one of its parameters, understand that functions with this flag set will still undergo evaluations anyway. In addition, type checking will not be applied to the parameters at the time of authorization, so your authorization policy must consider any type of parameter value to be passed in."
 
@@ -19213,32 +19109,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4d5daeb5f019 */
 #define afw_v_zz__4d5daeb5f019 \
     (&afw_self_v_zz__4d5daeb5f019.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__4d78c627440c \
-    "Converts <dataType> value to time. A string is read as time text, the same text the typed literal \"...\"time accepts, and text that is not valid time is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4d78c627440c */
-#define afw_s_zz__4d78c627440c \
-    (&afw_self_v_zz__4d78c627440c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4d78c627440c */
-#define afw_self_s_zz__4d78c627440c \
-    (afw_self_v_zz__4d78c627440c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4d78c627440c */
-extern const afw_value_string_t \
-    afw_self_v_zz__4d78c627440c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4d78c627440c */
-#define afw_z_zz__4d78c627440c \
-    (afw_self_v_zz__4d78c627440c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4d78c627440c */
-#define afw_v_zz__4d78c627440c \
-    (&afw_self_v_zz__4d78c627440c.pub)
 
 
 
@@ -19893,32 +19763,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__5037c74fcb72 \
-    "Converts string value to time. A string is read as time text, the same text the typed literal \"...\"time accepts, and text that is not valid time is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5037c74fcb72 */
-#define afw_s_zz__5037c74fcb72 \
-    (&afw_self_v_zz__5037c74fcb72.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5037c74fcb72 */
-#define afw_self_s_zz__5037c74fcb72 \
-    (afw_self_v_zz__5037c74fcb72.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5037c74fcb72 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5037c74fcb72;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5037c74fcb72 */
-#define afw_z_zz__5037c74fcb72 \
-    (afw_self_v_zz__5037c74fcb72.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5037c74fcb72 */
-#define afw_v_zz__5037c74fcb72 \
-    (&afw_self_v_zz__5037c74fcb72.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__5050bb4adb33 \
     "Returns true if arg1 matches some terminal sequence of RDNs from arg2 when compared using equal_x500Name."
 
@@ -20023,6 +19867,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__50713f1ff189 \
+    "Converts <dataType> value to dayTimeDuration. A string is read with the dayTimeDuration parser, the same parser the typed literal \"...\"dayTimeDuration uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__50713f1ff189 */
+#define afw_s_zz__50713f1ff189 \
+    (&afw_self_v_zz__50713f1ff189.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__50713f1ff189 */
+#define afw_self_s_zz__50713f1ff189 \
+    (afw_self_v_zz__50713f1ff189.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__50713f1ff189 */
+extern const afw_value_string_t \
+    afw_self_v_zz__50713f1ff189;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__50713f1ff189 */
+#define afw_z_zz__50713f1ff189 \
+    (afw_self_v_zz__50713f1ff189.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__50713f1ff189 */
+#define afw_v_zz__50713f1ff189 \
+    (&afw_self_v_zz__50713f1ff189.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5090f0b57186 \
     "Adaptive Framework configuration component for type=log logType=event_log. This log type is only available on Windows."
 
@@ -20071,32 +19941,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__50b32e994d31 */
 #define afw_v_zz__50b32e994d31 \
     (&afw_self_v_zz__50b32e994d31.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__50b51dd1c2ef \
-    "Returns value unchanged if it is dataType x500Name. Otherwise, including when value is undefined, throws an error. It never converts: to get a x500Name from a value of another data type, write a typed literal or call a to_ function. This is usually written value as x500Name."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__50b51dd1c2ef */
-#define afw_s_zz__50b51dd1c2ef \
-    (&afw_self_v_zz__50b51dd1c2ef.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__50b51dd1c2ef */
-#define afw_self_s_zz__50b51dd1c2ef \
-    (afw_self_v_zz__50b51dd1c2ef.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__50b51dd1c2ef */
-extern const afw_value_string_t \
-    afw_self_v_zz__50b51dd1c2ef;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__50b51dd1c2ef */
-#define afw_z_zz__50b51dd1c2ef \
-    (afw_self_v_zz__50b51dd1c2ef.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__50b51dd1c2ef */
-#define afw_v_zz__50b51dd1c2ef \
-    (&afw_self_v_zz__50b51dd1c2ef.pub)
 
 
 
@@ -20231,6 +20075,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__514ac92dfd10 \
+    "Returns value unchanged if it is dataType dayTimeDuration. Otherwise, including when value is undefined, throws an error. It never converts: to get a dayTimeDuration from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as dayTimeDuration."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__514ac92dfd10 */
+#define afw_s_zz__514ac92dfd10 \
+    (&afw_self_v_zz__514ac92dfd10.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__514ac92dfd10 */
+#define afw_self_s_zz__514ac92dfd10 \
+    (afw_self_v_zz__514ac92dfd10.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__514ac92dfd10 */
+extern const afw_value_string_t \
+    afw_self_v_zz__514ac92dfd10;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__514ac92dfd10 */
+#define afw_z_zz__514ac92dfd10 \
+    (afw_self_v_zz__514ac92dfd10.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__514ac92dfd10 */
+#define afw_v_zz__514ac92dfd10 \
+    (&afw_self_v_zz__514ac92dfd10.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__516777e23d92 \
     "Return from the outermost structured block. If the expression of a lambda function is a block function, this will effectively return from the lambda function. If called outside of a structured block, an error is thrown."
 
@@ -20283,6 +20153,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5193ccfdb44f \
+    "Converts <dataType> value to hexBinary. A string is read with the hexBinary parser, the same parser the typed literal \"...\"hexBinary uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5193ccfdb44f */
+#define afw_s_zz__5193ccfdb44f \
+    (&afw_self_v_zz__5193ccfdb44f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5193ccfdb44f */
+#define afw_self_s_zz__5193ccfdb44f \
+    (afw_self_v_zz__5193ccfdb44f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5193ccfdb44f */
+extern const afw_value_string_t \
+    afw_self_v_zz__5193ccfdb44f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5193ccfdb44f */
+#define afw_z_zz__5193ccfdb44f \
+    (afw_self_v_zz__5193ccfdb44f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5193ccfdb44f */
+#define afw_v_zz__5193ccfdb44f \
+    (&afw_self_v_zz__5193ccfdb44f.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__51b9f0b2b747 \
     "Returns true if any of the nodes matched by nodeset1 are equal to any of the nodes matched by nodeset2 or their corresponding children."
 
@@ -20305,32 +20201,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__51b9f0b2b747 */
 #define afw_v_zz__51b9f0b2b747 \
     (&afw_self_v_zz__51b9f0b2b747.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__51cee46ff8d7 \
-    "Returns value unchanged if it is dataType dayTimeDuration. Otherwise, including when value is undefined, throws an error. It never converts: to get a dayTimeDuration from a value of another data type, write a typed literal or call a to_ function. This is usually written value as dayTimeDuration."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__51cee46ff8d7 */
-#define afw_s_zz__51cee46ff8d7 \
-    (&afw_self_v_zz__51cee46ff8d7.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__51cee46ff8d7 */
-#define afw_self_s_zz__51cee46ff8d7 \
-    (afw_self_v_zz__51cee46ff8d7.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__51cee46ff8d7 */
-extern const afw_value_string_t \
-    afw_self_v_zz__51cee46ff8d7;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__51cee46ff8d7 */
-#define afw_z_zz__51cee46ff8d7 \
-    (afw_self_v_zz__51cee46ff8d7.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__51cee46ff8d7 */
-#define afw_v_zz__51cee46ff8d7 \
-    (&afw_self_v_zz__51cee46ff8d7.pub)
 
 
 
@@ -21063,6 +20933,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__54a1e20170e4 \
+    "Returns value unchanged if it is dataType integer. Otherwise, including when value is undefined, throws an error. It never converts: to get a integer from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as integer."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__54a1e20170e4 */
+#define afw_s_zz__54a1e20170e4 \
+    (&afw_self_v_zz__54a1e20170e4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__54a1e20170e4 */
+#define afw_self_s_zz__54a1e20170e4 \
+    (afw_self_v_zz__54a1e20170e4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__54a1e20170e4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__54a1e20170e4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__54a1e20170e4 */
+#define afw_z_zz__54a1e20170e4 \
+    (afw_self_v_zz__54a1e20170e4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__54a1e20170e4 */
+#define afw_v_zz__54a1e20170e4 \
+    (&afw_self_v_zz__54a1e20170e4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__54a5b7648ded \
+    "Returns value unchanged if it is dataType ipAddress. Otherwise, including when value is undefined, throws an error. It never converts: to get a ipAddress from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as ipAddress."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__54a5b7648ded */
+#define afw_s_zz__54a5b7648ded \
+    (&afw_self_v_zz__54a5b7648ded.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__54a5b7648ded */
+#define afw_self_s_zz__54a5b7648ded \
+    (afw_self_v_zz__54a5b7648ded.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__54a5b7648ded */
+extern const afw_value_string_t \
+    afw_self_v_zz__54a5b7648ded;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__54a5b7648ded */
+#define afw_z_zz__54a5b7648ded \
+    (afw_self_v_zz__54a5b7648ded.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__54a5b7648ded */
+#define afw_v_zz__54a5b7648ded \
+    (&afw_self_v_zz__54a5b7648ded.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__54c5eb277c29 \
     "function le<script> (\n    arg1: script,\n    arg2: any\n): boolean;\n"
 
@@ -21739,32 +21661,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__56c0d6e92c7a \
-    "Returns value unchanged if it is dataType script. Otherwise, including when value is undefined, throws an error. It never converts: to get a script from a value of another data type, write a typed literal or call a to_ function. This is usually written value as script."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__56c0d6e92c7a */
-#define afw_s_zz__56c0d6e92c7a \
-    (&afw_self_v_zz__56c0d6e92c7a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__56c0d6e92c7a */
-#define afw_self_s_zz__56c0d6e92c7a \
-    (afw_self_v_zz__56c0d6e92c7a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__56c0d6e92c7a */
-extern const afw_value_string_t \
-    afw_self_v_zz__56c0d6e92c7a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__56c0d6e92c7a */
-#define afw_z_zz__56c0d6e92c7a \
-    (afw_self_v_zz__56c0d6e92c7a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__56c0d6e92c7a */
-#define afw_v_zz__56c0d6e92c7a \
-    (&afw_self_v_zz__56c0d6e92c7a.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__56f3fe184d5a \
     "function set_equals<time> (\n    array1: time[],\n    array2: time[]\n): boolean;\n"
 
@@ -22177,6 +22073,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5838b6ed91de */
 #define afw_v_zz__5838b6ed91de \
     (&afw_self_v_zz__5838b6ed91de.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__58392ddee5bb \
+    "Returns value unchanged if it is dataType unevaluated. Otherwise, including when value is undefined, throws an error. It never converts: to get a unevaluated from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as unevaluated."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__58392ddee5bb */
+#define afw_s_zz__58392ddee5bb \
+    (&afw_self_v_zz__58392ddee5bb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__58392ddee5bb */
+#define afw_self_s_zz__58392ddee5bb \
+    (afw_self_v_zz__58392ddee5bb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__58392ddee5bb */
+extern const afw_value_string_t \
+    afw_self_v_zz__58392ddee5bb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__58392ddee5bb */
+#define afw_z_zz__58392ddee5bb \
+    (afw_self_v_zz__58392ddee5bb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__58392ddee5bb */
+#define afw_v_zz__58392ddee5bb \
+    (&afw_self_v_zz__58392ddee5bb.pub)
 
 
 
@@ -23715,32 +23637,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__5eb3a56c0100 \
-    "Converts string value to anyURI. A string is read as anyURI text, the same text the typed literal \"...\"anyURI accepts, and text that is not valid anyURI is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5eb3a56c0100 */
-#define afw_s_zz__5eb3a56c0100 \
-    (&afw_self_v_zz__5eb3a56c0100.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5eb3a56c0100 */
-#define afw_self_s_zz__5eb3a56c0100 \
-    (afw_self_v_zz__5eb3a56c0100.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5eb3a56c0100 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5eb3a56c0100;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5eb3a56c0100 */
-#define afw_z_zz__5eb3a56c0100 \
-    (afw_self_v_zz__5eb3a56c0100.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5eb3a56c0100 */
-#define afw_v_zz__5eb3a56c0100 \
-    (&afw_self_v_zz__5eb3a56c0100.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__5ed7a05ce102 \
     "This is the number of codepoints in the full source for the test script before this test's 'expect' begins."
 
@@ -23815,6 +23711,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5f0502aebfa4 */
 #define afw_v_zz__5f0502aebfa4 \
     (&afw_self_v_zz__5f0502aebfa4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__5f12c88adb6a \
+    "Converts string value to anyURI. A string is read with the anyURI parser, the same parser the typed literal \"...\"anyURI uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5f12c88adb6a */
+#define afw_s_zz__5f12c88adb6a \
+    (&afw_self_v_zz__5f12c88adb6a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5f12c88adb6a */
+#define afw_self_s_zz__5f12c88adb6a \
+    (afw_self_v_zz__5f12c88adb6a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5f12c88adb6a */
+extern const afw_value_string_t \
+    afw_self_v_zz__5f12c88adb6a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5f12c88adb6a */
+#define afw_z_zz__5f12c88adb6a \
+    (afw_self_v_zz__5f12c88adb6a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5f12c88adb6a */
+#define afw_v_zz__5f12c88adb6a \
+    (&afw_self_v_zz__5f12c88adb6a.pub)
 
 
 
@@ -24023,6 +23945,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5fdbb7640f44 */
 #define afw_v_zz__5fdbb7640f44 \
     (&afw_self_v_zz__5fdbb7640f44.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__5fdc855f6c00 \
+    "Returns value unchanged if it is dataType base64Binary. Otherwise, including when value is undefined, throws an error. It never converts: to get a base64Binary from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as base64Binary."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5fdc855f6c00 */
+#define afw_s_zz__5fdc855f6c00 \
+    (&afw_self_v_zz__5fdc855f6c00.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5fdc855f6c00 */
+#define afw_self_s_zz__5fdc855f6c00 \
+    (afw_self_v_zz__5fdc855f6c00.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5fdc855f6c00 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5fdc855f6c00;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5fdc855f6c00 */
+#define afw_z_zz__5fdc855f6c00 \
+    (afw_self_v_zz__5fdc855f6c00.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5fdc855f6c00 */
+#define afw_v_zz__5fdc855f6c00 \
+    (&afw_self_v_zz__5fdc855f6c00.pub)
 
 
 
@@ -24361,6 +24309,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__613a502d1972 */
 #define afw_v_zz__613a502d1972 \
     (&afw_self_v_zz__613a502d1972.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__613c67ea23f0 \
+    "Returns value unchanged if it is dataType null. Otherwise, including when value is undefined, throws an error. It never converts: to get a null from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as null."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__613c67ea23f0 */
+#define afw_s_zz__613c67ea23f0 \
+    (&afw_self_v_zz__613c67ea23f0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__613c67ea23f0 */
+#define afw_self_s_zz__613c67ea23f0 \
+    (afw_self_v_zz__613c67ea23f0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__613c67ea23f0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__613c67ea23f0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__613c67ea23f0 */
+#define afw_z_zz__613c67ea23f0 \
+    (afw_self_v_zz__613c67ea23f0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__613c67ea23f0 */
+#define afw_v_zz__613c67ea23f0 \
+    (&afw_self_v_zz__613c67ea23f0.pub)
 
 
 
@@ -25431,6 +25405,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__648dfd7f15f6 \
+    "Converts <dataType> value to ipAddress. A string is read with the ipAddress parser, the same parser the typed literal \"...\"ipAddress uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__648dfd7f15f6 */
+#define afw_s_zz__648dfd7f15f6 \
+    (&afw_self_v_zz__648dfd7f15f6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__648dfd7f15f6 */
+#define afw_self_s_zz__648dfd7f15f6 \
+    (afw_self_v_zz__648dfd7f15f6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__648dfd7f15f6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__648dfd7f15f6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__648dfd7f15f6 */
+#define afw_z_zz__648dfd7f15f6 \
+    (afw_self_v_zz__648dfd7f15f6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__648dfd7f15f6 */
+#define afw_v_zz__648dfd7f15f6 \
+    (&afw_self_v_zz__648dfd7f15f6.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__64a8d8467c10 \
     "Subtract yearMonthDuration arg2 from date arg1 and return the date result."
 
@@ -26159,6 +26159,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__66c167a9395a \
+    "Converts string value to dateTime. A string is read with the dateTime parser, the same parser the typed literal \"...\"dateTime uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__66c167a9395a */
+#define afw_s_zz__66c167a9395a \
+    (&afw_self_v_zz__66c167a9395a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__66c167a9395a */
+#define afw_self_s_zz__66c167a9395a \
+    (afw_self_v_zz__66c167a9395a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__66c167a9395a */
+extern const afw_value_string_t \
+    afw_self_v_zz__66c167a9395a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__66c167a9395a */
+#define afw_z_zz__66c167a9395a \
+    (afw_self_v_zz__66c167a9395a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__66c167a9395a */
+#define afw_v_zz__66c167a9395a \
+    (&afw_self_v_zz__66c167a9395a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__66ccb3a6c91f \
     "Determine if for time arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison."
 
@@ -26809,32 +26835,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__68f917c06265 \
-    "Returns value unchanged if it is dataType unevaluated. Otherwise, including when value is undefined, throws an error. It never converts: to get a unevaluated from a value of another data type, write a typed literal or call a to_ function. This is usually written value as unevaluated."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__68f917c06265 */
-#define afw_s_zz__68f917c06265 \
-    (&afw_self_v_zz__68f917c06265.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__68f917c06265 */
-#define afw_self_s_zz__68f917c06265 \
-    (afw_self_v_zz__68f917c06265.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__68f917c06265 */
-extern const afw_value_string_t \
-    afw_self_v_zz__68f917c06265;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__68f917c06265 */
-#define afw_z_zz__68f917c06265 \
-    (afw_self_v_zz__68f917c06265.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__68f917c06265 */
-#define afw_v_zz__68f917c06265 \
-    (&afw_self_v_zz__68f917c06265.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__6922fa545a19 \
     "Converts value to data type object returning object result. A string is parsed as JSON (or relaxed JSON) and must yield an object; an object is left unchanged. This is not an object-literal constructor — use { ... } for that."
 
@@ -27299,6 +27299,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6affaf867e19 */
 #define afw_v_zz__6affaf867e19 \
     (&afw_self_v_zz__6affaf867e19.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__6b0313ea129e \
+    "Returns value unchanged if it is dataType xpathExpression. Otherwise, including when value is undefined, throws an error. It never converts: to get a xpathExpression from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as xpathExpression."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b0313ea129e */
+#define afw_s_zz__6b0313ea129e \
+    (&afw_self_v_zz__6b0313ea129e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b0313ea129e */
+#define afw_self_s_zz__6b0313ea129e \
+    (afw_self_v_zz__6b0313ea129e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6b0313ea129e */
+extern const afw_value_string_t \
+    afw_self_v_zz__6b0313ea129e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6b0313ea129e */
+#define afw_z_zz__6b0313ea129e \
+    (afw_self_v_zz__6b0313ea129e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6b0313ea129e */
+#define afw_v_zz__6b0313ea129e \
+    (&afw_self_v_zz__6b0313ea129e.pub)
 
 
 
@@ -28183,6 +28209,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6e945b3fa7c9 */
 #define afw_v_zz__6e945b3fa7c9 \
     (&afw_self_v_zz__6e945b3fa7c9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__6ea40dd01fcc \
+    "Converts <dataType> value to ia5String. A string is read with the ia5String parser, the same parser the typed literal \"...\"ia5String uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6ea40dd01fcc */
+#define afw_s_zz__6ea40dd01fcc \
+    (&afw_self_v_zz__6ea40dd01fcc.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6ea40dd01fcc */
+#define afw_self_s_zz__6ea40dd01fcc \
+    (afw_self_v_zz__6ea40dd01fcc.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6ea40dd01fcc */
+extern const afw_value_string_t \
+    afw_self_v_zz__6ea40dd01fcc;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6ea40dd01fcc */
+#define afw_z_zz__6ea40dd01fcc \
+    (afw_self_v_zz__6ea40dd01fcc.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6ea40dd01fcc */
+#define afw_v_zz__6ea40dd01fcc \
+    (&afw_self_v_zz__6ea40dd01fcc.pub)
 
 
 
@@ -30293,32 +30345,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__78a163607202 \
-    "Converts <dataType> value to hexBinary. A string is read as hexBinary text, the same text the typed literal \"...\"hexBinary accepts, and text that is not valid hexBinary is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__78a163607202 */
-#define afw_s_zz__78a163607202 \
-    (&afw_self_v_zz__78a163607202.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__78a163607202 */
-#define afw_self_s_zz__78a163607202 \
-    (afw_self_v_zz__78a163607202.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__78a163607202 */
-extern const afw_value_string_t \
-    afw_self_v_zz__78a163607202;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__78a163607202 */
-#define afw_z_zz__78a163607202 \
-    (afw_self_v_zz__78a163607202.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__78a163607202 */
-#define afw_v_zz__78a163607202 \
-    (&afw_self_v_zz__78a163607202.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__78cb2a9de4bd \
     "Per-use session on an adapter: retrieve/get/add/modify/replace/delete\n      objects, optional transactions, and related journal/index hooks.\n      Sessions are typically short-lived (request or action scope). Prefer\n      afw_adapter.h helpers that create and release sessions with correct\n      reference counting. Call methods via afw_adapter_session_*()\n      macros (e.g. retrieve_objects, get_object)."
 
@@ -30549,6 +30575,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__79a1ff072934 */
 #define afw_v_zz__79a1ff072934 \
     (&afw_self_v_zz__79a1ff072934.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__79d680ad00eb \
+    "Returns value unchanged if it is dataType template. Otherwise, including when value is undefined, throws an error. It never converts: to get a template from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as template."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__79d680ad00eb */
+#define afw_s_zz__79d680ad00eb \
+    (&afw_self_v_zz__79d680ad00eb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__79d680ad00eb */
+#define afw_self_s_zz__79d680ad00eb \
+    (afw_self_v_zz__79d680ad00eb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__79d680ad00eb */
+extern const afw_value_string_t \
+    afw_self_v_zz__79d680ad00eb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__79d680ad00eb */
+#define afw_z_zz__79d680ad00eb \
+    (afw_self_v_zz__79d680ad00eb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__79d680ad00eb */
+#define afw_v_zz__79d680ad00eb \
+    (&afw_self_v_zz__79d680ad00eb.pub)
 
 
 
@@ -31307,6 +31359,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7cb521aa8df5 \
+    "Returns value unchanged if it is dataType x500Name. Otherwise, including when value is undefined, throws an error. It never converts: to get a x500Name from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as x500Name."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7cb521aa8df5 */
+#define afw_s_zz__7cb521aa8df5 \
+    (&afw_self_v_zz__7cb521aa8df5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7cb521aa8df5 */
+#define afw_self_s_zz__7cb521aa8df5 \
+    (afw_self_v_zz__7cb521aa8df5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7cb521aa8df5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7cb521aa8df5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7cb521aa8df5 */
+#define afw_z_zz__7cb521aa8df5 \
+    (afw_self_v_zz__7cb521aa8df5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7cb521aa8df5 */
+#define afw_v_zz__7cb521aa8df5 \
+    (&afw_self_v_zz__7cb521aa8df5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7cc5b9282c0b \
     "Call functor once for each entry of the first array in values, in index order from 0 through length minus one, and return a new array of the same length with the results. Entries whose value is undefined (including omitted elements in array literals) are included; the functor receives undefined for those indexes. Additional values parameters, if present, are passed through on every call."
 
@@ -31901,6 +31979,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7f675c3b4aca */
 #define afw_v_zz__7f675c3b4aca \
     (&afw_self_v_zz__7f675c3b4aca.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__7f710ba90457 \
+    "Converts <dataType> value to yearMonthDuration. A string is read with the yearMonthDuration parser, the same parser the typed literal \"...\"yearMonthDuration uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7f710ba90457 */
+#define afw_s_zz__7f710ba90457 \
+    (&afw_self_v_zz__7f710ba90457.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7f710ba90457 */
+#define afw_self_s_zz__7f710ba90457 \
+    (afw_self_v_zz__7f710ba90457.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7f710ba90457 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7f710ba90457;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7f710ba90457 */
+#define afw_z_zz__7f710ba90457 \
+    (afw_self_v_zz__7f710ba90457.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7f710ba90457 */
+#define afw_v_zz__7f710ba90457 \
+    (&afw_self_v_zz__7f710ba90457.pub)
 
 
 
@@ -32529,32 +32633,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__825c47e2640a \
-    "Returns value unchanged if it is dataType object. Otherwise, including when value is undefined, throws an error. It never converts: to get a object from a value of another data type, write a typed literal or call a to_ function. This is usually written value as object."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__825c47e2640a */
-#define afw_s_zz__825c47e2640a \
-    (&afw_self_v_zz__825c47e2640a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__825c47e2640a */
-#define afw_self_s_zz__825c47e2640a \
-    (afw_self_v_zz__825c47e2640a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__825c47e2640a */
-extern const afw_value_string_t \
-    afw_self_v_zz__825c47e2640a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__825c47e2640a */
-#define afw_z_zz__825c47e2640a \
-    (afw_self_v_zz__825c47e2640a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__825c47e2640a */
-#define afw_v_zz__825c47e2640a \
-    (&afw_self_v_zz__825c47e2640a.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__825fcb6624cc \
     "Type of request handler that will process requests directed to this handler."
 
@@ -32971,6 +33049,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__83a50dece91a \
+    "Returns value unchanged if it is dataType ia5String. Otherwise, including when value is undefined, throws an error. It never converts: to get a ia5String from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as ia5String."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__83a50dece91a */
+#define afw_s_zz__83a50dece91a \
+    (&afw_self_v_zz__83a50dece91a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__83a50dece91a */
+#define afw_self_s_zz__83a50dece91a \
+    (afw_self_v_zz__83a50dece91a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__83a50dece91a */
+extern const afw_value_string_t \
+    afw_self_v_zz__83a50dece91a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__83a50dece91a */
+#define afw_z_zz__83a50dece91a \
+    (afw_self_v_zz__83a50dece91a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__83a50dece91a */
+#define afw_v_zz__83a50dece91a \
+    (&afw_self_v_zz__83a50dece91a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__83c1b3248f14 \
     "The URI that adaptive framework considers the normalized form of the URI"
 
@@ -33227,6 +33331,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__846ef375acef */
 #define afw_v_zz__846ef375acef \
     (&afw_self_v_zz__846ef375acef.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8488324ad1e3 \
+    "Converts <dataType> value to objectPath. A string is read with the objectPath parser, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8488324ad1e3 */
+#define afw_s_zz__8488324ad1e3 \
+    (&afw_self_v_zz__8488324ad1e3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8488324ad1e3 */
+#define afw_self_s_zz__8488324ad1e3 \
+    (afw_self_v_zz__8488324ad1e3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8488324ad1e3 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8488324ad1e3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8488324ad1e3 */
+#define afw_z_zz__8488324ad1e3 \
+    (afw_self_v_zz__8488324ad1e3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8488324ad1e3 */
+#define afw_v_zz__8488324ad1e3 \
+    (&afw_self_v_zz__8488324ad1e3.pub)
 
 
 
@@ -33725,32 +33855,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8632f9ced8b1 \
-    "Converts string value to dnsName. A string is read as dnsName text, the same text the typed literal \"...\"dnsName accepts, and text that is not valid dnsName is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8632f9ced8b1 */
-#define afw_s_zz__8632f9ced8b1 \
-    (&afw_self_v_zz__8632f9ced8b1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8632f9ced8b1 */
-#define afw_self_s_zz__8632f9ced8b1 \
-    (afw_self_v_zz__8632f9ced8b1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8632f9ced8b1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8632f9ced8b1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8632f9ced8b1 */
-#define afw_z_zz__8632f9ced8b1 \
-    (afw_self_v_zz__8632f9ced8b1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8632f9ced8b1 */
-#define afw_v_zz__8632f9ced8b1 \
-    (&afw_self_v_zz__8632f9ced8b1.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__864c9b879238 \
     "This is the object type of objects produced by evaluating a test script."
 
@@ -34215,32 +34319,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__882ccc971b79 */
 #define afw_v_zz__882ccc971b79 \
     (&afw_self_v_zz__882ccc971b79.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__8836b91e5fc4 \
-    "Converts <dataType> value to objectId. A string is read as objectId text."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8836b91e5fc4 */
-#define afw_s_zz__8836b91e5fc4 \
-    (&afw_self_v_zz__8836b91e5fc4.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8836b91e5fc4 */
-#define afw_self_s_zz__8836b91e5fc4 \
-    (afw_self_v_zz__8836b91e5fc4.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8836b91e5fc4 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8836b91e5fc4;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8836b91e5fc4 */
-#define afw_z_zz__8836b91e5fc4 \
-    (afw_self_v_zz__8836b91e5fc4.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8836b91e5fc4 */
-#define afw_v_zz__8836b91e5fc4 \
-    (&afw_self_v_zz__8836b91e5fc4.pub)
 
 
 
@@ -35493,32 +35571,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8be21ddeeaea \
-    "Converts string value to objectId. A string is read as objectId text."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8be21ddeeaea */
-#define afw_s_zz__8be21ddeeaea \
-    (&afw_self_v_zz__8be21ddeeaea.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8be21ddeeaea */
-#define afw_self_s_zz__8be21ddeeaea \
-    (afw_self_v_zz__8be21ddeeaea.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8be21ddeeaea */
-extern const afw_value_string_t \
-    afw_self_v_zz__8be21ddeeaea;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8be21ddeeaea */
-#define afw_z_zz__8be21ddeeaea \
-    (afw_self_v_zz__8be21ddeeaea.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8be21ddeeaea */
-#define afw_v_zz__8be21ddeeaea \
-    (&afw_self_v_zz__8be21ddeeaea.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8be81787852c \
     "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveFunction_ objects."
 
@@ -35831,6 +35883,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__8d378e2cb467 \
+    "Converts <dataType> value to date. A string is read with the date parser, the same parser the typed literal \"...\"date uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8d378e2cb467 */
+#define afw_s_zz__8d378e2cb467 \
+    (&afw_self_v_zz__8d378e2cb467.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8d378e2cb467 */
+#define afw_self_s_zz__8d378e2cb467 \
+    (afw_self_v_zz__8d378e2cb467.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8d378e2cb467 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8d378e2cb467;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8d378e2cb467 */
+#define afw_z_zz__8d378e2cb467 \
+    (afw_self_v_zz__8d378e2cb467.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8d378e2cb467 */
+#define afw_v_zz__8d378e2cb467 \
+    (&afw_self_v_zz__8d378e2cb467.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__8d77e3332343 \
     "An array that is safe to mutate and store. It lasts for the caller."
 
@@ -35879,6 +35957,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8d9e9965f5fb */
 #define afw_v_zz__8d9e9965f5fb \
     (&afw_self_v_zz__8d9e9965f5fb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8da32697a564 \
+    "Returns value unchanged if it is dataType script. Otherwise, including when value is undefined, throws an error. It never converts: to get a script from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as script."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8da32697a564 */
+#define afw_s_zz__8da32697a564 \
+    (&afw_self_v_zz__8da32697a564.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8da32697a564 */
+#define afw_self_s_zz__8da32697a564 \
+    (afw_self_v_zz__8da32697a564.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8da32697a564 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8da32697a564;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8da32697a564 */
+#define afw_z_zz__8da32697a564 \
+    (afw_self_v_zz__8da32697a564.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8da32697a564 */
+#define afw_v_zz__8da32697a564 \
+    (&afw_self_v_zz__8da32697a564.pub)
 
 
 
@@ -36741,32 +36845,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__9180ea03c12d \
-    "Returns value unchanged if it is dataType base64Binary. Otherwise, including when value is undefined, throws an error. It never converts: to get a base64Binary from a value of another data type, write a typed literal or call a to_ function. This is usually written value as base64Binary."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9180ea03c12d */
-#define afw_s_zz__9180ea03c12d \
-    (&afw_self_v_zz__9180ea03c12d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9180ea03c12d */
-#define afw_self_s_zz__9180ea03c12d \
-    (afw_self_v_zz__9180ea03c12d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9180ea03c12d */
-extern const afw_value_string_t \
-    afw_self_v_zz__9180ea03c12d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9180ea03c12d */
-#define afw_z_zz__9180ea03c12d \
-    (afw_self_v_zz__9180ea03c12d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9180ea03c12d */
-#define afw_v_zz__9180ea03c12d \
-    (&afw_self_v_zz__9180ea03c12d.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__918c629596e7 \
     "function regexp_match<rfc822Name> (\n    value: rfc822Name,\n    regexp: string\n): boolean;\n"
 
@@ -36841,6 +36919,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__919b358748cf */
 #define afw_v_zz__919b358748cf \
     (&afw_self_v_zz__919b358748cf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__91ac1c954364 \
+    "Converts <dataType> value to rfc822Name. A string is read with the rfc822Name parser, the same parser the typed literal \"...\"rfc822Name uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__91ac1c954364 */
+#define afw_s_zz__91ac1c954364 \
+    (&afw_self_v_zz__91ac1c954364.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__91ac1c954364 */
+#define afw_self_s_zz__91ac1c954364 \
+    (afw_self_v_zz__91ac1c954364.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__91ac1c954364 */
+extern const afw_value_string_t \
+    afw_self_v_zz__91ac1c954364;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__91ac1c954364 */
+#define afw_z_zz__91ac1c954364 \
+    (afw_self_v_zz__91ac1c954364.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__91ac1c954364 */
+#define afw_v_zz__91ac1c954364 \
+    (&afw_self_v_zz__91ac1c954364.pub)
 
 
 
@@ -37569,32 +37673,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__95fcb77954b8 */
 #define afw_v_zz__95fcb77954b8 \
     (&afw_self_v_zz__95fcb77954b8.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__960cb1f6624a \
-    "Converts <dataType> value to dateTime. A string is read as dateTime text, the same text the typed literal \"...\"dateTime accepts, and text that is not valid dateTime is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__960cb1f6624a */
-#define afw_s_zz__960cb1f6624a \
-    (&afw_self_v_zz__960cb1f6624a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__960cb1f6624a */
-#define afw_self_s_zz__960cb1f6624a \
-    (afw_self_v_zz__960cb1f6624a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__960cb1f6624a */
-extern const afw_value_string_t \
-    afw_self_v_zz__960cb1f6624a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__960cb1f6624a */
-#define afw_z_zz__960cb1f6624a \
-    (afw_self_v_zz__960cb1f6624a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__960cb1f6624a */
-#define afw_v_zz__960cb1f6624a \
-    (&afw_self_v_zz__960cb1f6624a.pub)
 
 
 
@@ -38479,32 +38557,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__994fc2cb8795 */
 #define afw_v_zz__994fc2cb8795 \
     (&afw_self_v_zz__994fc2cb8795.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__9952aae8aa61 \
-    "Returns value unchanged if it is dataType objectPath. Otherwise, including when value is undefined, throws an error. It never converts: to get a objectPath from a value of another data type, write a typed literal or call a to_ function. This is usually written value as objectPath."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9952aae8aa61 */
-#define afw_s_zz__9952aae8aa61 \
-    (&afw_self_v_zz__9952aae8aa61.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9952aae8aa61 */
-#define afw_self_s_zz__9952aae8aa61 \
-    (afw_self_v_zz__9952aae8aa61.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9952aae8aa61 */
-extern const afw_value_string_t \
-    afw_self_v_zz__9952aae8aa61;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9952aae8aa61 */
-#define afw_z_zz__9952aae8aa61 \
-    (afw_self_v_zz__9952aae8aa61.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9952aae8aa61 */
-#define afw_v_zz__9952aae8aa61 \
-    (&afw_self_v_zz__9952aae8aa61.pub)
 
 
 
@@ -39731,6 +39783,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__9e49bebb22ee \
+    "Converts string value to x500Name. A string is read with the x500Name parser, the same parser the typed literal \"...\"x500Name uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9e49bebb22ee */
+#define afw_s_zz__9e49bebb22ee \
+    (&afw_self_v_zz__9e49bebb22ee.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9e49bebb22ee */
+#define afw_self_s_zz__9e49bebb22ee \
+    (afw_self_v_zz__9e49bebb22ee.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9e49bebb22ee */
+extern const afw_value_string_t \
+    afw_self_v_zz__9e49bebb22ee;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9e49bebb22ee */
+#define afw_z_zz__9e49bebb22ee \
+    (afw_self_v_zz__9e49bebb22ee.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9e49bebb22ee */
+#define afw_v_zz__9e49bebb22ee \
+    (&afw_self_v_zz__9e49bebb22ee.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__9e7021ca0eb3 \
     "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tabs_Tab"
 
@@ -39935,6 +40013,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9ec3e4a68ed8 */
 #define afw_v_zz__9ec3e4a68ed8 \
     (&afw_self_v_zz__9ec3e4a68ed8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9ed6b15bfe0b \
+    "Converts string value to ipAddress. A string is read with the ipAddress parser, the same parser the typed literal \"...\"ipAddress uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9ed6b15bfe0b */
+#define afw_s_zz__9ed6b15bfe0b \
+    (&afw_self_v_zz__9ed6b15bfe0b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9ed6b15bfe0b */
+#define afw_self_s_zz__9ed6b15bfe0b \
+    (afw_self_v_zz__9ed6b15bfe0b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9ed6b15bfe0b */
+extern const afw_value_string_t \
+    afw_self_v_zz__9ed6b15bfe0b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9ed6b15bfe0b */
+#define afw_z_zz__9ed6b15bfe0b \
+    (afw_self_v_zz__9ed6b15bfe0b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9ed6b15bfe0b */
+#define afw_v_zz__9ed6b15bfe0b \
+    (&afw_self_v_zz__9ed6b15bfe0b.pub)
 
 
 
@@ -40169,32 +40273,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9f90fd802dcd */
 #define afw_v_zz__9f90fd802dcd \
     (&afw_self_v_zz__9f90fd802dcd.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__9f978eafb5f2 \
-    "Converts string value to rfc822Name. A string is read as rfc822Name text, the same text the typed literal \"...\"rfc822Name accepts, and text that is not valid rfc822Name is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9f978eafb5f2 */
-#define afw_s_zz__9f978eafb5f2 \
-    (&afw_self_v_zz__9f978eafb5f2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9f978eafb5f2 */
-#define afw_self_s_zz__9f978eafb5f2 \
-    (afw_self_v_zz__9f978eafb5f2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9f978eafb5f2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__9f978eafb5f2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9f978eafb5f2 */
-#define afw_z_zz__9f978eafb5f2 \
-    (afw_self_v_zz__9f978eafb5f2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9f978eafb5f2 */
-#define afw_v_zz__9f978eafb5f2 \
-    (&afw_self_v_zz__9f978eafb5f2.pub)
 
 
 
@@ -130081,32 +130159,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a277d5cedfb4 \
-    "Converts <dataType> value to ipAddress. A string is read as ipAddress text, the same text the typed literal \"...\"ipAddress accepts, and text that is not valid ipAddress is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a277d5cedfb4 */
-#define afw_s_zz__a277d5cedfb4 \
-    (&afw_self_v_zz__a277d5cedfb4.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a277d5cedfb4 */
-#define afw_self_s_zz__a277d5cedfb4 \
-    (afw_self_v_zz__a277d5cedfb4.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a277d5cedfb4 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a277d5cedfb4;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a277d5cedfb4 */
-#define afw_z_zz__a277d5cedfb4 \
-    (afw_self_v_zz__a277d5cedfb4.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a277d5cedfb4 */
-#define afw_v_zz__a277d5cedfb4 \
-    (&afw_self_v_zz__a277d5cedfb4.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a285bf02335a \
     "This is the value to evaluate (including undefined). Evaluated for side effects only."
 
@@ -130705,6 +130757,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__a4ef3a39a3f5 \
+    "Converts string value to date. A string is read with the date parser, the same parser the typed literal \"...\"date uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a4ef3a39a3f5 */
+#define afw_s_zz__a4ef3a39a3f5 \
+    (&afw_self_v_zz__a4ef3a39a3f5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a4ef3a39a3f5 */
+#define afw_self_s_zz__a4ef3a39a3f5 \
+    (afw_self_v_zz__a4ef3a39a3f5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a4ef3a39a3f5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__a4ef3a39a3f5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a4ef3a39a3f5 */
+#define afw_z_zz__a4ef3a39a3f5 \
+    (afw_self_v_zz__a4ef3a39a3f5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a4ef3a39a3f5 */
+#define afw_v_zz__a4ef3a39a3f5 \
+    (&afw_self_v_zz__a4ef3a39a3f5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__a5068412498f \
     "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value."
 
@@ -130935,32 +131013,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a63ad1cd4539 */
 #define afw_v_zz__a63ad1cd4539 \
     (&afw_self_v_zz__a63ad1cd4539.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__a640b234cc62 \
-    "Returns value unchanged if it is dataType date. Otherwise, including when value is undefined, throws an error. It never converts: to get a date from a value of another data type, write a typed literal or call a to_ function. This is usually written value as date."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a640b234cc62 */
-#define afw_s_zz__a640b234cc62 \
-    (&afw_self_v_zz__a640b234cc62.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a640b234cc62 */
-#define afw_self_s_zz__a640b234cc62 \
-    (afw_self_v_zz__a640b234cc62.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a640b234cc62 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a640b234cc62;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a640b234cc62 */
-#define afw_z_zz__a640b234cc62 \
-    (afw_self_v_zz__a640b234cc62.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a640b234cc62 */
-#define afw_v_zz__a640b234cc62 \
-    (&afw_self_v_zz__a640b234cc62.pub)
 
 
 
@@ -131537,32 +131589,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a83beb3e4878 \
-    "Returns value unchanged if it is dataType ia5String. Otherwise, including when value is undefined, throws an error. It never converts: to get a ia5String from a value of another data type, write a typed literal or call a to_ function. This is usually written value as ia5String."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a83beb3e4878 */
-#define afw_s_zz__a83beb3e4878 \
-    (&afw_self_v_zz__a83beb3e4878.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a83beb3e4878 */
-#define afw_self_s_zz__a83beb3e4878 \
-    (afw_self_v_zz__a83beb3e4878.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a83beb3e4878 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a83beb3e4878;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a83beb3e4878 */
-#define afw_z_zz__a83beb3e4878 \
-    (afw_self_v_zz__a83beb3e4878.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a83beb3e4878 */
-#define afw_v_zz__a83beb3e4878 \
-    (&afw_self_v_zz__a83beb3e4878.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a840c0655a8e \
     "(adapterId: string, objectType: string, object: object, objectId?: string, journal?: object, adapterTypeSpecific?: object): object /* _AdaptiveJournalEntry_ */"
 
@@ -131689,32 +131715,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a894adfe8895 */
 #define afw_v_zz__a894adfe8895 \
     (&afw_self_v_zz__a894adfe8895.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__a89b4f631561 \
-    "Converts <dataType> value to date. A string is read as date text, the same text the typed literal \"...\"date accepts, and text that is not valid date is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a89b4f631561 */
-#define afw_s_zz__a89b4f631561 \
-    (&afw_self_v_zz__a89b4f631561.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a89b4f631561 */
-#define afw_self_s_zz__a89b4f631561 \
-    (afw_self_v_zz__a89b4f631561.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a89b4f631561 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a89b4f631561;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a89b4f631561 */
-#define afw_z_zz__a89b4f631561 \
-    (afw_self_v_zz__a89b4f631561.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a89b4f631561 */
-#define afw_v_zz__a89b4f631561 \
-    (&afw_self_v_zz__a89b4f631561.pub)
 
 
 
@@ -133279,6 +133279,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ae4ab422ba36 \
+    "Converts <dataType> value to dnsName. A string is read with the dnsName parser, the same parser the typed literal \"...\"dnsName uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ae4ab422ba36 */
+#define afw_s_zz__ae4ab422ba36 \
+    (&afw_self_v_zz__ae4ab422ba36.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ae4ab422ba36 */
+#define afw_self_s_zz__ae4ab422ba36 \
+    (afw_self_v_zz__ae4ab422ba36.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ae4ab422ba36 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ae4ab422ba36;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ae4ab422ba36 */
+#define afw_z_zz__ae4ab422ba36 \
+    (afw_self_v_zz__ae4ab422ba36.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ae4ab422ba36 */
+#define afw_v_zz__ae4ab422ba36 \
+    (&afw_self_v_zz__ae4ab422ba36.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ae4ca3b547f9 \
     "URI of objects to retrieve. If a URI begins with a single slash ('/'), it is the local object path. A query string can be specified."
 
@@ -133431,32 +133457,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__aea5bcd8fde2 */
 #define afw_v_zz__aea5bcd8fde2 \
     (&afw_self_v_zz__aea5bcd8fde2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__aeb11937c84e \
-    "Returns value unchanged if it is dataType null. Otherwise, including when value is undefined, throws an error. It never converts: to get a null from a value of another data type, write a typed literal or call a to_ function. This is usually written value as null."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__aeb11937c84e */
-#define afw_s_zz__aeb11937c84e \
-    (&afw_self_v_zz__aeb11937c84e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__aeb11937c84e */
-#define afw_self_s_zz__aeb11937c84e \
-    (afw_self_v_zz__aeb11937c84e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__aeb11937c84e */
-extern const afw_value_string_t \
-    afw_self_v_zz__aeb11937c84e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__aeb11937c84e */
-#define afw_z_zz__aeb11937c84e \
-    (afw_self_v_zz__aeb11937c84e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__aeb11937c84e */
-#define afw_v_zz__aeb11937c84e \
-    (&afw_self_v_zz__aeb11937c84e.pub)
 
 
 
@@ -135125,6 +135125,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b53a66f8b5ed \
+    "Converts <dataType> value to x500Name. A string is read with the x500Name parser, the same parser the typed literal \"...\"x500Name uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b53a66f8b5ed */
+#define afw_s_zz__b53a66f8b5ed \
+    (&afw_self_v_zz__b53a66f8b5ed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b53a66f8b5ed */
+#define afw_self_s_zz__b53a66f8b5ed \
+    (afw_self_v_zz__b53a66f8b5ed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b53a66f8b5ed */
+extern const afw_value_string_t \
+    afw_self_v_zz__b53a66f8b5ed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b53a66f8b5ed */
+#define afw_z_zz__b53a66f8b5ed \
+    (afw_self_v_zz__b53a66f8b5ed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b53a66f8b5ed */
+#define afw_v_zz__b53a66f8b5ed \
+    (&afw_self_v_zz__b53a66f8b5ed.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b54c0fbdb0b9 \
     "/**\n * onDeleteObject\n *\n * Override default delete_object() processing, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n */\nreturn current::useDefaultProcessing;\n"
 
@@ -135697,6 +135723,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b71ff9a48250 \
+    "Returns value unchanged if it is dataType boolean. Otherwise, including when value is undefined, throws an error. It never converts: to get a boolean from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as boolean."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b71ff9a48250 */
+#define afw_s_zz__b71ff9a48250 \
+    (&afw_self_v_zz__b71ff9a48250.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b71ff9a48250 */
+#define afw_self_s_zz__b71ff9a48250 \
+    (afw_self_v_zz__b71ff9a48250.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b71ff9a48250 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b71ff9a48250;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b71ff9a48250 */
+#define afw_z_zz__b71ff9a48250 \
+    (afw_self_v_zz__b71ff9a48250.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b71ff9a48250 */
+#define afw_v_zz__b71ff9a48250 \
+    (&afw_self_v_zz__b71ff9a48250.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b745b8250cad \
     "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout."
 
@@ -135927,6 +135979,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b8970b17c0ac */
 #define afw_v_zz__b8970b17c0ac \
     (&afw_self_v_zz__b8970b17c0ac.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b898ff6f59ca \
+    "Converts <dataType> value to dateTime. A string is read with the dateTime parser, the same parser the typed literal \"...\"dateTime uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b898ff6f59ca */
+#define afw_s_zz__b898ff6f59ca \
+    (&afw_self_v_zz__b898ff6f59ca.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b898ff6f59ca */
+#define afw_self_s_zz__b898ff6f59ca \
+    (afw_self_v_zz__b898ff6f59ca.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b898ff6f59ca */
+extern const afw_value_string_t \
+    afw_self_v_zz__b898ff6f59ca;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b898ff6f59ca */
+#define afw_z_zz__b898ff6f59ca \
+    (afw_self_v_zz__b898ff6f59ca.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b898ff6f59ca */
+#define afw_v_zz__b898ff6f59ca \
+    (&afw_self_v_zz__b898ff6f59ca.pub)
 
 
 
@@ -136239,32 +136317,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ba0301c70e27 */
 #define afw_v_zz__ba0301c70e27 \
     (&afw_self_v_zz__ba0301c70e27.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ba26e008d02d \
-    "Returns value unchanged if it is dataType dnsName. Otherwise, including when value is undefined, throws an error. It never converts: to get a dnsName from a value of another data type, write a typed literal or call a to_ function. This is usually written value as dnsName."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ba26e008d02d */
-#define afw_s_zz__ba26e008d02d \
-    (&afw_self_v_zz__ba26e008d02d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ba26e008d02d */
-#define afw_self_s_zz__ba26e008d02d \
-    (afw_self_v_zz__ba26e008d02d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ba26e008d02d */
-extern const afw_value_string_t \
-    afw_self_v_zz__ba26e008d02d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ba26e008d02d */
-#define afw_z_zz__ba26e008d02d \
-    (afw_self_v_zz__ba26e008d02d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ba26e008d02d */
-#define afw_v_zz__ba26e008d02d \
-    (&afw_self_v_zz__ba26e008d02d.pub)
 
 
 
@@ -138141,32 +138193,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__bbfd81cea710 \
-    "Converts string value to date. A string is read as date text, the same text the typed literal \"...\"date accepts, and text that is not valid date is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bbfd81cea710 */
-#define afw_s_zz__bbfd81cea710 \
-    (&afw_self_v_zz__bbfd81cea710.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bbfd81cea710 */
-#define afw_self_s_zz__bbfd81cea710 \
-    (afw_self_v_zz__bbfd81cea710.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__bbfd81cea710 */
-extern const afw_value_string_t \
-    afw_self_v_zz__bbfd81cea710;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bbfd81cea710 */
-#define afw_z_zz__bbfd81cea710 \
-    (afw_self_v_zz__bbfd81cea710.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__bbfd81cea710 */
-#define afw_v_zz__bbfd81cea710 \
-    (&afw_self_v_zz__bbfd81cea710.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__bc0128f842d2 \
     "High-water of memoryRegionFreeListBytes since environment create."
 
@@ -138557,32 +138583,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__bd1eaecbad21 \
-    "Converts string value to hexBinary. A string is read as hexBinary text, the same text the typed literal \"...\"hexBinary accepts, and text that is not valid hexBinary is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bd1eaecbad21 */
-#define afw_s_zz__bd1eaecbad21 \
-    (&afw_self_v_zz__bd1eaecbad21.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bd1eaecbad21 */
-#define afw_self_s_zz__bd1eaecbad21 \
-    (afw_self_v_zz__bd1eaecbad21.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__bd1eaecbad21 */
-extern const afw_value_string_t \
-    afw_self_v_zz__bd1eaecbad21;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bd1eaecbad21 */
-#define afw_z_zz__bd1eaecbad21 \
-    (afw_self_v_zz__bd1eaecbad21.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__bd1eaecbad21 */
-#define afw_v_zz__bd1eaecbad21 \
-    (&afw_self_v_zz__bd1eaecbad21.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__bd279b1ada67 \
     "function lt<regexp> (\n    arg1: regexp,\n    arg2: regexp\n): boolean;\n"
 
@@ -138609,6 +138609,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__bd6f8138a2b4 \
+    "Returns value unchanged if it is dataType dateTime. Otherwise, including when value is undefined, throws an error. It never converts: to get a dateTime from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as dateTime."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bd6f8138a2b4 */
+#define afw_s_zz__bd6f8138a2b4 \
+    (&afw_self_v_zz__bd6f8138a2b4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bd6f8138a2b4 */
+#define afw_self_s_zz__bd6f8138a2b4 \
+    (afw_self_v_zz__bd6f8138a2b4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__bd6f8138a2b4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__bd6f8138a2b4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bd6f8138a2b4 */
+#define afw_z_zz__bd6f8138a2b4 \
+    (afw_self_v_zz__bd6f8138a2b4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__bd6f8138a2b4 */
+#define afw_v_zz__bd6f8138a2b4 \
+    (&afw_self_v_zz__bd6f8138a2b4.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__bd9944a10604 \
     "This is the objectId of object to delete. Variable current::objectId can be used to access this value in model expressions."
 
@@ -138631,6 +138657,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__bd9944a10604 */
 #define afw_v_zz__bd9944a10604 \
     (&afw_self_v_zz__bd9944a10604.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__bddc19975e8a \
+    "Converts <dataType> value to anyURI. A string is read with the anyURI parser, the same parser the typed literal \"...\"anyURI uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bddc19975e8a */
+#define afw_s_zz__bddc19975e8a \
+    (&afw_self_v_zz__bddc19975e8a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bddc19975e8a */
+#define afw_self_s_zz__bddc19975e8a \
+    (afw_self_v_zz__bddc19975e8a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__bddc19975e8a */
+extern const afw_value_string_t \
+    afw_self_v_zz__bddc19975e8a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bddc19975e8a */
+#define afw_z_zz__bddc19975e8a \
+    (afw_self_v_zz__bddc19975e8a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__bddc19975e8a */
+#define afw_v_zz__bddc19975e8a \
+    (&afw_self_v_zz__bddc19975e8a.pub)
 
 
 
@@ -139623,32 +139675,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__c1cb4181eec1 \
-    "Converts string value to base64Binary. A string is read as base64Binary text, the same text the typed literal \"...\"base64Binary accepts, and text that is not valid base64Binary is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c1cb4181eec1 */
-#define afw_s_zz__c1cb4181eec1 \
-    (&afw_self_v_zz__c1cb4181eec1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c1cb4181eec1 */
-#define afw_self_s_zz__c1cb4181eec1 \
-    (afw_self_v_zz__c1cb4181eec1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c1cb4181eec1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__c1cb4181eec1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c1cb4181eec1 */
-#define afw_z_zz__c1cb4181eec1 \
-    (afw_self_v_zz__c1cb4181eec1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c1cb4181eec1 */
-#define afw_v_zz__c1cb4181eec1 \
-    (&afw_self_v_zz__c1cb4181eec1.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__c1f431417e68 \
     "Converts dateTime value to string. For array values, the to_string() value for each entry is returned separated with commas."
 
@@ -140377,32 +140403,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__c443043eac12 \
-    "Returns value unchanged if it is dataType hexBinary. Otherwise, including when value is undefined, throws an error. It never converts: to get a hexBinary from a value of another data type, write a typed literal or call a to_ function. This is usually written value as hexBinary."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c443043eac12 */
-#define afw_s_zz__c443043eac12 \
-    (&afw_self_v_zz__c443043eac12.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c443043eac12 */
-#define afw_self_s_zz__c443043eac12 \
-    (afw_self_v_zz__c443043eac12.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c443043eac12 */
-extern const afw_value_string_t \
-    afw_self_v_zz__c443043eac12;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c443043eac12 */
-#define afw_z_zz__c443043eac12 \
-    (afw_self_v_zz__c443043eac12.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c443043eac12 */
-#define afw_v_zz__c443043eac12 \
-    (&afw_self_v_zz__c443043eac12.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__c44f7637960d \
     "function subset<base64Binary> (\n    array1: base64Binary[],\n    array2: base64Binary[]\n): boolean;\n"
 
@@ -140633,6 +140633,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c543675117f3 */
 #define afw_v_zz__c543675117f3 \
     (&afw_self_v_zz__c543675117f3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__c54cc2f28be7 \
+    "Converts string value to dnsName. A string is read with the dnsName parser, the same parser the typed literal \"...\"dnsName uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c54cc2f28be7 */
+#define afw_s_zz__c54cc2f28be7 \
+    (&afw_self_v_zz__c54cc2f28be7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c54cc2f28be7 */
+#define afw_self_s_zz__c54cc2f28be7 \
+    (afw_self_v_zz__c54cc2f28be7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c54cc2f28be7 */
+extern const afw_value_string_t \
+    afw_self_v_zz__c54cc2f28be7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c54cc2f28be7 */
+#define afw_z_zz__c54cc2f28be7 \
+    (afw_self_v_zz__c54cc2f28be7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c54cc2f28be7 */
+#define afw_v_zz__c54cc2f28be7 \
+    (&afw_self_v_zz__c54cc2f28be7.pub)
 
 
 
@@ -141859,6 +141885,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ca1d522a04ea \
+    "Converts string value to objectPath. A string is read with the objectPath parser, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ca1d522a04ea */
+#define afw_s_zz__ca1d522a04ea \
+    (&afw_self_v_zz__ca1d522a04ea.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ca1d522a04ea */
+#define afw_self_s_zz__ca1d522a04ea \
+    (afw_self_v_zz__ca1d522a04ea.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ca1d522a04ea */
+extern const afw_value_string_t \
+    afw_self_v_zz__ca1d522a04ea;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ca1d522a04ea */
+#define afw_z_zz__ca1d522a04ea \
+    (afw_self_v_zz__ca1d522a04ea.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ca1d522a04ea */
+#define afw_v_zz__ca1d522a04ea \
+    (&afw_self_v_zz__ca1d522a04ea.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ca3d08765d06 \
     "function includes<array> (\n    array: array,\n    searchElement: any,\n    fromIndex?: integer\n): boolean;\n"
 
@@ -141959,6 +142011,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ca8b2f0e504b */
 #define afw_v_zz__ca8b2f0e504b \
     (&afw_self_v_zz__ca8b2f0e504b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__cac0f10d9eb1 \
+    "Returns value unchanged if it is dataType yearMonthDuration. Otherwise, including when value is undefined, throws an error. It never converts: to get a yearMonthDuration from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as yearMonthDuration."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cac0f10d9eb1 */
+#define afw_s_zz__cac0f10d9eb1 \
+    (&afw_self_v_zz__cac0f10d9eb1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cac0f10d9eb1 */
+#define afw_self_s_zz__cac0f10d9eb1 \
+    (afw_self_v_zz__cac0f10d9eb1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__cac0f10d9eb1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__cac0f10d9eb1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cac0f10d9eb1 */
+#define afw_z_zz__cac0f10d9eb1 \
+    (afw_self_v_zz__cac0f10d9eb1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__cac0f10d9eb1 */
+#define afw_v_zz__cac0f10d9eb1 \
+    (&afw_self_v_zz__cac0f10d9eb1.pub)
 
 
 
@@ -143081,6 +143159,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ce2f592d28c7 \
+    "Converts string value to time. A string is read with the time parser, the same parser the typed literal \"...\"time uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ce2f592d28c7 */
+#define afw_s_zz__ce2f592d28c7 \
+    (&afw_self_v_zz__ce2f592d28c7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ce2f592d28c7 */
+#define afw_self_s_zz__ce2f592d28c7 \
+    (afw_self_v_zz__ce2f592d28c7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ce2f592d28c7 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ce2f592d28c7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ce2f592d28c7 */
+#define afw_z_zz__ce2f592d28c7 \
+    (afw_self_v_zz__ce2f592d28c7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ce2f592d28c7 */
+#define afw_v_zz__ce2f592d28c7 \
+    (&afw_self_v_zz__ce2f592d28c7.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ce306b661609 \
     "All other flags that this flag includes. When setting this flat, all of the flags in this array will also be set"
 
@@ -143961,32 +144065,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__content_type_yaml */
 #define afw_v_zz__content_type_yaml \
     (&afw_self_v_zz__content_type_yaml.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__d0103949df4c \
-    "Converts <dataType> value to anyURI. A string is read as anyURI text, the same text the typed literal \"...\"anyURI accepts, and text that is not valid anyURI is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__d0103949df4c */
-#define afw_s_zz__d0103949df4c \
-    (&afw_self_v_zz__d0103949df4c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__d0103949df4c */
-#define afw_self_s_zz__d0103949df4c \
-    (afw_self_v_zz__d0103949df4c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__d0103949df4c */
-extern const afw_value_string_t \
-    afw_self_v_zz__d0103949df4c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d0103949df4c */
-#define afw_z_zz__d0103949df4c \
-    (afw_self_v_zz__d0103949df4c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__d0103949df4c */
-#define afw_v_zz__d0103949df4c \
-    (&afw_self_v_zz__d0103949df4c.pub)
 
 
 
@@ -144949,6 +145027,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d354816780e1 */
 #define afw_v_zz__d354816780e1 \
     (&afw_self_v_zz__d354816780e1.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d35771d77e36 \
+    "Returns value unchanged if it is dataType anyURI. Otherwise, including when value is undefined, throws an error. It never converts: to get a anyURI from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as anyURI."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d35771d77e36 */
+#define afw_s_zz__d35771d77e36 \
+    (&afw_self_v_zz__d35771d77e36.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d35771d77e36 */
+#define afw_self_s_zz__d35771d77e36 \
+    (afw_self_v_zz__d35771d77e36.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d35771d77e36 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d35771d77e36;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d35771d77e36 */
+#define afw_z_zz__d35771d77e36 \
+    (afw_self_v_zz__d35771d77e36.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d35771d77e36 */
+#define afw_v_zz__d35771d77e36 \
+    (&afw_self_v_zz__d35771d77e36.pub)
 
 
 
@@ -146825,32 +146929,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__dbb299c75d4a \
-    "Converts string value to password. A string is read as password text, the same text the typed literal \"...\"password accepts, and text that is not valid password is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dbb299c75d4a */
-#define afw_s_zz__dbb299c75d4a \
-    (&afw_self_v_zz__dbb299c75d4a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dbb299c75d4a */
-#define afw_self_s_zz__dbb299c75d4a \
-    (afw_self_v_zz__dbb299c75d4a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__dbb299c75d4a */
-extern const afw_value_string_t \
-    afw_self_v_zz__dbb299c75d4a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dbb299c75d4a */
-#define afw_z_zz__dbb299c75d4a \
-    (afw_self_v_zz__dbb299c75d4a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__dbb299c75d4a */
-#define afw_v_zz__dbb299c75d4a \
-    (&afw_self_v_zz__dbb299c75d4a.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__dc0a8bc96cf4 \
     "Checks for regexp arg1 is greater than regexp arg2 and return the boolean result."
 
@@ -146903,32 +146981,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__dc2ffbda2b2b \
-    "Converts string value to yearMonthDuration. A string is read as yearMonthDuration text, the same text the typed literal \"...\"yearMonthDuration accepts, and text that is not valid yearMonthDuration is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc2ffbda2b2b */
-#define afw_s_zz__dc2ffbda2b2b \
-    (&afw_self_v_zz__dc2ffbda2b2b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc2ffbda2b2b */
-#define afw_self_s_zz__dc2ffbda2b2b \
-    (afw_self_v_zz__dc2ffbda2b2b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__dc2ffbda2b2b */
-extern const afw_value_string_t \
-    afw_self_v_zz__dc2ffbda2b2b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dc2ffbda2b2b */
-#define afw_z_zz__dc2ffbda2b2b \
-    (afw_self_v_zz__dc2ffbda2b2b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__dc2ffbda2b2b */
-#define afw_v_zz__dc2ffbda2b2b \
-    (&afw_self_v_zz__dc2ffbda2b2b.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__dc3c076336d5 \
     "function ge<x500Name> (\n    arg1: x500Name,\n    arg2: x500Name\n): boolean;\n"
 
@@ -146951,6 +147003,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dc3c076336d5 */
 #define afw_v_zz__dc3c076336d5 \
     (&afw_self_v_zz__dc3c076336d5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__dc3d72df2bc4 \
+    "Returns value unchanged if it is dataType object. Otherwise, including when value is undefined, throws an error. It never converts: to get a object from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as object."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dc3d72df2bc4 */
+#define afw_s_zz__dc3d72df2bc4 \
+    (&afw_self_v_zz__dc3d72df2bc4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dc3d72df2bc4 */
+#define afw_self_s_zz__dc3d72df2bc4 \
+    (afw_self_v_zz__dc3d72df2bc4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__dc3d72df2bc4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__dc3d72df2bc4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dc3d72df2bc4 */
+#define afw_z_zz__dc3d72df2bc4 \
+    (afw_self_v_zz__dc3d72df2bc4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__dc3d72df2bc4 */
+#define afw_v_zz__dc3d72df2bc4 \
+    (&afw_self_v_zz__dc3d72df2bc4.pub)
 
 
 
@@ -147423,6 +147501,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__de996de3584d \
+    "Returns value unchanged if it is dataType function. Otherwise, including when value is undefined, throws an error. It never converts: to get a function from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as function."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__de996de3584d */
+#define afw_s_zz__de996de3584d \
+    (&afw_self_v_zz__de996de3584d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__de996de3584d */
+#define afw_self_s_zz__de996de3584d \
+    (afw_self_v_zz__de996de3584d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__de996de3584d */
+extern const afw_value_string_t \
+    afw_self_v_zz__de996de3584d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__de996de3584d */
+#define afw_z_zz__de996de3584d \
+    (afw_self_v_zz__de996de3584d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__de996de3584d */
+#define afw_v_zz__de996de3584d \
+    (&afw_self_v_zz__de996de3584d.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__dec97635a35f \
     "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Table_Column"
 
@@ -147627,32 +147731,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__df31c9525e6e */
 #define afw_v_zz__df31c9525e6e \
     (&afw_self_v_zz__df31c9525e6e.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__df44f7513ed3 \
-    "Converts <dataType> value to x500Name. A string is read as x500Name text, the same text the typed literal \"...\"x500Name accepts, and text that is not valid x500Name is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__df44f7513ed3 */
-#define afw_s_zz__df44f7513ed3 \
-    (&afw_self_v_zz__df44f7513ed3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__df44f7513ed3 */
-#define afw_self_s_zz__df44f7513ed3 \
-    (afw_self_v_zz__df44f7513ed3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__df44f7513ed3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__df44f7513ed3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__df44f7513ed3 */
-#define afw_z_zz__df44f7513ed3 \
-    (afw_self_v_zz__df44f7513ed3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__df44f7513ed3 */
-#define afw_v_zz__df44f7513ed3 \
-    (&afw_self_v_zz__df44f7513ed3.pub)
 
 
 
@@ -148147,32 +148225,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e110b8783c99 */
 #define afw_v_zz__e110b8783c99 \
     (&afw_self_v_zz__e110b8783c99.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__e11a0a123b90 \
-    "Returns value unchanged if it is dataType password. Otherwise, including when value is undefined, throws an error. It never converts: to get a password from a value of another data type, write a typed literal or call a to_ function. This is usually written value as password."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e11a0a123b90 */
-#define afw_s_zz__e11a0a123b90 \
-    (&afw_self_v_zz__e11a0a123b90.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e11a0a123b90 */
-#define afw_self_s_zz__e11a0a123b90 \
-    (afw_self_v_zz__e11a0a123b90.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e11a0a123b90 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e11a0a123b90;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e11a0a123b90 */
-#define afw_z_zz__e11a0a123b90 \
-    (afw_self_v_zz__e11a0a123b90.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e11a0a123b90 */
-#define afw_v_zz__e11a0a123b90 \
-    (&afw_self_v_zz__e11a0a123b90.pub)
 
 
 
@@ -148983,6 +149035,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__e392a2124ab0 \
+    "Converts string value to ia5String. A string is read with the ia5String parser, the same parser the typed literal \"...\"ia5String uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e392a2124ab0 */
+#define afw_s_zz__e392a2124ab0 \
+    (&afw_self_v_zz__e392a2124ab0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e392a2124ab0 */
+#define afw_self_s_zz__e392a2124ab0 \
+    (afw_self_v_zz__e392a2124ab0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__e392a2124ab0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__e392a2124ab0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e392a2124ab0 */
+#define afw_z_zz__e392a2124ab0 \
+    (afw_self_v_zz__e392a2124ab0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__e392a2124ab0 */
+#define afw_v_zz__e392a2124ab0 \
+    (&afw_self_v_zz__e392a2124ab0.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__e3953fd8140b \
     "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ListEditor_Item"
 
@@ -149213,32 +149291,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e4487c173a98 */
 #define afw_v_zz__e4487c173a98 \
     (&afw_self_v_zz__e4487c173a98.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__e461da0b759e \
-    "Returns value unchanged if it is dataType boolean. Otherwise, including when value is undefined, throws an error. It never converts: to get a boolean from a value of another data type, write a typed literal or call a to_ function. This is usually written value as boolean."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e461da0b759e */
-#define afw_s_zz__e461da0b759e \
-    (&afw_self_v_zz__e461da0b759e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e461da0b759e */
-#define afw_self_s_zz__e461da0b759e \
-    (afw_self_v_zz__e461da0b759e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e461da0b759e */
-extern const afw_value_string_t \
-    afw_self_v_zz__e461da0b759e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e461da0b759e */
-#define afw_z_zz__e461da0b759e \
-    (afw_self_v_zz__e461da0b759e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e461da0b759e */
-#define afw_v_zz__e461da0b759e \
-    (&afw_self_v_zz__e461da0b759e.pub)
 
 
 
@@ -149789,32 +149841,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e7a1cae1d903 \
-    "Converts <dataType> value to base64Binary. A string is read as base64Binary text, the same text the typed literal \"...\"base64Binary accepts, and text that is not valid base64Binary is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e7a1cae1d903 */
-#define afw_s_zz__e7a1cae1d903 \
-    (&afw_self_v_zz__e7a1cae1d903.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e7a1cae1d903 */
-#define afw_self_s_zz__e7a1cae1d903 \
-    (afw_self_v_zz__e7a1cae1d903.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e7a1cae1d903 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e7a1cae1d903;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e7a1cae1d903 */
-#define afw_z_zz__e7a1cae1d903 \
-    (afw_self_v_zz__e7a1cae1d903.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e7a1cae1d903 */
-#define afw_v_zz__e7a1cae1d903 \
-    (&afw_self_v_zz__e7a1cae1d903.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e7ae190175b5 \
     "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object."
 
@@ -150335,32 +150361,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e9eb159cae2e \
-    "Returns value unchanged if it is dataType xpathExpression. Otherwise, including when value is undefined, throws an error. It never converts: to get a xpathExpression from a value of another data type, write a typed literal or call a to_ function. This is usually written value as xpathExpression."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e9eb159cae2e */
-#define afw_s_zz__e9eb159cae2e \
-    (&afw_self_v_zz__e9eb159cae2e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e9eb159cae2e */
-#define afw_self_s_zz__e9eb159cae2e \
-    (afw_self_v_zz__e9eb159cae2e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e9eb159cae2e */
-extern const afw_value_string_t \
-    afw_self_v_zz__e9eb159cae2e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e9eb159cae2e */
-#define afw_z_zz__e9eb159cae2e \
-    (afw_self_v_zz__e9eb159cae2e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e9eb159cae2e */
-#define afw_v_zz__e9eb159cae2e \
-    (&afw_self_v_zz__e9eb159cae2e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__ea03235abadc \
     "This converts an array of date values that contains one value to a single date value."
 
@@ -150617,32 +150617,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__eb1523b5ba25 */
 #define afw_v_zz__eb1523b5ba25 \
     (&afw_self_v_zz__eb1523b5ba25.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__eb1aaacc57d1 \
-    "Returns value unchanged if it is dataType objectId. Otherwise, including when value is undefined, throws an error. It never converts: to get a objectId from a value of another data type, write a typed literal or call a to_ function. This is usually written value as objectId."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eb1aaacc57d1 */
-#define afw_s_zz__eb1aaacc57d1 \
-    (&afw_self_v_zz__eb1aaacc57d1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__eb1aaacc57d1 */
-#define afw_self_s_zz__eb1aaacc57d1 \
-    (afw_self_v_zz__eb1aaacc57d1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__eb1aaacc57d1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__eb1aaacc57d1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__eb1aaacc57d1 */
-#define afw_z_zz__eb1aaacc57d1 \
-    (afw_self_v_zz__eb1aaacc57d1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__eb1aaacc57d1 */
-#define afw_v_zz__eb1aaacc57d1 \
-    (&afw_self_v_zz__eb1aaacc57d1.pub)
 
 
 
@@ -153663,6 +153637,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f064eee9c0f8 \
+    "Converts string value to yearMonthDuration. A string is read with the yearMonthDuration parser, the same parser the typed literal \"...\"yearMonthDuration uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f064eee9c0f8 */
+#define afw_s_zz__f064eee9c0f8 \
+    (&afw_self_v_zz__f064eee9c0f8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f064eee9c0f8 */
+#define afw_self_s_zz__f064eee9c0f8 \
+    (afw_self_v_zz__f064eee9c0f8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f064eee9c0f8 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f064eee9c0f8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f064eee9c0f8 */
+#define afw_z_zz__f064eee9c0f8 \
+    (afw_self_v_zz__f064eee9c0f8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f064eee9c0f8 */
+#define afw_v_zz__f064eee9c0f8 \
+    (&afw_self_v_zz__f064eee9c0f8.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f07efb00b879 \
     "Checks whether value is dataType dateTime and returns the boolean result. It is false for undefined. This can also be written is<dateTime>(value)."
 
@@ -154287,32 +154287,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f2f00bcd9b70 \
-    "Converts string value to x500Name. A string is read as x500Name text, the same text the typed literal \"...\"x500Name accepts, and text that is not valid x500Name is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f2f00bcd9b70 */
-#define afw_s_zz__f2f00bcd9b70 \
-    (&afw_self_v_zz__f2f00bcd9b70.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f2f00bcd9b70 */
-#define afw_self_s_zz__f2f00bcd9b70 \
-    (afw_self_v_zz__f2f00bcd9b70.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f2f00bcd9b70 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f2f00bcd9b70;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f2f00bcd9b70 */
-#define afw_z_zz__f2f00bcd9b70 \
-    (afw_self_v_zz__f2f00bcd9b70.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f2f00bcd9b70 */
-#define afw_v_zz__f2f00bcd9b70 \
-    (&afw_self_v_zz__f2f00bcd9b70.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f2ffeca2cb68 \
     "Optional. If present, overrides process defaultChunkMin. Rounded up to the heap page. 0 becomes one page."
 
@@ -154751,32 +154725,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f463d143f046 */
 #define afw_v_zz__f463d143f046 \
     (&afw_self_v_zz__f463d143f046.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f47ca7c66b41 \
-    "Returns value unchanged if it is dataType string. Otherwise, including when value is undefined, throws an error. It never converts: to get a string from a value of another data type, write a typed literal or call a to_ function. This is usually written value as string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f47ca7c66b41 */
-#define afw_s_zz__f47ca7c66b41 \
-    (&afw_self_v_zz__f47ca7c66b41.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f47ca7c66b41 */
-#define afw_self_s_zz__f47ca7c66b41 \
-    (afw_self_v_zz__f47ca7c66b41.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f47ca7c66b41 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f47ca7c66b41;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f47ca7c66b41 */
-#define afw_z_zz__f47ca7c66b41 \
-    (afw_self_v_zz__f47ca7c66b41.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f47ca7c66b41 */
-#define afw_v_zz__f47ca7c66b41 \
-    (&afw_self_v_zz__f47ca7c66b41.pub)
 
 
 
@@ -155249,6 +155197,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f6c3dcac2210 \
+    "Returns value unchanged if it is dataType password. Otherwise, including when value is undefined, throws an error. It never converts: to get a password from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as password."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f6c3dcac2210 */
+#define afw_s_zz__f6c3dcac2210 \
+    (&afw_self_v_zz__f6c3dcac2210.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f6c3dcac2210 */
+#define afw_self_s_zz__f6c3dcac2210 \
+    (afw_self_v_zz__f6c3dcac2210.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f6c3dcac2210 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f6c3dcac2210;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f6c3dcac2210 */
+#define afw_z_zz__f6c3dcac2210 \
+    (afw_self_v_zz__f6c3dcac2210.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f6c3dcac2210 */
+#define afw_v_zz__f6c3dcac2210 \
+    (&afw_self_v_zz__f6c3dcac2210.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f6d60cbe5267 \
     "(uri: anyURI, entries: array, journal?: object, adapterTypeSpecific?: object): object /* _AdaptiveJournalEntry_ */"
 
@@ -155453,32 +155427,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f78d36976b32 */
 #define afw_v_zz__f78d36976b32 \
     (&afw_self_v_zz__f78d36976b32.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f793233d0c8a \
-    "Returns value unchanged if it is dataType ipAddress. Otherwise, including when value is undefined, throws an error. It never converts: to get a ipAddress from a value of another data type, write a typed literal or call a to_ function. This is usually written value as ipAddress."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f793233d0c8a */
-#define afw_s_zz__f793233d0c8a \
-    (&afw_self_v_zz__f793233d0c8a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f793233d0c8a */
-#define afw_self_s_zz__f793233d0c8a \
-    (afw_self_v_zz__f793233d0c8a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f793233d0c8a */
-extern const afw_value_string_t \
-    afw_self_v_zz__f793233d0c8a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f793233d0c8a */
-#define afw_z_zz__f793233d0c8a \
-    (afw_self_v_zz__f793233d0c8a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f793233d0c8a */
-#define afw_v_zz__f793233d0c8a \
-    (&afw_self_v_zz__f793233d0c8a.pub)
 
 
 
@@ -155691,32 +155639,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f81ea826ce01 \
-    "Converts string value to ia5String. A string is read as ia5String text, the same text the typed literal \"...\"ia5String accepts, and text that is not valid ia5String is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f81ea826ce01 */
-#define afw_s_zz__f81ea826ce01 \
-    (&afw_self_v_zz__f81ea826ce01.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f81ea826ce01 */
-#define afw_self_s_zz__f81ea826ce01 \
-    (afw_self_v_zz__f81ea826ce01.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f81ea826ce01 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f81ea826ce01;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f81ea826ce01 */
-#define afw_z_zz__f81ea826ce01 \
-    (afw_self_v_zz__f81ea826ce01.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f81ea826ce01 */
-#define afw_v_zz__f81ea826ce01 \
-    (&afw_self_v_zz__f81ea826ce01.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f843c85a964b \
     "Retrieve adaptive objects with a given URI.\n\nEach object is passed to the callback as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied."
 
@@ -155739,32 +155661,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f843c85a964b */
 #define afw_v_zz__f843c85a964b \
     (&afw_self_v_zz__f843c85a964b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f861316c800a \
-    "Converts <dataType> value to objectPath. A string is read as objectPath text."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f861316c800a */
-#define afw_s_zz__f861316c800a \
-    (&afw_self_v_zz__f861316c800a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f861316c800a */
-#define afw_self_s_zz__f861316c800a \
-    (afw_self_v_zz__f861316c800a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f861316c800a */
-extern const afw_value_string_t \
-    afw_self_v_zz__f861316c800a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f861316c800a */
-#define afw_z_zz__f861316c800a \
-    (afw_self_v_zz__f861316c800a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f861316c800a */
-#define afw_v_zz__f861316c800a \
-    (&afw_self_v_zz__f861316c800a.pub)
 
 
 
@@ -156783,6 +156679,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__fc44b15025de \
+    "Converts string value to dayTimeDuration. A string is read with the dayTimeDuration parser, the same parser the typed literal \"...\"dayTimeDuration uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fc44b15025de */
+#define afw_s_zz__fc44b15025de \
+    (&afw_self_v_zz__fc44b15025de.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fc44b15025de */
+#define afw_self_s_zz__fc44b15025de \
+    (afw_self_v_zz__fc44b15025de.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__fc44b15025de */
+extern const afw_value_string_t \
+    afw_self_v_zz__fc44b15025de;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fc44b15025de */
+#define afw_z_zz__fc44b15025de \
+    (afw_self_v_zz__fc44b15025de.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__fc44b15025de */
+#define afw_v_zz__fc44b15025de \
+    (&afw_self_v_zz__fc44b15025de.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__fc47195c77fd \
     "function eval<script> (\n    source: script,\n    additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_\n): any;\n"
 
@@ -156939,6 +156861,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__fcfbfecefa2b \
+    "Converts <dataType> value to time. A string is read with the time parser, the same parser the typed literal \"...\"time uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fcfbfecefa2b */
+#define afw_s_zz__fcfbfecefa2b \
+    (&afw_self_v_zz__fcfbfecefa2b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fcfbfecefa2b */
+#define afw_self_s_zz__fcfbfecefa2b \
+    (afw_self_v_zz__fcfbfecefa2b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__fcfbfecefa2b */
+extern const afw_value_string_t \
+    afw_self_v_zz__fcfbfecefa2b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fcfbfecefa2b */
+#define afw_z_zz__fcfbfecefa2b \
+    (afw_self_v_zz__fcfbfecefa2b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__fcfbfecefa2b */
+#define afw_v_zz__fcfbfecefa2b \
+    (&afw_self_v_zz__fcfbfecefa2b.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__fd10cb57fa16 \
     "This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown."
 
@@ -156961,6 +156909,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fd10cb57fa16 */
 #define afw_v_zz__fd10cb57fa16 \
     (&afw_self_v_zz__fd10cb57fa16.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__fd10d9b54d84 \
+    "Converts string value to rfc822Name. A string is read with the rfc822Name parser, the same parser the typed literal \"...\"rfc822Name uses, and text the parser rejects is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fd10d9b54d84 */
+#define afw_s_zz__fd10d9b54d84 \
+    (&afw_self_v_zz__fd10d9b54d84.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fd10d9b54d84 */
+#define afw_self_s_zz__fd10d9b54d84 \
+    (afw_self_v_zz__fd10d9b54d84.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__fd10d9b54d84 */
+extern const afw_value_string_t \
+    afw_self_v_zz__fd10d9b54d84;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fd10d9b54d84 */
+#define afw_z_zz__fd10d9b54d84 \
+    (afw_self_v_zz__fd10d9b54d84.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__fd10d9b54d84 */
+#define afw_v_zz__fd10d9b54d84 \
+    (&afw_self_v_zz__fd10d9b54d84.pub)
 
 
 
@@ -157039,6 +157013,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fd3f1b19df81 */
 #define afw_v_zz__fd3f1b19df81 \
     (&afw_self_v_zz__fd3f1b19df81.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__fd5b4e42a8f3 \
+    "Returns value unchanged if it is dataType array. Otherwise, including when value is undefined, throws an error. It never converts: to get a array from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as array."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fd5b4e42a8f3 */
+#define afw_s_zz__fd5b4e42a8f3 \
+    (&afw_self_v_zz__fd5b4e42a8f3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fd5b4e42a8f3 */
+#define afw_self_s_zz__fd5b4e42a8f3 \
+    (afw_self_v_zz__fd5b4e42a8f3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__fd5b4e42a8f3 */
+extern const afw_value_string_t \
+    afw_self_v_zz__fd5b4e42a8f3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fd5b4e42a8f3 */
+#define afw_z_zz__fd5b4e42a8f3 \
+    (afw_self_v_zz__fd5b4e42a8f3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__fd5b4e42a8f3 */
+#define afw_v_zz__fd5b4e42a8f3 \
+    (&afw_self_v_zz__fd5b4e42a8f3.pub)
 
 
 
