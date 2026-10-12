@@ -377,10 +377,7 @@ impl_afw_value_optional_evaluate(
             check_ctx = script->contextual
                 ? script->contextual
                 : self->args.contextual;
-            if (script->returns &&
-                AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(check_ctx, xctx) &&
-                result)
-            {
+            if (script->returns && result) {
                 afw_value_type_check_assignable(script->returns, result,
                     "return", check_ctx, xctx);
             }

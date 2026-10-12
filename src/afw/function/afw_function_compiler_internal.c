@@ -260,8 +260,9 @@ impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
 /*
  * Evaluate a script-function formal (call_script_function only).
  *
- * When runtime typeCheck is on for contextual's unit: strict assignability.
- * Otherwise: leaf data_type convert (legacy). Not used by Adaptive built-ins.
+ * Checks the value against the formal's type and never converts (#583):
+ * see afw_value_type_check_assignable for what is checked when runtime
+ * typeCheck is off. Not used by Adaptive built-ins.
  *
  * Array-shaped formals accept utf8 code-point sequences via
  * afw_value_convert_to_array_sequence (#153), same language rule as built-ins.
@@ -276,14 +277,8 @@ afw_function_script_evaluate_parameter_with_type(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    const afw_data_type_t *want_dt;
     afw_boolean_t wants_array_sequence;
 
-    /* Leaf convert only; composites use type_check when enabled. */
-    want_dt = NULL;
-    if (type && type->kind == afw_value_type_kind_data_type) {
-        want_dt = type->data_type;
-    }
     wants_array_sequence = impl_script_formal_expects_array_sequence(type);
 
     if (type) {
@@ -291,33 +286,17 @@ afw_function_script_evaluate_parameter_with_type(
             "parameter", contextual, xctx);
     }
 
-    if (afw_value_is_defined_and_evaluated(value) &&
-        (!want_dt || want_dt == afw_data_type_any ||
-            afw_value_get_data_type(value, xctx) == want_dt))
-    {
-        if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
-            afw_value_type_check_assignable(type, value,
-                "parameter", contextual, xctx);
-        }
-        return value;
-    }
+    result = afw_value_is_defined_and_evaluated(value)
+        ? value
+        : afw_value_evaluate(value, p, xctx);
 
-    result = afw_value_evaluate(value, p, xctx);
-
-    /* #153: materialize utf8 sequences before check/convert. */
+    /* #153: materialize utf8 sequences before the check. */
     if (wants_array_sequence) {
         result = afw_value_convert_to_array_sequence(result, p, xctx);
     }
 
-    if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
-        afw_value_type_check_assignable(type, result, "parameter",
-            contextual, xctx);
-    }
-    else if (result && want_dt && want_dt != afw_data_type_any &&
-        afw_value_get_data_type(result, xctx) != want_dt)
-    {
-        result = afw_value_convert(result, want_dt, true, p, xctx);
-    }
+    afw_value_type_check_assignable(type, result, "parameter",
+        contextual, xctx);
 
     return result;
 }

@@ -20,8 +20,24 @@ typeCheck alone.
 //? sourceType: script
 //?
 //? test: flags-default-off
-//? description: With all type flags off, wrong type assigns are allowed
+//? description: With all type flags off, a wrong object shape is allowed
 //? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+const x: {a: integer} = {a: "hello"};
+return 0;
+
+//?
+//? test: flags-default-off-data-type-checked
+//? description: With all type flags off, a data type is still checked (#583)
+//? expect: error:Type error in assignment: expected integer but got string; write to_integer(v)
 //? source: ...
 
 flag_set([
@@ -281,7 +297,7 @@ flag_set([
 ], false);
 flag_set(["compile:typeCheck"], true);
 const r: any = evaluate(compile<script>(script(
-    "#compile noTypeCheck;\nconst x: integer = \"hello\";\nreturn 0;"
+    "#compile noTypeCheck;\nconst x: {a: integer} = {a: \"hello\"};\nreturn 0;"
 )));
 return 0;
 
@@ -364,10 +380,10 @@ try {
 }
 /*
  * Do not clear flags — #compile must not have set process typeCheck.
- * Sibling unit with defaults off must still allow the wrong assign.
+ * Sibling unit with defaults off must still allow the wrong shape.
  */
 const r: any = evaluate(compile<script>(script(
-    "const x: integer = \"hello\";\nreturn 0;"
+    "const x: {a: integer} = {a: \"hello\"};\nreturn 0;"
 )));
 return 0;
 
@@ -448,7 +464,7 @@ return 0;
 
 //?
 //? test: mid-unit-noTypeCheck-after-typeCheck
-//? description: mid-unit #compile noTypeCheck allows bad assigns after typeCheck
+//? description: mid-unit #compile noTypeCheck allows bad shapes after typeCheck
 //? expect: 0
 //? source: ...
 
@@ -463,7 +479,7 @@ const r_mid2: any = evaluate(compile<script>(script(
     "#compile typeCheck;\n" +
     "const a: integer = 1;\n" +
     "#compile noTypeCheck;\n" +
-    "const b: integer = \"ok\";\n" +
+    "const b: {a: integer} = {a: \"ok\"};\n" +
     "return 0;"
 )));
 return 0;

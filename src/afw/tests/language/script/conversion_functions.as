@@ -230,7 +230,7 @@ return 0;
 
 //?
 //? test: boolean-as-ecmascript
-//? description: conversion to boolean (boolean() and typed parameters) is ECMAScript Boolean() of the value as JSON carries it (undefined and null threw; an array was its one entry or threw; dateTime and functions threw)
+//? description: boolean() is ECMAScript Boolean() of the value as JSON carries it (undefined and null threw; an array was its one entry or threw; dateTime and functions threw); a typed boolean parameter checks and never converts (#583)
 //? expect: 0
 //? source: ...
 
@@ -240,9 +240,12 @@ const truthy = [true, -1, 0.5, Infinity, "false", "0", " ", {}, [], [0], [1, 2],
 for (const v of falsy) { assert(boolean(v) === false, "falsy " + stringify(v)); }
 for (const v of truthy) { assert(boolean(v) === true, "truthy " + stringify(v)); }
 function f(b: boolean): boolean { return b; }
-assert(f([false]) === true, "typed parameter: an array is true");
-assert(f(0) === false, "typed parameter: 0");
-assert(f("2020-01-01T00:00:00Z"dateTime) === true, "typed parameter: dateTime");
+for (const v of [[false], 0, "true", "2020-01-01T00:00:00Z"dateTime]) {
+    let threw = false;
+    try { f(v); } catch (e) { threw = true; }
+    assert(threw, "typed parameter does not convert " + stringify(v));
+}
+assert(f(boolean(0)) === false, "typed parameter: convert with boolean()");
 return 0;
 
 //?

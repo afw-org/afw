@@ -2675,8 +2675,13 @@ afw_value_type_is_assignable(
     afw_xctx_t *xctx);
 
 /**
- * @brief Throw if value is not assignable (when runtime checking on).
+ * @brief Throw if value is not assignable.
  * @param contextual unit link (NULL => process flags).
+ *
+ * A data type, T[] of a data type, and unions of these are always checked,
+ * the same as a built-in parameter's data type, and never converted. Other
+ * types (object shapes, tuples, functions) are checked when runtime
+ * typeCheck is on for the unit.
  */
 AFW_DEFINE(void)
 afw_value_type_check_assignable(

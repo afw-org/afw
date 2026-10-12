@@ -10,7 +10,7 @@
 //? expect: 0
 //? source: ...
 
-const objectTypeObjects: object = retrieve_objects("afw", "_AdaptiveObjectType_", undefined, undefined, undefined, 0);
+const objectTypeObjects: object[] = retrieve_objects("afw", "_AdaptiveObjectType_", undefined, undefined, undefined, 0);
 for (const objectTypeObject: object of objectTypeObjects) {        
     const {objectType: objectTypeId, allowEntity = false} = objectTypeObject;        
     if (allowEntity != false) {                
