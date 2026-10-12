@@ -36,7 +36,7 @@
 /* A parameter passed to the adaptive compiler determines the first           */
 /* production used for parse.                                                 */
 /*                                                                            */
-/* Json - afw_compile_type_json and afw_compile_type_relaxed_json             */
+/* Json - afw_compile_type_json and afw_compile_type_relaxedJson              */
 /*                                                                            */
 /* Script - afw_compile_type_script                                           */
 /*                                                                            */
@@ -248,10 +248,11 @@ CompilerInternalValue ::=
     CompilerLiteral
 
 /* From afw_compile_parse_expression.c                                        */
-/* The objectId of any /afw/_AdaptiveDataType_/ objects.                      */
 /* This production only applies if ':' occurs before the end of current line. */
 
 ColonBeforeEndOfLine ::= ':'
+/* The objectId of any /afw/_AdaptiveDataType_/ object (core list below;      */
+/* extensions can add more).                                                  */
 
 DataType ::=
    'any' |
@@ -259,27 +260,30 @@ DataType ::=
    'array' |
    'base64Binary' |
    'boolean' |
-   'dataTimeDuration' |
    'date' |
+   'dateTime' |
+   'dayTimeDuration' |
    'dnsName' |
    'double' |
-   'expression' |
    'function' |
    'hexBinary' |
    'ia5String' |
    'integer' |
    'ipAddress' |
+   'json' |
    'null' |
    'object' |
    'objectId' |
    'objectPath' |
    'password' |
    'regexp' |
+   'relaxedJson' |
    'rfc822Name' |
    'script' |
    'string' |
    'template' |
    'time' |
+   'undefined' |
    'unevaluated' |
    'unknown' |
    'void' |
@@ -906,7 +910,7 @@ TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
 /* Default is script or the one specified in TestScriptDefinition             */
 
 TestSourceType ::= TestScriptLineStart 'source_type:'
-    ( 'json' | 'relaxed_json' | 'script' | 'template' )
+    ( 'json' | 'relaxedJson' | 'script' | 'template' )
 
 TestSource ::= TestScriptLineStart 'source:' TestScriptValue
 
@@ -952,7 +956,7 @@ List ::=
    ']'
 /* Relaxed / script: optional elision (hole → undefined) and trailing comma.  */
 /* Elision is a missing element between commas (or after '[' before a comma), */
-/* not a third array state. Same rules for script ListValue and relaxed_json. */
+/* not a third array state. Same rules for script ListValue and relaxedJson.  */
 /* Elision is written here as empty alternative between commas.               */
 
 RelaxedList ::=
@@ -1035,8 +1039,8 @@ RelaxedJson ::= Double | Integer | RelaxedList | RelaxedObject | String | 'true'
 
 /* From afw_compile_parse_value.c                                             */
 
-ScalarLiteral ::= Double | Integer | String | 'true' | 'false' | 'null'
-/* This may want to include Datatype(Literal) at some point too.              */
+ScalarLiteral ::= Double | Integer | String | TypedLiteral | 'true' |
+        'false' | 'null'
 
 Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
 
@@ -1149,6 +1153,16 @@ UnicodeCodePoint ::= #x0-#x10FFFF
 UnicodeNonControl ::= (UnicodeCodePoint - [^\#x0-#x1f] )
 
 UnicodeNonSpaceNonControl ::= (UnicodeCodePoint - [^\#x0-#x20] )
+
+/* From afw_compile_lexical.c                                                 */
+/* A typed literal is a String immediately followed (no whitespace) by a      */
+/* data type id or its typed literal short form. The text of the String       */
+/* is parsed by that data type. Script syntaxes only (not JSON or relaxed     */
+/* JSON).                                                                     */
+
+TypedLiteral ::= String DataTypeSuffix
+
+DataTypeSuffix ::= Identifier
 
 /* From afw_compile_lexical.c                                                 */
 /* Only DecimalIntegerLiteral is allowed in strict mode.                      */

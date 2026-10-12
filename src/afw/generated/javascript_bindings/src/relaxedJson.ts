@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Javascript Bindings for relaxed_json
+ * Javascript Bindings for relaxedJson
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,9 +8,9 @@
 
 
 /**
- * @file relaxed_json.ts
+ * @file relaxedJson.ts
  * @ingroup afw_bindings_javascript
- * @brief This file contains the Javascript bindings for the relaxed_json category.
+ * @brief This file contains the Javascript bindings for the relaxedJson category.
  */
 
 interface IAnyObject {
@@ -18,13 +18,13 @@ interface IAnyObject {
 }
 
 /**
- * Compile relaxed_json value and return either an unevaluated adaptive value
+ * Compile relaxedJson value and return either an unevaluated adaptive value
  * or a string containing the compiler listing. The listing is a
  * human-oriented dump (value tree interleaved with source, plus ---Symbols
  * tables) for Fiddle and debugging — not pure JSON (use stringify) and not
  * Adaptive compiled-form text (use decompile).
  * 
- * @param {relaxed_json} source - relaxed_json string to compile
+ * @param {relaxedJson} source - relaxedJson string to compile
  * 
  * @param {} listing - If specified, a human compiler listing is produced
  *     instead of an unevaluated compiled value (tree + ---Symbols; not
@@ -42,7 +42,7 @@ export function afwCompileRelaxedJson(client : any, source : any, listing? : any
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "compile<relaxed_json>";
+    _action["function"] = "compile<relaxedJson>";
     _action["source"] = source;
 
     if (listing !== undefined)
@@ -52,19 +52,19 @@ export function afwCompileRelaxedJson(client : any, source : any, listing? : any
 }
 
 /**
- * Converts value to data type relaxed_json returning relaxed_json result.
- * Holds relaxed JSON source text as a relaxed_json value (does not
- * parse/compile). Use polymorphic compile to compile the source.
+ * Converts value to data type relaxedJson returning relaxedJson result. Holds
+ * relaxed JSON source text as a relaxedJson value (does not parse/compile).
+ * Use polymorphic compile to compile the source.
  * 
  * @param {} value - Value to convert
  * 
- * @returns {relaxed_json} Converted value
+ * @returns {relaxedJson} Converted value
  */
 export function afwRelaxedJson(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "relaxed_json";
+    _action["function"] = "relaxedJson";
     _action["value"] = value;
 
     return client.perform(_action);

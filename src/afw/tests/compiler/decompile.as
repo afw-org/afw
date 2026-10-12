@@ -105,7 +105,7 @@ const all = [
     template("x${1}"),
     xpathExpression("/a"),
     json("{\"a\":1}"),
-    relaxed_json("{a:1}"),
+    relaxedJson("{a:1}"),
     add
 ];
 
@@ -133,7 +133,7 @@ assert(s ==
     "template(\"x${1}\")," +
     "xpathExpression(\"/a\")," +
     "json(\"{\\\"a\\\":1}\")," +
-    "relaxed_json(\"{a:1}\")," +
+    "relaxedJson(\"{a:1}\")," +
     "add]");
 
 return 0;

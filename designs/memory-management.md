@@ -377,7 +377,7 @@ else:
 | Family | cType pattern | directReturn | Managed create stores | Slice? | Types |
 |--------|---------------|--------------|----------------------|--------|--------|
 | **A. Special** | any | — | n/a (no create) | no | any, unknown, undefined, void |
-| **B. utf8 owning** | `afw_utf8_t` | false | copy octets after header | **yes** | string, anyURI, dnsName, ia5String, ipAddress, json, objectId, objectPath, password, regexp, relaxed_json, rfc822Name, script, template, x500Name, xpathExpression |
+| **B. utf8 owning** | `afw_utf8_t` | false | copy octets after header | **yes** | string, anyURI, dnsName, ia5String, ipAddress, json, objectId, objectPath, password, regexp, relaxedJson, rfc822Name, script, template, x500Name, xpathExpression |
 | **C. memory owning** | `afw_memory_t` | false | copy bytes after header | **yes** | base64Binary, hexBinary |
 | **D. Struct embed** | struct (`afw_date_t`, …) | false | memcpy struct into header | no | date, dateTime, dayTimeDuration, time, yearMonthDuration |
 | **E. Small direct** | non-pointer scalar | **true** | by-value in header (`malloc` + RC=0) | no | boolean, integer, double |
@@ -407,7 +407,7 @@ Legend: **P** permanent inf · **U** unmanaged · **M** managed · **S** managed
 | objectPath | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
 | password | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
 | regexp | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
-| relaxed_json | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| relaxedJson | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
 | rfc822Name | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
 | script | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
 | template | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
@@ -1569,7 +1569,7 @@ Public entry: **`afw_compile_to_value`** / **`afw_compile_to_value_with_callback
 | Compile type | What is returned |
 |--------------|------------------|
 | **script**, **template**, **test_script** | **`compiled_value`** (`&parser->compiled_value->pub`) — container for the whole unit |
-| **json** / **relaxed_json** | **Direct** evaluated-ish value (object/list/scalar from `parse_Json`) — not wrapped in `compiled_value` |
+| **json** / **relaxedJson** | **Direct** evaluated-ish value (object/list/scalar from `parse_Json`) — not wrapped in `compiled_value` |
 | regexp / xpath | Not supported yet (throw) |
 
 So for Adaptive Script (the usual case): compile builds a graph of **hand value kinds** (block, call, symbol_reference, …) under one **`compiled_value` root**. Eval is `afw_value_evaluate(compiled, p, xctx)` → `compiled_value`’s `optional_evaluate` evaluates **`root_value`** into pool `p`.

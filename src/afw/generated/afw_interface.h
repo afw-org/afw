@@ -3062,6 +3062,20 @@ struct afw_data_type_s {
      * See issue #153.
      */
     const afw_data_type_t * iterator_return_data_type;
+
+    /**
+     * If true, a script can write a value of this data type as a typed
+     * literal: a string literal followed, with no whitespace, by the data
+     * type id or typed_literal_short_form. Registering the data type
+     * registers both in the typed_literal_suffix registry.
+     */
+    afw_boolean_t typed_literal;
+
+    /**
+     * Optional short form of the data type id for a typed literal. len 0
+     * if none. Only used if typed_literal is true.
+     */
+    afw_utf8_t typed_literal_short_form;
 };
 
 /** @brief String name of interface `afw_data_type` (`AFW_DATA_TYPE_INTERFACE_NAME`). */

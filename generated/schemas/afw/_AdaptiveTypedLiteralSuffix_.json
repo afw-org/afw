@@ -1,0 +1,83 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveTypedLiteralSuffix_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveTypedLiteralSuffix_": {
+            "additionalProperties": false,
+            "description": "A typed literal suffix. The object id is the suffix: a data type id or its typed literal short form that can follow a string literal in a script.",
+            "markdownDescription": "A typed literal suffix. The object id is the suffix: a data type id or its typed literal short form that can follow a string literal in a script.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "dataType": {
+                    "description": "Id of the data type that parses the text of a typed literal with this suffix.",
+                    "markdownDescription": "**Data Type**\n\nId of the data type that parses the text of a typed literal with this suffix.",
+                    "title": "Data Type",
+                    "type": "string"
+                },
+                "typedLiteralShortForm": {
+                    "description": "Short form of the data type id that can be used as the suffix, if the data type has one.",
+                    "markdownDescription": "**Typed Literal Short Form**\n\nShort form of the data type id that can be used as the suffix, if the data type has one.",
+                    "title": "Typed Literal Short Form",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "dataType"
+            ],
+            "title": "_AdaptiveTypedLiteralSuffix_",
+            "type": "object"
+        },
+        "_AdaptiveTypedLiteralSuffix_.propertyTypes": {
+            "properties": {
+                "dataType": {
+                    "description": "Id of the data type that parses the text of a typed literal with this suffix.",
+                    "markdownDescription": "**Data Type**\n\nId of the data type that parses the text of a typed literal with this suffix.",
+                    "title": "Data Type",
+                    "type": "string"
+                },
+                "typedLiteralShortForm": {
+                    "description": "Short form of the data type id that can be used as the suffix, if the data type has one.",
+                    "markdownDescription": "**Typed Literal Short Form**\n\nShort form of the data type id that can be used as the suffix, if the data type has one.",
+                    "title": "Typed Literal Short Form",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "A typed literal suffix. The object id is the suffix: a data type id or its typed literal short form that can follow a string literal in a script.",
+    "markdownDescription": "A typed literal suffix. The object id is the suffix: a data type id or its typed literal short form that can follow a string literal in a script.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "dataType": {
+            "description": "Id of the data type that parses the text of a typed literal with this suffix.",
+            "markdownDescription": "**Data Type**\n\nId of the data type that parses the text of a typed literal with this suffix.",
+            "title": "Data Type",
+            "type": "string"
+        },
+        "typedLiteralShortForm": {
+            "description": "Short form of the data type id that can be used as the suffix, if the data type has one.",
+            "markdownDescription": "**Typed Literal Short Form**\n\nShort form of the data type id that can be used as the suffix, if the data type has one.",
+            "title": "Typed Literal Short Form",
+            "type": "string"
+        }
+    },
+    "required": [
+        "dataType"
+    ],
+    "title": "_AdaptiveTypedLiteralSuffix_",
+    "type": "object"
+}

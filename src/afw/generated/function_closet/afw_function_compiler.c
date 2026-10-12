@@ -94,7 +94,7 @@ afw_function_execute_assert(
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
- *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *       For example, 'json', 'relaxedJson', 'script', 'template'.
  *
  * Returns:
  *
@@ -197,7 +197,7 @@ afw_function_execute_decompile(
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
- *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *       For example, 'json', 'relaxedJson', 'script', 'template'.
  *
  * Returns:
  *

@@ -20,7 +20,7 @@ afw_compile_to_value*
 ## Compile → value
 
 - Public API / types: `afw-compile`. EBNF: `afw-compiler-ebnf`.
-- **JSON / relaxed_json** → direct `afw_value` (no `compiled_value` wrapper).
+- **JSON / relaxedJson** → direct `afw_value` (no `compiled_value` wrapper).
 - **script / template / test_script** → `afw_value_compiled_value_t` (`root_value`, `top_block`, `full_source`, own pool).
 - Assignment may wrap escaping `script_function_definition` in `closure_binding`. Destructuring + rest supported.
 - Contextual: `afw_compile_value_contextual_t` on nodes/errors.

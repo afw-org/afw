@@ -5,12 +5,14 @@
     "dataType": "regexp",
     "dataTypeParameterType": "SourceParameter",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'regexp' holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F.",
+    "description": "Data type 'regexp' holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F. In a script, write one as a typed literal: \"a+b\"regexp or \"a+b\"re.",
     "directReturn": false,
     "evaluated": true,
     "jsonPrimitive": "string",
     "jsonSchemaStringFormat": "regex",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
     "relationalCompares": true,
-    "scalar": true
+    "scalar": true,
+    "typedLiteral": true,
+    "typedLiteralShortForm": "re"
 }

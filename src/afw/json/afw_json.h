@@ -138,7 +138,7 @@ afw_json_from_value_with_indent(
  */
 #define afw_json_to_value(_json, _source_location, _p, _xctx) \
     afw_compile_to_value(_json, _source_location, \
-        afw_compile_type_relaxed_json, \
+        afw_compile_type_relaxedJson, \
         NULL, _p, _xctx)
 
 

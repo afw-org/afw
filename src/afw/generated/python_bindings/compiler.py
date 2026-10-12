@@ -57,7 +57,7 @@ def compile_from_file(session, file, compileType=None):
             rootFilePaths (longest matching prefix; host path must remain
             under that root).
         compileType (str): The compile type, used by the parser to determine
-            how to compile the data. For example, 'json', 'relaxed_json',
+            how to compile the data. For example, 'json', 'relaxedJson',
             'script', 'template'
 
     Returns:
@@ -139,7 +139,7 @@ def eval_from_file(session, file, compileType=None):
             rootFilePaths (longest matching prefix; host path must remain
             under that root).
         compileType (str): The compile type, used by the parser to determine
-            how to compile the data. For example, 'json', 'relaxed_json',
+            how to compile the data. For example, 'json', 'relaxedJson',
             'script', 'template'
 
     Returns:

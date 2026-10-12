@@ -1,0 +1,39 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A typed literal suffix. The object id is the suffix: a data type id or its typed literal short form that can follow a string literal in a script.",
+    "objectType": "_AdaptiveTypedLiteralSuffix_",
+    "propertyTypes": {
+        "dataType": {
+            "allowQuery": true,
+            "brief": "Data type id",
+            "dataType": "string",
+            "description": "Id of the data type that parses the text of a typed literal with this suffix.",
+            "label": "Data Type",
+            "required": true,
+            "runtime": {
+                "memberName": "data_type_id"
+            }
+        },
+        "typedLiteralShortForm": {
+            "allowQuery": true,
+            "brief": "Optional short form of the data type id",
+            "dataType": "string",
+            "description": "Short form of the data type id that can be used as the suffix, if the data type has one.",
+            "label": "Typed Literal Short Form",
+            "required": false,
+            "runtime": {
+                "memberName": "typed_literal_short_form"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "typedef": "afw_data_type_t"
+    }
+}

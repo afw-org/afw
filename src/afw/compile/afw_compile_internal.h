@@ -73,6 +73,7 @@ typedef enum {
     afw_compile_token_type_binary_string,
     afw_compile_token_type_utf8_string,
     afw_compile_token_type_template_string,
+    afw_compile_token_type_typed_literal,
     afw_compile_token_type_null,
     afw_compile_token_type_undefined,
 
@@ -270,6 +271,12 @@ struct afw_compile_internal_token_s {
             const afw_value_string_t *string;
             afw_utf8_octet_t string_quote_character;
         };
+
+        /*
+         * If type is typed_literal, value unmanaged in the unit parsed from
+         * the string text by the suffix's data type ("text"dataType).
+         */
+        const afw_value_t *typed_literal;
 
         /* Used for afw_compile_token_type_raw_line. */
         afw_utf8_t raw_line;
@@ -726,6 +733,9 @@ do { \
 
 #define afw_compile_token_string_value() \
     (&(parser)->token->string->pub)
+
+#define afw_compile_token_typed_literal_value() \
+    ((parser)->token->typed_literal)
 
 #define afw_compile_token_integer() \
     ((parser)->token->integer->internal)

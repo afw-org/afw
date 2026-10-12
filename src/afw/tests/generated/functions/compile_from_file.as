@@ -14,7 +14,7 @@ compile_from_file("/tmp/does-not-exist-xyz.as", "script")
 
 //?
 //? test: compile_from_file-error-invalid-compile-type
-//? description: compile_from_file throws a clean error when compileType is not one of json/relaxed_json/script/template
+//? description: compile_from_file throws a clean error when compileType is not one of json/relaxedJson/script/template
 //? expect: error:Invalid compile type 'bogus_type'.
 //? source: ...
 

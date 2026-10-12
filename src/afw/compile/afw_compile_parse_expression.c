@@ -16,38 +16,41 @@
 
 /*ebnf>>>
  *
- *# The objectId of any /afw/_AdaptiveDataType_/ objects.
- *
  *# This production only applies if ':' occurs before the end of current line.
  * ColonBeforeEndOfLine ::= ':'
  *
+ *# The objectId of any /afw/_AdaptiveDataType_/ object (core list below;
+ *# extensions can add more).
  * DataType ::=
  *    'any' |
  *    'anyURI' |
  *    'array' |
  *    'base64Binary' |
  *    'boolean' |
- *    'dataTimeDuration' |
  *    'date' |
+ *    'dateTime' |
+ *    'dayTimeDuration' |
  *    'dnsName' |
  *    'double' |
- *    'expression' |
  *    'function' |
  *    'hexBinary' |
  *    'ia5String' |
  *    'integer' |
  *    'ipAddress' |
+ *    'json' |
  *    'null' |
  *    'object' |
  *    'objectId' |
  *    'objectPath' |
  *    'password' |
  *    'regexp' |
+ *    'relaxedJson' |
  *    'rfc822Name' |
  *    'script' |
  *    'string' |
  *    'template' |
  *    'time' |
+ *    'undefined' |
  *    'unevaluated' |
  *    'unknown' |
  *    'void' |

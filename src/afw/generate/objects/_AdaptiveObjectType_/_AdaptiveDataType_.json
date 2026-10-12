@@ -158,6 +158,29 @@
             "dataType": "boolean",
             "description": "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
             "label": "Special"
+        },
+        "typedLiteral": {
+            "allowQuery": true,
+            "brief": "Script can write a value of this data type as a typed literal",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "If true, a script can write a value of this data type as a typed literal: a string literal followed, with no whitespace, by the data type id or its typedLiteralShortForm (for example \"2026-10-11T12:00:00Z\"dateTime). The text of the string is parsed by this data type.",
+            "label": "Typed Literal",
+            "required": false,
+            "runtime": {
+                "memberName": "typed_literal"
+            }
+        },
+        "typedLiteralShortForm": {
+            "allowQuery": true,
+            "brief": "Optional short form of the data type id in a typed literal",
+            "dataType": "string",
+            "description": "Optional short form that can be used in place of the data type id after the string literal of a typed literal (for example \"2026-10-11T12:00:00Z\"dt). Only allowed if typedLiteral is true. Registering a data type whose id or short form is already used by a typed literal is an error.",
+            "label": "Typed Literal Short Form",
+            "required": false,
+            "runtime": {
+                "memberName": "typed_literal_short_form"
+            }
         }
     },
     "runtime": {

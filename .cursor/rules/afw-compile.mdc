@@ -27,7 +27,7 @@ Public entry for Adaptive syntaxes. Output is an **`afw_value_t`** (usually `com
 
 | Type | Parser | Result |
 |------|--------|--------|
-| `json` / `relaxed_json` | `parse_Json` | Direct value (object/list/scalar) |
+| `json` / `relaxedJson` | `parse_Json` | Direct value (object/list/scalar) |
 | `script` | `parse_Script` | `compiled_value` |
 | `template` | `parse_Template` | `compiled_value` |
 | `test_script` | `parse_TestScript` | `compiled_value` |
@@ -59,7 +59,7 @@ For `to_close_brace`: (1) residual-after-parse does **not** demand EOF (same as 
 | File | Owns |
 |------|------|
 | `afw_compile.c` | Dispatch by compile_type; type info table |
-| `afw_compile_lexical.c` | Tokens, residual, parser create/finish, shared |
+| `afw_compile_lexical.c` | Tokens, residual, parser create/finish, shared; typed literals `"text"dataType` (`impl_parse_TypedLiteral` after a `"`/`'` string: suffix from `afw_environment_get_typed_literal_suffix`, text parsed by the data type at compile time, #581) |
 | `afw_compile_parse.c` | Contextual, symbols, blocks, parse errors |
 | `afw_compile_parse_script.c` | Statements, `TestScript`, control flow |
 | `afw_compile_parse_expression.c` | Expressions, lambdas, operators → `call_built_in_function` |

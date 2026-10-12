@@ -2,11 +2,12 @@
     "brief": "A date",
     "cType": "afw_date_t",
     "dataType": "date",
-    "description": "Data type 'date' holds a calendar date in format CCYY-MM-DD.",
+    "description": "Data type 'date' holds a calendar date in format CCYY-MM-DD. In a script, write one as a typed literal: \"2026-10-11\"date.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "jsonSchemaStringFormat": "date",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.24",
     "relationalCompares": true,
-    "scalar": true
+    "scalar": true,
+    "typedLiteral": true
 }

@@ -352,7 +352,9 @@ afw_data_type_array_direct = {
     false,
     false,
     false,
-    NULL
+    NULL,
+    false,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Permanent empty array of array. */

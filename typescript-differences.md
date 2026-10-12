@@ -84,7 +84,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 - Rest/spread: **`...rest` formals**, call-site **`f(...arr)`**, rest in Patterns.
 - Helpers as Adaptive functions (**#55** closed): `keys`, `values`, `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (also `->` method sugar when registered). Keep XACML-shaped names (`all_of` / `any_of`, …) as first-class too—not a rename-everything-to-JS project.
 - Out-of-range **`at`** / bracket **`a[i]`**, empty **`pop`/`shift`**: **undefined** (nullish), not throw.
-- Array literal **elision** (`['a', ,'b']`) → dense **undefined** slots (script / relaxed_json; not strict JSON). Assign **`a[length] = x`** appends; no gap fill. **`create_array(n)`** pre-sizes with undefined.
+- Array literal **elision** (`['a', ,'b']`) → dense **undefined** slots (script / relaxedJson; not strict JSON). Assign **`a[length] = x`** appends; no gap fill. **`create_array(n)`** pre-sizes with undefined.
 
 ### Functions and exceptions
 
@@ -254,6 +254,7 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | **`null` vs `undefined`** | Both nullish; Adaptive `null` is a typed singleton; C APIs may use NULL for undefined—script authors should think in nullish + exists/get rules above |
 | **String encoding** | Adaptive is **100% UTF-8** end-to-end. **`afw_utf8_t` values are always valid NFC UTF-8** (invalid UTF-8 must not appear as a string value—that’s a serious bug). ECMAScript engines typically expose a **UTF-16 code unit** model (one logical character may be two 16-bit units / a surrogate pair). Adaptive **length**, **substring**, **index_of**, **for-of** (strings), and empty-separator **split** walk **Unicode code points** in that UTF-8, not UTF-16 code units and not “raw octet indexes” for character steps. |
 | **`\u` / `\u{…}` / `\xHH` / `\0` / identity / line-continuation escapes** | Script string escapes support **`\u`**, **`\u{…}`**, **`\xHH`**, **`\0`** (null, not followed by a digit), classic singles (`\n`, …), **identity NonEscapeSequence** (`\A` → `A`), and **LineContinuation** (`\` + LF/CR/LS/PS contributes no characters). Digits **`1–9`** after `\` are still invalid (no legacy octal). The **runtime value** is still UTF-8, not a UTF-16 buffer. |
+| **Typed literals** ([#581](https://github.com/afw-org/afw/issues/581)) | **Adaptive-only syntax.** A string literal followed immediately by a data type id or short form (`"2026-10-11T12:00:00Z"dateTime`, `'…'dt`, `"https://example.com/"uri`) is a value of that data type, read at compile time; bad text is a compile error. TS/JS has no equivalent (the closest is a tagged template, `` tag`…` ``, which runs a function at run time). Adaptive keeps data types such as dateTime, anyURI, and ipAddress distinct from string, so it needs a way to write their values. TS tooling will not parse these. |
 | **Leading/trailing-dot numeric literals** | Same family as ES **DecimalLiteral**: `.5`, `.1e1`, `1.`, `1.e10` are valid (in addition to `0.5` / `1.5e1`). Integers without `.`/`e` stay `integer`; forms with fraction or exponent are `double`. |
 | **Substring search (`replace`, non-empty `split` sep, …)** | May scan UTF-8 **octet-by-octet** to find a well-formed needle via `memcmp`—valid for well-formed UTF-8 (false mid-sequence starts won’t match a multi-byte needle). That is search, not “character length = octets.” |
 | **Empty-match `replace`** ([#190](https://github.com/afw-org/afw/issues/190)) | An empty `match` is a match at a **code-point boundary** (including start and end). Default `limit` 1 inserts at the start (`"xabc"`). `limit = -1` inserts at every boundary (`"xaxbxcx"`). Same family as ES `replace` / `replaceAll` with `""`, except Adaptive walks **code points** (a supplementary character is one insert-around, not a split surrogate pair). Empty-separator `split` already splits by code point. |
@@ -279,6 +280,7 @@ Strings stay **immutable** (no `s[i] = …`). Character access is via functions 
 | `x ?? y` / `o?.p` | Same operators |
 | Catch fields | `catch ({ message, data })` |
 | Process / env | `process::…`, `environment::…` |
+| `new Date("2026-10-11T12:00:00Z")` / a URL string | Typed literal: `"2026-10-11T12:00:00Z"dateTime` (or `dt`), `"https://example.com/"uri` |
 | Typecheck like `tsc` | Opt-in flags / `#compile typeCheck` |
 | `type` / `interface` used above its declaration | Declare the name **first**. Same-statement self-ref (`type Node = { next?: Node }`) is the exception |
 | Modules / classes | Framework + objects/functions—not `import` / `class` |

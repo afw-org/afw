@@ -65,7 +65,7 @@ class compiler
      *                     must remain under that root).
      * @param string $compileType The compile type, used by the parser to
      *                            determine how to compile the data. For
-     *                            example, 'json', 'relaxed_json', 'script',
+     *                            example, 'json', 'relaxedJson', 'script',
      *                            'template'
      *
      * @return any
@@ -137,7 +137,7 @@ class compiler
      *                     must remain under that root).
      * @param string $compileType The compile type, used by the parser to
      *                            determine how to compile the data. For
-     *                            example, 'json', 'relaxed_json', 'script',
+     *                            example, 'json', 'relaxedJson', 'script',
      *                            'template'
      *
      * @return any

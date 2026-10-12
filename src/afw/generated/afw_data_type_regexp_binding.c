@@ -329,7 +329,7 @@ afw_data_type_regexp_direct = {
     AFW_UTF8_LITERAL("regexp"),
     (const afw_value_t *)&impl_data_type_id_value_regexp,
     AFW_UTF8_LITERAL("An regular expression"),
-    AFW_UTF8_LITERAL("Data type 'regexp' holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F."),
+    AFW_UTF8_LITERAL("Data type 'regexp' holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F. In a script, write one as a typed literal: \"a+b\"regexp or \"a+b\"re."),
     AFW_UTF8_LITERAL("SourceParameter"),
     afw_data_type_number_regexp,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -349,7 +349,9 @@ afw_data_type_regexp_direct = {
     true,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    true,
+    AFW_UTF8_LITERAL("re")
 };
 
 /* Permanent empty array of regexp. */

@@ -329,7 +329,7 @@ afw_data_type_xpathExpression_direct = {
     AFW_UTF8_LITERAL("xpathExpression"),
     (const afw_value_t *)&impl_data_type_id_value_xpathExpression,
     AFW_UTF8_LITERAL("A XPath expression"),
-    AFW_UTF8_LITERAL("Data type 'xpathExpression' holds an XML Path Language (XPath) expression. An xpath expression provides the ability to navigate around the tree representation of an XML document."),
+    AFW_UTF8_LITERAL("Data type 'xpathExpression' holds an XML Path Language (XPath) expression. An xpath expression provides the ability to navigate around the tree representation of an XML document. In a script, write one as a typed literal: \"/a/b\"xpathExpression or \"/a/b\"xpath."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_xpathExpression,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -349,7 +349,9 @@ afw_data_type_xpathExpression_direct = {
     false,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    true,
+    AFW_UTF8_LITERAL("xpath")
 };
 
 /* Permanent empty array of xpathExpression. */

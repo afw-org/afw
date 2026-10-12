@@ -193,7 +193,7 @@ impl_compile_to_value_with_callback(
         compile_type, residual_check, false, shared, p,
         xctx);
     if (compile_type != afw_compile_type_json &&
-        compile_type != afw_compile_type_relaxed_json)
+        compile_type != afw_compile_type_relaxedJson)
     {
         /* Caller does not release. Result lasts for dest p. */
         if (dest_p) {
@@ -206,7 +206,7 @@ impl_compile_to_value_with_callback(
     AFW_TRY{
 
         if (compile_type == afw_compile_type_json ||
-            compile_type == afw_compile_type_relaxed_json)
+            compile_type == afw_compile_type_relaxedJson)
         {
             parser->compiled_value->full_source_type = afw_s_json;
             result = afw_compile_parse_Json(parser);

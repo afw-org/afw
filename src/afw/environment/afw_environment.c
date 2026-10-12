@@ -294,6 +294,39 @@ impl_internal_additional_register_key_only(
 
 
 
+/*
+ * Typed literal suffix runtime object over the afw_data_type_t. Uses the
+ * generated inf directly since core data types register before runtime
+ * object maps.
+ */
+static void
+impl_internal_additional_register_typed_literal_suffix(
+    const afw_utf8_t *type_id,
+    int type_number,
+    const afw_utf8_t *key,
+    const void *value,
+    const void *register_additional_param,
+    const void **register_additional_use,
+    afw_xctx_t *xctx)
+{
+    (void)type_id;
+    (void)type_number;
+    (void)register_additional_param;
+    (void)register_additional_use;
+
+    if (value) {
+        afw_runtime_env_create_and_set_indirect_object_using_inf(
+            &afw_runtime_inf__AdaptiveTypedLiteralSuffix_,
+            key, (void *)value, NULL, true, xctx);
+    }
+    else {
+        afw_runtime_remove_object(
+            afw_s__AdaptiveTypedLiteralSuffix_, key, xctx);
+    }
+}
+
+
+
 /* Register /afw/ object as well. */
 static void
 impl_internal_additional_register_object(
@@ -1479,6 +1512,39 @@ afw_environment_register_data_type(
                 data_type_id);
         }
 
+        /* A data type id can not be another data type's short form. */
+        if (afw_environment_get_typed_literal_suffix(data_type_id, xctx)) {
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Data type '%ku' is already a typed literal short form",
+                data_type_id);
+        }
+
+        /* A short form needs typed_literal and can not be a data type id. */
+        if (data_type->typed_literal_short_form.len > 0) {
+            if (!data_type->typed_literal) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Data type '%ku' has typed literal short form '%ku' "
+                    "but typed literal is false",
+                    data_type_id, &data_type->typed_literal_short_form);
+            }
+            if (afw_environment_get_data_type(
+                &data_type->typed_literal_short_form, xctx))
+            {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Typed literal short form '%ku' of data type '%ku' "
+                    "is already a data type",
+                    &data_type->typed_literal_short_form, data_type_id);
+            }
+            if (afw_environment_get_typed_literal_suffix(
+                &data_type->typed_literal_short_form, xctx))
+            {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Typed literal short form '%ku' of data type '%ku' "
+                    "is already registered",
+                    &data_type->typed_literal_short_form, data_type_id);
+            }
+        }
+
         /* If data_type number unassigned, make copy and assign it. */
         if (data_type->data_type_number == 0) {
             dt = afw_pool_calloc(xctx->env->p, sizeof(afw_data_type_t), xctx);
@@ -1517,6 +1583,18 @@ afw_environment_register_data_type(
             data_type_id,
             data_type,
             xctx);
+
+        /* Register typed literal suffixes (checked above). */
+        if (data_type->typed_literal) {
+            afw_environment_registry_register(
+                afw_environemnt_registry_type_typed_literal_suffix,
+                &data_type->data_type_id, data_type, xctx);
+            if (data_type->typed_literal_short_form.len > 0) {
+                afw_environment_registry_register(
+                    afw_environemnt_registry_type_typed_literal_suffix,
+                    &data_type->typed_literal_short_form, data_type, xctx);
+            }
+        }
 
         /* Add data type object to runtime. */
         afw_runtime_env_set_object(data_type->object, false, xctx);
@@ -2250,6 +2328,16 @@ afw_environment_get_data_type(
     return (const afw_data_type_t *)afw_environment_registry_get(
         afw_environemnt_registry_type_data_type,
         type, xctx);
+}
+
+AFW_DEFINE(const afw_data_type_t *)
+afw_environment_get_typed_literal_suffix(
+    const afw_utf8_t *suffix,
+    afw_xctx_t *xctx)
+{
+    return (const afw_data_type_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_typed_literal_suffix,
+        suffix, xctx);
 }
 
 AFW_DEFINE(void)

@@ -281,7 +281,9 @@ afw_data_type_null_direct = {
     false,
     true,
     false,
-    NULL
+    NULL,
+    false,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Permanent empty array of null. */

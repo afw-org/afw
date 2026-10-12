@@ -43,7 +43,7 @@ Callers often expect an object value to be **theirs to mutate**. AFW often hands
 ### 2. Isolation helpers + compiler emit
 
 - `wrap_literal_object` / `wrap_literal_array` (`compiler_internal`).  
-- Compiler emits wrap on **script/template** constant object/array literals; **not** on pure `json` / `relaxed_json` conf paths.  
+- Compiler emits wrap on **script/template** constant object/array literals; **not** on pure `json` / `relaxedJson` conf paths.  
 - Nested structure under faces: promote-on-get / array materialize (not a second full-tree wrap emit).
 
 ### 3. Bind / assign (no clone-on-bind)

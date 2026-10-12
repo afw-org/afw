@@ -329,7 +329,7 @@ afw_data_type_anyURI_direct = {
     AFW_UTF8_LITERAL("anyURI"),
     (const afw_value_t *)&impl_data_type_id_value_anyURI,
     AFW_UTF8_LITERAL("A Uniform Resource Identifier Reference (URI)"),
-    AFW_UTF8_LITERAL("Data type 'anyURI' holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier."),
+    AFW_UTF8_LITERAL("Data type 'anyURI' holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier. In a script, write one as a typed literal: \"https://example.com/\"anyURI or \"https://example.com/\"uri."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_anyURI,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -349,7 +349,9 @@ afw_data_type_anyURI_direct = {
     true,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    true,
+    AFW_UTF8_LITERAL("uri")
 };
 
 /* Permanent empty array of anyURI. */

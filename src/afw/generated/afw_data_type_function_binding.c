@@ -269,7 +269,9 @@ afw_data_type_function_direct = {
     false,
     false,
     false,
-    NULL
+    NULL,
+    false,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Permanent empty array of function. */

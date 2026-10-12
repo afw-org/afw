@@ -27,7 +27,7 @@
  *
  *# Relaxed / script: optional elision (hole → undefined) and trailing comma.
  *# Elision is a missing element between commas (or after '[' before a comma),
- *# not a third array state. Same rules for script ListValue and relaxed_json.
+ *# not a third array state. Same rules for script ListValue and relaxedJson.
  *# Elision is written here as empty alternative between commas.
  * RelaxedList ::=
  *    '['
@@ -121,7 +121,7 @@ afw_compile_parse_List(
         /* Spread operator (script expressions only). */
         if (allow_expression && afw_compile_token_is(ellipsis)) {
             if ((parser)->compile_type == afw_compile_type_json ||
-                (parser)->compile_type == afw_compile_type_relaxed_json)
+                (parser)->compile_type == afw_compile_type_relaxedJson)
             {
                 AFW_COMPILE_THROW_ERROR_Z(
                     "'...' is not allowed as json list entry");
@@ -779,9 +779,9 @@ afw_compile_parse_Json(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * ScalarLiteral ::= Double | Integer | String | 'true' | 'false' | 'null'
+ * ScalarLiteral ::= Double | Integer | String | TypedLiteral | 'true' |
+ *         'false' | 'null'
  *
- *# This may want to include Datatype(Literal) at some point too.
  * Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
  *
  *<<<ebnf*/
@@ -841,6 +841,11 @@ afw_compile_parse_Literal(
     case afw_compile_token_type_utf8_string:
         matches_production = true;
         value = afw_compile_token_string_value();
+        break;
+
+    case afw_compile_token_type_typed_literal:
+        matches_production = true;
+        value = afw_compile_token_typed_literal_value();
         break;
 
     case afw_compile_token_type_null:

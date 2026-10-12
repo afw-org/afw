@@ -261,7 +261,7 @@ afw_data_type_yearMonthDuration_direct = {
     AFW_UTF8_LITERAL("yearMonthDuration"),
     (const afw_value_t *)&impl_data_type_id_value_yearMonthDuration,
     AFW_UTF8_LITERAL("A year month duration"),
-    AFW_UTF8_LITERAL("Data type 'yearMonthDuration' is an ISO 8601 extended format PnYnMn."),
+    AFW_UTF8_LITERAL("Data type 'yearMonthDuration' is an ISO 8601 extended format PnYnMn. In a script, write one as a typed literal: \"P1Y2M\"yearMonthDuration."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_yearMonthDuration,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -281,7 +281,9 @@ afw_data_type_yearMonthDuration_direct = {
     true,
     true,
     false,
-    NULL
+    NULL,
+    true,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Permanent empty array of yearMonthDuration. */

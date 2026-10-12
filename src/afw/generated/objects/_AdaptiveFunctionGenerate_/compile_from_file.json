@@ -21,7 +21,7 @@
         },
         {
             "dataType": "string",
-            "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'",
+            "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxedJson', 'script', 'template'",
             "name": "compileType",
             "optional": true
         }

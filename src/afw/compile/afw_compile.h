@@ -185,7 +185,7 @@ afw_compile_and_evaluate(
  * shared->p, else a child heap of p->managed_p. Compiled units (script,
  * template, test_script) are managed so get_assignable_value references
  * self; compile registers last-release of the birth hold on dest p.
- * JSON / relaxed_json return evaluated data in dest p. Evaluate dest p
+ * JSON / relaxedJson return evaluated data in dest p. Evaluate dest p
  * is separate: pass the pool where you want managed results of running
  * the unit (see afw_value_evaluate).
  *
@@ -200,7 +200,7 @@ afw_compile_and_evaluate(
  *
  * Kind: script, template, and test_script return a fully managed
  * compiled_value whose create reference dest p releases (caller does
- * not release). JSON / relaxed_json return pooled data in dest p.
+ * not release). JSON / relaxedJson return pooled data in dest p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_compile_to_value_with_callback(

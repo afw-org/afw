@@ -329,7 +329,7 @@ afw_data_type_dnsName_direct = {
     AFW_UTF8_LITERAL("dnsName"),
     (const afw_value_t *)&impl_data_type_id_value_dnsName,
     AFW_UTF8_LITERAL("A DNS name"),
-    AFW_UTF8_LITERAL("Data type 'dnsName' is Domain Name System (DNS) name."),
+    AFW_UTF8_LITERAL("Data type 'dnsName' is Domain Name System (DNS) name. In a script, write one as a typed literal: \"example.com\"dnsName or \"example.com\"dns."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_dnsName,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -349,7 +349,9 @@ afw_data_type_dnsName_direct = {
     false,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    true,
+    AFW_UTF8_LITERAL("dns")
 };
 
 /* Permanent empty array of dnsName. */

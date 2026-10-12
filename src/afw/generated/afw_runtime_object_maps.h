@@ -741,6 +741,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveTestScriptTestResult_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveTypedLiteralSuffix_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveTypedLiteralSuffix_;
+
+/**
  * @brief Runtime object inf for object type _AdaptiveValueInf_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)

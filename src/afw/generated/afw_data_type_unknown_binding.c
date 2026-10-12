@@ -172,7 +172,9 @@ afw_data_type_unknown_direct = {
     false,
     false,
     true,
-    NULL
+    NULL,
+    false,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Data type struct for unknown. */

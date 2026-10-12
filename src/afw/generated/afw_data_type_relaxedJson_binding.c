@@ -18,7 +18,7 @@
 
 
 /**
- * @file afw_data_type_relaxed_json_binding.c
+ * @file afw_data_type_relaxedJson_binding.c
  * @brief Generated core adaptive data type implementations.
  */
 
@@ -90,13 +90,13 @@ impl_afw_value_get_assignable_via_reference(
 #define impl_afw_value_optional_evaluate NULL
 
 /* Inf specific is always data type. */
-#define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_relaxed_json_direct
+#define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_relaxedJson_direct
 
 /* Inf variables: data_type, is_evaluated_of_data_type, is_managed. */
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
-    (const void *)&afw_data_type_relaxed_json_direct, \
-    (const void *)&afw_data_type_relaxed_json_direct, \
+    (const void *)&afw_data_type_relaxedJson_direct, \
+    (const void *)&afw_data_type_relaxedJson_direct, \
     false
 
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -105,14 +105,14 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-/* get_reference_count of a managed relaxed_json. */
+/* get_reference_count of a managed relaxedJson. */
 static afw_size_t
 impl_afw_value_managed_get_reference_count(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
     (void)xctx;
-    return ((const afw_value_relaxed_json_managed_t *)instance)
+    return ((const afw_value_relaxedJson_managed_t *)instance)
         ->reference_count;
 }
 
@@ -123,7 +123,7 @@ impl_afw_value_managed_slice_get_reference_count(
     afw_xctx_t *xctx)
 {
     (void)xctx;
-    return ((const afw_value_relaxed_json_managed_slice_t *)instance)
+    return ((const afw_value_relaxedJson_managed_slice_t *)instance)
         ->reference_count;
 }
 
@@ -135,8 +135,8 @@ impl_afw_value_managed_slice_for_each_reference(
     void *context,
     afw_xctx_t *xctx)
 {
-    const afw_value_relaxed_json_managed_slice_t *self =
-        (const afw_value_relaxed_json_managed_slice_t *)instance;
+    const afw_value_relaxedJson_managed_slice_t *self =
+        (const afw_value_relaxedJson_managed_slice_t *)instance;
 
     if (self->containing_value) {
         afw_value_list_reference(&self->containing_value->pub,
@@ -145,11 +145,11 @@ impl_afw_value_managed_slice_for_each_reference(
 }
 
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged relaxed_json: get_reference/release throw; */
+/* unmanaged relaxedJson: get_reference/release throw; */
 /* get_assignable_value creates a managed holdable in p->managed_p. */
-#define AFW_IMPLEMENTATION_ID "relaxed_json"
+#define AFW_IMPLEMENTATION_ID "relaxedJson"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_relaxed_json_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_relaxedJson_inf
 #define impl_afw_value_release impl_afw_value_unmanaged_optional_release
 #define impl_afw_value_get_reference impl_afw_value_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
@@ -174,14 +174,14 @@ impl_afw_value_managed_slice_for_each_reference(
 /* Declares and rti/inf defines for interface afw_value */
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
-    (const void *)&afw_data_type_relaxed_json_direct, \
-    (const void *)&afw_data_type_relaxed_json_direct, \
+    (const void *)&afw_data_type_relaxedJson_direct, \
+    (const void *)&afw_data_type_relaxedJson_direct, \
     true
-/* managed relaxed_json: optional_release drops RC; */
+/* managed relaxedJson: optional_release drops RC; */
 /* scalar last-release free_memorys via the stored p. */
 /* get_reference / get_assignable_value bump. */
-#define AFW_IMPLEMENTATION_ID "managed_relaxed_json"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_relaxed_json_inf
+#define AFW_IMPLEMENTATION_ID "managed_relaxedJson"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_relaxedJson_inf
 #define impl_afw_value_release impl_afw_value_managed_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
@@ -205,10 +205,10 @@ impl_afw_value_managed_slice_for_each_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed_slice relaxed_json: own RC; holds containing; */
+/* managed_slice relaxedJson: own RC; holds containing; */
 /* last release frees slice header via the stored p. */
-#define AFW_IMPLEMENTATION_ID "managed_slice_relaxed_json"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_relaxed_json_inf
+#define AFW_IMPLEMENTATION_ID "managed_slice_relaxedJson"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_relaxedJson_inf
 #define impl_afw_value_release impl_afw_value_managed_slice_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_slice_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
@@ -234,13 +234,13 @@ impl_afw_value_managed_slice_for_each_reference(
 /* Declares and rti/inf defines for interface afw_value */
 #undef AFW_IMPLEMENTATION_INF_VARIABLES
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
-    (const void *)&afw_data_type_relaxed_json_direct, \
-    (const void *)&afw_data_type_relaxed_json_direct, \
+    (const void *)&afw_data_type_relaxedJson_direct, \
+    (const void *)&afw_data_type_relaxedJson_direct, \
     false
-/* permanent relaxed_json: optional_release NULL; */
+/* permanent relaxedJson: optional_release NULL; */
 /* get_reference / get_assignable_value as-is. */
-#define AFW_IMPLEMENTATION_ID "permanent_relaxed_json"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_relaxed_json_inf
+#define AFW_IMPLEMENTATION_ID "permanent_relaxedJson"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_relaxedJson_inf
 #define impl_afw_value_release afw_value_not_counted_release
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
@@ -264,134 +264,136 @@ impl_afw_value_managed_slice_for_each_reference(
 #undef AFW_VALUE_INF_ONLY
 
 static const afw_value_string_t
-impl_data_type_relaxed_json_id_value = {
+impl_data_type_relaxedJson_id_value = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL("relaxed_json")
+    AFW_UTF8_LITERAL("relaxedJson")
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_data_type_relaxed_json_id_value =
+afw_data_type_relaxedJson_id_value =
 {
-    (const afw_value_t *)&impl_data_type_relaxed_json_id_value
+    (const afw_value_t *)&impl_data_type_relaxedJson_id_value
 };
 
 static const afw_utf8_t
-impl_data_type_path_relaxed_json =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/relaxed_json");
+impl_data_type_path_relaxedJson =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/relaxedJson");
 
 static const afw_value_object_t
-impl_data_type_object_relaxed_json__value;
+impl_data_type_object_relaxedJson__value;
 
-/* Data type relaxed_json object. */
+/* Data type relaxedJson object. */
 static const afw_runtime_object_indirect_t
-impl_data_type_object_relaxed_json = {
+impl_data_type_object_relaxedJson = {
     {
         {&afw_runtime_inf__AdaptiveDataType_},
         NULL,
-        (const afw_value_t *)&impl_data_type_object_relaxed_json__value,
+        (const afw_value_t *)&impl_data_type_object_relaxedJson__value,
         {
             NULL,
             NULL,
-            &afw_self_s_relaxed_json,
+            &afw_self_s_relaxedJson,
             &afw_self_s__AdaptiveDataType_,
-            &impl_data_type_path_relaxed_json
+            &impl_data_type_path_relaxedJson
         }
     },
-    (void *)&afw_data_type_relaxed_json_direct
+    (void *)&afw_data_type_relaxedJson_direct
 };
 
 static const afw_value_object_t
-impl_data_type_object_relaxed_json__value = {
+impl_data_type_object_relaxedJson__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_data_type_object_relaxed_json
+    (const afw_object_t *)&impl_data_type_object_relaxedJson
 };
 
-/* Permanent empty array of relaxed_json. */
+/* Permanent empty array of relaxedJson. */
 const afw_array_from_values_self_t
-impl_empty_array_of_relaxed_json;
+impl_empty_array_of_relaxedJson;
 
-/* Permanent empty array value of relaxed_json. */
+/* Permanent empty array value of relaxedJson. */
 const afw_value_array_t
-impl_value_empty_array_of_relaxed_json;
+impl_value_empty_array_of_relaxedJson;
 
-/* Data type id relaxed_json as a value. */
+/* Data type id relaxedJson as a value. */
 static const afw_value_string_t
-impl_data_type_id_value_relaxed_json = {
+impl_data_type_id_value_relaxedJson = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL("relaxed_json")
+    AFW_UTF8_LITERAL("relaxedJson")
 };
 
-/* Data type relaxed_json instance. */
+/* Data type relaxedJson instance. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t)
-afw_data_type_relaxed_json_direct = {
-    &afw_data_type_relaxed_json_inf,
-    (const afw_object_t *)&impl_data_type_object_relaxed_json,
-    AFW_UTF8_LITERAL("relaxed_json"),
-    (const afw_value_t *)&impl_data_type_id_value_relaxed_json,
+afw_data_type_relaxedJson_direct = {
+    &afw_data_type_relaxedJson_inf,
+    (const afw_object_t *)&impl_data_type_object_relaxedJson,
+    AFW_UTF8_LITERAL("relaxedJson"),
+    (const afw_value_t *)&impl_data_type_id_value_relaxedJson,
     AFW_UTF8_LITERAL("Relaxed JSON source"),
-    AFW_UTF8_LITERAL("Data type 'relaxed_json' holds the source for a relaxed JSON value."),
+    AFW_UTF8_LITERAL("Data type 'relaxedJson' holds the source for a relaxed JSON value."),
     AFW_UTF8_LITERAL("SourceParameter"),
-    afw_data_type_number_relaxed_json,
+    afw_data_type_number_relaxedJson,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("afw_utf8_t"),
     sizeof(afw_utf8_t),
-    (const afw_array_t *)&impl_empty_array_of_relaxed_json,
-    (const afw_value_t *)&impl_value_empty_array_of_relaxed_json,
-    &afw_value_unmanaged_relaxed_json_inf,
-    afw_value_clone_relaxed_json_unmanaged,
-    afw_value_clone_relaxed_json_managed,
-    afw_compile_type_relaxed_json,
+    (const afw_array_t *)&impl_empty_array_of_relaxedJson,
+    (const afw_value_t *)&impl_value_empty_array_of_relaxedJson,
+    &afw_value_unmanaged_relaxedJson_inf,
+    afw_value_clone_relaxedJson_unmanaged,
+    afw_value_clone_relaxedJson_managed,
+    afw_compile_type_relaxedJson,
     false,
     true,
     false,
     true,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    false,
+    AFW_UTF8_LITERAL("")
 };
 
-/* Permanent empty array of relaxed_json. */
+/* Permanent empty array of relaxedJson. */
 const afw_array_from_values_self_t
-impl_empty_array_of_relaxed_json = {
+impl_empty_array_of_relaxedJson = {
     {
         {&afw_array_permanent_from_values_inf},
         NULL,
-        (const afw_value_t *)&impl_value_empty_array_of_relaxed_json
+        (const afw_value_t *)&impl_value_empty_array_of_relaxedJson
     },
-    &afw_data_type_relaxed_json_direct,
+    &afw_data_type_relaxedJson_direct,
     0,
     NULL
 };
 
-/* Permanent empty array value of relaxed_json. */
+/* Permanent empty array value of relaxedJson. */
 const afw_value_array_t
-impl_value_empty_array_of_relaxed_json = {
+impl_value_empty_array_of_relaxedJson = {
     {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_empty_array_of_relaxed_json
+    (const afw_array_t *)&impl_empty_array_of_relaxedJson
 };
 
-/* Data type struct for relaxed_json. */
+/* Data type struct for relaxedJson. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t *)
-afw_data_type_relaxed_json =
-    &afw_data_type_relaxed_json_direct;
+afw_data_type_relaxedJson =
+    &afw_data_type_relaxedJson_direct;
 
-/* Set property from relaxed_json value. */
+/* Set property from relaxedJson value. */
 AFW_DEFINE(void)
-afw_object_set_property_as_relaxed_json(
+afw_object_set_property_as_relaxedJson(
     const afw_object_t *object,
     const afw_value_t *property_name,
-    const afw_value_relaxed_json_t *value,
+    const afw_value_relaxedJson_t *value,
     afw_xctx_t *xctx)
 {
     afw_object_set_property(object, property_name,
         &value->pub, xctx);
 }
 
-/* Set property from relaxed_json internal. */
+/* Set property from relaxedJson internal. */
 AFW_DEFINE(void)
-afw_object_set_property_as_relaxed_json_internal(
+afw_object_set_property_as_relaxedJson_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,
@@ -400,79 +402,79 @@ afw_object_set_property_as_relaxed_json_internal(
     const afw_value_t *v;
 
     if (afw_object_is_managed(object)) {
-        v = afw_value_relaxed_json_create_managed(internal, object->p, xctx);
+        v = afw_value_relaxedJson_create_managed(internal, object->p, xctx);
         afw_object_set_property_take(object, property_name, v, xctx);
     }
     else {
-        v = afw_value_relaxed_json_create(internal, object->p, xctx);
+        v = afw_value_relaxedJson_create(internal, object->p, xctx);
         afw_object_set_property(object, property_name, v, xctx);
     }
 }
 
-/* Typesafe cast to evaluated relaxed_json value. */
-AFW_DEFINE(const afw_value_relaxed_json_t *)
-afw_value_as_relaxed_json(const afw_value_t *value, const afw_pool_t *p,
+/* Typesafe cast to evaluated relaxedJson value. */
+AFW_DEFINE(const afw_value_relaxedJson_t *)
+afw_value_as_relaxedJson(const afw_value_t *value, const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxed_json))
+    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxedJson))
     {
         const afw_utf8_t *data_type_id;
 
         if (!value) {
             AFW_THROW_ERROR_Z(general,
-                "Typesafe error: expecting 'relaxed_json' but "
+                "Typesafe error: expecting 'relaxedJson' but "
                 "encountered 'undefined'",
                 xctx);
         }
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Typesafe error: expecting 'relaxed_json' but "
+            "Typesafe error: expecting 'relaxedJson' but "
             "encountered '%ku'",
             data_type_id);
     }
-    return (const afw_value_relaxed_json_t *)value;
+    return (const afw_value_relaxedJson_t *)value;
 }
 
-/* Typesafe peel of data type relaxed_json internal. */
+/* Typesafe peel of data type relaxedJson internal. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_relaxed_json_internal(const afw_value_t *value,
+afw_value_as_relaxedJson_internal(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return &afw_value_as_relaxed_json(value, p, xctx)->internal;
+    return &afw_value_as_relaxedJson(value, p, xctx)->internal;
 }
 
-/* Allocate function for data type relaxed_json values. */
-AFW_DEFINE(afw_value_relaxed_json_t *)
-afw_value_relaxed_json_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
+/* Allocate function for data type relaxedJson values. */
+AFW_DEFINE(afw_value_relaxedJson_t *)
+afw_value_relaxedJson_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_relaxed_json_t *result;
+    afw_value_relaxedJson_t *result;
 
-    result = afw_pool_calloc(p, sizeof(afw_value_relaxed_json_t),
+    result = afw_pool_calloc(p, sizeof(afw_value_relaxedJson_t),
         xctx);
-    result->inf = &afw_value_unmanaged_relaxed_json_inf;
+    result->inf = &afw_value_unmanaged_relaxedJson_inf;
     return result;
 }
 
-/* Create function for managed data type relaxed_json value. */
+/* Create function for managed data type relaxedJson value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_relaxed_json_create_managed(
+afw_value_relaxedJson_create_managed(
     const afw_utf8_t * internal,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_relaxed_json_managed_t *v;
+    afw_value_relaxedJson_managed_t *v;
     afw_size_t len;
 
     p = p->managed_p;
     len = (internal) ? internal->len : 0;
     v = afw_pool_calloc(p,
-        sizeof(afw_value_relaxed_json_managed_t) + len, xctx);
-    v->inf = &afw_value_managed_relaxed_json_inf;
+        sizeof(afw_value_relaxedJson_managed_t) + len, xctx);
+    v->inf = &afw_value_managed_relaxedJson_inf;
     v->internal.len = len;
     v->internal.s = (const afw_utf8_octet_t *)v +
-        sizeof(afw_value_relaxed_json_managed_t);
+        sizeof(afw_value_relaxedJson_managed_t);
     if (internal && internal->s) {
         memcpy((void *)v->internal.s, internal->s, len);
     }
@@ -482,37 +484,37 @@ afw_value_relaxed_json_create_managed(
     return &v->pub;
 }
 
-/* Create function for managed data type relaxed_json slice value. */
+/* Create function for managed data type relaxedJson slice value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_relaxed_json_create_managed_slice(
+afw_value_relaxedJson_create_managed_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_relaxed_json_managed_t *containing;
+    const afw_value_relaxedJson_managed_t *containing;
     const afw_utf8_t *base;
-    afw_value_relaxed_json_managed_slice_t *v;
+    afw_value_relaxedJson_managed_slice_t *v;
 
     if (!containing_value) {
         AFW_THROW_ERROR_Z(general,
             "containing_value required for managed slice", xctx);
     }
-    if (containing_value->inf == &afw_value_managed_slice_relaxed_json_inf) {
-        const afw_value_relaxed_json_managed_slice_t *slice =
-            (const afw_value_relaxed_json_managed_slice_t *)containing_value;
+    if (containing_value->inf == &afw_value_managed_slice_relaxedJson_inf) {
+        const afw_value_relaxedJson_managed_slice_t *slice =
+            (const afw_value_relaxedJson_managed_slice_t *)containing_value;
         containing = slice->containing_value;
         base = &slice->internal;
     }
-    else if (containing_value->inf == &afw_value_managed_relaxed_json_inf) {
+    else if (containing_value->inf == &afw_value_managed_relaxedJson_inf) {
         containing =
-            (const afw_value_relaxed_json_managed_t *)containing_value;
+            (const afw_value_relaxedJson_managed_t *)containing_value;
         base = &containing->internal;
     }
     else {
         AFW_THROW_ERROR_Z(general,
-            "containing_value must be managed or managed_slice relaxed_json",
+            "containing_value must be managed or managed_slice relaxedJson",
             xctx);
     }
     if (offset > base->len || len > base->len - offset) {
@@ -520,96 +522,96 @@ afw_value_relaxed_json_create_managed_slice(
             "managed slice offset/len out of range", xctx);
     }
     p = p->managed_p;
-    v = afw_pool_calloc(p, sizeof(afw_value_relaxed_json_managed_slice_t), xctx);
-    v->inf = &afw_value_managed_slice_relaxed_json_inf;
+    v = afw_pool_calloc(p, sizeof(afw_value_relaxedJson_managed_slice_t), xctx);
+    v->inf = &afw_value_managed_slice_relaxedJson_inf;
     v->internal.s = base->s + offset;
     v->internal.len = len;
     v->p = p;
     v->reference_count = 1;
-    v->containing_value = (const afw_value_relaxed_json_managed_t *)
+    v->containing_value = (const afw_value_relaxedJson_managed_t *)
         afw_value_get_reference(&containing->pub, xctx);
     return &v->pub;
 }
 
-/* Create function for data type relaxed_json value. */
+/* Create function for data type relaxedJson value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_relaxed_json_create(const afw_utf8_t * internal,
+afw_value_relaxedJson_create(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_relaxed_json_t *v;
+    afw_value_relaxedJson_t *v;
 
-    v = afw_pool_calloc(p, sizeof(afw_value_relaxed_json_t),
+    v = afw_pool_calloc(p, sizeof(afw_value_relaxedJson_t),
         xctx);
-    v->inf = &afw_value_unmanaged_relaxed_json_inf;
+    v->inf = &afw_value_unmanaged_relaxedJson_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
     return &v->pub;
 }
 
-/* Deep clone evaluated relaxed_json unmanaged into p. */
+/* Deep clone evaluated relaxedJson unmanaged into p. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_clone_relaxed_json_unmanaged(
+afw_value_clone_relaxedJson_unmanaged(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_common_t *cloned;
 
-    if (value->inf == &afw_value_permanent_relaxed_json_inf) {
+    if (value->inf == &afw_value_permanent_relaxedJson_inf) {
         return value;
     }
     cloned = afw_value_common_allocate(
-        afw_data_type_relaxed_json, p, xctx);
-    afw_data_type_clone_internal(afw_data_type_relaxed_json,
+        afw_data_type_relaxedJson, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_relaxedJson,
         (void *)&cloned->internal,
-        (const void *)&((const afw_value_relaxed_json_t *)value)->internal,
+        (const void *)&((const afw_value_relaxedJson_t *)value)->internal,
         p, xctx);
     return &cloned->pub;
 }
 
-/* Clone evaluated relaxed_json managed in p->managed_p. */
+/* Clone evaluated relaxedJson managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_clone_relaxed_json_managed(
+afw_value_clone_relaxedJson_managed(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (value->inf == &afw_value_permanent_relaxed_json_inf) {
+    if (value->inf == &afw_value_permanent_relaxedJson_inf) {
         return value;
     }
     if (afw_utf8_starts_with_utf8_z(
             &value->inf->rti.implementation_id, "managed_")) {
         return afw_value_get_reference(value, xctx);
     }
-    return afw_value_relaxed_json_create_managed(
-        &((const afw_value_relaxed_json_t *)value)->internal,
+    return afw_value_relaxedJson_create_managed(
+        &((const afw_value_relaxedJson_t *)value)->internal,
         p, xctx);
 }
 
-/* Convert data type relaxed_json string to afw_utf8_t *. */
+/* Convert data type relaxedJson string to afw_utf8_t *. */
 AFW_DEFINE(void)
-afw_data_type_relaxed_json_to_internal(afw_utf8_t *to_internal,
+afw_data_type_relaxedJson_to_internal(afw_utf8_t *to_internal,
     const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_data_type_utf8_to_internal(
-        &afw_data_type_relaxed_json_direct,
+        &afw_data_type_relaxedJson_direct,
         (void *)to_internal, from_utf8, p, xctx);
 }
 
-/*  Convert data type relaxed_json internal representation to utf-8. */
+/*  Convert data type relaxedJson internal representation to utf-8. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_data_type_relaxed_json_to_utf8(const afw_utf8_t * internal,
+afw_data_type_relaxedJson_to_utf8(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return afw_data_type_internal_to_utf8(
-        &afw_data_type_relaxed_json_direct,
+        &afw_data_type_relaxedJson_direct,
         internal, p, xctx);
 }
 
-/* Get property as relaxed_json value. */
-AFW_DEFINE(const afw_value_relaxed_json_t *)
-afw_object_get_property_as_relaxed_json_source(
+/* Get property as relaxedJson value. */
+AFW_DEFINE(const afw_value_relaxedJson_t *)
+afw_object_get_property_as_relaxedJson_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -621,39 +623,39 @@ afw_object_get_property_as_relaxed_json_source(
     if (!value) {
         return NULL;
     }
-    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxed_json)) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxedJson)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'relaxed_json' but "
+            "Typesafe error: expecting 'relaxedJson' but "
             "encountered '%ku'",
             data_type_id);
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (const afw_value_relaxed_json_t *)value;
+    return (const afw_value_relaxedJson_t *)value;
 }
 
-/* Get property as relaxed_json internal. */
+/* Get property as relaxedJson internal. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_get_property_as_relaxed_json_internal_source(
+afw_object_get_property_as_relaxedJson_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const afw_value_relaxed_json_t *value;
+    const afw_value_relaxedJson_t *value;
 
-    value = afw_object_get_property_as_relaxed_json_source(object, property_name, source_z, xctx);
+    value = afw_object_get_property_as_relaxedJson_source(object, property_name, source_z, xctx);
     if (!value) {
         return NULL;
     }
     return &value->internal;
 }
 
-/* Get next property as relaxed_json value. */
-AFW_DEFINE(const afw_value_relaxed_json_t *)
-afw_object_get_next_property_as_relaxed_json_source(
+/* Get next property as relaxedJson value. */
+AFW_DEFINE(const afw_value_relaxedJson_t *)
+afw_object_get_next_property_as_relaxedJson_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
@@ -666,31 +668,31 @@ afw_object_get_next_property_as_relaxed_json_source(
     if (!value) {
         return NULL;
     }
-    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxed_json)) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxedJson)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'relaxed_json' but "
+            "Typesafe error: expecting 'relaxedJson' but "
             "encountered '%ku'",
             data_type_id);
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (const afw_value_relaxed_json_t *)value;
+    return (const afw_value_relaxedJson_t *)value;
 }
 
-/* Get next property as relaxed_json internal. */
+/* Get next property as relaxedJson internal. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_get_next_property_as_relaxed_json_internal_source(
+afw_object_get_next_property_as_relaxedJson_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const afw_value_relaxed_json_t *value;
+    const afw_value_relaxedJson_t *value;
 
-    value = afw_object_get_next_property_as_relaxed_json_source(object, iterator, property_name, source_z, xctx);
+    value = afw_object_get_next_property_as_relaxedJson_source(object, iterator, property_name, source_z, xctx);
     if (!value) {
         return NULL;
     }
@@ -703,8 +705,8 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_value_relaxed_json_managed_t *self =
-        (afw_value_relaxed_json_managed_t *)instance;
+    afw_value_relaxedJson_managed_t *self =
+        (afw_value_relaxedJson_managed_t *)instance;
 
     if (self->reference_count == 0) {
         return;
@@ -712,7 +714,7 @@ impl_afw_value_managed_optional_release(
     self->reference_count--;
     if (self->reference_count == 0) {
         afw_pool_free_memory(self->p, self,
-            sizeof(afw_value_relaxed_json_managed_t) + self->internal.len, xctx);
+            sizeof(afw_value_relaxedJson_managed_t) + self->internal.len, xctx);
     }
 }
 
@@ -745,10 +747,10 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_relaxed_json_t *self =
-        (const afw_value_relaxed_json_t *)instance;
+    const afw_value_relaxedJson_t *self =
+        (const afw_value_relaxedJson_t *)instance;
 
-    return afw_value_relaxed_json_create_managed(
+    return afw_value_relaxedJson_create_managed(
         &self->internal, p, xctx);
 }
 
@@ -759,8 +761,8 @@ impl_afw_value_managed_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_value_relaxed_json_managed_t *self =
-        (afw_value_relaxed_json_managed_t *)instance;
+    afw_value_relaxedJson_managed_t *self =
+        (afw_value_relaxedJson_managed_t *)instance;
 
     (void)xctx;
     self->reference_count++;
@@ -774,8 +776,8 @@ impl_afw_value_managed_slice_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_value_relaxed_json_managed_slice_t *self =
-        (afw_value_relaxed_json_managed_slice_t *)instance;
+    afw_value_relaxedJson_managed_slice_t *self =
+        (afw_value_relaxedJson_managed_slice_t *)instance;
 
     if (self->reference_count == 0) {
         return;
@@ -786,7 +788,7 @@ impl_afw_value_managed_slice_optional_release(
             afw_value_release(&self->containing_value->pub, xctx);
         }
         afw_pool_free_memory(self->p, self,
-            sizeof(afw_value_relaxed_json_managed_slice_t), xctx);
+            sizeof(afw_value_relaxedJson_managed_slice_t), xctx);
     }
 }
 
@@ -796,8 +798,8 @@ impl_afw_value_managed_slice_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_value_relaxed_json_managed_slice_t *self =
-        (afw_value_relaxed_json_managed_slice_t *)instance;
+    afw_value_relaxedJson_managed_slice_t *self =
+        (afw_value_relaxedJson_managed_slice_t *)instance;
 
     (void)xctx;
     self->reference_count++;
@@ -835,7 +837,7 @@ impl_afw_value_get_data_type(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    return afw_data_type_relaxed_json;
+    return afw_data_type_relaxedJson;
 }
 
 /*
@@ -848,7 +850,7 @@ impl_afw_value_produce_compiler_listing(
     afw_xctx_t *xctx)
 {
     afw_data_type_value_compiler_listing(
-        afw_data_type_relaxed_json,
+        afw_data_type_relaxedJson,
         writer, instance, xctx);
 }
 
@@ -862,7 +864,7 @@ impl_afw_value_decompile(
     afw_xctx_t *xctx)
 {
     afw_data_type_write_as_expression(
-        afw_data_type_relaxed_json,
+        afw_data_type_relaxedJson,
         writer,
         (const void *)&(((const afw_value_common_t *)instance)->internal),
         xctx);
@@ -880,14 +882,14 @@ impl_afw_value_get_info(
 {
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
-    info->evaluated_data_type = afw_data_type_relaxed_json;
+    info->evaluated_data_type = afw_data_type_relaxedJson;
     info->optimized_value = instance;
 }
 
 
-/* Get next relaxed_json value from array of relaxed_json. */
-AFW_DEFINE(const afw_value_relaxed_json_t *)
-afw_array_of_relaxed_json_get_next_source(
+/* Get next relaxedJson value from array of relaxedJson. */
+AFW_DEFINE(const afw_value_relaxedJson_t *)
+afw_array_of_relaxedJson_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
@@ -899,41 +901,41 @@ afw_array_of_relaxed_json_get_next_source(
     if (!value) {
         return NULL;
     }
-    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxed_json)) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, relaxedJson)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'relaxed_json' but "
+            "Typesafe error: expecting 'relaxedJson' but "
             "encountered '%ku'",
             data_type_id);
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (const afw_value_relaxed_json_t *)value;
+    return (const afw_value_relaxedJson_t *)value;
 }
 
-/* Get next relaxed_json internal from array of relaxed_json. */
+/* Get next relaxedJson internal from array of relaxedJson. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_array_of_relaxed_json_get_next_internal_source(
+afw_array_of_relaxedJson_get_next_internal_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const afw_value_relaxed_json_t *value;
+    const afw_value_relaxedJson_t *value;
 
-    value = afw_array_of_relaxed_json_get_next_source(instance, iterator, source_z, xctx);
+    value = afw_array_of_relaxedJson_get_next_source(instance, iterator, source_z, xctx);
     if (!value) {
         return NULL;
     }
     return &value->internal;
 }
 
-/* Add a relaxed_json value to array of relaxed_json. */
+/* Add a relaxedJson value to array of relaxedJson. */
 AFW_DEFINE(void)
-afw_array_of_relaxed_json_add(
+afw_array_of_relaxedJson_add(
     const afw_array_t *instance,
-    const afw_value_relaxed_json_t *value,
+    const afw_value_relaxedJson_t *value,
     afw_xctx_t *xctx)
 {
     const afw_array_setter_t *setter;
@@ -945,9 +947,9 @@ afw_array_of_relaxed_json_add(
     afw_array_setter_push_value(setter, &value->pub, xctx);
 }
 
-/* Add a relaxed_json internal to array of relaxed_json. */
+/* Add a relaxedJson internal to array of relaxedJson. */
 AFW_DEFINE(void)
-afw_array_of_relaxed_json_add_internal(
+afw_array_of_relaxedJson_add_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
     afw_xctx_t *xctx)
@@ -955,29 +957,29 @@ afw_array_of_relaxed_json_add_internal(
     const afw_value_t *v;
 
     if (afw_array_is_managed(instance)) {
-        v = afw_value_relaxed_json_create_managed(value, instance->p, xctx);
+        v = afw_value_relaxedJson_create_managed(value, instance->p, xctx);
         afw_array_push_value_take(instance, v, xctx);
     }
     else {
-        v = afw_value_relaxed_json_create(value, instance->p, xctx);
+        v = afw_value_relaxedJson_create(value, instance->p, xctx);
         afw_array_push_value(instance, v, xctx);
     }
 }
 
-/* Remove a relaxed_json value from array of relaxed_json. */
+/* Remove a relaxedJson value from array of relaxedJson. */
 AFW_DEFINE(void)
-afw_array_of_relaxed_json_remove(
+afw_array_of_relaxedJson_remove(
     const afw_array_t *instance,
-    const afw_value_relaxed_json_t *value,
+    const afw_value_relaxedJson_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_of_relaxed_json_remove_internal(instance, &value->internal, p, xctx);
+    afw_array_of_relaxedJson_remove_internal(instance, &value->internal, p, xctx);
 }
 
-/* Remove a relaxed_json internal from array of relaxed_json. */
+/* Remove a relaxedJson internal from array of relaxedJson. */
 AFW_DEFINE(void)
-afw_array_of_relaxed_json_remove_internal(
+afw_array_of_relaxedJson_remove_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
     const afw_pool_t *p,
@@ -985,6 +987,6 @@ afw_array_of_relaxed_json_remove_internal(
 {
     const afw_value_t *v;
 
-    v = afw_value_relaxed_json_create(value, p, xctx);
+    v = afw_value_relaxedJson_create(value, p, xctx);
     afw_array_remove_value(instance, v, xctx);
 }

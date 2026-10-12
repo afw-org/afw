@@ -1,23 +1,23 @@
 {
     "afwCamelCaseFunctionLabel": "afwCompileRelaxedJson",
-    "brief": "Compile relaxed_json value",
+    "brief": "Compile relaxedJson value",
     "camelCaseFunctionLabel": "compileRelaxedJson",
-    "category": "relaxed_json",
+    "category": "relaxedJson",
     "dataTypeMethod": true,
-    "description": "Compile relaxed_json value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
+    "description": "Compile relaxedJson value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
     "errorsThrown": [
         {
             "error": "syntax",
             "reason": "source could not be compiled"
         }
     ],
-    "functionId": "compile<relaxed_json>",
-    "functionLabel": "compile_relaxed_json",
+    "functionId": "compile<relaxedJson>",
+    "functionLabel": "compile_relaxedJson",
     "parameters": [
         {
             "brief": "Source to compile",
-            "dataType": "relaxed_json",
-            "description": "relaxed_json string to compile",
+            "dataType": "relaxedJson",
+            "description": "relaxedJson string to compile",
             "name": "source"
         },
         {

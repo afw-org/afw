@@ -329,7 +329,7 @@ afw_data_type_password_direct = {
     AFW_UTF8_LITERAL("password"),
     (const afw_value_t *)&impl_data_type_id_value_password,
     AFW_UTF8_LITERAL("A password"),
-    AFW_UTF8_LITERAL("Data type 'password' holds a secret series of characters that enables a user to access a file, computer, or program."),
+    AFW_UTF8_LITERAL("Data type 'password' holds a secret series of characters that enables a user to access a file, computer, or program. In a script, write one as a typed literal: \"secret\"password."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_password,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.40{128}"),
@@ -349,7 +349,9 @@ afw_data_type_password_direct = {
     true,
     true,
     false,
-    &afw_data_type_string_direct
+    &afw_data_type_string_direct,
+    true,
+    AFW_UTF8_LITERAL("")
 };
 
 /* Permanent empty array of password. */

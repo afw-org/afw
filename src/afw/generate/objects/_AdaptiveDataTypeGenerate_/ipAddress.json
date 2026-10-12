@@ -3,10 +3,12 @@
     "cType": "afw_utf8_t",
     "dataType": "ipAddress",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'ipAddress' holds an Internet Protocol address (IP address).",
+    "description": "Data type 'ipAddress' holds an Internet Protocol address (IP address). In a script, write one as a typed literal: \"10.0.0.1\"ipAddress or \"10.0.0.1\"ip.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
     "relationalCompares": false,
-    "scalar": true
+    "scalar": true,
+    "typedLiteral": true,
+    "typedLiteralShortForm": "ip"
 }

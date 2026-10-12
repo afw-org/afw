@@ -1,10 +1,10 @@
 #!/usr/bin/env -S afw --syntax test_script
-//? testScript: json_and_relaxed_json.as
-//? description: json and relaxed_json source-holding types and compile
+//? testScript: json_and_relaxedJson.as
+//? description: json and relaxedJson source-holding types and compile
 //? sourceType: script
 //?
 //? test: source-holds-text
-//? description: json() and relaxed_json() hold source, not a parsed object
+//? description: json() and relaxedJson() hold source, not a parsed object
 //? expect: 0
 //? source: ...
 
@@ -13,7 +13,7 @@ assert(string(j) === "{}");
 assert(is_string(j) === false);
 assert(is_object(compile(j)) === true);
 
-const r = relaxed_json("{a:1}");
+const r = relaxedJson("{a:1}");
 assert(string(r) === "{a:1}");
 assert(is_string(r) === false);
 const o = compile(r);
@@ -72,12 +72,12 @@ compile(json("[-Infinity]"));
 //? expect: 0
 //? source: ...
 
-const withComment = compile(relaxed_json("[/* c */ 1]"));
+const withComment = compile(relaxedJson("[/* c */ 1]"));
 assert(withComment[0] === 1);
 
-const named = compile(relaxed_json("{a: 1,}"));
+const named = compile(relaxedJson("{a: 1,}"));
 assert(named.a === 1);
 
-const nums = compile(relaxed_json("[Infinity, -Infinity, NaN]"));
+const nums = compile(relaxedJson("[Infinity, -Infinity, NaN]"));
 assert(is_NaN(nums[2]) === true);
 return 0;

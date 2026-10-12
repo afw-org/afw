@@ -331,6 +331,15 @@ struct afw_environment_s {
         "_AdaptiveStringLiteral_",                                              \
         "Reusable string values (const afw_value_string_t), keyed by content.") \
                                                                                 \
+    _XX(typed_literal_suffix,                                                    \
+        impl_internal_additional_register_typed_literal_suffix,                 \
+        false,                                                                  \
+        "typedLiteralSuffix",                                                   \
+        "_AdaptiveTypedLiteralSuffix_",                                         \
+        "The afw_data_type_t for a typed literal suffix (data type id or "      \
+            "its typed literal short form). Registered by data type "           \
+            "registration.")                                                    \
+                                                                                \
     _XX(value_inf,                                                               \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
@@ -1256,6 +1265,22 @@ afw_environment_register_data_types(
 AFW_DECLARE(const afw_data_type_t *)
 afw_environment_get_data_type(
     const afw_utf8_t *type,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Get the data type for a typed literal suffix.
+ * @param suffix data type id or typed literal short form.
+ * @param xctx of caller.
+ * @return Data type or NULL if suffix is not a typed literal suffix.
+ *
+ * Registering a data type whose typed_literal is true registers its id
+ * and typed_literal_short_form (if any) as typed literal suffixes.
+ */
+AFW_DECLARE(const afw_data_type_t *)
+afw_environment_get_typed_literal_suffix(
+    const afw_utf8_t *suffix,
     afw_xctx_t *xctx);
 
 

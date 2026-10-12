@@ -51,7 +51,7 @@
  *# A parameter passed to the adaptive compiler determines the first
  *# production used for parse.
  *#
- *# Json - afw_compile_type_json and afw_compile_type_relaxed_json
+ *# Json - afw_compile_type_json and afw_compile_type_relaxedJson
  *#
  *# Script - afw_compile_type_script
  *#

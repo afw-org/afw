@@ -1166,13 +1166,33 @@ impl_properties__AdaptiveDataType_[] = {
         NULL,
         &afw_self_s_default,
         afw_runtime_value_accessor_default
+    },
+    {
+        afw_v_typedLiteral,
+        offsetof(afw_data_type_t, typed_literal),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
+    },
+    {
+        afw_v_typedLiteralShortForm,
+        offsetof(afw_data_type_t, typed_literal_short_form),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
     }
 };
 
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveDataType_ = {
     &afw_self_s__AdaptiveDataType_,
-    16,
+    18,
     &impl_properties__AdaptiveDataType_[0]
 };
 
@@ -5289,6 +5309,53 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveTestScriptTestResult_);
 
 
+/* Runtime object map properties for _AdaptiveTypedLiteralSuffix_ objects. */
+
+static const afw_runtime_object_map_property_t
+impl_properties__AdaptiveTypedLiteralSuffix_[] = {
+    {
+        afw_v_dataType,
+        offsetof(afw_data_type_t, data_type_id),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
+    },
+    {
+        afw_v_typedLiteralShortForm,
+        offsetof(afw_data_type_t, typed_literal_short_form),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
+    }
+};
+
+static const afw_runtime_object_map_t
+impl_runtime_object_map__AdaptiveTypedLiteralSuffix_ = {
+    &afw_self_s__AdaptiveTypedLiteralSuffix_,
+    2,
+    &impl_properties__AdaptiveTypedLiteralSuffix_[0]
+};
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveTypedLiteralSuffix_ = {
+    &afw_self_s__AdaptiveTypedLiteralSuffix_,
+    &impl_runtime_object_map__AdaptiveTypedLiteralSuffix_,
+    -1,
+    true,
+    (size_t)-1,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveTypedLiteralSuffix_, 
+    impl_runtime_meta__AdaptiveTypedLiteralSuffix_);
+
+
 /* Runtime object map properties for _AdaptiveValueInf_ objects. */
 
 static const afw_runtime_object_map_property_t
@@ -5494,6 +5561,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveTemplateProperties_,
     &afw_runtime_inf__AdaptiveTestScriptResult_,
     &afw_runtime_inf__AdaptiveTestScriptTestResult_,
+    &afw_runtime_inf__AdaptiveTypedLiteralSuffix_,
     &afw_runtime_inf__AdaptiveValueInf_,
     &afw_runtime_inf__AdaptiveValueMeta_,
     &afw_runtime_inf__AdaptiveValuePath_,

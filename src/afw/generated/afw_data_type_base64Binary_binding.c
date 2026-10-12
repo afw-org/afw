@@ -329,7 +329,7 @@ afw_data_type_base64Binary_direct = {
     AFW_UTF8_LITERAL("base64Binary"),
     (const afw_value_t *)&impl_data_type_id_value_base64Binary,
     AFW_UTF8_LITERAL("A binary value whose string value is base64 encoded"),
-    AFW_UTF8_LITERAL("Data type 'base64Binary' holds binary data. Its string value is base64 encoded."),
+    AFW_UTF8_LITERAL("Data type 'base64Binary' holds binary data. Its string value is base64 encoded. In a script, write one as a typed literal: \"AQID\"base64Binary or \"AQID\"b64."),
     AFW_UTF8_LITERAL("MediaType"),
     afw_data_type_number_base64Binary,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.5"),
@@ -349,7 +349,9 @@ afw_data_type_base64Binary_direct = {
     true,
     true,
     false,
-    NULL
+    NULL,
+    true,
+    AFW_UTF8_LITERAL("b64")
 };
 
 /* Permanent empty array of base64Binary. */
