@@ -329,7 +329,7 @@ afw_data_type_hexBinary_direct = {
     AFW_UTF8_LITERAL("hexBinary"),
     (const afw_value_t *)&impl_data_type_id_value_hexBinary,
     AFW_UTF8_LITERAL("A binary value whose string value is character hex encoded"),
-    AFW_UTF8_LITERAL("Data type 'hexBinary' holds binary data. Its string value is character hex encoded."),
+    AFW_UTF8_LITERAL("Data type 'hexBinary' holds binary data. Its string value is character hex encoded. In a script, write one as a typed literal: \"0a1b\"hexBinary or \"0a1b\"hex."),
     AFW_UTF8_LITERAL("MediaType"),
     afw_data_type_number_hexBinary,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.5"),

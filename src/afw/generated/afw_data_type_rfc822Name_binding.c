@@ -329,7 +329,7 @@ afw_data_type_rfc822Name_direct = {
     AFW_UTF8_LITERAL("rfc822Name"),
     (const afw_value_t *)&impl_data_type_id_value_rfc822Name,
     AFW_UTF8_LITERAL("A RFC 822 name"),
-    AFW_UTF8_LITERAL("Data type 'rfc822Name' holds a string value that conforms to RFC822: local-part@domain."),
+    AFW_UTF8_LITERAL("Data type 'rfc822Name' holds a string value that conforms to RFC822: local-part@domain. In a script, write one as a typed literal: \"a@example.com\"rfc822Name or \"a@example.com\"rfc822."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_rfc822Name,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

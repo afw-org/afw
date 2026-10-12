@@ -124,6 +124,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 
 | Area | What changed |
 |------|----------------|
+| [**Typed literals**](#typed-literals-issue-581) ([#581](https://github.com/afw-org/afw/issues/581)) | `"2026-10-11T12:00:00Z"dateTime`, `'…'dt`, `"https://example.com/"uri`: a string literal plus a data type suffix, read at compile time; bad text is a compile error |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -527,6 +528,48 @@ outer: for (let i = 0; i < 3; i = i + 1) {
 ```
 
 Handbook: Language Reference **Statements**. Tests: `src/afw/tests/language/script/let_const.as`, `for.as`, `assignment.as`, `script_result.as`, `void_result.as`, `labels.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Typed literals (issue [#581](https://github.com/afw-org/afw/issues/581))
+
+A **typed literal** writes a value of a data type that has no literal of its own: a string literal followed immediately by the data type id or its short form.
+
+```adaptive
+const when = "2026-10-11T12:00:00Z"dateTime;
+const same = '2026-10-11T12:00:00Z'dt;
+const wait = "P1DT2H"dayTimeDuration;
+const home = "https://example.com/"uri;
+assert(is<dateTime>(when) && when == same);
+```
+
+- Double or single quotes; no space between the closing quote and the suffix. Not after a backtick template string, and not as a property name.
+- The text is read with the data type's parser at compile time. Bad text is a **compile error**: `"nope"dt` gives *Invalid dateTime typed literal*. A suffix that is not a typed literal suffix is a compile error too (*'foo' is not a typed literal suffix*, *Data type 'integer' does not have a typed literal*).
+- String escapes are processed first, so a backslash is `\\` (`"a\\d+"re`).
+- Script syntaxes only. JSON and relaxed JSON still reject the suffix.
+
+| Data type | Short form | | Data type | Short form |
+|-----------|------------|---|-----------|------------|
+| `anyURI` | `uri` | | `ipAddress` | `ip` |
+| `base64Binary` | `b64` | | `password` | |
+| `date` | | | `regexp` | `re` |
+| `dateTime` | `dt` | | `rfc822Name` | `rfc822` |
+| `dayTimeDuration` | | | `time` | |
+| `dnsName` | `dns` | | `x500Name` | `dn` |
+| `hexBinary` | `hex` | | `xpathExpression` | `xpath` |
+| `ia5String` | | | `yearMonthDuration` | |
+
+`integer`, `double`, `boolean`, `string`, `object`, and `array` have their own literals. `retrieve_objects("afw", "_AdaptiveTypedLiteralSuffix_")` lists every suffix at run time (object id = suffix, properties `dataType` and `typedLiteralShortForm`).
+
+Existing `dateTime("…")`-style calls still work. They are replaced by typed literals, `v as T`, and `to_T(s)` in later steps of [#580](https://github.com/afw-org/afw/issues/580) ([#589](https://github.com/afw-org/afw/issues/589)), so new script should use typed literals now.
+
+**Data type authors (C / metadata):** `_AdaptiveDataType_` has two new properties, **`typedLiteral`** (boolean) and **`typedLiteralShortForm`**, carried on `afw_data_type_t` as `typed_literal` / `typed_literal_short_form`. Registering a data type registers its id and short form as suffixes (`afw_environment_get_typed_literal_suffix()`). A suffix that is already registered, or a short form that is another data type's id, **fails at startup**. Core uses short forms like `dt` and `ip`, so give an extension's data types longer short forms or a prefix of your own.
+
+Also on this branch: data type and compile type **`relaxed_json` is now `relaxedJson`** (see [Must change](#script-authors)).
+
+Handbook: [#590](https://github.com/afw-org/afw/issues/590). Tests: `src/afw/tests/compiler/typed_literals.as`.
 
 [↑ Highlights](#highlights)
 

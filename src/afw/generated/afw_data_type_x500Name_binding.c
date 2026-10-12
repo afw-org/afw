@@ -329,7 +329,7 @@ afw_data_type_x500Name_direct = {
     AFW_UTF8_LITERAL("x500Name"),
     (const afw_value_t *)&impl_data_type_id_value_x500Name,
     AFW_UTF8_LITERAL("A X.500 distinguished name"),
-    AFW_UTF8_LITERAL("Data type 'x500Name' holds a X.500 distinguished name."),
+    AFW_UTF8_LITERAL("Data type 'x500Name' holds a X.500 distinguished name. In a script, write one as a typed literal: \"cn=a,o=b\"x500Name or \"cn=a,o=b\"dn."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_x500Name,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

@@ -261,7 +261,7 @@ afw_data_type_dayTimeDuration_direct = {
     AFW_UTF8_LITERAL("dayTimeDuration"),
     (const afw_value_t *)&impl_data_type_id_value_dayTimeDuration,
     AFW_UTF8_LITERAL("A day time duration"),
-    AFW_UTF8_LITERAL("Data type 'dayTimeDuration' is an ISO 8601 extended format DTnHnMnS."),
+    AFW_UTF8_LITERAL("Data type 'dayTimeDuration' is an ISO 8601 extended format DTnHnMnS. In a script, write one as a typed literal: \"P1DT2H\"dayTimeDuration."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_dayTimeDuration,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

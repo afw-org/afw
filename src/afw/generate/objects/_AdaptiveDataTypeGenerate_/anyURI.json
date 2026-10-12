@@ -3,7 +3,7 @@
     "cType": "afw_utf8_t",
     "dataType": "anyURI",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'anyURI' holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier.",
+    "description": "Data type 'anyURI' holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier. In a script, write one as a typed literal: \"https://example.com/\"anyURI or \"https://example.com/\"uri.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "jsonSchemaStringFormat": "uri-reference",

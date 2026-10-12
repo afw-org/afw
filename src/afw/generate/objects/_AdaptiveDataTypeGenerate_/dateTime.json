@@ -2,7 +2,7 @@
     "brief": "A date and time",
     "cType": "afw_dateTime_t",
     "dataType": "dateTime",
-    "description": "Data type 'dateTime' is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone.",
+    "description": "Data type 'dateTime' is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone. In a script, write one as a typed literal: \"2026-10-11T12:00:00Z\"dateTime or \"2026-10-11T12:00:00Z\"dt.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "jsonSchemaStringFormat": "date-time",

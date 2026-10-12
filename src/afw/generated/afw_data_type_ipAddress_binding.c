@@ -329,7 +329,7 @@ afw_data_type_ipAddress_direct = {
     AFW_UTF8_LITERAL("ipAddress"),
     (const afw_value_t *)&impl_data_type_id_value_ipAddress,
     AFW_UTF8_LITERAL("An IP address"),
-    AFW_UTF8_LITERAL("Data type 'ipAddress' holds an Internet Protocol address (IP address)."),
+    AFW_UTF8_LITERAL("Data type 'ipAddress' holds an Internet Protocol address (IP address). In a script, write one as a typed literal: \"10.0.0.1\"ipAddress or \"10.0.0.1\"ip."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_ipAddress,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

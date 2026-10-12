@@ -261,7 +261,7 @@ afw_data_type_date_direct = {
     AFW_UTF8_LITERAL("date"),
     (const afw_value_t *)&impl_data_type_id_value_date,
     AFW_UTF8_LITERAL("A date"),
-    AFW_UTF8_LITERAL("Data type 'date' holds a calendar date in format CCYY-MM-DD."),
+    AFW_UTF8_LITERAL("Data type 'date' holds a calendar date in format CCYY-MM-DD. In a script, write one as a typed literal: \"2026-10-11\"date."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_date,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.24"),

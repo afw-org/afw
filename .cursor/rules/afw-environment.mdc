@@ -38,7 +38,7 @@ Grouped from the map (enum ids use typo `afw_environemnt_registry_type_<id>` —
 | Meta | `registry_type`, `singleton`, `extension`, `conf_type` |
 | Adapters | `adapter_type` (factory), `adapter_id` (instance) |
 | Auth | `authorization_handler_type/id`, `policy_combining_algorithm`, `rule_combining_algorithm` |
-| Script/values | `data_type`, `function`, `value_inf`, `flag`, `runtime_*` |
+| Script/values | `data_type`, `typed_literal_suffix` (registered by `afw_environment_register_data_type` from `typedLiteral` / `typedLiteralShortForm`; clash = startup error), `function`, `value_inf`, `flag`, `runtime_*` |
 | Request/I/O | `content_type`, `request_handler_type/id`, `context_type` |
 | Ops | `log_type`/`log`, `lock`, `error_rv_decoder` |
 | Services | `service_type`/`service` |

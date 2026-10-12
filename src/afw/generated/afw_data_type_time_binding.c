@@ -261,7 +261,7 @@ afw_data_type_time_direct = {
     AFW_UTF8_LITERAL("time"),
     (const afw_value_t *)&impl_data_type_id_value_time,
     AFW_UTF8_LITERAL("A time"),
-    AFW_UTF8_LITERAL("Data type 'time' is ISO 8601 extended format hh:mm:ss with an optional time zone."),
+    AFW_UTF8_LITERAL("Data type 'time' is ISO 8601 extended format hh:mm:ss with an optional time zone. In a script, write one as a typed literal: \"12:00:00\"time."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_time,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.24"),

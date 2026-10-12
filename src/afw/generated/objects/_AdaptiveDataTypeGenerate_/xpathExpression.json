@@ -4,7 +4,7 @@
     "compileType": "xpathExpression",
     "dataType": "xpathExpression",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'xpathExpression' holds an XML Path Language (XPath) expression. An xpath expression provides the ability to navigate around the tree representation of an XML document.",
+    "description": "Data type 'xpathExpression' holds an XML Path Language (XPath) expression. An xpath expression provides the ability to navigate around the tree representation of an XML document. In a script, write one as a typed literal: \"/a/b\"xpathExpression or \"/a/b\"xpath.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",

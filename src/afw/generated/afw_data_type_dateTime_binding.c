@@ -261,7 +261,7 @@ afw_data_type_dateTime_direct = {
     AFW_UTF8_LITERAL("dateTime"),
     (const afw_value_t *)&impl_data_type_id_value_dateTime,
     AFW_UTF8_LITERAL("A date and time"),
-    AFW_UTF8_LITERAL("Data type 'dateTime' is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone."),
+    AFW_UTF8_LITERAL("Data type 'dateTime' is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone. In a script, write one as a typed literal: \"2026-10-11T12:00:00Z\"dateTime or \"2026-10-11T12:00:00Z\"dt."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_dateTime,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.24"),
