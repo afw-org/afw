@@ -18,4 +18,4 @@ abs(-5)
 //? expect: error:Integer abs overflow
 //? source: ...
 
-abs((-9223372036854775807 - 1))
+abs(#integerMin)

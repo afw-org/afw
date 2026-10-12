@@ -29,7 +29,7 @@ if (-(-x) !== -1) {
     throw "#4: -(-x) === -1";
 }
 //? test: 11.4.7_A3_T2
-//? description: Operator -x returns -integer(x)
+//? description: Operator -x returns the negated integer
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw

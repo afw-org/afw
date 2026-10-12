@@ -279,7 +279,9 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                         impl_throw_unknown_function(parser,
                             untyped_function_id);
                     }
-                    result = &function->pub;
+                    else {
+                        result = &function->pub;
+                    }
                 }
 
                 /* Last, this must be a qualified variable. */

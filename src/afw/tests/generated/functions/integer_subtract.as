@@ -67,7 +67,7 @@ subtract<integer>(
 
 subtract<integer>(
     0,
-    to_integer("-9223372036854775808")
+    #integerMin
 )
 
 //?
@@ -78,5 +78,5 @@ subtract<integer>(
 
 subtract<integer>(
     -1,
-    to_integer("-9223372036854775808")
+    #integerMin
 )

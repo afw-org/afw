@@ -121,13 +121,13 @@ function fails(f: function): boolean {
     try { f(); } catch (e) { return true; }
     return false;
 }
-assert(fails(function () { return to_integer(1.0e300); }), "integer(1e300)");
-assert(fails(function () { return to_integer(-1.0e300); }), "integer(-1e300)");
-assert(fails(function () { return to_integer(0.0 / 0.0); }), "integer(NaN)");
-assert(fails(function () { return to_integer(1.0 / 0.0); }), "integer(Infinity)");
+assert(fails(function () { return to_integer(1.0e300); }), "to_integer(1e300)");
+assert(fails(function () { return to_integer(-1.0e300); }), "to_integer(-1e300)");
+assert(fails(function () { return to_integer(0.0 / 0.0); }), "to_integer(NaN)");
+assert(fails(function () { return to_integer(1.0 / 0.0); }), "to_integer(Infinity)");
 assert(fails(function () { return to_integer(1.0e19); }), "to_integer(1e19)");
-assert(to_integer(42.0) === 42, "integer(42.0)");
-assert(to_integer(1.5) === 1, "integer(1.5) truncates");
+assert(to_integer(42.0) === 42, "to_integer(42.0)");
+assert(to_integer(1.5) === 1, "to_integer(1.5) truncates");
 assert(to_integer(-9.2233720368547758e18) === -9223372036854775807 - 1, "min");
 return 0;
 

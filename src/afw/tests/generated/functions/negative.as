@@ -18,4 +18,4 @@ negative(5)
 //? expect: error:Integer negate overflow
 //? source: ...
 
-negative((-9223372036854775807 - 1))
+negative(#integerMin)

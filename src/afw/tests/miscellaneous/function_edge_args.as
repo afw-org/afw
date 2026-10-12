@@ -200,7 +200,7 @@ return 0;
 
 //?
 //? test: integer-from-string-overflow
-//? description: integer() of a string past the integer range throws; the digit sum used to overflow and could wrap back to a wrong value (2^64 gave 0)
+//? description: to_integer() of a string past the integer range throws; the digit sum used to overflow and could wrap back to a wrong value (2^64 gave 0)
 //? expect: 0
 //? source: ...
 
