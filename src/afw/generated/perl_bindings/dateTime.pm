@@ -33,7 +33,6 @@ our @EXPORT_OK = qw(
     min_dateTime 
     ne_dateTime 
     nex_dateTime 
-    one_and_only_dateTime 
     set_equals_dateTime 
     subset_dateTime 
     subtract_dayTimeDuration_dateTime 
@@ -336,17 +335,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_dateTime
-
-This converts an array of dateTime values that contains one value to a single
-dateTime value.
-Converts a one value array to a dateTime value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 set_equals_dateTime
@@ -664,17 +652,6 @@ sub nex_dateTime {
     $request->set("function" => "nex<dateTime>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_dateTime {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<dateTime>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

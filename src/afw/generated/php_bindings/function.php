@@ -85,7 +85,7 @@ class function
      *
      * Takes any number of function values and returns an array of function.
      *
-     * @param array $values
+     * @param function $values
      *
      * @return array
      */

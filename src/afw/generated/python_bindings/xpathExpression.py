@@ -114,7 +114,7 @@ def bag_xpathExpression(session, values=None):
     xpathExpression.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:

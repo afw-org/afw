@@ -85,7 +85,7 @@ class objectId
      *
      * Takes any number of objectId values and returns an array of objectId.
      *
-     * @param array $values
+     * @param objectId $values
      *
      * @return array
      */

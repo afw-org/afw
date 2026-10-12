@@ -29,7 +29,6 @@ our @EXPORT_OK = qw(
     lt_yearMonthDuration 
     ne_yearMonthDuration 
     nex_yearMonthDuration 
-    one_and_only_yearMonthDuration 
     set_equals_yearMonthDuration 
     subset_yearMonthDuration 
     to_string_yearMonthDuration 
@@ -274,17 +273,6 @@ Checks for not equal value or type
     $arg2
 
 
-=head3 one_and_only_yearMonthDuration
-
-This converts an array of yearMonthDuration values that contains one value to
-a single yearMonthDuration value.
-Converts a one value array to a yearMonthDuration value
-
-=head4 Parameters
-
-    $array
-
-
 =head3 set_equals_yearMonthDuration
 
 Returns boolean true if yearMonthDuration array1 and yearMonthDuration array2
@@ -526,17 +514,6 @@ sub nex_yearMonthDuration {
     $request->set("function" => "nex<yearMonthDuration>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_yearMonthDuration {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<yearMonthDuration>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

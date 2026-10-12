@@ -34,7 +34,6 @@ our @EXPORT_OK = qw(
     lt_anyURI 
     ne_anyURI 
     nex_anyURI 
-    one_and_only_anyURI 
     regexp_index_of_anyURI 
     regexp_match_anyURI 
     regexp_replace_anyURI 
@@ -364,17 +363,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_anyURI
-
-This converts an array of anyURI values that contains one value to a single
-anyURI value.
-Converts a one value array to a anyURI value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 regexp_index_of_anyURI
@@ -846,17 +834,6 @@ sub nex_anyURI {
     $request->set("function" => "nex<anyURI>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_anyURI {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<anyURI>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

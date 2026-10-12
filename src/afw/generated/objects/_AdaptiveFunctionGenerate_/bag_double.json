@@ -9,8 +9,7 @@
     "functionLabel": "bag_double",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "double",
+            "dataType": "double",
             "minArgs": 0,
             "name": "values",
             "optional": true

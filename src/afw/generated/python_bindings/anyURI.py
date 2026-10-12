@@ -115,7 +115,7 @@ def bag_anyURI(session, values=None):
     Takes any number of anyURI values and returns an array of anyURI.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -670,35 +670,6 @@ def nex_anyURI(session, arg1, arg2):
         "function": "nex<anyURI>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_anyURI(session, array):
-    """
-    Converts a one value array to a anyURI value
-
-    This converts an array of anyURI values that contains one value to a
-    single anyURI value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<anyURI>",
-        "array": array
     }
 
     request.add_action(action)

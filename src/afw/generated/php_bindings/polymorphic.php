@@ -151,7 +151,7 @@ class polymorphic
      * Takes any number of `<dataType>` values and returns an array of
      * `<dataType>`.
      *
-     * @param array $values
+     * @param $values
      *
      * @return array
      */
@@ -1099,29 +1099,6 @@ class polymorphic
 
         /* pass along required parameters to the request payload */
         $request->set("string", $string);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only()
-     *
-     * This converts an array of `<dataType>` values that contains one value
-     * to a single `<dataType>` value.
-     *
-     * @param array $array
-     *
-     * @return
-     */
-    public function one_and_only(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

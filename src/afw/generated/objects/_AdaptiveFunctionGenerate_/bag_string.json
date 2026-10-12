@@ -9,8 +9,7 @@
     "functionLabel": "bag_string",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "string",
+            "dataType": "string",
             "minArgs": 0,
             "name": "values",
             "optional": true

@@ -41,7 +41,6 @@ our @EXPORT_OK = qw(
     ne_double 
     negative_double 
     nex_double 
-    one_and_only_double 
     pow_double 
     round_double 
     set_equals_double 
@@ -412,17 +411,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_double
-
-This converts an array of double values that contains one value to a single
-double value.
-Converts a one value array to a double value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 pow_double
@@ -853,17 +841,6 @@ sub nex_double {
     $request->set("function" => "nex<double>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_double {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<double>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

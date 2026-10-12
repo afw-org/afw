@@ -111,7 +111,7 @@ class dayTimeDuration
      * Takes any number of dayTimeDuration values and returns an array of
      * dayTimeDuration.
      *
-     * @param array $values
+     * @param dayTimeDuration $values
      *
      * @return array
      */
@@ -429,29 +429,6 @@ class dayTimeDuration
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_dayTimeDuration()
-     *
-     * This converts an array of dayTimeDuration values that contains one
-     * value to a single dayTimeDuration value.
-     *
-     * @param array $array
-     *
-     * @return dayTimeDuration
-     */
-    public function one_and_only_dayTimeDuration(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<dayTimeDuration>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

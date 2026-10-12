@@ -111,7 +111,7 @@ class base64Binary
      * Takes any number of base64Binary values and returns an array of
      * base64Binary.
      *
-     * @param array $values
+     * @param base64Binary $values
      *
      * @return array
      */
@@ -451,29 +451,6 @@ class base64Binary
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_base64Binary()
-     *
-     * This converts an array of base64Binary values that contains one value
-     * to a single base64Binary value.
-     *
-     * @param array $array
-     *
-     * @return base64Binary
-     */
-    public function one_and_only_base64Binary(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<base64Binary>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

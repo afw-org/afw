@@ -9,8 +9,7 @@
     "functionLabel": "bag_base64Binary",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "base64Binary",
+            "dataType": "base64Binary",
             "minArgs": 0,
             "name": "values",
             "optional": true

@@ -132,7 +132,7 @@ class x500Name
      *
      * Takes any number of x500Name values and returns an array of x500Name.
      *
-     * @param array $values
+     * @param x500Name $values
      *
      * @return array
      */
@@ -451,29 +451,6 @@ class x500Name
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_x500Name()
-     *
-     * This converts an array of x500Name values that contains one value to a
-     * single x500Name value.
-     *
-     * @param array $array
-     *
-     * @return x500Name
-     */
-    public function one_and_only_x500Name(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

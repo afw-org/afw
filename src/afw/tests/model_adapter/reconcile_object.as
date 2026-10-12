@@ -50,7 +50,7 @@ obj2.MyTestString1 = "A new value";
 result = reconcile_object(
     obj2, false
 );
-assert(result->bag_size() !== 0, "reconcile_object with changes failed!");
+assert(is_object(result), "reconcile_object with changes failed!");
 
 
 // now get it back

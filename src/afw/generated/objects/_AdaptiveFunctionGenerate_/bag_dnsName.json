@@ -9,8 +9,7 @@
     "functionLabel": "bag_dnsName",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "dnsName",
+            "dataType": "dnsName",
             "minArgs": 0,
             "name": "values",
             "optional": true

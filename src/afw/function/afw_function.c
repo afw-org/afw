@@ -341,8 +341,7 @@ afw_function_evaluate_parameter_with_p(
 
     /* Error if result data type doesn't match parameter's defined data type. */
     if (parameter->data_type && result_data_type) {
-        if (parameter->data_type != afw_data_type_array && //@fixme don't require
-            (parameter->data_type != result_data_type))
+        if (parameter->data_type != result_data_type)
         {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "Parameter " AFW_SIZE_T_FMT
@@ -354,10 +353,16 @@ afw_function_evaluate_parameter_with_p(
         }
     }
 
-    /* Convert to requested data type if needed. */
+    /* Error if result is not the data type the caller asked for (#583). */
     if (data_type && result_data_type && result_data_type != data_type)
     {
-        result = afw_value_convert(result, data_type, false, p, xctx);
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "Parameter " AFW_SIZE_T_FMT
+            " of function '%ku' must evaluate to data type '%ku' but evaluated to be '%ku'",
+            parameter_number,
+            &x->function->functionId->internal,
+            &data_type->data_type_id,
+            &result_data_type->data_type_id);
     }
 
     return result;

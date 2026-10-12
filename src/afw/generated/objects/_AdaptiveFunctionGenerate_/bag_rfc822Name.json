@@ -9,8 +9,7 @@
     "functionLabel": "bag_rfc822Name",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "rfc822Name",
+            "dataType": "rfc822Name",
             "minArgs": 0,
             "name": "values",
             "optional": true

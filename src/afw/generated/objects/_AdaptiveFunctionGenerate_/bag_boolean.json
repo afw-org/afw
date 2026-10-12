@@ -9,8 +9,7 @@
     "functionLabel": "bag_boolean",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "boolean",
+            "dataType": "boolean",
             "minArgs": 0,
             "name": "values",
             "optional": true

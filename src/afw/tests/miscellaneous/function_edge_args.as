@@ -49,11 +49,11 @@ at_least_one_member_of<anyURI>("P1D"dayTimeDuration, continue())
 
 //?
 //? test: void-try-call
-//? description: try() result as a bag argument is a conversion error
+//? description: try() result as an array argument is an error
 //? expect: error
 //? source: ...
 
-one_and_only<dnsName>(try("x", 1, "00ff"hexBinary, null))
+add_entries([], try("x", 1, "00ff"hexBinary, null))
 
 //?
 //? test: splice-huge-counts
@@ -172,15 +172,15 @@ return 0;
 
 //?
 //? test: string-to-function
-//? description: a string can not be converted to a function
-//? expect: error:A string can not be converted to a function: 'abc'
+//? description: a string is not a function, and is not converted to one (#583)
+//? expect: error:Parameter 1 of function 'bag<function>' must evaluate to data type 'function' but evaluated to be 'string'
 //? source: ...
 
 bag<function>("abc")
 
 //?
 //? test: returned-string-to-function
-//? description: returning a string converted to a function throws, not a read of freed memory
+//? description: a string for a function throws, not a read of freed memory
 //? expect: error
 //? source: ...
 

@@ -173,7 +173,7 @@ def bag_integer(session, values=None):
     Takes any number of integer values and returns an array of integer.
 
     Args:
-        values (list):
+        values (int):
 
     Returns:
         list:
@@ -733,35 +733,6 @@ def nex_integer(session, arg1, arg2):
         "function": "nex<integer>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_integer(session, array):
-    """
-    Converts a one value array to a integer value
-
-    This converts an array of integer values that contains one value to a
-    single integer value.
-
-    Args:
-        array (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<integer>",
-        "array": array
     }
 
     request.add_action(action)

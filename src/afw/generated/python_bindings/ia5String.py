@@ -85,7 +85,7 @@ def bag_ia5String(session, values=None):
     Takes any number of ia5String values and returns an array of ia5String.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:

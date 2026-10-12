@@ -9,8 +9,7 @@
     "functionLabel": "bag_objectPath",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "objectPath",
+            "dataType": "objectPath",
             "minArgs": 0,
             "name": "values",
             "optional": true

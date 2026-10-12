@@ -110,7 +110,7 @@ class hexBinary
      *
      * Takes any number of hexBinary values and returns an array of hexBinary.
      *
-     * @param array $values
+     * @param hexBinary $values
      *
      * @return array
      */
@@ -449,29 +449,6 @@ class hexBinary
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_hexBinary()
-     *
-     * This converts an array of hexBinary values that contains one value to a
-     * single hexBinary value.
-     *
-     * @param array $array
-     *
-     * @return hexBinary
-     */
-    public function one_and_only_hexBinary(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<hexBinary>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

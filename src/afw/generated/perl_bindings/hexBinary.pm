@@ -30,7 +30,6 @@ our @EXPORT_OK = qw(
     lt_hexBinary 
     ne_hexBinary 
     nex_hexBinary 
-    one_and_only_hexBinary 
     set_equals_hexBinary 
     subset_hexBinary 
     to_string_hexBinary 
@@ -280,17 +279,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_hexBinary
-
-This converts an array of hexBinary values that contains one value to a single
-hexBinary value.
-Converts a one value array to a hexBinary value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 set_equals_hexBinary
@@ -545,17 +533,6 @@ sub nex_hexBinary {
     $request->set("function" => "nex<hexBinary>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_hexBinary {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<hexBinary>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

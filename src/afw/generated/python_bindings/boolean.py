@@ -116,7 +116,7 @@ def bag_boolean(session, values=None):
     Takes any number of boolean values and returns an array of boolean.
 
     Args:
-        values (list):
+        values (bool):
 
     Returns:
         list:
@@ -535,35 +535,6 @@ def nex_boolean(session, arg1, arg2):
         "function": "nex<boolean>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_boolean(session, array):
-    """
-    Converts a one value array to a boolean value
-
-    This converts an array of boolean values that contains one value to a
-    single boolean value.
-
-    Args:
-        array (list):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<boolean>",
-        "array": array
     }
 
     request.add_action(action)

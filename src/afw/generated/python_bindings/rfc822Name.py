@@ -116,7 +116,7 @@ def bag_rfc822Name(session, values=None):
     Takes any number of rfc822Name values and returns an array of rfc822Name.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -534,35 +534,6 @@ def nex_rfc822Name(session, arg1, arg2):
         "function": "nex<rfc822Name>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_rfc822Name(session, array):
-    """
-    Converts a one value array to a rfc822Name value
-
-    This converts an array of rfc822Name values that contains one value to a
-    single rfc822Name value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<rfc822Name>",
-        "array": array
     }
 
     request.add_action(action)

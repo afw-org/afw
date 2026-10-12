@@ -9,8 +9,7 @@
     "functionLabel": "bag_yearMonthDuration",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "yearMonthDuration",
+            "dataType": "yearMonthDuration",
             "minArgs": 0,
             "name": "values",
             "optional": true

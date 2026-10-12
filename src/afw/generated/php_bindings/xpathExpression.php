@@ -108,7 +108,7 @@ class xpathExpression
      * Takes any number of xpathExpression values and returns an array of
      * xpathExpression.
      *
-     * @param array $values
+     * @param xpathExpression $values
      *
      * @return array
      */

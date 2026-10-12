@@ -133,7 +133,7 @@ class yearMonthDuration
      * Takes any number of yearMonthDuration values and returns an array of
      * yearMonthDuration.
      *
-     * @param array $values
+     * @param yearMonthDuration $values
      *
      * @return array
      */
@@ -429,29 +429,6 @@ class yearMonthDuration
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_yearMonthDuration()
-     *
-     * This converts an array of yearMonthDuration values that contains one
-     * value to a single yearMonthDuration value.
-     *
-     * @param array $array
-     *
-     * @return yearMonthDuration
-     */
-    public function one_and_only_yearMonthDuration(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<yearMonthDuration>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

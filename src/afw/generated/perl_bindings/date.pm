@@ -32,7 +32,6 @@ our @EXPORT_OK = qw(
     min_date 
     ne_date 
     nex_date 
-    one_and_only_date 
     set_equals_date 
     subset_date 
     subtract_yearMonthDuration_date 
@@ -318,17 +317,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_date
-
-This converts an array of date values that contains one value to a single date
-value.
-Converts a one value array to a date value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 set_equals_date
@@ -619,17 +607,6 @@ sub nex_date {
     $request->set("function" => "nex<date>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_date {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<date>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

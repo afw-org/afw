@@ -27,7 +27,6 @@ our @EXPORT_OK = qw(
     lt_dnsName 
     ne_dnsName 
     nex_dnsName 
-    one_and_only_dnsName 
     regexp_match_dnsName 
     to_string_dnsName 
 );
@@ -232,17 +231,6 @@ Checks for not equal value or type
     $arg2
 
 
-=head3 one_and_only_dnsName
-
-This converts an array of dnsName values that contains one value to a single
-dnsName value.
-Converts a one value array to a dnsName value
-
-=head4 Parameters
-
-    $array
-
-
 =head3 regexp_match_dnsName
 
 Checks whether dnsName value matches the regular expression regexp and return
@@ -432,17 +420,6 @@ sub nex_dnsName {
     $request->set("function" => "nex<dnsName>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_dnsName {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<dnsName>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

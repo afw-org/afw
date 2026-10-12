@@ -10,7 +10,6 @@
     "parameters": [
         {
             "dataType": "array",
-            "dataTypeParameter": "array",
             "minArgs": 0,
             "name": "values",
             "optional": true

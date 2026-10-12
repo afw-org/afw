@@ -30,7 +30,6 @@ our @EXPORT_OK = qw(
     match_rfc822Name 
     ne_rfc822Name 
     nex_rfc822Name 
-    one_and_only_rfc822Name 
     regexp_match_rfc822Name 
     set_equals_rfc822Name 
     subset_rfc822Name 
@@ -284,17 +283,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_rfc822Name
-
-This converts an array of rfc822Name values that contains one value to a
-single rfc822Name value.
-Converts a one value array to a rfc822Name value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 regexp_match_rfc822Name
@@ -564,17 +552,6 @@ sub nex_rfc822Name {
     $request->set("function" => "nex<rfc822Name>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_rfc822Name {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<rfc822Name>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

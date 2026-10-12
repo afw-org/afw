@@ -30,7 +30,6 @@ our @EXPORT_OK = qw(
     lt_base64Binary 
     ne_base64Binary 
     nex_base64Binary 
-    one_and_only_base64Binary 
     set_equals_base64Binary 
     subset_base64Binary 
     to_string_base64Binary 
@@ -281,17 +280,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_base64Binary
-
-This converts an array of base64Binary values that contains one value to a
-single base64Binary value.
-Converts a one value array to a base64Binary value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 set_equals_base64Binary
@@ -546,17 +534,6 @@ sub nex_base64Binary {
     $request->set("function" => "nex<base64Binary>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_base64Binary {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<base64Binary>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

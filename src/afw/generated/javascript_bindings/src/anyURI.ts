@@ -84,11 +84,11 @@ export function afwAtLeastOneMemberOfAnyURI(client : any, array1 : any[], array2
 /**
  * Takes any number of anyURI values and returns an array of anyURI.
  * 
- * @param {array} values -
+ * @param {anyURI} values -
  * 
  * @returns {array}
  */
-export function afwBagAnyURI(client : any, values? : any[]) : any {
+export function afwBagAnyURI(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -467,24 +467,6 @@ export function afwNexAnyURI(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<anyURI>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of anyURI values that contains one value to a single
- * anyURI value.
- * 
- * @param {array} array -
- * 
- * @returns {anyURI}
- */
-export function afwOneAndOnlyAnyURI(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<anyURI>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

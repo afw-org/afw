@@ -119,11 +119,11 @@ export function afwAtLeastOneMemberOfInteger(client : any, array1 : any[], array
 /**
  * Takes any number of integer values and returns an array of integer.
  * 
- * @param {array} values -
+ * @param {integer} values -
  * 
  * @returns {array}
  */
-export function afwBagInteger(client : any, values? : any[]) : any {
+export function afwBagInteger(client : any, values? : number) : any {
 
     let _action : IAnyObject = {};
 
@@ -490,24 +490,6 @@ export function afwNexInteger(client : any, arg1 : number, arg2 : any) : any {
     _action["function"] = "nex<integer>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of integer values that contains one value to a
- * single integer value.
- * 
- * @param {array} array -
- * 
- * @returns {integer}
- */
-export function afwOneAndOnlyInteger(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<integer>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

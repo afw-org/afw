@@ -63,11 +63,11 @@ export function afwAsScript(client : any, value : any) : any {
 /**
  * Takes any number of script values and returns an array of script.
  * 
- * @param {array} values -
+ * @param {script} values -
  * 
  * @returns {array}
  */
-export function afwBagScript(client : any, values? : any[]) : any {
+export function afwBagScript(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 

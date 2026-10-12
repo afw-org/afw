@@ -86,7 +86,7 @@ class objectPath
      * Takes any number of objectPath values and returns an array of
      * objectPath.
      *
-     * @param array $values
+     * @param objectPath $values
      *
      * @return array
      */

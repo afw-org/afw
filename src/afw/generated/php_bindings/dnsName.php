@@ -85,7 +85,7 @@ class dnsName
      *
      * Takes any number of dnsName values and returns an array of dnsName.
      *
-     * @param array $values
+     * @param dnsName $values
      *
      * @return array
      */
@@ -376,29 +376,6 @@ class dnsName
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_dnsName()
-     *
-     * This converts an array of dnsName values that contains one value to a
-     * single dnsName value.
-     *
-     * @param array $array
-     *
-     * @return dnsName
-     */
-    public function one_and_only_dnsName(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<dnsName>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

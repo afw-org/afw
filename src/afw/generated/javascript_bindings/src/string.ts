@@ -18,21 +18,19 @@ interface IAnyObject {
 }
 
 /**
- * Add (concatenate) a string with 1 or more values of any data type converted
- * to their string value and return the string result.
+ * Add (concatenate) 2 or more string values and return the string result.
+ * Every value must be a string, the same as the + operator: to convert values
+ * while concatenating, use concat() or string().
  * 
- * @param {string} string -
- * 
- * @param {} values -
+ * @param {string} values -
  * 
  * @returns {string}
  */
-export function afwAddString(client : any, string : string, values : any) : any {
+export function afwAddString(client : any, values : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "add<string>";
-    _action["string"] = string;
     _action["values"] = values;
 
     return client.perform(_action);
@@ -122,11 +120,11 @@ export function afwBagSizeString(client : any, value : any[]) : any {
 /**
  * Takes any number of string values and returns an array of string.
  * 
- * @param {array} values -
+ * @param {string} values -
  * 
  * @returns {array}
  */
-export function afwBagString(client : any, values? : any[]) : any {
+export function afwBagString(client : any, values? : string) : any {
 
     let _action : IAnyObject = {};
 
@@ -659,24 +657,6 @@ export function afwNormalizeToLowerCaseString(client : any, string : string) : a
 
     _action["function"] = "normalize_to_lower_case<string>";
     _action["string"] = string;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of string values that contains one value to a single
- * string value.
- * 
- * @param {array} array -
- * 
- * @returns {string}
- */
-export function afwOneAndOnlyString(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<string>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

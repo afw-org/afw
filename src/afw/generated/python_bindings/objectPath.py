@@ -85,7 +85,7 @@ def bag_objectPath(session, values=None):
     Takes any number of objectPath values and returns an array of objectPath.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:

@@ -87,11 +87,11 @@ export function afwAtLeastOneMemberOfDayTimeDuration(client : any, array1 : any[
  * Takes any number of dayTimeDuration values and returns an array of
  * dayTimeDuration.
  * 
- * @param {array} values -
+ * @param {dayTimeDuration} values -
  * 
  * @returns {array}
  */
-export function afwBagDayTimeDuration(client : any, values? : any[]) : any {
+export function afwBagDayTimeDuration(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -351,24 +351,6 @@ export function afwNexDayTimeDuration(client : any, arg1 : any, arg2 : any) : an
     _action["function"] = "nex<dayTimeDuration>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of dayTimeDuration values that contains one value to
- * a single dayTimeDuration value.
- * 
- * @param {array} array -
- * 
- * @returns {dayTimeDuration}
- */
-export function afwOneAndOnlyDayTimeDuration(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<dayTimeDuration>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

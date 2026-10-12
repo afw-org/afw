@@ -64,11 +64,11 @@ export function afwAsObjectPath(client : any, value : any) : any {
 /**
  * Takes any number of objectPath values and returns an array of objectPath.
  * 
- * @param {array} values -
+ * @param {objectPath} values -
  * 
  * @returns {array}
  */
-export function afwBagObjectPath(client : any, values? : any[]) : any {
+export function afwBagObjectPath(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 

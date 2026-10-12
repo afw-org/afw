@@ -80,11 +80,11 @@ export function afwBagSizeTemplate(client : any, value : any[]) : any {
 /**
  * Takes any number of template values and returns an array of template.
  * 
- * @param {array} values -
+ * @param {template} values -
  * 
  * @returns {array}
  */
-export function afwBagTemplate(client : any, values? : any[]) : any {
+export function afwBagTemplate(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 

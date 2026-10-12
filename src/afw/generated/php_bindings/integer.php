@@ -155,7 +155,7 @@ class integer
      *
      * Takes any number of integer values and returns an array of integer.
      *
-     * @param array $values
+     * @param integer $values
      *
      * @return array
      */
@@ -609,29 +609,6 @@ class integer
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_integer()
-     *
-     * This converts an array of integer values that contains one value to a
-     * single integer value.
-     *
-     * @param array $array
-     *
-     * @return integer
-     */
-    public function one_and_only_integer(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<integer>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

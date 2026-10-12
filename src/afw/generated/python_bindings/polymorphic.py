@@ -169,7 +169,7 @@ def bag(session, values=None):
     `<dataType>`.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -1308,35 +1308,6 @@ def normalize_to_lower_case(session, string):
     action = {
         "function": "normalize_to_lower_case",
         "string": string
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only(session, array):
-    """
-    Converts a one value array to a <dataType> value
-
-    This converts an array of `<dataType>` values that contains one value to a
-    single `<dataType>` value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only",
-        "array": array
     }
 
     request.add_action(action)

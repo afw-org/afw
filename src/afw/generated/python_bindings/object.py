@@ -151,7 +151,7 @@ def bag_object(session, values=None):
     Takes any number of object values and returns an array of object.
 
     Args:
-        values (list):
+        values (dict):
 
     Returns:
         list:

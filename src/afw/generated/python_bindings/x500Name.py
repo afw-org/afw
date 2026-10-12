@@ -144,7 +144,7 @@ def bag_x500Name(session, values=None):
     Takes any number of x500Name values and returns an array of x500Name.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -533,35 +533,6 @@ def nex_x500Name(session, arg1, arg2):
         "function": "nex<x500Name>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_x500Name(session, array):
-    """
-    Converts a one value array to a x500Name value
-
-    This converts an array of x500Name values that contains one value to a
-    single x500Name value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<x500Name>",
-        "array": array
     }
 
     request.add_action(action)

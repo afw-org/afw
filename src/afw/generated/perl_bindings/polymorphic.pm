@@ -55,7 +55,6 @@ our @EXPORT_OK = qw(
     nex 
     normalize_space 
     normalize_to_lower_case 
-    one_and_only 
     pow 
     regexp_index_of 
     regexp_match 
@@ -680,17 +679,6 @@ Converts to lower case
 =head4 Parameters
 
     $string
-
-
-=head3 one_and_only
-
-This converts an array of `<dataType>` values that contains one value to a
-single `<dataType>` value.
-Converts a one value array to a <dataType> value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 pow
@@ -1692,17 +1680,6 @@ sub normalize_to_lower_case {
 
     $request->set("function" => "normalize_to_lower_case");
     $request->set("string", $string);
-
-    return $request->getResult();
-}
-
-sub one_and_only {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

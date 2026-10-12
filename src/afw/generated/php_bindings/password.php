@@ -85,7 +85,7 @@ class password
      *
      * Takes any number of password values and returns an array of password.
      *
-     * @param array $values
+     * @param password $values
      *
      * @return array
      */

@@ -9,8 +9,7 @@
     "functionLabel": "bag_null",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "null",
+            "dataType": "null",
             "minArgs": 0,
             "name": "values",
             "optional": true

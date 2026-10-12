@@ -30,6 +30,10 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | Data type and compile type `relaxed_json` (`relaxed_json(…)`, `compile<relaxed_json>`, `compileType` / `compile_from_file` `"relaxed_json"`) | **`relaxedJson`**, camelCase like the other data type ids. [#581](https://github.com/afw-org/afw/issues/581) |
 | `dateTime("…")`, `integer(x)`, and the other generic `T(…)` conversion functions (`anyURI`, `base64Binary`, `date`, `dateTime`, `dayTimeDuration`, `dnsName`, `double`, `hexBinary`, `ia5String`, `integer`, `ipAddress`, `objectId`, `objectPath`, `password`, `rfc822Name`, `time`, `x500Name`, `yearMonthDuration`) | **Gone.** Text you write: typed literal `"…"dateTime`. A value you have: `to_dateTime(s)`, `to_integer(s)`, `to_double(i)`. `integer(5)` is `5`; `double(5)` is `5.0`. The compile error says which to use. `boolean`, `string`, `object`, `array`, and the source holders stay. [#589](#data-type-conversion-functions-removed-issue-589) |
+| Relying on a typed slot to convert: `function n(x: integer)` called with `1.9` or `"12"`, `const d: dateTime = "…"`, `let b: boolean = [false]`, a declared return type | **Checked, never converted.** A declared data type, `T[]` of a data type, and unions of these are checked at run time even with type checking off, the same as built-in parameters; the error says how to get the value (`write "…"dateTime or to_dateTime(v)`). Annotations that were wrong and never checked now throw: `const x: object = retrieve_objects(…)` is `object[]`. [#583](#no-hidden-conversions-issue-583) |
+| `add_entries(a, 1)` (a single value added as one entry), and other single values passed where an array is expected | **Error.** Write `push(a, 1)` or `add_entries(a, [1])`. A string is still its code points (`add_entries(a, "xy")` adds `"x"` and `"y"`). [#583](#no-hidden-conversions-issue-583) |
+| `one_and_only<T>(…)` | **Gone.** Use `a[0]` (after checking `length(a) === 1` if that matters). [#583](#no-hidden-conversions-issue-583) |
+| `"a" + 1`, `add<string>("a", 1)` (including `+` on qualified variables whose data types are only known at run time) | **Error:** `+` and `add<string>` take strings only. Write `concat("a", 1)`, `string("a", 1)`, or `"a" + to_string(1)`. [#583](#no-hidden-conversions-issue-583) |
 | `keys(add)`, `to_string(add)`, or another object function on a built-in function value | A built-in function value is now a **`function`**, like a script function (it reported `object`, its `_AdaptiveFunction_` metadata). `keys(add)` and `to_string(add)` throw; `string(add)` is `"add"`. For the metadata, `get_object("afw", "_AdaptiveFunction_", "add")`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `is(v)` with no data type (it always returned false) | **`is<T>(v)`** or **`is_T(v)`**. `is(v)` is now a compile error, *Built-in function 'is' needs a data type*. The function id of `is_T` is now `is_T` (it was `is<T>`), so a request or client binding that names `is<integer>` by id names `is_integer`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `to_boolean(s)` (it was truthy: `"false"` and `"x"` were `true`) | **`string_to_boolean(s)`**, which reads boolean text (`"true"` / `"false"` in any case, `"1"` / `"0"`, `t` / `f`) and throws on any other text. For ECMAScript `Boolean()` truthiness keep **`boolean(v)`**. [Conversion functions](#conversion-functions-read-text-strictly-issue-588) |
@@ -132,6 +136,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Type assertion `v as T`**](#type-assertion-v-as-t-issue-582) ([#582](https://github.com/afw-org/afw/issues/582)) | `v as date` returns `v` if it is a date and throws if not, saying how to get one (`"…"date`, `to_date(v)`); it never converts. One `as_T(v)` function per data type. `is<T>` needs its data type |
 | [**Conversion functions read text strictly**](#conversion-functions-read-text-strictly-issue-588) ([#588](https://github.com/afw-org/afw/issues/588)) | `to_boolean` is now `string_to_boolean` (the boolean parser, not truthiness); new `to_base64Binary`, `to_hexBinary`, `to_ia5String`, `to_objectId`, `to_objectPath`, `to_password` from a string; a boolean text of one unknown character is an error |
 | [**Data type conversion functions removed**](#data-type-conversion-functions-removed-issue-589) ([#589](https://github.com/afw-org/afw/issues/589)) | The 18 generic `T(…)` functions (`dateTime("…")`, `integer(x)`, …) are gone: write a typed literal or `to_T(v)`. `decompile` writes typed literals; `objectId` and `objectPath` have typed literals now |
+| [**No hidden conversions**](#no-hidden-conversions-issue-583) ([#583](https://github.com/afw-org/afw/issues/583)) | Typed parameters, declarations and returns check and never convert; built-in parameters never convert; `array<T>(…)` makes a typed array; `+` / `add<string>` take strings only; `one_and_only` and the single-value-as-array rule are gone |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -656,6 +661,41 @@ Calling one of them is a compile error that names the replacement: *'dateTime' i
 - **Generated bindings** (Python, PHP, JavaScript) no longer have these functions.
 
 Tests: `src/afw/tests/language/script/conversion_functions.as` (`data-type-function-removed`), `src/afw/tests/compiler/decompile.as` (`decompile-typed-literal-round-trip`), `src/afw/tests/compiler/typed_literals.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## No hidden conversions (issue [#583](https://github.com/afw-org/afw/issues/583))
+
+A value is never converted to another data type behind your back. If a slot declares a data type and gets another one, it is an error that says how to get the value: a typed literal for text you write, `to_T(v)` for a value you have. Conversions happen only where you ask for them (`to_T`, `string`, `concat`, `boolean`).
+
+**Why:** a conversion you did not ask for hides a mistake. `n(1.9)` for `x: integer` silently gave `1`, `n("12")` gave `12`, a `boolean` parameter turned `[false]` into `true`, and `const d: dateTime = "abc"` stored the string. Checking a data type is a pointer compare, so it costs nothing to do it every time, the same way built-in parameters have always been checked.
+
+**Typed script slots.** Script function parameters, `let` / `const` declarations, assignments to them, and declared return types are checked at run time, with type checking off as well as on, when the type is a data type, `T[]` of a data type, or a union of these:
+
+| Was (type checking off) | Now |
+|-----|-----|
+| `function n(x: integer)`; `n(1.9)` is `1`, `n("12")` is `12` | Error: *Type error in parameter: expected integer but got double; write to_integer(v)* |
+| `const d: dateTime = "abc"` stores the string | Error: *… expected dateTime but got string; write "abc"dateTime or to_dateTime(v)* |
+| `let y: integer = 1.5` stores `1.5` | Error |
+| `function f(): integer { return "x"; }` returns `"x"` | Error (*Type error in return*) |
+| `function f(b: boolean)`; `f([false])` is `true` | Error. `boolean(v)` keeps ECMAScript truthiness when you want it |
+
+With `strictNullChecks` off, `null` and `undefined` still pass a typed slot. Object shapes, tuples and function types (`{a: integer}`, `[integer, string]`) are still checked at run time only under `#compile typeCheck;` or the `compile:typeCheck` flag; what each type checking flag means is [#597](https://github.com/afw-org/afw/issues/597).
+
+**Arrays know their data type.** An array created without a data type (`[1, 2]`) reports the data type of everything it holds, kept up to date as values are added and removed, so `integer[]` is checked without walking the array. It can still hold any data type: `let a = [1, 2]; push(a, "x")` works (it used to throw after the array was copied). A copy of it is not typed either.
+
+**`array<T>(…values)`** (also `array_T(…)`) makes a **typed** array: each value, and each entry of a `...spread`, must be a `T`, and adding a value of another data type later throws *An array of integer can not hold a value of data type string*. Plain `array(…)` is unchanged.
+
+**Built-in parameters never convert.** When a built-in reads a parameter as a data type, a value of another data type is an error, the same as a parameter that declares its data type. Parameters declared `array` are checked too.
+
+- **A single value is not an array of one.** `add_entries(a, 1)` used to add `1` as one entry; now it is an error: write `push(a, 1)` or `add_entries(a, [1])`. This rule (a single value accepted as a one-entry array, and a one-entry array as its value) came from XACML, where it is called a bag of one. It is not how arrays work anywhere else in Adaptive Script, and it hid mistakes. A string is still a sequence of its code points ([#153](https://github.com/afw-org/afw/issues/153)): AFW strings are UTF-8, and `\u` surrogate pairs decode to one code point, so `"\uD83D\uDE00"` is one.
+- **`one_and_only<T>` is gone.** It was the XACML function for taking the value out of a one-entry array, and it relied on the rule above. Use `a[0]`. XACML leftovers are moving to an extension ([#598](https://github.com/afw-org/afw/issues/598)).
+- **`+` and `add<string>` take strings only.** `"a" + 1` was already a compile error when both data types were known, but `+` on values known only at run time (qualified variables, `any`) and `add<string>("a", 1)` converted the other values to string. Now every value must be a string, the same rule as `+` for integers and doubles. `concat(…)` and `string(…)` convert and concatenate when that is what you want.
+- `compile<template>`, `eval<template>`, and the same for `json`, `relaxedJson`, `regexp`, and `xpathExpression`, take a value of their own data type, as `compile<script>` already did.
+
+Tests: `src/afw/tests/language/script/typed_slots.as`, `src/afw/tests/list/array_data_type.as`, `src/afw/tests/list/add_entries.as`, `src/afw/tests/compiler/type_check_flags.as`.
 
 [↑ Highlights](#highlights)
 

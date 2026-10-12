@@ -9,8 +9,7 @@
     "functionLabel": "bag_template",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "template",
+            "dataType": "template",
             "minArgs": 0,
             "name": "values",
             "optional": true

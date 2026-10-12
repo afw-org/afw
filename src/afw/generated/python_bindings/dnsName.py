@@ -85,7 +85,7 @@ def bag_dnsName(session, values=None):
     Takes any number of dnsName values and returns an array of dnsName.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -440,35 +440,6 @@ def nex_dnsName(session, arg1, arg2):
         "function": "nex<dnsName>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_dnsName(session, array):
-    """
-    Converts a one value array to a dnsName value
-
-    This converts an array of dnsName values that contains one value to a
-    single dnsName value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<dnsName>",
-        "array": array
     }
 
     request.add_action(action)

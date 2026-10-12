@@ -111,7 +111,7 @@ class rfc822Name
      * Takes any number of rfc822Name values and returns an array of
      * rfc822Name.
      *
-     * @param array $values
+     * @param rfc822Name $values
      *
      * @return array
      */
@@ -452,29 +452,6 @@ class rfc822Name
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_rfc822Name()
-     *
-     * This converts an array of rfc822Name values that contains one value to
-     * a single rfc822Name value.
-     *
-     * @param array $array
-     *
-     * @return rfc822Name
-     */
-    public function one_and_only_rfc822Name(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

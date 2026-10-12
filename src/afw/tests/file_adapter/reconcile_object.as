@@ -50,7 +50,7 @@ obj2.TestString1 = "A new value";
 result = reconcile_object(
     obj2, false
 );
-assert(result->bag_size() !== 0, "reconcile_object with changes failed!");
+assert(is_object(result), "reconcile_object with changes failed!");
 
 
 // now get it back
@@ -93,8 +93,9 @@ let obj: object = get_object(
 );
 obj.TestString1 = "face reconcile new";
 
+const diff: array = reconcile_object(obj, true);
+assert(length(diff) !== 0, "face mutation must produce a reconcile diff");
 let result: object = reconcile_object(obj, false);
-assert(result->bag_size() !== 0, "face mutation must produce a reconcile diff");
 
 let again: object = get_object("file", "TestObjectType1", uuid);
 assert(again.TestString1 === "face reconcile new",

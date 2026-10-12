@@ -107,7 +107,7 @@ class template
      *
      * Takes any number of template values and returns an array of template.
      *
-     * @param array $values
+     * @param template $values
      *
      * @return array
      */

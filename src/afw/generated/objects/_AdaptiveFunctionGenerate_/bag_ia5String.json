@@ -9,8 +9,7 @@
     "functionLabel": "bag_ia5String",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "ia5String",
+            "dataType": "ia5String",
             "minArgs": 0,
             "name": "values",
             "optional": true

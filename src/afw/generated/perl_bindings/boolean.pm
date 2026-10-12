@@ -30,7 +30,6 @@ our @EXPORT_OK = qw(
     lt_boolean 
     ne_boolean 
     nex_boolean 
-    one_and_only_boolean 
     set_equals_boolean 
     string_to_boolean 
     subset_boolean 
@@ -283,17 +282,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_boolean
-
-This converts an array of boolean values that contains one value to a single
-boolean value.
-Converts a one value array to a boolean value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 set_equals_boolean
@@ -562,17 +550,6 @@ sub nex_boolean {
     $request->set("function" => "nex<boolean>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_boolean {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<boolean>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

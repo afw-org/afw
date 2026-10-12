@@ -84,11 +84,11 @@ export function afwAtLeastOneMemberOfBoolean(client : any, array1 : any[], array
 /**
  * Takes any number of boolean values and returns an array of boolean.
  * 
- * @param {array} values -
+ * @param {boolean} values -
  * 
  * @returns {array}
  */
-export function afwBagBoolean(client : any, values? : any[]) : any {
+export function afwBagBoolean(client : any, values? : boolean) : any {
 
     let _action : IAnyObject = {};
 
@@ -368,24 +368,6 @@ export function afwNexBoolean(client : any, arg1 : boolean, arg2 : any) : any {
     _action["function"] = "nex<boolean>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of boolean values that contains one value to a
- * single boolean value.
- * 
- * @param {array} array -
- * 
- * @returns {boolean}
- */
-export function afwOneAndOnlyBoolean(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<boolean>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

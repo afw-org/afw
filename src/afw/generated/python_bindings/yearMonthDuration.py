@@ -145,7 +145,7 @@ def bag_yearMonthDuration(session, values=None):
     yearMonthDuration.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -504,35 +504,6 @@ def nex_yearMonthDuration(session, arg1, arg2):
         "function": "nex<yearMonthDuration>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_yearMonthDuration(session, array):
-    """
-    Converts a one value array to a yearMonthDuration value
-
-    This converts an array of yearMonthDuration values that contains one value
-    to a single yearMonthDuration value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<yearMonthDuration>",
-        "array": array
     }
 
     request.add_action(action)

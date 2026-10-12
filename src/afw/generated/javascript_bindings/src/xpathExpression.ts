@@ -83,11 +83,11 @@ export function afwBagSizeXpathExpression(client : any, value : any[]) : any {
  * Takes any number of xpathExpression values and returns an array of
  * xpathExpression.
  * 
- * @param {array} values -
+ * @param {xpathExpression} values -
  * 
  * @returns {array}
  */
-export function afwBagXpathExpression(client : any, values? : any[]) : any {
+export function afwBagXpathExpression(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 

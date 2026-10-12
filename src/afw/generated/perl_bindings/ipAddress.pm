@@ -27,7 +27,6 @@ our @EXPORT_OK = qw(
     lt_ipAddress 
     ne_ipAddress 
     nex_ipAddress 
-    one_and_only_ipAddress 
     regexp_match_ipAddress 
     to_string_ipAddress 
 );
@@ -233,17 +232,6 @@ Checks for not equal value or type
     $arg2
 
 
-=head3 one_and_only_ipAddress
-
-This converts an array of ipAddress values that contains one value to a single
-ipAddress value.
-Converts a one value array to a ipAddress value
-
-=head4 Parameters
-
-    $array
-
-
 =head3 regexp_match_ipAddress
 
 Checks whether ipAddress value matches the regular expression regexp and
@@ -433,17 +421,6 @@ sub nex_ipAddress {
     $request->set("function" => "nex<ipAddress>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_ipAddress {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<ipAddress>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

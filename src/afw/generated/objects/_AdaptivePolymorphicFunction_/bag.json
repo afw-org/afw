@@ -9,10 +9,9 @@
     "parameters": [
         {
             "minArgs": 0,
-            "dataType": "array",
             "name": "values",
             "optional": true,
-            "polymorphicDataTypeParameter": true
+            "polymorphicDataType": true
         }
     ],
     "polymorphic": true,

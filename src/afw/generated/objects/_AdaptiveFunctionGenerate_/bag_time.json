@@ -9,8 +9,7 @@
     "functionLabel": "bag_time",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "time",
+            "dataType": "time",
             "minArgs": 0,
             "name": "values",
             "optional": true

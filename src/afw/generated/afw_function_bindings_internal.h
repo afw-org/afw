@@ -2318,7 +2318,7 @@ afw_function_definition_bag_anyURI;
  *
  * Parameters:
  *
- *   values - (0 or more anyURI[])
+ *   values - (0 or more anyURI)
  *
  * Returns:
  *
@@ -2985,45 +2985,6 @@ afw_function_definition_nex_anyURI;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition one_and_only<anyURI> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_anyURI;
-
-/**
- * @brief Adaptive Function `one_and_only<anyURI>`
- * @param x function execute parameter.
- *
- * This converts an array of anyURI values that contains one value to a single
- * anyURI value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<anyURI>(
- *       array: array[]
- *   ): anyURI;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (anyURI)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -3774,13 +3735,13 @@ afw_function_definition_bag_array;
  *
  * ```
  *   function bag<array>(
- *       ...values: array[]
+ *       ...values: array
  *   ): array[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array[])
+ *   values - (0 or more array)
  *
  * Returns:
  *
@@ -4930,7 +4891,7 @@ afw_function_definition_bag_base64Binary;
  *
  * Parameters:
  *
- *   values - (0 or more base64Binary[])
+ *   values - (0 or more base64Binary)
  *
  * Returns:
  *
@@ -5438,45 +5399,6 @@ afw_function_definition_nex_base64Binary;
  * __________
  */
 
-/** @brief Function definition one_and_only<base64Binary> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_base64Binary;
-
-/**
- * @brief Adaptive Function `one_and_only<base64Binary>`
- * @param x function execute parameter.
- *
- * This converts an array of base64Binary values that contains one value to a
- * single base64Binary value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<base64Binary>(
- *       array: array[]
- *   ): base64Binary;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (base64Binary)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition set_equals<base64Binary> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_base64Binary;
@@ -5780,7 +5702,7 @@ afw_function_definition_bag_boolean;
  *
  * Parameters:
  *
- *   values - (0 or more boolean[])
+ *   values - (0 or more boolean)
  *
  * Returns:
  *
@@ -6290,45 +6212,6 @@ afw_function_definition_nex_boolean;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition one_and_only<boolean> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_boolean;
-
-/**
- * @brief Adaptive Function `one_and_only<boolean>`
- * @param x function execute parameter.
- *
- * This converts an array of boolean values that contains one value to a single
- * boolean value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<boolean>(
- *       array: array[]
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (boolean)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -8312,7 +8195,7 @@ afw_function_definition_bag_dateTime;
  *
  * Parameters:
  *
- *   values - (0 or more dateTime[])
+ *   values - (0 or more dateTime)
  *
  * Returns:
  *
@@ -8872,45 +8755,6 @@ afw_function_definition_nex_dateTime;
  * __________
  */
 
-/** @brief Function definition one_and_only<dateTime> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_dateTime;
-
-/**
- * @brief Adaptive Function `one_and_only<dateTime>`
- * @param x function execute parameter.
- *
- * This converts an array of dateTime values that contains one value to a single
- * dateTime value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<dateTime>(
- *       array: array[]
- *   ): dateTime;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (dateTime)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition set_equals<dateTime> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_dateTime;
@@ -9323,7 +9167,7 @@ afw_function_definition_bag_date;
  *
  * Parameters:
  *
- *   values - (0 or more date[])
+ *   values - (0 or more date)
  *
  * Returns:
  *
@@ -9881,45 +9725,6 @@ afw_function_definition_nex_date;
  * __________
  */
 
-/** @brief Function definition one_and_only<date> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_date;
-
-/**
- * @brief Adaptive Function `one_and_only<date>`
- * @param x function execute parameter.
- *
- * This converts an array of date values that contains one value to a single
- * date value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<date>(
- *       array: array[]
- *   ): date;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (date)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition set_equals<date> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_date;
@@ -10263,7 +10068,7 @@ afw_function_definition_bag_dayTimeDuration;
  *
  * Parameters:
  *
- *   values - (0 or more dayTimeDuration[])
+ *   values - (0 or more dayTimeDuration)
  *
  * Returns:
  *
@@ -10738,45 +10543,6 @@ afw_function_definition_nex_dayTimeDuration;
  * __________
  */
 
-/** @brief Function definition one_and_only<dayTimeDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_dayTimeDuration;
-
-/**
- * @brief Adaptive Function `one_and_only<dayTimeDuration>`
- * @param x function execute parameter.
- *
- * This converts an array of dayTimeDuration values that contains one value to a
- * single dayTimeDuration value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<dayTimeDuration>(
- *       array: array[]
- *   ): dayTimeDuration;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (dayTimeDuration)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition set_equals<dayTimeDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_dayTimeDuration;
@@ -11042,7 +10808,7 @@ afw_function_definition_bag_dnsName;
  *
  * Parameters:
  *
- *   values - (0 or more dnsName[])
+ *   values - (0 or more dnsName)
  *
  * Returns:
  *
@@ -11476,45 +11242,6 @@ afw_function_definition_nex_dnsName;
  * __________
  */
 
-/** @brief Function definition one_and_only<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_dnsName;
-
-/**
- * @brief Adaptive Function `one_and_only<dnsName>`
- * @param x function execute parameter.
- *
- * This converts an array of dnsName values that contains one value to a single
- * dnsName value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<dnsName>(
- *       array: array[]
- *   ): dnsName;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (dnsName)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition regexp_match<dnsName> */
 extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_dnsName;
@@ -11811,7 +11538,7 @@ afw_function_definition_bag_double;
  *
  * Parameters:
  *
- *   values - (0 or more double[])
+ *   values - (0 or more double)
  *
  * Returns:
  *
@@ -12628,45 +12355,6 @@ afw_function_definition_nex_double;
  * __________
  */
 
-/** @brief Function definition one_and_only<double> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_double;
-
-/**
- * @brief Adaptive Function `one_and_only<double>`
- * @param x function execute parameter.
- *
- * This converts an array of double values that contains one value to a single
- * double value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<double>(
- *       array: array[]
- *   ): double;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition pow<double> */
 extern const afw_value_function_definition_t
 afw_function_definition_pow_double;
@@ -13084,7 +12772,7 @@ afw_function_definition_bag_function;
  *
  * Parameters:
  *
- *   values - (0 or more function[])
+ *   values - (0 or more function)
  *
  * Returns:
  *
@@ -13637,7 +13325,7 @@ afw_function_definition_bag_hexBinary;
  *
  * Parameters:
  *
- *   values - (0 or more hexBinary[])
+ *   values - (0 or more hexBinary)
  *
  * Returns:
  *
@@ -14140,45 +13828,6 @@ afw_function_definition_nex_hexBinary;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition one_and_only<hexBinary> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_hexBinary;
-
-/**
- * @brief Adaptive Function `one_and_only<hexBinary>`
- * @param x function execute parameter.
- *
- * This converts an array of hexBinary values that contains one value to a
- * single hexBinary value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<hexBinary>(
- *       array: array[]
- *   ): hexBinary;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (hexBinary)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -15020,7 +14669,7 @@ afw_function_definition_bag_ia5String;
  *
  * Parameters:
  *
- *   values - (0 or more ia5String[])
+ *   values - (0 or more ia5String)
  *
  * Returns:
  *
@@ -15837,7 +15486,7 @@ afw_function_definition_bag_integer;
  *
  * Parameters:
  *
- *   values - (0 or more integer[])
+ *   values - (0 or more integer)
  *
  * Returns:
  *
@@ -16519,45 +16168,6 @@ afw_function_definition_nex_integer;
  * __________
  */
 
-/** @brief Function definition one_and_only<integer> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_integer;
-
-/**
- * @brief Adaptive Function `one_and_only<integer>`
- * @param x function execute parameter.
- *
- * This converts an array of integer values that contains one value to a single
- * integer value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<integer>(
- *       array: array[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition set_equals<integer> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_integer;
@@ -16901,7 +16511,7 @@ afw_function_definition_bag_ipAddress;
  *
  * Parameters:
  *
- *   values - (0 or more ipAddress[])
+ *   values - (0 or more ipAddress)
  *
  * Returns:
  *
@@ -17332,45 +16942,6 @@ afw_function_definition_nex_ipAddress;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition one_and_only<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_ipAddress;
-
-/**
- * @brief Adaptive Function `one_and_only<ipAddress>`
- * @param x function execute parameter.
- *
- * This converts an array of ipAddress values that contains one value to a
- * single ipAddress value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<ipAddress>(
- *       array: array[]
- *   ): ipAddress;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (ipAddress)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -19275,7 +18846,7 @@ afw_function_definition_bag_null;
  *
  * Parameters:
  *
- *   values - (0 or more null[])
+ *   values - (0 or more null)
  *
  * Returns:
  *
@@ -19509,7 +19080,7 @@ afw_function_definition_bag_objectId;
  *
  * Parameters:
  *
- *   values - (0 or more objectId[])
+ *   values - (0 or more objectId)
  *
  * Returns:
  *
@@ -20059,7 +19630,7 @@ afw_function_definition_bag_objectPath;
  *
  * Parameters:
  *
- *   values - (0 or more objectPath[])
+ *   values - (0 or more objectPath)
  *
  * Returns:
  *
@@ -20685,7 +20256,7 @@ afw_function_definition_bag_object;
  *
  * Parameters:
  *
- *   values - (0 or more object[])
+ *   values - (0 or more object)
  *
  * Returns:
  *
@@ -21680,7 +21251,7 @@ afw_function_definition_bag_password;
  *
  * Parameters:
  *
- *   values - (0 or more password[])
+ *   values - (0 or more password)
  *
  * Returns:
  *
@@ -22351,13 +21922,13 @@ afw_function_definition_bag;
  *
  * ```
  *   function bag <dataType>(
- *       ...values: array
+ *       ...values: dataType[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more ``<Type>`[]`)
+ *   values - (0 or more ``<Type>``)
  *
  * Returns:
  *
@@ -23908,51 +23479,6 @@ afw_function_definition_normalize_to_lower_case;
  * Returns:
  *
  *   (``<Type>``)
- *
- * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
- *
- * __________
- */
-
-/** @brief Function definition one_and_only */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only;
-
-/**
- * @brief Adaptive Function `one_and_only`
- * @param x function execute parameter.
- *
- * This converts an array of `<dataType>` values that contains one value to a
- * single `<dataType>` value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, hexBinary, integer, ipAddress, rfc822Name, string, time, x500Name,
- *   yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only <dataType>(
- *       array: array[]
- *   ): dataType;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (``<Type>``)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -26404,7 +25930,7 @@ afw_function_definition_bag_rfc822Name;
  *
  * Parameters:
  *
- *   values - (0 or more rfc822Name[])
+ *   values - (0 or more rfc822Name)
  *
  * Returns:
  *
@@ -26914,45 +26440,6 @@ afw_function_definition_nex_rfc822Name;
  * __________
  */
 
-/** @brief Function definition one_and_only<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_rfc822Name;
-
-/**
- * @brief Adaptive Function `one_and_only<rfc822Name>`
- * @param x function execute parameter.
- *
- * This converts an array of rfc822Name values that contains one value to a
- * single rfc822Name value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<rfc822Name>(
- *       array: array[]
- *   ): rfc822Name;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (rfc822Name)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition regexp_match<rfc822Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_rfc822Name;
@@ -27256,7 +26743,7 @@ afw_function_definition_bag_script;
  *
  * Parameters:
  *
- *   values - (0 or more script[])
+ *   values - (0 or more script)
  *
  * Returns:
  *
@@ -28330,8 +27817,9 @@ afw_function_definition_add_string;
  * @brief Adaptive Function `add<string>`
  * @param x function execute parameter.
  *
- * Add (concatenate) a string with 1 or more values of any data type converted
- * to their string value and return the string result.
+ * Add (concatenate) 2 or more string values and return the string result. Every
+ * value must be a string, the same as the + operator: to convert values while
+ * concatenating, use concat() or string().
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28340,17 +27828,15 @@ afw_function_definition_add_string;
  *
  * ```
  *   function add<string>(
- *       string: string,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       values_1: string,
+ *       values_2: string,
+ *       ...values_rest: string[]
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   string - (string)
- *
- *   values - (1 or more any)
+ *   values - (2 or more string)
  *
  * Returns:
  *
@@ -28539,7 +28025,7 @@ afw_function_definition_bag_string;
  *
  * Parameters:
  *
- *   values - (0 or more string[])
+ *   values - (0 or more string)
  *
  * Returns:
  *
@@ -29500,45 +28986,6 @@ afw_function_definition_normalize_to_lower_case_string;
 const afw_value_t *
 afw_function_execute_normalize_to_lower_case_string(
     afw_function_execute_t *x);
-
-/** @brief Function definition one_and_only<string> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_string;
-
-/**
- * @brief Adaptive Function `one_and_only<string>`
- * @param x function execute parameter.
- *
- * This converts an array of string values that contains one value to a single
- * string value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<string>(
- *       array: array[]
- *   ): string;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (string)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
 
 /** @brief Function definition regexp_index_of<string> */
 extern const afw_value_function_definition_t
@@ -31004,7 +30451,7 @@ afw_function_definition_bag_template;
  *
  * Parameters:
  *
- *   values - (0 or more template[])
+ *   values - (0 or more template)
  *
  * Returns:
  *
@@ -31723,7 +31170,7 @@ afw_function_definition_bag_time;
  *
  * Parameters:
  *
- *   values - (0 or more time[])
+ *   values - (0 or more time)
  *
  * Returns:
  *
@@ -32290,45 +31737,6 @@ afw_function_definition_nex_time;
  * __________
  */
 
-/** @brief Function definition one_and_only<time> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_time;
-
-/**
- * @brief Adaptive Function `one_and_only<time>`
- * @param x function execute parameter.
- *
- * This converts an array of time values that contains one value to a single
- * time value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<time>(
- *       array: array[]
- *   ): time;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (time)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition set_equals<time> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_time;
@@ -32837,7 +32245,7 @@ afw_function_definition_bag_x500Name;
  *
  * Parameters:
  *
- *   values - (0 or more x500Name[])
+ *   values - (0 or more x500Name)
  *
  * Returns:
  *
@@ -33312,45 +32720,6 @@ afw_function_definition_nex_x500Name;
  * __________
  */
 
-/** @brief Function definition one_and_only<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_x500Name;
-
-/**
- * @brief Adaptive Function `one_and_only<x500Name>`
- * @param x function execute parameter.
- *
- * This converts an array of x500Name values that contains one value to a single
- * x500Name value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<x500Name>(
- *       array: array[]
- *   ): x500Name;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (x500Name)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition regexp_match<x500Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_x500Name;
@@ -33692,7 +33061,7 @@ afw_function_definition_bag_xpathExpression;
  *
  * Parameters:
  *
- *   values - (0 or more xpathExpression[])
+ *   values - (0 or more xpathExpression)
  *
  * Returns:
  *
@@ -34526,7 +33895,7 @@ afw_function_definition_bag_yearMonthDuration;
  *
  * Parameters:
  *
- *   values - (0 or more yearMonthDuration[])
+ *   values - (0 or more yearMonthDuration)
  *
  * Returns:
  *
@@ -34967,45 +34336,6 @@ afw_function_definition_nex_yearMonthDuration;
  * __________
  */
 
-/** @brief Function definition one_and_only<yearMonthDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_one_and_only_yearMonthDuration;
-
-/**
- * @brief Adaptive Function `one_and_only<yearMonthDuration>`
- * @param x function execute parameter.
- *
- * This converts an array of yearMonthDuration values that contains one value to
- * a single yearMonthDuration value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only<yearMonthDuration>(
- *       array: array[]
- *   ): yearMonthDuration;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (yearMonthDuration)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- *
- * Implemented by afw_function_execute_one_and_only()
- *
- * __________
- */
-
 /** @brief Function definition set_equals<yearMonthDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_yearMonthDuration;
@@ -35179,7 +34509,6 @@ afw_function_definition_union_yearMonthDuration;
     _XX(lt)                                                                    \
     _XX(ne)                                                                    \
     _XX(nex)                                                                   \
-    _XX(one_and_only)                                                          \
     _XX(regexp_index_of)                                                       \
     _XX(regexp_match)                                                          \
     _XX(regexp_replace)                                                        \
@@ -35311,7 +34640,6 @@ typedef enum afw_data_type_method_number_e {
  * negative
  * normalize_space
  * normalize_to_lower_case
- * one_and_only
  * pow
  * regexp_index_of
  * regexp_match
@@ -36146,32 +35474,6 @@ afw_function_execute_ne(
  */
 const afw_value_t *
 afw_function_execute_nex(
-    afw_function_execute_t *x);
-
-/**
- * @brief Function implementation function afw_function_execute_one_and_only
- *
- * Implementation for functions:
- *
- * one_and_only<anyURI>
- * one_and_only<base64Binary>
- * one_and_only<boolean>
- * one_and_only<dateTime>
- * one_and_only<date>
- * one_and_only<dayTimeDuration>
- * one_and_only<dnsName>
- * one_and_only<double>
- * one_and_only<hexBinary>
- * one_and_only<integer>
- * one_and_only<ipAddress>
- * one_and_only<rfc822Name>
- * one_and_only<string>
- * one_and_only<time>
- * one_and_only<x500Name>
- * one_and_only<yearMonthDuration>
- */
-const afw_value_t *
-afw_function_execute_one_and_only(
     afw_function_execute_t *x);
 
 /**

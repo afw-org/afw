@@ -117,7 +117,7 @@ def bag_base64Binary(session, values=None):
     base64Binary.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -533,35 +533,6 @@ def nex_base64Binary(session, arg1, arg2):
         "function": "nex<base64Binary>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_base64Binary(session, array):
-    """
-    Converts a one value array to a base64Binary value
-
-    This converts an array of base64Binary values that contains one value to a
-    single base64Binary value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<base64Binary>",
-        "array": array
     }
 
     request.add_action(action)

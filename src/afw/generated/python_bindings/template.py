@@ -113,7 +113,7 @@ def bag_template(session, values=None):
     Takes any number of template values and returns an array of template.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:

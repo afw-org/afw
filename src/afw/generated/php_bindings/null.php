@@ -85,7 +85,7 @@ class null
      *
      * Takes any number of null values and returns an array of null.
      *
-     * @param array $values
+     * @param null $values
      *
      * @return array
      */

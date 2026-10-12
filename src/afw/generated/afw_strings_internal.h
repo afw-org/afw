@@ -1251,32 +1251,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__04ca67312cfd \
-    "This converts an array of x500Name values that contains one value to a single x500Name value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__04ca67312cfd */
-#define afw_s_zz__04ca67312cfd \
-    (&afw_self_v_zz__04ca67312cfd.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__04ca67312cfd */
-#define afw_self_s_zz__04ca67312cfd \
-    (afw_self_v_zz__04ca67312cfd.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__04ca67312cfd */
-extern const afw_value_string_t \
-    afw_self_v_zz__04ca67312cfd;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__04ca67312cfd */
-#define afw_z_zz__04ca67312cfd \
-    (afw_self_v_zz__04ca67312cfd.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__04ca67312cfd */
-#define afw_v_zz__04ca67312cfd \
-    (&afw_self_v_zz__04ca67312cfd.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__04d87697503c \
     "This controls how authorization checking occurs in an Adaptive Framework application."
 
@@ -1325,32 +1299,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__05281925d3a6 */
 #define afw_v_zz__05281925d3a6 \
     (&afw_self_v_zz__05281925d3a6.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__05298253e207 \
-    "function add<string> (\n    string: string,\n    values_1: any,\n    ...values_rest: any[]\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__05298253e207 */
-#define afw_s_zz__05298253e207 \
-    (&afw_self_v_zz__05298253e207.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__05298253e207 */
-#define afw_self_s_zz__05298253e207 \
-    (afw_self_v_zz__05298253e207.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__05298253e207 */
-extern const afw_value_string_t \
-    afw_self_v_zz__05298253e207;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__05298253e207 */
-#define afw_z_zz__05298253e207 \
-    (afw_self_v_zz__05298253e207.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__05298253e207 */
-#define afw_v_zz__05298253e207 \
-    (&afw_self_v_zz__05298253e207.pub)
 
 
 
@@ -5125,32 +5073,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__1314e190a425 \
-    "This converts an array of anyURI values that contains one value to a single anyURI value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1314e190a425 */
-#define afw_s_zz__1314e190a425 \
-    (&afw_self_v_zz__1314e190a425.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1314e190a425 */
-#define afw_self_s_zz__1314e190a425 \
-    (afw_self_v_zz__1314e190a425.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__1314e190a425 */
-extern const afw_value_string_t \
-    afw_self_v_zz__1314e190a425;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1314e190a425 */
-#define afw_z_zz__1314e190a425 \
-    (afw_self_v_zz__1314e190a425.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__1314e190a425 */
-#define afw_v_zz__1314e190a425 \
-    (&afw_self_v_zz__1314e190a425.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__1343ec29f05e \
     "function to_string<objectPath> (\n    value: objectPath\n): string;\n"
 
@@ -5849,32 +5771,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__15a209e5410f */
 #define afw_v_zz__15a209e5410f \
     (&afw_self_v_zz__15a209e5410f.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__15a2c82d7d41 \
-    "This converts an array of double values that contains one value to a single double value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__15a2c82d7d41 */
-#define afw_s_zz__15a2c82d7d41 \
-    (&afw_self_v_zz__15a2c82d7d41.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__15a2c82d7d41 */
-#define afw_self_s_zz__15a2c82d7d41 \
-    (afw_self_v_zz__15a2c82d7d41.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__15a2c82d7d41 */
-extern const afw_value_string_t \
-    afw_self_v_zz__15a2c82d7d41;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__15a2c82d7d41 */
-#define afw_z_zz__15a2c82d7d41 \
-    (afw_self_v_zz__15a2c82d7d41.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__15a2c82d7d41 */
-#define afw_v_zz__15a2c82d7d41 \
-    (&afw_self_v_zz__15a2c82d7d41.pub)
 
 
 
@@ -6945,6 +6841,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__19eff5474666 \
+    "function bag <dataType>(\n    ...values: dataType[]\n): array;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__19eff5474666 */
+#define afw_s_zz__19eff5474666 \
+    (&afw_self_v_zz__19eff5474666.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__19eff5474666 */
+#define afw_self_s_zz__19eff5474666 \
+    (afw_self_v_zz__19eff5474666.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__19eff5474666 */
+extern const afw_value_string_t \
+    afw_self_v_zz__19eff5474666;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__19eff5474666 */
+#define afw_z_zz__19eff5474666 \
+    (afw_self_v_zz__19eff5474666.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__19eff5474666 */
+#define afw_v_zz__19eff5474666 \
+    (&afw_self_v_zz__19eff5474666.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__19f1cc41bd43 \
     "function intersection<hexBinary> (\n    array1: hexBinary[],\n    array2: hexBinary[]\n): hexBinary[];\n"
 
@@ -7487,32 +7409,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1b62e1a15ec2 */
 #define afw_v_zz__1b62e1a15ec2 \
     (&afw_self_v_zz__1b62e1a15ec2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__1b8621d0100f \
-    "This converts an array of hexBinary values that contains one value to a single hexBinary value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1b8621d0100f */
-#define afw_s_zz__1b8621d0100f \
-    (&afw_self_v_zz__1b8621d0100f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1b8621d0100f */
-#define afw_self_s_zz__1b8621d0100f \
-    (afw_self_v_zz__1b8621d0100f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__1b8621d0100f */
-extern const afw_value_string_t \
-    afw_self_v_zz__1b8621d0100f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1b8621d0100f */
-#define afw_z_zz__1b8621d0100f \
-    (afw_self_v_zz__1b8621d0100f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__1b8621d0100f */
-#define afw_v_zz__1b8621d0100f \
-    (&afw_self_v_zz__1b8621d0100f.pub)
 
 
 
@@ -9151,32 +9047,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__21de85f11772 */
 #define afw_v_zz__21de85f11772 \
     (&afw_self_v_zz__21de85f11772.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__21e05f313a5e \
-    "function one_and_only<string> (\n    array: array[]\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__21e05f313a5e */
-#define afw_s_zz__21e05f313a5e \
-    (&afw_self_v_zz__21e05f313a5e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__21e05f313a5e */
-#define afw_self_s_zz__21e05f313a5e \
-    (afw_self_v_zz__21e05f313a5e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__21e05f313a5e */
-extern const afw_value_string_t \
-    afw_self_v_zz__21e05f313a5e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__21e05f313a5e */
-#define afw_z_zz__21e05f313a5e \
-    (afw_self_v_zz__21e05f313a5e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__21e05f313a5e */
-#define afw_v_zz__21e05f313a5e \
-    (&afw_self_v_zz__21e05f313a5e.pub)
 
 
 
@@ -12223,32 +12093,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2dc7fae172c8 \
-    "function one_and_only<dateTime> (\n    array: array[]\n): dateTime;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2dc7fae172c8 */
-#define afw_s_zz__2dc7fae172c8 \
-    (&afw_self_v_zz__2dc7fae172c8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2dc7fae172c8 */
-#define afw_self_s_zz__2dc7fae172c8 \
-    (afw_self_v_zz__2dc7fae172c8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2dc7fae172c8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2dc7fae172c8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2dc7fae172c8 */
-#define afw_z_zz__2dc7fae172c8 \
-    (afw_self_v_zz__2dc7fae172c8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2dc7fae172c8 */
-#define afw_v_zz__2dc7fae172c8 \
-    (&afw_self_v_zz__2dc7fae172c8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2dd6b0a43f5d \
     "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object. During evaluation, current:: includes property-level names (contextType modelGetProperty: mappedObject, mappedValue, mappedPropertyName, … as applicable). qualifier(\"current\") can snapshot that bag for debug/tools (not for hot paths)."
 
@@ -12509,32 +12353,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2f2ff86f3a6e \
-    "function one_and_only<integer> (\n    array: array[]\n): integer;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2f2ff86f3a6e */
-#define afw_s_zz__2f2ff86f3a6e \
-    (&afw_self_v_zz__2f2ff86f3a6e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2f2ff86f3a6e */
-#define afw_self_s_zz__2f2ff86f3a6e \
-    (afw_self_v_zz__2f2ff86f3a6e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2f2ff86f3a6e */
-extern const afw_value_string_t \
-    afw_self_v_zz__2f2ff86f3a6e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2f2ff86f3a6e */
-#define afw_z_zz__2f2ff86f3a6e \
-    (afw_self_v_zz__2f2ff86f3a6e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2f2ff86f3a6e */
-#define afw_v_zz__2f2ff86f3a6e \
-    (&afw_self_v_zz__2f2ff86f3a6e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2f35cf2b36ba \
     "Checks for anyURI arg1 is less that anyURI arg2 and return the boolean result."
 
@@ -12687,32 +12505,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2fc2483a71ec */
 #define afw_v_zz__2fc2483a71ec \
     (&afw_self_v_zz__2fc2483a71ec.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__2fd319b7ab0a \
-    "This converts an array of <dataType> values that contains one value to a single <dataType> value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2fd319b7ab0a */
-#define afw_s_zz__2fd319b7ab0a \
-    (&afw_self_v_zz__2fd319b7ab0a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2fd319b7ab0a */
-#define afw_self_s_zz__2fd319b7ab0a \
-    (afw_self_v_zz__2fd319b7ab0a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2fd319b7ab0a */
-extern const afw_value_string_t \
-    afw_self_v_zz__2fd319b7ab0a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2fd319b7ab0a */
-#define afw_z_zz__2fd319b7ab0a \
-    (afw_self_v_zz__2fd319b7ab0a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2fd319b7ab0a */
-#define afw_v_zz__2fd319b7ab0a \
-    (&afw_self_v_zz__2fd319b7ab0a.pub)
 
 
 
@@ -15941,32 +15733,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__3d7e5e3d5a32 \
-    "This converts an array of time values that contains one value to a single time value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3d7e5e3d5a32 */
-#define afw_s_zz__3d7e5e3d5a32 \
-    (&afw_self_v_zz__3d7e5e3d5a32.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3d7e5e3d5a32 */
-#define afw_self_s_zz__3d7e5e3d5a32 \
-    (afw_self_v_zz__3d7e5e3d5a32.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3d7e5e3d5a32 */
-extern const afw_value_string_t \
-    afw_self_v_zz__3d7e5e3d5a32;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3d7e5e3d5a32 */
-#define afw_z_zz__3d7e5e3d5a32 \
-    (afw_self_v_zz__3d7e5e3d5a32.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3d7e5e3d5a32 */
-#define afw_v_zz__3d7e5e3d5a32 \
-    (&afw_self_v_zz__3d7e5e3d5a32.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__3d9932a8af75 \
     "function subset<dayTimeDuration> (\n    array1: dayTimeDuration[],\n    array2: dayTimeDuration[]\n): boolean;\n"
 
@@ -16873,32 +16639,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4235aa05079d */
 #define afw_v_zz__4235aa05079d \
     (&afw_self_v_zz__4235aa05079d.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__4253ad7db5a1 \
-    "function one_and_only<hexBinary> (\n    array: array[]\n): hexBinary;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4253ad7db5a1 */
-#define afw_s_zz__4253ad7db5a1 \
-    (&afw_self_v_zz__4253ad7db5a1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4253ad7db5a1 */
-#define afw_self_s_zz__4253ad7db5a1 \
-    (afw_self_v_zz__4253ad7db5a1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4253ad7db5a1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__4253ad7db5a1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4253ad7db5a1 */
-#define afw_z_zz__4253ad7db5a1 \
-    (afw_self_v_zz__4253ad7db5a1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4253ad7db5a1 */
-#define afw_v_zz__4253ad7db5a1 \
-    (&afw_self_v_zz__4253ad7db5a1.pub)
 
 
 
@@ -18593,32 +18333,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__490fbd0482df \
-    "function one_and_only<base64Binary> (\n    array: array[]\n): base64Binary;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__490fbd0482df */
-#define afw_s_zz__490fbd0482df \
-    (&afw_self_v_zz__490fbd0482df.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__490fbd0482df */
-#define afw_self_s_zz__490fbd0482df \
-    (afw_self_v_zz__490fbd0482df.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__490fbd0482df */
-extern const afw_value_string_t \
-    afw_self_v_zz__490fbd0482df;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__490fbd0482df */
-#define afw_z_zz__490fbd0482df \
-    (afw_self_v_zz__490fbd0482df.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__490fbd0482df */
-#define afw_v_zz__490fbd0482df \
-    (&afw_self_v_zz__490fbd0482df.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__491a668ff61d \
     "Contextual string added when this configuration object is processed"
 
@@ -19421,32 +19135,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4cca7e19282b */
 #define afw_v_zz__4cca7e19282b \
     (&afw_self_v_zz__4cca7e19282b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__4ceb6686b266 \
-    "function one_and_only<anyURI> (\n    array: array[]\n): anyURI;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4ceb6686b266 */
-#define afw_s_zz__4ceb6686b266 \
-    (&afw_self_v_zz__4ceb6686b266.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4ceb6686b266 */
-#define afw_self_s_zz__4ceb6686b266 \
-    (afw_self_v_zz__4ceb6686b266.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4ceb6686b266 */
-extern const afw_value_string_t \
-    afw_self_v_zz__4ceb6686b266;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4ceb6686b266 */
-#define afw_z_zz__4ceb6686b266 \
-    (afw_self_v_zz__4ceb6686b266.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4ceb6686b266 */
-#define afw_v_zz__4ceb6686b266 \
-    (&afw_self_v_zz__4ceb6686b266.pub)
 
 
 
@@ -20929,32 +20617,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__532a641d44d9 */
 #define afw_v_zz__532a641d44d9 \
     (&afw_self_v_zz__532a641d44d9.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5343818ba871 \
-    "function one_and_only<yearMonthDuration> (\n    array: array[]\n): yearMonthDuration;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5343818ba871 */
-#define afw_s_zz__5343818ba871 \
-    (&afw_self_v_zz__5343818ba871.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5343818ba871 */
-#define afw_self_s_zz__5343818ba871 \
-    (afw_self_v_zz__5343818ba871.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5343818ba871 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5343818ba871;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5343818ba871 */
-#define afw_z_zz__5343818ba871 \
-    (afw_self_v_zz__5343818ba871.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5343818ba871 */
-#define afw_v_zz__5343818ba871 \
-    (&afw_self_v_zz__5343818ba871.pub)
 
 
 
@@ -22805,32 +22467,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__58d488727cdc \
-    "Add (concatenate) a string with 1 or more values of any data type converted to their string value and return the string result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__58d488727cdc */
-#define afw_s_zz__58d488727cdc \
-    (&afw_self_v_zz__58d488727cdc.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__58d488727cdc */
-#define afw_self_s_zz__58d488727cdc \
-    (afw_self_v_zz__58d488727cdc.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__58d488727cdc */
-extern const afw_value_string_t \
-    afw_self_v_zz__58d488727cdc;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__58d488727cdc */
-#define afw_z_zz__58d488727cdc \
-    (afw_self_v_zz__58d488727cdc.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__58d488727cdc */
-#define afw_v_zz__58d488727cdc \
-    (&afw_self_v_zz__58d488727cdc.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__58d6bc2a1095 \
     "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation."
 
@@ -22879,32 +22515,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5930147c6acb */
 #define afw_v_zz__5930147c6acb \
     (&afw_self_v_zz__5930147c6acb.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5935d8eece70 \
-    "This converts an array of yearMonthDuration values that contains one value to a single yearMonthDuration value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5935d8eece70 */
-#define afw_s_zz__5935d8eece70 \
-    (&afw_self_v_zz__5935d8eece70.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5935d8eece70 */
-#define afw_self_s_zz__5935d8eece70 \
-    (afw_self_v_zz__5935d8eece70.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5935d8eece70 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5935d8eece70;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5935d8eece70 */
-#define afw_z_zz__5935d8eece70 \
-    (afw_self_v_zz__5935d8eece70.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5935d8eece70 */
-#define afw_v_zz__5935d8eece70 \
-    (&afw_self_v_zz__5935d8eece70.pub)
 
 
 
@@ -23269,6 +22879,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5ab795eb020b */
 #define afw_v_zz__5ab795eb020b \
     (&afw_self_v_zz__5ab795eb020b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__5ae399fd157c \
+    "(values_1: string, values_2: string, ...values_rest: string[]): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5ae399fd157c */
+#define afw_s_zz__5ae399fd157c \
+    (&afw_self_v_zz__5ae399fd157c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5ae399fd157c */
+#define afw_self_s_zz__5ae399fd157c \
+    (afw_self_v_zz__5ae399fd157c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5ae399fd157c */
+extern const afw_value_string_t \
+    afw_self_v_zz__5ae399fd157c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5ae399fd157c */
+#define afw_z_zz__5ae399fd157c \
+    (afw_self_v_zz__5ae399fd157c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5ae399fd157c */
+#define afw_v_zz__5ae399fd157c \
+    (&afw_self_v_zz__5ae399fd157c.pub)
 
 
 
@@ -25011,32 +24647,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__61b40a6668c7 */
 #define afw_v_zz__61b40a6668c7 \
     (&afw_self_v_zz__61b40a6668c7.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__61c32052ab62 \
-    "This converts an array of ipAddress values that contains one value to a single ipAddress value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__61c32052ab62 */
-#define afw_s_zz__61c32052ab62 \
-    (&afw_self_v_zz__61c32052ab62.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__61c32052ab62 */
-#define afw_self_s_zz__61c32052ab62 \
-    (afw_self_v_zz__61c32052ab62.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__61c32052ab62 */
-extern const afw_value_string_t \
-    afw_self_v_zz__61c32052ab62;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__61c32052ab62 */
-#define afw_z_zz__61c32052ab62 \
-    (afw_self_v_zz__61c32052ab62.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__61c32052ab62 */
-#define afw_v_zz__61c32052ab62 \
-    (&afw_self_v_zz__61c32052ab62.pub)
 
 
 
@@ -28239,32 +27849,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__6bd8b46e6acb \
-    "This converts an array of dayTimeDuration values that contains one value to a single dayTimeDuration value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6bd8b46e6acb */
-#define afw_s_zz__6bd8b46e6acb \
-    (&afw_self_v_zz__6bd8b46e6acb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6bd8b46e6acb */
-#define afw_self_s_zz__6bd8b46e6acb \
-    (afw_self_v_zz__6bd8b46e6acb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__6bd8b46e6acb */
-extern const afw_value_string_t \
-    afw_self_v_zz__6bd8b46e6acb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6bd8b46e6acb */
-#define afw_z_zz__6bd8b46e6acb \
-    (afw_self_v_zz__6bd8b46e6acb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__6bd8b46e6acb */
-#define afw_v_zz__6bd8b46e6acb \
-    (&afw_self_v_zz__6bd8b46e6acb.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__6c14a4e10cc6 \
     "Checks for dayTimeDuration arg1 is less that dayTimeDuration arg2 and return the boolean result."
 
@@ -29535,32 +29119,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__71ae8be0a4b1 */
 #define afw_v_zz__71ae8be0a4b1 \
     (&afw_self_v_zz__71ae8be0a4b1.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__71d619a39c07 \
-    "function one_and_only<boolean> (\n    array: array[]\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__71d619a39c07 */
-#define afw_s_zz__71d619a39c07 \
-    (&afw_self_v_zz__71d619a39c07.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__71d619a39c07 */
-#define afw_self_s_zz__71d619a39c07 \
-    (afw_self_v_zz__71d619a39c07.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__71d619a39c07 */
-extern const afw_value_string_t \
-    afw_self_v_zz__71d619a39c07;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__71d619a39c07 */
-#define afw_z_zz__71d619a39c07 \
-    (afw_self_v_zz__71d619a39c07.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__71d619a39c07 */
-#define afw_v_zz__71d619a39c07 \
-    (&afw_self_v_zz__71d619a39c07.pub)
 
 
 
@@ -37313,32 +36871,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__908b284ac41c \
-    "function one_and_only<rfc822Name> (\n    array: array[]\n): rfc822Name;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__908b284ac41c */
-#define afw_s_zz__908b284ac41c \
-    (&afw_self_v_zz__908b284ac41c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__908b284ac41c */
-#define afw_self_s_zz__908b284ac41c \
-    (afw_self_v_zz__908b284ac41c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__908b284ac41c */
-extern const afw_value_string_t \
-    afw_self_v_zz__908b284ac41c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__908b284ac41c */
-#define afw_z_zz__908b284ac41c \
-    (afw_self_v_zz__908b284ac41c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__908b284ac41c */
-#define afw_v_zz__908b284ac41c \
-    (&afw_self_v_zz__908b284ac41c.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__90ab0c0fdf85 \
     "function bag_size<dateTime> (\n    value: dateTime[]\n): integer;\n"
 
@@ -39545,32 +39077,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__99bf817631ef */
 #define afw_v_zz__99bf817631ef \
     (&afw_self_v_zz__99bf817631ef.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__99e6d88af28d \
-    "This converts an array of boolean values that contains one value to a single boolean value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__99e6d88af28d */
-#define afw_s_zz__99e6d88af28d \
-    (&afw_self_v_zz__99e6d88af28d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__99e6d88af28d */
-#define afw_self_s_zz__99e6d88af28d \
-    (afw_self_v_zz__99e6d88af28d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__99e6d88af28d */
-extern const afw_value_string_t \
-    afw_self_v_zz__99e6d88af28d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__99e6d88af28d */
-#define afw_z_zz__99e6d88af28d \
-    (afw_self_v_zz__99e6d88af28d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__99e6d88af28d */
-#define afw_v_zz__99e6d88af28d \
-    (&afw_self_v_zz__99e6d88af28d.pub)
 
 
 
@@ -52467,448 +51973,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Converted_value */
 #define afw_v_zz__Converted_value \
     (&afw_self_v_zz__Converted_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a__dataType__value \
-    "Converts a one value array to a <dataType> value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a__dataType__value */
-#define afw_s_zz__Converts_a_one_value_array_to_a__dataType__value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a__dataType__value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a__dataType__value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a__dataType__value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a__dataType__value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a__dataType__value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a__dataType__value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a__dataType__value */
-#define afw_z_zz__Converts_a_one_value_array_to_a__dataType__value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a__dataType__value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a__dataType__value */
-#define afw_v_zz__Converts_a_one_value_array_to_a__dataType__value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a__dataType__value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_anyURI_value \
-    "Converts a one value array to a anyURI value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_anyURI_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_anyURI_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_anyURI_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_anyURI_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_anyURI_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_anyURI_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_anyURI_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_anyURI_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_anyURI_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_anyURI_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_anyURI_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_anyURI_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_anyURI_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_anyURI_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_base64Binary_value \
-    "Converts a one value array to a base64Binary value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_base64Binary_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_base64Binary_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_base64Binary_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_base64Binary_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_base64Binary_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_base64Binary_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_base64Binary_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_base64Binary_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_base64Binary_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_base64Binary_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_base64Binary_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_base64Binary_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_base64Binary_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_base64Binary_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_boolean_value \
-    "Converts a one value array to a boolean value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_boolean_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_boolean_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_boolean_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_boolean_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_boolean_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_boolean_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_boolean_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_boolean_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_boolean_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_boolean_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_boolean_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_boolean_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_boolean_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_boolean_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_dateTime_value \
-    "Converts a one value array to a dateTime value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dateTime_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_dateTime_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_dateTime_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dateTime_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_dateTime_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_dateTime_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dateTime_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_dateTime_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_dateTime_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_dateTime_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_dateTime_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_dateTime_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_dateTime_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_dateTime_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_date_value \
-    "Converts a one value array to a date value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_date_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_date_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_date_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_date_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_date_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_date_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_date_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_date_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_date_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_date_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_date_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_date_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_date_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_date_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value \
-    "Converts a one value array to a dayTimeDuration value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_dnsName_value \
-    "Converts a one value array to a dnsName value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dnsName_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_dnsName_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_dnsName_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dnsName_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_dnsName_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_dnsName_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_dnsName_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_dnsName_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_dnsName_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_dnsName_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_dnsName_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_dnsName_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_dnsName_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_dnsName_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_double_value \
-    "Converts a one value array to a double value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_double_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_double_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_double_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_double_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_double_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_double_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_double_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_double_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_double_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_double_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_double_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_double_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_double_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_double_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_hexBinary_value \
-    "Converts a one value array to a hexBinary value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_hexBinary_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_hexBinary_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_hexBinary_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_hexBinary_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_hexBinary_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_hexBinary_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_hexBinary_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_hexBinary_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_hexBinary_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_hexBinary_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_hexBinary_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_hexBinary_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_hexBinary_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_hexBinary_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_integer_value \
-    "Converts a one value array to a integer value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_integer_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_integer_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_integer_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_integer_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_integer_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_integer_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_integer_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_integer_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_integer_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_integer_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_integer_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_integer_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_integer_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_integer_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_ipAddress_value \
-    "Converts a one value array to a ipAddress value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_ipAddress_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_ipAddress_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_ipAddress_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_ipAddress_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_ipAddress_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_ipAddress_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_ipAddress_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_ipAddress_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_ipAddress_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_ipAddress_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_ipAddress_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_ipAddress_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_ipAddress_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_ipAddress_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_rfc822Name_value \
-    "Converts a one value array to a rfc822Name value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_rfc822Name_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_rfc822Name_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_rfc822Name_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_rfc822Name_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_rfc822Name_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_rfc822Name_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_rfc822Name_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_rfc822Name_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_rfc822Name_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_rfc822Name_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_rfc822Name_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_rfc822Name_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_rfc822Name_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_rfc822Name_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_string_value \
-    "Converts a one value array to a string value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_string_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_string_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_string_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_string_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_string_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_string_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_string_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_string_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_string_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_string_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_string_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_string_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_string_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_string_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_time_value \
-    "Converts a one value array to a time value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_time_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_time_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_time_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_time_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_time_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_time_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_time_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_time_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_time_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_time_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_time_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_time_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_time_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_time_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_x500Name_value \
-    "Converts a one value array to a x500Name value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_x500Name_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_x500Name_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_x500Name_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_x500Name_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_x500Name_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_x500Name_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_x500Name_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_x500Name_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_x500Name_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_x500Name_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_x500Name_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_x500Name_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_x500Name_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_x500Name_value.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value \
-    "Converts a one value array to a yearMonthDuration value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value */
-#define afw_s_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value */
-#define afw_self_s_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value */
-#define afw_z_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value \
-    (afw_self_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value */
-#define afw_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value \
-    (&afw_self_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value.pub)
 
 
 
@@ -96489,28 +95553,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz______values__array_____array__ \
-    "(...values: array[]): array[]"
+#define AFW_Q_zz______values__array___array__ \
+    "(...values: array): array[]"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz______values__array_____array__ */
-#define afw_s_zz______values__array_____array__ \
-    (&afw_self_v_zz______values__array_____array__.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz______values__array___array__ */
+#define afw_s_zz______values__array___array__ \
+    (&afw_self_v_zz______values__array___array__.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz______values__array_____array__ */
-#define afw_self_s_zz______values__array_____array__ \
-    (afw_self_v_zz______values__array_____array__.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz______values__array___array__ */
+#define afw_self_s_zz______values__array___array__ \
+    (afw_self_v_zz______values__array___array__.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz______values__array_____array__ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz______values__array___array__ */
 extern const afw_value_string_t \
-    afw_self_v_zz______values__array_____array__;
+    afw_self_v_zz______values__array___array__;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz______values__array_____array__ */
-#define afw_z_zz______values__array_____array__ \
-    (afw_self_v_zz______values__array_____array__.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz______values__array___array__ */
+#define afw_z_zz______values__array___array__ \
+    (afw_self_v_zz______values__array___array__.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz______values__array_____array__ */
-#define afw_v_zz______values__array_____array__ \
-    (&afw_self_v_zz______values__array_____array__.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz______values__array___array__ */
+#define afw_v_zz______values__array___array__ \
+    (&afw_self_v_zz______values__array___array__.pub)
 
 
 
@@ -113103,448 +112167,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only \
-    "/afw/_AdaptiveFunction_/one_and_only"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_anyURI_ \
-    "/afw/_AdaptiveFunction_/one_and_only<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_anyURI_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_anyURI_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_anyURI_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_anyURI_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ \
-    "/afw/_AdaptiveFunction_/one_and_only<base64Binary>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_base64Binary_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_base64Binary_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_base64Binary_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_base64Binary_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_base64Binary_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_base64Binary_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_boolean_ \
-    "/afw/_AdaptiveFunction_/one_and_only<boolean>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_boolean_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_boolean_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_boolean_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_boolean_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_boolean_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_boolean_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_boolean_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_boolean_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_boolean_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_boolean_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_boolean_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_boolean_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_boolean_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_boolean_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dateTime_ \
-    "/afw/_AdaptiveFunction_/one_and_only<dateTime>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dateTime_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_dateTime_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dateTime_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dateTime_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_dateTime_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dateTime_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dateTime_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dateTime_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dateTime_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_dateTime_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dateTime_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dateTime_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_dateTime_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dateTime_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_date_ \
-    "/afw/_AdaptiveFunction_/one_and_only<date>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_date_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_date_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_date_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_date_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_date_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_date_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_date_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_date_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_date_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_date_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_date_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_date_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_date_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_date_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ \
-    "/afw/_AdaptiveFunction_/one_and_only<dayTimeDuration>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dnsName_ \
-    "/afw/_AdaptiveFunction_/one_and_only<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dnsName_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dnsName_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dnsName_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_dnsName_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_double_ \
-    "/afw/_AdaptiveFunction_/one_and_only<double>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_double_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_double_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_double_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_double_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_double_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_double_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_double_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_double_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_double_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_double_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_double_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_double_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_double_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_double_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ \
-    "/afw/_AdaptiveFunction_/one_and_only<hexBinary>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_hexBinary_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_hexBinary_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_hexBinary_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_hexBinary_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_hexBinary_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_hexBinary_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_integer_ \
-    "/afw/_AdaptiveFunction_/one_and_only<integer>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_integer_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_integer_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_integer_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_integer_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_integer_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_integer_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_integer_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_integer_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_integer_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_integer_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_integer_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_integer_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_integer_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ \
-    "/afw/_AdaptiveFunction_/one_and_only<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_ipAddress_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ \
-    "/afw/_AdaptiveFunction_/one_and_only<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_string_ \
-    "/afw/_AdaptiveFunction_/one_and_only<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_string_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_string_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_string_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_string_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_time_ \
-    "/afw/_AdaptiveFunction_/one_and_only<time>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_time_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_time_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_time_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_time_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_time_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_time_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_time_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_time_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_time_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_time_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_time_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_time_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_time_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_x500Name_ \
-    "/afw/_AdaptiveFunction_/one_and_only<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_x500Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_x500Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_x500Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_x500Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_x500Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ \
-    "/afw/_AdaptiveFunction_/one_and_only<yearMonthDuration>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ */
-#define afw_s_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ */
-#define afw_z_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ */
-#define afw_v_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__open_file \
     "/afw/_AdaptiveFunction_/open_file"
 
@@ -124465,370 +123087,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____anyURI \
-    "(array: array[]): anyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____anyURI */
-#define afw_s_zz___array__array_____anyURI \
-    (&afw_self_v_zz___array__array_____anyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____anyURI */
-#define afw_self_s_zz___array__array_____anyURI \
-    (afw_self_v_zz___array__array_____anyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____anyURI */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____anyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____anyURI */
-#define afw_z_zz___array__array_____anyURI \
-    (afw_self_v_zz___array__array_____anyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____anyURI */
-#define afw_v_zz___array__array_____anyURI \
-    (&afw_self_v_zz___array__array_____anyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____base64Binary \
-    "(array: array[]): base64Binary"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____base64Binary */
-#define afw_s_zz___array__array_____base64Binary \
-    (&afw_self_v_zz___array__array_____base64Binary.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____base64Binary */
-#define afw_self_s_zz___array__array_____base64Binary \
-    (afw_self_v_zz___array__array_____base64Binary.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____base64Binary */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____base64Binary;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____base64Binary */
-#define afw_z_zz___array__array_____base64Binary \
-    (afw_self_v_zz___array__array_____base64Binary.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____base64Binary */
-#define afw_v_zz___array__array_____base64Binary \
-    (&afw_self_v_zz___array__array_____base64Binary.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____boolean \
-    "(array: array[]): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____boolean */
-#define afw_s_zz___array__array_____boolean \
-    (&afw_self_v_zz___array__array_____boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____boolean */
-#define afw_self_s_zz___array__array_____boolean \
-    (afw_self_v_zz___array__array_____boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____boolean */
-#define afw_z_zz___array__array_____boolean \
-    (afw_self_v_zz___array__array_____boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____boolean */
-#define afw_v_zz___array__array_____boolean \
-    (&afw_self_v_zz___array__array_____boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____date \
-    "(array: array[]): date"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____date */
-#define afw_s_zz___array__array_____date \
-    (&afw_self_v_zz___array__array_____date.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____date */
-#define afw_self_s_zz___array__array_____date \
-    (afw_self_v_zz___array__array_____date.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____date */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____date;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____date */
-#define afw_z_zz___array__array_____date \
-    (afw_self_v_zz___array__array_____date.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____date */
-#define afw_v_zz___array__array_____date \
-    (&afw_self_v_zz___array__array_____date.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____dateTime \
-    "(array: array[]): dateTime"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____dateTime */
-#define afw_s_zz___array__array_____dateTime \
-    (&afw_self_v_zz___array__array_____dateTime.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____dateTime */
-#define afw_self_s_zz___array__array_____dateTime \
-    (afw_self_v_zz___array__array_____dateTime.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____dateTime */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____dateTime;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____dateTime */
-#define afw_z_zz___array__array_____dateTime \
-    (afw_self_v_zz___array__array_____dateTime.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____dateTime */
-#define afw_v_zz___array__array_____dateTime \
-    (&afw_self_v_zz___array__array_____dateTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____dayTimeDuration \
-    "(array: array[]): dayTimeDuration"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____dayTimeDuration */
-#define afw_s_zz___array__array_____dayTimeDuration \
-    (&afw_self_v_zz___array__array_____dayTimeDuration.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____dayTimeDuration */
-#define afw_self_s_zz___array__array_____dayTimeDuration \
-    (afw_self_v_zz___array__array_____dayTimeDuration.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____dayTimeDuration */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____dayTimeDuration;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____dayTimeDuration */
-#define afw_z_zz___array__array_____dayTimeDuration \
-    (afw_self_v_zz___array__array_____dayTimeDuration.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____dayTimeDuration */
-#define afw_v_zz___array__array_____dayTimeDuration \
-    (&afw_self_v_zz___array__array_____dayTimeDuration.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____dnsName \
-    "(array: array[]): dnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____dnsName */
-#define afw_s_zz___array__array_____dnsName \
-    (&afw_self_v_zz___array__array_____dnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____dnsName */
-#define afw_self_s_zz___array__array_____dnsName \
-    (afw_self_v_zz___array__array_____dnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____dnsName */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____dnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____dnsName */
-#define afw_z_zz___array__array_____dnsName \
-    (afw_self_v_zz___array__array_____dnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____dnsName */
-#define afw_v_zz___array__array_____dnsName \
-    (&afw_self_v_zz___array__array_____dnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____double \
-    "(array: array[]): double"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____double */
-#define afw_s_zz___array__array_____double \
-    (&afw_self_v_zz___array__array_____double.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____double */
-#define afw_self_s_zz___array__array_____double \
-    (afw_self_v_zz___array__array_____double.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____double */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____double;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____double */
-#define afw_z_zz___array__array_____double \
-    (afw_self_v_zz___array__array_____double.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____double */
-#define afw_v_zz___array__array_____double \
-    (&afw_self_v_zz___array__array_____double.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____hexBinary \
-    "(array: array[]): hexBinary"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____hexBinary */
-#define afw_s_zz___array__array_____hexBinary \
-    (&afw_self_v_zz___array__array_____hexBinary.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____hexBinary */
-#define afw_self_s_zz___array__array_____hexBinary \
-    (afw_self_v_zz___array__array_____hexBinary.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____hexBinary */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____hexBinary;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____hexBinary */
-#define afw_z_zz___array__array_____hexBinary \
-    (afw_self_v_zz___array__array_____hexBinary.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____hexBinary */
-#define afw_v_zz___array__array_____hexBinary \
-    (&afw_self_v_zz___array__array_____hexBinary.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____integer \
-    "(array: array[]): integer"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____integer */
-#define afw_s_zz___array__array_____integer \
-    (&afw_self_v_zz___array__array_____integer.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____integer */
-#define afw_self_s_zz___array__array_____integer \
-    (afw_self_v_zz___array__array_____integer.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____integer */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____integer;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____integer */
-#define afw_z_zz___array__array_____integer \
-    (afw_self_v_zz___array__array_____integer.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____integer */
-#define afw_v_zz___array__array_____integer \
-    (&afw_self_v_zz___array__array_____integer.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____ipAddress \
-    "(array: array[]): ipAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____ipAddress */
-#define afw_s_zz___array__array_____ipAddress \
-    (&afw_self_v_zz___array__array_____ipAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____ipAddress */
-#define afw_self_s_zz___array__array_____ipAddress \
-    (afw_self_v_zz___array__array_____ipAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____ipAddress */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____ipAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____ipAddress */
-#define afw_z_zz___array__array_____ipAddress \
-    (afw_self_v_zz___array__array_____ipAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____ipAddress */
-#define afw_v_zz___array__array_____ipAddress \
-    (&afw_self_v_zz___array__array_____ipAddress.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____rfc822Name \
-    "(array: array[]): rfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____rfc822Name */
-#define afw_s_zz___array__array_____rfc822Name \
-    (&afw_self_v_zz___array__array_____rfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____rfc822Name */
-#define afw_self_s_zz___array__array_____rfc822Name \
-    (afw_self_v_zz___array__array_____rfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____rfc822Name */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____rfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____rfc822Name */
-#define afw_z_zz___array__array_____rfc822Name \
-    (afw_self_v_zz___array__array_____rfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____rfc822Name */
-#define afw_v_zz___array__array_____rfc822Name \
-    (&afw_self_v_zz___array__array_____rfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____string \
-    "(array: array[]): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____string */
-#define afw_s_zz___array__array_____string \
-    (&afw_self_v_zz___array__array_____string.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____string */
-#define afw_self_s_zz___array__array_____string \
-    (afw_self_v_zz___array__array_____string.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____string */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____string;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____string */
-#define afw_z_zz___array__array_____string \
-    (afw_self_v_zz___array__array_____string.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____string */
-#define afw_v_zz___array__array_____string \
-    (&afw_self_v_zz___array__array_____string.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____time \
-    "(array: array[]): time"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____time */
-#define afw_s_zz___array__array_____time \
-    (&afw_self_v_zz___array__array_____time.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____time */
-#define afw_self_s_zz___array__array_____time \
-    (afw_self_v_zz___array__array_____time.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____time */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____time;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____time */
-#define afw_z_zz___array__array_____time \
-    (afw_self_v_zz___array__array_____time.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____time */
-#define afw_v_zz___array__array_____time \
-    (&afw_self_v_zz___array__array_____time.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___array__array_____values__any_____array \
     "(array: array, ...values: any[]): array"
 
@@ -124851,58 +123109,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____values__any_____array */
 #define afw_v_zz___array__array_____values__any_____array \
     (&afw_self_v_zz___array__array_____values__any_____array.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____x500Name \
-    "(array: array[]): x500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____x500Name */
-#define afw_s_zz___array__array_____x500Name \
-    (&afw_self_v_zz___array__array_____x500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____x500Name */
-#define afw_self_s_zz___array__array_____x500Name \
-    (afw_self_v_zz___array__array_____x500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____x500Name */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____x500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____x500Name */
-#define afw_z_zz___array__array_____x500Name \
-    (afw_self_v_zz___array__array_____x500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____x500Name */
-#define afw_v_zz___array__array_____x500Name \
-    (&afw_self_v_zz___array__array_____x500Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____yearMonthDuration \
-    "(array: array[]): yearMonthDuration"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____yearMonthDuration */
-#define afw_s_zz___array__array_____yearMonthDuration \
-    (&afw_self_v_zz___array__array_____yearMonthDuration.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____yearMonthDuration */
-#define afw_self_s_zz___array__array_____yearMonthDuration \
-    (afw_self_v_zz___array__array_____yearMonthDuration.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____yearMonthDuration */
-extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____yearMonthDuration;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____yearMonthDuration */
-#define afw_z_zz___array__array_____yearMonthDuration \
-    (afw_self_v_zz___array__array_____yearMonthDuration.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____yearMonthDuration */
-#define afw_v_zz___array__array_____yearMonthDuration \
-    (&afw_self_v_zz___array__array_____yearMonthDuration.pub)
 
 
 
@@ -125089,28 +123295,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___dataType_____values__array___array \
-    "<dataType>(...values: array): array"
+#define AFW_Q_zz___dataType_____values__dataType_____array \
+    "<dataType>(...values: dataType[]): array"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType_____values__array___array */
-#define afw_s_zz___dataType_____values__array___array \
-    (&afw_self_v_zz___dataType_____values__array___array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType_____values__dataType_____array */
+#define afw_s_zz___dataType_____values__dataType_____array \
+    (&afw_self_v_zz___dataType_____values__dataType_____array.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType_____values__array___array */
-#define afw_self_s_zz___dataType_____values__array___array \
-    (afw_self_v_zz___dataType_____values__array___array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType_____values__dataType_____array */
+#define afw_self_s_zz___dataType_____values__dataType_____array \
+    (afw_self_v_zz___dataType_____values__dataType_____array.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___dataType_____values__array___array */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___dataType_____values__dataType_____array */
 extern const afw_value_string_t \
-    afw_self_v_zz___dataType_____values__array___array;
+    afw_self_v_zz___dataType_____values__dataType_____array;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___dataType_____values__array___array */
-#define afw_z_zz___dataType_____values__array___array \
-    (afw_self_v_zz___dataType_____values__array___array.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___dataType_____values__dataType_____array */
+#define afw_z_zz___dataType_____values__dataType_____array \
+    (afw_self_v_zz___dataType_____values__dataType_____array.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___dataType_____values__array___array */
-#define afw_v_zz___dataType_____values__array___array \
-    (&afw_self_v_zz___dataType_____values__array___array.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___dataType_____values__dataType_____array */
+#define afw_v_zz___dataType_____values__dataType_____array \
+    (&afw_self_v_zz___dataType_____values__dataType_____array.pub)
 
 
 
@@ -125293,32 +123499,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___dataType__array1__array__array2__array___boolean */
 #define afw_v_zz___dataType__array1__array__array2__array___boolean \
     (&afw_self_v_zz___dataType__array1__array__array2__array___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___dataType__array__array_____dataType \
-    "<dataType>(array: array[]): dataType"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType__array__array_____dataType */
-#define afw_s_zz___dataType__array__array_____dataType \
-    (&afw_self_v_zz___dataType__array__array_____dataType.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType__array__array_____dataType */
-#define afw_self_s_zz___dataType__array__array_____dataType \
-    (afw_self_v_zz___dataType__array__array_____dataType.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___dataType__array__array_____dataType */
-extern const afw_value_string_t \
-    afw_self_v_zz___dataType__array__array_____dataType;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___dataType__array__array_____dataType */
-#define afw_z_zz___dataType__array__array_____dataType \
-    (afw_self_v_zz___dataType__array__array_____dataType.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___dataType__array__array_____dataType */
-#define afw_v_zz___dataType__array__array_____dataType \
-    (&afw_self_v_zz___dataType__array__array_____dataType.pub)
 
 
 
@@ -132655,32 +130835,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a2cc36e89c48 \
-    "function one_and_only<x500Name> (\n    array: array[]\n): x500Name;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a2cc36e89c48 */
-#define afw_s_zz__a2cc36e89c48 \
-    (&afw_self_v_zz__a2cc36e89c48.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a2cc36e89c48 */
-#define afw_self_s_zz__a2cc36e89c48 \
-    (afw_self_v_zz__a2cc36e89c48.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a2cc36e89c48 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a2cc36e89c48;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a2cc36e89c48 */
-#define afw_z_zz__a2cc36e89c48 \
-    (afw_self_v_zz__a2cc36e89c48.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a2cc36e89c48 */
-#define afw_v_zz__a2cc36e89c48 \
-    (&afw_self_v_zz__a2cc36e89c48.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a2cf3b04c716 \
     "Checks for array arg1 is less than or equal to array arg2 and return the boolean result."
 
@@ -136993,32 +135147,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b22887b4783b */
 #define afw_v_zz__b22887b4783b \
     (&afw_self_v_zz__b22887b4783b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b230d4e76656 \
-    "(string: string, values_1: any, ...values_rest: any[]): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b230d4e76656 */
-#define afw_s_zz__b230d4e76656 \
-    (&afw_self_v_zz__b230d4e76656.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b230d4e76656 */
-#define afw_self_s_zz__b230d4e76656 \
-    (afw_self_v_zz__b230d4e76656.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b230d4e76656 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b230d4e76656;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b230d4e76656 */
-#define afw_z_zz__b230d4e76656 \
-    (afw_self_v_zz__b230d4e76656.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b230d4e76656 */
-#define afw_v_zz__b230d4e76656 \
-    (&afw_self_v_zz__b230d4e76656.pub)
 
 
 
@@ -141625,32 +139753,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__beade0213401 \
-    "function one_and_only<dnsName> (\n    array: array[]\n): dnsName;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__beade0213401 */
-#define afw_s_zz__beade0213401 \
-    (&afw_self_v_zz__beade0213401.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__beade0213401 */
-#define afw_self_s_zz__beade0213401 \
-    (afw_self_v_zz__beade0213401.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__beade0213401 */
-extern const afw_value_string_t \
-    afw_self_v_zz__beade0213401;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__beade0213401 */
-#define afw_z_zz__beade0213401 \
-    (afw_self_v_zz__beade0213401.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__beade0213401 */
-#define afw_v_zz__beade0213401 \
-    (&afw_self_v_zz__beade0213401.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__bebe64c86743 \
     "function subtract_dayTimeDuration <dataType>(\n    arg1: dataType,\n    arg2: dayTimeDuration\n): dataType;\n"
 
@@ -143003,32 +141105,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__c3b820138303 \
-    "function one_and_only <dataType>(\n    array: array[]\n): dataType;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c3b820138303 */
-#define afw_s_zz__c3b820138303 \
-    (&afw_self_v_zz__c3b820138303.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c3b820138303 */
-#define afw_self_s_zz__c3b820138303 \
-    (afw_self_v_zz__c3b820138303.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c3b820138303 */
-extern const afw_value_string_t \
-    afw_self_v_zz__c3b820138303;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c3b820138303 */
-#define afw_z_zz__c3b820138303 \
-    (afw_self_v_zz__c3b820138303.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c3b820138303 */
-#define afw_v_zz__c3b820138303 \
-    (&afw_self_v_zz__c3b820138303.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__c3c8fa63dec3 \
     "Conversion function for string: convert one or more values of any data type to string and return the concatenated result. With one argument this is convert-to-string; with more arguments each is converted then concatenated in order (no separator). A value with an undefined value is represented by 'undefined'."
 
@@ -143701,6 +141777,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c6cfe1eb89e3 */
 #define afw_v_zz__c6cfe1eb89e3 \
     (&afw_self_v_zz__c6cfe1eb89e3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__c6e438fd490b \
+    "Add (concatenate) 2 or more string values and return the string result. Every value must be a string, the same as the + operator: to convert values while concatenating, use concat() or string()."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c6e438fd490b */
+#define afw_s_zz__c6e438fd490b \
+    (&afw_self_v_zz__c6e438fd490b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c6e438fd490b */
+#define afw_self_s_zz__c6e438fd490b \
+    (afw_self_v_zz__c6e438fd490b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c6e438fd490b */
+extern const afw_value_string_t \
+    afw_self_v_zz__c6e438fd490b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c6e438fd490b */
+#define afw_z_zz__c6e438fd490b \
+    (afw_self_v_zz__c6e438fd490b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c6e438fd490b */
+#define afw_v_zz__c6e438fd490b \
+    (&afw_self_v_zz__c6e438fd490b.pub)
 
 
 
@@ -146539,32 +144641,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__cff922a75aed \
-    "function one_and_only<double> (\n    array: array[]\n): double;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cff922a75aed */
-#define afw_s_zz__cff922a75aed \
-    (&afw_self_v_zz__cff922a75aed.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cff922a75aed */
-#define afw_self_s_zz__cff922a75aed \
-    (afw_self_v_zz__cff922a75aed.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cff922a75aed */
-extern const afw_value_string_t \
-    afw_self_v_zz__cff922a75aed;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cff922a75aed */
-#define afw_z_zz__cff922a75aed \
-    (afw_self_v_zz__cff922a75aed.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cff922a75aed */
-#define afw_v_zz__cff922a75aed \
-    (&afw_self_v_zz__cff922a75aed.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__clone_array_ \
     "clone<array>"
 
@@ -148645,6 +146721,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__d72785a11c37 \
+    "function add<string> (\n    values_1: string,\n    values_2: string,\n    ...values_rest: string[]\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d72785a11c37 */
+#define afw_s_zz__d72785a11c37 \
+    (&afw_self_v_zz__d72785a11c37.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d72785a11c37 */
+#define afw_self_s_zz__d72785a11c37 \
+    (afw_self_v_zz__d72785a11c37.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d72785a11c37 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d72785a11c37;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d72785a11c37 */
+#define afw_z_zz__d72785a11c37 \
+    (afw_self_v_zz__d72785a11c37.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d72785a11c37 */
+#define afw_v_zz__d72785a11c37 \
+    (&afw_self_v_zz__d72785a11c37.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__d72b68722216 \
     "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter. If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects\n\nWhere ${adapterType} is the adapter type id."
 
@@ -150153,32 +148255,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__de0cb1f5b7af \
-    "This converts an array of base64Binary values that contains one value to a single base64Binary value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__de0cb1f5b7af */
-#define afw_s_zz__de0cb1f5b7af \
-    (&afw_self_v_zz__de0cb1f5b7af.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__de0cb1f5b7af */
-#define afw_self_s_zz__de0cb1f5b7af \
-    (afw_self_v_zz__de0cb1f5b7af.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__de0cb1f5b7af */
-extern const afw_value_string_t \
-    afw_self_v_zz__de0cb1f5b7af;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__de0cb1f5b7af */
-#define afw_z_zz__de0cb1f5b7af \
-    (afw_self_v_zz__de0cb1f5b7af.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__de0cb1f5b7af */
-#define afw_v_zz__de0cb1f5b7af \
-    (&afw_self_v_zz__de0cb1f5b7af.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__de594a9deca3 \
     "function open_file (\n    streamId: string,\n    path: string,\n    mode: string,\n    autoFlush?: boolean\n): integer;\n"
 
@@ -150591,32 +148667,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__df7b4d98315e */
 #define afw_v_zz__df7b4d98315e \
     (&afw_self_v_zz__df7b4d98315e.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__df8be5266662 \
-    "This converts an array of rfc822Name values that contains one value to a single rfc822Name value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__df8be5266662 */
-#define afw_s_zz__df8be5266662 \
-    (&afw_self_v_zz__df8be5266662.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__df8be5266662 */
-#define afw_self_s_zz__df8be5266662 \
-    (afw_self_v_zz__df8be5266662.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__df8be5266662 */
-extern const afw_value_string_t \
-    afw_self_v_zz__df8be5266662;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__df8be5266662 */
-#define afw_z_zz__df8be5266662 \
-    (afw_self_v_zz__df8be5266662.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__df8be5266662 */
-#define afw_v_zz__df8be5266662 \
-    (&afw_self_v_zz__df8be5266662.pub)
 
 
 
@@ -152597,32 +150647,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e660eb3dfe04 \
-    "This converts an array of dateTime values that contains one value to a single dateTime value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e660eb3dfe04 */
-#define afw_s_zz__e660eb3dfe04 \
-    (&afw_self_v_zz__e660eb3dfe04.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e660eb3dfe04 */
-#define afw_self_s_zz__e660eb3dfe04 \
-    (afw_self_v_zz__e660eb3dfe04.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e660eb3dfe04 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e660eb3dfe04;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e660eb3dfe04 */
-#define afw_z_zz__e660eb3dfe04 \
-    (afw_self_v_zz__e660eb3dfe04.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e660eb3dfe04 */
-#define afw_v_zz__e660eb3dfe04 \
-    (&afw_self_v_zz__e660eb3dfe04.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e6f75627fe5f \
     "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized."
 
@@ -152801,32 +150825,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e7f122a30ff9 */
 #define afw_v_zz__e7f122a30ff9 \
     (&afw_self_v_zz__e7f122a30ff9.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__e7f9b73cb4e2 \
-    "function one_and_only<ipAddress> (\n    array: array[]\n): ipAddress;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e7f9b73cb4e2 */
-#define afw_s_zz__e7f9b73cb4e2 \
-    (&afw_self_v_zz__e7f9b73cb4e2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e7f9b73cb4e2 */
-#define afw_self_s_zz__e7f9b73cb4e2 \
-    (afw_self_v_zz__e7f9b73cb4e2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e7f9b73cb4e2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e7f9b73cb4e2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e7f9b73cb4e2 */
-#define afw_z_zz__e7f9b73cb4e2 \
-    (afw_self_v_zz__e7f9b73cb4e2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e7f9b73cb4e2 */
-#define afw_v_zz__e7f9b73cb4e2 \
-    (&afw_self_v_zz__e7f9b73cb4e2.pub)
 
 
 
@@ -153065,32 +151063,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e92e77a4ccc9 \
-    "function one_and_only<dayTimeDuration> (\n    array: array[]\n): dayTimeDuration;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e92e77a4ccc9 */
-#define afw_s_zz__e92e77a4ccc9 \
-    (&afw_self_v_zz__e92e77a4ccc9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e92e77a4ccc9 */
-#define afw_self_s_zz__e92e77a4ccc9 \
-    (afw_self_v_zz__e92e77a4ccc9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e92e77a4ccc9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e92e77a4ccc9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e92e77a4ccc9 */
-#define afw_z_zz__e92e77a4ccc9 \
-    (afw_self_v_zz__e92e77a4ccc9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e92e77a4ccc9 */
-#define afw_v_zz__e92e77a4ccc9 \
-    (&afw_self_v_zz__e92e77a4ccc9.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e944b5c4c93b \
     "This only applies to retrieve objects requests and indicates that objects with the supplied object type along with objects with any of its descendent object types should be included in the search."
 
@@ -153243,32 +151215,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e9e547b652bd */
 #define afw_v_zz__e9e547b652bd \
     (&afw_self_v_zz__e9e547b652bd.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ea03235abadc \
-    "This converts an array of date values that contains one value to a single date value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ea03235abadc */
-#define afw_s_zz__ea03235abadc \
-    (&afw_self_v_zz__ea03235abadc.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ea03235abadc */
-#define afw_self_s_zz__ea03235abadc \
-    (afw_self_v_zz__ea03235abadc.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ea03235abadc */
-extern const afw_value_string_t \
-    afw_self_v_zz__ea03235abadc;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ea03235abadc */
-#define afw_z_zz__ea03235abadc \
-    (afw_self_v_zz__ea03235abadc.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ea03235abadc */
-#define afw_v_zz__ea03235abadc \
-    (&afw_self_v_zz__ea03235abadc.pub)
 
 
 
@@ -154387,32 +152333,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ee7be3af65bc */
 #define afw_v_zz__ee7be3af65bc \
     (&afw_self_v_zz__ee7be3af65bc.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ee9671636cc2 \
-    "This converts an array of integer values that contains one value to a single integer value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ee9671636cc2 */
-#define afw_s_zz__ee9671636cc2 \
-    (&afw_self_v_zz__ee9671636cc2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ee9671636cc2 */
-#define afw_self_s_zz__ee9671636cc2 \
-    (afw_self_v_zz__ee9671636cc2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ee9671636cc2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__ee9671636cc2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ee9671636cc2 */
-#define afw_z_zz__ee9671636cc2 \
-    (afw_self_v_zz__ee9671636cc2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ee9671636cc2 */
-#define afw_v_zz__ee9671636cc2 \
-    (&afw_self_v_zz__ee9671636cc2.pub)
 
 
 
@@ -157173,32 +155093,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f29dd30ea636 \
-    "This converts an array of dnsName values that contains one value to a single dnsName value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f29dd30ea636 */
-#define afw_s_zz__f29dd30ea636 \
-    (&afw_self_v_zz__f29dd30ea636.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f29dd30ea636 */
-#define afw_self_s_zz__f29dd30ea636 \
-    (afw_self_v_zz__f29dd30ea636.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f29dd30ea636 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f29dd30ea636;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f29dd30ea636 */
-#define afw_z_zz__f29dd30ea636 \
-    (afw_self_v_zz__f29dd30ea636.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f29dd30ea636 */
-#define afw_v_zz__f29dd30ea636 \
-    (&afw_self_v_zz__f29dd30ea636.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f2e0fa5a6b00 \
     "function union<anyURI> (\n    arrays_1: anyURI[],\n    arrays_2: anyURI[],\n    ...arrays_rest: anyURI[]\n): anyURI[];\n"
 
@@ -159405,32 +157299,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fa341bdc5296 */
 #define afw_v_zz__fa341bdc5296 \
     (&afw_self_v_zz__fa341bdc5296.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__fa548518629c \
-    "This converts an array of string values that contains one value to a single string value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fa548518629c */
-#define afw_s_zz__fa548518629c \
-    (&afw_self_v_zz__fa548518629c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fa548518629c */
-#define afw_self_s_zz__fa548518629c \
-    (afw_self_v_zz__fa548518629c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__fa548518629c */
-extern const afw_value_string_t \
-    afw_self_v_zz__fa548518629c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fa548518629c */
-#define afw_z_zz__fa548518629c \
-    (afw_self_v_zz__fa548518629c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__fa548518629c */
-#define afw_v_zz__fa548518629c \
-    (&afw_self_v_zz__fa548518629c.pub)
 
 
 
@@ -161957,32 +159825,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__function_bag__dataType__________values__array____array__ \
-    "function bag <dataType>(\n    ...values: array\n): array;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_bag__dataType__________values__array____array__ */
-#define afw_s_zz__function_bag__dataType__________values__array____array__ \
-    (&afw_self_v_zz__function_bag__dataType__________values__array____array__.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_bag__dataType__________values__array____array__ */
-#define afw_self_s_zz__function_bag__dataType__________values__array____array__ \
-    (afw_self_v_zz__function_bag__dataType__________values__array____array__.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__function_bag__dataType__________values__array____array__ */
-extern const afw_value_string_t \
-    afw_self_v_zz__function_bag__dataType__________values__array____array__;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_bag__dataType__________values__array____array__ */
-#define afw_z_zz__function_bag__dataType__________values__array____array__ \
-    (afw_self_v_zz__function_bag__dataType__________values__array____array__.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__function_bag__dataType__________values__array____array__ */
-#define afw_v_zz__function_bag__dataType__________values__array____array__ \
-    (&afw_self_v_zz__function_bag__dataType__________values__array____array__.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__function_bag_anyURI___________values__anyURI______anyURI____ \
     "function bag<anyURI> (\n    ...values: anyURI[]\n): anyURI[];\n"
 
@@ -162009,28 +159851,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__function_bag_array___________values__array______array____ \
-    "function bag<array> (\n    ...values: array[]\n): array[];\n"
+#define AFW_Q_zz__function_bag_array___________values__array____array____ \
+    "function bag<array> (\n    ...values: array\n): array[];\n"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_bag_array___________values__array______array____ */
-#define afw_s_zz__function_bag_array___________values__array______array____ \
-    (&afw_self_v_zz__function_bag_array___________values__array______array____.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_bag_array___________values__array____array____ */
+#define afw_s_zz__function_bag_array___________values__array____array____ \
+    (&afw_self_v_zz__function_bag_array___________values__array____array____.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_bag_array___________values__array______array____ */
-#define afw_self_s_zz__function_bag_array___________values__array______array____ \
-    (afw_self_v_zz__function_bag_array___________values__array______array____.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_bag_array___________values__array____array____ */
+#define afw_self_s_zz__function_bag_array___________values__array____array____ \
+    (afw_self_v_zz__function_bag_array___________values__array____array____.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__function_bag_array___________values__array______array____ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_bag_array___________values__array____array____ */
 extern const afw_value_string_t \
-    afw_self_v_zz__function_bag_array___________values__array______array____;
+    afw_self_v_zz__function_bag_array___________values__array____array____;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_bag_array___________values__array______array____ */
-#define afw_z_zz__function_bag_array___________values__array______array____ \
-    (afw_self_v_zz__function_bag_array___________values__array______array____.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_bag_array___________values__array____array____ */
+#define afw_z_zz__function_bag_array___________values__array____array____ \
+    (afw_self_v_zz__function_bag_array___________values__array____array____.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__function_bag_array___________values__array______array____ */
-#define afw_v_zz__function_bag_array___________values__array______array____ \
-    (&afw_self_v_zz__function_bag_array___________values__array______array____.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_bag_array___________values__array____array____ */
+#define afw_v_zz__function_bag_array___________values__array____array____ \
+    (&afw_self_v_zz__function_bag_array___________values__array____array____.pub)
 
 
 
@@ -164241,58 +162083,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__function_object_______value__any____object__ */
 #define afw_v_zz__function_object_______value__any____object__ \
     (&afw_self_v_zz__function_object_______value__any____object__.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__function_one_and_only_date________array__array______date__ \
-    "function one_and_only<date> (\n    array: array[]\n): date;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_one_and_only_date________array__array______date__ */
-#define afw_s_zz__function_one_and_only_date________array__array______date__ \
-    (&afw_self_v_zz__function_one_and_only_date________array__array______date__.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_one_and_only_date________array__array______date__ */
-#define afw_self_s_zz__function_one_and_only_date________array__array______date__ \
-    (afw_self_v_zz__function_one_and_only_date________array__array______date__.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__function_one_and_only_date________array__array______date__ */
-extern const afw_value_string_t \
-    afw_self_v_zz__function_one_and_only_date________array__array______date__;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_one_and_only_date________array__array______date__ */
-#define afw_z_zz__function_one_and_only_date________array__array______date__ \
-    (afw_self_v_zz__function_one_and_only_date________array__array______date__.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__function_one_and_only_date________array__array______date__ */
-#define afw_v_zz__function_one_and_only_date________array__array______date__ \
-    (&afw_self_v_zz__function_one_and_only_date________array__array______date__.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__function_one_and_only_time________array__array______time__ \
-    "function one_and_only<time> (\n    array: array[]\n): time;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_one_and_only_time________array__array______time__ */
-#define afw_s_zz__function_one_and_only_time________array__array______time__ \
-    (&afw_self_v_zz__function_one_and_only_time________array__array______time__.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_one_and_only_time________array__array______time__ */
-#define afw_self_s_zz__function_one_and_only_time________array__array______time__ \
-    (afw_self_v_zz__function_one_and_only_time________array__array______time__.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__function_one_and_only_time________array__array______time__ */
-extern const afw_value_string_t \
-    afw_self_v_zz__function_one_and_only_time________array__array______time__;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_one_and_only_time________array__array______time__ */
-#define afw_z_zz__function_one_and_only_time________array__array______time__ \
-    (afw_self_v_zz__function_one_and_only_time________array__array______time__.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__function_one_and_only_time________array__array______time__ */
-#define afw_v_zz__function_one_and_only_time________array__array______time__ \
-    (&afw_self_v_zz__function_one_and_only_time________array__array______time__.pub)
 
 
 
@@ -171807,422 +169597,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__object__AdaptiveTestScriptTestResult_ */
 #define afw_v_zz__object__AdaptiveTestScriptTestResult_ \
     (&afw_self_v_zz__object__AdaptiveTestScriptTestResult_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_anyURI_ \
-    "one_and_only<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_anyURI_ */
-#define afw_s_zz__one_and_only_anyURI_ \
-    (&afw_self_v_zz__one_and_only_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_anyURI_ */
-#define afw_self_s_zz__one_and_only_anyURI_ \
-    (afw_self_v_zz__one_and_only_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_anyURI_ */
-#define afw_z_zz__one_and_only_anyURI_ \
-    (afw_self_v_zz__one_and_only_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_anyURI_ */
-#define afw_v_zz__one_and_only_anyURI_ \
-    (&afw_self_v_zz__one_and_only_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_base64Binary_ \
-    "one_and_only<base64Binary>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_base64Binary_ */
-#define afw_s_zz__one_and_only_base64Binary_ \
-    (&afw_self_v_zz__one_and_only_base64Binary_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_base64Binary_ */
-#define afw_self_s_zz__one_and_only_base64Binary_ \
-    (afw_self_v_zz__one_and_only_base64Binary_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_base64Binary_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_base64Binary_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_base64Binary_ */
-#define afw_z_zz__one_and_only_base64Binary_ \
-    (afw_self_v_zz__one_and_only_base64Binary_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_base64Binary_ */
-#define afw_v_zz__one_and_only_base64Binary_ \
-    (&afw_self_v_zz__one_and_only_base64Binary_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_boolean_ \
-    "one_and_only<boolean>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_boolean_ */
-#define afw_s_zz__one_and_only_boolean_ \
-    (&afw_self_v_zz__one_and_only_boolean_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_boolean_ */
-#define afw_self_s_zz__one_and_only_boolean_ \
-    (afw_self_v_zz__one_and_only_boolean_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_boolean_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_boolean_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_boolean_ */
-#define afw_z_zz__one_and_only_boolean_ \
-    (afw_self_v_zz__one_and_only_boolean_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_boolean_ */
-#define afw_v_zz__one_and_only_boolean_ \
-    (&afw_self_v_zz__one_and_only_boolean_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_dateTime_ \
-    "one_and_only<dateTime>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_dateTime_ */
-#define afw_s_zz__one_and_only_dateTime_ \
-    (&afw_self_v_zz__one_and_only_dateTime_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_dateTime_ */
-#define afw_self_s_zz__one_and_only_dateTime_ \
-    (afw_self_v_zz__one_and_only_dateTime_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_dateTime_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_dateTime_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_dateTime_ */
-#define afw_z_zz__one_and_only_dateTime_ \
-    (afw_self_v_zz__one_and_only_dateTime_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_dateTime_ */
-#define afw_v_zz__one_and_only_dateTime_ \
-    (&afw_self_v_zz__one_and_only_dateTime_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_date_ \
-    "one_and_only<date>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_date_ */
-#define afw_s_zz__one_and_only_date_ \
-    (&afw_self_v_zz__one_and_only_date_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_date_ */
-#define afw_self_s_zz__one_and_only_date_ \
-    (afw_self_v_zz__one_and_only_date_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_date_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_date_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_date_ */
-#define afw_z_zz__one_and_only_date_ \
-    (afw_self_v_zz__one_and_only_date_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_date_ */
-#define afw_v_zz__one_and_only_date_ \
-    (&afw_self_v_zz__one_and_only_date_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_dayTimeDuration_ \
-    "one_and_only<dayTimeDuration>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_dayTimeDuration_ */
-#define afw_s_zz__one_and_only_dayTimeDuration_ \
-    (&afw_self_v_zz__one_and_only_dayTimeDuration_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_dayTimeDuration_ */
-#define afw_self_s_zz__one_and_only_dayTimeDuration_ \
-    (afw_self_v_zz__one_and_only_dayTimeDuration_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_dayTimeDuration_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_dayTimeDuration_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_dayTimeDuration_ */
-#define afw_z_zz__one_and_only_dayTimeDuration_ \
-    (afw_self_v_zz__one_and_only_dayTimeDuration_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_dayTimeDuration_ */
-#define afw_v_zz__one_and_only_dayTimeDuration_ \
-    (&afw_self_v_zz__one_and_only_dayTimeDuration_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_dnsName_ \
-    "one_and_only<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_dnsName_ */
-#define afw_s_zz__one_and_only_dnsName_ \
-    (&afw_self_v_zz__one_and_only_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_dnsName_ */
-#define afw_self_s_zz__one_and_only_dnsName_ \
-    (afw_self_v_zz__one_and_only_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_dnsName_ */
-#define afw_z_zz__one_and_only_dnsName_ \
-    (afw_self_v_zz__one_and_only_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_dnsName_ */
-#define afw_v_zz__one_and_only_dnsName_ \
-    (&afw_self_v_zz__one_and_only_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_double_ \
-    "one_and_only<double>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_double_ */
-#define afw_s_zz__one_and_only_double_ \
-    (&afw_self_v_zz__one_and_only_double_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_double_ */
-#define afw_self_s_zz__one_and_only_double_ \
-    (afw_self_v_zz__one_and_only_double_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_double_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_double_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_double_ */
-#define afw_z_zz__one_and_only_double_ \
-    (afw_self_v_zz__one_and_only_double_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_double_ */
-#define afw_v_zz__one_and_only_double_ \
-    (&afw_self_v_zz__one_and_only_double_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_hexBinary_ \
-    "one_and_only<hexBinary>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_hexBinary_ */
-#define afw_s_zz__one_and_only_hexBinary_ \
-    (&afw_self_v_zz__one_and_only_hexBinary_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_hexBinary_ */
-#define afw_self_s_zz__one_and_only_hexBinary_ \
-    (afw_self_v_zz__one_and_only_hexBinary_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_hexBinary_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_hexBinary_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_hexBinary_ */
-#define afw_z_zz__one_and_only_hexBinary_ \
-    (afw_self_v_zz__one_and_only_hexBinary_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_hexBinary_ */
-#define afw_v_zz__one_and_only_hexBinary_ \
-    (&afw_self_v_zz__one_and_only_hexBinary_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_integer_ \
-    "one_and_only<integer>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_integer_ */
-#define afw_s_zz__one_and_only_integer_ \
-    (&afw_self_v_zz__one_and_only_integer_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_integer_ */
-#define afw_self_s_zz__one_and_only_integer_ \
-    (afw_self_v_zz__one_and_only_integer_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_integer_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_integer_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_integer_ */
-#define afw_z_zz__one_and_only_integer_ \
-    (afw_self_v_zz__one_and_only_integer_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_integer_ */
-#define afw_v_zz__one_and_only_integer_ \
-    (&afw_self_v_zz__one_and_only_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_ipAddress_ \
-    "one_and_only<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_ipAddress_ */
-#define afw_s_zz__one_and_only_ipAddress_ \
-    (&afw_self_v_zz__one_and_only_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_ipAddress_ */
-#define afw_self_s_zz__one_and_only_ipAddress_ \
-    (afw_self_v_zz__one_and_only_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_ipAddress_ */
-#define afw_z_zz__one_and_only_ipAddress_ \
-    (afw_self_v_zz__one_and_only_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_ipAddress_ */
-#define afw_v_zz__one_and_only_ipAddress_ \
-    (&afw_self_v_zz__one_and_only_ipAddress_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_rfc822Name_ \
-    "one_and_only<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_rfc822Name_ */
-#define afw_s_zz__one_and_only_rfc822Name_ \
-    (&afw_self_v_zz__one_and_only_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_rfc822Name_ */
-#define afw_self_s_zz__one_and_only_rfc822Name_ \
-    (afw_self_v_zz__one_and_only_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_rfc822Name_ */
-#define afw_z_zz__one_and_only_rfc822Name_ \
-    (afw_self_v_zz__one_and_only_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_rfc822Name_ */
-#define afw_v_zz__one_and_only_rfc822Name_ \
-    (&afw_self_v_zz__one_and_only_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_string_ \
-    "one_and_only<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_string_ */
-#define afw_s_zz__one_and_only_string_ \
-    (&afw_self_v_zz__one_and_only_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_string_ */
-#define afw_self_s_zz__one_and_only_string_ \
-    (afw_self_v_zz__one_and_only_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_string_ */
-#define afw_z_zz__one_and_only_string_ \
-    (afw_self_v_zz__one_and_only_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_string_ */
-#define afw_v_zz__one_and_only_string_ \
-    (&afw_self_v_zz__one_and_only_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_time_ \
-    "one_and_only<time>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_time_ */
-#define afw_s_zz__one_and_only_time_ \
-    (&afw_self_v_zz__one_and_only_time_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_time_ */
-#define afw_self_s_zz__one_and_only_time_ \
-    (afw_self_v_zz__one_and_only_time_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_time_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_time_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_time_ */
-#define afw_z_zz__one_and_only_time_ \
-    (afw_self_v_zz__one_and_only_time_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_time_ */
-#define afw_v_zz__one_and_only_time_ \
-    (&afw_self_v_zz__one_and_only_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_x500Name_ \
-    "one_and_only<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_x500Name_ */
-#define afw_s_zz__one_and_only_x500Name_ \
-    (&afw_self_v_zz__one_and_only_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_x500Name_ */
-#define afw_self_s_zz__one_and_only_x500Name_ \
-    (afw_self_v_zz__one_and_only_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_x500Name_ */
-#define afw_z_zz__one_and_only_x500Name_ \
-    (afw_self_v_zz__one_and_only_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_x500Name_ */
-#define afw_v_zz__one_and_only_x500Name_ \
-    (&afw_self_v_zz__one_and_only_x500Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__one_and_only_yearMonthDuration_ \
-    "one_and_only<yearMonthDuration>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_yearMonthDuration_ */
-#define afw_s_zz__one_and_only_yearMonthDuration_ \
-    (&afw_self_v_zz__one_and_only_yearMonthDuration_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__one_and_only_yearMonthDuration_ */
-#define afw_self_s_zz__one_and_only_yearMonthDuration_ \
-    (afw_self_v_zz__one_and_only_yearMonthDuration_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__one_and_only_yearMonthDuration_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__one_and_only_yearMonthDuration_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__one_and_only_yearMonthDuration_ */
-#define afw_z_zz__one_and_only_yearMonthDuration_ \
-    (afw_self_v_zz__one_and_only_yearMonthDuration_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__one_and_only_yearMonthDuration_ */
-#define afw_v_zz__one_and_only_yearMonthDuration_ \
-    (&afw_self_v_zz__one_and_only_yearMonthDuration_.pub)
 
 
 

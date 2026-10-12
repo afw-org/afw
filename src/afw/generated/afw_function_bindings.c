@@ -9802,9 +9802,9 @@ impl_bag_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_anyURI_direct,
     &afw_self_v_anyURI,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -9813,7 +9813,7 @@ impl_bag_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_anyURI_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -13100,165 +13100,6 @@ static const afw_value_object_t
 impl_object__nex_anyURI__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__nex_anyURI
-};
-
-/* ---------- one_and_only<anyURI> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_anyURI =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_anyURI");
-
-static const afw_value_object_t
-impl_object__one_and_only_anyURI__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_anyURI = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_anyURI__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_anyURI,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_anyURI
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_anyURI
-};
-
-static const afw_value_object_t
-impl_one_and_only_anyURI_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_anyURI_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_anyURI_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_anyURI_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_anyURI_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_anyURI_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_anyURI_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_anyURI_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_anyURI_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_anyURI_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_anyURI_parameters[] = {
-    &impl_one_and_only_anyURI_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_anyURI_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_anyURI = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_anyURI,
-    &afw_self_v_anyURI,
-    &afw_self_v_zz__one_and_only_anyURI_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_anyURI_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_anyURI,
-    &afw_self_v_oneAndOnlyAnyURI,
-    &afw_self_v_afwOneAndOnlyAnyURI,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_anyURI_value,
-    &afw_self_v_zz__1314e190a425,
-    &afw_self_v_zz___array__array_____anyURI,
-    &afw_self_v_zz__4ceb6686b266,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_anyURI_parameters[0],
-    1,
-    &impl_one_and_only_anyURI_returns,
-    NULL,
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    &impl_one_and_only_anyURI_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_anyURI__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_anyURI
 };
 
 /* ---------- regexp_index_of<anyURI> ---------- */
@@ -16775,7 +16616,7 @@ impl_bag_array_parameter_1 = {
     },
     &afw_data_type_array_direct,
     &afw_self_v_array,
-    &afw_self_v_array,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -16784,7 +16625,7 @@ impl_bag_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -16812,8 +16653,8 @@ afw_function_definition_bag_array = {
     &afw_self_v_afwBagArray,
     &afw_self_v_zz__Makes_an_array_from_values,
     &afw_self_v_zz__30c5c880cae5,
-    &afw_self_v_zz______values__array_____array__,
-    &afw_self_v_zz__function_bag_array___________values__array______array____,
+    &afw_self_v_zz______values__array___array__,
+    &afw_self_v_zz__function_bag_array___________values__array____array____,
     NULL,
     afw_function_execute_bag,
     afw_function_execute_bag,
@@ -22104,9 +21945,9 @@ impl_bag_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_base64Binary_direct,
     &afw_self_v_base64Binary,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -22115,7 +21956,7 @@ impl_bag_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_base64Binary_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -24534,165 +24375,6 @@ impl_object__nex_base64Binary__value = {
     (const afw_object_t *)&impl_object__nex_base64Binary
 };
 
-/* ---------- one_and_only<base64Binary> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_base64Binary =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_base64Binary");
-
-static const afw_value_object_t
-impl_object__one_and_only_base64Binary__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_base64Binary = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_base64Binary__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_base64Binary,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_base64Binary
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_base64Binary
-};
-
-static const afw_value_object_t
-impl_one_and_only_base64Binary_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_base64Binary_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_base64Binary_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_base64Binary_direct,
-    &afw_self_v_base64Binary,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_base64Binary_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_base64Binary_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_base64Binary_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_base64Binary_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_base64Binary_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_base64Binary_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_base64Binary_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_base64Binary_parameters[] = {
-    &impl_one_and_only_base64Binary_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_base64Binary_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_base64Binary = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_base64Binary,
-    &afw_self_v_base64Binary,
-    &afw_self_v_zz__one_and_only_base64Binary_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_base64Binary_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_base64Binary,
-    &afw_self_v_oneAndOnlyBase64Binary,
-    &afw_self_v_afwOneAndOnlyBase64Binary,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_base64Binary_value,
-    &afw_self_v_zz__de0cb1f5b7af,
-    &afw_self_v_zz___array__array_____base64Binary,
-    &afw_self_v_zz__490fbd0482df,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_base64Binary_parameters[0],
-    1,
-    &impl_one_and_only_base64Binary_returns,
-    NULL,
-    &afw_data_type_base64Binary_direct,
-    &afw_self_v_base64Binary,
-    &impl_one_and_only_base64Binary_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_base64Binary__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_base64Binary
-};
-
 /* ---------- set_equals<base64Binary> ---------- */
 
 static const afw_utf8_t
@@ -25960,9 +25642,9 @@ impl_bag_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_boolean_direct,
     &afw_self_v_boolean,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -25971,7 +25653,7 @@ impl_bag_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_boolean_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -28396,165 +28078,6 @@ static const afw_value_object_t
 impl_object__nex_boolean__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__nex_boolean
-};
-
-/* ---------- one_and_only<boolean> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_boolean =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_boolean");
-
-static const afw_value_object_t
-impl_object__one_and_only_boolean__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_boolean = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_boolean__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_boolean,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_boolean
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_boolean
-};
-
-static const afw_value_object_t
-impl_one_and_only_boolean_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_boolean_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_boolean_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_boolean_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_boolean_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_boolean_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_boolean_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_boolean_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_boolean_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_boolean_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_boolean_parameters[] = {
-    &impl_one_and_only_boolean_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_boolean_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_boolean = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_boolean,
-    &afw_self_v_boolean,
-    &afw_self_v_zz__one_and_only_boolean_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_boolean_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_boolean,
-    &afw_self_v_oneAndOnlyBoolean,
-    &afw_self_v_afwOneAndOnlyBoolean,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_boolean_value,
-    &afw_self_v_zz__99e6d88af28d,
-    &afw_self_v_zz___array__array_____boolean,
-    &afw_self_v_zz__71d619a39c07,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_boolean_parameters[0],
-    1,
-    &impl_one_and_only_boolean_returns,
-    NULL,
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    &impl_one_and_only_boolean_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_boolean__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_boolean
 };
 
 /* ---------- set_equals<boolean> ---------- */
@@ -37210,9 +36733,9 @@ impl_bag_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_dateTime_direct,
     &afw_self_v_dateTime,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -37221,7 +36744,7 @@ impl_bag_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_dateTime_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -39791,165 +39314,6 @@ impl_object__nex_dateTime__value = {
     (const afw_object_t *)&impl_object__nex_dateTime
 };
 
-/* ---------- one_and_only<dateTime> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_dateTime =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_dateTime");
-
-static const afw_value_object_t
-impl_object__one_and_only_dateTime__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_dateTime = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_dateTime__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_dateTime,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_dateTime
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_dateTime
-};
-
-static const afw_value_object_t
-impl_one_and_only_dateTime_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_dateTime_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_dateTime_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dateTime_direct,
-    &afw_self_v_dateTime,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_dateTime_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_dateTime_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_dateTime_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_dateTime_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_dateTime_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_dateTime_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_dateTime_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_dateTime_parameters[] = {
-    &impl_one_and_only_dateTime_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_dateTime_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_dateTime = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_dateTime,
-    &afw_self_v_dateTime,
-    &afw_self_v_zz__one_and_only_dateTime_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dateTime_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_dateTime,
-    &afw_self_v_oneAndOnlyDateTime,
-    &afw_self_v_afwOneAndOnlyDateTime,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_dateTime_value,
-    &afw_self_v_zz__e660eb3dfe04,
-    &afw_self_v_zz___array__array_____dateTime,
-    &afw_self_v_zz__2dc7fae172c8,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_dateTime_parameters[0],
-    1,
-    &impl_one_and_only_dateTime_returns,
-    NULL,
-    &afw_data_type_dateTime_direct,
-    &afw_self_v_dateTime,
-    &impl_one_and_only_dateTime_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_dateTime__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_dateTime
-};
-
 /* ---------- set_equals<dateTime> ---------- */
 
 static const afw_utf8_t
@@ -41784,9 +41148,9 @@ impl_bag_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_date_direct,
     &afw_self_v_date,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -41795,7 +41159,7 @@ impl_bag_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_date_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -44365,165 +43729,6 @@ impl_object__nex_date__value = {
     (const afw_object_t *)&impl_object__nex_date
 };
 
-/* ---------- one_and_only<date> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_date =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_date");
-
-static const afw_value_object_t
-impl_object__one_and_only_date__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_date = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_date__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_date,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_date
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_date
-};
-
-static const afw_value_object_t
-impl_one_and_only_date_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_date_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_date_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_date_direct,
-    &afw_self_v_date,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_date_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_date_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_date_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_date_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_date_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_date_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_date_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_date_parameters[] = {
-    &impl_one_and_only_date_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_date_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_date = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_date,
-    &afw_self_v_date,
-    &afw_self_v_zz__one_and_only_date_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_date_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_date,
-    &afw_self_v_oneAndOnlyDate,
-    &afw_self_v_afwOneAndOnlyDate,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_date_value,
-    &afw_self_v_zz__ea03235abadc,
-    &afw_self_v_zz___array__array_____date,
-    &afw_self_v_zz__function_one_and_only_date________array__array______date__,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_date_parameters[0],
-    1,
-    &impl_one_and_only_date_returns,
-    NULL,
-    &afw_data_type_date_direct,
-    &afw_self_v_date,
-    &impl_one_and_only_date_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_date__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_date
-};
-
 /* ---------- set_equals<date> ---------- */
 
 static const afw_utf8_t
@@ -45980,9 +45185,9 @@ impl_bag_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_dayTimeDuration_direct,
     &afw_self_v_dayTimeDuration,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -45991,7 +45196,7 @@ impl_bag_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_dayTimeDuration_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -48259,165 +47464,6 @@ impl_object__nex_dayTimeDuration__value = {
     (const afw_object_t *)&impl_object__nex_dayTimeDuration
 };
 
-/* ---------- one_and_only<dayTimeDuration> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_dayTimeDuration =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_dayTimeDuration");
-
-static const afw_value_object_t
-impl_object__one_and_only_dayTimeDuration__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_dayTimeDuration = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_dayTimeDuration__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_dayTimeDuration,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_dayTimeDuration
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_dayTimeDuration
-};
-
-static const afw_value_object_t
-impl_one_and_only_dayTimeDuration_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_dayTimeDuration_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_dayTimeDuration_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dayTimeDuration_direct,
-    &afw_self_v_dayTimeDuration,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_dayTimeDuration_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_dayTimeDuration_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_dayTimeDuration_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_dayTimeDuration_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_dayTimeDuration_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_dayTimeDuration_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_dayTimeDuration_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_dayTimeDuration_parameters[] = {
-    &impl_one_and_only_dayTimeDuration_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_dayTimeDuration_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_dayTimeDuration = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_dayTimeDuration,
-    &afw_self_v_dayTimeDuration,
-    &afw_self_v_zz__one_and_only_dayTimeDuration_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dayTimeDuration_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_dayTimeDuration,
-    &afw_self_v_oneAndOnlyDayTimeDuration,
-    &afw_self_v_afwOneAndOnlyDayTimeDuration,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_dayTimeDuration_value,
-    &afw_self_v_zz__6bd8b46e6acb,
-    &afw_self_v_zz___array__array_____dayTimeDuration,
-    &afw_self_v_zz__e92e77a4ccc9,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_dayTimeDuration_parameters[0],
-    1,
-    &impl_one_and_only_dayTimeDuration_returns,
-    NULL,
-    &afw_data_type_dayTimeDuration_direct,
-    &afw_self_v_dayTimeDuration,
-    &impl_one_and_only_dayTimeDuration_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_dayTimeDuration__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_dayTimeDuration
-};
-
 /* ---------- set_equals<dayTimeDuration> ---------- */
 
 static const afw_utf8_t
@@ -49496,9 +48542,9 @@ impl_bag_dnsName_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_dnsName_direct,
     &afw_self_v_dnsName,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -49507,7 +48553,7 @@ impl_bag_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_dnsName_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -51586,165 +50632,6 @@ impl_object__nex_dnsName__value = {
     (const afw_object_t *)&impl_object__nex_dnsName
 };
 
-/* ---------- one_and_only<dnsName> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_dnsName =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_dnsName");
-
-static const afw_value_object_t
-impl_object__one_and_only_dnsName__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_dnsName = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_dnsName__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_dnsName,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_dnsName
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_dnsName
-};
-
-static const afw_value_object_t
-impl_one_and_only_dnsName_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_dnsName_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_dnsName_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_dnsName_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_dnsName_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_dnsName_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_dnsName_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_dnsName_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_dnsName_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_dnsName_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_dnsName_parameters[] = {
-    &impl_one_and_only_dnsName_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_dnsName_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_dnsName = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_dnsName,
-    &afw_self_v_dnsName,
-    &afw_self_v_zz__one_and_only_dnsName_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_dnsName_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_dnsName,
-    &afw_self_v_oneAndOnlyDnsName,
-    &afw_self_v_afwOneAndOnlyDnsName,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_dnsName_value,
-    &afw_self_v_zz__f29dd30ea636,
-    &afw_self_v_zz___array__array_____dnsName,
-    &afw_self_v_zz__beade0213401,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_dnsName_parameters[0],
-    1,
-    &impl_one_and_only_dnsName_returns,
-    NULL,
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    &impl_one_and_only_dnsName_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_dnsName__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_dnsName
-};
-
 /* ---------- regexp_match<dnsName> ---------- */
 
 static const afw_utf8_t
@@ -52974,9 +51861,9 @@ impl_bag_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_double_direct,
     &afw_self_v_double,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -52985,7 +51872,7 @@ impl_bag_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_double_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -56839,165 +55726,6 @@ impl_object__nex_double__value = {
     (const afw_object_t *)&impl_object__nex_double
 };
 
-/* ---------- one_and_only<double> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_double =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_double");
-
-static const afw_value_object_t
-impl_object__one_and_only_double__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_double = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_double__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_double,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_double
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_double
-};
-
-static const afw_value_object_t
-impl_one_and_only_double_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_double_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_double_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_double_direct,
-    &afw_self_v_double,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_double_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_double_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_double_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_double_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_double_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_double_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_double_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_double_parameters[] = {
-    &impl_one_and_only_double_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_double = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_double,
-    &afw_self_v_double,
-    &afw_self_v_zz__one_and_only_double_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_double_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_double,
-    &afw_self_v_oneAndOnlyDouble,
-    &afw_self_v_afwOneAndOnlyDouble,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_double_value,
-    &afw_self_v_zz__15a2c82d7d41,
-    &afw_self_v_zz___array__array_____double,
-    &afw_self_v_zz__cff922a75aed,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_double_parameters[0],
-    1,
-    &impl_one_and_only_double_returns,
-    NULL,
-    &afw_data_type_double_direct,
-    &afw_self_v_double,
-    &impl_one_and_only_double_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_double__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_double
-};
-
 /* ---------- pow<double> ---------- */
 
 static const afw_utf8_t
@@ -58767,9 +57495,9 @@ impl_bag_function_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_function_direct,
     &afw_self_v_function,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -58778,7 +57506,7 @@ impl_bag_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_function_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -61255,9 +59983,9 @@ impl_bag_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_hexBinary_direct,
     &afw_self_v_hexBinary,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -61266,7 +59994,7 @@ impl_bag_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_hexBinary_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -63683,165 +62411,6 @@ static const afw_value_object_t
 impl_object__nex_hexBinary__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__nex_hexBinary
-};
-
-/* ---------- one_and_only<hexBinary> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_hexBinary =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_hexBinary");
-
-static const afw_value_object_t
-impl_object__one_and_only_hexBinary__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_hexBinary = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_hexBinary__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_hexBinary,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_hexBinary
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_hexBinary
-};
-
-static const afw_value_object_t
-impl_one_and_only_hexBinary_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_hexBinary_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_hexBinary_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_hexBinary_direct,
-    &afw_self_v_hexBinary,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_hexBinary_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_hexBinary_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_hexBinary_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_hexBinary_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_hexBinary_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_hexBinary_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_hexBinary_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_hexBinary_parameters[] = {
-    &impl_one_and_only_hexBinary_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_hexBinary_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_hexBinary = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_hexBinary,
-    &afw_self_v_hexBinary,
-    &afw_self_v_zz__one_and_only_hexBinary_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_hexBinary_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_hexBinary,
-    &afw_self_v_oneAndOnlyHexBinary,
-    &afw_self_v_afwOneAndOnlyHexBinary,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_hexBinary_value,
-    &afw_self_v_zz__1b8621d0100f,
-    &afw_self_v_zz___array__array_____hexBinary,
-    &afw_self_v_zz__4253ad7db5a1,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_hexBinary_parameters[0],
-    1,
-    &impl_one_and_only_hexBinary_returns,
-    NULL,
-    &afw_data_type_hexBinary_direct,
-    &afw_self_v_hexBinary,
-    &impl_one_and_only_hexBinary_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_hexBinary__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_hexBinary
 };
 
 /* ---------- set_equals<hexBinary> ---------- */
@@ -67569,9 +66138,9 @@ impl_bag_ia5String_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_ia5String_direct,
     &afw_self_v_ia5String,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -67580,7 +66149,7 @@ impl_bag_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_ia5String_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -71317,9 +69886,9 @@ impl_bag_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_integer_direct,
     &afw_self_v_integer,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -71328,7 +69897,7 @@ impl_bag_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_integer_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -74578,165 +73147,6 @@ impl_object__nex_integer__value = {
     (const afw_object_t *)&impl_object__nex_integer
 };
 
-/* ---------- one_and_only<integer> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_integer =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_integer");
-
-static const afw_value_object_t
-impl_object__one_and_only_integer__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_integer = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_integer__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_integer,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_integer
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_integer
-};
-
-static const afw_value_object_t
-impl_one_and_only_integer_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_integer_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_integer_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_integer_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_integer_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_integer_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_integer_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_integer_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_integer_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_integer_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_integer_parameters[] = {
-    &impl_one_and_only_integer_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_integer_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_integer = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_integer,
-    &afw_self_v_integer,
-    &afw_self_v_zz__one_and_only_integer_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_integer_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_integer,
-    &afw_self_v_oneAndOnlyInteger,
-    &afw_self_v_afwOneAndOnlyInteger,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_integer_value,
-    &afw_self_v_zz__ee9671636cc2,
-    &afw_self_v_zz___array__array_____integer,
-    &afw_self_v_zz__2f2ff86f3a6e,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_integer_parameters[0],
-    1,
-    &impl_one_and_only_integer_returns,
-    NULL,
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    &impl_one_and_only_integer_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_integer__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_integer
-};
-
 /* ---------- set_equals<integer> ---------- */
 
 static const afw_utf8_t
@@ -76163,9 +74573,9 @@ impl_bag_ipAddress_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_ipAddress_direct,
     &afw_self_v_ipAddress,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -76174,7 +74584,7 @@ impl_bag_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_ipAddress_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -78251,165 +76661,6 @@ static const afw_value_object_t
 impl_object__nex_ipAddress__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__nex_ipAddress
-};
-
-/* ---------- one_and_only<ipAddress> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_ipAddress =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_ipAddress");
-
-static const afw_value_object_t
-impl_object__one_and_only_ipAddress__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_ipAddress = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_ipAddress__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_ipAddress,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_ipAddress
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_ipAddress
-};
-
-static const afw_value_object_t
-impl_one_and_only_ipAddress_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_ipAddress_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_ipAddress_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_ipAddress_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_ipAddress_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_ipAddress_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_ipAddress_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_ipAddress_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_ipAddress_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_ipAddress_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_ipAddress_parameters[] = {
-    &impl_one_and_only_ipAddress_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_ipAddress_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_ipAddress = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_ipAddress,
-    &afw_self_v_ipAddress,
-    &afw_self_v_zz__one_and_only_ipAddress_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_ipAddress_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_ipAddress,
-    &afw_self_v_oneAndOnlyIpAddress,
-    &afw_self_v_afwOneAndOnlyIpAddress,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_ipAddress_value,
-    &afw_self_v_zz__61c32052ab62,
-    &afw_self_v_zz___array__array_____ipAddress,
-    &afw_self_v_zz__e7f9b73cb4e2,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_ipAddress_parameters[0],
-    1,
-    &impl_one_and_only_ipAddress_returns,
-    NULL,
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    &impl_one_and_only_ipAddress_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_ipAddress__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_ipAddress
 };
 
 /* ---------- regexp_match<ipAddress> ---------- */
@@ -86478,9 +84729,9 @@ impl_bag_null_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_null_direct,
     &afw_self_v_null,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -86489,7 +84740,7 @@ impl_bag_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_null_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -87400,9 +85651,9 @@ impl_bag_objectId_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_objectId_direct,
     &afw_self_v_objectId,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -87411,7 +85662,7 @@ impl_bag_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_objectId_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -89850,9 +88101,9 @@ impl_bag_objectPath_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_objectPath_direct,
     &afw_self_v_objectPath,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -89861,7 +88112,7 @@ impl_bag_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_objectPath_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -92684,9 +90935,9 @@ impl_bag_object_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_object_direct,
     &afw_self_v_object,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -92695,7 +90946,7 @@ impl_bag_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_object_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -97264,9 +95515,9 @@ impl_bag_password_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_password_direct,
     &afw_self_v_password,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -97275,7 +95526,7 @@ impl_bag_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_password_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -100312,8 +98563,8 @@ impl_bag_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    NULL,
+    NULL,
     NULL,
     &afw_self_v_values,
     NULL,
@@ -100321,8 +98572,8 @@ impl_bag_parameter_1 = {
     &afw_integer_self_v_zero,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     NULL
 };
 
@@ -100383,8 +98634,8 @@ afw_function_definition_bag = {
     &afw_self_v_afwBag,
     &afw_self_v_zz__Makes_an_array_from_values,
     &afw_self_v_zz__6845b072f180,
-    &afw_self_v_zz___dataType_____values__array___array,
-    &afw_self_v_zz__function_bag__dataType__________values__array____array__,
+    &afw_self_v_zz___dataType_____values__dataType_____array,
+    &afw_self_v_zz__19eff5474666,
     NULL,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
@@ -107340,186 +105591,6 @@ static const afw_value_object_t
 impl_object__normalize_to_lower_case__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__normalize_to_lower_case
-};
-
-/* ---------- one_and_only ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only");
-
-static const afw_value_object_t
-impl_object__one_and_only__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only
-        }
-    },
-    (void *)&afw_function_definition_one_and_only
-};
-
-static const afw_value_object_t
-impl_one_and_only_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_parameters[] = {
-    &impl_one_and_only_parameter_1,
-    NULL
-};
-
-static const afw_utf8_t
-impl_one_and_only_polymorphicDataTypes[] = {
-    AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("base64Binary"),
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL("date"),
-    AFW_UTF8_LITERAL("dateTime"),
-    AFW_UTF8_LITERAL("dayTimeDuration"),
-    AFW_UTF8_LITERAL("dnsName"),
-    AFW_UTF8_LITERAL("double"),
-    AFW_UTF8_LITERAL("hexBinary"),
-    AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("rfc822Name"),
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL("time"),
-    AFW_UTF8_LITERAL("x500Name"),
-    AFW_UTF8_LITERAL("yearMonthDuration"),
-    { NULL }
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only,
-    &afw_self_v_polymorphic,
-    &afw_self_v_one_and_only,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only,
-    &afw_self_v_oneAndOnly,
-    &afw_self_v_afwOneAndOnly,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a__dataType__value,
-    &afw_self_v_zz__2fd319b7ab0a,
-    &afw_self_v_zz___dataType__array__array_____dataType,
-    &afw_self_v_zz__c3b820138303,
-    NULL,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_parameters[0],
-    1,
-    &impl_one_and_only_returns,
-    &impl_one_and_only_polymorphicDataTypes[0],
-    NULL,
-    &afw_self_v_a_empty_string,
-    &impl_one_and_only_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only
 };
 
 /* ---------- pow ---------- */
@@ -117843,9 +115914,9 @@ impl_bag_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_rfc822Name_direct,
     &afw_self_v_rfc822Name,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -117854,7 +115925,7 @@ impl_bag_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_rfc822Name_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -120311,165 +118382,6 @@ impl_object__nex_rfc822Name__value = {
     (const afw_object_t *)&impl_object__nex_rfc822Name
 };
 
-/* ---------- one_and_only<rfc822Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_rfc822Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_rfc822Name");
-
-static const afw_value_object_t
-impl_object__one_and_only_rfc822Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_rfc822Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_rfc822Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_rfc822Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_rfc822Name
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_rfc822Name
-};
-
-static const afw_value_object_t
-impl_one_and_only_rfc822Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_rfc822Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_rfc822Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_rfc822Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_rfc822Name_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_rfc822Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_rfc822Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_rfc822Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_rfc822Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_rfc822Name_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_rfc822Name_parameters[] = {
-    &impl_one_and_only_rfc822Name_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_rfc822Name_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_rfc822Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_rfc822Name,
-    &afw_self_v_rfc822Name,
-    &afw_self_v_zz__one_and_only_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_rfc822Name_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_rfc822Name,
-    &afw_self_v_oneAndOnlyRfc822Name,
-    &afw_self_v_afwOneAndOnlyRfc822Name,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_rfc822Name_value,
-    &afw_self_v_zz__df8be5266662,
-    &afw_self_v_zz___array__array_____rfc822Name,
-    &afw_self_v_zz__908b284ac41c,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_rfc822Name_parameters[0],
-    1,
-    &impl_one_and_only_rfc822Name_returns,
-    NULL,
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    &impl_one_and_only_rfc822Name_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_rfc822Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_rfc822Name
-};
-
 /* ---------- regexp_match<rfc822Name> ---------- */
 
 static const afw_utf8_t
@@ -121737,9 +119649,9 @@ impl_bag_script_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_script_direct,
     &afw_self_v_script,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -121748,7 +119660,7 @@ impl_bag_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_script_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -126667,10 +124579,10 @@ impl_add_string_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_string,
+    &afw_self_v_values,
     NULL,
     NULL,
-    &afw_integer_self_v_zz___1,
+    &afw_integer_self_v_2,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -126684,47 +124596,9 @@ impl_add_string_parameter_1__value = {
     (const afw_object_t *)&impl_add_string_parameter_1
 };
 
-static const afw_value_object_t
-impl_add_string_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_add_string_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_add_string_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_values,
-    NULL,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_add_string_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_add_string_parameter_2
-};
-
 static const afw_value_function_parameter_t *
 impl_add_string_parameters[] = {
     &impl_add_string_parameter_1,
-    &impl_add_string_parameter_2,
     NULL
 };
 
@@ -126740,9 +124614,9 @@ afw_function_definition_add_string = {
     &afw_self_v_addString,
     &afw_self_v_afwAddString,
     &afw_self_v_zz__Add__concatenate__strings,
-    &afw_self_v_zz__58d488727cdc,
-    &afw_self_v_zz__b230d4e76656,
-    &afw_self_v_zz__05298253e207,
+    &afw_self_v_zz__c6e438fd490b,
+    &afw_self_v_zz__5ae399fd157c,
+    &afw_self_v_zz__d72785a11c37,
     &afw_self_v_zz___,
     afw_function_execute_add_string,
     afw_function_execute_add_string,
@@ -126750,7 +124624,7 @@ afw_function_definition_add_string = {
     &afw_integer_self_v_2,
     &afw_integer_self_v_zz___1,
     &impl_add_string_parameters[0],
-    2,
+    1,
     &impl_add_string_returns,
     NULL,
     &afw_data_type_string_direct,
@@ -127511,9 +125385,9 @@ impl_bag_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_string_direct,
     &afw_self_v_string,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -127522,7 +125396,7 @@ impl_bag_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_string_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -132101,165 +129975,6 @@ static const afw_value_object_t
 impl_object__normalize_to_lower_case_string__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__normalize_to_lower_case_string
-};
-
-/* ---------- one_and_only<string> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_string =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_string");
-
-static const afw_value_object_t
-impl_object__one_and_only_string__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_string = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_string__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_string,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_string
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_string
-};
-
-static const afw_value_object_t
-impl_one_and_only_string_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_string_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_string_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_string_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_string_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_string_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_string_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_string_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_string_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_string_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_string_parameters[] = {
-    &impl_one_and_only_string_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_string_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_string = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_string,
-    &afw_self_v_string,
-    &afw_self_v_zz__one_and_only_string_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_string_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_string,
-    &afw_self_v_oneAndOnlyString,
-    &afw_self_v_afwOneAndOnlyString,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_string_value,
-    &afw_self_v_zz__fa548518629c,
-    &afw_self_v_zz___array__array_____string,
-    &afw_self_v_zz__21e05f313a5e,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_string_parameters[0],
-    1,
-    &impl_one_and_only_string_returns,
-    NULL,
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    &impl_one_and_only_string_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_string__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_string
 };
 
 /* ---------- regexp_index_of<string> ---------- */
@@ -138565,9 +136280,9 @@ impl_bag_template_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_template_direct,
     &afw_self_v_template,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -138576,7 +136291,7 @@ impl_bag_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_template_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -141749,9 +139464,9 @@ impl_bag_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_time_direct,
     &afw_self_v_time,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -141760,7 +139475,7 @@ impl_bag_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_time_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -144406,165 +142121,6 @@ impl_object__nex_time__value = {
     (const afw_object_t *)&impl_object__nex_time
 };
 
-/* ---------- one_and_only<time> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_time =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_time");
-
-static const afw_value_object_t
-impl_object__one_and_only_time__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_time = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_time__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_time,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_time
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_time
-};
-
-static const afw_value_object_t
-impl_one_and_only_time_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_time_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_time_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_time_direct,
-    &afw_self_v_time,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_time_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_time_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_time_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_time_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_time_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_time_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_time_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_time_parameters[] = {
-    &impl_one_and_only_time_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_time_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_time = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_time,
-    &afw_self_v_time,
-    &afw_self_v_zz__one_and_only_time_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_time_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_time,
-    &afw_self_v_oneAndOnlyTime,
-    &afw_self_v_afwOneAndOnlyTime,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_time_value,
-    &afw_self_v_zz__3d7e5e3d5a32,
-    &afw_self_v_zz___array__array_____time,
-    &afw_self_v_zz__function_one_and_only_time________array__array______time__,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_time_parameters[0],
-    1,
-    &impl_one_and_only_time_returns,
-    NULL,
-    &afw_data_type_time_direct,
-    &afw_self_v_time,
-    &impl_one_and_only_time_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_time__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_time
-};
-
 /* ---------- set_equals<time> ---------- */
 
 static const afw_utf8_t
@@ -146595,9 +144151,9 @@ impl_bag_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_x500Name_direct,
     &afw_self_v_x500Name,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -146606,7 +144162,7 @@ impl_bag_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_x500Name_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -148912,165 +146468,6 @@ impl_object__nex_x500Name__value = {
     (const afw_object_t *)&impl_object__nex_x500Name
 };
 
-/* ---------- one_and_only<x500Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_x500Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_x500Name");
-
-static const afw_value_object_t
-impl_object__one_and_only_x500Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_x500Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_x500Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_x500Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_x500Name
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_x500Name
-};
-
-static const afw_value_object_t
-impl_one_and_only_x500Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_x500Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_x500Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_x500Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_x500Name_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_x500Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_x500Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_x500Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_x500Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_x500Name_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_x500Name_parameters[] = {
-    &impl_one_and_only_x500Name_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_x500Name_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_x500Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_x500Name,
-    &afw_self_v_x500Name,
-    &afw_self_v_zz__one_and_only_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_x500Name_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_x500Name,
-    &afw_self_v_oneAndOnlyX500Name,
-    &afw_self_v_afwOneAndOnlyX500Name,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_x500Name_value,
-    &afw_self_v_zz__04ca67312cfd,
-    &afw_self_v_zz___array__array_____x500Name,
-    &afw_self_v_zz__a2cc36e89c48,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_x500Name_parameters[0],
-    1,
-    &impl_one_and_only_x500Name_returns,
-    NULL,
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    &impl_one_and_only_x500Name_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_x500Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_x500Name
-};
-
 /* ---------- regexp_match<x500Name> ---------- */
 
 static const afw_utf8_t
@@ -150489,9 +147886,9 @@ impl_bag_xpathExpression_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_xpathExpression_direct,
     &afw_self_v_xpathExpression,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -150500,7 +147897,7 @@ impl_bag_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_xpathExpression_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -154202,9 +151599,9 @@ impl_bag_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_yearMonthDuration_direct,
     &afw_self_v_yearMonthDuration,
+    NULL,
     &afw_self_v_values,
     NULL,
     NULL,
@@ -154213,7 +151610,7 @@ impl_bag_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_yearMonthDuration_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -156330,165 +153727,6 @@ impl_object__nex_yearMonthDuration__value = {
     (const afw_object_t *)&impl_object__nex_yearMonthDuration
 };
 
-/* ---------- one_and_only<yearMonthDuration> ---------- */
-
-static const afw_utf8_t
-impl_object_path__one_and_only_yearMonthDuration =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/one_and_only_yearMonthDuration");
-
-static const afw_value_object_t
-impl_object__one_and_only_yearMonthDuration__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__one_and_only_yearMonthDuration = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__one_and_only_yearMonthDuration__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_one_and_only_yearMonthDuration,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__one_and_only_yearMonthDuration
-        }
-    },
-    (void *)&afw_function_definition_one_and_only_yearMonthDuration
-};
-
-static const afw_value_object_t
-impl_one_and_only_yearMonthDuration_returns__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_yearMonthDuration_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_yearMonthDuration_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_yearMonthDuration_direct,
-    &afw_self_v_yearMonthDuration,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_one_and_only_yearMonthDuration_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_yearMonthDuration_returns
-};
-
-static const afw_value_object_t
-impl_one_and_only_yearMonthDuration_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_one_and_only_yearMonthDuration_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_one_and_only_yearMonthDuration_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    &afw_self_v_array,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_data_type_array_direct
-};
-
-static const afw_value_object_t
-impl_one_and_only_yearMonthDuration_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_one_and_only_yearMonthDuration_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_one_and_only_yearMonthDuration_parameters[] = {
-    &impl_one_and_only_yearMonthDuration_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_one_and_only_yearMonthDuration_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "array does not contain exactly one value",
-    NULL,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_one_and_only_yearMonthDuration = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__one_and_only_yearMonthDuration,
-    &afw_self_v_yearMonthDuration,
-    &afw_self_v_zz__one_and_only_yearMonthDuration_,
-    &afw_self_v_zz___afw__AdaptiveFunction__one_and_only_yearMonthDuration_,
-    &afw_self_v_one_and_only,
-    &afw_self_v_one_and_only_yearMonthDuration,
-    &afw_self_v_oneAndOnlyYearMonthDuration,
-    &afw_self_v_afwOneAndOnlyYearMonthDuration,
-    &afw_self_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value,
-    &afw_self_v_zz__5935d8eece70,
-    &afw_self_v_zz___array__array_____yearMonthDuration,
-    &afw_self_v_zz__5343818ba871,
-    NULL,
-    afw_function_execute_one_and_only,
-    afw_function_execute_one_and_only,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_one_and_only_yearMonthDuration_parameters[0],
-    1,
-    &impl_one_and_only_yearMonthDuration_returns,
-    NULL,
-    &afw_data_type_yearMonthDuration_direct,
-    &afw_self_v_yearMonthDuration,
-    &impl_one_and_only_yearMonthDuration_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_one_and_only,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__one_and_only_yearMonthDuration__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__one_and_only_yearMonthDuration
-};
-
 /* ---------- set_equals<yearMonthDuration> ---------- */
 
 static const afw_utf8_t
@@ -157229,7 +154467,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_anyURI,
     &afw_function_definition_ne_anyURI,
     &afw_function_definition_nex_anyURI,
-    &afw_function_definition_one_and_only_anyURI,
     &afw_function_definition_regexp_index_of_anyURI,
     &afw_function_definition_regexp_match_anyURI,
     &afw_function_definition_regexp_replace_anyURI,
@@ -157291,7 +154528,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_base64Binary,
     &afw_function_definition_ne_base64Binary,
     &afw_function_definition_nex_base64Binary,
-    &afw_function_definition_one_and_only_base64Binary,
     &afw_function_definition_set_equals_base64Binary,
     &afw_function_definition_subset_base64Binary,
     &afw_function_definition_to_string_base64Binary,
@@ -157313,7 +154549,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_boolean,
     &afw_function_definition_ne_boolean,
     &afw_function_definition_nex_boolean,
-    &afw_function_definition_one_and_only_boolean,
     &afw_function_definition_set_equals_boolean,
     &afw_function_definition_string_to_boolean,
     &afw_function_definition_subset_boolean,
@@ -157372,7 +154607,6 @@ impl_function_bindings[] = {
     &afw_function_definition_min_dateTime,
     &afw_function_definition_ne_dateTime,
     &afw_function_definition_nex_dateTime,
-    &afw_function_definition_one_and_only_dateTime,
     &afw_function_definition_set_equals_dateTime,
     &afw_function_definition_subset_dateTime,
     &afw_function_definition_subtract_dayTimeDuration_dateTime,
@@ -157398,7 +154632,6 @@ impl_function_bindings[] = {
     &afw_function_definition_min_date,
     &afw_function_definition_ne_date,
     &afw_function_definition_nex_date,
-    &afw_function_definition_one_and_only_date,
     &afw_function_definition_set_equals_date,
     &afw_function_definition_subset_date,
     &afw_function_definition_subtract_yearMonthDuration_date,
@@ -157420,7 +154653,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_dayTimeDuration,
     &afw_function_definition_ne_dayTimeDuration,
     &afw_function_definition_nex_dayTimeDuration,
-    &afw_function_definition_one_and_only_dayTimeDuration,
     &afw_function_definition_set_equals_dayTimeDuration,
     &afw_function_definition_subset_dayTimeDuration,
     &afw_function_definition_to_string_dayTimeDuration,
@@ -157439,7 +154671,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_dnsName,
     &afw_function_definition_ne_dnsName,
     &afw_function_definition_nex_dnsName,
-    &afw_function_definition_one_and_only_dnsName,
     &afw_function_definition_regexp_match_dnsName,
     &afw_function_definition_to_string_dnsName,
     &afw_function_definition_abs_double,
@@ -157470,7 +154701,6 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_double,
     &afw_function_definition_negative_double,
     &afw_function_definition_nex_double,
-    &afw_function_definition_one_and_only_double,
     &afw_function_definition_pow_double,
     &afw_function_definition_round_double,
     &afw_function_definition_set_equals_double,
@@ -157509,7 +154739,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_hexBinary,
     &afw_function_definition_ne_hexBinary,
     &afw_function_definition_nex_hexBinary,
-    &afw_function_definition_one_and_only_hexBinary,
     &afw_function_definition_set_equals_hexBinary,
     &afw_function_definition_subset_hexBinary,
     &afw_function_definition_to_string_hexBinary,
@@ -157568,7 +154797,6 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_integer,
     &afw_function_definition_negative_integer,
     &afw_function_definition_nex_integer,
-    &afw_function_definition_one_and_only_integer,
     &afw_function_definition_set_equals_integer,
     &afw_function_definition_subset_integer,
     &afw_function_definition_subtract_integer,
@@ -157589,7 +154817,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_ipAddress,
     &afw_function_definition_ne_ipAddress,
     &afw_function_definition_nex_ipAddress,
-    &afw_function_definition_one_and_only_ipAddress,
     &afw_function_definition_regexp_match_ipAddress,
     &afw_function_definition_to_string_ipAddress,
     &afw_function_definition_journal_add_entry,
@@ -157749,7 +154976,6 @@ impl_function_bindings[] = {
     &afw_function_definition_nex,
     &afw_function_definition_normalize_space,
     &afw_function_definition_normalize_to_lower_case,
-    &afw_function_definition_one_and_only,
     &afw_function_definition_pow,
     &afw_function_definition_regexp_index_of,
     &afw_function_definition_regexp_match,
@@ -157820,7 +155046,6 @@ impl_function_bindings[] = {
     &afw_function_definition_match_rfc822Name,
     &afw_function_definition_ne_rfc822Name,
     &afw_function_definition_nex_rfc822Name,
-    &afw_function_definition_one_and_only_rfc822Name,
     &afw_function_definition_regexp_match_rfc822Name,
     &afw_function_definition_set_equals_rfc822Name,
     &afw_function_definition_subset_rfc822Name,
@@ -157886,7 +155111,6 @@ impl_function_bindings[] = {
     &afw_function_definition_nex_string,
     &afw_function_definition_normalize_space_string,
     &afw_function_definition_normalize_to_lower_case_string,
-    &afw_function_definition_one_and_only_string,
     &afw_function_definition_regexp_index_of_string,
     &afw_function_definition_regexp_match_string,
     &afw_function_definition_regexp_replace_string,
@@ -157956,7 +155180,6 @@ impl_function_bindings[] = {
     &afw_function_definition_min_time,
     &afw_function_definition_ne_time,
     &afw_function_definition_nex_time,
-    &afw_function_definition_one_and_only_time,
     &afw_function_definition_set_equals_time,
     &afw_function_definition_subset_time,
     &afw_function_definition_to_string_time,
@@ -157982,7 +155205,6 @@ impl_function_bindings[] = {
     &afw_function_definition_match_x500Name,
     &afw_function_definition_ne_x500Name,
     &afw_function_definition_nex_x500Name,
-    &afw_function_definition_one_and_only_x500Name,
     &afw_function_definition_regexp_match_x500Name,
     &afw_function_definition_set_equals_x500Name,
     &afw_function_definition_subset_x500Name,
@@ -158024,7 +155246,6 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_yearMonthDuration,
     &afw_function_definition_ne_yearMonthDuration,
     &afw_function_definition_nex_yearMonthDuration,
-    &afw_function_definition_one_and_only_yearMonthDuration,
     &afw_function_definition_set_equals_yearMonthDuration,
     &afw_function_definition_subset_yearMonthDuration,
     &afw_function_definition_to_string_yearMonthDuration,

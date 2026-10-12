@@ -37,7 +37,6 @@ our @EXPORT_OK = qw(
     ne_integer 
     negative_integer 
     nex_integer 
-    one_and_only_integer 
     set_equals_integer 
     subset_integer 
     subtract_integer 
@@ -362,17 +361,6 @@ Checks for not equal value or type
 
 
     $arg2
-
-
-=head3 one_and_only_integer
-
-This converts an array of integer values that contains one value to a single
-integer value.
-Converts a one value array to a integer value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 set_equals_integer
@@ -731,17 +719,6 @@ sub nex_integer {
     $request->set("function" => "nex<integer>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_integer {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<integer>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

@@ -9,8 +9,7 @@
     "functionLabel": "bag_anyURI",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "anyURI",
+            "dataType": "anyURI",
             "minArgs": 0,
             "name": "values",
             "optional": true

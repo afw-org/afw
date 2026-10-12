@@ -177,7 +177,7 @@ def bag_dateTime(session, values=None):
     Takes any number of dateTime values and returns an array of dateTime.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -637,35 +637,6 @@ def nex_dateTime(session, arg1, arg2):
         "function": "nex<dateTime>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_dateTime(session, array):
-    """
-    Converts a one value array to a dateTime value
-
-    This converts an array of dateTime values that contains one value to a
-    single dateTime value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<dateTime>",
-        "array": array
     }
 
     request.add_action(action)

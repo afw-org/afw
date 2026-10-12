@@ -110,7 +110,7 @@ class boolean
      *
      * Takes any number of boolean values and returns an array of boolean.
      *
-     * @param array $values
+     * @param boolean $values
      *
      * @return array
      */
@@ -453,29 +453,6 @@ class boolean
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_boolean()
-     *
-     * This converts an array of boolean values that contains one value to a
-     * single boolean value.
-     *
-     * @param array $array
-     *
-     * @return boolean
-     */
-    public function one_and_only_boolean(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<boolean>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

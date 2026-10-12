@@ -84,7 +84,7 @@ def bag_script(session, values=None):
     Takes any number of script values and returns an array of script.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:

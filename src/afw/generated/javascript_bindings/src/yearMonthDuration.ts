@@ -104,11 +104,11 @@ export function afwBagSizeYearMonthDuration(client : any, value : any[]) : any {
  * Takes any number of yearMonthDuration values and returns an array of
  * yearMonthDuration.
  * 
- * @param {array} values -
+ * @param {yearMonthDuration} values -
  * 
  * @returns {array}
  */
-export function afwBagYearMonthDuration(client : any, values? : any[]) : any {
+export function afwBagYearMonthDuration(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -351,24 +351,6 @@ export function afwNexYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
     _action["function"] = "nex<yearMonthDuration>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of yearMonthDuration values that contains one value
- * to a single yearMonthDuration value.
- * 
- * @param {array} array -
- * 
- * @returns {yearMonthDuration}
- */
-export function afwOneAndOnlyYearMonthDuration(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<yearMonthDuration>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

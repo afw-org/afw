@@ -85,7 +85,7 @@ def bag_function(session, values=None):
     Takes any number of function values and returns an array of function.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:

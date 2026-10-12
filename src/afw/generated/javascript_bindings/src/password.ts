@@ -63,11 +63,11 @@ export function afwAsPassword(client : any, value : any) : any {
 /**
  * Takes any number of password values and returns an array of password.
  * 
- * @param {array} values -
+ * @param {password} values -
  * 
  * @returns {array}
  */
-export function afwBagPassword(client : any, values? : any[]) : any {
+export function afwBagPassword(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 

@@ -64,11 +64,11 @@ export function afwAsIa5String(client : any, value : any) : any {
 /**
  * Takes any number of ia5String values and returns an array of ia5String.
  * 
- * @param {array} values -
+ * @param {ia5String} values -
  * 
  * @returns {array}
  */
-export function afwBagIa5String(client : any, values? : any[]) : any {
+export function afwBagIa5String(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 

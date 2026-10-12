@@ -44,7 +44,6 @@ our @EXPORT_OK = qw(
     nex_string 
     normalize_space_string 
     normalize_to_lower_case_string 
-    one_and_only_string 
     regexp_index_of_string 
     regexp_match_string 
     regexp_replace_string 
@@ -90,14 +89,12 @@ The following functions are exported by default
 
 =head3 add_string
 
-Add (concatenate) a string with 1 or more values of any data type converted to
-their string value and return the string result.
+Add (concatenate) 2 or more string values and return the string result. Every
+value must be a string, the same as the + operator: to convert values while
+concatenating, use concat() or string().
 Add (concatenate) strings
 
 =head4 Parameters
-
-    $string
-
 
     $values
 
@@ -518,17 +515,6 @@ Converts to lower case
 =head4 Parameters
 
     $string
-
-
-=head3 one_and_only_string
-
-This converts an array of string values that contains one value to a single
-string value.
-Converts a one value array to a string value
-
-=head4 Parameters
-
-    $array
 
 
 =head3 regexp_index_of_string
@@ -990,12 +976,11 @@ The string value to URL encode.
 =cut
 
 sub add_string {
-    my ($string, $values) = @_;
+    my ($values) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "add<string>");
-    $request->set("string", $string);
     $request->set("values", $values);
 
     return $request->getResult();
@@ -1357,17 +1342,6 @@ sub normalize_to_lower_case_string {
 
     $request->set("function" => "normalize_to_lower_case<string>");
     $request->set("string", $string);
-
-    return $request->getResult();
-}
-
-sub one_and_only_string {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<string>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

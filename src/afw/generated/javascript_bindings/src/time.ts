@@ -101,11 +101,11 @@ export function afwBagSizeTime(client : any, value : any[]) : any {
 /**
  * Takes any number of time values and returns an array of time.
  * 
- * @param {array} values -
+ * @param {time} values -
  * 
  * @returns {array}
  */
-export function afwBagTime(client : any, values? : any[]) : any {
+export function afwBagTime(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -423,24 +423,6 @@ export function afwNexTime(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<time>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of time values that contains one value to a single
- * time value.
- * 
- * @param {array} array -
- * 
- * @returns {time}
- */
-export function afwOneAndOnlyTime(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<time>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

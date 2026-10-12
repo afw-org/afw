@@ -9,8 +9,7 @@
     "functionLabel": "bag_objectId",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "objectId",
+            "dataType": "objectId",
             "minArgs": 0,
             "name": "values",
             "optional": true

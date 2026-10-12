@@ -109,11 +109,11 @@ export function afwAsObject(client : any, value : any) : any {
 /**
  * Takes any number of object values and returns an array of object.
  * 
- * @param {array} values -
+ * @param {object} values -
  * 
  * @returns {array}
  */
-export function afwBagObject(client : any, values? : any[]) : any {
+export function afwBagObject(client : any, values? : object) : any {
 
     let _action : IAnyObject = {};
 

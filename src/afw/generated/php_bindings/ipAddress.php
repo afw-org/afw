@@ -85,7 +85,7 @@ class ipAddress
      *
      * Takes any number of ipAddress values and returns an array of ipAddress.
      *
-     * @param array $values
+     * @param ipAddress $values
      *
      * @return array
      */
@@ -376,29 +376,6 @@ class ipAddress
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_ipAddress()
-     *
-     * This converts an array of ipAddress values that contains one value to a
-     * single ipAddress value.
-     *
-     * @param array $array
-     *
-     * @return ipAddress
-     */
-    public function one_and_only_ipAddress(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

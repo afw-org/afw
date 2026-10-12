@@ -63,11 +63,11 @@ export function afwAsNull(client : any, value : any) : any {
 /**
  * Takes any number of null values and returns an array of null.
  * 
- * @param {array} values -
+ * @param {null} values -
  * 
  * @returns {array}
  */
-export function afwBagNull(client : any, values? : any[]) : any {
+export function afwBagNull(client : any, values? : null) : any {
 
     let _action : IAnyObject = {};
 

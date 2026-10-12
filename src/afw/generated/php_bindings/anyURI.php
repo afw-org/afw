@@ -110,7 +110,7 @@ class anyURI
      *
      * Takes any number of anyURI values and returns an array of anyURI.
      *
-     * @param array $values
+     * @param anyURI $values
      *
      * @return array
      */
@@ -566,29 +566,6 @@ class anyURI
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_anyURI()
-     *
-     * This converts an array of anyURI values that contains one value to a
-     * single anyURI value.
-     *
-     * @param array $array
-     *
-     * @return anyURI
-     */
-    public function one_and_only_anyURI(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<anyURI>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

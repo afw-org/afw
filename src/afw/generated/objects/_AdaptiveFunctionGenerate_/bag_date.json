@@ -9,8 +9,7 @@
     "functionLabel": "bag_date",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "date",
+            "dataType": "date",
             "minArgs": 0,
             "name": "values",
             "optional": true

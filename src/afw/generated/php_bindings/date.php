@@ -134,7 +134,7 @@ class date
      *
      * Takes any number of date values and returns an array of date.
      *
-     * @param array $values
+     * @param date $values
      *
      * @return array
      */
@@ -511,29 +511,6 @@ class date
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_date()
-     *
-     * This converts an array of date values that contains one value to a
-     * single date value.
-     *
-     * @param array $array
-     *
-     * @return date
-     */
-    public function one_and_only_date(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<date>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

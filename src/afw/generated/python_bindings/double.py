@@ -172,7 +172,7 @@ def bag_double(session, values=None):
     Takes any number of double values and returns an array of double.
 
     Args:
-        values (list):
+        values (float):
 
     Returns:
         list:
@@ -845,35 +845,6 @@ def nex_double(session, arg1, arg2):
         "function": "nex<double>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_double(session, array):
-    """
-    Converts a one value array to a double value
-
-    This converts an array of double values that contains one value to a
-    single double value.
-
-    Args:
-        array (list):
-
-    Returns:
-        float:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<double>",
-        "array": array
     }
 
     request.add_action(action)

@@ -9,8 +9,7 @@
     "functionLabel": "bag_script",
     "parameters": [
         {
-            "dataType": "array",
-            "dataTypeParameter": "script",
+            "dataType": "script",
             "minArgs": 0,
             "name": "values",
             "optional": true

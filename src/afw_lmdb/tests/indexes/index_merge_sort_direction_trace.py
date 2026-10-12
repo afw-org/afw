@@ -108,7 +108,7 @@ def run():
                 { "op": "eq", "property": "group_sort", "value": "large" }
             ]
         }});
-        print("RESULT_COUNT=" + length(objects));
+        print("RESULT_COUNT=" + string(length(objects)));
 
         safe_evaluate(index_remove("lmdb", "group_sort"), null);
 

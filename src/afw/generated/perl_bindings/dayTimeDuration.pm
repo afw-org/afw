@@ -29,7 +29,6 @@ our @EXPORT_OK = qw(
     lt_dayTimeDuration 
     ne_dayTimeDuration 
     nex_dayTimeDuration 
-    one_and_only_dayTimeDuration 
     set_equals_dayTimeDuration 
     subset_dayTimeDuration 
     to_string_dayTimeDuration 
@@ -273,17 +272,6 @@ Checks for not equal value or type
     $arg2
 
 
-=head3 one_and_only_dayTimeDuration
-
-This converts an array of dayTimeDuration values that contains one value to a
-single dayTimeDuration value.
-Converts a one value array to a dayTimeDuration value
-
-=head4 Parameters
-
-    $array
-
-
 =head3 set_equals_dayTimeDuration
 
 Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2 are
@@ -525,17 +513,6 @@ sub nex_dayTimeDuration {
     $request->set("function" => "nex<dayTimeDuration>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_dayTimeDuration {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<dayTimeDuration>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

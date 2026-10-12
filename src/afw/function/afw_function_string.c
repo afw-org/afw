@@ -16,44 +16,18 @@
 
 
 /*
- * Adaptive function: add<string>
- *
- * afw_function_execute_add_string
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * Add (concatenate) a string with 1 or more values of any data type converted
- * to their string value and return the string result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function add<string>(
- *       string: string,
- *       values_1: any,
- *       ...values_rest: any[]
- *   ): string;
- * ```
- *
- * Parameters:
- *
- *   string - (string)
- *
- *   values - (1 or more any)
- *
- * Returns:
- *
- *   (string)
+ * add<string>(), string() and concat(): each argument as a string,
+ * concatenated. string() and concat() are documented to convert, so they
+ * convert here; the parameter evaluator never converts (#583). add<string>
+ * declares its parameters string, so its arguments are already strings.
  */
-const afw_value_t *
-afw_function_execute_add_string(
+static const afw_value_t *
+impl_concat_as_strings(
     afw_function_execute_t *x)
 {
     const afw_value_string_t **args;
     const afw_value_string_t * *v;
+    const afw_value_t *value;
     afw_size_t n;
     afw_size_t len;
     afw_utf8_octet_t *s;
@@ -62,10 +36,11 @@ afw_function_execute_add_string(
     /* Evaluate args and determine total len and allocate. */
     args = afw_pool_malloc(x->p, sizeof(afw_value_t *) * x->argc, x->xctx);
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
-        AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
-        if (!*v) {
-            *v = &afw_self_v_undefined;
-        }
+        AFW_FUNCTION_EVALUATE_PARAMETER(value, n);
+        *v = (value)
+            ? (const afw_value_string_t *)afw_value_convert_to_string(
+                value, true, x->p, x->xctx)
+            : &afw_self_v_undefined;
         len += (*v)->internal.len;
     }
 
@@ -87,6 +62,47 @@ afw_function_execute_add_string(
     /* Return String value. */
     return afw_value_create_unmanaged_string(
         afw_utf8_create(s, len, x->p, x->xctx), x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: add<string>
+ *
+ * afw_function_execute_add_string
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Add (concatenate) 2 or more string values and return the string result. Every
+ * value must be a string, the same as the + operator: to convert values while
+ * concatenating, use concat() or string().
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function add<string>(
+ *       values_1: string,
+ *       values_2: string,
+ *       ...values_rest: string[]
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (2 or more string)
+ *
+ * Returns:
+ *
+ *   (string)
+ */
+const afw_value_t *
+afw_function_execute_add_string(
+    afw_function_execute_t *x)
+{
+    return impl_concat_as_strings(x);
 }
 
 
@@ -130,41 +146,7 @@ const afw_value_t *
 afw_function_execute_concat(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t **args;
-    const afw_value_string_t * *v;
-    afw_size_t n;
-    afw_size_t len;
-    afw_utf8_octet_t *s;
-    afw_utf8_octet_t *c;
-
-    /* Evaluate args and determine total len and allocate. */
-    args = afw_pool_malloc(x->p, sizeof(afw_value_t *) * x->argc, x->xctx);
-    for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
-        AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
-        if (!*v) {
-            *v = &afw_self_v_undefined;
-        }
-        len += (*v)->internal.len;
-    }
-
-    /* If length is 0, return empty string. */
-    if (len == 0) {
-        return afw_v_a_empty_string;
-    }
-
-    /* Concatenate strings. */
-    s = afw_pool_calloc(x->p, len, x->xctx);
-    for (v = args, c = s, n = 0; n < x->argc;
-        c += (*v)->internal.len, v++, n++)
-    {
-        if ((*v)->internal.len > 0) {
-            memcpy(c, (*v)->internal.s, (*v)->internal.len);
-        }
-    }
-
-    /* Return String value. */
-    return afw_value_create_unmanaged_string(
-        afw_utf8_create(s, len, x->p, x->xctx), x->p, x->xctx);
+    return impl_concat_as_strings(x);
 }
 
 
@@ -351,41 +333,7 @@ const afw_value_t *
 afw_function_execute_string(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t **args;
-    const afw_value_string_t * *v;
-    afw_size_t n;
-    afw_size_t len;
-    afw_utf8_octet_t *s;
-    afw_utf8_octet_t *c;
-
-    /* Evaluate args and determine total len and allocate. */
-    args = afw_pool_malloc(x->p, sizeof(afw_value_t *) * x->argc, x->xctx);
-    for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
-        AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
-        if (!*v) {
-            *v = &afw_self_v_undefined;
-        }
-        len += (*v)->internal.len;
-    }
-
-    /* If length is 0, return empty string. */
-    if (len == 0) {
-        return afw_v_a_empty_string;
-    }
-
-    /* Concatenate strings. */
-    s = afw_pool_calloc(x->p, len, x->xctx);
-    for (v = args, c = s, n = 0; n < x->argc;
-        c += (*v)->internal.len, v++, n++)
-    {
-        if ((*v)->internal.len > 0) {
-            memcpy(c, (*v)->internal.s, (*v)->internal.len);
-        }
-    }
-
-    /* Return String value. */
-    return afw_value_create_unmanaged_string(
-        afw_utf8_create(s, len, x->p, x->xctx), x->p, x->xctx);
+    return impl_concat_as_strings(x);
 }
 
 

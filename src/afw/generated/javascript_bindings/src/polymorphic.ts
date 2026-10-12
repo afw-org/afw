@@ -119,11 +119,11 @@ export function afwAtLeastOneMemberOf(client : any, array1 : any[], array2 : any
  * Takes any number of `<dataType>` values and returns an array of
  * `<dataType>`.
  * 
- * @param {array} values -
+ * @param {} values -
  * 
  * @returns {array}
  */
-export function afwBag(client : any, values? : any[]) : any {
+export function afwBag(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -886,24 +886,6 @@ export function afwNormalizeToLowerCase(client : any, string : any) : any {
 
     _action["function"] = "normalize_to_lower_case";
     _action["string"] = string;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of `<dataType>` values that contains one value to a
- * single `<dataType>` value.
- * 
- * @param {array} array -
- * 
- * @returns {}
- */
-export function afwOneAndOnly(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

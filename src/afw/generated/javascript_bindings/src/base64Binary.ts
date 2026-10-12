@@ -86,11 +86,11 @@ export function afwAtLeastOneMemberOfBase64Binary(client : any, array1 : any[], 
  * Takes any number of base64Binary values and returns an array of
  * base64Binary.
  * 
- * @param {array} values -
+ * @param {base64Binary} values -
  * 
  * @returns {array}
  */
-export function afwBagBase64Binary(client : any, values? : any[]) : any {
+export function afwBagBase64Binary(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -368,24 +368,6 @@ export function afwNexBase64Binary(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<base64Binary>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of base64Binary values that contains one value to a
- * single base64Binary value.
- * 
- * @param {array} array -
- * 
- * @returns {base64Binary}
- */
-export function afwOneAndOnlyBase64Binary(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<base64Binary>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

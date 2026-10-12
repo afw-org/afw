@@ -11,16 +11,16 @@
 import requests
 import json
 
-def add_string(session, string, values):
+def add_string(session, values):
     """
     Add (concatenate) strings
 
-    Add (concatenate) a string with 1 or more values of any data type
-    converted to their string value and return the string result.
+    Add (concatenate) 2 or more string values and return the string result.
+    Every value must be a string, the same as the + operator: to convert
+    values while concatenating, use concat() or string().
 
     Args:
-        string (str):
-        values (object):
+        values (str):
 
     Returns:
         str:
@@ -30,7 +30,6 @@ def add_string(session, string, values):
 
     action = {
         "function": "add<string>",
-        "string": string,
         "values": values
     }
 
@@ -174,7 +173,7 @@ def bag_string(session, values=None):
     Takes any number of string values and returns an array of string.
 
     Args:
-        values (list):
+        values (str):
 
     Returns:
         list:
@@ -970,35 +969,6 @@ def normalize_to_lower_case_string(session, string):
     action = {
         "function": "normalize_to_lower_case<string>",
         "string": string
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_string(session, array):
-    """
-    Converts a one value array to a string value
-
-    This converts an array of string values that contains one value to a
-    single string value.
-
-    Args:
-        array (list):
-
-    Returns:
-        str:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<string>",
-        "array": array
     }
 
     request.add_action(action)

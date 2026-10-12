@@ -160,7 +160,7 @@ class dateTime
      *
      * Takes any number of dateTime values and returns an array of dateTime.
      *
-     * @param array $values
+     * @param dateTime $values
      *
      * @return array
      */
@@ -538,29 +538,6 @@ class dateTime
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_dateTime()
-     *
-     * This converts an array of dateTime values that contains one value to a
-     * single dateTime value.
-     *
-     * @param array $array
-     *
-     * @return dateTime
-     */
-    public function one_and_only_dateTime(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<dateTime>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

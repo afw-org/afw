@@ -28,22 +28,21 @@ class string
     /**
      * add_string()
      *
-     * Add (concatenate) a string with 1 or more values of any data type
-     * converted to their string value and return the string result.
+     * Add (concatenate) 2 or more string values and return the string result.
+     * Every value must be a string, the same as the + operator: to convert
+     * values while concatenating, use concat() or string().
      *
-     * @param string $string
-     * @param $values
+     * @param string $values
      *
      * @return string
      */
-    public function add_string(, $string, $values)
+    public function add_string(, $values)
     {
         $request = $this->$session->request();
 
         $request->set("function", "add<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("string", $string);
         $request->set("values", $values);
 
         /* pass along any optional parameters to the request payload */
@@ -157,7 +156,7 @@ class string
      *
      * Takes any number of string values and returns an array of string.
      *
-     * @param array $values
+     * @param string $values
      *
      * @return array
      */
@@ -823,29 +822,6 @@ class string
 
         /* pass along required parameters to the request payload */
         $request->set("string", $string);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_string()
-     *
-     * This converts an array of string values that contains one value to a
-     * single string value.
-     *
-     * @param array $array
-     *
-     * @return string
-     */
-    public function one_and_only_string(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<string>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

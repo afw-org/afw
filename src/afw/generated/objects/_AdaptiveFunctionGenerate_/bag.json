@@ -9,11 +9,10 @@
     "functionLabel": "bag",
     "parameters": [
         {
-            "dataType": "array",
             "minArgs": 0,
             "name": "values",
             "optional": true,
-            "polymorphicDataTypeParameter": true
+            "polymorphicDataType": true
         }
     ],
     "polymorphic": true,

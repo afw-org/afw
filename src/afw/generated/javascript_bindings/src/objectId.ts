@@ -63,11 +63,11 @@ export function afwAsObjectId(client : any, value : any) : any {
 /**
  * Takes any number of objectId values and returns an array of objectId.
  * 
- * @param {array} values -
+ * @param {objectId} values -
  * 
  * @returns {array}
  */
-export function afwBagObjectId(client : any, values? : any[]) : any {
+export function afwBagObjectId(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 

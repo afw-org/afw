@@ -32,7 +32,6 @@ our @EXPORT_OK = qw(
     min_time 
     ne_time 
     nex_time 
-    one_and_only_time 
     set_equals_time 
     subset_time 
     to_string_time 
@@ -326,17 +325,6 @@ Checks for not equal value or type
     $arg2
 
 
-=head3 one_and_only_time
-
-This converts an array of time values that contains one value to a single time
-value.
-Converts a one value array to a time value
-
-=head4 Parameters
-
-    $array
-
-
 =head3 set_equals_time
 
 Returns boolean true if time array1 and time array2 are subsets of each other
@@ -613,17 +601,6 @@ sub nex_time {
     $request->set("function" => "nex<time>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub one_and_only_time {
-    my ($array) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "one_and_only<time>");
-    $request->set("array", $array);
 
     return $request->getResult();
 }

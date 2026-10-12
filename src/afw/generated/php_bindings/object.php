@@ -140,7 +140,7 @@ class object
      *
      * Takes any number of object values and returns an array of object.
      *
-     * @param array $values
+     * @param object $values
      *
      * @return array
      */

@@ -84,7 +84,7 @@ def bag_null(session, values=None):
     Takes any number of null values and returns an array of null.
 
     Args:
-        values (list):
+        values (None):
 
     Returns:
         list:

@@ -190,13 +190,13 @@ afw_function_execute_at_least_one_member_of(
  *
  * ```
  *   function bag <dataType>(
- *       ...values: array
+ *       ...values: dataType[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more ``<Type>`[]`)
+ *   values - (0 or more ``<Type>``)
  *
  * Returns:
  *
@@ -1716,66 +1716,6 @@ afw_function_execute_nex(
     }
 
     return (cmp == 0) ? afw_boolean_v_false : afw_boolean_v_true;
-}
-
-
-
-/*
- * Common polymorphic function for one_and_only
- *
- * afw_function_execute_one_and_only
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * This converts an array of `<dataType>` values that contains one value to a
- * single `<dataType>` value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, hexBinary, integer, ipAddress, rfc822Name, string, time, x500Name,
- *   yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function one_and_only <dataType>(
- *       array: array[]
- *   ): dataType;
- * ```
- *
- * Parameters:
- *
- *   array - (array[])
- *
- * Returns:
- *
- *   (``<Type>``)
- *
- * Errors thrown:
- *
- *   argument_error - array does not contain exactly one value
- */
-const afw_value_t *
-afw_function_execute_one_and_only(
-    afw_function_execute_t *x)
-{
-    const afw_value_array_t *array;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *value;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    if (afw_array_get_count(array->internal, x->xctx) != 1) {
-        AFW_THROW_ERROR_Z(argument_error,
-            "arg must have exactly one value", x->xctx);
-    }
-
-    iterator = NULL;
-    value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
-    return value;
 }
 
 

@@ -66,12 +66,12 @@ const afw_value_t *
 afw_function_execute_compile_template(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *template;
+    const afw_value_template_t *template;
     const afw_value_t *result;
     const afw_value_t *compiled;
     const afw_utf8_t *listing;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 1, template);
 
     result = afw_compile_to_value(
         &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
@@ -135,11 +135,11 @@ const afw_value_t *
 afw_function_execute_eval_template(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *template;
+    const afw_value_template_t *template;
     const afw_value_t *compiled;
     const afw_value_t *value;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 1, template);
 
     /* compile dest is x->p (last-releases dest p). Evaluate dest is
      * x->p. Evaluate is caller does not release. */

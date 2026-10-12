@@ -155,7 +155,7 @@ class double
      *
      * Takes any number of double values and returns an array of double.
      *
-     * @param array $values
+     * @param double $values
      *
      * @return array
      */
@@ -701,29 +701,6 @@ class double
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * one_and_only_double()
-     *
-     * This converts an array of double values that contains one value to a
-     * single double value.
-     *
-     * @param array $array
-     *
-     * @return double
-     */
-    public function one_and_only_double(, $array)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "one_and_only<double>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

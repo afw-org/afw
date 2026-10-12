@@ -104,11 +104,11 @@ export function afwAtLeastOneMemberOfDate(client : any, array1 : any[], array2 :
 /**
  * Takes any number of date values and returns an array of date.
  * 
- * @param {array} values -
+ * @param {date} values -
  * 
  * @returns {array}
  */
-export function afwBagDate(client : any, values? : any[]) : any {
+export function afwBagDate(client : any, values? : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -416,24 +416,6 @@ export function afwNexDate(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<date>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * This converts an array of date values that contains one value to a single
- * date value.
- * 
- * @param {array} array -
- * 
- * @returns {date}
- */
-export function afwOneAndOnlyDate(client : any, array : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "one_and_only<date>";
-    _action["array"] = array;
 
     return client.perform(_action);
 }

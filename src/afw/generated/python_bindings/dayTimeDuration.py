@@ -117,7 +117,7 @@ def bag_dayTimeDuration(session, values=None):
     dayTimeDuration.
 
     Args:
-        values (list):
+        values (object):
 
     Returns:
         list:
@@ -504,35 +504,6 @@ def nex_dayTimeDuration(session, arg1, arg2):
         "function": "nex<dayTimeDuration>",
         "arg1": arg1,
         "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def one_and_only_dayTimeDuration(session, array):
-    """
-    Converts a one value array to a dayTimeDuration value
-
-    This converts an array of dayTimeDuration values that contains one value
-    to a single dayTimeDuration value.
-
-    Args:
-        array (list):
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "one_and_only<dayTimeDuration>",
-        "array": array
     }
 
     request.add_action(action)
