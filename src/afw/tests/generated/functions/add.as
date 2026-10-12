@@ -7,14 +7,14 @@
 //?
 //? test: add-1
 //? description: ADD with integers
-//? expect: integer(17)
+//? expect: 17
 //? source: ...
 
 add(
-    integer(6),
-    integer(5),
-    integer(4),
-    integer(2)
+    6,
+    5,
+    4,
+    2
 )
 
 //?
@@ -24,7 +24,7 @@ add(
 //? source: ...
 
 add(
-    integer(9223372036854775807),
-    integer(1)
+    9223372036854775807,
+    1
 )
 

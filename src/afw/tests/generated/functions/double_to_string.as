@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<double>(
-    double(1.3)
+    1.3
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<double>(
 //? source: ...
 
 to_string<double>(
-    double(12400.0)
+    12400.0
 )
 
 //?
@@ -31,7 +31,7 @@ to_string<double>(
 //? source: ...
 
 to_string<double>(
-    double(-Infinity)
+    -Infinity
 )
 
 //?
@@ -41,7 +41,7 @@ to_string<double>(
 //? source: ...
 
 to_string<double>(
-    double(18.44224E18)
+    18.44224E18
 )
 
 //?
@@ -51,7 +51,7 @@ to_string<double>(
 //? source: ...
 
 to_string<double>(
-    double(18.44002E-004)
+    18.44002E-004
 )
 
 //?
@@ -61,6 +61,6 @@ to_string<double>(
 //? source: ...
 
 to_string<double>(
-    double(0.0)
+    0.0
 )
 

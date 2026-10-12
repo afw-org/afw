@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<dnsName>(
-    dnsName("example.org")
+    "example.org"dnsName
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<dnsName>(
 //? source: ...
 
 to_string<dnsName>(
-    dnsName("microsoft.com")
+    "microsoft.com"dnsName
 )
 
 //?

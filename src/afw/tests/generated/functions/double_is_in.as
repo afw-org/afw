@@ -11,12 +11,12 @@
 //? source: ...
 
 is_in<double>(
-    double(1.01E4),
+    1.01E4,
     bag<double>(
-        double(4.0),
-        double(2345678.0),
-        double(23.0E35),
-        double(1.01E4)
+        4.0,
+        2345678.0,
+        23.0E35,
+        1.01E4
     )
 )
 
@@ -27,12 +27,12 @@ is_in<double>(
 //? source: ...
 
 is_in<double>(
-    double(1.01E4),
+    1.01E4,
     bag<double>(
-        double(4.0),
-        double(2345678.0),
-        double(23.0E35),
-        double(10100.0)
+        4.0,
+        2345678.0,
+        23.0E35,
+        10100.0
     )
 )
 
@@ -43,12 +43,12 @@ is_in<double>(
 //? source: ...
 
 is_in<double>(
-    double(1.01E4),
+    1.01E4,
     bag<double>(
-        double(4.0),
-        double(2345678.0),
-        double(23.0E35),
-        double(1.01E5)
+        4.0,
+        2345678.0,
+        23.0E35,
+        1.01E5
     )
 )
 

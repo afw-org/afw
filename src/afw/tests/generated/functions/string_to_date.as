@@ -7,7 +7,7 @@
 //?
 //? test: to_date<string>-1
 //? description: One
-//? expect: date("1970-01-01")
+//? expect: "1970-01-01"date
 //? source: ...
 
 to_date<string>(
@@ -17,7 +17,7 @@ to_date<string>(
 //?
 //? test: to_date<string>-2
 //? description: Two
-//? expect: date("-1970-01-01")
+//? expect: "-1970-01-01"date
 //? source: ...
 
 to_date<string>(
@@ -27,7 +27,7 @@ to_date<string>(
 //?
 //? test: to_date<string>-3
 //? description: Three
-//? expect: date("1970-01-01+05:00")
+//? expect: "1970-01-01+05:00"date
 //? source: ...
 
 to_date<string>(

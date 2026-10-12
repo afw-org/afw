@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<base64Binary>-1
 //? description: x
-//? expect: base64Binary("0F+40A==")
+//? expect: "0F+40A=="base64Binary
 //? source: ...
 
 one_and_only<base64Binary>(
     bag<base64Binary>(
-        base64Binary("0F+40A==")
+        "0F+40A=="base64Binary
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<base64Binary>(
 
 one_and_only<base64Binary>(
     bag<base64Binary>(
-        base64Binary("x"),
-        base64Binary("x")
+        "x"base64Binary,
+        "x"base64Binary
     )
 )
 

@@ -19,15 +19,15 @@ bag<integer>(
 //? expect: ...
 
 bag<integer>(
-    integer(52),
-    integer(-15)
+    52,
+    -15
 )
 
 //? source: ...
 
 bag<integer>(
-    integer(52),
-    integer(-15)
+    52,
+    -15
 )
 
 //?
@@ -36,52 +36,52 @@ bag<integer>(
 //? expect: ...
 
 bag<integer>(
-    integer(200),
-    integer(11),
-    integer(-11),
-    integer(96),
-    integer(99),
-    integer(-102),
-    integer(-586),
-    integer(986),
-    integer(387),
-    integer(5126189454),
-    integer(-5126189454),
-    integer(200),
-    integer(11),
-    integer(-11),
-    integer(96),
-    integer(99),
-    integer(-102),
-    integer(-586),
-    integer(986),
-    integer(0),
-    integer(0)
+    200,
+    11,
+    -11,
+    96,
+    99,
+    -102,
+    -586,
+    986,
+    387,
+    5126189454,
+    -5126189454,
+    200,
+    11,
+    -11,
+    96,
+    99,
+    -102,
+    -586,
+    986,
+    0,
+    0
 )
 
 //? source: ...
 
 bag<integer>(
-    integer(200),
-    integer(11),
-    integer(-11),
-    integer(96),
-    integer(99),
-    integer(-102),
-    integer(-586),
-    integer(986),
-    integer(387),
-    integer(5126189454),
-    integer(-5126189454),
-    integer(200),
-    integer(11),
-    integer(-11),
-    integer(96),
-    integer(99),
-    integer(-102),
-    integer(-586),
-    integer(986),
-    integer(-0),
-    integer(0)
+    200,
+    11,
+    -11,
+    96,
+    99,
+    -102,
+    -586,
+    986,
+    387,
+    5126189454,
+    -5126189454,
+    200,
+    11,
+    -11,
+    96,
+    99,
+    -102,
+    -586,
+    986,
+    -0,
+    0
 )
 

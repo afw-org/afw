@@ -10,4 +10,4 @@
 //? expect: error:numberOfOctets must be between 0 and 1000000 inclusive
 //? source: ...
 
-random_base64Binary(integer(-1))
+random_base64Binary(-1)

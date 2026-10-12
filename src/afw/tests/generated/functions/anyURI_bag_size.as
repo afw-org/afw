@@ -7,25 +7,25 @@
 //?
 //? test: bag_size<anyURI>-1
 //? description: x
-//? expect: integer(7)
+//? expect: 7
 //? source: ...
 
 bag_size<anyURI>(
     bag<anyURI>(
-        anyURI("http://www.w3schools.com/images/smiley.gif"),
-        anyURI("http://datypic.com"),
-        anyURI("../%C3%A9dition.html"),
-        anyURI("../dition.html"),
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://www.w3schools.com/images/smiley.gif"anyURI,
+        "http://datypic.com"anyURI,
+        "../%C3%A9dition.html"anyURI,
+        "../dition.html"anyURI,
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     )
 )
 
 //?
 //? test: bag_size<anyURI>-2
 //? description: Empty
-//? expect: integer(0)
+//? expect: 0
 //? source: ...
 
 bag_size<anyURI>(

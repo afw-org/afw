@@ -7,32 +7,32 @@
 //?
 //? test: bag_size<dayTimeDuration>-1
 //? description: 7 items
-//? expect: integer(7)
+//? expect: 7
 //? source: ...
 
 bag_size<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("PT10H30M"),
-        dayTimeDuration("PT10H40M"),
-        dayTimeDuration("PT10H50M"),
-        dayTimeDuration("PT10H10M"),
-        dayTimeDuration("PT10H20M"),
-        dayTimeDuration("PT10H31M"),
-        dayTimeDuration("PT10H32M")
+        "PT10H30M"dayTimeDuration,
+        "PT10H40M"dayTimeDuration,
+        "PT10H50M"dayTimeDuration,
+        "PT10H10M"dayTimeDuration,
+        "PT10H20M"dayTimeDuration,
+        "PT10H31M"dayTimeDuration,
+        "PT10H32M"dayTimeDuration
     )
 )
 
 //?
 //? test: bag_size<dayTimeDuration>-2
 //? description: 3 items
-//? expect: integer(3)
+//? expect: 3
 //? source: ...
 
 bag_size<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("PT10H30M"),
-        dayTimeDuration("PT10H40M"),
-        dayTimeDuration("PT10H50M")
+        "PT10H30M"dayTimeDuration,
+        "PT10H40M"dayTimeDuration,
+        "PT10H50M"dayTimeDuration
     )
 )
 

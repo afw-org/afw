@@ -296,28 +296,6 @@ class integer
     }
 
     /**
-     * integer()
-     *
-     * Converts value to data type integer returning integer result.
-     *
-     * @param $value Value to convert
-     *
-     * @return integer Converted value
-     */
-    public function integer(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "integer");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * intersection_integer()
      *
      * Returns an array of integer with the values that are common to both

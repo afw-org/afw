@@ -192,7 +192,7 @@ includes<array>(
         3
     ]
 ],
-    integer(1)
+    1
 )
 
 //?
@@ -217,7 +217,7 @@ includes<array>(
         3
     ]
 ],
-    integer(2)
+    2
 )
 
 //?
@@ -242,7 +242,7 @@ includes<array>(
         3
     ]
 ],
-    integer(3)
+    3
 )
 
 //?
@@ -352,8 +352,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(0)
+    1,
+    0
 )
 
 //?
@@ -378,8 +378,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(1)
+    1,
+    1
 )
 
 //?
@@ -404,8 +404,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(2)
+    1,
+    2
 )
 
 //?
@@ -430,8 +430,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(3)
+    1,
+    3
 )
 
 //?
@@ -456,8 +456,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(3)
+    1,
+    3
 )
 
 //?
@@ -482,8 +482,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(5)
+    1,
+    5
 )
 
 //?
@@ -508,8 +508,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(6)
+    1,
+    6
 )
 
 //?
@@ -534,8 +534,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(7)
+    1,
+    7
 )
 
 //?
@@ -560,8 +560,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(8)
+    1,
+    8
 )
 
 //?
@@ -586,8 +586,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(9)
+    1,
+    9
 )
 
 //?
@@ -612,8 +612,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(10)
+    1,
+    10
 )
 
 //?
@@ -638,8 +638,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-0)
+    1,
+    -0
 )
 
 //?
@@ -664,8 +664,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-1)
+    1,
+    -1
 )
 
 //?
@@ -690,8 +690,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-2)
+    1,
+    -2
 )
 
 //?
@@ -716,8 +716,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-3)
+    1,
+    -3
 )
 
 //?
@@ -742,8 +742,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-4)
+    1,
+    -4
 )
 
 //?
@@ -768,8 +768,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-5)
+    1,
+    -5
 )
 
 //?
@@ -794,8 +794,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-6)
+    1,
+    -6
 )
 
 //?
@@ -820,8 +820,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-7)
+    1,
+    -7
 )
 
 //?
@@ -846,8 +846,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-8)
+    1,
+    -8
 )
 
 //?
@@ -872,8 +872,8 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-9)
+    1,
+    -9
 )
 
 //?
@@ -898,7 +898,7 @@ includes<array>(
         3
     ]
 ],
-    integer(1),
-    integer(-10)
+    1,
+    -10
 )
 

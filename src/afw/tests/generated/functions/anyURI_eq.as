@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
-    anyURI("http://datypic.com/prod.html#shirt")
+    "http://datypic.com/prod.html#shirt"anyURI,
+    "http://datypic.com/prod.html#shirt"anyURI
 )
 
 //?
@@ -22,8 +22,8 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
-    anyURI("https://datypic.com/prod.html#shirt")
+    "http://datypic.com/prod.html#shirt"anyURI,
+    "https://datypic.com/prod.html#shirt"anyURI
 )
 
 //?
@@ -33,6 +33,6 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("x")
+    "x"anyURI
 )
 

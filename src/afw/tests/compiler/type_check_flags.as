@@ -85,7 +85,7 @@ flag_set([
 ], false);
 flag_set(["compile:typeCheckCompileOnly"], true);
 const r = evaluate(compile<script>(script(
-    "const s: string = \"1\";\nconst x: integer = integer(s);\nreturn x;"
+    "const s: string = \"1\";\nconst x: integer = to_integer(s);\nreturn x;"
 )));
 assert(r === 1);
 return 0;
@@ -166,7 +166,7 @@ try {
 assert(saw);
 const r: any = evaluate(compile<script>(script(
     "const f = function (a: integer) { return a; };\n" +
-    "return f(integer(\"5\"));"
+    "return f(to_integer(\"5\"));"
 )));
 assert(r === 5);
 return 0;

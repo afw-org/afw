@@ -11,14 +11,14 @@
 //? source: ...
 
 is_in<yearMonthDuration>(
-    yearMonthDuration("P0Y"),
+    "P0Y"yearMonthDuration,
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     )
 )
 
@@ -29,14 +29,14 @@ is_in<yearMonthDuration>(
 //? source: ...
 
 is_in<yearMonthDuration>(
-    yearMonthDuration("P2Y6M"),
+    "P2Y6M"yearMonthDuration,
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     )
 )
 
@@ -47,14 +47,14 @@ is_in<yearMonthDuration>(
 //? source: ...
 
 is_in<yearMonthDuration>(
-    yearMonthDuration("P7Y"),
+    "P7Y"yearMonthDuration,
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     )
 )
 

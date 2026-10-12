@@ -4,10 +4,11 @@
     "dataType": "objectId",
     "dataTypeParameterType": "ObjectType",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adapter id and object type id.",
+    "description": "Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adapter id and object type id. In a script, write one as a typed literal: \"oid1\"objectId.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
     "relationalCompares": true,
-    "scalar": true
+    "scalar": true,
+    "typedLiteral": true
 }

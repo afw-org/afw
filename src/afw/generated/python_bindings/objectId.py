@@ -384,34 +384,6 @@ def nex_objectId(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def objectId(session, value):
-    """
-    Convert to data type objectId
-
-    Converts value to data type objectId returning objectId result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "objectId",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def to_string_objectId(session, value):
     """
     Converts value to string

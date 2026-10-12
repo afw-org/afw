@@ -201,28 +201,6 @@ class ipAddress
     }
 
     /**
-     * ipAddress()
-     *
-     * Converts value to data type ipAddress returning ipAddress result.
-     *
-     * @param $value Value to convert
-     *
-     * @return ipAddress Converted value
-     */
-    public function ipAddress(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "ipAddress");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * is_in_ipAddress()
      *
      * Checks whether ipAddress value is in array of ipAddress array and

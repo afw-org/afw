@@ -94,7 +94,7 @@ def run():
                 "-s",
                 "expression",
                 "-x",
-                "integer(1)",
+                "1",
             ],
             cwd=td,
         )
@@ -172,7 +172,7 @@ def run():
                 { path: true, objectId: true, objectType: true });
             assert(o.name === "seed", "name");
             assert(o.nested.inner === "ok", "nested");
-            assert(meta(o).path === anyURI("/yamlfile/YamlOt/seed"), "path");
+            assert(meta(o).path === "/yamlfile/YamlOt/seed"anyURI, "path");
             assert(meta(o).objectId === "seed", "objectId");
             assert(meta(o).objectType === "YamlOt", "objectType");
             return 0;

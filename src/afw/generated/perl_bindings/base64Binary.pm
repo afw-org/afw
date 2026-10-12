@@ -17,7 +17,6 @@ our @EXPORT_OK = qw(
     at_least_one_member_of_base64Binary 
     bag_base64Binary 
     bag_size_base64Binary 
-    base64Binary 
     decode_to_string_base64Binary 
     eq_base64Binary 
     eqx_base64Binary 
@@ -95,17 +94,6 @@ Returns the number of values in a bag
 
     $value
 
-
-=head3 base64Binary
-
-Converts value to data type base64Binary returning base64Binary result.
-Convert to data type base64Binary
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 decode_to_string_base64Binary
 
@@ -387,17 +375,6 @@ sub bag_size_base64Binary {
     my $request = $session->request()
 
     $request->set("function" => "bag_size<base64Binary>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub base64Binary {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "base64Binary");
     $request->set("value", $value);
 
     return $request->getResult();

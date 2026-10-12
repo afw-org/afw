@@ -7,34 +7,34 @@
 //?
 //? test: subtract<integer>-1
 //? description: Subtract 67 and 1
-//? expect: integer(66)
+//? expect: 66
 //? source: ...
 
 subtract<integer>(
-    integer(67),
-    integer(1)
+    67,
+    1
 )
 
 //?
 //? test: subtract<integer>-2
 //? description: Subtract -9223372036854775807 and -7
-//? expect: integer(-9223372036854775800)
+//? expect: -9223372036854775800
 //? source: ...
 
 subtract<integer>(
-    integer(-9223372036854775807),
-    integer(-7)
+    -9223372036854775807,
+    -7
 )
 
 //?
 //? test: subtract<integer>-3
 //? description: Subtract 9223372036854775807 and 10
-//? expect: integer(9223372036854775797)
+//? expect: 9223372036854775797
 //? source: ...
 
 subtract<integer>(
-    integer(9223372036854775807),
-    integer(10)
+    9223372036854775807,
+    10
 )
 
 //?
@@ -44,8 +44,8 @@ subtract<integer>(
 //? source: ...
 
 subtract<integer>(
-    integer(9223372036854775807),
-    integer(-1)
+    9223372036854775807,
+    -1
 )
 
 //?
@@ -55,8 +55,8 @@ subtract<integer>(
 //? source: ...
 
 subtract<integer>(
-    integer(x),
-    integer(x)
+    to_integer(x),
+    to_integer(x)
 )
 
 //?
@@ -66,17 +66,17 @@ subtract<integer>(
 //? source: ...
 
 subtract<integer>(
-    integer(0),
-    integer("-9223372036854775808")
+    0,
+    to_integer("-9223372036854775808")
 )
 
 //?
 //? test: subtract<integer>-7
 //? description: Subtract the minimum integer from -1, which is the maximum integer (no overflow)
-//? expect: integer(9223372036854775807)
+//? expect: 9223372036854775807
 //? source: ...
 
 subtract<integer>(
-    integer(-1),
-    integer("-9223372036854775808")
+    -1,
+    to_integer("-9223372036854775808")
 )

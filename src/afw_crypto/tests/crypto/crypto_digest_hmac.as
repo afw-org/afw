@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 // Base64 of SHA-256("") = 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-const d = crypto_digest("SHA-256", base64Binary(""));
+const d = crypto_digest("SHA-256", ""base64Binary);
 assert(string(d) === "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=");
 
 return 0;
@@ -25,7 +25,7 @@ return 0;
 #!/usr/bin/env afw
 
 const key = random_base64Binary(32);
-const data = base64Binary("aGVsbG8="); // "hello"
+const data = "aGVsbG8="base64Binary; // "hello"
 const mac = crypto_hmac("HMAC-SHA-256", key, data);
 assert(crypto_hmac_verify("HMAC-SHA-256", key, data, mac) === true);
 assert(crypto_hmac_verify("HMAC-SHA-256", key, data, random_base64Binary(32)) === false);

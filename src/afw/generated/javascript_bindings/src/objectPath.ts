@@ -267,23 +267,6 @@ export function afwNexObjectPath(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type objectPath returning objectPath result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {objectPath} Converted value
- */
-export function afwObjectPath(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "objectPath";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Converts objectPath value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  * 

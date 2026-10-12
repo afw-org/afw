@@ -270,7 +270,7 @@ return 0;
             The <literal>expect</literal> key is usually Adaptive source 
             for the return value you want, for instance 
             <literal>0</literal>, <literal>true</literal>, 
-            <literal>"ok"</literal>, <literal>anyURI("…")</literal>, or 
+            <literal>"ok"</literal>, <literal>"…"anyURI</literal>, or 
             <literal>undefined</literal>. It is not free text. The runner 
             compiles and evaluates that source and compares it to the 
             result of the case. A <literal>&lt;&lt;&lt;</literal> file for 

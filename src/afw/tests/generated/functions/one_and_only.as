@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<integer>(
-    bag<integer>(integer(1), integer(2))
+    bag<integer>(1, 2)
 )
 
 //?

@@ -24,7 +24,7 @@ retrieve_objects(
     undefined,
     undefined,
     undefined,
-    integer(-1)
+    -1
 )
 
 //?
@@ -39,5 +39,5 @@ retrieve_objects(
     undefined,
     undefined,
     undefined,
-    integer(1)
+    1
 )

@@ -12,14 +12,14 @@
 
 subset<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P3Y6M"),
-        yearMonthDuration("P30M"),
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M")
+        "P3Y6M"yearMonthDuration,
+        "P30M"yearMonthDuration,
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration
     )
 )
 
@@ -31,14 +31,14 @@ subset<yearMonthDuration>(
 
 subset<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P60M")
+        "P2Y6M"yearMonthDuration,
+        "P60M"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P3Y6M"),
-        yearMonthDuration("P30M"),
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M")
+        "P3Y6M"yearMonthDuration,
+        "P30M"yearMonthDuration,
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration
     )
 )
 
@@ -50,12 +50,12 @@ subset<yearMonthDuration>(
 
 subset<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("x"),
-        yearMonthDuration("x")
+        "x"yearMonthDuration,
+        "x"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("x"),
-        yearMonthDuration("x")
+        "x"yearMonthDuration,
+        "x"yearMonthDuration
     )
 )
 

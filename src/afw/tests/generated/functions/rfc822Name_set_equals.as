@@ -12,12 +12,12 @@
 
 set_equals<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINPart2")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINPart2"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINPart2")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINPart2"rfc822Name
     )
 )
 
@@ -29,12 +29,12 @@ set_equals<rfc822Name>(
 
 set_equals<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINPart2")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINPart2"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("localPart@DOMAINParT2")
+        "localPart@DOMAINPart"rfc822Name,
+        "localPart@DOMAINParT2"rfc822Name
     )
 )
 
@@ -46,8 +46,8 @@ set_equals<rfc822Name>(
 
 set_equals<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("x"),
-        rfc822Name("x")
+        "x"rfc822Name,
+        "x"rfc822Name
     )
 )
 

@@ -21,7 +21,6 @@ our @EXPORT_OK = qw(
     bag_size_double 
     ceil_double 
     divide_double 
-    double 
     eq_double 
     eqx_double 
     floor_double 
@@ -153,17 +152,6 @@ Divide numbers
 
     $divisor
 
-
-=head3 double
-
-Converts value to data type double returning double result.
-Convert to data type double
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 eq_double
 
@@ -617,17 +605,6 @@ sub divide_double {
     $request->set("function" => "divide<double>");
     $request->set("dividend", $dividend);
     $request->set("divisor", $divisor);
-
-    return $request->getResult();
-}
-
-sub double {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "double");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

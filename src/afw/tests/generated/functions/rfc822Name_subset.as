@@ -12,12 +12,12 @@
 
 subset<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("anderson@sun.com"),
-        rfc822Name("localpart@domainpart")
+        "anderson@sun.com"rfc822Name,
+        "localpart@domainpart"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("anderson@sun.com"),
-        rfc822Name("localpart@domainpart")
+        "anderson@sun.com"rfc822Name,
+        "localpart@domainpart"rfc822Name
     )
 )
 
@@ -29,12 +29,12 @@ subset<rfc822Name>(
 
 subset<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("anderson@sun.com"),
-        rfc822Name("localpart@domainpart")
+        "anderson@sun.com"rfc822Name,
+        "localpart@domainpart"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("anderson@sun.com"),
-        rfc822Name("bobo@sun.com")
+        "anderson@sun.com"rfc822Name,
+        "bobo@sun.com"rfc822Name
     )
 )
 
@@ -46,17 +46,17 @@ subset<rfc822Name>(
 
 subset<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("anderson@sun.com"),
-        rfc822Name("localpart@domainpart")
+        "anderson@sun.com"rfc822Name,
+        "localpart@domainpart"rfc822Name
     ),
     bag<rfc822Name>(
-        rfc822Name("anderson@sun.com"),
-        rfc822Name("bobo@sun.org"),
-        rfc822Name("anderson@sun.edu"),
-        rfc822Name("bobobo@sun.com"),
-        rfc822Name("banderson@sun.com"),
-        rfc822Name("bonobo@sun.com"),
-        rfc822Name("localpart@domainpart")
+        "anderson@sun.com"rfc822Name,
+        "bobo@sun.org"rfc822Name,
+        "anderson@sun.edu"rfc822Name,
+        "bobobo@sun.com"rfc822Name,
+        "banderson@sun.com"rfc822Name,
+        "bonobo@sun.com"rfc822Name,
+        "localpart@domainpart"rfc822Name
     )
 )
 
@@ -68,8 +68,8 @@ subset<rfc822Name>(
 
 subset<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("x"),
-        rfc822Name("x")
+        "x"rfc822Name,
+        "x"rfc822Name
     )
 )
 

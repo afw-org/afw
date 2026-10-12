@@ -7,7 +7,7 @@
 //?
 //? test: bag_size<boolean>-1
 //? description: Boolean bag size of 2
-//? expect: integer(2)
+//? expect: 2
 //? source: ...
 
 bag_size<boolean>(
@@ -20,7 +20,7 @@ bag_size<boolean>(
 //?
 //? test: bag_size<boolean>-2
 //? description: Boolean bag size of 0
-//? expect: integer(0)
+//? expect: 0
 //? source: ...
 
 bag_size<boolean>(
@@ -31,7 +31,7 @@ bag_size<boolean>(
 //?
 //? test: bag_size<boolean>-3
 //? description: Boolean bag size of 12
-//? expect: integer(12)
+//? expect: 12
 //? source: ...
 
 bag_size<boolean>(

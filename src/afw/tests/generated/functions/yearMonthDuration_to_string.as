@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<yearMonthDuration>(
-    yearMonthDuration("P2Y6M")
+    "P2Y6M"yearMonthDuration
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<yearMonthDuration>(
 //? source: ...
 
 to_string<yearMonthDuration>(
-    yearMonthDuration("-P2Y6M")
+    "-P2Y6M"yearMonthDuration
 )
 
 //?
@@ -31,7 +31,7 @@ to_string<yearMonthDuration>(
 //? source: ...
 
 to_string<yearMonthDuration>(
-    yearMonthDuration("P6M")
+    "P6M"yearMonthDuration
 )
 
 //?
@@ -41,6 +41,6 @@ to_string<yearMonthDuration>(
 //? source: ...
 
 to_string<yearMonthDuration>(
-    yearMonthDuration("x")
+    "x"yearMonthDuration
 )
 

@@ -385,34 +385,6 @@ def nex_objectPath(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def objectPath(session, value):
-    """
-    Convert to data type objectPath
-
-    Converts value to data type objectPath returning objectPath result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "objectPath",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def to_string_objectPath(session, value):
     """
     Converts value to string

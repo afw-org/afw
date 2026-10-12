@@ -7,7 +7,7 @@
 //?
 //? test: to_dayTimeDuration<string>-1
 //? description: -P1DT10H30M
-//? expect: dayTimeDuration("-P1DT10H30M")
+//? expect: "-P1DT10H30M"dayTimeDuration
 //? source: ...
 
 to_dayTimeDuration<string>(
@@ -17,7 +17,7 @@ to_dayTimeDuration<string>(
 //?
 //? test: to_dayTimeDuration<string>-2
 //? description: P1DT10H30M
-//? expect: dayTimeDuration("P1DT10H30M")
+//? expect: "P1DT10H30M"dayTimeDuration
 //? source: ...
 
 to_dayTimeDuration<string>(

@@ -248,34 +248,6 @@ def divide_double(session, dividend, divisor):
 
     return response['actions'][0]['result']
 
-def double(session, value):
-    """
-    Convert to data type double
-
-    Converts value to data type double returning double result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        float: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "double",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_double(session, arg1, arg2):
     """
     Checks for equal

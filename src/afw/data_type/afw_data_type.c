@@ -1929,6 +1929,30 @@ impl_afw_data_type_string_write_as_expression(
 }
 
 
+/*
+ * Write string as a typed literal ("…"dataType) when the data type has one,
+ * otherwise as a call of the data type's function (json("…"), script("…")).
+ */
+static void
+impl_write_typed(
+    const afw_data_type_t *instance,
+    const afw_writer_t *writer,
+    const afw_utf8_t *string,
+    afw_xctx_t *xctx)
+{
+    if (instance->typed_literal) {
+        afw_json_write_encoded_string(string, writer, xctx);
+        afw_writer_write_utf8(writer, &instance->data_type_id, xctx);
+    }
+    else {
+        afw_writer_write_utf8(writer, &instance->data_type_id, xctx);
+        afw_writer_write_z(writer, "(", xctx);
+        afw_json_write_encoded_string(string, writer, xctx);
+        afw_writer_write_z(writer, ")", xctx);
+    }
+}
+
+
 static void
 impl_afw_data_type_typed_string_write_as_expression(
     const afw_data_type_t *instance,
@@ -1936,12 +1960,8 @@ impl_afw_data_type_typed_string_write_as_expression(
     const void *from_internal,
     afw_xctx_t *xctx)
 {
-    afw_writer_write_utf8(writer, &instance->data_type_id, xctx);
-    afw_writer_write_z(writer, "(", xctx);
-    afw_json_write_encoded_string(
-        (const afw_utf8_t *)from_internal,
-        writer, xctx);
-    afw_writer_write_z(writer, ")", xctx);
+    impl_write_typed(instance, writer, (const afw_utf8_t *)from_internal,
+        xctx);
 }
 
 
@@ -1956,11 +1976,7 @@ impl_afw_data_type_typed_to_string_write_as_expression(
 
     string = afw_data_type_internal_to_utf8(instance, from_internal,
         writer->p, xctx);
-    afw_writer_write_utf8(writer, &instance->data_type_id, xctx);
-    afw_writer_write_z(writer, "(", xctx);
-    afw_json_write_encoded_string(
-        string, writer, xctx);
-    afw_writer_write_z(writer, ")", xctx);
+    impl_write_typed(instance, writer, string, xctx);
 }
 
 

@@ -12,12 +12,12 @@
 
 set_equals<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("PT1M40.5S"),
-        dayTimeDuration("PT1M30.5S")
+        "PT1M40.5S"dayTimeDuration,
+        "PT1M30.5S"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("PT1M30.5S"),
-        dayTimeDuration("PT1M40.5S")
+        "PT1M30.5S"dayTimeDuration,
+        "PT1M40.5S"dayTimeDuration
     )
 )
 
@@ -29,12 +29,12 @@ set_equals<dayTimeDuration>(
 
 set_equals<dayTimeDuration>(
     bag<dayTimeDuration>(
-        dayTimeDuration("PT1M40.5S"),
-        dayTimeDuration("PT1M30.5S")
+        "PT1M40.5S"dayTimeDuration,
+        "PT1M30.5S"dayTimeDuration
     ),
     bag<dayTimeDuration>(
-        dayTimeDuration("PT1M30.5S"),
-        dayTimeDuration("PT1M50.5S")
+        "PT1M30.5S"dayTimeDuration,
+        "PT1M50.5S"dayTimeDuration
     )
 )
 

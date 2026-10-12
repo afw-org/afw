@@ -477,28 +477,6 @@ class rfc822Name
     }
 
     /**
-     * rfc822Name()
-     *
-     * Converts value to data type rfc822Name returning rfc822Name result.
-     *
-     * @param $value Value to convert
-     *
-     * @return rfc822Name Converted value
-     */
-    public function rfc822Name(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "rfc822Name");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * set_equals_rfc822Name()
      *
      * Returns boolean true if rfc822Name array1 and rfc822Name array2 are

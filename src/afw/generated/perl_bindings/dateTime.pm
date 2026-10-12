@@ -19,7 +19,6 @@ our @EXPORT_OK = qw(
     at_least_one_member_of_dateTime 
     bag_dateTime 
     bag_size_dateTime 
-    dateTime 
     eq_dateTime 
     eqx_dateTime 
     ge_dateTime 
@@ -125,17 +124,6 @@ Returns the number of values in a bag
 
     $value
 
-
-=head3 dateTime
-
-Converts value to data type dateTime returning dateTime result.
-Convert to data type dateTime
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 eq_dateTime
 
@@ -494,17 +482,6 @@ sub bag_size_dateTime {
     my $request = $session->request()
 
     $request->set("function" => "bag_size<dateTime>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub dateTime {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "dateTime");
     $request->set("value", $value);
 
     return $request->getResult();

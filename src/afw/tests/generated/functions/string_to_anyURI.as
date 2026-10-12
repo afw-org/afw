@@ -7,7 +7,7 @@
 //?
 //? test: to_anyURI<string>-1
 //? description: x
-//? expect: anyURI("http://www.w3schools.com/images/smiley.gif")
+//? expect: "http://www.w3schools.com/images/smiley.gif"anyURI
 //? source: ...
 
 to_anyURI<string>(
@@ -17,7 +17,7 @@ to_anyURI<string>(
 //?
 //? test: to_anyURI<string>-2
 //? description: x
-//? expect: anyURI("../%C3%A9dition.html")
+//? expect: "../%C3%A9dition.html"anyURI
 //? source: ...
 
 to_anyURI<string>(

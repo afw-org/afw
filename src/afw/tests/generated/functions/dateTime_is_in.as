@@ -11,12 +11,12 @@
 //? source: ...
 
 is_in<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
+    "2004-04-12T13:20:00"dateTime,
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:00"dateTime
     )
 )
 
@@ -27,12 +27,12 @@ is_in<dateTime>(
 //? source: ...
 
 is_in<dateTime>(
-    dateTime("2005-04-12T13:20:00-05:00"),
+    "2005-04-12T13:20:00-05:00"dateTime,
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:00-05:00"),
-        dateTime("2004-04-12T13:20:00Z")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:00-05:00"dateTime,
+        "2004-04-12T13:20:00Z"dateTime
     )
 )
 

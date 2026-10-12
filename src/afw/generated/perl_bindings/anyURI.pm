@@ -13,7 +13,6 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
-    anyURI 
     as_anyURI 
     at_least_one_member_of_anyURI 
     bag_anyURI 
@@ -57,17 +56,6 @@ afw::anyURI - Perl module for anyURI functions
 =head2 Functions
 
 The following functions are exported by default
-
-=head3 anyURI
-
-Converts value to data type anyURI returning anyURI result.
-Convert to data type anyURI
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 as_anyURI
 
@@ -587,17 +575,6 @@ URI encode
 The anyURI value to URL encode.
 
 =cut
-
-sub anyURI {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "anyURI");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
 
 sub as_anyURI {
     my ($value) = @_;

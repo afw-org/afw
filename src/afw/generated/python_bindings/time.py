@@ -682,34 +682,6 @@ def subset_time(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def time(session, value):
-    """
-    Convert to data type time
-
-    Converts value to data type time returning time result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "time",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def to_string_time(session, value):
     """
     Converts value to string

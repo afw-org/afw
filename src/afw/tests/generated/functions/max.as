@@ -21,14 +21,14 @@ max(
 //?
 //? test: max-2
 //? description: Number
-//? expect: double(12.8)
+//? expect: 12.8
 //? source: ...
 
 max(
-    double(-2.8),
-    double(2.8),
-    double(-12.8),
-    double(12.8),
-    double(0.0)
+    -2.8,
+    2.8,
+    -12.8,
+    12.8,
+    0.0
 )
 

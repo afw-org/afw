@@ -849,7 +849,7 @@ return 0;
 //? source: ...
 
 try {
-    let r = integer(rethrow());
+    let r = to_integer(rethrow());
 } catch (e) {
     return e.message;
 }
@@ -866,7 +866,7 @@ try {
     throw "outer";
 } catch (e) {
     try {
-        let r = integer(rethrow());
+        let r = to_integer(rethrow());
     } catch (e2) {
     }
     result = "caught";

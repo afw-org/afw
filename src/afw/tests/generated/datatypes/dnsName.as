@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<dnsName>(
-    dnsName("example.com"),
-    dnsName("example.com")
+    "example.com"dnsName,
+    "example.com"dnsName
 )
 
 //?
@@ -22,8 +22,8 @@ eq<dnsName>(
 //? source: ...
 
 eq<dnsName>(
-    dnsName("*.example.com"),
-    dnsName("*.example.com")
+    "*.example.com"dnsName,
+    "*.example.com"dnsName
 )
 
 //?
@@ -33,8 +33,8 @@ eq<dnsName>(
 //? source: ...
 
 eq<dnsName>(
-    dnsName("www.example.com"),
-    dnsName("www.example.com")
+    "www.example.com"dnsName,
+    "www.example.com"dnsName
 )
 
 //?
@@ -44,7 +44,7 @@ eq<dnsName>(
 //? source: ...
 
 eq<dnsName>(
-    dnsName("www.example.com:80"),
-    dnsName("www.example.com:80")
+    "www.example.com:80"dnsName,
+    "www.example.com:80"dnsName
 )
 

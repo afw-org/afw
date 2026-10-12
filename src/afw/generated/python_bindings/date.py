@@ -162,34 +162,6 @@ def bag_size_date(session, value):
 
     return response['actions'][0]['result']
 
-def date(session, value):
-    """
-    Convert to data type date
-
-    Converts value to data type date returning date result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "date",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_date(session, arg1, arg2):
     """
     Checks for equal

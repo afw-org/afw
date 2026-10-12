@@ -20,7 +20,6 @@ our @EXPORT_OK = qw(
     eqx_ipAddress 
     ge_ipAddress 
     gt_ipAddress 
-    ipAddress 
     is_in_ipAddress 
     is_ipAddress 
     le_ipAddress 
@@ -132,17 +131,6 @@ Checks for greater than
 
     $arg2
 
-
-=head3 ipAddress
-
-Converts value to data type ipAddress returning ipAddress result.
-Convert to data type ipAddress
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 is_in_ipAddress
 
@@ -346,17 +334,6 @@ sub gt_ipAddress {
     $request->set("function" => "gt<ipAddress>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub ipAddress {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "ipAddress");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

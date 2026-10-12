@@ -11,10 +11,10 @@
 //? source: ...
 
 is_in<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart"),
+    "localPart@DOMAINPart"rfc822Name,
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("x")
+        "localPart@DOMAINPart"rfc822Name,
+        "x"rfc822Name
     )
 )
 
@@ -25,10 +25,10 @@ is_in<rfc822Name>(
 //? source: ...
 
 is_in<rfc822Name>(
-    rfc822Name("LocalPart@DOMAINPart"),
+    "LocalPart@DOMAINPart"rfc822Name,
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart"),
-        rfc822Name("x")
+        "localPart@DOMAINPart"rfc822Name,
+        "x"rfc822Name
     )
 )
 
@@ -39,6 +39,6 @@ is_in<rfc822Name>(
 //? source: ...
 
 is_in<rfc822Name>(
-    rfc822Name("x")
+    "x"rfc822Name
 )
 

@@ -10,7 +10,7 @@
 //? expect: error:arg is not a number
 //? source: ...
 
-abs(double("NaN"))
+abs(NaN)
 
 //?
 //? test: abs_double-error-infinite
@@ -18,4 +18,4 @@ abs(double("NaN"))
 //? expect: error:arg is infinite
 //? source: ...
 
-abs(double("Infinity"))
+abs(Infinity)

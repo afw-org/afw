@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("PT10H30M"),
-    dayTimeDuration("PT10H30M")
+    "PT10H30M"dayTimeDuration,
+    "PT10H30M"dayTimeDuration
 )
 
 //?
@@ -22,7 +22,7 @@ eq<dayTimeDuration>(
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("PT10H30M"),
-    dayTimeDuration("PT10H31M")
+    "PT10H30M"dayTimeDuration,
+    "PT10H31M"dayTimeDuration
 )
 

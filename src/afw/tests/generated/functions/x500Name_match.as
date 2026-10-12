@@ -12,8 +12,8 @@
 //? source: ...
 
 match<x500Name>(
-    x500Name("ou=Finance,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme")
+    "ou=Finance,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name
 )
 
 //?
@@ -24,8 +24,8 @@ match<x500Name>(
 //? source: ...
 
 match<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme")
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name
 )
 
 //?
@@ -36,7 +36,7 @@ match<x500Name>(
 //? source: ...
 
 match<x500Name>(
-    x500Name("cn=John Smith,ou=Finances,o=Acme"),
-    x500Name("cn=John Smith,ou=Finance,o=Acme")
+    "cn=John Smith,ou=Finances,o=Acme"x500Name,
+    "cn=John Smith,ou=Finance,o=Acme"x500Name
 )
 

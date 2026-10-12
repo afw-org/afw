@@ -48,7 +48,7 @@ bag<string>(
 split(
     string("Hello World!"),
     "",
-    integer(5)
+    5
 )
 
 //?

@@ -12,19 +12,19 @@
 
 set_equals<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     )
 )
 
@@ -36,19 +36,19 @@ set_equals<yearMonthDuration>(
 
 set_equals<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P3Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y")
+        "P3Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     )
 )
 

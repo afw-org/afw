@@ -4,7 +4,8 @@
 //? customPurpose: Part of language/script tests
 //? description: ...
 Type-named conversion functions and related constructors:
-- Classic convert (integer, boolean, …)
+- to_<dataType> converts (to_integer, to_double, …); boolean keeps truthiness
+- generic <dataType>() converts removed (#589): typed literal or to_<dataType>
 - string multi-arg concat
 - object from JSON text
 - null/function type-named converts removed (types remain)
@@ -12,12 +13,11 @@ Type-named conversion functions and related constructors:
 //? sourceType: script
 //?
 //? test: integer-convert
-//? description: integer(string) converts
+//? description: to_integer(string) converts
 //? expect: 0
 //? source: ...
 
-assert(integer("42") === 42);
-assert(integer(7) === 7);
+assert(to_integer("42") === 42);
 return 0;
 
 //?
@@ -70,7 +70,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const d = dayTimeDuration("P1DT2H");
+const d = "P1DT2H"dayTimeDuration;
 assert(is_dayTimeDuration(d));
 return 0;
 
@@ -121,13 +121,13 @@ function fails(f: function): boolean {
     try { f(); } catch (e) { return true; }
     return false;
 }
-assert(fails(function () { return integer(1.0e300); }), "integer(1e300)");
-assert(fails(function () { return integer(-1.0e300); }), "integer(-1e300)");
-assert(fails(function () { return integer(0.0 / 0.0); }), "integer(NaN)");
-assert(fails(function () { return integer(1.0 / 0.0); }), "integer(Infinity)");
+assert(fails(function () { return to_integer(1.0e300); }), "integer(1e300)");
+assert(fails(function () { return to_integer(-1.0e300); }), "integer(-1e300)");
+assert(fails(function () { return to_integer(0.0 / 0.0); }), "integer(NaN)");
+assert(fails(function () { return to_integer(1.0 / 0.0); }), "integer(Infinity)");
 assert(fails(function () { return to_integer(1.0e19); }), "to_integer(1e19)");
-assert(integer(42.0) === 42, "integer(42.0)");
-assert(integer(1.5) === 1, "integer(1.5) truncates");
+assert(to_integer(42.0) === 42, "integer(42.0)");
+assert(to_integer(1.5) === 1, "integer(1.5) truncates");
 assert(to_integer(-9.2233720368547758e18) === -9223372036854775807 - 1, "min");
 return 0;
 
@@ -147,7 +147,7 @@ assert(stringify([1e10]) === "[1.0E10]", "stringify " + stringify([1e10]));
 for (const x of [1e10, 2e-10, 1e100, 1e300, 1.7976931348623157e308,
     2.2250738585072014e-308, 123456789.0, -1e-5, 1e20, 3.0e-20])
 {
-    assert(double(string(x)) === x, "round trip " + string(x));
+    assert(to_double(string(x)) === x, "round trip " + string(x));
 }
 return 0;
 
@@ -167,7 +167,7 @@ for (const x of [0.1, 0.2, 0.1 + 0.2, 1.1, 123.456, 5e-324, 4.9e-324,
     1.7976931348623157e308, 2.2250738585072014e-308, -1.5e-7, 9007199254740993.0,
     0.30000000000000004, 1e23, 8.41e21])
 {
-    assert(double(string(x)) === x, "round trip " + string(x));
+    assert(to_double(string(x)) === x, "round trip " + string(x));
 }
 return 0;
 
@@ -177,27 +177,27 @@ return 0;
 //? expect: 0
 //? source: ...
 
-assert(string(dayTimeDuration("P0D")) === "PT0S", string(dayTimeDuration("P0D")));
-assert(string(dayTimeDuration("PT0S")) === "PT0S");
-assert(string(yearMonthDuration("P0Y")) === "P0M", string(yearMonthDuration("P0Y")));
-assert(string(yearMonthDuration("P0M")) === "P0M");
-assert(dayTimeDuration(string(dayTimeDuration("P0D"))) == dayTimeDuration("P0D"));
-assert(yearMonthDuration(string(yearMonthDuration("P0M"))) == yearMonthDuration("P0M"));
-assert(stringify([dayTimeDuration("PT0S")]) === "[\"PT0S\"]");
-assert(string(dayTimeDuration("P1D")) === "P1D", "nonzero unchanged");
+assert(string("P0D"dayTimeDuration) === "PT0S", string("P0D"dayTimeDuration));
+assert(string("PT0S"dayTimeDuration) === "PT0S");
+assert(string("P0Y"yearMonthDuration) === "P0M", string("P0Y"yearMonthDuration));
+assert(string("P0M"yearMonthDuration) === "P0M");
+assert(to_dayTimeDuration(string("P0D"dayTimeDuration)) == "P0D"dayTimeDuration);
+assert(to_yearMonthDuration(string("P0M"yearMonthDuration)) == "P0M"yearMonthDuration);
+assert(stringify(["PT0S"dayTimeDuration]) === "[\"PT0S\"]");
+assert(string("P1D"dayTimeDuration) === "P1D", "nonzero unchanged");
 return 0;
 
 //?
 //? test: double-from-string-subnormal-and-negative-zero
-//? description: double() of a subnormal string works and "-0.0" keeps its sign
+//? description: to_double() of a subnormal string works and "-0.0" keeps its sign
 //? expect: 0
 //? source: ...
 
-assert(double("4.9E-324") === 5e-324, "subnormal");
-assert(double("2.2250738585072011e-308") < double("2.2250738585072014e-308"), "largest subnormal");
-assert(string(double("-0.0")) === "-0.0E0", string(double("-0.0")));
-assert(string(double("0.0")) === "0.0E0");
-assert(string(double(string(-0.0))) === string(-0.0), "round trip -0.0");
+assert(to_double("4.9E-324") === 5e-324, "subnormal");
+assert(to_double("2.2250738585072011e-308") < to_double("2.2250738585072014e-308"), "largest subnormal");
+assert(string(to_double("-0.0")) === "-0.0E0", string(to_double("-0.0")));
+assert(string(to_double("0.0")) === "0.0E0");
+assert(string(to_double(string(-0.0))) === string(-0.0), "round trip -0.0");
 return 0;
 
 //?
@@ -234,13 +234,48 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const falsy = [undefined, null, false, 0, -0.0, NaN, "", anyURI(""), base64Binary("")];
+const falsy = [undefined, null, false, 0, -0.0, NaN, "", ""anyURI, ""base64Binary];
 const truthy = [true, -1, 0.5, Infinity, "false", "0", " ", {}, [], [0], [1, 2],
-    dateTime("2020-01-01T00:00:00Z"), function () { return 1; }];
+    "2020-01-01T00:00:00Z"dateTime, function () { return 1; }];
 for (const v of falsy) { assert(boolean(v) === false, "falsy " + stringify(v)); }
 for (const v of truthy) { assert(boolean(v) === true, "truthy " + stringify(v)); }
 function f(b: boolean): boolean { return b; }
 assert(f([false]) === true, "typed parameter: an array is true");
 assert(f(0) === false, "typed parameter: 0");
-assert(f(dateTime("2020-01-01T00:00:00Z")) === true, "typed parameter: dateTime");
+assert(f("2020-01-01T00:00:00Z"dateTime) === true, "typed parameter: dateTime");
+return 0;
+
+//?
+//? test: data-type-function-removed
+//? description: a data type id is not a function; the error names the typed literal and to_<dataType> (#589)
+//? expect: 0
+//? source: ...
+
+function compileError(source) {
+    try {
+        compile<script>(script(source));
+    }
+    catch (e) {
+        return e.message;
+    }
+    return "compiled";
+}
+
+for (const id of ["anyURI", "base64Binary", "date", "dateTime",
+    "dayTimeDuration", "dnsName", "hexBinary", "ia5String", "ipAddress",
+    "objectId", "objectPath", "password", "rfc822Name", "time", "x500Name",
+    "yearMonthDuration"])
+{
+    const message = compileError('return ' + id + '("x");');
+    assert(includes(message, "'" + id + "' is a data type, not a function: " +
+        "write a typed literal \"...\"" + id + ", or convert with to_" + id +
+        "(value)"), message);
+}
+for (const id of ["integer", "double"]) {
+    const message = compileError('return ' + id + '("1");');
+    assert(includes(message, "'" + id + "' is a data type, not a function: " +
+        "convert with to_" + id + "(value)"), message);
+}
+assert(includes(compileError('return nope(1);'),
+    "Unknown built-in function 'nope'"), "not a data type");
 return 0;

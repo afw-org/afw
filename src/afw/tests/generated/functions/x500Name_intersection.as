@@ -10,19 +10,19 @@
 //? expect: ...
 
 bag<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme2")
+    "cn=John Smith,ou=Finance,o=Acme2"x500Name
 )
 
 //? source: ...
 
 intersection<x500Name>(
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme1"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme2")
+        "cn=John Smith,ou=Finance,o=Acme1"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme2"x500Name
     ),
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme2"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme3")
+        "cn=John Smith,ou=Finance,o=Acme2"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme3"x500Name
     )
 )
 
@@ -38,12 +38,12 @@ bag<x500Name>(
 
 intersection<x500Name>(
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme1"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme2")
+        "cn=John Smith,ou=Finance,o=Acme1"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme2"x500Name
     ),
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme3"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme4")
+        "cn=John Smith,ou=Finance,o=Acme3"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme4"x500Name
     )
 )
 
@@ -55,8 +55,8 @@ intersection<x500Name>(
 
 intersection<x500Name>(
     bag<x500Name>(
-        x500Name("x"),
-        x500Name("x")
+        "x"x500Name,
+        "x"x500Name
     )
 )
 

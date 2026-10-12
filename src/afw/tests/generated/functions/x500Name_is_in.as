@@ -11,13 +11,13 @@
 //? source: ...
 
 is_in<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme1"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme2"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme3"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme4"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme")
+        "cn=John Smith,ou=Finance,o=Acme1"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme2"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme3"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme4"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme"x500Name
     )
 )
 
@@ -28,13 +28,13 @@ is_in<x500Name>(
 //? source: ...
 
 is_in<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme"),
+    "cn=John Smith,ou=Finance,o=Acme"x500Name,
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme1"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme2"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme3"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme4"),
-        x500Name("cn=John Smith,ou=Finance,o=Acme5")
+        "cn=John Smith,ou=Finance,o=Acme1"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme2"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme3"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme4"x500Name,
+        "cn=John Smith,ou=Finance,o=Acme5"x500Name
     )
 )
 
@@ -45,6 +45,6 @@ is_in<x500Name>(
 //? source: ...
 
 is_in<x500Name>(
-    x500Name("x")
+    "x"x500Name
 )
 

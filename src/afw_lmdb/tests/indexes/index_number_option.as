@@ -74,7 +74,7 @@ return 0;
 
 
 //? test: index_double_option_untyped
-//? description: Objects with no object type and a "double" index. A string value is a double's key when it is a double ("9.0"; double("9") is not a double), and an integer filter value is the double of the same number, as a scan converts it.
+//? description: Objects with no object type and a "double" index. A string value is a double's key when it is a double ("9.0"; to_double("9") is not a double), and an integer filter value is the double of the same number, as a scan converts it.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw

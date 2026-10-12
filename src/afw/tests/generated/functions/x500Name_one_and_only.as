@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<x500Name>-1
 //? description: x
-//? expect: x500Name("cn=John Smith,ou=Finance,o=Acme4")
+//? expect: "cn=John Smith,ou=Finance,o=Acme4"x500Name
 //? source: ...
 
 one_and_only<x500Name>(
     bag<x500Name>(
-        x500Name("cn=John Smith,ou=Finance,o=Acme4")
+        "cn=John Smith,ou=Finance,o=Acme4"x500Name
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<x500Name>(
 
 one_and_only<x500Name>(
     bag<x500Name>(
-        x500Name("x"),
-        x500Name("x")
+        "x"x500Name,
+        "x"x500Name
     )
 )
 

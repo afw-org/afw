@@ -7,29 +7,29 @@
 //?
 //? test: multiply<integer>-1
 //? description: 5 x 4 x 3 x 2 x 1
-//? expect: integer(120)
+//? expect: 120
 //? source: ...
 
 multiply<integer>(
-    integer(5),
-    integer(4),
-    integer(3),
-    integer(2),
-    integer(1)
+    5,
+    4,
+    3,
+    2,
+    1
 )
 
 //?
 //? test: multiply<integer>-2
 //? description: -5 x -4 x -3 x 2 x 1
-//? expect: integer(-120)
+//? expect: -120
 //? source: ...
 
 multiply<integer>(
-    integer(-5),
-    integer(-4),
-    integer(-3),
-    integer(2),
-    integer(1)
+    -5,
+    -4,
+    -3,
+    2,
+    1
 )
 
 //?
@@ -39,11 +39,11 @@ multiply<integer>(
 //? source: ...
 
 multiply<integer>(
-    integer(-4),
-    integer(-3),
-    integer(2),
-    integer(9223372036854775806),
-    integer(1)
+    -4,
+    -3,
+    2,
+    9223372036854775806,
+    1
 )
 
 //?
@@ -54,11 +54,11 @@ multiply<integer>(
 //? source: ...
 
 multiply<integer>(
-    integer(4),
-    integer(3),
-    integer(2),
-    integer(-9223372036854775806),
-    integer(1)
+    4,
+    3,
+    2,
+    -9223372036854775806,
+    1
 )
 
 //?
@@ -68,6 +68,6 @@ multiply<integer>(
 //? source: ...
 
 multiply<integer>(
-    integer(x)
+    to_integer(x)
 )
 

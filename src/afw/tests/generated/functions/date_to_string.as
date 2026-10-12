@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<date>(
-    date("2004-04-12")
+    "2004-04-12"date
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<date>(
 //? source: ...
 
 to_string<date>(
-    date("0200-12-12")
+    "0200-12-12"date
 )
 
 //?
@@ -31,6 +31,6 @@ to_string<date>(
 //? source: ...
 
 to_string<date>(
-    date("x")
+    "x"date
 )
 

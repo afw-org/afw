@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<dnsName>-1
 //? description: x
-//? expect: dnsName("clemson:8080")
+//? expect: "clemson:8080"dnsName
 //? source: ...
 
 one_and_only<dnsName>(
     bag<dnsName>(
-        dnsName("clemson:8080")
+        "clemson:8080"dnsName
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<dnsName>(
 
 one_and_only<dnsName>(
     bag<dnsName>(
-        dnsName("clemson:8080"),
-        dnsName("clemson")
+        "clemson:8080"dnsName,
+        "clemson"dnsName
     )
 )
 

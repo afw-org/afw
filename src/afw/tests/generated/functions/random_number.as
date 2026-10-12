@@ -10,4 +10,4 @@
 //? expect: error:range between min and max is out of bounds
 //? source: ...
 
-random_number(double(5.0), double(1.0))
+random_number(5.0, 1.0)

@@ -11,7 +11,7 @@
 //? source: ...
 
 regexp_match<anyURI>(
-    anyURI("http://www.oasis.org"),
+    "http://www.oasis.org"anyURI,
     string("http://.*\\.oasis\\.org")
 )
 
@@ -22,7 +22,7 @@ regexp_match<anyURI>(
 //? source: ...
 
 regexp_match<anyURI>(
-    anyURI("http://www.oasis.com"),
+    "http://www.oasis.com"anyURI,
     string("http://.*\\.oasis\\.org")
 )
 
@@ -33,7 +33,7 @@ regexp_match<anyURI>(
 //? source: ...
 
 regexp_match<anyURI>(
-    anyURI("http://www.oasis.org"),
+    "http://www.oasis.org"anyURI,
     string("http://.*\\.oasis\\.org)")
 )
 

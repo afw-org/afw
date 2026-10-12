@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<double>(
-    double(-3E2),
-    double(-3E2)
+    -3E2,
+    -3E2
 )
 
 //?
@@ -22,8 +22,8 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(4268.22752E11),
-    double(4268.22752E11)
+    4268.22752E11,
+    4268.22752E11
 )
 
 //?
@@ -33,8 +33,8 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(24.3e-3),
-    double(24.3e-3)
+    24.3e-3,
+    24.3e-3
 )
 
 //?
@@ -44,8 +44,8 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(12.0),
-    double(12.0)
+    12.0,
+    12.0
 )
 
 //?
@@ -55,8 +55,8 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(3.5),
-    double(3.5)
+    3.5,
+    3.5
 )
 
 //?
@@ -66,8 +66,8 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(-Infinity),
-    double(-Infinity)
+    -Infinity,
+    -Infinity
 )
 
 //?
@@ -77,7 +77,7 @@ eq<double>(
 //? source: ...
 
 eq<double>(
-    double(-0.0),
-    double(-0.0)
+    -0.0,
+    -0.0
 )
 

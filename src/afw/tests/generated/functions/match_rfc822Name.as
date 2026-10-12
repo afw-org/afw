@@ -10,4 +10,4 @@
 //? expect: error:Not implemented
 //? source: ...
 
-match_rfc822Name(rfc822Name("a@b.com"), regexp(".*"))
+match_rfc822Name("a@b.com"rfc822Name, regexp(".*"))

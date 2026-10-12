@@ -22,7 +22,6 @@ our @EXPORT_OK = qw(
     eqx_hexBinary 
     ge_hexBinary 
     gt_hexBinary 
-    hexBinary 
     intersection_hexBinary 
     is_hexBinary 
     is_in_hexBinary 
@@ -165,17 +164,6 @@ Checks for greater than
 
     $arg2
 
-
-=head3 hexBinary
-
-Converts value to data type hexBinary returning hexBinary result.
-Convert to data type hexBinary
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 intersection_hexBinary
 
@@ -446,17 +434,6 @@ sub gt_hexBinary {
     $request->set("function" => "gt<hexBinary>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub hexBinary {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "hexBinary");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

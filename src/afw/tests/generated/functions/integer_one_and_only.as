@@ -11,12 +11,12 @@
             Integer one and only for bag:
             { 1 }
         
-//? expect: integer(1)
+//? expect: 1
 //? source: ...
 
 one_and_only<integer>(
     bag<integer>(
-        integer(1)
+        1
     )
 )
 
@@ -32,11 +32,11 @@ one_and_only<integer>(
 
 one_and_only<integer>(
     bag<integer>(
-        integer(1),
-        integer(2),
-        integer(3),
-        integer(4),
-        integer(5)
+        1,
+        2,
+        3,
+        4,
+        5
     )
 )
 

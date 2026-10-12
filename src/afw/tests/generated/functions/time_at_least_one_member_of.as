@@ -12,12 +12,12 @@
 
 at_least_one_member_of<time>(
     bag<time>(
-        time("13:20:30.5555"),
-        time("13:20:30.5556")
+        "13:20:30.5555"time,
+        "13:20:30.5556"time
     ),
     bag<time>(
-        time("13:20:30.5555"),
-        time("13:20:30.5555")
+        "13:20:30.5555"time,
+        "13:20:30.5555"time
     )
 )
 
@@ -29,12 +29,12 @@ at_least_one_member_of<time>(
 
 at_least_one_member_of<time>(
     bag<time>(
-        time("13:20:30.5557"),
-        time("13:20:30.5556")
+        "13:20:30.5557"time,
+        "13:20:30.5556"time
     ),
     bag<time>(
-        time("13:20:30.5555"),
-        time("13:20:30.5555")
+        "13:20:30.5555"time,
+        "13:20:30.5555"time
     )
 )
 

@@ -11,34 +11,6 @@
 import requests
 import json
 
-def anyURI(session, value):
-    """
-    Convert to data type anyURI
-
-    Converts value to data type anyURI returning anyURI result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "anyURI",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def as_anyURI(session, value):
     """
     Asserts that value is dataType anyURI

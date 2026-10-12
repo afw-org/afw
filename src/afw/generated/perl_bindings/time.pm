@@ -34,7 +34,6 @@ our @EXPORT_OK = qw(
     one_and_only_time 
     set_equals_time 
     subset_time 
-    time 
     to_string_time 
     union_time 
 );
@@ -351,17 +350,6 @@ The first array.
 
 The second array.
 
-=head3 time
-
-Converts value to data type time returning time result.
-Convert to data type time
-
-=head4 Parameters
-
-    $value
-
-Value to convert
-
 =head3 to_string_time
 
 Converts time value to string. For array values, the to_string() value for
@@ -632,17 +620,6 @@ sub subset_time {
     $request->set("function" => "subset<time>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub time {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "time");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

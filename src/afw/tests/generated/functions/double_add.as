@@ -7,29 +7,29 @@
 //?
 //? test: add<double>-1
 //? description: Add an array
-//? expect: double(5.05)
+//? expect: 5.05
 //? source: ...
 
 add<double>(
-    double(1.01),
-    double(1.01),
-    double(1.01),
-    double(1.01),
-    double(1.01)
+    1.01,
+    1.01,
+    1.01,
+    1.01,
+    1.01
 )
 
 //?
 //? test: add<double>-2
 //? description: Add an array
-//? expect: double(555555.5)
+//? expect: 555555.5
 //? source: ...
 
 add<double>(
-    double(111111.1),
-    double(111111.1),
-    double(111111.1),
-    double(111111.1),
-    double(111111.1)
+    111111.1,
+    111111.1,
+    111111.1,
+    111111.1,
+    111111.1
 )
 
 //?
@@ -39,6 +39,6 @@ add<double>(
 //? source: ...
 
 add<double>(
-    double(x.0)
+    to_double(x.0)
 )
 

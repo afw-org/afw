@@ -25,7 +25,6 @@ our @EXPORT_OK = qw(
     lt_objectPath 
     ne_objectPath 
     nex_objectPath 
-    objectPath 
     to_string_objectPath 
 );
 
@@ -201,17 +200,6 @@ Checks for not equal value or type
     $arg2
 
 
-=head3 objectPath
-
-Converts value to data type objectPath returning objectPath result.
-Convert to data type objectPath
-
-=head4 Parameters
-
-    $value
-
-Value to convert
-
 =head3 to_string_objectPath
 
 Converts objectPath value to string. For array values, the to_string() value
@@ -364,17 +352,6 @@ sub nex_objectPath {
     $request->set("function" => "nex<objectPath>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub objectPath {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "objectPath");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

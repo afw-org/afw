@@ -12,14 +12,14 @@
 
 subset<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:15.6")
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:15.6"dateTime
     ),
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:15.7"),
-        dateTime("2004-04-12T13:20:15.8"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:15.6")
+        "2004-04-12T13:20:15.7"dateTime,
+        "2004-04-12T13:20:15.8"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:15.6"dateTime
     )
 )
 
@@ -31,14 +31,14 @@ subset<dateTime>(
 
 subset<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:15.9"),
-        dateTime("2004-04-12T13:20:15.6")
+        "2004-04-12T13:20:15.9"dateTime,
+        "2004-04-12T13:20:15.6"dateTime
     ),
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:15.7"),
-        dateTime("2004-04-12T13:20:15.8"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:15.6")
+        "2004-04-12T13:20:15.7"dateTime,
+        "2004-04-12T13:20:15.8"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:15.6"dateTime
     )
 )
 

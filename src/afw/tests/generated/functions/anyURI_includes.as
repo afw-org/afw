@@ -11,7 +11,7 @@
 //? source: ...
 
 includes<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
+    "http://datypic.com/prod.html#shirt"anyURI,
     string("http://datypic.com/prod.html#shirt")
 )
 
@@ -22,7 +22,7 @@ includes<anyURI>(
 //? source: ...
 
 includes<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
+    "http://datypic.com/prod.html#shirt"anyURI,
     string("http://datypiccom/prod.html#shirt")
 )
 
@@ -33,6 +33,6 @@ includes<anyURI>(
 //? source: ...
 
 includes<anyURI>(
-    anyURI("x")
+    "x"anyURI
 )
 

@@ -11,35 +11,39 @@
 //? source: ...
 
 assert(is<anyURI>("https://example.com/"anyURI));
-assert("https://example.com/"anyURI == anyURI("https://example.com/"));
+assert("https://example.com/"anyURI == to_anyURI("https://example.com/"));
 assert(is<base64Binary>("AQID"base64Binary));
-assert("AQID"base64Binary == base64Binary("AQID"));
+assert("AQID"base64Binary == to_base64Binary("AQID"));
 assert(is<date>("2026-10-11"date));
-assert("2026-10-11"date == date("2026-10-11"));
+assert("2026-10-11"date == to_date("2026-10-11"));
 assert(is<dateTime>("2026-10-11T12:00:00Z"dateTime));
-assert("2026-10-11T12:00:00Z"dateTime == dateTime("2026-10-11T12:00:00Z"));
+assert("2026-10-11T12:00:00Z"dateTime == to_dateTime("2026-10-11T12:00:00Z"));
 assert(is<dayTimeDuration>("P1DT2H"dayTimeDuration));
-assert("P1DT2H"dayTimeDuration == dayTimeDuration("P1DT2H"));
+assert("P1DT2H"dayTimeDuration == to_dayTimeDuration("P1DT2H"));
 assert(is<dnsName>("example.com"dnsName));
-assert("example.com"dnsName == dnsName("example.com"));
+assert("example.com"dnsName == to_dnsName("example.com"));
 assert(is<hexBinary>("0a1b"hexBinary));
-assert("0a1b"hexBinary == hexBinary("0a1b"));
+assert("0a1b"hexBinary == to_hexBinary("0a1b"));
 assert(is<ia5String>("abc"ia5String));
-assert("abc"ia5String == ia5String("abc"));
+assert("abc"ia5String == to_ia5String("abc"));
 assert(is<ipAddress>("10.0.0.1"ipAddress));
-assert("10.0.0.1"ipAddress == ipAddress("10.0.0.1"));
+assert("10.0.0.1"ipAddress == to_ipAddress("10.0.0.1"));
+assert(is<objectId>("oid1"objectId));
+assert("oid1"objectId == to_objectId("oid1"));
+assert(is<objectPath>("/afw/_AdaptiveDataType_/date"objectPath));
+assert("/afw/_AdaptiveDataType_/date"objectPath == to_objectPath("/afw/_AdaptiveDataType_/date"));
 assert(is<password>("secret"password));
-assert("secret"password == password("secret"));
+assert("secret"password == to_password("secret"));
 assert(is<rfc822Name>("a@example.com"rfc822Name));
-assert("a@example.com"rfc822Name == rfc822Name("a@example.com"));
+assert("a@example.com"rfc822Name == to_rfc822Name("a@example.com"));
 assert(is<time>("12:00:00"time));
-assert("12:00:00"time == time("12:00:00"));
+assert("12:00:00"time == to_time("12:00:00"));
 assert(is<x500Name>("cn=a,o=b"x500Name));
-assert("cn=a,o=b"x500Name == x500Name("cn=a,o=b"));
+assert("cn=a,o=b"x500Name == to_x500Name("cn=a,o=b"));
 assert(is<xpathExpression>("/a/b"xpathExpression));
 assert("/a/b"xpathExpression == xpathExpression("/a/b"));
 assert(is<yearMonthDuration>("P1Y2M"yearMonthDuration));
-assert("P1Y2M"yearMonthDuration == yearMonthDuration("P1Y2M"));
+assert("P1Y2M"yearMonthDuration == to_yearMonthDuration("P1Y2M"));
 assert(stringify("a+b"regexp) == stringify(regexp("a+b")));
 return 0;
 
@@ -166,8 +170,8 @@ assert(includes(compileError('return "1"integer;'),
     "Data type 'integer' does not have a typed literal"), "integer");
 assert(includes(compileError('return "x"string;'),
     "Data type 'string' does not have a typed literal"), "string");
-assert(includes(compileError('return "x"objectId;'),
-    "Data type 'objectId' does not have a typed literal"), "objectId");
+assert(includes(compileError('return "1.5"double;'),
+    "Data type 'double' does not have a typed literal"), "double");
 assert(compileError('return "2026-10-11" date;') !== "compiled",
     "whitespace before suffix");
 assert(compileError('return { "2026-10-11"date: 1 };') !== "compiled",

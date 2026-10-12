@@ -7,33 +7,33 @@
 //?
 //? test: mod<integer>-1
 //? description: 15 mod 5
-//? expect: integer(0)
+//? expect: 0
 //? source: ...
 
 mod<integer>(
-    integer(15),
-    integer(5)
+    15,
+    5
 )
 
 //?
 //? test: mod<integer>-2
 //? description: 15 mod 4
-//? expect: integer(3)
+//? expect: 3
 //? source: ...
 
 mod<integer>(
-    integer(15),
-    integer(4)
+    15,
+    4
 )
 
 //?
 //? test: mod<integer>-3
 //? description: -15 mod 4
-//? expect: integer(-3)
+//? expect: -3
 //? source: ...
 
 mod<integer>(
-    integer(-15),
-    integer(4)
+    -15,
+    4
 )
 

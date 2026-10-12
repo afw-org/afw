@@ -507,7 +507,7 @@ _AdaptiveCryptoSealed_ (application/object layout convention):
 
 - `base64Binary` / `hexBinary` use `"jsonPrimitive": "string"`. When a sealed object is **stringified to JSON** (file or wire), `iv` / `tag` / `ciphertext` become **JSON string values** holding base64 (or hex) text — not Adaptive binary values.
 - After **JSON parse**, those properties are **strings**. `afw_crypto_internal_require_binary` accepts **only** `base64Binary` and `hexBinary` and **rejects** bare strings (`error:crypto:expected_binary`).
-- Callers **must** convert explicitly, e.g. `base64Binary(store.iv)`, before `crypto_decrypt` / algorithm fields. Do **not** extend `require_binary` to silently decode untyped strings (keeps typing honest; avoids ambiguous utf8 vs base64).
+- Callers **must** convert explicitly, e.g. `to_base64Binary(store.iv)`, before `crypto_decrypt` / algorithm fields. Do **not** extend `require_binary` to silently decode untyped strings (keeps typing honest; avoids ambiguous utf8 vs base64).
 - In-memory objects still holding true `base64Binary` properties (e.g. encrypt result never round-tripped through JSON) need **no** conversion.
 
 **File recipe:** write the sealed object as JSON under a `rootFilePaths` tree (preferred), or three sibling binary files. Prefer one JSON file for a single `compile_from_file` / `evaluate` load.
@@ -722,11 +722,11 @@ let store = evaluate(compile_from_file("data/secret.json", "json"));
 let plain = crypto_decrypt(
     {
         "name": "AES-GCM",
-        "iv": base64Binary(store.iv),
-        "tag": base64Binary(store.tag)
+        "iv": to_base64Binary(store.iv),
+        "tag": to_base64Binary(store.tag)
     },
     key,
-    base64Binary(store.ciphertext)
+    to_base64Binary(store.ciphertext)
 );
 
 try {
@@ -744,7 +744,7 @@ let jsonText = read(sn, 1048576);
 close(sn);
 // compile_json expects a json source; evaluate yields the object value
 let store = evaluate(compile_json(jsonText));
-// then same base64Binary(...) conversions as above before crypto_decrypt
+// then same to_base64Binary(...) conversions as above before crypto_decrypt
 ```
 
 Writing a sealed object back to JSON for storage uses **`stringify`**, which emits pure JSON (`iv`/`tag`/`ciphertext` as base64 **JSON strings** via each type’s `jsonPrimitive`). Use **`decompile`** only for Adaptive compiled form as text.

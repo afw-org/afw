@@ -11,9 +11,9 @@
 //? source: ...
 
 substring<anyURI>(
-    anyURI("http://www.clemson.edu"),
-    integer(0),
-    integer(5)
+    "http://www.clemson.edu"anyURI,
+    0,
+    5
 )
 
 //?
@@ -23,9 +23,9 @@ substring<anyURI>(
 //? source: ...
 
 substring<anyURI>(
-    anyURI("http://www.clemson.edu"),
-    integer(11),
-    integer(18)
+    "http://www.clemson.edu"anyURI,
+    11,
+    18
 )
 
 //?
@@ -35,8 +35,8 @@ substring<anyURI>(
 //? source: ...
 
 substring<anyURI>(
-    anyURI("http://www.clemson.edu"),
-    integer(19),
-    integer(-1)
+    "http://www.clemson.edu"anyURI,
+    19,
+    -1
 )
 

@@ -7,33 +7,33 @@
 //?
 //? test: subtract<double>-1
 //? description: INF minus INF
-//? expect: double(NaN)
+//? expect: NaN
 //? source: ...
 
 subtract<double>(
-    double(Infinity),
-    double(Infinity)
+    Infinity,
+    Infinity
 )
 
 //?
 //? test: subtract<double>-2
 //? description: NaN minus INF
-//? expect: double(NaN)
+//? expect: NaN
 //? source: ...
 
 subtract<double>(
-    double(NaN),
-    double(Infinity)
+    NaN,
+    Infinity
 )
 
 //?
 //? test: subtract<double>-3
 //? description: Normal
-//? expect: double(50.0)
+//? expect: 50.0
 //? source: ...
 
 subtract<double>(
-    double(50.1),
-    double(0.1)
+    50.1,
+    0.1
 )
 

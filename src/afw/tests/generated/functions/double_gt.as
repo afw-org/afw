@@ -11,8 +11,8 @@
 //? source: ...
 
 gt<double>(
-    double(6.9),
-    double(5.9)
+    6.9,
+    5.9
 )
 
 //?
@@ -22,8 +22,8 @@ gt<double>(
 //? source: ...
 
 gt<double>(
-    double(5.0),
-    double(5.0)
+    5.0,
+    5.0
 )
 
 //?
@@ -33,7 +33,7 @@ gt<double>(
 //? source: ...
 
 gt<double>(
-    double(6000000.0),
-    double(5000000.0)
+    6000000.0,
+    5000000.0
 )
 

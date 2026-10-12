@@ -7,37 +7,37 @@
 //?
 //? test: add<integer>-1
 //? description: Add 67 and -1
-//? expect: integer(66)
+//? expect: 66
 //? source: ...
 
 add<integer>(
-    integer(67),
-    integer(-1)
+    67,
+    -1
 )
 
 //?
 //? test: add<integer>-2
 //? description: Add 9223372036854775807 and -1
-//? expect: integer(9223372036854775803)
+//? expect: 9223372036854775803
 //? source: ...
 
 add<integer>(
-    integer(9223372036854775807),
-    integer(-1),
-    integer(-1),
-    integer(-1),
-    integer(-1)
+    9223372036854775807,
+    -1,
+    -1,
+    -1,
+    -1
 )
 
 //?
 //? test: add<integer>-3
 //? description: Add -9223372036854775807 and 7
-//? expect: integer(-9223372036854775800)
+//? expect: -9223372036854775800
 //? source: ...
 
 add<integer>(
-    integer(-9223372036854775807),
-    integer(7)
+    -9223372036854775807,
+    7
 )
 
 //?
@@ -47,8 +47,8 @@ add<integer>(
 //? source: ...
 
 add<integer>(
-    integer(9223372036854775807),
-    integer(10)
+    9223372036854775807,
+    10
 )
 
 //?
@@ -58,6 +58,6 @@ add<integer>(
 //? source: ...
 
 add<integer>(
-    integer(x)
+    to_integer(x)
 )
 

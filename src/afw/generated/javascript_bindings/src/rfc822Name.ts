@@ -390,23 +390,6 @@ export function afwRegexpMatchRfc822Name(client : any, value : any, regexp : str
 }
 
 /**
- * Converts value to data type rfc822Name returning rfc822Name result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {rfc822Name} Converted value
- */
-export function afwRfc822Name(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "rfc822Name";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Returns boolean true if rfc822Name array1 and rfc822Name array2 are subsets
  * of each other and return the boolean result.
  * 

@@ -16,7 +16,6 @@ our @EXPORT_OK = qw(
     as_dnsName 
     bag_dnsName 
     bag_size_dnsName 
-    dnsName 
     eq_dnsName 
     eqx_dnsName 
     ge_dnsName 
@@ -73,17 +72,6 @@ Returns the number of values in a bag
 
     $value
 
-
-=head3 dnsName
-
-Converts value to data type dnsName returning dnsName result.
-Convert to data type dnsName
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 eq_dnsName
 
@@ -296,17 +284,6 @@ sub bag_size_dnsName {
     my $request = $session->request()
 
     $request->set("function" => "bag_size<dnsName>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub dnsName {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "dnsName");
     $request->set("value", $value);
 
     return $request->getResult();

@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<ipAddress>-1
 //? description: x
-//? expect: ipAddress("255.255.255.255")
+//? expect: "255.255.255.255"ipAddress
 //? source: ...
 
 one_and_only<ipAddress>(
     bag<ipAddress>(
-        ipAddress("255.255.255.255")
+        "255.255.255.255"ipAddress
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<ipAddress>(
 
 one_and_only<ipAddress>(
     bag<ipAddress>(
-        ipAddress("255.255.255.255"),
-        ipAddress("0.0.0.1")
+        "255.255.255.255"ipAddress,
+        "0.0.0.1"ipAddress
     )
 )
 

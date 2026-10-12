@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("P2Y6M"),
-    yearMonthDuration("P2Y6M")
+    "P2Y6M"yearMonthDuration,
+    "P2Y6M"yearMonthDuration
 )
 
 //?
@@ -22,8 +22,8 @@ eq<yearMonthDuration>(
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("P20M"),
-    yearMonthDuration("P20M")
+    "P20M"yearMonthDuration,
+    "P20M"yearMonthDuration
 )
 
 //?
@@ -33,8 +33,8 @@ eq<yearMonthDuration>(
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("P0Y20M"),
-    yearMonthDuration("P0Y20M")
+    "P0Y20M"yearMonthDuration,
+    "P0Y20M"yearMonthDuration
 )
 
 //?
@@ -44,8 +44,8 @@ eq<yearMonthDuration>(
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("P0Y"),
-    yearMonthDuration("P0Y")
+    "P0Y"yearMonthDuration,
+    "P0Y"yearMonthDuration
 )
 
 //?
@@ -55,7 +55,7 @@ eq<yearMonthDuration>(
 //? source: ...
 
 eq<yearMonthDuration>(
-    yearMonthDuration("-P60Y"),
-    yearMonthDuration("-P60Y")
+    "-P60Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration
 )
 

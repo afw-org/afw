@@ -169,23 +169,6 @@ export function afwDivideDouble(client : any, dividend : number, divisor : numbe
 }
 
 /**
- * Converts value to data type double returning double result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {double} Converted value
- */
-export function afwDouble(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "double";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if double arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.

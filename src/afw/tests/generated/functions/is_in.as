@@ -11,7 +11,7 @@
 //? source: ...
 
 is_in<integer>(
-    integer(6),
+    6,
     bag<string>(string("6"))
 )
 
@@ -26,6 +26,6 @@ is_in<integer>(
 //? source: ...
 
 is_in<integer>(
-    integer(6),
+    6,
     []
 )

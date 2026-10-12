@@ -573,28 +573,6 @@ class time
     }
 
     /**
-     * time()
-     *
-     * Converts value to data type time returning time result.
-     *
-     * @param $value Value to convert
-     *
-     * @return time Converted value
-     */
-    public function time(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "time");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * to_string_time()
      *
      * Converts time value to string. For array values, the to_string() value

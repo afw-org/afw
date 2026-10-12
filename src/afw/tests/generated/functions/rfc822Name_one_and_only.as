@@ -7,24 +7,24 @@
 //?
 //? test: one_and_only<rfc822Name>-1
 //? description: x
-//? expect: rfc822Name("localPart@DOMAINPart")
+//? expect: "localPart@DOMAINPart"rfc822Name
 //? source: ...
 
 one_and_only<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart")
+        "localPart@DOMAINPart"rfc822Name
     )
 )
 
 //?
 //? test: one_and_only<rfc822Name>-2
 //? description: x
-//? expect: rfc822Name("localPart@DOMAINPart")
+//? expect: "localPart@DOMAINPart"rfc822Name
 //? source: ...
 
 one_and_only<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("localPart@DOMAINPart")
+        "localPart@DOMAINPart"rfc822Name
     )
 )
 
@@ -36,8 +36,8 @@ one_and_only<rfc822Name>(
 
 one_and_only<rfc822Name>(
     bag<rfc822Name>(
-        rfc822Name("x"),
-        rfc822Name("x")
+        "x"rfc822Name,
+        "x"rfc822Name
     )
 )
 

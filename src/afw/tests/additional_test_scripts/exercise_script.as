@@ -429,7 +429,7 @@ assert(string(-Infinity) == '-Infinity');
 assert( (1 !== 1) == false);
 
 // Equality test
-assert( (1 == integer('1'))   == true);
+assert( (1 == to_integer('1'))   == true);
 assert( ('1' == string(1))   == true);
 assert( (1 === '1')  == false);
 assert( ('1' === 1)  == false);

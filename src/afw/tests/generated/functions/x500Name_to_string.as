@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<x500Name>(
-    x500Name("cn=John Smith,ou=Finance,o=Acme")
+    "cn=John Smith,ou=Finance,o=Acme"x500Name
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<x500Name>(
 //? source: ...
 
 to_string<x500Name>(
-    x500Name("cn=,ou=Finance,o=Acme")
+    "cn=,ou=Finance,o=Acme"x500Name
 )
 
 //?
@@ -32,6 +32,6 @@ to_string<x500Name>(
 //? source: ...
 
 to_string<x500Name>(
-    x500Name("x")
+    "x"x500Name
 )
 

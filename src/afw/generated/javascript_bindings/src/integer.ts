@@ -237,23 +237,6 @@ export function afwGtInteger(client : any, arg1 : number, arg2 : number) : any {
 }
 
 /**
- * Converts value to data type integer returning integer result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {integer} Converted value
- */
-export function afwInteger(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "integer";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Returns an array of integer with the values that are common to both array
  * of integer array1 and array2.
  * 

@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<integer>(
-    integer(0)
+    0
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<integer>(
 //? source: ...
 
 to_string<integer>(
-    integer(-10982)
+    -10982
 )
 
 //?
@@ -31,6 +31,6 @@ to_string<integer>(
 //? source: ...
 
 to_string<integer>(
-    integer(24024)
+    24024
 )
 

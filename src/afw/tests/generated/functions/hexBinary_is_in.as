@@ -11,10 +11,10 @@
 //? source: ...
 
 is_in<hexBinary>(
-    hexBinary("0FB8"),
+    "0FB8"hexBinary,
     bag<hexBinary>(
-        hexBinary("0fb7"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8")
+        "0fb7"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
 )
 
@@ -25,10 +25,10 @@ is_in<hexBinary>(
 //? source: ...
 
 is_in<hexBinary>(
-    hexBinary("0FB8"),
+    "0FB8"hexBinary,
     bag<hexBinary>(
-        hexBinary("0fb8"),
-        hexBinary("0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8")
+        "0fb8"hexBinary,
+        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
 )
 
@@ -39,10 +39,10 @@ is_in<hexBinary>(
 //? source: ...
 
 is_in<hexBinary>(
-    hexBinary("x"),
+    "x"hexBinary,
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     )
 )
 

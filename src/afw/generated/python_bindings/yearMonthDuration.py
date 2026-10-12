@@ -628,32 +628,3 @@ def union_yearMonthDuration(session, arrays):
 
     return response['actions'][0]['result']
 
-def yearMonthDuration(session, value):
-    """
-    Convert to data type yearMonthDuration
-
-    Converts value to data type yearMonthDuration returning yearMonthDuration
-    result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "yearMonthDuration",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-

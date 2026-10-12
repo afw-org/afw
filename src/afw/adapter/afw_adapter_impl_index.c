@@ -543,7 +543,7 @@ impl_index_object_value_key(
  * on a double index an integer value is that double's key, as a scan
  * converts the filter value to each object's type (#544).
  *
- * A string that doesn't convert ("x", or "9" for a double: double("9")
+ * A string that doesn't convert ("x", or "9" for a double: to_double("9")
  * is not a double) stays a string. A scan finds no number for it, but
  * its key's range can hold number keys, so *exact is set false: the
  * index query re-tests what that cursor returns. Otherwise true.

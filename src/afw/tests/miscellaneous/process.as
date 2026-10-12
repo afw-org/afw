@@ -115,7 +115,7 @@ assert(process::defaultChunkMin === 65536);
 // afwdev test --env-mode asan and valgrind set this (keep freed chunks).
 const keepFreed = environment::AFW_MEMORY_REGION_KEEP_FREED_BYTES;
 assert(process::memoryRegionFreeListMaxBytes ===
-    (keepFreed === undefined ? 262144 : integer(keepFreed)));
+    (keepFreed === undefined ? 262144 : to_integer(keepFreed)));
 assert(process::memoryRegionKeepSmallCount ===
     (keepFreed === undefined ? 8 : 1000000));
 assert(process::memoryRegionKeepLargeCount ===

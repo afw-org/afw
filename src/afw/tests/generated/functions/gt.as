@@ -11,8 +11,8 @@
 //? source: ...
 
 gt(
-    integer(6),
-    integer(5)
+    6,
+    5
 )
 
 //?
@@ -22,7 +22,7 @@ gt(
 //? source: ...
 
 gt(
-    integer(6),
+    6,
     string("5")
 )
 

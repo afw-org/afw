@@ -7,22 +7,22 @@
 //?
 //? test: add_yearMonthDuration<dateTime>-1
 //? description: Subtract a year and a month
-//? expect: dateTime("2003-03-13T13:20:00.5")
+//? expect: "2003-03-13T13:20:00.5"dateTime
 //? source: ...
 
 add_yearMonthDuration<dateTime>(
-    dateTime("2004-04-13T13:20:00.5"),
-    yearMonthDuration("-P1Y1M")
+    "2004-04-13T13:20:00.5"dateTime,
+    "-P1Y1M"yearMonthDuration
 )
 
 //?
 //? test: add_yearMonthDuration<dateTime>-2
 //? description: Add a year and a month
-//? expect: dateTime("2005-05-13T13:20:00.5")
+//? expect: "2005-05-13T13:20:00.5"dateTime
 //? source: ...
 
 add_yearMonthDuration<dateTime>(
-    dateTime("2004-04-13T13:20:00.5"),
-    yearMonthDuration("P1Y1M")
+    "2004-04-13T13:20:00.5"dateTime,
+    "P1Y1M"yearMonthDuration
 )
 

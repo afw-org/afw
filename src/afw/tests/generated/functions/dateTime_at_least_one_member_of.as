@@ -12,16 +12,16 @@
 
 at_least_one_member_of<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:00"dateTime
     ),
     bag<dateTime>(
-        dateTime("2005-04-12T13:20:00"),
-        dateTime("2005-04-12T13:20:15.5"),
-        dateTime("2005-04-12T13:20:00"),
-        dateTime("2005-04-12T13:20:00")
+        "2005-04-12T13:20:00"dateTime,
+        "2005-04-12T13:20:15.5"dateTime,
+        "2005-04-12T13:20:00"dateTime,
+        "2005-04-12T13:20:00"dateTime
     )
 )
 
@@ -33,16 +33,16 @@ at_least_one_member_of<dateTime>(
 
 at_least_one_member_of<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:00"dateTime
     ),
     bag<dateTime>(
-        dateTime("2005-04-12T13:20:00"),
-        dateTime("2005-04-12T13:20:15.5"),
-        dateTime("2005-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:00Z")
+        "2005-04-12T13:20:00"dateTime,
+        "2005-04-12T13:20:15.5"dateTime,
+        "2005-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:00Z"dateTime
     )
 )
 

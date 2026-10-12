@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<anyURI>(
-    anyURI("http://datypic.com"),
-    anyURI("http://datypic.com")
+    "http://datypic.com"anyURI,
+    "http://datypic.com"anyURI
 )
 
 //?
@@ -22,8 +22,8 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("mailto:info@datypic.com"),
-    anyURI("mailto:info@datypic.com")
+    "mailto:info@datypic.com"anyURI,
+    "mailto:info@datypic.com"anyURI
 )
 
 //?
@@ -33,8 +33,8 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("../%C3%A9dition.html"),
-    anyURI("../%C3%A9dition.html")
+    "../%C3%A9dition.html"anyURI,
+    "../%C3%A9dition.html"anyURI
 )
 
 //?
@@ -44,8 +44,8 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("../édition.html"),
-    anyURI("../édition.html")
+    "../édition.html"anyURI,
+    "../édition.html"anyURI
 )
 
 //?
@@ -55,8 +55,8 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("http://datypic.com/prod.html#shirt"),
-    anyURI("http://datypic.com/prod.html#shirt")
+    "http://datypic.com/prod.html#shirt"anyURI,
+    "http://datypic.com/prod.html#shirt"anyURI
 )
 
 //?
@@ -66,8 +66,8 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("../prod.html#shirt"),
-    anyURI("../prod.html#shirt")
+    "../prod.html#shirt"anyURI,
+    "../prod.html#shirt"anyURI
 )
 
 //?
@@ -77,7 +77,7 @@ eq<anyURI>(
 //? source: ...
 
 eq<anyURI>(
-    anyURI("urn:example:org"),
-    anyURI("urn:example:org")
+    "urn:example:org"anyURI,
+    "urn:example:org"anyURI
 )
 

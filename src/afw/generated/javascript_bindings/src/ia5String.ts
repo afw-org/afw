@@ -161,23 +161,6 @@ export function afwGtIa5String(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type ia5String returning ia5String result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {ia5String} Converted value
- */
-export function afwIa5String(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "ia5String";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Checks whether value is dataType ia5String and returns the boolean result.
  * It is false for undefined. This can also be written `is<ia5String>(value`).
  * 

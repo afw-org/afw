@@ -26,7 +26,7 @@ replace(
     string("Hello World!"),
     string("l"),
     string("x"),
-    integer(2)
+    2
 )
 
 //?
@@ -39,7 +39,7 @@ replace(
     string("Hello World!"),
     string("l"),
     string("x"),
-    integer(-1)
+    -1
 )
 
 //?
@@ -76,7 +76,7 @@ replace(
     string("abc"),
     string(""),
     string("x"),
-    integer(-1)
+    -1
 )
 
 //?

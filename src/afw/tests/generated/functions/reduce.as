@@ -7,17 +7,17 @@
 //?
 //? test: reduce-1
 //? description: Test reduce function with integers.
-//? expect: integer(20)
+//? expect: 20
 //? source: ...
 
 reduce(
     string("add"),
-    integer(4),
+    4,
     bag<integer>(
-        integer(2),
-        integer(9),
-        integer(5),
-        integer(0)
+        2,
+        9,
+        5,
+        0
     )
 )
 

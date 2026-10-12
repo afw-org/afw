@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("P1DT2H"),
-    dayTimeDuration("P1DT2H")
+    "P1DT2H"dayTimeDuration,
+    "P1DT2H"dayTimeDuration
 )
 
 //?
@@ -22,8 +22,8 @@ eq<dayTimeDuration>(
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("PT20M"),
-    dayTimeDuration("PT20M")
+    "PT20M"dayTimeDuration,
+    "PT20M"dayTimeDuration
 )
 
 //?
@@ -33,8 +33,8 @@ eq<dayTimeDuration>(
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("PT120M"),
-    dayTimeDuration("PT120M")
+    "PT120M"dayTimeDuration,
+    "PT120M"dayTimeDuration
 )
 
 //?
@@ -44,8 +44,8 @@ eq<dayTimeDuration>(
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("P0DT1H"),
-    dayTimeDuration("P0DT1H")
+    "P0DT1H"dayTimeDuration,
+    "P0DT1H"dayTimeDuration
 )
 
 //?
@@ -55,8 +55,8 @@ eq<dayTimeDuration>(
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("P0D"),
-    dayTimeDuration("P0D")
+    "P0D"dayTimeDuration,
+    "P0D"dayTimeDuration
 )
 
 //?
@@ -66,8 +66,8 @@ eq<dayTimeDuration>(
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("-P60D"),
-    dayTimeDuration("-P60D")
+    "-P60D"dayTimeDuration,
+    "-P60D"dayTimeDuration
 )
 
 //?
@@ -77,7 +77,7 @@ eq<dayTimeDuration>(
 //? source: ...
 
 eq<dayTimeDuration>(
-    dayTimeDuration("PT1M30.5S"),
-    dayTimeDuration("PT1M30.5S")
+    "PT1M30.5S"dayTimeDuration,
+    "PT1M30.5S"dayTimeDuration
 )
 

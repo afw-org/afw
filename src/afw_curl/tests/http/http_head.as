@@ -35,7 +35,7 @@ return false;
 #!/usr/bin/env afw
 
 const response = http_head(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get"
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get"
 );
 
 return response.response_code;
@@ -67,7 +67,7 @@ const options = {
 };
 
 const response = http_head(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get",
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get",
     undefined,
     options
 );

@@ -110,7 +110,7 @@ ops: sealed file on disk, seal key in env, conf template only.
 #!/usr/bin/env afw
 
 /* Known 32-octet key as base64 (not the LDAP password). */
-const sealKeyMaterial = base64Binary(
+const sealKeyMaterial = to_base64Binary(
     "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY="
 ); /* 0123456789abcdef0123456789abcdef */
 
@@ -147,9 +147,9 @@ const ctB64 = readln(f);
 close(f);
 const plain = crypto_decrypt({
     \"name\": \"AES-GCM\",
-    \"iv\": base64Binary(ivB64),
-    \"tag\": base64Binary(tagB64)
-}, key, base64Binary(ctB64));
+    \"iv\": to_base64Binary(ivB64),
+    \"tag\": to_base64Binary(tagB64)
+}, key, to_base64Binary(ctB64));
 crypto_destroy_key(key);
 return {
     \"dn\": \"cn=service,dc=example,dc=org\",

@@ -10,7 +10,7 @@
 //? expect: string("afw")
 //? source: ...
 
-get_object_with_uri(anyURI("/afw/_AdaptiveAdapter_/afw")).adapterId
+get_object_with_uri("/afw/_AdaptiveAdapter_/afw"anyURI).adapterId
 
 //?
 //? test: get_object_with_uri-error-invalid-uri
@@ -18,7 +18,7 @@ get_object_with_uri(anyURI("/afw/_AdaptiveAdapter_/afw")).adapterId
 //? expect: error
 //? source: ...
 
-get_object_with_uri(anyURI("::::"))
+get_object_with_uri("::::"anyURI)
 
 //?
 //? test: get_object_with_uri-error-not-local
@@ -26,7 +26,7 @@ get_object_with_uri(anyURI("::::"))
 //? expect: error:Only local entity object paths are currently supported
 //? source: ...
 
-get_object_with_uri(anyURI("http://example.com/foo"))
+get_object_with_uri("http://example.com/foo"anyURI)
 
 //?
 //? test: get_object_with_uri-error-not-found
@@ -34,4 +34,4 @@ get_object_with_uri(anyURI("http://example.com/foo"))
 //? expect: error:Not found
 //? source: ...
 
-get_object_with_uri(anyURI("/afw/_AdaptiveAdapter_/does-not-exist-xyz"))
+get_object_with_uri("/afw/_AdaptiveAdapter_/does-not-exist-xyz"anyURI)

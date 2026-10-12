@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<ipAddress>(
-    ipAddress("204.11.3.4")
+    "204.11.3.4"ipAddress
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<ipAddress>(
 //? source: ...
 
 to_string<ipAddress>(
-    ipAddress("204.0.0.255")
+    "204.0.0.255"ipAddress
 )
 
 //?

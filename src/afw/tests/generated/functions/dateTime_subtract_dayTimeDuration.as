@@ -7,33 +7,33 @@
 //?
 //? test: subtract_dayTimeDuration<dateTime>-1
 //? description: Subtract a day
-//? expect: dateTime("2004-04-11T13:20:00")
+//? expect: "2004-04-11T13:20:00"dateTime
 //? source: ...
 
 subtract_dayTimeDuration<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
-    dayTimeDuration("P1D")
+    "2004-04-12T13:20:00"dateTime,
+    "P1D"dayTimeDuration
 )
 
 //?
 //? test: subtract_dayTimeDuration<dateTime>-2
 //? description: Subtract a day and an hour
-//? expect: dateTime("2004-04-11T12:20:00")
+//? expect: "2004-04-11T12:20:00"dateTime
 //? source: ...
 
 subtract_dayTimeDuration<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
-    dayTimeDuration("P1DT1H")
+    "2004-04-12T13:20:00"dateTime,
+    "P1DT1H"dayTimeDuration
 )
 
 //?
 //? test: subtract_dayTimeDuration<dateTime>-3
 //? description: Subtract negative day and an hour and a second
-//? expect: dateTime("2004-04-13T14:21:30.5")
+//? expect: "2004-04-13T14:21:30.5"dateTime
 //? source: ...
 
 subtract_dayTimeDuration<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
-    dayTimeDuration("-P1DT1H1M30.5S")
+    "2004-04-12T13:20:00"dateTime,
+    "-P1DT1H1M30.5S"dayTimeDuration
 )
 

@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<date>-1
 //? description: One
-//? expect: date("2004-04-12-05:00")
+//? expect: "2004-04-12-05:00"date
 //? source: ...
 
 one_and_only<date>(
     bag<date>(
-        date("2004-04-12-05:00")
+        "2004-04-12-05:00"date
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<date>(
 
 one_and_only<date>(
     bag<date>(
-        date("2004-04-12-05:00"),
-        date("2005-04-12-05:00")
+        "2004-04-12-05:00"date,
+        "2005-04-12-05:00"date
     )
 )
 

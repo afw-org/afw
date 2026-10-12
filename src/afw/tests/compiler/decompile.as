@@ -53,16 +53,16 @@ assert(decompile({ a: "b", c: 1, d: true }) == "{\"a\":\"b\",\"c\":1,\"d\":true}
 return 0;
 
 //? test: decompile-data-typed
-//? description: Non-JSON data types use cast-function form
+//? description: Non-JSON data types use typed literals (#589)
 //? skip: false
 //? expect: 0
 //? source: ...
 
-const dt = dateTime("2020-01-02T03:04:05Z");
-assert(decompile(dt) == "dateTime(\"2020-01-02T03:04:05Z\")");
+const dt = "2020-01-02T03:04:05Z"dateTime;
+assert(decompile(dt) == "\"2020-01-02T03:04:05Z\"dateTime");
 
-const b64 = base64Binary("YQ==");
-assert(decompile(b64) == "base64Binary(\"YQ==\")");
+const b64 = "YQ=="base64Binary;
+assert(decompile(b64) == "\"YQ==\"base64Binary");
 
 return 0;
 
@@ -84,22 +84,22 @@ const all = [
     undefined,
     [],
     {},
-    dateTime("2020-01-02T03:04:05Z"),
-    date("2020-01-02"),
-    time("03:04:05"),
-    dayTimeDuration("PT1H"),
-    yearMonthDuration("P1Y"),
-    base64Binary("YQ=="),
-    hexBinary("61"),
-    anyURI("https://example.com/"),
-    dnsName("example.com"),
-    ipAddress("127.0.0.1"),
-    rfc822Name("a@b.com"),
-    x500Name("CN=a"),
-    ia5String("abc"),
-    password("secret"),
-    objectId("oid1"),
-    objectPath("/a/b/c"),
+    "2020-01-02T03:04:05Z"dateTime,
+    "2020-01-02"date,
+    "03:04:05"time,
+    "PT1H"dayTimeDuration,
+    "P1Y"yearMonthDuration,
+    "YQ=="base64Binary,
+    "61"hexBinary,
+    "https://example.com/"anyURI,
+    "example.com"dnsName,
+    "127.0.0.1"ipAddress,
+    "a@b.com"rfc822Name,
+    "CN=a"x500Name,
+    "abc"ia5String,
+    "secret"password,
+    "oid1"objectId,
+    "/a/b/c"objectPath,
     regexp("^a$"),
     script("return 1;"),
     template("x${1}"),
@@ -112,29 +112,66 @@ const all = [
 const s = decompile(all);
 assert(s ==
     "[true,1,1.5E0,\"s\",null,undefined,[],{}," +
-    "dateTime(\"2020-01-02T03:04:05Z\")," +
-    "date(\"2020-01-02\")," +
-    "time(\"03:04:05\")," +
-    "dayTimeDuration(\"PT1H\")," +
-    "yearMonthDuration(\"P1Y\")," +
-    "base64Binary(\"YQ==\")," +
-    "hexBinary(\"61\")," +
-    "anyURI(\"https://example.com/\")," +
-    "dnsName(\"example.com\")," +
-    "ipAddress(\"127.0.0.1\")," +
-    "rfc822Name(\"a@b.com\")," +
-    "x500Name(\"CN=a\")," +
-    "ia5String(\"abc\")," +
-    "password(\"secret\")," +
-    "objectId(\"oid1\")," +
-    "objectPath(\"/a/b/c\")," +
-    "regexp(\"^a$\")," +
+    "\"2020-01-02T03:04:05Z\"dateTime," +
+    "\"2020-01-02\"date," +
+    "\"03:04:05\"time," +
+    "\"PT1H\"dayTimeDuration," +
+    "\"P1Y\"yearMonthDuration," +
+    "\"YQ==\"base64Binary," +
+    "\"61\"hexBinary," +
+    "\"https://example.com/\"anyURI," +
+    "\"example.com\"dnsName," +
+    "\"127.0.0.1\"ipAddress," +
+    "\"a@b.com\"rfc822Name," +
+    "\"CN=a\"x500Name," +
+    "\"abc\"ia5String," +
+    "\"secret\"password," +
+    "\"oid1\"objectId," +
+    "\"/a/b/c\"objectPath," +
+    "\"^a$\"regexp," +
     "script(\"return 1;\")," +
     "template(\"x${1}\")," +
-    "xpathExpression(\"/a\")," +
+    "\"/a\"xpathExpression," +
     "json(\"{\\\"a\\\":1}\")," +
     "relaxedJson(\"{a:1}\")," +
     "add]");
+
+return 0;
+
+//? test: decompile-typed-literal-round-trip
+//? description: decompile writes typed literals that compile back to the same values (#589)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const all = [
+    "2020-01-02T03:04:05Z"dateTime,
+    "2020-01-02"date,
+    "03:04:05"time,
+    "PT1H"dayTimeDuration,
+    "P1Y"yearMonthDuration,
+    "YQ=="base64Binary,
+    "61"hexBinary,
+    "https://example.com/"anyURI,
+    "example.com"dnsName,
+    "127.0.0.1"ipAddress,
+    "a@b.com"rfc822Name,
+    "CN=a"x500Name,
+    "abc"ia5String,
+    "secret"password,
+    "oid1"objectId,
+    "/a/b/c"objectPath,
+    "^a$"regexp,
+    "/a"xpathExpression,
+    "a\"b\\c"anyURI
+];
+
+const text = decompile(all);
+const back = evaluate(compile<script>(script("return " + text + ";")));
+assert(decompile(back) == text, decompile(back));
+assert(is<objectId>(back[14]) && back[14] == "oid1"objectId, "objectId");
+assert(is<objectPath>(back[15]) && back[15] == "/a/b/c"objectPath, "objectPath");
+assert(back[18] == to_anyURI("a\"b\\c"), "escaped text");
 
 return 0;
 

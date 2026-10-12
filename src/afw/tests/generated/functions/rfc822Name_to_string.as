@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<rfc822Name>(
-    rfc822Name("anderson@sun.com")
+    "anderson@sun.com"rfc822Name
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<rfc822Name>(
 //? source: ...
 
 to_string<rfc822Name>(
-    rfc822Name("localpart@domainpart")
+    "localpart@domainpart"rfc822Name
 )
 
 //?

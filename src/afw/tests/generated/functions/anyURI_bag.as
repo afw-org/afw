@@ -10,25 +10,25 @@
 //? expect: ...
 
 bag<anyURI>(
-    anyURI("http://www.w3schools.com/images/smiley.gif"),
-    anyURI("http://datypic.com"),
-    anyURI("../%C3%A9dition.html"),
-    anyURI("../dition.html"),
-    anyURI("http://datypic.com/prod.html#shirt"),
-    anyURI("../prod.html#shirt"),
-    anyURI("urn:example:org")
+    "http://www.w3schools.com/images/smiley.gif"anyURI,
+    "http://datypic.com"anyURI,
+    "../%C3%A9dition.html"anyURI,
+    "../dition.html"anyURI,
+    "http://datypic.com/prod.html#shirt"anyURI,
+    "../prod.html#shirt"anyURI,
+    "urn:example:org"anyURI
 )
 
 //? source: ...
 
 bag<anyURI>(
-    anyURI("http://www.w3schools.com/images/smiley.gif"),
-    anyURI("http://datypic.com"),
-    anyURI("../%C3%A9dition.html"),
-    anyURI("../dition.html"),
-    anyURI("http://datypic.com/prod.html#shirt"),
-    anyURI("../prod.html#shirt"),
-    anyURI("urn:example:org")
+    "http://www.w3schools.com/images/smiley.gif"anyURI,
+    "http://datypic.com"anyURI,
+    "../%C3%A9dition.html"anyURI,
+    "../dition.html"anyURI,
+    "http://datypic.com/prod.html#shirt"anyURI,
+    "../prod.html#shirt"anyURI,
+    "urn:example:org"anyURI
 )
 
 //?
@@ -48,6 +48,6 @@ bag<anyURI>(
 //? source: ...
 
 bag<anyURI>(
-    anyURI("x")
+    "x"anyURI
 )
 

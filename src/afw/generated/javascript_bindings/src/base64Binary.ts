@@ -97,23 +97,6 @@ export function afwBagSizeBase64Binary(client : any, value : any[]) : any {
 }
 
 /**
- * Converts value to data type base64Binary returning base64Binary result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {base64Binary} Converted value
- */
-export function afwBase64Binary(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "base64Binary";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Decode base64Binary value to string. An error is thrown if decoded value is
  * not valid UTF-8.
  * 

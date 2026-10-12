@@ -13,12 +13,12 @@ True because the first argument (10) is greater than all of the elements of the 
 
 all_of(
     string("gt"),
-    integer(10),
+    10,
     bag<integer>(
-        integer(4),
-        integer(2),
-        integer(9),
-        integer(0)
+        4,
+        2,
+        9,
+        0
     )
 )
 
@@ -31,12 +31,12 @@ false because the first argument (10) is not greater than all of the elements of
 
 all_of(
     string("gt"),
-    integer(10),
+    10,
     bag<integer>(
-        integer(4),
-        integer(2),
-        integer(9),
-        integer(10)
+        4,
+        2,
+        9,
+        10
     )
 )
 

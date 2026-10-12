@@ -7,13 +7,13 @@
 //?
 //? test: bag_size<hexBinary>-1
 //? description: x
-//? expect: integer(2)
+//? expect: 2
 //? source: ...
 
 bag_size<hexBinary>(
     bag<hexBinary>(
-        hexBinary("0FB8000A"),
-        hexBinary("0fb8")
+        "0FB8000A"hexBinary,
+        "0fb8"hexBinary
     )
 )
 
@@ -25,8 +25,8 @@ bag_size<hexBinary>(
 
 bag_size<hexBinary>(
     bag<hexBinary>(
-        hexBinary("x"),
-        hexBinary("x")
+        "x"hexBinary,
+        "x"hexBinary
     )
 )
 

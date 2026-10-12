@@ -11,12 +11,12 @@
 //? source: ...
 
 is_in<integer>(
-    integer(0),
+    0,
     bag<integer>(
-        integer(-1),
-        integer(34567),
-        integer(1),
-        integer(134)
+        -1,
+        34567,
+        1,
+        134
     )
 )
 
@@ -27,12 +27,12 @@ is_in<integer>(
 //? source: ...
 
 is_in<integer>(
-    integer(9223372036854775807),
+    9223372036854775807,
     bag<integer>(
-        integer(0),
-        integer(1),
-        integer(9223372036854775807),
-        integer(134)
+        0,
+        1,
+        9223372036854775807,
+        134
     )
 )
 
@@ -43,10 +43,10 @@ is_in<integer>(
 //? source: ...
 
 is_in<integer>(
-    integer(x),
+    to_integer(x),
     bag<integer>(
-        integer(x),
-        integer(x)
+        to_integer(x),
+        to_integer(x)
     )
 )
 

@@ -11,7 +11,7 @@
 //? source: ...
 
 regexp_match<ipAddress>(
-    ipAddress("127.0.0.1"),
+    "127.0.0.1"ipAddress,
     string("127\\.0\\.0\\..*")
 )
 
@@ -22,7 +22,7 @@ regexp_match<ipAddress>(
 //? source: ...
 
 regexp_match<ipAddress>(
-    ipAddress("127.0.1.1"),
+    "127.0.1.1"ipAddress,
     string("127\\.0\\.0\\..*")
 )
 
@@ -33,7 +33,7 @@ regexp_match<ipAddress>(
 //? source: ...
 
 regexp_match<ipAddress>(
-    ipAddress("127.0.0.1"),
+    "127.0.0.1"ipAddress,
     string("127\\.0\\.0\\..*)")
 )
 

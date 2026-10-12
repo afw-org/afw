@@ -10,22 +10,22 @@
 //? expect: ...
 
 bag<dateTime>(
-    dateTime("2004-04-12T13:20:00"),
-    dateTime("2004-04-12T13:20:15.5")
+    "2004-04-12T13:20:00"dateTime,
+    "2004-04-12T13:20:15.5"dateTime
 )
 
 //? source: ...
 
 intersection<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:15.5")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:15.5"dateTime
     ),
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:00"dateTime
     )
 )
 
@@ -35,20 +35,20 @@ intersection<dateTime>(
 //? expect: ...
 
 bag<dateTime>(
-    dateTime("2004-04-12T13:20:00")
+    "2004-04-12T13:20:00"dateTime
 )
 
 //? source: ...
 
 intersection<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:00"dateTime
     ),
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:00"dateTime
     )
 )
 
@@ -64,12 +64,12 @@ bag<dateTime>(
 
 intersection<dateTime>(
     bag<dateTime>(
-        dateTime("2004-04-12T14:21:00")
+        "2004-04-12T14:21:00"dateTime
     ),
     bag<dateTime>(
-        dateTime("2004-04-12T13:20:15.5"),
-        dateTime("2004-04-12T13:20:00"),
-        dateTime("2004-04-12T13:20:00")
+        "2004-04-12T13:20:15.5"dateTime,
+        "2004-04-12T13:20:00"dateTime,
+        "2004-04-12T13:20:00"dateTime
     )
 )
 

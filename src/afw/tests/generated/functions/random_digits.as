@@ -10,7 +10,7 @@
 //? expect: 0
 //? source: ...
 
-assert(length(random_digits(integer(5))) === 5);
+assert(length(random_digits(5)) === 5);
 return 0;
 
 //?
@@ -19,7 +19,7 @@ return 0;
 //? expect: error:numberOfDigits can be 1-18
 //? source: ...
 
-random_digits(integer(0))
+random_digits(0)
 
 //?
 //? test: random_digits-error-too-many
@@ -27,4 +27,4 @@ random_digits(integer(0))
 //? expect: error:numberOfDigits can be 1-18
 //? source: ...
 
-random_digits(integer(19))
+random_digits(19)

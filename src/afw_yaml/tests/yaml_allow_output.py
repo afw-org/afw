@@ -118,7 +118,7 @@ def run():
         _expect_equal(
             "allow_short_yaml_integer",
             "issue #14: -a yaml encodes integer without quotes",
-            "integer(42)",
+            "42",
             "--- 42",
             allow="yaml",
         )
@@ -128,7 +128,7 @@ def run():
         _expect_equal(
             "allow_media_type_application_x_yaml",
             "issue #14: -a application/x-yaml is accepted (media type)",
-            "integer(99)",
+            "99",
             "--- 99",
             allow="application/x-yaml",
         )
@@ -148,7 +148,7 @@ def run():
     )
 
     # default json path still works (no yaml extension needed)
-    code, out, err = _run_afw(["-a", "json", "-s", "expression", "-x", "integer(7)"])
+    code, out, err = _run_afw(["-a", "json", "-s", "expression", "-x", "7"])
     body = out[:-1] if out.endswith("\n") else out
     tests.append(
         _case(
@@ -175,7 +175,7 @@ def run():
         _expect_equal(
             "integer_negative",
             "YAML negative integer (--- document start + signed value)",
-            "integer(-42)",
+            "-42",
             "--- -42",
         )
     )
@@ -287,7 +287,7 @@ def run():
         _expect_equal(
             "object_multiline_and_integer",
             "issue #14: object with multiline string + integer + boolean",
-            'object({msg: string("line1\\nline2"), n: integer(7), ok: true})',
+            'object({msg: string("line1\\nline2"), n: 7, ok: true})',
             "---\n  msg: |-\n    line1\n    line2\n  \"n\": 7\n  ok: true",
         )
     )
@@ -346,7 +346,7 @@ def run():
                 "-s",
                 "expression",
                 "-x",
-                "integer(3)",
+                "3",
             ]
         )
         body = out[:-1] if out.endswith("\n") else out

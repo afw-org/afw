@@ -466,20 +466,3 @@ export function afwUnionX500Name(client : any, arrays : any[]) : any {
     return client.perform(_action);
 }
 
-/**
- * Converts value to data type x500Name returning x500Name result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {x500Name} Converted value
- */
-export function afwX500Name(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "x500Name";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-

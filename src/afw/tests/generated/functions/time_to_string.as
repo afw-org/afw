@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<time>(
-    time("13:20:30.5555+05:00")
+    "13:20:30.5555+05:00"time
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<time>(
 //? source: ...
 
 to_string<time>(
-    time("13:20:30.5555")
+    "13:20:30.5555"time
 )
 
 //?
@@ -31,7 +31,7 @@ to_string<time>(
 //? source: ...
 
 to_string<time>(
-    time("13:20")
+    "13:20"time
 )
 
 //?
@@ -41,6 +41,6 @@ to_string<time>(
 //? source: ...
 
 to_string<time>(
-    time("x")
+    "x"time
 )
 

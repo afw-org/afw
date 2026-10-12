@@ -10,19 +10,19 @@
 //? expect: ...
 
 bag<ipAddress>(
-    ipAddress("204.0.0.224"),
-    ipAddress("204.0.0.224"),
-    ipAddress("204.0.0.225"),
-    ipAddress("204.0.0.226")
+    "204.0.0.224"ipAddress,
+    "204.0.0.224"ipAddress,
+    "204.0.0.225"ipAddress,
+    "204.0.0.226"ipAddress
 )
 
 //? source: ...
 
 bag<ipAddress>(
-    ipAddress("204.0.0.224"),
-    ipAddress("204.0.0.224"),
-    ipAddress("204.0.0.225"),
-    ipAddress("204.0.0.226")
+    "204.0.0.224"ipAddress,
+    "204.0.0.224"ipAddress,
+    "204.0.0.225"ipAddress,
+    "204.0.0.226"ipAddress
 )
 
 //?
@@ -33,6 +33,6 @@ bag<ipAddress>(
 //? source: ...
 
 bag<ipAddress>(
-    ipAddress("x")
+    "x"ipAddress
 )
 

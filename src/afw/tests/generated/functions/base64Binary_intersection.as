@@ -16,11 +16,11 @@ bag<base64Binary>(
 
 intersection<base64Binary>(
     bag<base64Binary>(
-        base64Binary("0fa8"),
-        base64Binary("0fa80f+9")
+        "0fa8"base64Binary,
+        "0fa80f+9"base64Binary
     ),
     bag<base64Binary>(
-        base64Binary("0F+40A==")
+        "0F+40A=="base64Binary
     )
 )
 
@@ -30,19 +30,19 @@ intersection<base64Binary>(
 //? expect: ...
 
 bag<base64Binary>(
-    base64Binary("0F+40A==")
+    "0F+40A=="base64Binary
 )
 
 //? source: ...
 
 intersection<base64Binary>(
     bag<base64Binary>(
-        base64Binary("0fa8"),
-        base64Binary("0fa80f+9"),
-        base64Binary("0F+40A==")
+        "0fa8"base64Binary,
+        "0fa80f+9"base64Binary,
+        "0F+40A=="base64Binary
     ),
     bag<base64Binary>(
-        base64Binary("0F+40A==")
+        "0F+40A=="base64Binary
     )
 )
 
@@ -54,12 +54,12 @@ intersection<base64Binary>(
 
 intersection<base64Binary>(
     bag<base64Binary>(
-        base64Binary("x"),
-        base64Binary("x")
+        "x"base64Binary,
+        "x"base64Binary
     ),
     bag<base64Binary>(
-        base64Binary("x"),
-        base64Binary("x")
+        "x"base64Binary,
+        "x"base64Binary
     )
 )
 

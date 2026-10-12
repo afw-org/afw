@@ -7,7 +7,7 @@
 //?
 //? test: to_integer<string>-1
 //? description: integer from string test 123
-//? expect: integer(123)
+//? expect: 123
 //? source: ...
 
 to_integer<string>(
@@ -17,7 +17,7 @@ to_integer<string>(
 //?
 //? test: to_integer<string>-2
 //? description: integer from string test -123
-//? expect: integer(-123)
+//? expect: -123
 //? source: ...
 
 to_integer<string>(

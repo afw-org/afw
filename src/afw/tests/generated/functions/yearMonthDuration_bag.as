@@ -10,27 +10,27 @@
 //? expect: ...
 
 bag<yearMonthDuration>(
-    yearMonthDuration("P3Y6M"),
-    yearMonthDuration("P20M"),
-    yearMonthDuration("P0Y20M"),
-    yearMonthDuration("P0Y"),
-    yearMonthDuration("-P60Y"),
-    yearMonthDuration("-P60Y"),
-    yearMonthDuration("-P60Y"),
-    yearMonthDuration("-P60Y")
+    "P3Y6M"yearMonthDuration,
+    "P20M"yearMonthDuration,
+    "P0Y20M"yearMonthDuration,
+    "P0Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration
 )
 
 //? source: ...
 
 bag<yearMonthDuration>(
-    yearMonthDuration("P3Y6M"),
-    yearMonthDuration("P20M"),
-    yearMonthDuration("P0Y20M"),
-    yearMonthDuration("P0Y"),
-    yearMonthDuration("-P60Y"),
-    yearMonthDuration("-P60Y"),
-    yearMonthDuration("-P60Y"),
-    yearMonthDuration("-P60Y")
+    "P3Y6M"yearMonthDuration,
+    "P20M"yearMonthDuration,
+    "P0Y20M"yearMonthDuration,
+    "P0Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration,
+    "-P60Y"yearMonthDuration
 )
 
 //?

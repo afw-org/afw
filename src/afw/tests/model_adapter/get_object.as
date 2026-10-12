@@ -58,7 +58,7 @@ obj = get_object("model", "MyObjectType1", "Test1",
     }
 );
 
-assert(meta(obj).path === anyURI("/model/MyObjectType1/Test1"));
+assert(meta(obj).path === "/model/MyObjectType1/Test1"anyURI);
 assert(meta(obj).objectId === "Test1");
 assert(meta(obj).objectType === "MyObjectType1");
 assert(meta(obj).reconcilable === "{\"_meta_\":{\"path\":\"/model/MyObjectType1/Test1\"},\"MyTestString1\":\"This is a test string.\"}");

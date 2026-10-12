@@ -11,8 +11,8 @@
 //? source: ...
 
 eq<hexBinary>(
-    hexBinary("0FB8"),
-    hexBinary("0FB8")
+    "0FB8"hexBinary,
+    "0FB8"hexBinary
 )
 
 //?
@@ -22,8 +22,8 @@ eq<hexBinary>(
 //? source: ...
 
 eq<hexBinary>(
-    hexBinary("0fb8"),
-    hexBinary("0fb8")
+    "0fb8"hexBinary,
+    "0fb8"hexBinary
 )
 
 //?
@@ -33,7 +33,7 @@ eq<hexBinary>(
 //? source: ...
 
 eq<hexBinary>(
-    hexBinary(""),
-    hexBinary("")
+    ""hexBinary,
+    ""hexBinary
 )
 

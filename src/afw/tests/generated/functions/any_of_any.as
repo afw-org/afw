@@ -33,10 +33,10 @@ any_of_any(
 any_of_any(
     string("gt<integer>"),
     bag<integer>(
-        integer(10000006)
+        10000006
     ),
     bag<integer>(
-        integer(10000006)
+        10000006
     )
 )
 

@@ -206,8 +206,8 @@ if ((+Infinity == -negativeInfinity) !== true) {
     throw "+Infinity == -Infinity";
 }
 
-if ((1.0 == double(1)) !== true) {
-    throw "(1.0 == double(1)) !== true)";
+if ((1.0 == to_double(1)) !== true) {
+    throw "(1.0 == to_double(1)) !== true)";
 }
 //? test: 11.9.1_A5.1
 //? description: Return true, if x and y are exactly the same sequence of characters; otherwise, return false
@@ -244,12 +244,12 @@ if (("0xff" == "255") !== false) {
 //? source: ...
 #!/usr/bin/env afw
 
-if ((1 == integer("1")) !== true) {
-    throw "(1 == integer(\"1\")) !== true)";
+if ((1 == to_integer("1")) !== true) {
+    throw "(1 == to_integer(\"1\")) !== true)";
 }
 
-if ((1.100 == double("+1.10")) !== true) {
-    throw "1.100 == double(\"+1.10\")) !== true";
+if ((1.100 == to_double("+1.10")) !== true) {
+    throw "1.100 == to_double(\"+1.10\")) !== true";
 }
 
 /*

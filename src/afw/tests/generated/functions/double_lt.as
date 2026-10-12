@@ -11,8 +11,8 @@
 //? source: ...
 
 lt<double>(
-    double(109.0),
-    double(1.09E2)
+    109.0,
+    1.09E2
 )
 
 //?
@@ -22,8 +22,8 @@ lt<double>(
 //? source: ...
 
 lt<double>(
-    double(109.0),
-    double(1.19E2)
+    109.0,
+    1.19E2
 )
 
 //?
@@ -33,8 +33,8 @@ lt<double>(
 //? source: ...
 
 lt<double>(
-    double(-Infinity),
-    double(Infinity)
+    -Infinity,
+    Infinity
 )
 
 //?
@@ -44,7 +44,7 @@ lt<double>(
 //? source: ...
 
 lt<double>(
-    double(NaN),
-    double(Infinity)
+    NaN,
+    Infinity
 )
 

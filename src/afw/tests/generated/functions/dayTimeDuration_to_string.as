@@ -11,7 +11,7 @@
 //? source: ...
 
 to_string<dayTimeDuration>(
-    dayTimeDuration("P1DT1H")
+    "P1DT1H"dayTimeDuration
 )
 
 //?
@@ -21,7 +21,7 @@ to_string<dayTimeDuration>(
 //? source: ...
 
 to_string<dayTimeDuration>(
-    dayTimeDuration("-P1DT1H1M30.5S")
+    "-P1DT1H1M30.5S"dayTimeDuration
 )
 
 //?
@@ -31,6 +31,6 @@ to_string<dayTimeDuration>(
 //? source: ...
 
 to_string<dayTimeDuration>(
-    dayTimeDuration("x")
+    "x"dayTimeDuration
 )
 

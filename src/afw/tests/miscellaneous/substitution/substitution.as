@@ -196,7 +196,7 @@ Add integers from qualified variables where first is a string
 //? source: ...
 
 // Cast app::one to integer because a 1 as the body of a template is a string.
-return integer(app::one) + app::two + app::three;
+return to_integer(app::one) + app::two + app::three;
 
 //?
 //? test: add_integers_from_qualified_variables_2
@@ -204,7 +204,7 @@ return integer(app::one) + app::two + app::three;
 //? expect: 6
 //? source: ...
 
-return app::two + integer(app::one) + app::three;
+return app::two + to_integer(app::one) + app::three;
 
 //?
 //? test: concat_integer_strings_from_qualified_variables

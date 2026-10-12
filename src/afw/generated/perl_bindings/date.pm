@@ -18,7 +18,6 @@ our @EXPORT_OK = qw(
     at_least_one_member_of_date 
     bag_date 
     bag_size_date 
-    date 
     eq_date 
     eqx_date 
     ge_date 
@@ -109,17 +108,6 @@ Returns the number of values in a bag
 
     $value
 
-
-=head3 date
-
-Converts value to data type date returning date result.
-Convert to data type date
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 eq_date
 
@@ -449,17 +437,6 @@ sub bag_size_date {
     my $request = $session->request()
 
     $request->set("function" => "bag_size<date>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub date {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "date");
     $request->set("value", $value);
 
     return $request->getResult();

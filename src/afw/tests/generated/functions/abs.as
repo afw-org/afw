@@ -7,10 +7,10 @@
 //?
 //? test: abs-1
 //? description: ABS of a negative integer
-//? expect: integer(5)
+//? expect: 5
 //? source: ...
 
-abs(integer(-5))
+abs(-5)
 
 //?
 //? test: abs-error-integer-overflow
@@ -18,4 +18,4 @@ abs(integer(-5))
 //? expect: error:Integer abs overflow
 //? source: ...
 
-abs(integer(-9223372036854775807 - 1))
+abs((-9223372036854775807 - 1))

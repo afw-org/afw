@@ -12,8 +12,8 @@
 
 substring<string>(
     string("abc"),
-    integer(0),
-    integer(1)
+    0,
+    1
 )
 
 //?
@@ -24,8 +24,8 @@ substring<string>(
 
 substring<string>(
     string("abc"),
-    integer(1),
-    integer(2)
+    1,
+    2
 )
 
 //?
@@ -36,7 +36,7 @@ substring<string>(
 
 substring<string>(
     string("abc"),
-    integer(1),
-    integer(-1)
+    1,
+    -1
 )
 

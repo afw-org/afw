@@ -7,7 +7,7 @@
 //?
 //? test: to_time<string>-1
 //? description: x
-//? expect: time("13:20:30.5555")
+//? expect: "13:20:30.5555"time
 //? source: ...
 
 to_time<string>(
@@ -17,7 +17,7 @@ to_time<string>(
 //?
 //? test: to_time<string>-2
 //? description: x
-//? expect: time("13:20:00-05:00")
+//? expect: "13:20:00-05:00"time
 //? source: ...
 
 to_time<string>(
@@ -27,7 +27,7 @@ to_time<string>(
 //?
 //? test: to_time<string>-3
 //? description: x
-//? expect: time("13:20:30")
+//? expect: "13:20:30"time
 //? source: ...
 
 to_time<string>(

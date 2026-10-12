@@ -524,29 +524,6 @@ class yearMonthDuration
         return $request->get_result();
     }
 
-    /**
-     * yearMonthDuration()
-     *
-     * Converts value to data type yearMonthDuration returning
-     * yearMonthDuration result.
-     *
-     * @param $value Value to convert
-     *
-     * @return yearMonthDuration Converted value
-     */
-    public function yearMonthDuration(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "yearMonthDuration");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
 }
 
 ?>

@@ -7,12 +7,12 @@
 //?
 //? test: one_and_only<time>-1
 //? description: x
-//? expect: time("13:20:30.5555")
+//? expect: "13:20:30.5555"time
 //? source: ...
 
 one_and_only<time>(
     bag<time>(
-        time("13:20:30.5555")
+        "13:20:30.5555"time
     )
 )
 
@@ -24,8 +24,8 @@ one_and_only<time>(
 
 one_and_only<time>(
     bag<time>(
-        time("13:20:30.5555"),
-        time("13:20:30.5555")
+        "13:20:30.5555"time,
+        "13:20:30.5555"time
     )
 )
 

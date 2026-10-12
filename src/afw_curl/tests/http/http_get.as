@@ -34,7 +34,7 @@ return false;
 #!/usr/bin/env afw
 
 const response = http_get(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get"
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get"
 );
 
 /* make sure we get at least the 200 OK header back */
@@ -71,7 +71,7 @@ return response.response_code;
 #!/usr/bin/env afw
 
 const response = http_get(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/400"
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/400"
 );
 
 return response.response_code;
@@ -122,7 +122,7 @@ const options = {
 };
 
 const response = http_get(
-    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get",
+    "http://127.0.0.1:" + string(to_integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get",
     undefined,
     options
 );

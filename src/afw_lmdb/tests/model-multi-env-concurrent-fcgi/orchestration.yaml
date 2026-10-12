@@ -101,7 +101,7 @@ tests:
     sourceType: script
     source: |
       function waitFor(signal: string): void {
-          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          const until = add_dayTimeDuration<dateTime>(now_utc(), "PT120S"dayTimeDuration);
           // A body of its own: each try's allocations are freed with it.
           while (true) {
               let found: boolean = false;
@@ -132,7 +132,7 @@ tests:
     sourceType: script
     source: |
       function waitFor(signal: string): void {
-          const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT120S"));
+          const until = add_dayTimeDuration<dateTime>(now_utc(), "PT120S"dayTimeDuration);
           // A body of its own: each try's allocations are freed with it.
           while (true) {
               let found: boolean = false;
@@ -161,7 +161,7 @@ tests:
     sourceType: script
     source: |
       add_object("lmdbA", "HoldRow", {at: "start"}, "hold-1");
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT1S"));
+      const until = add_dayTimeDuration<dateTime>(now_utc(), "PT1S"dayTimeDuration);
       while (true) {
           const now = now_utc();
           if (now >= until) { break; }
@@ -178,7 +178,7 @@ tests:
       restart completes; neither request blocks the other for good.
     sourceType: script
     source: |
-      const until = add_dayTimeDuration<dateTime>(now_utc(), dayTimeDuration("PT0.3S"));
+      const until = add_dayTimeDuration<dateTime>(now_utc(), "PT0.3S"dayTimeDuration);
       while (true) {
           const now = now_utc();
           if (now >= until) { break; }

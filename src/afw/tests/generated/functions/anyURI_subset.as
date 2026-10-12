@@ -12,12 +12,12 @@
 
 subset<anyURI>(
     bag<anyURI>(
-        anyURI("urn:example:org")
+        "urn:example:org"anyURI
     ),
     bag<anyURI>(
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     )
 )
 
@@ -29,12 +29,12 @@ subset<anyURI>(
 
 subset<anyURI>(
     bag<anyURI>(
-        anyURI("../prod.html#shirt"),
-        anyURI("urn:example:org")
+        "../prod.html#shirt"anyURI,
+        "urn:example:org"anyURI
     ),
     bag<anyURI>(
-        anyURI("http://datypic.com/prod.html#shirt"),
-        anyURI("../prod.html#shirt")
+        "http://datypic.com/prod.html#shirt"anyURI,
+        "../prod.html#shirt"anyURI
     )
 )
 
@@ -46,8 +46,8 @@ subset<anyURI>(
 
 subset<anyURI>(
     bag<anyURI>(
-        anyURI("x"),
-        anyURI("x")
+        "x"anyURI,
+        "x"anyURI
     )
 )
 

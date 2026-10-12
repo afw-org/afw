@@ -12,7 +12,7 @@
 
 repeat(
     string("ab"),
-    integer(3)
+    3
 )
 
 //?
@@ -23,5 +23,5 @@ repeat(
 
 repeat(
     string("ab"),
-    integer(1001)
+    1001
 )

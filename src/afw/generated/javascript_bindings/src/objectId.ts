@@ -266,23 +266,6 @@ export function afwNexObjectId(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type objectId returning objectId result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {objectId} Converted value
- */
-export function afwObjectId(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "objectId";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Converts objectId value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 

@@ -452,7 +452,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const payload = hexBinary("48656c6c6f"); /* Hello */
+const payload = "48656c6c6f"hexBinary; /* Hello */
 let sn = open_file("wh", "data/hex.bin", "wb");
 write_internal(sn, payload);
 close(sn);
@@ -460,7 +460,7 @@ close(sn);
 sn = open_file("wh", "data/hex.bin", "rb");
 const got = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(got, hexBinary("48656c6c6f")));
+assert(eq<hexBinary>(got, "48656c6c6f"hexBinary));
 return 0;
 
 
@@ -469,7 +469,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const payload = hexBinary("010203ff");
+const payload = "010203ff"hexBinary;
 let sn = open_file("wb64", "data/b64.bin", "wb");
 write_internal(sn, payload);
 close(sn);
@@ -478,7 +478,7 @@ sn = open_file("wb64", "data/b64.bin", "rb");
 const got = read_to_base64Binary(sn, 100);
 close(sn);
 /* base64Binary internal is same octets as written */
-assert(eq<base64Binary>(got, base64Binary("AQID/w==")));
+assert(eq<base64Binary>(got, "AQID/w=="base64Binary));
 return 0;
 
 
@@ -743,14 +743,14 @@ return 0;
 //? source: ...
 
 /* UTF-8 for "€" is E2 82 AC */
-const euro = hexBinary("e282ac");
+const euro = "e282ac"hexBinary;
 let sn = open_file("uc12", "data/euro.bin", "wb");
 write_internal(sn, euro);
 close(sn);
 sn = open_file("uc12", "data/euro.bin", "rb");
 const got = read_to_hexBinary(sn, 10);
 close(sn);
-assert(eq<hexBinary>(got, hexBinary("e282ac")));
+assert(eq<hexBinary>(got, "e282ac"hexBinary));
 /* Also as text stream */
 sn = open_file("uc12b", "data/euro.txt", "w");
 write(sn, "€");
@@ -956,12 +956,12 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb0", "data/mode_rb_wb.bin", "wb");
-write_internal(sn, hexBinary("deadbeef"));
+write_internal(sn, "deadbeef"hexBinary);
 close(sn);
 sn = open_file("mb0", "data/mode_rb_wb.bin", "rb");
 const got0 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(got0, hexBinary("deadbeef")));
+assert(eq<hexBinary>(got0, "deadbeef"hexBinary));
 return 0;
 
 
@@ -971,15 +971,15 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb1", "data/mode_ab.bin", "wb");
-write_internal(sn, hexBinary("01"));
+write_internal(sn, "01"hexBinary);
 close(sn);
 sn = open_file("mb1", "data/mode_ab.bin", "ab");
-write_internal(sn, hexBinary("02"));
+write_internal(sn, "02"hexBinary);
 close(sn);
 sn = open_file("mb1", "data/mode_ab.bin", "rb");
 const got1 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(got1, hexBinary("0102")));
+assert(eq<hexBinary>(got1, "0102"hexBinary));
 return 0;
 
 
@@ -989,17 +989,17 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb2", "data/mode_rbplus.bin", "wb");
-write_internal(sn, hexBinary("aabbccdd"));
+write_internal(sn, "aabbccdd"hexBinary);
 close(sn);
 sn = open_file("mb2", "data/mode_rbplus.bin", "rb+");
 const head2 = read_to_hexBinary(sn, 2);
-assert(eq<hexBinary>(head2, hexBinary("aabb")));
-write_internal(sn, hexBinary("eeff"));
+assert(eq<hexBinary>(head2, "aabb"hexBinary));
+write_internal(sn, "eeff"hexBinary);
 close(sn);
 sn = open_file("mb2", "data/mode_rbplus.bin", "rb");
 const all2 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(all2, hexBinary("aabbeeff")));
+assert(eq<hexBinary>(all2, "aabbeeff"hexBinary));
 return 0;
 
 
@@ -1009,17 +1009,17 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb3", "data/mode_rplusb.bin", "wb");
-write_internal(sn, hexBinary("11223344"));
+write_internal(sn, "11223344"hexBinary);
 close(sn);
 sn = open_file("mb3", "data/mode_rplusb.bin", "r+b");
 const head3 = read_to_hexBinary(sn, 2);
-assert(eq<hexBinary>(head3, hexBinary("1122")));
-write_internal(sn, hexBinary("5566"));
+assert(eq<hexBinary>(head3, "1122"hexBinary));
+write_internal(sn, "5566"hexBinary);
 close(sn);
 sn = open_file("mb3", "data/mode_rplusb.bin", "rb");
 const all3 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(all3, hexBinary("11225566")));
+assert(eq<hexBinary>(all3, "11225566"hexBinary));
 return 0;
 
 
@@ -1029,15 +1029,15 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb4", "data/mode_wbplus.bin", "wb");
-write_internal(sn, hexBinary("ffff"));
+write_internal(sn, "ffff"hexBinary);
 close(sn);
 sn = open_file("mb4", "data/mode_wbplus.bin", "wb+");
-write_internal(sn, hexBinary("0102"));
+write_internal(sn, "0102"hexBinary);
 close(sn);
 sn = open_file("mb4", "data/mode_wbplus.bin", "rb");
 const got4 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(got4, hexBinary("0102")));
+assert(eq<hexBinary>(got4, "0102"hexBinary));
 return 0;
 
 
@@ -1047,12 +1047,12 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb5", "data/mode_wplusb.bin", "w+b");
-write_internal(sn, hexBinary("99"));
+write_internal(sn, "99"hexBinary);
 close(sn);
 sn = open_file("mb5", "data/mode_wplusb.bin", "rb");
 const got5 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(got5, hexBinary("99")));
+assert(eq<hexBinary>(got5, "99"hexBinary));
 return 0;
 
 
@@ -1062,17 +1062,17 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb6", "data/mode_abplus.bin", "wb");
-write_internal(sn, hexBinary("aa"));
+write_internal(sn, "aa"hexBinary);
 close(sn);
 sn = open_file("mb6", "data/mode_abplus.bin", "ab+");
 const head6 = read_to_hexBinary(sn, 100);
-assert(eq<hexBinary>(head6, hexBinary("aa")));
-write_internal(sn, hexBinary("bb"));
+assert(eq<hexBinary>(head6, "aa"hexBinary));
+write_internal(sn, "bb"hexBinary);
 close(sn);
 sn = open_file("mb6", "data/mode_abplus.bin", "rb");
 const all6 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(all6, hexBinary("aabb")));
+assert(eq<hexBinary>(all6, "aabb"hexBinary));
 return 0;
 
 
@@ -1082,17 +1082,17 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb7", "data/mode_aplusb.bin", "wb");
-write_internal(sn, hexBinary("cc"));
+write_internal(sn, "cc"hexBinary);
 close(sn);
 sn = open_file("mb7", "data/mode_aplusb.bin", "a+b");
 const head7 = read_to_hexBinary(sn, 100);
-assert(eq<hexBinary>(head7, hexBinary("cc")));
-write_internal(sn, hexBinary("dd"));
+assert(eq<hexBinary>(head7, "cc"hexBinary));
+write_internal(sn, "dd"hexBinary);
 close(sn);
 sn = open_file("mb7", "data/mode_aplusb.bin", "rb");
 const all7 = read_to_hexBinary(sn, 100);
 close(sn);
-assert(eq<hexBinary>(all7, hexBinary("ccdd")));
+assert(eq<hexBinary>(all7, "ccdd"hexBinary));
 return 0;
 
 
@@ -1102,10 +1102,10 @@ return 0;
 //? source: ...
 
 let sn = open_file("mb8", "data/mode_rb_nowrite.bin", "wb");
-write_internal(sn, hexBinary("00"));
+write_internal(sn, "00"hexBinary);
 close(sn);
 sn = open_file("mb8", "data/mode_rb_nowrite.bin", "rb");
-write_internal(sn, hexBinary("01"));
+write_internal(sn, "01"hexBinary);
 
 
 //? test: mode-wb-read-rejected
@@ -1231,7 +1231,7 @@ read(sn, -1);
 //? source: ...
 
 let sn = open_file("negh", "data/negh.bin", "wb");
-write_internal(sn, hexBinary("00"));
+write_internal(sn, "00"hexBinary);
 close(sn);
 sn = open_file("negh", "data/negh.bin", "rb");
 read_to_hexBinary(sn, -5);
@@ -1269,7 +1269,7 @@ read(sn, 1000001);
 //? source: ...
 
 let sn = open_file("overh", "data/overh.bin", "wb");
-write_internal(sn, hexBinary("00"));
+write_internal(sn, "00"hexBinary);
 close(sn);
 sn = open_file("overh", "data/overh.bin", "rb");
 read_to_hexBinary(sn, 1000001);
@@ -1281,7 +1281,7 @@ read_to_hexBinary(sn, 1000001);
 //? source: ...
 
 let sn = open_file("overb", "data/overb.bin", "wb");
-write_internal(sn, hexBinary("00"));
+write_internal(sn, "00"hexBinary);
 close(sn);
 sn = open_file("overb", "data/overb.bin", "rb");
 read_to_base64Binary(sn, 1000001);
@@ -1409,7 +1409,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const payload = base64Binary("SGVsbG8="); /* Hello */
+const payload = "SGVsbG8="base64Binary; /* Hello */
 let sn = open_file("b64wi", "data/b64wi.bin", "wb");
 write_internal(sn, payload);
 close(sn);
@@ -1441,7 +1441,7 @@ return 0;
 
 /* 你好 = e4bda0e5a5bd */
 let sn = open_file("btu", "data/bin_text_utf8.bin", "wb");
-write_internal(sn, hexBinary("e4bda0e5a5bd"));
+write_internal(sn, "e4bda0e5a5bd"hexBinary);
 close(sn);
 sn = open_file("btu", "data/bin_text_utf8.bin", "r");
 assert(read(sn, 100) === "你好");
@@ -1490,12 +1490,12 @@ return 0;
 //? source: ...
 
 let sn = open_file("hz0", "data/hex_zero.bin", "wb");
-write_internal(sn, hexBinary("ff"));
+write_internal(sn, "ff"hexBinary);
 close(sn);
 sn = open_file("hz0", "data/hex_zero.bin", "rb");
 const got = read_to_hexBinary(sn, 0);
 close(sn);
-assert(eq<hexBinary>(got, hexBinary("")));
+assert(eq<hexBinary>(got, ""hexBinary));
 return 0;
 
 
@@ -1566,7 +1566,7 @@ return open_file("dup_sid", "data/dup2.txt", "w");
 //? source: ...
 
 let sn = open_file("wi_probe", "data/wi_probe.txt", "w");
-return write_internal(sn, integer(5));
+return write_internal(sn, 5);
 
 
 //? test: error-read-invalid-utf8
@@ -1575,7 +1575,7 @@ return write_internal(sn, integer(5));
 //? source: ...
 
 let sn = open_file("bad_utf8", "data/bad_utf8.bin", "w");
-write_internal(sn, hexBinary("FF"));
+write_internal(sn, "FF"hexBinary);
 close(sn);
 sn = open_file("bad_utf8", "data/bad_utf8.bin", "r");
 return read(sn, 10);
@@ -1587,7 +1587,7 @@ return read(sn, 10);
 //? source: ...
 
 let sn = open_file("bad_utf8_ln", "data/bad_utf8_ln.bin", "w");
-write_internal(sn, hexBinary("FF0A"));
+write_internal(sn, "FF0A"hexBinary);
 close(sn);
 sn = open_file("bad_utf8_ln", "data/bad_utf8_ln.bin", "r");
 return readln(sn);

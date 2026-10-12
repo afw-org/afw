@@ -11,8 +11,8 @@
 //? source: ...
 
 ne(
-    integer(6),
-    integer(5)
+    6,
+    5
 )
 
 //?
@@ -22,6 +22,6 @@ ne(
 //? source: ...
 
 ne(
-    integer(6),
+    6,
     string("6")
 )

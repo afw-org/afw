@@ -10,21 +10,21 @@
 //? expect: ...
 
 bag<integer>(
-    integer(4),
-    integer(2),
-    integer(0)
+    4,
+    2,
+    0
 )
 
 //? source: ...
 
 filter(
     string("ge"),
-    integer(4),
+    4,
     bag<integer>(
-        integer(4),
-        integer(2),
-        integer(9),
-        integer(0)
+        4,
+        2,
+        9,
+        0
     )
 )
 

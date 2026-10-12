@@ -12,14 +12,14 @@
 
 at_least_one_member_of<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M")
+        "P2Y6M"yearMonthDuration
     )
 )
 
@@ -31,14 +31,14 @@ at_least_one_member_of<yearMonthDuration>(
 
 at_least_one_member_of<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P3Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y")
+        "P3Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M")
+        "P2Y6M"yearMonthDuration
     )
 )
 
@@ -50,14 +50,14 @@ at_least_one_member_of<yearMonthDuration>(
 
 at_least_one_member_of<yearMonthDuration>(
     bag<yearMonthDuration>(
-        yearMonthDuration("P2Y6M"),
-        yearMonthDuration("P20M"),
-        yearMonthDuration("P0Y20M"),
-        yearMonthDuration("P0Y"),
-        yearMonthDuration("-P60Y")
+        "P2Y6M"yearMonthDuration,
+        "P20M"yearMonthDuration,
+        "P0Y20M"yearMonthDuration,
+        "P0Y"yearMonthDuration,
+        "-P60Y"yearMonthDuration
     ),
     bag<yearMonthDuration>(
-        yearMonthDuration("-P60Y")
+        "-P60Y"yearMonthDuration
     )
 )
 

@@ -10,7 +10,7 @@
 //? expect: 0
 //? source: ...
 
-const d = dayTimeDuration("PT2147483647M");
+const d = "PT2147483647M"dayTimeDuration;
 assert(d !== undefined);
 return 0;
 
@@ -20,7 +20,7 @@ return 0;
 //? expect: error
 //? source: ...
 
-dayTimeDuration("PT2147483648M")
+"PT2147483648M"dayTimeDuration
 
 //?
 //? test: minutes-above-uint-range-example
@@ -28,7 +28,7 @@ dayTimeDuration("PT2147483648M")
 //? expect: error
 //? source: ...
 
-dayTimeDuration("PT3000000000M")
+"PT3000000000M"dayTimeDuration
 
 //?
 //? test: seconds-int32-max
@@ -36,7 +36,7 @@ dayTimeDuration("PT3000000000M")
 //? expect: 0
 //? source: ...
 
-const d = dayTimeDuration("PT2147483647S");
+const d = "PT2147483647S"dayTimeDuration;
 assert(d !== undefined);
 return 0;
 
@@ -46,7 +46,7 @@ return 0;
 //? expect: error
 //? source: ...
 
-dayTimeDuration("PT2147483648S")
+"PT2147483648S"dayTimeDuration
 
 //?
 //? test: days-still-int32
@@ -54,7 +54,7 @@ dayTimeDuration("PT2147483648S")
 //? expect: error
 //? source: ...
 
-dayTimeDuration("P2147483648D")
+"P2147483648D"dayTimeDuration
 
 //?
 //? test: yearMonth-months-still-int32
@@ -62,4 +62,4 @@ dayTimeDuration("P2147483648D")
 //? expect: error
 //? source: ...
 
-yearMonthDuration("P2147483648M")
+"P2147483648M"yearMonthDuration

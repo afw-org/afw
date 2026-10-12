@@ -124,28 +124,6 @@ class base64Binary
     }
 
     /**
-     * base64Binary()
-     *
-     * Converts value to data type base64Binary returning base64Binary result.
-     *
-     * @param $value Value to convert
-     *
-     * @return base64Binary Converted value
-     */
-    public function base64Binary(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "base64Binary");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * decode_to_string_base64Binary()
      *
      * Decode base64Binary value to string. An error is thrown if decoded

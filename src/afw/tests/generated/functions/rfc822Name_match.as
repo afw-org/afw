@@ -12,7 +12,7 @@
 //? source: ...
 
 match<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart"),
+    "localPart@DOMAINPart"rfc822Name,
     string("localPart@DOMAINPART")
 )
 
@@ -24,7 +24,7 @@ match<rfc822Name>(
 //? source: ...
 
 match<rfc822Name>(
-    rfc822Name("localPart@DOMAINPart"),
+    "localPart@DOMAINPart"rfc822Name,
     string("LOcalPart@DOMAINParT")
 )
 
@@ -36,7 +36,7 @@ match<rfc822Name>(
 //? source: ...
 
 match<rfc822Name>(
-    rfc822Name("sun.com"),
+    "sun.com"rfc822Name,
     string("anderson@SUN.COM")
 )
 
@@ -48,7 +48,7 @@ match<rfc822Name>(
 //? source: ...
 
 match<rfc822Name>(
-    rfc822Name("sun.com"),
+    "sun.com"rfc822Name,
     string("anderson@bobo.sun.com")
 )
 
@@ -60,7 +60,7 @@ match<rfc822Name>(
 //? source: ...
 
 match<rfc822Name>(
-    rfc822Name(".bobo.sun.com"),
+    ".bobo.sun.com"rfc822Name,
     string("anderson@abc.bobo.sun.com")
 )
 
