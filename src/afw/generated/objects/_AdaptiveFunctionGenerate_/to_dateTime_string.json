@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toDateTimeString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to dateTime.",
+    "description": "Converts string value to dateTime. A string is read as dateTime text, the same text the typed literal \"...\"dateTime accepts, and text that is not valid dateTime is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid dateTime text"
         }
     ],
     "functionId": "to_dateTime<string>",

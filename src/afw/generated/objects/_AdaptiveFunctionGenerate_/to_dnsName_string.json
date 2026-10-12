@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toDnsNameString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to dnsName.",
+    "description": "Converts string value to dnsName. A string is read as dnsName text, the same text the typed literal \"...\"dnsName accepts, and text that is not valid dnsName is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid dnsName text"
         }
     ],
     "functionId": "to_dnsName<string>",

@@ -1,18 +1,18 @@
 {
-    "afwCamelCaseFunctionLabel": "afwToBoolean",
-    "brief": "Converts string to boolean",
-    "camelCaseFunctionLabel": "toBoolean",
+    "afwCamelCaseFunctionLabel": "afwToIa5String",
+    "brief": "Converts string to ia5String",
+    "camelCaseFunctionLabel": "toIa5String",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to boolean.",
+    "description": "Converts <dataType> value to ia5String. A string is read as ia5String text, the same text the typed literal \"...\"ia5String accepts, and text that is not valid ia5String is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid ia5String text"
         }
     ],
-    "functionId": "to_boolean",
-    "functionLabel": "to_boolean",
+    "functionId": "to_ia5String",
+    "functionLabel": "to_ia5String",
     "parameters": [
         {
             "name": "value",
@@ -26,7 +26,7 @@
     "polymorphicExecuteFunction": "afw_function_execute_convert",
     "pure": true,
     "returns": {
-        "dataType": "boolean"
+        "dataType": "ia5String"
     },
     "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
 }

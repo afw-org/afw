@@ -389,6 +389,26 @@ export function afwSetEqualsBoolean(client : any, array1 : any[], array2 : any[]
 }
 
 /**
+ * Reads boolean text: "true" or "false" in any case, "1" or "0", or the
+ * single letter "t", "T", "f", or "F". Any other text is an error. This is
+ * not boolean(), which is ECMAScript Boolean() truthiness: boolean("false")
+ * is true, and string_to_boolean("false") is false.
+ * 
+ * @param {string} value - Boolean text to read.
+ * 
+ * @returns {boolean} The boolean the text names.
+ */
+export function afwStringToBoolean(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "string_to_boolean";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if the unique values in boolean array1 are all in
  * boolean array2.
  * 

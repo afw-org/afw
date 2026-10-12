@@ -2,11 +2,11 @@
     "brief": "Converts string to yearMonthDuration",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to yearMonthDuration.",
+    "description": "Converts <dataType> value to yearMonthDuration. A string is read as yearMonthDuration text, the same text the typed literal \"...\"yearMonthDuration accepts, and text that is not valid yearMonthDuration is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid yearMonthDuration text"
         }
     ],
     "functionId": "to_yearMonthDuration",

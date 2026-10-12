@@ -35597,6 +35597,32 @@ afw_self_v_afwString;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwStringToBoolean \
+    "afwStringToBoolean"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwStringToBoolean */
+#define afw_s_afwStringToBoolean \
+    (&afw_self_v_afwStringToBoolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwStringToBoolean */
+#define afw_self_s_afwStringToBoolean \
+    (afw_self_v_afwStringToBoolean.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwStringToBoolean */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwStringToBoolean;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwStringToBoolean */
+#define afw_z_afwStringToBoolean \
+    (afw_self_v_afwStringToBoolean.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwStringToBoolean */
+#define afw_v_afwStringToBoolean \
+    (&afw_self_v_afwStringToBoolean.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwStringify \
     "afwStringify"
 
@@ -36533,54 +36559,54 @@ afw_self_v_afwToAnyURIString;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwToBoolean \
-    "afwToBoolean"
+#define AFW_Q_afwToBase64Binary \
+    "afwToBase64Binary"
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwToBoolean */
-#define afw_s_afwToBoolean \
-    (&afw_self_v_afwToBoolean.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwToBase64Binary */
+#define afw_s_afwToBase64Binary \
+    (&afw_self_v_afwToBase64Binary.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwToBoolean */
-#define afw_self_s_afwToBoolean \
-    (afw_self_v_afwToBoolean.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwToBase64Binary */
+#define afw_self_s_afwToBase64Binary \
+    (afw_self_v_afwToBase64Binary.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_afwToBoolean */
+/** @brief 'afw_value_string_t' for AFW_Q_afwToBase64Binary */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwToBoolean;
+afw_self_v_afwToBase64Binary;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToBoolean */
-#define afw_z_afwToBoolean \
-    (afw_self_v_afwToBoolean.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToBase64Binary */
+#define afw_z_afwToBase64Binary \
+    (afw_self_v_afwToBase64Binary.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_afwToBoolean */
-#define afw_v_afwToBoolean \
-    (&afw_self_v_afwToBoolean.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_afwToBase64Binary */
+#define afw_v_afwToBase64Binary \
+    (&afw_self_v_afwToBase64Binary.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwToBooleanString \
-    "afwToBooleanString"
+#define AFW_Q_afwToBase64BinaryString \
+    "afwToBase64BinaryString"
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwToBooleanString */
-#define afw_s_afwToBooleanString \
-    (&afw_self_v_afwToBooleanString.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwToBase64BinaryString */
+#define afw_s_afwToBase64BinaryString \
+    (&afw_self_v_afwToBase64BinaryString.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwToBooleanString */
-#define afw_self_s_afwToBooleanString \
-    (afw_self_v_afwToBooleanString.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwToBase64BinaryString */
+#define afw_self_s_afwToBase64BinaryString \
+    (afw_self_v_afwToBase64BinaryString.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_afwToBooleanString */
+/** @brief 'afw_value_string_t' for AFW_Q_afwToBase64BinaryString */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwToBooleanString;
+afw_self_v_afwToBase64BinaryString;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToBooleanString */
-#define afw_z_afwToBooleanString \
-    (afw_self_v_afwToBooleanString.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToBase64BinaryString */
+#define afw_z_afwToBase64BinaryString \
+    (afw_self_v_afwToBase64BinaryString.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_afwToBooleanString */
-#define afw_v_afwToBooleanString \
-    (&afw_self_v_afwToBooleanString.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_afwToBase64BinaryString */
+#define afw_v_afwToBase64BinaryString \
+    (&afw_self_v_afwToBase64BinaryString.pub)
 
 
 
@@ -36871,6 +36897,110 @@ afw_self_v_afwToDoubleString;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwToHexBinary \
+    "afwToHexBinary"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToHexBinary */
+#define afw_s_afwToHexBinary \
+    (&afw_self_v_afwToHexBinary.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToHexBinary */
+#define afw_self_s_afwToHexBinary \
+    (afw_self_v_afwToHexBinary.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToHexBinary */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToHexBinary;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToHexBinary */
+#define afw_z_afwToHexBinary \
+    (afw_self_v_afwToHexBinary.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToHexBinary */
+#define afw_v_afwToHexBinary \
+    (&afw_self_v_afwToHexBinary.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToHexBinaryString \
+    "afwToHexBinaryString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToHexBinaryString */
+#define afw_s_afwToHexBinaryString \
+    (&afw_self_v_afwToHexBinaryString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToHexBinaryString */
+#define afw_self_s_afwToHexBinaryString \
+    (afw_self_v_afwToHexBinaryString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToHexBinaryString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToHexBinaryString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToHexBinaryString */
+#define afw_z_afwToHexBinaryString \
+    (afw_self_v_afwToHexBinaryString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToHexBinaryString */
+#define afw_v_afwToHexBinaryString \
+    (&afw_self_v_afwToHexBinaryString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToIa5String \
+    "afwToIa5String"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToIa5String */
+#define afw_s_afwToIa5String \
+    (&afw_self_v_afwToIa5String.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToIa5String */
+#define afw_self_s_afwToIa5String \
+    (afw_self_v_afwToIa5String.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToIa5String */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToIa5String;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToIa5String */
+#define afw_z_afwToIa5String \
+    (afw_self_v_afwToIa5String.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToIa5String */
+#define afw_v_afwToIa5String \
+    (&afw_self_v_afwToIa5String.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToIa5StringString \
+    "afwToIa5StringString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToIa5StringString */
+#define afw_s_afwToIa5StringString \
+    (&afw_self_v_afwToIa5StringString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToIa5StringString */
+#define afw_self_s_afwToIa5StringString \
+    (afw_self_v_afwToIa5StringString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToIa5StringString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToIa5StringString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToIa5StringString */
+#define afw_z_afwToIa5StringString \
+    (afw_self_v_afwToIa5StringString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToIa5StringString */
+#define afw_v_afwToIa5StringString \
+    (&afw_self_v_afwToIa5StringString.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwToInteger \
     "afwToInteger"
 
@@ -36997,6 +37127,162 @@ afw_self_v_afwToIpAddressString;
 /** @brief 'const afw_value_t *' for AFW_Q_afwToIpAddressString */
 #define afw_v_afwToIpAddressString \
     (&afw_self_v_afwToIpAddressString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToObjectId \
+    "afwToObjectId"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectId */
+#define afw_s_afwToObjectId \
+    (&afw_self_v_afwToObjectId.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectId */
+#define afw_self_s_afwToObjectId \
+    (afw_self_v_afwToObjectId.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToObjectId */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToObjectId;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToObjectId */
+#define afw_z_afwToObjectId \
+    (afw_self_v_afwToObjectId.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToObjectId */
+#define afw_v_afwToObjectId \
+    (&afw_self_v_afwToObjectId.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToObjectIdString \
+    "afwToObjectIdString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectIdString */
+#define afw_s_afwToObjectIdString \
+    (&afw_self_v_afwToObjectIdString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectIdString */
+#define afw_self_s_afwToObjectIdString \
+    (afw_self_v_afwToObjectIdString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToObjectIdString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToObjectIdString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToObjectIdString */
+#define afw_z_afwToObjectIdString \
+    (afw_self_v_afwToObjectIdString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToObjectIdString */
+#define afw_v_afwToObjectIdString \
+    (&afw_self_v_afwToObjectIdString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToObjectPath \
+    "afwToObjectPath"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectPath */
+#define afw_s_afwToObjectPath \
+    (&afw_self_v_afwToObjectPath.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectPath */
+#define afw_self_s_afwToObjectPath \
+    (afw_self_v_afwToObjectPath.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToObjectPath */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToObjectPath;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToObjectPath */
+#define afw_z_afwToObjectPath \
+    (afw_self_v_afwToObjectPath.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToObjectPath */
+#define afw_v_afwToObjectPath \
+    (&afw_self_v_afwToObjectPath.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToObjectPathString \
+    "afwToObjectPathString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectPathString */
+#define afw_s_afwToObjectPathString \
+    (&afw_self_v_afwToObjectPathString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToObjectPathString */
+#define afw_self_s_afwToObjectPathString \
+    (afw_self_v_afwToObjectPathString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToObjectPathString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToObjectPathString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToObjectPathString */
+#define afw_z_afwToObjectPathString \
+    (afw_self_v_afwToObjectPathString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToObjectPathString */
+#define afw_v_afwToObjectPathString \
+    (&afw_self_v_afwToObjectPathString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToPassword \
+    "afwToPassword"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToPassword */
+#define afw_s_afwToPassword \
+    (&afw_self_v_afwToPassword.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToPassword */
+#define afw_self_s_afwToPassword \
+    (afw_self_v_afwToPassword.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToPassword */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToPassword;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToPassword */
+#define afw_z_afwToPassword \
+    (afw_self_v_afwToPassword.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToPassword */
+#define afw_v_afwToPassword \
+    (&afw_self_v_afwToPassword.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToPasswordString \
+    "afwToPasswordString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToPasswordString */
+#define afw_s_afwToPasswordString \
+    (&afw_self_v_afwToPasswordString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToPasswordString */
+#define afw_self_s_afwToPasswordString \
+    (afw_self_v_afwToPasswordString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToPasswordString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToPasswordString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToPasswordString */
+#define afw_z_afwToPasswordString \
+    (afw_self_v_afwToPasswordString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToPasswordString */
+#define afw_v_afwToPasswordString \
+    (&afw_self_v_afwToPasswordString.pub)
 
 
 
@@ -94253,6 +94539,32 @@ afw_self_v_stringLiteral;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_stringToBoolean \
+    "stringToBoolean"
+
+/** @brief 'afw_utf8_t' for AFW_Q_stringToBoolean */
+#define afw_s_stringToBoolean \
+    (&afw_self_v_stringToBoolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_stringToBoolean */
+#define afw_self_s_stringToBoolean \
+    (afw_self_v_stringToBoolean.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_stringToBoolean */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_stringToBoolean;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_stringToBoolean */
+#define afw_z_stringToBoolean \
+    (afw_self_v_stringToBoolean.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_stringToBoolean */
+#define afw_v_stringToBoolean \
+    (&afw_self_v_stringToBoolean.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_string_literal \
     "string_literal"
 
@@ -94275,6 +94587,32 @@ afw_self_v_string_literal;
 /** @brief 'const afw_value_t *' for AFW_Q_string_literal */
 #define afw_v_string_literal \
     (&afw_self_v_string_literal.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_string_to_boolean \
+    "string_to_boolean"
+
+/** @brief 'afw_utf8_t' for AFW_Q_string_to_boolean */
+#define afw_s_string_to_boolean \
+    (&afw_self_v_string_to_boolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_string_to_boolean */
+#define afw_self_s_string_to_boolean \
+    (afw_self_v_string_to_boolean.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_string_to_boolean */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_string_to_boolean;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_string_to_boolean */
+#define afw_z_string_to_boolean \
+    (afw_self_v_string_to_boolean.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_string_to_boolean */
+#define afw_v_string_to_boolean \
+    (&afw_self_v_string_to_boolean.pub)
 
 
 
@@ -96801,54 +97139,54 @@ afw_self_v_toAnyURIString;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_toBoolean \
-    "toBoolean"
+#define AFW_Q_toBase64Binary \
+    "toBase64Binary"
 
-/** @brief 'afw_utf8_t' for AFW_Q_toBoolean */
-#define afw_s_toBoolean \
-    (&afw_self_v_toBoolean.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_toBase64Binary */
+#define afw_s_toBase64Binary \
+    (&afw_self_v_toBase64Binary.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_toBoolean */
-#define afw_self_s_toBoolean \
-    (afw_self_v_toBoolean.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_toBase64Binary */
+#define afw_self_s_toBase64Binary \
+    (afw_self_v_toBase64Binary.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_toBoolean */
+/** @brief 'afw_value_string_t' for AFW_Q_toBase64Binary */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_toBoolean;
+afw_self_v_toBase64Binary;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_toBoolean */
-#define afw_z_toBoolean \
-    (afw_self_v_toBoolean.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toBase64Binary */
+#define afw_z_toBase64Binary \
+    (afw_self_v_toBase64Binary.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_toBoolean */
-#define afw_v_toBoolean \
-    (&afw_self_v_toBoolean.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_toBase64Binary */
+#define afw_v_toBase64Binary \
+    (&afw_self_v_toBase64Binary.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_toBooleanString \
-    "toBooleanString"
+#define AFW_Q_toBase64BinaryString \
+    "toBase64BinaryString"
 
-/** @brief 'afw_utf8_t' for AFW_Q_toBooleanString */
-#define afw_s_toBooleanString \
-    (&afw_self_v_toBooleanString.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_toBase64BinaryString */
+#define afw_s_toBase64BinaryString \
+    (&afw_self_v_toBase64BinaryString.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_toBooleanString */
-#define afw_self_s_toBooleanString \
-    (afw_self_v_toBooleanString.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_toBase64BinaryString */
+#define afw_self_s_toBase64BinaryString \
+    (afw_self_v_toBase64BinaryString.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_toBooleanString */
+/** @brief 'afw_value_string_t' for AFW_Q_toBase64BinaryString */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_toBooleanString;
+afw_self_v_toBase64BinaryString;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_toBooleanString */
-#define afw_z_toBooleanString \
-    (afw_self_v_toBooleanString.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toBase64BinaryString */
+#define afw_z_toBase64BinaryString \
+    (afw_self_v_toBase64BinaryString.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_toBooleanString */
-#define afw_v_toBooleanString \
-    (&afw_self_v_toBooleanString.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_toBase64BinaryString */
+#define afw_v_toBase64BinaryString \
+    (&afw_self_v_toBase64BinaryString.pub)
 
 
 
@@ -97139,6 +97477,110 @@ afw_self_v_toDoubleString;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_toHexBinary \
+    "toHexBinary"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toHexBinary */
+#define afw_s_toHexBinary \
+    (&afw_self_v_toHexBinary.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toHexBinary */
+#define afw_self_s_toHexBinary \
+    (afw_self_v_toHexBinary.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toHexBinary */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toHexBinary;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toHexBinary */
+#define afw_z_toHexBinary \
+    (afw_self_v_toHexBinary.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toHexBinary */
+#define afw_v_toHexBinary \
+    (&afw_self_v_toHexBinary.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toHexBinaryString \
+    "toHexBinaryString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toHexBinaryString */
+#define afw_s_toHexBinaryString \
+    (&afw_self_v_toHexBinaryString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toHexBinaryString */
+#define afw_self_s_toHexBinaryString \
+    (afw_self_v_toHexBinaryString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toHexBinaryString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toHexBinaryString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toHexBinaryString */
+#define afw_z_toHexBinaryString \
+    (afw_self_v_toHexBinaryString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toHexBinaryString */
+#define afw_v_toHexBinaryString \
+    (&afw_self_v_toHexBinaryString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toIa5String \
+    "toIa5String"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toIa5String */
+#define afw_s_toIa5String \
+    (&afw_self_v_toIa5String.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toIa5String */
+#define afw_self_s_toIa5String \
+    (afw_self_v_toIa5String.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toIa5String */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toIa5String;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toIa5String */
+#define afw_z_toIa5String \
+    (afw_self_v_toIa5String.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toIa5String */
+#define afw_v_toIa5String \
+    (&afw_self_v_toIa5String.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toIa5StringString \
+    "toIa5StringString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toIa5StringString */
+#define afw_s_toIa5StringString \
+    (&afw_self_v_toIa5StringString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toIa5StringString */
+#define afw_self_s_toIa5StringString \
+    (afw_self_v_toIa5StringString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toIa5StringString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toIa5StringString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toIa5StringString */
+#define afw_z_toIa5StringString \
+    (afw_self_v_toIa5StringString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toIa5StringString */
+#define afw_v_toIa5StringString \
+    (&afw_self_v_toIa5StringString.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_toInteger \
     "toInteger"
 
@@ -97265,6 +97707,162 @@ afw_self_v_toIpAddressString;
 /** @brief 'const afw_value_t *' for AFW_Q_toIpAddressString */
 #define afw_v_toIpAddressString \
     (&afw_self_v_toIpAddressString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toObjectId \
+    "toObjectId"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectId */
+#define afw_s_toObjectId \
+    (&afw_self_v_toObjectId.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectId */
+#define afw_self_s_toObjectId \
+    (afw_self_v_toObjectId.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toObjectId */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toObjectId;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toObjectId */
+#define afw_z_toObjectId \
+    (afw_self_v_toObjectId.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toObjectId */
+#define afw_v_toObjectId \
+    (&afw_self_v_toObjectId.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toObjectIdString \
+    "toObjectIdString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectIdString */
+#define afw_s_toObjectIdString \
+    (&afw_self_v_toObjectIdString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectIdString */
+#define afw_self_s_toObjectIdString \
+    (afw_self_v_toObjectIdString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toObjectIdString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toObjectIdString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toObjectIdString */
+#define afw_z_toObjectIdString \
+    (afw_self_v_toObjectIdString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toObjectIdString */
+#define afw_v_toObjectIdString \
+    (&afw_self_v_toObjectIdString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toObjectPath \
+    "toObjectPath"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectPath */
+#define afw_s_toObjectPath \
+    (&afw_self_v_toObjectPath.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectPath */
+#define afw_self_s_toObjectPath \
+    (afw_self_v_toObjectPath.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toObjectPath */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toObjectPath;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toObjectPath */
+#define afw_z_toObjectPath \
+    (afw_self_v_toObjectPath.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toObjectPath */
+#define afw_v_toObjectPath \
+    (&afw_self_v_toObjectPath.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toObjectPathString \
+    "toObjectPathString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectPathString */
+#define afw_s_toObjectPathString \
+    (&afw_self_v_toObjectPathString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toObjectPathString */
+#define afw_self_s_toObjectPathString \
+    (afw_self_v_toObjectPathString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toObjectPathString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toObjectPathString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toObjectPathString */
+#define afw_z_toObjectPathString \
+    (afw_self_v_toObjectPathString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toObjectPathString */
+#define afw_v_toObjectPathString \
+    (&afw_self_v_toObjectPathString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toPassword \
+    "toPassword"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toPassword */
+#define afw_s_toPassword \
+    (&afw_self_v_toPassword.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toPassword */
+#define afw_self_s_toPassword \
+    (afw_self_v_toPassword.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toPassword */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toPassword;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toPassword */
+#define afw_z_toPassword \
+    (afw_self_v_toPassword.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toPassword */
+#define afw_v_toPassword \
+    (&afw_self_v_toPassword.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toPasswordString \
+    "toPasswordString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toPasswordString */
+#define afw_s_toPasswordString \
+    (&afw_self_v_toPasswordString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toPasswordString */
+#define afw_self_s_toPasswordString \
+    (afw_self_v_toPasswordString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toPasswordString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toPasswordString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toPasswordString */
+#define afw_z_toPasswordString \
+    (afw_self_v_toPasswordString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toPasswordString */
+#define afw_v_toPasswordString \
+    (&afw_self_v_toPasswordString.pub)
 
 
 
@@ -98205,54 +98803,54 @@ afw_self_v_to_anyURI_string;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_to_boolean \
-    "to_boolean"
+#define AFW_Q_to_base64Binary \
+    "to_base64Binary"
 
-/** @brief 'afw_utf8_t' for AFW_Q_to_boolean */
-#define afw_s_to_boolean \
-    (&afw_self_v_to_boolean.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_to_base64Binary */
+#define afw_s_to_base64Binary \
+    (&afw_self_v_to_base64Binary.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_to_boolean */
-#define afw_self_s_to_boolean \
-    (afw_self_v_to_boolean.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_to_base64Binary */
+#define afw_self_s_to_base64Binary \
+    (afw_self_v_to_base64Binary.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_to_boolean */
+/** @brief 'afw_value_string_t' for AFW_Q_to_base64Binary */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_to_boolean;
+afw_self_v_to_base64Binary;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_to_boolean */
-#define afw_z_to_boolean \
-    (afw_self_v_to_boolean.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_base64Binary */
+#define afw_z_to_base64Binary \
+    (afw_self_v_to_base64Binary.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_to_boolean */
-#define afw_v_to_boolean \
-    (&afw_self_v_to_boolean.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_to_base64Binary */
+#define afw_v_to_base64Binary \
+    (&afw_self_v_to_base64Binary.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_to_boolean_string \
-    "to_boolean_string"
+#define AFW_Q_to_base64Binary_string \
+    "to_base64Binary_string"
 
-/** @brief 'afw_utf8_t' for AFW_Q_to_boolean_string */
-#define afw_s_to_boolean_string \
-    (&afw_self_v_to_boolean_string.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_to_base64Binary_string */
+#define afw_s_to_base64Binary_string \
+    (&afw_self_v_to_base64Binary_string.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_to_boolean_string */
-#define afw_self_s_to_boolean_string \
-    (afw_self_v_to_boolean_string.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_to_base64Binary_string */
+#define afw_self_s_to_base64Binary_string \
+    (afw_self_v_to_base64Binary_string.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_to_boolean_string */
+/** @brief 'afw_value_string_t' for AFW_Q_to_base64Binary_string */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_to_boolean_string;
+afw_self_v_to_base64Binary_string;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_to_boolean_string */
-#define afw_z_to_boolean_string \
-    (afw_self_v_to_boolean_string.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_base64Binary_string */
+#define afw_z_to_base64Binary_string \
+    (afw_self_v_to_base64Binary_string.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_to_boolean_string */
-#define afw_v_to_boolean_string \
-    (&afw_self_v_to_boolean_string.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_to_base64Binary_string */
+#define afw_v_to_base64Binary_string \
+    (&afw_self_v_to_base64Binary_string.pub)
 
 
 
@@ -98543,6 +99141,110 @@ afw_self_v_to_double_string;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_to_hexBinary \
+    "to_hexBinary"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_hexBinary */
+#define afw_s_to_hexBinary \
+    (&afw_self_v_to_hexBinary.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_hexBinary */
+#define afw_self_s_to_hexBinary \
+    (afw_self_v_to_hexBinary.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_hexBinary */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_hexBinary;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_hexBinary */
+#define afw_z_to_hexBinary \
+    (afw_self_v_to_hexBinary.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_hexBinary */
+#define afw_v_to_hexBinary \
+    (&afw_self_v_to_hexBinary.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_hexBinary_string \
+    "to_hexBinary_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_hexBinary_string */
+#define afw_s_to_hexBinary_string \
+    (&afw_self_v_to_hexBinary_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_hexBinary_string */
+#define afw_self_s_to_hexBinary_string \
+    (afw_self_v_to_hexBinary_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_hexBinary_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_hexBinary_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_hexBinary_string */
+#define afw_z_to_hexBinary_string \
+    (afw_self_v_to_hexBinary_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_hexBinary_string */
+#define afw_v_to_hexBinary_string \
+    (&afw_self_v_to_hexBinary_string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_ia5String \
+    "to_ia5String"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_ia5String */
+#define afw_s_to_ia5String \
+    (&afw_self_v_to_ia5String.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_ia5String */
+#define afw_self_s_to_ia5String \
+    (afw_self_v_to_ia5String.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_ia5String */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_ia5String;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_ia5String */
+#define afw_z_to_ia5String \
+    (afw_self_v_to_ia5String.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_ia5String */
+#define afw_v_to_ia5String \
+    (&afw_self_v_to_ia5String.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_ia5String_string \
+    "to_ia5String_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_ia5String_string */
+#define afw_s_to_ia5String_string \
+    (&afw_self_v_to_ia5String_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_ia5String_string */
+#define afw_self_s_to_ia5String_string \
+    (afw_self_v_to_ia5String_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_ia5String_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_ia5String_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_ia5String_string */
+#define afw_z_to_ia5String_string \
+    (afw_self_v_to_ia5String_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_ia5String_string */
+#define afw_v_to_ia5String_string \
+    (&afw_self_v_to_ia5String_string.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_to_integer \
     "to_integer"
 
@@ -98669,6 +99371,162 @@ afw_self_v_to_ipAddress_string;
 /** @brief 'const afw_value_t *' for AFW_Q_to_ipAddress_string */
 #define afw_v_to_ipAddress_string \
     (&afw_self_v_to_ipAddress_string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_objectId \
+    "to_objectId"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectId */
+#define afw_s_to_objectId \
+    (&afw_self_v_to_objectId.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectId */
+#define afw_self_s_to_objectId \
+    (afw_self_v_to_objectId.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_objectId */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_objectId;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_objectId */
+#define afw_z_to_objectId \
+    (afw_self_v_to_objectId.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_objectId */
+#define afw_v_to_objectId \
+    (&afw_self_v_to_objectId.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_objectId_string \
+    "to_objectId_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectId_string */
+#define afw_s_to_objectId_string \
+    (&afw_self_v_to_objectId_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectId_string */
+#define afw_self_s_to_objectId_string \
+    (afw_self_v_to_objectId_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_objectId_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_objectId_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_objectId_string */
+#define afw_z_to_objectId_string \
+    (afw_self_v_to_objectId_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_objectId_string */
+#define afw_v_to_objectId_string \
+    (&afw_self_v_to_objectId_string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_objectPath \
+    "to_objectPath"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectPath */
+#define afw_s_to_objectPath \
+    (&afw_self_v_to_objectPath.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectPath */
+#define afw_self_s_to_objectPath \
+    (afw_self_v_to_objectPath.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_objectPath */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_objectPath;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_objectPath */
+#define afw_z_to_objectPath \
+    (afw_self_v_to_objectPath.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_objectPath */
+#define afw_v_to_objectPath \
+    (&afw_self_v_to_objectPath.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_objectPath_string \
+    "to_objectPath_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectPath_string */
+#define afw_s_to_objectPath_string \
+    (&afw_self_v_to_objectPath_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_objectPath_string */
+#define afw_self_s_to_objectPath_string \
+    (afw_self_v_to_objectPath_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_objectPath_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_objectPath_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_objectPath_string */
+#define afw_z_to_objectPath_string \
+    (afw_self_v_to_objectPath_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_objectPath_string */
+#define afw_v_to_objectPath_string \
+    (&afw_self_v_to_objectPath_string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_password \
+    "to_password"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_password */
+#define afw_s_to_password \
+    (&afw_self_v_to_password.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_password */
+#define afw_self_s_to_password \
+    (afw_self_v_to_password.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_password */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_password;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_password */
+#define afw_z_to_password \
+    (afw_self_v_to_password.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_password */
+#define afw_v_to_password \
+    (&afw_self_v_to_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_password_string \
+    "to_password_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_password_string */
+#define afw_s_to_password_string \
+    (&afw_self_v_to_password_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_password_string */
+#define afw_self_s_to_password_string \
+    (afw_self_v_to_password_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_password_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_password_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_password_string */
+#define afw_z_to_password_string \
+    (afw_self_v_to_password_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_password_string */
+#define afw_v_to_password_string \
+    (&afw_self_v_to_password_string.pub)
 
 
 

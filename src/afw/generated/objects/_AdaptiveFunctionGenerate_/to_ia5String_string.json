@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToIa5StringString",
+    "brief": "Converts string to ia5String",
+    "camelCaseFunctionLabel": "toIa5StringString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Converts string value to ia5String. A string is read as ia5String text, the same text the typed literal \"...\"ia5String accepts, and text that is not valid ia5String is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "value is not valid ia5String text"
+        }
+    ],
+    "functionId": "to_ia5String<string>",
+    "functionLabel": "to_ia5String_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "ia5String"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

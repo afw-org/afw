@@ -28428,6 +28428,165 @@ impl_object__set_equals_boolean__value = {
     (const afw_object_t *)&impl_object__set_equals_boolean
 };
 
+/* ---------- string_to_boolean ---------- */
+
+static const afw_utf8_t
+impl_object_path__string_to_boolean =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/string_to_boolean");
+
+static const afw_value_object_t
+impl_object__string_to_boolean__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__string_to_boolean = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__string_to_boolean__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_string_to_boolean,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__string_to_boolean
+        }
+    },
+    (void *)&afw_function_definition_string_to_boolean
+};
+
+static const afw_value_object_t
+impl_string_to_boolean_returns__value;
+
+static const afw_value_function_parameter_t
+impl_string_to_boolean_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_string_to_boolean_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    &afw_self_v_boolean,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_boolean_the_text_names_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_string_to_boolean_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_string_to_boolean_returns
+};
+
+static const afw_value_object_t
+impl_string_to_boolean_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_string_to_boolean_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_string_to_boolean_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Boolean_text_to_read_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_string_to_boolean_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_string_to_boolean_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_string_to_boolean_parameters[] = {
+    &impl_string_to_boolean_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_string_to_boolean_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid boolean text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_string_to_boolean = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__string_to_boolean,
+    &afw_self_v_boolean,
+    &afw_self_v_string_to_boolean,
+    &afw_self_v_zz___afw__AdaptiveFunction__string_to_boolean,
+    &afw_self_v_string_to_boolean,
+    &afw_self_v_string_to_boolean,
+    &afw_self_v_stringToBoolean,
+    &afw_self_v_afwStringToBoolean,
+    &afw_self_v_zz__Reads_boolean_text,
+    &afw_self_v_zz__de5dde83183f,
+    &afw_self_v_zz___value__string___boolean,
+    &afw_self_v_zz__function_string_to_boolean_______value__string____boolean__,
+    NULL,
+    afw_function_execute_string_to_boolean,
+    afw_function_execute_string_to_boolean,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_string_to_boolean_parameters[0],
+    1,
+    &impl_string_to_boolean_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    &impl_string_to_boolean_errorsThrown[0],
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__string_to_boolean__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__string_to_boolean
+};
+
 /* ---------- subset<boolean> ---------- */
 
 static const afw_utf8_t
@@ -57534,6 +57693,17 @@ impl_to_integer_double_parameters[] = {
     NULL
 };
 
+static const afw_utf8_z_t *
+impl_to_integer_double_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "double is NaN, infinite, or outside the integer range",
+    NULL,
+    "error", "conversion_error",
+    "reason", "value is not valid integer text",
+    NULL,
+    NULL
+};
+
 const afw_value_function_definition_t
 afw_function_definition_to_integer_double = {
     {&afw_value_function_definition_inf},
@@ -57546,7 +57716,7 @@ afw_function_definition_to_integer_double = {
     &afw_self_v_toIntegerDouble,
     &afw_self_v_afwToIntegerDouble,
     &afw_self_v_zz__Converts_to_integer,
-    &afw_self_v_zz__f61a8e12c123,
+    &afw_self_v_zz__e463dbe42f03,
     &afw_self_v_zz___value__double___integer,
     &afw_self_v_zz__function_to_integer_double________value__double____integer__,
     NULL,
@@ -57561,7 +57731,7 @@ afw_function_definition_to_integer_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    NULL,
+    &impl_to_integer_double_errorsThrown[0],
     NULL,
     afw_data_type_method_number_to_integer,
     &afw_boolean_self_v_false,
@@ -74766,7 +74936,7 @@ impl_to_double_integer_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_double_integer_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid double text",
     NULL,
     NULL
 };
@@ -74783,7 +74953,7 @@ afw_function_definition_to_double_integer = {
     &afw_self_v_toDoubleInteger,
     &afw_self_v_afwToDoubleInteger,
     &afw_self_v_zz__Converts_to_double,
-    &afw_self_v_zz__Converts_integer_value_to_double_and_returns_double_result_,
+    &afw_self_v_zz__2b70bbc5fef3,
     &afw_self_v_zz___value__integer___double,
     &afw_self_v_zz__function_to_double_integer________value__integer____double__,
     NULL,
@@ -109835,7 +110005,7 @@ impl_to_anyURI_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_anyURI_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid anyURI text",
     NULL,
     NULL
 };
@@ -109852,7 +110022,7 @@ afw_function_definition_to_anyURI = {
     &afw_self_v_toAnyURI,
     &afw_self_v_afwToAnyURI,
     &afw_self_v_zz__Converts_string_to_anyURI,
-    &afw_self_v_zz__Converts__dataType__value_to_anyURI_,
+    &afw_self_v_zz__d0103949df4c,
     &afw_self_v_zz___dataType__value__dataType___anyURI,
     &afw_self_v_zz__93fa9a839162,
     NULL,
@@ -109885,41 +110055,41 @@ impl_object__to_anyURI__value = {
     (const afw_object_t *)&impl_object__to_anyURI
 };
 
-/* ---------- to_boolean ---------- */
+/* ---------- to_base64Binary ---------- */
 
 static const afw_utf8_t
-impl_object_path__to_boolean =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_boolean");
+impl_object_path__to_base64Binary =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_base64Binary");
 
 static const afw_value_object_t
-impl_object__to_boolean__value;
+impl_object__to_base64Binary__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__to_boolean = {
+impl_object__to_base64Binary = {
     {
         {&afw_runtime_inf__AdaptiveFunction_},
         NULL,
-        (const afw_value_t *)&impl_object__to_boolean__value,
+        (const afw_value_t *)&impl_object__to_base64Binary__value,
         {
             NULL,
             NULL,
-            &afw_self_s_to_boolean,
+            &afw_self_s_to_base64Binary,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__to_boolean
+            &impl_object_path__to_base64Binary
         }
     },
-    (void *)&afw_function_definition_to_boolean
+    (void *)&afw_function_definition_to_base64Binary
 };
 
 static const afw_value_object_t
-impl_to_boolean_returns__value;
+impl_to_base64Binary_returns__value;
 
 static const afw_value_function_parameter_t
-impl_to_boolean_returns = {
+impl_to_base64Binary_returns = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_to_boolean_returns__value,
+        (const afw_value_t *)&impl_to_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -109928,8 +110098,8 @@ impl_to_boolean_returns = {
             NULL,
         }
     },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
+    &afw_data_type_base64Binary_direct,
+    &afw_self_v_base64Binary,
     NULL,
     NULL,
     NULL,
@@ -109943,20 +110113,20 @@ impl_to_boolean_returns = {
 };
 
 static const afw_value_object_t
-impl_to_boolean_returns__value = {
+impl_to_base64Binary_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_to_boolean_returns
+    (const afw_object_t *)&impl_to_base64Binary_returns
 };
 
 static const afw_value_object_t
-impl_to_boolean_parameter_1__value;
+impl_to_base64Binary_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_to_boolean_parameter_1 = {
+impl_to_base64Binary_parameter_1 = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_to_boolean_parameter_1__value,
+        (const afw_value_t *)&impl_to_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -109980,61 +110150,61 @@ impl_to_boolean_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_to_boolean_parameter_1__value = {
+impl_to_base64Binary_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_to_boolean_parameter_1
+    (const afw_object_t *)&impl_to_base64Binary_parameter_1
 };
 
 static const afw_value_function_parameter_t *
-impl_to_boolean_parameters[] = {
-    &impl_to_boolean_parameter_1,
+impl_to_base64Binary_parameters[] = {
+    &impl_to_base64Binary_parameter_1,
     NULL
 };
 
 static const afw_utf8_t
-impl_to_boolean_polymorphicDataTypes[] = {
+impl_to_base64Binary_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("string"),
     { NULL }
 };
 
 static const afw_utf8_z_t *
-impl_to_boolean_errorsThrown[] = {
+impl_to_base64Binary_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid base64Binary text",
     NULL,
     NULL
 };
 
 const afw_value_function_definition_t
-afw_function_definition_to_boolean = {
+afw_function_definition_to_base64Binary = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__to_boolean,
+    (const afw_object_t *)&impl_object__to_base64Binary,
     &afw_self_v_polymorphic,
-    &afw_self_v_to_boolean,
-    &afw_self_v_zz___afw__AdaptiveFunction__to_boolean,
-    &afw_self_v_to_boolean,
-    &afw_self_v_to_boolean,
-    &afw_self_v_toBoolean,
-    &afw_self_v_afwToBoolean,
-    &afw_self_v_zz__Converts_string_to_boolean,
-    &afw_self_v_zz__Converts__dataType__value_to_boolean_,
-    &afw_self_v_zz___dataType__value__dataType___boolean,
-    &afw_self_v_zz__f4ce52630558,
+    &afw_self_v_to_base64Binary,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_base64Binary,
+    &afw_self_v_to_base64Binary,
+    &afw_self_v_to_base64Binary,
+    &afw_self_v_toBase64Binary,
+    &afw_self_v_afwToBase64Binary,
+    &afw_self_v_zz__Converts_string_to_base64Binary,
+    &afw_self_v_zz__e7a1cae1d903,
+    &afw_self_v_zz___dataType__value__dataType___base64Binary,
+    &afw_self_v_zz__9e4351e9d7ac,
     NULL,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
     &afw_integer_self_v_one,
     &afw_integer_self_v_one,
-    &impl_to_boolean_parameters[0],
+    &impl_to_base64Binary_parameters[0],
     1,
-    &impl_to_boolean_returns,
-    &impl_to_boolean_polymorphicDataTypes[0],
+    &impl_to_base64Binary_returns,
+    &impl_to_base64Binary_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_to_boolean_errorsThrown[0],
+    &impl_to_base64Binary_errorsThrown[0],
     NULL,
-    afw_data_type_method_number_to_boolean,
+    afw_data_type_method_number_to_base64Binary,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -110045,9 +110215,9 @@ afw_function_definition_to_boolean = {
 };
 
 static const afw_value_object_t
-impl_object__to_boolean__value = {
+impl_object__to_base64Binary__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__to_boolean
+    (const afw_object_t *)&impl_object__to_base64Binary
 };
 
 /* ---------- to_date ---------- */
@@ -110165,7 +110335,7 @@ impl_to_date_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_date_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid date text",
     NULL,
     NULL
 };
@@ -110182,7 +110352,7 @@ afw_function_definition_to_date = {
     &afw_self_v_toDate,
     &afw_self_v_afwToDate,
     &afw_self_v_zz__Converts_string_to_date,
-    &afw_self_v_zz__Converts__dataType__value_to_date_,
+    &afw_self_v_zz__a89b4f631561,
     &afw_self_v_zz___dataType__value__dataType___date,
     &afw_self_v_zz__function_to_date__dataType_______value__dataType____date__,
     NULL,
@@ -110330,7 +110500,7 @@ impl_to_dateTime_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_dateTime_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid dateTime text",
     NULL,
     NULL
 };
@@ -110347,7 +110517,7 @@ afw_function_definition_to_dateTime = {
     &afw_self_v_toDateTime,
     &afw_self_v_afwToDateTime,
     &afw_self_v_zz__Converts_string_to_dateTime,
-    &afw_self_v_zz__Converts__dataType__value_to_dateTime_,
+    &afw_self_v_zz__960cb1f6624a,
     &afw_self_v_zz___dataType__value__dataType___dateTime,
     &afw_self_v_zz__f3bd6cadfb3e,
     NULL,
@@ -110495,7 +110665,7 @@ impl_to_dayTimeDuration_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_dayTimeDuration_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid dayTimeDuration text",
     NULL,
     NULL
 };
@@ -110512,7 +110682,7 @@ afw_function_definition_to_dayTimeDuration = {
     &afw_self_v_toDayTimeDuration,
     &afw_self_v_afwToDayTimeDuration,
     &afw_self_v_zz__Converts_string_to_dayTimeDuration,
-    &afw_self_v_zz__Converts__dataType__value_to_dayTimeDuration_,
+    &afw_self_v_zz__4c5d4d90e5cb,
     &afw_self_v_zz___dataType__value__dataType___dayTimeDuration,
     &afw_self_v_zz__dff78aa30f14,
     NULL,
@@ -110660,7 +110830,7 @@ impl_to_dnsName_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_dnsName_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid dnsName text",
     NULL,
     NULL
 };
@@ -110677,7 +110847,7 @@ afw_function_definition_to_dnsName = {
     &afw_self_v_toDnsName,
     &afw_self_v_afwToDnsName,
     &afw_self_v_zz__Converts_string_to_dnsName,
-    &afw_self_v_zz__Converts__dataType__value_to_dnsName_,
+    &afw_self_v_zz__491f27ea19f9,
     &afw_self_v_zz___dataType__value__dataType___dnsName,
     &afw_self_v_zz__15e512dd8cfa,
     NULL,
@@ -110826,7 +110996,7 @@ impl_to_double_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_double_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid double text",
     NULL,
     NULL
 };
@@ -110843,7 +111013,7 @@ afw_function_definition_to_double = {
     &afw_self_v_toDouble,
     &afw_self_v_afwToDouble,
     &afw_self_v_zz__Converts_to_double,
-    &afw_self_v_zz__81c4785c3cc4,
+    &afw_self_v_zz__b67cd62e4ce8,
     &afw_self_v_zz___dataType__value__dataType___double,
     &afw_self_v_zz__ac176778b77d,
     NULL,
@@ -110874,6 +111044,336 @@ static const afw_value_object_t
 impl_object__to_double__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_double
+};
+
+/* ---------- to_hexBinary ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_hexBinary =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_hexBinary");
+
+static const afw_value_object_t
+impl_object__to_hexBinary__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_hexBinary = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_hexBinary__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_hexBinary
+        }
+    },
+    (void *)&afw_function_definition_to_hexBinary
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_hexBinary_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_hexBinary_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_hexBinary_direct,
+    &afw_self_v_hexBinary,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_hexBinary_returns
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_hexBinary_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_hexBinary_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_hexBinary_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_hexBinary_parameters[] = {
+    &impl_to_hexBinary_parameter_1,
+    NULL
+};
+
+static const afw_utf8_t
+impl_to_hexBinary_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+static const afw_utf8_z_t *
+impl_to_hexBinary_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid hexBinary text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_hexBinary = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_hexBinary,
+    &afw_self_v_polymorphic,
+    &afw_self_v_to_hexBinary,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_hexBinary,
+    &afw_self_v_to_hexBinary,
+    &afw_self_v_to_hexBinary,
+    &afw_self_v_toHexBinary,
+    &afw_self_v_afwToHexBinary,
+    &afw_self_v_zz__Converts_string_to_hexBinary,
+    &afw_self_v_zz__78a163607202,
+    &afw_self_v_zz___dataType__value__dataType___hexBinary,
+    &afw_self_v_zz__919b358748cf,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_hexBinary_parameters[0],
+    1,
+    &impl_to_hexBinary_returns,
+    &impl_to_hexBinary_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    &impl_to_hexBinary_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_hexBinary,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_hexBinary__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_hexBinary
+};
+
+/* ---------- to_ia5String ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_ia5String =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_ia5String");
+
+static const afw_value_object_t
+impl_object__to_ia5String__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_ia5String = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_ia5String__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_ia5String,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_ia5String
+        }
+    },
+    (void *)&afw_function_definition_to_ia5String
+};
+
+static const afw_value_object_t
+impl_to_ia5String_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_ia5String_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_ia5String_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_ia5String_direct,
+    &afw_self_v_ia5String,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_ia5String_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_ia5String_returns
+};
+
+static const afw_value_object_t
+impl_to_ia5String_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_ia5String_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_ia5String_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_ia5String_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_ia5String_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_ia5String_parameters[] = {
+    &impl_to_ia5String_parameter_1,
+    NULL
+};
+
+static const afw_utf8_t
+impl_to_ia5String_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+static const afw_utf8_z_t *
+impl_to_ia5String_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid ia5String text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_ia5String = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_ia5String,
+    &afw_self_v_polymorphic,
+    &afw_self_v_to_ia5String,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_ia5String,
+    &afw_self_v_to_ia5String,
+    &afw_self_v_to_ia5String,
+    &afw_self_v_toIa5String,
+    &afw_self_v_afwToIa5String,
+    &afw_self_v_zz__Converts_string_to_ia5String,
+    &afw_self_v_zz__49c05b36e5ab,
+    &afw_self_v_zz___dataType__value__dataType___ia5String,
+    &afw_self_v_zz__9670269d2ad9,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_ia5String_parameters[0],
+    1,
+    &impl_to_ia5String_returns,
+    &impl_to_ia5String_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    &impl_to_ia5String_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_ia5String,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_ia5String__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_ia5String
 };
 
 /* ---------- to_integer ---------- */
@@ -110989,6 +111489,17 @@ impl_to_integer_polymorphicDataTypes[] = {
     { NULL }
 };
 
+static const afw_utf8_z_t *
+impl_to_integer_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "double is NaN, infinite, or outside the integer range",
+    NULL,
+    "error", "conversion_error",
+    "reason", "value is not valid integer text",
+    NULL,
+    NULL
+};
+
 const afw_value_function_definition_t
 afw_function_definition_to_integer = {
     {&afw_value_function_definition_inf},
@@ -111001,7 +111512,7 @@ afw_function_definition_to_integer = {
     &afw_self_v_toInteger,
     &afw_self_v_afwToInteger,
     &afw_self_v_zz__Converts_to_integer,
-    &afw_self_v_zz__4745554c0e87,
+    &afw_self_v_zz__46dd8ba4f308,
     &afw_self_v_zz___dataType__value__dataType___integer,
     &afw_self_v_zz__79484c7bba84,
     NULL,
@@ -111016,7 +111527,7 @@ afw_function_definition_to_integer = {
     &impl_to_integer_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    NULL,
+    &impl_to_integer_errorsThrown[0],
     NULL,
     afw_data_type_method_number_to_integer,
     &afw_boolean_self_v_true,
@@ -111149,7 +111660,7 @@ impl_to_ipAddress_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_ipAddress_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid ipAddress text",
     NULL,
     NULL
 };
@@ -111166,7 +111677,7 @@ afw_function_definition_to_ipAddress = {
     &afw_self_v_toIpAddress,
     &afw_self_v_afwToIpAddress,
     &afw_self_v_zz__Converts_string_to_ipAddress,
-    &afw_self_v_zz__Converts__dataType__value_to_ipAddress_,
+    &afw_self_v_zz__a277d5cedfb4,
     &afw_self_v_zz___dataType__value__dataType___ipAddress,
     &afw_self_v_zz__2835b84c5e7e,
     NULL,
@@ -111197,6 +111708,501 @@ static const afw_value_object_t
 impl_object__to_ipAddress__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_ipAddress
+};
+
+/* ---------- to_objectId ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_objectId =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_objectId");
+
+static const afw_value_object_t
+impl_object__to_objectId__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_objectId = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_objectId__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_objectId,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_objectId
+        }
+    },
+    (void *)&afw_function_definition_to_objectId
+};
+
+static const afw_value_object_t
+impl_to_objectId_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectId_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectId_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_objectId_direct,
+    &afw_self_v_objectId,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectId_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectId_returns
+};
+
+static const afw_value_object_t
+impl_to_objectId_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectId_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectId_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectId_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectId_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_objectId_parameters[] = {
+    &impl_to_objectId_parameter_1,
+    NULL
+};
+
+static const afw_utf8_t
+impl_to_objectId_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+static const afw_utf8_z_t *
+impl_to_objectId_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid objectId text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_objectId = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_objectId,
+    &afw_self_v_polymorphic,
+    &afw_self_v_to_objectId,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_objectId,
+    &afw_self_v_to_objectId,
+    &afw_self_v_to_objectId,
+    &afw_self_v_toObjectId,
+    &afw_self_v_afwToObjectId,
+    &afw_self_v_zz__Converts_string_to_objectId,
+    &afw_self_v_zz__8836b91e5fc4,
+    &afw_self_v_zz___dataType__value__dataType___objectId,
+    &afw_self_v_zz__dd5c168a6407,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_objectId_parameters[0],
+    1,
+    &impl_to_objectId_returns,
+    &impl_to_objectId_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    &impl_to_objectId_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_objectId,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_objectId__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_objectId
+};
+
+/* ---------- to_objectPath ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_objectPath =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_objectPath");
+
+static const afw_value_object_t
+impl_object__to_objectPath__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_objectPath = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_objectPath__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_objectPath,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_objectPath
+        }
+    },
+    (void *)&afw_function_definition_to_objectPath
+};
+
+static const afw_value_object_t
+impl_to_objectPath_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectPath_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectPath_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_objectPath_direct,
+    &afw_self_v_objectPath,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectPath_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectPath_returns
+};
+
+static const afw_value_object_t
+impl_to_objectPath_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectPath_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectPath_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectPath_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectPath_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_objectPath_parameters[] = {
+    &impl_to_objectPath_parameter_1,
+    NULL
+};
+
+static const afw_utf8_t
+impl_to_objectPath_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+static const afw_utf8_z_t *
+impl_to_objectPath_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid objectPath text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_objectPath = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_objectPath,
+    &afw_self_v_polymorphic,
+    &afw_self_v_to_objectPath,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_objectPath,
+    &afw_self_v_to_objectPath,
+    &afw_self_v_to_objectPath,
+    &afw_self_v_toObjectPath,
+    &afw_self_v_afwToObjectPath,
+    &afw_self_v_zz__Converts_string_to_objectPath,
+    &afw_self_v_zz__f861316c800a,
+    &afw_self_v_zz___dataType__value__dataType___objectPath,
+    &afw_self_v_zz__8787e1841858,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_objectPath_parameters[0],
+    1,
+    &impl_to_objectPath_returns,
+    &impl_to_objectPath_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    &impl_to_objectPath_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_objectPath,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_objectPath__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_objectPath
+};
+
+/* ---------- to_password ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_password =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_password");
+
+static const afw_value_object_t
+impl_object__to_password__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_password = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_password__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_password,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_password
+        }
+    },
+    (void *)&afw_function_definition_to_password
+};
+
+static const afw_value_object_t
+impl_to_password_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_password_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_password_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_password_direct,
+    &afw_self_v_password,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_password_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_password_returns
+};
+
+static const afw_value_object_t
+impl_to_password_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_password_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_password_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_password_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_password_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_password_parameters[] = {
+    &impl_to_password_parameter_1,
+    NULL
+};
+
+static const afw_utf8_t
+impl_to_password_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+static const afw_utf8_z_t *
+impl_to_password_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid password text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_password = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_password,
+    &afw_self_v_polymorphic,
+    &afw_self_v_to_password,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_password,
+    &afw_self_v_to_password,
+    &afw_self_v_to_password,
+    &afw_self_v_toPassword,
+    &afw_self_v_afwToPassword,
+    &afw_self_v_zz__Converts_string_to_password,
+    &afw_self_v_zz__34410562c5ac,
+    &afw_self_v_zz___dataType__value__dataType___password,
+    &afw_self_v_zz__4651e3c72d3b,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_password_parameters[0],
+    1,
+    &impl_to_password_returns,
+    &impl_to_password_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    &impl_to_password_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_password,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_password__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_password
 };
 
 /* ---------- to_rfc822Name ---------- */
@@ -111314,7 +112320,7 @@ impl_to_rfc822Name_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_rfc822Name_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid rfc822Name text",
     NULL,
     NULL
 };
@@ -111331,7 +112337,7 @@ afw_function_definition_to_rfc822Name = {
     &afw_self_v_toRfc822Name,
     &afw_self_v_afwToRfc822Name,
     &afw_self_v_zz__Converts_string_to_rfc822Name,
-    &afw_self_v_zz__Converts__dataType__value_to_rfc822Name_,
+    &afw_self_v_zz__04f1b075e271,
     &afw_self_v_zz___dataType__value__dataType___rfc822Name,
     &afw_self_v_zz__fe74375c4c0b,
     NULL,
@@ -111660,7 +112666,7 @@ impl_to_time_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_time_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid time text",
     NULL,
     NULL
 };
@@ -111677,7 +112683,7 @@ afw_function_definition_to_time = {
     &afw_self_v_toTime,
     &afw_self_v_afwToTime,
     &afw_self_v_zz__Converts_string_to_time,
-    &afw_self_v_zz__Converts__dataType__value_to_time_,
+    &afw_self_v_zz__4d78c627440c,
     &afw_self_v_zz___dataType__value__dataType___time,
     &afw_self_v_zz__function_to_time__dataType_______value__dataType____time__,
     NULL,
@@ -111825,7 +112831,7 @@ impl_to_x500Name_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_x500Name_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid x500Name text",
     NULL,
     NULL
 };
@@ -111842,7 +112848,7 @@ afw_function_definition_to_x500Name = {
     &afw_self_v_toX500Name,
     &afw_self_v_afwToX500Name,
     &afw_self_v_zz__Converts_string_to_x500Name,
-    &afw_self_v_zz__Converts__dataType__value_to_x500Name_,
+    &afw_self_v_zz__df44f7513ed3,
     &afw_self_v_zz___dataType__value__dataType___x500Name,
     &afw_self_v_zz__a1c35341f811,
     NULL,
@@ -111990,7 +112996,7 @@ impl_to_yearMonthDuration_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_to_yearMonthDuration_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid yearMonthDuration text",
     NULL,
     NULL
 };
@@ -112007,7 +113013,7 @@ afw_function_definition_to_yearMonthDuration = {
     &afw_self_v_toYearMonthDuration,
     &afw_self_v_afwToYearMonthDuration,
     &afw_self_v_zz__Converts_string_to_yearMonthDuration,
-    &afw_self_v_zz__Converts__dataType__value_to_yearMonthDuration_,
+    &afw_self_v_zz__2b35f9781912,
     &afw_self_v_zz___dataType__value__dataType___yearMonthDuration,
     &afw_self_v_zz__9709d0b538f1,
     NULL,
@@ -132537,7 +133543,7 @@ impl_to_anyURI_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_anyURI_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid anyURI text",
     NULL,
     NULL
 };
@@ -132554,7 +133560,7 @@ afw_function_definition_to_anyURI_string = {
     &afw_self_v_toAnyURIString,
     &afw_self_v_afwToAnyURIString,
     &afw_self_v_zz__Converts_string_to_anyURI,
-    &afw_self_v_zz__Converts_string_value_to_anyURI_,
+    &afw_self_v_zz__5eb3a56c0100,
     &afw_self_v_zz___value__string___anyURI,
     &afw_self_v_zz__function_to_anyURI_string________value__string____anyURI__,
     NULL,
@@ -132587,41 +133593,41 @@ impl_object__to_anyURI_string__value = {
     (const afw_object_t *)&impl_object__to_anyURI_string
 };
 
-/* ---------- to_boolean<string> ---------- */
+/* ---------- to_base64Binary<string> ---------- */
 
 static const afw_utf8_t
-impl_object_path__to_boolean_string =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_boolean_string");
+impl_object_path__to_base64Binary_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_base64Binary_string");
 
 static const afw_value_object_t
-impl_object__to_boolean_string__value;
+impl_object__to_base64Binary_string__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__to_boolean_string = {
+impl_object__to_base64Binary_string = {
     {
         {&afw_runtime_inf__AdaptiveFunction_},
         NULL,
-        (const afw_value_t *)&impl_object__to_boolean_string__value,
+        (const afw_value_t *)&impl_object__to_base64Binary_string__value,
         {
             NULL,
             NULL,
-            &afw_self_s_to_boolean_string,
+            &afw_self_s_to_base64Binary_string,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__to_boolean_string
+            &impl_object_path__to_base64Binary_string
         }
     },
-    (void *)&afw_function_definition_to_boolean_string
+    (void *)&afw_function_definition_to_base64Binary_string
 };
 
 static const afw_value_object_t
-impl_to_boolean_string_returns__value;
+impl_to_base64Binary_string_returns__value;
 
 static const afw_value_function_parameter_t
-impl_to_boolean_string_returns = {
+impl_to_base64Binary_string_returns = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_to_boolean_string_returns__value,
+        (const afw_value_t *)&impl_to_base64Binary_string_returns__value,
         {
             NULL,
             NULL,
@@ -132630,8 +133636,8 @@ impl_to_boolean_string_returns = {
             NULL,
         }
     },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
+    &afw_data_type_base64Binary_direct,
+    &afw_self_v_base64Binary,
     NULL,
     NULL,
     NULL,
@@ -132645,20 +133651,20 @@ impl_to_boolean_string_returns = {
 };
 
 static const afw_value_object_t
-impl_to_boolean_string_returns__value = {
+impl_to_base64Binary_string_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_to_boolean_string_returns
+    (const afw_object_t *)&impl_to_base64Binary_string_returns
 };
 
 static const afw_value_object_t
-impl_to_boolean_string_parameter_1__value;
+impl_to_base64Binary_string_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_to_boolean_string_parameter_1 = {
+impl_to_base64Binary_string_parameter_1 = {
     {
         {&afw_runtime_inf__AdaptiveFunctionParameter_},
         NULL,
-        (const afw_value_t *)&impl_to_boolean_string_parameter_1__value,
+        (const afw_value_t *)&impl_to_base64Binary_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -132682,55 +133688,55 @@ impl_to_boolean_string_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_to_boolean_string_parameter_1__value = {
+impl_to_base64Binary_string_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_to_boolean_string_parameter_1
+    (const afw_object_t *)&impl_to_base64Binary_string_parameter_1
 };
 
 static const afw_value_function_parameter_t *
-impl_to_boolean_string_parameters[] = {
-    &impl_to_boolean_string_parameter_1,
+impl_to_base64Binary_string_parameters[] = {
+    &impl_to_base64Binary_string_parameter_1,
     NULL
 };
 
 static const afw_utf8_z_t *
-impl_to_boolean_string_errorsThrown[] = {
+impl_to_base64Binary_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid base64Binary text",
     NULL,
     NULL
 };
 
 const afw_value_function_definition_t
-afw_function_definition_to_boolean_string = {
+afw_function_definition_to_base64Binary_string = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__to_boolean_string,
+    (const afw_object_t *)&impl_object__to_base64Binary_string,
     &afw_self_v_string,
-    &afw_self_v_zz__to_boolean_string_,
-    &afw_self_v_zz___afw__AdaptiveFunction__to_boolean_string_,
-    &afw_self_v_to_boolean,
-    &afw_self_v_to_boolean_string,
-    &afw_self_v_toBooleanString,
-    &afw_self_v_afwToBooleanString,
-    &afw_self_v_zz__Converts_string_to_boolean,
-    &afw_self_v_zz__Converts_string_value_to_boolean_,
-    &afw_self_v_zz___value__string___boolean,
-    &afw_self_v_zz__function_to_boolean_string________value__string____boolean__,
+    &afw_self_v_zz__to_base64Binary_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_base64Binary_string_,
+    &afw_self_v_to_base64Binary,
+    &afw_self_v_to_base64Binary_string,
+    &afw_self_v_toBase64BinaryString,
+    &afw_self_v_afwToBase64BinaryString,
+    &afw_self_v_zz__Converts_string_to_base64Binary,
+    &afw_self_v_zz__c1cb4181eec1,
+    &afw_self_v_zz___value__string___base64Binary,
+    &afw_self_v_zz__8593c54a8238,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
     NULL,
     &afw_integer_self_v_one,
     &afw_integer_self_v_one,
-    &impl_to_boolean_string_parameters[0],
+    &impl_to_base64Binary_string_parameters[0],
     1,
-    &impl_to_boolean_string_returns,
+    &impl_to_base64Binary_string_returns,
     NULL,
     &afw_data_type_string_direct,
     &afw_self_v_string,
-    &impl_to_boolean_string_errorsThrown[0],
+    &impl_to_base64Binary_string_errorsThrown[0],
     NULL,
-    afw_data_type_method_number_to_boolean,
+    afw_data_type_method_number_to_base64Binary,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -132741,9 +133747,9 @@ afw_function_definition_to_boolean_string = {
 };
 
 static const afw_value_object_t
-impl_object__to_boolean_string__value = {
+impl_object__to_base64Binary_string__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__to_boolean_string
+    (const afw_object_t *)&impl_object__to_base64Binary_string
 };
 
 /* ---------- to_dateTime<string> ---------- */
@@ -132855,7 +133861,7 @@ impl_to_dateTime_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_dateTime_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid dateTime text",
     NULL,
     NULL
 };
@@ -132872,7 +133878,7 @@ afw_function_definition_to_dateTime_string = {
     &afw_self_v_toDateTimeString,
     &afw_self_v_afwToDateTimeString,
     &afw_self_v_zz__Converts_string_to_dateTime,
-    &afw_self_v_zz__Converts_string_value_to_dateTime_,
+    &afw_self_v_zz__2e87748b864a,
     &afw_self_v_zz___value__string___dateTime,
     &afw_self_v_zz__638d7f053752,
     NULL,
@@ -133014,7 +134020,7 @@ impl_to_date_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_date_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid date text",
     NULL,
     NULL
 };
@@ -133031,7 +134037,7 @@ afw_function_definition_to_date_string = {
     &afw_self_v_toDateString,
     &afw_self_v_afwToDateString,
     &afw_self_v_zz__Converts_string_to_date,
-    &afw_self_v_zz__Converts_string_value_to_date_,
+    &afw_self_v_zz__bbfd81cea710,
     &afw_self_v_zz___value__string___date,
     &afw_self_v_zz__function_to_date_string________value__string____date__,
     NULL,
@@ -133173,7 +134179,7 @@ impl_to_dayTimeDuration_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_dayTimeDuration_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid dayTimeDuration text",
     NULL,
     NULL
 };
@@ -133190,7 +134196,7 @@ afw_function_definition_to_dayTimeDuration_string = {
     &afw_self_v_toDayTimeDurationString,
     &afw_self_v_afwToDayTimeDurationString,
     &afw_self_v_zz__Converts_string_to_dayTimeDuration,
-    &afw_self_v_zz__Converts_string_value_to_dayTimeDuration_,
+    &afw_self_v_zz__367db3ef0c4e,
     &afw_self_v_zz___value__string___dayTimeDuration,
     &afw_self_v_zz__1e1dd966f54b,
     NULL,
@@ -133332,7 +134338,7 @@ impl_to_dnsName_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_dnsName_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid dnsName text",
     NULL,
     NULL
 };
@@ -133349,7 +134355,7 @@ afw_function_definition_to_dnsName_string = {
     &afw_self_v_toDnsNameString,
     &afw_self_v_afwToDnsNameString,
     &afw_self_v_zz__Converts_string_to_dnsName,
-    &afw_self_v_zz__Converts_string_value_to_dnsName_,
+    &afw_self_v_zz__8632f9ced8b1,
     &afw_self_v_zz___value__string___dnsName,
     &afw_self_v_zz__function_to_dnsName_string________value__string____dnsName__,
     NULL,
@@ -133491,7 +134497,7 @@ impl_to_double_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_double_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid double text",
     NULL,
     NULL
 };
@@ -133508,7 +134514,7 @@ afw_function_definition_to_double_string = {
     &afw_self_v_toDoubleString,
     &afw_self_v_afwToDoubleString,
     &afw_self_v_zz__Converts_to_double,
-    &afw_self_v_zz__Converts_string_value_to_double_and_returns_double_result_,
+    &afw_self_v_zz__9fb2aa1e2b37,
     &afw_self_v_zz___value__string___double,
     &afw_self_v_zz__function_to_double_string________value__string____double__,
     NULL,
@@ -133539,6 +134545,324 @@ static const afw_value_object_t
 impl_object__to_double_string__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_double_string
+};
+
+/* ---------- to_hexBinary<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_hexBinary_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_hexBinary_string");
+
+static const afw_value_object_t
+impl_object__to_hexBinary_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_hexBinary_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_hexBinary_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_hexBinary_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_hexBinary_string
+        }
+    },
+    (void *)&afw_function_definition_to_hexBinary_string
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_hexBinary_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_hexBinary_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_hexBinary_direct,
+    &afw_self_v_hexBinary,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_hexBinary_string_returns
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_hexBinary_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_hexBinary_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_hexBinary_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_hexBinary_string_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_hexBinary_string_parameters[] = {
+    &impl_to_hexBinary_string_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_to_hexBinary_string_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid hexBinary text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_hexBinary_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_hexBinary_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__to_hexBinary_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_hexBinary_string_,
+    &afw_self_v_to_hexBinary,
+    &afw_self_v_to_hexBinary_string,
+    &afw_self_v_toHexBinaryString,
+    &afw_self_v_afwToHexBinaryString,
+    &afw_self_v_zz__Converts_string_to_hexBinary,
+    &afw_self_v_zz__bd1eaecbad21,
+    &afw_self_v_zz___value__string___hexBinary,
+    &afw_self_v_zz__ce2b80f6e531,
+    NULL,
+    afw_function_execute_convert,
+    afw_function_execute_convert,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_hexBinary_string_parameters[0],
+    1,
+    &impl_to_hexBinary_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    &impl_to_hexBinary_string_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_hexBinary,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_hexBinary_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_hexBinary_string
+};
+
+/* ---------- to_ia5String<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_ia5String_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_ia5String_string");
+
+static const afw_value_object_t
+impl_object__to_ia5String_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_ia5String_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_ia5String_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_ia5String_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_ia5String_string
+        }
+    },
+    (void *)&afw_function_definition_to_ia5String_string
+};
+
+static const afw_value_object_t
+impl_to_ia5String_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_ia5String_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_ia5String_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_ia5String_direct,
+    &afw_self_v_ia5String,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_ia5String_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_ia5String_string_returns
+};
+
+static const afw_value_object_t
+impl_to_ia5String_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_ia5String_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_ia5String_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_ia5String_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_ia5String_string_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_ia5String_string_parameters[] = {
+    &impl_to_ia5String_string_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_to_ia5String_string_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid ia5String text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_ia5String_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_ia5String_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__to_ia5String_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_ia5String_string_,
+    &afw_self_v_to_ia5String,
+    &afw_self_v_to_ia5String_string,
+    &afw_self_v_toIa5StringString,
+    &afw_self_v_afwToIa5StringString,
+    &afw_self_v_zz__Converts_string_to_ia5String,
+    &afw_self_v_zz__f81ea826ce01,
+    &afw_self_v_zz___value__string___ia5String,
+    &afw_self_v_zz__1ef690e73d3e,
+    NULL,
+    afw_function_execute_convert,
+    afw_function_execute_convert,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_ia5String_string_parameters[0],
+    1,
+    &impl_to_ia5String_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    &impl_to_ia5String_string_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_ia5String,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_ia5String_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_ia5String_string
 };
 
 /* ---------- to_integer<string> ---------- */
@@ -133647,6 +134971,17 @@ impl_to_integer_string_parameters[] = {
     NULL
 };
 
+static const afw_utf8_z_t *
+impl_to_integer_string_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "double is NaN, infinite, or outside the integer range",
+    NULL,
+    "error", "conversion_error",
+    "reason", "value is not valid integer text",
+    NULL,
+    NULL
+};
+
 const afw_value_function_definition_t
 afw_function_definition_to_integer_string = {
     {&afw_value_function_definition_inf},
@@ -133659,7 +134994,7 @@ afw_function_definition_to_integer_string = {
     &afw_self_v_toIntegerString,
     &afw_self_v_afwToIntegerString,
     &afw_self_v_zz__Converts_to_integer,
-    &afw_self_v_zz__b37d71f1930d,
+    &afw_self_v_zz__02481bdac6b6,
     &afw_self_v_zz___value__string___integer,
     &afw_self_v_zz__function_to_integer_string________value__string____integer__,
     NULL,
@@ -133674,7 +135009,7 @@ afw_function_definition_to_integer_string = {
     NULL,
     &afw_data_type_string_direct,
     &afw_self_v_string,
-    NULL,
+    &impl_to_integer_string_errorsThrown[0],
     NULL,
     afw_data_type_method_number_to_integer,
     &afw_boolean_self_v_false,
@@ -133801,7 +135136,7 @@ impl_to_ipAddress_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_ipAddress_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid ipAddress text",
     NULL,
     NULL
 };
@@ -133818,7 +135153,7 @@ afw_function_definition_to_ipAddress_string = {
     &afw_self_v_toIpAddressString,
     &afw_self_v_afwToIpAddressString,
     &afw_self_v_zz__Converts_string_to_ipAddress,
-    &afw_self_v_zz__Converts_string_value_to_ipAddress_,
+    &afw_self_v_zz__0384f2d6b786,
     &afw_self_v_zz___value__string___ipAddress,
     &afw_self_v_zz__a4c9206f2132,
     NULL,
@@ -133849,6 +135184,483 @@ static const afw_value_object_t
 impl_object__to_ipAddress_string__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_ipAddress_string
+};
+
+/* ---------- to_objectId<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_objectId_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_objectId_string");
+
+static const afw_value_object_t
+impl_object__to_objectId_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_objectId_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_objectId_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_objectId_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_objectId_string
+        }
+    },
+    (void *)&afw_function_definition_to_objectId_string
+};
+
+static const afw_value_object_t
+impl_to_objectId_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectId_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectId_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_objectId_direct,
+    &afw_self_v_objectId,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectId_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectId_string_returns
+};
+
+static const afw_value_object_t
+impl_to_objectId_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectId_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectId_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectId_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectId_string_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_objectId_string_parameters[] = {
+    &impl_to_objectId_string_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_to_objectId_string_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid objectId text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_objectId_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_objectId_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__to_objectId_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_objectId_string_,
+    &afw_self_v_to_objectId,
+    &afw_self_v_to_objectId_string,
+    &afw_self_v_toObjectIdString,
+    &afw_self_v_afwToObjectIdString,
+    &afw_self_v_zz__Converts_string_to_objectId,
+    &afw_self_v_zz__8be21ddeeaea,
+    &afw_self_v_zz___value__string___objectId,
+    &afw_self_v_zz__512f37c354ee,
+    NULL,
+    afw_function_execute_convert,
+    afw_function_execute_convert,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_objectId_string_parameters[0],
+    1,
+    &impl_to_objectId_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    &impl_to_objectId_string_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_objectId,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_objectId_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_objectId_string
+};
+
+/* ---------- to_objectPath<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_objectPath_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_objectPath_string");
+
+static const afw_value_object_t
+impl_object__to_objectPath_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_objectPath_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_objectPath_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_objectPath_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_objectPath_string
+        }
+    },
+    (void *)&afw_function_definition_to_objectPath_string
+};
+
+static const afw_value_object_t
+impl_to_objectPath_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectPath_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectPath_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_objectPath_direct,
+    &afw_self_v_objectPath,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectPath_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectPath_string_returns
+};
+
+static const afw_value_object_t
+impl_to_objectPath_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_objectPath_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_objectPath_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_objectPath_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_objectPath_string_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_objectPath_string_parameters[] = {
+    &impl_to_objectPath_string_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_to_objectPath_string_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid objectPath text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_objectPath_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_objectPath_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__to_objectPath_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_objectPath_string_,
+    &afw_self_v_to_objectPath,
+    &afw_self_v_to_objectPath_string,
+    &afw_self_v_toObjectPathString,
+    &afw_self_v_afwToObjectPathString,
+    &afw_self_v_zz__Converts_string_to_objectPath,
+    &afw_self_v_zz__38a5cae49bec,
+    &afw_self_v_zz___value__string___objectPath,
+    &afw_self_v_zz__31638a47ab3b,
+    NULL,
+    afw_function_execute_convert,
+    afw_function_execute_convert,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_objectPath_string_parameters[0],
+    1,
+    &impl_to_objectPath_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    &impl_to_objectPath_string_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_objectPath,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_objectPath_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_objectPath_string
+};
+
+/* ---------- to_password<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_password_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_password_string");
+
+static const afw_value_object_t
+impl_object__to_password_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_password_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_password_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_password_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_password_string
+        }
+    },
+    (void *)&afw_function_definition_to_password_string
+};
+
+static const afw_value_object_t
+impl_to_password_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_password_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_password_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_password_direct,
+    &afw_self_v_password,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_password_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_password_string_returns
+};
+
+static const afw_value_object_t
+impl_to_password_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_password_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_password_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_password_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_password_string_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_password_string_parameters[] = {
+    &impl_to_password_string_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_to_password_string_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "value is not valid password text",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_password_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_password_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__to_password_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_password_string_,
+    &afw_self_v_to_password,
+    &afw_self_v_to_password_string,
+    &afw_self_v_toPasswordString,
+    &afw_self_v_afwToPasswordString,
+    &afw_self_v_zz__Converts_string_to_password,
+    &afw_self_v_zz__dbb299c75d4a,
+    &afw_self_v_zz___value__string___password,
+    &afw_self_v_zz__021c891f5cf5,
+    NULL,
+    afw_function_execute_convert,
+    afw_function_execute_convert,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_password_string_parameters[0],
+    1,
+    &impl_to_password_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    &impl_to_password_string_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_password,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_password_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_password_string
 };
 
 /* ---------- to_rfc822Name<string> ---------- */
@@ -133960,7 +135772,7 @@ impl_to_rfc822Name_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_rfc822Name_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid rfc822Name text",
     NULL,
     NULL
 };
@@ -133977,7 +135789,7 @@ afw_function_definition_to_rfc822Name_string = {
     &afw_self_v_toRfc822NameString,
     &afw_self_v_afwToRfc822NameString,
     &afw_self_v_zz__Converts_string_to_rfc822Name,
-    &afw_self_v_zz__Converts_string_value_to_rfc822Name_,
+    &afw_self_v_zz__9f978eafb5f2,
     &afw_self_v_zz___value__string___rfc822Name,
     &afw_self_v_zz__169001fd6db4,
     NULL,
@@ -134270,7 +136082,7 @@ impl_to_time_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_time_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid time text",
     NULL,
     NULL
 };
@@ -134287,7 +136099,7 @@ afw_function_definition_to_time_string = {
     &afw_self_v_toTimeString,
     &afw_self_v_afwToTimeString,
     &afw_self_v_zz__Converts_string_to_time,
-    &afw_self_v_zz__Converts_string_value_to_time_,
+    &afw_self_v_zz__5037c74fcb72,
     &afw_self_v_zz___value__string___time,
     &afw_self_v_zz__function_to_time_string________value__string____time__,
     NULL,
@@ -134429,7 +136241,7 @@ impl_to_x500Name_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_x500Name_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid x500Name text",
     NULL,
     NULL
 };
@@ -134446,7 +136258,7 @@ afw_function_definition_to_x500Name_string = {
     &afw_self_v_toX500NameString,
     &afw_self_v_afwToX500NameString,
     &afw_self_v_zz__Converts_string_to_x500Name,
-    &afw_self_v_zz__Converts_string_value_to_x500Name_,
+    &afw_self_v_zz__f2f00bcd9b70,
     &afw_self_v_zz___value__string___x500Name,
     &afw_self_v_zz__2b35d9c2b0a9,
     NULL,
@@ -134588,7 +136400,7 @@ impl_to_yearMonthDuration_string_parameters[] = {
 static const afw_utf8_z_t *
 impl_to_yearMonthDuration_string_errorsThrown[] = {
     "error", "conversion_error",
-    "reason", "value could not be converted",
+    "reason", "value is not valid yearMonthDuration text",
     NULL,
     NULL
 };
@@ -134605,7 +136417,7 @@ afw_function_definition_to_yearMonthDuration_string = {
     &afw_self_v_toYearMonthDurationString,
     &afw_self_v_afwToYearMonthDurationString,
     &afw_self_v_zz__Converts_string_to_yearMonthDuration,
-    &afw_self_v_zz__Converts_string_value_to_yearMonthDuration_,
+    &afw_self_v_zz__dc2ffbda2b2b,
     &afw_self_v_zz___value__string___yearMonthDuration,
     &afw_self_v_zz__cf730c8eb5fa,
     NULL,
@@ -154070,6 +155882,7 @@ impl_function_bindings[] = {
     &afw_function_definition_nex_boolean,
     &afw_function_definition_one_and_only_boolean,
     &afw_function_definition_set_equals_boolean,
+    &afw_function_definition_string_to_boolean,
     &afw_function_definition_subset_boolean,
     &afw_function_definition_to_string_boolean,
     &afw_function_definition_union_boolean,
@@ -154517,14 +156330,19 @@ impl_function_bindings[] = {
     &afw_function_definition_subtract_dayTimeDuration,
     &afw_function_definition_subtract_yearMonthDuration,
     &afw_function_definition_to_anyURI,
-    &afw_function_definition_to_boolean,
+    &afw_function_definition_to_base64Binary,
     &afw_function_definition_to_date,
     &afw_function_definition_to_dateTime,
     &afw_function_definition_to_dayTimeDuration,
     &afw_function_definition_to_dnsName,
     &afw_function_definition_to_double,
+    &afw_function_definition_to_hexBinary,
+    &afw_function_definition_to_ia5String,
     &afw_function_definition_to_integer,
     &afw_function_definition_to_ipAddress,
+    &afw_function_definition_to_objectId,
+    &afw_function_definition_to_objectPath,
+    &afw_function_definition_to_password,
     &afw_function_definition_to_rfc822Name,
     &afw_function_definition_to_string,
     &afw_function_definition_to_time,
@@ -154643,14 +156461,19 @@ impl_function_bindings[] = {
     &afw_function_definition_subset_string,
     &afw_function_definition_substring_string,
     &afw_function_definition_to_anyURI_string,
-    &afw_function_definition_to_boolean_string,
+    &afw_function_definition_to_base64Binary_string,
     &afw_function_definition_to_dateTime_string,
     &afw_function_definition_to_date_string,
     &afw_function_definition_to_dayTimeDuration_string,
     &afw_function_definition_to_dnsName_string,
     &afw_function_definition_to_double_string,
+    &afw_function_definition_to_hexBinary_string,
+    &afw_function_definition_to_ia5String_string,
     &afw_function_definition_to_integer_string,
     &afw_function_definition_to_ipAddress_string,
+    &afw_function_definition_to_objectId_string,
+    &afw_function_definition_to_objectPath_string,
+    &afw_function_definition_to_password_string,
     &afw_function_definition_to_rfc822Name_string,
     &afw_function_definition_to_string_string,
     &afw_function_definition_to_time_string,

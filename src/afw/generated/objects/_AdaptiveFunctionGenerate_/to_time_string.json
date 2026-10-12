@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toTimeString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to time.",
+    "description": "Converts string value to time. A string is read as time text, the same text the typed literal \"...\"time accepts, and text that is not valid time is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid time text"
         }
     ],
     "functionId": "to_time<string>",

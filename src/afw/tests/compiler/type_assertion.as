@@ -83,7 +83,7 @@ return 0;
 
 //?
 //? test: hints
-//? description: the mismatch error says how to get a T instead (typed literal, to_T)
+//? description: the mismatch error says how to get a T instead (typed literal, to_T, string_to_boolean)
 //? expect: 0
 //? source: ...
 
@@ -102,7 +102,7 @@ const s = "2026-10-11";
 assert(assertionError(function () { return s as date; }) ===
     'Type assertion failed: expected date but got string; write "2026-10-11"date or to_date(v)');
 assert(assertionError(function () { return "a\"b" as password; }) ===
-    'Type assertion failed: expected password but got string; write "a\\"b"password');
+    'Type assertion failed: expected password but got string; write "a\\"b"password or to_password(v)');
 assert(assertionError(function () { return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" as date; }) ===
     'Type assertion failed: expected date but got string; write "..."date or to_date(v)');
 assert(assertionError(function () { return "1" as integer; }) ===
@@ -111,6 +111,8 @@ assert(assertionError(function () { return 5 as double; }) ===
     "Type assertion failed: expected double but got integer; write to_double(v)");
 assert(assertionError(function () { return 5 as string; }) ===
     "Type assertion failed: expected string but got integer; write to_string(v)");
+assert(assertionError(function () { return "false" as boolean; }) ===
+    "Type assertion failed: expected boolean but got string; write string_to_boolean(v)");
 assert(assertionError(function () { return [1] as object; }) ===
     "Type assertion failed: expected object but got array");
 return 0;

@@ -860,7 +860,9 @@ def to_double_integer(session, value):
     """
     Converts to double
 
-    Converts integer value to double and returns double result.
+    Converts integer value to double. A string is read as double text, the
+    same text a double literal accepts, and other text is an error: integer
+    text such as "5" is not a double, so use to_double(to_integer(s)) for it.
 
     Args:
         value (int):

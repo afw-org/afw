@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "toIpAddressString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Converts string value to ipAddress.",
+    "description": "Converts string value to ipAddress. A string is read as ipAddress text, the same text the typed literal \"...\"ipAddress accepts, and text that is not valid ipAddress is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid ipAddress text"
         }
     ],
     "functionId": "to_ipAddress<string>",

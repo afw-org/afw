@@ -56,14 +56,19 @@ our @EXPORT_OK = qw(
     subset_string 
     substring_string 
     to_anyURI_string 
-    to_boolean_string 
+    to_base64Binary_string 
     to_dateTime_string 
     to_date_string 
     to_dayTimeDuration_string 
     to_dnsName_string 
     to_double_string 
+    to_hexBinary_string 
+    to_ia5String_string 
     to_integer_string 
     to_ipAddress_string 
+    to_objectId_string 
+    to_objectPath_string 
+    to_password_string 
     to_rfc822Name_string 
     to_string_string 
     to_time_string 
@@ -705,7 +710,9 @@ Extract a substring
 
 =head3 to_anyURI_string
 
-Converts string value to anyURI.
+Converts string value to anyURI. A string is read as anyURI text, the same
+text the typed literal "..."anyURI accepts, and text that is not valid anyURI
+is an error.
 Converts string to anyURI
 
 =head4 Parameters
@@ -713,10 +720,12 @@ Converts string to anyURI
     $value
 
 
-=head3 to_boolean_string
+=head3 to_base64Binary_string
 
-Converts string value to boolean.
-Converts string to boolean
+Converts string value to base64Binary. A string is read as base64Binary text,
+the same text the typed literal "..."base64Binary accepts, and text that is
+not valid base64Binary is an error.
+Converts string to base64Binary
 
 =head4 Parameters
 
@@ -725,7 +734,9 @@ Converts string to boolean
 
 =head3 to_dateTime_string
 
-Converts string value to dateTime.
+Converts string value to dateTime. A string is read as dateTime text, the same
+text the typed literal "..."dateTime accepts, and text that is not valid
+dateTime is an error.
 Converts string to dateTime
 
 =head4 Parameters
@@ -735,7 +746,9 @@ Converts string to dateTime
 
 =head3 to_date_string
 
-Converts string value to date.
+Converts string value to date. A string is read as date text, the same text
+the typed literal "..."date accepts, and text that is not valid date is an
+error.
 Converts string to date
 
 =head4 Parameters
@@ -745,7 +758,9 @@ Converts string to date
 
 =head3 to_dayTimeDuration_string
 
-Converts string value to dayTimeDuration.
+Converts string value to dayTimeDuration. A string is read as dayTimeDuration
+text, the same text the typed literal "..."dayTimeDuration accepts, and text
+that is not valid dayTimeDuration is an error.
 Converts string to dayTimeDuration
 
 =head4 Parameters
@@ -755,7 +770,9 @@ Converts string to dayTimeDuration
 
 =head3 to_dnsName_string
 
-Converts string value to dnsName.
+Converts string value to dnsName. A string is read as dnsName text, the same
+text the typed literal "..."dnsName accepts, and text that is not valid
+dnsName is an error.
 Converts string to dnsName
 
 =head4 Parameters
@@ -765,8 +782,34 @@ Converts string to dnsName
 
 =head3 to_double_string
 
-Converts string value to double and returns double result.
+Converts string value to double. A string is read as double text, the same
+text a double literal accepts, and other text is an error: integer text such
+as "5" is not a double, so use to_double(to_integer(s)) for it.
 Converts to double
+
+=head4 Parameters
+
+    $value
+
+
+=head3 to_hexBinary_string
+
+Converts string value to hexBinary. A string is read as hexBinary text, the
+same text the typed literal "..."hexBinary accepts, and text that is not valid
+hexBinary is an error.
+Converts string to hexBinary
+
+=head4 Parameters
+
+    $value
+
+
+=head3 to_ia5String_string
+
+Converts string value to ia5String. A string is read as ia5String text, the
+same text the typed literal "..."ia5String accepts, and text that is not valid
+ia5String is an error.
+Converts string to ia5String
 
 =head4 Parameters
 
@@ -775,7 +818,11 @@ Converts to double
 
 =head3 to_integer_string
 
-Truncate string value to a whole number and returns integer result.
+Converts string value to integer. A double is truncated toward zero (1.9 is 1
+and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A
+double that is NaN, infinite, or outside the integer range is an error. A
+string is read as integer text, and text that is not an integer ("1.5", " 1",
+"1x") is an error.
 Converts to integer
 
 =head4 Parameters
@@ -785,8 +832,42 @@ Converts to integer
 
 =head3 to_ipAddress_string
 
-Converts string value to ipAddress.
+Converts string value to ipAddress. A string is read as ipAddress text, the
+same text the typed literal "..."ipAddress accepts, and text that is not valid
+ipAddress is an error.
 Converts string to ipAddress
+
+=head4 Parameters
+
+    $value
+
+
+=head3 to_objectId_string
+
+Converts string value to objectId. A string is read as objectId text.
+Converts string to objectId
+
+=head4 Parameters
+
+    $value
+
+
+=head3 to_objectPath_string
+
+Converts string value to objectPath. A string is read as objectPath text.
+Converts string to objectPath
+
+=head4 Parameters
+
+    $value
+
+
+=head3 to_password_string
+
+Converts string value to password. A string is read as password text, the same
+text the typed literal "..."password accepts, and text that is not valid
+password is an error.
+Converts string to password
 
 =head4 Parameters
 
@@ -795,7 +876,9 @@ Converts string to ipAddress
 
 =head3 to_rfc822Name_string
 
-Converts string value to rfc822Name.
+Converts string value to rfc822Name. A string is read as rfc822Name text, the
+same text the typed literal "..."rfc822Name accepts, and text that is not
+valid rfc822Name is an error.
 Converts string to rfc822Name
 
 =head4 Parameters
@@ -817,7 +900,9 @@ A string value.
 
 =head3 to_time_string
 
-Converts string value to time.
+Converts string value to time. A string is read as time text, the same text
+the typed literal "..."time accepts, and text that is not valid time is an
+error.
 Converts string to time
 
 =head4 Parameters
@@ -827,7 +912,9 @@ Converts string to time
 
 =head3 to_x500Name_string
 
-Converts string value to x500Name.
+Converts string value to x500Name. A string is read as x500Name text, the same
+text the typed literal "..."x500Name accepts, and text that is not valid
+x500Name is an error.
 Converts string to x500Name
 
 =head4 Parameters
@@ -837,7 +924,9 @@ Converts string to x500Name
 
 =head3 to_yearMonthDuration_string
 
-Converts string value to yearMonthDuration.
+Converts string value to yearMonthDuration. A string is read as
+yearMonthDuration text, the same text the typed literal "..."yearMonthDuration
+accepts, and text that is not valid yearMonthDuration is an error.
 Converts string to yearMonthDuration
 
 =head4 Parameters
@@ -1411,12 +1500,12 @@ sub to_anyURI_string {
     return $request->getResult();
 }
 
-sub to_boolean_string {
+sub to_base64Binary_string {
     my ($value) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "to_boolean<string>");
+    $request->set("function" => "to_base64Binary<string>");
     $request->set("value", $value);
 
     return $request->getResult();
@@ -1477,6 +1566,28 @@ sub to_double_string {
     return $request->getResult();
 }
 
+sub to_hexBinary_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_hexBinary<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub to_ia5String_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_ia5String<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub to_integer_string {
     my ($value) = @_;
 
@@ -1494,6 +1605,39 @@ sub to_ipAddress_string {
     my $request = $session->request()
 
     $request->set("function" => "to_ipAddress<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub to_objectId_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_objectId<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub to_objectPath_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_objectPath<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub to_password_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_password<string>");
     $request->set("value", $value);
 
     return $request->getResult();

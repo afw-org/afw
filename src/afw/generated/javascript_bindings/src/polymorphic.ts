@@ -1261,7 +1261,9 @@ export function afwSubtractYearMonthDuration(client : any, arg1 : any, arg2 : an
 }
 
 /**
- * Converts `<dataType>` value to anyURI.
+ * Converts `<dataType>` value to anyURI. A string is read as anyURI text, the
+ * same text the typed literal "..."anyURI accepts, and text that is not valid
+ * anyURI is an error.
  * 
  * @param {} value -
  * 
@@ -1278,24 +1280,28 @@ export function afwToAnyURI(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to boolean.
+ * Converts `<dataType>` value to base64Binary. A string is read as
+ * base64Binary text, the same text the typed literal "..."base64Binary
+ * accepts, and text that is not valid base64Binary is an error.
  * 
  * @param {} value -
  * 
- * @returns {boolean}
+ * @returns {base64Binary}
  */
-export function afwToBoolean(client : any, value : any) : any {
+export function afwToBase64Binary(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "to_boolean";
+    _action["function"] = "to_base64Binary";
     _action["value"] = value;
 
     return client.perform(_action);
 }
 
 /**
- * Converts `<dataType>` value to date.
+ * Converts `<dataType>` value to date. A string is read as date text, the
+ * same text the typed literal "..."date accepts, and text that is not valid
+ * date is an error.
  * 
  * @param {} value -
  * 
@@ -1312,7 +1318,9 @@ export function afwToDate(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to dateTime.
+ * Converts `<dataType>` value to dateTime. A string is read as dateTime text,
+ * the same text the typed literal "..."dateTime accepts, and text that is not
+ * valid dateTime is an error.
  * 
  * @param {} value -
  * 
@@ -1329,7 +1337,9 @@ export function afwToDateTime(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to dayTimeDuration.
+ * Converts `<dataType>` value to dayTimeDuration. A string is read as
+ * dayTimeDuration text, the same text the typed literal "..."dayTimeDuration
+ * accepts, and text that is not valid dayTimeDuration is an error.
  * 
  * @param {} value -
  * 
@@ -1346,7 +1356,9 @@ export function afwToDayTimeDuration(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to dnsName.
+ * Converts `<dataType>` value to dnsName. A string is read as dnsName text,
+ * the same text the typed literal "..."dnsName accepts, and text that is not
+ * valid dnsName is an error.
  * 
  * @param {} value -
  * 
@@ -1363,7 +1375,9 @@ export function afwToDnsName(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to double and returns double result.
+ * Converts `<dataType>` value to double. A string is read as double text, the
+ * same text a double literal accepts, and other text is an error: integer
+ * text such as "5" is not a double, so use to_double(to_integer(s)) for it.
  * 
  * @param {} value -
  * 
@@ -1380,7 +1394,49 @@ export function afwToDouble(client : any, value : any) : any {
 }
 
 /**
- * Truncate `<dataType>` value to a whole number and returns integer result.
+ * Converts `<dataType>` value to hexBinary. A string is read as hexBinary
+ * text, the same text the typed literal "..."hexBinary accepts, and text that
+ * is not valid hexBinary is an error.
+ * 
+ * @param {} value -
+ * 
+ * @returns {hexBinary}
+ */
+export function afwToHexBinary(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_hexBinary";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts `<dataType>` value to ia5String. A string is read as ia5String
+ * text, the same text the typed literal "..."ia5String accepts, and text that
+ * is not valid ia5String is an error.
+ * 
+ * @param {} value -
+ * 
+ * @returns {ia5String}
+ */
+export function afwToIa5String(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_ia5String";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts `<dataType>` value to integer. A double is truncated toward zero
+ * (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for
+ * another choice. A double that is NaN, infinite, or outside the integer
+ * range is an error. A string is read as integer text, and text that is not
+ * an integer ("1.5", " 1", "1x") is an error.
  * 
  * @param {} value -
  * 
@@ -1397,7 +1453,9 @@ export function afwToInteger(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to ipAddress.
+ * Converts `<dataType>` value to ipAddress. A string is read as ipAddress
+ * text, the same text the typed literal "..."ipAddress accepts, and text that
+ * is not valid ipAddress is an error.
  * 
  * @param {} value -
  * 
@@ -1414,7 +1472,63 @@ export function afwToIpAddress(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to rfc822Name.
+ * Converts `<dataType>` value to objectId. A string is read as objectId text.
+ * 
+ * @param {} value -
+ * 
+ * @returns {objectId}
+ */
+export function afwToObjectId(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_objectId";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts `<dataType>` value to objectPath. A string is read as objectPath
+ * text.
+ * 
+ * @param {} value -
+ * 
+ * @returns {objectPath}
+ */
+export function afwToObjectPath(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_objectPath";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts `<dataType>` value to password. A string is read as password text,
+ * the same text the typed literal "..."password accepts, and text that is not
+ * valid password is an error.
+ * 
+ * @param {} value -
+ * 
+ * @returns {password}
+ */
+export function afwToPassword(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_password";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts `<dataType>` value to rfc822Name. A string is read as rfc822Name
+ * text, the same text the typed literal "..."rfc822Name accepts, and text
+ * that is not valid rfc822Name is an error.
  * 
  * @param {} value -
  * 
@@ -1449,7 +1563,9 @@ export function afwToString(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to time.
+ * Converts `<dataType>` value to time. A string is read as time text, the
+ * same text the typed literal "..."time accepts, and text that is not valid
+ * time is an error.
  * 
  * @param {} value -
  * 
@@ -1466,7 +1582,9 @@ export function afwToTime(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to x500Name.
+ * Converts `<dataType>` value to x500Name. A string is read as x500Name text,
+ * the same text the typed literal "..."x500Name accepts, and text that is not
+ * valid x500Name is an error.
  * 
  * @param {} value -
  * 
@@ -1483,7 +1601,10 @@ export function afwToX500Name(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to yearMonthDuration.
+ * Converts `<dataType>` value to yearMonthDuration. A string is read as
+ * yearMonthDuration text, the same text the typed literal
+ * "..."yearMonthDuration accepts, and text that is not valid
+ * yearMonthDuration is an error.
  * 
  * @param {} value -
  * 

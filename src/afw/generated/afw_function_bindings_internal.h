@@ -6272,6 +6272,46 @@ afw_function_definition_set_equals_boolean;
  * __________
  */
 
+/** @brief Function definition string_to_boolean */
+extern const afw_value_function_definition_t
+afw_function_definition_string_to_boolean;
+
+/**
+ * @brief Adaptive Function `string_to_boolean`
+ * @param x function execute parameter.
+ *
+ * Reads boolean text: "true" or "false" in any case, "1" or "0", or the single
+ * letter "t", "T", "f", or "F". Any other text is an error. This is not
+ * boolean(), which is ECMAScript Boolean() truthiness: boolean("false") is
+ * true, and string_to_boolean("false") is false.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function string_to_boolean(
+ *       value: string
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) Boolean text to read.
+ *
+ * Returns:
+ *
+ *   (boolean) The boolean the text names.
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid boolean text
+ */
+const afw_value_t *
+afw_function_execute_string_to_boolean(
+    afw_function_execute_t *x);
+
 /** @brief Function definition subset<boolean> */
 extern const afw_value_function_definition_t
 afw_function_definition_subset_boolean;
@@ -12689,7 +12729,11 @@ afw_function_definition_to_integer_double;
  * @brief Adaptive Function `to_integer<double>`
  * @param x function execute parameter.
  *
- * Truncate double value to a whole number and returns integer result.
+ * Converts double value to integer. A double is truncated toward zero (1.9 is 1
+ * and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A
+ * double that is NaN, infinite, or outside the integer range is an error. A
+ * string is read as integer text, and text that is not an integer ("1.5", " 1",
+ * "1x") is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12709,6 +12753,11 @@ afw_function_definition_to_integer_double;
  * Returns:
  *
  *   (integer)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - double is NaN, infinite, or outside the integer range
+ *   conversion_error - value is not valid integer text
  *
  * Implemented by afw_function_execute_to_integer_double()
  *
@@ -16436,7 +16485,9 @@ afw_function_definition_to_double_integer;
  * @brief Adaptive Function `to_double<integer>`
  * @param x function execute parameter.
  *
- * Converts integer value to double and returns double result.
+ * Converts integer value to double. A string is read as double text, the same
+ * text a double literal accepts, and other text is an error: integer text such
+ * as "5" is not a double, so use to_double(to_integer(s)) for it.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16459,7 +16510,7 @@ afw_function_definition_to_double_integer;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid double text
  *
  * Implemented by afw_function_execute_to_double_integer()
  *
@@ -24268,7 +24319,9 @@ afw_function_definition_to_anyURI;
  * @brief Adaptive Function `to_anyURI`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to anyURI.
+ * Converts `<dataType>` value to anyURI. A string is read as anyURI text, the
+ * same text the typed literal "..."anyURI accepts, and text that is not valid
+ * anyURI is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24295,22 +24348,24 @@ afw_function_definition_to_anyURI;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid anyURI text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
  * __________
  */
 
-/** @brief Function definition to_boolean */
+/** @brief Function definition to_base64Binary */
 extern const afw_value_function_definition_t
-afw_function_definition_to_boolean;
+afw_function_definition_to_base64Binary;
 
 /**
- * @brief Adaptive Function `to_boolean`
+ * @brief Adaptive Function `to_base64Binary`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to boolean.
+ * Converts `<dataType>` value to base64Binary. A string is read as base64Binary
+ * text, the same text the typed literal "..."base64Binary accepts, and text
+ * that is not valid base64Binary is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24322,9 +24377,9 @@ afw_function_definition_to_boolean;
  * Declaration:
  *
  * ```
- *   function to_boolean <dataType>(
+ *   function to_base64Binary <dataType>(
  *       value: dataType
- *   ): boolean;
+ *   ): base64Binary;
  * ```
  *
  * Parameters:
@@ -24333,11 +24388,11 @@ afw_function_definition_to_boolean;
  *
  * Returns:
  *
- *   (boolean)
+ *   (base64Binary)
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid base64Binary text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24352,7 +24407,9 @@ afw_function_definition_to_date;
  * @brief Adaptive Function `to_date`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to date.
+ * Converts `<dataType>` value to date. A string is read as date text, the same
+ * text the typed literal "..."date accepts, and text that is not valid date is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24379,7 +24436,7 @@ afw_function_definition_to_date;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid date text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24394,7 +24451,9 @@ afw_function_definition_to_dateTime;
  * @brief Adaptive Function `to_dateTime`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to dateTime.
+ * Converts `<dataType>` value to dateTime. A string is read as dateTime text,
+ * the same text the typed literal "..."dateTime accepts, and text that is not
+ * valid dateTime is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24421,7 +24480,7 @@ afw_function_definition_to_dateTime;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid dateTime text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24436,7 +24495,9 @@ afw_function_definition_to_dayTimeDuration;
  * @brief Adaptive Function `to_dayTimeDuration`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to dayTimeDuration.
+ * Converts `<dataType>` value to dayTimeDuration. A string is read as
+ * dayTimeDuration text, the same text the typed literal "..."dayTimeDuration
+ * accepts, and text that is not valid dayTimeDuration is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24463,7 +24524,7 @@ afw_function_definition_to_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid dayTimeDuration text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24478,7 +24539,9 @@ afw_function_definition_to_dnsName;
  * @brief Adaptive Function `to_dnsName`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to dnsName.
+ * Converts `<dataType>` value to dnsName. A string is read as dnsName text, the
+ * same text the typed literal "..."dnsName accepts, and text that is not valid
+ * dnsName is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24505,7 +24568,7 @@ afw_function_definition_to_dnsName;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid dnsName text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24520,7 +24583,9 @@ afw_function_definition_to_double;
  * @brief Adaptive Function `to_double`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to double and returns double result.
+ * Converts `<dataType>` value to double. A string is read as double text, the
+ * same text a double literal accepts, and other text is an error: integer text
+ * such as "5" is not a double, so use to_double(to_integer(s)) for it.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24547,7 +24612,95 @@ afw_function_definition_to_double;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid double text
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_hexBinary */
+extern const afw_value_function_definition_t
+afw_function_definition_to_hexBinary;
+
+/**
+ * @brief Adaptive Function `to_hexBinary`
+ * @param x function execute parameter.
+ *
+ * Converts `<dataType>` value to hexBinary. A string is read as hexBinary text,
+ * the same text the typed literal "..."hexBinary accepts, and text that is not
+ * valid hexBinary is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_hexBinary <dataType>(
+ *       value: dataType
+ *   ): hexBinary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (hexBinary)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid hexBinary text
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_ia5String */
+extern const afw_value_function_definition_t
+afw_function_definition_to_ia5String;
+
+/**
+ * @brief Adaptive Function `to_ia5String`
+ * @param x function execute parameter.
+ *
+ * Converts `<dataType>` value to ia5String. A string is read as ia5String text,
+ * the same text the typed literal "..."ia5String accepts, and text that is not
+ * valid ia5String is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_ia5String <dataType>(
+ *       value: dataType
+ *   ): ia5String;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (ia5String)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid ia5String text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24562,7 +24715,11 @@ afw_function_definition_to_integer;
  * @brief Adaptive Function `to_integer`
  * @param x function execute parameter.
  *
- * Truncate `<dataType>` value to a whole number and returns integer result.
+ * Converts `<dataType>` value to integer. A double is truncated toward zero
+ * (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
+ * choice. A double that is NaN, infinite, or outside the integer range is an
+ * error. A string is read as integer text, and text that is not an integer
+ * ("1.5", " 1", "1x") is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24587,6 +24744,11 @@ afw_function_definition_to_integer;
  *
  *   (integer)
  *
+ * Errors thrown:
+ *
+ *   argument_error - double is NaN, infinite, or outside the integer range
+ *   conversion_error - value is not valid integer text
+ *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
  * __________
@@ -24600,7 +24762,9 @@ afw_function_definition_to_ipAddress;
  * @brief Adaptive Function `to_ipAddress`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to ipAddress.
+ * Converts `<dataType>` value to ipAddress. A string is read as ipAddress text,
+ * the same text the typed literal "..."ipAddress accepts, and text that is not
+ * valid ipAddress is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24627,7 +24791,136 @@ afw_function_definition_to_ipAddress;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid ipAddress text
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_objectId */
+extern const afw_value_function_definition_t
+afw_function_definition_to_objectId;
+
+/**
+ * @brief Adaptive Function `to_objectId`
+ * @param x function execute parameter.
+ *
+ * Converts `<dataType>` value to objectId. A string is read as objectId text.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_objectId <dataType>(
+ *       value: dataType
+ *   ): objectId;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (objectId)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid objectId text
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_objectPath */
+extern const afw_value_function_definition_t
+afw_function_definition_to_objectPath;
+
+/**
+ * @brief Adaptive Function `to_objectPath`
+ * @param x function execute parameter.
+ *
+ * Converts `<dataType>` value to objectPath. A string is read as objectPath
+ * text.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_objectPath <dataType>(
+ *       value: dataType
+ *   ): objectPath;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (objectPath)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid objectPath text
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_password */
+extern const afw_value_function_definition_t
+afw_function_definition_to_password;
+
+/**
+ * @brief Adaptive Function `to_password`
+ * @param x function execute parameter.
+ *
+ * Converts `<dataType>` value to password. A string is read as password text,
+ * the same text the typed literal "..."password accepts, and text that is not
+ * valid password is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_password <dataType>(
+ *       value: dataType
+ *   ): password;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (password)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid password text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24642,7 +24935,9 @@ afw_function_definition_to_rfc822Name;
  * @brief Adaptive Function `to_rfc822Name`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to rfc822Name.
+ * Converts `<dataType>` value to rfc822Name. A string is read as rfc822Name
+ * text, the same text the typed literal "..."rfc822Name accepts, and text that
+ * is not valid rfc822Name is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24669,7 +24964,7 @@ afw_function_definition_to_rfc822Name;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid rfc822Name text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24726,7 +25021,9 @@ afw_function_definition_to_time;
  * @brief Adaptive Function `to_time`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to time.
+ * Converts `<dataType>` value to time. A string is read as time text, the same
+ * text the typed literal "..."time accepts, and text that is not valid time is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24753,7 +25050,7 @@ afw_function_definition_to_time;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid time text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24768,7 +25065,9 @@ afw_function_definition_to_x500Name;
  * @brief Adaptive Function `to_x500Name`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to x500Name.
+ * Converts `<dataType>` value to x500Name. A string is read as x500Name text,
+ * the same text the typed literal "..."x500Name accepts, and text that is not
+ * valid x500Name is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24795,7 +25094,7 @@ afw_function_definition_to_x500Name;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid x500Name text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24810,7 +25109,10 @@ afw_function_definition_to_yearMonthDuration;
  * @brief Adaptive Function `to_yearMonthDuration`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to yearMonthDuration.
+ * Converts `<dataType>` value to yearMonthDuration. A string is read as
+ * yearMonthDuration text, the same text the typed literal
+ * "..."yearMonthDuration accepts, and text that is not valid yearMonthDuration
+ * is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24837,7 +25139,7 @@ afw_function_definition_to_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid yearMonthDuration text
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -29297,7 +29599,9 @@ afw_function_definition_to_anyURI_string;
  * @brief Adaptive Function `to_anyURI<string>`
  * @param x function execute parameter.
  *
- * Converts string value to anyURI.
+ * Converts string value to anyURI. A string is read as anyURI text, the same
+ * text the typed literal "..."anyURI accepts, and text that is not valid anyURI
+ * is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29320,22 +29624,24 @@ afw_function_definition_to_anyURI_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid anyURI text
  *
  * Implemented by afw_function_execute_convert()
  *
  * __________
  */
 
-/** @brief Function definition to_boolean<string> */
+/** @brief Function definition to_base64Binary<string> */
 extern const afw_value_function_definition_t
-afw_function_definition_to_boolean_string;
+afw_function_definition_to_base64Binary_string;
 
 /**
- * @brief Adaptive Function `to_boolean<string>`
+ * @brief Adaptive Function `to_base64Binary<string>`
  * @param x function execute parameter.
  *
- * Converts string value to boolean.
+ * Converts string value to base64Binary. A string is read as base64Binary text,
+ * the same text the typed literal "..."base64Binary accepts, and text that is
+ * not valid base64Binary is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29343,9 +29649,9 @@ afw_function_definition_to_boolean_string;
  * Declaration:
  *
  * ```
- *   function to_boolean<string>(
+ *   function to_base64Binary<string>(
  *       value: string
- *   ): boolean;
+ *   ): base64Binary;
  * ```
  *
  * Parameters:
@@ -29354,11 +29660,11 @@ afw_function_definition_to_boolean_string;
  *
  * Returns:
  *
- *   (boolean)
+ *   (base64Binary)
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid base64Binary text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29373,7 +29679,9 @@ afw_function_definition_to_dateTime_string;
  * @brief Adaptive Function `to_dateTime<string>`
  * @param x function execute parameter.
  *
- * Converts string value to dateTime.
+ * Converts string value to dateTime. A string is read as dateTime text, the
+ * same text the typed literal "..."dateTime accepts, and text that is not valid
+ * dateTime is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29396,7 +29704,7 @@ afw_function_definition_to_dateTime_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid dateTime text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29411,7 +29719,9 @@ afw_function_definition_to_date_string;
  * @brief Adaptive Function `to_date<string>`
  * @param x function execute parameter.
  *
- * Converts string value to date.
+ * Converts string value to date. A string is read as date text, the same text
+ * the typed literal "..."date accepts, and text that is not valid date is an
+ * error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29434,7 +29744,7 @@ afw_function_definition_to_date_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid date text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29449,7 +29759,9 @@ afw_function_definition_to_dayTimeDuration_string;
  * @brief Adaptive Function `to_dayTimeDuration<string>`
  * @param x function execute parameter.
  *
- * Converts string value to dayTimeDuration.
+ * Converts string value to dayTimeDuration. A string is read as dayTimeDuration
+ * text, the same text the typed literal "..."dayTimeDuration accepts, and text
+ * that is not valid dayTimeDuration is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29472,7 +29784,7 @@ afw_function_definition_to_dayTimeDuration_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid dayTimeDuration text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29487,7 +29799,9 @@ afw_function_definition_to_dnsName_string;
  * @brief Adaptive Function `to_dnsName<string>`
  * @param x function execute parameter.
  *
- * Converts string value to dnsName.
+ * Converts string value to dnsName. A string is read as dnsName text, the same
+ * text the typed literal "..."dnsName accepts, and text that is not valid
+ * dnsName is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29510,7 +29824,7 @@ afw_function_definition_to_dnsName_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid dnsName text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29525,7 +29839,9 @@ afw_function_definition_to_double_string;
  * @brief Adaptive Function `to_double<string>`
  * @param x function execute parameter.
  *
- * Converts string value to double and returns double result.
+ * Converts string value to double. A string is read as double text, the same
+ * text a double literal accepts, and other text is an error: integer text such
+ * as "5" is not a double, so use to_double(to_integer(s)) for it.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29548,7 +29864,87 @@ afw_function_definition_to_double_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid double text
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_hexBinary<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_hexBinary_string;
+
+/**
+ * @brief Adaptive Function `to_hexBinary<string>`
+ * @param x function execute parameter.
+ *
+ * Converts string value to hexBinary. A string is read as hexBinary text, the
+ * same text the typed literal "..."hexBinary accepts, and text that is not
+ * valid hexBinary is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_hexBinary<string>(
+ *       value: string
+ *   ): hexBinary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string)
+ *
+ * Returns:
+ *
+ *   (hexBinary)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid hexBinary text
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_ia5String<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_ia5String_string;
+
+/**
+ * @brief Adaptive Function `to_ia5String<string>`
+ * @param x function execute parameter.
+ *
+ * Converts string value to ia5String. A string is read as ia5String text, the
+ * same text the typed literal "..."ia5String accepts, and text that is not
+ * valid ia5String is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_ia5String<string>(
+ *       value: string
+ *   ): ia5String;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string)
+ *
+ * Returns:
+ *
+ *   (ia5String)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid ia5String text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29563,7 +29959,11 @@ afw_function_definition_to_integer_string;
  * @brief Adaptive Function `to_integer<string>`
  * @param x function execute parameter.
  *
- * Truncate string value to a whole number and returns integer result.
+ * Converts string value to integer. A double is truncated toward zero (1.9 is 1
+ * and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A
+ * double that is NaN, infinite, or outside the integer range is an error. A
+ * string is read as integer text, and text that is not an integer ("1.5", " 1",
+ * "1x") is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29584,6 +29984,11 @@ afw_function_definition_to_integer_string;
  *
  *   (integer)
  *
+ * Errors thrown:
+ *
+ *   argument_error - double is NaN, infinite, or outside the integer range
+ *   conversion_error - value is not valid integer text
+ *
  * Implemented by afw_function_execute_convert()
  *
  * __________
@@ -29597,7 +30002,9 @@ afw_function_definition_to_ipAddress_string;
  * @brief Adaptive Function `to_ipAddress<string>`
  * @param x function execute parameter.
  *
- * Converts string value to ipAddress.
+ * Converts string value to ipAddress. A string is read as ipAddress text, the
+ * same text the typed literal "..."ipAddress accepts, and text that is not
+ * valid ipAddress is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29620,7 +30027,123 @@ afw_function_definition_to_ipAddress_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid ipAddress text
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_objectId<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_objectId_string;
+
+/**
+ * @brief Adaptive Function `to_objectId<string>`
+ * @param x function execute parameter.
+ *
+ * Converts string value to objectId. A string is read as objectId text.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_objectId<string>(
+ *       value: string
+ *   ): objectId;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string)
+ *
+ * Returns:
+ *
+ *   (objectId)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid objectId text
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_objectPath<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_objectPath_string;
+
+/**
+ * @brief Adaptive Function `to_objectPath<string>`
+ * @param x function execute parameter.
+ *
+ * Converts string value to objectPath. A string is read as objectPath text.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_objectPath<string>(
+ *       value: string
+ *   ): objectPath;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string)
+ *
+ * Returns:
+ *
+ *   (objectPath)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid objectPath text
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_password<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_password_string;
+
+/**
+ * @brief Adaptive Function `to_password<string>`
+ * @param x function execute parameter.
+ *
+ * Converts string value to password. A string is read as password text, the
+ * same text the typed literal "..."password accepts, and text that is not valid
+ * password is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_password<string>(
+ *       value: string
+ *   ): password;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string)
+ *
+ * Returns:
+ *
+ *   (password)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - value is not valid password text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29635,7 +30158,9 @@ afw_function_definition_to_rfc822Name_string;
  * @brief Adaptive Function `to_rfc822Name<string>`
  * @param x function execute parameter.
  *
- * Converts string value to rfc822Name.
+ * Converts string value to rfc822Name. A string is read as rfc822Name text, the
+ * same text the typed literal "..."rfc822Name accepts, and text that is not
+ * valid rfc822Name is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29658,7 +30183,7 @@ afw_function_definition_to_rfc822Name_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid rfc822Name text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29708,7 +30233,9 @@ afw_function_definition_to_time_string;
  * @brief Adaptive Function `to_time<string>`
  * @param x function execute parameter.
  *
- * Converts string value to time.
+ * Converts string value to time. A string is read as time text, the same text
+ * the typed literal "..."time accepts, and text that is not valid time is an
+ * error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29731,7 +30258,7 @@ afw_function_definition_to_time_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid time text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29746,7 +30273,9 @@ afw_function_definition_to_x500Name_string;
  * @brief Adaptive Function `to_x500Name<string>`
  * @param x function execute parameter.
  *
- * Converts string value to x500Name.
+ * Converts string value to x500Name. A string is read as x500Name text, the
+ * same text the typed literal "..."x500Name accepts, and text that is not valid
+ * x500Name is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29769,7 +30298,7 @@ afw_function_definition_to_x500Name_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid x500Name text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29784,7 +30313,10 @@ afw_function_definition_to_yearMonthDuration_string;
  * @brief Adaptive Function `to_yearMonthDuration<string>`
  * @param x function execute parameter.
  *
- * Converts string value to yearMonthDuration.
+ * Converts string value to yearMonthDuration. A string is read as
+ * yearMonthDuration text, the same text the typed literal
+ * "..."yearMonthDuration accepts, and text that is not valid yearMonthDuration
+ * is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29807,7 +30339,7 @@ afw_function_definition_to_yearMonthDuration_string;
  *
  * Errors thrown:
  *
- *   conversion_error - value could not be converted
+ *   conversion_error - value is not valid yearMonthDuration text
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -34191,12 +34723,17 @@ afw_function_definition_yearMonthDuration;
     _XX(normalize_space)                                                       \
     _XX(normalize_to_lower_case)                                               \
     _XX(to_anyURI)                                                             \
-    _XX(to_boolean)                                                            \
+    _XX(to_base64Binary)                                                       \
     _XX(to_date)                                                               \
     _XX(to_dateTime)                                                           \
     _XX(to_dayTimeDuration)                                                    \
     _XX(to_dnsName)                                                            \
+    _XX(to_hexBinary)                                                          \
+    _XX(to_ia5String)                                                          \
     _XX(to_ipAddress)                                                          \
+    _XX(to_objectId)                                                           \
+    _XX(to_objectPath)                                                         \
+    _XX(to_password)                                                           \
     _XX(to_rfc822Name)                                                         \
     _XX(to_time)                                                               \
     _XX(to_x500Name)                                                           \
@@ -34278,14 +34815,19 @@ typedef enum afw_data_type_method_number_e {
  * subtract_dayTimeDuration
  * subtract_yearMonthDuration
  * to_anyURI
- * to_boolean
+ * to_base64Binary
  * to_date
  * to_dateTime
  * to_dayTimeDuration
  * to_dnsName
  * to_double
+ * to_hexBinary
+ * to_ia5String
  * to_integer
  * to_ipAddress
+ * to_objectId
+ * to_objectPath
+ * to_password
  * to_rfc822Name
  * to_string
  * to_time
@@ -34515,14 +35057,19 @@ afw_function_execute_clone(
  * to_string<rfc822Name>
  * script
  * to_anyURI<string>
- * to_boolean<string>
+ * to_base64Binary<string>
  * to_dateTime<string>
  * to_date<string>
  * to_dayTimeDuration<string>
  * to_dnsName<string>
  * to_double<string>
+ * to_hexBinary<string>
+ * to_ia5String<string>
  * to_integer<string>
  * to_ipAddress<string>
+ * to_objectId<string>
+ * to_objectPath<string>
+ * to_password<string>
  * to_rfc822Name<string>
  * to_string<string>
  * to_time<string>

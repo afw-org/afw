@@ -502,6 +502,8 @@ impl_afw_data_type_boolean_utf8_to_internal(
             *(afw_boolean_t *)to_internal = AFW_FALSE;
         } else if (*s == 'F') {
             *(afw_boolean_t *)to_internal = AFW_FALSE;
+        } else {
+            goto error;
         }
     } else if (len == 4) {
         if (*s != 't' && *s != 'T') goto error;

@@ -2,11 +2,11 @@
     "brief": "Converts string to rfc822Name",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to rfc822Name.",
+    "description": "Converts <dataType> value to rfc822Name. A string is read as rfc822Name text, the same text the typed literal \"...\"rfc822Name accepts, and text that is not valid rfc822Name is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid rfc822Name text"
         }
     ],
     "functionId": "to_rfc822Name",

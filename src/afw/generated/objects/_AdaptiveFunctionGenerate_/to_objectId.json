@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToObjectId",
+    "brief": "Converts string to objectId",
+    "camelCaseFunctionLabel": "toObjectId",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to objectId. A string is read as objectId text.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "value is not valid objectId text"
+        }
+    ],
+    "functionId": "to_objectId",
+    "functionLabel": "to_objectId",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "objectId"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

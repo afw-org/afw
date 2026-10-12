@@ -2,11 +2,11 @@
     "brief": "Converts string to anyURI",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to anyURI.",
+    "description": "Converts <dataType> value to anyURI. A string is read as anyURI text, the same text the typed literal \"...\"anyURI accepts, and text that is not valid anyURI is an error.",
     "errorsThrown": [
         {
             "error": "conversion_error",
-            "reason": "value could not be converted"
+            "reason": "value is not valid anyURI text"
         }
     ],
     "functionId": "to_anyURI",

@@ -1348,7 +1348,9 @@ def to_anyURI_string(session, value):
     """
     Converts string to anyURI
 
-    Converts string value to anyURI.
+    Converts string value to anyURI. A string is read as anyURI text, the same
+    text the typed literal "..."anyURI accepts, and text that is not valid
+    anyURI is an error.
 
     Args:
         value (str):
@@ -1372,23 +1374,25 @@ def to_anyURI_string(session, value):
 
     return response['actions'][0]['result']
 
-def to_boolean_string(session, value):
+def to_base64Binary_string(session, value):
     """
-    Converts string to boolean
+    Converts string to base64Binary
 
-    Converts string value to boolean.
+    Converts string value to base64Binary. A string is read as base64Binary
+    text, the same text the typed literal "..."base64Binary accepts, and text
+    that is not valid base64Binary is an error.
 
     Args:
         value (str):
 
     Returns:
-        bool:
+        object:
     """
 
     request = session.Request()
 
     action = {
-        "function": "to_boolean<string>",
+        "function": "to_base64Binary<string>",
         "value": value
     }
 
@@ -1404,7 +1408,9 @@ def to_dateTime_string(session, value):
     """
     Converts string to dateTime
 
-    Converts string value to dateTime.
+    Converts string value to dateTime. A string is read as dateTime text, the
+    same text the typed literal "..."dateTime accepts, and text that is not
+    valid dateTime is an error.
 
     Args:
         value (str):
@@ -1432,7 +1438,9 @@ def to_date_string(session, value):
     """
     Converts string to date
 
-    Converts string value to date.
+    Converts string value to date. A string is read as date text, the same
+    text the typed literal "..."date accepts, and text that is not valid date
+    is an error.
 
     Args:
         value (str):
@@ -1460,7 +1468,9 @@ def to_dayTimeDuration_string(session, value):
     """
     Converts string to dayTimeDuration
 
-    Converts string value to dayTimeDuration.
+    Converts string value to dayTimeDuration. A string is read as
+    dayTimeDuration text, the same text the typed literal "..."dayTimeDuration
+    accepts, and text that is not valid dayTimeDuration is an error.
 
     Args:
         value (str):
@@ -1488,7 +1498,9 @@ def to_dnsName_string(session, value):
     """
     Converts string to dnsName
 
-    Converts string value to dnsName.
+    Converts string value to dnsName. A string is read as dnsName text, the
+    same text the typed literal "..."dnsName accepts, and text that is not
+    valid dnsName is an error.
 
     Args:
         value (str):
@@ -1516,7 +1528,9 @@ def to_double_string(session, value):
     """
     Converts to double
 
-    Converts string value to double and returns double result.
+    Converts string value to double. A string is read as double text, the same
+    text a double literal accepts, and other text is an error: integer text
+    such as "5" is not a double, so use to_double(to_integer(s)) for it.
 
     Args:
         value (str):
@@ -1540,11 +1554,75 @@ def to_double_string(session, value):
 
     return response['actions'][0]['result']
 
+def to_hexBinary_string(session, value):
+    """
+    Converts string to hexBinary
+
+    Converts string value to hexBinary. A string is read as hexBinary text,
+    the same text the typed literal "..."hexBinary accepts, and text that is
+    not valid hexBinary is an error.
+
+    Args:
+        value (str):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_hexBinary<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_ia5String_string(session, value):
+    """
+    Converts string to ia5String
+
+    Converts string value to ia5String. A string is read as ia5String text,
+    the same text the typed literal "..."ia5String accepts, and text that is
+    not valid ia5String is an error.
+
+    Args:
+        value (str):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_ia5String<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_integer_string(session, value):
     """
     Converts to integer
 
-    Truncate string value to a whole number and returns integer result.
+    Converts string value to integer. A double is truncated toward zero (1.9
+    is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
+    choice. A double that is NaN, infinite, or outside the integer range is an
+    error. A string is read as integer text, and text that is not an integer
+    ("1.5", " 1", "1x") is an error.
 
     Args:
         value (str):
@@ -1572,7 +1650,9 @@ def to_ipAddress_string(session, value):
     """
     Converts string to ipAddress
 
-    Converts string value to ipAddress.
+    Converts string value to ipAddress. A string is read as ipAddress text,
+    the same text the typed literal "..."ipAddress accepts, and text that is
+    not valid ipAddress is an error.
 
     Args:
         value (str):
@@ -1596,11 +1676,99 @@ def to_ipAddress_string(session, value):
 
     return response['actions'][0]['result']
 
+def to_objectId_string(session, value):
+    """
+    Converts string to objectId
+
+    Converts string value to objectId. A string is read as objectId text.
+
+    Args:
+        value (str):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_objectId<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_objectPath_string(session, value):
+    """
+    Converts string to objectPath
+
+    Converts string value to objectPath. A string is read as objectPath text.
+
+    Args:
+        value (str):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_objectPath<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_password_string(session, value):
+    """
+    Converts string to password
+
+    Converts string value to password. A string is read as password text, the
+    same text the typed literal "..."password accepts, and text that is not
+    valid password is an error.
+
+    Args:
+        value (str):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_password<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_rfc822Name_string(session, value):
     """
     Converts string to rfc822Name
 
-    Converts string value to rfc822Name.
+    Converts string value to rfc822Name. A string is read as rfc822Name text,
+    the same text the typed literal "..."rfc822Name accepts, and text that is
+    not valid rfc822Name is an error.
 
     Args:
         value (str):
@@ -1657,7 +1825,9 @@ def to_time_string(session, value):
     """
     Converts string to time
 
-    Converts string value to time.
+    Converts string value to time. A string is read as time text, the same
+    text the typed literal "..."time accepts, and text that is not valid time
+    is an error.
 
     Args:
         value (str):
@@ -1685,7 +1855,9 @@ def to_x500Name_string(session, value):
     """
     Converts string to x500Name
 
-    Converts string value to x500Name.
+    Converts string value to x500Name. A string is read as x500Name text, the
+    same text the typed literal "..."x500Name accepts, and text that is not
+    valid x500Name is an error.
 
     Args:
         value (str):
@@ -1713,7 +1885,10 @@ def to_yearMonthDuration_string(session, value):
     """
     Converts string to yearMonthDuration
 
-    Converts string value to yearMonthDuration.
+    Converts string value to yearMonthDuration. A string is read as
+    yearMonthDuration text, the same text the typed literal
+    "..."yearMonthDuration accepts, and text that is not valid
+    yearMonthDuration is an error.
 
     Args:
         value (str):

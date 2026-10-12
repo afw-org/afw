@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToBase64Binary",
+    "brief": "Converts string to base64Binary",
+    "camelCaseFunctionLabel": "toBase64Binary",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to base64Binary. A string is read as base64Binary text, the same text the typed literal \"...\"base64Binary accepts, and text that is not valid base64Binary is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "value is not valid base64Binary text"
+        }
+    ],
+    "functionId": "to_base64Binary",
+    "functionLabel": "to_base64Binary",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "base64Binary"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

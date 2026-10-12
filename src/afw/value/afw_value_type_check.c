@@ -1973,15 +1973,23 @@ afw_value_type_assertion_mismatch_z(
     }
 
     /*
-     * A to_T conversion from got. Not from null: null is not a missing T to
+     * A to_T conversion from got, or else a plain got_to_T function
+     * (string_to_boolean). Not from null: null is not a missing T to
      * convert (to_string(null) is "null").
      */
     to_hint = NULL;
     if (got && got != afw_data_type_null) {
         to_id = afw_utf8_printf(p, xctx, "to_%ku", &expected->data_type_id);
-        if (afw_environment_get_qualified_function(
+        if (!afw_environment_get_qualified_function(
             &got->data_type_id, to_id, xctx))
         {
+            to_id = afw_utf8_printf(p, xctx, "%ku_to_%ku",
+                &got->data_type_id, &expected->data_type_id);
+            if (!afw_environment_get_function(to_id, xctx)) {
+                to_id = NULL;
+            }
+        }
+        if (to_id) {
             to_hint = afw_utf8_z_printf(p, xctx, "%ku(v)", to_id);
         }
     }

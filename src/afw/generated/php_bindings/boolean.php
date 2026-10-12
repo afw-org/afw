@@ -477,6 +477,31 @@ class boolean
     }
 
     /**
+     * string_to_boolean()
+     *
+     * Reads boolean text: "true" or "false" in any case, "1" or "0", or the
+     * single letter "t", "T", "f", or "F". Any other text is an error. This
+     * is not boolean(), which is ECMAScript Boolean() truthiness:
+     * boolean("false") is true, and string_to_boolean("false") is false.
+     *
+     * @param string $value Boolean text to read.
+     *
+     * @return boolean The boolean the text names.
+     */
+    public function string_to_boolean(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "string_to_boolean");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * subset_boolean()
      *
      * Returns boolean true if the unique values in boolean array1 are all in

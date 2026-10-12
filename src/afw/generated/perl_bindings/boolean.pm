@@ -31,6 +31,7 @@ our @EXPORT_OK = qw(
     nex_boolean 
     one_and_only_boolean 
     set_equals_boolean 
+    string_to_boolean 
     subset_boolean 
     to_string_boolean 
     union_boolean 
@@ -292,6 +293,20 @@ Checks whether two arrays are subsets of each other
     $array2
 
 
+=head3 string_to_boolean
+
+Reads boolean text: "true" or "false" in any case, "1" or "0", or the single
+letter "t", "T", "f", or "F". Any other text is an error. This is not
+boolean(), which is ECMAScript Boolean() truthiness: boolean("false") is true,
+and string_to_boolean("false") is false.
+Reads boolean text
+
+=head4 Parameters
+
+    $value
+
+Boolean text to read.
+
 =head3 subset_boolean
 
 Returns boolean true if the unique values in boolean array1 are all in boolean
@@ -542,6 +557,17 @@ sub set_equals_boolean {
     $request->set("function" => "set_equals<boolean>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
+
+    return $request->getResult();
+}
+
+sub string_to_boolean {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "string_to_boolean");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
