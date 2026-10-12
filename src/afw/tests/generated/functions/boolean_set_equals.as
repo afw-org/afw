@@ -16,9 +16,9 @@
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -34,12 +34,12 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -57,13 +57,13 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -79,7 +79,7 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -90,7 +90,7 @@ set_equals<boolean>(
         boolean(false),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -110,14 +110,14 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),

@@ -11,14 +11,14 @@
 //? source: ...
 
 at_least_one_member_of<date>(
-    bag<date>(
+    array<date>(
         "2004-04-12"date,
         "1970-01-01"date,
         "2004-04-12"date,
         "2004-04-12-05:00"date,
         "2004-04-12Z"date
     ),
-    bag<date>(
+    array<date>(
         "1970-01-01"date
     )
 )
@@ -30,10 +30,10 @@ at_least_one_member_of<date>(
 //? source: ...
 
 at_least_one_member_of<date>(
-    bag<date>(
+    array<date>(
         "1970-01-01"date
     ),
-    bag<date>(
+    array<date>(
         "1970-01-01"date,
         "2004-04-12"date,
         "1969-01-01"date,
@@ -51,10 +51,10 @@ at_least_one_member_of<date>(
 //? source: ...
 
 at_least_one_member_of<date>(
-    bag<date>(
+    array<date>(
         "-1946-01-01"date
     ),
-    bag<date>(
+    array<date>(
         "-2045-01-01"date,
         "2004-04-12"date,
         "2045-01-01"date,

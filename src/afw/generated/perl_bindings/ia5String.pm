@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_ia5String 
     as_ia5String 
-    bag_ia5String 
-    bag_size_ia5String 
     eq_ia5String 
     eqx_ia5String 
     ge_ia5String 
@@ -67,26 +65,6 @@ Asserts that value is dataType ia5String
     $value
 
 Value to assert
-
-=head3 bag_ia5String
-
-Takes any number of ia5String values and returns an array of ia5String.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_ia5String
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_ia5String
 
@@ -247,30 +225,6 @@ sub as_ia5String {
     my $request = $session->request()
 
     $request->set("function" => "as_ia5String");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_ia5String {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<ia5String>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_ia5String {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<ia5String>");
     $request->set("value", $value);
 
     return $request->getResult();

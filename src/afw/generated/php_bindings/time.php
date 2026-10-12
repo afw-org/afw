@@ -106,52 +106,6 @@ class time
     }
 
     /**
-     * bag_size_time()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_time(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<time>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_time()
-     *
-     * Takes any number of time values and returns an array of time.
-     *
-     * @param time $values
-     *
-     * @return array
-     */
-    public function bag_time(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<time>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
      * eq_time()
      *
      * Determine if time arg1 is equal to the value of arg2 converted to the
@@ -523,6 +477,29 @@ class time
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_time()
+     *
+     * This converts an array of time values that contains one value to a
+     * single time value.
+     *
+     * @param array $array
+     *
+     * @return time
+     */
+    public function one_and_only_time(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<time>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

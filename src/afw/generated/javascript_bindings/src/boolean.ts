@@ -82,42 +82,6 @@ export function afwAtLeastOneMemberOfBoolean(client : any, array1 : any[], array
 }
 
 /**
- * Takes any number of boolean values and returns an array of boolean.
- * 
- * @param {boolean} values -
- * 
- * @returns {array}
- */
-export function afwBagBoolean(client : any, values? : boolean) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<boolean>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeBoolean(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<boolean>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Converts value to boolean as ECMAScript Boolean() does with the value as
  * JSON carries it: undefined and null are false; a boolean is itself; a
  * number is false for 0, -0, and NaN; a value whose JSON form is a string
@@ -368,6 +332,24 @@ export function afwNexBoolean(client : any, arg1 : boolean, arg2 : any) : any {
     _action["function"] = "nex<boolean>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of boolean values that contains one value to a
+ * single boolean value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {boolean}
+ */
+export function afwOneAndOnlyBoolean(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<boolean>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

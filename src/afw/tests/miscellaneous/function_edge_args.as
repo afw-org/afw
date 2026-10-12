@@ -103,19 +103,19 @@ object(""base64Binary)
 
 //?
 //? test: date-from-integer-max
-//? description: bag<date> of #integerMax is an invalid date
+//? description: array<date> of #integerMax is an invalid date
 //? expect: error
 //? source: ...
 
-bag<date>(#integerMax)
+array<date>(#integerMax)
 
 //?
 //? test: dateTime-from-integer-min
-//? description: bag<dateTime> of #integerMin is an invalid dateTime
+//? description: array<dateTime> of #integerMin is an invalid dateTime
 //? expect: error
 //? source: ...
 
-bag<dateTime>(#integerMin)
+array<dateTime>(#integerMin)
 
 //?
 //? test: function-to-duration
@@ -123,7 +123,7 @@ bag<dateTime>(#integerMin)
 //? expect: error
 //? source: ...
 
-bag<dayTimeDuration>(function (x) { return x; })
+array<dayTimeDuration>(function (x) { return x; })
 
 //?
 //? test: function-to-string
@@ -173,10 +173,10 @@ return 0;
 //?
 //? test: string-to-function
 //? description: a string is not a function, and is not converted to one (#583)
-//? expect: error:Parameter 1 of function 'bag<function>' must evaluate to data type 'function' but evaluated to be 'string'
+//? expect: error:Argument 1 of array<function>: expected function but got string
 //? source: ...
 
-bag<function>("abc")
+array<function>("abc")
 
 //?
 //? test: returned-string-to-function
@@ -184,7 +184,7 @@ bag<function>("abc")
 //? expect: error
 //? source: ...
 
-return bag<function>("x");
+return array<function>("x");
 
 //?
 //? test: compile-listing-no-whitespace

@@ -17,7 +17,7 @@
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     11,
     -11,
     0
@@ -26,7 +26,7 @@ bag<integer>(
 //? source: ...
 
 intersection<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -49,7 +49,7 @@ intersection<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
         11,
         1024,
         -11,
@@ -71,7 +71,7 @@ intersection<integer>(
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     11,
     -11,
     0,
@@ -81,7 +81,7 @@ bag<integer>(
 //? source: ...
 
 intersection<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         1024,
         -11,
@@ -90,7 +90,7 @@ intersection<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         96,
@@ -119,7 +119,7 @@ intersection<integer>(
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     -1,
     11
 )
@@ -127,7 +127,7 @@ bag<integer>(
 //? source: ...
 
 intersection<integer>(
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,
@@ -137,7 +137,7 @@ intersection<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -1
     )

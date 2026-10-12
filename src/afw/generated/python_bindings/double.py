@@ -165,64 +165,6 @@ def at_least_one_member_of_double(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_double(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of double values and returns an array of double.
-
-    Args:
-        values (float):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<double>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_double(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<double>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def ceil_double(session, value):
     """
     Round upward to nearest integer
@@ -845,6 +787,35 @@ def nex_double(session, arg1, arg2):
         "function": "nex<double>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_double(session, array):
+    """
+    Converts a one value array to a double value
+
+    This converts an array of double values that contains one value to a
+    single double value.
+
+    Args:
+        array (list):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<double>",
+        "array": array
     }
 
     request.add_action(action)

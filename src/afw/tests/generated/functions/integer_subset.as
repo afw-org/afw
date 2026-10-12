@@ -16,9 +16,9 @@
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
     ),
-    bag<integer>(
+    array<integer>(
     )
 )
 
@@ -37,7 +37,7 @@ subset<integer>(
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         -1024,
@@ -45,7 +45,7 @@ subset<integer>(
         -0,
         986
     ),
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -85,14 +85,14 @@ subset<integer>(
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         0,
         -512618,
         1024
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         96,
@@ -123,7 +123,7 @@ subset<integer>(
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         1,
         1,
@@ -133,7 +133,7 @@ subset<integer>(
         1,
         1
     ),
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,

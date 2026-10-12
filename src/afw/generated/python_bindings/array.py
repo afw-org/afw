@@ -180,64 +180,6 @@ def at(session, array, index):
 
     return response['actions'][0]['result']
 
-def bag_array(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of array values and returns an array of array.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<array>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_array(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<array>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def clone_array(session, value):
     """
     Clone array value

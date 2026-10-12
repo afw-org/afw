@@ -18,8 +18,6 @@ our @EXPORT_OK = qw(
     array_double 
     as_double 
     at_least_one_member_of_double 
-    bag_double 
-    bag_size_double 
     ceil_double 
     divide_double 
     eq_double 
@@ -41,6 +39,7 @@ our @EXPORT_OK = qw(
     ne_double 
     negative_double 
     nex_double 
+    one_and_only_double 
     pow_double 
     round_double 
     set_equals_double 
@@ -124,26 +123,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_double
-
-Takes any number of double values and returns an array of double.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_double
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 ceil_double
 
@@ -413,6 +392,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_double
+
+This converts an array of double values that contains one value to a single
+double value.
+Converts a one value array to a double value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 pow_double
 
 This returns the value of base raised to a power. Multiple exponents can be
@@ -574,30 +564,6 @@ sub at_least_one_member_of_double {
     $request->set("function" => "at_least_one_member_of<double>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_double {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<double>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_double {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<double>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -841,6 +807,17 @@ sub nex_double {
     $request->set("function" => "nex<double>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_double {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<double>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

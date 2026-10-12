@@ -109,65 +109,6 @@ def at_least_one_member_of_yearMonthDuration(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_size_yearMonthDuration(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<yearMonthDuration>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_yearMonthDuration(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of yearMonthDuration values and returns an array of
-    yearMonthDuration.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<yearMonthDuration>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_yearMonthDuration(session, arg1, arg2):
     """
     Checks for equal
@@ -504,6 +445,35 @@ def nex_yearMonthDuration(session, arg1, arg2):
         "function": "nex<yearMonthDuration>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_yearMonthDuration(session, array):
+    """
+    Converts a one value array to a yearMonthDuration value
+
+    This converts an array of yearMonthDuration values that contains one value
+    to a single yearMonthDuration value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<yearMonthDuration>",
+        "array": array
     }
 
     request.add_action(action)

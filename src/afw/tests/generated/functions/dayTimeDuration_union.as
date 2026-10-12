@@ -9,7 +9,7 @@
 //? description: true
 //? expect: ...
 
-bag<dayTimeDuration>(
+array<dayTimeDuration>(
     "P1DT3H"dayTimeDuration,
     "PT20M"dayTimeDuration,
     "PT1M30.5S"dayTimeDuration
@@ -18,7 +18,7 @@ bag<dayTimeDuration>(
 //? source: ...
 
 union<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P1DT3H"dayTimeDuration,
         "PT20M"dayTimeDuration,
         "PT20M"dayTimeDuration,
@@ -26,7 +26,7 @@ union<dayTimeDuration>(
         "PT20M"dayTimeDuration,
         "PT20M"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M30.5S"dayTimeDuration
     )
 )
@@ -36,7 +36,7 @@ union<dayTimeDuration>(
 //? description: true
 //? expect: ...
 
-bag<dayTimeDuration>(
+array<dayTimeDuration>(
     "P1DT3H"dayTimeDuration,
     "PT20M"dayTimeDuration,
     "PT1M30.5S"dayTimeDuration
@@ -45,11 +45,11 @@ bag<dayTimeDuration>(
 //? source: ...
 
 union<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P1DT3H"dayTimeDuration,
         "PT20M"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M30.5S"dayTimeDuration
     )
 )

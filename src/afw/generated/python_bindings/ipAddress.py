@@ -78,64 +78,6 @@ def as_ipAddress(session, value):
 
     return response['actions'][0]['result']
 
-def bag_ipAddress(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of ipAddress values and returns an array of ipAddress.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<ipAddress>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_ipAddress(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<ipAddress>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_ipAddress(session, arg1, arg2):
     """
     Checks for equal
@@ -441,6 +383,35 @@ def nex_ipAddress(session, arg1, arg2):
         "function": "nex<ipAddress>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_ipAddress(session, array):
+    """
+    Converts a one value array to a ipAddress value
+
+    This converts an array of ipAddress values that contains one value to a
+    single ipAddress value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<ipAddress>",
+        "array": array
     }
 
     request.add_action(action)

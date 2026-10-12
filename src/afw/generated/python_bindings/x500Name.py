@@ -109,64 +109,6 @@ def at_least_one_member_of_x500Name(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_size_x500Name(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<x500Name>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_x500Name(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of x500Name values and returns an array of x500Name.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<x500Name>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_x500Name(session, arg1, arg2):
     """
     Checks for equal
@@ -533,6 +475,35 @@ def nex_x500Name(session, arg1, arg2):
         "function": "nex<x500Name>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_x500Name(session, array):
+    """
+    Converts a one value array to a x500Name value
+
+    This converts an array of x500Name values that contains one value to a
+    single x500Name value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<x500Name>",
+        "array": array
     }
 
     request.add_action(action)

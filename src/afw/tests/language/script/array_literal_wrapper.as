@@ -145,7 +145,7 @@ later property_get face (index path).
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 const a = property_get({}, "x", def);
 a[0].n = 99;
 assert(a[0].n === 99, "face sees local set");
@@ -164,7 +164,7 @@ map mutates each entry; must not poison the default bag or next face.
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 function poison() {
     const a = property_get({}, "x", def);
     map(function (o) {
@@ -187,7 +187,7 @@ Same nested isolation via variable_get default + map (typed bag).
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 function poison() {
     const a = variable_get("nope", def);
     map(function (o) {
@@ -211,7 +211,7 @@ base bag must not share that nested face's mutations.
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 const a = property_get({}, "x", def);
 const held = a[0];
 held.n = 7;

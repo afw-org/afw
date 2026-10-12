@@ -12,7 +12,7 @@
 
 is_in<dateTime>(
     "2004-04-12T13:20:00"dateTime,
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:00"dateTime,
@@ -28,7 +28,7 @@ is_in<dateTime>(
 
 is_in<dateTime>(
     "2005-04-12T13:20:00-05:00"dateTime,
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:00-05:00"dateTime,

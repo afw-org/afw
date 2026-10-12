@@ -17,8 +17,6 @@ our @EXPORT_OK = qw(
     apply_object_options 
     array_object 
     as_object 
-    bag_object 
-    bag_size_object 
     clone_object 
     entries 
     eq_object 
@@ -113,26 +111,6 @@ Asserts that value is dataType object
     $value
 
 Value to assert
-
-=head3 bag_object
-
-Takes any number of object values and returns an array of object.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_object
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 clone_object
 
@@ -500,30 +478,6 @@ sub as_object {
     my $request = $session->request()
 
     $request->set("function" => "as_object");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_object {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<object>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_object {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<object>");
     $request->set("value", $value);
 
     return $request->getResult();

@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_template 
     as_template 
-    bag_size_template 
-    bag_template 
     compile_template 
     eq_template 
     eqx_template 
@@ -69,26 +67,6 @@ Asserts that value is dataType template
     $value
 
 Value to assert
-
-=head3 bag_size_template
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_template
-
-Takes any number of template values and returns an array of template.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 compile_template
 
@@ -307,30 +285,6 @@ sub as_template {
 
     $request->set("function" => "as_template");
     $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_size_template {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<template>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_template {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<template>");
-
-    if (defined $values)
-        $request->set("values", $values);
 
     return $request->getResult();
 }

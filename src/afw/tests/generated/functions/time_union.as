@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<time>(
+array<time>(
     "13:20:00"time,
     "13:20:30.5555"time,
     "13:20:40.5555"time,
@@ -19,12 +19,12 @@ bag<time>(
 //? source: ...
 
 union<time>(
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time
     ),
-    bag<time>(
+    array<time>(
         "13:20:30.6666"time
     )
 )
@@ -34,7 +34,7 @@ union<time>(
 //? description: With duplicates
 //? expect: ...
 
-bag<time>(
+array<time>(
     "13:20:00"time,
     "13:20:30.5555"time,
     "13:20:40.5555"time,
@@ -44,14 +44,14 @@ bag<time>(
 //? source: ...
 
 union<time>(
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:00"time,
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time
     ),
-    bag<time>(
+    array<time>(
         "13:20:30.6666"time
     )
 )

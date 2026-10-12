@@ -18,8 +18,6 @@ our @EXPORT_OK = qw(
     array_integer 
     as_integer 
     at_least_one_member_of_integer 
-    bag_integer 
-    bag_size_integer 
     divide_integer 
     eq_integer 
     eqx_integer 
@@ -37,6 +35,7 @@ our @EXPORT_OK = qw(
     ne_integer 
     negative_integer 
     nex_integer 
+    one_and_only_integer 
     set_equals_integer 
     subset_integer 
     subtract_integer 
@@ -118,26 +117,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_integer
-
-Takes any number of integer values and returns an array of integer.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_integer
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 divide_integer
 
@@ -363,6 +342,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_integer
+
+This converts an array of integer values that contains one value to a single
+integer value.
+Converts a one value array to a integer value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 set_equals_integer
 
 Returns boolean true if integer array1 and integer array2 are subsets of each
@@ -496,30 +486,6 @@ sub at_least_one_member_of_integer {
     $request->set("function" => "at_least_one_member_of<integer>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_integer {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<integer>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_integer {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<integer>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -719,6 +685,17 @@ sub nex_integer {
     $request->set("function" => "nex<integer>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_integer {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<integer>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

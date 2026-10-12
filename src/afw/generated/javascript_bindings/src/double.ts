@@ -117,42 +117,6 @@ export function afwAtLeastOneMemberOfDouble(client : any, array1 : any[], array2
 }
 
 /**
- * Takes any number of double values and returns an array of double.
- * 
- * @param {double} values -
- * 
- * @returns {array}
- */
-export function afwBagDouble(client : any, values? : number) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<double>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeDouble(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<double>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine the smallest integer that is greater then or equal to the double
  * value and return the double result.
  * 
@@ -559,6 +523,24 @@ export function afwNexDouble(client : any, arg1 : number, arg2 : any) : any {
     _action["function"] = "nex<double>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of double values that contains one value to a single
+ * double value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {double}
+ */
+export function afwOneAndOnlyDouble(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<double>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

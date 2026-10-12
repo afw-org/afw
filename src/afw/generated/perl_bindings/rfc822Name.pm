@@ -16,8 +16,6 @@ our @EXPORT_OK = qw(
     array_rfc822Name 
     as_rfc822Name 
     at_least_one_member_of_rfc822Name 
-    bag_rfc822Name 
-    bag_size_rfc822Name 
     eq_rfc822Name 
     eqx_rfc822Name 
     ge_rfc822Name 
@@ -30,6 +28,7 @@ our @EXPORT_OK = qw(
     match_rfc822Name 
     ne_rfc822Name 
     nex_rfc822Name 
+    one_and_only_rfc822Name 
     regexp_match_rfc822Name 
     set_equals_rfc822Name 
     subset_rfc822Name 
@@ -91,26 +90,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_rfc822Name
-
-Takes any number of rfc822Name values and returns an array of rfc822Name.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_rfc822Name
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_rfc822Name
 
@@ -285,6 +264,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_rfc822Name
+
+This converts an array of rfc822Name values that contains one value to a
+single rfc822Name value.
+Converts a one value array to a rfc822Name value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 regexp_match_rfc822Name
 
 Checks whether rfc822Name value matches the regular expression regexp and
@@ -385,30 +375,6 @@ sub at_least_one_member_of_rfc822Name {
     $request->set("function" => "at_least_one_member_of<rfc822Name>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_rfc822Name {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<rfc822Name>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_rfc822Name {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<rfc822Name>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -552,6 +518,17 @@ sub nex_rfc822Name {
     $request->set("function" => "nex<rfc822Name>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_rfc822Name {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<rfc822Name>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

@@ -2295,74 +2295,6 @@ afw_function_definition_at_least_one_member_of_anyURI;
  * __________
  */
 
-/** @brief Function definition bag<anyURI> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_anyURI;
-
-/**
- * @brief Adaptive Function `bag<anyURI>`
- * @param x function execute parameter.
- *
- * Takes any number of anyURI values and returns an array of anyURI.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<anyURI>(
- *       ...values: anyURI[]
- *   ): anyURI[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more anyURI)
- *
- * Returns:
- *
- *   (anyURI[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<anyURI> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_anyURI;
-
-/**
- * @brief Adaptive Function `bag_size<anyURI>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<anyURI>(
- *       value: anyURI[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (anyURI[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition ends_with<anyURI> */
 extern const afw_value_function_definition_t
 afw_function_definition_ends_with_anyURI;
@@ -2985,6 +2917,45 @@ afw_function_definition_nex_anyURI;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
+ *
+ * __________
+ */
+
+/** @brief Function definition one_and_only<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_anyURI;
+
+/**
+ * @brief Adaptive Function `one_and_only<anyURI>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of anyURI values that contains one value to a single
+ * anyURI value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<anyURI>(
+ *       array: array[]
+ *   ): anyURI;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (anyURI)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -3717,74 +3688,6 @@ afw_function_definition_at;
 const afw_value_t *
 afw_function_execute_at(
     afw_function_execute_t *x);
-
-/** @brief Function definition bag<array> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_array;
-
-/**
- * @brief Adaptive Function `bag<array>`
- * @param x function execute parameter.
- *
- * Takes any number of array values and returns an array of array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<array>(
- *       ...values: array
- *   ): array[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more array)
- *
- * Returns:
- *
- *   (array[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<array> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_array;
-
-/**
- * @brief Adaptive Function `bag_size<array>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<array>(
- *       value: array[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (array[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
 
 /** @brief Function definition clone<array> */
 extern const afw_value_function_definition_t
@@ -4868,74 +4771,6 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  * __________
  */
 
-/** @brief Function definition bag<base64Binary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_base64Binary;
-
-/**
- * @brief Adaptive Function `bag<base64Binary>`
- * @param x function execute parameter.
- *
- * Takes any number of base64Binary values and returns an array of base64Binary.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<base64Binary>(
- *       ...values: base64Binary[]
- *   ): base64Binary[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more base64Binary)
- *
- * Returns:
- *
- *   (base64Binary[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<base64Binary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_base64Binary;
-
-/**
- * @brief Adaptive Function `bag_size<base64Binary>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<base64Binary>(
- *       value: base64Binary[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (base64Binary[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition decode_to_string<base64Binary> */
 extern const afw_value_function_definition_t
 afw_function_definition_decode_to_string_base64Binary;
@@ -5399,6 +5234,45 @@ afw_function_definition_nex_base64Binary;
  * __________
  */
 
+/** @brief Function definition one_and_only<base64Binary> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_base64Binary;
+
+/**
+ * @brief Adaptive Function `one_and_only<base64Binary>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of base64Binary values that contains one value to a
+ * single base64Binary value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<base64Binary>(
+ *       array: array[]
+ *   ): base64Binary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (base64Binary)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition set_equals<base64Binary> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_base64Binary;
@@ -5675,74 +5549,6 @@ afw_function_definition_at_least_one_member_of_boolean;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<boolean> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_boolean;
-
-/**
- * @brief Adaptive Function `bag<boolean>`
- * @param x function execute parameter.
- *
- * Takes any number of boolean values and returns an array of boolean.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<boolean>(
- *       ...values: boolean[]
- *   ): boolean[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more boolean)
- *
- * Returns:
- *
- *   (boolean[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<boolean> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_boolean;
-
-/**
- * @brief Adaptive Function `bag_size<boolean>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<boolean>(
- *       value: boolean[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (boolean[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -6212,6 +6018,45 @@ afw_function_definition_nex_boolean;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
+ *
+ * __________
+ */
+
+/** @brief Function definition one_and_only<boolean> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_boolean;
+
+/**
+ * @brief Adaptive Function `one_and_only<boolean>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of boolean values that contains one value to a single
+ * boolean value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<boolean>(
+ *       array: array[]
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -8172,74 +8017,6 @@ afw_function_definition_at_least_one_member_of_dateTime;
  * __________
  */
 
-/** @brief Function definition bag<dateTime> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_dateTime;
-
-/**
- * @brief Adaptive Function `bag<dateTime>`
- * @param x function execute parameter.
- *
- * Takes any number of dateTime values and returns an array of dateTime.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<dateTime>(
- *       ...values: dateTime[]
- *   ): dateTime[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more dateTime)
- *
- * Returns:
- *
- *   (dateTime[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<dateTime> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_dateTime;
-
-/**
- * @brief Adaptive Function `bag_size<dateTime>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<dateTime>(
- *       value: dateTime[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (dateTime[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition eq<dateTime> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_dateTime;
@@ -8755,6 +8532,45 @@ afw_function_definition_nex_dateTime;
  * __________
  */
 
+/** @brief Function definition one_and_only<dateTime> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_dateTime;
+
+/**
+ * @brief Adaptive Function `one_and_only<dateTime>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of dateTime values that contains one value to a single
+ * dateTime value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<dateTime>(
+ *       array: array[]
+ *   ): dateTime;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (dateTime)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition set_equals<dateTime> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_dateTime;
@@ -9140,74 +8956,6 @@ afw_function_definition_at_least_one_member_of_date;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<date> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_date;
-
-/**
- * @brief Adaptive Function `bag<date>`
- * @param x function execute parameter.
- *
- * Takes any number of date values and returns an array of date.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<date>(
- *       ...values: date[]
- *   ): date[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more date)
- *
- * Returns:
- *
- *   (date[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<date> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_date;
-
-/**
- * @brief Adaptive Function `bag_size<date>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<date>(
- *       value: date[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (date[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -9725,6 +9473,45 @@ afw_function_definition_nex_date;
  * __________
  */
 
+/** @brief Function definition one_and_only<date> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_date;
+
+/**
+ * @brief Adaptive Function `one_and_only<date>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of date values that contains one value to a single
+ * date value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<date>(
+ *       array: array[]
+ *   ): date;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (date)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition set_equals<date> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_date;
@@ -10040,75 +9827,6 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<dayTimeDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_dayTimeDuration;
-
-/**
- * @brief Adaptive Function `bag<dayTimeDuration>`
- * @param x function execute parameter.
- *
- * Takes any number of dayTimeDuration values and returns an array of
- * dayTimeDuration.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<dayTimeDuration>(
- *       ...values: dayTimeDuration[]
- *   ): dayTimeDuration[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more dayTimeDuration)
- *
- * Returns:
- *
- *   (dayTimeDuration[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<dayTimeDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_dayTimeDuration;
-
-/**
- * @brief Adaptive Function `bag_size<dayTimeDuration>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<dayTimeDuration>(
- *       value: dayTimeDuration[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (dayTimeDuration[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -10543,6 +10261,45 @@ afw_function_definition_nex_dayTimeDuration;
  * __________
  */
 
+/** @brief Function definition one_and_only<dayTimeDuration> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_dayTimeDuration;
+
+/**
+ * @brief Adaptive Function `one_and_only<dayTimeDuration>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of dayTimeDuration values that contains one value to a
+ * single dayTimeDuration value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<dayTimeDuration>(
+ *       array: array[]
+ *   ): dayTimeDuration;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (dayTimeDuration)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition set_equals<dayTimeDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_dayTimeDuration;
@@ -10781,74 +10538,6 @@ afw_function_definition_as_dnsName;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_dnsName;
-
-/**
- * @brief Adaptive Function `bag<dnsName>`
- * @param x function execute parameter.
- *
- * Takes any number of dnsName values and returns an array of dnsName.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<dnsName>(
- *       ...values: dnsName[]
- *   ): dnsName[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more dnsName)
- *
- * Returns:
- *
- *   (dnsName[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_dnsName;
-
-/**
- * @brief Adaptive Function `bag_size<dnsName>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<dnsName>(
- *       value: dnsName[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (dnsName[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -11242,6 +10931,45 @@ afw_function_definition_nex_dnsName;
  * __________
  */
 
+/** @brief Function definition one_and_only<dnsName> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_dnsName;
+
+/**
+ * @brief Adaptive Function `one_and_only<dnsName>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of dnsName values that contains one value to a single
+ * dnsName value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<dnsName>(
+ *       array: array[]
+ *   ): dnsName;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (dnsName)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition regexp_match<dnsName> */
 extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_dnsName;
@@ -11511,74 +11239,6 @@ afw_function_definition_at_least_one_member_of_double;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<double> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_double;
-
-/**
- * @brief Adaptive Function `bag<double>`
- * @param x function execute parameter.
- *
- * Takes any number of double values and returns an array of double.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<double>(
- *       ...values: double[]
- *   ): double[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more double)
- *
- * Returns:
- *
- *   (double[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<double> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_double;
-
-/**
- * @brief Adaptive Function `bag_size<double>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<double>(
- *       value: double[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (double[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -12355,6 +12015,45 @@ afw_function_definition_nex_double;
  * __________
  */
 
+/** @brief Function definition one_and_only<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_double;
+
+/**
+ * @brief Adaptive Function `one_and_only<double>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of double values that contains one value to a single
+ * double value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<double>(
+ *       array: array[]
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition pow<double> */
 extern const afw_value_function_definition_t
 afw_function_definition_pow_double;
@@ -12745,74 +12444,6 @@ afw_function_definition_as_function;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<function> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_function;
-
-/**
- * @brief Adaptive Function `bag<function>`
- * @param x function execute parameter.
- *
- * Takes any number of function values and returns an array of function.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<function>(
- *       ...values: function[]
- *   ): function[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more function)
- *
- * Returns:
- *
- *   (function[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<function> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_function;
-
-/**
- * @brief Adaptive Function `bag_size<function>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<function>(
- *       value: function[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (function[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -13302,74 +12933,6 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  * __________
  */
 
-/** @brief Function definition bag<hexBinary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_hexBinary;
-
-/**
- * @brief Adaptive Function `bag<hexBinary>`
- * @param x function execute parameter.
- *
- * Takes any number of hexBinary values and returns an array of hexBinary.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<hexBinary>(
- *       ...values: hexBinary[]
- *   ): hexBinary[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more hexBinary)
- *
- * Returns:
- *
- *   (hexBinary[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<hexBinary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_hexBinary;
-
-/**
- * @brief Adaptive Function `bag_size<hexBinary>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<hexBinary>(
- *       value: hexBinary[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (hexBinary[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition decode_to_string<hexBinary> */
 extern const afw_value_function_definition_t
 afw_function_definition_decode_to_string_hexBinary;
@@ -13828,6 +13391,45 @@ afw_function_definition_nex_hexBinary;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
+ *
+ * __________
+ */
+
+/** @brief Function definition one_and_only<hexBinary> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_hexBinary;
+
+/**
+ * @brief Adaptive Function `one_and_only<hexBinary>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of hexBinary values that contains one value to a
+ * single hexBinary value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<hexBinary>(
+ *       array: array[]
+ *   ): hexBinary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (hexBinary)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -14646,74 +14248,6 @@ afw_function_definition_as_ia5String;
  * __________
  */
 
-/** @brief Function definition bag<ia5String> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_ia5String;
-
-/**
- * @brief Adaptive Function `bag<ia5String>`
- * @param x function execute parameter.
- *
- * Takes any number of ia5String values and returns an array of ia5String.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<ia5String>(
- *       ...values: ia5String[]
- *   ): ia5String[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more ia5String)
- *
- * Returns:
- *
- *   (ia5String[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<ia5String> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_ia5String;
-
-/**
- * @brief Adaptive Function `bag_size<ia5String>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<ia5String>(
- *       value: ia5String[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (ia5String[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition eq<ia5String> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_ia5String;
@@ -15463,74 +14997,6 @@ afw_function_definition_at_least_one_member_of_integer;
  * __________
  */
 
-/** @brief Function definition bag<integer> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_integer;
-
-/**
- * @brief Adaptive Function `bag<integer>`
- * @param x function execute parameter.
- *
- * Takes any number of integer values and returns an array of integer.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<integer>(
- *       ...values: integer[]
- *   ): integer[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more integer)
- *
- * Returns:
- *
- *   (integer[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<integer> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_integer;
-
-/**
- * @brief Adaptive Function `bag_size<integer>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<integer>(
- *       value: integer[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (integer[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition divide<integer> */
 extern const afw_value_function_definition_t
 afw_function_definition_divide_integer;
@@ -16168,6 +15634,45 @@ afw_function_definition_nex_integer;
  * __________
  */
 
+/** @brief Function definition one_and_only<integer> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_integer;
+
+/**
+ * @brief Adaptive Function `one_and_only<integer>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of integer values that contains one value to a single
+ * integer value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<integer>(
+ *       array: array[]
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (integer)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition set_equals<integer> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_integer;
@@ -16484,74 +15989,6 @@ afw_function_definition_as_ipAddress;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_ipAddress;
-
-/**
- * @brief Adaptive Function `bag<ipAddress>`
- * @param x function execute parameter.
- *
- * Takes any number of ipAddress values and returns an array of ipAddress.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<ipAddress>(
- *       ...values: ipAddress[]
- *   ): ipAddress[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more ipAddress)
- *
- * Returns:
- *
- *   (ipAddress[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_ipAddress;
-
-/**
- * @brief Adaptive Function `bag_size<ipAddress>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<ipAddress>(
- *       value: ipAddress[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (ipAddress[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -16942,6 +16379,45 @@ afw_function_definition_nex_ipAddress;
  *   (boolean)
  *
  * Implemented by afw_function_execute_nex()
+ *
+ * __________
+ */
+
+/** @brief Function definition one_and_only<ipAddress> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_ipAddress;
+
+/**
+ * @brief Adaptive Function `one_and_only<ipAddress>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of ipAddress values that contains one value to a
+ * single ipAddress value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<ipAddress>(
+ *       array: array[]
+ *   ): ipAddress;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (ipAddress)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
  *
  * __________
  */
@@ -18823,74 +18299,6 @@ afw_function_definition_as_null;
  * __________
  */
 
-/** @brief Function definition bag<null> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_null;
-
-/**
- * @brief Adaptive Function `bag<null>`
- * @param x function execute parameter.
- *
- * Takes any number of null values and returns an array of null.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<null>(
- *       ...values: null[]
- *   ): null[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more null)
- *
- * Returns:
- *
- *   (null[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<null> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_null;
-
-/**
- * @brief Adaptive Function `bag_size<null>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<null>(
- *       value: null[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (null[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition is_null */
 extern const afw_value_function_definition_t
 afw_function_definition_is_null;
@@ -19053,74 +18461,6 @@ afw_function_definition_as_objectId;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<objectId> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_objectId;
-
-/**
- * @brief Adaptive Function `bag<objectId>`
- * @param x function execute parameter.
- *
- * Takes any number of objectId values and returns an array of objectId.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<objectId>(
- *       ...values: objectId[]
- *   ): objectId[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more objectId)
- *
- * Returns:
- *
- *   (objectId[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<objectId> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_objectId;
-
-/**
- * @brief Adaptive Function `bag_size<objectId>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<objectId>(
- *       value: objectId[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (objectId[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -19603,74 +18943,6 @@ afw_function_definition_as_objectPath;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<objectPath> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_objectPath;
-
-/**
- * @brief Adaptive Function `bag<objectPath>`
- * @param x function execute parameter.
- *
- * Takes any number of objectPath values and returns an array of objectPath.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<objectPath>(
- *       ...values: objectPath[]
- *   ): objectPath[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more objectPath)
- *
- * Returns:
- *
- *   (objectPath[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<objectPath> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_objectPath;
-
-/**
- * @brief Adaptive Function `bag_size<objectPath>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<objectPath>(
- *       value: objectPath[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (objectPath[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -20229,74 +19501,6 @@ afw_function_definition_as_object;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<object> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_object;
-
-/**
- * @brief Adaptive Function `bag<object>`
- * @param x function execute parameter.
- *
- * Takes any number of object values and returns an array of object.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<object>(
- *       ...values: object[]
- *   ): object[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more object)
- *
- * Returns:
- *
- *   (object[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<object> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_object;
-
-/**
- * @brief Adaptive Function `bag_size<object>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<object>(
- *       value: object[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (object[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -21228,74 +20432,6 @@ afw_function_definition_as_password;
  * __________
  */
 
-/** @brief Function definition bag<password> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_password;
-
-/**
- * @brief Adaptive Function `bag<password>`
- * @param x function execute parameter.
- *
- * Takes any number of password values and returns an array of password.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<password>(
- *       ...values: password[]
- *   ): password[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more password)
- *
- * Returns:
- *
- *   (password[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<password> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_password;
-
-/**
- * @brief Adaptive Function `bag_size<password>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<password>(
- *       value: password[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (password[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition eq<password> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_password;
@@ -21892,88 +21028,6 @@ afw_function_definition_at_least_one_member_of;
  * Returns:
  *
  *   (boolean)
- *
- * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
- *
- * __________
- */
-
-/** @brief Function definition bag */
-extern const afw_value_function_definition_t
-afw_function_definition_bag;
-
-/**
- * @brief Adaptive Function `bag`
- * @param x function execute parameter.
- *
- * Takes any number of `<dataType>` values and returns an array of `<dataType>`.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function bag <dataType>(
- *       ...values: dataType[]
- *   ): array;
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more ``<Type>``)
- *
- * Returns:
- *
- *   (``<Type>`[]`)
- *
- * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
- *
- * __________
- */
-
-/** @brief Function definition bag_size */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size;
-
-/**
- * @brief Adaptive Function `bag_size`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function bag_size <dataType>(
- *       value: array
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (``<Type>`[]`)
- *
- * Returns:
- *
- *   (integer)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23479,6 +22533,51 @@ afw_function_definition_normalize_to_lower_case;
  * Returns:
  *
  *   (``<Type>``)
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition one_and_only */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only;
+
+/**
+ * @brief Adaptive Function `one_and_only`
+ * @param x function execute parameter.
+ *
+ * This converts an array of `<dataType>` values that contains one value to a
+ * single `<dataType>` value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
+ *   double, hexBinary, integer, ipAddress, rfc822Name, string, time, x500Name,
+ *   yearMonthDuration.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only <dataType>(
+ *       array: array[]
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25907,74 +25006,6 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  * __________
  */
 
-/** @brief Function definition bag<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_rfc822Name;
-
-/**
- * @brief Adaptive Function `bag<rfc822Name>`
- * @param x function execute parameter.
- *
- * Takes any number of rfc822Name values and returns an array of rfc822Name.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<rfc822Name>(
- *       ...values: rfc822Name[]
- *   ): rfc822Name[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more rfc822Name)
- *
- * Returns:
- *
- *   (rfc822Name[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_rfc822Name;
-
-/**
- * @brief Adaptive Function `bag_size<rfc822Name>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<rfc822Name>(
- *       value: rfc822Name[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (rfc822Name[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
 /** @brief Function definition eq<rfc822Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_rfc822Name;
@@ -26440,6 +25471,45 @@ afw_function_definition_nex_rfc822Name;
  * __________
  */
 
+/** @brief Function definition one_and_only<rfc822Name> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_rfc822Name;
+
+/**
+ * @brief Adaptive Function `one_and_only<rfc822Name>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of rfc822Name values that contains one value to a
+ * single rfc822Name value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<rfc822Name>(
+ *       array: array[]
+ *   ): rfc822Name;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (rfc822Name)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition regexp_match<rfc822Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_rfc822Name;
@@ -26716,74 +25786,6 @@ afw_function_definition_as_script;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<script> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_script;
-
-/**
- * @brief Adaptive Function `bag<script>`
- * @param x function execute parameter.
- *
- * Takes any number of script values and returns an array of script.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<script>(
- *       ...values: script[]
- *   ): script[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more script)
- *
- * Returns:
- *
- *   (script[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<script> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_script;
-
-/**
- * @brief Adaptive Function `bag_size<script>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<script>(
- *       value: script[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (script[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -27968,74 +26970,6 @@ afw_function_definition_at_least_one_member_of_string;
  * __________
  */
 
-/** @brief Function definition bag_size<string> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_string;
-
-/**
- * @brief Adaptive Function `bag_size<string>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<string>(
- *       value: string[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (string[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<string> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_string;
-
-/**
- * @brief Adaptive Function `bag<string>`
- * @param x function execute parameter.
- *
- * Takes any number of string values and returns an array of string.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<string>(
- *       ...values: string[]
- *   ): string[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more string)
- *
- * Returns:
- *
- *   (string[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
 /** @brief Function definition concat */
 extern const afw_value_function_definition_t
 afw_function_definition_concat;
@@ -28986,6 +27920,45 @@ afw_function_definition_normalize_to_lower_case_string;
 const afw_value_t *
 afw_function_execute_normalize_to_lower_case_string(
     afw_function_execute_t *x);
+
+/** @brief Function definition one_and_only<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_string;
+
+/**
+ * @brief Adaptive Function `one_and_only<string>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of string values that contains one value to a single
+ * string value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<string>(
+ *       array: array[]
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (string)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
 
 /** @brief Function definition regexp_index_of<string> */
 extern const afw_value_function_definition_t
@@ -30394,74 +29367,6 @@ afw_function_definition_as_template;
  * __________
  */
 
-/** @brief Function definition bag_size<template> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_template;
-
-/**
- * @brief Adaptive Function `bag_size<template>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<template>(
- *       value: template[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (template[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<template> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_template;
-
-/**
- * @brief Adaptive Function `bag<template>`
- * @param x function execute parameter.
- *
- * Takes any number of template values and returns an array of template.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<template>(
- *       ...values: template[]
- *   ): template[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more template)
- *
- * Returns:
- *
- *   (template[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
 /** @brief Function definition compile<template> */
 extern const afw_value_function_definition_t
 afw_function_definition_compile_template;
@@ -31113,74 +30018,6 @@ afw_function_definition_at_least_one_member_of_time;
  * __________
  */
 
-/** @brief Function definition bag_size<time> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_time;
-
-/**
- * @brief Adaptive Function `bag_size<time>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<time>(
- *       value: time[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (time[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<time> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_time;
-
-/**
- * @brief Adaptive Function `bag<time>`
- * @param x function execute parameter.
- *
- * Takes any number of time values and returns an array of time.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<time>(
- *       ...values: time[]
- *   ): time[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more time)
- *
- * Returns:
- *
- *   (time[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
 /** @brief Function definition eq<time> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_time;
@@ -31737,6 +30574,45 @@ afw_function_definition_nex_time;
  * __________
  */
 
+/** @brief Function definition one_and_only<time> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_time;
+
+/**
+ * @brief Adaptive Function `one_and_only<time>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of time values that contains one value to a single
+ * time value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<time>(
+ *       array: array[]
+ *   ): time;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (time)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition set_equals<time> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_time;
@@ -32184,74 +31060,6 @@ afw_function_definition_at_least_one_member_of_x500Name;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_x500Name;
-
-/**
- * @brief Adaptive Function `bag_size<x500Name>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<x500Name>(
- *       value: x500Name[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (x500Name[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_x500Name;
-
-/**
- * @brief Adaptive Function `bag<x500Name>`
- * @param x function execute parameter.
- *
- * Takes any number of x500Name values and returns an array of x500Name.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<x500Name>(
- *       ...values: x500Name[]
- *   ): x500Name[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more x500Name)
- *
- * Returns:
- *
- *   (x500Name[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -32720,6 +31528,45 @@ afw_function_definition_nex_x500Name;
  * __________
  */
 
+/** @brief Function definition one_and_only<x500Name> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_x500Name;
+
+/**
+ * @brief Adaptive Function `one_and_only<x500Name>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of x500Name values that contains one value to a single
+ * x500Name value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<x500Name>(
+ *       array: array[]
+ *   ): x500Name;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (x500Name)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition regexp_match<x500Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_x500Name;
@@ -32999,75 +31846,6 @@ afw_function_definition_as_xpathExpression;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<xpathExpression> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_xpathExpression;
-
-/**
- * @brief Adaptive Function `bag_size<xpathExpression>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<xpathExpression>(
- *       value: xpathExpression[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (xpathExpression[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<xpathExpression> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_xpathExpression;
-
-/**
- * @brief Adaptive Function `bag<xpathExpression>`
- * @param x function execute parameter.
- *
- * Takes any number of xpathExpression values and returns an array of
- * xpathExpression.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<xpathExpression>(
- *       ...values: xpathExpression[]
- *   ): xpathExpression[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more xpathExpression)
- *
- * Returns:
- *
- *   (xpathExpression[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -33837,75 +32615,6 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  * __________
  */
 
-/** @brief Function definition bag_size<yearMonthDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_yearMonthDuration;
-
-/**
- * @brief Adaptive Function `bag_size<yearMonthDuration>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<yearMonthDuration>(
- *       value: yearMonthDuration[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (yearMonthDuration[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<yearMonthDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_yearMonthDuration;
-
-/**
- * @brief Adaptive Function `bag<yearMonthDuration>`
- * @param x function execute parameter.
- *
- * Takes any number of yearMonthDuration values and returns an array of
- * yearMonthDuration.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<yearMonthDuration>(
- *       ...values: yearMonthDuration[]
- *   ): yearMonthDuration[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more yearMonthDuration)
- *
- * Returns:
- *
- *   (yearMonthDuration[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
 /** @brief Function definition eq<yearMonthDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_eq_yearMonthDuration;
@@ -34336,6 +33045,45 @@ afw_function_definition_nex_yearMonthDuration;
  * __________
  */
 
+/** @brief Function definition one_and_only<yearMonthDuration> */
+extern const afw_value_function_definition_t
+afw_function_definition_one_and_only_yearMonthDuration;
+
+/**
+ * @brief Adaptive Function `one_and_only<yearMonthDuration>`
+ * @param x function execute parameter.
+ *
+ * This converts an array of yearMonthDuration values that contains one value to
+ * a single yearMonthDuration value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function one_and_only<yearMonthDuration>(
+ *       array: array[]
+ *   ): yearMonthDuration;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array[])
+ *
+ * Returns:
+ *
+ *   (yearMonthDuration)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by afw_function_execute_one_and_only()
+ *
+ * __________
+ */
+
 /** @brief Function definition set_equals<yearMonthDuration> */
 extern const afw_value_function_definition_t
 afw_function_definition_set_equals_yearMonthDuration;
@@ -34491,8 +33239,6 @@ afw_function_definition_union_yearMonthDuration;
     _XX(array)                                                                 \
     _XX(as)                                                                    \
     _XX(at_least_one_member_of)                                                \
-    _XX(bag)                                                                   \
-    _XX(bag_size)                                                              \
     _XX(ends_with)                                                             \
     _XX(eq)                                                                    \
     _XX(eqx)                                                                   \
@@ -34509,6 +33255,7 @@ afw_function_definition_union_yearMonthDuration;
     _XX(lt)                                                                    \
     _XX(ne)                                                                    \
     _XX(nex)                                                                   \
+    _XX(one_and_only)                                                          \
     _XX(regexp_index_of)                                                       \
     _XX(regexp_match)                                                          \
     _XX(regexp_replace)                                                        \
@@ -34607,8 +33354,6 @@ typedef enum afw_data_type_method_number_e {
  * add_dayTimeDuration
  * add_yearMonthDuration
  * at_least_one_member_of
- * bag
- * bag_size
  * ceil
  * clone
  * compile
@@ -34640,6 +33385,7 @@ typedef enum afw_data_type_method_number_e {
  * negative
  * normalize_space
  * normalize_to_lower_case
+ * one_and_only
  * pow
  * regexp_index_of
  * regexp_match
@@ -34801,80 +33547,6 @@ afw_function_execute_as(
  */
 const afw_value_t *
 afw_function_execute_at_least_one_member_of(
-    afw_function_execute_t *x);
-
-/**
- * @brief Function implementation function afw_function_execute_bag
- *
- * Implementation for functions:
- *
- * bag<anyURI>
- * bag<array>
- * bag<base64Binary>
- * bag<boolean>
- * bag<dateTime>
- * bag<date>
- * bag<dayTimeDuration>
- * bag<dnsName>
- * bag<double>
- * bag<function>
- * bag<hexBinary>
- * bag<ia5String>
- * bag<integer>
- * bag<ipAddress>
- * bag<null>
- * bag<objectId>
- * bag<objectPath>
- * bag<object>
- * bag<password>
- * bag<rfc822Name>
- * bag<script>
- * bag<string>
- * bag<template>
- * bag<time>
- * bag<x500Name>
- * bag<xpathExpression>
- * bag<yearMonthDuration>
- */
-const afw_value_t *
-afw_function_execute_bag(
-    afw_function_execute_t *x);
-
-/**
- * @brief Function implementation function afw_function_execute_bag_size
- *
- * Implementation for functions:
- *
- * bag_size<anyURI>
- * bag_size<array>
- * bag_size<base64Binary>
- * bag_size<boolean>
- * bag_size<dateTime>
- * bag_size<date>
- * bag_size<dayTimeDuration>
- * bag_size<dnsName>
- * bag_size<double>
- * bag_size<function>
- * bag_size<hexBinary>
- * bag_size<ia5String>
- * bag_size<integer>
- * bag_size<ipAddress>
- * bag_size<null>
- * bag_size<objectId>
- * bag_size<objectPath>
- * bag_size<object>
- * bag_size<password>
- * bag_size<rfc822Name>
- * bag_size<script>
- * bag_size<string>
- * bag_size<template>
- * bag_size<time>
- * bag_size<x500Name>
- * bag_size<xpathExpression>
- * bag_size<yearMonthDuration>
- */
-const afw_value_t *
-afw_function_execute_bag_size(
     afw_function_execute_t *x);
 
 /**
@@ -35474,6 +34146,32 @@ afw_function_execute_ne(
  */
 const afw_value_t *
 afw_function_execute_nex(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_one_and_only
+ *
+ * Implementation for functions:
+ *
+ * one_and_only<anyURI>
+ * one_and_only<base64Binary>
+ * one_and_only<boolean>
+ * one_and_only<dateTime>
+ * one_and_only<date>
+ * one_and_only<dayTimeDuration>
+ * one_and_only<dnsName>
+ * one_and_only<double>
+ * one_and_only<hexBinary>
+ * one_and_only<integer>
+ * one_and_only<ipAddress>
+ * one_and_only<rfc822Name>
+ * one_and_only<string>
+ * one_and_only<time>
+ * one_and_only<x500Name>
+ * one_and_only<yearMonthDuration>
+ */
+const afw_value_t *
+afw_function_execute_one_and_only(
     afw_function_execute_t *x);
 
 /**

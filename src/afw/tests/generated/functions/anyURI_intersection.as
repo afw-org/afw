@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<anyURI>(
+array<anyURI>(
     "http://datypic.com/prod.html#shirt"anyURI,
     "../prod.html#shirt"anyURI,
     "urn:example:org"anyURI
@@ -18,7 +18,7 @@ bag<anyURI>(
 //? source: ...
 
 intersection<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -27,7 +27,7 @@ intersection<anyURI>(
         "../prod.html#shirt"anyURI,
         "urn:example:org"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gifx"anyURI,
         "http://datypic.comx"anyURI,
         "../%C3%A9dition.htmlx"anyURI,
@@ -45,7 +45,7 @@ intersection<anyURI>(
 //? source: ...
 
 intersection<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "x"anyURI,
         "x"anyURI
     )

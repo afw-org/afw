@@ -167,52 +167,6 @@ class array
     }
 
     /**
-     * bag_array()
-     *
-     * Takes any number of array values and returns an array of array.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_array(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<array>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_array()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_array(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<array>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * clone_array()
      *
      * Deep clone a array value.

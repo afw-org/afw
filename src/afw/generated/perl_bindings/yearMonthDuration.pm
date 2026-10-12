@@ -16,8 +16,6 @@ our @EXPORT_OK = qw(
     array_yearMonthDuration 
     as_yearMonthDuration 
     at_least_one_member_of_yearMonthDuration 
-    bag_size_yearMonthDuration 
-    bag_yearMonthDuration 
     eq_yearMonthDuration 
     eqx_yearMonthDuration 
     ge_yearMonthDuration 
@@ -29,6 +27,7 @@ our @EXPORT_OK = qw(
     lt_yearMonthDuration 
     ne_yearMonthDuration 
     nex_yearMonthDuration 
+    one_and_only_yearMonthDuration 
     set_equals_yearMonthDuration 
     subset_yearMonthDuration 
     to_string_yearMonthDuration 
@@ -90,27 +89,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_size_yearMonthDuration
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_yearMonthDuration
-
-Takes any number of yearMonthDuration values and returns an array of
-yearMonthDuration.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 eq_yearMonthDuration
 
@@ -273,6 +251,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_yearMonthDuration
+
+This converts an array of yearMonthDuration values that contains one value to
+a single yearMonthDuration value.
+Converts a one value array to a yearMonthDuration value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 set_equals_yearMonthDuration
 
 Returns boolean true if yearMonthDuration array1 and yearMonthDuration array2
@@ -359,30 +348,6 @@ sub at_least_one_member_of_yearMonthDuration {
     $request->set("function" => "at_least_one_member_of<yearMonthDuration>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_size_yearMonthDuration {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<yearMonthDuration>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_yearMonthDuration {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<yearMonthDuration>");
-
-    if (defined $values)
-        $request->set("values", $values);
 
     return $request->getResult();
 }
@@ -514,6 +479,17 @@ sub nex_yearMonthDuration {
     $request->set("function" => "nex<yearMonthDuration>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_yearMonthDuration {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<yearMonthDuration>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

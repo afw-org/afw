@@ -11,12 +11,12 @@
 //? source: ...
 
 subset<time>(
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time
     ),
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time
@@ -30,12 +30,12 @@ subset<time>(
 //? source: ...
 
 subset<time>(
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:50.5555"time,
         "13:20:40.5555"time
     ),
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time

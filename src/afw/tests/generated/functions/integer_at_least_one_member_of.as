@@ -19,7 +19,7 @@
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -42,7 +42,7 @@ at_least_one_member_of<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
     )
 )
 
@@ -61,7 +61,7 @@ at_least_one_member_of<integer>(
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -84,7 +84,7 @@ at_least_one_member_of<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
         1024,
         -1024
     )
@@ -105,13 +105,13 @@ at_least_one_member_of<integer>(
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         1024,
         -1024,
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         96,
@@ -142,7 +142,7 @@ at_least_one_member_of<integer>(
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,
@@ -152,7 +152,7 @@ at_least_one_member_of<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         512618,
         1
     )

@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_null 
     as_null 
-    bag_null 
-    bag_size_null 
     is_null 
     to_string_null 
 );
@@ -58,26 +56,6 @@ Asserts that value is dataType null
     $value
 
 Value to assert
-
-=head3 bag_null
-
-Takes any number of null values and returns an array of null.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_null
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 is_null
 
@@ -122,30 +100,6 @@ sub as_null {
     my $request = $session->request()
 
     $request->set("function" => "as_null");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_null {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<null>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_null {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<null>");
     $request->set("value", $value);
 
     return $request->getResult();

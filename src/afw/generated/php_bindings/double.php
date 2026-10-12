@@ -151,52 +151,6 @@ class double
     }
 
     /**
-     * bag_double()
-     *
-     * Takes any number of double values and returns an array of double.
-     *
-     * @param double $values
-     *
-     * @return array
-     */
-    public function bag_double(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<double>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_double()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_double(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<double>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * ceil_double()
      *
      * Determine the smallest integer that is greater then or equal to the
@@ -701,6 +655,29 @@ class double
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_double()
+     *
+     * This converts an array of double values that contains one value to a
+     * single double value.
+     *
+     * @param array $array
+     *
+     * @return double
+     */
+    public function one_and_only_double(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

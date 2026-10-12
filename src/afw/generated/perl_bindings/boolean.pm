@@ -16,8 +16,6 @@ our @EXPORT_OK = qw(
     array_boolean 
     as_boolean 
     at_least_one_member_of_boolean 
-    bag_boolean 
-    bag_size_boolean 
     boolean 
     eq_boolean 
     eqx_boolean 
@@ -30,6 +28,7 @@ our @EXPORT_OK = qw(
     lt_boolean 
     ne_boolean 
     nex_boolean 
+    one_and_only_boolean 
     set_equals_boolean 
     string_to_boolean 
     subset_boolean 
@@ -90,26 +89,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_boolean
-
-Takes any number of boolean values and returns an array of boolean.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_boolean
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 boolean
 
@@ -284,6 +263,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_boolean
+
+This converts an array of boolean values that contains one value to a single
+boolean value.
+Converts a one value array to a boolean value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 set_equals_boolean
 
 Returns boolean true if boolean array1 and boolean array2 are subsets of each
@@ -384,30 +374,6 @@ sub at_least_one_member_of_boolean {
     $request->set("function" => "at_least_one_member_of<boolean>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_boolean {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<boolean>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_boolean {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<boolean>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -550,6 +516,17 @@ sub nex_boolean {
     $request->set("function" => "nex<boolean>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_boolean {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<boolean>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

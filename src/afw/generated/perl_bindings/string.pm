@@ -17,8 +17,6 @@ our @EXPORT_OK = qw(
     array_string 
     as_string 
     at_least_one_member_of_string 
-    bag_size_string 
-    bag_string 
     concat 
     encode_as_base64Binary_string 
     encode_as_hexBinary_string 
@@ -44,6 +42,7 @@ our @EXPORT_OK = qw(
     nex_string 
     normalize_space_string 
     normalize_to_lower_case_string 
+    one_and_only_string 
     regexp_index_of_string 
     regexp_match_string 
     regexp_replace_string 
@@ -144,26 +143,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_size_string
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_string
-
-Takes any number of string values and returns an array of string.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 concat
 
@@ -515,6 +494,17 @@ Converts to lower case
 =head4 Parameters
 
     $string
+
+
+=head3 one_and_only_string
+
+This converts an array of string values that contains one value to a single
+string value.
+Converts a one value array to a string value
+
+=head4 Parameters
+
+    $array
 
 
 =head3 regexp_index_of_string
@@ -1020,30 +1010,6 @@ sub at_least_one_member_of_string {
     return $request->getResult();
 }
 
-sub bag_size_string {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<string>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_string {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<string>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
 sub concat {
     my ($values) = @_;
 
@@ -1342,6 +1308,17 @@ sub normalize_to_lower_case_string {
 
     $request->set("function" => "normalize_to_lower_case<string>");
     $request->set("string", $string);
+
+    return $request->getResult();
+}
+
+sub one_and_only_string {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<string>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

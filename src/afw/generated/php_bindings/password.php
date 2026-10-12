@@ -81,52 +81,6 @@ class password
     }
 
     /**
-     * bag_password()
-     *
-     * Takes any number of password values and returns an array of password.
-     *
-     * @param password $values
-     *
-     * @return array
-     */
-    public function bag_password(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<password>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_password()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_password(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<password>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_password()
      *
      * Determine if password arg1 is equal to the value of arg2 converted to

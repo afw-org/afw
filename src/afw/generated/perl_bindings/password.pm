@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_password 
     as_password 
-    bag_password 
-    bag_size_password 
     eq_password 
     eqx_password 
     ge_password 
@@ -66,26 +64,6 @@ Asserts that value is dataType password
     $value
 
 Value to assert
-
-=head3 bag_password
-
-Takes any number of password values and returns an array of password.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_password
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_password
 
@@ -246,30 +224,6 @@ sub as_password {
     my $request = $session->request()
 
     $request->set("function" => "as_password");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_password {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<password>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_password {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<password>");
     $request->set("value", $value);
 
     return $request->getResult();

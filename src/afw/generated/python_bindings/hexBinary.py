@@ -109,64 +109,6 @@ def at_least_one_member_of_hexBinary(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_hexBinary(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of hexBinary values and returns an array of hexBinary.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<hexBinary>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_hexBinary(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<hexBinary>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def decode_to_string_hexBinary(session, value):
     """
     Decode hexBinary to string
@@ -532,6 +474,35 @@ def nex_hexBinary(session, arg1, arg2):
         "function": "nex<hexBinary>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_hexBinary(session, array):
+    """
+    Converts a one value array to a hexBinary value
+
+    This converts an array of hexBinary values that contains one value to a
+    single hexBinary value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<hexBinary>",
+        "array": array
     }
 
     request.add_action(action)

@@ -130,52 +130,6 @@ class string
     }
 
     /**
-     * bag_size_string()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_string(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<string>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_string()
-     *
-     * Takes any number of string values and returns an array of string.
-     *
-     * @param string $values
-     *
-     * @return array
-     */
-    public function bag_string(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<string>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
      * concat()
      *
      * Convert two or more values of any data type to string and return the
@@ -822,6 +776,29 @@ class string
 
         /* pass along required parameters to the request payload */
         $request->set("string", $string);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_string()
+     *
+     * This converts an array of string values that contains one value to a
+     * single string value.
+     *
+     * @param array $array
+     *
+     * @return string
+     */
+    public function one_and_only_string(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<string>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

@@ -17,8 +17,6 @@ our @EXPORT_OK = qw(
     array_date 
     as_date 
     at_least_one_member_of_date 
-    bag_date 
-    bag_size_date 
     eq_date 
     eqx_date 
     ge_date 
@@ -32,6 +30,7 @@ our @EXPORT_OK = qw(
     min_date 
     ne_date 
     nex_date 
+    one_and_only_date 
     set_equals_date 
     subset_date 
     subtract_yearMonthDuration_date 
@@ -104,26 +103,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_date
-
-Takes any number of date values and returns an array of date.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_date
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_date
 
@@ -319,6 +298,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_date
+
+This converts an array of date values that contains one value to a single date
+value.
+Converts a one value array to a date value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 set_equals_date
 
 Returns boolean true if date array1 and date array2 are subsets of each other
@@ -430,30 +420,6 @@ sub at_least_one_member_of_date {
     $request->set("function" => "at_least_one_member_of<date>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_date {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<date>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_date {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<date>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -607,6 +573,17 @@ sub nex_date {
     $request->set("function" => "nex<date>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_date {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<date>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

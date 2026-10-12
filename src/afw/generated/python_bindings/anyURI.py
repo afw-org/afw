@@ -108,64 +108,6 @@ def at_least_one_member_of_anyURI(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_anyURI(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of anyURI values and returns an array of anyURI.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<anyURI>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_anyURI(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<anyURI>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def ends_with_anyURI(session, value, subString):
     """
     Checks whether value ends with a string
@@ -670,6 +612,35 @@ def nex_anyURI(session, arg1, arg2):
         "function": "nex<anyURI>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_anyURI(session, array):
+    """
+    Converts a one value array to a anyURI value
+
+    This converts an array of anyURI values that contains one value to a
+    single anyURI value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<anyURI>",
+        "array": array
     }
 
     request.add_action(action)

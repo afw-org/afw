@@ -83,42 +83,6 @@ export function afwAtLeastOneMemberOfRfc822Name(client : any, array1 : any[], ar
 }
 
 /**
- * Takes any number of rfc822Name values and returns an array of rfc822Name.
- * 
- * @param {rfc822Name} values -
- * 
- * @returns {array}
- */
-export function afwBagRfc822Name(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<rfc822Name>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeRfc822Name(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<rfc822Name>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if rfc822Name arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
@@ -369,6 +333,24 @@ export function afwNexRfc822Name(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<rfc822Name>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of rfc822Name values that contains one value to a
+ * single rfc822Name value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {rfc822Name}
+ */
+export function afwOneAndOnlyRfc822Name(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<rfc822Name>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

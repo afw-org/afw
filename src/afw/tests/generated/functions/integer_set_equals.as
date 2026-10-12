@@ -16,9 +16,9 @@
 //? source: ...
 
 set_equals<integer>(
-    bag<integer>(
+    array<integer>(
     ),
-    bag<integer>(
+    array<integer>(
     )
 )
 
@@ -40,7 +40,7 @@ set_equals<integer>(
 //? source: ...
 
 set_equals<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -63,7 +63,7 @@ set_equals<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -100,14 +100,14 @@ set_equals<integer>(
 //? source: ...
 
 set_equals<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         0,
         -512618,
         1024
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         0,
@@ -129,7 +129,7 @@ set_equals<integer>(
 //? source: ...
 
 set_equals<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         1,
         1,
@@ -147,7 +147,7 @@ set_equals<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,

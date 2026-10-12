@@ -11,11 +11,11 @@
 //? source: ...
 
 set_equals<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:15.6"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:15.6"dateTime
     )
@@ -28,11 +28,11 @@ set_equals<dateTime>(
 //? source: ...
 
 set_equals<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:15.6"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:15.6"dateTime,
         "2004-04-12T13:20:15.6"dateTime
     )

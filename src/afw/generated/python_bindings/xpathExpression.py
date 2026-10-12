@@ -78,65 +78,6 @@ def as_xpathExpression(session, value):
 
     return response['actions'][0]['result']
 
-def bag_size_xpathExpression(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<xpathExpression>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_xpathExpression(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of xpathExpression values and returns an array of
-    xpathExpression.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<xpathExpression>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def compile_xpathExpression(session, source, listing=None):
     """
     Compile xpathExpression value

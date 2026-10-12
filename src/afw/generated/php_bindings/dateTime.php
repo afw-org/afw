@@ -156,52 +156,6 @@ class dateTime
     }
 
     /**
-     * bag_dateTime()
-     *
-     * Takes any number of dateTime values and returns an array of dateTime.
-     *
-     * @param dateTime $values
-     *
-     * @return array
-     */
-    public function bag_dateTime(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<dateTime>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_dateTime()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_dateTime(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<dateTime>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_dateTime()
      *
      * Determine if dateTime arg1 is equal to the value of arg2 converted to
@@ -538,6 +492,29 @@ class dateTime
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_dateTime()
+     *
+     * This converts an array of dateTime values that contains one value to a
+     * single dateTime value.
+     *
+     * @param array $array
+     *
+     * @return dateTime
+     */
+    public function one_and_only_dateTime(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<dateTime>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

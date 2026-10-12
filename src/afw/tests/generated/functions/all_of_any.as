@@ -13,11 +13,11 @@ true because each of the elements of the first bag is greater than at least one 
 
 all_of_any(
     string("gt"),
-    bag<integer>(
+    array<integer>(
         6,
         5
     ),
-    bag<integer>(
+    array<integer>(
         4,
         2,
         5
@@ -33,11 +33,11 @@ false because each of the elements of the first bag is not greater than at least
 
 all_of_any(
     string("gt"),
-    bag<integer>(
+    array<integer>(
         6,
         5
     ),
-    bag<integer>(
+    array<integer>(
         6,
         5
     )

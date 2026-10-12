@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_xpathExpression 
     as_xpathExpression 
-    bag_size_xpathExpression 
-    bag_xpathExpression 
     compile_xpathExpression 
     eq_xpathExpression 
     eqx_xpathExpression 
@@ -73,27 +71,6 @@ Asserts that value is dataType xpathExpression
     $value
 
 Value to assert
-
-=head3 bag_size_xpathExpression
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_xpathExpression
-
-Takes any number of xpathExpression values and returns an array of
-xpathExpression.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 compile_xpathExpression
 
@@ -353,30 +330,6 @@ sub as_xpathExpression {
 
     $request->set("function" => "as_xpathExpression");
     $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_size_xpathExpression {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<xpathExpression>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_xpathExpression {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<xpathExpression>");
-
-    if (defined $values)
-        $request->set("values", $values);
 
     return $request->getResult();
 }

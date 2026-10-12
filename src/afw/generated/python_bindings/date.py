@@ -138,64 +138,6 @@ def at_least_one_member_of_date(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_date(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of date values and returns an array of date.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<date>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_date(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<date>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_date(session, arg1, arg2):
     """
     Checks for equal
@@ -603,6 +545,35 @@ def nex_date(session, arg1, arg2):
         "function": "nex<date>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_date(session, array):
+    """
+    Converts a one value array to a date value
+
+    This converts an array of date values that contains one value to a single
+    date value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<date>",
+        "array": array
     }
 
     request.add_action(action)

@@ -106,52 +106,6 @@ class anyURI
     }
 
     /**
-     * bag_anyURI()
-     *
-     * Takes any number of anyURI values and returns an array of anyURI.
-     *
-     * @param anyURI $values
-     *
-     * @return array
-     */
-    public function bag_anyURI(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<anyURI>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_anyURI()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_anyURI(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<anyURI>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * ends_with_anyURI()
      *
      * Checks whether anyURI value ends with a anyURI and return the boolean
@@ -566,6 +520,29 @@ class anyURI
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_anyURI()
+     *
+     * This converts an array of anyURI values that contains one value to a
+     * single anyURI value.
+     *
+     * @param array $array
+     *
+     * @return anyURI
+     */
+    public function one_and_only_anyURI(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

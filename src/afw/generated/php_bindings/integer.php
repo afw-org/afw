@@ -151,52 +151,6 @@ class integer
     }
 
     /**
-     * bag_integer()
-     *
-     * Takes any number of integer values and returns an array of integer.
-     *
-     * @param integer $values
-     *
-     * @return array
-     */
-    public function bag_integer(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<integer>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_integer()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_integer(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<integer>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * divide_integer()
      *
      * Divide integer dividend by integer divisor and return the integer
@@ -609,6 +563,29 @@ class integer
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_integer()
+     *
+     * This converts an array of integer values that contains one value to a
+     * single integer value.
+     *
+     * @param array $array
+     *
+     * @return integer
+     */
+    public function one_and_only_integer(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<integer>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

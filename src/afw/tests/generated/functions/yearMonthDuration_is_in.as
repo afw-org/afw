@@ -12,7 +12,7 @@
 
 is_in<yearMonthDuration>(
     "P0Y"yearMonthDuration,
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P20M"yearMonthDuration,
         "P0Y20M"yearMonthDuration,
@@ -30,7 +30,7 @@ is_in<yearMonthDuration>(
 
 is_in<yearMonthDuration>(
     "P2Y6M"yearMonthDuration,
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P20M"yearMonthDuration,
         "P0Y20M"yearMonthDuration,
@@ -48,7 +48,7 @@ is_in<yearMonthDuration>(
 
 is_in<yearMonthDuration>(
     "P7Y"yearMonthDuration,
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P20M"yearMonthDuration,
         "P0Y20M"yearMonthDuration,

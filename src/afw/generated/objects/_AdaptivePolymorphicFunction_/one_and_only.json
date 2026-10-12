@@ -1,0 +1,45 @@
+{
+    "brief": "Converts a one value array to a <dataType> value",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "This converts an array of <dataType> values that contains one value to a single <dataType> value.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "array does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only",
+    "functionLabel": "one_and_only",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "array",
+            "dataTypeParameter": "array",
+            "name": "array"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "hexBinary",
+        "integer",
+        "ipAddress",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_one_and_only",
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

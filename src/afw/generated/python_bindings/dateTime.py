@@ -170,64 +170,6 @@ def at_least_one_member_of_dateTime(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_dateTime(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of dateTime values and returns an array of dateTime.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<dateTime>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_dateTime(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<dateTime>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_dateTime(session, arg1, arg2):
     """
     Checks for equal
@@ -637,6 +579,35 @@ def nex_dateTime(session, arg1, arg2):
         "function": "nex<dateTime>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_dateTime(session, array):
+    """
+    Converts a one value array to a dateTime value
+
+    This converts an array of dateTime values that contains one value to a
+    single dateTime value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<dateTime>",
+        "array": array
     }
 
     request.add_action(action)

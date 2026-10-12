@@ -14,15 +14,15 @@
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
 )
 
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -36,7 +36,7 @@ union<boolean>(
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(true),
     boolean(false)
 )
@@ -44,12 +44,12 @@ bag<boolean>(
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -65,7 +65,7 @@ union<boolean>(
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(false),
     boolean(true)
 )
@@ -73,13 +73,13 @@ bag<boolean>(
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -93,17 +93,17 @@ union<boolean>(
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(false)
 )
 
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -121,21 +121,21 @@ union<boolean>(
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(true)
 )
 
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),

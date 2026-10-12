@@ -11,11 +11,11 @@
 //? source: ...
 
 set_equals<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
         "localPart@DOMAINPart2"rfc822Name
     ),
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
         "localPart@DOMAINPart2"rfc822Name
     )
@@ -28,11 +28,11 @@ set_equals<rfc822Name>(
 //? source: ...
 
 set_equals<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
         "localPart@DOMAINPart2"rfc822Name
     ),
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
         "localPart@DOMAINParT2"rfc822Name
     )
@@ -45,7 +45,7 @@ set_equals<rfc822Name>(
 //? source: ...
 
 set_equals<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "x"rfc822Name,
         "x"rfc822Name
     )

@@ -84,43 +84,6 @@ export function afwAtLeastOneMemberOfYearMonthDuration(client : any, array1 : an
 }
 
 /**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeYearMonthDuration(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<yearMonthDuration>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of yearMonthDuration values and returns an array of
- * yearMonthDuration.
- * 
- * @param {yearMonthDuration} values -
- * 
- * @returns {array}
- */
-export function afwBagYearMonthDuration(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<yearMonthDuration>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if yearMonthDuration arg1 is equal to the value of arg2 converted
  * to the data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type don't
@@ -351,6 +314,24 @@ export function afwNexYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
     _action["function"] = "nex<yearMonthDuration>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of yearMonthDuration values that contains one value
+ * to a single yearMonthDuration value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {yearMonthDuration}
+ */
+export function afwOneAndOnlyYearMonthDuration(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<yearMonthDuration>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

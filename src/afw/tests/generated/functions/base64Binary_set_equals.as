@@ -11,12 +11,12 @@
 //? source: ...
 
 set_equals<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0fa8"base64Binary,
         "0F+40A=="base64Binary,
         "0fa80f+9"base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0fa8"base64Binary,
         "0F+40A=="base64Binary,
         "0fa80f+9"base64Binary,
@@ -31,12 +31,12 @@ set_equals<base64Binary>(
 //? source: ...
 
 set_equals<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0fa8"base64Binary,
         "0F+40A=="base64Binary,
         "0fa80f+9"base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0fa8"base64Binary,
         "0F+40A=="base64Binary,
         "0fa80f+9"base64Binary
@@ -50,11 +50,11 @@ set_equals<base64Binary>(
 //? source: ...
 
 set_equals<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "x"base64Binary,
         "x"base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "x"base64Binary,
         "x"base64Binary
     )

@@ -61,42 +61,6 @@ export function afwAsObjectId(client : any, value : any) : any {
 }
 
 /**
- * Takes any number of objectId values and returns an array of objectId.
- * 
- * @param {objectId} values -
- * 
- * @returns {array}
- */
-export function afwBagObjectId(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<objectId>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeObjectId(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<objectId>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if objectId arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.

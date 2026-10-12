@@ -1,0 +1,31 @@
+#!/usr/bin/env -S afw --syntax test_script
+//?
+//? testScript: functions/anyURI_one_and_only.as
+//? customPurpose: Part of core function tests
+//? description: Tests for one_and_only<anyURI> function.
+//? sourceType: script
+//?
+//? test: one_and_only<anyURI>-1
+//? description: x
+//? expect: "http://datypic.com"anyURI
+//? source: ...
+
+one_and_only<anyURI>(
+    array<anyURI>(
+        "http://datypic.com"anyURI
+    )
+)
+
+//?
+//? test: one_and_only<anyURI>-2
+//? description: Invalid arguments test.
+//? expect: error
+//? source: ...
+
+one_and_only<anyURI>(
+    array<anyURI>(
+        "http://datypic.com"anyURI,
+        "http://datypic.coms"anyURI
+    )
+)
+

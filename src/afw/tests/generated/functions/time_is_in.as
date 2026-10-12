@@ -12,7 +12,7 @@
 
 is_in<time>(
     "13:20:30.55"time,
-    bag<time>(
+    array<time>(
         "13:20:30.5555"time,
         "13:20:30.555"time
     )
@@ -26,7 +26,7 @@ is_in<time>(
 
 is_in<time>(
     "13:20:30.55+05:00"time,
-    bag<time>(
+    array<time>(
         "13:20:30.55+05:00"time,
         "13:20:30.555"time
     )
@@ -40,7 +40,7 @@ is_in<time>(
 
 is_in<time>(
     "10:10:10"time,
-    bag<time>(
+    array<time>(
         "13:20:30.5555"time,
         "13:20:30.555"time
     )

@@ -11,11 +11,11 @@
 //? source: ...
 
 set_equals<x500Name>(
-    bag<x500Name>(
+    array<x500Name>(
         "cn=John Smith,ou=Finance,o=Acme4"x500Name,
         "cn=John Smith,ou=Finance,o=Acme4"x500Name
     ),
-    bag<x500Name>(
+    array<x500Name>(
         "cn=John Smith,ou=Finance,o=Acme4"x500Name
     )
 )
@@ -27,11 +27,11 @@ set_equals<x500Name>(
 //? source: ...
 
 set_equals<x500Name>(
-    bag<x500Name>(
+    array<x500Name>(
         "cn=John Smith,ou=Finance,o=Acme1"x500Name,
         "cn=John Smith,ou=Finance,o=Acme2"x500Name
     ),
-    bag<x500Name>(
+    array<x500Name>(
         "cn=John Smith,ou=Finance,o=Acme1"x500Name,
         "cn=John Smith,ou=Finance,o=Acme2"x500Name
     )
@@ -44,7 +44,7 @@ set_equals<x500Name>(
 //? source: ...
 
 set_equals<x500Name>(
-    bag<x500Name>(
+    array<x500Name>(
         "x"x500Name,
         "x"x500Name
     )

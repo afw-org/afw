@@ -106,53 +106,6 @@ class base64Binary
     }
 
     /**
-     * bag_base64Binary()
-     *
-     * Takes any number of base64Binary values and returns an array of
-     * base64Binary.
-     *
-     * @param base64Binary $values
-     *
-     * @return array
-     */
-    public function bag_base64Binary(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<base64Binary>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_base64Binary()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_base64Binary(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<base64Binary>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * decode_to_string_base64Binary()
      *
      * Decode base64Binary value to string. An error is thrown if decoded
@@ -451,6 +404,29 @@ class base64Binary
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_base64Binary()
+     *
+     * This converts an array of base64Binary values that contains one value
+     * to a single base64Binary value.
+     *
+     * @param array $array
+     *
+     * @return base64Binary
+     */
+    public function one_and_only_base64Binary(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<base64Binary>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

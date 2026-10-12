@@ -151,3 +151,18 @@ return 0;
 
 array<date>(...["2026-10-12"]);
 return 0;
+
+//?
+//? test: one-and-only
+//? description: one_and_only<T> takes an array of exactly one T (#583)
+//? expect: 0
+//? source: ...
+
+assert(one_and_only<integer>([5]) === 5);
+assert(one_and_only<integer>(array<integer>(6)) === 6);
+for (const bad of [5, [], [1, 2], ["5"]]) {
+    let threw = false;
+    try { one_and_only<integer>(bad); } catch (e) { threw = true; }
+    assert(threw, "one_and_only<integer>(" + stringify(bad) + ") did not throw");
+}
+return 0;

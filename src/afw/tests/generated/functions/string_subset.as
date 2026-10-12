@@ -16,9 +16,9 @@
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -34,13 +34,13 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("three"),
         string("one"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("one"),
         string("one"),
@@ -65,12 +65,12 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -88,12 +88,12 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("four")
@@ -119,7 +119,7 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),
@@ -131,7 +131,7 @@ subset<string>(
         string("eighteen"),
         string("twenty")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),

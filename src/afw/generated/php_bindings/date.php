@@ -130,52 +130,6 @@ class date
     }
 
     /**
-     * bag_date()
-     *
-     * Takes any number of date values and returns an array of date.
-     *
-     * @param date $values
-     *
-     * @return array
-     */
-    public function bag_date(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<date>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_date()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_date(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<date>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_date()
      *
      * Determine if date arg1 is equal to the value of arg2 converted to the
@@ -511,6 +465,29 @@ class date
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_date()
+     *
+     * This converts an array of date values that contains one value to a
+     * single date value.
+     *
+     * @param array $array
+     *
+     * @return date
+     */
+    public function one_and_only_date(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<date>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

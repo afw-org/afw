@@ -81,52 +81,6 @@ class template
     }
 
     /**
-     * bag_size_template()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_template(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<template>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_template()
-     *
-     * Takes any number of template values and returns an array of template.
-     *
-     * @param template $values
-     *
-     * @return array
-     */
-    public function bag_template(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<template>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
      * compile_template()
      *
      * Compile template value and return either an unevaluated adaptive value

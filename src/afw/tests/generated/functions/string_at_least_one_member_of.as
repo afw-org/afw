@@ -14,9 +14,9 @@
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -32,12 +32,12 @@ at_least_one_member_of<string>(
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("three")
     )
@@ -55,12 +55,12 @@ at_least_one_member_of<string>(
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -82,7 +82,7 @@ at_least_one_member_of<string>(
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -109,7 +109,7 @@ at_least_one_member_of<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("twenty-five")
     )
 )

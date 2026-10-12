@@ -122,42 +122,6 @@ export function afwAtLeastOneMemberOfDateTime(client : any, array1 : any[], arra
 }
 
 /**
- * Takes any number of dateTime values and returns an array of dateTime.
- * 
- * @param {dateTime} values -
- * 
- * @returns {array}
- */
-export function afwBagDateTime(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<dateTime>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeDateTime(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<dateTime>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if dateTime arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
@@ -438,6 +402,24 @@ export function afwNexDateTime(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<dateTime>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of dateTime values that contains one value to a
+ * single dateTime value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {dateTime}
+ */
+export function afwOneAndOnlyDateTime(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<dateTime>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

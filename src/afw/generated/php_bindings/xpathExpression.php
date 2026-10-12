@@ -81,53 +81,6 @@ class xpathExpression
     }
 
     /**
-     * bag_size_xpathExpression()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_xpathExpression(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<xpathExpression>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_xpathExpression()
-     *
-     * Takes any number of xpathExpression values and returns an array of
-     * xpathExpression.
-     *
-     * @param xpathExpression $values
-     *
-     * @return array
-     */
-    public function bag_xpathExpression(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<xpathExpression>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
      * compile_xpathExpression()
      *
      * Compile xpathExpression value and return either an unevaluated adaptive

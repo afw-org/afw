@@ -84,43 +84,6 @@ export function afwAtLeastOneMemberOfDayTimeDuration(client : any, array1 : any[
 }
 
 /**
- * Takes any number of dayTimeDuration values and returns an array of
- * dayTimeDuration.
- * 
- * @param {dayTimeDuration} values -
- * 
- * @returns {array}
- */
-export function afwBagDayTimeDuration(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<dayTimeDuration>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeDayTimeDuration(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<dayTimeDuration>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if dayTimeDuration arg1 is equal to the value of arg2 converted
  * to the data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type don't
@@ -351,6 +314,24 @@ export function afwNexDayTimeDuration(client : any, arg1 : any, arg2 : any) : an
     _action["function"] = "nex<dayTimeDuration>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of dayTimeDuration values that contains one value to
+ * a single dayTimeDuration value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {dayTimeDuration}
+ */
+export function afwOneAndOnlyDayTimeDuration(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<dayTimeDuration>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

@@ -12,7 +12,7 @@
 
 is_in<integer>(
     0,
-    bag<integer>(
+    array<integer>(
         -1,
         34567,
         1,
@@ -28,7 +28,7 @@ is_in<integer>(
 
 is_in<integer>(
     9223372036854775807,
-    bag<integer>(
+    array<integer>(
         0,
         1,
         9223372036854775807,
@@ -44,7 +44,7 @@ is_in<integer>(
 
 is_in<integer>(
     to_integer(x),
-    bag<integer>(
+    array<integer>(
         to_integer(x),
         to_integer(x)
     )

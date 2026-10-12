@@ -9,7 +9,7 @@
 //? description: duplicates
 //? expect: ...
 
-bag<date>(
+array<date>(
     "2004-04-12"date,
     "1970-01-01"date
 )
@@ -17,13 +17,13 @@ bag<date>(
 //? source: ...
 
 intersection<date>(
-    bag<date>(
+    array<date>(
         "2004-04-12"date,
         "1970-01-01"date,
         "2004-04-12"date,
         "2004-04-12"date
     ),
-    bag<date>(
+    array<date>(
         "1970-01-01"date,
         "2004-04-12"date
     )
@@ -34,16 +34,16 @@ intersection<date>(
 //? description: empty
 //? expect: ...
 
-bag<date>(
+array<date>(
 )
 
 //? source: ...
 
 intersection<date>(
-    bag<date>(
+    array<date>(
         "2004-04-12"date
     ),
-    bag<date>(
+    array<date>(
         "1970-01-01"date
     )
 )

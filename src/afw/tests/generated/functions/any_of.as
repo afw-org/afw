@@ -19,7 +19,7 @@
 any_of(
     "eq<string>",
     string("This is it."),
-    bag<string>(
+    array<string>(
         string("This is not it."),
         string("This is it.")
     )
@@ -40,7 +40,7 @@ any_of(
 any_of(
     "eq<string>",
     string("This is it."),
-    bag<string>(
+    array<string>(
         string("This is not it."),
         string("This is it."),
         string("Weve already found it.."),
@@ -62,7 +62,7 @@ any_of(
 
 any_of(
     "eq<string>",
-    bag<string>(
+    array<string>(
         string("This is not it."),
         string("This is it.")
     ),
@@ -84,7 +84,7 @@ any_of(
 any_of(
     "eq<string>",
     string("This is it."),
-    bag<string>(
+    array<string>(
         string("This is not it."),
         string("This is not it either.")
     )
@@ -105,7 +105,7 @@ any_of(
 any_of(
     "eq<string>",
     string("This is it."),
-    bag<string>(
+    array<string>(
         string("This is not it.")
     )
 )
@@ -125,7 +125,7 @@ any_of(
 any_of(
     "eq<string>",
     string("This is it."),
-    bag<string>(
+    array<string>(
         string("This is it.")
     )
 )

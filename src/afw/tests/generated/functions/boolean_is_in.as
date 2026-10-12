@@ -12,7 +12,7 @@
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -24,7 +24,7 @@ is_in<boolean>(
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(0),
         boolean(false)
     )
@@ -38,7 +38,7 @@ is_in<boolean>(
 
 is_in<boolean>(
     boolean(false),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(1)
     )
@@ -53,7 +53,7 @@ Boolean true in bag where only the first item in the bag is true.
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(0),
         boolean(false),
@@ -71,7 +71,7 @@ Boolean false in bag where only the last item in the bag is false.
 
 is_in<boolean>(
     boolean(false),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(1),
         boolean(true),
@@ -88,7 +88,7 @@ is_in<boolean>(
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(0),
         boolean(false),
         boolean(0),
@@ -109,7 +109,7 @@ is_in<boolean>(
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(0),
         boolean(false),
         boolean(0),

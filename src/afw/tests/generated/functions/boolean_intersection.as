@@ -12,15 +12,15 @@
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
 )
 
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -34,7 +34,7 @@ intersection<boolean>(
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(true),
     boolean(false)
 )
@@ -42,12 +42,12 @@ bag<boolean>(
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -63,20 +63,20 @@ intersection<boolean>(
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(false)
 )
 
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -92,16 +92,16 @@ intersection<boolean>(
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
 )
 
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),

@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<yearMonthDuration>(
+array<yearMonthDuration>(
     "P2Y6M"yearMonthDuration,
     "P0Y"yearMonthDuration,
     "-P60Y"yearMonthDuration
@@ -18,7 +18,7 @@ bag<yearMonthDuration>(
 //? source: ...
 
 intersection<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P20M"yearMonthDuration,
         "P0Y20M"yearMonthDuration,
@@ -26,7 +26,7 @@ intersection<yearMonthDuration>(
         "-P60Y"yearMonthDuration,
         "-P60Y"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P0Y"yearMonthDuration,
         "-P60Y"yearMonthDuration,
@@ -39,20 +39,20 @@ intersection<yearMonthDuration>(
 //? description: Empty
 //? expect: ...
 
-bag<yearMonthDuration>(
+array<yearMonthDuration>(
 )
 
 //? source: ...
 
 intersection<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P20M"yearMonthDuration,
         "P0Y20M"yearMonthDuration,
         "P0Y"yearMonthDuration,
         "-P60Y"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P3Y6M"yearMonthDuration
     )
 )

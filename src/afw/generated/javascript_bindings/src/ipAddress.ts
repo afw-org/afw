@@ -62,42 +62,6 @@ export function afwAsIpAddress(client : any, value : any) : any {
 }
 
 /**
- * Takes any number of ipAddress values and returns an array of ipAddress.
- * 
- * @param {ipAddress} values -
- * 
- * @returns {array}
- */
-export function afwBagIpAddress(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<ipAddress>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeIpAddress(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<ipAddress>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if ipAddress arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
@@ -305,6 +269,24 @@ export function afwNexIpAddress(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<ipAddress>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of ipAddress values that contains one value to a
+ * single ipAddress value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {ipAddress}
+ */
+export function afwOneAndOnlyIpAddress(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<ipAddress>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

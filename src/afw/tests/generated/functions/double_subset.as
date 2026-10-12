@@ -16,11 +16,11 @@
 //? source: ...
 
 subset<double>(
-    bag<double>(
+    array<double>(
         52.40215,
         -15.8
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -37,9 +37,9 @@ subset<double>(
 //? source: ...
 
 subset<double>(
-    bag<double>(
+    array<double>(
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -63,7 +63,7 @@ subset<double>(
 //? source: ...
 
 subset<double>(
-    bag<double>(
+    array<double>(
         2000.0215,
         -11.2151,
         961518.0,
@@ -80,7 +80,7 @@ subset<double>(
         986.3211111,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2000.0215,
         11.0,
         -11.2151,

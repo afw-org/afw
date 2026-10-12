@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_ipAddress 
     as_ipAddress 
-    bag_ipAddress 
-    bag_size_ipAddress 
     eq_ipAddress 
     eqx_ipAddress 
     ge_ipAddress 
@@ -27,6 +25,7 @@ our @EXPORT_OK = qw(
     lt_ipAddress 
     ne_ipAddress 
     nex_ipAddress 
+    one_and_only_ipAddress 
     regexp_match_ipAddress 
     to_string_ipAddress 
 );
@@ -69,26 +68,6 @@ Asserts that value is dataType ipAddress
     $value
 
 Value to assert
-
-=head3 bag_ipAddress
-
-Takes any number of ipAddress values and returns an array of ipAddress.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_ipAddress
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_ipAddress
 
@@ -232,6 +211,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_ipAddress
+
+This converts an array of ipAddress values that contains one value to a single
+ipAddress value.
+Converts a one value array to a ipAddress value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 regexp_match_ipAddress
 
 Checks whether ipAddress value matches the regular expression regexp and
@@ -277,30 +267,6 @@ sub as_ipAddress {
     my $request = $session->request()
 
     $request->set("function" => "as_ipAddress");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_ipAddress {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<ipAddress>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_ipAddress {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<ipAddress>");
     $request->set("value", $value);
 
     return $request->getResult();
@@ -421,6 +387,17 @@ sub nex_ipAddress {
     $request->set("function" => "nex<ipAddress>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_ipAddress {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<ipAddress>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

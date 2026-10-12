@@ -12,7 +12,7 @@
 
 is_in<double>(
     1.01E4,
-    bag<double>(
+    array<double>(
         4.0,
         2345678.0,
         23.0E35,
@@ -28,7 +28,7 @@ is_in<double>(
 
 is_in<double>(
     1.01E4,
-    bag<double>(
+    array<double>(
         4.0,
         2345678.0,
         23.0E35,
@@ -44,7 +44,7 @@ is_in<double>(
 
 is_in<double>(
     1.01E4,
-    bag<double>(
+    array<double>(
         4.0,
         2345678.0,
         23.0E35,

@@ -61,42 +61,6 @@ export function afwAsNull(client : any, value : any) : any {
 }
 
 /**
- * Takes any number of null values and returns an array of null.
- * 
- * @param {null} values -
- * 
- * @returns {array}
- */
-export function afwBagNull(client : any, values? : null) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<null>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeNull(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<null>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Checks whether value is dataType null and returns the boolean result. It is
  * false for undefined. This can also be written `is<null>(value`).
  * 

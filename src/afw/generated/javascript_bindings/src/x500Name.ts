@@ -82,42 +82,6 @@ export function afwAtLeastOneMemberOfX500Name(client : any, array1 : any[], arra
 }
 
 /**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeX500Name(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<x500Name>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of x500Name values and returns an array of x500Name.
- * 
- * @param {x500Name} values -
- * 
- * @returns {array}
- */
-export function afwBagX500Name(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<x500Name>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if x500Name arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
@@ -367,6 +331,24 @@ export function afwNexX500Name(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<x500Name>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of x500Name values that contains one value to a
+ * single x500Name value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {x500Name}
+ */
+export function afwOneAndOnlyX500Name(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<x500Name>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

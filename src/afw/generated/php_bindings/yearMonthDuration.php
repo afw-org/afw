@@ -106,53 +106,6 @@ class yearMonthDuration
     }
 
     /**
-     * bag_size_yearMonthDuration()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_yearMonthDuration(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<yearMonthDuration>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_yearMonthDuration()
-     *
-     * Takes any number of yearMonthDuration values and returns an array of
-     * yearMonthDuration.
-     *
-     * @param yearMonthDuration $values
-     *
-     * @return array
-     */
-    public function bag_yearMonthDuration(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<yearMonthDuration>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
      * eq_yearMonthDuration()
      *
      * Determine if yearMonthDuration arg1 is equal to the value of arg2
@@ -429,6 +382,29 @@ class yearMonthDuration
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_yearMonthDuration()
+     *
+     * This converts an array of yearMonthDuration values that contains one
+     * value to a single yearMonthDuration value.
+     *
+     * @param array $array
+     *
+     * @return yearMonthDuration
+     */
+    public function one_and_only_yearMonthDuration(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<yearMonthDuration>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

@@ -14,15 +14,15 @@
         
 //? expect: ...
 
-bag<string>(
+array<string>(
 )
 
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -36,7 +36,7 @@ intersection<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("three")
 )
@@ -44,12 +44,12 @@ bag<string>(
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("three")
     )
@@ -65,18 +65,18 @@ intersection<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
 )
 
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -92,19 +92,19 @@ intersection<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("three")
 )
 
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("three"),
         string("four")
     )
@@ -127,7 +127,7 @@ intersection<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("two"),
     string("four"),
     string("six"),
@@ -143,7 +143,7 @@ bag<string>(
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -170,7 +170,7 @@ intersection<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),

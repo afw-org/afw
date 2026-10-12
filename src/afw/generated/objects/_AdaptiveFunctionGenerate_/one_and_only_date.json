@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyDate",
+    "brief": "Converts a one value array to a date value",
+    "camelCaseFunctionLabel": "oneAndOnlyDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "This converts an array of date values that contains one value to a single date value.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "array does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<date>",
+    "functionLabel": "one_and_only_date",
+    "parameters": [
+        {
+            "dataType": "array",
+            "dataTypeParameter": "array",
+            "name": "array"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "date"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

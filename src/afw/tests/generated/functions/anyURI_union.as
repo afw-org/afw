@@ -9,7 +9,7 @@
 //? description: Union set of 4 with set of 3.
 //? expect: ...
 
-bag<anyURI>(
+array<anyURI>(
     "http://www.w3schools.com/images/smiley.gif"anyURI,
     "http://datypic.com"anyURI,
     "../%C3%A9dition.html"anyURI,
@@ -22,13 +22,13 @@ bag<anyURI>(
 //? source: ...
 
 union<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
         "../dition.html"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "http://datypic.com/prod.html#shirt"anyURI,
         "../prod.html#shirt"anyURI,
         "urn:example:org"anyURI
@@ -42,7 +42,7 @@ union<anyURI>(
 //? source: ...
 
 union<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "x"anyURI,
         "x"anyURI
     )

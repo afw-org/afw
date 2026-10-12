@@ -16,9 +16,9 @@
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -34,12 +34,12 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
@@ -58,12 +58,12 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("two"),
         string("three")
     )
@@ -81,13 +81,13 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("three"),
         string("one"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("one"),
         string("one"),
@@ -116,7 +116,7 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),
@@ -128,7 +128,7 @@ set_equals<string>(
         string("eighteen"),
         string("twenty")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -180,7 +180,7 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -232,7 +232,7 @@ set_equals<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),

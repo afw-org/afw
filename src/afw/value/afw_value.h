@@ -1709,9 +1709,7 @@ afw_value_convert_to_utf8_z(const afw_value_t *value,
  * **C implementers:** prefer this helper (or keyless `afw_iterator`) over
  * open-coding utf8 walks when an API expects an array of values. Call only
  * when the formal truly wants a value sequence (e.g. EVALUATE … array, HOF
- * walked list, script `array` / `T[]` / tuple). Do **not** use for XACML
- * bag rest formals that take scalar bag members typed as `array` in
- * metadata — bag-of-one is not code-point expansion.
+ * walked list, script `array` / `T[]` / tuple).
  *
  * **Deferred (not required for beta language semantics):** an immutable
  * array *face* over utf8 (lazy get_next / get_by_index without eager

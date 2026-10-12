@@ -81,52 +81,6 @@ class null
     }
 
     /**
-     * bag_null()
-     *
-     * Takes any number of null values and returns an array of null.
-     *
-     * @param null $values
-     *
-     * @return array
-     */
-    public function bag_null(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<null>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_null()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_null(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<null>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * is_null()
      *
      * Checks whether value is dataType null and returns the boolean result.

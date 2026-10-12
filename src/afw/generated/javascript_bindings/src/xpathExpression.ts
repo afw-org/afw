@@ -63,43 +63,6 @@ export function afwAsXpathExpression(client : any, value : any) : any {
 }
 
 /**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeXpathExpression(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<xpathExpression>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of xpathExpression values and returns an array of
- * xpathExpression.
- * 
- * @param {xpathExpression} values -
- * 
- * @returns {array}
- */
-export function afwBagXpathExpression(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<xpathExpression>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
  * Compile xpathExpression value and return either an unevaluated adaptive
  * value or a string containing the compiler listing. The listing is a
  * human-oriented dump (value tree interleaved with source, plus ---Symbols

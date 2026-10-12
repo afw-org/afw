@@ -109,64 +109,6 @@ def at_least_one_member_of_rfc822Name(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_rfc822Name(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of rfc822Name values and returns an array of rfc822Name.
-
-    Args:
-        values (object):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<rfc822Name>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_rfc822Name(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<rfc822Name>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def eq_rfc822Name(session, arg1, arg2):
     """
     Checks for equal
@@ -534,6 +476,35 @@ def nex_rfc822Name(session, arg1, arg2):
         "function": "nex<rfc822Name>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_rfc822Name(session, array):
+    """
+    Converts a one value array to a rfc822Name value
+
+    This converts an array of rfc822Name values that contains one value to a
+    single rfc822Name value.
+
+    Args:
+        array (list):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<rfc822Name>",
+        "array": array
     }
 
     request.add_action(action)

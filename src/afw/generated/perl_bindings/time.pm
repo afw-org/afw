@@ -16,8 +16,6 @@ our @EXPORT_OK = qw(
     array_time 
     as_time 
     at_least_one_member_of_time 
-    bag_size_time 
-    bag_time 
     eq_time 
     eqx_time 
     ge_time 
@@ -32,6 +30,7 @@ our @EXPORT_OK = qw(
     min_time 
     ne_time 
     nex_time 
+    one_and_only_time 
     set_equals_time 
     subset_time 
     to_string_time 
@@ -90,26 +89,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_size_time
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_time
-
-Takes any number of time values and returns an array of time.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 eq_time
 
@@ -325,6 +304,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_time
+
+This converts an array of time values that contains one value to a single time
+value.
+Converts a one value array to a time value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 set_equals_time
 
 Returns boolean true if time array1 and time array2 are subsets of each other
@@ -411,30 +401,6 @@ sub at_least_one_member_of_time {
     $request->set("function" => "at_least_one_member_of<time>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_size_time {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<time>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_time {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<time>");
-
-    if (defined $values)
-        $request->set("values", $values);
 
     return $request->getResult();
 }
@@ -601,6 +567,17 @@ sub nex_time {
     $request->set("function" => "nex<time>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_time {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<time>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

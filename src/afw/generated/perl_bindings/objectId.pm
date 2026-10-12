@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_objectId 
     as_objectId 
-    bag_objectId 
-    bag_size_objectId 
     eq_objectId 
     eqx_objectId 
     ge_objectId 
@@ -66,26 +64,6 @@ Asserts that value is dataType objectId
     $value
 
 Value to assert
-
-=head3 bag_objectId
-
-Takes any number of objectId values and returns an array of objectId.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_objectId
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_objectId
 
@@ -246,30 +224,6 @@ sub as_objectId {
     my $request = $session->request()
 
     $request->set("function" => "as_objectId");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_objectId {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<objectId>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_objectId {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<objectId>");
     $request->set("value", $value);
 
     return $request->getResult();

@@ -11,7 +11,7 @@
 //? source: ...
 
 subset<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P1DT2H"dayTimeDuration,
         "PT20M"dayTimeDuration,
         "PT20M"dayTimeDuration,
@@ -19,7 +19,7 @@ subset<dayTimeDuration>(
         "PT20M"dayTimeDuration,
         "PT20M"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P1DT2H"dayTimeDuration,
         "PT20M"dayTimeDuration,
         "PT120M"dayTimeDuration,
@@ -37,7 +37,7 @@ subset<dayTimeDuration>(
 //? source: ...
 
 subset<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P1DT3H"dayTimeDuration,
         "PT20M"dayTimeDuration,
         "PT20M"dayTimeDuration,
@@ -45,7 +45,7 @@ subset<dayTimeDuration>(
         "PT20M"dayTimeDuration,
         "PT20M"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P1DT2H"dayTimeDuration,
         "PT20M"dayTimeDuration,
         "PT120M"dayTimeDuration,

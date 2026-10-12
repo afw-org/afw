@@ -11,14 +11,14 @@
 //? source: ...
 
 set_equals<date>(
-    bag<date>(
+    array<date>(
         "2004-04-12"date,
         "-1970-01-01"date,
         "2004-04-12"date,
         "2004-04-12"date,
         "2004-04-12"date
     ),
-    bag<date>(
+    array<date>(
         "2004-04-12"date,
         "-1970-01-01"date,
         "2004-04-12"date,
@@ -34,14 +34,14 @@ set_equals<date>(
 //? source: ...
 
 set_equals<date>(
-    bag<date>(
+    array<date>(
         "2004-04-12"date,
         "-1970-01-01"date,
         "2004-04-12"date,
         "2004-04-12"date,
         "2004-04-12"date
     ),
-    bag<date>(
+    array<date>(
         "-1970-01-01"date
     )
 )

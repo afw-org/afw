@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_function 
     as_function 
-    bag_function 
-    bag_size_function 
     eq_function 
     eqx_function 
     ge_function 
@@ -65,26 +63,6 @@ Asserts that value is dataType function
     $value
 
 Value to assert
-
-=head3 bag_function
-
-Takes any number of function values and returns an array of function.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_function
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_function
 
@@ -233,30 +211,6 @@ sub as_function {
     my $request = $session->request()
 
     $request->set("function" => "as_function");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_function {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<function>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_function {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<function>");
     $request->set("value", $value);
 
     return $request->getResult();

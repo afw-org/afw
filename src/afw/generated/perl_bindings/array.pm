@@ -18,8 +18,6 @@ our @EXPORT_OK = qw(
     array_array 
     as_array 
     at 
-    bag_array 
-    bag_size_array 
     clone_array 
     create_array 
     eq_array 
@@ -136,26 +134,6 @@ Array to index.
     $index
 
 Zero-based index, or negative from the end.
-
-=head3 bag_array
-
-Takes any number of array values and returns an array of array.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_array
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 clone_array
 
@@ -554,30 +532,6 @@ sub at {
     $request->set("function" => "at");
     $request->set("array", $array);
     $request->set("index", $index);
-
-    return $request->getResult();
-}
-
-sub bag_array {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<array>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_array {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<array>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

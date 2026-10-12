@@ -138,64 +138,6 @@ def at_least_one_member_of_string(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_size_string(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<string>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_string(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of string values and returns an array of string.
-
-    Args:
-        values (str):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<string>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def concat(session, values):
     """
     Convert two or more values to string and concatenate
@@ -969,6 +911,35 @@ def normalize_to_lower_case_string(session, string):
     action = {
         "function": "normalize_to_lower_case<string>",
         "string": string
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_string(session, array):
+    """
+    Converts a one value array to a string value
+
+    This converts an array of string values that contains one value to a
+    single string value.
+
+    Args:
+        array (list):
+
+    Returns:
+        str:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<string>",
+        "array": array
     }
 
     request.add_action(action)

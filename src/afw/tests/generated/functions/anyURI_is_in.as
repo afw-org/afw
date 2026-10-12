@@ -12,7 +12,7 @@
 
 is_in<anyURI>(
     "urn:example:org"anyURI,
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -31,7 +31,7 @@ is_in<anyURI>(
 
 is_in<anyURI>(
     "../edition.html"anyURI,
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,

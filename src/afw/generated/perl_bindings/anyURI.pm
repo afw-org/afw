@@ -16,8 +16,6 @@ our @EXPORT_OK = qw(
     array_anyURI 
     as_anyURI 
     at_least_one_member_of_anyURI 
-    bag_anyURI 
-    bag_size_anyURI 
     ends_with_anyURI 
     eq_anyURI 
     eqx_anyURI 
@@ -34,6 +32,7 @@ our @EXPORT_OK = qw(
     lt_anyURI 
     ne_anyURI 
     nex_anyURI 
+    one_and_only_anyURI 
     regexp_index_of_anyURI 
     regexp_match_anyURI 
     regexp_replace_anyURI 
@@ -102,26 +101,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_anyURI
-
-Takes any number of anyURI values and returns an array of anyURI.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_anyURI
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 ends_with_anyURI
 
@@ -363,6 +342,17 @@ Checks for not equal value or type
 
 
     $arg2
+
+
+=head3 one_and_only_anyURI
+
+This converts an array of anyURI values that contains one value to a single
+anyURI value.
+Converts a one value array to a anyURI value
+
+=head4 Parameters
+
+    $array
 
 
 =head3 regexp_index_of_anyURI
@@ -615,30 +605,6 @@ sub at_least_one_member_of_anyURI {
     return $request->getResult();
 }
 
-sub bag_anyURI {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<anyURI>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_anyURI {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<anyURI>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
 sub ends_with_anyURI {
     my ($value, $subString) = @_;
 
@@ -834,6 +800,17 @@ sub nex_anyURI {
     $request->set("function" => "nex<anyURI>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_anyURI {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<anyURI>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

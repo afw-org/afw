@@ -11,7 +11,7 @@
 //? source: ...
 
 join(
-    bag<integer>(
+    array<integer>(
         4,
         2,
         9,
@@ -26,7 +26,7 @@ join(
 //? source: ...
 
 join(
-    bag<string>(
+    array<string>(
         string("zzzzz"),
         string("mmmmm"),
         string("aaaaa"),

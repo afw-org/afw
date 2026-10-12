@@ -116,43 +116,6 @@ export function afwAtLeastOneMemberOf(client : any, array1 : any[], array2 : any
 }
 
 /**
- * Takes any number of `<dataType>` values and returns an array of
- * `<dataType>`.
- * 
- * @param {} values -
- * 
- * @returns {array}
- */
-export function afwBag(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSize(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine the smallest integer that is greater then or equal to the
  * `<dataType>` value and return the `<dataType>` result.
  * 
@@ -886,6 +849,24 @@ export function afwNormalizeToLowerCase(client : any, string : any) : any {
 
     _action["function"] = "normalize_to_lower_case";
     _action["string"] = string;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of `<dataType>` values that contains one value to a
+ * single `<dataType>` value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {}
+ */
+export function afwOneAndOnly(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

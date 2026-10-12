@@ -12,15 +12,15 @@
         
 //? expect: ...
 
-bag<string>(
+array<string>(
 )
 
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -34,7 +34,7 @@ union<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three")
@@ -43,12 +43,12 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("three")
     )
@@ -64,7 +64,7 @@ union<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three"),
@@ -75,12 +75,12 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -96,7 +96,7 @@ union<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three"),
@@ -106,12 +106,12 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("three"),
         string("four")
     )
@@ -134,7 +134,7 @@ union<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three"),
@@ -165,7 +165,7 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -192,7 +192,7 @@ union<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),

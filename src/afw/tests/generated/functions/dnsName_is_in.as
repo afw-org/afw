@@ -12,7 +12,7 @@
 
 is_in<dnsName>(
     "clemson"dnsName,
-    bag<dnsName>(
+    array<dnsName>(
         "clemson:8080"dnsName,
         "clemsen"dnsName,
         "google:8080"dnsName
@@ -27,7 +27,7 @@ is_in<dnsName>(
 
 is_in<dnsName>(
     "clemson"dnsName,
-    bag<dnsName>(
+    array<dnsName>(
         "clemson:8080"dnsName,
         "clemson"dnsName,
         "google:8080"dnsName

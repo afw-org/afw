@@ -62,42 +62,6 @@ export function afwAsIa5String(client : any, value : any) : any {
 }
 
 /**
- * Takes any number of ia5String values and returns an array of ia5String.
- * 
- * @param {ia5String} values -
- * 
- * @returns {array}
- */
-export function afwBagIa5String(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<ia5String>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeIa5String(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<ia5String>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if ia5String arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.

@@ -16,9 +16,9 @@
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -34,12 +34,12 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -57,13 +57,13 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -79,10 +79,10 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -102,14 +102,14 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),

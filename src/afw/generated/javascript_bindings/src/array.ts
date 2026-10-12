@@ -133,42 +133,6 @@ export function afwAt(client : any, array : any[], index : number) : any {
 }
 
 /**
- * Takes any number of array values and returns an array of array.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagArray(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<array>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeArray(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<array>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Deep clone a array value.
  * 
  * @param {array} value - The array value to clone.

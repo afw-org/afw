@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_script 
     as_script 
-    bag_script 
-    bag_size_script 
     compile_script 
     eq_script 
     eqx_script 
@@ -68,26 +66,6 @@ Asserts that value is dataType script
     $value
 
 Value to assert
-
-=head3 bag_script
-
-Takes any number of script values and returns an array of script.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_script
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 compile_script
 
@@ -292,30 +270,6 @@ sub as_script {
     my $request = $session->request()
 
     $request->set("function" => "as_script");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_script {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<script>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_script {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<script>");
     $request->set("value", $value);
 
     return $request->getResult();

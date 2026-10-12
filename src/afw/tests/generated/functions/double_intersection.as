@@ -14,17 +14,17 @@
         
 //? expect: ...
 
-bag<double>(
+array<double>(
 )
 
 //? source: ...
 
 intersection<double>(
-    bag<double>(
+    array<double>(
         52.40215,
         -15.8
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -39,15 +39,15 @@ intersection<double>(
         
 //? expect: ...
 
-bag<double>(
+array<double>(
 )
 
 //? source: ...
 
 intersection<double>(
-    bag<double>(
+    array<double>(
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -69,7 +69,7 @@ intersection<double>(
         
 //? expect: ...
 
-bag<double>(
+array<double>(
     2000.0215,
     -11.2151,
     961518.0,
@@ -90,7 +90,7 @@ bag<double>(
 //? source: ...
 
 intersection<double>(
-    bag<double>(
+    array<double>(
         2000.0215,
         11.0,
         -11.2151,
@@ -113,7 +113,7 @@ intersection<double>(
         -0.0,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2000.0215,
         -11.2151,
         961518.0,

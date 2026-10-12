@@ -101,42 +101,6 @@ export function afwAtLeastOneMemberOfString(client : any, array1 : any[], array2
 }
 
 /**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeString(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<string>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of string values and returns an array of string.
- * 
- * @param {string} values -
- * 
- * @returns {array}
- */
-export function afwBagString(client : any, values? : string) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<string>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
  * 'undefined'.
@@ -657,6 +621,24 @@ export function afwNormalizeToLowerCaseString(client : any, string : string) : a
 
     _action["function"] = "normalize_to_lower_case<string>";
     _action["string"] = string;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of string values that contains one value to a single
+ * string value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {string}
+ */
+export function afwOneAndOnlyString(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<string>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

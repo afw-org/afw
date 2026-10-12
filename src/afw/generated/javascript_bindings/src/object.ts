@@ -107,42 +107,6 @@ export function afwAsObject(client : any, value : any) : any {
 }
 
 /**
- * Takes any number of object values and returns an array of object.
- * 
- * @param {object} values -
- * 
- * @returns {array}
- */
-export function afwBagObject(client : any, values? : object) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<object>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeObject(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<object>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Deep clone a object value.
  * 
  * @param {object} value - The object value to clone.

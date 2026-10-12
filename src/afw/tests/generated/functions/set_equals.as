@@ -11,6 +11,6 @@
 //? source: ...
 
 set_equals<integer>(
-    bag<integer>(1),
-    bag<string>(string("1"))
+    array<integer>(1),
+    array<string>(string("1"))
 )

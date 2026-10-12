@@ -11,7 +11,7 @@
 //? source: ...
 
 set_equals<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -20,7 +20,7 @@ set_equals<anyURI>(
         "../prod.html#shirt"anyURI,
         "urn:example:org"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -38,7 +38,7 @@ set_equals<anyURI>(
 //? source: ...
 
 set_equals<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -49,7 +49,7 @@ set_equals<anyURI>(
         "urn:example:org"anyURI,
         "urn:example:org"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -67,7 +67,7 @@ set_equals<anyURI>(
 //? source: ...
 
 set_equals<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "x"anyURI,
         "x"anyURI
     )

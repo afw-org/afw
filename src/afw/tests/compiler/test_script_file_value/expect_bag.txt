@@ -1,4 +1,4 @@
-bag<integer>(
+array<integer>(
     1,
     2,
     3

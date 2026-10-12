@@ -16,9 +16,9 @@
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -34,12 +34,12 @@ at_least_one_member_of<boolean>(
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -57,13 +57,13 @@ at_least_one_member_of<boolean>(
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -81,10 +81,10 @@ at_least_one_member_of<boolean>(
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),

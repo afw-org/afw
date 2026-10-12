@@ -61,42 +61,6 @@ export function afwAsDnsName(client : any, value : any) : any {
 }
 
 /**
- * Takes any number of dnsName values and returns an array of dnsName.
- * 
- * @param {dnsName} values -
- * 
- * @returns {array}
- */
-export function afwBagDnsName(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<dnsName>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeDnsName(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<dnsName>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if dnsName arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
@@ -304,6 +268,24 @@ export function afwNexDnsName(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "nex<dnsName>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * This converts an array of dnsName values that contains one value to a
+ * single dnsName value.
+ * 
+ * @param {array} array -
+ * 
+ * @returns {dnsName}
+ */
+export function afwOneAndOnlyDnsName(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "one_and_only<dnsName>";
+    _action["array"] = array;
 
     return client.perform(_action);
 }

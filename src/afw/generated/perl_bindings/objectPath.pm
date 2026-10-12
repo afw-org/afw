@@ -15,8 +15,6 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     array_objectPath 
     as_objectPath 
-    bag_objectPath 
-    bag_size_objectPath 
     eq_objectPath 
     eqx_objectPath 
     ge_objectPath 
@@ -67,26 +65,6 @@ Asserts that value is dataType objectPath
     $value
 
 Value to assert
-
-=head3 bag_objectPath
-
-Takes any number of objectPath values and returns an array of objectPath.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_objectPath
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_objectPath
 
@@ -248,30 +226,6 @@ sub as_objectPath {
     my $request = $session->request()
 
     $request->set("function" => "as_objectPath");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_objectPath {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<objectPath>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_objectPath {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<objectPath>");
     $request->set("value", $value);
 
     return $request->getResult();

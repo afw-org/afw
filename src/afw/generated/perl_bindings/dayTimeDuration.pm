@@ -16,8 +16,6 @@ our @EXPORT_OK = qw(
     array_dayTimeDuration 
     as_dayTimeDuration 
     at_least_one_member_of_dayTimeDuration 
-    bag_dayTimeDuration 
-    bag_size_dayTimeDuration 
     eq_dayTimeDuration 
     eqx_dayTimeDuration 
     ge_dayTimeDuration 
@@ -29,6 +27,7 @@ our @EXPORT_OK = qw(
     lt_dayTimeDuration 
     ne_dayTimeDuration 
     nex_dayTimeDuration 
+    one_and_only_dayTimeDuration 
     set_equals_dayTimeDuration 
     subset_dayTimeDuration 
     to_string_dayTimeDuration 
@@ -89,27 +88,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_dayTimeDuration
-
-Takes any number of dayTimeDuration values and returns an array of
-dayTimeDuration.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_dayTimeDuration
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_dayTimeDuration
 
@@ -272,6 +250,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_dayTimeDuration
+
+This converts an array of dayTimeDuration values that contains one value to a
+single dayTimeDuration value.
+Converts a one value array to a dayTimeDuration value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 set_equals_dayTimeDuration
 
 Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2 are
@@ -358,30 +347,6 @@ sub at_least_one_member_of_dayTimeDuration {
     $request->set("function" => "at_least_one_member_of<dayTimeDuration>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_dayTimeDuration {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<dayTimeDuration>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_dayTimeDuration {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<dayTimeDuration>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -513,6 +478,17 @@ sub nex_dayTimeDuration {
     $request->set("function" => "nex<dayTimeDuration>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_dayTimeDuration {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<dayTimeDuration>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

@@ -81,52 +81,6 @@ class ipAddress
     }
 
     /**
-     * bag_ipAddress()
-     *
-     * Takes any number of ipAddress values and returns an array of ipAddress.
-     *
-     * @param ipAddress $values
-     *
-     * @return array
-     */
-    public function bag_ipAddress(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_ipAddress()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_ipAddress(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_ipAddress()
      *
      * Determine if ipAddress arg1 is equal to the value of arg2 converted to
@@ -376,6 +330,29 @@ class ipAddress
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_ipAddress()
+     *
+     * This converts an array of ipAddress values that contains one value to a
+     * single ipAddress value.
+     *
+     * @param array $array
+     *
+     * @return ipAddress
+     */
+    public function one_and_only_ipAddress(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<ipAddress>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

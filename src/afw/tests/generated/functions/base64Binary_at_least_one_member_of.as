@@ -16,9 +16,9 @@
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
     )
 )
 
@@ -34,12 +34,12 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0fa8"base64Binary,
         "0fa80f+9"base64Binary,
         "0F+40A=="base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FB8"base64Binary,
         "0FB80F+9"base64Binary,
         "0F+41A=="base64Binary
@@ -58,12 +58,12 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0F+41A=="base64Binary,
         "0fa80f+9"base64Binary,
         "0FB8"base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FB8"base64Binary,
         "0FB80F+9"base64Binary,
         "0F+40A=="base64Binary
@@ -82,12 +82,12 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0F+41A=="base64Binary,
         "0fb80f+9"base64Binary,
         "0FA8"base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FA8"base64Binary,
         "0FB80F+9"base64Binary,
         "0F+40A=="base64Binary
@@ -107,10 +107,10 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0f+40a=="base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FB8"base64Binary,
         "0FB80F+9"base64Binary,
         "0f+40a=="base64Binary

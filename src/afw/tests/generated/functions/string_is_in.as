@@ -16,7 +16,7 @@
 
 is_in<string>(
     string("one"),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -32,7 +32,7 @@ is_in<string>(
 
 is_in<string>(
     string("two"),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
@@ -51,7 +51,7 @@ is_in<string>(
 
 is_in<string>(
     string("four"),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
@@ -70,7 +70,7 @@ is_in<string>(
 
 is_in<string>(
     string("four"),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),

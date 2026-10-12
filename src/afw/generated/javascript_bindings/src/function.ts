@@ -61,42 +61,6 @@ export function afwAsFunction(client : any, value : any) : any {
 }
 
 /**
- * Takes any number of function values and returns an array of function.
- * 
- * @param {function} values -
- * 
- * @returns {array}
- */
-export function afwBagFunction(client : any, values? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<function>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeFunction(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<function>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine if function arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.

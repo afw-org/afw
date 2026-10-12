@@ -16,11 +16,11 @@
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
         52.40215,
         -15.8
     ),
-    bag<double>(
+    array<double>(
     )
 )
 
@@ -36,9 +36,9 @@ at_least_one_member_of<double>(
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -59,7 +59,7 @@ at_least_one_member_of<double>(
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
         2000.0215,
         11.0,
         -11.2151,
@@ -82,7 +82,7 @@ at_least_one_member_of<double>(
         -0.0,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2001.0215,
         -110.2151,
         0.99999999999,
@@ -107,11 +107,11 @@ at_least_one_member_of<double>(
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
         -0.0,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2000.0215,
         -11.2151,
         961518.0,

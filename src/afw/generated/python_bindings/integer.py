@@ -166,64 +166,6 @@ def at_least_one_member_of_integer(session, array1, array2):
 
     return response['actions'][0]['result']
 
-def bag_integer(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of integer values and returns an array of integer.
-
-    Args:
-        values (int):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<integer>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_integer(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<integer>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def divide_integer(session, dividend, divisor):
     """
     Divide numbers
@@ -733,6 +675,35 @@ def nex_integer(session, arg1, arg2):
         "function": "nex<integer>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def one_and_only_integer(session, array):
+    """
+    Converts a one value array to a integer value
+
+    This converts an array of integer values that contains one value to a
+    single integer value.
+
+    Args:
+        array (list):
+
+    Returns:
+        int:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "one_and_only<integer>",
+        "array": array
     }
 
     request.add_action(action)

@@ -9,7 +9,7 @@
 //? description: Test sort function with integers.
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     0,
     2,
     5,
@@ -20,7 +20,7 @@ bag<integer>(
 
 sort(
     string("le"),
-    bag<integer>(
+    array<integer>(
         2,
         9,
         5,
@@ -33,7 +33,7 @@ sort(
 //? description: Test sort function with strings.
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("zzzzz"),
     string("nnnnn"),
     string("mmmmm"),
@@ -44,7 +44,7 @@ bag<string>(
 
 sort(
     string("gt"),
-    bag<string>(
+    array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),

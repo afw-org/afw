@@ -81,53 +81,6 @@ class objectPath
     }
 
     /**
-     * bag_objectPath()
-     *
-     * Takes any number of objectPath values and returns an array of
-     * objectPath.
-     *
-     * @param objectPath $values
-     *
-     * @return array
-     */
-    public function bag_objectPath(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<objectPath>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_objectPath()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_objectPath(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<objectPath>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_objectPath()
      *
      * Determine if objectPath arg1 is equal to the value of arg2 converted to

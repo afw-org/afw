@@ -106,52 +106,6 @@ class x500Name
     }
 
     /**
-     * bag_size_x500Name()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_x500Name(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_x500Name()
-     *
-     * Takes any number of x500Name values and returns an array of x500Name.
-     *
-     * @param x500Name $values
-     *
-     * @return array
-     */
-    public function bag_x500Name(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<x500Name>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
      * eq_x500Name()
      *
      * Determine if x500Name arg1 is equal to the value of arg2 converted to
@@ -451,6 +405,29 @@ class x500Name
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * one_and_only_x500Name()
+     *
+     * This converts an array of x500Name values that contains one value to a
+     * single x500Name value.
+     *
+     * @param array $array
+     *
+     * @return x500Name
+     */
+    public function one_and_only_x500Name(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "one_and_only<x500Name>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

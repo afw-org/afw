@@ -81,52 +81,6 @@ class ia5String
     }
 
     /**
-     * bag_ia5String()
-     *
-     * Takes any number of ia5String values and returns an array of ia5String.
-     *
-     * @param ia5String $values
-     *
-     * @return array
-     */
-    public function bag_ia5String(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<ia5String>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_ia5String()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_ia5String(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<ia5String>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_ia5String()
      *
      * Determine if ia5String arg1 is equal to the value of arg2 converted to

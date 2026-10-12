@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<dayTimeDuration>(
+array<dayTimeDuration>(
     "-P1DT10H30M"dayTimeDuration,
     "P1DT10H30M"dayTimeDuration
 )
@@ -17,14 +17,14 @@ bag<dayTimeDuration>(
 //? source: ...
 
 intersection<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "-P1DT10H30M"dayTimeDuration,
         "P1DT10H30M"dayTimeDuration,
         "-P1DT10H30M"dayTimeDuration,
         "P1DT10H30M"dayTimeDuration,
         "-P1DT10H35M"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "-P1DT10H30M"dayTimeDuration,
         "P1DT10H30M"dayTimeDuration,
         "P1DT10H30M"dayTimeDuration,
@@ -41,11 +41,11 @@ intersection<dayTimeDuration>(
 //? source: ...
 
 intersection<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "x"dayTimeDuration,
         "x"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "x"dayTimeDuration,
         "x"dayTimeDuration
     )

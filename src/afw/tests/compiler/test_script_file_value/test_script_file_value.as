@@ -26,7 +26,7 @@ return "from-file";
 //? expect: <<< expect_bag.txt
 //? source: ...
 
-return bag<integer>(1, 2, 3);
+return array<integer>(1, 2, 3);
 
 //?
 //? test: source-from-file

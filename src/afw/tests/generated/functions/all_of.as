@@ -14,7 +14,7 @@ True because the first argument (10) is greater than all of the elements of the 
 all_of(
     string("gt"),
     10,
-    bag<integer>(
+    array<integer>(
         4,
         2,
         9,
@@ -32,7 +32,7 @@ false because the first argument (10) is not greater than all of the elements of
 all_of(
     string("gt"),
     10,
-    bag<integer>(
+    array<integer>(
         4,
         2,
         9,

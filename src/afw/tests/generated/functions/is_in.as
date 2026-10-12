@@ -12,7 +12,7 @@
 
 is_in<integer>(
     6,
-    bag<string>(string("6"))
+    array<string>(string("6"))
 )
 
 //?

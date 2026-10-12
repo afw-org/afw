@@ -16,8 +16,6 @@ our @EXPORT_OK = qw(
     array_hexBinary 
     as_hexBinary 
     at_least_one_member_of_hexBinary 
-    bag_hexBinary 
-    bag_size_hexBinary 
     decode_to_string_hexBinary 
     eq_hexBinary 
     eqx_hexBinary 
@@ -30,6 +28,7 @@ our @EXPORT_OK = qw(
     lt_hexBinary 
     ne_hexBinary 
     nex_hexBinary 
+    one_and_only_hexBinary 
     set_equals_hexBinary 
     subset_hexBinary 
     to_string_hexBinary 
@@ -90,26 +89,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_hexBinary
-
-Takes any number of hexBinary values and returns an array of hexBinary.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_hexBinary
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 decode_to_string_hexBinary
 
@@ -281,6 +260,17 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 one_and_only_hexBinary
+
+This converts an array of hexBinary values that contains one value to a single
+hexBinary value.
+Converts a one value array to a hexBinary value
+
+=head4 Parameters
+
+    $array
+
+
 =head3 set_equals_hexBinary
 
 Returns boolean true if hexBinary array1 and hexBinary array2 are subsets of
@@ -367,30 +357,6 @@ sub at_least_one_member_of_hexBinary {
     $request->set("function" => "at_least_one_member_of<hexBinary>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_hexBinary {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<hexBinary>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_hexBinary {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<hexBinary>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -533,6 +499,17 @@ sub nex_hexBinary {
     $request->set("function" => "nex<hexBinary>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub one_and_only_hexBinary {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only<hexBinary>");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

@@ -9,7 +9,7 @@
 //? description: Test reverse function with integers.
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     0,
     5,
     9,
@@ -19,7 +19,7 @@ bag<integer>(
 //? source: ...
 
 reverse(
-    bag<integer>(
+    array<integer>(
         2,
         9,
         5,
@@ -32,7 +32,7 @@ reverse(
 //? description: Test reverse function with strings.
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("nnnnn"),
     string("aaaaa"),
     string("zzzzz"),
@@ -42,7 +42,7 @@ bag<string>(
 //? source: ...
 
 reverse(
-    bag<string>(
+    array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),

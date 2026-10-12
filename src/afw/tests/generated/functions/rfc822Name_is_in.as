@@ -12,7 +12,7 @@
 
 is_in<rfc822Name>(
     "localPart@DOMAINPart"rfc822Name,
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
         "x"rfc822Name
     )
@@ -26,7 +26,7 @@ is_in<rfc822Name>(
 
 is_in<rfc822Name>(
     "LocalPart@DOMAINPart"rfc822Name,
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
         "x"rfc822Name
     )

@@ -11,11 +11,11 @@
 //? source: ...
 
 subset<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P20M"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P3Y6M"yearMonthDuration,
         "P30M"yearMonthDuration,
         "P2Y6M"yearMonthDuration,
@@ -30,11 +30,11 @@ subset<yearMonthDuration>(
 //? source: ...
 
 subset<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P60M"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P3Y6M"yearMonthDuration,
         "P30M"yearMonthDuration,
         "P2Y6M"yearMonthDuration,
@@ -49,11 +49,11 @@ subset<yearMonthDuration>(
 //? source: ...
 
 subset<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "x"yearMonthDuration,
         "x"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "x"yearMonthDuration,
         "x"yearMonthDuration
     )

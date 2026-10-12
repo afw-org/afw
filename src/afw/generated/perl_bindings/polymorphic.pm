@@ -18,8 +18,6 @@ our @EXPORT_OK = qw(
     add_dayTimeDuration 
     add_yearMonthDuration 
     at_least_one_member_of 
-    bag 
-    bag_size 
     ceil 
     clone 
     compile 
@@ -55,6 +53,7 @@ our @EXPORT_OK = qw(
     nex 
     normalize_space 
     normalize_to_lower_case 
+    one_and_only 
     pow 
     regexp_index_of 
     regexp_match 
@@ -165,26 +164,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag
-
-Takes any number of `<dataType>` values and returns an array of `<dataType>`.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 ceil
 
@@ -679,6 +658,17 @@ Converts to lower case
 =head4 Parameters
 
     $string
+
+
+=head3 one_and_only
+
+This converts an array of `<dataType>` values that contains one value to a
+single `<dataType>` value.
+Converts a one value array to a <dataType> value
+
+=head4 Parameters
+
+    $array
 
 
 =head3 pow
@@ -1240,30 +1230,6 @@ sub at_least_one_member_of {
     return $request->getResult();
 }
 
-sub bag {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
 sub ceil {
     my ($value) = @_;
 
@@ -1680,6 +1646,17 @@ sub normalize_to_lower_case {
 
     $request->set("function" => "normalize_to_lower_case");
     $request->set("string", $string);
+
+    return $request->getResult();
+}
+
+sub one_and_only {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "one_and_only");
+    $request->set("array", $array);
 
     return $request->getResult();
 }

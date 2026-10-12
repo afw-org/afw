@@ -11,14 +11,14 @@
 //? source: ...
 
 at_least_one_member_of<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB80BB6"hexBinary,
         "0FB80BB0"hexBinary,
         "0FB80BB1"hexBinary,
         "0FB80BBA"hexBinary,
         "0FB80BBb"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB80BB2"hexBinary,
         "0FB80BB3"hexBinary,
         "0FB80BB4"hexBinary,
@@ -34,14 +34,14 @@ at_least_one_member_of<hexBinary>(
 //? source: ...
 
 at_least_one_member_of<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB80BB7"hexBinary,
         "0FB80BB0"hexBinary,
         "0FB80BB1"hexBinary,
         "0FB80BBA"hexBinary,
         "0FB80BBb"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB80BB2"hexBinary,
         "0FB80BB3"hexBinary,
         "0FB80BB4"hexBinary,
@@ -57,11 +57,11 @@ at_least_one_member_of<hexBinary>(
 //? source: ...
 
 at_least_one_member_of<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     )

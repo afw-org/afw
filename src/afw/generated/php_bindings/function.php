@@ -81,52 +81,6 @@ class function
     }
 
     /**
-     * bag_function()
-     *
-     * Takes any number of function values and returns an array of function.
-     *
-     * @param function $values
-     *
-     * @return array
-     */
-    public function bag_function(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<function>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_function()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_function(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<function>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * eq_function()
      *
      * Determine if function arg1 is equal to the value of arg2 converted to

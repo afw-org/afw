@@ -17,7 +17,7 @@
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     200,
     11,
     -11,
@@ -37,7 +37,7 @@ bag<integer>(
 //? source: ...
 
 union<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -60,7 +60,7 @@ union<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
         11,
         1024,
         -11,
@@ -82,7 +82,7 @@ union<integer>(
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     11,
     1024,
     -11,
@@ -101,7 +101,7 @@ bag<integer>(
 //? source: ...
 
 union<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         1024,
         -11,
@@ -110,7 +110,7 @@ union<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         96,
@@ -139,7 +139,7 @@ union<integer>(
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     -1,
     11,
     1024,
@@ -153,7 +153,7 @@ bag<integer>(
 //? source: ...
 
 union<integer>(
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,
@@ -163,7 +163,7 @@ union<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -1
     )
