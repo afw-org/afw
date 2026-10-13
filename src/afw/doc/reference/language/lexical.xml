@@ -108,9 +108,75 @@ super       this        typeof      var         with</code>
     <code>3.14
 42
 "a string"
-true 
+true
 false
 null</code>
+    <header>Regular Expressions</header>
+    <paragraph>
+        A regular expression literal is written as in ECMAScript, where a value
+        can start: <literal>/pattern/flags</literal>. Its value has data type
+        <literal>regexp</literal> and is compiled once, when the script is
+        compiled, so a pattern that does not compile is a syntax error at the
+        literal. The pattern is passed to the regular expression engine as
+        written: backslashes are not doubled. Write a <literal>/</literal> in
+        the pattern as <literal>\/</literal> or inside a class
+        (<literal>[/]</literal>). After a value, <literal>/</literal> divides,
+        and <literal>/=</literal> always divides and assigns.
+    </paragraph>
+    <code>/^[a-z]+\d*$/
+/^smith$/i
+/(\d+)-(\d+)-(\d+)/</code>
+    <paragraph>
+        The typed literal <literal>"a+b"re</literal> (or
+        <literal>"a+b"regexp</literal>) is the same value, written as a string,
+        so its backslashes are doubled: <literal>"\\d+"re</literal> is
+        <literal>/\d+/</literal>.
+    </paragraph>
+    <paragraph>
+        Patterns use ICU regular expression syntax, which is close to
+        ECMAScript and Perl: classes such as <literal>\d</literal> and
+        <literal>\p{L}</literal>, groups, named groups
+        <literal>(?&lt;name&gt;...)</literal>, lookahead and lookbehind, and
+        lazy quantifiers. A pattern matches anywhere in the value unless
+        <literal>^</literal> and <literal>$</literal> anchor it:
+        <literal>regexp_match("xaab", /a+b/)</literal> is true and
+        <literal>regexp_match("xaab", /^a+b$/)</literal> is false.
+    </paragraph>
+    <paragraph>
+        Flags follow the closing <literal>/</literal>:
+    </paragraph>
+    <list>
+        <item><literal>i</literal> ignores case.</item>
+        <item><literal>m</literal> lets <literal>^</literal> and <literal>$</literal> match at the start and end of each line.</item>
+        <item><literal>s</literal> lets <literal>.</literal> match a line terminator.</item>
+        <item><literal>x</literal> ignores whitespace and <literal>#</literal> comments in the pattern.</item>
+        <item><literal>u</literal> is accepted and changes nothing: patterns are always Unicode.</item>
+    </list>
+    <paragraph>
+        Flags become part of the pattern: <literal>/a+b/i</literal> is
+        <literal>"(?i)a+b"re</literal>. There is no <literal>g</literal> flag;
+        <literal>regexp_replace</literal> takes a limit instead.
+    </paragraph>
+    <paragraph>
+        The regexp functions take a <literal>regexp</literal>, not a string:
+        <literal>regexp_match(value, regexp)</literal>,
+        <literal>regexp_index_of(value, regexp)</literal> (the code point index
+        of the first match, or -1), and
+        <literal>regexp_replace(value, regexp, replacement, limit?)</literal>
+        (limit 1 by default, -1 for every match). In the replacement,
+        <literal>$1</literal> is the text of group 1, <literal>$0</literal> the
+        whole match, <literal>${name}</literal> a named group, and a backslash
+        makes the next character literal (<literal>\$</literal>). To use a
+        pattern you have as a string, convert it once with
+        <literal>to_regexp(s)</literal> and keep the result; a
+        <literal>regexp</literal> value read from data is compiled each time a
+        function uses it, unless you compile it with
+        <literal>compile&lt;regexp&gt;(r)</literal>.
+    </paragraph>
+    <code>const date = /(?&lt;y&gt;\d{4})-(?&lt;m&gt;\d\d)-(?&lt;d&gt;\d\d)/;
+regexp_replace("2024-10-13", date, "${d}/${m}/${y}");   // "13/10/2024"
+regexp_replace("a1b22c333", /\d+/, "#", -1);            // "a#b#c#"
+regexp_index_of("xyzaab", /a+b/);                       // 3</code>
     <header>Operators</header>
     <paragraph>
         The following tokens are used in expressions:

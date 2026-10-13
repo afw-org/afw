@@ -51,6 +51,8 @@ XACML defines `-greater-than` / `-less-than` only for integer, double, string, t
 | `rfc822Name-match(string, rfc822Name)` | `rfc822Name_match(pattern, value)`, same order and cases (A.3.14) | #593 |
 | `x500Name-match(x500Name, x500Name)` | `x500Name_match(pattern, value)`, same (terminal RDNs) | #593 |
 | Functions that share a name with ECMAScript | ECMAScript argument order and behavior; functions with XACML-only names keep XACML order | #599 |
+| `type-regexp-match(regexp, value)` (A.3.13: XPath `fn:matches`, arguments reversed) | `regexp_match<T>(value, regexp)`: value first (AFW's order since before #585), and the pattern is a `regexp` value, not a string (`to_regexp(s)` converts a pattern held as a string). Matches anywhere unless `^`/`$` anchor it, as `fn:matches` does; the libxml2 XML Schema regexes it used before always matched the whole value | #585 |
+| Regular expression syntax: XPath F&O 7.6.1 (XML Schema regex plus `^`, `$`, lazy quantifiers, back-references; flags `s`, `m`, `i`, `x`) | ICU syntax, a superset: it also accepts lookaround, named groups, `\d`-style classes beyond XPath's, and possessive quantifiers. A pattern XPath accepts matches the same text except where the two differ on character class details (XPath `\i` / `\c` name classes are not ICU syntax) | #585 |
 | `ipAddress` / `dnsName` matching or parts | Not provided (XACML 3.0 core has none beyond conversion either) | — |
 
 Spec texts: [XACML 3.0 core](https://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html) Appendix A; [XSD 1.1 Part 2](https://www.w3.org/TR/xmlschema11-2/).
