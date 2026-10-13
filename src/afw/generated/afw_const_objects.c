@@ -19603,7 +19603,7 @@ impl_188_property_dataType = {
 static const afw_runtime_property_t
 impl_188_property_description = {
     afw_v_description,
-    &afw_self_v_zz__684514957280.pub
+    &afw_self_v_zz__ccf20ed8f7d1.pub
 };
 
 static const afw_runtime_property_t
@@ -105211,7 +105211,7 @@ impl_1011_property_dataType = {
 static const afw_runtime_property_t
 impl_1011_property_description = {
     afw_v_description,
-    &afw_self_v_zz__7b61628936ff.pub
+    &afw_self_v_zz__d8d31bc23b51.pub
 };
 
 static const afw_runtime_property_t

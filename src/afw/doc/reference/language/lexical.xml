@@ -225,8 +225,22 @@ regexp_match("Ελλάδα", /^\w+$/);                        // true</code>
             Because of an ICU issue, a lazy loop over a group that can match
             nothing, such as <literal>(b|)*?</literal> or
             <literal>(a?)+?</literal>, can reach the limit even on a short
-            value. Write the loop so its body cannot match empty:
-            <literal>b*?</literal> instead of <literal>(b|)*?</literal>.
+            value (ECMAScript, Perl, and Python answer it at once). Write the
+            loop so its body cannot match empty: <literal>b*?</literal>
+            instead of <literal>(b|)*?</literal>. ICU tracks this as
+            <link href="https://unicode-org.atlassian.net/browse/ICU-23047" text="ICU-23047"/>,
+            planned to be fixed in ICU 79.1; the cause is
+            <link href="https://unicode-org.atlassian.net/browse/ICU-2905" text="ICU-2905"/>.
+            For this case the limit is a workaround; for patterns that
+            backtrack exponentially it is needed in any case.
+        </paragraph>
+        <paragraph>
+            Backtracking also needs memory, which ICU allocates itself. A match
+            may use at most 8 MB for it, and at most half of what the request
+            still has under <literal>limitRequestPoolBytes</literal>; one that
+            needs more, such as <literal>/^(a|b)*$/</literal> on a value of a
+            few hundred thousand characters, stops with a
+            <literal>payload_too_large</literal> error.
         </paragraph>
     </section>
     <section>

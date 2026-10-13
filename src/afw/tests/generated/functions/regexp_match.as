@@ -27,6 +27,41 @@ regexp_match<string>(
 )
 
 //?
+//? test: regexp_match-lazy-loop-over-empty-group
+//? description: An ICU issue (#613): a lazy loop over a group that can match nothing never finishes; the step limit stops it, and the message says how to write it.
+//? expect: ["payload_too_large", false]
+//? source: ...
+
+let id = "no error";
+try {
+    regexp_match("   .xb", /(b|)*?^(?=a)/);
+}
+catch (e) {
+    id = e.id;
+}
+return [id, regexp_match("   .xb", /b*?^(?=a)/)];
+
+//?
+//? test: regexp_match-backtrack-memory
+//? description: The backtrack stack is at most 8 MB, outside the pools: ^(a|b)*$ on 131,072 a matches, and on 262,144 it stops with payload_too_large instead of growing.
+//? expect: [true, "payload_too_large"]
+//? source: ...
+
+let t = "a";
+for (let i: integer = 0; i < 17; i = i + 1) {
+    t = t + t;
+}
+const fits = regexp_match(t, /^(a|b)*$/);
+let id = "no error";
+try {
+    regexp_match(t + t, /^(a|b)*$/);
+}
+catch (e) {
+    id = e.id;
+}
+return [fits, id];
+
+//?
 //? test: regexp_match-default-limit
 //? description: The default limitRegexpMatchSteps is 1000; at it, ^(a+)+$ on 22 a and ! completes and on 23 does not.
 //? expect: [1000, false, "payload_too_large"]
@@ -48,7 +83,7 @@ return [
 //?
 //? test: regexp_match-backtracking-limit
 //? description: A pattern that backtracks exponentially on the value stops at the match limit instead of holding the thread.
-//? expect: error:Regular expression match exceeded limitRegexpMatchSteps: the pattern backtracks too much on this value
+//? expect: error:Regular expression match exceeded limitRegexpMatchSteps: the pattern backtracks too much on this value, or has a lazy loop over a group that can match nothing, such as (b|)*? (write b*?)
 //? source: ...
 
 regexp_match(repeat("a", 40) + "!", /^(a+)+$/)
