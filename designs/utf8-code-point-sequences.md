@@ -34,7 +34,8 @@ See also `typescript-differences.md` (motivated differences).
 | for-of over strings | Keyless `afw_iterator` (utf8 + array) via `for_of` (#153) |
 | empty-separator `split` | Must be code points (octet step is a bug) |
 | `s[i]` on strings | Keyless `afw_iterator` `get_by_index` in `reference_by_key` (#153) |
-| HOFs / array formals with string | `afw_value_convert_to_array_sequence` choke (#153) |
+| Built-in parameters with string | Only where metadata says `"iterableAsArray": true`; `afw_function_evaluate_parameter_with_p` and `impl_over_array` read it, then `afw_value_convert_to_array_sequence` (#583). Elsewhere an error |
+| Spread `[...s]` / `f(...s)` | Code points, via `afw_value_call_args_expand_spreads` (#583) |
 | Immutable array face over utf8 | **Dropped** (2026-10-13). The array is always made eagerly by `afw_value_convert_to_array_sequence`. A lazy view creating values from raw memory as they are accessed leaked during the #2 lifetime work. |
 
 Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share the **same definition of index** (code point). Prefer thin shared `afw_utf8_*` helpers over copy-pasted loops (“get it right at most once”).
@@ -51,7 +52,7 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 | **`replace`**, **split** (non-empty separator), **`afw_utf8_contains`** | **Fixed** — search advances by code point (still `memcmp` of full needle) |
 | Empty-match **`replace`** | **Fixed (#190)** — insert at each code-point boundary (including start and end); `limit = -1` must terminate |
 | **`to_lower` / `compare_ignore_case`** | **Bound (P4)** — `U8_NEXT` / `U8_APPEND`; throw on truncated. Compare walks each string with its own offset (mixed-width ignore-case, e.g. `"iX"` vs `"İX"`). [#206](https://github.com/afw-org/afw/issues/206). |
-| Set-function array formals (`is_in`, `intersection`, …) | A string is never a one-entry array (#583); see `convert_to_array_sequence` notes |
+| Set-function array formals (`is_in`, `intersection`, …) | Not `iterableAsArray`: a string is an error, never a one-entry array or code points (#583). Write `[...s]` |
 
 ## Goals
 
@@ -59,8 +60,8 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 2. **`s[i]`** (read) on utf8-backed values; out-of-range policy align with array soft get where product agrees.  
 3. **Array consumers** — built-ins first: accept utf8-backed values where an array of values is consumed, via:
    shared sequence access in built-in evaluate (an eagerly made array; no lazy face, see above).  
-4. **Script functions** — same coercion at call/bind when formal expects **array** (not silent wrap for every string use).  
-5. **Easy opt-in** — metadata + one choke point so support is not N special cases per HOF.  
+4. ~~**Script functions** — same coercion at call/bind when formal expects **array**~~ Reversed in #583: a typed script parameter checks and never converts; write `f([...s])`.  
+5. **Easy opt-in** — done in #583: the parameter property `iterableAsArray` and one choke point (`afw_function_evaluate_parameter_with_p`).  
 6. **Docs + tests** — handbook, differences, test262 / language tests.
 
 ## Non-goals
@@ -212,15 +213,18 @@ n = afw_iterator_get_count(&it, xctx);
 - **Consumers (this branch):** `for_of` and `reference_by_key` (`s[i]`) use
   `afw_value_has_iterator` / `initialize_iterator` / `get_next` /
   `get_by_index`. Tests: `language/script/string_code_points.as`.
-- **Array formals / HOFs:** `afw_value_convert_to_array_sequence()` materializes a
-  temporary array of iterator elements when a built-in expects array (or
-  HOF `impl_over_array` / `evaluate_parameter` with array). No syntax change.
-  Mutation of the temp does not write back to the string.
+- **Array formals / HOFs (#583):** `afw_value_convert_to_array_sequence()` makes a
+  temporary array of iterator elements only for a built-in parameter marked
+  `iterableAsArray` (read in `afw_function_evaluate_parameter_with_p` and
+  `impl_over_array`) and for spread. Any other array parameter given an
+  iterable throws "write [...value]". Mutation of the temp does not write
+  back to the string. The rule (where ECMAScript iterates a string) and the
+  table of cases are in #583's body.
 - **Deferred:** produce-type percolation / compile-time optimize —
   `designs/compile-optimize-notes.md` and
   [comment on #28](https://github.com/afw-org/afw/issues/28#issuecomment-5222169246).
-  Script function formals use the same choke in
-  `afw_function_script_evaluate_parameter_with_type` (array / T[] / tuple).
+  Script function formals no longer convert (#583);
+  `afw_function_script_evaluate_parameter_with_type` only checks.
 
 ## Related
 
