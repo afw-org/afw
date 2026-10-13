@@ -524,3 +524,58 @@ try {
 assert(index_of(message, "Type error in parameter") >= 0, "got: " + message);
 compile<script>(script("#compile typeCheck;\nreturn join(\"abc\", \"-\");"));
 return 0;
+
+//?
+//? test: slice-string
+//? description: slice of a string is a string of code points, as in ECMAScript (#583)
+//? expect: 0
+//? source: ...
+
+assert(slice("abc", 1) === "bc");
+assert(slice("abc", -2) === "bc");
+assert(slice("abc", 0, -1) === "ab");
+assert(slice("abc") === "abc");
+assert(slice("abc", -5) === "abc");
+assert(slice("abc", 2, 1) === "");
+assert(slice("abc", 5) === "");
+assert(slice("", 0) === "");
+assert(slice("x€y😀z", 1, 4) === "€y😀");
+assert(slice("ab"anyURI, 1) === "b");
+assert(meta(slice("ab"anyURI, 1)).dataType === "string");
+assert(eq(slice([..."abc"], 1), ["b", "c"]), "spread for the code points as an array");
+assert(eq(slice([1, 2, 3], -2), [2, 3]), "arrays unchanged");
+return 0;
+
+//?
+//? test: at-string
+//? description: at of a string is the code point at an index, as in ECMAScript and s[i] (#583)
+//? expect: 0
+//? source: ...
+
+const s = "x€y";
+assert(at("abc", 1) === "b");
+assert(at("abc", -1) === "c");
+assert(at("abc", 3) === undefined);
+assert(at("abc", -4) === undefined);
+assert(at(s, 1) === "€");
+assert(at(s, 1) === s[1], "same as s[i]");
+assert(s->at(-1) === "y", "method form");
+assert(at([1, 2], -1) === 2, "arrays unchanged");
+assert(at([1, 2], 5) === undefined);
+return 0;
+
+//?
+//? test: slice-at-reject-other
+//? description: slice and at take an array or a string
+//? expect: 0
+//? source: ...
+
+for (const f of [
+    function () { return slice(5, 1); },
+    function () { return at(true, 0); }
+]) {
+    let message = "";
+    try { f(); } catch (e) { message = e.message; }
+    assert(index_of(message, "must be an array or a string") >= 0, "got: " + message);
+}
+return 0;

@@ -1,33 +1,31 @@
 {
     "afwCamelCaseFunctionLabel": "afwSlice",
-    "brief": "Return a consecutive slice of values from an array",
+    "brief": "Return a consecutive slice of an array or a string",
     "camelCaseFunctionLabel": "slice",
     "category": "array",
-    "description": "This function extracts a consecutive slice of values from an array.",
+    "description": "This function extracts a consecutive slice of values from an array, or of code points from a string (as ECMAScript slice does for both). For a string, or another value stored as UTF-8, the result is a string.",
     "functionId": "slice",
     "functionLabel": "slice",
     "parameters": [
         {
-            "dataType": "array",
-            "description": "The array to slice.",
+            "description": "The array, or the string, to slice.",
             "name": "array"
         },
         {
             "dataType": "integer",
-            "description": "This is the zero based starting index. Use negative number to index from the end of the array. If not specified, an index of 0 is assumed.",
+            "description": "This is the zero based starting index. Use negative number to index from the end. If not specified, an index of 0 is assumed.",
             "name": "startIndex",
             "optional": true
         },
         {
             "dataType": "integer",
-            "description": "This is the zero based ending index. If positive, this is one more than the index of the last value to include in the array. If negative, the index is from the end of the array. If not specified, the slice is from startIndex up to and including the end of the array.",
+            "description": "This is the zero based ending index. If positive, this is one more than the index of the last value or code point to include. If negative, the index is from the end. If not specified, the slice is from startIndex up to and including the end.",
             "name": "endIndex",
             "optional": true
         }
     ],
     "pure": true,
     "returns": {
-        "dataType": "array",
-        "description": "An array containing the selected values. If all of the values are the same data type, the array will be an array of that data type."
+        "description": "For an array, an array containing the selected values; if all of the values are the same data type, the array will be an array of that data type. For a string, a string containing the selected code points."
     }
 }

@@ -113,10 +113,11 @@ afw_function_execute_array(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the value at a zero-based index in an array. Negative indexes count
- * from the end (-1 is the last element). If the index is out of range, the
- * result is undefined. Bracket indexing a[index] uses the same out-of-range
- * result (undefined).
+ * Return the value at a zero-based index in an array, or the code point at a
+ * zero-based index in a string as a one-code-point string (as ECMAScript at
+ * does for both). Negative indexes count from the end (-1 is the last). If the
+ * index is out of range, the result is undefined. Bracket indexing a[index] and
+ * s[index] use the same out-of-range result (undefined).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -125,14 +126,14 @@ afw_function_execute_array(
  *
  * ```
  *   function at(
- *       array: array,
+ *       array: any,
  *       index: integer
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   array - (array) Array to index.
+ *   array - (any) Array, or string, to index.
  *
  *   index - (integer) Zero-based index, or negative from the end.
  *
@@ -406,7 +407,9 @@ afw_function_execute_shift(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * This function extracts a consecutive slice of values from an array.
+ * This function extracts a consecutive slice of values from an array, or of
+ * code points from a string (as ECMAScript slice does for both). For a string,
+ * or another value stored as UTF-8, the result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -415,30 +418,30 @@ afw_function_execute_shift(
  *
  * ```
  *   function slice(
- *       array: array,
+ *       array: any,
  *       startIndex?: integer,
  *       endIndex?: integer
- *   ): array;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   array - (array) The array to slice.
+ *   array - (any) The array, or the string, to slice.
  *
  *   startIndex - (optional integer) This is the zero based starting index. Use
- *       negative number to index from the end of the array. If not specified,
- *       an index of 0 is assumed.
+ *       negative number to index from the end. If not specified, an index of 0
+ *       is assumed.
  *
  *   endIndex - (optional integer) This is the zero based ending index. If
- *       positive, this is one more than the index of the last value to include
- *       in the array. If negative, the index is from the end of the array. If
- *       not specified, the slice is from startIndex up to and including the end
- *       of the array.
+ *       positive, this is one more than the index of the last value or code
+ *       point to include. If negative, the index is from the end. If not
+ *       specified, the slice is from startIndex up to and including the end.
  *
  * Returns:
  *
- *   (array) An array containing the selected values. If all of the values are
- *       the same data type, the array will be an array of that data type.
+ *   (any) For an array, an array containing the selected values; if all of the
+ *       values are the same data type, the array will be an array of that data
+ *       type. For a string, a string containing the selected code points.
  */
 const afw_value_t *
 afw_function_execute_slice(

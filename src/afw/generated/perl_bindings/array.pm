@@ -119,17 +119,18 @@ Value to assert
 
 =head3 at
 
-Return the value at a zero-based index in an array. Negative indexes count
-from the end (-1 is the last element). If the index is out of range, the
-result is undefined. Bracket indexing a[index] uses the same out-of-range
-result (undefined).
-Value at array index
+Return the value at a zero-based index in an array, or the code point at a
+zero-based index in a string as a one-code-point string (as ECMAScript at does
+for both). Negative indexes count from the end (-1 is the last). If the index
+is out of range, the result is undefined. Bracket indexing a[index] and
+s[index] use the same out-of-range result (undefined).
+Value at array index, or code point at string index
 
 =head4 Parameters
 
     $array
 
-Array to index.
+Array, or string, to index.
 
     $index
 
@@ -401,26 +402,28 @@ Target array. Must not be immutable.
 
 =head3 slice
 
-This function extracts a consecutive slice of values from an array.
-Return a consecutive slice of values from an array
+This function extracts a consecutive slice of values from an array, or of code
+points from a string (as ECMAScript slice does for both). For a string, or
+another value stored as UTF-8, the result is a string.
+Return a consecutive slice of an array or a string
 
 =head4 Parameters
 
     $array
 
-The array to slice.
+The array, or the string, to slice.
 
     $startIndex
 
 This is the zero based starting index. Use negative number to index from the
-end of the array. If not specified, an index of 0 is assumed.
+end. If not specified, an index of 0 is assumed.
 
     $endIndex
 
 This is the zero based ending index. If positive, this is one more than the
-index of the last value to include in the array. If negative, the index is
-from the end of the array. If not specified, the slice is from startIndex up
-to and including the end of the array.
+index of the last value or code point to include. If negative, the index is
+from the end. If not specified, the slice is from startIndex up to and
+including the end.
 
 =head3 splice
 

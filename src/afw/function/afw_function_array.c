@@ -550,6 +550,51 @@ afw_function_execute_reverse(
 
 
 
+/* True if value is stored as UTF-8 (string, anyURI, ...). */
+static afw_boolean_t
+impl_is_utf8_value(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    const afw_data_type_t *data_type;
+
+    data_type = afw_value_get_data_type(value, xctx);
+    return data_type &&
+        afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t);
+}
+
+
+/* Octet offset of code point index (index past the end is the end). */
+static afw_size_t
+impl_code_point_offset(
+    const afw_utf8_t *s,
+    afw_integer_t index,
+    afw_xctx_t *xctx)
+{
+    afw_size_t offset;
+    afw_integer_t i;
+
+    for (offset = 0, i = 0; i < index; i++) {
+        if (afw_utf8_next_code_point(s->s, &offset, s->len, xctx) < 0) {
+            break;
+        }
+    }
+    return offset;
+}
+
+
+/* Number of code points in s. */
+static afw_integer_t
+impl_code_point_count(const afw_utf8_t *s, afw_xctx_t *xctx)
+{
+    afw_size_t offset;
+    afw_integer_t count;
+
+    for (offset = 0, count = 0;
+        afw_utf8_next_code_point(s->s, &offset, s->len, xctx) >= 0;
+        count++);
+    return count;
+}
+
+
 /*
  * Adaptive function: slice
  *
@@ -557,7 +602,9 @@ afw_function_execute_reverse(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * This function extracts a consecutive slice of values from an array.
+ * This function extracts a consecutive slice of values from an array, or of
+ * code points from a string (as ECMAScript slice does for both). For a string,
+ * or another value stored as UTF-8, the result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -566,47 +613,70 @@ afw_function_execute_reverse(
  *
  * ```
  *   function slice(
- *       array: array,
+ *       array: any,
  *       startIndex?: integer,
  *       endIndex?: integer
- *   ): array;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   array - (array) The array to slice.
+ *   array - (any) The array, or the string, to slice.
  *
  *   startIndex - (optional integer) This is the zero based starting index. Use
- *       negative number to index from the end of the array. If not specified,
- *       an index of 0 is assumed.
+ *       negative number to index from the end. If not specified, an index of 0
+ *       is assumed.
  *
  *   endIndex - (optional integer) This is the zero based ending index. If
- *       positive, this is one more than the index of the last value to include
- *       in the array. If negative, the index is from the end of the array. If
- *       not specified, the slice is from startIndex up to and including the end
- *       of the array.
+ *       positive, this is one more than the index of the last value or code
+ *       point to include. If negative, the index is from the end. If not
+ *       specified, the slice is from startIndex up to and including the end.
  *
  * Returns:
  *
- *   (array) An array containing the selected values. If all of the values are
- *       the same data type, the array will be an array of that data type.
+ *   (any) For an array, an array containing the selected values; if all of the
+ *       values are the same data type, the array will be an array of that data
+ *       type. For a string, a string containing the selected code points.
  */
 const afw_value_t *
 afw_function_execute_slice(
     afw_function_execute_t *x)
 {
+    const afw_value_t *source;
     const afw_value_array_t *array;
     const afw_value_array_t *result;
     const afw_value_integer_t *integer;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_data_type_t *data_type;
+    const afw_utf8_t *s;
+    afw_utf8_t slice;
+    afw_size_t start_offset;
     afw_integer_t start;
     afw_integer_t end;
     afw_integer_t count;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    count = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
+    /*
+     * An array, or a string (any value stored as UTF-8) sliced by code
+     * point into a string, as ECMAScript slice does for both (#583).
+     */
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(source, 1);
+    s = NULL;
+    array = NULL;
+    if (afw_value_is_array(source)) {
+        array = (const afw_value_array_t *)source;
+        count = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
+    }
+    else if (impl_is_utf8_value(source, x->xctx)) {
+        s = AFW_VALUE_INTERNAL(source);
+        count = impl_code_point_count(s, x->xctx);
+    }
+    else {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Parameter 1 of function 'slice' must be an array or a string"
+            " but evaluated to be '%ku'",
+            &afw_value_get_data_type(source, x->xctx)->data_type_id);
+    }
 
     /* Determine start index. */
     start = 0;
@@ -632,6 +702,17 @@ afw_function_execute_slice(
         else if (end > count) {
             end = count;
         }
+    }
+
+    /* String: the code points from start up to end. */
+    if (s) {
+        if (start >= end) {
+            return afw_v_a_empty_string;
+        }
+        start_offset = impl_code_point_offset(s, start, x->xctx);
+        slice.s = s->s + start_offset;
+        slice.len = impl_code_point_offset(s, end, x->xctx) - start_offset;
+        return afw_value_create_unmanaged_string(&slice, x->p, x->xctx);
     }
 
     /* New array: create_managed RC 1. Last-release of that hold on dest p. */
@@ -661,10 +742,11 @@ afw_function_execute_slice(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the value at a zero-based index in an array. Negative indexes count
- * from the end (-1 is the last element). If the index is out of range, the
- * result is undefined. Bracket indexing a[index] uses the same out-of-range
- * result (undefined).
+ * Return the value at a zero-based index in an array, or the code point at a
+ * zero-based index in a string as a one-code-point string (as ECMAScript at
+ * does for both). Negative indexes count from the end (-1 is the last). If the
+ * index is out of range, the result is undefined. Bracket indexing a[index] and
+ * s[index] use the same out-of-range result (undefined).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -673,14 +755,14 @@ afw_function_execute_slice(
  *
  * ```
  *   function at(
- *       array: array,
+ *       array: any,
  *       index: integer
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   array - (array) Array to index.
+ *   array - (any) Array, or string, to index.
  *
  *   index - (integer) Zero-based index, or negative from the end.
  *
@@ -692,15 +774,48 @@ const afw_value_t *
 afw_function_execute_at(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *array;
+    const afw_value_t *source;
     const afw_value_integer_t *index;
     const afw_value_t *value;
+    const afw_utf8_t *s;
+    afw_utf8_t code_point;
+    afw_integer_t i;
+    afw_integer_t count;
+    afw_size_t start_offset;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(source, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(index, 2, integer);
 
-    value = afw_array_get_entry_value(array->internal, index->internal, x->xctx);
-    return value ? value : afw_value_undefined;
+    if (afw_value_is_array(source)) {
+        value = afw_array_get_entry_value(
+            ((const afw_value_array_t *)source)->internal,
+            index->internal, x->xctx);
+        return value ? value : afw_value_undefined;
+    }
+
+    /*
+     * A string (any value stored as UTF-8): the code point at index as a
+     * one-code-point string, as ECMAScript at does and s[i] (#583).
+     */
+    if (!impl_is_utf8_value(source, x->xctx)) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Parameter 1 of function 'at' must be an array or a string"
+            " but evaluated to be '%ku'",
+            &afw_value_get_data_type(source, x->xctx)->data_type_id);
+    }
+    s = AFW_VALUE_INTERNAL(source);
+    count = impl_code_point_count(s, x->xctx);
+    i = index->internal;
+    if (i < 0) {
+        i = count + i;
+    }
+    if (i < 0 || i >= count) {
+        return afw_value_undefined;
+    }
+    start_offset = impl_code_point_offset(s, i, x->xctx);
+    code_point.s = s->s + start_offset;
+    code_point.len = impl_code_point_offset(s, i + 1, x->xctx) - start_offset;
+    return afw_value_create_unmanaged_string(&code_point, x->p, x->xctx);
 }
 
 
