@@ -1795,7 +1795,7 @@ for (x of [], []) {}
 //? test: head-expr-obj-iterator-method
 //? description: for-of head must be iterable; plain object is not
 //? differences: Adaptive for-of uses keyless afw_iterator (array + utf8 sequences); ES uses @@iterator
-//? expect: error:for-of head must be an array or utf8 code-point sequence
+//? expect: error:for-of needs an array or string to iterate, not object
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1807,7 +1807,7 @@ for (x of {}) {}
 //? test: head-expr-primitive-iterator-method
 //? description: for-of head must be iterable; boolean primitive is not
 //? differences: Adaptive for-of uses keyless afw_iterator (array + utf8 sequences); ES uses @@iterator
-//? expect: error:for-of head must be an array or utf8 code-point sequence
+//? expect: error:for-of needs an array or string to iterate, not boolean
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1819,7 +1819,7 @@ for (x of false) {}
 //? test: head-expr-primitive-iterator-method-2
 //? description: for-of head must be iterable; number primitive is not
 //? differences: Adaptive for-of uses keyless afw_iterator (array + utf8 sequences); ES uses @@iterator
-//? expect: error:for-of head must be an array or utf8 code-point sequence
+//? expect: error:for-of needs an array or string to iterate, not integer
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1831,7 +1831,7 @@ for (x of 37) {}
 //? test: head-expr-to-obj
 //? description: for-of head null should fail (non-iterable)
 //? differences: Adaptive for-of uses keyless afw_iterator (array + utf8 sequences); ES ToObject / iterator
-//? expect: error:for-of head must be an array or utf8 code-point sequence
+//? expect: error:for-of needs an array or string to iterate, not null
 //? source: ...
 #!/usr/bin/env afw
 
