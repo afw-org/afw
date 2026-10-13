@@ -1090,6 +1090,8 @@ This is generate/docs presentation only; Adaptive function call semantics are un
 
 ## UTF-8 create, set, and ks encoding
 
+**Fixed ([#615](https://github.com/afw-org/afw/issues/615)):** combining marks out of canonical order were not reordered: when every mark passed the NFC quick check on its own (Hebrew points, for example), a string such as `"\u05D0\u05B1\u05B0"` was taken to be NFC and kept as written. Strings are now NFC in that case too. NFC normalization also no longer converts the whole value to UTF-16 and back when one part needs work: only that part is converted (a value with one decomposed accent near the end of 64 KB is about 5 times faster; ASCII, Latin, and CJK text are as fast or faster).
+
 **Fixed ([#615](https://github.com/afw-org/afw/issues/615)):** invalid UTF-8 that came after a combining mark (or another code point whose NFC quick check is not YES) was accepted: `afw_utf8_is_valid` said valid, and `decode_to_string("ZcyB/w=="base64Binary)` (`e`, U+0301, `0xFF`) put the raw byte into a string. It is now an error like any other invalid UTF-8.
 
 C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` is a copy**.
