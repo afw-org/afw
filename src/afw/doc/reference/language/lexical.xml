@@ -122,7 +122,10 @@ null</code>
         <literal>\d</literal>, and <literal>\b</literal>, and case-insensitive
         matching, follow Unicode for every language, and matching reads AFW's
         UTF-8 strings in place, with no conversion of the whole string. The syntax will look
-        familiar from ECMAScript, Perl, and Java. Where ICU's Unicode rules
+        familiar from ECMAScript, Perl, Python, and Java, and ICU follows the
+        Perl tradition that Python and Java also come from: where ICU and
+        ECMAScript differ below, ICU usually answers the way Perl, and often
+        Python and Java, do. Where ICU's Unicode rules
         give a different answer than ECMAScript or XML Schema regular
         expressions, the notes at the end of this section say what to write.
     </paragraph>
@@ -231,12 +234,13 @@ regexp_match("Ελλάδα", /^\w+$/);                        // true</code>
         <paragraph>
             ECMAScript keeps some rules for compatibility with its first,
             ASCII and UTF-16 days. AFW does not need them, so these give a
-            different answer than ECMAScript:
+            different answer than ECMAScript, most of them the same answer as
+            Perl and Python:
         </paragraph>
         <list>
-            <item><literal>\d</literal>, <literal>\w</literal>, and <literal>\b</literal> are Unicode: <literal>é</literal> is a word character and <literal>٣</literal> is a digit. For ASCII only, write <literal>[0-9]</literal> or <literal>[A-Za-z0-9_]</literal>.</item>
-            <item>The <literal>i</literal> flag uses full Unicode case folding: <literal>/strasse/i</literal> matches <literal>"Straße"</literal>.</item>
-            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value: <literal>regexp_match("ab\n", /^ab$/)</literal> is true. Write <literal>\z</literal> for the very end.</item>
+            <item><literal>\d</literal>, <literal>\w</literal>, and <literal>\b</literal> are Unicode, as in Perl and Python 3: <literal>é</literal> is a word character and <literal>٣</literal> is a digit. For ASCII only, write <literal>[0-9]</literal> or <literal>[A-Za-z0-9_]</literal>.</item>
+            <item>The <literal>i</literal> flag uses full Unicode case folding, as Perl does: <literal>/strasse/i</literal> matches <literal>"Straße"</literal>.</item>
+            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value, as in Perl, Python, and Java: <literal>regexp_match("ab\n", /^ab$/)</literal> is true. Write <literal>\z</literal> for the very end (and <literal>\Z</literal> for the end or just before a final line terminator, as in Perl and Java).</item>
             <item>The line terminators are LF, CR, CR LF, U+0085, U+2028, and U+2029, so <literal>.</literal> does not match U+0085.</item>
             <item><literal>[^]</literal> is a syntax error. Write <literal>[\s\S]</literal>, or use the <literal>s</literal> flag.</item>
             <item>A lookbehind must have a bounded length.</item>
