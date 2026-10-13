@@ -45,6 +45,6 @@ is_in<x500Name>(
 //? source: ...
 
 is_in<x500Name>(
-    "x"x500Name
+    "cn=x"x500Name
 )
 

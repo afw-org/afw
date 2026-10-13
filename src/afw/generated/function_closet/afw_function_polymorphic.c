@@ -399,9 +399,9 @@ afw_function_execute_freeze(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -448,9 +448,9 @@ afw_function_execute_ge(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -742,9 +742,9 @@ afw_function_execute_last_index_of(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -835,9 +835,9 @@ afw_function_execute_length(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *

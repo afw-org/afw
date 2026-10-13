@@ -963,37 +963,6 @@ def lt(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def match(session, arg1, arg2):
-    """
-    Checks if x500Name matches
-
-    Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
-    compared using `equal_<dataType>`.
-
-    Args:
-        arg1 (object):
-        arg2 (str):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "match",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def max(session, values):
     """
     Maximum value

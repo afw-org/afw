@@ -10,10 +10,8 @@
 //? expect: 0
 //? source: ...
 
-// [to_T, is_T, text, canonical text, bad text]. The parsers of anyURI,
-// dnsName, ia5String, ipAddress, objectId, objectPath, password,
-// rfc822Name, and x500Name accept any text today (#593), so they have no
-// bad text.
+// [to_T, is_T, text, canonical text, bad text]. anyURI, dnsName, ipAddress,
+// objectId, and password accept any text, so they have no bad text (#593).
 const rows = [
     [to_anyURI, is_anyURI, "https://example.com/a?b=c", "https://example.com/a?b=c", []],
     [to_base64Binary, is_base64Binary, "YWJj", "YWJj", ["@@@", "YWJ"]],
@@ -23,15 +21,15 @@ const rows = [
     [to_dnsName, is_dnsName, "example.com", "example.com", []],
     [to_double, is_double, "1.5", "1.5E0", ["nope", "5", "1.5x", " 1.5"]],
     [to_hexBinary, is_hexBinary, "0a1B", "0A1B", ["zz", "0a1"]],
-    [to_ia5String, is_ia5String, "abc", "abc", []],
+    [to_ia5String, is_ia5String, "abc", "abc", ["é", "a\u0080"]],
     [to_integer, is_integer, "-12", "-12", ["nope", "1.5", " 12", "12x"]],
     [to_ipAddress, is_ipAddress, "10.0.0.1", "10.0.0.1", []],
     [to_objectId, is_objectId, "abc", "abc", []],
-    [to_objectPath, is_objectPath, "/afw/_AdaptiveFunction_/add", "/afw/_AdaptiveFunction_/add", []],
+    [to_objectPath, is_objectPath, "/afw/_AdaptiveFunction_/add", "/afw/_AdaptiveFunction_/add", ["//", "/afw//x"]],
     [to_password, is_password, "secret", "secret", []],
-    [to_rfc822Name, is_rfc822Name, "a@example.com", "a@example.com", []],
+    [to_rfc822Name, is_rfc822Name, "a@Example.COM", "a@Example.COM", ["nope", "@example.com", "a@"]],
     [to_time, is_time, "01:02:03", "01:02:03", ["nope", "25:00:00"]],
-    [to_x500Name, is_x500Name, "cn=a,o=b", "cn=a,o=b", []],
+    [to_x500Name, is_x500Name, "CN=a, o=b", "CN=a, o=b", ["garbage", "cn=a,", "cn", "=a", "cn=a\\zz", "cn=#0", "cn=\"a"]],
     [to_yearMonthDuration, is_yearMonthDuration, "P1Y2M", "P1Y2M", ["nope", "P1D"]]
 ];
 
@@ -49,6 +47,21 @@ for (const [to_t, is_t, text, canonical, bad] of rows) {
         }
         assert(result === "threw", text + " bad text " + b);
     }
+}
+return 0;
+
+//?
+//? test: any-text
+//? description: anyURI, dnsName, ipAddress, objectId, and password read any text
+//? expect: 0
+//? source: ...
+
+for (const text of ["not a uri at all", "a b", "999.1.1.1", "a/b", ""]) {
+    assert(to_string(to_anyURI(text)) === text, "anyURI " + text);
+    assert(to_string(to_dnsName(text)) === text, "dnsName " + text);
+    assert(to_string(to_ipAddress(text)) === text, "ipAddress " + text);
+    assert(to_string(to_objectId(text)) === text, "objectId " + text);
+    assert(to_string(to_password(text)) === text, "password " + text);
 }
 return 0;
 

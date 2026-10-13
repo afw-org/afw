@@ -60,8 +60,8 @@ union<x500Name>(
 
 union<x500Name>(
     array<x500Name>(
-        "x"x500Name,
-        "x"x500Name
+        "cn=x"x500Name,
+        "cn=x"x500Name
     )
 )
 

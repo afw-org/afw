@@ -174,68 +174,6 @@ def eqx_rfc822Name(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def ge_rfc822Name(session, arg1, arg2):
-    """
-    Checks for greater than or equal
-
-    Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and
-    return the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "ge<rfc822Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def gt_rfc822Name(session, arg1, arg2):
-    """
-    Checks for greater than
-
-    Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return the
-    boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "gt<rfc822Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def intersection_rfc822Name(session, array1, array2):
     """
     Returns intersection of two arrays
@@ -318,99 +256,6 @@ def is_rfc822Name(session, value):
     action = {
         "function": "is_rfc822Name",
         "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def le_rfc822Name(session, arg1, arg2):
-    """
-    Checks for less than or equal
-
-    Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
-    return the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "le<rfc822Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def lt_rfc822Name(session, arg1, arg2):
-    """
-    Checks for less than
-
-    Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the
-    boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "lt<rfc822Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def match_rfc822Name(session, arg1, arg2):
-    """
-    Checks if x500Name matches
-
-    Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
-    compared using equal_rfc822Name.
-
-    Args:
-        arg1 (object):
-        arg2 (str):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "match<rfc822Name>",
-        "arg1": arg1,
-        "arg2": arg2
     }
 
     request.add_action(action)
@@ -536,6 +381,46 @@ def regexp_match_rfc822Name(session, value, regexp):
         "function": "regexp_match<rfc822Name>",
         "value": value,
         "regexp": regexp
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def rfc822Name_match(session, pattern, value):
+    """
+    Checks if an rfc822Name matches a complete or partial pattern
+
+    Returns true if value matches pattern, a complete or partial rfc822Name.
+    
+    If pattern is a complete mailbox, such as "Anderson@sun.com", it matches
+    that mailbox: the local part exactly and the domain part ignoring case.
+    
+    If pattern is a domain, such as "sun.com", it matches every mailbox at
+    exactly that domain (ignoring case), not at its subdomains.
+    
+    If pattern is a domain that starts with ".", such as ".east.sun.com", it
+    matches every mailbox in a subdomain of it, such as
+    "Anderson@a.east.sun.com", but not at "east.sun.com" itself.
+
+    Args:
+        pattern (str): A mailbox, a domain, or a domain that starts with ".".
+        value (object): The rfc822Name to check.
+
+    Returns:
+        bool: True if value matches pattern.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "rfc822Name_match",
+        "pattern": pattern,
+        "value": value
     }
 
     request.add_action(action)

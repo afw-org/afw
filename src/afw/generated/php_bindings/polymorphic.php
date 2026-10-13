@@ -819,31 +819,6 @@ class polymorphic
     }
 
     /**
-     * match()
-     *
-     * Returns true if arg1 matches some terminal sequence of RDNs from arg2
-     * when compared using `equal_<dataType>`.
-     *
-     * @param $arg1
-     * @param string $arg2
-     *
-     * @return boolean
-     */
-    public function match(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "match");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * max()
      *
      * Return the `<dataType>` value that is greater than or equal to the

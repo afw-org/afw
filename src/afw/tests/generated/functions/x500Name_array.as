@@ -40,6 +40,6 @@ array<x500Name>(
 //? source: ...
 
 array<x500Name>(
-    "x"x500Name
+    "cn=x"x500Name
 )
 

@@ -18,18 +18,14 @@ our @EXPORT_OK = qw(
     at_least_one_member_of_rfc822Name 
     eq_rfc822Name 
     eqx_rfc822Name 
-    ge_rfc822Name 
-    gt_rfc822Name 
     intersection_rfc822Name 
     is_in_rfc822Name 
     is_rfc822Name 
-    le_rfc822Name 
-    lt_rfc822Name 
-    match_rfc822Name 
     ne_rfc822Name 
     nex_rfc822Name 
     one_and_only_rfc822Name 
     regexp_match_rfc822Name 
+    rfc822Name_match 
     set_equals_rfc822Name 
     subset_rfc822Name 
     to_string_rfc822Name 
@@ -121,34 +117,6 @@ Checks for equal and type
     $arg2
 
 
-=head3 ge_rfc822Name
-
-Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and
-return the boolean result.
-Checks for greater than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 gt_rfc822Name
-
-Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return the
-boolean result.
-Checks for greater than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
 =head3 intersection_rfc822Name
 
 Returns an array of rfc822Name with the values that are common to both array
@@ -190,48 +158,6 @@ Checks whether value is dataType rfc822Name
     $value
 
 Value to check
-
-=head3 le_rfc822Name
-
-Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and return
-the boolean result.
-Checks for less than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 lt_rfc822Name
-
-Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the boolean
-result.
-Checks for less than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 match_rfc822Name
-
-Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
-compared using equal_rfc822Name.
-Checks if x500Name matches
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
 
 =head3 ne_rfc822Name
 
@@ -288,6 +214,31 @@ Search for a match using a regular expression
 
     $regexp
 
+
+=head3 rfc822Name_match
+
+Returns true if value matches pattern, a complete or partial rfc822Name.
+
+If pattern is a complete mailbox, such as "Anderson@sun.com", it matches that
+mailbox: the local part exactly and the domain part ignoring case.
+
+If pattern is a domain, such as "sun.com", it matches every mailbox at exactly
+that domain (ignoring case), not at its subdomains.
+
+If pattern is a domain that starts with ".", such as ".east.sun.com", it
+matches every mailbox in a subdomain of it, such as "Anderson@a.east.sun.com",
+but not at "east.sun.com" itself.
+Checks if an rfc822Name matches a complete or partial pattern
+
+=head4 Parameters
+
+    $pattern
+
+A mailbox, a domain, or a domain that starts with ".".
+
+    $value
+
+The rfc822Name to check.
 
 =head3 set_equals_rfc822Name
 
@@ -403,30 +354,6 @@ sub eqx_rfc822Name {
     return $request->getResult();
 }
 
-sub ge_rfc822Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "ge<rfc822Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub gt_rfc822Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "gt<rfc822Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
 sub intersection_rfc822Name {
     my ($array1, $array2) = @_;
 
@@ -458,42 +385,6 @@ sub is_rfc822Name {
 
     $request->set("function" => "is_rfc822Name");
     $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub le_rfc822Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "le<rfc822Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub lt_rfc822Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "lt<rfc822Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub match_rfc822Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "match<rfc822Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
 
     return $request->getResult();
 }
@@ -541,6 +432,18 @@ sub regexp_match_rfc822Name {
     $request->set("function" => "regexp_match<rfc822Name>");
     $request->set("value", $value);
     $request->set("regexp", $regexp);
+
+    return $request->getResult();
+}
+
+sub rfc822Name_match {
+    my ($pattern, $value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "rfc822Name_match");
+    $request->set("pattern", $pattern);
+    $request->set("value", $value);
 
     return $request->getResult();
 }

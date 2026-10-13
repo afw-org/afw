@@ -134,56 +134,6 @@ class dnsName
     }
 
     /**
-     * ge_dnsName()
-     *
-     * Checks for dnsName arg1 is greater than or equal to dnsName arg2 and
-     * return the boolean result.
-     *
-     * @param dnsName $arg1
-     * @param dnsName $arg2
-     *
-     * @return boolean
-     */
-    public function ge_dnsName(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "ge<dnsName>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * gt_dnsName()
-     *
-     * Checks for dnsName arg1 is greater than dnsName arg2 and return the
-     * boolean result.
-     *
-     * @param dnsName $arg1
-     * @param dnsName $arg2
-     *
-     * @return boolean
-     */
-    public function gt_dnsName(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "gt<dnsName>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * is_dnsName()
      *
      * Checks whether value is dataType dnsName and returns the boolean
@@ -227,56 +177,6 @@ class dnsName
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
         $request->set("array", $array);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * le_dnsName()
-     *
-     * Checks for dnsName arg1 is less than or equal to dnsName arg2 and
-     * return the boolean result.
-     *
-     * @param dnsName $arg1
-     * @param $arg2
-     *
-     * @return boolean
-     */
-    public function le_dnsName(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "le<dnsName>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * lt_dnsName()
-     *
-     * Checks for dnsName arg1 is less that dnsName arg2 and return the
-     * boolean result.
-     *
-     * @param dnsName $arg1
-     * @param dnsName $arg2
-     *
-     * @return boolean
-     */
-    public function lt_dnsName(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "lt<dnsName>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

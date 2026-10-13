@@ -143,68 +143,6 @@ def eqx_dnsName(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def ge_dnsName(session, arg1, arg2):
-    """
-    Checks for greater than or equal
-
-    Checks for dnsName arg1 is greater than or equal to dnsName arg2 and
-    return the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "ge<dnsName>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def gt_dnsName(session, arg1, arg2):
-    """
-    Checks for greater than
-
-    Checks for dnsName arg1 is greater than dnsName arg2 and return the
-    boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "gt<dnsName>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def is_dnsName(session, value):
     """
     Checks whether value is dataType dnsName
@@ -255,68 +193,6 @@ def is_in_dnsName(session, value, array):
         "function": "is_in<dnsName>",
         "value": value,
         "array": array
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def le_dnsName(session, arg1, arg2):
-    """
-    Checks for less than or equal
-
-    Checks for dnsName arg1 is less than or equal to dnsName arg2 and return
-    the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "le<dnsName>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def lt_dnsName(session, arg1, arg2):
-    """
-    Checks for less than
-
-    Checks for dnsName arg1 is less that dnsName arg2 and return the boolean
-    result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "lt<dnsName>",
-        "arg1": arg1,
-        "arg2": arg2
     }
 
     request.add_action(action)

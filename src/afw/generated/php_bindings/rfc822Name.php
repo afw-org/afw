@@ -159,56 +159,6 @@ class rfc822Name
     }
 
     /**
-     * ge_rfc822Name()
-     *
-     * Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2
-     * and return the boolean result.
-     *
-     * @param rfc822Name $arg1
-     * @param rfc822Name $arg2
-     *
-     * @return boolean
-     */
-    public function ge_rfc822Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "ge<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * gt_rfc822Name()
-     *
-     * Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return
-     * the boolean result.
-     *
-     * @param rfc822Name $arg1
-     * @param rfc822Name $arg2
-     *
-     * @return boolean
-     */
-    public function gt_rfc822Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "gt<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * intersection_rfc822Name()
      *
      * Returns an array of rfc822Name with the values that are common to both
@@ -277,81 +227,6 @@ class rfc822Name
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * le_rfc822Name()
-     *
-     * Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
-     * return the boolean result.
-     *
-     * @param rfc822Name $arg1
-     * @param $arg2
-     *
-     * @return boolean
-     */
-    public function le_rfc822Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "le<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * lt_rfc822Name()
-     *
-     * Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the
-     * boolean result.
-     *
-     * @param rfc822Name $arg1
-     * @param rfc822Name $arg2
-     *
-     * @return boolean
-     */
-    public function lt_rfc822Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "lt<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * match_rfc822Name()
-     *
-     * Returns true if arg1 matches some terminal sequence of RDNs from arg2
-     * when compared using equal_rfc822Name.
-     *
-     * @param rfc822Name $arg1
-     * @param string $arg2
-     *
-     * @return boolean
-     */
-    public function match_rfc822Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "match<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -453,6 +328,43 @@ class rfc822Name
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
         $request->set("regexp", $regexp);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * rfc822Name_match()
+     *
+     * Returns true if value matches pattern, a complete or partial
+     * rfc822Name.
+     * 
+     * If pattern is a complete mailbox, such as "Anderson@sun.com", it
+     * matches that mailbox: the local part exactly and the domain part
+     * ignoring case.
+     * 
+     * If pattern is a domain, such as "sun.com", it matches every mailbox at
+     * exactly that domain (ignoring case), not at its subdomains.
+     * 
+     * If pattern is a domain that starts with ".", such as ".east.sun.com",
+     * it matches every mailbox in a subdomain of it, such as
+     * "Anderson@a.east.sun.com", but not at "east.sun.com" itself.
+     *
+     * @param string $pattern A mailbox, a domain, or a domain that starts
+     *                        with ".".
+     * @param rfc822Name $value The rfc822Name to check.
+     *
+     * @return boolean True if value matches pattern.
+     */
+    public function rfc822Name_match(, $pattern, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "rfc822Name_match");
+
+        /* pass along required parameters to the request payload */
+        $request->set("pattern", $pattern);
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

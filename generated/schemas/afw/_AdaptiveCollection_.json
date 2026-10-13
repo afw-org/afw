@@ -34,7 +34,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -69,7 +68,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -111,7 +109,6 @@
         },
         "originURI": {
             "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
-            "format": "uri-reference",
             "markdownDescription": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
             "title": "Origin URI",
             "type": "string"

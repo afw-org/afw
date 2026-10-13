@@ -1,9 +1,9 @@
 {
-    "brief": "A X.500 distinguished name",
+    "brief": "An X.500 distinguished name",
     "cType": "afw_utf8_t",
     "dataType": "x500Name",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'x500Name' holds a X.500 distinguished name. In a script, write one as a typed literal: \"cn=a,o=b\"x500Name or \"cn=a,o=b\"dn.",
+    "description": "Data type 'x500Name' holds an X.500 distinguished name in the string form of RFC 4514 (RFC 2253 forms are also read). Text read as an x500Name must parse as a distinguished name; other text is an error. The text is kept as written. Two x500Name values are equal when each of their RDNs is the same: attribute types ignore case and a type's name equals its OID (\"cn\" is \"2.5.4.3\"), values ignore case and leading, trailing, and repeated spaces, and the parts of a multi-valued RDN may be in any order. So \"cn=A,o=B\"x500Name equals \"CN=a, O=b\"x500Name. It has no ordering. Use x500Name_match() to check that a name ends with the RDNs of another. In a script, write one as a typed literal: \"cn=a,o=b\"x500Name or \"cn=a,o=b\"dn.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",

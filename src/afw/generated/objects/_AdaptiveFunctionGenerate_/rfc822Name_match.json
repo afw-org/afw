@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRfc822NameMatch",
+    "brief": "Checks if an rfc822Name matches a complete or partial pattern",
+    "camelCaseFunctionLabel": "rfc822NameMatch",
+    "category": "rfc822Name",
+    "description": "Returns true if value matches pattern, a complete or partial rfc822Name.\n\nIf pattern is a complete mailbox, such as \"Anderson@sun.com\", it matches that mailbox: the local part exactly and the domain part ignoring case.\n\nIf pattern is a domain, such as \"sun.com\", it matches every mailbox at exactly that domain (ignoring case), not at its subdomains.\n\nIf pattern is a domain that starts with \".\", such as \".east.sun.com\", it matches every mailbox in a subdomain of it, such as \"Anderson@a.east.sun.com\", but not at \"east.sun.com\" itself.",
+    "functionId": "rfc822Name_match",
+    "functionLabel": "rfc822Name_match",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "A mailbox, a domain, or a domain that starts with \".\".",
+            "name": "pattern"
+        },
+        {
+            "dataType": "rfc822Name",
+            "description": "The rfc822Name to check.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "True if value matches pattern."
+    }
+}

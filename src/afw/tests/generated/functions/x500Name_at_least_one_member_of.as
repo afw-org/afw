@@ -48,8 +48,8 @@ at_least_one_member_of<x500Name>(
 
 at_least_one_member_of<x500Name>(
     array<x500Name>(
-        "x"x500Name,
-        "x"x500Name
+        "cn=x"x500Name,
+        "cn=x"x500Name
     )
 )
 

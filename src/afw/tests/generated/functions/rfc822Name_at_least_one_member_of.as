@@ -54,8 +54,8 @@ at_least_one_member_of<rfc822Name>(
 
 at_least_one_member_of<rfc822Name>(
     array<rfc822Name>(
-        "x"rfc822Name,
-        "x"rfc822Name
+        "x@y"rfc822Name,
+        "x@y"rfc822Name
     )
 )
 

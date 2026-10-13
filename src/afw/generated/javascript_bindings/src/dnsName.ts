@@ -105,48 +105,6 @@ export function afwEqxDnsName(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return
- * the boolean result.
- * 
- * @param {dnsName} arg1 -
- * 
- * @param {dnsName} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGeDnsName(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "ge<dnsName>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean
- * result.
- * 
- * @param {dnsName} arg1 -
- * 
- * @param {dnsName} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGtDnsName(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "gt<dnsName>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
  * Checks whether value is dataType dnsName and returns the boolean result. It
  * is false for undefined. This can also be written `is<dnsName>(value`).
  * 
@@ -181,48 +139,6 @@ export function afwIsInDnsName(client : any, value : any, array : any[]) : any {
     _action["function"] = "is_in<dnsName>";
     _action["value"] = value;
     _action["array"] = array;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for dnsName arg1 is less than or equal to dnsName arg2 and return
- * the boolean result.
- * 
- * @param {dnsName} arg1 -
- * 
- * @param {} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLeDnsName(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "le<dnsName>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for dnsName arg1 is less that dnsName arg2 and return the boolean
- * result.
- * 
- * @param {dnsName} arg1 -
- * 
- * @param {dnsName} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLtDnsName(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "lt<dnsName>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
 
     return client.perform(_action);
 }

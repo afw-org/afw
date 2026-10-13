@@ -1,9 +1,9 @@
 {
-    "brief": "A RFC 822 name",
+    "brief": "An electronic mail address",
     "cType": "afw_utf8_t",
     "dataType": "rfc822Name",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'rfc822Name' holds a string value that conforms to RFC822: local-part@domain. In a script, write one as a typed literal: \"a@example.com\"rfc822Name or \"a@example.com\"rfc822.",
+    "description": "Data type 'rfc822Name' holds an electronic mail address, a mailbox as RFC 2821 defines it: local-part@domain. Text read as an rfc822Name must have a local part, \"@\", and a domain part; other text is an error. The text is kept as written. Two rfc822Name values are equal when their local parts are the same and their domain parts are the same ignoring case, so \"a@Example.COM\"rfc822Name equals \"a@example.com\"rfc822Name. It has no ordering. Use rfc822Name_match() to match a mailbox, a domain, or a subdomain. In a script, write one as a typed literal: \"a@example.com\"rfc822Name or \"a@example.com\"rfc822.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",

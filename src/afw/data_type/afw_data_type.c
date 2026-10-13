@@ -907,7 +907,7 @@ impl_afw_data_type_hexBinary_utf8_to_internal(
 
 /* Data type ia5String ... */
 
-/* Data type ia5String to utf8. */
+/* Data type ia5String to internal. Every character must be ASCII. */
 static void
 impl_afw_data_type_ia5String_utf8_to_internal(
     const afw_data_type_t * instance,
@@ -916,6 +916,16 @@ impl_afw_data_type_ia5String_utf8_to_internal(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
+    afw_size_t i;
+
+    for (i = 0; i < from_utf8->len; i++) {
+        if ((unsigned char)from_utf8->s[i] > 127) {
+            AFW_THROW_ERROR_FZ(conversion_error, xctx,
+                "Invalid ia5String '%ku': every character must be ASCII",
+                from_utf8);
+        }
+    }
+
     /* Input must already be NFC. */
     memcpy(to_internal, from_utf8, sizeof(afw_utf8_t));
 }
@@ -1255,7 +1265,7 @@ impl_afw_data_type_objectId_utf8_to_internal(
 }
 
 
-/* Data type objectPath to utf8. */
+/* Data type objectPath to internal. The text must parse as a path. */
 static void
 impl_afw_data_type_objectPath_utf8_to_internal(
     const afw_data_type_t * instance,
@@ -1264,12 +1274,35 @@ impl_afw_data_type_objectPath_utf8_to_internal(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
+    const afw_pool_t *parse_p;
+    afw_boolean_t volatile valid;
+
+    /* Parse in a heap of its own; only whether it parses is kept. */
+    valid = true;
+    parse_p = afw_pool_heap_create(xctx->p, xctx->env->small_chunk_min, xctx);
+    AFW_TRY {
+        afw_object_path_parse(from_utf8, NULL, NULL, parse_p, xctx);
+    }
+    AFW_CATCH(syntax) {
+        valid = false;
+    }
+    AFW_FINALLY {
+        afw_pool_release(parse_p, xctx);
+    }
+    AFW_ENDTRY;
+
+    if (!valid) {
+        AFW_THROW_ERROR_FZ(conversion_error, xctx,
+            "Invalid objectPath '%ku'",
+            from_utf8);
+    }
+
     /* Input must already be NFC. */
     memcpy(to_internal, from_utf8, sizeof(afw_utf8_t));
 }
 
 
-/* Data type rfc822Name to utf8. */
+/* Data type rfc822Name to internal. */
 static void
 impl_afw_data_type_rfc822Name_utf8_to_internal(
     const afw_data_type_t * instance,
@@ -1278,8 +1311,22 @@ impl_afw_data_type_rfc822Name_utf8_to_internal(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
+    afw_data_type_rfc822Name_check(from_utf8, xctx);
+
     /* Input must already be NFC. */
     memcpy(to_internal, from_utf8, sizeof(afw_utf8_t));
+}
+
+
+/* Data type rfc822Name compare. */
+static int
+impl_afw_data_type_rfc822Name_compare_internal(
+    const afw_data_type_t * instance,
+    const void * value1,
+    const void * value2,
+    afw_xctx_t *xctx)
+{
+    return afw_data_type_rfc822Name_compare(value1, value2, xctx);
 }
 
 
@@ -1330,8 +1377,22 @@ impl_afw_data_type_x500Name_utf8_to_internal(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
+    afw_data_type_x500Name_check(from_utf8, xctx);
+
     /* Input must already be NFC. */
     memcpy(to_internal, from_utf8, sizeof(afw_utf8_t));
+}
+
+
+/* Data type x500Name compare. */
+static int
+impl_afw_data_type_x500Name_compare_internal(
+    const afw_data_type_t * instance,
+    const void * value1,
+    const void * value2,
+    afw_xctx_t *xctx)
+{
+    return afw_data_type_x500Name_compare(value1, value2, xctx);
 }
 
 
@@ -2621,7 +2682,7 @@ IMPL_DATA_TYPE_INF(
     rfc822Name,           /* data type id      */
     utf8,                 /* to utf8           */
     rfc822Name,           /* to internal       */
-    utf8,                 /* compare           */
+    rfc822Name,           /* compare           */
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
@@ -2722,7 +2783,7 @@ IMPL_DATA_TYPE_INF(
     x500Name,             /* data type id      */
     utf8,                 /* to utf8           */
     x500Name,             /* to internal       */
-    utf8,                 /* compare           */
+    x500Name,             /* compare           */
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */

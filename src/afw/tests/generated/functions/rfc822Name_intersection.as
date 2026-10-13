@@ -55,8 +55,8 @@ intersection<rfc822Name>(
 
 intersection<rfc822Name>(
     array<rfc822Name>(
-        "x"rfc822Name,
-        "x"rfc822Name
+        "x@y"rfc822Name,
+        "x@y"rfc822Name
     )
 )
 

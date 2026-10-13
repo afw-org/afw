@@ -24,8 +24,8 @@ one_and_only<x500Name>(
 
 one_and_only<x500Name>(
     array<x500Name>(
-        "x"x500Name,
-        "x"x500Name
+        "cn=x"x500Name,
+        "cn=x"x500Name
     )
 )
 

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwX500NameMatch",
+    "brief": "Checks if an x500Name ends with the RDNs of another",
+    "camelCaseFunctionLabel": "x500NameMatch",
+    "category": "x500Name",
+    "description": "Returns true if the RDNs of pattern are the last RDNs of value, compared as x500Name equality compares them. For example, \"O=Medico Corp,C=US\"x500Name matches \"cn=John Smith,o=Medico Corp, c=US\"x500Name.",
+    "functionId": "x500Name_match",
+    "functionLabel": "x500Name_match",
+    "parameters": [
+        {
+            "dataType": "x500Name",
+            "description": "The RDNs value must end with.",
+            "name": "pattern"
+        },
+        {
+            "dataType": "x500Name",
+            "description": "The x500Name to check.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "True if value ends with the RDNs of pattern."
+    }
+}

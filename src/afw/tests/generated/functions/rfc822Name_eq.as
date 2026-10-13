@@ -6,8 +6,8 @@
 //? sourceType: script
 //?
 //? test: eq<rfc822Name>-1
-//? description: x
-//? expect: boolean(false)
+//? description: the domain part ignores case
+//? expect: boolean(true)
 //? source: ...
 
 eq<rfc822Name>(
@@ -27,12 +27,23 @@ eq<rfc822Name>(
 )
 
 //?
+//? test: eq<rfc822Name>-local-part
+//? description: the local part is case sensitive
+//? expect: boolean(false)
+//? source: ...
+
+eq<rfc822Name>(
+    "localPart@DOMAINPart"rfc822Name,
+    "LocalPart@DOMAINPart"rfc822Name
+)
+
+//?
 //? test: eq<rfc822Name>-3
 //? description: Invalid arguments test.
 //? expect: error
 //? source: ...
 
 eq<rfc822Name>(
-    "x"rfc822Name
+    "x@y"rfc822Name
 )
 

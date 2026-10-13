@@ -17,12 +17,8 @@ our @EXPORT_OK = qw(
     as_dnsName 
     eq_dnsName 
     eqx_dnsName 
-    ge_dnsName 
-    gt_dnsName 
     is_dnsName 
     is_in_dnsName 
-    le_dnsName 
-    lt_dnsName 
     ne_dnsName 
     nex_dnsName 
     one_and_only_dnsName 
@@ -98,34 +94,6 @@ Checks for equal and type
     $arg2
 
 
-=head3 ge_dnsName
-
-Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return
-the boolean result.
-Checks for greater than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 gt_dnsName
-
-Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean
-result.
-Checks for greater than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
 =head3 is_dnsName
 
 Checks whether value is dataType dnsName and returns the boolean result. It is
@@ -150,34 +118,6 @@ Checks whether a value is in an array
 
 
     $array
-
-
-=head3 le_dnsName
-
-Checks for dnsName arg1 is less than or equal to dnsName arg2 and return the
-boolean result.
-Checks for less than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 lt_dnsName
-
-Checks for dnsName arg1 is less that dnsName arg2 and return the boolean
-result.
-Checks for less than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
 
 
 =head3 ne_dnsName
@@ -295,30 +235,6 @@ sub eqx_dnsName {
     return $request->getResult();
 }
 
-sub ge_dnsName {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "ge<dnsName>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub gt_dnsName {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "gt<dnsName>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
 sub is_dnsName {
     my ($value) = @_;
 
@@ -338,30 +254,6 @@ sub is_in_dnsName {
     $request->set("function" => "is_in<dnsName>");
     $request->set("value", $value);
     $request->set("array", $array);
-
-    return $request->getResult();
-}
-
-sub le_dnsName {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "le<dnsName>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub lt_dnsName {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "lt<dnsName>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
 
     return $request->getResult();
 }

@@ -26,8 +26,7 @@ to_rfc822Name<string>(
 
 //?
 //? test: to_rfc822Name<string>-3
-//? skip: true
-//? description: Invalid arguments test.
+//? description: text without '@' is not an rfc822Name
 //? expect: error
 //? source: ...
 

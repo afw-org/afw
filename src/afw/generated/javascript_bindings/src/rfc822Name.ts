@@ -127,48 +127,6 @@ export function afwEqxRfc822Name(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and
- * return the boolean result.
- * 
- * @param {rfc822Name} arg1 -
- * 
- * @param {rfc822Name} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGeRfc822Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "ge<rfc822Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return the
- * boolean result.
- * 
- * @param {rfc822Name} arg1 -
- * 
- * @param {rfc822Name} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGtRfc822Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "gt<rfc822Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
  * Returns an array of rfc822Name with the values that are common to both
  * array of rfc822Name array1 and array2.
  * 
@@ -225,69 +183,6 @@ export function afwIsRfc822Name(client : any, value : any) : any {
 
     _action["function"] = "is_rfc822Name";
     _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
- * return the boolean result.
- * 
- * @param {rfc822Name} arg1 -
- * 
- * @param {} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLeRfc822Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "le<rfc822Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the
- * boolean result.
- * 
- * @param {rfc822Name} arg1 -
- * 
- * @param {rfc822Name} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLtRfc822Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "lt<rfc822Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using equal_rfc822Name.
- * 
- * @param {rfc822Name} arg1 -
- * 
- * @param {string} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwMatchRfc822Name(client : any, arg1 : any, arg2 : string) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "match<rfc822Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
 
     return client.perform(_action);
 }
@@ -372,6 +267,37 @@ export function afwRegexpMatchRfc822Name(client : any, value : any, regexp : str
     _action["function"] = "regexp_match<rfc822Name>";
     _action["value"] = value;
     _action["regexp"] = regexp;
+
+    return client.perform(_action);
+}
+
+/**
+ * Returns true if value matches pattern, a complete or partial rfc822Name.
+ * 
+ * If pattern is a complete mailbox, such as "Anderson@sun.com", it matches
+ * that mailbox: the local part exactly and the domain part ignoring case.
+ * 
+ * If pattern is a domain, such as "sun.com", it matches every mailbox at
+ * exactly that domain (ignoring case), not at its subdomains.
+ * 
+ * If pattern is a domain that starts with ".", such as ".east.sun.com", it
+ * matches every mailbox in a subdomain of it, such as
+ * "Anderson@a.east.sun.com", but not at "east.sun.com" itself.
+ * 
+ * @param {string} pattern - A mailbox, a domain, or a domain that starts with
+ *     ".".
+ * 
+ * @param {rfc822Name} value - The rfc822Name to check.
+ * 
+ * @returns {boolean} True if value matches pattern.
+ */
+export function afwRfc822NameMatch(client : any, pattern : string, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "rfc822Name_match";
+    _action["pattern"] = pattern;
+    _action["value"] = value;
 
     return client.perform(_action);
 }

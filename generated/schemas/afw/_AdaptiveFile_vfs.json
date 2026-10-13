@@ -49,7 +49,6 @@
                 },
                 "vfsPath": {
                     "description": "This is the vfs path within this instance of Adaptive Framework. This property is read-only.",
-                    "format": "uri-reference",
                     "markdownDescription": "**VFS Path**\n\nThis is the vfs path within this instance of Adaptive Framework. This property is read-only.",
                     "readOnly": true,
                     "title": "VFS Path",
@@ -97,7 +96,6 @@
                 },
                 "vfsPath": {
                     "description": "This is the vfs path within this instance of Adaptive Framework. This property is read-only.",
-                    "format": "uri-reference",
                     "markdownDescription": "**VFS Path**\n\nThis is the vfs path within this instance of Adaptive Framework. This property is read-only.",
                     "readOnly": true,
                     "title": "VFS Path",
@@ -155,7 +153,6 @@
         },
         "vfsPath": {
             "description": "This is the vfs path within this instance of Adaptive Framework. This property is read-only.",
-            "format": "uri-reference",
             "markdownDescription": "**VFS Path**\n\nThis is the vfs path within this instance of Adaptive Framework. This property is read-only.",
             "readOnly": true,
             "title": "VFS Path",

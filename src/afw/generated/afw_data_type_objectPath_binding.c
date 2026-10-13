@@ -329,7 +329,7 @@ afw_data_type_objectPath_direct = {
     AFW_UTF8_LITERAL("objectPath"),
     (const afw_value_t *)&impl_data_type_id_value_objectPath,
     AFW_UTF8_LITERAL("An adaptive object's object path"),
-    AFW_UTF8_LITERAL("Data type 'objectPath' is the path within the same instance of Adaptive Framework of an object. Its form is /<adapterId>/<objectType>/<objectId> where <adapterId> is an adapter id, <objectType> is the object id of an object type, and <objectId> is the id of an object. In a script, write one as a typed literal: \"/afw/_AdaptiveObjectType_/_AdaptiveDataType_\"objectPath."),
+    AFW_UTF8_LITERAL("Data type 'objectPath' is the path within the same instance of Adaptive Framework of an object. Its form is /<adapterId>/<objectType>/<objectId> where <adapterId> is an adapter id, <objectType> is the object id of an object type, and <objectId> is the id of an object. Text read as an objectPath must parse as an object path; other text is an error. In a script, write one as a typed literal: \"/afw/_AdaptiveObjectType_/_AdaptiveDataType_\"objectPath."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_objectPath,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

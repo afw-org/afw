@@ -159,56 +159,6 @@ class x500Name
     }
 
     /**
-     * ge_x500Name()
-     *
-     * Checks for x500Name arg1 is greater than or equal to x500Name arg2 and
-     * return the boolean result.
-     *
-     * @param x500Name $arg1
-     * @param x500Name $arg2
-     *
-     * @return boolean
-     */
-    public function ge_x500Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "ge<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * gt_x500Name()
-     *
-     * Checks for x500Name arg1 is greater than x500Name arg2 and return the
-     * boolean result.
-     *
-     * @param x500Name $arg1
-     * @param x500Name $arg2
-     *
-     * @return boolean
-     */
-    public function gt_x500Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "gt<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * intersection_x500Name()
      *
      * Returns an array of x500Name with the values that are common to both
@@ -277,81 +227,6 @@ class x500Name
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * le_x500Name()
-     *
-     * Checks for x500Name arg1 is less than or equal to x500Name arg2 and
-     * return the boolean result.
-     *
-     * @param x500Name $arg1
-     * @param $arg2
-     *
-     * @return boolean
-     */
-    public function le_x500Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "le<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * lt_x500Name()
-     *
-     * Checks for x500Name arg1 is less that x500Name arg2 and return the
-     * boolean result.
-     *
-     * @param x500Name $arg1
-     * @param x500Name $arg2
-     *
-     * @return boolean
-     */
-    public function lt_x500Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "lt<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * match_x500Name()
-     *
-     * Returns true if arg1 matches some terminal sequence of RDNs from arg2
-     * when compared using equal_x500Name.
-     *
-     * @param x500Name $arg1
-     * @param string $arg2
-     *
-     * @return boolean
-     */
-    public function match_x500Name(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "match<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -549,6 +424,32 @@ class x500Name
 
         /* pass along required parameters to the request payload */
         $request->set("arrays", $arrays);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * x500Name_match()
+     *
+     * Returns true if the RDNs of pattern are the last RDNs of value,
+     * compared as x500Name equality compares them. For example, "O=Medico
+     * Corp,C=US"x500Name matches "cn=John Smith,o=Medico Corp, c=US"x500Name.
+     *
+     * @param x500Name $pattern The RDNs value must end with.
+     * @param x500Name $value The x500Name to check.
+     *
+     * @return boolean True if value ends with the RDNs of pattern.
+     */
+    public function x500Name_match(, $pattern, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "x500Name_match");
+
+        /* pass along required parameters to the request payload */
+        $request->set("pattern", $pattern);
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
