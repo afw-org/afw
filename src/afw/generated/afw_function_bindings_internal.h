@@ -26506,7 +26506,7 @@ afw_function_definition_read;
  * ```
  *   function read(
  *       streamNumber: integer,
- *       n: any
+ *       n: integer
  *   ): string;
  * ```
  *
@@ -26514,7 +26514,7 @@ afw_function_definition_read;
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read (0 or more, up to
+ *   n - (integer) The maximum number of octets to read (0 or more, up to
  *       1,000,000).
  *
  * Returns:
@@ -26550,7 +26550,7 @@ afw_function_definition_read_to_base64Binary;
  * ```
  *   function read_to_base64Binary(
  *       streamNumber: integer,
- *       n: any
+ *       n: integer
  *   ): base64Binary;
  * ```
  *
@@ -26558,7 +26558,7 @@ afw_function_definition_read_to_base64Binary;
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read (0 or more, up to
+ *   n - (integer) The maximum number of octets to read (0 or more, up to
  *       1,000,000).
  *
  * Returns:

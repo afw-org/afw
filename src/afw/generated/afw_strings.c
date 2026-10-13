@@ -24123,6 +24123,12 @@ afw_self_v_zz__0ba8973ae51f = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__0bac102489a4 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__0bac102489a4)
+};
+
+const afw_value_string_t
 afw_self_v_zz__0bc5b1d95df4 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__0bc5b1d95df4)
@@ -24606,12 +24612,6 @@ const afw_value_string_t
 afw_self_v_zz__1371fb481221 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__1371fb481221)
-};
-
-const afw_value_string_t
-afw_self_v_zz__13862abf880d = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__13862abf880d)
 };
 
 const afw_value_string_t
@@ -25866,12 +25866,6 @@ const afw_value_string_t
 afw_self_v_zz__291d0ed83a8c = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__291d0ed83a8c)
-};
-
-const afw_value_string_t
-afw_self_v_zz__292588a1a4ea = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__292588a1a4ea)
 };
 
 const afw_value_string_t
@@ -32364,6 +32358,12 @@ const afw_value_string_t
 afw_self_v_zz__9c855cd3d87c = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__9c855cd3d87c)
+};
+
+const afw_value_string_t
+afw_self_v_zz__9c8a3e73ceba = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__9c8a3e73ceba)
 };
 
 const afw_value_string_t
@@ -52077,21 +52077,21 @@ afw_self_v_zz___streamNumber__integer___void = {
 };
 
 const afw_value_string_t
-afw_self_v_zz___streamNumber__integer__n__any___base64Binary = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___streamNumber__integer__n__any___base64Binary)
-};
-
-const afw_value_string_t
 afw_self_v_zz___streamNumber__integer__n__any___hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___streamNumber__integer__n__any___hexBinary)
 };
 
 const afw_value_string_t
-afw_self_v_zz___streamNumber__integer__n__any___string = {
+afw_self_v_zz___streamNumber__integer__n__integer___base64Binary = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___streamNumber__integer__n__any___string)
+    AFW_UTF8_LITERAL(AFW_Q_zz___streamNumber__integer__n__integer___base64Binary)
+};
+
+const afw_value_string_t
+afw_self_v_zz___streamNumber__integer__n__integer___string = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___streamNumber__integer__n__integer___string)
 };
 
 const afw_value_string_t

@@ -1328,8 +1328,8 @@ afw_function_execute_max(
     data_type = afw_value_get_data_type(arg_max, x->xctx);
 
     for (i = 2; i <= x->argc; i++) {
+        /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
-        arg = afw_value_convert(arg, data_type, true, x->p, x->xctx);
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_max), AFW_VALUE_INTERNAL(arg), x->xctx);
         if (cmp < 0) {
@@ -1389,8 +1389,8 @@ afw_function_execute_min(
     data_type = afw_value_get_data_type(arg_min, x->xctx);
 
     for (i = 2; i <= x->argc; i++) {
+        /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
-        arg = afw_value_convert(arg, data_type, true, x->p, x->xctx);
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_min), AFW_VALUE_INTERNAL(arg), x->xctx);
         if (cmp > 0) {

@@ -42,13 +42,11 @@ impl_read_n_octets(
     afw_function_execute_t *x,
     const char *what)
 {
-    const afw_value_t *n_value;
+    const afw_value_integer_t *n_value;
     afw_integer_t n;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(n_value, 2);
-    n_value = afw_value_convert(n_value,
-        afw_data_type_integer, true, x->p, x->xctx);
-    n = ((const afw_value_integer_t *)n_value)->internal;
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(n_value, 2, integer);
+    n = n_value->internal;
     if (n < 0 || n > AFW_STREAM_READ_MAX_N) {
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             "%s n must be between 0 and %d inclusive",
@@ -538,7 +536,7 @@ afw_function_execute_open_file(
  * ```
  *   function read(
  *       streamNumber: integer,
- *       n: any
+ *       n: integer
  *   ): string;
  * ```
  *
@@ -546,7 +544,7 @@ afw_function_execute_open_file(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read (0 or more, up to
+ *   n - (integer) The maximum number of octets to read (0 or more, up to
  *       1,000,000).
  *
  * Returns:
@@ -611,7 +609,7 @@ afw_function_execute_read(
  * ```
  *   function read_to_base64Binary(
  *       streamNumber: integer,
- *       n: any
+ *       n: integer
  *   ): base64Binary;
  * ```
  *
@@ -619,7 +617,7 @@ afw_function_execute_read(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read (0 or more, up to
+ *   n - (integer) The maximum number of octets to read (0 or more, up to
  *       1,000,000).
  *
  * Returns:

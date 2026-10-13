@@ -180,8 +180,8 @@ class stream
      * non-negative integer and must not exceed 1,000,000.
      *
      * @param integer $streamNumber Stream number
-     * @param $n The maximum number of octets to read (0 or more, up to
-     *            1,000,000).
+     * @param integer $n The maximum number of octets to read (0 or more, up
+     *                   to 1,000,000).
      *
      * @return string The UTF-8 string read. Check the size of this value to
      *                determine the actual number of octets read.
@@ -208,8 +208,8 @@ class stream
      * integer and must not exceed 1,000,000.
      *
      * @param integer $streamNumber Stream number
-     * @param $n The maximum number of octets to read (0 or more, up to
-     *            1,000,000).
+     * @param integer $n The maximum number of octets to read (0 or more, up
+     *                   to 1,000,000).
      *
      * @return base64Binary The base64Binary value read. Check the size of
      *                      this value to determine the actual number of

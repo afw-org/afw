@@ -3071,6 +3071,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__0bac102489a4 \
+    "function read_to_base64Binary (\n    streamNumber: integer,\n    n: integer\n): base64Binary;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0bac102489a4 */
+#define afw_s_zz__0bac102489a4 \
+    (&afw_self_v_zz__0bac102489a4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0bac102489a4 */
+#define afw_self_s_zz__0bac102489a4 \
+    (afw_self_v_zz__0bac102489a4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__0bac102489a4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__0bac102489a4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0bac102489a4 */
+#define afw_z_zz__0bac102489a4 \
+    (afw_self_v_zz__0bac102489a4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__0bac102489a4 */
+#define afw_v_zz__0bac102489a4 \
+    (&afw_self_v_zz__0bac102489a4.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__0bc5b1d95df4 \
     "Evaluate value and serialize it as pure JSON text. Adaptive data types use their jsonPrimitive (for example base64Binary and date become JSON strings). The value is fully evaluated before serialization (not Adaptive compiled form). For Adaptive compiled form as text use decompile(). For binary octets as UTF-8 text use decode_to_string(); string(binary) is base64 printable text, not UTF-8. Optional replacer is a function (key, value) that returns the value to serialize, or an array of property names to include when serializing objects. Optional whitespace matches decompile/listing style."
 
@@ -5173,32 +5199,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1371fb481221 */
 #define afw_v_zz__1371fb481221 \
     (&afw_self_v_zz__1371fb481221.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__13862abf880d \
-    "function read (\n    streamNumber: integer,\n    n: any\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__13862abf880d */
-#define afw_s_zz__13862abf880d \
-    (&afw_self_v_zz__13862abf880d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__13862abf880d */
-#define afw_self_s_zz__13862abf880d \
-    (afw_self_v_zz__13862abf880d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__13862abf880d */
-extern const afw_value_string_t \
-    afw_self_v_zz__13862abf880d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__13862abf880d */
-#define afw_z_zz__13862abf880d \
-    (afw_self_v_zz__13862abf880d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__13862abf880d */
-#define afw_v_zz__13862abf880d \
-    (&afw_self_v_zz__13862abf880d.pub)
 
 
 
@@ -10633,32 +10633,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__291d0ed83a8c */
 #define afw_v_zz__291d0ed83a8c \
     (&afw_self_v_zz__291d0ed83a8c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__292588a1a4ea \
-    "function read_to_base64Binary (\n    streamNumber: integer,\n    n: any\n): base64Binary;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__292588a1a4ea */
-#define afw_s_zz__292588a1a4ea \
-    (&afw_self_v_zz__292588a1a4ea.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__292588a1a4ea */
-#define afw_self_s_zz__292588a1a4ea \
-    (afw_self_v_zz__292588a1a4ea.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__292588a1a4ea */
-extern const afw_value_string_t \
-    afw_self_v_zz__292588a1a4ea;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__292588a1a4ea */
-#define afw_z_zz__292588a1a4ea \
-    (afw_self_v_zz__292588a1a4ea.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__292588a1a4ea */
-#define afw_v_zz__292588a1a4ea \
-    (&afw_self_v_zz__292588a1a4ea.pub)
 
 
 
@@ -38791,6 +38765,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9c855cd3d87c */
 #define afw_v_zz__9c855cd3d87c \
     (&afw_self_v_zz__9c855cd3d87c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9c8a3e73ceba \
+    "function read (\n    streamNumber: integer,\n    n: integer\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9c8a3e73ceba */
+#define afw_s_zz__9c8a3e73ceba \
+    (&afw_self_v_zz__9c8a3e73ceba.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9c8a3e73ceba */
+#define afw_self_s_zz__9c8a3e73ceba \
+    (afw_self_v_zz__9c8a3e73ceba.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9c8a3e73ceba */
+extern const afw_value_string_t \
+    afw_self_v_zz__9c8a3e73ceba;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9c8a3e73ceba */
+#define afw_z_zz__9c8a3e73ceba \
+    (afw_self_v_zz__9c8a3e73ceba.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9c8a3e73ceba */
+#define afw_v_zz__9c8a3e73ceba \
+    (&afw_self_v_zz__9c8a3e73ceba.pub)
 
 
 
@@ -124205,32 +124205,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___streamNumber__integer__n__any___base64Binary \
-    "(streamNumber: integer, n: any): base64Binary"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__any___base64Binary */
-#define afw_s_zz___streamNumber__integer__n__any___base64Binary \
-    (&afw_self_v_zz___streamNumber__integer__n__any___base64Binary.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__any___base64Binary */
-#define afw_self_s_zz___streamNumber__integer__n__any___base64Binary \
-    (afw_self_v_zz___streamNumber__integer__n__any___base64Binary.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___streamNumber__integer__n__any___base64Binary */
-extern const afw_value_string_t \
-    afw_self_v_zz___streamNumber__integer__n__any___base64Binary;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___streamNumber__integer__n__any___base64Binary */
-#define afw_z_zz___streamNumber__integer__n__any___base64Binary \
-    (afw_self_v_zz___streamNumber__integer__n__any___base64Binary.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___streamNumber__integer__n__any___base64Binary */
-#define afw_v_zz___streamNumber__integer__n__any___base64Binary \
-    (&afw_self_v_zz___streamNumber__integer__n__any___base64Binary.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___streamNumber__integer__n__any___hexBinary \
     "(streamNumber: integer, n: any): hexBinary"
 
@@ -124257,28 +124231,54 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___streamNumber__integer__n__any___string \
-    "(streamNumber: integer, n: any): string"
+#define AFW_Q_zz___streamNumber__integer__n__integer___base64Binary \
+    "(streamNumber: integer, n: integer): base64Binary"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__any___string */
-#define afw_s_zz___streamNumber__integer__n__any___string \
-    (&afw_self_v_zz___streamNumber__integer__n__any___string.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__integer___base64Binary */
+#define afw_s_zz___streamNumber__integer__n__integer___base64Binary \
+    (&afw_self_v_zz___streamNumber__integer__n__integer___base64Binary.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__any___string */
-#define afw_self_s_zz___streamNumber__integer__n__any___string \
-    (afw_self_v_zz___streamNumber__integer__n__any___string.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__integer___base64Binary */
+#define afw_self_s_zz___streamNumber__integer__n__integer___base64Binary \
+    (afw_self_v_zz___streamNumber__integer__n__integer___base64Binary.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___streamNumber__integer__n__any___string */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___streamNumber__integer__n__integer___base64Binary */
 extern const afw_value_string_t \
-    afw_self_v_zz___streamNumber__integer__n__any___string;
+    afw_self_v_zz___streamNumber__integer__n__integer___base64Binary;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___streamNumber__integer__n__any___string */
-#define afw_z_zz___streamNumber__integer__n__any___string \
-    (afw_self_v_zz___streamNumber__integer__n__any___string.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___streamNumber__integer__n__integer___base64Binary */
+#define afw_z_zz___streamNumber__integer__n__integer___base64Binary \
+    (afw_self_v_zz___streamNumber__integer__n__integer___base64Binary.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___streamNumber__integer__n__any___string */
-#define afw_v_zz___streamNumber__integer__n__any___string \
-    (&afw_self_v_zz___streamNumber__integer__n__any___string.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___streamNumber__integer__n__integer___base64Binary */
+#define afw_v_zz___streamNumber__integer__n__integer___base64Binary \
+    (&afw_self_v_zz___streamNumber__integer__n__integer___base64Binary.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___streamNumber__integer__n__integer___string \
+    "(streamNumber: integer, n: integer): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__integer___string */
+#define afw_s_zz___streamNumber__integer__n__integer___string \
+    (&afw_self_v_zz___streamNumber__integer__n__integer___string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___streamNumber__integer__n__integer___string */
+#define afw_self_s_zz___streamNumber__integer__n__integer___string \
+    (afw_self_v_zz___streamNumber__integer__n__integer___string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___streamNumber__integer__n__integer___string */
+extern const afw_value_string_t \
+    afw_self_v_zz___streamNumber__integer__n__integer___string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___streamNumber__integer__n__integer___string */
+#define afw_z_zz___streamNumber__integer__n__integer___string \
+    (afw_self_v_zz___streamNumber__integer__n__integer___string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___streamNumber__integer__n__integer___string */
+#define afw_v_zz___streamNumber__integer__n__integer___string \
+    (&afw_self_v_zz___streamNumber__integer__n__integer___string.pub)
 
 
 
