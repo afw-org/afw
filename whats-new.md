@@ -43,6 +43,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `is(v)` with no data type (it always returned false) | **`is<T>(v)`** or **`is_T(v)`**. `is(v)` is now a compile error, *Built-in function 'is' needs a data type*. The function id of `is_T` is now `is_T` (it was `is<T>`), so a request or client binding that names `is<integer>` by id names `is_integer`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `to_boolean(s)` (it was truthy: `"false"` and `"x"` were `true`) | **`string_to_boolean(s)`**, which reads boolean text (`"true"` / `"false"` in any case, `"1"` / `"0"`, `t` / `f`) and throws on any other text. For ECMAScript `Boolean()` truthiness keep **`boolean(v)`**. [Conversion functions](#conversion-functions-read-text-strictly-issue-588) |
 | `match<rfc822Name>` / `match<x500Name>` (they threw *Not implemented*); `<`, `<=`, `>`, `>=` on `dnsName`, `ipAddress`, `rfc822Name`, or `x500Name` | **`rfc822Name_match(pattern, value)`** (pattern a string) and **`x500Name_match(pattern, value)`**. The four types have **no ordering**: `<` throws. Text that is not an rfc822Name (no `@`), not a distinguished name, not ASCII for `ia5String`, or not an object path for `objectPath` is now an error when read. [#593](#rfc822name-x500name-and-other-text-data-types-issue-593) |
+| Date and time text that is not XML Schema: `"12:20"time`, `T01:02Z` (no seconds), a time zone `+05` (no `:mm`, it was silently dropped), years with fewer than 4 digits (`"012-01-01"date`), `-0000`; a compare of a date, dateTime, or time with a time zone against one without (it threw), dates in different time zones (it threw) | Write `hh:mm:ss` and `+hh:mm`. Compares now use the **implicit (local) time zone** for a value without one, and dates compare by the instant they start. `to_string` of a duration is canonical (`PT36H` is `P1DT12H`, `P1Y13M` is `P2Y1M`); `24:00:00` reads as `00:00:00` of the next day. [Date and time](#date-time-duration-and-binary-text-follow-xml-schema-11-issue-593) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | Authorization handlers that deny what they do not recognize, where a journal is used | Journal operations are now **authorized like object operations**, on **`/<adapter>/_AdaptiveJournalEntry_/…`**: **`create`** on `…/` (add an entry), **`read`** on everything else: `…/<cursor>` (the entry at a cursor) and the special objectId of the other operations (`…/get_first`, `…/get_next_for_consumer:<consumer_id>`, `…/mark_consumed:<consumer_id>:<cursor>`, …). A built-in and its REST form are checked on the same path, without any `:<limit>`, so a handler can permit one consumer and not another. Mark consumed over REST is `GET …/mark_consumed:<consumer_id>:<cursor>`, the same as `journal_mark_consumed()`; consumer forms with no `:<limit>` have no limit, the same as the built-ins. A limit, REST or built-in, must be 1 or more (a built-in limit of 0 or less is now **`argument_error`**; it used to mean no limit). Entries an adapter writes for its own object changes are not checked. [#520](https://github.com/afw-org/afw/issues/520) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
@@ -94,6 +95,7 @@ Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / 
 | `apr_getopt_long` in `afw` / command skeleton | **`afw_getopt_long`** with an `afw_getopt_option_t` table (help from the same table). No APR pool. `afwfcgi` still uses its strcmp loop. A **make-command** package’s `find_package(afw)` picks the **newest** installed cmake config (versioned `lib/cmake/afw-*` dirs accumulate). |
 | LDAP `apr_ldap_url_parse` / `apr_ldap_init` / `apr_ldap_set_option` | OpenLDAP **`ldap_url_parse`**, **`ldap_initialize`**, **`ldap_set_option`**. Search/bind/CRUD were already `ldap_*`. |
 | `afw_dateTime_set_from_apr_time` / `create_from_apr_time` | **`afw_dateTime_set_from_os_time`**. No in-tree callers after file I/O. |
+| `afw_time_zone_t` `minutes == -1` for no time zone; `minutes` always 0–59 with the sign on `hours`; `*_from_parts(..., tz_hours_offset, -1, ...)` | **`AFW_TIME_ZONE_IS_NONE(&tz)`** / **`AFW_TIME_ZONE_NONE`**. `minutes` has the sign of the zone (-00:30 is hours 0, minutes -30; -05:30 is -5 and -30), and `*_from_parts` take minutes that way, so a negative zone under an hour can be written. [Date and time](#date-time-duration-and-binary-text-follow-xml-schema-11-issue-593) |
 | `apr_initialize` / `afw_pool_get_apr_pool` / linking `apr-1` / APR as the AFW pool | **libafw does not use APR.** Heap store is AFW 64k-min, 4k-aligned chunks (`afw_pool_heap_create` can use a smaller `chunk_min`; compile units use 4k). `find_package(afw)` and `afw.pc` no longer require APR. Do not pass an APR pool. You may still link APR **in your own tree** if you use it yourself — AFW will not provide it. |
 | Object `property_name` as `const afw_utf8_t *` | **`const afw_value_t *`** on object get/set/has/remove, create_embedded, meta, `throw_property_*`. `afw_s_foo` → **`afw_v_foo`** (or your package `*_v_*`). See the [checklist](#object-property-names-as-values-issue-2) if you maintain another repo that links this libafw. |
 | `get_property_as_string` as a utf8 peel; dest `p` on those getters | **`_as_<type>`** is a typed value pointer (`const afw_value_string_t *`). C payload is **`_internal`**. Convert is **`convert_to_*`**. Getters do **not** evaluate and do **not** take dest `p`. [Typed values](#typed-value-pointers-vs-c-internals) |
@@ -144,6 +146,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Data type conversion functions removed**](#data-type-conversion-functions-removed-issue-589) ([#589](https://github.com/afw-org/afw/issues/589)) | The 18 generic `T(…)` functions (`dateTime("…")`, `integer(x)`, …) are gone: write a typed literal or `to_T(v)`. `decompile` writes typed literals; `objectId` and `objectPath` have typed literals now |
 | [**No hidden conversions**](#no-hidden-conversions-issue-583) ([#583](https://github.com/afw-org/afw/issues/583)) | Typed parameters, declarations and returns check and never convert; built-in parameters never convert; `array<T>(…)` makes a typed array; `+` / `add<string>` take strings only; `bag`/`bag_size` are `array<T>`/`length`; the single-value-as-array rule is gone; a string is an array only where ECMAScript iterates one, and `[...s]` spreads it |
 | [**rfc822Name, x500Name, and other text data types**](#rfc822name-x500name-and-other-text-data-types-issue-593) ([#593](https://github.com/afw-org/afw/issues/593)) | rfc822Name domain parts and x500Name names compare as mailboxes and distinguished names (`"a@Example.COM"rfc822Name == "a@example.com"rfc822Name`); new `rfc822Name_match` and `x500Name_match` replace the `match` stubs; no ordering for `dnsName`, `ipAddress`, `rfc822Name`, `x500Name`; read checks for rfc822Name, x500Name, ia5String, objectPath |
+| [**Date, time, duration, and binary text**](#date-time-duration-and-binary-text-follow-xml-schema-11-issue-593) ([#593](https://github.com/afw-org/afw/issues/593)) | Read, compare, and write as XML Schema 1.1: implicit time zone in compares, dates compare across zones, -00:30 keeps its sign, canonical durations, `24:00:00`; duration arithmetic with fractions fixed; base64 pad bits checked. Also: a function passed as an argument inside a block works again, and rest arguments are evaluated |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -696,9 +699,51 @@ These data types are text whose meaning comes from another standard. They still 
 - **`objectPath`:** the text must parse as an object path: `to_objectPath("//")` throws. Relative paths (`"oid1"`) are still accepted.
 - **`anyURI`, `dnsName`, `ipAddress`, `objectId`, `password`:** any text, as before. Their JSON Schema no longer claims `format: uri-reference` (anyURI) or `idn-hostname` (dnsName), formats the data types do not check.
 
-Set functions that use equality (`is_in`, `intersection`, `union`, `subset`, `set_equals`, `at_least_one_member_of`, and `==` / `!=`) follow the new rfc822Name and x500Name equality.
+**dnsName and ipAddress equality ignores case** (DNS names, RFC 4343; IPv6 hex digits, RFC 4291): `"Example.COM"dnsName == "example.com"dnsName`. Other forms of one address (`::1` and `0:0:0:0:0:0:0:1`) are still different values.
+
+Set functions that use equality (`is_in`, `intersection`, `union`, `subset`, `set_equals`, `at_least_one_member_of`, and `==` / `!=`) follow the new rfc822Name, x500Name, dnsName, and ipAddress equality.
 
 Tests: `src/afw/tests/language/script/rfc822Name_x500Name.as`, `src/afw/tests/language/script/to_t_from_string.as`, `src/afw/tests/generated/functions/rfc822Name_match.as`, `src/afw/tests/generated/functions/x500Name_match.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Date, time, duration, and binary text follow XML Schema 1.1 (issue [#593](https://github.com/afw-org/afw/issues/593))
+
+`date`, `dateTime`, `time`, `dayTimeDuration`, `yearMonthDuration`, `base64Binary`, and `hexBinary` read, compare, and write text as XML Schema 1.1 says.
+
+**Reading text**
+- A time is `hh:mm:ss` with optional fractional seconds: `"12:20"time` and `T01:02Z` are errors (they read as `12:20:00`).
+- A time zone is `Z` or `+hh:mm` / `-hh:mm`. `+05` is an error; it used to be read and then **dropped**, so the value had no time zone.
+- **-00:30 keeps its sign.** A negative time zone under an hour read as +00:30 and compared an hour wrong; the local time zone of such a place (from the OS) did the same.
+- A year has at least 4 digits and no extra leading `0` (`012`, `01234` are errors); `0000` is 1 BCE; `-0000` is an error.
+- `24:00:00` is `00:00:00` of the next day: `"2026-12-31T24:00:00Z"` reads as `2027-01-01T00:00:00Z`, and `"24:00:00"time == "00:00:00"time`.
+- Fractional seconds are kept to the microsecond. More digits are read when they are `0` (`.1234560`); other extra digits are an error rather than being rounded.
+- Durations: parts may have leading zeros (`PT01H`, `P01Y`), and seconds may be `1.` or `.5` (`PT.5S`). They were errors.
+- base64Binary: the bits after the last octet must be 0 (`"YR=="` is an error; `"YQ=="` is the value it meant), and whitespace may follow the `=` padding.
+
+**Comparing**
+- A date, dateTime, or time **without a time zone gets the implicit time zone** (the local one) when compared with one that has a time zone, as the `lt` / `max` descriptions promised. It used to throw *Can't compare … with only one value time zone*.
+- **Dates in different time zones** compare by the instant each starts (`"2026-10-12+05:00"date < "2026-10-12Z"date`). They threw.
+- `in_range<time>` brings each time into one UTC day first: `in_range<time>("23:30:00Z", "04:00:00+05:00", "01:00:00Z")` (a range from 23:00Z that wraps past midnight) is true.
+
+**Writing**
+- Durations print in canonical form: `PT36H` is `P1DT12H`, `PT90M` is `PT1H30M`, `P1Y13M` is `P2Y1M`. Values compared equal before; only the text changes.
+
+**Arithmetic**
+- `add_dayTimeDuration` with a negative fraction of a second, and `subtract_dayTimeDuration` with a positive one, were off by about 71 minutes (`"2026-10-12T00:00:00Z"` minus `PT0.5S` gave `01:11:34.467296`). Fixed.
+- Adding a `yearMonthDuration` past the largest year is *year limit exceeded*; it wrapped to a negative year. Adding a large `dayTimeDuration` no longer steps month by month.
+
+**Also fixed on this branch**
+- **A function written as an argument inside a block, loop, or function** (`for (const x of a) { f(function () { return x; }); }`) threw *Internal error: scope not found* since [#476](https://github.com/afw-org/afw/issues/476). It is bound where it is written again.
+- **Rest parameters** (`function f(...a)`) got the argument expressions instead of their values: `f(1 + 1)` gave an unevaluated `1 + 1`. Each rest argument is now evaluated in the caller's scope.
+- base64 text ending in whitespace (`"YWJj\n"`) read past the end of the text while decoding.
+- C: `*_from_parts` checked `hour == 24` with `&&` (24:30:00 passed) and did not check the day against the month.
+
+**C programmers:** `afw_time_zone_t.minutes` has the sign of the zone, and no time zone is `AFW_TIME_ZONE_NONE` (test with `AFW_TIME_ZONE_IS_NONE`), not -1; `*_from_parts` take minutes the same way. `AFW_INT32_MIN` is parenthesized.
+
+Tests: `src/afw/tests/language/script/date_time_xml_schema.as`, `closures.as` (`function-argument-in-nested-block`, `rest-arguments-evaluated`), `to_t_from_string.as`, and the time and dateTime tests under `src/afw/tests/generated/functions/`.
 
 [↑ Highlights](#highlights)
 

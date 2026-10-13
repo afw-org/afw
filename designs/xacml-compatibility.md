@@ -17,6 +17,8 @@ When a change in `src/afw` makes AFW differ from XACML or XSD, add a row here in
 | rfc822Name | No read check required (XACML A.2) | Requires local part, `@`, domain part | #593 |
 | x500Name | No read check required | Must parse as an RFC 4514 / 2253 DN | #593 |
 | ipAddress, dnsName | XACML A.2 gives a syntax but no read check | Same: any text | #593 |
+| dateTime, time (fractional seconds) | XSD: any number of digits (a processor may limit precision, at least milliseconds) | Microseconds; more digits only if they are `0`, otherwise an error (never rounded) | #593 |
+| date, dateTime, time, durations | XSD 1.1 lexical forms | Same, since #593: `hh:mm:ss` required, `±hh:mm` zones, 4+ digit years, `24:00:00`, duration leading zeros and `1.` / `.5` seconds | #593 |
 
 ## Equality
 
@@ -24,7 +26,8 @@ When a change in `src/afw` makes AFW differ from XACML or XSD, add a row here in
 |---|---|---|---|
 | rfc822Name | `rfc822Name-equal`: domain part normalized to lower case | Same; lower case is ICU `u_tolower` per code point, not ASCII only | #593 |
 | x500Name | `x500Name-equal`: RFC 2253 normalize, sorted multi-valued RDNs, RFC 3280 compare rules | Types ignore case with a small name↔OID table (cn sn c l st street o ou title uid dc); values lower case + space collapse (RFC 4518 caseIgnoreMatch **without** full stringprep or Unicode normalization); `#` hex values compare as octets and are **not** BER-decoded, so `cn=#0c03616263` ≠ `cn=abc` | #593 |
-| ipAddress, dnsName | **No** equality function in XACML 3.0 A.3.1 | Compares as text (`==`, set functions) | — |
+| ipAddress, dnsName | **No** equality function in XACML 3.0 A.3.1 | Text ignoring case (DNS names, IPv6 hex digits); `::1` and `0:0:0:0:0:0:0:1` are not equal | #593 |
+| date, dateTime, time without a time zone | Implicit time zone (XACML A.3 / XPath) | Same since #593: the local time zone when the xctx was created; dates compare by the instant they start | #593 |
 | integer vs double | Distinct types; mixed calls are a type error | Same: `1 == 1.0` is an error (*Data types do not match*) | #580 |
 
 ## Ordering
