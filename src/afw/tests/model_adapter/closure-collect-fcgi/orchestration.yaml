@@ -1,0 +1,30 @@
+# A model's on* script is one unit shared by every request thread. A
+# closure it makes references that unit, so each request's cycle
+# collector reached it while walking the closures it collects, and read
+# the unit's count while other threads changed it (a data race under
+# --env-mode tsan). The shared unit is not a collector node.
+version: 1
+description: closure cycles in a shared model script on many threads
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 120
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: closure-collect
+    sourceType: script
+    source: |
+      assert(get_object("model", "CT", "x").n === 120, "closure result");
+      return true;
+    expect: true
+schedule:
+  - sequential: [closure-collect]
+  - firehose:
+      duration_s: 5
+      concurrency: 8
+      clientProcesses: 1
+      fromTests: [closure-collect]
+      seed: 1
+      maxFail: 0
