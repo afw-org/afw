@@ -27,8 +27,8 @@ at_least_one_member_of<dateTime>(
 
 //?
 //? test: at_least_one_member_of<dateTime>-2
-//? description: True
-//? expect: error
+//? description: values without a time zone have the implicit one; no 2005 value matches, and 13:20:07Z differs from 13:20:00 and 13:20:15.5 by seconds no zone offset can make up
+//? expect: boolean(false)
 //? source: ...
 
 at_least_one_member_of<dateTime>(
@@ -42,7 +42,7 @@ at_least_one_member_of<dateTime>(
         "2005-04-12T13:20:00"dateTime,
         "2005-04-12T13:20:15.5"dateTime,
         "2005-04-12T13:20:00"dateTime,
-        "2004-04-12T13:20:00Z"dateTime
+        "2004-04-12T13:20:07Z"dateTime
     )
 )
 

@@ -37,6 +37,13 @@ do { \
     IMPL_MAX_TIME_ZONE_LEN
 
 
+static void
+impl_normalize_dayTimeDuration(
+    const afw_dayTimeDuration_t *from,
+    afw_dayTimeDuration_t *to,
+    afw_xctx_t *xctx);
+
+
 /* Get now time as dateTime in specified pool. */
 AFW_DEFINE_STATIC_INLINE(void)
 impl_dateTime_exploded_set(
@@ -56,8 +63,9 @@ impl_dateTime_exploded_set(
     dateTime->time.minute = tm->minute;
     dateTime->time.second = tm->second;
     dateTime->time.microsecond = tm->microsecond;
+    /* Both parts have the sign of the offset (-00:30 is 0 and -30). */
     dateTime->time_zone.hours = tm->gmtoff / 3600;
-    dateTime->time_zone.minutes = abs(tm->gmtoff / 60 % 60);
+    dateTime->time_zone.minutes = tm->gmtoff / 60 % 60;
 }
 
 
@@ -78,7 +86,7 @@ impl_time_exploded_set(
     time->time.second = tm->second;
     time->time.microsecond = tm->microsecond;
     time->time_zone.hours = tm->gmtoff / 3600;
-    time->time_zone.minutes = abs(tm->gmtoff / 60 % 60);
+    time->time_zone.minutes = tm->gmtoff / 60 % 60;
 }
 
 
@@ -90,14 +98,7 @@ impl_set_date_no_time_zone(
     int day,
     afw_xctx_t *xctx)
 {
-    if (year < 0 AFW_INT32_MIN || year > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(argument_error,
-            "year must be between "
-            AFW_STRINGIFY(AFW_INT32_MIN)
-            " and "
-            AFW_STRINGIFY(AFW_INT32_MAX),
-            xctx);
-    }
+    /* An int is at most 32 bits, so every year fits. 0 is 1 BCE. */
 
     if (month < 1 || month > 12) {
         AFW_THROW_ERROR_Z(argument_error,
@@ -105,10 +106,9 @@ impl_set_date_no_time_zone(
             xctx);
     }
 
-    /** @fixme check for leapyear. */
-    if (day < 1 || day > 31) {
+    if (day < 1 || day > afw_date_maximum_days_in_month(year, month)) {
         AFW_THROW_ERROR_Z(argument_error,
-            "day must be between 1 and 31",
+            "day must be between 1 and the number of days in the month",
             xctx);
     }
 
@@ -134,7 +134,7 @@ impl_set_time_no_time_zone(
             xctx);
     }
 
-    if (hour == 24 && minute != 0 && second != 0 && microsecond != 0) {
+    if (hour == 24 && (minute != 0 || second != 0 || microsecond != 0)) {
         AFW_THROW_ERROR_Z(argument_error,
             "if hour is 24, minute, second, and microsecond must be 0",
             xctx);
@@ -146,9 +146,9 @@ impl_set_time_no_time_zone(
             xctx);
     }
 
-    if (second < 0 || second > 255) {
+    if (second < 0 || second > 59) {
         AFW_THROW_ERROR_Z(argument_error,
-            "second must be between 0 and 255",
+            "second must be between 0 and 59",
             xctx);
     }
 
@@ -187,9 +187,22 @@ impl_set_time_zone(
         }
     }
 
-    if (tz_minutes_offset < -1 || tz_minutes_offset > 59) {
+    if (tz_minutes_offset == AFW_TIME_ZONE_NONE) {
+        if (tz_hours_offset != 0) {
+            AFW_THROW_ERROR_Z(argument_error,
+                "if tz_minutes_offset is AFW_TIME_ZONE_NONE, "
+                "tz_hours_offset must be 0",
+                xctx);
+        }
+    }
+
+    else if (tz_minutes_offset < -59 || tz_minutes_offset > 59 ||
+        (tz_hours_offset < 0 && tz_minutes_offset > 0) ||
+        (tz_hours_offset > 0 && tz_minutes_offset < 0))
+    {
         AFW_THROW_ERROR_Z(argument_error,
-            "tz_minutes_offset must be between -1 and 59",
+            "tz_minutes_offset must be between -59 and 59, with the "
+            "sign of tz_hours_offset",
             xctx);
     }
 
@@ -625,12 +638,11 @@ afw_time_now_local(
 AFW_DEFINE(afw_integer_t)
 afw_time_zone_offset_minutes(const afw_time_zone_t *time_zone)
 {
-    if (time_zone->minutes == -1) {
+    if (AFW_TIME_ZONE_IS_NONE(time_zone)) {
         return 0;
     }
-    /* The sign is on hours; minutes are always 0-59. */
-    return (afw_integer_t)time_zone->hours * 60 +
-        ((time_zone->hours < 0) ? -time_zone->minutes : time_zone->minutes);
+    /* Hours and minutes have the same sign. */
+    return (afw_integer_t)time_zone->hours * 60 + time_zone->minutes;
 }
 
 
@@ -742,12 +754,11 @@ impl_set_internal_to_utf8_time_zone(
     afw_utf8_octet_t *to, afw_xctx_t *xctx)
 {
     afw_utf8_octet_t *c;
-    afw_int8_t hours;
+    int hours, minutes;
 
     c = to;
 
-    /* If minutes is negative, there is no time zone. */
-    if (tz->minutes < 0) return 0;
+    if (AFW_TIME_ZONE_IS_NONE(tz)) return 0;
 
     /* If hours and minutes is 0, time zone is 'Z'. */
     if (tz->hours == 0 && tz->minutes == 0) {
@@ -755,22 +766,24 @@ impl_set_internal_to_utf8_time_zone(
         return 1;
     }
 
-    /* Sign of time zone is sign of hours. */
-    if (tz->hours < 0) {
+    /* Hours and minutes have the sign of the time zone. */
+    if (tz->hours < 0 || tz->minutes < 0) {
         *c++ = '-';
         hours = -tz->hours;
+        minutes = -tz->minutes;
     }
     else {
         *c++ = '+';
         hours = tz->hours;
+        minutes = tz->minutes;
     }
 
     /* hh:mm */
     *c++ = hours % 100 / 10 + '0';
     *c++ = hours % 10 + '0';
     *c++ = ':';
-    *c++ = tz->minutes % 100 / 10 + '0';
-    *c++ = tz->minutes % 10 + '0';
+    *c++ = minutes % 100 / 10 + '0';
+    *c++ = minutes % 10 + '0';
 
     /* Return len of time zone. */
     return (afw_size_t)(c - to);
@@ -783,6 +796,7 @@ impl_utf8_date_set_internal(
     afw_date_no_time_zone_t *to, afw_xctx_t *xctx)
 {
     const afw_utf8_octet_t *s;
+    const afw_utf8_octet_t *digits;
     afw_boolean_t is_negative;
 
     /* Clear any sluff in result and initialize locals. */
@@ -791,7 +805,7 @@ impl_utf8_date_set_internal(
     is_negative = false;
 
     /* Error if not minimal size. */
-    if (len < sizeof("1-23-45") - 1) goto error;
+    if (len < sizeof("yyyy-mm-dd") - 1) goto error;
 
     /* Can begin with a '-' (not '+' by specification) */
     if (*s == '-') {
@@ -800,32 +814,23 @@ impl_utf8_date_set_internal(
     }
 
     /*
-     * Convert year.
-     *
-     * Note: This only throws an error if there is not at least one digit.
-     *      This is intentional. The specification requires at least 4.
-     *      to_utf8() will produce at least 4, but it seems ok to allow
-     *      less than 4 on input.
+     * Convert year: at least 4 digits, and no leading 0 when there are
+     * more than 4. 0000 is the year 1 BCE (XML Schema 1.1), and -0000 is
+     * not a year.
      */
-    if (*s < '0' || *s > '9') goto error;
+    digits = s;
     for (; (afw_size_t)(s - from) < len; s++) {
         if (*s < '0' || *s > '9') break;
         /* Check first: signed overflow is undefined. */
         if (to->year > (AFW_INT32_MAX - (*s - '0')) / 10) goto error;
         to->year = to->year * 10 + (*s - '0');
     }
-    if (is_negative) to->year = -to->year;
+    if (s - digits < 4 || (s - digits > 4 && *digits == '0')) goto error;
+    if (is_negative) {
+        if (to->year == 0) goto error;
+        to->year = -to->year;
+    }
 
-    /*
-     * A 0 year is an error.
-     *
-     * This error is commented out.  3.2.7 of XML Schema Part 2 says that
-     * 0000 is not allowed, but they intend to allow it.  0000 will represent
-     * year 1 BC.
-     *
-     * if (to->year == 0) goto error;
-     */
-    
     /* If not enough left for month and day, it's an error. */
     if (len - (s - from) < sizeof("-01-10") - 1) goto error;
 
@@ -883,73 +888,58 @@ impl_set_utf8_time_to_internal(
     afw_time_no_time_zone_t *to, afw_xctx_t *xctx)
 {
     const afw_utf8_octet_t *s;
+    const afw_utf8_octet_t *end;
     char d1, d2;
+    afw_uint32_t scale;
 
     memset(to, 0, sizeof(*to));
     s = from;
+    end = from + len;
 
-    /* hh[:mm[:ss[.nnnnnn]]][Z | (+|-)hh:mm] */
-
-    /* hh[[:mm]:ss] */
-    if (len < 2) goto error;
-    len -= 2;
+    /* hh ':' mm ':' ss ('.' s+)? */
+    if (len < sizeof("hh:mm:ss") - 1) goto error;
     IMPL_SAFE_DIGIT(*s++, d1, error);
     IMPL_SAFE_DIGIT(*s++, d2, error);
     to->hour = d1 * 10 + d2;
-    if (len < 3 || *s == '+' || *s == '-' || *s == 'Z') goto finish_up;
     if (*s++ != ':') goto error;
     IMPL_SAFE_DIGIT(*s++, d1, error);
     IMPL_SAFE_DIGIT(*s++, d2, error);
-    len -= 3;
     to->minute = d1 * 10 + d2;
-    if (len < 3 || *s == '+' || *s == '-' || *s == 'Z') goto finish_up;
     if (*s++ != ':') goto error;
     IMPL_SAFE_DIGIT(*s++, d1, error);
     IMPL_SAFE_DIGIT(*s++, d2, error);
-    len -= 3;
     to->second = d1 * 10 + d2;
-    if (len <= 0) goto finish_up;
 
-    /* Optional [.nnnnnn] */
-    if (*s == '.') do {
-        s++; len--;
-        if (len <= 0 || !IMPL_IS_DIGIT(*s)) goto error;
-        len--;
-        to->microsecond =  (*s++ - '0') * 100000;
-        if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-        len--;
-        to->microsecond += (*s++ - '0') * 10000;
-        if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-        len--;
-        to->microsecond += (*s++ - '0') * 1000;
-        if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-        len--;
-        to->microsecond += (*s++ - '0') * 100;
-        if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-        len--;
-        to->microsecond += (*s++ - '0') * 10;
-        if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-        len--;
-        to->microsecond += (*s++ - '0');
-    } while (0);
+    /*
+     * Fractional seconds are kept to the microsecond. More digits are
+     * read only if they are 0, so no value is rounded.
+     */
+    if (s < end && *s == '.') {
+        s++;
+        if (s >= end || !IMPL_IS_DIGIT(*s)) goto error;
+        for (scale = 100000; s < end && IMPL_IS_DIGIT(*s); s++) {
+            if (scale > 0) {
+                to->microsecond += (*s - '0') * scale;
+                scale /= 10;
+            }
+            else if (*s != '0') {
+                goto error;
+            }
+        }
+    }
 
-    /* Return length used. */
-finish_up:
-
-    /* Handle special case of 24:00:00. */
+    /* 24:00:00 is allowed; it is the start of the next day. */
     if (to->hour == 24) {
         if (to->minute != 0 || to->second != 0 || to->microsecond != 0) {
             goto error;
         }
     }
-
-    /* If not hour 24, make sure rest of time is within bounds. */
     else if (to->hour > 24 || to->minute >= 60 || to->second >= 60) {
         goto error;
     }
 
     /* Return length remaining. */
-    return len;
+    return (afw_size_t)(end - s);
 
 error:
     AFW_THROW_ERROR_Z(conversion_error, "time invalid", xctx);
@@ -963,48 +953,38 @@ impl_set_utf8_time_zone_to_internal(
 {
     const afw_utf8_octet_t *s;
     char d1, d2;
+    int hours, minutes;
     afw_boolean_t negative;
 
-    negative = false;
     to->hours = 0;
-    to->minutes = -1; /* Assume on time zone */
+    to->minutes = AFW_TIME_ZONE_NONE;
     s = from;
 
-    /* If len is 0, just return. */
-    if (len <= 0) return len;
+    /* No time zone. Anything other than one is left for the caller. */
+    if (len <= 0 || (*s != 'Z' && *s != '+' && *s != '-')) return len;
 
-    /* Optional [Z | (+|-)hh:mm] */
+    /* 'Z' | ('+' | '-') hh ':' mm */
     if (*s == 'Z') {
-        if (len != 1) goto error;
         to->minutes = 0;
         return len - 1;
     }
-    if (len < 3) goto finish_up;
-    if (*s == '+') negative = false;
-    else if (*s == '-') negative = true;
-    else goto finish_up;
-    s++;
+    if (len < sizeof("+hh:mm") - 1) goto error;
+    negative = (*s++ == '-');
     IMPL_SAFE_DIGIT(*s++, d1, error);
     IMPL_SAFE_DIGIT(*s++, d2, error);
-    len -= 3;
-    to->hours = d1 * 10 + d2;
-    if (*s != ':') goto finish_up;
-    s++;
-    if (len < 3) goto error;
+    hours = d1 * 10 + d2;
+    if (*s++ != ':') goto error;
     IMPL_SAFE_DIGIT(*s++, d1, error);
     IMPL_SAFE_DIGIT(*s++, d2, error);
-    len -= 3;
-    to->minutes = d1 * 10 + d2;
-
-    /* Check result and return length remaining. */
-finish_up:
-    if (to->hours > 14 || to->minutes > 59 ||
-        (to->hours == 14 && to->minutes != 0))
-    {
+    minutes = d1 * 10 + d2;
+    if (hours > 14 || minutes > 59 || (hours == 14 && minutes != 0)) {
         goto error;
     }
-    if (negative) to->hours = -to->hours;
-    return len;
+
+    /* Both parts have the sign of the time zone; -00:00 is 'Z'. */
+    to->hours = (afw_int8_t)(negative ? -hours : hours);
+    to->minutes = (afw_int8_t)(negative ? -minutes : minutes);
+    return len - (sizeof("+hh:mm") - 1);
 
 error:
     AFW_THROW_ERROR_Z(conversion_error, "time zone invalid.  "
@@ -1087,10 +1067,48 @@ afw_dateTime_utf8_set_internal(
         xctx);
     if (len != 0) goto error;
 
+    /* 24:00:00 is 00:00:00 of the next day (XML Schema 1.1). */
+    if (internal->time.hour == 24) {
+        afw_dayTimeDuration_t one_day;
+
+        afw_memory_clear(&one_day);
+        one_day.days = 1;
+        internal->time.hour = 0;
+        afw_dateTime_add_dayTimeDuration(internal, &one_day, xctx);
+    }
+
     return;
 
 error:
     AFW_THROW_ERROR_Z(conversion_error, "dateTime invalid", xctx);
+}
+
+
+/*
+ * Read the digits of a duration part (leading zeros allowed) into *value
+ * and return how many there were. A value past AFW_INT32_MAX reads as no
+ * digits, with *s unchanged, so the caller rejects the text.
+ */
+static afw_size_t
+impl_parse_duration_digits(
+    const afw_utf8_octet_t **s,
+    const afw_utf8_octet_t *end,
+    afw_integer_t *value)
+{
+    const afw_utf8_octet_t *c;
+    afw_size_t count;
+
+    *value = 0;
+    for (c = *s; c < end && IMPL_IS_DIGIT(*c); c++) {
+        *value = *value * 10 + (*c - '0');
+        if (*value > AFW_INT32_MAX) {
+            *value = 0;
+            return 0;
+        }
+    }
+    count = (afw_size_t)(c - *s);
+    *s = c;
+    return count;
 }
 
 
@@ -1105,10 +1123,15 @@ afw_dayTimeDuration_internal_to_utf8(
     afw_utf8_octet_t *s, *c, *end;
     afw_int32_t x;
     afw_integer_t days, hours, minutes, seconds, microseconds;
+    afw_dayTimeDuration_t normalized;
 
     /* Initialize locals. */
     c = s = &wa[0];
     end = &wa[sizeof(wa)];
+
+    /* The canonical form carries each part into the next (XML Schema). */
+    impl_normalize_dayTimeDuration(dayTimeDuration, &normalized, xctx);
+    dayTimeDuration = &normalized;
 
     /* If negative duration, start with '-' and use negative of all members. */
     if (dayTimeDuration->days < 0 ||
@@ -1217,128 +1240,83 @@ afw_dayTimeDuration_utf8_set_internal(
     const afw_utf8_t *utf8, afw_dayTimeDuration_t *internal,
     afw_xctx_t *xctx)
 {
-    afw_size_t len, x;
     const afw_utf8_octet_t *s;
+    const afw_utf8_octet_t *end;
     afw_integer_t i;
-    afw_boolean_t is_negative;
-    afw_boolean_t t_encountered;
+    afw_int32_t sign;
+    afw_size_t digits;
+    afw_boolean_t any;
+    afw_uint32_t scale;
 
     s = utf8->s;
-    len = utf8->len;
+    end = s + utf8->len;
     memset(internal, 0, sizeof(*internal));
 
-    /* Can start with '-'. */
-    if (len < 1) goto error;
-    is_negative = false;
-    if (*s == '-') {
-        is_negative = true;
+    /*
+     * '-'? 'P' (duDayFrag duTimeFrag? | duTimeFrag), where duTimeFrag is
+     * 'T' followed by hours, minutes, and seconds in order, at least one
+     * of them (XML Schema 1.1).
+     */
+    sign = 1;
+    if (s < end && *s == '-') {
+        sign = -1;
         s++;
-        len--;
+    }
+    if (s >= end || *s++ != 'P') goto error;
+    any = false;
+
+    digits = impl_parse_duration_digits(&s, end, &i);
+    if (digits > 0) {
+        if (s >= end || *s != 'D') goto error;
+        internal->days = (afw_int32_t)(sign * i);
+        s++;
+        any = true;
     }
 
-    /* Next must be 'P'. */
-    if (*s++ != 'P') goto error;
-    len--;
-    
-    t_encountered = false;
-    /* Next can be 'T'. */
-    if (*s == 'T') {
-        t_encountered = true;
-        len--;
-        s++;
-    };
-
-    /* Next must be a non-negative number. */
-    x = afw_number_parse_integer(s, len, &i, xctx->p, xctx);
-    if (i < 0) goto error;
-    s += x;
-    len -= x;
-    if (len < 1) goto error;
-
-    /* Next can be 'D'. */
-    if (*s == 'D') {
-        if (t_encountered) goto error;
-        if (i > AFW_INT32_MAX) goto error;
-        internal->days = (afw_int32_t)((is_negative) ? -i  : i);
-        s++;
-        if (--len <= 0) goto finished;
-    }
-
-    /* 'T' required before time part. This is the time separator */
-    if (!t_encountered) {
+    if (s < end) {
         if (*s++ != 'T') goto error;
-        len--;
-        if (len < 1) goto error;
-        x = afw_number_parse_integer(s, len, &i, xctx->p, xctx);
-        if (i < 0) goto error;
-        s += x;
-        len -= x;
-        if (len < 1) goto error;
-    };
+        any = false;
 
-    /* Next can be 'H'. */
-    if (*s == 'H') {
-        if (i > AFW_INT32_MAX) goto error;
-        internal->hours = (afw_int32_t)((is_negative) ? -i  : i);
-        s++;
-        if (--len <= 0) goto finished;
-        x = afw_number_parse_integer(s, len, &i, xctx->p, xctx);
-        if (i < 0) goto error;
-        s += x;
-        len -= x;
-        if (len < 1) goto error;
-    }
+        digits = impl_parse_duration_digits(&s, end, &i);
+        if (digits > 0 && s < end && *s == 'H') {
+            internal->hours = (afw_int32_t)(sign * i);
+            s++;
+            any = true;
+            digits = impl_parse_duration_digits(&s, end, &i);
+        }
+        if (digits > 0 && s < end && *s == 'M') {
+            internal->minutes = (afw_int32_t)(sign * i);
+            s++;
+            any = true;
+            digits = impl_parse_duration_digits(&s, end, &i);
+        }
 
-    /* Next can be 'M'. */
-    if (*s == 'M') {
-        if (i > AFW_INT32_MAX) goto error;
-        internal->minutes = (afw_int32_t)((is_negative) ? -i  : i);
-        s++;
-        if (--len <= 0) goto finished;
-        x = afw_number_parse_integer(s, len, &i, xctx->p, xctx);
-        if (i < 0) goto error;
-        s += x;
-        len -= x;
-        if (len < 1) goto error;
-    }
-
-    /* Must be seconds at this point. Will check for 'S' later. */
-    if (i > AFW_INT32_MAX) goto error;
-    internal->seconds = (afw_int32_t)((is_negative) ? -i  : i);
-
-    /* Next can be '.' followed by microseconds. */
-    if (*s == '.') {
-        do {
-            s++; len--;
-            if (len <= 0 || !IMPL_IS_DIGIT(*s)) goto error;
-            len--;
-            internal->microseconds = (*s++ - '0') * 100000;
-            if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-            len--;
-            internal->microseconds += (*s++ - '0') * 10000;
-            if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-            len--;
-            internal->microseconds += (*s++ - '0') * 1000;
-            if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-            len--;
-            internal->microseconds += (*s++ - '0') * 100;
-            if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-            len--;
-            internal->microseconds += (*s++ - '0') * 10;
-            if (len <= 0 || !IMPL_IS_DIGIT(*s)) break;
-            len--;
-            internal->microseconds += (*s++ - '0');
-        } while (0);
-        if (is_negative) {
-            internal->microseconds = -internal->microseconds;
+        /* Seconds: digits, digits '.' digits?, or '.' digits, then 'S'. */
+        if (digits > 0 || (s < end && *s == '.')) {
+            internal->seconds = (afw_int32_t)(sign * i);
+            if (s < end && *s == '.') {
+                s++;
+                if (digits == 0 && (s >= end || !IMPL_IS_DIGIT(*s))) {
+                    goto error;
+                }
+                /* Kept to the microsecond; more digits only if 0. */
+                for (scale = 100000; s < end && IMPL_IS_DIGIT(*s); s++) {
+                    if (scale > 0) {
+                        internal->microseconds += sign * (*s - '0') *
+                            (afw_int32_t)scale;
+                        scale /= 10;
+                    }
+                    else if (*s != '0') {
+                        goto error;
+                    }
+                }
+            }
+            if (s >= end || *s++ != 'S') goto error;
+            any = true;
         }
     }
 
-    /* At this point, last char must be 'S'. */
-    if (len != 1 || *s != 'S') goto error;
-
-finished:
-    /* Return */
+    if (!any || s != end) goto error;
     return;
 
 error:
@@ -1377,7 +1355,12 @@ afw_time_utf8_set_internal(
     len = impl_set_utf8_time_zone_to_internal(s, len, &internal->time_zone,
         xctx);
     if (len != 0) {
-        AFW_THROW_ERROR_Z(conversion_error, "Time invalid", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "time invalid", xctx);
+    }
+
+    /* 24:00:00 is 00:00:00 (XML Schema 1.1). */
+    if (internal->time.hour == 24) {
+        internal->time.hour = 0;
     }
 }
 
@@ -1392,26 +1375,24 @@ afw_yearMonthDuration_internal_to_utf8(
 {
     afw_utf8_octet_t wa[sizeof("-P4294967295Y65535M") - 1];
     afw_utf8_octet_t *s, *c, *end;
-    afw_integer_t years, months;
+    afw_integer_t years, months, total;
 
     /* Initialize locals. */
     c = s = &wa[0];
     end = &wa[sizeof(wa)];
 
-    /* If negative duration, start with '-' and use negative of all members. */
-    if (yearMonthDuration->years < 0 ||
-        yearMonthDuration->months < 0)
-    {
-        years = -yearMonthDuration->years;
-        months = -yearMonthDuration->months;
+    /*
+     * The canonical form carries months into years (P1Y13M is P2Y1M).
+     * Both members have the same sign.
+     */
+    total = (afw_integer_t)yearMonthDuration->years * 12 +
+        yearMonthDuration->months;
+    if (total < 0) {
+        total = -total;
         *c++ = '-';
     }
-
-    /* If positive duration, use members asis. */
-    else {
-        years = yearMonthDuration->years;
-        months = yearMonthDuration->months;
-    }
+    years = total / 12;
+    months = total % 12;
 
     /* Next is always 'P'. */
     *c++ = 'P';
@@ -1447,80 +1428,39 @@ afw_yearMonthDuration_utf8_set_internal(
     const afw_utf8_t *utf8, afw_yearMonthDuration_t *internal,
     afw_xctx_t *xctx)
 {
-    afw_size_t len, x;
     const afw_utf8_octet_t *s;
+    const afw_utf8_octet_t *end;
     afw_integer_t i;
-    afw_boolean_t is_negative;
+    afw_int32_t sign;
+    afw_size_t digits;
 
     s = utf8->s;
-    len = utf8->len;
+    end = s + utf8->len;
     memset(internal, 0, sizeof(*internal));
 
-    /* Can start with '-'. */
-    if (len < 1) goto error;
-    is_negative = false;
-    if (*s == '-') {
-        is_negative = true;
+    /* '-'? 'P' ((digits 'Y' (digits 'M')?) | digits 'M') */
+    sign = 1;
+    if (s < end && *s == '-') {
+        sign = -1;
         s++;
-        len--;
     }
+    if (s >= end || *s++ != 'P') goto error;
 
-    /* Next must be 'P'. */
-    if (*s++ != 'P') goto error;
-    len--;
-
-    /* Next must be a non-negative number. */
-    x = afw_number_parse_integer(s, len, &i, xctx->p, xctx);
-    if (i < 0) goto error;
-    s += x;
-    len -= x;
-    if (len < 1) goto error;
-
-    /* Next can be 'Y'. */
+    digits = impl_parse_duration_digits(&s, end, &i);
+    if (digits == 0 || s >= end) goto error;
     if (*s == 'Y') {
-        if (i > AFW_INT32_MAX) goto error;
-        internal->years = (afw_int32_t)((is_negative) ? -i  : i);
+        internal->years = (afw_int32_t)(sign * i);
         s++;
-        if (--len <= 0) goto finished;
-        x = afw_number_parse_integer(s, len, &i, xctx->p, xctx);
-        if (i < 0) goto error;
-        s += x;
-        len -= x;
+        if (s == end) return;
+        digits = impl_parse_duration_digits(&s, end, &i);
+        if (digits == 0 || s >= end) goto error;
     }
-
-    /* At this point, last char must be 'M'. */
-    if (len != 1 || *s != 'M' || i > AFW_INT32_MAX) goto error;
-    internal->months = (afw_int32_t)((is_negative) ? -i  : i);
-
-finished:
-    /* Return */
+    if (*s++ != 'M' || s != end) goto error;
+    internal->months = (afw_int32_t)(sign * i);
     return;
 
 error:
     AFW_THROW_ERROR_Z(conversion_error, "yearMonthDuration invalid", xctx);
-}
-
-
-AFW_DEFINE(int)
-afw_date_compare(const afw_date_t *v1, const afw_date_t *v2,
-    afw_xctx_t *xctx)
-{
-    afw_integer_t result;
-
-    if (v1->time_zone.hours != v2->time_zone.hours ||
-        v1->time_zone.minutes != v2->time_zone.minutes) {
-        AFW_THROW_ERROR_Z(general,
-            "Can't compare dates with different time zone values",
-            xctx);
-    }
-    result = v1->date.year - v2->date.year;
-    if (result != 0) goto finished;
-    result = v1->date.month - v2->date.month;
-    if (result != 0) goto finished;
-    result = v1->date.day - v2->date.day;
-
-finished:
-    return (result == 0) ? 0 : (result > 0) ? 1 : -1;
 }
 
 
@@ -1542,33 +1482,77 @@ impl_days_from_civil(afw_integer_t y, afw_integer_t m, afw_integer_t d)
 }
 
 
+/* The civil date of a day from 1970-01-01 (inverse of days_from_civil). */
+static void
+impl_civil_from_days(afw_integer_t z,
+    afw_integer_t *year, afw_integer_t *month, afw_integer_t *day)
+{
+    afw_integer_t era, doe, yoe, doy, mp;
+
+    z += 719468;
+    era = (z >= 0 ? z : z - 146096) / 146097;
+    doe = z - era * 146097;
+    yoe = (doe - doe / 1460 + doe / 36524 - doe / 146096) / 365;
+    doy = doe - (365 * yoe + yoe / 4 - yoe / 100);
+    mp = (5 * doy + 2) / 153;
+    *day = doy - (153 * mp + 2) / 5 + 1;
+    *month = mp + (mp < 10 ? 3 : -9);
+    *year = yoe + era * 400 + (*month <= 2 ? 1 : 0);
+}
+
+
+/*
+ * Offset in minutes of a time zone, or of the implicit time zone (the local
+ * time zone when xctx was created) if there is none, as XACML and XPath
+ * compare a value without a time zone. Two values without a time zone get
+ * the same offset, so they compare as written.
+ */
+static afw_integer_t
+impl_offset_minutes_or_implicit(
+    const afw_time_zone_t *time_zone, afw_xctx_t *xctx)
+{
+    if (AFW_TIME_ZONE_IS_NONE(time_zone)) {
+        time_zone = &xctx->local_dateTime_when_created.time_zone;
+    }
+    return afw_time_zone_offset_minutes(time_zone);
+}
+
+
+/* Compare two dates by the instant each starts. */
+AFW_DEFINE(int)
+afw_date_compare(const afw_date_t *v1, const afw_date_t *v2,
+    afw_xctx_t *xctx)
+{
+    afw_integer_t m1, m2;
+
+    m1 = impl_days_from_civil(v1->date.year, v1->date.month,
+        v1->date.day) * 24 * 60 -
+        impl_offset_minutes_or_implicit(&v1->time_zone, xctx);
+    m2 = impl_days_from_civil(v2->date.year, v2->date.month,
+        v2->date.day) * 24 * 60 -
+        impl_offset_minutes_or_implicit(&v2->time_zone, xctx);
+
+    return (m1 == m2) ? 0 : (m1 > m2) ? 1 : -1;
+}
+
+
 AFW_DEFINE(int)
 afw_dateTime_compare(const afw_dateTime_t *v1, const afw_dateTime_t *v2,
     afw_xctx_t *xctx)
 {
     afw_integer_t s1, s2, result;
 
-    /* if only one value has a time zone then cannot compare */
-    if ((v1->time_zone.minutes == -1 && v2->time_zone.minutes != -1) ||
-        (v1->time_zone.minutes != -1 && v2->time_zone.minutes == -1))
-    {
-        AFW_THROW_ERROR_Z(general,
-            "Can't compare dateTimes with only one value time zone",
-            xctx);
-    }
-
     /*
-     * Compare the instants: seconds since the epoch in UTC (local when
-     * neither has a time zone), then microseconds. Comparing the local
-     * date first made equal instants on different local dates unequal.
+     * Compare the instants: seconds since the epoch in UTC, then
+     * microseconds. A value without a time zone has the implicit one.
      */
     s1 = (((impl_days_from_civil(v1->date.year, v1->date.month,
         v1->date.day) * 24 + v1->time.hour) * 60 + v1->time.minute -
-        afw_time_zone_offset_minutes(&v1->time_zone)) * 60) +
+        impl_offset_minutes_or_implicit(&v1->time_zone, xctx)) * 60) +
         v1->time.second;
     s2 = (((impl_days_from_civil(v2->date.year, v2->date.month,
         v2->date.day) * 24 + v2->time.hour) * 60 + v2->time.minute -
-        afw_time_zone_offset_minutes(&v2->time_zone)) * 60) +
+        impl_offset_minutes_or_implicit(&v2->time_zone, xctx)) * 60) +
         v2->time.second;
     result = s1 - s2;
     if (result == 0) {
@@ -1586,21 +1570,16 @@ afw_time_compare(const afw_time_t *v1, const afw_time_t *v2,
 {
     afw_integer_t s1, s2, result;
 
-    /* if only one value has a time zone then cannot compare */
-    if ((v1->time_zone.minutes == -1 && v2->time_zone.minutes != -1)||
-        (v1->time_zone.minutes != -1 && v2->time_zone.minutes == -1))
-    {
-        AFW_THROW_ERROR_Z(general,
-            "Can't compare times with only one value time zone",
-            xctx);
-    }
-
-    /* Compare as UTC on one reference day (the offset is subtracted). */
+    /*
+     * Compare as UTC on one reference day (the offset is subtracted, and
+     * not wrapped, as XPath compares times on 1972-12-31). A value without
+     * a time zone has the implicit one.
+     */
     s1 = ((afw_integer_t)v1->time.hour * 60 + v1->time.minute -
-        afw_time_zone_offset_minutes(&v1->time_zone)) * 60 +
+        impl_offset_minutes_or_implicit(&v1->time_zone, xctx)) * 60 +
         v1->time.second;
     s2 = ((afw_integer_t)v2->time.hour * 60 + v2->time.minute -
-        afw_time_zone_offset_minutes(&v2->time_zone)) * 60 +
+        impl_offset_minutes_or_implicit(&v2->time_zone, xctx)) * 60 +
         v2->time.second;
     result = s1 - s2;
     if (result == 0) {
@@ -1687,30 +1666,27 @@ impl_normalize_dayTimeDuration(
     afw_dayTimeDuration_t *to,
     afw_xctx_t *xctx)
 {
-    memset(to, 0, sizeof(*to));
-    afw_integer_t days, minutes, hours;
+    afw_integer_t seconds, minutes, hours, days;
 
-    to->microseconds = from->microseconds;
-    to->seconds = from->seconds % 60;
-
-    minutes = from->minutes + (from->seconds / 60);
-    to->minutes = minutes % 60;
-
-    hours = from->hours + (minutes / 60);
-    if (hours < AFW_INT32_MIN || hours > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
-            "dayTimeDuration limit exceeded", xctx);
-    }
-    /* Hours past a day go into days (PT36H is P1DT12H). */
-    to->hours = (afw_int32_t)(hours % 24);
-
-    days = from->days + (hours / 24);
+    /*
+     * Carry each part into the next (PT36H is P1DT12H, PT90S is PT1M30S).
+     * All parts have the same sign, so truncating division carries
+     * correctly for a negative duration.
+     */
+    seconds = (afw_integer_t)from->seconds + from->microseconds / 1000000;
+    minutes = (afw_integer_t)from->minutes + seconds / 60;
+    hours = (afw_integer_t)from->hours + minutes / 60;
+    days = (afw_integer_t)from->days + hours / 24;
     if (days < AFW_INT32_MIN || days > AFW_INT32_MAX) {
         AFW_THROW_ERROR_Z(general,
             "dayTimeDuration limit exceeded", xctx);
     }
-    to->days = (afw_int32_t)days;
 
+    to->microseconds = from->microseconds % 1000000;
+    to->seconds = (afw_int32_t)(seconds % 60);
+    to->minutes = (afw_int32_t)(minutes % 60);
+    to->hours = (afw_int32_t)(hours % 24);
+    to->days = (afw_int32_t)days;
 }
 
 
@@ -1785,8 +1761,10 @@ afw_date_add_yearMonthDuration(
     afw_integer_t year, month;
     int days_in_month;
 
-    year = date->date.year + yearMonthDuration->years;
-    month = date->date.month + yearMonthDuration->months;
+    year = (afw_integer_t)date->date.year +
+        yearMonthDuration->years;
+    month = (afw_integer_t)date->date.month +
+        yearMonthDuration->months;
 
     year += impl_fQuotient3(month, 1, 13);
     month = impl_modulo3(month, 1, 13);
@@ -1815,8 +1793,10 @@ afw_date_subtract_yearMonthDuration(
     afw_integer_t year, month;
     int days_in_month;
 
-    year = date->date.year - yearMonthDuration->years;
-    month = date->date.month - yearMonthDuration->months;
+    year = (afw_integer_t)date->date.year -
+        yearMonthDuration->years;
+    month = (afw_integer_t)date->date.month -
+        yearMonthDuration->months;
 
     year += impl_fQuotient3(month, 1, 13);
     month = impl_modulo3(month, 1, 13);
@@ -1848,7 +1828,9 @@ afw_dateTime_add_dayTimeDuration(
     year = dateTime->date.year;
     month = dateTime->date.month;
 
-    temp = dateTime->time.microsecond + dayTimeDuration->microseconds;
+    /* time.microsecond is unsigned; widen it before adding a negative. */
+    temp = (afw_integer_t)dateTime->time.microsecond +
+        dayTimeDuration->microseconds;
     dateTime->time.microsecond = (afw_uint32_t)impl_modulo2(temp, 1000000);
     carry = impl_fQuotient2(temp, 1000000);
 
@@ -1872,23 +1854,9 @@ afw_dateTime_add_dayTimeDuration(
     else if (dateTime->date.day < 1) {
         day = 1;
     }
-    day += dayTimeDuration->days + carry;
-
-    for (;;) {
-        if (day < 1) {
-            day += afw_date_maximum_days_in_month(year, month - 1);
-            carry = -1;
-        }
-        else {
-            dim = afw_date_maximum_days_in_month(year, month);
-            if (day <= dim) break;
-            day -= dim;
-            carry = 1;
-        }
-        temp = month + carry;
-        month = impl_modulo3(temp, 1, 13);
-        year += impl_fQuotient3(temp, 1, 13);
-    }
+    impl_civil_from_days(
+        impl_days_from_civil(year, month, day) + dayTimeDuration->days + carry,
+        &year, &month, &day);
 
     dateTime->date.day = (afw_uint8_t)day;
     dateTime->date.month = (afw_uint8_t)month;
@@ -1912,7 +1880,8 @@ afw_dateTime_subtract_dayTimeDuration(
     year = dateTime->date.year;
     month = dateTime->date.month;
 
-    temp = dateTime->time.microsecond - dayTimeDuration->microseconds;
+    temp = (afw_integer_t)dateTime->time.microsecond -
+        dayTimeDuration->microseconds;
     dateTime->time.microsecond = (afw_uint32_t)impl_modulo2(temp, 1000000);
     carry = impl_fQuotient2(temp, 1000000);
 
@@ -1936,23 +1905,9 @@ afw_dateTime_subtract_dayTimeDuration(
     else if (dateTime->date.day < 1) {
         day = 1;
     }
-    day = day - dayTimeDuration->days + carry;
-
-    for (;;) {
-        if (day < 1) {
-            day += afw_date_maximum_days_in_month(year, month - 1);
-            carry = -1;
-        }
-        else {
-            dim = afw_date_maximum_days_in_month(year, month);
-            if (day <= dim) break;
-            day -= dim;
-            carry = 1;
-        }
-        temp = month + carry;
-        month = impl_modulo3(temp, 1, 13);
-        year += impl_fQuotient3(temp, 1, 13);
-    }
+    impl_civil_from_days(
+        impl_days_from_civil(year, month, day) - dayTimeDuration->days + carry,
+        &year, &month, &day);
 
     dateTime->date.day = (afw_uint8_t)day;
     dateTime->date.month = (afw_uint8_t)month;
@@ -1973,8 +1928,10 @@ afw_dateTime_add_yearMonthDuration(
     afw_integer_t year, month;
     int days_in_month;
 
-    year = dateTime->date.year + yearMonthDuration->years;
-    month = dateTime->date.month + yearMonthDuration->months;
+    year = (afw_integer_t)dateTime->date.year +
+        yearMonthDuration->years;
+    month = (afw_integer_t)dateTime->date.month +
+        yearMonthDuration->months;
 
     year += impl_fQuotient3(month, 1, 13);
     month = impl_modulo3(month, 1, 13);
@@ -2003,8 +1960,10 @@ afw_dateTime_subtract_yearMonthDuration(
     afw_integer_t year, month;
     int days_in_month;
 
-    year = dateTime->date.year - yearMonthDuration->years;
-    month = dateTime->date.month - yearMonthDuration->months;
+    year = (afw_integer_t)dateTime->date.year -
+        yearMonthDuration->years;
+    month = (afw_integer_t)dateTime->date.month -
+        yearMonthDuration->months;
 
     year += impl_fQuotient3(month, 1, 13);
     month = impl_modulo3(month, 1, 13);

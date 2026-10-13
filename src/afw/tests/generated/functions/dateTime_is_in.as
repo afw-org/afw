@@ -22,8 +22,8 @@ is_in<dateTime>(
 
 //?
 //? test: is_in<dateTime>-2
-//? description: false
-//? expect: error
+//? description: values without a time zone have the implicit one; none is the 2005 value
+//? expect: boolean(false)
 //? source: ...
 
 is_in<dateTime>(

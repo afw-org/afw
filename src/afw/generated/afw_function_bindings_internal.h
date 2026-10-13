@@ -29625,8 +29625,9 @@ afw_function_definition_ge_time;
  * Checks for time arg1 is greater than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29665,8 +29666,9 @@ afw_function_definition_gt_time;
  *
  * Checks for time arg1 is greater than time arg2 and return the boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29860,8 +29862,9 @@ afw_function_definition_le_time;
  * Checks for time arg1 is less than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29900,8 +29903,9 @@ afw_function_definition_lt_time;
  *
  * Checks for time arg1 is less that time arg2 and return the boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29940,8 +29944,9 @@ afw_function_definition_max_time;
  *
  * Return the time value that is greater than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29978,8 +29983,9 @@ afw_function_definition_min_time;
  *
  * Return the time value that is less than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

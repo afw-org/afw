@@ -23157,12 +23157,6 @@ afw_self_v_zz__0020ea225c8f = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__00277e558b68 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__00277e558b68)
-};
-
-const afw_value_string_t
 afw_self_v_zz__004e323847a2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__004e323847a2)
@@ -25575,6 +25569,12 @@ afw_self_v_zz__2a60165a1640 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2a706435a845 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2a706435a845)
+};
+
+const afw_value_string_t
 afw_self_v_zz__2a7826098a7f = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__2a7826098a7f)
@@ -27015,6 +27015,12 @@ afw_self_v_zz__456b593aa3d7 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__45a359f31fd4 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__45a359f31fd4)
+};
+
+const afw_value_string_t
 afw_self_v_zz__45c0b0354e53 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__45c0b0354e53)
@@ -27618,6 +27624,12 @@ const afw_value_string_t
 afw_self_v_zz__50e05031d41d = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__50e05031d41d)
+};
+
+const afw_value_string_t
+afw_self_v_zz__50e6fb4b19ed = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__50e6fb4b19ed)
 };
 
 const afw_value_string_t
@@ -30099,6 +30111,12 @@ afw_self_v_zz__7a5d084776ef = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__7a5d609a71e5 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__7a5d609a71e5)
+};
+
+const afw_value_string_t
 afw_self_v_zz__7a709279e4c1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__7a709279e4c1)
@@ -30768,12 +30786,6 @@ const afw_value_string_t
 afw_self_v_zz__864e5aed561b = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__864e5aed561b)
-};
-
-const afw_value_string_t
-afw_self_v_zz__8688f9e2f37d = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__8688f9e2f37d)
 };
 
 const afw_value_string_t
@@ -31614,6 +31626,12 @@ const afw_value_string_t
 afw_self_v_zz__95fcb77954b8 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__95fcb77954b8)
+};
+
+const afw_value_string_t
+afw_self_v_zz__9603b51880c7 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__9603b51880c7)
 };
 
 const afw_value_string_t
@@ -52599,12 +52617,6 @@ afw_self_v_zz__a42816a77d33 = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__a43ae56463eb = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__a43ae56463eb)
-};
-
-const afw_value_string_t
 afw_self_v_zz__a4539a6e32cc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__a4539a6e32cc)
@@ -53640,12 +53652,6 @@ const afw_value_string_t
 afw_self_v_zz__b4ed487862c6 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__b4ed487862c6)
-};
-
-const afw_value_string_t
-afw_self_v_zz__b516382ce922 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__b516382ce922)
 };
 
 const afw_value_string_t
@@ -55035,12 +55041,6 @@ afw_self_v_zz__cc130124b33b = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__cc1bce6940b9 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__cc1bce6940b9)
-};
-
-const afw_value_string_t
 afw_self_v_zz__cc31ea29eba5 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__cc31ea29eba5)
@@ -55560,6 +55560,12 @@ const afw_value_string_t
 afw_self_v_zz__d237b02ca16d = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__d237b02ca16d)
+};
+
+const afw_value_string_t
+afw_self_v_zz__d24375fd8691 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__d24375fd8691)
 };
 
 const afw_value_string_t
@@ -58464,12 +58470,6 @@ const afw_value_string_t
 afw_self_v_zz__fed3a9707f02 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__fed3a9707f02)
-};
-
-const afw_value_string_t
-afw_self_v_zz__fededb3c99fb = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__fededb3c99fb)
 };
 
 const afw_value_string_t

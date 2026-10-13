@@ -133,32 +133,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__00277e558b68 \
-    "Return the time value that is less than or equal to the others.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__00277e558b68 */
-#define afw_s_zz__00277e558b68 \
-    (&afw_self_v_zz__00277e558b68.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__00277e558b68 */
-#define afw_self_s_zz__00277e558b68 \
-    (afw_self_v_zz__00277e558b68.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__00277e558b68 */
-extern const afw_value_string_t \
-    afw_self_v_zz__00277e558b68;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__00277e558b68 */
-#define afw_z_zz__00277e558b68 \
-    (afw_self_v_zz__00277e558b68.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__00277e558b68 */
-#define afw_v_zz__00277e558b68 \
-    (&afw_self_v_zz__00277e558b68.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__004e323847a2 \
     "function lt<anyURI> (\n    arg1: anyURI,\n    arg2: anyURI\n): boolean;\n"
 
@@ -10611,6 +10585,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__2a706435a845 \
+    "Return the time value that is less than or equal to the others.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a706435a845 */
+#define afw_s_zz__2a706435a845 \
+    (&afw_self_v_zz__2a706435a845.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a706435a845 */
+#define afw_self_s_zz__2a706435a845 \
+    (afw_self_v_zz__2a706435a845.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2a706435a845 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2a706435a845;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2a706435a845 */
+#define afw_z_zz__2a706435a845 \
+    (afw_self_v_zz__2a706435a845.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2a706435a845 */
+#define afw_v_zz__2a706435a845 \
+    (&afw_self_v_zz__2a706435a845.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__2a7826098a7f \
     "Checks for boolean arg1 is greater than or equal to boolean arg2 and return the boolean result."
 
@@ -16851,6 +16851,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__45a359f31fd4 \
+    "Checks for time arg1 is greater than time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__45a359f31fd4 */
+#define afw_s_zz__45a359f31fd4 \
+    (&afw_self_v_zz__45a359f31fd4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__45a359f31fd4 */
+#define afw_self_s_zz__45a359f31fd4 \
+    (afw_self_v_zz__45a359f31fd4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__45a359f31fd4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__45a359f31fd4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__45a359f31fd4 */
+#define afw_z_zz__45a359f31fd4 \
+    (afw_self_v_zz__45a359f31fd4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__45a359f31fd4 */
+#define afw_v_zz__45a359f31fd4 \
+    (&afw_self_v_zz__45a359f31fd4.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__45c0b0354e53 \
     "function to_string<rfc822Name> (\n    value: rfc822Name\n): string;\n"
 
@@ -19473,6 +19499,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__50e05031d41d */
 #define afw_v_zz__50e05031d41d \
     (&afw_self_v_zz__50e05031d41d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__50e6fb4b19ed \
+    "Checks for time arg1 is greater than or equal to time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_s_zz__50e6fb4b19ed \
+    (&afw_self_v_zz__50e6fb4b19ed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_self_s_zz__50e6fb4b19ed \
+    (afw_self_v_zz__50e6fb4b19ed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__50e6fb4b19ed */
+extern const afw_value_string_t \
+    afw_self_v_zz__50e6fb4b19ed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_z_zz__50e6fb4b19ed \
+    (afw_self_v_zz__50e6fb4b19ed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_v_zz__50e6fb4b19ed \
+    (&afw_self_v_zz__50e6fb4b19ed.pub)
 
 
 
@@ -30215,6 +30267,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7a5d609a71e5 \
+    "Checks for time arg1 is less than or equal to time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_s_zz__7a5d609a71e5 \
+    (&afw_self_v_zz__7a5d609a71e5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_self_s_zz__7a5d609a71e5 \
+    (afw_self_v_zz__7a5d609a71e5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7a5d609a71e5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7a5d609a71e5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_z_zz__7a5d609a71e5 \
+    (afw_self_v_zz__7a5d609a71e5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_v_zz__7a5d609a71e5 \
+    (&afw_self_v_zz__7a5d609a71e5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7a709279e4c1 \
     "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug."
 
@@ -33123,32 +33201,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__864e5aed561b */
 #define afw_v_zz__864e5aed561b \
     (&afw_self_v_zz__864e5aed561b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__8688f9e2f37d \
-    "Checks for time arg1 is less that time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8688f9e2f37d */
-#define afw_s_zz__8688f9e2f37d \
-    (&afw_self_v_zz__8688f9e2f37d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8688f9e2f37d */
-#define afw_self_s_zz__8688f9e2f37d \
-    (afw_self_v_zz__8688f9e2f37d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8688f9e2f37d */
-extern const afw_value_string_t \
-    afw_self_v_zz__8688f9e2f37d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8688f9e2f37d */
-#define afw_z_zz__8688f9e2f37d \
-    (afw_self_v_zz__8688f9e2f37d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8688f9e2f37d */
-#define afw_v_zz__8688f9e2f37d \
-    (&afw_self_v_zz__8688f9e2f37d.pub)
 
 
 
@@ -36789,6 +36841,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__95fcb77954b8 */
 #define afw_v_zz__95fcb77954b8 \
     (&afw_self_v_zz__95fcb77954b8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9603b51880c7 \
+    "Checks for time arg1 is less that time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9603b51880c7 */
+#define afw_s_zz__9603b51880c7 \
+    (&afw_self_v_zz__9603b51880c7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9603b51880c7 */
+#define afw_self_s_zz__9603b51880c7 \
+    (afw_self_v_zz__9603b51880c7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9603b51880c7 */
+extern const afw_value_string_t \
+    afw_self_v_zz__9603b51880c7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9603b51880c7 */
+#define afw_z_zz__9603b51880c7 \
+    (afw_self_v_zz__9603b51880c7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9603b51880c7 */
+#define afw_v_zz__9603b51880c7 \
+    (&afw_self_v_zz__9603b51880c7.pub)
 
 
 
@@ -127715,32 +127793,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a43ae56463eb \
-    "Return the time value that is greater than or equal to the others.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a43ae56463eb */
-#define afw_s_zz__a43ae56463eb \
-    (&afw_self_v_zz__a43ae56463eb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a43ae56463eb */
-#define afw_self_s_zz__a43ae56463eb \
-    (afw_self_v_zz__a43ae56463eb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a43ae56463eb */
-extern const afw_value_string_t \
-    afw_self_v_zz__a43ae56463eb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a43ae56463eb */
-#define afw_z_zz__a43ae56463eb \
-    (afw_self_v_zz__a43ae56463eb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a43ae56463eb */
-#define afw_v_zz__a43ae56463eb \
-    (&afw_self_v_zz__a43ae56463eb.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a4539a6e32cc \
     "Checks whether value is dataType rfc822Name and returns the boolean result. It is false for undefined. This can also be written is<rfc822Name>(value)."
 
@@ -132235,32 +132287,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b4ed487862c6 */
 #define afw_v_zz__b4ed487862c6 \
     (&afw_self_v_zz__b4ed487862c6.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b516382ce922 \
-    "Checks for time arg1 is greater than or equal to time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b516382ce922 */
-#define afw_s_zz__b516382ce922 \
-    (&afw_self_v_zz__b516382ce922.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b516382ce922 */
-#define afw_self_s_zz__b516382ce922 \
-    (afw_self_v_zz__b516382ce922.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b516382ce922 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b516382ce922;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b516382ce922 */
-#define afw_z_zz__b516382ce922 \
-    (afw_self_v_zz__b516382ce922.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b516382ce922 */
-#define afw_v_zz__b516382ce922 \
-    (&afw_self_v_zz__b516382ce922.pub)
 
 
 
@@ -138271,32 +138297,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__cc1bce6940b9 \
-    "Checks for time arg1 is less than or equal to time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_s_zz__cc1bce6940b9 \
-    (&afw_self_v_zz__cc1bce6940b9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_self_s_zz__cc1bce6940b9 \
-    (afw_self_v_zz__cc1bce6940b9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cc1bce6940b9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__cc1bce6940b9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_z_zz__cc1bce6940b9 \
-    (afw_self_v_zz__cc1bce6940b9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_v_zz__cc1bce6940b9 \
-    (&afw_self_v_zz__cc1bce6940b9.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__cc31ea29eba5 \
     "Checks for object arg1 is less than or equal to object arg2 and return the boolean result."
 
@@ -140555,6 +140555,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d237b02ca16d */
 #define afw_v_zz__d237b02ca16d \
     (&afw_self_v_zz__d237b02ca16d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d24375fd8691 \
+    "Return the time value that is greater than or equal to the others.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d24375fd8691 */
+#define afw_s_zz__d24375fd8691 \
+    (&afw_self_v_zz__d24375fd8691.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d24375fd8691 */
+#define afw_self_s_zz__d24375fd8691 \
+    (afw_self_v_zz__d24375fd8691.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d24375fd8691 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d24375fd8691;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d24375fd8691 */
+#define afw_z_zz__d24375fd8691 \
+    (afw_self_v_zz__d24375fd8691.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d24375fd8691 */
+#define afw_v_zz__d24375fd8691 \
+    (&afw_self_v_zz__d24375fd8691.pub)
 
 
 
@@ -153139,32 +153165,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fed3a9707f02 */
 #define afw_v_zz__fed3a9707f02 \
     (&afw_self_v_zz__fed3a9707f02.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__fededb3c99fb \
-    "Checks for time arg1 is greater than time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fededb3c99fb */
-#define afw_s_zz__fededb3c99fb \
-    (&afw_self_v_zz__fededb3c99fb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fededb3c99fb */
-#define afw_self_s_zz__fededb3c99fb \
-    (afw_self_v_zz__fededb3c99fb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__fededb3c99fb */
-extern const afw_value_string_t \
-    afw_self_v_zz__fededb3c99fb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fededb3c99fb */
-#define afw_z_zz__fededb3c99fb \
-    (afw_self_v_zz__fededb3c99fb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__fededb3c99fb */
-#define afw_v_zz__fededb3c99fb \
-    (&afw_self_v_zz__fededb3c99fb.pub)
 
 
 

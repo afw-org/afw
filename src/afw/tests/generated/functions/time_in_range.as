@@ -30,13 +30,25 @@ in_range<time>(
 
 //?
 //? test: in_range<time>-3
-//? description: x
+//? description: 00:00:00+05:00 is 19:00:00Z, so the range is 19:00:00Z to 23:59:40.5555Z and 00:00:01Z is outside it
+//? expect: boolean(false)
+//? source: ...
+
+in_range<time>(
+    "00:00:01Z"time,
+    "00:00:00+05:00"time,
+    "23:59:40.5555Z"time
+)
+
+//?
+//? test: in_range<time>-wrap-utc
+//? description: 04:00:00+05:00 is 23:00:00Z, so the range wraps past midnight and 23:30:00Z is inside it
 //? expect: boolean(true)
 //? source: ...
 
 in_range<time>(
-    "00:00:01"time,
-    "00:00:00+05:00"time,
-    "23:59:40.5555"time
+    "23:30:00Z"time,
+    "04:00:00+05:00"time,
+    "01:00:00Z"time
 )
 

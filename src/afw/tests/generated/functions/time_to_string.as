@@ -31,7 +31,7 @@ to_string<time>(
 //? source: ...
 
 to_string<time>(
-    "13:20"time
+    "13:20:00"time
 )
 
 //?
