@@ -990,3 +990,60 @@ assert(cs[1]() === 11);
 assert(cs[0]() === 20);
 assert(cs[1]() === 21);
 return 0;
+
+//?
+//? test: function-argument-in-nested-block
+//? description: a function written as an argument inside a block, loop, or function is bound in the caller's frame
+//? expect: [1, 2, 4, [0, 1, 2]]
+//? source: ...
+
+function call(f) {
+    return f();
+}
+function keep(f) {
+    return f;
+}
+let a;
+{
+    const x = 1;
+    a = call(function () { return x; });
+}
+function w() {
+    const y = 2;
+    return call(function () { return y; });
+}
+function later() {
+    let z = 3;
+    const g = keep(function () { return z; });
+    z = 4;
+    return g();
+}
+const trips = [];
+for (let i = 0; i < 3; i++) {
+    push(trips, call(function () { return i; }));
+}
+return [a, w(), later(), trips];
+
+//?
+//? test: rest-arguments-evaluated
+//? description: rest arguments are evaluated in the caller's scope, functions bound there too
+//? expect: ["[2,\"x\"]", 10, 7, "[1,[]]"]
+//? source: ...
+
+function rest(...a) {
+    return stringify(a);
+}
+function first_of_rest(n, ...fs) {
+    return fs[0]();
+}
+function pair(a, ...b) {
+    return stringify([a, b]);
+}
+let r;
+{
+    const y = 5;
+    const seven = 7;
+    r = [rest(1 + 1, "x"), first_of_rest(0, function () { return y * 2; }),
+        first_of_rest(0, function () { return seven; }), pair(1)];
+}
+return r;
