@@ -341,8 +341,10 @@ EntryFunctionLambdaOrVariableReference ::=
 Evaluation ::=
    EntryFunctionLambdaOrVariableReference ( '?.'? Parameters )?
    EvaluationChain
-/* The calls, member accesses, and '->' calls that follow an Evaluation or    */
-/* a ParenthesizedExpression.                                                 */
+/* The calls, member accesses, and '->' calls that follow a Value:            */
+/* [1, 2][0], "abc"[1], {"a": 1}.a, (v as object).name, f(x)(y). After a      */
+/* number literal, a '.' right after the digits is the decimal point, as      */
+/* in ECMAScript: 1.x is an error, 1..x and (1).x are not.                    */
 
 EvaluationChain ::=
    (
@@ -1069,15 +1071,16 @@ Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
 /* From afw_compile_parse_value.c                                             */
 /*                                                                            */
 /* Evaluation must be before ParenthesizedExpression so Lambda has first shot */
-/* at parenthesis.                                                            */
+/* at parenthesis. Evaluation and ParenthesizedExpression include their own   */
+/* EvaluationChain.                                                           */
 /*                                                                            */
 
-Value ::= ListValue |
+Value ::= ( ( ListValue |
         ObjectValue |
         ScalarLiteral |
+        TemplateString ) EvaluationChain ) |
         Evaluation |
         ParenthesizedExpression |
-        TemplateString |
         CompileTimeSubstitution |
         CompilerInternalValue
 

@@ -887,15 +887,16 @@ afw_compile_parse_Literal(
  *
  *#
  *# Evaluation must be before ParenthesizedExpression so Lambda has first shot
- *# at parenthesis.
+ *# at parenthesis. Evaluation and ParenthesizedExpression include their own
+ *# EvaluationChain.
  *#
  *
- * Value ::= ListValue |
+ * Value ::= ( ( ListValue |
  *         ObjectValue |
  *         ScalarLiteral |
+ *         TemplateString ) EvaluationChain ) |
  *         Evaluation |
  *         ParenthesizedExpression |
- *         TemplateString |
  *         CompileTimeSubstitution |
  *         CompilerInternalValue
  *
@@ -906,22 +907,22 @@ afw_compile_parse_Value(afw_compile_parser_t *parser)
     const afw_value_t *value = NULL;
     afw_boolean_t is_Literal;
 
-    /* If ListValue, return its value. */
+    /* If ListValue, return it with its EvaluationChain: [1, 2][0]. */
     value = afw_compile_parse_List(parser, true, true);
     if (value) {
-        return value;
+        return afw_compile_parse_EvaluationChain(parser, value);
     }
 
-    /* If ObjectValue, return its value. */
+    /* If ObjectValue, return it with its EvaluationChain: {"a": 1}.a. */
     value = afw_compile_parse_Object(parser, true, true);
     if (value) {
-        return value;
+        return afw_compile_parse_EvaluationChain(parser, value);
     }
 
-    /* If ScalarLiteral, return its value. */
+    /* If ScalarLiteral, return it with its EvaluationChain: "abc"[1]. */
     value = afw_compile_parse_Literal(parser, &is_Literal, false, true);
     if (is_Literal) {
-        return value;
+        return afw_compile_parse_EvaluationChain(parser, value);
     }
 
     /* If evaluation, return its value. */
@@ -936,10 +937,10 @@ afw_compile_parse_Value(afw_compile_parser_t *parser)
         return value;
     }
 
-    /* If next is '`', parse TemplateString. */
+    /* If next is '`', parse TemplateString and its EvaluationChain. */
     if (afw_compile_peek_next_token_is(grave)) {
         value = afw_compile_parse_TemplateString(parser);
-        return value;
+        return afw_compile_parse_EvaluationChain(parser, value);
     }
 
     /* If next is '#{}', parse CompileTimeSubstitution. */

@@ -1297,6 +1297,11 @@ const afw_value_t *
 afw_compile_parse_Evaluation(afw_compile_parser_t *parser);
 
 const afw_value_t *
+afw_compile_parse_EvaluationChain(
+    afw_compile_parser_t *parser,
+    const afw_value_t *result);
+
+const afw_value_t *
 afw_compile_parse_EvaluationTimeSubstitution(afw_compile_parser_t *parser);
 
 const afw_value_t *

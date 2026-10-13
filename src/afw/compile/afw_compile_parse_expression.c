@@ -332,8 +332,10 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
  *    EntryFunctionLambdaOrVariableReference ( '?.'? Parameters )?
  *    EvaluationChain
  *
- *# The calls, member accesses, and '->' calls that follow an Evaluation or
- *# a ParenthesizedExpression.
+ *# The calls, member accesses, and '->' calls that follow a Value:
+ *# [1, 2][0], "abc"[1], {"a": 1}.a, (v as object).name, f(x)(y). After a
+ *# number literal, a '.' right after the digits is the decimal point, as
+ *# in ECMAScript: 1.x is an error, 1..x and (1).x are not.
  * EvaluationChain ::=
  *    (
  *        ( '?.'? ParametersExceptFirst ) |
@@ -350,8 +352,8 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
  *
  *<<<ebnf*/
 /* Parse the EvaluationChain that follows result. */
-static const afw_value_t *
-impl_parse_EvaluationChain(
+const afw_value_t *
+afw_compile_parse_EvaluationChain(
     afw_compile_parser_t *parser,
     const afw_value_t *result)
 {
@@ -497,7 +499,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
         return NULL;
     }
 
-    return impl_parse_EvaluationChain(parser, result);
+    return afw_compile_parse_EvaluationChain(parser, result);
 }
 
 
@@ -949,6 +951,11 @@ afw_compile_parse_Parameters(
             continue;
         }
 
+        /* A value must follow '(' or ','; f(1 2) is not two arguments. */
+        if (had_value) {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ')'");
+        }
+
         is_spread = false;
         if (afw_compile_token_is(ellipsis)) {
             is_spread = true;
@@ -999,7 +1006,7 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
     }
 
-    return impl_parse_EvaluationChain(parser, result);
+    return afw_compile_parse_EvaluationChain(parser, result);
 }
 
 
