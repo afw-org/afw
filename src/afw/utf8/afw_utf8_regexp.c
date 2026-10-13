@@ -154,3 +154,239 @@ afw_utf8_regexp_find(
 
     return found;
 }
+
+
+AFW_DEFINE(afw_integer_t)
+afw_utf8_regexp_index_of(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    afw_xctx_t *xctx)
+{
+    UText ut = UTEXT_INITIALIZER;
+    UErrorCode status;
+    URegularExpression *rx;
+    int64_t start;
+    afw_integer_t index;
+    afw_size_t i;
+
+    /* Nothing between the clone and its close can throw. */
+    start = -1;
+    status = U_ZERO_ERROR;
+    rx = uregex_clone(regexp->rx, &status);
+    utext_openUTF8(&ut, subject->s, (int64_t)subject->len, &status);
+    uregex_setUText(rx, &ut, &status);
+    if (uregex_find(rx, 0, &status)) {
+        start = uregex_start64(rx, 0, &status);
+    }
+    if (rx) {
+        uregex_close(rx);
+    }
+    utext_close(&ut);
+
+    if (U_FAILURE(status)) {
+        AFW_THROW_ERROR_RV_Z(general, icu, status,
+            "Regular expression find failed", xctx);
+    }
+    if (start < 0) {
+        return -1;
+    }
+
+    /* The UText's native index is a byte offset; count code points. */
+    for (index = 0, i = 0; i < (afw_size_t)start; i++) {
+        if ((subject->s[i] & 0xC0) != 0x80) {
+            index++;
+        }
+    }
+
+    return index;
+}
+
+
+
+/* Write replacement for the current match of rx in subject. */
+static void
+impl_write_replacement(
+    URegularExpression *rx,
+    const afw_utf8_t *subject,
+    const afw_utf8_t *replacement,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    UErrorCode status;
+    int32_t group_count;
+    int32_t group;
+    int64_t start;
+    int64_t end;
+    afw_utf8_t name;
+    afw_size_t run;
+    afw_size_t i;
+    afw_size_t j;
+
+    status = U_ZERO_ERROR;
+    group_count = uregex_groupCount(rx, &status);
+
+    for (run = 0, i = 0; i < replacement->len; ) {
+        if (replacement->s[i] != '\\' && replacement->s[i] != '$') {
+            i++;
+            continue;
+        }
+
+        afw_writer_write(writer, replacement->s + run, i - run, xctx);
+
+        /* A backslash makes the next code point literal. */
+        if (replacement->s[i] == '\\') {
+            i++;
+            if (i >= replacement->len) {
+                AFW_THROW_ERROR_Z(argument_error,
+                    "The replacement ends with a backslash; write \\\\ "
+                    "for a backslash",
+                    xctx);
+            }
+            run = i;
+            afw_utf8_next_code_point(replacement->s, &i, replacement->len,
+                xctx);
+            afw_writer_write(writer, replacement->s + run, i - run, xctx);
+            run = i;
+            continue;
+        }
+
+        /* $n: digits while the group exists, as ICU reads them. */
+        i++;
+        if (i < replacement->len &&
+            replacement->s[i] >= '0' && replacement->s[i] <= '9')
+        {
+            group = replacement->s[i] - '0';
+            for (i++; i < replacement->len &&
+                replacement->s[i] >= '0' && replacement->s[i] <= '9' &&
+                group * 10 + (replacement->s[i] - '0') <= group_count;
+                i++)
+            {
+                group = group * 10 + (replacement->s[i] - '0');
+            }
+            if (group > group_count) {
+                AFW_THROW_ERROR_FZ(argument_error, xctx,
+                    "The replacement refers to group %d, but the regular "
+                    "expression has %d",
+                    (int)group, (int)group_count);
+            }
+        }
+
+        /* ${name} */
+        else if (i < replacement->len && replacement->s[i] == '{') {
+            for (j = i + 1; j < replacement->len &&
+                replacement->s[j] != '}'; j++);
+            if (j >= replacement->len) {
+                AFW_THROW_ERROR_Z(argument_error,
+                    "The replacement has ${ without a closing }", xctx);
+            }
+            group = uregex_groupNumberFromCName(rx,
+                (const char *)replacement->s + i + 1, (int32_t)(j - i - 1),
+                &status);
+            if (U_FAILURE(status)) {
+                name.s = replacement->s + i + 1;
+                name.len = j - i - 1;
+                AFW_THROW_ERROR_FZ(argument_error, xctx,
+                    "The replacement refers to group ${%ku}, which the "
+                    "regular expression does not name",
+                    &name);
+            }
+            i = j + 1;
+        }
+
+        else {
+            AFW_THROW_ERROR_Z(argument_error,
+                "In the replacement, $ must be followed by a group number "
+                "or {name}; write \\$ for a $",
+                xctx);
+        }
+
+        /* A group that did not take part in the match is empty. */
+        start = uregex_start64(rx, group, &status);
+        end = uregex_end64(rx, group, &status);
+        if (U_FAILURE(status)) {
+            AFW_THROW_ERROR_RV_Z(general, icu, status,
+                "Regular expression group failed", xctx);
+        }
+        if (start >= 0) {
+            afw_writer_write(writer, subject->s + start,
+                (afw_size_t)(end - start), xctx);
+        }
+        run = i;
+    }
+
+    afw_writer_write(writer, replacement->s + run, i - run, xctx);
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_regexp_replace(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    const afw_utf8_t *replacement,
+    afw_size_t limit,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    UText ut = UTEXT_INITIALIZER;
+    UErrorCode status;
+    URegularExpression *rx;
+    const afw_writer_t *writer;
+    const afw_utf8_t * volatile result;
+    afw_utf8_t current;
+    afw_size_t count;
+    int64_t last;
+    int64_t start;
+    int64_t end;
+
+    writer = afw_utf8_writer_create(NULL, p, xctx);
+
+    status = U_ZERO_ERROR;
+    rx = uregex_clone(regexp->rx, &status);
+    utext_openUTF8(&ut, subject->s, (int64_t)subject->len, &status);
+    uregex_setUText(rx, &ut, &status);
+    if (U_FAILURE(status)) {
+        if (rx) {
+            uregex_close(rx);
+        }
+        utext_close(&ut);
+        afw_writer_release(writer, xctx);
+        AFW_THROW_ERROR_RV_Z(general, icu, status,
+            "Regular expression replace failed", xctx);
+    }
+
+    result = NULL;
+    AFW_TRY {
+        for (last = 0, count = 0;
+            count < limit && uregex_findNext(rx, &status);
+            count++)
+        {
+            start = uregex_start64(rx, 0, &status);
+            end = uregex_end64(rx, 0, &status);
+            if (U_FAILURE(status)) {
+                break;
+            }
+            afw_writer_write(writer, subject->s + last,
+                (afw_size_t)(start - last), xctx);
+            impl_write_replacement(rx, subject, replacement, writer, xctx);
+            last = end;
+        }
+        if (U_FAILURE(status)) {
+            AFW_THROW_ERROR_RV_Z(general, icu, status,
+                "Regular expression replace failed", xctx);
+        }
+        afw_writer_write(writer, subject->s + last,
+            subject->len - (afw_size_t)last, xctx);
+
+        /* The current string is a view into the writer's pool. */
+        afw_utf8_writer_current_string(writer, &current, xctx);
+        result = afw_utf8_clone(&current, p, xctx);
+    }
+    AFW_FINALLY {
+        uregex_close(rx);
+        utext_close(&ut);
+        afw_writer_release(writer, xctx);
+    }
+    AFW_ENDTRY;
+
+    return result;
+}

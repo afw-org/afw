@@ -2736,8 +2736,17 @@ const afw_value_t *
 afw_function_execute_regexp_index_of(
     afw_function_execute_t *x)
 {
-    /** @fixme Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
+
+    return afw_value_create_unmanaged_integer(
+        afw_utf8_regexp_index_of(regexp,
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), x->xctx),
+        x->p, x->xctx);
 }
 
 
@@ -2790,8 +2799,33 @@ const afw_value_t *
 afw_function_execute_regexp_replace(
     afw_function_execute_t *x)
 {
-    /** @fixme Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+    const afw_value_string_t *replacement;
+    const afw_value_integer_t *limit_value;
+    afw_size_t limit;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(replacement, 3, string);
+
+    /* As replace: default 1, a negative limit replaces all. */
+    limit = 1;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
+            limit_value, 4, integer);
+        limit = (limit_value->internal < 0 ||
+            limit_value->internal > AFW_SIZE_T_MAX)
+            ? AFW_SIZE_T_MAX
+            : (afw_size_t)limit_value->internal;
+    }
+
+    return afw_value_create_unmanaged_string(
+        afw_utf8_regexp_replace(regexp,
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(value),
+            &replacement->internal, limit, x->p, x->xctx),
+        x->p, x->xctx);
 }
 
 

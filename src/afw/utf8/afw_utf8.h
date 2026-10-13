@@ -1377,6 +1377,46 @@ afw_utf8_regexp_find(
     const afw_utf8_t *subject,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Code point index of the first match of regexp in subject.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param subject to search.
+ * @param xctx of caller.
+ * @return zero-based code point index, or -1 if regexp does not match.
+ */
+AFW_DECLARE(afw_integer_t)
+afw_utf8_regexp_index_of(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Replace matches of regexp in subject.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param subject to search.
+ * @param replacement for each match. `$n` is the text of group n (`$0`
+ *     is the whole match), `${name}` the text of the group with that
+ *     name, and a backslash makes the next character literal (`\$`).
+ * @param limit maximum number of matches to replace.
+ * @param p for the result.
+ * @param xctx of caller.
+ * @return subject with up to limit matches replaced.
+ *
+ * Matches are found left to right without overlapping. An empty match
+ * is replaced too, and the next search starts one code point later. A
+ * `$` not followed by a group number or `{name}`, a group that does not
+ * exist, and a replacement that ends with a backslash are an
+ * argument_error.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_regexp_replace(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    const afw_utf8_t *replacement,
+    afw_size_t limit,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 
 
 AFW_END_DECLARES
