@@ -89,6 +89,31 @@ afw_value_reference_by_key_create(
 }
 
 
+/* Data type id of a value for an error message, or "undefined". */
+const afw_utf8_t *
+afw_value_internal_data_type_id_for_message(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *data_type;
+
+    data_type = (value) ? afw_value_get_data_type(value, xctx) : NULL;
+    return (data_type) ? &data_type->data_type_id : afw_s_undefined;
+}
+
+
+/* A key as written in source ("length", 1), or undefined, for a message. */
+const afw_utf8_t *
+afw_value_internal_key_for_message(
+    const afw_value_t *key,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return (key) ? afw_value_decompile_to_string(key, NULL, p, xctx)
+        : afw_s_undefined;
+}
+
+
 /*
  * Implementation of method optional_evaluate for interface afw_value.
  */
@@ -137,8 +162,9 @@ impl_afw_value_optional_evaluate(
 
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
-            AFW_THROW_ERROR_Z(argument_error,
-                "Index must be integer for array", xctx);
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "Index into an array must be an integer, not %ku %ku",
+                afw_value_internal_data_type_id_for_message(key, xctx), afw_value_internal_key_for_message(key, p, xctx));
         }
 
         /*
@@ -167,9 +193,10 @@ impl_afw_value_optional_evaluate(
 
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
-            AFW_THROW_ERROR_Z(argument_error,
-                "Index must be integer for string code-point sequence",
-                xctx);
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "Index into %ku must be an integer, not %ku %ku",
+                afw_value_internal_data_type_id_for_message(v, xctx),
+                afw_value_internal_data_type_id_for_message(key, xctx), afw_value_internal_key_for_message(key, p, xctx));
         }
         index = ((const afw_value_integer_t *)key)->internal;
         afw_value_initialize_iterator(v, &iterator, xctx);
@@ -195,8 +222,10 @@ impl_afw_value_optional_evaluate(
     }
 
     else {
-        AFW_THROW_ERROR_Z(argument_error,
-            "Expecting object, array, or utf8 code-point sequence", xctx);
+        key = afw_value_evaluate(self->key, p, xctx);
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "Can not get %ku of %ku: expecting an object, array, or string",
+            afw_value_internal_key_for_message(key, p, xctx), afw_value_internal_data_type_id_for_message(v, xctx));
     }
 
     /* Pop value from evaluation stack and return result. */
@@ -242,8 +271,9 @@ impl_afw_value_get_evaluated_meta(
     }
     else if (afw_value_is_array(aggregate_value)) {
         if (!afw_value_is_integer(key)) {
-            AFW_THROW_ERROR_Z(argument_error,
-                "Index must be integer for array", xctx);
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "Index into an array must be an integer, not %ku %ku",
+                afw_value_internal_data_type_id_for_message(key, xctx), afw_value_internal_key_for_message(key, p, xctx));
         }
         result = afw_array_get_entry_meta(
             ((const afw_value_array_t *)aggregate_value)->internal,
@@ -251,9 +281,11 @@ impl_afw_value_get_evaluated_meta(
             p, xctx);
     }
     else {
-        AFW_THROW_ERROR_Z(general,
-            "reference_by_key aggregate_value must be array or object",
-            xctx);
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "Can not get the meta of %ku of %ku: expecting an object or "
+            "array",
+            afw_value_internal_key_for_message(key, p, xctx),
+            afw_value_internal_data_type_id_for_message(aggregate_value, xctx));
     }
 
     return result;

@@ -60,7 +60,7 @@ const result = replace_object(
     "xyz",
     {
         "new": "obj"
-    }
+    },
     { "extra": "journal" },
     { "func": "replace_object" }
 );

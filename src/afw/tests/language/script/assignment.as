@@ -250,7 +250,7 @@ return 0;
 //?
 //? test: assign-error-array-index-not-integer
 //? description: assigning into an array with a non-integer key throws
-//? expect: error:Array index must be integer
+//? expect: error:Index into an array must be an integer, not string "x"
 //? source: ...
 
 let a = [1, 2];
@@ -260,7 +260,7 @@ return 0;
 //?
 //? test: assign-error-into-utf8-sequence
 //? description: assigning into a string index throws; strings are immutable code-point sequences
-//? expect: error:Cannot assign into a utf8 code-point sequence
+//? expect: error:Can not assign to 0 of string: a string can not be changed
 //? source: ...
 
 let s = "abc";
@@ -270,7 +270,7 @@ return 0;
 //?
 //? test: assign-error-invalid-target-scalar
 //? description: assigning into a non-object/array/iterable scalar throws
-//? expect: error:Invalid assignment target
+//? expect: error:Can not assign to 0 of integer: expecting an object or array
 //? source: ...
 
 let n = 5;

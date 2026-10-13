@@ -958,6 +958,19 @@ afw_value_call_script_function(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/* Data type id of a value for an error message, or "undefined". */
+const afw_utf8_t *
+afw_value_internal_data_type_id_for_message(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/* A key as written in source ("length", 1), or undefined, for a message. */
+const afw_utf8_t *
+afw_value_internal_key_for_message(
+    const afw_value_t *key,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 afw_value_meta_object_self_t *
 afw_value_internal_create_meta_object_self(
     const afw_value_t *associated_value,

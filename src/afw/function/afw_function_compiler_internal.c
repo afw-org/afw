@@ -685,6 +685,7 @@ impl_assign_value(
         const afw_array_t *list;
         const afw_value_t *key;
         const afw_value_t *aggregate_value;
+        const afw_utf8_t *data_type_id;
 
         aggregate_value = afw_value_evaluate(
             t->aggregate_value, p, xctx);
@@ -711,7 +712,10 @@ impl_assign_value(
 
             if (!afw_value_is_integer(key)) {
                 afw_value_release(aggregate_value, xctx);
-                AFW_THROW_ERROR_Z(general, "Array index must be integer", xctx);
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Index into an array must be an integer, not %ku %ku",
+                    afw_value_internal_data_type_id_for_message(key, xctx),
+                    afw_value_internal_key_for_message(key, p, xctx));
             }
 
             afw_array_set_value(list,
@@ -720,15 +724,24 @@ impl_assign_value(
         }
 
         else if (afw_value_has_iterator(aggregate_value)) {
-            afw_value_release(aggregate_value, xctx);
             /* Utf8 code-point sequences are immutable (#153). */
-            AFW_THROW_ERROR_Z(general,
-                "Cannot assign into a utf8 code-point sequence", xctx);
+            data_type_id = afw_value_internal_data_type_id_for_message(
+                aggregate_value, xctx);
+            afw_value_release(aggregate_value, xctx);
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Can not assign to %ku of %ku: a %ku can not be changed",
+                afw_value_internal_key_for_message(key, p, xctx),
+                data_type_id, data_type_id);
         }
 
         else {
+            data_type_id = afw_value_internal_data_type_id_for_message(
+                aggregate_value, xctx);
             afw_value_release(aggregate_value, xctx);
-            AFW_THROW_ERROR_Z(general, "Invalid assignment target", xctx);
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Can not assign to %ku of %ku: expecting an object or array",
+                afw_value_internal_key_for_message(key, p, xctx),
+                data_type_id);
         }
         afw_value_release(aggregate_value, xctx);
 
@@ -1544,9 +1557,10 @@ afw_function_execute_for_of(
          */
         iterable = afw_function_evaluate_required_parameter(x, 2, NULL);
         if (!afw_value_has_iterator(iterable)) {
-            AFW_THROW_ERROR_Z(general,
-                "for-of head must be an array or utf8 code-point sequence",
-                xctx);
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "for-of needs an array or string to iterate, not %ku",
+                afw_value_internal_data_type_id_for_message(
+                    iterable, xctx));
         }
         afw_value_initialize_iterator(iterable, &iterator, xctx);
         trip.iterator = &iterator;
