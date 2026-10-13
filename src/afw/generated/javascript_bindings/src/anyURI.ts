@@ -454,16 +454,16 @@ export function afwOneAndOnlyAnyURI(client : any, array : any[]) : any {
 }
 
 /**
- * Search anyURI value for a regular expression and return index. If not
- * found, -1 is returned.
+ * Searches anyURI value for the regular expression and returns the code point
+ * index of the first match, or -1 if there is none.
  * 
  * @param {anyURI} value - The anyURI value to search.
  * 
- * @param {regexp} regexp - A regular expression to use for search. A regexp
- *     literal ("a+b"re) or a `compile<regexp>` result is already compiled;
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
  *     any other regexp value is compiled for this call.
  * 
- * @returns {integer} Zero-based index of subString or -1 if not found.
+ * @returns {integer} Zero-based code point index of the first match, or -1.
  */
 export function afwRegexpIndexOfAnyURI(client : any, value : any, regexp : any) : any {
 
@@ -477,14 +477,14 @@ export function afwRegexpIndexOfAnyURI(client : any, value : any, regexp : any) 
 }
 
 /**
- * Checks whether anyURI value matches the regular expression regexp and
- * return the boolean result.
+ * Checks whether the regular expression matches anywhere in anyURI value and
+ * returns the boolean result. Anchor with ^ and \z to match the whole value.
  * 
  * @param {anyURI} value -
  * 
- * @param {regexp} regexp - The regular expression. A regexp literal ("a+b"re)
- *     or a `compile<regexp>` result is already compiled; any other regexp
- *     value is compiled for this call.
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
  * @returns {boolean}
  */
@@ -500,18 +500,22 @@ export function afwRegexpMatchAnyURI(client : any, value : any, regexp : any) : 
 }
 
 /**
- * Replace matched values for a regular expression in a anyURI value.
+ * Replaces matches of the regular expression in anyURI value, left to right,
+ * up to limit times. An empty match is replaced too.
  * 
  * @param {anyURI} value - The original anyURI value.
  * 
- * @param {regexp} regexp - A regular expression to use for search. A regexp
- *     literal ("a+b"re) or a `compile<regexp>` result is already compiled;
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
  *     any other regexp value is compiled for this call.
  * 
- * @param {string} replacement - The replacement string.
+ * @param {string} replacement - The replacement for each match. $n is the
+ *     text of group n ($0 the whole match), ${name} the text of a named
+ *     group, and a backslash makes the next character literal (\$ for a
+ *     dollar sign). Any other $ is an error.
  * 
- * @param {integer} limit - This is the maximum times to replace. The default
- *     is 1. Specify -1 to replace all occurrences.
+ * @param {integer} limit - The maximum number of matches to replace. The
+ *     default is 1. Specify -1 (or any negative) to replace every match.
  * 
  * @returns {string} Result text as string (not re-typed as the input data
  *     type).

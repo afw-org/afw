@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toRegexp",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to a compiled regexp, the same value the typed literal \"...\"re is. A pattern ICU does not accept is an error.",
+    "description": "Converts <dataType> value to a compiled regexp, the same value as a regexp literal. A pattern ICU does not accept is a conversion_error.",
     "errorsThrown": [
         {
             "error": "conversion_error",

@@ -551,16 +551,16 @@ class anyURI
     /**
      * regexp_index_of_anyURI()
      *
-     * Search anyURI value for a regular expression and return index. If not
-     * found, -1 is returned.
+     * Searches anyURI value for the regular expression and returns the code
+     * point index of the first match, or -1 if there is none.
      *
      * @param anyURI $value The anyURI value to search.
-     * @param regexp $regexp A regular expression to use for search. A regexp
-     *                       literal ("a+b"re) or a `compile<regexp>` result
-     *                       is already compiled; any other regexp value is
-     *                       compiled for this call.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
      *
-     * @return integer Zero-based index of subString or -1 if not found.
+     * @return integer Zero-based code point index of the first match, or -1.
      */
     public function regexp_index_of_anyURI(, $value, $regexp)
     {
@@ -579,14 +579,15 @@ class anyURI
     /**
      * regexp_match_anyURI()
      *
-     * Checks whether anyURI value matches the regular expression regexp and
-     * return the boolean result.
+     * Checks whether the regular expression matches anywhere in anyURI value
+     * and returns the boolean result. Anchor with ^ and \z to match the whole
+     * value.
      *
      * @param anyURI $value
-     * @param regexp $regexp The regular expression. A regexp literal
-     *                       ("a+b"re) or a `compile<regexp>` result is
-     *                       already compiled; any other regexp value is
-     *                       compiled for this call.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
      *
      * @return boolean
      */
@@ -607,16 +608,23 @@ class anyURI
     /**
      * regexp_replace_anyURI()
      *
-     * Replace matched values for a regular expression in a anyURI value.
+     * Replaces matches of the regular expression in anyURI value, left to
+     * right, up to limit times. An empty match is replaced too.
      *
      * @param anyURI $value The original anyURI value.
-     * @param regexp $regexp A regular expression to use for search. A regexp
-     *                       literal ("a+b"re) or a `compile<regexp>` result
-     *                       is already compiled; any other regexp value is
-     *                       compiled for this call.
-     * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The default
-     *                       is 1. Specify -1 to replace all occurrences.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
+     * @param string $replacement The replacement for each match. $n is the
+     *                            text of group n ($0 the whole match),
+     *                            ${name} the text of a named group, and a
+     *                            backslash makes the next character literal
+     *                            (\$ for a dollar sign). Any other $ is an
+     *                            error.
+     * @param integer $limit The maximum number of matches to replace. The
+     *                       default is 1. Specify -1 (or any negative) to
+     *                       replace every match.
      *
      * @return string Result text as string (not re-typed as the input data
      *                type).

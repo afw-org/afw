@@ -2,7 +2,7 @@
     "brief": "Replace strings matching a regular expression",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Replace matched values for a regular expression in a <dataType> value.",
+    "description": "Replaces matches of the regular expression in <dataType> value, left to right, up to limit times. An empty match is replaced too.",
     "functionId": "regexp_replace",
     "functionLabel": "regexp_replace",
     "pure": true,
@@ -14,17 +14,17 @@
         },
         {
             "dataType": "regexp",
-            "description": "A regular expression to use for search. A regexp literal (\"a+b\"re) or a compile<regexp> result is already compiled; any other regexp value is compiled for this call.",
+            "description": "The regular expression. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
             "name": "regexp"
         },
         {
             "dataType": "string",
-            "description": "The replacement string.",
+            "description": "The replacement for each match. $n is the text of group n ($0 the whole match), ${name} the text of a named group, and a backslash makes the next character literal (\\$ for a dollar sign). Any other $ is an error.",
             "name": "replacement"
         },
         {
             "dataType": "integer",
-            "description": "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences.",
+            "description": "The maximum number of matches to replace. The default is 1. Specify -1 (or any negative) to replace every match.",
             "name": "limit",
             "optional": true
         }

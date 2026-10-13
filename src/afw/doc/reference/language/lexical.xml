@@ -103,7 +103,7 @@ super       this        typeof      var         with</code>
     "b": true 
 }</code>
     <paragraph>
-        A Scalar Literal may be one of: Double, Integer, String, true, false or null. 
+        A Scalar Literal may be one of: Double, Integer, String, true, false or null. A regular expression literal (<literal>/a+b/i</literal>) is also a scalar literal; see Regular Expressions below. 
     </paragraph>
     <code>3.14
 42
@@ -121,7 +121,7 @@ null</code>
         never half of one. Classes such as <literal>\w</literal>,
         <literal>\d</literal>, and <literal>\b</literal>, and case-insensitive
         matching, follow Unicode for every language, and matching reads AFW's
-        UTF-8 strings directly, without converting them. The syntax will look
+        UTF-8 strings in place, with no conversion of the whole string. The syntax will look
         familiar from ECMAScript, Perl, and Java. Where ICU's Unicode rules
         give a different answer than ECMAScript or XML Schema regular
         expressions, the notes at the end of this section say what to write.

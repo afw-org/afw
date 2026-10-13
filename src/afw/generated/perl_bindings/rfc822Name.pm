@@ -203,8 +203,8 @@ Converts a one value array to a rfc822Name value
 
 =head3 regexp_match_rfc822Name
 
-Checks whether rfc822Name value matches the regular expression regexp and
-return the boolean result.
+Checks whether the regular expression matches anywhere in rfc822Name value and
+returns the boolean result. Anchor with ^ and \z to match the whole value.
 Search for a match using a regular expression
 
 =head4 Parameters
@@ -214,8 +214,9 @@ Search for a match using a regular expression
 
     $regexp
 
-The regular expression. A regexp literal ("a+b"re) or a `compile<regexp>`
-result is already compiled; any other regexp value is compiled for this call.
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
 
 =head3 rfc822Name_match
 

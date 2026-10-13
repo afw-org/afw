@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "regexpIndexOfAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Search anyURI value for a regular expression and return index. If not found, -1 is returned.",
+    "description": "Searches anyURI value for the regular expression and returns the code point index of the first match, or -1 if there is none.",
     "functionId": "regexp_index_of<anyURI>",
     "functionLabel": "regexp_index_of_anyURI",
     "parameters": [
@@ -15,14 +15,14 @@
         },
         {
             "dataType": "regexp",
-            "description": "A regular expression to use for search. A regexp literal (\"a+b\"re) or a compile<regexp> result is already compiled; any other regexp value is compiled for this call.",
+            "description": "The regular expression. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
             "name": "regexp"
         }
     ],
     "pure": true,
     "returns": {
         "dataType": "integer",
-        "description": "Zero-based index of subString or -1 if not found."
+        "description": "Zero-based code point index of the first match, or -1."
     },
     "useExecuteFunction": "afw_function_execute_regexp_index_of"
 }

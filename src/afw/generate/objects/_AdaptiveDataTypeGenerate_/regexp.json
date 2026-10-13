@@ -5,7 +5,7 @@
     "dataType": "regexp",
     "dataTypeParameterType": "SourceParameter",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'regexp' holds the source for a regular expression in ICU regular expression syntax. A match is found anywhere in the value unless the pattern anchors it with ^ and $. In a script, write one as a typed literal: \"a+b\"regexp or \"a+b\"re.",
+    "description": "Data type 'regexp' holds the source of an ICU regular expression. A match is found anywhere in the value unless the pattern anchors it with ^ and \\z ($ also matches before a final line break). In a script, write one as a literal, /a+b/i, or as a typed literal, \"a+b\"re or \"a+b\"regexp; a literal is compiled once, when the script is compiled.",
     "directReturn": false,
     "evaluated": true,
     "jsonPrimitive": "string",
