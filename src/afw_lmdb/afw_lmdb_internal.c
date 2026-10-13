@@ -12,6 +12,7 @@
  */
 
 #include "afw.h"
+#include <errno.h>
 #include "afw_uuid.h"
 #include "afw_adapter_impl_index.h"
 #include "generated/afw_lmdb_generated_internal.h"
@@ -1907,6 +1908,7 @@ afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
     impl_afw_adapter_impl_index_cursor_self_t *self;
     MDB_dbi dbi;
     MDB_txn *txn = session->currTxn;
+    int rc;
 
     self = afw_pool_calloc_type(xctx->p, impl_afw_adapter_impl_index_cursor_self_t, xctx);
     self->pub.inf = &impl_afw_adapter_impl_index_cursor_inf;
@@ -1916,15 +1918,27 @@ afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
     self->unique = unique;
     self->operator = operator;
 
-    dbi = afw_lmdb_internal_open_database(self->session->adapter,
-        txn, database, 0, xctx->p, xctx);
-    self->dbi = dbi;
-
-    self->cursor = afw_lmdb_internal_open_cursor(session, dbi, xctx);
-    if (self->cursor == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error opening index cursor.", xctx);
+    /*
+     * The index database can be gone (MDB_NOTFOUND) or its handle no
+     * longer valid (EINVAL, MDB_BAD_DBI) when the query races
+     * index_remove / index_create: the conflict every query racing an
+     * index change gets. Anything else is an LMDB error.
+     */
+    dbi = 0;
+    rc = afw_lmdb_internal_try_open_database(self->session->adapter,
+        txn, database, 0, &dbi, xctx->p, xctx);
+    if (rc == 0) {
+        rc = mdb_cursor_open(txn, dbi, &self->cursor);
     }
+    if (rc == MDB_NOTFOUND || rc == EINVAL || rc == MDB_BAD_DBI) {
+        AFW_THROW_ERROR_RV_Z(conflict, lmdb, rc,
+            AFW_ADAPTER_IMPL_INDEX_CHANGED_DURING_QUERY_Z, xctx);
+    }
+    if (rc) {
+        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+            "Unable to open index cursor on database '%ku'.", database);
+    }
+    self->dbi = dbi;
 
     if (value) {
         self->key_string = afw_utf8_create(

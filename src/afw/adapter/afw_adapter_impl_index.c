@@ -2635,9 +2635,13 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
     cursors = afw_adapter_impl_index_cursor_list(instance,
         object_type_id, (criteria ? criteria->filter : NULL), xctx);
 
+    /*
+     * The caller planned this query as sargable, so no cursor means an
+     * index it planned on was removed since (a query racing index_remove).
+     */
     if (!cursors || cursors->count == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Error: unable to parse filter into indexable cursors.", xctx);
+        AFW_THROW_ERROR_Z(conflict,
+            AFW_ADAPTER_IMPL_INDEX_CHANGED_DURING_QUERY_Z, xctx);
     }
 
     current_cursor = cursors->entries[0];

@@ -33,7 +33,8 @@ tests:
       const ok = function(e) { return includes<string>(e.message, "cannot be queried")
           || includes<string>(e.message, "cannot be restarted")
           || includes<string>(e.message, "not running")
-          || includes<string>(e.message, "Unable to open cursor")
+          || (e.id === "conflict"
+              && includes<string>(e.message, "index changed during the query"))
           || e.id === "not_found"; };
       try {
           add_object("lmdb", "Idx", {s: v, n: 1}, id);
@@ -74,8 +75,15 @@ tests:
                   {op: "ge", property: "s", value: "v5"}]}});
       }
       catch (e) {
+          /*
+           * The index was removed before the query was planned, or
+           * between the plan and opening it: one conflict error,
+           * whichever way the race lands.
+           */
           if (!includes<string>(e.message, "cannot be queried")
-              && !includes<string>(e.message, "Unable to open cursor")) {
+              && !(e.id === "conflict"
+                  && includes<string>(e.message,
+                      "index changed during the query"))) {
               throw e.message;
           }
       }

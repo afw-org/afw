@@ -61,6 +61,17 @@ typedef enum afw_adapter_impl_index_mode_e {
  */
 #define AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH ((int)-1)
 
+/**
+ * Message of the conflict error thrown when an index a query planned to
+ * use is removed or recreated before the query opens it (a query racing
+ * index_remove / index_create). The query itself is valid: retrying it
+ * plans again with the indexes as they are then. Core and adapter
+ * implementations throw it with error code conflict, so a caller can
+ * recognize this one condition however the race lands.
+ */
+#define AFW_ADAPTER_IMPL_INDEX_CHANGED_DURING_QUERY_Z \
+    "An index changed during the query; retry"
+
 /* context to hold data for our callback routine */
 typedef struct {
     const afw_adapter_impl_index_t * instance;
