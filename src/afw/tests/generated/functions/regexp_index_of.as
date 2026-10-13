@@ -47,7 +47,7 @@ regexp_index_of<anyURI>("http://www.oasis.org"anyURI, "w+\\."re)
 //?
 //? test: regexp_index_of-string-pattern
 //? description: A string is not a regexp.
-//? expect: error:Parameter 2 of function 'regexp_index_of<string>' must evaluate to data type 'regexp' but evaluated to be 'string'
+//? expect: error:Parameter 2 of function 'regexp_index_of<string>' must evaluate to data type 'regexp' but evaluated to be 'string'; write "a"regexp or to_regexp(v)
 //? source: ...
 
 regexp_index_of("abc", "a")

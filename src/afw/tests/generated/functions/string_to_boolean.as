@@ -60,7 +60,7 @@ return 0;
 //?
 //? test: string_to_boolean-string-only
 //? description: the parameter is a string
-//? expect: error:Parameter 1 of function 'string_to_boolean' must evaluate to data type 'string' but evaluated to be 'integer'
+//? expect: error:Parameter 1 of function 'string_to_boolean' must evaluate to data type 'string' but evaluated to be 'integer'; write to_string(v)
 //? source: ...
 
 string_to_boolean(1)

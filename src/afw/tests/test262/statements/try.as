@@ -2741,7 +2741,7 @@ catch(e){
 
 //? test: S12.14_A18_T3
 //? description: Catching boolean
-//? expect: error:#1: Exception ===true. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'boolean'
+//? expect: error:#1: Exception ===true. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'boolean'; write to_string(v)
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2841,7 +2841,7 @@ catch(e){
 }
 //? test: S12.14_A18_T5
 //? description: Catching Number
-//? expect: error:#1: Exception ===13. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'integer'
+//? expect: error:#1: Exception ===13. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'integer'; write to_string(v)
 //? source: ...
 #!/usr/bin/env afw
 

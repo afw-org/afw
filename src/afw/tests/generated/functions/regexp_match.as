@@ -7,7 +7,7 @@
 //?
 //? test: regexp_match-error-string-pattern
 //? description: A string is not a regexp; write a regexp literal or use to_regexp.
-//? expect: error:Parameter 2 of function 'regexp_match<string>' must evaluate to data type 'regexp' but evaluated to be 'string'
+//? expect: error:Parameter 2 of function 'regexp_match<string>' must evaluate to data type 'regexp' but evaluated to be 'string'; write "a"regexp or to_regexp(v)
 //? source: ...
 
 regexp_match<string>(

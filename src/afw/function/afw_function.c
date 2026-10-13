@@ -333,6 +333,8 @@ afw_function_evaluate_parameter_with_p(
     afw_xctx_t *xctx = x->xctx;
     const afw_value_t *result;
     const afw_data_type_t *result_data_type;
+    const afw_data_type_t *expected;
+    const afw_utf8_z_t *hint;
     const afw_value_function_parameter_t *parameter;
 
     /* Formal metadata from Adaptive function definition. */
@@ -396,30 +398,34 @@ afw_function_evaluate_parameter_with_p(
     /* Get result's data type. */
     result_data_type = afw_value_get_data_type(result, xctx);
 
-    /* Error if result data type doesn't match parameter's defined data type. */
-    if (parameter->data_type && result_data_type) {
-        if (parameter->data_type != result_data_type)
-        {
-            AFW_THROW_ERROR_FZ(argument_error, xctx,
-                "Parameter " AFW_SIZE_T_FMT
-                " of function '%ku' must evaluate to data type '%ku' but evaluated to be '%ku'",
-                parameter_number,
-                &x->function->functionId->internal,
-                &parameter->data_type->data_type_id,
-                &result_data_type->data_type_id);
-        }
-    }
-
-    /* Error if result is not the data type the caller asked for (#583). */
-    if (data_type && result_data_type && result_data_type != data_type)
+    /*
+     * Error if result data type doesn't match parameter's defined data
+     * type, or is not the data type the caller asked for (#583). The
+     * message says how to get one when there is a way.
+     */
+    expected = NULL;
+    if (parameter->data_type && result_data_type &&
+        parameter->data_type != result_data_type)
     {
+        expected = parameter->data_type;
+    }
+    else if (data_type && result_data_type && result_data_type != data_type)
+    {
+        expected = data_type;
+    }
+    if (expected) {
+        hint = afw_value_type_conversion_hint_z(expected, result_data_type,
+            result, p, xctx);
         AFW_THROW_ERROR_FZ(argument_error, xctx,
             "Parameter " AFW_SIZE_T_FMT
-            " of function '%ku' must evaluate to data type '%ku' but evaluated to be '%ku'",
+            " of function '%ku' must evaluate to data type '%ku' but"
+            " evaluated to be '%ku'%s%s",
             parameter_number,
             &x->function->functionId->internal,
-            &data_type->data_type_id,
-            &result_data_type->data_type_id);
+            &expected->data_type_id,
+            &result_data_type->data_type_id,
+            hint ? "; " : "",
+            hint ? hint : "");
     }
 
     return result;

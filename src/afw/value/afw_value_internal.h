@@ -1191,6 +1191,26 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx);
  * run time and by the compile time typeCheck of as_T calls, so both say it
  * in the same words.
  */
+/**
+ * @brief How to get a value of data type expected from got, or NULL.
+ * @param expected data type.
+ * @param got data type of value (NULL for undefined).
+ * @param value that is not an expected, or NULL.
+ * @param p for the result.
+ * @param xctx of caller.
+ * @return "write HINT" or "write HINT or HINT": a typed literal if got
+ *     is string and expected has one, and to_T(v) if to_T is defined for
+ *     got; NULL when there is no way.
+ */
+const afw_utf8_z_t *
+afw_value_type_conversion_hint_z(
+    const afw_data_type_t *expected,
+    const afw_data_type_t *got,
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 const afw_utf8_z_t *
 afw_value_type_assertion_mismatch_z(
     const afw_data_type_t *expected,

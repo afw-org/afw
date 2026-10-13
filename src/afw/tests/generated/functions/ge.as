@@ -7,7 +7,7 @@
 //?
 //? test: ge-error-mismatched-types
 //? description: GE arg2's generated signature is locked to arg1's data type (unlike eq/le/ne, whose arg2 is untyped), so this is caught by the generic argument evaluator before afw_function_execute_ge's own "Data types do not match" runtime check can ever run.
-//? expect: error:Parameter 2 of function 'ge<integer>' must evaluate to data type 'integer' but evaluated to be 'string'
+//? expect: error:Parameter 2 of function 'ge<integer>' must evaluate to data type 'integer' but evaluated to be 'string'; write to_integer(v)
 //? source: ...
 
 ge(
