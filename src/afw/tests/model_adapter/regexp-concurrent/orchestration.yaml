@@ -1,0 +1,51 @@
+# A model's onGetObject script is compiled once into the adapter's
+# multithreaded pool and evaluated by every request thread. Its regexp
+# literals are compiled regexps in that unit: each thread only reads
+# them (a find matches on its own clone of the ICU matcher, and storing
+# one in a variable makes a copy owned by that request). #585.
+version: 1
+description: Regexp literals in a model onGetObject, many request threads
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 120
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: regexp-get-abc
+    feed:
+      kind: rest
+      method: GET
+      path: /model/RegexpRead/abc-12
+      accept: application/json
+    expectStatus: 200
+    expectResponse: "{\"m\":true,\"i\":4,\"r\":\"abc:12\"}"
+
+  - name: regexp-get-upper
+    feed:
+      kind: rest
+      method: GET
+      path: /model/RegexpRead/XyZ-7
+      accept: application/json
+    expectStatus: 200
+    expectResponse: "{\"m\":true,\"i\":4,\"r\":\"XyZ:7\"}"
+
+  - name: regexp-get-no-match
+    feed:
+      kind: rest
+      method: GET
+      path: /model/RegexpRead/a1b
+      accept: application/json
+    expectStatus: 200
+    expectResponse: "{\"m\":false,\"i\":1,\"r\":\"a1b\"}"
+
+schedule:
+  - firehose:
+      maxRequests: 2000
+      concurrency: 8
+      fromTests: [regexp-get-abc, regexp-get-upper, regexp-get-no-match]
+      policy: roundRobin
+      seed: 585
+      stopOnError: false
+      maxFail: 0
