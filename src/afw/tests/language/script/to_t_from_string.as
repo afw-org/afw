@@ -14,7 +14,7 @@
 // objectId, and password accept any text, so they have no bad text (#593).
 const rows = [
     [to_anyURI, is_anyURI, "https://example.com/a?b=c", "https://example.com/a?b=c", []],
-    [to_base64Binary, is_base64Binary, "YWJj", "YWJj", ["@@@", "YWJ"]],
+    [to_base64Binary, is_base64Binary, " YW Jj\n", "YWJj", ["@@@", "YWJ", "YR==", "YWJ=", "YQ=x"]],
     [to_date, is_date, "2026-10-12", "2026-10-12", ["nope", "2026-13-01", "2026-10-12T00:00:00"]],
     [to_dateTime, is_dateTime, "2026-10-12T01:02:03Z", "2026-10-12T01:02:03Z", ["nope", "2026-10-12"]],
     [to_dayTimeDuration, is_dayTimeDuration, "P1DT2H", "P1DT2H", ["nope", "P1Y"]],

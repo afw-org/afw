@@ -3,7 +3,7 @@
     "cType": "afw_utf8_t",
     "dataType": "ipAddress",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'ipAddress' holds an IPv4 or IPv6 network address, with an optional mask and an optional port or port range. Any text can be read as an ipAddress; it is not checked. It compares as a string and has no ordering. In a script, write one as a typed literal: \"10.0.0.1\"ipAddress or \"10.0.0.1\"ip.",
+    "description": "Data type 'ipAddress' holds an IPv4 or IPv6 network address, with an optional mask and an optional port or port range. Any text can be read as an ipAddress; it is not checked. Two ipAddress values are equal when they are the same text ignoring case (the hex digits of an IPv6 address); different forms of one address, such as ::1 and 0:0:0:0:0:0:0:1, are not equal. It has no ordering. In a script, write one as a typed literal: \"10.0.0.1\"ipAddress or \"10.0.0.1\"ip.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",

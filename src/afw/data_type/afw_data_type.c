@@ -136,6 +136,21 @@ impl_afw_data_type_utf8_compare_internal(
 }
 
 
+/*
+ * For dnsName and ipAddress: DNS names (RFC 4343) and the hex digits of an
+ * IPv6 address (RFC 4291) ignore case.
+ */
+static int
+impl_afw_data_type_ignore_case_compare_internal(
+    const afw_data_type_t * instance,
+    const void * value1,
+    const void * value2,
+    afw_xctx_t *xctx)
+{
+    return afw_utf8_compare_ignore_case(value1, value2, xctx);
+}
+
+
 /* ---- Convert  ------------------------------------------------------*/
 
 /*
@@ -2516,7 +2531,7 @@ IMPL_DATA_TYPE_INF(
     dnsName,              /* data type id      */
     utf8,                 /* to utf8           */
     dnsName,              /* to internal       */
-    utf8,                 /* compare           */
+    ignore_case,          /* compare           */
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
@@ -2582,7 +2597,7 @@ IMPL_DATA_TYPE_INF(
     ipAddress,            /* data type id      */
     utf8,                 /* to utf8           */
     ipAddress,            /* to internal       */
-    utf8,                 /* compare           */
+    ignore_case,          /* compare           */
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */

@@ -2,7 +2,7 @@
 //?
 //? testScript: rfc822Name_x500Name.as
 //? customPurpose: Data types
-//? description: rfc822Name and x500Name equality, match, set functions, and no ordering (#593)
+//? description: rfc822Name, x500Name, dnsName, and ipAddress equality; match; set functions; no ordering (#593)
 //? sourceType: script
 //?
 //? test: rfc822Name-equal
@@ -123,6 +123,19 @@ return [
     x500Name_match("cn=John Smith"x500Name, value),
     x500Name_match("cn=x,cn=John Smith,o=Medico Corp,c=US"x500Name, value)
 ];
+
+//?
+//? test: dnsName-ipAddress-equal
+//? description: DNS names and IPv6 hex digits ignore case; other forms of an address are not equal
+//? expect: [true, true, false, false]
+//? source: ...
+
+[
+    "Example.COM"dnsName === "example.com"dnsName,
+    "FE80::A"ipAddress === "fe80::a"ipAddress,
+    "::1"ipAddress === "0:0:0:0:0:0:0:1"ipAddress,
+    "a.example.com"dnsName === "b.example.com"dnsName
+]
 
 //?
 //? test: no-ordering
