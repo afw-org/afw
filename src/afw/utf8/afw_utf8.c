@@ -158,6 +158,12 @@ afw_utf8_nfc(
     /*
      * Bytes below U+0080 are valid and already NFC, so they skip
      * U8_NEXT. The quick check below U+0300 is unchanged.
+     *
+     * Every byte is checked for valid UTF-8, even after the NFC quick
+     * check stops being YES: the code below converts to UTF-16, and it
+     * must never be the first to see an invalid sequence. The quick
+     * check goes on while the answer is MAYBE, so a later NO still
+     * settles it without ICU.
      */
     string = s;
     length = (int32_t)len;
@@ -187,9 +193,20 @@ afw_utf8_nfc(
         /* If c < 0x0300, c is NFC normalized. */
         if (c < 0x0300) continue;
 
-        /* If NFC_QUICK_CHECK is not UNORM_YES, break. */
-        is_nfc = u_getIntPropertyValue(c, UCHAR_NFC_QUICK_CHECK);
-        if (is_nfc != UNORM_YES) break;
+        /* Once the quick check is NO, only validity is left to check. */
+        if (is_nfc == UNORM_NO) continue;
+
+        /* NFC_QUICK_CHECK: YES leaves is_nfc, MAYBE or NO lowers it. */
+        switch (u_getIntPropertyValue(c, UCHAR_NFC_QUICK_CHECK)) {
+        case UNORM_NO:
+            is_nfc = UNORM_NO;
+            break;
+        case UNORM_MAYBE:
+            is_nfc = UNORM_MAYBE;
+            break;
+        default:
+            break;
+        }
     }
 
     /*
@@ -255,17 +272,20 @@ afw_utf8_nfc(
 
         result = NULL;
 
-        /* Convert utf-8 to UChar[] */
+        /*
+         * Convert utf-8 to UChar[]. The scan above validated every byte;
+         * the strict conversion would also refuse an invalid sequence.
+         */
         errorCode = U_ZERO_ERROR;
         string = s;
         length = (int32_t)len;
         input_utf16 = malloc(length * sizeof(UChar));
-        u_strFromUTF8Lenient(input_utf16,
+        u_strFromUTF8(input_utf16,
             length, &input_utf16_length, string, length,
             &errorCode);
         if (U_FAILURE(errorCode)) {
             AFW_THROW_ERROR_RV_Z(general, icu, errorCode,
-                "u_strFromUTF8Lenient() failed", xctx);
+                "u_strFromUTF8() failed", xctx);
         }
 
         /* Get nfc normalizer. */
