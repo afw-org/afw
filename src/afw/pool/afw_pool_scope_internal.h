@@ -125,8 +125,10 @@ afw_pool_scope_clear_last_statement_non_void_value(
 /**
  * @brief Get an assignable and register last-release on dest p.
  * @param value to keep. Void and NULL are returned unchanged.
- * @param p dest pool. Walks pool parent to the nearest scope.
- *    Throws if dest p is a job heap (p == p->managed_p).
+ * @param p dest pool. Walks pool parent to the nearest scope, or
+ *    dest p itself when there is none before the job heap (a
+ *    built-in called outside script, such as a perform() action,
+ *    #600). Throws if dest p is a job heap (p == p->managed_p).
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
@@ -157,8 +159,10 @@ afw_pool_scope_get_assignable_for_scope_lifetime(
 /**
  * @brief Register last-release of a must-release hold on dest p.
  * @param value to keep. NULL is returned unchanged.
- * @param p dest pool. Walks pool parent to the nearest scope.
- *    Throws if dest p is a job heap (p == p->managed_p).
+ * @param p dest pool. Walks pool parent to the nearest scope, or
+ *    dest p itself when there is none before the job heap (a
+ *    built-in called outside script, such as a perform() action,
+ *    #600). Throws if dest p is a job heap (p == p->managed_p).
  * @param xctx of caller.
  * @return value unchanged.
  *
@@ -203,7 +207,8 @@ afw_pool_scope_get_assignable_for_p_lifetime(
 /**
  * @brief Set last_statement_non_void_value to an assignable held until dest p ends.
  * @param value to keep. Void and NULL are returned unchanged.
- * @param p dest pool. Walks pool parent to the nearest scope.
+ * @param p dest pool. Walks pool parent to the nearest scope, or
+ *    dest p itself when there is none (#600).
  * @param xctx of caller.
  * @return held value, or void/NULL unchanged.
  *
