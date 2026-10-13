@@ -148,9 +148,11 @@ afw_value_block_evaluate_block(
     afw_boolean_t as_value)
 {
     const afw_value_t * volatile saved_script_result;
+    const afw_value_t * volatile inner;
     afw_value_block_scope_t block_scope;
 
     saved_script_result = NULL;
+    inner = NULL;
     /*
      * Evaluating a block as a value must not change the caller's last.
      * Nested `{ }` statements still write the slot; park so they hit
@@ -168,26 +170,27 @@ afw_value_block_evaluate_block(
     }
     AFW_FINALLY{
         afw_value_block_scope_leave(&block_scope, xctx);
+        /*
+         * Restore on every path, a throw too. The slot owns one reference
+         * to what the block left in it; that is this evaluate's result,
+         * which its caller does not release, so dest p takes it (#538).
+         */
+        if (as_value) {
+            inner = xctx->script_result;
+            xctx->script_result = saved_script_result;
+            if (inner &&
+                !afw_value_is_undefined(inner) &&
+                !afw_value_is_void(inner))
+            {
+                afw_pool_release_value_at_cleanup(inner, p, xctx);
+            }
+        }
     }
     AFW_ENDTRY;
     afw_value_block_scope_finish(&block_scope, xctx);
 
     if (as_value) {
-        const afw_value_t *result;
-        const afw_value_t *inner;
-
-        result = afw_xctx_script_result_get(xctx);
-        inner = xctx->script_result;
-        xctx->script_result = saved_script_result;
-        if (inner &&
-            inner != saved_script_result &&
-            inner != result &&
-            !afw_value_is_undefined(inner) &&
-            !afw_value_is_void(inner))
-        {
-            afw_value_release(inner, xctx);
-        }
-        return result;
+        return (inner) ? inner : afw_value_undefined;
     }
     return afw_value_void;
 }
