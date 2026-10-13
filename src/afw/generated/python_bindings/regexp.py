@@ -11,6 +11,72 @@
 import requests
 import json
 
+def array_regexp(session, values):
+    """
+    Construct an array of regexp from values or spread arrays
+
+    Construct a new array of regexp from the given values, the same as array()
+    except that the new array is typed: each value, and each entry of a spread
+    array, must be dataType regexp, and adding a value of another data type to
+    the array later throws. A value of another data type is an error, never
+    converted. This is usually written `array<regexp>(`...values).
+
+    Args:
+        values (object): A value of dataType regexp, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of regexp.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_regexp",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def as_regexp(session, value):
+    """
+    Asserts that value is dataType regexp
+
+    Returns value unchanged if it is dataType regexp. Otherwise, including
+    when value is undefined, throws an error. It never converts: to get a
+    regexp from a value of another data type, write a typed literal or call a
+    to_T conversion function where one exists. This is usually written value
+    as regexp.
+
+    Args:
+        value (object): Value to assert
+
+    Returns:
+        object: value, which is dataType regexp
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "as_regexp",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def compile_regexp(session, source, listing=None):
     """
     Compile regexp value
@@ -181,6 +247,35 @@ def gt_regexp(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def is_regexp(session, value):
+    """
+    Checks whether value is dataType regexp
+
+    Checks whether value is dataType regexp and returns the boolean result. It
+    is false for undefined. This can also be written `is<regexp>(value`).
+
+    Args:
+        value (object): Value to check
+
+    Returns:
+        bool:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "is_regexp",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def le_regexp(session, arg1, arg2):
     """
     Checks for less than or equal
@@ -328,6 +423,35 @@ def regexp(session, value):
 
     action = {
         "function": "regexp",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_string_regexp(session, value):
+    """
+    Converts value to string
+
+    Converts regexp value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
+
+    Args:
+        value (object): A regexp value.
+
+    Returns:
+        str: The string representation of the value.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_string<regexp>",
         "value": value
     }
 

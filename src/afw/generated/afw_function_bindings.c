@@ -107238,6 +107238,7 @@ impl_to_string_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("password"),
+    AFW_UTF8_LITERAL("regexp"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("template"),
@@ -108985,6 +108986,328 @@ impl_object__random_number__value = {
     (const afw_object_t *)&impl_object__random_number
 };
 
+/* ---------- array_regexp ---------- */
+
+static const afw_utf8_t
+impl_object_path__array_regexp =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/array_regexp");
+
+static const afw_value_object_t
+impl_object__array_regexp__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__array_regexp = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__array_regexp__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_array_regexp,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__array_regexp
+        }
+    },
+    (void *)&afw_function_definition_array_regexp
+};
+
+static const afw_value_object_t
+impl_array_regexp_returns__value;
+
+static const afw_value_function_parameter_t
+impl_array_regexp_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_array_regexp_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    &afw_self_v_regexp,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_constructed_array_of_regexp_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_data_type_regexp_direct
+};
+
+static const afw_value_object_t
+impl_array_regexp_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_array_regexp_returns
+};
+
+static const afw_value_object_t
+impl_array_regexp_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_array_regexp_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_array_regexp_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_values,
+    NULL,
+    &afw_self_v_zz__3b531752eecb,
+    &afw_integer_self_v_zero,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_array_regexp_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_array_regexp_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_array_regexp_parameters[] = {
+    &impl_array_regexp_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_array_regexp_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "a value is not dataType <dataType>",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_array_regexp = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__array_regexp,
+    &afw_self_v_regexp,
+    &afw_self_v_array_regexp,
+    &afw_self_v_zz___afw__AdaptiveFunction__array_regexp,
+    &afw_self_v_array,
+    &afw_self_v_array_regexp,
+    &afw_self_v_arrayRegexp,
+    &afw_self_v_afwArrayRegexp,
+    &afw_self_v_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays,
+    &afw_self_v_zz__add21ce67ce1,
+    &afw_self_v_zz______values__any_____regexp__,
+    &afw_self_v_zz__function_array_regexp__________values__any______regexp____,
+    NULL,
+    afw_function_execute_array_of_data_type,
+    afw_function_execute_array_of_data_type,
+    NULL,
+    &afw_integer_self_v_zero,
+    &afw_integer_self_v_zz___1,
+    &impl_array_regexp_parameters[0],
+    1,
+    &impl_array_regexp_returns,
+    NULL,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    &impl_array_regexp_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_array,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__array_regexp__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__array_regexp
+};
+
+/* ---------- as_regexp ---------- */
+
+static const afw_utf8_t
+impl_object_path__as_regexp =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/as_regexp");
+
+static const afw_value_object_t
+impl_object__as_regexp__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__as_regexp = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__as_regexp__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_as_regexp,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__as_regexp
+        }
+    },
+    (void *)&afw_function_definition_as_regexp
+};
+
+static const afw_value_object_t
+impl_as_regexp_returns__value;
+
+static const afw_value_function_parameter_t
+impl_as_regexp_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_regexp_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__value__which_is_dataType_regexp,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_regexp_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_regexp_returns
+};
+
+static const afw_value_object_t
+impl_as_regexp_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_as_regexp_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_as_regexp_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_assert,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_as_regexp_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_as_regexp_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_as_regexp_parameters[] = {
+    &impl_as_regexp_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_as_regexp_errorsThrown[] = {
+    "error", "argument_error",
+    "reason", "value is not the asserted data type",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_as_regexp = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__as_regexp,
+    &afw_self_v_regexp,
+    &afw_self_v_as_regexp,
+    &afw_self_v_zz___afw__AdaptiveFunction__as_regexp,
+    &afw_self_v_as,
+    &afw_self_v_as_regexp,
+    &afw_self_v_asRegexp,
+    &afw_self_v_afwAsRegexp,
+    &afw_self_v_zz__Asserts_that_value_is_dataType_regexp,
+    &afw_self_v_zz__26670bb56330,
+    &afw_self_v_zz___value__any___regexp,
+    &afw_self_v_zz__function_as_regexp_______value__any____regexp__,
+    NULL,
+    afw_function_execute_as,
+    afw_function_execute_as,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_as_regexp_parameters[0],
+    1,
+    &impl_as_regexp_returns,
+    NULL,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    &impl_as_regexp_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_as,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__as_regexp__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__as_regexp
+};
+
 /* ---------- compile<regexp> ---------- */
 
 static const afw_utf8_t
@@ -109961,6 +110284,159 @@ impl_object__gt_regexp__value = {
     (const afw_object_t *)&impl_object__gt_regexp
 };
 
+/* ---------- is_regexp ---------- */
+
+static const afw_utf8_t
+impl_object_path__is_regexp =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/is_regexp");
+
+static const afw_value_object_t
+impl_object__is_regexp__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__is_regexp = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__is_regexp__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_is_regexp,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__is_regexp
+        }
+    },
+    (void *)&afw_function_definition_is_regexp
+};
+
+static const afw_value_object_t
+impl_is_regexp_returns__value;
+
+static const afw_value_function_parameter_t
+impl_is_regexp_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_is_regexp_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    &afw_self_v_boolean,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_is_regexp_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_is_regexp_returns
+};
+
+static const afw_value_object_t
+impl_is_regexp_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_is_regexp_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_is_regexp_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__Value_to_check,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_is_regexp_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_is_regexp_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_is_regexp_parameters[] = {
+    &impl_is_regexp_parameter_1,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_is_regexp = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__is_regexp,
+    &afw_self_v_regexp,
+    &afw_self_v_is_regexp,
+    &afw_self_v_zz___afw__AdaptiveFunction__is_regexp,
+    &afw_self_v_is,
+    &afw_self_v_is_regexp,
+    &afw_self_v_isRegexp,
+    &afw_self_v_afwIsRegexp,
+    &afw_self_v_zz__Checks_whether_value_is_dataType_regexp,
+    &afw_self_v_zz__b25476d99d56,
+    &afw_self_v_zz___value__any___boolean,
+    &afw_self_v_zz__function_is_regexp_______value__any____boolean__,
+    NULL,
+    afw_function_execute_is,
+    afw_function_execute_is,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_is_regexp_parameters[0],
+    1,
+    &impl_is_regexp_returns,
+    NULL,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    NULL,
+    afw_data_type_method_number_is,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__is_regexp__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__is_regexp
+};
+
 /* ---------- le<regexp> ---------- */
 
 static const afw_utf8_t
@@ -110896,6 +111372,159 @@ static const afw_value_object_t
 impl_object__regexp__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__regexp
+};
+
+/* ---------- to_string<regexp> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_string_regexp =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_string_regexp");
+
+static const afw_value_object_t
+impl_object__to_string_regexp__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_string_regexp = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_string_regexp__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_string_regexp,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_string_regexp
+        }
+    },
+    (void *)&afw_function_definition_to_string_regexp
+};
+
+static const afw_value_object_t
+impl_to_string_regexp_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_string_regexp_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_string_regexp_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_string_representation_of_the_value_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_string_regexp_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_string_regexp_returns
+};
+
+static const afw_value_object_t
+impl_to_string_regexp_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_string_regexp_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_string_regexp_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__A_regexp_value_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_string_regexp_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_string_regexp_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_string_regexp_parameters[] = {
+    &impl_to_string_regexp_parameter_1,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_string_regexp = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_string_regexp,
+    &afw_self_v_regexp,
+    &afw_self_v_zz__to_string_regexp_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_string_regexp_,
+    &afw_self_v_to_string,
+    &afw_self_v_to_string_regexp,
+    &afw_self_v_toStringRegexp,
+    &afw_self_v_afwToStringRegexp,
+    &afw_self_v_zz__Converts_value_to_string,
+    &afw_self_v_zz__d8e9b8cd93b2,
+    &afw_self_v_zz___value__regexp___string,
+    &afw_self_v_zz__function_to_string_regexp________value__regexp____string__,
+    NULL,
+    afw_function_execute_convert,
+    afw_function_execute_convert,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_string_regexp_parameters[0],
+    1,
+    &impl_to_string_regexp_returns,
+    NULL,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    NULL,
+    afw_data_type_method_number_to_string,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_string_regexp__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_string_regexp
 };
 
 /* ---------- compile<relaxedJson> ---------- */
@@ -148472,16 +149101,20 @@ impl_function_bindings[] = {
     &afw_function_definition_random_hexBinary,
     &afw_function_definition_random_integer,
     &afw_function_definition_random_number,
+    &afw_function_definition_array_regexp,
+    &afw_function_definition_as_regexp,
     &afw_function_definition_compile_regexp,
     &afw_function_definition_eq_regexp,
     &afw_function_definition_eqx_regexp,
     &afw_function_definition_ge_regexp,
     &afw_function_definition_gt_regexp,
+    &afw_function_definition_is_regexp,
     &afw_function_definition_le_regexp,
     &afw_function_definition_lt_regexp,
     &afw_function_definition_ne_regexp,
     &afw_function_definition_nex_regexp,
     &afw_function_definition_regexp,
+    &afw_function_definition_to_string_regexp,
     &afw_function_definition_compile_relaxedJson,
     &afw_function_definition_relaxedJson,
     &afw_function_definition_array_rfc822Name,

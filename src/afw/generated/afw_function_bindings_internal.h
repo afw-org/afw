@@ -23638,7 +23638,7 @@ afw_function_definition_to_string;
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
  *   dnsName, double, hexBinary, ia5String, integer, ipAddress, null, object,
- *   objectId, objectPath, password, rfc822Name, string, template, time,
+ *   objectId, objectPath, password, regexp, rfc822Name, string, template, time,
  *   x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
@@ -24077,6 +24077,90 @@ afw_function_execute_random_number(
  * @{
  */
 
+/** @brief Function definition array_regexp */
+extern const afw_value_function_definition_t
+afw_function_definition_array_regexp;
+
+/**
+ * @brief Adaptive Function `array_regexp`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of regexp from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType regexp, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<regexp>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_regexp(
+ *       ...values: any[]
+ *   ): regexp[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType regexp, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (regexp[]) The constructed array of regexp.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
+/** @brief Function definition as_regexp */
+extern const afw_value_function_definition_t
+afw_function_definition_as_regexp;
+
+/**
+ * @brief Adaptive Function `as_regexp`
+ * @param x function execute parameter.
+ *
+ * Returns value unchanged if it is dataType regexp. Otherwise, including when
+ * value is undefined, throws an error. It never converts: to get a regexp from
+ * a value of another data type, write a typed literal or call a to_T conversion
+ * function where one exists. This is usually written value as regexp.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function as_regexp(
+ *       value: any
+ *   ): regexp;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to assert.
+ *
+ * Returns:
+ *
+ *   (regexp) value, which is dataType regexp.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - value is not the asserted data type
+ *
+ * Implemented by afw_function_execute_as()
+ *
+ * __________
+ */
+
 /** @brief Function definition compile<regexp> */
 extern const afw_value_function_definition_t
 afw_function_definition_compile_regexp;
@@ -24287,6 +24371,41 @@ afw_function_definition_gt_regexp;
  * __________
  */
 
+/** @brief Function definition is_regexp */
+extern const afw_value_function_definition_t
+afw_function_definition_is_regexp;
+
+/**
+ * @brief Adaptive Function `is_regexp`
+ * @param x function execute parameter.
+ *
+ * Checks whether value is dataType regexp and returns the boolean result. It is
+ * false for undefined. This can also be written `is<regexp>(value`).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function is_regexp(
+ *       value: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any) Value to check.
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_is()
+ *
+ * __________
+ */
+
 /** @brief Function definition le<regexp> */
 extern const afw_value_function_definition_t
 afw_function_definition_le_regexp;
@@ -24480,6 +24599,41 @@ afw_function_definition_regexp;
  * Errors thrown:
  *
  *   conversion_error - value could not be converted
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_string<regexp> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_string_regexp;
+
+/**
+ * @brief Adaptive Function `to_string<regexp>`
+ * @param x function execute parameter.
+ *
+ * Converts regexp value to string. For array values, the to_string() value for
+ * each entry is returned separated with commas.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_string<regexp>(
+ *       value: regexp
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (regexp) A regexp value.
+ *
+ * Returns:
+ *
+ *   (string) The string representation of the value.
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -32951,6 +33105,7 @@ afw_function_execute_any_of(
  * array_objectPath
  * array_object
  * array_password
+ * array_regexp
  * array_rfc822Name
  * array_script
  * array_string
@@ -32988,6 +33143,7 @@ afw_function_execute_array_of_data_type(
  * as_objectPath
  * as_object
  * as_password
+ * as_regexp
  * as_rfc822Name
  * as_script
  * as_string
@@ -33065,6 +33221,7 @@ afw_function_execute_clone(
  * to_string<object>
  * to_string<password>
  * regexp
+ * to_string<regexp>
  * relaxedJson
  * to_string<rfc822Name>
  * script
@@ -33370,6 +33527,7 @@ afw_function_execute_intersection(
  * is_objectPath
  * is_object
  * is_password
+ * is_regexp
  * is_rfc822Name
  * is_script
  * is_string

@@ -9597,6 +9597,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__26670bb56330 \
+    "Returns value unchanged if it is dataType regexp. Otherwise, including when value is undefined, throws an error. It never converts: to get a regexp from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as regexp."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__26670bb56330 */
+#define afw_s_zz__26670bb56330 \
+    (&afw_self_v_zz__26670bb56330.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__26670bb56330 */
+#define afw_self_s_zz__26670bb56330 \
+    (afw_self_v_zz__26670bb56330.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__26670bb56330 */
+extern const afw_value_string_t \
+    afw_self_v_zz__26670bb56330;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__26670bb56330 */
+#define afw_z_zz__26670bb56330 \
+    (afw_self_v_zz__26670bb56330.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__26670bb56330 */
+#define afw_v_zz__26670bb56330 \
+    (&afw_self_v_zz__26670bb56330.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__266a9f9bdbd7 \
     "(adapterId: string, objectType: string, objectId: string, modelId?: string, context?: object /* _AdaptiveContextType_ */): object /* _AdaptiveAction_ */"
 
@@ -14767,6 +14793,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3b3c446cdbbf */
 #define afw_v_zz__3b3c446cdbbf \
     (&afw_self_v_zz__3b3c446cdbbf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__3b531752eecb \
+    "A value of dataType regexp, or ... followed by an expression that results in an array, every entry of which is included."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3b531752eecb */
+#define afw_s_zz__3b531752eecb \
+    (&afw_self_v_zz__3b531752eecb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3b531752eecb */
+#define afw_self_s_zz__3b531752eecb \
+    (afw_self_v_zz__3b531752eecb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3b531752eecb */
+extern const afw_value_string_t \
+    afw_self_v_zz__3b531752eecb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3b531752eecb */
+#define afw_z_zz__3b531752eecb \
+    (afw_self_v_zz__3b531752eecb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3b531752eecb */
+#define afw_v_zz__3b531752eecb \
+    (&afw_self_v_zz__3b531752eecb.pub)
 
 
 
@@ -40953,6 +41005,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__A_regexp_value_ \
+    "A regexp value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_regexp_value_ */
+#define afw_s_zz__A_regexp_value_ \
+    (&afw_self_v_zz__A_regexp_value_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_regexp_value_ */
+#define afw_self_s_zz__A_regexp_value_ \
+    (afw_self_v_zz__A_regexp_value_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__A_regexp_value_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__A_regexp_value_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__A_regexp_value_ */
+#define afw_z_zz__A_regexp_value_ \
+    (afw_self_v_zz__A_regexp_value_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__A_regexp_value_ */
+#define afw_v_zz__A_regexp_value_ \
+    (&afw_self_v_zz__A_regexp_value_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__A_registry_type_adapter_factory_entry_ \
     "A registry type adapter_factory entry."
 
@@ -44827,6 +44905,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Asserts_that_value_is_dataType_regexp \
+    "Asserts that value is dataType regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Asserts_that_value_is_dataType_regexp */
+#define afw_s_zz__Asserts_that_value_is_dataType_regexp \
+    (&afw_self_v_zz__Asserts_that_value_is_dataType_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Asserts_that_value_is_dataType_regexp */
+#define afw_self_s_zz__Asserts_that_value_is_dataType_regexp \
+    (afw_self_v_zz__Asserts_that_value_is_dataType_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Asserts_that_value_is_dataType_regexp */
+extern const afw_value_string_t \
+    afw_self_v_zz__Asserts_that_value_is_dataType_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Asserts_that_value_is_dataType_regexp */
+#define afw_z_zz__Asserts_that_value_is_dataType_regexp \
+    (afw_self_v_zz__Asserts_that_value_is_dataType_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Asserts_that_value_is_dataType_regexp */
+#define afw_v_zz__Asserts_that_value_is_dataType_regexp \
+    (&afw_self_v_zz__Asserts_that_value_is_dataType_regexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Asserts_that_value_is_dataType_rfc822Name \
     "Asserts that value is dataType rfc822Name"
 
@@ -47869,6 +47973,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Checks_whether_value_is_dataType_regexp \
+    "Checks whether value is dataType regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Checks_whether_value_is_dataType_regexp */
+#define afw_s_zz__Checks_whether_value_is_dataType_regexp \
+    (&afw_self_v_zz__Checks_whether_value_is_dataType_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Checks_whether_value_is_dataType_regexp */
+#define afw_self_s_zz__Checks_whether_value_is_dataType_regexp \
+    (afw_self_v_zz__Checks_whether_value_is_dataType_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Checks_whether_value_is_dataType_regexp */
+extern const afw_value_string_t \
+    afw_self_v_zz__Checks_whether_value_is_dataType_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Checks_whether_value_is_dataType_regexp */
+#define afw_z_zz__Checks_whether_value_is_dataType_regexp \
+    (afw_self_v_zz__Checks_whether_value_is_dataType_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Checks_whether_value_is_dataType_regexp */
+#define afw_v_zz__Checks_whether_value_is_dataType_regexp \
+    (&afw_self_v_zz__Checks_whether_value_is_dataType_regexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Checks_whether_value_is_dataType_rfc822Name \
     "Checks whether value is dataType rfc822Name"
 
@@ -50023,6 +50153,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Construct_an_array_of_password_from_values_or_spread_arrays */
 #define afw_v_zz__Construct_an_array_of_password_from_values_or_spread_arrays \
     (&afw_self_v_zz__Construct_an_array_of_password_from_values_or_spread_arrays.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays \
+    "Construct an array of regexp from values or spread arrays"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays */
+#define afw_s_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays \
+    (&afw_self_v_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays */
+#define afw_self_s_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays \
+    (afw_self_v_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays */
+extern const afw_value_string_t \
+    afw_self_v_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays */
+#define afw_z_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays \
+    (afw_self_v_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays */
+#define afw_v_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays \
+    (&afw_self_v_zz__Construct_an_array_of_regexp_from_values_or_spread_arrays.pub)
 
 
 
@@ -82163,6 +82319,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__The_constructed_array_of_regexp_ \
+    "The constructed array of regexp."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_constructed_array_of_regexp_ */
+#define afw_s_zz__The_constructed_array_of_regexp_ \
+    (&afw_self_v_zz__The_constructed_array_of_regexp_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_constructed_array_of_regexp_ */
+#define afw_self_s_zz__The_constructed_array_of_regexp_ \
+    (afw_self_v_zz__The_constructed_array_of_regexp_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_constructed_array_of_regexp_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_constructed_array_of_regexp_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_constructed_array_of_regexp_ */
+#define afw_z_zz__The_constructed_array_of_regexp_ \
+    (afw_self_v_zz__The_constructed_array_of_regexp_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_constructed_array_of_regexp_ */
+#define afw_v_zz__The_constructed_array_of_regexp_ \
+    (&afw_self_v_zz__The_constructed_array_of_regexp_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_constructed_array_of_rfc822Name_ \
     "The constructed array of rfc822Name."
 
@@ -94643,6 +94825,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz______values__any_____regexp__ \
+    "(...values: any[]): regexp[]"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz______values__any_____regexp__ */
+#define afw_s_zz______values__any_____regexp__ \
+    (&afw_self_v_zz______values__any_____regexp__.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz______values__any_____regexp__ */
+#define afw_self_s_zz______values__any_____regexp__ \
+    (afw_self_v_zz______values__any_____regexp__.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz______values__any_____regexp__ */
+extern const afw_value_string_t \
+    afw_self_v_zz______values__any_____regexp__;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz______values__any_____regexp__ */
+#define afw_z_zz______values__any_____regexp__ \
+    (afw_self_v_zz______values__any_____regexp__.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz______values__any_____regexp__ */
+#define afw_v_zz______values__any_____regexp__ \
+    (&afw_self_v_zz______values__any_____regexp__.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz______values__any_____rfc822Name__ \
     "(...values: any[]): rfc822Name[]"
 
@@ -96463,6 +96671,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__array_regexp \
+    "/afw/_AdaptiveFunction_/array_regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__array_regexp */
+#define afw_s_zz___afw__AdaptiveFunction__array_regexp \
+    (&afw_self_v_zz___afw__AdaptiveFunction__array_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__array_regexp */
+#define afw_self_s_zz___afw__AdaptiveFunction__array_regexp \
+    (afw_self_v_zz___afw__AdaptiveFunction__array_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__array_regexp */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__array_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__array_regexp */
+#define afw_z_zz___afw__AdaptiveFunction__array_regexp \
+    (afw_self_v_zz___afw__AdaptiveFunction__array_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__array_regexp */
+#define afw_v_zz___afw__AdaptiveFunction__array_regexp \
+    (&afw_self_v_zz___afw__AdaptiveFunction__array_regexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__array_rfc822Name \
     "/afw/_AdaptiveFunction_/array_rfc822Name"
 
@@ -97161,6 +97395,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__as_password */
 #define afw_v_zz___afw__AdaptiveFunction__as_password \
     (&afw_self_v_zz___afw__AdaptiveFunction__as_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__as_regexp \
+    "/afw/_AdaptiveFunction_/as_regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__as_regexp */
+#define afw_s_zz___afw__AdaptiveFunction__as_regexp \
+    (&afw_self_v_zz___afw__AdaptiveFunction__as_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__as_regexp */
+#define afw_self_s_zz___afw__AdaptiveFunction__as_regexp \
+    (afw_self_v_zz___afw__AdaptiveFunction__as_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__as_regexp */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__as_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__as_regexp */
+#define afw_z_zz___afw__AdaptiveFunction__as_regexp \
+    (afw_self_v_zz___afw__AdaptiveFunction__as_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__as_regexp */
+#define afw_v_zz___afw__AdaptiveFunction__as_regexp \
+    (&afw_self_v_zz___afw__AdaptiveFunction__as_regexp.pub)
 
 
 
@@ -104233,6 +104493,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__is_password */
 #define afw_v_zz___afw__AdaptiveFunction__is_password \
     (&afw_self_v_zz___afw__AdaptiveFunction__is_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__is_regexp \
+    "/afw/_AdaptiveFunction_/is_regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__is_regexp */
+#define afw_s_zz___afw__AdaptiveFunction__is_regexp \
+    (&afw_self_v_zz___afw__AdaptiveFunction__is_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__is_regexp */
+#define afw_self_s_zz___afw__AdaptiveFunction__is_regexp \
+    (afw_self_v_zz___afw__AdaptiveFunction__is_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__is_regexp */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__is_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__is_regexp */
+#define afw_z_zz___afw__AdaptiveFunction__is_regexp \
+    (afw_self_v_zz___afw__AdaptiveFunction__is_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__is_regexp */
+#define afw_v_zz___afw__AdaptiveFunction__is_regexp \
+    (&afw_self_v_zz___afw__AdaptiveFunction__is_regexp.pub)
 
 
 
@@ -114191,6 +114477,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__to_string_password_ */
 #define afw_v_zz___afw__AdaptiveFunction__to_string_password_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__to_string_password_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__to_string_regexp_ \
+    "/afw/_AdaptiveFunction_/to_string<regexp>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__to_string_regexp_ */
+#define afw_s_zz___afw__AdaptiveFunction__to_string_regexp_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__to_string_regexp_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__to_string_regexp_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__to_string_regexp_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__to_string_regexp_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__to_string_regexp_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__to_string_regexp_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__to_string_regexp_ */
+#define afw_z_zz___afw__AdaptiveFunction__to_string_regexp_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__to_string_regexp_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__to_string_regexp_ */
+#define afw_v_zz___afw__AdaptiveFunction__to_string_regexp_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__to_string_regexp_.pub)
 
 
 
@@ -125869,6 +126181,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___value__regexp___string \
+    "(value: regexp): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__regexp___string */
+#define afw_s_zz___value__regexp___string \
+    (&afw_self_v_zz___value__regexp___string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__regexp___string */
+#define afw_self_s_zz___value__regexp___string \
+    (afw_self_v_zz___value__regexp___string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___value__regexp___string */
+extern const afw_value_string_t \
+    afw_self_v_zz___value__regexp___string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__regexp___string */
+#define afw_z_zz___value__regexp___string \
+    (afw_self_v_zz___value__regexp___string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___value__regexp___string */
+#define afw_v_zz___value__regexp___string \
+    (&afw_self_v_zz___value__regexp___string.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___value__rfc822Name___string \
     "(value: rfc822Name): string"
 
@@ -130367,6 +130705,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__add21ce67ce1 \
+    "Construct a new array of regexp from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType regexp, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<regexp>(...values)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__add21ce67ce1 */
+#define afw_s_zz__add21ce67ce1 \
+    (&afw_self_v_zz__add21ce67ce1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__add21ce67ce1 */
+#define afw_self_s_zz__add21ce67ce1 \
+    (afw_self_v_zz__add21ce67ce1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__add21ce67ce1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__add21ce67ce1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__add21ce67ce1 */
+#define afw_z_zz__add21ce67ce1 \
+    (afw_self_v_zz__add21ce67ce1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__add21ce67ce1 */
+#define afw_v_zz__add21ce67ce1 \
+    (&afw_self_v_zz__add21ce67ce1.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__add6d8c4c8aa \
     "(arrays_1: dateTime[], arrays_2: dateTime[], ...arrays_rest: dateTime[]): dateTime[]"
 
@@ -131923,6 +132287,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b24edce05f08 */
 #define afw_v_zz__b24edce05f08 \
     (&afw_self_v_zz__b24edce05f08.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b25476d99d56 \
+    "Checks whether value is dataType regexp and returns the boolean result. It is false for undefined. This can also be written is<regexp>(value)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b25476d99d56 */
+#define afw_s_zz__b25476d99d56 \
+    (&afw_self_v_zz__b25476d99d56.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b25476d99d56 */
+#define afw_self_s_zz__b25476d99d56 \
+    (afw_self_v_zz__b25476d99d56.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b25476d99d56 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b25476d99d56;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b25476d99d56 */
+#define afw_z_zz__b25476d99d56 \
+    (afw_self_v_zz__b25476d99d56.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b25476d99d56 */
+#define afw_v_zz__b25476d99d56 \
+    (&afw_self_v_zz__b25476d99d56.pub)
 
 
 
@@ -142297,6 +142687,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d8e90d16103d */
 #define afw_v_zz__d8e90d16103d \
     (&afw_self_v_zz__d8e90d16103d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d8e9b8cd93b2 \
+    "Converts regexp value to string. For array values, the to_string() value for each entry is returned separated with commas."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d8e9b8cd93b2 */
+#define afw_s_zz__d8e9b8cd93b2 \
+    (&afw_self_v_zz__d8e9b8cd93b2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d8e9b8cd93b2 */
+#define afw_self_s_zz__d8e9b8cd93b2 \
+    (afw_self_v_zz__d8e9b8cd93b2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d8e9b8cd93b2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d8e9b8cd93b2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d8e9b8cd93b2 */
+#define afw_z_zz__d8e9b8cd93b2 \
+    (afw_self_v_zz__d8e9b8cd93b2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d8e9b8cd93b2 */
+#define afw_v_zz__d8e9b8cd93b2 \
+    (&afw_self_v_zz__d8e9b8cd93b2.pub)
 
 
 
@@ -154157,6 +154573,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__function_array_regexp__________values__any______regexp____ \
+    "function array_regexp (\n    ...values: any[]\n): regexp[];\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_array_regexp__________values__any______regexp____ */
+#define afw_s_zz__function_array_regexp__________values__any______regexp____ \
+    (&afw_self_v_zz__function_array_regexp__________values__any______regexp____.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_array_regexp__________values__any______regexp____ */
+#define afw_self_s_zz__function_array_regexp__________values__any______regexp____ \
+    (afw_self_v_zz__function_array_regexp__________values__any______regexp____.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_array_regexp__________values__any______regexp____ */
+extern const afw_value_string_t \
+    afw_self_v_zz__function_array_regexp__________values__any______regexp____;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_array_regexp__________values__any______regexp____ */
+#define afw_z_zz__function_array_regexp__________values__any______regexp____ \
+    (afw_self_v_zz__function_array_regexp__________values__any______regexp____.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_array_regexp__________values__any______regexp____ */
+#define afw_v_zz__function_array_regexp__________values__any______regexp____ \
+    (&afw_self_v_zz__function_array_regexp__________values__any______regexp____.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__function_array_script__________values__any______script____ \
     "function array_script (\n    ...values: any[]\n): script[];\n"
 
@@ -154699,6 +155141,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__function_as_password_______value__any____password__ */
 #define afw_v_zz__function_as_password_______value__any____password__ \
     (&afw_self_v_zz__function_as_password_______value__any____password__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__function_as_regexp_______value__any____regexp__ \
+    "function as_regexp (\n    value: any\n): regexp;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_as_regexp_______value__any____regexp__ */
+#define afw_s_zz__function_as_regexp_______value__any____regexp__ \
+    (&afw_self_v_zz__function_as_regexp_______value__any____regexp__.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_as_regexp_______value__any____regexp__ */
+#define afw_self_s_zz__function_as_regexp_______value__any____regexp__ \
+    (afw_self_v_zz__function_as_regexp_______value__any____regexp__.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_as_regexp_______value__any____regexp__ */
+extern const afw_value_string_t \
+    afw_self_v_zz__function_as_regexp_______value__any____regexp__;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_as_regexp_______value__any____regexp__ */
+#define afw_z_zz__function_as_regexp_______value__any____regexp__ \
+    (afw_self_v_zz__function_as_regexp_______value__any____regexp__.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_as_regexp_______value__any____regexp__ */
+#define afw_v_zz__function_as_regexp_______value__any____regexp__ \
+    (&afw_self_v_zz__function_as_regexp_______value__any____regexp__.pub)
 
 
 
@@ -156077,6 +156545,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__function_is_password_______value__any____boolean__ */
 #define afw_v_zz__function_is_password_______value__any____boolean__ \
     (&afw_self_v_zz__function_is_password_______value__any____boolean__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__function_is_regexp_______value__any____boolean__ \
+    "function is_regexp (\n    value: any\n): boolean;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_is_regexp_______value__any____boolean__ */
+#define afw_s_zz__function_is_regexp_______value__any____boolean__ \
+    (&afw_self_v_zz__function_is_regexp_______value__any____boolean__.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_is_regexp_______value__any____boolean__ */
+#define afw_self_s_zz__function_is_regexp_______value__any____boolean__ \
+    (afw_self_v_zz__function_is_regexp_______value__any____boolean__.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_is_regexp_______value__any____boolean__ */
+extern const afw_value_string_t \
+    afw_self_v_zz__function_is_regexp_______value__any____boolean__;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_is_regexp_______value__any____boolean__ */
+#define afw_z_zz__function_is_regexp_______value__any____boolean__ \
+    (afw_self_v_zz__function_is_regexp_______value__any____boolean__.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_is_regexp_______value__any____boolean__ */
+#define afw_v_zz__function_is_regexp_______value__any____boolean__ \
+    (&afw_self_v_zz__function_is_regexp_______value__any____boolean__.pub)
 
 
 
@@ -157689,6 +158183,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__function_to_string_object________value__object____string__ */
 #define afw_v_zz__function_to_string_object________value__object____string__ \
     (&afw_self_v_zz__function_to_string_object________value__object____string__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__function_to_string_regexp________value__regexp____string__ \
+    "function to_string<regexp> (\n    value: regexp\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_to_string_regexp________value__regexp____string__ */
+#define afw_s_zz__function_to_string_regexp________value__regexp____string__ \
+    (&afw_self_v_zz__function_to_string_regexp________value__regexp____string__.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_to_string_regexp________value__regexp____string__ */
+#define afw_self_s_zz__function_to_string_regexp________value__regexp____string__ \
+    (afw_self_v_zz__function_to_string_regexp________value__regexp____string__.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_to_string_regexp________value__regexp____string__ */
+extern const afw_value_string_t \
+    afw_self_v_zz__function_to_string_regexp________value__regexp____string__;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_to_string_regexp________value__regexp____string__ */
+#define afw_z_zz__function_to_string_regexp________value__regexp____string__ \
+    (afw_self_v_zz__function_to_string_regexp________value__regexp____string__.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_to_string_regexp________value__regexp____string__ */
+#define afw_v_zz__function_to_string_regexp________value__regexp____string__ \
+    (&afw_self_v_zz__function_to_string_regexp________value__regexp____string__.pub)
 
 
 
@@ -167521,6 +168041,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__to_string_regexp_ \
+    "to_string<regexp>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__to_string_regexp_ */
+#define afw_s_zz__to_string_regexp_ \
+    (&afw_self_v_zz__to_string_regexp_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__to_string_regexp_ */
+#define afw_self_s_zz__to_string_regexp_ \
+    (afw_self_v_zz__to_string_regexp_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__to_string_regexp_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__to_string_regexp_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__to_string_regexp_ */
+#define afw_z_zz__to_string_regexp_ \
+    (afw_self_v_zz__to_string_regexp_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__to_string_regexp_ */
+#define afw_v_zz__to_string_regexp_ \
+    (&afw_self_v_zz__to_string_regexp_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__to_string_rfc822Name_ \
     "to_string<rfc822Name>"
 
@@ -168739,6 +169285,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__value__which_is_dataType_password */
 #define afw_v_zz__value__which_is_dataType_password \
     (&afw_self_v_zz__value__which_is_dataType_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__value__which_is_dataType_regexp \
+    "value, which is dataType regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__value__which_is_dataType_regexp */
+#define afw_s_zz__value__which_is_dataType_regexp \
+    (&afw_self_v_zz__value__which_is_dataType_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__value__which_is_dataType_regexp */
+#define afw_self_s_zz__value__which_is_dataType_regexp \
+    (afw_self_v_zz__value__which_is_dataType_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__value__which_is_dataType_regexp */
+extern const afw_value_string_t \
+    afw_self_v_zz__value__which_is_dataType_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__value__which_is_dataType_regexp */
+#define afw_z_zz__value__which_is_dataType_regexp \
+    (afw_self_v_zz__value__which_is_dataType_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__value__which_is_dataType_regexp */
+#define afw_v_zz__value__which_is_dataType_regexp \
+    (&afw_self_v_zz__value__which_is_dataType_regexp.pub)
 
 
 

@@ -18229,6 +18229,32 @@ afw_self_v_afwArrayPassword;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwArrayRegexp \
+    "afwArrayRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwArrayRegexp */
+#define afw_s_afwArrayRegexp \
+    (&afw_self_v_afwArrayRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwArrayRegexp */
+#define afw_self_s_afwArrayRegexp \
+    (afw_self_v_afwArrayRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwArrayRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwArrayRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwArrayRegexp */
+#define afw_z_afwArrayRegexp \
+    (afw_self_v_afwArrayRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwArrayRegexp */
+#define afw_v_afwArrayRegexp \
+    (&afw_self_v_afwArrayRegexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwArrayRfc822Name \
     "afwArrayRfc822Name"
 
@@ -18927,6 +18953,32 @@ afw_self_v_afwAsPassword;
 /** @brief 'const afw_value_t *' for AFW_Q_afwAsPassword */
 #define afw_v_afwAsPassword \
     (&afw_self_v_afwAsPassword.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwAsRegexp \
+    "afwAsRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwAsRegexp */
+#define afw_s_afwAsRegexp \
+    (&afw_self_v_afwAsRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwAsRegexp */
+#define afw_self_s_afwAsRegexp \
+    (afw_self_v_afwAsRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwAsRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwAsRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwAsRegexp */
+#define afw_z_afwAsRegexp \
+    (afw_self_v_afwAsRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwAsRegexp */
+#define afw_v_afwAsRegexp \
+    (&afw_self_v_afwAsRegexp.pub)
 
 
 
@@ -26155,6 +26207,32 @@ afw_self_v_afwIsPassword;
 /** @brief 'const afw_value_t *' for AFW_Q_afwIsPassword */
 #define afw_v_afwIsPassword \
     (&afw_self_v_afwIsPassword.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwIsRegexp \
+    "afwIsRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwIsRegexp */
+#define afw_s_afwIsRegexp \
+    (&afw_self_v_afwIsRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwIsRegexp */
+#define afw_self_s_afwIsRegexp \
+    (afw_self_v_afwIsRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwIsRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwIsRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwIsRegexp */
+#define afw_z_afwIsRegexp \
+    (afw_self_v_afwIsRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwIsRegexp */
+#define afw_v_afwIsRegexp \
+    (&afw_self_v_afwIsRegexp.pub)
 
 
 
@@ -36247,6 +36325,32 @@ afw_self_v_afwToStringPassword;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwToStringRegexp \
+    "afwToStringRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToStringRegexp */
+#define afw_s_afwToStringRegexp \
+    (&afw_self_v_afwToStringRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToStringRegexp */
+#define afw_self_s_afwToStringRegexp \
+    (afw_self_v_afwToStringRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToStringRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToStringRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToStringRegexp */
+#define afw_z_afwToStringRegexp \
+    (afw_self_v_afwToStringRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToStringRegexp */
+#define afw_v_afwToStringRegexp \
+    (&afw_self_v_afwToStringRegexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwToStringRfc822Name \
     "afwToStringRfc822Name"
 
@@ -42929,6 +43033,32 @@ afw_self_v_arrayPassword;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_arrayRegexp \
+    "arrayRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_arrayRegexp */
+#define afw_s_arrayRegexp \
+    (&afw_self_v_arrayRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_arrayRegexp */
+#define afw_self_s_arrayRegexp \
+    (afw_self_v_arrayRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_arrayRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_arrayRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_arrayRegexp */
+#define afw_z_arrayRegexp \
+    (afw_self_v_arrayRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_arrayRegexp */
+#define afw_v_arrayRegexp \
+    (&afw_self_v_arrayRegexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_arrayRfc822Name \
     "arrayRfc822Name"
 
@@ -43627,6 +43757,32 @@ afw_self_v_array_password;
 /** @brief 'const afw_value_t *' for AFW_Q_array_password */
 #define afw_v_array_password \
     (&afw_self_v_array_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_array_regexp \
+    "array_regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_array_regexp */
+#define afw_s_array_regexp \
+    (&afw_self_v_array_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_array_regexp */
+#define afw_self_s_array_regexp \
+    (afw_self_v_array_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_array_regexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_array_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_array_regexp */
+#define afw_z_array_regexp \
+    (afw_self_v_array_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_array_regexp */
+#define afw_v_array_regexp \
+    (&afw_self_v_array_regexp.pub)
 
 
 
@@ -44385,6 +44541,32 @@ afw_self_v_asPassword;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_asRegexp \
+    "asRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_asRegexp */
+#define afw_s_asRegexp \
+    (&afw_self_v_asRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_asRegexp */
+#define afw_self_s_asRegexp \
+    (afw_self_v_asRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_asRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_asRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_asRegexp */
+#define afw_z_asRegexp \
+    (afw_self_v_asRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_asRegexp */
+#define afw_v_asRegexp \
+    (&afw_self_v_asRegexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_asRfc822Name \
     "asRfc822Name"
 
@@ -45109,6 +45291,32 @@ afw_self_v_as_password;
 /** @brief 'const afw_value_t *' for AFW_Q_as_password */
 #define afw_v_as_password \
     (&afw_self_v_as_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_as_regexp \
+    "as_regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_as_regexp */
+#define afw_s_as_regexp \
+    (&afw_self_v_as_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_as_regexp */
+#define afw_self_s_as_regexp \
+    (afw_self_v_as_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_as_regexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_as_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_as_regexp */
+#define afw_z_as_regexp \
+    (afw_self_v_as_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_as_regexp */
+#define afw_v_as_regexp \
+    (&afw_self_v_as_regexp.pub)
 
 
 
@@ -65211,6 +65419,32 @@ afw_self_v_isPolicyLocation;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_isRegexp \
+    "isRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_isRegexp */
+#define afw_s_isRegexp \
+    (&afw_self_v_isRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_isRegexp */
+#define afw_self_s_isRegexp \
+    (afw_self_v_isRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_isRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_isRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_isRegexp */
+#define afw_z_isRegexp \
+    (afw_self_v_isRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_isRegexp */
+#define afw_v_isRegexp \
+    (&afw_self_v_isRegexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_isRfc822Name \
     "isRfc822Name"
 
@@ -66533,6 +66767,32 @@ afw_self_v_is_password;
 /** @brief 'const afw_value_t *' for AFW_Q_is_password */
 #define afw_v_is_password \
     (&afw_self_v_is_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_is_regexp \
+    "is_regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_is_regexp */
+#define afw_s_is_regexp \
+    (&afw_self_v_is_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_is_regexp */
+#define afw_self_s_is_regexp \
+    (afw_self_v_is_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_is_regexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_is_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_is_regexp */
+#define afw_z_is_regexp \
+    (afw_self_v_is_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_is_regexp */
+#define afw_v_is_regexp \
+    (&afw_self_v_is_regexp.pub)
 
 
 
@@ -94539,6 +94799,32 @@ afw_self_v_toStringPassword;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_toStringRegexp \
+    "toStringRegexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toStringRegexp */
+#define afw_s_toStringRegexp \
+    (&afw_self_v_toStringRegexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toStringRegexp */
+#define afw_self_s_toStringRegexp \
+    (afw_self_v_toStringRegexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toStringRegexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toStringRegexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toStringRegexp */
+#define afw_z_toStringRegexp \
+    (afw_self_v_toStringRegexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toStringRegexp */
+#define afw_v_toStringRegexp \
+    (&afw_self_v_toStringRegexp.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_toStringRfc822Name \
     "toStringRfc822Name"
 
@@ -96251,6 +96537,32 @@ afw_self_v_to_string_password;
 /** @brief 'const afw_value_t *' for AFW_Q_to_string_password */
 #define afw_v_to_string_password \
     (&afw_self_v_to_string_password.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_string_regexp \
+    "to_string_regexp"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_string_regexp */
+#define afw_s_to_string_regexp \
+    (&afw_self_v_to_string_regexp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_string_regexp */
+#define afw_self_s_to_string_regexp \
+    (afw_self_v_to_string_regexp.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_string_regexp */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_string_regexp;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_string_regexp */
+#define afw_z_to_string_regexp \
+    (afw_self_v_to_string_regexp.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_string_regexp */
+#define afw_v_to_string_regexp \
+    (&afw_self_v_to_string_regexp.pub)
 
 
 

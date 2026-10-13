@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAsRegexp",
+    "brief": "Asserts that value is dataType regexp",
+    "camelCaseFunctionLabel": "asRegexp",
+    "category": "regexp",
+    "dataTypeMethod": true,
+    "description": "Returns value unchanged if it is dataType regexp. Otherwise, including when value is undefined, throws an error. It never converts: to get a regexp from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as regexp.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "value is not the asserted data type"
+        }
+    ],
+    "functionId": "as_regexp",
+    "functionLabel": "as_regexp",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to assert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "regexp",
+        "description": "value, which is dataType regexp"
+    },
+    "untypedFunctionId": "as",
+    "useExecuteFunction": "afw_function_execute_as"
+}

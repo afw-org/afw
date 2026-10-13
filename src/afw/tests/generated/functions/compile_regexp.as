@@ -103,3 +103,19 @@ return [
 //? source: ...
 
 to_regexp("(a")
+
+//?
+//? test: regexp-type-functions
+//? description: is_regexp, as_regexp, to_string, and array<regexp> take regexp values like the other source types.
+//? expect: [true, false, true, "(?i)a", "regexp", 2]
+//? source: ...
+
+const a = array<regexp>(/a/, "b"re);
+return [
+    is_regexp(/a/),
+    is_regexp("a"),
+    as_regexp(/a/) == "a"re,
+    to_string(/a/i),
+    meta(a[0]).dataType,
+    length(a)
+];
