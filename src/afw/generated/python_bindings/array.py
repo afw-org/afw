@@ -81,6 +81,40 @@ def array(session, values):
 
     return response['actions'][0]['result']
 
+def array_array(session, values):
+    """
+    Construct an array of array from values or spread arrays
+
+    Construct a new array of array from the given values, the same as array()
+    except that the new array is typed: each value, and each entry of a spread
+    array, must be dataType array, and adding a value of another data type to
+    the array later throws. A value of another data type is an error, never
+    converted. This is usually written `array<array>(`...values).
+
+    Args:
+        values (object): A value of dataType array, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of array.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_array",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_array(session, value):
     """
     Asserts that value is dataType array
@@ -115,15 +149,16 @@ def as_array(session, value):
 
 def at(session, array, index):
     """
-    Value at array index
+    Value at array index, or code point at string index
 
-    Return the value at a zero-based index in an array. Negative indexes count
-    from the end (-1 is the last element). If the index is out of range, the
-    result is undefined. Bracket indexing a[index] uses the same out-of-range
-    result (undefined).
+    Return the value at a zero-based index in an array, or the code point at a
+    zero-based index in a string as a one-code-point string (as ECMAScript at
+    does for both). Negative indexes count from the end (-1 is the last). If
+    the index is out of range, the result is undefined. Bracket indexing
+    a[index] and s[index] use the same out-of-range result (undefined).
 
     Args:
-        array (list): Array to index.
+        array (object): Array, or string, to index.
         index (int): Zero-based index, or negative from the end.
 
     Returns:
@@ -136,64 +171,6 @@ def at(session, array, index):
         "function": "at",
         "array": array,
         "index": index
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_array(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of array values and returns an array of array.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<array>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_array(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<array>",
-        "value": value
     }
 
     request.add_action(action)
@@ -798,24 +775,27 @@ def shift(session, array):
 
 def slice(session, array, startIndex=None, endIndex=None):
     """
-    Return a consecutive slice of values from an array
+    Return a consecutive slice of an array or a string
 
-    This function extracts a consecutive slice of values from an array.
+    This function extracts a consecutive slice of values from an array, or of
+    code points from a string (as ECMAScript slice does for both). For a
+    string, or another value stored as UTF-8, the result is a string.
 
     Args:
-        array (list): The array to slice.
+        array (object): The array, or the string, to slice.
         startIndex (int): This is the zero based starting index. Use negative
-            number to index from the end of the array. If not specified, an
-            index of 0 is assumed.
+            number to index from the end. If not specified, an index of 0 is
+            assumed.
         endIndex (int): This is the zero based ending index. If positive, this
-            is one more than the index of the last value to include in the
-            array. If negative, the index is from the end of the array. If not
-            specified, the slice is from startIndex up to and including the
-            end of the array.
+            is one more than the index of the last value or code point to
+            include. If negative, the index is from the end. If not specified,
+            the slice is from startIndex up to and including the end.
 
     Returns:
-        list: An array containing the selected values. If all of the values
-        are the same data type, the array will be an array of that data type.
+        object: For an array, an array containing the selected values; if all
+        of the values are the same data type, the array will be an array of
+        that data type. For a string, a string containing the selected code
+        points.
     """
 
     request = session.Request()

@@ -8,7 +8,7 @@
 //? test: at_least_one_member_of<base64Binary>-1
 //? description: ...
 
-            base64Binary at least one member of test for bags:
+            base64Binary at least one member of test for arrays:
             { },
             { }
         
@@ -16,9 +16,9 @@
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
     )
 )
 
@@ -26,7 +26,7 @@ at_least_one_member_of<base64Binary>(
 //? test: at_least_one_member_of<base64Binary>-2
 //? description: ...
 
-            base64Binary at least one member of test for bags:
+            base64Binary at least one member of test for arrays:
             { 0FA8, 0 fa8 0f+9, 0F+40A== },
             { 0FB8, 0 FB8 0F+9, 0F+41A== }
         
@@ -34,12 +34,12 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0fa8"base64Binary,
         "0fa80f+9"base64Binary,
         "0F+40A=="base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FB8"base64Binary,
         "0FB80F+9"base64Binary,
         "0F+41A=="base64Binary
@@ -50,7 +50,7 @@ at_least_one_member_of<base64Binary>(
 //? test: at_least_one_member_of<base64Binary>-3
 //? description: ...
 
-            base64Binary at least one member of case sensitivity test for bags:
+            base64Binary at least one member of case sensitivity test for arrays:
             { 0F+41A==, 0 fa8 0f+9, 0fb8 },
             { 0FB8, 0 FB8 0F+9, 0F+40A== }
         
@@ -58,12 +58,12 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0F+41A=="base64Binary,
         "0fa80f+9"base64Binary,
         "0FB8"base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FB8"base64Binary,
         "0FB80F+9"base64Binary,
         "0F+40A=="base64Binary
@@ -74,7 +74,7 @@ at_least_one_member_of<base64Binary>(
 //? test: at_least_one_member_of<base64Binary>-4
 //? description: ...
 
-            base64Binary at least one member of case sensitivity test for bags:
+            base64Binary at least one member of case sensitivity test for arrays:
             { 0F+41A==, 0 fb8 0f+9, 0FA8 },
             { 0FB8, 0 FB8 0F+9, 0F+40A== }
         
@@ -82,12 +82,12 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0F+41A=="base64Binary,
         "0fb80f+9"base64Binary,
         "0FA8"base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FA8"base64Binary,
         "0FB80F+9"base64Binary,
         "0F+40A=="base64Binary
@@ -99,7 +99,7 @@ at_least_one_member_of<base64Binary>(
 //? skip: true
 //? description: ...
 
-            base64Binary at least one member of invalid argument test for bags:
+            base64Binary at least one member of invalid argument test for arrays:
             { 0f+40a== },
             { 0FB8, 0 FB8 0F+9, 0F+40A== }
         
@@ -107,10 +107,10 @@ at_least_one_member_of<base64Binary>(
 //? source: ...
 
 at_least_one_member_of<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0f+40a=="base64Binary
     ),
-    bag<base64Binary>(
+    array<base64Binary>(
         "0FB8"base64Binary,
         "0FB80F+9"base64Binary,
         "0f+40a=="base64Binary

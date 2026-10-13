@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_function 
     as_function 
-    bag_function 
-    bag_size_function 
     eq_function 
     eqx_function 
     ge_function 
@@ -35,6 +34,22 @@ afw::function - Perl module for function functions
 
 The following functions are exported by default
 
+=head3 array_function
+
+Construct a new array of function from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType function, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<function>(`...values).
+Construct an array of function from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType function, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_function
 
 Returns value unchanged if it is dataType function. Otherwise, including when
@@ -48,26 +63,6 @@ Asserts that value is dataType function
     $value
 
 Value to assert
-
-=head3 bag_function
-
-Takes any number of function values and returns an array of function.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_function
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_function
 
@@ -199,36 +194,23 @@ Checks for not equal value or type
 
 =cut
 
+sub array_function {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_function");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_function {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "as_function");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_function {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<function>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_function {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<function>");
     $request->set("value", $value);
 
     return $request->getResult();

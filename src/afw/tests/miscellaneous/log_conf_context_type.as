@@ -16,7 +16,7 @@ assert(ct.contextTypeId === "logType-standard" ||
     ct._meta_.objectId === "logType-standard");
 const qd = ct.qualifierDefinitions;
 assert(qd !== null && qd !== undefined);
-assert(qd.current !== undefined, "log current:: bag");
+assert(qd.current !== undefined, "log current:: variables");
 assert(qd.current.message !== undefined, "current::message");
 assert(qd.current.source !== undefined, "current::source");
 assert(qd.current.xctxUUID !== undefined, "current::xctxUUID");
@@ -47,7 +47,7 @@ assert(pts.filter.contextType === "logType-standard",
     "filter.contextType should be logType-standard");
 /* Without composite, inherited fields are not local. */
 assert(pts.format.dataType === undefined || pts.format.dataType === null,
-    "format.dataType should come from parent path, not local bag");
+    "format.dataType should come from parent path, not the local object");
 return 0;
 
 

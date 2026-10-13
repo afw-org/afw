@@ -79,6 +79,7 @@ impl_curl_easy_options_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     &afw_data_type_string_direct
 };
 
@@ -173,6 +174,7 @@ impl_curl_version_info_returns = {
     NULL,
     &afw_curl_self_v_zz__Returns_an_object_describing_the_cURL_version_information_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -275,6 +277,7 @@ impl_http_delete_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -299,6 +302,7 @@ impl_http_delete_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__HTTP_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -331,6 +335,7 @@ impl_http_delete_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -356,6 +361,7 @@ impl_http_delete_parameter_3 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -460,6 +466,7 @@ impl_http_get_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -484,6 +491,7 @@ impl_http_get_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__HTTP_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -516,6 +524,7 @@ impl_http_get_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -541,6 +550,7 @@ impl_http_get_parameter_3 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -645,6 +655,7 @@ impl_http_head_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -669,6 +680,7 @@ impl_http_head_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__HTTP_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -701,6 +713,7 @@ impl_http_head_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -726,6 +739,7 @@ impl_http_head_parameter_3 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -830,6 +844,7 @@ impl_http_options_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -854,6 +869,7 @@ impl_http_options_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__HTTP_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -886,6 +902,7 @@ impl_http_options_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -911,6 +928,7 @@ impl_http_options_parameter_3 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1015,6 +1033,7 @@ impl_http_patch_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1039,6 +1058,7 @@ impl_http_patch_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__HTTP_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1071,6 +1091,7 @@ impl_http_patch_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1099,6 +1120,7 @@ impl_http_patch_parameter_3 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1124,6 +1146,7 @@ impl_http_patch_parameter_4 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1229,6 +1252,7 @@ impl_http_post_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1253,6 +1277,7 @@ impl_http_post_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__HTTP_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1285,6 +1310,7 @@ impl_http_post_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1313,6 +1339,7 @@ impl_http_post_parameter_3 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1338,6 +1365,7 @@ impl_http_post_parameter_4 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1443,6 +1471,7 @@ impl_http_put_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1467,6 +1496,7 @@ impl_http_put_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__HTTP_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1499,6 +1529,7 @@ impl_http_put_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1527,6 +1558,7 @@ impl_http_put_parameter_3 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1552,6 +1584,7 @@ impl_http_put_parameter_4 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1657,6 +1690,7 @@ impl_smtp_send_returns = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1681,6 +1715,7 @@ impl_smtp_send_parameter_1 = {
     NULL,
     &afw_curl_self_v_zz__SMTP_Server_Url_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1713,6 +1748,7 @@ impl_smtp_send_parameter_2 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1737,6 +1773,7 @@ impl_smtp_send_parameter_3 = {
     NULL,
     &afw_curl_self_v_zz__To_Addresses_,
     &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1769,6 +1806,7 @@ impl_smtp_send_parameter_4 = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
     NULL
 };
 
@@ -1794,6 +1832,7 @@ impl_smtp_send_parameter_5 = {
     &afw_curl_self_v_zz__CURL_Options,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,

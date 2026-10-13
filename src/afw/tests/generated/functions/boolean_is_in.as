@@ -6,25 +6,25 @@
 //? sourceType: script
 //?
 //? test: is_in<boolean>-1
-//? description: Boolean true in empty bag.
+//? description: Boolean true in empty array.
 //? expect: boolean(false)
 //? source: ...
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
 //?
 //? test: is_in<boolean>-2
-//? description: Boolean true in bag of only falses.
+//? description: Boolean true in array of only falses.
 //? expect: boolean(false)
 //? source: ...
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(0),
         boolean(false)
     )
@@ -32,13 +32,13 @@ is_in<boolean>(
 
 //?
 //? test: is_in<boolean>-3
-//? description: Boolean false in bag of only trues.
+//? description: Boolean false in array of only trues.
 //? expect: boolean(false)
 //? source: ...
 
 is_in<boolean>(
     boolean(false),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(1)
     )
@@ -47,13 +47,13 @@ is_in<boolean>(
 //?
 //? test: is_in<boolean>-4
 //? description: ...
-Boolean true in bag where only the first item in the bag is true.
+Boolean true in array where only the first item in the array is true.
 //? expect: boolean(true)
 //? source: ...
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(0),
         boolean(false),
@@ -65,13 +65,13 @@ is_in<boolean>(
 //?
 //? test: is_in<boolean>-5
 //? description: ...
-Boolean false in bag where only the last item in the bag is false.
+Boolean false in array where only the last item in the array is false.
 //? expect: boolean(true)
 //? source: ...
 
 is_in<boolean>(
     boolean(false),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(1),
         boolean(true),
@@ -82,13 +82,13 @@ is_in<boolean>(
 
 //?
 //? test: is_in<boolean>-6
-//? description: Boolean true in bag where only the middle item is true
+//? description: Boolean true in array where only the middle item is true
 //? expect: boolean(true)
 //? source: ...
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(0),
         boolean(false),
         boolean(0),
@@ -103,13 +103,13 @@ is_in<boolean>(
 
 //?
 //? test: is_in<boolean>-7
-//? description: Boolean false in bag where all items are false
+//? description: Boolean false in array where all items are false
 //? expect: boolean(false)
 //? source: ...
 
 is_in<boolean>(
     boolean(true),
-    bag<boolean>(
+    array<boolean>(
         boolean(0),
         boolean(false),
         boolean(0),

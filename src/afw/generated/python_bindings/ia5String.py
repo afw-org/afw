@@ -11,6 +11,41 @@
 import requests
 import json
 
+def array_ia5String(session, values):
+    """
+    Construct an array of ia5String from values or spread arrays
+
+    Construct a new array of ia5String from the given values, the same as
+    array() except that the new array is typed: each value, and each entry of
+    a spread array, must be dataType ia5String, and adding a value of another
+    data type to the array later throws. A value of another data type is an
+    error, never converted. This is usually written
+    `array<ia5String>(`...values).
+
+    Args:
+        values (object): A value of dataType ia5String, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of ia5String.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_ia5String",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_ia5String(session, value):
     """
     Asserts that value is dataType ia5String
@@ -32,64 +67,6 @@ def as_ia5String(session, value):
 
     action = {
         "function": "as_ia5String",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_ia5String(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of ia5String values and returns an array of ia5String.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<ia5String>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_ia5String(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<ia5String>",
         "value": value
     }
 

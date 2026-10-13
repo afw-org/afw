@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<integer>(
-    bag<integer>(1, 2)
+    array<integer>(1, 2)
 )
 
 //?
@@ -21,5 +21,5 @@ one_and_only<integer>(
 //? source: ...
 
 one_and_only<integer>(
-    bag<integer>()
+    array<integer>()
 )

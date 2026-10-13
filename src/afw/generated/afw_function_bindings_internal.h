@@ -2173,6 +2173,49 @@ afw_function_execute_service_stop(
  * @{
  */
 
+/** @brief Function definition array_anyURI */
+extern const afw_value_function_definition_t
+afw_function_definition_array_anyURI;
+
+/**
+ * @brief Adaptive Function `array_anyURI`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of anyURI from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType anyURI, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<anyURI>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_anyURI(
+ *       ...values: any[]
+ *   ): anyURI[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType anyURI, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (anyURI[]) The constructed array of anyURI.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_anyURI */
 extern const afw_value_function_definition_t
 afw_function_definition_as_anyURI;
@@ -2248,74 +2291,6 @@ afw_function_definition_at_least_one_member_of_anyURI;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<anyURI> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_anyURI;
-
-/**
- * @brief Adaptive Function `bag<anyURI>`
- * @param x function execute parameter.
- *
- * Takes any number of anyURI values and returns an array of anyURI.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<anyURI>(
- *       ...values: anyURI[]
- *   ): anyURI[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more anyURI[])
- *
- * Returns:
- *
- *   (anyURI[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<anyURI> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_anyURI;
-
-/**
- * @brief Adaptive Function `bag_size<anyURI>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<anyURI>(
- *       value: anyURI[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (anyURI[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -3591,6 +3566,49 @@ const afw_value_t *
 afw_function_execute_array(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_array */
+extern const afw_value_function_definition_t
+afw_function_definition_array_array;
+
+/**
+ * @brief Adaptive Function `array_array`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of array from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType array, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<array>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_array(
+ *       ...values: any[]
+ *   ): array[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType array, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (array[]) The constructed array of array.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_array */
 extern const afw_value_function_definition_t
 afw_function_definition_as_array;
@@ -3640,10 +3658,11 @@ afw_function_definition_at;
  * @brief Adaptive Function `at`
  * @param x function execute parameter.
  *
- * Return the value at a zero-based index in an array. Negative indexes count
- * from the end (-1 is the last element). If the index is out of range, the
- * result is undefined. Bracket indexing a[index] uses the same out-of-range
- * result (undefined).
+ * Return the value at a zero-based index in an array, or the code point at a
+ * zero-based index in a string as a one-code-point string (as ECMAScript at
+ * does for both). Negative indexes count from the end (-1 is the last). If the
+ * index is out of range, the result is undefined. Bracket indexing a[index] and
+ * s[index] use the same out-of-range result (undefined).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3652,14 +3671,14 @@ afw_function_definition_at;
  *
  * ```
  *   function at(
- *       array: array,
+ *       array: any,
  *       index: integer
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   array - (array) Array to index.
+ *   array - (any) Array, or string, to index.
  *
  *   index - (integer) Zero-based index, or negative from the end.
  *
@@ -3670,74 +3689,6 @@ afw_function_definition_at;
 const afw_value_t *
 afw_function_execute_at(
     afw_function_execute_t *x);
-
-/** @brief Function definition bag<array> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_array;
-
-/**
- * @brief Adaptive Function `bag<array>`
- * @param x function execute parameter.
- *
- * Takes any number of array values and returns an array of array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<array>(
- *       ...values: array[]
- *   ): array[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more array[])
- *
- * Returns:
- *
- *   (array[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<array> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_array;
-
-/**
- * @brief Adaptive Function `bag_size<array>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<array>(
- *       value: array[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (array[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
 
 /** @brief Function definition clone<array> */
 extern const afw_value_function_definition_t
@@ -4461,7 +4412,9 @@ afw_function_definition_slice;
  * @brief Adaptive Function `slice`
  * @param x function execute parameter.
  *
- * This function extracts a consecutive slice of values from an array.
+ * This function extracts a consecutive slice of values from an array, or of
+ * code points from a string (as ECMAScript slice does for both). For a string,
+ * or another value stored as UTF-8, the result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4470,30 +4423,30 @@ afw_function_definition_slice;
  *
  * ```
  *   function slice(
- *       array: array,
+ *       array: any,
  *       startIndex?: integer,
  *       endIndex?: integer
- *   ): array;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   array - (array) The array to slice.
+ *   array - (any) The array, or the string, to slice.
  *
  *   startIndex - (optional integer) This is the zero based starting index. Use
- *       negative number to index from the end of the array. If not specified,
- *       an index of 0 is assumed.
+ *       negative number to index from the end. If not specified, an index of 0
+ *       is assumed.
  *
  *   endIndex - (optional integer) This is the zero based ending index. If
- *       positive, this is one more than the index of the last value to include
- *       in the array. If negative, the index is from the end of the array. If
- *       not specified, the slice is from startIndex up to and including the end
- *       of the array.
+ *       positive, this is one more than the index of the last value or code
+ *       point to include. If negative, the index is from the end. If not
+ *       specified, the slice is from startIndex up to and including the end.
  *
  * Returns:
  *
- *   (array) An array containing the selected values. If all of the values are
- *       the same data type, the array will be an array of that data type.
+ *   (any) For an array, an array containing the selected values; if all of the
+ *       values are the same data type, the array will be an array of that data
+ *       type. For a string, a string containing the selected code points.
  */
 const afw_value_t *
 afw_function_execute_slice(
@@ -4696,6 +4649,51 @@ afw_function_execute_authorization_check(
  * @{
  */
 
+/** @brief Function definition array_base64Binary */
+extern const afw_value_function_definition_t
+afw_function_definition_array_base64Binary;
+
+/**
+ * @brief Adaptive Function `array_base64Binary`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of base64Binary from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType base64Binary, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<base64Binary>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_base64Binary(
+ *       ...values: any[]
+ *   ): base64Binary[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType base64Binary, or ... followed
+ *       by an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (base64Binary[]) The constructed array of base64Binary.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_base64Binary */
 extern const afw_value_function_definition_t
 afw_function_definition_as_base64Binary;
@@ -4772,74 +4770,6 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<base64Binary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_base64Binary;
-
-/**
- * @brief Adaptive Function `bag<base64Binary>`
- * @param x function execute parameter.
- *
- * Takes any number of base64Binary values and returns an array of base64Binary.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<base64Binary>(
- *       ...values: base64Binary[]
- *   ): base64Binary[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more base64Binary[])
- *
- * Returns:
- *
- *   (base64Binary[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<base64Binary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_base64Binary;
-
-/**
- * @brief Adaptive Function `bag_size<base64Binary>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<base64Binary>(
- *       value: base64Binary[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (base64Binary[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -5504,6 +5434,49 @@ afw_function_definition_union_base64Binary;
  * @{
  */
 
+/** @brief Function definition array_boolean */
+extern const afw_value_function_definition_t
+afw_function_definition_array_boolean;
+
+/**
+ * @brief Adaptive Function `array_boolean`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of boolean from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType boolean, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<boolean>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_boolean(
+ *       ...values: any[]
+ *   ): boolean[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType boolean, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (boolean[]) The constructed array of boolean.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_boolean */
 extern const afw_value_function_definition_t
 afw_function_definition_as_boolean;
@@ -5579,74 +5552,6 @@ afw_function_definition_at_least_one_member_of_boolean;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<boolean> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_boolean;
-
-/**
- * @brief Adaptive Function `bag<boolean>`
- * @param x function execute parameter.
- *
- * Takes any number of boolean values and returns an array of boolean.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<boolean>(
- *       ...values: boolean[]
- *   ): boolean[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more boolean[])
- *
- * Returns:
- *
- *   (boolean[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<boolean> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_boolean;
-
-/**
- * @brief Adaptive Function `bag_size<boolean>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<boolean>(
- *       value: boolean[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (boolean[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -7991,6 +7896,50 @@ const afw_value_t *
 afw_function_execute_add_yearMonthDuration_dateTime(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_dateTime */
+extern const afw_value_function_definition_t
+afw_function_definition_array_dateTime;
+
+/**
+ * @brief Adaptive Function `array_dateTime`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of dateTime from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType dateTime, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<dateTime>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_dateTime(
+ *       ...values: any[]
+ *   ): dateTime[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType dateTime, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (dateTime[]) The constructed array of dateTime.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_dateTime */
 extern const afw_value_function_definition_t
 afw_function_definition_as_dateTime;
@@ -8067,74 +8016,6 @@ afw_function_definition_at_least_one_member_of_dateTime;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<dateTime> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_dateTime;
-
-/**
- * @brief Adaptive Function `bag<dateTime>`
- * @param x function execute parameter.
- *
- * Takes any number of dateTime values and returns an array of dateTime.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<dateTime>(
- *       ...values: dateTime[]
- *   ): dateTime[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more dateTime[])
- *
- * Returns:
- *
- *   (dateTime[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<dateTime> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_dateTime;
-
-/**
- * @brief Adaptive Function `bag_size<dateTime>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<dateTime>(
- *       value: dateTime[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (dateTime[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -8961,6 +8842,49 @@ const afw_value_t *
 afw_function_execute_add_yearMonthDuration_date(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_date */
+extern const afw_value_function_definition_t
+afw_function_definition_array_date;
+
+/**
+ * @brief Adaptive Function `array_date`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of date from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType date, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<date>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_date(
+ *       ...values: any[]
+ *   ): date[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType date, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (date[]) The constructed array of date.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_date */
 extern const afw_value_function_definition_t
 afw_function_definition_as_date;
@@ -9035,74 +8959,6 @@ afw_function_definition_at_least_one_member_of_date;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<date> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_date;
-
-/**
- * @brief Adaptive Function `bag<date>`
- * @param x function execute parameter.
- *
- * Takes any number of date values and returns an array of date.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<date>(
- *       ...values: date[]
- *   ): date[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more date[])
- *
- * Returns:
- *
- *   (date[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<date> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_date;
-
-/**
- * @brief Adaptive Function `bag_size<date>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<date>(
- *       value: date[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (date[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -9853,6 +9709,51 @@ afw_function_definition_union_date;
  * @{
  */
 
+/** @brief Function definition array_dayTimeDuration */
+extern const afw_value_function_definition_t
+afw_function_definition_array_dayTimeDuration;
+
+/**
+ * @brief Adaptive Function `array_dayTimeDuration`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of dayTimeDuration from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType dayTimeDuration, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<dayTimeDuration>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_dayTimeDuration(
+ *       ...values: any[]
+ *   ): dayTimeDuration[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType dayTimeDuration, or ...
+ *       followed by an expression that results in an array, every entry of
+ *       which is included.
+ *
+ * Returns:
+ *
+ *   (dayTimeDuration[]) The constructed array of dayTimeDuration.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_dayTimeDuration */
 extern const afw_value_function_definition_t
 afw_function_definition_as_dayTimeDuration;
@@ -9929,75 +9830,6 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<dayTimeDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_dayTimeDuration;
-
-/**
- * @brief Adaptive Function `bag<dayTimeDuration>`
- * @param x function execute parameter.
- *
- * Takes any number of dayTimeDuration values and returns an array of
- * dayTimeDuration.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<dayTimeDuration>(
- *       ...values: dayTimeDuration[]
- *   ): dayTimeDuration[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more dayTimeDuration[])
- *
- * Returns:
- *
- *   (dayTimeDuration[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<dayTimeDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_dayTimeDuration;
-
-/**
- * @brief Adaptive Function `bag_size<dayTimeDuration>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<dayTimeDuration>(
- *       value: dayTimeDuration[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (dayTimeDuration[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -10629,6 +10461,49 @@ afw_function_definition_union_dayTimeDuration;
  * @{
  */
 
+/** @brief Function definition array_dnsName */
+extern const afw_value_function_definition_t
+afw_function_definition_array_dnsName;
+
+/**
+ * @brief Adaptive Function `array_dnsName`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of dnsName from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType dnsName, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<dnsName>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_dnsName(
+ *       ...values: any[]
+ *   ): dnsName[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType dnsName, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (dnsName[]) The constructed array of dnsName.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_dnsName */
 extern const afw_value_function_definition_t
 afw_function_definition_as_dnsName;
@@ -10666,74 +10541,6 @@ afw_function_definition_as_dnsName;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_dnsName;
-
-/**
- * @brief Adaptive Function `bag<dnsName>`
- * @param x function execute parameter.
- *
- * Takes any number of dnsName values and returns an array of dnsName.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<dnsName>(
- *       ...values: dnsName[]
- *   ): dnsName[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more dnsName[])
- *
- * Returns:
- *
- *   (dnsName[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_dnsName;
-
-/**
- * @brief Adaptive Function `bag_size<dnsName>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<dnsName>(
- *       value: dnsName[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (dnsName[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -11317,6 +11124,49 @@ const afw_value_t *
 afw_function_execute_add_double(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_double */
+extern const afw_value_function_definition_t
+afw_function_definition_array_double;
+
+/**
+ * @brief Adaptive Function `array_double`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of double from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType double, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<double>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_double(
+ *       ...values: any[]
+ *   ): double[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType double, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (double[]) The constructed array of double.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_double */
 extern const afw_value_function_definition_t
 afw_function_definition_as_double;
@@ -11392,74 +11242,6 @@ afw_function_definition_at_least_one_member_of_double;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<double> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_double;
-
-/**
- * @brief Adaptive Function `bag<double>`
- * @param x function execute parameter.
- *
- * Takes any number of double values and returns an array of double.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<double>(
- *       ...values: double[]
- *   ): double[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more double[])
- *
- * Returns:
- *
- *   (double[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<double> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_double;
-
-/**
- * @brief Adaptive Function `bag_size<double>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<double>(
- *       value: double[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (double[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -12583,6 +12365,50 @@ afw_function_definition_union_double;
  * @{
  */
 
+/** @brief Function definition array_function */
+extern const afw_value_function_definition_t
+afw_function_definition_array_function;
+
+/**
+ * @brief Adaptive Function `array_function`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of function from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType function, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<function>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_function(
+ *       ...values: any[]
+ *   ): function[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType function, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (function[]) The constructed array of function.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_function */
 extern const afw_value_function_definition_t
 afw_function_definition_as_function;
@@ -12621,74 +12447,6 @@ afw_function_definition_as_function;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<function> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_function;
-
-/**
- * @brief Adaptive Function `bag<function>`
- * @param x function execute parameter.
- *
- * Takes any number of function values and returns an array of function.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<function>(
- *       ...values: function[]
- *   ): function[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more function[])
- *
- * Returns:
- *
- *   (function[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<function> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_function;
-
-/**
- * @brief Adaptive Function `bag_size<function>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<function>(
- *       value: function[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (function[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -13054,6 +12812,50 @@ afw_function_definition_nex_function;
  * @{
  */
 
+/** @brief Function definition array_hexBinary */
+extern const afw_value_function_definition_t
+afw_function_definition_array_hexBinary;
+
+/**
+ * @brief Adaptive Function `array_hexBinary`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of hexBinary from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType hexBinary, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<hexBinary>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_hexBinary(
+ *       ...values: any[]
+ *   ): hexBinary[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType hexBinary, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (hexBinary[]) The constructed array of hexBinary.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_hexBinary */
 extern const afw_value_function_definition_t
 afw_function_definition_as_hexBinary;
@@ -13130,74 +12932,6 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<hexBinary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_hexBinary;
-
-/**
- * @brief Adaptive Function `bag<hexBinary>`
- * @param x function execute parameter.
- *
- * Takes any number of hexBinary values and returns an array of hexBinary.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<hexBinary>(
- *       ...values: hexBinary[]
- *   ): hexBinary[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more hexBinary[])
- *
- * Returns:
- *
- *   (hexBinary[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<hexBinary> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_hexBinary;
-
-/**
- * @brief Adaptive Function `bag_size<hexBinary>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<hexBinary>(
- *       value: hexBinary[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (hexBinary[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -14431,6 +14165,50 @@ afw_function_execute_sort(
  * @{
  */
 
+/** @brief Function definition array_ia5String */
+extern const afw_value_function_definition_t
+afw_function_definition_array_ia5String;
+
+/**
+ * @brief Adaptive Function `array_ia5String`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of ia5String from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType ia5String, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<ia5String>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_ia5String(
+ *       ...values: any[]
+ *   ): ia5String[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType ia5String, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (ia5String[]) The constructed array of ia5String.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_ia5String */
 extern const afw_value_function_definition_t
 afw_function_definition_as_ia5String;
@@ -14469,74 +14247,6 @@ afw_function_definition_as_ia5String;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<ia5String> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_ia5String;
-
-/**
- * @brief Adaptive Function `bag<ia5String>`
- * @param x function execute parameter.
- *
- * Takes any number of ia5String values and returns an array of ia5String.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<ia5String>(
- *       ...values: ia5String[]
- *   ): ia5String[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more ia5String[])
- *
- * Returns:
- *
- *   (ia5String[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<ia5String> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_ia5String;
-
-/**
- * @brief Adaptive Function `bag_size<ia5String>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<ia5String>(
- *       value: ia5String[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (ia5String[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -15168,6 +14878,49 @@ const afw_value_t *
 afw_function_execute_add_integer(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_integer */
+extern const afw_value_function_definition_t
+afw_function_definition_array_integer;
+
+/**
+ * @brief Adaptive Function `array_integer`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of integer from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType integer, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<integer>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_integer(
+ *       ...values: any[]
+ *   ): integer[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType integer, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (integer[]) The constructed array of integer.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_integer */
 extern const afw_value_function_definition_t
 afw_function_definition_as_integer;
@@ -15243,74 +14996,6 @@ afw_function_definition_at_least_one_member_of_integer;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<integer> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_integer;
-
-/**
- * @brief Adaptive Function `bag<integer>`
- * @param x function execute parameter.
- *
- * Takes any number of integer values and returns an array of integer.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<integer>(
- *       ...values: integer[]
- *   ): integer[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more integer[])
- *
- * Returns:
- *
- *   (integer[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<integer> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_integer;
-
-/**
- * @brief Adaptive Function `bag_size<integer>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<integer>(
- *       value: integer[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (integer[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -16225,6 +15910,50 @@ afw_function_definition_union_integer;
  * @{
  */
 
+/** @brief Function definition array_ipAddress */
+extern const afw_value_function_definition_t
+afw_function_definition_array_ipAddress;
+
+/**
+ * @brief Adaptive Function `array_ipAddress`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of ipAddress from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType ipAddress, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<ipAddress>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_ipAddress(
+ *       ...values: any[]
+ *   ): ipAddress[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType ipAddress, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (ipAddress[]) The constructed array of ipAddress.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_ipAddress */
 extern const afw_value_function_definition_t
 afw_function_definition_as_ipAddress;
@@ -16263,74 +15992,6 @@ afw_function_definition_as_ipAddress;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_ipAddress;
-
-/**
- * @brief Adaptive Function `bag<ipAddress>`
- * @param x function execute parameter.
- *
- * Takes any number of ipAddress values and returns an array of ipAddress.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<ipAddress>(
- *       ...values: ipAddress[]
- *   ): ipAddress[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more ipAddress[])
- *
- * Returns:
- *
- *   (ipAddress[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_ipAddress;
-
-/**
- * @brief Adaptive Function `bag_size<ipAddress>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<ipAddress>(
- *       value: ipAddress[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (ipAddress[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -18557,6 +18218,49 @@ afw_function_execute_model_returnObject_signature(
  * @{
  */
 
+/** @brief Function definition array_null */
+extern const afw_value_function_definition_t
+afw_function_definition_array_null;
+
+/**
+ * @brief Adaptive Function `array_null`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of null from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType null, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<null>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_null(
+ *       ...values: any[]
+ *   ): null[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType null, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (null[]) The constructed array of null.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_null */
 extern const afw_value_function_definition_t
 afw_function_definition_as_null;
@@ -18594,74 +18298,6 @@ afw_function_definition_as_null;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<null> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_null;
-
-/**
- * @brief Adaptive Function `bag<null>`
- * @param x function execute parameter.
- *
- * Takes any number of null values and returns an array of null.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<null>(
- *       ...values: null[]
- *   ): null[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more null[])
- *
- * Returns:
- *
- *   (null[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<null> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_null;
-
-/**
- * @brief Adaptive Function `bag_size<null>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<null>(
- *       value: null[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (null[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -18746,6 +18382,50 @@ afw_function_definition_to_string_null;
  * @{
  */
 
+/** @brief Function definition array_objectId */
+extern const afw_value_function_definition_t
+afw_function_definition_array_objectId;
+
+/**
+ * @brief Adaptive Function `array_objectId`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of objectId from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType objectId, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<objectId>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_objectId(
+ *       ...values: any[]
+ *   ): objectId[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType objectId, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (objectId[]) The constructed array of objectId.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_objectId */
 extern const afw_value_function_definition_t
 afw_function_definition_as_objectId;
@@ -18784,74 +18464,6 @@ afw_function_definition_as_objectId;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<objectId> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_objectId;
-
-/**
- * @brief Adaptive Function `bag<objectId>`
- * @param x function execute parameter.
- *
- * Takes any number of objectId values and returns an array of objectId.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<objectId>(
- *       ...values: objectId[]
- *   ): objectId[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more objectId[])
- *
- * Returns:
- *
- *   (objectId[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<objectId> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_objectId;
-
-/**
- * @brief Adaptive Function `bag_size<objectId>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<objectId>(
- *       value: objectId[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (objectId[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -19252,6 +18864,50 @@ afw_function_definition_to_string_objectId;
  * @{
  */
 
+/** @brief Function definition array_objectPath */
+extern const afw_value_function_definition_t
+afw_function_definition_array_objectPath;
+
+/**
+ * @brief Adaptive Function `array_objectPath`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of objectPath from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType objectPath, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<objectPath>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_objectPath(
+ *       ...values: any[]
+ *   ): objectPath[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType objectPath, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (objectPath[]) The constructed array of objectPath.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_objectPath */
 extern const afw_value_function_definition_t
 afw_function_definition_as_objectPath;
@@ -19290,74 +18946,6 @@ afw_function_definition_as_objectPath;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<objectPath> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_objectPath;
-
-/**
- * @brief Adaptive Function `bag<objectPath>`
- * @param x function execute parameter.
- *
- * Takes any number of objectPath values and returns an array of objectPath.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<objectPath>(
- *       ...values: objectPath[]
- *   ): objectPath[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more objectPath[])
- *
- * Returns:
- *
- *   (objectPath[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<objectPath> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_objectPath;
-
-/**
- * @brief Adaptive Function `bag_size<objectPath>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<objectPath>(
- *       value: objectPath[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (objectPath[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -19836,6 +19424,49 @@ const afw_value_t *
 afw_function_execute_apply_object_options(
     afw_function_execute_t *x);
 
+/** @brief Function definition array_object */
+extern const afw_value_function_definition_t
+afw_function_definition_array_object;
+
+/**
+ * @brief Adaptive Function `array_object`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of object from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType object, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<object>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_object(
+ *       ...values: any[]
+ *   ): object[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType object, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (object[]) The constructed array of object.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_object */
 extern const afw_value_function_definition_t
 afw_function_definition_as_object;
@@ -19873,74 +19504,6 @@ afw_function_definition_as_object;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<object> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_object;
-
-/**
- * @brief Adaptive Function `bag<object>`
- * @param x function execute parameter.
- *
- * Takes any number of object values and returns an array of object.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<object>(
- *       ...values: object[]
- *   ): object[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more object[])
- *
- * Returns:
- *
- *   (object[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<object> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_object;
-
-/**
- * @brief Adaptive Function `bag_size<object>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<object>(
- *       value: object[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (object[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -20786,6 +20349,50 @@ afw_function_execute_values(
  * @{
  */
 
+/** @brief Function definition array_password */
+extern const afw_value_function_definition_t
+afw_function_definition_array_password;
+
+/**
+ * @brief Adaptive Function `array_password`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of password from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType password, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<password>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_password(
+ *       ...values: any[]
+ *   ): password[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType password, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (password[]) The constructed array of password.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_password */
 extern const afw_value_function_definition_t
 afw_function_definition_as_password;
@@ -20824,74 +20431,6 @@ afw_function_definition_as_password;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<password> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_password;
-
-/**
- * @brief Adaptive Function `bag<password>`
- * @param x function execute parameter.
- *
- * Takes any number of password values and returns an array of password.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<password>(
- *       ...values: password[]
- *   ): password[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more password[])
- *
- * Returns:
- *
- *   (password[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<password> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_password;
-
-/**
- * @brief Adaptive Function `bag_size<password>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<password>(
- *       value: password[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (password[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -21492,88 +21031,6 @@ afw_function_definition_at_least_one_member_of;
  * Returns:
  *
  *   (boolean)
- *
- * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
- *
- * __________
- */
-
-/** @brief Function definition bag */
-extern const afw_value_function_definition_t
-afw_function_definition_bag;
-
-/**
- * @brief Adaptive Function `bag`
- * @param x function execute parameter.
- *
- * Takes any number of `<dataType>` values and returns an array of `<dataType>`.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function bag <dataType>(
- *       ...values: array
- *   ): array;
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more ``<Type>`[]`)
- *
- * Returns:
- *
- *   (``<Type>`[]`)
- *
- * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
- *
- * __________
- */
-
-/** @brief Function definition bag_size */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size;
-
-/**
- * @brief Adaptive Function `bag_size`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function bag_size <dataType>(
- *       value: array
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (``<Type>`[]`)
- *
- * Returns:
- *
- *   (integer)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25428,6 +24885,50 @@ afw_function_definition_relaxedJson;
  * @{
  */
 
+/** @brief Function definition array_rfc822Name */
+extern const afw_value_function_definition_t
+afw_function_definition_array_rfc822Name;
+
+/**
+ * @brief Adaptive Function `array_rfc822Name`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of rfc822Name from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType rfc822Name, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<rfc822Name>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_rfc822Name(
+ *       ...values: any[]
+ *   ): rfc822Name[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType rfc822Name, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (rfc822Name[]) The constructed array of rfc822Name.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_rfc822Name */
 extern const afw_value_function_definition_t
 afw_function_definition_as_rfc822Name;
@@ -25504,74 +25005,6 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_rfc822Name;
-
-/**
- * @brief Adaptive Function `bag<rfc822Name>`
- * @param x function execute parameter.
- *
- * Takes any number of rfc822Name values and returns an array of rfc822Name.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<rfc822Name>(
- *       ...values: rfc822Name[]
- *   ): rfc822Name[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more rfc822Name[])
- *
- * Returns:
- *
- *   (rfc822Name[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_rfc822Name;
-
-/**
- * @brief Adaptive Function `bag_size<rfc822Name>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<rfc822Name>(
- *       value: rfc822Name[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (rfc822Name[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -26276,6 +25709,49 @@ afw_function_definition_union_rfc822Name;
  * @{
  */
 
+/** @brief Function definition array_script */
+extern const afw_value_function_definition_t
+afw_function_definition_array_script;
+
+/**
+ * @brief Adaptive Function `array_script`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of script from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType script, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<script>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_script(
+ *       ...values: any[]
+ *   ): script[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType script, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (script[]) The constructed array of script.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_script */
 extern const afw_value_function_definition_t
 afw_function_definition_as_script;
@@ -26313,74 +25789,6 @@ afw_function_definition_as_script;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag<script> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_script;
-
-/**
- * @brief Adaptive Function `bag<script>`
- * @param x function execute parameter.
- *
- * Takes any number of script values and returns an array of script.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<script>(
- *       ...values: script[]
- *   ): script[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more script[])
- *
- * Returns:
- *
- *   (script[])
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<script> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_script;
-
-/**
- * @brief Adaptive Function `bag_size<script>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<script>(
- *       value: script[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (script[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
  *
  * __________
  */
@@ -27101,7 +26509,7 @@ afw_function_definition_read;
  * ```
  *   function read(
  *       streamNumber: integer,
- *       n: any
+ *       n: integer
  *   ): string;
  * ```
  *
@@ -27109,7 +26517,7 @@ afw_function_definition_read;
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read (0 or more, up to
+ *   n - (integer) The maximum number of octets to read (0 or more, up to
  *       1,000,000).
  *
  * Returns:
@@ -27145,7 +26553,7 @@ afw_function_definition_read_to_base64Binary;
  * ```
  *   function read_to_base64Binary(
  *       streamNumber: integer,
- *       n: any
+ *       n: integer
  *   ): base64Binary;
  * ```
  *
@@ -27153,7 +26561,7 @@ afw_function_definition_read_to_base64Binary;
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read (0 or more, up to
+ *   n - (integer) The maximum number of octets to read (0 or more, up to
  *       1,000,000).
  *
  * Returns:
@@ -27414,8 +26822,9 @@ afw_function_definition_add_string;
  * @brief Adaptive Function `add<string>`
  * @param x function execute parameter.
  *
- * Add (concatenate) a string with 1 or more values of any data type converted
- * to their string value and return the string result.
+ * Add (concatenate) 2 or more string values and return the string result. Every
+ * value must be a string, the same as the + operator: to convert values while
+ * concatenating, use concat() or string().
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27424,17 +26833,15 @@ afw_function_definition_add_string;
  *
  * ```
  *   function add<string>(
- *       string: string,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       values_1: string,
+ *       values_2: string,
+ *       ...values_rest: string[]
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   string - (string)
- *
- *   values - (1 or more any)
+ *   values - (2 or more string)
  *
  * Returns:
  *
@@ -27443,6 +26850,49 @@ afw_function_definition_add_string;
 const afw_value_t *
 afw_function_execute_add_string(
     afw_function_execute_t *x);
+
+/** @brief Function definition array_string */
+extern const afw_value_function_definition_t
+afw_function_definition_array_string;
+
+/**
+ * @brief Adaptive Function `array_string`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of string from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType string, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<string>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_string(
+ *       ...values: any[]
+ *   ): string[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType string, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (string[]) The constructed array of string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
 
 /** @brief Function definition as_string */
 extern const afw_value_function_definition_t
@@ -27519,74 +26969,6 @@ afw_function_definition_at_least_one_member_of_string;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<string> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_string;
-
-/**
- * @brief Adaptive Function `bag_size<string>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<string>(
- *       value: string[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (string[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<string> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_string;
-
-/**
- * @brief Adaptive Function `bag<string>`
- * @param x function execute parameter.
- *
- * Takes any number of string values and returns an array of string.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<string>(
- *       ...values: string[]
- *   ): string[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more string[])
- *
- * Returns:
- *
- *   (string[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -29902,6 +29284,50 @@ afw_function_definition_url_encode_string;
  * @{
  */
 
+/** @brief Function definition array_template */
+extern const afw_value_function_definition_t
+afw_function_definition_array_template;
+
+/**
+ * @brief Adaptive Function `array_template`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of template from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType template, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<template>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_template(
+ *       ...values: any[]
+ *   ): template[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType template, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (template[]) The constructed array of template.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_template */
 extern const afw_value_function_definition_t
 afw_function_definition_as_template;
@@ -29940,74 +29366,6 @@ afw_function_definition_as_template;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<template> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_template;
-
-/**
- * @brief Adaptive Function `bag_size<template>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<template>(
- *       value: template[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (template[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<template> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_template;
-
-/**
- * @brief Adaptive Function `bag<template>`
- * @param x function execute parameter.
- *
- * Takes any number of template values and returns an array of template.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<template>(
- *       ...values: template[]
- *   ): template[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more template[])
- *
- * Returns:
- *
- *   (template[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -30542,6 +29900,49 @@ afw_function_definition_to_string_template;
  * @{
  */
 
+/** @brief Function definition array_time */
+extern const afw_value_function_definition_t
+afw_function_definition_array_time;
+
+/**
+ * @brief Adaptive Function `array_time`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of time from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType time, and adding a value of another data type to the
+ * array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<time>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_time(
+ *       ...values: any[]
+ *   ): time[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType time, or ... followed by an
+ *       expression that results in an array, every entry of which is included.
+ *
+ * Returns:
+ *
+ *   (time[]) The constructed array of time.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_time */
 extern const afw_value_function_definition_t
 afw_function_definition_as_time;
@@ -30616,74 +30017,6 @@ afw_function_definition_at_least_one_member_of_time;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<time> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_time;
-
-/**
- * @brief Adaptive Function `bag_size<time>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<time>(
- *       value: time[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (time[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<time> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_time;
-
-/**
- * @brief Adaptive Function `bag<time>`
- * @param x function execute parameter.
- *
- * Takes any number of time values and returns an array of time.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<time>(
- *       ...values: time[]
- *   ): time[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more time[])
- *
- * Returns:
- *
- *   (time[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -31610,6 +30943,50 @@ afw_function_execute_metas(
  * @{
  */
 
+/** @brief Function definition array_x500Name */
+extern const afw_value_function_definition_t
+afw_function_definition_array_x500Name;
+
+/**
+ * @brief Adaptive Function `array_x500Name`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of x500Name from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType x500Name, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<x500Name>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_x500Name(
+ *       ...values: any[]
+ *   ): x500Name[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType x500Name, or ... followed by
+ *       an expression that results in an array, every entry of which is
+ *       included.
+ *
+ * Returns:
+ *
+ *   (x500Name[]) The constructed array of x500Name.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_x500Name */
 extern const afw_value_function_definition_t
 afw_function_definition_as_x500Name;
@@ -31686,74 +31063,6 @@ afw_function_definition_at_least_one_member_of_x500Name;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_x500Name;
-
-/**
- * @brief Adaptive Function `bag_size<x500Name>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<x500Name>(
- *       value: x500Name[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (x500Name[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_x500Name;
-
-/**
- * @brief Adaptive Function `bag<x500Name>`
- * @param x function execute parameter.
- *
- * Takes any number of x500Name values and returns an array of x500Name.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<x500Name>(
- *       ...values: x500Name[]
- *   ): x500Name[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more x500Name[])
- *
- * Returns:
- *
- *   (x500Name[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -32457,6 +31766,51 @@ afw_function_definition_union_x500Name;
  * @{
  */
 
+/** @brief Function definition array_xpathExpression */
+extern const afw_value_function_definition_t
+afw_function_definition_array_xpathExpression;
+
+/**
+ * @brief Adaptive Function `array_xpathExpression`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of xpathExpression from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType xpathExpression, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<xpathExpression>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_xpathExpression(
+ *       ...values: any[]
+ *   ): xpathExpression[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType xpathExpression, or ...
+ *       followed by an expression that results in an array, every entry of
+ *       which is included.
+ *
+ * Returns:
+ *
+ *   (xpathExpression[]) The constructed array of xpathExpression.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_xpathExpression */
 extern const afw_value_function_definition_t
 afw_function_definition_as_xpathExpression;
@@ -32495,75 +31849,6 @@ afw_function_definition_as_xpathExpression;
  *   argument_error - value is not the asserted data type
  *
  * Implemented by afw_function_execute_as()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<xpathExpression> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_xpathExpression;
-
-/**
- * @brief Adaptive Function `bag_size<xpathExpression>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<xpathExpression>(
- *       value: xpathExpression[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (xpathExpression[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<xpathExpression> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_xpathExpression;
-
-/**
- * @brief Adaptive Function `bag<xpathExpression>`
- * @param x function execute parameter.
- *
- * Takes any number of xpathExpression values and returns an array of
- * xpathExpression.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<xpathExpression>(
- *       ...values: xpathExpression[]
- *   ): xpathExpression[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more xpathExpression[])
- *
- * Returns:
- *
- *   (xpathExpression[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -33208,6 +32493,51 @@ afw_function_execute_xpath_node_match(
  * @{
  */
 
+/** @brief Function definition array_yearMonthDuration */
+extern const afw_value_function_definition_t
+afw_function_definition_array_yearMonthDuration;
+
+/**
+ * @brief Adaptive Function `array_yearMonthDuration`
+ * @param x function execute parameter.
+ *
+ * Construct a new array of yearMonthDuration from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType yearMonthDuration, and adding a value of
+ * another data type to the array later throws. A value of another data type is
+ * an error, never converted. This is usually written
+ * `array<yearMonthDuration>(`...values).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array_yearMonthDuration(
+ *       ...values: any[]
+ *   ): yearMonthDuration[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any) A value of dataType yearMonthDuration, or ...
+ *       followed by an expression that results in an array, every entry of
+ *       which is included.
+ *
+ * Returns:
+ *
+ *   (yearMonthDuration[]) The constructed array of yearMonthDuration.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a value is not dataType `<dataType>`
+ *
+ * Implemented by afw_function_execute_array_of_data_type()
+ *
+ * __________
+ */
+
 /** @brief Function definition as_yearMonthDuration */
 extern const afw_value_function_definition_t
 afw_function_definition_as_yearMonthDuration;
@@ -33284,75 +32614,6 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  *   (boolean)
  *
  * Implemented by afw_function_execute_at_least_one_member_of()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<yearMonthDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_size_yearMonthDuration;
-
-/**
- * @brief Adaptive Function `bag_size<yearMonthDuration>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<yearMonthDuration>(
- *       value: yearMonthDuration[]
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (yearMonthDuration[])
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition bag<yearMonthDuration> */
-extern const afw_value_function_definition_t
-afw_function_definition_bag_yearMonthDuration;
-
-/**
- * @brief Adaptive Function `bag<yearMonthDuration>`
- * @param x function execute parameter.
- *
- * Takes any number of yearMonthDuration values and returns an array of
- * yearMonthDuration.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<yearMonthDuration>(
- *       ...values: yearMonthDuration[]
- *   ): yearMonthDuration[];
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more yearMonthDuration[])
- *
- * Returns:
- *
- *   (yearMonthDuration[])
- *
- * Implemented by afw_function_execute_bag()
  *
  * __________
  */
@@ -33978,10 +33239,9 @@ afw_function_definition_union_yearMonthDuration;
  * @brief Data type method id map for afw_
  */
 #define AFW_DATA_TYPE_METHOD_ID_MAP(_XX)                                       \
+    _XX(array)                                                                 \
     _XX(as)                                                                    \
     _XX(at_least_one_member_of)                                                \
-    _XX(bag)                                                                   \
-    _XX(bag_size)                                                              \
     _XX(ends_with)                                                             \
     _XX(eq)                                                                    \
     _XX(eqx)                                                                   \
@@ -34097,8 +33357,6 @@ typedef enum afw_data_type_method_number_e {
  * add_dayTimeDuration
  * add_yearMonthDuration
  * at_least_one_member_of
- * bag
- * bag_size
  * ceil
  * clone
  * compile
@@ -34196,6 +33454,43 @@ afw_function_execute_any_of(
     afw_function_execute_t *x);
 
 /**
+ * @brief Function implementation function afw_function_execute_array_of_data_type
+ *
+ * Implementation for functions:
+ *
+ * array_anyURI
+ * array_array
+ * array_base64Binary
+ * array_boolean
+ * array_dateTime
+ * array_date
+ * array_dayTimeDuration
+ * array_dnsName
+ * array_double
+ * array_function
+ * array_hexBinary
+ * array_ia5String
+ * array_integer
+ * array_ipAddress
+ * array_null
+ * array_objectId
+ * array_objectPath
+ * array_object
+ * array_password
+ * array_rfc822Name
+ * array_script
+ * array_string
+ * array_template
+ * array_time
+ * array_x500Name
+ * array_xpathExpression
+ * array_yearMonthDuration
+ */
+const afw_value_t *
+afw_function_execute_array_of_data_type(
+    afw_function_execute_t *x);
+
+/**
  * @brief Function implementation function afw_function_execute_as
  *
  * Implementation for functions:
@@ -34255,80 +33550,6 @@ afw_function_execute_as(
  */
 const afw_value_t *
 afw_function_execute_at_least_one_member_of(
-    afw_function_execute_t *x);
-
-/**
- * @brief Function implementation function afw_function_execute_bag
- *
- * Implementation for functions:
- *
- * bag<anyURI>
- * bag<array>
- * bag<base64Binary>
- * bag<boolean>
- * bag<dateTime>
- * bag<date>
- * bag<dayTimeDuration>
- * bag<dnsName>
- * bag<double>
- * bag<function>
- * bag<hexBinary>
- * bag<ia5String>
- * bag<integer>
- * bag<ipAddress>
- * bag<null>
- * bag<objectId>
- * bag<objectPath>
- * bag<object>
- * bag<password>
- * bag<rfc822Name>
- * bag<script>
- * bag<string>
- * bag<template>
- * bag<time>
- * bag<x500Name>
- * bag<xpathExpression>
- * bag<yearMonthDuration>
- */
-const afw_value_t *
-afw_function_execute_bag(
-    afw_function_execute_t *x);
-
-/**
- * @brief Function implementation function afw_function_execute_bag_size
- *
- * Implementation for functions:
- *
- * bag_size<anyURI>
- * bag_size<array>
- * bag_size<base64Binary>
- * bag_size<boolean>
- * bag_size<dateTime>
- * bag_size<date>
- * bag_size<dayTimeDuration>
- * bag_size<dnsName>
- * bag_size<double>
- * bag_size<function>
- * bag_size<hexBinary>
- * bag_size<ia5String>
- * bag_size<integer>
- * bag_size<ipAddress>
- * bag_size<null>
- * bag_size<objectId>
- * bag_size<objectPath>
- * bag_size<object>
- * bag_size<password>
- * bag_size<rfc822Name>
- * bag_size<script>
- * bag_size<string>
- * bag_size<template>
- * bag_size<time>
- * bag_size<x500Name>
- * bag_size<xpathExpression>
- * bag_size<yearMonthDuration>
- */
-const afw_value_t *
-afw_function_execute_bag_size(
     afw_function_execute_t *x);
 
 /**

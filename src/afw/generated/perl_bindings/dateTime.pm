@@ -15,10 +15,9 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_dayTimeDuration_dateTime 
     add_yearMonthDuration_dateTime 
+    array_dateTime 
     as_dateTime 
     at_least_one_member_of_dateTime 
-    bag_dateTime 
-    bag_size_dateTime 
     eq_dateTime 
     eqx_dateTime 
     ge_dateTime 
@@ -75,6 +74,22 @@ Add duration
     $arg2
 
 
+=head3 array_dateTime
+
+Construct a new array of dateTime from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType dateTime, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<dateTime>(`...values).
+Construct an array of dateTime from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType dateTime, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_dateTime
 
 Returns value unchanged if it is dataType dateTime. Otherwise, including when
@@ -104,26 +119,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_dateTime
-
-Takes any number of dateTime values and returns an array of dateTime.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_dateTime
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_dateTime
 
@@ -440,6 +435,17 @@ sub add_yearMonthDuration_dateTime {
     return $request->getResult();
 }
 
+sub array_dateTime {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_dateTime");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_dateTime {
     my ($value) = @_;
 
@@ -459,30 +465,6 @@ sub at_least_one_member_of_dateTime {
     $request->set("function" => "at_least_one_member_of<dateTime>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_dateTime {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<dateTime>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_dateTime {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<dateTime>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

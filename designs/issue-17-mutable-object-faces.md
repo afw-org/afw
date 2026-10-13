@@ -17,8 +17,8 @@ Callers often expect an object value to be **theirs to mutate**. AFW often hands
 
 | Area | Example |
 |------|---------|
-| Script **literals** | Same `{…}` / `[…]` bag across evals / re-entry |
-| **Bind / assign** | Shared bag unless isolated (was clone; now faces on literals/returns) |
+| Script **literals** | Same `{…}` / `[…]` object or array across evals / re-entry |
+| **Bind / assign** | Shared object or array unless isolated (was clone; now faces on literals/returns) |
 | **Defaults** (#110) | `property_get` / `variable_get` mutable defaults |
 | **Built-in returns** | `get_object`, retrieve, journal get, … |
 | **Arrays** | Same class of problem as objects |

@@ -13,7 +13,7 @@
 reduce(
     string("add"),
     4,
-    bag<integer>(
+    array<integer>(
         2,
         9,
         5,
@@ -30,7 +30,7 @@ reduce(
 reduce(
     string("concat"),
     string("mmmmm"),
-    bag<string>(
+    array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),

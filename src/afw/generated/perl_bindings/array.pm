@@ -15,10 +15,9 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_entries 
     array 
+    array_array 
     as_array 
     at 
-    bag_array 
-    bag_size_array 
     clone_array 
     create_array 
     eq_array 
@@ -88,6 +87,22 @@ array expression. In the case of an array expression, indicated by '...'
 followed by an expression that results in an array, every element within that
 array is included in the newly created array.
 
+=head3 array_array
+
+Construct a new array of array from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType array, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<array>(`...values).
+Construct an array of array from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType array, or ... followed by an expression that results in an
+array, every entry of which is included.
+
 =head3 as_array
 
 Returns value unchanged if it is dataType array. Otherwise, including when
@@ -104,41 +119,22 @@ Value to assert
 
 =head3 at
 
-Return the value at a zero-based index in an array. Negative indexes count
-from the end (-1 is the last element). If the index is out of range, the
-result is undefined. Bracket indexing a[index] uses the same out-of-range
-result (undefined).
-Value at array index
+Return the value at a zero-based index in an array, or the code point at a
+zero-based index in a string as a one-code-point string (as ECMAScript at does
+for both). Negative indexes count from the end (-1 is the last). If the index
+is out of range, the result is undefined. Bracket indexing a[index] and
+s[index] use the same out-of-range result (undefined).
+Value at array index, or code point at string index
 
 =head4 Parameters
 
     $array
 
-Array to index.
+Array, or string, to index.
 
     $index
 
 Zero-based index, or negative from the end.
-
-=head3 bag_array
-
-Takes any number of array values and returns an array of array.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_array
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 clone_array
 
@@ -406,26 +402,28 @@ Target array. Must not be immutable.
 
 =head3 slice
 
-This function extracts a consecutive slice of values from an array.
-Return a consecutive slice of values from an array
+This function extracts a consecutive slice of values from an array, or of code
+points from a string (as ECMAScript slice does for both). For a string, or
+another value stored as UTF-8, the result is a string.
+Return a consecutive slice of an array or a string
 
 =head4 Parameters
 
     $array
 
-The array to slice.
+The array, or the string, to slice.
 
     $startIndex
 
 This is the zero based starting index. Use negative number to index from the
-end of the array. If not specified, an index of 0 is assumed.
+end. If not specified, an index of 0 is assumed.
 
     $endIndex
 
 This is the zero based ending index. If positive, this is one more than the
-index of the last value to include in the array. If negative, the index is
-from the end of the array. If not specified, the slice is from startIndex up
-to and including the end of the array.
+index of the last value or code point to include. If negative, the index is
+from the end. If not specified, the slice is from startIndex up to and
+including the end.
 
 =head3 splice
 
@@ -507,6 +505,17 @@ sub array {
     return $request->getResult();
 }
 
+sub array_array {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_array");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_array {
     my ($value) = @_;
 
@@ -526,30 +535,6 @@ sub at {
     $request->set("function" => "at");
     $request->set("array", $array);
     $request->set("index", $index);
-
-    return $request->getResult();
-}
-
-sub bag_array {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<array>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_array {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<array>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

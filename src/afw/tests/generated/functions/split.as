@@ -9,7 +9,7 @@
 //? description: Test split function with no optional parameters
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("H"),
     string("e"),
     string("l"),
@@ -35,7 +35,7 @@ split(
 //? description: Test split function with limit of 5
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("H"),
     string("e"),
     string("l"),
@@ -56,7 +56,7 @@ split(
 //? description: Test split function with l as separator
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("He"),
     "",
     string("o Wor"),
@@ -75,7 +75,7 @@ split(
 //? description: Test split function with World as separator
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("Hello "),
     string("!")
 )

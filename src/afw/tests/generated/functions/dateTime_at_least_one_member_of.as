@@ -11,13 +11,13 @@
 //? source: ...
 
 at_least_one_member_of<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:00"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2005-04-12T13:20:00"dateTime,
         "2005-04-12T13:20:15.5"dateTime,
         "2005-04-12T13:20:00"dateTime,
@@ -32,13 +32,13 @@ at_least_one_member_of<dateTime>(
 //? source: ...
 
 at_least_one_member_of<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:00"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2005-04-12T13:20:00"dateTime,
         "2005-04-12T13:20:15.5"dateTime,
         "2005-04-12T13:20:00"dateTime,

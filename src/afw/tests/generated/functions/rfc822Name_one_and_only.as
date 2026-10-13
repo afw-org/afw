@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name
     )
 )
@@ -23,7 +23,7 @@ one_and_only<rfc822Name>(
 //? source: ...
 
 one_and_only<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name
     )
 )
@@ -35,7 +35,7 @@ one_and_only<rfc822Name>(
 //? source: ...
 
 one_and_only<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "x"rfc822Name,
         "x"rfc822Name
     )

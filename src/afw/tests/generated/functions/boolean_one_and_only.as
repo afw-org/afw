@@ -8,14 +8,14 @@
 //? test: one_and_only<boolean>-1
 //? description: ...
 
-            Boolean one and only for bag:
+            Boolean one and only for array:
             { 'true' }
         
 //? expect: boolean(true)
 //? source: ...
 
 one_and_only<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true)
     )
 )
@@ -24,14 +24,14 @@ one_and_only<boolean>(
 //? test: one_and_only<boolean>-2
 //? description: ...
 
-            Boolean one and only for bag:
+            Boolean one and only for array:
             { 'true', 'false', 'true', 'false', true' }
         
 //? expect: error
 //? source: ...
 
 one_and_only<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(false),
         boolean(true),
@@ -44,14 +44,14 @@ one_and_only<boolean>(
 //? test: one_and_only<boolean>-3
 //? description: ...
 
-            Boolean one and only for bag:
+            Boolean one and only for array:
             { }
         
 //? expect: error
 //? source: ...
 
 one_and_only<boolean>(
-    bag<boolean>(
+    array<boolean>(
     )
 )
 

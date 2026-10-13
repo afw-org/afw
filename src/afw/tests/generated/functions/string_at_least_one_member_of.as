@@ -8,15 +8,15 @@
 //? test: at_least_one_member_of<string>-1
 //? description: ...
 
-            String at least one member of for two empty bags.
+            String at least one member of for two empty arrays.
         
 //? expect: boolean(false)
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -24,7 +24,7 @@ at_least_one_member_of<string>(
 //? test: at_least_one_member_of<string>-2
 //? description: ...
 
-            String at least one member of for bags:
+            String at least one member of for arrays:
             { 'one', 'two', 'three' },
             { 'one', 'three' }
         
@@ -32,12 +32,12 @@ at_least_one_member_of<string>(
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("three")
     )
@@ -47,7 +47,7 @@ at_least_one_member_of<string>(
 //? test: at_least_one_member_of<string>-3
 //? description: ...
 
-            String at least one member of for bags:
+            String at least one member of for arrays:
             { 'one', 'two', 'three' },
             { 'four', 'five' }
         
@@ -55,12 +55,12 @@ at_least_one_member_of<string>(
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -70,7 +70,7 @@ at_least_one_member_of<string>(
 //? test: at_least_one_member_of<string>-4
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             {
                 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
@@ -82,7 +82,7 @@ at_least_one_member_of<string>(
 //? source: ...
 
 at_least_one_member_of<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -109,7 +109,7 @@ at_least_one_member_of<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("twenty-five")
     )
 )

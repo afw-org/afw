@@ -18,6 +18,28 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of objectId from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType objectId, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<objectId>(`...values).
+ * 
+ * @param {} values - A value of dataType objectId, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of objectId.
+ */
+export function afwArrayObjectId(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_objectId";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType objectId. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * objectId from a value of another data type, write a typed literal or call a
@@ -33,42 +55,6 @@ export function afwAsObjectId(client : any, value : any) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "as_objectId";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of objectId values and returns an array of objectId.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagObjectId(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<objectId>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeObjectId(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<objectId>";
     _action["value"] = value;
 
     return client.perform(_action);

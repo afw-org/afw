@@ -79,6 +79,7 @@ impl_reader_check_returns = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    &afw_lmdb_boolean_self_v_false,
     NULL
 };
 
@@ -103,6 +104,7 @@ impl_reader_check_parameter_1 = {
     NULL,
     &afw_lmdb_self_v_zz__Adapter_Id_,
     &afw_lmdb_integer_self_v_zz___1,
+    &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
@@ -206,6 +208,7 @@ impl_reader_list_returns = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    &afw_lmdb_boolean_self_v_false,
     NULL
 };
 
@@ -230,6 +233,7 @@ impl_reader_list_parameter_1 = {
     NULL,
     &afw_lmdb_self_v_zz__Adapter_Id_,
     &afw_lmdb_integer_self_v_zz___1,
+    &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,

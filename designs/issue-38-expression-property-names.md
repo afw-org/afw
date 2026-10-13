@@ -66,7 +66,7 @@ Ship `{ [expression]: value }` in Adaptive Script **object values** only, with A
 | Situation | Result |
 |-----------|--------|
 | All property names static; all values evaluated | Unmanaged **object** (+ optional literal `_meta_` via `meta_set_meta_object`) |
-| Static names; some values not yet evaluated | **`object_expression`** — bag of known names, eval values on evaluate |
+| Static names; some values not yet evaluated | **`object_expression`** — set of known names, eval values on evaluate |
 | Any `...spread` | Call to **`add_properties`** (base object/`object_expression` + spread objects) |
 
 `object_expression` **cannot** hold expression names: eval walks `get_next_property` with fixed names.
@@ -87,7 +87,7 @@ EBNF update `ObjectValue` only (not `Object` / `ObjectLiteral` / pure JSON).
 
 **B. Representation when any name is an expression**
 
-Do **not** force everything through a static-name bag.
+Do **not** force everything through a static-name object.
 
 Introduce an ordered **entry list** for deferred construction (preferred: extend the value model rather than a one-off compile-only struct that never evaluates cleanly):
 
@@ -124,7 +124,7 @@ Prefer (1) unless entry list fits an existing pattern with less code.
 
 **D. Nested objects / embedding**
 
-When the **parent** property name is an expression name, do not use `parser->property_name` for `AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED` embedding into a parent bag under a known name:
+When the **parent** property name is an expression name, do not use `parser->property_name` for `AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED` embedding into a parent object under a known name:
 
 - Parse value with `property_name` unset / force unmanaged create for that child.  
 - Attach only after the name expression is evaluated at eval time.
@@ -157,7 +157,7 @@ Static-name nested objects can keep current embedding behavior.
 | `obj[k]=` still works | regression |
 | Decompile or listing smoke if easy | optional but good |
 | Literal `_meta_: { path: ... }` still meta | no change |
-| `{ ["_meta_"]: 1 }` | bag property if set_property allows (no throw) |
+| `{ ["_meta_"]: 1 }` | ordinary property if set_property allows (no throw) |
 
 **H. Build / verify**
 

@@ -12,7 +12,7 @@
 
 is_in<date>(
     "1970-01-01"date,
-    bag<date>(
+    array<date>(
         "1970-01-01"date,
         "1980-01-01"date
     )
@@ -26,7 +26,7 @@ is_in<date>(
 
 is_in<date>(
     "-1970-01-01"date,
-    bag<date>(
+    array<date>(
         "1970-01-01"date,
         "1980-01-01"date
     )

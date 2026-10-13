@@ -71,6 +71,35 @@ class integer
     }
 
     /**
+     * array_integer()
+     *
+     * Construct a new array of integer from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType integer, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<integer>(`...values).
+     *
+     * @param $values A value of dataType integer, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of integer.
+     */
+    public function array_integer(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_integer");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_integer()
      *
      * Returns value unchanged if it is dataType integer. Otherwise, including
@@ -116,52 +145,6 @@ class integer
         /* pass along required parameters to the request payload */
         $request->set("array1", $array1);
         $request->set("array2", $array2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_integer()
-     *
-     * Takes any number of integer values and returns an array of integer.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_integer(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<integer>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_integer()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_integer(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<integer>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

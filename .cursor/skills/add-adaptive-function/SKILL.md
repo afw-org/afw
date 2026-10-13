@@ -29,6 +29,8 @@ Progress:
 
 Required fields typically: `functionId`, `functionLabel`, `category`, `parameters`, `returns`. Optional: `brief`, `description`, `pure`, `op`, etc.
 
+An `array` parameter that should also take a string (read as its code points) needs `"iterableAsArray": true` on that parameter; see `.cursor/rules/afw-function.mdc` (*Array parameters and strings*).
+
 Example: `src/afw/generate/objects/_AdaptiveFunctionGenerate_/and.json`.
 
 **Data type** — use `_AdaptiveDataTypeGenerate_/` (not `_AdaptiveDataType_`).

@@ -15,9 +15,8 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_properties 
     apply_object_options 
+    array_object 
     as_object 
-    bag_object 
-    bag_size_object 
     clone_object 
     entries 
     eq_object 
@@ -83,6 +82,22 @@ Object used to produce result.
 Object options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
 information.
 
+=head3 array_object
+
+Construct a new array of object from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType object, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<object>(`...values).
+Construct an array of object from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType object, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_object
 
 Returns value unchanged if it is dataType object. Otherwise, including when
@@ -96,26 +111,6 @@ Asserts that value is dataType object
     $value
 
 Value to assert
-
-=head3 bag_object
-
-Takes any number of object values and returns an array of object.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_object
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 clone_object
 
@@ -466,36 +461,23 @@ sub apply_object_options {
     return $request->getResult();
 }
 
+sub array_object {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_object");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_object {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "as_object");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_object {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<object>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_object {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<object>");
     $request->set("value", $value);
 
     return $request->getResult();

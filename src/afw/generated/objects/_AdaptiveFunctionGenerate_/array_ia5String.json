@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwArrayIa5String",
+    "brief": "Construct an array of ia5String from values or spread arrays",
+    "camelCaseFunctionLabel": "arrayIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Construct a new array of ia5String from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType ia5String, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<ia5String>(...values).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a value is not dataType <dataType>"
+        }
+    ],
+    "functionId": "array_ia5String",
+    "functionLabel": "array_ia5String",
+    "parameters": [
+        {
+            "description": "A value of dataType ia5String, or ... followed by an expression that results in an array, every entry of which is included.",
+            "minArgs": 0,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "ia5String",
+        "description": "The constructed array of ia5String."
+    },
+    "untypedFunctionId": "array",
+    "useExecuteFunction": "afw_function_execute_array_of_data_type"
+}

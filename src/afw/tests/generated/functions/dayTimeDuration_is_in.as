@@ -6,13 +6,13 @@
 //? sourceType: script
 //?
 //? test: is_in<dayTimeDuration>-1
-//? description: P3DT10H30M is in bag
+//? description: P3DT10H30M is in array
 //? expect: boolean(true)
 //? source: ...
 
 is_in<dayTimeDuration>(
     "P3DT10H30M"dayTimeDuration,
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P3DT10H"dayTimeDuration,
         "P3DT10H31M"dayTimeDuration,
         "P3DT10H30M"dayTimeDuration,
@@ -23,13 +23,13 @@ is_in<dayTimeDuration>(
 
 //?
 //? test: is_in<dayTimeDuration>-2
-//? description: P3DT10H30M is not in bag
+//? description: P3DT10H30M is not in array
 //? expect: boolean(false)
 //? source: ...
 
 is_in<dayTimeDuration>(
     "P3DT10H30M"dayTimeDuration,
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "-P3DT10H30M"dayTimeDuration,
         "P4DT10H30M"dayTimeDuration,
         "P3DT10H3M"dayTimeDuration,
@@ -46,7 +46,7 @@ is_in<dayTimeDuration>(
 
 is_in<dayTimeDuration>(
     "x"dayTimeDuration,
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "x"dayTimeDuration,
         "x"dayTimeDuration
     )

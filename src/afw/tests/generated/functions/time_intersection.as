@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<time>(
+array<time>(
     "13:20:00"time,
     "13:20:30.5555"time,
     "13:20:40.5555"time
@@ -18,12 +18,12 @@ bag<time>(
 //? source: ...
 
 intersection<time>(
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time
     ),
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time
@@ -35,15 +35,15 @@ intersection<time>(
 //? description: empty
 //? expect: ...
 
-bag<time>(
+array<time>(
 )
 
 //? source: ...
 
 intersection<time>(
-    bag<time>(
+    array<time>(
     ),
-    bag<time>(
+    array<time>(
     )
 )
 
@@ -52,18 +52,18 @@ intersection<time>(
 //? description: x
 //? expect: ...
 
-bag<time>(
+array<time>(
 )
 
 //? source: ...
 
 intersection<time>(
-    bag<time>(
+    array<time>(
         "13:20:00"time,
         "13:20:30.5555"time,
         "13:20:40.5555"time
     ),
-    bag<time>(
+    array<time>(
         "14:20:00"time,
         "14:20:30.5555"time,
         "14:20:40.5555"time

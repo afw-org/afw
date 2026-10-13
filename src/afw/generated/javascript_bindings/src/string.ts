@@ -18,21 +18,41 @@ interface IAnyObject {
 }
 
 /**
- * Add (concatenate) a string with 1 or more values of any data type converted
- * to their string value and return the string result.
+ * Add (concatenate) 2 or more string values and return the string result.
+ * Every value must be a string, the same as the + operator: to convert values
+ * while concatenating, use concat() or string().
  * 
- * @param {string} string -
- * 
- * @param {} values -
+ * @param {string} values -
  * 
  * @returns {string}
  */
-export function afwAddString(client : any, string : string, values : any) : any {
+export function afwAddString(client : any, values : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "add<string>";
-    _action["string"] = string;
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
+ * Construct a new array of string from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType string, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<string>(`...values).
+ * 
+ * @param {} values - A value of dataType string, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of string.
+ */
+export function afwArrayString(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_string";
     _action["values"] = values;
 
     return client.perform(_action);
@@ -76,42 +96,6 @@ export function afwAtLeastOneMemberOfString(client : any, array1 : any[], array2
     _action["function"] = "at_least_one_member_of<string>";
     _action["array1"] = array1;
     _action["array2"] = array2;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeString(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<string>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of string values and returns an array of string.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagString(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<string>";
-
-    if (values !== undefined)
-        _action["values"] = values;
 
     return client.perform(_action);
 }

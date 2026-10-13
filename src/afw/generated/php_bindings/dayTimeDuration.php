@@ -26,6 +26,35 @@ class dayTimeDuration
     }
 
     /**
+     * array_dayTimeDuration()
+     *
+     * Construct a new array of dayTimeDuration from the given values, the
+     * same as array() except that the new array is typed: each value, and
+     * each entry of a spread array, must be dataType dayTimeDuration, and
+     * adding a value of another data type to the array later throws. A value
+     * of another data type is an error, never converted. This is usually
+     * written `array<dayTimeDuration>(`...values).
+     *
+     * @param $values A value of dataType dayTimeDuration, or ... followed by
+     *                 an expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of dayTimeDuration.
+     */
+    public function array_dayTimeDuration(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_dayTimeDuration");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_dayTimeDuration()
      *
      * Returns value unchanged if it is dataType dayTimeDuration. Otherwise,
@@ -71,53 +100,6 @@ class dayTimeDuration
         /* pass along required parameters to the request payload */
         $request->set("array1", $array1);
         $request->set("array2", $array2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_dayTimeDuration()
-     *
-     * Takes any number of dayTimeDuration values and returns an array of
-     * dayTimeDuration.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_dayTimeDuration(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<dayTimeDuration>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_dayTimeDuration()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_dayTimeDuration(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<dayTimeDuration>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

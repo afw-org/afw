@@ -12,7 +12,7 @@
 
 is_in<x500Name>(
     "cn=John Smith,ou=Finance,o=Acme"x500Name,
-    bag<x500Name>(
+    array<x500Name>(
         "cn=John Smith,ou=Finance,o=Acme1"x500Name,
         "cn=John Smith,ou=Finance,o=Acme2"x500Name,
         "cn=John Smith,ou=Finance,o=Acme3"x500Name,
@@ -29,7 +29,7 @@ is_in<x500Name>(
 
 is_in<x500Name>(
     "cn=John Smith,ou=Finance,o=Acme"x500Name,
-    bag<x500Name>(
+    array<x500Name>(
         "cn=John Smith,ou=Finance,o=Acme1"x500Name,
         "cn=John Smith,ou=Finance,o=Acme2"x500Name,
         "cn=John Smith,ou=Finance,o=Acme3"x500Name,

@@ -18,8 +18,6 @@ our @EXPORT_OK = qw(
     add_dayTimeDuration 
     add_yearMonthDuration 
     at_least_one_member_of 
-    bag 
-    bag_size 
     ceil 
     clone 
     compile 
@@ -166,26 +164,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag
-
-Takes any number of `<dataType>` values and returns an array of `<dataType>`.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 ceil
 
@@ -1248,30 +1226,6 @@ sub at_least_one_member_of {
     $request->set("function" => "at_least_one_member_of");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

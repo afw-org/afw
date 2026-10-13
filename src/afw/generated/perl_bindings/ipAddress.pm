@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_ipAddress 
     as_ipAddress 
-    bag_ipAddress 
-    bag_size_ipAddress 
     eq_ipAddress 
     eqx_ipAddress 
     ge_ipAddress 
@@ -39,6 +38,22 @@ afw::ipAddress - Perl module for ipAddress functions
 
 The following functions are exported by default
 
+=head3 array_ipAddress
+
+Construct a new array of ipAddress from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType ipAddress, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<ipAddress>(`...values).
+Construct an array of ipAddress from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType ipAddress, or ... followed by an expression that results
+in an array, every entry of which is included.
+
 =head3 as_ipAddress
 
 Returns value unchanged if it is dataType ipAddress. Otherwise, including when
@@ -53,26 +68,6 @@ Asserts that value is dataType ipAddress
     $value
 
 Value to assert
-
-=head3 bag_ipAddress
-
-Takes any number of ipAddress values and returns an array of ipAddress.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_ipAddress
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_ipAddress
 
@@ -255,36 +250,23 @@ A ipAddress value.
 
 =cut
 
+sub array_ipAddress {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_ipAddress");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_ipAddress {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "as_ipAddress");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_ipAddress {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<ipAddress>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_ipAddress {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<ipAddress>");
     $request->set("value", $value);
 
     return $request->getResult();

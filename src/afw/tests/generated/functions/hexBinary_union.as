@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<hexBinary>(
+array<hexBinary>(
     "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
     "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
     "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
@@ -25,14 +25,14 @@ bag<hexBinary>(
 //? source: ...
 
 union<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
         "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
         "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
         "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
         "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9"hexBinary,
         "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB1"hexBinary,
         "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB2"hexBinary,
@@ -48,11 +48,11 @@ union<hexBinary>(
 //? source: ...
 
 union<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     )

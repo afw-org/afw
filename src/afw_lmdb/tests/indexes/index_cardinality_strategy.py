@@ -57,7 +57,7 @@ const objects = retrieve_objects("lmdb", ot, { "filter": { "op": "or", "filters"
     { "op": "gt", "property": "age", "value": 0 },
     { "op": "eq", "property": "status", "value": "nonexistent" }
 ]}});
-print("RESULT_COUNT=" + length(objects));
+print("RESULT_COUNT=" + string(length(objects)));
 return 0;
 """
 

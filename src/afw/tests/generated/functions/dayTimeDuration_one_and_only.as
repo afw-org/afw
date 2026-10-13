@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M30.5S"dayTimeDuration
     )
 )
@@ -23,7 +23,7 @@ one_and_only<dayTimeDuration>(
 //? source: ...
 
 one_and_only<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M30.5S"dayTimeDuration,
         "PT1M40.5S"dayTimeDuration
     )

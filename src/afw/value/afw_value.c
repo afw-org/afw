@@ -34,9 +34,6 @@ impl_internal_for_data_type(
 }
 
 
-
-static const afw_utf8_t impl_s_a_quote = AFW_UTF8_LITERAL("\"");
-
 static const afw_value_null_t
 impl_value_null = {
     {&afw_value_permanent_null_inf},
@@ -761,79 +758,6 @@ afw_value_convert_to_utf8_z(const afw_value_t *value,
     }
 
     /* Return result or NULL if invalid. */
-    return result;
-}
-
-
-/* Convert value to datatype("...") utf8 in specified pool. */
-AFW_DEFINE(const afw_utf8_t *)
-afw_value_convert_to_casted_utf8(
-    const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    const afw_utf8_t *result;
-    const afw_data_type_t *data_type;
-    const afw_utf8_t * const *s;
-    afw_size_t n;
-    afw_size_t len;
-    afw_utf8_octet_t *c;
-
-    value = afw_value_evaluate(value, p, xctx);
-    if (!value) {
-        return NULL;
-    }
-    data_type = afw_value_get_data_type(value, xctx);
-
-    /** @fixme change from bag to list when tests are modified. */
-    if (afw_value_is_array(value)) {
-        s = afw_value_convert_to_null_terminated_utf8(value, p, xctx);
-        
-        if (!s[0]) {
-            len = 5; /* "bag()" */
-        }
-        else {
-            for (n = 0, len = 3 /* "bag" */; s[n]; n++) {
-                /*
-                 * '<datatype>("<string value>") plus surrounding '()' for bag
-                 * or ', '
-                 */
-                len += s[n]->len + 6 + data_type->data_type_id.len;
-            }
-        }
-
-        c = afw_pool_calloc(p, len, xctx);
-        result = afw_utf8_create(c, len, p, xctx);
-
-        memcpy(c, "bag(", 4);
-        c += 4;
-
-        for (n = 0; s[n]; n++) {
-            if (n != 0) {
-                *c++ = ',';
-                *c++ = ' ';
-            }
-            memcpy(c, data_type->data_type_id.s,
-                data_type->data_type_id.len);
-            c += data_type->data_type_id.len;
-            *c++ = '(';
-            *c++ = '\"';
-            memcpy(c, s[n]->s, s[n]->len);
-            c += s[n]->len;
-            *c++ = '\"';
-            *c++ = ')';
-        }
-
-        *c++ = ')';
-    }
-
-    else {
-        result = afw_utf8_concat(p, xctx,
-            &data_type->data_type_id,
-            afw_s_a_open_parenthesis, &impl_s_a_quote,
-            afw_value_convert_to_utf8(value, p, xctx),
-            &impl_s_a_quote, afw_s_a_close_parenthesis,
-            NULL);
-    }
-
     return result;
 }
 

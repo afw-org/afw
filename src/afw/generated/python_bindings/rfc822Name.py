@@ -11,6 +11,41 @@
 import requests
 import json
 
+def array_rfc822Name(session, values):
+    """
+    Construct an array of rfc822Name from values or spread arrays
+
+    Construct a new array of rfc822Name from the given values, the same as
+    array() except that the new array is typed: each value, and each entry of
+    a spread array, must be dataType rfc822Name, and adding a value of another
+    data type to the array later throws. A value of another data type is an
+    error, never converted. This is usually written
+    `array<rfc822Name>(`...values).
+
+    Args:
+        values (object): A value of dataType rfc822Name, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of rfc822Name.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_rfc822Name",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_rfc822Name(session, value):
     """
     Asserts that value is dataType rfc822Name
@@ -64,64 +99,6 @@ def at_least_one_member_of_rfc822Name(session, array1, array2):
         "function": "at_least_one_member_of<rfc822Name>",
         "array1": array1,
         "array2": array2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_rfc822Name(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of rfc822Name values and returns an array of rfc822Name.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<rfc822Name>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_rfc822Name(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<rfc822Name>",
-        "value": value
     }
 
     request.add_action(action)

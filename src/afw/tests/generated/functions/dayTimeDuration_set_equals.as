@@ -11,11 +11,11 @@
 //? source: ...
 
 set_equals<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M40.5S"dayTimeDuration,
         "PT1M30.5S"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M30.5S"dayTimeDuration,
         "PT1M40.5S"dayTimeDuration
     )
@@ -28,11 +28,11 @@ set_equals<dayTimeDuration>(
 //? source: ...
 
 set_equals<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M40.5S"dayTimeDuration,
         "PT1M30.5S"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "PT1M30.5S"dayTimeDuration,
         "PT1M50.5S"dayTimeDuration
     )

@@ -26,6 +26,35 @@ class rfc822Name
     }
 
     /**
+     * array_rfc822Name()
+     *
+     * Construct a new array of rfc822Name from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType rfc822Name, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<rfc822Name>(`...values).
+     *
+     * @param $values A value of dataType rfc822Name, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of rfc822Name.
+     */
+    public function array_rfc822Name(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_rfc822Name");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_rfc822Name()
      *
      * Returns value unchanged if it is dataType rfc822Name. Otherwise,
@@ -71,53 +100,6 @@ class rfc822Name
         /* pass along required parameters to the request payload */
         $request->set("array1", $array1);
         $request->set("array2", $array2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_rfc822Name()
-     *
-     * Takes any number of rfc822Name values and returns an array of
-     * rfc822Name.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_rfc822Name(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_rfc822Name()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_rfc822Name(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

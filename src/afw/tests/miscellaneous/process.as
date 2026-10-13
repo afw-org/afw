@@ -219,7 +219,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-/* Same ambient bag conf templates use after env create (issue #15 / #74). */
+/* Same ambient variables conf templates use after env create (issue #15 / #74). */
 const joined = string(process::cwd, "/", process::programName);
 assert(length(joined) > length(process::programName));
 assert(starts_with<string>(joined, process::cwd));

@@ -14,10 +14,9 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     add_yearMonthDuration_date 
+    array_date 
     as_date 
     at_least_one_member_of_date 
-    bag_date 
-    bag_size_date 
     eq_date 
     eqx_date 
     ge_date 
@@ -60,6 +59,22 @@ Add duration
     $arg2
 
 
+=head3 array_date
+
+Construct a new array of date from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType date, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<date>(`...values).
+Construct an array of date from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType date, or ... followed by an expression that results in an
+array, every entry of which is included.
+
 =head3 as_date
 
 Returns value unchanged if it is dataType date. Otherwise, including when
@@ -88,26 +103,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_date
-
-Takes any number of date values and returns an array of date.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_date
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_date
 
@@ -395,6 +390,17 @@ sub add_yearMonthDuration_date {
     return $request->getResult();
 }
 
+sub array_date {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_date");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_date {
     my ($value) = @_;
 
@@ -414,30 +420,6 @@ sub at_least_one_member_of_date {
     $request->set("function" => "at_least_one_member_of<date>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_date {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<date>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_date {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<date>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

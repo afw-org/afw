@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_objectId 
     as_objectId 
-    bag_objectId 
-    bag_size_objectId 
     eq_objectId 
     eqx_objectId 
     ge_objectId 
@@ -36,6 +35,22 @@ afw::objectId - Perl module for objectId functions
 
 The following functions are exported by default
 
+=head3 array_objectId
+
+Construct a new array of objectId from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType objectId, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<objectId>(`...values).
+Construct an array of objectId from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType objectId, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_objectId
 
 Returns value unchanged if it is dataType objectId. Otherwise, including when
@@ -49,26 +64,6 @@ Asserts that value is dataType objectId
     $value
 
 Value to assert
-
-=head3 bag_objectId
-
-Takes any number of objectId values and returns an array of objectId.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_objectId
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_objectId
 
@@ -212,36 +207,23 @@ A objectId value.
 
 =cut
 
+sub array_objectId {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_objectId");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_objectId {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "as_objectId");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_objectId {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<objectId>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_objectId {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<objectId>");
     $request->set("value", $value);
 
     return $request->getResult();

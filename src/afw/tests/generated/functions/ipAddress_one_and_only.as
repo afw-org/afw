@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<ipAddress>(
-    bag<ipAddress>(
+    array<ipAddress>(
         "255.255.255.255"ipAddress
     )
 )
@@ -23,7 +23,7 @@ one_and_only<ipAddress>(
 //? source: ...
 
 one_and_only<ipAddress>(
-    bag<ipAddress>(
+    array<ipAddress>(
         "255.255.255.255"ipAddress,
         "0.0.0.1"ipAddress
     )

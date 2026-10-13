@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwArrayDayTimeDuration",
+    "brief": "Construct an array of dayTimeDuration from values or spread arrays",
+    "camelCaseFunctionLabel": "arrayDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Construct a new array of dayTimeDuration from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType dayTimeDuration, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<dayTimeDuration>(...values).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a value is not dataType <dataType>"
+        }
+    ],
+    "functionId": "array_dayTimeDuration",
+    "functionLabel": "array_dayTimeDuration",
+    "parameters": [
+        {
+            "description": "A value of dataType dayTimeDuration, or ... followed by an expression that results in an array, every entry of which is included.",
+            "minArgs": 0,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "dayTimeDuration",
+        "description": "The constructed array of dayTimeDuration."
+    },
+    "untypedFunctionId": "array",
+    "useExecuteFunction": "afw_function_execute_array_of_data_type"
+}

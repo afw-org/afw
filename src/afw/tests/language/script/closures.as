@@ -621,10 +621,10 @@ function factory() {
     };
 }
 
-const bag = factory();
-assert(bag.get() === 7, "read after factory returned");
-assert(bag.set(9) === 9, "write after factory returned");
-assert(bag.get() === 9, "see mutation via escaped closure");
+const counter = factory();
+assert(counter.get() === 7, "read after factory returned");
+assert(counter.set(9) === 9, "write after factory returned");
+assert(counter.get() === 9, "see mutation via escaped closure");
 return 0;
 
 //?
@@ -936,7 +936,7 @@ return 0;
 //? source: ...
 
 /*
- * Short path assign-property-then-call is green; this stresses retained bag
+ * Short path assign-property-then-call is green; this stresses the retained object
  * after factory scope ends (same shape, explicit escape checklist for #2).
  */
 function factory() {
@@ -952,10 +952,10 @@ function factory() {
     return o;
 }
 
-const bag = factory();
-assert(bag.get() === 7);
-assert(bag.set(9) === 9);
-assert(bag.get() === 9);
+const counter = factory();
+assert(counter.get() === 7);
+assert(counter.set(9) === 9);
+assert(counter.get() === 9);
 return 0;
 
 //?

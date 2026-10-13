@@ -219,7 +219,7 @@ for (a = 1, b = 2; a < 3; a = a + 1) {
             <literal>for-of</literal> heads, and C-style <literal>for</literal>
             initializers. Calls may use argument spread
             <literal>f(...array)</literal> to expand an array into separate
-            arguments.
+            arguments; spreading a string expands its code points.
         </paragraph>
         <paragraph>
             Declare a return type with a colon after the parameter list

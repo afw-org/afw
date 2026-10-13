@@ -30,19 +30,6 @@ impl_afw_array_setter_set_immutable(
 }
 
 /*
- * Implementation of method determine_data_type_and_set_immutable for interface
- * afw_array_setter.
- */
-const afw_data_type_t *
-impl_afw_array_setter_determine_data_type_and_set_immutable(
-    AFW_ARRAY_SETTER_SELF_T *self,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-}
-
-/*
  * Implementation of method push_value for interface afw_array_setter.
  */
 void

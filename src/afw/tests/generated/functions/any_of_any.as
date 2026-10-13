@@ -12,11 +12,11 @@
 
 any_of_any(
     string("eq<string>"),
-    bag<string>(
+    array<string>(
         string("Ringo"),
         string("Mary")
     ),
-    bag<string>(
+    array<string>(
         string("Jonh"),
         string("Paul"),
         string("George"),
@@ -32,10 +32,10 @@ any_of_any(
 
 any_of_any(
     string("gt<integer>"),
-    bag<integer>(
+    array<integer>(
         10000006
     ),
-    bag<integer>(
+    array<integer>(
         10000006
     )
 )

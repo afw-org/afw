@@ -226,7 +226,7 @@ struct afw_object_options_s {
 /**
  * @brief Include meta resolvedParentPaths for all objects.
  *
- * Indicates that meta resolvedParentPaths should be included with a bag of
+ * Indicates that meta resolvedParentPaths should be included with an array of
  * parentPaths that have already been resolved by the composite option.
  */
 #define AFW_OBJECT_OPTION_resolvedParentPaths    (1 << 17)

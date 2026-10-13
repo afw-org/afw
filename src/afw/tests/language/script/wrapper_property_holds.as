@@ -25,8 +25,8 @@ function factory() {
     return o;
 }
 
-const bag = factory();
-assert(bag.get() === 7);
+const counter = factory();
+assert(counter.get() === 7);
 return 0;
 
 //?
@@ -206,6 +206,6 @@ const src = script(""
     + "    return o;"
     + "}"
     + "return factory();");
-const bag = evaluate(compile<script>(src));
-assert(bag.get() === 3);
+const counter = evaluate(compile<script>(src));
+assert(counter.get() === 3);
 return 0;

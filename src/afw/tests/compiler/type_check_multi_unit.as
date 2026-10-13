@@ -36,9 +36,12 @@ try {
 } catch (e) {
     /* expected compile failure under unit A policy */
 }
-/* Unit B still has defaults off (no process flag leak from #compile). */
+/*
+ * Unit B still has defaults off (no process flag leak from #compile): a
+ * wrong object shape is allowed (a data type is always checked, #583).
+ */
 const r: any = evaluate(compile<script>(script(
-    "const x: integer = \"hello\";\nreturn 0;"
+    "const x: {a: integer} = {a: \"hello\"};\nreturn 0;"
 )));
 return 0;
 
@@ -89,13 +92,13 @@ flag_set([
 /*
  * Outer source has #compile typeCheck (would reject bad assign itself).
  * Nested unit has no #compile and process flags stay off — nested must
- * still allow a wrong literal assign.
+ * still allow a wrong object shape.
  */
 const outer = evaluate(compile<script>(script(
     "#compile typeCheck;\n" +
     "const ok: integer = 1;\n" +
     "const nested = evaluate(compile<script>(script(\n" +
-    "  \"const x: integer = \\\"hello\\\";\\n\" +\n" +
+    "  \"const x: {a: integer} = {a: \\\"hello\\\"};\\n\" +\n" +
     "  \"return 0;\"\n" +
     ")));\n" +
     "return ok;"
@@ -112,7 +115,7 @@ return 0;
 /*
  * Must run with process type flags off so this case's outer unit is not
  * compiled under typeCheck (call-site compile formal checks would then
- * fire on loose_f("1") even though definition policy is off).
+ * fire on loose_f({n: "1"}) even though definition policy is off).
  */
 flag_set([
     "compile:typeCheck",
@@ -123,17 +126,17 @@ flag_set([
 ], false);
 const strict_f = evaluate(compile<script>(script(
     "#compile typeCheck;\n" +
-    "return function (a: integer) { return a; };"
+    "return function (a: {n: integer}) { return a.n; };"
 )));
 const loose_f = evaluate(compile<script>(script(
     "#compile noTypeCheck;\n" +
-    "return function (a: integer) { return a; };"
+    "return function (a: {n: integer}) { return a.n; };"
 )));
-const loose_r = loose_f("1");
-assert(loose_r === 1);
+const loose_r = loose_f({n: "1"});
+assert(loose_r === "1");
 let saw = false;
 try {
-    strict_f("1");
+    strict_f({n: "1"});
 } catch (e) {
     saw = true;
 }
@@ -162,8 +165,8 @@ f("1");
 return 0;
 
 //?
-//? test: definition-policy-off-allows-convert-param
-//? description: function defined under #compile noTypeCheck converts leaf arg despite process typeCheck
+//? test: definition-policy-off-skips-shape-param
+//? description: function defined under #compile noTypeCheck does not check an object shape param despite process typeCheck
 //? expect: 0
 //? source: ...
 
@@ -177,11 +180,11 @@ flag_set([
 flag_set(["compile:typeCheck"], true);
 const f = evaluate(compile<script>(script(
     "#compile noTypeCheck;\n" +
-    "return function (a: integer) { return a; };"
+    "return function (a: {n: integer}) { return a.n; };"
 )));
-/* Definition policy off → convert path; "1" becomes 1. */
-const r = f("1");
-assert(r === 1);
+/* Definition policy off: the shape is not checked (never converted). */
+const r = f({n: "1"});
+assert(r === "1");
 /* Leave process flags off for the next case's outer compile. */
 flag_set([
     "compile:typeCheck",
@@ -228,10 +231,10 @@ flag_set([
 flag_set(["compile:typeCheck"], true);
 const f = evaluate(compile<script>(script(
     "#compile noTypeCheck;\n" +
-    "return function (): integer { return \"x\"; };"
+    "return function (): {n: integer} { return {n: \"x\"}; };"
 )));
 const r = f();
-assert(r === "x");
+assert(r.n === "x");
 flag_set([
     "compile:typeCheck",
     "compile:typeCheckCompileOnly",

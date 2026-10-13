@@ -8,19 +8,19 @@
 //? test: union<string>-1
 //? description: ...
 
-            String union of two empty bags.
+            String union of two empty arrays.
         
 //? expect: ...
 
-bag<string>(
+array<string>(
 )
 
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -28,13 +28,13 @@ union<string>(
 //? test: union<string>-2
 //? description: ...
 
-            String union of bags:
+            String union of arrays:
             { 'one', 'two', 'three' },
             { 'one', 'three' }
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three")
@@ -43,12 +43,12 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("three")
     )
@@ -58,13 +58,13 @@ union<string>(
 //? test: union<string>-3
 //? description: ...
 
-            String union of bags:
+            String union of arrays:
             { 'one', 'two', 'three' },
             { 'four', 'five' }
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three"),
@@ -75,12 +75,12 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -90,13 +90,13 @@ union<string>(
 //? test: union<string>-4
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'three', 'four' }
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three"),
@@ -106,12 +106,12 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("three"),
         string("four")
     )
@@ -121,7 +121,7 @@ union<string>(
 //? test: union<string>-5
 //? description: ...
 
-            String union of bags:
+            String union of arrays:
             {
             'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
             'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
@@ -134,7 +134,7 @@ union<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("two"),
     string("three"),
@@ -165,7 +165,7 @@ bag<string>(
 //? source: ...
 
 union<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -192,7 +192,7 @@ union<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),

@@ -57,9 +57,11 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
  * @param xctx of caller.
  * @return Pointer to interface pointer of new value array.
  * 
- * If data_type is NULL and only values of a single evaluated
- * data type are added, afw_array_get_data_type() will return
- * that data type.
+ * If data_type is NULL, afw_array_get_data_type() returns the data
+ * type of every value it holds (undefined holes aside), or NULL if they
+ * differ or there are none. Adding and removing values keeps this up to
+ * date without walking the array. If data_type is not NULL, adding a
+ * value of another data type throws.
  *
  * Kind: pooled when options is 0 (lives in p; caller does not release).
  * Reference counted with new_p or cede_p (owns its pool; caller
@@ -83,7 +85,7 @@ afw_array_create_with_options(
  * The array owns stored values. Push/set/insert `slot_store`
  * (`get_assignable_value`). Replace, `remove` / `remove_value_by_index`,
  * and last array release `release` occupants, then last-release
- * `free_memory`s the header. Unmanaged non-wrapper memory arrays
+ * `free_memory`s the header. Unmanaged memory arrays
  * store a raw pointer and do not release on remove.
  *
  * Get / `at` peek: the array still holds, so the occupant only has to
@@ -132,63 +134,38 @@ afw_array_to_managed(
 
 
 /**
- * @brief True if array is the new managed memory bag (p->managed_p, slots).
+ * @brief True if array is a managed memory array (p->managed_p, slots).
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory_managed(const afw_array_t *array);
 
 
 /**
- * @brief Managed wrapper over another array (p->managed_p, RC 1).
- * @param wrapped base. Required.
- * @param p dest pool (uses p->managed_p).
- * @param xctx of caller.
- * @return managed array (reference count 1), or wrapped if already
- *     this managed implementation (get_reference).
- *
- * Uses the managed array inf (`is_managed`). Occupants are
- * slot_store'd. Unmanaged create_wrapper_* stays on the unmanaged inf.
- *
- * Kind: fully managed. Caller releases (RC 1).
- */
-AFW_DECLARE(const afw_array_t *)
-afw_array_create_wrapper_managed(
-    const afw_array_t *wrapped,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief True if array is a memory wrapper face (create_wrapper_*).
- * @param array to test (may be NULL).
- * @return true if create_wrapper_* produced this instance.
- *
- * Used by wrap_literal_array for idempotent wrap (issue #17).
- */
-AFW_DECLARE(afw_boolean_t)
-afw_array_is_memory_wrapper(const afw_array_t *array);
-
-
-/**
- * @brief True if array is a generic memory array (face or not).
+ * @brief True if array is a generic (unmanaged) memory array.
  * @param array to test (may be NULL).
  *
- * Custom infs (metas views, from_values) are false. Used so
- * `get_assignable` wraps compiled memory arrays (mutable overlay)
- * but not immutable arrays.
+ * Managed memory arrays and custom infs (metas views, from_values) are
+ * false.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory(const afw_array_t *array);
 
 
 /**
- * @brief Base array under a memory face, or array itself if not a face.
- * @param array may be NULL.
- * @return wrapped base if create_wrapper_* face; else array; NULL if array NULL.
+ * @brief Data type a copy of array is created with.
+ * @param array to copy.
+ * @param xctx of caller.
+ * @return data type the array was created with (NULL for a generic memory
+ *    array), or afw_array_get_data_type() for another implementation.
+ *
+ * A generic memory array that holds only integers today is still generic:
+ * a copy of it can hold a string. afw_array_get_data_type() is what it
+ * holds now; use it to check a value, and this to copy one.
  */
-AFW_DECLARE(const afw_array_t *)
-afw_array_memory_wrapper_base(const afw_array_t *array);
-
+AFW_DECLARE(const afw_data_type_t *)
+afw_array_get_declared_data_type(
+    const afw_array_t *array,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -217,9 +194,9 @@ afw_array_as_value(
  * @param xctx of caller.
  * @return Pointer to interface pointer of new value array.
  *
- * If data_type is NULL and only values of a single evaluated
- * data type are added, afw_array_get_data_type() will return
- * that data type.
+ * If data_type is NULL, afw_array_get_data_type() returns the data
+ * type of every value it holds, or NULL. See
+ * afw_array_create_with_options().
  *
  * Kind: pooled (lives and dies with p). Caller does not release.
  */
@@ -453,9 +430,6 @@ afw_array_convert_to_array_of_strings(
  * Copies each internal into a value in @p p at create. C storage need
  * only live until this call returns. Fill C storage before calling.
  *
- * This is **not** a mutable look-through face over another adaptive array
- * (reserved naming: create_wrapper_* for #17-style faces).
- *
  * If indirect is false, array must be an array of data_type->cType.  If
  * indirect is true, array must be an array of data_type->cType *.
  *
@@ -607,27 +581,6 @@ afw_array_of_utf8_get_next(
  */
 AFW_DECLARE(void)
 afw_array_set_immutable(
-    const afw_array_t *instance,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Set array to immutable and determine data type of entries. 
- * @param instance Pointer to this value array instance.
- * @param xctx of caller.
- * @return the data type of all values in array or NULL if different
- *    or unknown.
- *
- * If data type of values in array is not already known and all
- * values is array have the same data type, make the array an array of
- * that data type.
- *
- * Once an array is set to immutable, all other set calls will throw
- * an error.
- */
-AFW_DECLARE(const afw_data_type_t *)
-afw_array_determine_data_type_and_set_immutable(
     const afw_array_t *instance,
     afw_xctx_t *xctx);
 
@@ -794,7 +747,7 @@ afw_array_set_value(
  *
  * Managed arrays `release` the occupant. `pop` / `shift` transfer
  * instead (last-release of that hold on the current scope). Unmanaged
- * non-wrapper memory arrays unlink the pointer and do not release.
+ * memory arrays unlink the pointer and do not release.
  */
 AFW_DECLARE(void)
 afw_array_remove_value_by_index(

@@ -66,12 +66,12 @@ const afw_value_t *
 afw_function_execute_compile_regexp(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *source;
+    const afw_value_regexp_t *source;
     const afw_value_t *result;
     const afw_value_t *compiled;
     const afw_utf8_t *listing;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(source, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(source, 1, regexp);
 
     result = afw_compile_to_value(
         &source->internal, AFW_FUNCTION_SOURCE_LOCATION,

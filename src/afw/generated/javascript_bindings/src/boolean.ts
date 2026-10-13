@@ -18,6 +18,28 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of boolean from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType boolean, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<boolean>(`...values).
+ * 
+ * @param {} values - A value of dataType boolean, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of boolean.
+ */
+export function afwArrayBoolean(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_boolean";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType boolean. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * boolean from a value of another data type, write a typed literal or call a
@@ -55,42 +77,6 @@ export function afwAtLeastOneMemberOfBoolean(client : any, array1 : any[], array
     _action["function"] = "at_least_one_member_of<boolean>";
     _action["array1"] = array1;
     _action["array2"] = array2;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of boolean values and returns an array of boolean.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagBoolean(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<boolean>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeBoolean(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<boolean>";
-    _action["value"] = value;
 
     return client.perform(_action);
 }

@@ -190,7 +190,7 @@ def read(session, streamNumber, n):
 
     Args:
         streamNumber (int): Stream number
-        n (object): The maximum number of octets to read (0 or more, up to
+        n (int): The maximum number of octets to read (0 or more, up to
             1,000,000).
 
     Returns:
@@ -224,7 +224,7 @@ def read_to_base64Binary(session, streamNumber, n):
 
     Args:
         streamNumber (int): Stream number
-        n (object): The maximum number of octets to read (0 or more, up to
+        n (int): The maximum number of octets to read (0 or more, up to
             1,000,000).
 
     Returns:

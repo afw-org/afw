@@ -11,7 +11,7 @@
 //? source: ...
 
 
-// Grab-bag script. Prefer assert() over print().
+// Miscellaneous script. Prefer assert() over print().
 
 let s: string;
 
@@ -239,7 +239,7 @@ assert( ( hello + " " + world ) == 'entry1 entry3');
 assert( ( hello + " " + world ) == 'entry1 entry2');
 
 // Test 3 array destructure
-let rest: string;
+let rest: string[] | object;
 [hello, world, ...rest] = ["entry1", "entry2", "entry3", "entry4" ];
 assert( ( hello + " " + world + ' rest=' + string(rest)) == 'entry1 entry2 rest=["entry3","entry4"]');
 
@@ -275,7 +275,7 @@ assert( ( hello + " " + world + ' rest=' + string(rest)) == 'OHello OWorld! rest
 }
 
 // Test let
-let x: string = "Defined Variable";
+let x: string | integer = "Defined Variable";
 assert(x == 'Defined Variable');
 
 // Test assign

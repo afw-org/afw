@@ -14,9 +14,9 @@ Re-decide after each vertical. If a step needs a type `if` at a call site, stop.
 
 ## Constraint: do not split hold vs wrap before slots call assignable
 
-Today `slot_store` → `add_reference` → `clone_or_reference`, and unmanaged object **wraps**. If `get_reference` of a bag becomes **self** while slots still call `get_reference`, isolation of `{a:1}` dies.
+Today `slot_store` → `add_reference` → `clone_or_reference`, and unmanaged object **wraps**. If `get_reference` of an object or array becomes **self** while slots still call `get_reference`, isolation of `{a:1}` dies.
 
-**Order is load-bearing:** add `get_assignable_value` (default = current hold/wrap) → switch slot fill to it → **then** split bag `get_reference` = self vs assignable = wrap.
+**Order is load-bearing:** add `get_assignable_value` (default = current hold/wrap) → switch slot fill to it → **then** split object/array `get_reference` = self vs assignable = wrap.
 
 ---
 
@@ -24,7 +24,7 @@ Today `slot_store` → `add_reference` → `clone_or_reference`, and unmanaged o
 
 **XML** (`src/afw/generate/interfaces/afw_interface.xml` `afw_value`):
 
-- Rename `clone_or_reference` → `get_reference` (XML description: keep alive; matching `release`; no wrap of bags).
+- Rename `clone_or_reference` → `get_reference` (XML description: keep alive; matching `release`; no wrap of objects or arrays).
 - Add `get_assignable_value` (same params as `get_reference`; description: slot occupant; matching `release`).
 
 **Generate** (`./afwdev build --cdev`):
@@ -43,7 +43,7 @@ Today `slot_store` → `add_reference` → `clone_or_reference`, and unmanaged o
 
 ## Vertical 2 — Slot fill uses `get_assignable_value`
 
-Still no split of bag wrap vs hold.
+Still no split of object/array wrap vs hold.
 
 - `afw_value_slot_store`: store `get_assignable_value(incoming)` instead of `add_reference`. Same-pointer skip stays. Donate stays until V7.
 - Face overlay SET already goes through `slot_store`.
@@ -55,7 +55,7 @@ Still no split of bag wrap vs hold.
 
 ---
 
-## Vertical 3 — Assignable object/array inf + split bag methods
+## Vertical 3 — Assignable object/array inf + split object/array methods
 
 **Mint:** memory wrapper/script-wrapper create stamps dual-face `value.inf` = `afw_value_assignable_object_inf` / `assignable_array_inf` (fourth inf in the object/array binding files, same pattern as managed/permanent). `afw_object_as_value` already returns `object->value` when set.
 
@@ -64,12 +64,12 @@ Assignable inf:
 - `get_reference` / `get_assignable_value` = bump instance (`afw_object_get_reference`)
 - `optional_release` = instance `release`
 
-**Bag infs (unmanaged + permanent object/array):**
+**Object/array infs (unmanaged + permanent object/array):**
 
 - `get_reference` = **self** (stop calling `object_hold` / `array_hold` here)
 - `get_assignable_value` = mint wrapper (existing `create_wrapper_*`), stamp assignable inf, hold face, return `as_value`
 
-Callers never `if (is_memory_wrapper)`. `object_hold` / `array_hold` become the bag **assignable** bodies (or inline in generated assignable method). Custom immutable array views (`metas()`, const): assignable = self (keep the `!is_memory && !setter` path **inside** array assignable only).
+Callers never `if (is_memory_wrapper)`. `object_hold` / `array_hold` become the object/array **assignable** bodies (or inline in generated assignable method). Custom immutable array views (`metas()`, const): assignable = self (keep the `!is_memory && !setter` path **inside** array assignable only).
 
 `object_expression` / `object_construct` evaluate already `create_script_wrapper` — that create now stamps assignable inf. No extra wrap call.
 
@@ -81,7 +81,7 @@ Callers never `if (is_memory_wrapper)`. `object_hold` / `array_hold` become the 
 
 - `property_get` / `variable_get`: return evaluated default as-is (identity). Remove `isolate_mutable_default` at those sites.
 - Face GET/array materialize: `get_assignable_value` of the child, not `isolate_mutable_default`.
-- Update `property_get-default-shared-constant-object` (and kin): `a` / `b` / `def` **share**. Inline `{ }` still isolated via bag assignable.
+- Update `property_get-default-shared-constant-object` (and kin): `a` / `b` / `def` **share**. Inline `{ }` still isolated via object/array assignable.
 - Delete `isolate_mutable_default` if nothing remains.
 
 **Tests:** `property_get.as`, `variable_get.as`, nested hard-edge in `array_literal_wrapper`.

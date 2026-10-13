@@ -157,6 +157,13 @@ struct afw_value_function_parameter_s {
     /* Indicates that dataTypeParameter is polymorphic. */
     const afw_value_boolean_t *polymorphicDataTypeParameter;
 
+    /*
+     * Indicates that a value whose data type can be iterated (a string or
+     * another utf8-backed value) is read as the array of its elements for
+     * this array parameter. Without it, a non-array value is an error.
+     */
+    const afw_value_boolean_t *iterableAsArray;
+
     /**
      * If non-NULL, dataTypeParameter was resolved at generate to this Adaptive
      * data type (typically ArrayOf element type). NULL: do not use the
@@ -1709,14 +1716,11 @@ afw_value_convert_to_utf8_z(const afw_value_t *value,
  * **C implementers:** prefer this helper (or keyless `afw_iterator`) over
  * open-coding utf8 walks when an API expects an array of values. Call only
  * when the formal truly wants a value sequence (e.g. EVALUATE … array, HOF
- * walked list, script `array` / `T[]` / tuple). Do **not** use for XACML
- * bag rest formals that take scalar bag members typed as `array` in
- * metadata — bag-of-one is not code-point expansion.
+ * walked list, script `array` / `T[]` / tuple).
  *
- * **Deferred (not required for beta language semantics):** an immutable
- * array *face* over utf8 (lazy get_next / get_by_index without eager
- * materialize). Same public contract; optional later if cost or clear
- * mutation-reject matters. See `designs/utf8-code-point-sequences.md`.
+ * The array is always made eagerly. A lazy array view over the utf8
+ * (values created as accessed) is not planned: values made from raw
+ * memory on access leaked (#2). See `designs/utf8-code-point-sequences.md`.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_convert_to_array_sequence(
@@ -1762,28 +1766,6 @@ afw_value_one_and_only_convert_to_utf8(
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_value_convert_to_utf8(
-    const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Convert value to casted utf8 in specified pool.
- * @param value to convert.
- * @param p is pool to use for result.
- * @param xctx of caller.
- * 
- * Convert value to a utf8 string that is of the form:
- * 
- * `<datatype>("<string>")`
- *
- * Where `<datatype>` is the data type of value and `<string>` is the
- * quoted string representation of the value.
- *
- * For list values the result if "list(" followed by comma separated
- * result of recursively calling this function, followed by ")".
- */
-AFW_DECLARE(const afw_utf8_t *)
-afw_value_convert_to_casted_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -2316,7 +2298,7 @@ afw_value_symbol_reference_create(
  *    otherwise hexBinary with a copy of the same bytes.
  *
  * Does not throw for invalid UTF-8. Use this for process environment,
- * FCGI/CGI parameters, and similar external byte bags. Do not construct
+ * FCGI/CGI parameters, and similar external bytes. Do not construct
  * string values from untrusted bytes any other way.
  *
  * Empty or NULL input yields an empty string value.
@@ -2675,8 +2657,13 @@ afw_value_type_is_assignable(
     afw_xctx_t *xctx);
 
 /**
- * @brief Throw if value is not assignable (when runtime checking on).
+ * @brief Throw if value is not assignable.
  * @param contextual unit link (NULL => process flags).
+ *
+ * A data type, T[] of a data type, and unions of these are always checked,
+ * the same as a built-in parameter's data type, and never converted. Other
+ * types (object shapes, tuples, functions) are checked when runtime
+ * typeCheck is on for the unit.
  */
 AFW_DEFINE(void)
 afw_value_type_check_assignable(

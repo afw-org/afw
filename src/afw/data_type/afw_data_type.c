@@ -1456,7 +1456,7 @@ impl_afw_data_type_array_clone_internal(
     const afw_data_type_t *data_type;
 
     from = *(const afw_array_t * *)from_internal;
-    data_type = afw_array_get_data_type(from, xctx);
+    data_type = afw_array_get_declared_data_type(from, xctx);
     to = afw_array_create_unmanaged_of(data_type, p, xctx);
     memcpy(to_internal, &to, sizeof(const afw_array_t *));
 

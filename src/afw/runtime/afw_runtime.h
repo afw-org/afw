@@ -111,9 +111,9 @@ struct afw_runtime_object_map_property_s {
     afw_size_t offset;
 
     /**
-     * @brief Offset of bag value count afw_size_t for bag values or -1.
+     * @brief Offset of array value count afw_size_t for array values or -1.
      *
-     * Can be -1 for bag values as well if values are pointers and array of
+     * Can be -1 for array values as well if values are pointers and array of
      * pointers in NULL terminated.
      */
     afw_size_t count_offset;

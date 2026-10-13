@@ -9,7 +9,7 @@
 //? description: Test slice function with integers, no other parms.
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     2,
     9,
     5,
@@ -19,7 +19,7 @@ bag<integer>(
 //? source: ...
 
 slice(
-    bag<integer>(
+    array<integer>(
         2,
         9,
         5,
@@ -33,7 +33,7 @@ slice(
 Test slice function with integers with startIndex and endIndex.
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     9,
     5
 )
@@ -41,7 +41,7 @@ bag<integer>(
 //? source: ...
 
 slice(
-    bag<integer>(
+    array<integer>(
         2,
         9,
         5,
@@ -57,7 +57,7 @@ slice(
 Test slice function with integers with negative startIndex and endIndex.
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     9,
     5
 )
@@ -65,7 +65,7 @@ bag<integer>(
 //? source: ...
 
 slice(
-    bag<integer>(
+    array<integer>(
         2,
         9,
         5,
@@ -80,7 +80,7 @@ slice(
 //? description: Test slice function with strings with just startIndex.
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("aaaaa"),
     string("nnnnn")
 )
@@ -88,7 +88,7 @@ bag<string>(
 //? source: ...
 
 slice(
-    bag<string>(
+    array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),

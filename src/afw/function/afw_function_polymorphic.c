@@ -168,120 +168,6 @@ afw_function_execute_at_least_one_member_of(
 
 
 /*
- * Common polymorphic function for bag
- *
- * afw_function_execute_bag
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * Takes any number of `<dataType>` values and returns an array of `<dataType>`.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function bag <dataType>(
- *       ...values: array
- *   ): array;
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more ``<Type>`[]`)
- *
- * Returns:
- *
- *   (``<Type>`[]`)
- */
-const afw_value_t *
-afw_function_execute_bag(
-    afw_function_execute_t *x)
-{
-    const afw_value_array_t *array;
-    const afw_value_t *value;
-    afw_size_t i;
-
-    if (x->argc == 0) {
-        return x->data_type->empty_array_value;
-    }
-
-    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
-    array = (const afw_value_array_t *)
-        afw_pool_scope_release_value_at_cleanup(
-            afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
-            x->p, x->xctx);
-
-    for (i = 1; i <= x->argc; i++) {
-        value = afw_function_evaluate_required_parameter(x, i, x->data_type);
-        afw_array_push_value(array->internal, value, x->xctx);
-    }
-
-    return &array->pub;
-}
-
-
-
-/*
- * Common polymorphic function for bag_size
- *
- * afw_function_execute_bag_size
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
- *   object, objectId, objectPath, password, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
- *
- * Declaration:
- *
- * ```
- *   function bag_size <dataType>(
- *       value: array
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (``<Type>`[]`)
- *
- * Returns:
- *
- *   (integer)
- */
-const afw_value_t *
-afw_function_execute_bag_size(
-    afw_function_execute_t *x)
-{
-    const afw_value_array_t *arg;
-    afw_size_t count;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, array);
-
-    count = afw_array_get_count(arg->internal, x->xctx);
-
-    return afw_value_create_unmanaged_integer((afw_integer_t)count, x->p, x->xctx);
-}
-
-
-
-/*
  * Common polymorphic function for clone
  *
  * afw_function_execute_clone
@@ -1442,8 +1328,8 @@ afw_function_execute_max(
     data_type = afw_value_get_data_type(arg_max, x->xctx);
 
     for (i = 2; i <= x->argc; i++) {
+        /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
-        arg = afw_value_convert(arg, data_type, true, x->p, x->xctx);
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_max), AFW_VALUE_INTERNAL(arg), x->xctx);
         if (cmp < 0) {
@@ -1503,8 +1389,8 @@ afw_function_execute_min(
     data_type = afw_value_get_data_type(arg_min, x->xctx);
 
     for (i = 2; i <= x->argc; i++) {
+        /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
-        arg = afw_value_convert(arg, data_type, true, x->p, x->xctx);
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_min), AFW_VALUE_INTERNAL(arg), x->xctx);
         if (cmp > 0) {
@@ -1775,6 +1661,11 @@ afw_function_execute_one_and_only(
 
     iterator = NULL;
     value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
+    if (afw_value_get_data_type(value, x->xctx) != x->data_type) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "The value in the array must be data type %ku",
+            &x->data_type->data_type_id);
+    }
     return value;
 }
 

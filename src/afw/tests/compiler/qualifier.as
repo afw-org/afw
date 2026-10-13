@@ -72,9 +72,9 @@ return 0;
 //? source: ...
 
 /*
- * Push an outer current bag that only defines message. App current:: underneath
- * still has mode. Get must continue past C NULL from the outer object frame
- * (bug: used to stop after first matching current frame).
+ * Push outer current:: variables that only define message. App current::
+ * underneath still has mode. Get must continue past C NULL from the outer
+ * object frame (bug: used to stop after first matching current frame).
  *
  * Use unevaluated + generate_uuid() so compile does not constant-fold
  * current:: lookups at compile time before the stacked frames exist.

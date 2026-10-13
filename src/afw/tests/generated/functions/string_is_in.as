@@ -8,7 +8,7 @@
 //? test: is_in<string>-1
 //? description: ...
 
-		String 'one' is in empty bag.
+		String 'one' is in empty array.
 		Should return boolean false.
 	
 //? expect: boolean(false)
@@ -16,7 +16,7 @@
 
 is_in<string>(
     string("one"),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -24,7 +24,7 @@ is_in<string>(
 //? test: is_in<string>-2
 //? description: ...
 
-		String 'two' is in bag: 'one', 'two', 'three'.
+		String 'two' is in array: 'one', 'two', 'three'.
 		Should return boolean true.
 	
 //? expect: boolean(true)
@@ -32,7 +32,7 @@ is_in<string>(
 
 is_in<string>(
     string("two"),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
@@ -43,7 +43,7 @@ is_in<string>(
 //? test: is_in<string>-3
 //? description: ...
 
-		String 'four' is in bag: 'one', 'two', 'three'.
+		String 'four' is in array: 'one', 'two', 'three'.
 		Should return boolean false.
 	
 //? expect: boolean(false)
@@ -51,7 +51,7 @@ is_in<string>(
 
 is_in<string>(
     string("four"),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
@@ -62,7 +62,7 @@ is_in<string>(
 //? test: is_in<string>-4
 //? description: ...
 
-		String 'four' is in bag: 'one', 'two', 'three'.
+		String 'four' is in array: 'one', 'two', 'three'.
 		Should return boolean false.
 	
 //? expect: boolean(true)
@@ -70,7 +70,7 @@ is_in<string>(
 
 is_in<string>(
     string("four"),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),

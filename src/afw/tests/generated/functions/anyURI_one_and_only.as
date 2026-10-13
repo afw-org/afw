@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://datypic.com"anyURI
     )
 )
@@ -23,7 +23,7 @@ one_and_only<anyURI>(
 //? source: ...
 
 one_and_only<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://datypic.com"anyURI,
         "http://datypic.coms"anyURI
     )

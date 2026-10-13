@@ -18,6 +18,29 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of objectPath from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType objectPath, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<objectPath>(`...values).
+ * 
+ * @param {} values - A value of dataType objectPath, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of objectPath.
+ */
+export function afwArrayObjectPath(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_objectPath";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType objectPath. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * objectPath from a value of another data type, write a typed literal or call
@@ -33,42 +56,6 @@ export function afwAsObjectPath(client : any, value : any) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "as_objectPath";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of objectPath values and returns an array of objectPath.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagObjectPath(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<objectPath>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeObjectPath(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<objectPath>";
     _action["value"] = value;
 
     return client.perform(_action);

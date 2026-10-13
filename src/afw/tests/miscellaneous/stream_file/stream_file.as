@@ -1618,3 +1618,23 @@ return true;
 
 open_file("left-open", "data/include_root/x.txt", "r");
 return true;
+
+//? test: read-count-must-be-integer
+//? description: read and read_to_base64Binary take an integer count; a string or double is not converted (#583)
+//? expect: true
+//? source: ...
+
+const sn = open_file("count", "data/include_root/x.txt", "r");
+for (const f of [
+    function () { return read(sn, "10"); },
+    function () { return read(sn, 10.5); },
+    function () { return read_to_base64Binary(sn, "10"); }
+]) {
+    let message = "";
+    try { f(); } catch (e) { message = e.message; }
+    assert(index_of(message, "must evaluate to data type 'integer'") >= 0,
+        "got: " + message);
+}
+assert(length(read(sn, 1)) === 1);
+close(sn);
+return true;

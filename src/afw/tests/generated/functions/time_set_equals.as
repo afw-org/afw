@@ -11,13 +11,13 @@
 //? source: ...
 
 set_equals<time>(
-    bag<time>(
+    array<time>(
         "13:20:30.5555"time,
         "13:30:30.5555"time,
         "13:40:30.5555"time,
         "13:50:30.5555"time
     ),
-    bag<time>(
+    array<time>(
         "13:50:30.5555"time,
         "13:40:30.5555"time,
         "13:30:30.5555"time,
@@ -32,13 +32,13 @@ set_equals<time>(
 //? source: ...
 
 set_equals<time>(
-    bag<time>(
+    array<time>(
         "13:20:30.5555"time,
         "13:30:30.5555"time,
         "13:40:30.5555"time,
         "13:50:30.5555"time
     ),
-    bag<time>(
+    array<time>(
         "13:50:30.5555"time,
         "13:40:30.5555"time,
         "13:30:30.5555"time,

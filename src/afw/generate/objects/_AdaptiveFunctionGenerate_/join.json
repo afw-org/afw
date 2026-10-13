@@ -10,6 +10,7 @@
         {
             "dataType": "array",
             "description": "An array of values (statements) of any data type.",
+            "iterableAsArray": true,
             "name": "value"
         },
         {

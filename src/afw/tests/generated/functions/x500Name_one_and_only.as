@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<x500Name>(
-    bag<x500Name>(
+    array<x500Name>(
         "cn=John Smith,ou=Finance,o=Acme4"x500Name
     )
 )
@@ -23,7 +23,7 @@ one_and_only<x500Name>(
 //? source: ...
 
 one_and_only<x500Name>(
-    bag<x500Name>(
+    array<x500Name>(
         "x"x500Name,
         "x"x500Name
     )

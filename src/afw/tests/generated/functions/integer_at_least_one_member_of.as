@@ -8,7 +8,7 @@
 //? test: at_least_one_member_of<integer>-1
 //? description: ...
 
-            Integer at least one member of for bags:
+            Integer at least one member of for arrays:
             {
                 '200', '11', '-11.2', '96', '99', '-102', '-586.5', '986', '387', '512618', '-512618', '200',
                 '11', '-11', '96', '99', '-102', '-586', '986', '-0.0', '0'
@@ -19,7 +19,7 @@
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -42,7 +42,7 @@ at_least_one_member_of<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
     )
 )
 
@@ -50,7 +50,7 @@ at_least_one_member_of<integer>(
 //? test: at_least_one_member_of<integer>-2
 //? description: ...
 
-            Integer at least one member of for bags:
+            Integer at least one member of for arrays:
             {
                 '200', '11', '-11.2', '96', '99', '-102', '-586.5', '986', '387', '512618', '-512618', '200',
                 '11', '-11', '96', '99', '-102', '-586', '986', '-0.0', '0'
@@ -61,7 +61,7 @@ at_least_one_member_of<integer>(
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -84,7 +84,7 @@ at_least_one_member_of<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
         1024,
         -1024
     )
@@ -94,7 +94,7 @@ at_least_one_member_of<integer>(
 //? test: at_least_one_member_of<integer>-3
 //? description: ...
 
-            Integer at least one member of for bags:
+            Integer at least one member of for arrays:
             { '1024', '-1024', '512618', '1' },
             {
                 '11', '-11.2', '96', '-102', '-586.5', '986', '387', '512618',
@@ -105,13 +105,13 @@ at_least_one_member_of<integer>(
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         1024,
         -1024,
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         96,
@@ -134,7 +134,7 @@ at_least_one_member_of<integer>(
 //? test: at_least_one_member_of<integer>-4
 //? description: ...
 
-            Integer at least one member of for bags:
+            Integer at least one member of for arrays:
             { '11', '1024', '-11', '-1024', '0', '512618', '1' },
             { '512618',  '1' }
         
@@ -142,7 +142,7 @@ at_least_one_member_of<integer>(
 //? source: ...
 
 at_least_one_member_of<integer>(
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,
@@ -152,7 +152,7 @@ at_least_one_member_of<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         512618,
         1
     )

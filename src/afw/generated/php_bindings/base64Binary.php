@@ -26,6 +26,35 @@ class base64Binary
     }
 
     /**
+     * array_base64Binary()
+     *
+     * Construct a new array of base64Binary from the given values, the same
+     * as array() except that the new array is typed: each value, and each
+     * entry of a spread array, must be dataType base64Binary, and adding a
+     * value of another data type to the array later throws. A value of
+     * another data type is an error, never converted. This is usually written
+     * `array<base64Binary>(`...values).
+     *
+     * @param $values A value of dataType base64Binary, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of base64Binary.
+     */
+    public function array_base64Binary(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_base64Binary");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_base64Binary()
      *
      * Returns value unchanged if it is dataType base64Binary. Otherwise,
@@ -71,53 +100,6 @@ class base64Binary
         /* pass along required parameters to the request payload */
         $request->set("array1", $array1);
         $request->set("array2", $array2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_base64Binary()
-     *
-     * Takes any number of base64Binary values and returns an array of
-     * base64Binary.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_base64Binary(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<base64Binary>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_base64Binary()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_base64Binary(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<base64Binary>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

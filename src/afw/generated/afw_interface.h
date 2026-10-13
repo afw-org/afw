@@ -3036,7 +3036,7 @@ struct afw_data_type_s {
     afw_boolean_t relationalCompares;
 
     /**
-     * This is a scalar value (not Bag, List, Object, etc.).
+     * This is a scalar value (not an array, object, etc.).
      */
     afw_boolean_t scalar;
 
@@ -3425,8 +3425,8 @@ struct afw_data_type_inf_s {
  * shift_value removes and returns the first value (FIFO dequeue).
  * There is no separate unshift method on this interface; use
  * insert_value(instance, 0, value, xctx) to insert at the front
- * (unshift). Content remove_value removes the first equal value
- * (bag-style), not by position.
+ * (unshift). Content remove_value removes the first equal value,
+ * not the value at a position.
  *
  * @{
  */
@@ -3456,12 +3456,6 @@ struct afw_array_setter_s {
 /** @sa afw_array_setter_set_immutable() */
 typedef void
 (*afw_array_setter_set_immutable_t)(
-    const afw_array_setter_t * instance,
-    afw_xctx_t * xctx);
-
-/** @sa afw_array_setter_determine_data_type_and_set_immutable() */
-typedef const afw_data_type_t *
-(*afw_array_setter_determine_data_type_and_set_immutable_t)(
     const afw_array_setter_t * instance,
     afw_xctx_t * xctx);
 
@@ -3540,7 +3534,6 @@ typedef void
 struct afw_array_setter_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_array_setter_set_immutable_t set_immutable;
-    afw_array_setter_determine_data_type_and_set_immutable_t determine_data_type_and_set_immutable;
     afw_array_setter_push_value_t push_value;
     afw_array_setter_push_value_take_t push_value_take;
     afw_array_setter_pop_value_t pop_value;
@@ -3569,35 +3562,6 @@ struct afw_array_setter_inf_s {
     _xctx \
 ) \
 (_instance)->inf->set_immutable( \
-    (_instance), \
-    (_xctx) \
-)
-
-/**
- * @brief Call method `determine_data_type_and_set_immutable` of interface
- * `afw_array_setter`.
- *
- * Determine data type of entries then set array to immutable.
- * 
- * An error is thrown if already immutable.
- * 
- * If the data type of values in the array is not already known and all
- * values have the same data type, make the array an array of that data
- * type.
- * 
- * Once an array is set to immutable, all other setter methods will
- * throw an error.
- * @param instance Pointer to this array setter instance.
- * @param xctx This is the caller's xctx.
- * @return Data type of all values in the array, or NULL if unknown or mixed.
- * @relates afw_array_setter_t
- * @see @ref afw_array_setter_s "afw_array_setter_t"
- */
-#define afw_array_setter_determine_data_type_and_set_immutable( \
-    _instance, \
-    _xctx \
-) \
-(_instance)->inf->determine_data_type_and_set_immutable( \
     (_instance), \
     (_xctx) \
 )
@@ -8647,7 +8611,7 @@ struct afw_value_inf_s {
  * @addtogroup afw_variable_handler_interface afw_variable_handler
  *
  * Resolves or supplies variables for a qualifier / context (e.g. custom
- * or request-scoped bags). Used by the qualifier stack and context
+ * or request-scoped variables). Used by the qualifier stack and context
  * registration. Call methods via afw_variable_handler_*() macros.
  * See group afw_context and afw_xctx.
  *

@@ -11,13 +11,13 @@
 //? source: ...
 
 at_least_one_member_of<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "LOCALPart@DomainPart"rfc822Name,
         "localPart@DOMAINPart"rfc822Name,
         "differentlocalPart@DOMAINPart"rfc822Name,
         "localPart@differentDOMAINPart"rfc822Name
     ),
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "xLOCALPart@DomainPart"rfc822Name,
         "xlocalPart@DOMAINPart"rfc822Name,
         "xdifferentlocalPart@DOMAINPart"rfc822Name,
@@ -32,13 +32,13 @@ at_least_one_member_of<rfc822Name>(
 //? source: ...
 
 at_least_one_member_of<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "LOCALPart@DomainPart"rfc822Name,
         "localPart@DOMAINPart"rfc822Name,
         "differentlocalPart@DOMAINPart"rfc822Name,
         "localPart@differentDOMAINPart"rfc822Name
     ),
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "xLOCALPart@DomainPart"rfc822Name,
         "xlocalPart@DOMAINPart"rfc822Name,
         "xdifferentlocalPart@DOMAINPart"rfc822Name,
@@ -53,7 +53,7 @@ at_least_one_member_of<rfc822Name>(
 //? source: ...
 
 at_least_one_member_of<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "x"rfc822Name,
         "x"rfc822Name
     )

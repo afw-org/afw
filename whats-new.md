@@ -30,6 +30,15 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | Data type and compile type `relaxed_json` (`relaxed_json(…)`, `compile<relaxed_json>`, `compileType` / `compile_from_file` `"relaxed_json"`) | **`relaxedJson`**, camelCase like the other data type ids. [#581](https://github.com/afw-org/afw/issues/581) |
 | `dateTime("…")`, `integer(x)`, and the other generic `T(…)` conversion functions (`anyURI`, `base64Binary`, `date`, `dateTime`, `dayTimeDuration`, `dnsName`, `double`, `hexBinary`, `ia5String`, `integer`, `ipAddress`, `objectId`, `objectPath`, `password`, `rfc822Name`, `time`, `x500Name`, `yearMonthDuration`) | **Gone.** Text you write: typed literal `"…"dateTime`. A value you have: `to_dateTime(s)`, `to_integer(s)`, `to_double(i)`. `integer(5)` is `5`; `double(5)` is `5.0`. The compile error says which to use. `boolean`, `string`, `object`, `array`, and the source holders stay. [#589](#data-type-conversion-functions-removed-issue-589) |
+| Relying on a typed slot to convert: `function n(x: integer)` called with `1.9` or `"12"`, `const d: dateTime = "…"`, `let b: boolean = [false]`, a declared return type | **Checked, never converted.** A declared data type, `T[]` of a data type, and unions of these are checked at run time even with type checking off, the same as built-in parameters; the error says how to get the value (`write "…"dateTime or to_dateTime(v)`). Annotations that were wrong and never checked now throw: `const x: object = retrieve_objects(…)` is `object[]`. [#583](#no-hidden-conversions-issue-583) |
+| `add_entries(a, 1)` (a single value added as one entry), and other single values passed where an array is expected | **Error.** Write `push(a, 1)` or `add_entries(a, [1])`. [#583](#no-hidden-conversions-issue-583) |
+| `one_and_only<T>(v)` with a single value, `bag<T>(…)`, `bag_size(a)` | `one_and_only<T>` takes an **array** of exactly one `T` (`one_and_only<T>([v])`). `bag<T>(…)` is **`array<T>(…)`** and `bag_size(a)` is **`length(a)`**: same results, without the word bag. [#583](#no-hidden-conversions-issue-583) |
+| `"a" + 1`, `add<string>("a", 1)` (including `+` on qualified variables whose data types are only known at run time) | **Error:** `+` and `add<string>` take strings only. Write `concat("a", 1)`, `string("a", 1)`, or `"a" + to_string(1)`. [#583](#no-hidden-conversions-issue-583) |
+| A string where an array is expected, other than `map`, `filter`, `find`, `some`, `every`, `any_of`, `all_of`, `reduce` and `join`: `is_in<string>("a", "abc")`, `intersection<string>("ab", …)`, `sort(f, "cab")`, `reverse("abc")`, `add_entries(a, "xy")`, a script parameter `p: string[]` or `p: array` given a string | **Error** (*… write [...value] to use its elements*). Spread the string to mean its code points: `is_in<string>("a", [..."abc"])`, `f([..."xy"])`. `is_in<string>("admin", "admin")` used to be a silent `false`. [#583](#strings-where-an-array-is-expected) |
+| `any_of(eq<string>, "b", "abc")` and other walkers with two strings and no array | **Error:** it walked the first string. Write `any_of(eq<string>, "b", [..."abc"])`. [#583](#strings-where-an-array-is-expected) |
+| `slice("abc", 1)` (it was `["b", "c"]`, the code points) | **`"bc"`**, a string, as in ECMAScript. `at("abc", 1)` is `"b"` (it threw). For the code points as an array, write `slice([..."abc"], 1)`. [#583](#strings-where-an-array-is-expected) |
+| `meta(o[1])` / `meta(a["1"])` (a key of the wrong data type inside `meta()`) | **Error**, the same as `o[1]` / `a["1"]`: an object key must be a string and an array index an integer. [#583](#no-hidden-conversions-issue-583) |
+| `read(s, "10")`, `read_to_base64Binary(s, 10.5)` | **Error:** the count is an integer. [#583](#no-hidden-conversions-issue-583) |
 | `keys(add)`, `to_string(add)`, or another object function on a built-in function value | A built-in function value is now a **`function`**, like a script function (it reported `object`, its `_AdaptiveFunction_` metadata). `keys(add)` and `to_string(add)` throw; `string(add)` is `"add"`. For the metadata, `get_object("afw", "_AdaptiveFunction_", "add")`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `is(v)` with no data type (it always returned false) | **`is<T>(v)`** or **`is_T(v)`**. `is(v)` is now a compile error, *Built-in function 'is' needs a data type*. The function id of `is_T` is now `is_T` (it was `is<T>`), so a request or client binding that names `is<integer>` by id names `is_integer`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `to_boolean(s)` (it was truthy: `"false"` and `"x"` were `true`) | **`string_to_boolean(s)`**, which reads boolean text (`"true"` / `"false"` in any case, `"1"` / `"0"`, `t` / `f`) and throws on any other text. For ECMAScript `Boolean()` truthiness keep **`boolean(v)`**. [Conversion functions](#conversion-functions-read-text-strictly-issue-588) |
@@ -39,7 +48,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `process::maxPoolBytesInUse` / `maxPoolChunkBytes` | **`peakPoolBytesInUse`** / **`peakPoolChunkBytes`**. Policy caps are **`limitEvaluationStackCount`**, **`limitRequestPoolBytes`**, **`limitCStackHeadroomBytes`**. Request-thread stack is **`threadStackBytes`**. [Telemetry](#process-telemetry-and-request-caps-issue-329) |
 | `const x = compile(…)` then use `x` as a string/function | **`compile()` stores a unit.** Run it with **`evaluate(x)`** (or `evaluate(compile(…))`). **`app::name`** still evaluates on get (`#{…}` / `${…}` / call). [Templates](#compile-time-template-substitutions-issue-97) |
 | Log conf **`custom`** | **Gone** (it was never loaded). Use **`app::`** or log **`format`** / **`filter`**. Model **`custom::`** is unchanged. |
-| Converting a string to `function` (`bag<function>("add")`, a `function`-typed conversion of a string) | Throws **`conversion_error`**. Pass the function value, or a name where the function takes one. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
+| Converting a string to `function` (`array<function>("add")`, a `function`-typed conversion of a string) | Throws **`conversion_error`**. Pass the function value, or a name where the function takes one. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | Shell scripts that expect `afw script.as` to exit 0 after a script error | **`afw` exits 1** when a script, test_script, `-x` expression, or piped input ends with an uncaught error. [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | `replace_object` on the file adapter to create an object | Use **`add_object`**. `replace_object` and `modify_object` of a missing object are **`not_found`** (the file adapter used to create it). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
 | `evaluate_with_retry(value, limit)` with a limit above 10, or 0 | The limit is **1 to 10** (**`argument_error`** otherwise) and optional (default **1** retry). [Crash hunt](#crash-hunt-fixes-issue-480-pr-483) |
@@ -132,6 +141,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Type assertion `v as T`**](#type-assertion-v-as-t-issue-582) ([#582](https://github.com/afw-org/afw/issues/582)) | `v as date` returns `v` if it is a date and throws if not, saying how to get one (`"…"date`, `to_date(v)`); it never converts. One `as_T(v)` function per data type. `is<T>` needs its data type |
 | [**Conversion functions read text strictly**](#conversion-functions-read-text-strictly-issue-588) ([#588](https://github.com/afw-org/afw/issues/588)) | `to_boolean` is now `string_to_boolean` (the boolean parser, not truthiness); new `to_base64Binary`, `to_hexBinary`, `to_ia5String`, `to_objectId`, `to_objectPath`, `to_password` from a string; a boolean text of one unknown character is an error |
 | [**Data type conversion functions removed**](#data-type-conversion-functions-removed-issue-589) ([#589](https://github.com/afw-org/afw/issues/589)) | The 18 generic `T(…)` functions (`dateTime("…")`, `integer(x)`, …) are gone: write a typed literal or `to_T(v)`. `decompile` writes typed literals; `objectId` and `objectPath` have typed literals now |
+| [**No hidden conversions**](#no-hidden-conversions-issue-583) ([#583](https://github.com/afw-org/afw/issues/583)) | Typed parameters, declarations and returns check and never convert; built-in parameters never convert; `array<T>(…)` makes a typed array; `+` / `add<string>` take strings only; `bag`/`bag_size` are `array<T>`/`length`; the single-value-as-array rule is gone; a string is an array only where ECMAScript iterates one, and `[...s]` spreads it |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -170,7 +180,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Mutable object faces**](#mutable-object-faces-issue-17) ([#17](https://github.com/afw-org/afw/issues/17)) | Literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces — drop many manual `clone()` calls (**PR [#150](https://github.com/afw-org/afw/pull/150)** → `mgg-develop`) |
 | [**Array semantics**](#array-semantics-issue-39) ([#39](https://github.com/afw-org/afw/issues/39)) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
-| [**UTF-8 code-point sequences**](#utf-8-code-point-sequences-issue-153) ([#153](https://github.com/afw-org/afw/issues/153)) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (legacy cursor → **`afw_iterator_old`**) |
+| [**UTF-8 code-point sequences**](#utf-8-code-point-sequences-issue-153) ([#153](https://github.com/afw-org/afw/issues/153)) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, spread, built-ins marked `iterableAsArray` ([#583](#strings-where-an-array-is-expected)); C **`afw_iterator`** redesign (legacy cursor → **`afw_iterator_old`**) |
 | [**Empty-match `replace`**](#empty-match-replace-issue-190) ([#190](https://github.com/afw-org/afw/issues/190)) | Empty `match` is a **code-point boundary**. Default inserts once at the start; `limit = -1` inserts at every boundary, including the end |
 | [**Orchestrated tests**](#orchestrated-tests-issue-157) ([#157](https://github.com/afw-org/afw/issues/157)) | Hermetic multi-step leaves via `orchestration.yaml` (hosts `afwfcgi` / `local`); `//? expect-stdout` / `expect-stderr`; opt-in `tests-extra/` |
 | [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
@@ -211,7 +221,7 @@ Errors, compiled scripts, and HTTP error responses ([#496](https://github.com/af
 - **`afwfcgi` under load with shared scripts that throw:** a model's `on*` script (or another script compiled once and run by every request thread) that throws no longer crashes `afwfcgi`. Each throw used to change the shared script's count from many threads at once. While an error is being thrown, the frames it leaves stay until the error is caught, so a `catch` still reads the error's message and source; nothing on the shared script changes.
 - **Error responses when `Accept` matches nothing:** a request that fails with an error written to the response body (`not_found`, a syntax error, …) and sends an `Accept` with no supported content type now gets that error as **`application/json`**. It used to get a bare **200** with no body. A request whose only problem is the `Accept` gets **406** (it also used to get 200).
 - **Closures in shared scripts:** a function created by a script that many request threads run at once (a model's `on*` script) counts its script unit atomically, so concurrent requests no longer race on that count.
-- **A function value where an array is wanted:** `one_and_only<string>(function (x) { return x; })` (any single function value passed where a built-in takes an array) returned a value that was read after it was freed; the one entry array now holds the function itself. Passing a function from a variable (`one_and_only<string>(f)`) no longer throws "value required > 20 evaluations".
+- **A function value where an array is wanted:** `one_and_only<string>(function (x) { return x; })` (any single function value passed where a built-in takes an array) returned a value that was read after it was freed; the one entry array now holds the function itself. Passing a function from a variable (`one_and_only<string>(f)`) no longer throws "value required > 20 evaluations". Since [#583](#no-hidden-conversions-issue-583) a single value is no longer accepted as an array, so these are errors.
 
 Adapter commit and the HTTP response:
 
@@ -661,6 +671,60 @@ Tests: `src/afw/tests/language/script/conversion_functions.as` (`data-type-funct
 
 ---
 
+## No hidden conversions (issue [#583](https://github.com/afw-org/afw/issues/583))
+
+A value is never converted to another data type behind your back. If a slot declares a data type and gets another one, it is an error that says how to get the value: a typed literal for text you write, `to_T(v)` for a value you have. Conversions happen only where you ask for them (`to_T`, `string`, `concat`, `boolean`).
+
+**Why:** a conversion you did not ask for hides a mistake. `n(1.9)` for `x: integer` silently gave `1`, `n("12")` gave `12`, a `boolean` parameter turned `[false]` into `true`, and `const d: dateTime = "abc"` stored the string. Checking a data type is a pointer compare, so it costs nothing to do it every time, the same way built-in parameters have always been checked.
+
+**Typed script slots.** Script function parameters, `let` / `const` declarations, assignments to them, and declared return types are checked at run time, with type checking off as well as on, when the type is a data type, `T[]` of a data type, or a union of these:
+
+| Was (type checking off) | Now |
+|-----|-----|
+| `function n(x: integer)`; `n(1.9)` is `1`, `n("12")` is `12` | Error: *Type error in parameter: expected integer but got double; write to_integer(v)* |
+| `const d: dateTime = "abc"` stores the string | Error: *… expected dateTime but got string; write "abc"dateTime or to_dateTime(v)* |
+| `let y: integer = 1.5` stores `1.5` | Error |
+| `function f(): integer { return "x"; }` returns `"x"` | Error (*Type error in return*) |
+| `function f(b: boolean)`; `f([false])` is `true` | Error. `boolean(v)` keeps ECMAScript truthiness when you want it |
+
+With `strictNullChecks` off, `null` and `undefined` still pass a typed slot. Object shapes, tuples and function types (`{a: integer}`, `[integer, string]`) are still checked at run time only under `#compile typeCheck;` or the `compile:typeCheck` flag; what each type checking flag means is [#597](https://github.com/afw-org/afw/issues/597).
+
+**Arrays know their data type.** An array created without a data type (`[1, 2]`) reports the data type of everything it holds, kept up to date as values are added and removed, so `integer[]` is checked without walking the array. It can still hold any data type: `let a = [1, 2]; push(a, "x")` works (it used to throw after the array was copied). A copy of it is not typed either.
+
+**`array<T>(…values)`** (also `array_T(…)`) makes a **typed** array: each value, and each entry of a `...spread`, must be a `T`, and adding a value of another data type later throws *An array of integer can not hold a value of data type string*. Plain `array(…)` is unchanged.
+
+**Built-in parameters never convert.** When a built-in reads a parameter as a data type, a value of another data type is an error, the same as a parameter that declares its data type. Parameters declared `array` are checked too.
+
+- **A single value is not an array of one.** `add_entries(a, 1)` used to add `1` as one entry; now it is an error: write `push(a, 1)` or `add_entries(a, [1])`. This rule (a single value accepted as a one-entry array, and a one-entry array as its value) came from XACML, where it is called a bag of one. It is not how arrays work anywhere else in Adaptive Script, and it hid mistakes.
+- **`one_and_only<T>` takes an array.** It returns the value of an array holding exactly one `T` and throws otherwise, including for a single value that is not in an array.
+- **No more "bag" in function names.** `bag<T>(…)` is `array<T>(…)` and `bag_size(a)` is `length(a)`, with the same results. The functions AFW has from XACML (`one_and_only`, `is_in`, `at_least_one_member_of`, `union`, `intersection`, `subset`, `set_equals`, `any_of`, `all_of`, `match`, …) all stay: they are useful for writing policy. In AFW an XACML bag is an array, and the single-value rule above was never part of XACML ([#598](https://github.com/afw-org/afw/issues/598)).
+- **`+` and `add<string>` take strings only.** `"a" + 1` was already a compile error when both data types were known, but `+` on values known only at run time (qualified variables, `any`) and `add<string>("a", 1)` converted the other values to string. Now every value must be a string, the same rule as `+` for integers and doubles. `concat(…)` and `string(…)` convert and concatenate when that is what you want.
+- `compile<template>`, `eval<template>`, and the same for `json`, `relaxedJson`, `regexp`, and `xpathExpression`, take a value of their own data type, as `compile<script>` already did.
+- `meta(o[k])` and `meta(a[i])` check the key like `o[k]` and `a[i]`: `o[1]` threw, but `meta(o[1])` quietly looked up `"1"`. The count of `read` and `read_to_base64Binary` is an integer; `"10"` was converted.
+
+### Strings where an array is expected
+
+A string is a sequence of its code points: AFW strings are UTF-8, and a `\u` surrogate pair decodes to one code point, so `"\uD83D\uDE00"` has length 1 ([#153](https://github.com/afw-org/afw/issues/153)). A string is read **as an array** only where ECMAScript iterates a string. Anywhere else, a string where an array is required is an error, and spread says what you mean.
+
+| Where | A string is |
+|-------|-------------|
+| `s[i]`, `length(s)`, `for (c of s)` | Its code points (unchanged) |
+| Spread: `[...s]`, `f(...s)` | Its code points (**new**): `[..."ab€"]` is `["a", "b", "€"]` |
+| Built-ins that walk values: `map`, `filter`, `find`, `some`, `every`, `any_of`, `all_of`, `reduce`, `join` | Its code points (unchanged). With no array argument and two strings (`any_of(eq<string>, "b", "abc")`) it is an error, since either could be the one to walk |
+| Built-ins named after an ECMAScript String method (`at`, `slice`, `includes`, `index_of`, …) | A string, as in ECMAScript: `includes`, `index_of` and the like search it; `slice("abc", 1)` is `"bc"` and `at("abc", -1)` is `"c"`, counting code points |
+| XACML-derived set functions (`is_in`, `intersection`, `union`, `subset`, `set_equals`, `at_least_one_member_of`, `one_and_only`), `reverse`, `sort`, functions that change an array, `add_entries` source | An error: write `[...s]` |
+| A typed script parameter `p: array`, `p: string[]` (and a tuple, under `typeCheck`, which is when tuples are checked) | An error: write `f([...s])`. TypeScript rejects it too |
+
+Why: `is_in<string>("admin", "admin")` was `false`, because `"admin"` was compared with `a`, `d`, `m`, `i`, `n`. A policy that passed a single role where an array belongs got a silent wrong answer.
+
+Function metadata marks the parameters that read a string as an array: **`"iterableAsArray": true`**. The function reference shows it, and compile-time type checking accepts a string exactly there. It covers any data type that can be iterated; today those are the data types stored as UTF-8 (`string`, `anyURI`, `dnsName`, …), whose elements are one-code-point strings.
+
+Tests: `src/afw/tests/language/script/typed_slots.as`, `src/afw/tests/language/script/string_code_points.as`, `src/afw/tests/language/script/reference_by_key.as`, `src/afw/tests/list/array_data_type.as`, `src/afw/tests/list/add_entries.as`, `src/afw/tests/list/spread.as`, `src/afw/tests/compiler/type_check_flags.as`, `src/afw/tests/miscellaneous/stream_file/stream_file.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
 ## Compiler literals (issue [#106](https://github.com/afw-org/afw/issues/106))
 
 A **compiler literal** is a `#` name for a value the compiler already knows. It is a value in an expression, not a statement and not a function call.
@@ -749,7 +813,7 @@ Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and
 | **`length` / `substring` / `index_of` / …** | Indexes and length are **code points** (as before; kept consistent). |
 | **`s[i]`** | Read one code point as a **one-code-point string**; out of range → **undefined** (soft, like arrays). Negative indexes count from the end. **No** `s[i] = …` (immutable). |
 | **`for-of`** | Walks **code points** (same element shape as `s[i]`). Also still walks **arrays**. Not plain objects. |
-| **Array formals / HOFs** | When a built-in expects an **array of values** (e.g. `map` / `filter` / `reduce`) or a script formal is **`array` / `T[]` / tuple**, a utf8 value is accepted as that sequence (temporary materialize). Does **not** permanently retype the string to `array`. **XACML bag** formals still treat a scalar string as **bag-of-one**, not code-point expansion. |
+| **Array formals / HOFs** | A built-in parameter marked `iterableAsArray` (`map`, `filter`, `reduce`, …) reads a utf8 value as that sequence (temporary array). Elsewhere, and for script parameters, a string where an array is required is an error; write `[...s]`. A string is never read as a one-entry array. See [Strings where an array is expected](#strings-where-an-array-is-expected) ([#583](#no-hidden-conversions-issue-583)). |
 | **Search** | `includes` (with optional start), `replace`, and non-empty `split` search at **code-point boundaries**. |
 | **Empty-match `replace`** | An empty `match` is a match at a **code-point boundary** (including start and end). Default `limit` 1 inserts at the start; `limit = -1` inserts at every boundary. See [#190](#empty-match-replace-issue-190). |
 | **Substring / replace / repeat returns** | Polymorphic string ops return **`string`**, not the input’s specialized utf8 type. |
@@ -846,13 +910,13 @@ Under the hood a face is a **memory wrapper** (local sets; get falls through or 
 
 | Path | Notes |
 |------|--------|
-| **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
+| **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time objects and arrays |
 | **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including reconcilable views). `reconcile_object` sees overlay sets; the store is not write-through until you persist. |
 | **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
 | **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
 | **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** |
 | **`journal_get_*`**, **consumer** gets, **after_cursor**, **advance** | Response objects are faces |
-| **Catalog qualifiers** (`environment::`, `process::`, `request::`, …) | **Read-only** in script (C may still write the bag). `qualifier()` / `qualifiers()` are copies. |
+| **Catalog qualifiers** (`environment::`, `process::`, `request::`, …) | **Read-only** in script (C may still write the object). `qualifier()` / `qualifiers()` are copies. |
 
 Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
 
@@ -1022,7 +1086,7 @@ Adaptive Script already allowed list/object **Patterns** on `let` / `const`, ass
 
 - In **function and lambda parameter lists** (nested rename, holes, rest, property defaults, **computed/string keys**).
 - In **`catch (…)`** bindings (e.g. `catch ({ message, data })`).
-- **Call-site spread:** `f(...arr)` / `f(a, ...rest, b)` expands an array into separate arguments. The spread expression is evaluated **once** (not once to size `argv` and again to fill). Object Pattern rest (`{ [key()]: v, ...r }`) does not re-evaluate computed keys. [#181](https://github.com/afw-org/afw/issues/181)
+- **Call-site spread:** `f(...arr)` / `f(a, ...rest, b)` expands an array (or a string's code points, [#583](#strings-where-an-array-is-expected)) into separate arguments. The spread expression is evaluated **once** (not once to size `argv` and again to fill). Object Pattern rest (`{ [key()]: v, ...r }`) does not re-evaluate computed keys. [#181](https://github.com/afw-org/afw/issues/181)
 - **Built-in as a value:** `let add1 = add; add1(2, 3)` (also a property, array slot, or argument) calls that built-in. Previously only a compile-time name like `add(2, 3)` worked.
 
 Parameter **defaults are Expressions**. Pattern leaves and whole formals may carry **type annotations** (syntax for upcoming compile-time checking; not enforced yet). Options-style example:
@@ -1113,7 +1177,7 @@ Also available as methods when useful, e.g. `obj->keys()`, `obj->freeze()`.
 | **`every(predicate, array, …)`** | Same behavior as **`all_of`** (all pass) |
 | **`some(predicate, array, …)`** | Same behavior as **`any_of`** (any passes) |
 
-Prefer **`all_of` / `any_of`** when you need the multi-array / bag-style quantifier family; **`every` / `some`** are convenient names for the common single-array case.
+Prefer **`all_of` / `any_of`** when you need the multi-array quantifier family; **`every` / `some`** are convenient names for the common single-array case.
 
 ### C array face (for extension authors)
 
@@ -1542,9 +1606,9 @@ const all = qualifiers();
 | **Hot path unchanged** | Everyday `current::objectId` / `environment::HOME` still goes through stack **`get_cb`** only. Snapshots use a separate **`contribute_cb`** path intended for debug, tools, and tests—not tight production loops. |
 | **First defining frame wins** | Both **get** (`qualifier::name`) and **snapshots** walk matching visible frames **newest → older**. The first frame that **defines** a name wins for that name. Get continues while a frame’s `get_cb` returns C `NULL` (not defined here); a present value—including permanent **`afw_value_undefined`** / **`afw_value_null`**—stops the walk. Snapshots contribute the same way (most recent definition wins per property). Nested pushes are cleaned up with the stack (e.g. `AFW_TRY`). |
 | **`includeUntrusted`** | Optional boolean, default **false**. **Default** matches normal `qualifier::name` visibility right now. While the xctx is **secure**, set **true** so the snapshot matches what you would see with `::` if you were **less secure** (trusted **and** untrusted frames—not untrusted-only). When already not secure, true and false are the same. |
-| **Can be large** | Snapshots copy variable bags into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
+| **Can be large** | Snapshots copy variables into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
 
-Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log `current::`, context tables) contribute their known variable sets.
+Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime objects, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log `current::`, context tables) contribute their known variable sets.
 
 ### Multi-frame get aligned with snapshots
 
@@ -1774,13 +1838,13 @@ const home = environment::HOME;
 
 See [Process telemetry](#process-telemetry-and-request-caps-issue-329).
 
-Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these bags; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
+Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these variables; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
 
 **Deprecated on `current::`:** `current::pid` and `current::programName` still work but prefer **`process::pid`** and **`process::programName`**. Keep **`current::mode`** and **`current::xctxUUID`** — execution context, not process identity.
 
 ### Log conf `format` / `filter` context types
 
-Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta). Log conf has no `custom` bag.
+Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write variables (`current::message` / `source` / `xctxUUID`, `log::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta). Log conf has no `custom` bag.
 
 [↑ Highlights](#highlights)
 
@@ -1811,7 +1875,7 @@ Optional loadable extension **`afw_crypto`** (`libafwcrypto`, OpenSSL **libcrypt
 | `crypto_hmac` / `crypto_hmac_verify` | HMAC-SHA-256 / HMAC-SHA-512 |
 | `crypto_import_key` / `crypto_generate_key` / `crypto_export_key` / `crypto_destroy_key` | Process keystore handles |
 | `crypto_encrypt` / `crypto_decrypt` | AES-GCM (auto IV; tag on algorithm object) — hard path |
-| `crypto_seal` / `crypto_unseal` | AES-GCM sealed bag / unseal (object or pure JSON string) — easy path |
+| `crypto_seal` / `crypto_unseal` | AES-GCM sealed object / unseal (object or pure JSON string) — easy path |
 | `crypto_derive_key` | PBKDF2-HMAC-SHA256 (default **600000** iterations, min 100000) |
 
 Binary args accept **base64Binary** or **hexBinary**. Keys may be raw binary, a CryptoKey (`keyId`), or a reference such as `{ "from": "environment", "name": "APP_KEY", "encoding": "base64" }` (**live `getenv`**, not ambient `environment::`) or `{ "from": "file", "path": "…" }` under **`rootFilePaths`**.
@@ -1838,7 +1902,7 @@ Combined with `open_file` / `read*` and `crypto_decrypt`, conf can avoid a clear
 }"
 ```
 
-Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy bag path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with **`stringify(sealed)`** (binary fields become base64 JSON strings) then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
+Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with **`stringify(sealed)`** (binary fields become base64 JSON strings) then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
 
 Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`, `crypto_seal_unseal.as`.
 
@@ -1871,7 +1935,7 @@ These are easy to confuse; they do different jobs:
 
 - If you previously relied on `stringify` for Adaptive-looking forms such as `date("…")` or `base64Binary("…")`, switch those call sites to **`decompile`**.
 - If you needed UTF-8 text from binary, use **`decode_to_string`**, not `stringify` or `string`.
-- Sealed crypto bags can be stored with **`stringify(sealed)`** directly; you no longer need a hand-built bag of `string(iv)` / `string(tag)` / … for pure JSON (that pattern still works).
+- Sealed crypto objects can be stored with **`stringify(sealed)`** directly; you no longer need a hand-built object of `string(iv)` / `string(tag)` / … for pure JSON (that pattern still works).
 - Use **listing** to inspect compile structure in Fiddle; use **decompile** for Adaptive compiled form as text; use **stringify** for portable JSON.
 - Multi-byte Unicode in **evaluated** strings now survives **`stringify`** / Fiddle JSON (see **UTF-8 in JSON results** above).
 
@@ -2233,7 +2297,7 @@ If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-ba
 
 ### Default values from `property_get` / `variable_get`
 
-Mutable inline defaults for `property_get` / `variable_get` (issue **[#110](https://github.com/afw-org/afw/issues/110)**) are isolated because each `{}` / `[]` is still a raw bag when assignable runs, so later mutations do not poison other calls. A default that is already a variable is **identity** (same occupant). Regression tests in `property_get.as` / `variable_get.as` lock both behaviors.
+Mutable inline defaults for `property_get` / `variable_get` (issue **[#110](https://github.com/afw-org/afw/issues/110)**) are isolated because each `{}` / `[]` is still a raw object or array when assignable runs, so later mutations do not poison other calls. A default that is already a variable is **identity** (same occupant). Regression tests in `property_get.as` / `variable_get.as` lock both behaviors.
 
 ### Type and pattern parse nesting
 

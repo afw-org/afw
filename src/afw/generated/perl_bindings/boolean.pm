@@ -13,10 +13,9 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_boolean 
     as_boolean 
     at_least_one_member_of_boolean 
-    bag_boolean 
-    bag_size_boolean 
     boolean 
     eq_boolean 
     eqx_boolean 
@@ -44,6 +43,22 @@ afw::boolean - Perl module for boolean functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_boolean
+
+Construct a new array of boolean from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType boolean, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<boolean>(`...values).
+Construct an array of boolean from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType boolean, or ... followed by an expression that results in
+an array, every entry of which is included.
 
 =head3 as_boolean
 
@@ -74,26 +89,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_boolean
-
-Takes any number of boolean values and returns an array of boolean.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_boolean
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 boolean
 
@@ -349,6 +344,17 @@ Two or more arrays.
 
 =cut
 
+sub array_boolean {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_boolean");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_boolean {
     my ($value) = @_;
 
@@ -368,30 +374,6 @@ sub at_least_one_member_of_boolean {
     $request->set("function" => "at_least_one_member_of<boolean>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_boolean {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<boolean>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_boolean {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<boolean>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

@@ -8,7 +8,7 @@
 //? test: subset<double>-1
 //? description: ...
 
-            Double subset of bags:
+            Double subset of arrays:
             { '52.40215', '-15.8' },
             { '18.255' }
         
@@ -16,11 +16,11 @@
 //? source: ...
 
 subset<double>(
-    bag<double>(
+    array<double>(
         52.40215,
         -15.8
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -29,7 +29,7 @@ subset<double>(
 //? test: subset<double>-2
 //? description: ...
 
-            Double subset of bags:
+            Double subset of arrays:
             { },
             { '18.255' }
         
@@ -37,9 +37,9 @@ subset<double>(
 //? source: ...
 
 subset<double>(
-    bag<double>(
+    array<double>(
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -48,7 +48,7 @@ subset<double>(
 //? test: subset<double>-3
 //? description: ...
 
-            Double subset of bags:
+            Double subset of arrays:
             {
                 '2000.0215', '-11.2151', '961518', '99', '-102.1651054', '-586.055', '0.15387', '512618', '-512618',
                 '11516.105155', '51081', '0.99999999999', '-102', '986.3211111', '0.000000'
@@ -63,7 +63,7 @@ subset<double>(
 //? source: ...
 
 subset<double>(
-    bag<double>(
+    array<double>(
         2000.0215,
         -11.2151,
         961518.0,
@@ -80,7 +80,7 @@ subset<double>(
         986.3211111,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2000.0215,
         11.0,
         -11.2151,

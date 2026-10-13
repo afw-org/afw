@@ -8,7 +8,7 @@
 //? test: at_least_one_member_of<double>-1
 //? description: ...
 
-            Double at least one member of for bags:
+            Double at least one member of for arrays:
             { '52.40215', '-15.8' },
             { }
         
@@ -16,11 +16,11 @@
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
         52.40215,
         -15.8
     ),
-    bag<double>(
+    array<double>(
     )
 )
 
@@ -28,7 +28,7 @@ at_least_one_member_of<double>(
 //? test: at_least_one_member_of<double>-2
 //? description: ...
 
-            Double at least one member of for bags:
+            Double at least one member of for arrays:
             { },
             { '18.255' }
         
@@ -36,9 +36,9 @@ at_least_one_member_of<double>(
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -47,7 +47,7 @@ at_least_one_member_of<double>(
 //? test: at_least_one_member_of<double>-3
 //? description: ...
 
-            Double at least one member of for bags:
+            Double at least one member of for arrays:
             {
                 '2000.0215', '11', '-11.2151', '961518', '99', '-102.1651054', '-586.055', '98600', '0.15387',
                 '512618', '-512618', '.0215200', '11516.105155', '-11', '51081', '0.99999999999', '-102',
@@ -59,7 +59,7 @@ at_least_one_member_of<double>(
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
         2000.0215,
         11.0,
         -11.2151,
@@ -82,7 +82,7 @@ at_least_one_member_of<double>(
         -0.0,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2001.0215,
         -110.2151,
         0.99999999999,
@@ -96,7 +96,7 @@ at_least_one_member_of<double>(
 //? test: at_least_one_member_of<double>-4
 //? description: ...
 
-            Double at least one member of for bags:
+            Double at least one member of for arrays:
             { '-0.0', '0.000000' },
             {
                 '2000.0215', '-11.2151', '961518', '99', '-102.1651054', '-586.055', '0.15387', '512618', '-512618',
@@ -107,11 +107,11 @@ at_least_one_member_of<double>(
 //? source: ...
 
 at_least_one_member_of<double>(
-    bag<double>(
+    array<double>(
         -0.0,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2000.0215,
         -11.2151,
         961518.0,

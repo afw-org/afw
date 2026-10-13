@@ -53,6 +53,28 @@ export function afwAddInteger(client : any, values : number) : any {
 }
 
 /**
+ * Construct a new array of integer from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType integer, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<integer>(`...values).
+ * 
+ * @param {} values - A value of dataType integer, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of integer.
+ */
+export function afwArrayInteger(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_integer";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType integer. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * integer from a value of another data type, write a typed literal or call a
@@ -90,42 +112,6 @@ export function afwAtLeastOneMemberOfInteger(client : any, array1 : any[], array
     _action["function"] = "at_least_one_member_of<integer>";
     _action["array1"] = array1;
     _action["array2"] = array2;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of integer values and returns an array of integer.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagInteger(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<integer>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeInteger(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<integer>";
-    _action["value"] = value;
 
     return client.perform(_action);
 }

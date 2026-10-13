@@ -58,6 +58,28 @@ export function afwAddYearMonthDurationDateTime(client : any, arg1 : any, arg2 :
 }
 
 /**
+ * Construct a new array of dateTime from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType dateTime, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<dateTime>(`...values).
+ * 
+ * @param {} values - A value of dataType dateTime, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of dateTime.
+ */
+export function afwArrayDateTime(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_dateTime";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType dateTime. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * dateTime from a value of another data type, write a typed literal or call a
@@ -95,42 +117,6 @@ export function afwAtLeastOneMemberOfDateTime(client : any, array1 : any[], arra
     _action["function"] = "at_least_one_member_of<dateTime>";
     _action["array1"] = array1;
     _action["array2"] = array2;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of dateTime values and returns an array of dateTime.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagDateTime(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<dateTime>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeDateTime(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<dateTime>";
-    _action["value"] = value;
 
     return client.perform(_action);
 }

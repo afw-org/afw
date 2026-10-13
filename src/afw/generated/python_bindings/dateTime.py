@@ -72,6 +72,41 @@ def add_yearMonthDuration_dateTime(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def array_dateTime(session, values):
+    """
+    Construct an array of dateTime from values or spread arrays
+
+    Construct a new array of dateTime from the given values, the same as
+    array() except that the new array is typed: each value, and each entry of
+    a spread array, must be dataType dateTime, and adding a value of another
+    data type to the array later throws. A value of another data type is an
+    error, never converted. This is usually written
+    `array<dateTime>(`...values).
+
+    Args:
+        values (object): A value of dataType dateTime, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of dateTime.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_dateTime",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_dateTime(session, value):
     """
     Asserts that value is dataType dateTime
@@ -125,64 +160,6 @@ def at_least_one_member_of_dateTime(session, array1, array2):
         "function": "at_least_one_member_of<dateTime>",
         "array1": array1,
         "array2": array2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_dateTime(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of dateTime values and returns an array of dateTime.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<dateTime>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_dateTime(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<dateTime>",
-        "value": value
     }
 
     request.add_action(action)

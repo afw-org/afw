@@ -951,7 +951,7 @@ afw_crypto_internal_object_get_binary_or_b64string(
     if (AFW_VALUE_IS_DATA_TYPE(v, string)) {
         s = &((const afw_value_string_t *)v)->internal;
         mem = afw_pool_calloc_type(p, afw_memory_t, xctx);
-        /* JSON-friendly bags use base64 text in string properties. */
+        /* JSON-friendly objects use base64 text in string properties. */
         afw_memory_decode_base64(mem, s, p, xctx);
         return mem;
     }

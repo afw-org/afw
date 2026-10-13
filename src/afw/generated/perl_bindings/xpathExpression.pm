@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_xpathExpression 
     as_xpathExpression 
-    bag_size_xpathExpression 
-    bag_xpathExpression 
     compile_xpathExpression 
     eq_xpathExpression 
     eqx_xpathExpression 
@@ -42,6 +41,22 @@ afw::xpathExpression - Perl module for xpathExpression functions
 
 The following functions are exported by default
 
+=head3 array_xpathExpression
+
+Construct a new array of xpathExpression from the given values, the same as
+array() except that the new array is typed: each value, and each entry of a
+spread array, must be dataType xpathExpression, and adding a value of another
+data type to the array later throws. A value of another data type is an error,
+never converted. This is usually written `array<xpathExpression>(`...values).
+Construct an array of xpathExpression from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType xpathExpression, or ... followed by an expression that
+results in an array, every entry of which is included.
+
 =head3 as_xpathExpression
 
 Returns value unchanged if it is dataType xpathExpression. Otherwise,
@@ -56,27 +71,6 @@ Asserts that value is dataType xpathExpression
     $value
 
 Value to assert
-
-=head3 bag_size_xpathExpression
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_xpathExpression
-
-Takes any number of xpathExpression values and returns an array of
-xpathExpression.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 compile_xpathExpression
 
@@ -318,6 +312,17 @@ Checks whether two node-sets or their children have an equal node
 
 =cut
 
+sub array_xpathExpression {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_xpathExpression");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_xpathExpression {
     my ($value) = @_;
 
@@ -325,30 +330,6 @@ sub as_xpathExpression {
 
     $request->set("function" => "as_xpathExpression");
     $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_size_xpathExpression {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<xpathExpression>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_xpathExpression {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<xpathExpression>");
-
-    if (defined $values)
-        $request->set("values", $values);
 
     return $request->getResult();
 }

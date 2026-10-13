@@ -26,6 +26,35 @@ class time
     }
 
     /**
+     * array_time()
+     *
+     * Construct a new array of time from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType time, and adding a value of another
+     * data type to the array later throws. A value of another data type is an
+     * error, never converted. This is usually written
+     * `array<time>(`...values).
+     *
+     * @param $values A value of dataType time, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of time.
+     */
+    public function array_time(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_time");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_time()
      *
      * Returns value unchanged if it is dataType time. Otherwise, including
@@ -73,52 +102,6 @@ class time
         $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_time()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_time(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<time>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_time()
-     *
-     * Takes any number of time values and returns an array of time.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_time(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<time>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
         return $request->get_result();
     }
 

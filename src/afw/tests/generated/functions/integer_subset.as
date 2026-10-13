@@ -8,7 +8,7 @@
 //? test: subset<integer>-1
 //? description: ...
 
-            Integer subset of bags:
+            Integer subset of arrays:
             { },
             { }
         
@@ -16,9 +16,9 @@
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
     ),
-    bag<integer>(
+    array<integer>(
     )
 )
 
@@ -26,7 +26,7 @@ subset<integer>(
 //? test: subset<integer>-2
 //? description: ...
 
-            Integer subset of bags:
+            Integer subset of arrays:
             { '11', '-11', '-1024', '0' },
             {
                 '200', '11', '-11.2', '96', '99', '-102', '-586.5', '387', '512618', '-512618', '200',
@@ -37,7 +37,7 @@ subset<integer>(
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         -1024,
@@ -45,7 +45,7 @@ subset<integer>(
         -0,
         986
     ),
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -74,7 +74,7 @@ subset<integer>(
 //? test: subset<integer>-3
 //? description: ...
 
-            Integer subset of bags:
+            Integer subset of arrays:
             { '11', '-11', '0', '-512618', '1024' },
             {
                 '11', '-11.2', '96', '-102', '-586.5', '986', '387', '512618',
@@ -85,14 +85,14 @@ subset<integer>(
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         0,
         -512618,
         1024
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         96,
@@ -115,7 +115,7 @@ subset<integer>(
 //? test: subset<integer>-4
 //? description: ...
 
-            Integer subset of bags:
+            Integer subset of arrays:
             { '11',  '1',  '1',  '1',  '1',  '1',  '1',  '1' },
             { '-1', '11', '1024', '-11', '-1024', '0', '-512618', '1' }
         
@@ -123,7 +123,7 @@ subset<integer>(
 //? source: ...
 
 subset<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         1,
         1,
@@ -133,7 +133,7 @@ subset<integer>(
         1,
         1
     ),
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,

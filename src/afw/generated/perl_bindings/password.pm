@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_password 
     as_password 
-    bag_password 
-    bag_size_password 
     eq_password 
     eqx_password 
     ge_password 
@@ -36,6 +35,22 @@ afw::password - Perl module for password functions
 
 The following functions are exported by default
 
+=head3 array_password
+
+Construct a new array of password from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType password, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<password>(`...values).
+Construct an array of password from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType password, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_password
 
 Returns value unchanged if it is dataType password. Otherwise, including when
@@ -49,26 +64,6 @@ Asserts that value is dataType password
     $value
 
 Value to assert
-
-=head3 bag_password
-
-Takes any number of password values and returns an array of password.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_password
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_password
 
@@ -212,36 +207,23 @@ A password value.
 
 =cut
 
+sub array_password {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_password");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_password {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "as_password");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_password {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<password>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_password {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<password>");
     $request->set("value", $value);
 
     return $request->getResult();

@@ -151,7 +151,7 @@ scalar on purpose.
 | `splice_unassigned` | splice copy-out never assigned (last stmt `add()`) | **flat / flat** (2026-09-29, 15 s). Was ~2.58 / ~2.59 until managed `remove_value_by_index` last-released the source slot | — |
 | `unassigned_temps` | unmanaged `add()` (last stmt isolates a scalar) | **flat / flat** (2026-09-28) | — |
 | `readln_loop` | `readln` short+long lines | **under bar** (2026-09-28). 60 s: ~0.40 MiB/s RSS / ~0.04 MiB/s in_use | — |
-| `managed_create_assign` | extra-hold create_managed then assign (reverse/slice/filter/map/sort/bag/intersection/split/union/keys/values/entries) | **under bar** (2026-09-28). 60 s ~0.16 MiB/s RSS / ~0.09 MiB/s in_use; 180 s slope fell to ~0.09 / ~0.05 | — |
+| `managed_create_assign` | extra-hold create_managed then assign (reverse/slice/filter/map/sort/array/intersection/split/union/keys/values/entries) | **under bar** (2026-09-28). 60 s ~0.16 MiB/s RSS / ~0.09 MiB/s in_use; 180 s slope fell to ~0.09 / ~0.05 | — |
 | `managed_create_unassigned` | same calls, never assigned (last stmt `add()`) | **under bar**. 15 s 2026-09-29: ~0.30 MiB/s RSS / ~0.28 MiB/s in_use. 60 s 2026-09-28: ~0.17 / ~0.14 | — |
 | `clone_assign` | `clone` array/object then assign | **flat / flat** (2026-10-01, 15 s: `in_use` 0; 60 s RSS wander ~0.21 MiB/s, `in_use` 0). Was **climb** ~0.76 MiB/s | leftover nested isolate + property entries |
 | `clone_unassigned` | `clone` never assigned (last stmt `add()`) | **flat / flat** (2026-10-01, 15 s and 60 s: RSS 0 / `in_use` 0). Was **climb** ~0.37 MiB/s | ~3.3 MiB/s in_use with `afw_value_clone` unmanaged |
@@ -212,7 +212,7 @@ after a bump; unassigned soaks are extra-hold / body last-release. Unassigned
 loops whose result is managed end with `add(0, 0)` so deactivate does not
 `slot_store` that result into `script_result`. `managed_create_assign` /
 `managed_create_unassigned` cover the other create_managed extra-hold sites
-(reverse, slice, filter, map, sort, bag, intersection, split, union, keys,
+(reverse, slice, filter, map, sort, array, intersection, split, union, keys,
 values, entries). `test_script_assign` / `test_script_unassigned` extra-hold
 `create_managed` of the result object. `unmanaged_new_p` was a child of
 `p->managed_p` that last RC never walked; the clone-out copied properties

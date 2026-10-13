@@ -8,14 +8,14 @@
 //? test: one_and_only<string>-1
 //? description: ...
 
-            String one and only for bag:
+            String one and only for array:
             { 'one' }
         
 //? expect: string("one")
 //? source: ...
 
 one_and_only<string>(
-    bag<string>(
+    array<string>(
         string("one")
     )
 )
@@ -24,14 +24,14 @@ one_and_only<string>(
 //? test: one_and_only<string>-2
 //? description: ...
 
-            String one and only for bag:
+            String one and only for array:
             { 'one', 'two', 'three', 'four', five' }
         
 //? expect: error
 //? source: ...
 
 one_and_only<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -44,14 +44,14 @@ one_and_only<string>(
 //? test: one_and_only<string>-3
 //? description: ...
 
-            String one and only for bag:
+            String one and only for array:
             { }
         
 //? expect: error
 //? source: ...
 
 one_and_only<string>(
-    bag<string>(
+    array<string>(
     )
 )
 

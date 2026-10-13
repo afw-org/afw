@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Process environment, process::, and request properties
 
-Three **separate** bags. Do not merge them.
+Three **separate** sets of variables. Do not merge them.
 
 | Role | Object | Qualifier | Source |
 |------|--------|-----------|--------|

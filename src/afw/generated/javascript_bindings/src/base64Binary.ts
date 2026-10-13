@@ -18,6 +18,29 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of base64Binary from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType base64Binary, and adding a value of another
+ * data type to the array later throws. A value of another data type is an
+ * error, never converted. This is usually written
+ * `array<base64Binary>(`...values).
+ * 
+ * @param {} values - A value of dataType base64Binary, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of base64Binary.
+ */
+export function afwArrayBase64Binary(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_base64Binary";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType base64Binary. Otherwise,
  * including when value is undefined, throws an error. It never converts: to
  * get a base64Binary from a value of another data type, write a typed literal
@@ -55,43 +78,6 @@ export function afwAtLeastOneMemberOfBase64Binary(client : any, array1 : any[], 
     _action["function"] = "at_least_one_member_of<base64Binary>";
     _action["array1"] = array1;
     _action["array2"] = array2;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of base64Binary values and returns an array of
- * base64Binary.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagBase64Binary(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<base64Binary>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeBase64Binary(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<base64Binary>";
-    _action["value"] = value;
 
     return client.perform(_action);
 }

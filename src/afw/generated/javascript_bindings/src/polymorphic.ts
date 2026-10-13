@@ -116,43 +116,6 @@ export function afwAtLeastOneMemberOf(client : any, array1 : any[], array2 : any
 }
 
 /**
- * Takes any number of `<dataType>` values and returns an array of
- * `<dataType>`.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBag(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSize(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Determine the smallest integer that is greater then or equal to the
  * `<dataType>` value and return the `<dataType>` result.
  * 

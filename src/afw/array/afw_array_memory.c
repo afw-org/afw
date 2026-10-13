@@ -20,10 +20,6 @@
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
 #define impl_afw_array_initialize_iterator afw_array_impl_initialize_iterator
 
-static void
-impl_managed_array_elements_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx);
-
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "memory"
 typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
@@ -169,19 +165,23 @@ typedef struct afw_memory_internal_array_values_s
 struct afw_memory_internal_array_s {
     afw_array_t pub;
     afw_value_array_t value;
+    /*
+     * Typed (generic false): every defined element is data_type. Generic:
+     * data_type is the type of data_type_count elements; the array is of
+     * data_type when that is every element but undefined_count holes.
+     * data_type_unknown: the last element of data_type left a mixed
+     * array; get_data_type counts again.
+     */
     const afw_data_type_t *data_type;
+    afw_size_t data_type_count;
+    afw_size_t undefined_count;
+    afw_boolean_t data_type_unknown;
     afw_array_setter_t setter;
     /*
      * Dense store of value pointers. Do not hold interior
      * entries pointers across grow.
      */
     afw_memory_internal_array_values_t *values;
-    /*
-     * Optional base for a managed wrapper (NULL for a normal memory
-     * array). After materialize, entry values live on the local vector; sets
-     * never write to wrapped. See afw_array_create_wrapper_managed().
-     */
-    const afw_array_t *wrapped;
     /*
      * Unmanaged memory arrays: extra holds from add_reference. Zero is
      * idle. Last extra hold walks remaining slot_store'd elements.
@@ -204,6 +204,11 @@ static const afw_value_t **
 impl_new_slot(
     afw_memory_internal_array_t *self,
     afw_size_t at,
+    afw_xctx_t *xctx);
+
+static const afw_data_type_t *
+impl_current_data_type(
+    afw_memory_internal_array_t *self,
     afw_xctx_t *xctx);
 
 
@@ -247,11 +252,6 @@ afw_array_create_with_options(
         afw_memory_internal_array_values_t, 0, p, xctx);
     self->setter.inf = &impl_afw_array_setter_inf;
     self->setter.array = (const afw_array_t *)self;
-
-    if (!self->unmanaged) {
-        afw_pool_register_cleanup(p, self, NULL,
-            impl_managed_array_elements_cleanup, xctx);
-    }
 
     return (const afw_array_t *)self;
 
@@ -341,11 +341,9 @@ afw_array_to_managed(
         afw_array_get_reference(from, xctx);
         return from;
     }
-    data_type = afw_array_get_data_type(from, xctx);
+    data_type = afw_array_get_declared_data_type(from, xctx);
     to = afw_array_create_managed(data_type, p, xctx);
-    if (from->inf == &impl_afw_array_inf &&
-        !afw_array_is_memory_wrapper(from))
-    {
+    if (from->inf == &impl_afw_array_inf) {
         const afw_memory_internal_array_t *from_mem;
         const afw_value_t **entries;
         afw_size_t i;
@@ -384,44 +382,26 @@ afw_array_is_memory_managed(const afw_array_t *array)
 }
 
 
-AFW_DEFINE(const afw_array_t *)
-afw_array_create_wrapper_managed(
-    const afw_array_t *wrapped,
-    const afw_pool_t *p,
+/* Data type a copy of array is created with. */
+AFW_DEFINE(const afw_data_type_t *)
+afw_array_get_declared_data_type(
+    const afw_array_t *array,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *value;
-    const afw_data_type_t *data_type;
+    const afw_memory_internal_array_t *self;
 
-    if (!wrapped) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_array_create_wrapper_managed requires a wrapped array",
-            xctx);
+    if (array->inf == &impl_afw_array_inf ||
+        array->inf == &impl_afw_array_managed_inf)
+    {
+        self = (const afw_memory_internal_array_t *)array;
+        return self->generic ? NULL : self->data_type;
     }
-    if (afw_array_is_memory_managed(wrapped)) {
-        afw_array_get_reference(wrapped, xctx);
-        return wrapped;
-    }
-    data_type = afw_array_get_data_type(wrapped, xctx);
-    self = (afw_memory_internal_array_t *)
-        afw_array_create_managed(data_type, p, xctx);
-    self->wrapped = wrapped;
-    afw_array_get_reference(wrapped, xctx);
-    for (iterator = NULL;;) {
-        value = afw_array_get_next_value(wrapped, &iterator, xctx);
-        if (!value) {
-            break;
-        }
-        afw_array_push_value((const afw_array_t *)self, value, xctx);
-    }
-    return (const afw_array_t *)self;
+    return afw_array_get_data_type(array, xctx);
 }
 
 
 
-/* True if array is a generic memory array (face or not). */
+/* True if array is a generic memory array. */
 AFW_DEFINE(afw_boolean_t)
 afw_array_is_memory(const afw_array_t *array)
 {
@@ -429,99 +409,6 @@ afw_array_is_memory(const afw_array_t *array)
 }
 
 
-/* True if array is a memory look-through / materialize wrapper face. */
-AFW_DEFINE(afw_boolean_t)
-afw_array_is_memory_wrapper(const afw_array_t *array)
-{
-    const afw_memory_internal_array_t *self;
-
-    if (!array ||
-        (array->inf != &impl_afw_array_inf &&
-            array->inf != &impl_afw_array_managed_inf))
-    {
-        return false;
-    }
-    self = (const afw_memory_internal_array_t *)array;
-    return self->wrapped != NULL;
-}
-
-
-/* Base under a face, or array if not a face. */
-AFW_DEFINE(const afw_array_t *)
-afw_array_memory_wrapper_base(const afw_array_t *array)
-{
-    const afw_memory_internal_array_t *self;
-
-    if (!array) {
-        return NULL;
-    }
-    if (array->inf != &impl_afw_array_inf &&
-        array->inf != &impl_afw_array_managed_inf)
-    {
-        return array;
-    }
-    self = (const afw_memory_internal_array_t *)array;
-    return self->wrapped ? self->wrapped : array;
-}
-
-
-
-static void impl_store_element(
-    AFW_ARRAY_SELF_T *self,
-    const afw_value_t **slot,
-    const afw_value_t *incoming,
-    afw_xctx_t *xctx);
-
-/* Face GET: store get_assignable_value of the child. Same pointer is a no-op. */
-static const afw_value_t *
-impl_promote_structured_entry(
-    AFW_ARRAY_SELF_T *self,
-    const afw_value_t **slot,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    if (!value || !slot || !self->wrapped || self->immutable) {
-        return value;
-    }
-    impl_store_element(self, slot, value, xctx);
-    return *slot;
-}
-
-
-
-/* Release remaining elements this array slot_store'd (not pop/shift). */
-static void
-impl_release_remaining_elements(
-    AFW_ARRAY_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t **entries;
-    afw_size_t i;
-    afw_size_t count;
-
-    /* Generic memory arrays store raw pointers (compile literals, YAML). */
-    if (!self->values || !self->wrapped) {
-        return;
-    }
-    count = self->values->count;
-    entries = self->values->entries;
-    for (i = 0; i < count; i++) {
-        if (entries[i]) {
-            afw_value_release_held(entries[i], xctx);
-            entries[i] = NULL;
-        }
-    }
-}
-
-
-static void
-impl_managed_array_elements_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)data2;
-    (void)p;
-    impl_release_remaining_elements((AFW_ARRAY_SELF_T *)data, xctx);
-}
 
 
 /*
@@ -585,8 +472,7 @@ impl_afw_array_get_data_type(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-
-    return self->data_type;
+    return impl_current_data_type(self, xctx);
 }
 
 
@@ -627,7 +513,7 @@ impl_afw_array_get_entry_value(
     if (!slot) {
         return NULL;
     }
-    return impl_promote_structured_entry(self, slot, *slot, xctx);
+    return *slot;
 }
 
 
@@ -657,8 +543,7 @@ impl_afw_array_get_next_value(
     }
 
     *iterator = (const afw_iterator_old_t *)(uintptr_t)(i + 1);
-    return impl_promote_structured_entry(self, &entries[i],
-        entries[i], xctx);
+    return entries[i];
 }
 
 
@@ -741,56 +626,149 @@ impl_resolve_insert_index(
 
 
 
-/* Update generic/typed data_type bookkeeping when storing value. */
+/* Count each element of a generic array again. */
 static void
-impl_note_value_data_type(
+impl_count_data_types(
     afw_memory_internal_array_t *self,
-    const afw_value_t *value,
-    afw_boolean_t was_empty,
     afw_xctx_t *xctx)
 {
-    if (self->generic) {
-        if (was_empty) {
-            if (!afw_value_is_undefined(value)) {
-                self->data_type = afw_value_get_data_type(value, xctx);
-            }
+    const afw_value_t **entries;
+    const afw_data_type_t *dt;
+    afw_size_t i;
+
+    self->data_type = NULL;
+    self->data_type_count = 0;
+    self->undefined_count = 0;
+    self->data_type_unknown = false;
+    entries = self->values->entries;
+    for (i = 0; i < self->values->count; i++) {
+        if (afw_value_is_undefined(entries[i])) {
+            self->undefined_count++;
+            continue;
         }
-        else if (
-            !afw_value_is_undefined(value) &&
-            self->data_type &&
-            self->data_type != afw_value_get_data_type(value, xctx))
-        {
-            self->data_type = NULL;
+        dt = afw_value_get_data_type(entries[i], xctx);
+        if (!self->data_type) {
+            self->data_type = dt;
         }
-    }
-    else if (
-        !afw_value_is_undefined(value) &&
-        self->data_type &&
-        self->data_type != afw_value_get_data_type(value, xctx))
-    {
-        AFW_THROW_ERROR_Z(general,
-            "Value data_type is not array's data type.", xctx);
+        if (dt == self->data_type) {
+            self->data_type_count++;
+        }
     }
 }
 
 
 
-/* Clear inferred data type when a generic array becomes empty. */
-static void
-impl_maybe_clear_generic_data_type(afw_memory_internal_array_t *self)
+/* Data type of every defined element, or NULL if mixed or none. */
+static const afw_data_type_t *
+impl_current_data_type(
+    afw_memory_internal_array_t *self,
+    afw_xctx_t *xctx)
 {
-    if (self->generic && self->values->count == 0) {
+    if (!self->generic) {
+        return self->data_type;
+    }
+    if (self->data_type_unknown) {
+        impl_count_data_types(self, xctx);
+    }
+    if (self->data_type_count > 0 &&
+        self->data_type_count + self->undefined_count ==
+            self->values->count)
+    {
+        return self->data_type;
+    }
+    return NULL;
+}
+
+
+
+/*
+ * Before value is stored. A typed array throws if value is not its data
+ * type; a generic array counts it.
+ */
+static void
+impl_note_added(
+    afw_memory_internal_array_t *self,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+
+    if (afw_value_is_undefined(value)) {
+        if (self->generic) {
+            self->undefined_count++;
+        }
+        return;
+    }
+    dt = afw_value_get_data_type(value, xctx);
+    if (!self->generic) {
+        if (self->data_type && self->data_type != dt) {
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "An array of %ku can not hold a value of data type %ku",
+                &self->data_type->data_type_id, &dt->data_type_id);
+        }
+        return;
+    }
+    if (self->data_type_unknown) {
+        return;
+    }
+    if (!self->data_type) {
+        self->data_type = dt;
+    }
+    if (dt == self->data_type) {
+        self->data_type_count++;
+    }
+}
+
+
+
+/* Data type of an element, or NULL for a hole. */
+#define IMPL_ELEMENT_DATA_TYPE(_value, _xctx) \
+    (afw_value_is_undefined(_value) \
+        ? NULL : afw_value_get_data_type((_value), (_xctx)))
+
+
+
+/*
+ * After an element left a generic array. removed_dt is its
+ * IMPL_ELEMENT_DATA_TYPE, taken before the element was released.
+ */
+static void
+impl_note_removed(
+    afw_memory_internal_array_t *self,
+    const afw_data_type_t *removed_dt)
+{
+    if (!self->generic) {
+        return;
+    }
+    if (!self->values || self->values->count == 0) {
         self->data_type = NULL;
+        self->data_type_count = 0;
+        self->undefined_count = 0;
+        self->data_type_unknown = false;
+        return;
+    }
+    if (self->data_type_unknown) {
+        return;
+    }
+    if (!removed_dt) {
+        self->undefined_count--;
+    }
+    else if (removed_dt == self->data_type) {
+        self->data_type_count--;
+        if (self->data_type_count == 0) {
+            self->data_type = NULL;
+            self->data_type_unknown =
+                self->undefined_count != self->values->count;
+        }
     }
 }
 
 
 
 /*
- * Face overlay: slot_store (get_assignable_value). Generic memory
- * array: raw pointer, same as object set on a non-wrapper. Compile-time
- * array literals must not wrap nested arrays into the constant. Script
- * arrays are faces from get_assignable_value (self if already a face).
+ * Unmanaged memory array: store the raw pointer, the same as an object
+ * set. Compile-time array literals must not wrap nested arrays into the
+ * constant.
  */
 static void
 impl_store_element(
@@ -799,25 +777,7 @@ impl_store_element(
     const afw_value_t *incoming,
     afw_xctx_t *xctx)
 {
-    if (self->wrapped) {
-        afw_value_slot_store(slot, incoming, self->pub.p, xctx);
-    }
-    else {
-        *slot = incoming;
-    }
-}
-
-
-/* Face drop releases a held occupant. Generic array never held. */
-static void
-impl_drop_element(
-    AFW_ARRAY_SELF_T *self,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    if (self->wrapped) {
-        afw_value_release_held(value, xctx);
-    }
+    *slot = incoming;
 }
 
 
@@ -866,53 +826,9 @@ impl_afw_array_setter_set_immutable(
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
 
+    /* Count now: get_data_type of an immutable array never writes. */
+    impl_current_data_type(array_self, xctx);
     array_self->immutable = true;
-}
-
-
-
-/*
- * Implementation of method determine_data_type_and_set_immutable for
- * interface afw_array_setter.
- */
-const afw_data_type_t *
-impl_afw_array_setter_determine_data_type_and_set_immutable(
-    const afw_array_setter_t * self,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    const afw_value_t **entries;
-    afw_size_t i;
-    afw_size_t count;
-
-    /* Make immutable if not already. */
-    if (array_self->immutable) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-    array_self->immutable = true;
-
-    /* If data type not known yet, try to determine it. */
-    if (!array_self->data_type) {
-        count = array_self->values->count;
-        entries = array_self->values->entries;
-        for (i = 0; i < count; i++) {
-            if (!array_self->data_type) {
-                array_self->data_type =
-                    afw_value_get_data_type(entries[i], xctx);
-            }
-            else {
-                if (array_self->data_type !=
-                    afw_value_get_data_type(entries[i], xctx))
-                {
-                    array_self->data_type = NULL;
-                    break;
-                }
-            }
-        }
-    }
-
-    return array_self->data_type;
 }
 
 
@@ -929,10 +845,8 @@ impl_afw_array_setter_push_value(
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
-    afw_boolean_t was_empty;
 
-    was_empty = (array_self->values->count == 0);
-    impl_note_value_data_type(array_self, value, was_empty, xctx);
+    impl_note_added(array_self, value, xctx);
 
     slot = impl_new_slot(array_self, array_self->values->count, xctx);
     impl_store_element(array_self, slot, value, xctx);
@@ -970,7 +884,7 @@ impl_afw_array_setter_pop_value(
     }
     value = afw_vector_last(array_self->values);
     afw_vector_pop(array_self->values, xctx);
-    impl_maybe_clear_generic_data_type(array_self);
+    impl_note_removed(array_self, IMPL_ELEMENT_DATA_TYPE(value, xctx));
     return value;
 }
 
@@ -1006,7 +920,7 @@ impl_afw_array_setter_shift_value(
     }
     value = array_self->values->entries[0];
     afw_vector_remove(array_self->values, 0, xctx);
-    impl_maybe_clear_generic_data_type(array_self);
+    impl_note_removed(array_self, IMPL_ELEMENT_DATA_TYPE(value, xctx));
     return value;
 }
 
@@ -1026,10 +940,8 @@ impl_afw_array_setter_insert_value(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
     afw_size_t at;
-    afw_boolean_t was_empty;
 
-    was_empty = (array_self->values->count == 0);
-    impl_note_value_data_type(array_self, value, was_empty, xctx);
+    impl_note_added(array_self, value, xctx);
 
     at = impl_resolve_insert_index(index,
         array_self->values->count, xctx);
@@ -1057,6 +969,7 @@ impl_afw_array_setter_set_value(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
     afw_size_t at;
+    const afw_data_type_t *removed_dt;
 
     /* Append at length: dense grow-by-one (issue #39 array semantics). */
     if (index >= 0 &&
@@ -1068,14 +981,15 @@ impl_afw_array_setter_set_value(
 
     at = impl_resolve_element_index(index,
         array_self->values->count, xctx);
-    impl_note_value_data_type(array_self, value, false, xctx);
-
     slot = impl_slot_at(array_self, at);
     if (!slot) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
 
+    impl_note_added(array_self, value, xctx);
+    removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
     impl_store_element(array_self, slot, value, xctx);
+    impl_note_removed(array_self, removed_dt);
 }
 
 
@@ -1083,8 +997,8 @@ impl_afw_array_setter_set_value(
 /*
  * Implementation of method remove_value_by_index for interface afw_array_setter.
  *
- * Wrapper face only. Managed arrays use the managed setter, which
- * last-releases the occupant.
+ * Unmanaged arrays don't hold their entries, so nothing is released.
+ * Managed arrays use the managed setter, which last-releases the occupant.
  */
 void
 impl_afw_array_setter_remove_value_by_index(
@@ -1096,6 +1010,7 @@ impl_afw_array_setter_remove_value_by_index(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
     afw_size_t at;
+    const afw_data_type_t *removed_dt;
 
     at = impl_resolve_element_index(index,
         array_self->values->count, xctx);
@@ -1105,9 +1020,9 @@ impl_afw_array_setter_remove_value_by_index(
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
 
-    impl_drop_element(array_self, *slot, xctx);
+    removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
     afw_vector_remove(array_self->values, at, xctx);
-    impl_maybe_clear_generic_data_type(array_self);
+    impl_note_removed(array_self, removed_dt);
 }
 
 
@@ -1126,14 +1041,15 @@ impl_afw_array_setter_remove_value(
     const afw_value_t **entries;
     afw_size_t i;
     afw_size_t count;
+    const afw_data_type_t *removed_dt;
 
     count = array_self->values->count;
     entries = array_self->values->entries;
     for (i = 0; i < count; i++) {
         if (afw_value_equal(value, entries[i], xctx)) {
-            impl_drop_element(array_self, entries[i], xctx);
+            removed_dt = IMPL_ELEMENT_DATA_TYPE(entries[i], xctx);
             afw_vector_remove(array_self->values, i, xctx);
-            impl_maybe_clear_generic_data_type(array_self);
+            impl_note_removed(array_self, removed_dt);
             return;
         }
     }
@@ -1153,20 +1069,10 @@ impl_afw_array_setter_remove_all_values(
 {
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    const afw_value_t **entries;
-    afw_size_t i;
-    afw_size_t count;
 
-    count = array_self->values->count;
-    entries = array_self->values->entries;
-    for (i = 0; i < count; i++) {
-        impl_drop_element(array_self, entries[i], xctx);
-    }
     afw_vector_clear(array_self->values);
 
-    if (array_self->generic) {
-        array_self->data_type = NULL;
-    }
+    impl_note_removed(array_self, NULL);
 }
 
 
@@ -1230,10 +1136,8 @@ impl_afw_array_managed_setter_push_value(
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
-    afw_boolean_t was_empty;
 
-    was_empty = (array_self->values->count == 0);
-    impl_note_value_data_type(array_self, value, was_empty, xctx);
+    impl_note_added(array_self, value, xctx);
     slot = impl_new_slot(array_self, array_self->values->count, xctx);
     afw_value_slot_store(slot, value, array_self->pub.p, xctx);
 }
@@ -1248,14 +1152,12 @@ impl_afw_array_managed_setter_push_value_take(
 {
     afw_memory_internal_array_t *self;
     const afw_value_t **slot;
-    afw_boolean_t was_empty;
 
     self = (afw_memory_internal_array_t *)setter->array;
     if (self->immutable) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
-    was_empty = (self->values->count == 0);
-    impl_note_value_data_type(self, value, was_empty, xctx);
+    impl_note_added(self, value, xctx);
     slot = impl_new_slot(self, self->values->count, xctx);
     afw_value_slot_take(slot, value, xctx);
 }
@@ -1272,10 +1174,8 @@ impl_afw_array_managed_setter_insert_value(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
     afw_size_t at;
-    afw_boolean_t was_empty;
 
-    was_empty = (array_self->values->count == 0);
-    impl_note_value_data_type(array_self, value, was_empty, xctx);
+    impl_note_added(array_self, value, xctx);
     at = impl_resolve_insert_index(index,
         array_self->values->count, xctx);
     slot = impl_new_slot(array_self, at, xctx);
@@ -1294,6 +1194,7 @@ impl_afw_array_managed_setter_set_value(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
     afw_size_t at;
+    const afw_data_type_t *removed_dt;
 
     if (index >= 0 &&
         (afw_size_t)index == array_self->values->count)
@@ -1304,12 +1205,14 @@ impl_afw_array_managed_setter_set_value(
     }
     at = impl_resolve_element_index(index,
         array_self->values->count, xctx);
-    impl_note_value_data_type(array_self, value, false, xctx);
     slot = impl_slot_at(array_self, at);
     if (!slot) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
+    impl_note_added(array_self, value, xctx);
+    removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
     afw_value_slot_store(slot, value, array_self->pub.p, xctx);
+    impl_note_removed(array_self, removed_dt);
 }
 
 
@@ -1355,7 +1258,7 @@ impl_afw_array_managed_setter_pop_value(
     }
     value = afw_vector_last(array_self->values);
     afw_vector_pop(array_self->values, xctx);
-    impl_maybe_clear_generic_data_type(array_self);
+    impl_note_removed(array_self, IMPL_ELEMENT_DATA_TYPE(value, xctx));
     return impl_register_transferred_temp(value, p, xctx);
 }
 
@@ -1383,7 +1286,7 @@ impl_afw_array_managed_setter_shift_value(
     }
     value = array_self->values->entries[0];
     afw_vector_remove(array_self->values, 0, xctx);
-    impl_maybe_clear_generic_data_type(array_self);
+    impl_note_removed(array_self, IMPL_ELEMENT_DATA_TYPE(value, xctx));
     return impl_register_transferred_temp(value, p, xctx);
 }
 
@@ -1398,6 +1301,7 @@ impl_afw_array_managed_setter_remove_value_by_index(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t **slot;
     afw_size_t at;
+    const afw_data_type_t *removed_dt;
 
     at = impl_resolve_element_index(index,
         array_self->values->count, xctx);
@@ -1405,12 +1309,12 @@ impl_afw_array_managed_setter_remove_value_by_index(
     if (!slot) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
-    /* Managed array holds occupants. Unmanaged remove_by_index
-     * only drops a wrapper face; splice would leak the slot hold. */
+    /* Managed array holds occupants; splice would leak the slot hold. */
+    removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
     afw_value_release_held(*slot, xctx);
     *slot = NULL;
     afw_vector_remove(array_self->values, at, xctx);
-    impl_maybe_clear_generic_data_type(array_self);
+    impl_note_removed(array_self, removed_dt);
 }
 
 
@@ -1425,15 +1329,17 @@ impl_afw_array_managed_setter_remove_value(
     const afw_value_t **entries;
     afw_size_t i;
     afw_size_t count;
+    const afw_data_type_t *removed_dt;
 
     count = array_self->values->count;
     entries = array_self->values->entries;
     for (i = 0; i < count; i++) {
         if (afw_value_equal(value, entries[i], xctx)) {
+            removed_dt = IMPL_ELEMENT_DATA_TYPE(entries[i], xctx);
             afw_value_release_held(entries[i], xctx);
             entries[i] = NULL;
             afw_vector_remove(array_self->values, i, xctx);
-            impl_maybe_clear_generic_data_type(array_self);
+            impl_note_removed(array_self, removed_dt);
             return;
         }
     }
@@ -1464,9 +1370,7 @@ impl_afw_array_managed_setter_remove_all_values(
         }
         afw_vector_clear(array_self->values);
     }
-    if (array_self->generic) {
-        array_self->data_type = NULL;
-    }
+    impl_note_removed(array_self, NULL);
 }
 
 
@@ -1485,7 +1389,7 @@ afw_array_create_pooled_copy(
 
     use_data_type = data_type;
     if (array) {
-        use_data_type = afw_array_get_data_type(array, xctx);
+        use_data_type = afw_array_get_declared_data_type(array, xctx);
         if (data_type && use_data_type && data_type != use_data_type)
         {
             AFW_THROW_ERROR_Z(general, "data_type does not match", xctx);

@@ -9,7 +9,7 @@
 //? description: duplicates
 //? expect: ...
 
-bag<dateTime>(
+array<dateTime>(
     "2004-04-12T13:20:00"dateTime,
     "2004-04-12T13:20:15.5"dateTime
 )
@@ -17,11 +17,11 @@ bag<dateTime>(
 //? source: ...
 
 intersection<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:15.5"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:00"dateTime,
@@ -34,17 +34,17 @@ intersection<dateTime>(
 //? description: one
 //? expect: ...
 
-bag<dateTime>(
+array<dateTime>(
     "2004-04-12T13:20:00"dateTime
 )
 
 //? source: ...
 
 intersection<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:00"dateTime,
@@ -57,16 +57,16 @@ intersection<dateTime>(
 //? description: empty
 //? expect: ...
 
-bag<dateTime>(
+array<dateTime>(
 )
 
 //? source: ...
 
 intersection<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T14:21:00"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:15.5"dateTime,
         "2004-04-12T13:20:00"dateTime,
         "2004-04-12T13:20:00"dateTime

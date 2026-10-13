@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "0F+40A=="base64Binary
     )
 )
@@ -23,7 +23,7 @@ one_and_only<base64Binary>(
 //? source: ...
 
 one_and_only<base64Binary>(
-    bag<base64Binary>(
+    array<base64Binary>(
         "x"base64Binary,
         "x"base64Binary
     )

@@ -100,8 +100,7 @@ assert(length(a) === 3);
 assert(at(a, -1) === 30);   /* last element */
 assert(is_nullish(at(a, 99))); /* out of range → undefined */]]></code>
     <paragraph>
-        <literal>length</literal> (and the bag-oriented
-        <literal>bag_size</literal>) return the number of entries.
+        <literal>length</literal> returns the number of entries.
         <literal>slice</literal>, <literal>join</literal>,
         <literal>reverse</literal>, <literal>sort</literal>, and higher-order
         functions such as <literal>map</literal>, <literal>filter</literal>,
@@ -210,6 +209,13 @@ a[0] = "z";             /* replace */
             constructor, not a conversion function.
             <literal>array(...)</literal> builds from elements (and optional
             spread); a non-spread array argument is nested as one element.
+            Spreading a string gives its code points:
+            <literal>[..."ab"]</literal> is <literal>["a", "b"]</literal>.
+            Write that where a function needs an array and you have a
+            string; only functions that walk values with a function
+            (<literal>map</literal>, <literal>filter</literal>,
+            <literal>reduce</literal>, <literal>join</literal>, …) accept a
+            string directly.
         </paragraph>
         <code><![CDATA[let a = create_array(3);
 assert(length(a) === 3);

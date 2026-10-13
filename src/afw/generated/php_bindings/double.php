@@ -71,6 +71,35 @@ class double
     }
 
     /**
+     * array_double()
+     *
+     * Construct a new array of double from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType double, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<double>(`...values).
+     *
+     * @param $values A value of dataType double, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of double.
+     */
+    public function array_double(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_double");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_double()
      *
      * Returns value unchanged if it is dataType double. Otherwise, including
@@ -116,52 +145,6 @@ class double
         /* pass along required parameters to the request payload */
         $request->set("array1", $array1);
         $request->set("array2", $array2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_double()
-     *
-     * Takes any number of double values and returns an array of double.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_double(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<double>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_double()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_double(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<double>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

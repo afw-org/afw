@@ -67,6 +67,28 @@ export function afwArray(client : any, values : any) : any {
 }
 
 /**
+ * Construct a new array of array from the given values, the same as array()
+ * except that the new array is typed: each value, and each entry of a spread
+ * array, must be dataType array, and adding a value of another data type to
+ * the array later throws. A value of another data type is an error, never
+ * converted. This is usually written `array<array>(`...values).
+ * 
+ * @param {} values - A value of dataType array, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of array.
+ */
+export function afwArrayArray(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_array";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType array. Otherwise, including when
  * value is undefined, throws an error. It never converts: to get a array from
  * a value of another data type, write a typed literal or call a to_T
@@ -88,60 +110,25 @@ export function afwAsArray(client : any, value : any) : any {
 }
 
 /**
- * Return the value at a zero-based index in an array. Negative indexes count
- * from the end (-1 is the last element). If the index is out of range, the
- * result is undefined. Bracket indexing a[index] uses the same out-of-range
- * result (undefined).
+ * Return the value at a zero-based index in an array, or the code point at a
+ * zero-based index in a string as a one-code-point string (as ECMAScript at
+ * does for both). Negative indexes count from the end (-1 is the last). If
+ * the index is out of range, the result is undefined. Bracket indexing
+ * a[index] and s[index] use the same out-of-range result (undefined).
  * 
- * @param {array} array - Array to index.
+ * @param {} array - Array, or string, to index.
  * 
  * @param {integer} index - Zero-based index, or negative from the end.
  * 
  * @returns {} The value at the index, or undefined if out of range.
  */
-export function afwAt(client : any, array : any[], index : number) : any {
+export function afwAt(client : any, array : any, index : number) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at";
     _action["array"] = array;
     _action["index"] = index;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of array values and returns an array of array.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagArray(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<array>";
-
-    if (values !== undefined)
-        _action["values"] = values;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeArray(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<array>";
-    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -540,25 +527,27 @@ export function afwShift(client : any, array : any[]) : any {
 }
 
 /**
- * This function extracts a consecutive slice of values from an array.
+ * This function extracts a consecutive slice of values from an array, or of
+ * code points from a string (as ECMAScript slice does for both). For a
+ * string, or another value stored as UTF-8, the result is a string.
  * 
- * @param {array} array - The array to slice.
+ * @param {} array - The array, or the string, to slice.
  * 
  * @param {integer} startIndex - This is the zero based starting index. Use
- *     negative number to index from the end of the array. If not specified,
- *     an index of 0 is assumed.
+ *     negative number to index from the end. If not specified, an index of 0
+ *     is assumed.
  * 
  * @param {integer} endIndex - This is the zero based ending index. If
- *     positive, this is one more than the index of the last value to include
- *     in the array. If negative, the index is from the end of the array. If
- *     not specified, the slice is from startIndex up to and including the end
- *     of the array.
+ *     positive, this is one more than the index of the last value or code
+ *     point to include. If negative, the index is from the end. If not
+ *     specified, the slice is from startIndex up to and including the end.
  * 
- * @returns {array} An array containing the selected values. If all of the
- *     values are the same data type, the array will be an array of that data
- *     type.
+ * @returns {} For an array, an array containing the selected values; if all
+ *     of the values are the same data type, the array will be an array of
+ *     that data type. For a string, a string containing the selected code
+ *     points.
  */
-export function afwSlice(client : any, array : any[], startIndex? : number, endIndex? : number) : any {
+export function afwSlice(client : any, array : any, startIndex? : number, endIndex? : number) : any {
 
     let _action : IAnyObject = {};
 

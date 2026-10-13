@@ -209,12 +209,16 @@ return app::two + to_integer(app::one) + app::three;
 //?
 //? test: concat_integer_strings_from_qualified_variables
 //? description: ...
-Concat integer strings from qualified variables where first is a string
+Concat values of qualified variables: app::one is the string "1" (it is in a
+template), app::two and app::three are integers. + does not mix data types
+(#583), so concat converts them.
 //? expect: "123"
 //? source: ...
 
-// This will be concat of string because app::one is string.
-return app::one + app::two + app::three;
+assert(app::one === "1");
+assert(app::two === 2);
+assert(app::three === 3);
+return concat(app::one, app::two, app::three);
 
 //?
 //? test: qualified_variable_compile_time_uuid

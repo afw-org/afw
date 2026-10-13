@@ -14,8 +14,9 @@
             "name": "predicate"
         },
         {
-            "minArgs": 1,
             "description": "These are the parameters passed to predicate with the exception that the first array is passed one value at a time. At least one array is required.",
+            "iterableAsArray": true,
+            "minArgs": 1,
             "name": "values"
         }
     ],

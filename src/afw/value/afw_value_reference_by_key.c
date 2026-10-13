@@ -233,23 +233,17 @@ impl_afw_value_get_evaluated_meta(
     key = afw_value_evaluate(self->key, p, xctx);
     aggregate_value = afw_value_evaluate(self->aggregate_value, p, xctx);
 
+    /* Keys are checked the same as optional_evaluate, never converted. */
     if (afw_value_is_object(aggregate_value)) {
-        key = afw_value_convert(key, afw_data_type_string, false, p, xctx);
-        if (!afw_value_is_string(key)) {
-            AFW_THROW_ERROR_Z(general,
-                "reference_by_key key for object must be a string",
-                xctx);
-        }
+        key = afw_object_require_string_property_name(key, xctx);
         result = afw_object_get_property_meta(
             ((const afw_value_object_t *)aggregate_value)->internal,
             key, p, xctx);
     }
     else if (afw_value_is_array(aggregate_value)) {
-        key = afw_value_convert(key, afw_data_type_integer, false, p, xctx);
         if (!afw_value_is_integer(key)) {
-            AFW_THROW_ERROR_Z(general,
-                "reference_by_key key for array must be an integer",
-                xctx);
+            AFW_THROW_ERROR_Z(argument_error,
+                "Index must be integer for array", xctx);
         }
         result = afw_array_get_entry_meta(
             ((const afw_value_array_t *)aggregate_value)->internal,

@@ -8,21 +8,21 @@
 //? test: union<boolean>-1
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { },
             { }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
 )
 
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -30,13 +30,13 @@ union<boolean>(
 //? test: union<boolean>-2
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'true', 'true', 'false' },
             { 'false', 'true' }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(true),
     boolean(false)
 )
@@ -44,12 +44,12 @@ bag<boolean>(
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -59,13 +59,13 @@ union<boolean>(
 //? test: union<boolean>-3
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'false', 'false', 'false', 'true' },
             { }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(false),
     boolean(true)
 )
@@ -73,13 +73,13 @@ bag<boolean>(
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -87,23 +87,23 @@ union<boolean>(
 //? test: union<boolean>-4
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'false' },
             { 'false', 'false', 'false', 'false' }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(false)
 )
 
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -115,27 +115,27 @@ union<boolean>(
 //? test: union<boolean>-5
 //? description: ...
 
-            Boolean union for bags:
+            Boolean union for arrays:
             { 'true', 'true', 'true', 'true', 'true' },
             { 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true' }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(true)
 )
 
 //? source: ...
 
 union<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),

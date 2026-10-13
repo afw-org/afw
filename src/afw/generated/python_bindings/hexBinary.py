@@ -11,6 +11,41 @@
 import requests
 import json
 
+def array_hexBinary(session, values):
+    """
+    Construct an array of hexBinary from values or spread arrays
+
+    Construct a new array of hexBinary from the given values, the same as
+    array() except that the new array is typed: each value, and each entry of
+    a spread array, must be dataType hexBinary, and adding a value of another
+    data type to the array later throws. A value of another data type is an
+    error, never converted. This is usually written
+    `array<hexBinary>(`...values).
+
+    Args:
+        values (object): A value of dataType hexBinary, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of hexBinary.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_hexBinary",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_hexBinary(session, value):
     """
     Asserts that value is dataType hexBinary
@@ -64,64 +99,6 @@ def at_least_one_member_of_hexBinary(session, array1, array2):
         "function": "at_least_one_member_of<hexBinary>",
         "array1": array1,
         "array2": array2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_hexBinary(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of hexBinary values and returns an array of hexBinary.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<hexBinary>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_hexBinary(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<hexBinary>",
-        "value": value
     }
 
     request.add_action(action)

@@ -6,9 +6,9 @@
 Issue #17 — mutable array faces / shared array-literal isolation.
 
 Compiler emits wrap_literal_array for top-level script array literals so each
-evaluation gets a memory face over the shared bag. Nested objects/arrays get
+evaluation gets a memory face over the shared array. Nested objects/arrays get
 fresh faces on materialize (and promote-on-get); typed map/get_next_internal
-must not poison bag bases (nested hard edge). Nested under objects promote
+must not poison base arrays (nested hard edge). Nested under objects promote
 on get. Also covers explicit wrap_literal_array and multi-call isolation.
 //? sourceType: script
 //?
@@ -139,13 +139,13 @@ return 0;
 //? test: nested-hard-edge-property-get-default-index
 //? description: ...
 Issue #17 nested hard edge: property_get default is an array face over a
-typed bag of objects. Mutating a[0] must not poison the default bag or a
+typed array of objects. Mutating a[0] must not poison the default array or a
 later property_get face (index path).
 //? skip: false
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 const a = property_get({}, "x", def);
 a[0].n = 99;
 assert(a[0].n === 99, "face sees local set");
@@ -158,13 +158,13 @@ return 0;
 //?
 //? test: nested-hard-edge-property-get-default-map
 //? description: ...
-Issue #17 nested hard edge via Adaptive map (typed bag uses get_next_internal).
-map mutates each entry; must not poison the default bag or next face.
+Issue #17 nested hard edge via Adaptive map (typed array uses get_next_internal).
+map mutates each entry; must not poison the default array or next face.
 //? skip: false
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 function poison() {
     const a = property_get({}, "x", def);
     map(function (o) {
@@ -182,12 +182,12 @@ return 0;
 //?
 //? test: nested-hard-edge-variable-get-default-map
 //? description: ...
-Same nested isolation via variable_get default + map (typed bag).
+Same nested isolation via variable_get default + map (typed array).
 //? skip: false
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 function poison() {
     const a = variable_get("nope", def);
     map(function (o) {
@@ -206,12 +206,12 @@ return 0;
 //? test: nested-hard-edge-hold-nested-across-faces
 //? description: ...
 Hold a nested entry ref from one array face; a second face over the same
-base bag must not share that nested face's mutations.
+base array must not share that nested face's mutations.
 //? skip: false
 //? expect: 0
 //? source: ...
 
-const def = bag<object>({ n: 0 });
+const def = array<object>({ n: 0 });
 const a = property_get({}, "x", def);
 const held = a[0];
 held.n = 7;

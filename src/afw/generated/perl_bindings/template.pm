@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_template 
     as_template 
-    bag_size_template 
-    bag_template 
     compile_template 
     eq_template 
     eqx_template 
@@ -39,6 +38,22 @@ afw::template - Perl module for template functions
 
 The following functions are exported by default
 
+=head3 array_template
+
+Construct a new array of template from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType template, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<template>(`...values).
+Construct an array of template from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType template, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_template
 
 Returns value unchanged if it is dataType template. Otherwise, including when
@@ -52,26 +67,6 @@ Asserts that value is dataType template
     $value
 
 Value to assert
-
-=head3 bag_size_template
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_template
-
-Takes any number of template values and returns an array of template.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 compile_template
 
@@ -272,6 +267,17 @@ A template value.
 
 =cut
 
+sub array_template {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_template");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_template {
     my ($value) = @_;
 
@@ -279,30 +285,6 @@ sub as_template {
 
     $request->set("function" => "as_template");
     $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_size_template {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<template>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_template {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<template>");
-
-    if (defined $values)
-        $request->set("values", $values);
 
     return $request->getResult();
 }

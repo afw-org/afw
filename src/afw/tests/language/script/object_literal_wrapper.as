@@ -79,7 +79,7 @@ return 0;
 //? description: ...
 Core isolation baseline (issue #17): named function body with const object
 literal mutated each call. Second call must see a fresh face (n starts 0), not
-the first call's mutated bag. Models this class of bug for scripts compiled once
+the first call's mutated object. Models this class of bug for scripts compiled once
 and re-entered (e.g. model onGetObject).
 //? skip: false
 //? expect: 0
@@ -225,7 +225,7 @@ return 0;
 //? test: shared-literal-nested-assign-empty
 //? description: ...
 Assign empty {} into a property (y.z = {}) each call; marker on first.z must not
-appear on second.z. Same shape as default-object / #110 style nested bags.
+appear on second.z. Same shape as default-object / #110 style nested objects.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -271,18 +271,18 @@ return 0;
 //?
 //? test: shared-literal-param-pattern-default
 //? description: ...
-Whole-parameter default object Pattern with nested bag must isolate across calls.
+Whole-parameter default object Pattern with a nested object must isolate across calls.
 //? skip: false
 //? expect: 0
 //? source: ...
 
-function withBagDefault({ bag } = { bag: { n: 0 } }) {
-    bag.n = bag.n + 1;
-    return bag.n;
+function withNestedDefault({ inner } = { inner: { n: 0 } }) {
+    inner.n = inner.n + 1;
+    return inner.n;
 }
 
-assert(withBagDefault() === 1);
-assert(withBagDefault() === 1, "pattern default nested object must not share");
+assert(withNestedDefault() === 1);
+assert(withNestedDefault() === 1, "pattern default nested object must not share");
 
 return 0;
 

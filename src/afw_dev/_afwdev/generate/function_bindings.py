@@ -177,6 +177,10 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label,
     polymorphicDataTypeParameter = 'false' if p.get('polymorphicDataTypeParameter', False) == False else 'true'
     fd.write('    &' + get_string_label(options, polymorphicDataTypeParameter, 'self_v', dataType='boolean') + ',\n')
 
+    # iterableAsArray
+    iterableAsArray = 'false' if p.get('iterableAsArray', False) == False else 'true'
+    fd.write('    &' + get_string_label(options, iterableAsArray, 'self_v', dataType='boolean') + ',\n')
+
     # data_type_parameter_data_type (ArrayOf element; NULL otherwise)
     fd.write('    ' + _c_array_of_element_pointer(
         dataType, dataTypeParameter, libafw_dt_by_id) + '\n')
@@ -213,7 +217,7 @@ def function_arg(fd, arg):
     if arg.get('polymorphicDataType', False) == True:
         line += '`<Type>`'
     elif arg.get('polymorphicDataTypeParameter', False) == True:
-        # e.g. bag values: ArrayOf specialized element → `<Type>`[]
+        # e.g. array<T> values: array of specialized element → `<Type>`[]
         if arg.get('dataType') == 'array':
             line += '`<Type>`[]'
         else:

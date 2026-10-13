@@ -142,13 +142,13 @@ export function afwPrintln(client : any, value : any) : any {
  * 
  * @param {integer} streamNumber - Stream number
  * 
- * @param {} n - The maximum number of octets to read (0 or more, up to
+ * @param {integer} n - The maximum number of octets to read (0 or more, up to
  *     1,000,000).
  * 
  * @returns {string} The UTF-8 string read. Check the size of this value to
  *     determine the actual number of octets read.
  */
-export function afwRead(client : any, streamNumber : number, n : any) : any {
+export function afwRead(client : any, streamNumber : number, n : number) : any {
 
     let _action : IAnyObject = {};
 
@@ -166,13 +166,13 @@ export function afwRead(client : any, streamNumber : number, n : any) : any {
  * 
  * @param {integer} streamNumber - Stream number
  * 
- * @param {} n - The maximum number of octets to read (0 or more, up to
+ * @param {integer} n - The maximum number of octets to read (0 or more, up to
  *     1,000,000).
  * 
  * @returns {base64Binary} The base64Binary value read. Check the size of this
  *     value to determine the actual number of octets read.
  */
-export function afwReadToBase64Binary(client : any, streamNumber : number, n : any) : any {
+export function afwReadToBase64Binary(client : any, streamNumber : number, n : number) : any {
 
     let _action : IAnyObject = {};
 

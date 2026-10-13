@@ -21,12 +21,12 @@ return 0;
 return "from-file";
 
 //?
-//? test: expect-from-file-bag
-//? description: File form multi-line Adaptive expect (bag)
-//? expect: <<< expect_bag.txt
+//? test: expect-from-file-array
+//? description: File form multi-line Adaptive expect (array)
+//? expect: <<< expect_array.txt
 //? source: ...
 
-return bag<integer>(1, 2, 3);
+return array<integer>(1, 2, 3);
 
 //?
 //? test: source-from-file

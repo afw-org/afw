@@ -8,7 +8,7 @@
 //? test: set_equals<boolean>-1
 //? description: ...
 
-            Boolean set equals for bags:
+            Boolean set equals for arrays:
             { },
             { }
         
@@ -16,9 +16,9 @@
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -26,7 +26,7 @@ set_equals<boolean>(
 //? test: set_equals<boolean>-2
 //? description: ...
 
-            Boolean set equals for bags:
+            Boolean set equals for arrays:
             { 'true', 'true', 'false' },
             { 'false', 'true' }
         
@@ -34,12 +34,12 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -49,7 +49,7 @@ set_equals<boolean>(
 //? test: set_equals<boolean>-3
 //? description: ...
 
-            Boolean set equals for bags:
+            Boolean set equals for arrays:
             { 'false', 'false', 'false', 'true' },
             { }
         
@@ -57,13 +57,13 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -71,7 +71,7 @@ set_equals<boolean>(
 //? test: set_equals<boolean>-4
 //? description: ...
 
-            Boolean set equals for bags:
+            Boolean set equals for arrays:
             { 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false' },
             { 'false', 'false', 'false', 'false' }
         
@@ -79,7 +79,7 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -90,7 +90,7 @@ set_equals<boolean>(
         boolean(false),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -102,7 +102,7 @@ set_equals<boolean>(
 //? test: set_equals<boolean>-5
 //? description: ...
 
-            Boolean set equals for bags:
+            Boolean set equals for arrays:
             { 'true', 'true', 'true', 'true', 'true' },
             { 'true', 'true', 'true', 'true', 'true', 'false', 'false', 'false', 'false', 'false' }
         
@@ -110,14 +110,14 @@ set_equals<boolean>(
 //? source: ...
 
 set_equals<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),

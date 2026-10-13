@@ -16,6 +16,7 @@
         },
         {
             "description": "Parameters passed to predicate with the first array passed one value at a time.",
+            "iterableAsArray": true,
             "minArgs": 1,
             "name": "values"
         }

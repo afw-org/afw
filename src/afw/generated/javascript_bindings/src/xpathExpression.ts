@@ -18,6 +18,30 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of xpathExpression from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType xpathExpression, and adding a value of
+ * another data type to the array later throws. A value of another data type
+ * is an error, never converted. This is usually written
+ * `array<xpathExpression>(`...values).
+ * 
+ * @param {} values - A value of dataType xpathExpression, or ... followed by
+ *     an expression that results in an array, every entry of which is
+ *     included.
+ * 
+ * @returns {array} The constructed array of xpathExpression.
+ */
+export function afwArrayXpathExpression(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_xpathExpression";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType xpathExpression. Otherwise,
  * including when value is undefined, throws an error. It never converts: to
  * get a xpathExpression from a value of another data type, write a typed
@@ -34,43 +58,6 @@ export function afwAsXpathExpression(client : any, value : any) : any {
 
     _action["function"] = "as_xpathExpression";
     _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeXpathExpression(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<xpathExpression>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of xpathExpression values and returns an array of
- * xpathExpression.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagXpathExpression(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<xpathExpression>";
-
-    if (values !== undefined)
-        _action["values"] = values;
 
     return client.perform(_action);
 }

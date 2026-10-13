@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<yearMonthDuration>(
+array<yearMonthDuration>(
     "P2Y6M"yearMonthDuration,
     "P0Y"yearMonthDuration,
     "P20M"yearMonthDuration
@@ -18,11 +18,11 @@ bag<yearMonthDuration>(
 //? source: ...
 
 union<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P0Y"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P0Y20M"yearMonthDuration,
         "P20M"yearMonthDuration
     )
@@ -33,7 +33,7 @@ union<yearMonthDuration>(
 //? description: x
 //? expect: ...
 
-bag<yearMonthDuration>(
+array<yearMonthDuration>(
     "P2Y6M"yearMonthDuration,
     "P0Y"yearMonthDuration,
     "P20M"yearMonthDuration
@@ -42,11 +42,11 @@ bag<yearMonthDuration>(
 //? source: ...
 
 union<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration,
         "P0Y"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P0Y"yearMonthDuration,
         "P20M"yearMonthDuration
     )
@@ -59,11 +59,11 @@ union<yearMonthDuration>(
 //? source: ...
 
 union<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "x"yearMonthDuration,
         "x"yearMonthDuration
     ),
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "x"yearMonthDuration,
         "x"yearMonthDuration
     )

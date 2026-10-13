@@ -8,14 +8,14 @@
 //? test: one_and_only<double>-1
 //? description: ...
 
-            Double one and only for bag:
+            Double one and only for array:
             { 1.111 }
         
 //? expect: 1.111
 //? source: ...
 
 one_and_only<double>(
-    bag<double>(
+    array<double>(
         1.111
     )
 )
@@ -24,14 +24,14 @@ one_and_only<double>(
 //? test: one_and_only<double>-2
 //? description: ...
 
-            Double one and only for bag:
+            Double one and only for array:
             { 1.111, 2.222, 3.333, 4.444, 5.555 }
         
 //? expect: error
 //? source: ...
 
 one_and_only<double>(
-    bag<double>(
+    array<double>(
         1.111,
         2.222,
         3.333,
@@ -44,14 +44,14 @@ one_and_only<double>(
 //? test: one_and_only<double>-3
 //? description: ...
 
-            Double one and only for bag:
+            Double one and only for array:
             { }
         
 //? expect: error
 //? source: ...
 
 one_and_only<double>(
-    bag<double>(
+    array<double>(
     )
 )
 

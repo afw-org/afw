@@ -28,22 +28,50 @@ class string
     /**
      * add_string()
      *
-     * Add (concatenate) a string with 1 or more values of any data type
-     * converted to their string value and return the string result.
+     * Add (concatenate) 2 or more string values and return the string result.
+     * Every value must be a string, the same as the + operator: to convert
+     * values while concatenating, use concat() or string().
      *
-     * @param string $string
-     * @param $values
+     * @param string $values
      *
      * @return string
      */
-    public function add_string(, $string, $values)
+    public function add_string(, $values)
     {
         $request = $this->$session->request();
 
         $request->set("function", "add<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("string", $string);
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * array_string()
+     *
+     * Construct a new array of string from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType string, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<string>(`...values).
+     *
+     * @param $values A value of dataType string, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of string.
+     */
+    public function array_string(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_string");
+
+        /* pass along required parameters to the request payload */
         $request->set("values", $values);
 
         /* pass along any optional parameters to the request payload */
@@ -98,52 +126,6 @@ class string
         $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_string()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_string(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<string>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_string()
-     *
-     * Takes any number of string values and returns an array of string.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_string(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<string>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
         return $request->get_result();
     }
 

@@ -281,7 +281,7 @@ impl_make_value(
 
     /* If single list, make new list with entries using impl_make_value(). */
     else if (afw_value_is_array(original_value)) {
-        data_type = afw_array_get_data_type(
+        data_type = afw_array_get_declared_data_type(
             ((const afw_value_array_t *)original_value)->internal,
             xctx);
         list = afw_array_create_unmanaged_of(data_type, p, xctx);

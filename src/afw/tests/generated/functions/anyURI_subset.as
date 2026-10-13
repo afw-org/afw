@@ -11,10 +11,10 @@
 //? source: ...
 
 subset<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "urn:example:org"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "http://datypic.com/prod.html#shirt"anyURI,
         "../prod.html#shirt"anyURI,
         "urn:example:org"anyURI
@@ -28,11 +28,11 @@ subset<anyURI>(
 //? source: ...
 
 subset<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "../prod.html#shirt"anyURI,
         "urn:example:org"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "http://datypic.com/prod.html#shirt"anyURI,
         "../prod.html#shirt"anyURI
     )
@@ -45,7 +45,7 @@ subset<anyURI>(
 //? source: ...
 
 subset<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "x"anyURI,
         "x"anyURI
     )

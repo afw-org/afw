@@ -13,7 +13,7 @@
 find(
     string("lt"),
     4,
-    bag<integer>(
+    array<integer>(
         2,
         9,
         4,
@@ -30,7 +30,7 @@ find(
 find(
     string("gt"),
     string("mmmmm"),
-    bag<string>(
+    array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),

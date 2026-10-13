@@ -8,7 +8,7 @@
 //? test: set_equals<double>-1
 //? description: ...
 
-            Double set equals of bags:
+            Double set equals of arrays:
             { '52.40215', '-15.8' },
             { '18.255' }
         
@@ -16,11 +16,11 @@
 //? source: ...
 
 set_equals<double>(
-    bag<double>(
+    array<double>(
         52.40215,
         -15.8
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -29,7 +29,7 @@ set_equals<double>(
 //? test: set_equals<double>-2
 //? description: ...
 
-            Double set equals of bags:
+            Double set equals of arrays:
             { },
             { '18.255' }
         
@@ -37,9 +37,9 @@ set_equals<double>(
 //? source: ...
 
 set_equals<double>(
-    bag<double>(
+    array<double>(
     ),
-    bag<double>(
+    array<double>(
         18.255
     )
 )
@@ -48,7 +48,7 @@ set_equals<double>(
 //? test: set_equals<double>-3
 //? description: ...
 
-            Double set equals of bags:
+            Double set equals of arrays:
             { '52.40215', '-15.8', '18.255', '52.40215', '-15.8', '18.255', '52.40215', '-15.8' },
             { '18.255', '52.40215', '-15.8', '18.255', '52.40215', '-15.8' }
         
@@ -56,7 +56,7 @@ set_equals<double>(
 //? source: ...
 
 set_equals<double>(
-    bag<double>(
+    array<double>(
         52.40215,
         -15.8,
         18.255,
@@ -66,7 +66,7 @@ set_equals<double>(
         52.40215,
         -15.8
     ),
-    bag<double>(
+    array<double>(
         18.255,
         52.40215,
         -15.8,
@@ -80,7 +80,7 @@ set_equals<double>(
 //? test: set_equals<double>-4
 //? description: ...
 
-            Double set equals of bags:
+            Double set equals of arrays:
             {
                 '2000.0215', '11', '-11.2151', '961518', '99', '-102.1651054', '-586.055', '98600', '0.15387',
                 '512618', '-512618', '.0215200', '11516.105155', '-11', '51081', '0.99999999999', '-102',
@@ -98,7 +98,7 @@ set_equals<double>(
 //? source: ...
 
 set_equals<double>(
-    bag<double>(
+    array<double>(
         2000.0215,
         11.0,
         -11.2151,
@@ -121,7 +121,7 @@ set_equals<double>(
         -0.0,
         0.000000
     ),
-    bag<double>(
+    array<double>(
         2000.0215,
         -11.2151,
         961518.0,

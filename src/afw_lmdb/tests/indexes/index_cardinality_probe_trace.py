@@ -155,7 +155,7 @@ def run():
             const objects: array = """
             + _or_query("age_correct", "status_correct", as_expr=True)
             + """;
-            print("RESULT_COUNT=" + length(objects));
+            print("RESULT_COUNT=" + string(length(objects)));
             return 0;
             """,
             "RESULT_COUNT=8",

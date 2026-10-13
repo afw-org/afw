@@ -18,6 +18,30 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of yearMonthDuration from the given values, the same
+ * as array() except that the new array is typed: each value, and each entry
+ * of a spread array, must be dataType yearMonthDuration, and adding a value
+ * of another data type to the array later throws. A value of another data
+ * type is an error, never converted. This is usually written
+ * `array<yearMonthDuration>(`...values).
+ * 
+ * @param {} values - A value of dataType yearMonthDuration, or ... followed
+ *     by an expression that results in an array, every entry of which is
+ *     included.
+ * 
+ * @returns {array} The constructed array of yearMonthDuration.
+ */
+export function afwArrayYearMonthDuration(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_yearMonthDuration";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
  * including when value is undefined, throws an error. It never converts: to
  * get a yearMonthDuration from a value of another data type, write a typed
@@ -55,43 +79,6 @@ export function afwAtLeastOneMemberOfYearMonthDuration(client : any, array1 : an
     _action["function"] = "at_least_one_member_of<yearMonthDuration>";
     _action["array1"] = array1;
     _action["array2"] = array2;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeYearMonthDuration(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<yearMonthDuration>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of yearMonthDuration values and returns an array of
- * yearMonthDuration.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagYearMonthDuration(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<yearMonthDuration>";
-
-    if (values !== undefined)
-        _action["values"] = values;
 
     return client.perform(_action);
 }

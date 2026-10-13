@@ -61,3 +61,33 @@ const o = {};
 for (let i = 0; i < 600; i = i + 1) last = o.missing;
 assert(last === undefined);
 return 0;
+
+//?
+//? test: meta-of-keyed-reference-checks-key
+//? description: meta(o[k]) and meta(a[i]) check the key like o[k] and a[i] do, never converting it (#583)
+//? expect: 0
+//? source: ...
+
+const o = {"1": "one"};
+const a = ["x", 2];
+const k = 1;
+const s = "1";
+assert(meta(o["1"]).dataType === "string");
+assert(meta(a[1]).dataType === "integer");
+for (const f of [
+    function () { return o[k]; },
+    function () { return meta(o[k]); }
+]) {
+    let message = "";
+    try { f(); } catch (e) { message = e.message; }
+    assert(message === "Property name must be a string value", "got: " + message);
+}
+for (const f of [
+    function () { return a[s]; },
+    function () { return meta(a[s]); }
+]) {
+    let message = "";
+    try { f(); } catch (e) { message = e.message; }
+    assert(message === "Index must be integer for array", "got: " + message);
+}
+return 0;

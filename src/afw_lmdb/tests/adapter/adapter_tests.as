@@ -78,6 +78,6 @@ assert(
 
 // test retrieve_objects
 const objects: array = retrieve_objects('lmdb', '_AdaptiveObject_');
-//print(bag_size(objects));
+//print(length(objects));
 
 return 0;

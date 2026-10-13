@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<dnsName>(
-    bag<dnsName>(
+    array<dnsName>(
         "clemson:8080"dnsName
     )
 )
@@ -23,7 +23,7 @@ one_and_only<dnsName>(
 //? source: ...
 
 one_and_only<dnsName>(
-    bag<dnsName>(
+    array<dnsName>(
         "clemson:8080"dnsName,
         "clemson"dnsName
     )

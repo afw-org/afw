@@ -13,10 +13,9 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_yearMonthDuration 
     as_yearMonthDuration 
     at_least_one_member_of_yearMonthDuration 
-    bag_size_yearMonthDuration 
-    bag_yearMonthDuration 
     eq_yearMonthDuration 
     eqx_yearMonthDuration 
     ge_yearMonthDuration 
@@ -42,6 +41,23 @@ afw::yearMonthDuration - Perl module for yearMonthDuration functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_yearMonthDuration
+
+Construct a new array of yearMonthDuration from the given values, the same as
+array() except that the new array is typed: each value, and each entry of a
+spread array, must be dataType yearMonthDuration, and adding a value of
+another data type to the array later throws. A value of another data type is
+an error, never converted. This is usually written
+`array<yearMonthDuration>(`...values).
+Construct an array of yearMonthDuration from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType yearMonthDuration, or ... followed by an expression that
+results in an array, every entry of which is included.
 
 =head3 as_yearMonthDuration
 
@@ -73,27 +89,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_size_yearMonthDuration
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
-
-=head3 bag_yearMonthDuration
-
-Takes any number of yearMonthDuration values and returns an array of
-yearMonthDuration.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
 
 =head3 eq_yearMonthDuration
 
@@ -323,6 +318,17 @@ Two or more arrays.
 
 =cut
 
+sub array_yearMonthDuration {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_yearMonthDuration");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_yearMonthDuration {
     my ($value) = @_;
 
@@ -342,30 +348,6 @@ sub at_least_one_member_of_yearMonthDuration {
     $request->set("function" => "at_least_one_member_of<yearMonthDuration>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_size_yearMonthDuration {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<yearMonthDuration>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_yearMonthDuration {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<yearMonthDuration>");
-
-    if (defined $values)
-        $request->set("values", $values);
 
     return $request->getResult();
 }

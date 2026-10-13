@@ -9,7 +9,7 @@
 //? description: x
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("hello"),
     string("world")
 )
@@ -18,7 +18,7 @@ bag<string>(
 
 map(
     string("normalize_to_lower_case<string>"),
-    bag<string>(
+    array<string>(
         string("Hello"),
         string("World")
     )
@@ -29,7 +29,7 @@ map(
 //? description: x
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     62,
     -5
 )
@@ -38,7 +38,7 @@ bag<integer>(
 
 map(
     string("add"),
-    bag<integer>(
+    array<integer>(
         52,
         -15
     ),

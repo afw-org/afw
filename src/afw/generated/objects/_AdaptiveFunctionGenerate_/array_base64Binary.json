@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwArrayBase64Binary",
+    "brief": "Construct an array of base64Binary from values or spread arrays",
+    "camelCaseFunctionLabel": "arrayBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Construct a new array of base64Binary from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType base64Binary, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<base64Binary>(...values).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a value is not dataType <dataType>"
+        }
+    ],
+    "functionId": "array_base64Binary",
+    "functionLabel": "array_base64Binary",
+    "parameters": [
+        {
+            "description": "A value of dataType base64Binary, or ... followed by an expression that results in an array, every entry of which is included.",
+            "minArgs": 0,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "base64Binary",
+        "description": "The constructed array of base64Binary."
+    },
+    "untypedFunctionId": "array",
+    "useExecuteFunction": "afw_function_execute_array_of_data_type"
+}

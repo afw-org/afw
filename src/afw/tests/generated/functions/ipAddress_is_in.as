@@ -12,7 +12,7 @@
 
 is_in<ipAddress>(
     "255.255.255.255"ipAddress,
-    bag<ipAddress>(
+    array<ipAddress>(
         "255.255.255.250"ipAddress,
         "255.255.255.251"ipAddress,
         "255.255.255.252"ipAddress,

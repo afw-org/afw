@@ -11,11 +11,11 @@
 //? source: ...
 
 at_least_one_member_of<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P3DT10H30M"dayTimeDuration,
         "P3DT10H10M"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P3D"dayTimeDuration,
         "P3DT10H30M30S"dayTimeDuration,
         "P3D"dayTimeDuration,
@@ -30,10 +30,10 @@ at_least_one_member_of<dayTimeDuration>(
 //? source: ...
 
 at_least_one_member_of<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P3D"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "P3DT10H30M30S"dayTimeDuration,
         "P3DT10H30M"dayTimeDuration
     )
@@ -46,11 +46,11 @@ at_least_one_member_of<dayTimeDuration>(
 //? source: ...
 
 at_least_one_member_of<dayTimeDuration>(
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "x"dayTimeDuration,
         "x"dayTimeDuration
     ),
-    bag<dayTimeDuration>(
+    array<dayTimeDuration>(
         "x"dayTimeDuration,
         "x"dayTimeDuration
     )

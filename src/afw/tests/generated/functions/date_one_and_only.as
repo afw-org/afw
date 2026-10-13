@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<date>(
-    bag<date>(
+    array<date>(
         "2004-04-12-05:00"date
     )
 )
@@ -23,7 +23,7 @@ one_and_only<date>(
 //? source: ...
 
 one_and_only<date>(
-    bag<date>(
+    array<date>(
         "2004-04-12-05:00"date,
         "2005-04-12-05:00"date
     )

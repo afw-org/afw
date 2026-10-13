@@ -11,11 +11,11 @@
 //? source: ...
 
 subset<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "anderson@sun.com"rfc822Name,
         "localpart@domainpart"rfc822Name
     ),
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "anderson@sun.com"rfc822Name,
         "localpart@domainpart"rfc822Name
     )
@@ -28,11 +28,11 @@ subset<rfc822Name>(
 //? source: ...
 
 subset<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "anderson@sun.com"rfc822Name,
         "localpart@domainpart"rfc822Name
     ),
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "anderson@sun.com"rfc822Name,
         "bobo@sun.com"rfc822Name
     )
@@ -45,11 +45,11 @@ subset<rfc822Name>(
 //? source: ...
 
 subset<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "anderson@sun.com"rfc822Name,
         "localpart@domainpart"rfc822Name
     ),
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "anderson@sun.com"rfc822Name,
         "bobo@sun.org"rfc822Name,
         "anderson@sun.edu"rfc822Name,
@@ -67,7 +67,7 @@ subset<rfc822Name>(
 //? source: ...
 
 subset<rfc822Name>(
-    bag<rfc822Name>(
+    array<rfc822Name>(
         "x"rfc822Name,
         "x"rfc822Name
     )

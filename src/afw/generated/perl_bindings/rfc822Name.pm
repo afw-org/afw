@@ -13,10 +13,9 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_rfc822Name 
     as_rfc822Name 
     at_least_one_member_of_rfc822Name 
-    bag_rfc822Name 
-    bag_size_rfc822Name 
     eq_rfc822Name 
     eqx_rfc822Name 
     ge_rfc822Name 
@@ -44,6 +43,22 @@ afw::rfc822Name - Perl module for rfc822Name functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_rfc822Name
+
+Construct a new array of rfc822Name from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType rfc822Name, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<rfc822Name>(`...values).
+Construct an array of rfc822Name from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType rfc822Name, or ... followed by an expression that results
+in an array, every entry of which is included.
 
 =head3 as_rfc822Name
 
@@ -75,26 +90,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_rfc822Name
-
-Takes any number of rfc822Name values and returns an array of rfc822Name.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_rfc822Name
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 eq_rfc822Name
 
@@ -350,6 +345,17 @@ Two or more arrays.
 
 =cut
 
+sub array_rfc822Name {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_rfc822Name");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_rfc822Name {
     my ($value) = @_;
 
@@ -369,30 +375,6 @@ sub at_least_one_member_of_rfc822Name {
     $request->set("function" => "at_least_one_member_of<rfc822Name>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_rfc822Name {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<rfc822Name>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_rfc822Name {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<rfc822Name>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

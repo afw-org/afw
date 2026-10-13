@@ -1246,7 +1246,7 @@ afw_model_internal_register_context_type_model(afw_xctx_t *xctx)
 
 
 /*
- * custom:: layered bags (property → object type → model). C NULL = name not
+ * custom:: layered objects (property → object type → model). C NULL = name not
  * in any layer (not this frame for stack walk). Present values come from
  * object get_property (including afw_value_null / afw_value_undefined).
  */
@@ -1288,8 +1288,8 @@ impl_custom_variable_get_cb(
 
 
 static void
-impl_contribute_custom_bag(
-    const afw_object_t *bag,
+impl_contribute_custom_layer(
+    const afw_object_t *layer,
     const afw_object_t *object,
     afw_xctx_t *xctx)
 {
@@ -1297,12 +1297,12 @@ impl_contribute_custom_bag(
     const afw_value_t *property_name;
     const afw_value_t *value;
 
-    if (!bag) {
+    if (!layer) {
         return;
     }
     iterator = NULL;
     while ((value = afw_object_get_next_property(
-        bag, &iterator, &property_name, xctx)))
+        layer, &iterator, &property_name, xctx)))
     {
         if (!property_name ||
             afw_object_has_property(object, property_name, xctx))
@@ -1315,7 +1315,7 @@ impl_contribute_custom_bag(
 }
 
 
-/* Layered custom:: bags: property → object type → model (first wins). */
+/* Layered custom:: objects: property → object type → model (first wins). */
 static void
 impl_custom_variable_contribute_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
@@ -1328,13 +1328,13 @@ impl_custom_variable_contribute_cb(
     (void)include_untrusted;
 
     if (ctx->property_level.model_property_type) {
-        impl_contribute_custom_bag(
+        impl_contribute_custom_layer(
             ctx->property_level.model_property_type->custom_variables,
             object, xctx);
     }
-    impl_contribute_custom_bag(
+    impl_contribute_custom_layer(
         ctx->model_object_type->custom_variables, object, xctx);
-    impl_contribute_custom_bag(
+    impl_contribute_custom_layer(
         ctx->model_object_type->model->custom_variables, object, xctx);
 }
 

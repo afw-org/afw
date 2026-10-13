@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_script 
     as_script 
-    bag_script 
-    bag_size_script 
     compile_script 
     eq_script 
     eqx_script 
@@ -38,6 +37,22 @@ afw::script - Perl module for script functions
 
 The following functions are exported by default
 
+=head3 array_script
+
+Construct a new array of script from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType script, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<script>(`...values).
+Construct an array of script from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType script, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_script
 
 Returns value unchanged if it is dataType script. Otherwise, including when
@@ -51,26 +66,6 @@ Asserts that value is dataType script
     $value
 
 Value to assert
-
-=head3 bag_script
-
-Takes any number of script values and returns an array of script.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_script
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 compile_script
 
@@ -258,36 +253,23 @@ Value to convert
 
 =cut
 
+sub array_script {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_script");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_script {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "as_script");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_script {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<script>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_script {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<script>");
     $request->set("value", $value);
 
     return $request->getResult();

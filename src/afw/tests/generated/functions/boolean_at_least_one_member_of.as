@@ -8,7 +8,7 @@
 //? test: at_least_one_member_of<boolean>-1
 //? description: ...
 
-            Boolean at least one member of for bags:
+            Boolean at least one member of for arrays:
             { },
             { }
         
@@ -16,9 +16,9 @@
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -26,7 +26,7 @@ at_least_one_member_of<boolean>(
 //? test: at_least_one_member_of<boolean>-2
 //? description: ...
 
-            Boolean at least one member of for bags:
+            Boolean at least one member of for arrays:
             { 'true', 'true', 'false' },
             { 'false', 'true' }
         
@@ -34,12 +34,12 @@ at_least_one_member_of<boolean>(
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -49,7 +49,7 @@ at_least_one_member_of<boolean>(
 //? test: at_least_one_member_of<boolean>-3
 //? description: ...
 
-            Boolean at least one member of for bags:
+            Boolean at least one member of for arrays:
             { 'false', 'false', 'false', 'false' },
             { 'false', 'true' }
         
@@ -57,13 +57,13 @@ at_least_one_member_of<boolean>(
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -73,7 +73,7 @@ at_least_one_member_of<boolean>(
 //? test: at_least_one_member_of<boolean>-4
 //? description: ...
 
-            Boolean at least one member of for bags:
+            Boolean at least one member of for arrays:
             { 'true' },
             { 'false', 'false', 'false', 'false' }
         
@@ -81,10 +81,10 @@ at_least_one_member_of<boolean>(
 //? source: ...
 
 at_least_one_member_of<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),

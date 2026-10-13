@@ -397,9 +397,16 @@ afw_value_call_args_expand_spreads(
         arg = argv_in[i];
         if (arg && afw_value_is_array_expression(arg)) {
             evaled = afw_value_evaluate(arg, p, xctx);
+            /* Spread of an iterable value (string code points), #583. */
+            if (!afw_value_is_array(evaled) &&
+                afw_value_has_iterator(evaled))
+            {
+                evaled = afw_value_convert_to_array_sequence(evaled, p, xctx);
+            }
             if (!afw_value_is_array(evaled)) {
                 AFW_THROW_ERROR_Z(general,
-                    "Call-site spread (...) requires an array", xctx);
+                    "Spread (...) requires an array or a value that can be"
+                    " iterated, such as a string", xctx);
             }
             evaled_argv[i] = evaled;
             arr = ((const afw_value_array_t *)evaled)->internal;

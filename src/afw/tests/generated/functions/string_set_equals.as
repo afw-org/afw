@@ -8,7 +8,7 @@
 //? test: set_equals<string>-1
 //? description: ...
 
-            String set equals of bags:
+            String set equals of arrays:
             { },
             { }
         
@@ -16,9 +16,9 @@
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -26,7 +26,7 @@ set_equals<string>(
 //? test: set_equals<string>-2
 //? description: ...
 
-            String set equals of bags:
+            String set equals of arrays:
             { 'one', 'two', 'three' },
             { 'one', 'two', 'three' }
         
@@ -34,12 +34,12 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
@@ -50,7 +50,7 @@ set_equals<string>(
 //? test: set_equals<string>-3
 //? description: ...
 
-            String set equals of bags:
+            String set equals of arrays:
             { 'one', 'two', 'three' },
             { 'two', 'three' }
         
@@ -58,12 +58,12 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("two"),
         string("three")
     )
@@ -73,7 +73,7 @@ set_equals<string>(
 //? test: set_equals<string>-4
 //? description: ...
 
-            String set equals of bags:
+            String set equals of arrays:
             { 'one', 'three', 'one', 'three' },
             { 'one', 'one', 'one', 'three', 'three', 'three' }
         
@@ -81,13 +81,13 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("three"),
         string("one"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("one"),
         string("one"),
@@ -101,7 +101,7 @@ set_equals<string>(
 //? test: set_equals<string>-5
 //? description: ...
 
-            String set equals of bags:
+            String set equals of arrays:
             {
                 'two', 'four', 'six', 'eight', 'ten',
                 'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'
@@ -116,7 +116,7 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),
@@ -128,7 +128,7 @@ set_equals<string>(
         string("eighteen"),
         string("twenty")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -161,7 +161,7 @@ set_equals<string>(
 //? test: set_equals<string>-6
 //? description: ...
 
-            String set equals of bags:
+            String set equals of arrays:
             {
                 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
@@ -180,7 +180,7 @@ set_equals<string>(
 //? source: ...
 
 set_equals<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -232,7 +232,7 @@ set_equals<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),

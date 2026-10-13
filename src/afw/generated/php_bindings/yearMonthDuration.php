@@ -26,6 +26,35 @@ class yearMonthDuration
     }
 
     /**
+     * array_yearMonthDuration()
+     *
+     * Construct a new array of yearMonthDuration from the given values, the
+     * same as array() except that the new array is typed: each value, and
+     * each entry of a spread array, must be dataType yearMonthDuration, and
+     * adding a value of another data type to the array later throws. A value
+     * of another data type is an error, never converted. This is usually
+     * written `array<yearMonthDuration>(`...values).
+     *
+     * @param $values A value of dataType yearMonthDuration, or ... followed
+     *                 by an expression that results in an array, every entry
+     *                 of which is included.
+     *
+     * @return array The constructed array of yearMonthDuration.
+     */
+    public function array_yearMonthDuration(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_yearMonthDuration");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_yearMonthDuration()
      *
      * Returns value unchanged if it is dataType yearMonthDuration. Otherwise,
@@ -73,53 +102,6 @@ class yearMonthDuration
         $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_yearMonthDuration()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_yearMonthDuration(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<yearMonthDuration>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_yearMonthDuration()
-     *
-     * Takes any number of yearMonthDuration values and returns an array of
-     * yearMonthDuration.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_yearMonthDuration(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<yearMonthDuration>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
         return $request->get_result();
     }
 

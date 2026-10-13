@@ -8,21 +8,21 @@
 //? test: intersection<string>-1
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { },
             { }
         
 //? expect: ...
 
-bag<string>(
+array<string>(
 )
 
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -30,13 +30,13 @@ intersection<string>(
 //? test: intersection<string>-2
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'one', 'three' }
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("one"),
     string("three")
 )
@@ -44,12 +44,12 @@ bag<string>(
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("three")
     )
@@ -59,24 +59,24 @@ intersection<string>(
 //? test: intersection<string>-3
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'four', 'five' }
         
 //? expect: ...
 
-bag<string>(
+array<string>(
 )
 
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -86,25 +86,25 @@ intersection<string>(
 //? test: intersection<string>-4
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             { 'one', 'two', 'three' },
             { 'three', 'four' }
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("three")
 )
 
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("three"),
         string("four")
     )
@@ -114,7 +114,7 @@ intersection<string>(
 //? test: intersection<string>-5
 //? description: ...
 
-            String intersection of bags:
+            String intersection of arrays:
             {
                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
@@ -127,7 +127,7 @@ intersection<string>(
         
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("two"),
     string("four"),
     string("six"),
@@ -143,7 +143,7 @@ bag<string>(
 //? source: ...
 
 intersection<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),
@@ -170,7 +170,7 @@ intersection<string>(
         string("twenty-four"),
         string("twenty-five")
     ),
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),

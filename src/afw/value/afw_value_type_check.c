@@ -610,8 +610,27 @@ impl_array_elements_assignable(
     afw_size_t i;
     const afw_value_t *elem;
 
+    const afw_data_type_t *want;
+    const afw_data_type_t *got;
+
     if (!element_type || afw_value_type_is_any(element_type)) {
         return true;
+    }
+
+    /*
+     * T[] of a data type: the array knows the data type of all it holds
+     * without a walk. Holes only matter under strictNullChecks.
+     */
+    want = afw_value_type_get_leaf_data_type(
+        impl_peel_reference(element_type));
+    if (want) {
+        got = afw_array_get_data_type(arr, xctx);
+        if (got == want && !impl_strict_null_checks(contextual, xctx)) {
+            return true;
+        }
+        if (got && got != want) {
+            return false;
+        }
     }
 
     count = afw_array_get_count(arr, xctx);
@@ -872,7 +891,18 @@ impl_mismatch_detail(
             "expected %s but got %s", want_z, got_z);
     }
 
-    /* Leaf / default */
+    /* Leaf: say how to get the data type (typed literal, to_T). */
+    if (expected->kind == afw_value_type_kind_data_type &&
+        expected->data_type && !impl_is_nullish_value(value, xctx))
+    {
+        got = afw_value_get_data_type(value, xctx);
+        if (got) {
+            return afw_value_type_assertion_mismatch_z(expected->data_type,
+                got, value, p, xctx);
+        }
+    }
+
+    /* Default */
     return afw_utf8_z_printf(p, xctx,
         "expected %s but got %s", want_z, got_z);
 }
@@ -1065,6 +1095,57 @@ afw_value_type_is_assignable(
 
 
 
+/*
+ * Types checked at run time even when typeCheck is off (#583): a data
+ * type, T[] of a data type, and unions of these. Checking them is a
+ * pointer compare (an array knows the data type of all it holds), the
+ * same as a built-in parameter. Object shapes, tuples and functions walk
+ * the value, so they are checked only under typeCheck.
+ */
+static afw_boolean_t
+impl_is_always_checked(
+    const afw_value_type_t *type,
+    afw_size_t depth)
+{
+    const afw_data_type_t *dt;
+    afw_size_t i;
+
+    type = impl_peel_reference(type);
+    if (!type || depth > 8) {
+        return false;
+    }
+    switch (type->kind) {
+
+    case afw_value_type_kind_data_type:
+        dt = type->data_type;
+        return dt &&
+            dt != afw_data_type_any &&
+            dt != afw_data_type_unknown &&
+            dt != afw_data_type_unevaluated;
+
+    case afw_value_type_kind_array:
+        return type->array.element &&
+            impl_peel_reference(type->array.element) &&
+            impl_peel_reference(type->array.element)->kind ==
+                afw_value_type_kind_data_type;
+
+    case afw_value_type_kind_union:
+        for (i = 0; i < type->compound.count; i++) {
+            if (!impl_is_always_checked(type->compound.members[i],
+                depth + 1))
+            {
+                return false;
+            }
+        }
+        return type->compound.count > 0;
+
+    default:
+        return false;
+    }
+}
+
+
+
 AFW_DEFINE(void)
 afw_value_type_check_assignable(
     const afw_value_type_t *expected,
@@ -1075,7 +1156,9 @@ afw_value_type_check_assignable(
 {
     const afw_utf8_z_t *detail;
 
-    if (!AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
+    if (!AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx) &&
+        !impl_is_always_checked(expected, 0))
+    {
         return;
     }
     if (afw_value_type_is_assignable(expected, value, contextual, xctx)) {
@@ -1581,6 +1664,28 @@ impl_arg_result_data_type(const afw_value_t *value, afw_xctx_t *xctx)
 
 
 
+/*
+ * True if param reads an iterable argument as an array (iterableAsArray)
+ * and arg's data type can be iterated, so the array check does not apply.
+ */
+static afw_boolean_t
+impl_iterable_as_array_arg(
+    const afw_value_function_parameter_t *param,
+    const afw_value_t *arg,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+
+    if (!param || !afw_value_is_boolean_true(param->iterableAsArray)) {
+        return false;
+    }
+    dt = impl_arg_result_data_type(arg, xctx);
+    return dt && dt != afw_data_type_array &&
+        dt->inf->optional_initialize_iterator;
+}
+
+
+
 static void
 impl_project_function_parameter(
     const afw_value_function_parameter_t *param,
@@ -1907,7 +2012,9 @@ afw_value_type_check_adaptive_function_call(
             }
             impl_project_function_parameter(param, specialized_dt, &expect,
                 xctx->p, xctx);
-            if (!afw_value_type_is_any(&expect) && arg) {
+            if (!afw_value_type_is_any(&expect) && arg &&
+                !impl_iterable_as_array_arg(param, arg, xctx))
+            {
                 afw_value_type_check_compile_assignable(&expect, arg,
                     "parameter", contextual, xctx);
             }
@@ -1921,7 +2028,9 @@ afw_value_type_check_adaptive_function_call(
                 }
                 impl_project_function_parameter(param, specialized_dt,
                     &expect, xctx->p, xctx);
-                if (!afw_value_type_is_any(&expect)) {
+                if (!afw_value_type_is_any(&expect) &&
+                    !impl_iterable_as_array_arg(param, arg, xctx))
+                {
                     afw_value_type_check_compile_assignable(&expect, arg,
                         "parameter", contextual, xctx);
                 }

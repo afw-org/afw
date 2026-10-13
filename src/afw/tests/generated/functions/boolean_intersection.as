@@ -8,19 +8,19 @@
 //? test: intersection<boolean>-1
 //? description: ...
 
-            Boolean intersection of two empty bags.
+            Boolean intersection of two empty arrays.
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
 )
 
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -28,13 +28,13 @@ intersection<boolean>(
 //? test: intersection<boolean>-2
 //? description: ...
 
-            Boolean intersection of bags:
+            Boolean intersection of arrays:
             { 'true', 'true', 'false' },
             { 'false', 'true' }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(true),
     boolean(false)
 )
@@ -42,12 +42,12 @@ bag<boolean>(
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -57,26 +57,26 @@ intersection<boolean>(
 //? test: intersection<boolean>-3
 //? description: ...
 
-            Boolean intersection of bags:
+            Boolean intersection of arrays:
             { 'false', 'false', 'false', 'false' },
             { 'false', 'true' }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
     boolean(false)
 )
 
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -86,22 +86,22 @@ intersection<boolean>(
 //? test: intersection<boolean>-4
 //? description: ...
 
-            Boolean intersection of bags:
+            Boolean intersection of arrays:
             { 'true' },
             { 'false', 'false', 'false', 'false' }
         
 //? expect: ...
 
-bag<boolean>(
+array<boolean>(
 )
 
 //? source: ...
 
 intersection<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),

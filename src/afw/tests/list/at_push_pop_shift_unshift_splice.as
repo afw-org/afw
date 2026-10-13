@@ -159,8 +159,8 @@ assert(length(s) === 2, "length");
 push(s, 9);
 assert(length(s) === 3 && s[2] === 9, "mutable");
 assert(length(a) === 4 && a[3] === 4, "source unchanged");
-assert(slice(bag<integer>(2, 9, 5, 0), 1, 3) === bag<integer>(9, 5),
-    "typed bag slice");
+assert(slice(array<integer>(2, 9, 5, 0), 1, 3) === array<integer>(9, 5),
+    "typed array slice");
 
 return 0;
 

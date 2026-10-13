@@ -13,9 +13,8 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_null 
     as_null 
-    bag_null 
-    bag_size_null 
     is_null 
     to_string_null 
 );
@@ -27,6 +26,22 @@ afw::null - Perl module for null functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_null
+
+Construct a new array of null from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType null, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<null>(`...values).
+Construct an array of null from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType null, or ... followed by an expression that results in an
+array, every entry of which is included.
 
 =head3 as_null
 
@@ -41,26 +56,6 @@ Asserts that value is dataType null
     $value
 
 Value to assert
-
-=head3 bag_null
-
-Takes any number of null values and returns an array of null.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_null
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 is_null
 
@@ -88,36 +83,23 @@ A null value.
 
 =cut
 
+sub array_null {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_null");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_null {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "as_null");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub bag_null {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<null>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_null {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<null>");
     $request->set("value", $value);
 
     return $request->getResult();

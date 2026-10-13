@@ -9,7 +9,7 @@
 //? description: Union
 //? expect: ...
 
-bag<dateTime>(
+array<dateTime>(
     "2004-04-12T13:20:00"dateTime,
     "2004-04-18T13:20:01"dateTime
 )
@@ -17,10 +17,10 @@ bag<dateTime>(
 //? source: ...
 
 union<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-18T13:20:01"dateTime
     )
 )
@@ -30,7 +30,7 @@ union<dateTime>(
 //? description: Union
 //? expect: ...
 
-bag<dateTime>(
+array<dateTime>(
     "2004-04-12T13:20:00"dateTime,
     "2004-04-13T13:20:15.5"dateTime,
     "2004-04-14T13:20:00"dateTime,
@@ -43,13 +43,13 @@ bag<dateTime>(
 //? source: ...
 
 union<dateTime>(
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-13T13:20:15.5"dateTime,
         "2004-04-14T13:20:00"dateTime,
         "2004-04-15T13:20:00"dateTime
     ),
-    bag<dateTime>(
+    array<dateTime>(
         "2004-04-12T13:20:00"dateTime,
         "2004-04-16T13:20:15.5"dateTime,
         "2004-04-17T13:20:00"dateTime,

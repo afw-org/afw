@@ -113,7 +113,7 @@ function headers(header, userData) {
     const len = length(header);
 
     if (len > 0) {
-        add_entries(userData.headers, header);
+        push(userData.headers, header);
     }
 
     return len;
@@ -133,6 +133,7 @@ const response = http_delete(
 );
 
 assert(length(userData.headers) > 0);
+assert(length(userData.headers[0]) > 1, "each entry is a whole header line");
 assert(length(userData.payload) > 0);
 
 return response.response_code;

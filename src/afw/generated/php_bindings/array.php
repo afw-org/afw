@@ -85,6 +85,35 @@ class array
     }
 
     /**
+     * array_array()
+     *
+     * Construct a new array of array from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType array, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<array>(`...values).
+     *
+     * @param $values A value of dataType array, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of array.
+     */
+    public function array_array(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_array");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_array()
      *
      * Returns value unchanged if it is dataType array. Otherwise, including
@@ -113,12 +142,14 @@ class array
     /**
      * at()
      *
-     * Return the value at a zero-based index in an array. Negative indexes
-     * count from the end (-1 is the last element). If the index is out of
-     * range, the result is undefined. Bracket indexing a[index] uses the same
-     * out-of-range result (undefined).
+     * Return the value at a zero-based index in an array, or the code point
+     * at a zero-based index in a string as a one-code-point string (as
+     * ECMAScript at does for both). Negative indexes count from the end (-1
+     * is the last). If the index is out of range, the result is undefined.
+     * Bracket indexing a[index] and s[index] use the same out-of-range result
+     * (undefined).
      *
-     * @param array $array Array to index.
+     * @param $array Array, or string, to index.
      * @param integer $index Zero-based index, or negative from the end.
      *
      * @return The value at the index, or undefined if out of range.
@@ -132,52 +163,6 @@ class array
         /* pass along required parameters to the request payload */
         $request->set("array", $array);
         $request->set("index", $index);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_array()
-     *
-     * Takes any number of array values and returns an array of array.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_array(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<array>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_array()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_array(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<array>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -665,24 +650,25 @@ class array
     /**
      * slice()
      *
-     * This function extracts a consecutive slice of values from an array.
+     * This function extracts a consecutive slice of values from an array, or
+     * of code points from a string (as ECMAScript slice does for both). For a
+     * string, or another value stored as UTF-8, the result is a string.
      *
-     * @param array $array The array to slice.
+     * @param $array The array, or the string, to slice.
      * @param integer $startIndex This is the zero based starting index. Use
-     *                            negative number to index from the end of the
-     *                            array. If not specified, an index of 0 is
-     *                            assumed.
+     *                            negative number to index from the end. If
+     *                            not specified, an index of 0 is assumed.
      * @param integer $endIndex This is the zero based ending index. If
      *                          positive, this is one more than the index of
-     *                          the last value to include in the array. If
-     *                          negative, the index is from the end of the
-     *                          array. If not specified, the slice is from
-     *                          startIndex up to and including the end of the
-     *                          array.
+     *                          the last value or code point to include. If
+     *                          negative, the index is from the end. If not
+     *                          specified, the slice is from startIndex up to
+     *                          and including the end.
      *
-     * @return array An array containing the selected values. If all of the
-     *               values are the same data type, the array will be an array
-     *               of that data type.
+     * @return For an array, an array containing the selected values; if all
+     *          of the values are the same data type, the array will be an
+     *          array of that data type. For a string, a string containing the
+     *          selected code points.
      */
     public function slice(, $array, $startIndex = null, $endIndex = null)
     {

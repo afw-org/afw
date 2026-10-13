@@ -26,6 +26,35 @@ class function
     }
 
     /**
+     * array_function()
+     *
+     * Construct a new array of function from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType function, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<function>(`...values).
+     *
+     * @param $values A value of dataType function, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of function.
+     */
+    public function array_function(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_function");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_function()
      *
      * Returns value unchanged if it is dataType function. Otherwise,
@@ -43,52 +72,6 @@ class function
         $request = $this->$session->request();
 
         $request->set("function", "as_function");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_function()
-     *
-     * Takes any number of function values and returns an array of function.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_function(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<function>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_function()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_function(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<function>");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

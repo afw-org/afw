@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
 )
@@ -23,7 +23,7 @@ one_and_only<hexBinary>(
 //? source: ...
 
 one_and_only<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "0FB8"hexBinary
     )
 )
@@ -35,7 +35,7 @@ one_and_only<hexBinary>(
 //? source: ...
 
 one_and_only<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     )

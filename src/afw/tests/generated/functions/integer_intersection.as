@@ -8,7 +8,7 @@
 //? test: intersection<integer>-1
 //? description: ...
 
-            Integer intersection of bags:
+            Integer intersection of arrays:
             {
                 '200', '11', '-11.2', '96', '99', '-102', '-586.5', '986', '387', '512618', '-512618', '200', 
                 '11', '-11', '96', '99', '-102', '-586', '986', '-0.0', '0'
@@ -17,7 +17,7 @@
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     11,
     -11,
     0
@@ -26,7 +26,7 @@ bag<integer>(
 //? source: ...
 
 intersection<integer>(
-    bag<integer>(
+    array<integer>(
         200,
         11,
         -11,
@@ -49,7 +49,7 @@ intersection<integer>(
         -0,
         0
     ),
-    bag<integer>(
+    array<integer>(
         11,
         1024,
         -11,
@@ -62,7 +62,7 @@ intersection<integer>(
 //? test: intersection<integer>-2
 //? description: ...
 
-            Integer intersection of bags:
+            Integer intersection of arrays:
             { '11', '1024', '-11', '-1024', '0', '512618', '1' },
             {
                 '11', '-11.2', '96', '-102', '-586.5', '986', '387', '512618',
@@ -71,7 +71,7 @@ intersection<integer>(
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     11,
     -11,
     0,
@@ -81,7 +81,7 @@ bag<integer>(
 //? source: ...
 
 intersection<integer>(
-    bag<integer>(
+    array<integer>(
         11,
         1024,
         -11,
@@ -90,7 +90,7 @@ intersection<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -11,
         96,
@@ -113,13 +113,13 @@ intersection<integer>(
 //? test: intersection<integer>-3
 //? description: ...
 
-            Integer intersection of bags:
+            Integer intersection of arrays:
             { '11', '1024', '-11', '-1024', '0', '512618', '1' },
             { '11',  '-1' }
         
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     -1,
     11
 )
@@ -127,7 +127,7 @@ bag<integer>(
 //? source: ...
 
 intersection<integer>(
-    bag<integer>(
+    array<integer>(
         -1,
         11,
         1024,
@@ -137,7 +137,7 @@ intersection<integer>(
         -512618,
         1
     ),
-    bag<integer>(
+    array<integer>(
         11,
         -1
     )

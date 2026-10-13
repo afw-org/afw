@@ -12,7 +12,7 @@
 
 is_in<hexBinary>(
     "0FB8"hexBinary,
-    bag<hexBinary>(
+    array<hexBinary>(
         "0fb7"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
@@ -26,7 +26,7 @@ is_in<hexBinary>(
 
 is_in<hexBinary>(
     "0FB8"hexBinary,
-    bag<hexBinary>(
+    array<hexBinary>(
         "0fb8"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
@@ -40,7 +40,7 @@ is_in<hexBinary>(
 
 is_in<hexBinary>(
     "x"hexBinary,
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     )

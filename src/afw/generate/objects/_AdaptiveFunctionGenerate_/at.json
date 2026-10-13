@@ -1,15 +1,14 @@
 {
-    "brief": "Value at array index",
+    "brief": "Value at array index, or code point at string index",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Return the value at a zero-based index in an array. Negative indexes count from the end (-1 is the last element). If the index is out of range, the result is undefined. Bracket indexing a[index] uses the same out-of-range result (undefined).",
+    "description": "Return the value at a zero-based index in an array, or the code point at a zero-based index in a string as a one-code-point string (as ECMAScript at does for both). Negative indexes count from the end (-1 is the last). If the index is out of range, the result is undefined. Bracket indexing a[index] and s[index] use the same out-of-range result (undefined).",
     "functionId": "at",
     "functionLabel": "at",
     "pure": true,
     "parameters": [
         {
-            "dataType": "array",
-            "description": "Array to index.",
+            "description": "Array, or string, to index.",
             "name": "array"
         },
         {

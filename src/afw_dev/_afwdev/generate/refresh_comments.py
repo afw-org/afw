@@ -98,7 +98,7 @@ def refresh_comments(skel, update):
 # c files in srcdir_path.  The comments replaced are of the form:
 #
 # /*
-#  * some tag line such as: * Adaptive function: bag<string>
+#  * some tag line such as: * Adaptive function: array<string>
 #  * ... more lines ...
 #  */
 #

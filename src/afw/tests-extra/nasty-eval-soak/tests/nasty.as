@@ -1,7 +1,7 @@
 /* Result: true.
  *
  * This script does not compute anything useful. If every nested
- * evaluate/compile, closure, throw, stream, template, and bag of
+ * evaluate/compile, closure, throw, stream, template, and chain of
  * objects survives, it returns true. If anything leaks, dangles, or
  * mis-evaluates, an assert fails or the process dies. One request;
  * the firehose repeats it.
@@ -191,12 +191,12 @@ assert(pop(a).q[1] === 4);
 shift(a);
 assert(length(a) === 0);
 
-let bag = { "n": 0 };
+let chain = { "n": 0 };
 for (i = 0; i < 6; i = i + 1) {
-    bag = { "n": i, "prev": bag };
+    chain = { "n": i, "prev": chain };
 }
-assert(bag.n === 5);
-assert(bag.prev.prev.n === 3);
+assert(chain.n === 5);
+assert(chain.prev.prev.n === 3);
 
 const cat = retrieve_objects("afw", "_AdaptiveObjectType_",
     undefined, undefined, undefined, 0);

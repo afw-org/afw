@@ -65,7 +65,7 @@
             "propertyTypes": {
                 "TestOnPropertyList": {
                     "dataType": "array",
-                    "onGetProperty": "let  l = [];\n\nadd_entries(l, current::mappedValue);\n\nreturn l;",
+                    "onGetProperty": "let  l = [];\n\npush(l, current::mappedValue);\n\nreturn l;",
                     "onSetProperty": "//let x = current::value[0];\nreturn \"x\";"
                 }
             }

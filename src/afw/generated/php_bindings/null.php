@@ -26,6 +26,35 @@ class null
     }
 
     /**
+     * array_null()
+     *
+     * Construct a new array of null from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType null, and adding a value of another
+     * data type to the array later throws. A value of another data type is an
+     * error, never converted. This is usually written
+     * `array<null>(`...values).
+     *
+     * @param $values A value of dataType null, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of null.
+     */
+    public function array_null(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_null");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_null()
      *
      * Returns value unchanged if it is dataType null. Otherwise, including
@@ -43,52 +72,6 @@ class null
         $request = $this->$session->request();
 
         $request->set("function", "as_null");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_null()
-     *
-     * Takes any number of null values and returns an array of null.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_null(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<null>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_null()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_null(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<null>");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

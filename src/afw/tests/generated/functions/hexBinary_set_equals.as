@@ -11,7 +11,7 @@
 //? source: ...
 
 set_equals<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "0fb7"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
         "0fb7"hexBinary,
@@ -25,7 +25,7 @@ set_equals<hexBinary>(
         "0fb7"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "0fb7"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     )
@@ -38,7 +38,7 @@ set_equals<hexBinary>(
 //? source: ...
 
 set_equals<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "0fb7"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
         "0fb7"hexBinary,
@@ -52,7 +52,7 @@ set_equals<hexBinary>(
         "0fb7"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "0fb7"hexBinary,
         "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"hexBinary,
         "0fb7"hexBinary,
@@ -67,11 +67,11 @@ set_equals<hexBinary>(
 //? source: ...
 
 set_equals<hexBinary>(
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     ),
-    bag<hexBinary>(
+    array<hexBinary>(
         "x"hexBinary,
         "x"hexBinary
     )

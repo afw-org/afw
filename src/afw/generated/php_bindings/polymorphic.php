@@ -146,53 +146,6 @@ class polymorphic
     }
 
     /**
-     * bag()
-     *
-     * Takes any number of `<dataType>` values and returns an array of
-     * `<dataType>`.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * ceil()
      *
      * Determine the smallest integer that is greater then or equal to the

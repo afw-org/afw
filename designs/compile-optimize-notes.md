@@ -105,7 +105,7 @@ end-to-end script luck. Ideas:
    calls returning string/array only after produce type is honest — optional
    cross-link tests, not a substitute for (1)–(4).
 
-### Explicitly not in this deferred bag
+### Explicitly not in this deferred set
 
 - Rewiring for-of / `s[i]` onto iterators (#153 consumer step).
 - Expanding #28 annotation surface (generics, etc.).

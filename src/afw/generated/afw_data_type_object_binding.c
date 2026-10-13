@@ -797,7 +797,7 @@ impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    /* Permanent bag: hold is self; isolate is get_assignable_value. */
+    /* Permanent object or array: hold is self; isolate is get_assignable_value. */
     (void)xctx;
     return instance;
 }

@@ -8,7 +8,7 @@
 //? test: subset<string>-1
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { },
             { }
         
@@ -16,9 +16,9 @@
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
     ),
-    bag<string>(
+    array<string>(
     )
 )
 
@@ -26,7 +26,7 @@ subset<string>(
 //? test: subset<string>-2
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { 'one', 'three', 'one', 'three' },
             { 'one', 'one', 'one', 'two', 'two', 'two', 'three', 'three', 'three' }
         
@@ -34,13 +34,13 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("three"),
         string("one"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("one"),
         string("one"),
@@ -57,7 +57,7 @@ subset<string>(
 //? test: subset<string>-3
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { 'one', 'two', 'three' },
             { 'four', 'five' }
         
@@ -65,12 +65,12 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("four"),
         string("five")
     )
@@ -80,7 +80,7 @@ subset<string>(
 //? test: subset<string>-4
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             { 'one', 'two', 'three' },
             { 'one', 'two', 'four' }
         
@@ -88,12 +88,12 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("four")
@@ -104,7 +104,7 @@ subset<string>(
 //? test: subset<string>-5
 //? description: ...
 
-            String subset of bags:
+            String subset of arrays:
             {
                 'two', 'four', 'six', 'eight', 'ten',
                 'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'
@@ -119,7 +119,7 @@ subset<string>(
 //? source: ...
 
 subset<string>(
-    bag<string>(
+    array<string>(
         string("two"),
         string("four"),
         string("six"),
@@ -131,7 +131,7 @@ subset<string>(
         string("eighteen"),
         string("twenty")
     ),
-    bag<string>(
+    array<string>(
         string("one"),
         string("two"),
         string("three"),

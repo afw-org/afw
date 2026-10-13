@@ -11,7 +11,7 @@ function ident(x) {
 function before(a, b) {
     return a < b;
 }
-let nums = bag<integer>(0, 1, 2, 3, 4);
+let nums = array<integer>(0, 1, 2, 3, 4);
 let o = { a: 1, b: 2, c: 3 };
 let s = "a,b,c,d,e";
 while (true) {
@@ -20,7 +20,7 @@ while (true) {
     filter(keep, nums);
     map(ident, nums);
     sort(before, nums);
-    bag<integer>(1, 2, 3);
+    array<integer>(1, 2, 3);
     intersection<integer>(nums, nums);
     split(s, ",");
     union<integer>(nums, nums);

@@ -1,0 +1,59 @@
+{
+    "brief": "Construct an array of <dataType> from values or spread arrays",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "dataTypeRequired": true,
+    "description": "Construct a new array of <dataType> from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType <dataType>, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<<dataType>>(...values).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a value is not dataType <dataType>"
+        }
+    ],
+    "functionId": "array",
+    "functionLabel": "array",
+    "parameters": [
+        {
+            "minArgs": 0,
+            "description": "A value of dataType <dataType>, or ... followed by an expression that results in an array, every entry of which is included.",
+            "name": "values"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "array",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "function",
+        "hexBinary",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "null",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_array_of_data_type",
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "The constructed array of <dataType>.",
+        "polymorphicDataTypeParameter": true
+    }
+}

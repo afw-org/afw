@@ -20,6 +20,7 @@
         {
             "dataType": "array",
             "description": "This is an array to be reduced.",
+            "iterableAsArray": true,
             "name": "array"
         }
     ],

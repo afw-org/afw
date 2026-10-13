@@ -8,7 +8,7 @@
 //? test: subset<boolean>-1
 //? description: ...
 
-            Boolean subset for bags:
+            Boolean subset for arrays:
             { },
             { }
         
@@ -16,9 +16,9 @@
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -26,7 +26,7 @@ subset<boolean>(
 //? test: subset<boolean>-2
 //? description: ...
 
-            Boolean subset for bags:
+            Boolean subset for arrays:
             { 'true', 'true', 'false' },
             { 'false', 'true' }
         
@@ -34,12 +34,12 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(true)
     )
@@ -49,7 +49,7 @@ subset<boolean>(
 //? test: subset<boolean>-3
 //? description: ...
 
-            Boolean subset for bags:
+            Boolean subset for arrays:
             { 'false', 'false', 'false', 'true' },
             { }
         
@@ -57,13 +57,13 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
     )
 )
 
@@ -71,7 +71,7 @@ subset<boolean>(
 //? test: subset<boolean>-4
 //? description: ...
 
-            Boolean subset for bags:
+            Boolean subset for arrays:
             { 'false' },
             { 'false', 'false', 'false', 'false' }
         
@@ -79,10 +79,10 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(false)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(false),
         boolean(false),
         boolean(false),
@@ -94,7 +94,7 @@ subset<boolean>(
 //? test: subset<boolean>-5
 //? description: ...
 
-            Boolean subset for bags:
+            Boolean subset for arrays:
             { 'true', 'true', 'true', 'true', 'true' },
             { 'true', 'true', 'true', 'true', 'true', 'false', 'false', 'false', 'false', 'false' }
         
@@ -102,14 +102,14 @@ subset<boolean>(
 //? source: ...
 
 subset<boolean>(
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true),
         boolean(true)
     ),
-    bag<boolean>(
+    array<boolean>(
         boolean(true),
         boolean(true),
         boolean(true),

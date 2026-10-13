@@ -11,6 +11,40 @@
 import requests
 import json
 
+def array_anyURI(session, values):
+    """
+    Construct an array of anyURI from values or spread arrays
+
+    Construct a new array of anyURI from the given values, the same as array()
+    except that the new array is typed: each value, and each entry of a spread
+    array, must be dataType anyURI, and adding a value of another data type to
+    the array later throws. A value of another data type is an error, never
+    converted. This is usually written `array<anyURI>(`...values).
+
+    Args:
+        values (object): A value of dataType anyURI, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of anyURI.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_anyURI",
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def as_anyURI(session, value):
     """
     Asserts that value is dataType anyURI
@@ -64,64 +98,6 @@ def at_least_one_member_of_anyURI(session, array1, array2):
         "function": "at_least_one_member_of<anyURI>",
         "array1": array1,
         "array2": array2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_anyURI(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of anyURI values and returns an array of anyURI.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<anyURI>"
-    }
-
-    if values != None:
-        action['values'] = values
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_anyURI(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<anyURI>",
-        "value": value
     }
 
     request.add_action(action)

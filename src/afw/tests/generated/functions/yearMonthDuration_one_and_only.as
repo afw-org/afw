@@ -11,7 +11,7 @@
 //? source: ...
 
 one_and_only<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P20M"yearMonthDuration
     )
 )
@@ -23,7 +23,7 @@ one_and_only<yearMonthDuration>(
 //? source: ...
 
 one_and_only<yearMonthDuration>(
-    bag<yearMonthDuration>(
+    array<yearMonthDuration>(
         "P2Y6M"yearMonthDuration
     )
 )

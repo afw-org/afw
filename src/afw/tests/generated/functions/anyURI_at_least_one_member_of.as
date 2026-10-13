@@ -11,7 +11,7 @@
 //? source: ...
 
 at_least_one_member_of<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -20,7 +20,7 @@ at_least_one_member_of<anyURI>(
         "../prod.html#shirt"anyURI,
         "urn:example:org"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "../dition.html"anyURI
     )
 )
@@ -32,7 +32,7 @@ at_least_one_member_of<anyURI>(
 //? source: ...
 
 at_least_one_member_of<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "http://www.w3schools.com/images/smiley.gif"anyURI,
         "http://datypic.com"anyURI,
         "../%C3%A9dition.html"anyURI,
@@ -41,7 +41,7 @@ at_least_one_member_of<anyURI>(
         "../prod.html#shirt"anyURI,
         "urn:example:org"anyURI
     ),
-    bag<anyURI>(
+    array<anyURI>(
         "../ditionxx.html"anyURI
     )
 )
@@ -53,7 +53,7 @@ at_least_one_member_of<anyURI>(
 //? source: ...
 
 at_least_one_member_of<anyURI>(
-    bag<anyURI>(
+    array<anyURI>(
         "x"anyURI,
         "x"anyURI
     )

@@ -11,16 +11,16 @@
 import requests
 import json
 
-def add_string(session, string, values):
+def add_string(session, values):
     """
     Add (concatenate) strings
 
-    Add (concatenate) a string with 1 or more values of any data type
-    converted to their string value and return the string result.
+    Add (concatenate) 2 or more string values and return the string result.
+    Every value must be a string, the same as the + operator: to convert
+    values while concatenating, use concat() or string().
 
     Args:
-        string (str):
-        values (object):
+        values (str):
 
     Returns:
         str:
@@ -30,7 +30,40 @@ def add_string(session, string, values):
 
     action = {
         "function": "add<string>",
-        "string": string,
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def array_string(session, values):
+    """
+    Construct an array of string from values or spread arrays
+
+    Construct a new array of string from the given values, the same as array()
+    except that the new array is typed: each value, and each entry of a spread
+    array, must be dataType string, and adding a value of another data type to
+    the array later throws. A value of another data type is an error, never
+    converted. This is usually written `array<string>(`...values).
+
+    Args:
+        values (object): A value of dataType string, or ... followed by an
+            expression that results in an array, every entry of which is
+            included.
+
+    Returns:
+        list: The constructed array of string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "array_string",
         "values": values
     }
 
@@ -96,64 +129,6 @@ def at_least_one_member_of_string(session, array1, array2):
         "array1": array1,
         "array2": array2
     }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_size_string(session, value):
-    """
-    Returns the number of values in a bag
-
-    This returns the integer number of values in array.
-
-    Args:
-        value (list):
-
-    Returns:
-        int:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag_size<string>",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def bag_string(session, values=None):
-    """
-    Makes an array from values
-
-    Takes any number of string values and returns an array of string.
-
-    Args:
-        values (list):
-
-    Returns:
-        list:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "bag<string>"
-    }
-
-    if values != None:
-        action['values'] = values
 
     request.add_action(action)
 

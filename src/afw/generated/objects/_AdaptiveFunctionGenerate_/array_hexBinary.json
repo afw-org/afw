@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwArrayHexBinary",
+    "brief": "Construct an array of hexBinary from values or spread arrays",
+    "camelCaseFunctionLabel": "arrayHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Construct a new array of hexBinary from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType hexBinary, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<hexBinary>(...values).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a value is not dataType <dataType>"
+        }
+    ],
+    "functionId": "array_hexBinary",
+    "functionLabel": "array_hexBinary",
+    "parameters": [
+        {
+            "description": "A value of dataType hexBinary, or ... followed by an expression that results in an array, every entry of which is included.",
+            "minArgs": 0,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "hexBinary",
+        "description": "The constructed array of hexBinary."
+    },
+    "untypedFunctionId": "array",
+    "useExecuteFunction": "afw_function_execute_array_of_data_type"
+}

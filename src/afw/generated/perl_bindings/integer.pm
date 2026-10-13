@@ -15,10 +15,9 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     abs_integer 
     add_integer 
+    array_integer 
     as_integer 
     at_least_one_member_of_integer 
-    bag_integer 
-    bag_size_integer 
     divide_integer 
     eq_integer 
     eqx_integer 
@@ -73,6 +72,22 @@ Add
     $values
 
 
+=head3 array_integer
+
+Construct a new array of integer from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType integer, and adding a value of another data type to
+the array later throws. A value of another data type is an error, never
+converted. This is usually written `array<integer>(`...values).
+Construct an array of integer from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType integer, or ... followed by an expression that results in
+an array, every entry of which is included.
+
 =head3 as_integer
 
 Returns value unchanged if it is dataType integer. Otherwise, including when
@@ -102,26 +117,6 @@ The first array.
     $array2
 
 The second array.
-
-=head3 bag_integer
-
-Takes any number of integer values and returns an array of integer.
-Makes an array from values
-
-=head4 Parameters
-
-    $values
-
-
-=head3 bag_size_integer
-
-This returns the integer number of values in array.
-Returns the number of values in a bag
-
-=head4 Parameters
-
-    $value
-
 
 =head3 divide_integer
 
@@ -461,6 +456,17 @@ sub add_integer {
     return $request->getResult();
 }
 
+sub array_integer {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_integer");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub as_integer {
     my ($value) = @_;
 
@@ -480,30 +486,6 @@ sub at_least_one_member_of_integer {
     $request->set("function" => "at_least_one_member_of<integer>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
-
-    return $request->getResult();
-}
-
-sub bag_integer {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag<integer>");
-
-    if (defined $values)
-        $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub bag_size_integer {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "bag_size<integer>");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

@@ -79,6 +79,7 @@ impl_crypto_decrypt_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -103,6 +104,7 @@ impl_crypto_decrypt_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__AES_GCM_parameters_including_required_iv_and_tag_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -135,6 +137,7 @@ impl_crypto_decrypt_parameter_2 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -159,6 +162,7 @@ impl_crypto_decrypt_parameter_3 = {
     NULL,
     &afw_crypto_self_v_zz__Ciphertext_without_tag__base64Binary_or_hexBinary__,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -270,6 +274,7 @@ impl_crypto_derive_key_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -294,6 +299,7 @@ impl_crypto_derive_key_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__PBKDF2_parameters_object_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -326,6 +332,7 @@ impl_crypto_derive_key_parameter_2 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -354,6 +361,7 @@ impl_crypto_derive_key_parameter_3 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     &afw_data_type_string_direct
 };
 
@@ -379,6 +387,7 @@ impl_crypto_derive_key_parameter_4 = {
     &afw_crypto_self_v_zz__Default_false_,
     &afw_crypto_integer_self_v_zz___1,
     &afw_crypto_boolean_self_v_true,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -490,6 +499,7 @@ impl_crypto_destroy_key_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -514,6 +524,7 @@ impl_crypto_destroy_key_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__CryptoKey_object_with_keyId_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -623,6 +634,7 @@ impl_crypto_digest_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -651,6 +663,7 @@ impl_crypto_digest_parameter_1 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -675,6 +688,7 @@ impl_crypto_digest_parameter_2 = {
     NULL,
     &afw_crypto_self_v_zz__Data_to_hash__base64Binary_or_hexBinary__,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -779,6 +793,7 @@ impl_crypto_encrypt_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -803,6 +818,7 @@ impl_crypto_encrypt_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__AES_GCM_parameters_object_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -835,6 +851,7 @@ impl_crypto_encrypt_parameter_2 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -859,6 +876,7 @@ impl_crypto_encrypt_parameter_3 = {
     NULL,
     &afw_crypto_self_v_zz__Plaintext__base64Binary_or_hexBinary__,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -970,6 +988,7 @@ impl_crypto_export_key_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -994,6 +1013,7 @@ impl_crypto_export_key_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__CryptoKey_object_with_keyId_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1103,6 +1123,7 @@ impl_crypto_generate_key_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1127,6 +1148,7 @@ impl_crypto_generate_key_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__Algorithm_string_or_object___name__length____,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1159,6 +1181,7 @@ impl_crypto_generate_key_parameter_2 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     &afw_data_type_string_direct
 };
 
@@ -1184,6 +1207,7 @@ impl_crypto_generate_key_parameter_3 = {
     &afw_crypto_self_v_zz__1b939889f0c4,
     &afw_crypto_integer_self_v_zz___1,
     &afw_crypto_boolean_self_v_true,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1294,6 +1318,7 @@ impl_crypto_hmac_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1318,6 +1343,7 @@ impl_crypto_hmac_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__HMAC_algorithm__HMAC_SHA_256_or_HMAC_SHA_512_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1350,6 +1376,7 @@ impl_crypto_hmac_parameter_2 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1374,6 +1401,7 @@ impl_crypto_hmac_parameter_3 = {
     NULL,
     &afw_crypto_self_v_zz__Data_to_MAC__base64Binary_or_hexBinary__,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1485,6 +1513,7 @@ impl_crypto_hmac_verify_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1509,6 +1538,7 @@ impl_crypto_hmac_verify_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__HMAC_algorithm__HMAC_SHA_256_or_HMAC_SHA_512_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1541,6 +1571,7 @@ impl_crypto_hmac_verify_parameter_2 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1569,6 +1600,7 @@ impl_crypto_hmac_verify_parameter_3 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1593,6 +1625,7 @@ impl_crypto_hmac_verify_parameter_4 = {
     NULL,
     &afw_crypto_self_v_zz__Expected_MAC__base64Binary_or_hexBinary__,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1705,6 +1738,7 @@ impl_crypto_import_key_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1729,6 +1763,7 @@ impl_crypto_import_key_parameter_1 = {
     NULL,
     &afw_crypto_self_v_zz__94f7dad9312a,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1761,6 +1796,7 @@ impl_crypto_import_key_parameter_2 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1789,6 +1825,7 @@ impl_crypto_import_key_parameter_3 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     &afw_data_type_string_direct
 };
 
@@ -1814,6 +1851,7 @@ impl_crypto_import_key_parameter_4 = {
     &afw_crypto_self_v_zz__1b939889f0c4,
     &afw_crypto_integer_self_v_zz___1,
     &afw_crypto_boolean_self_v_true,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -1925,6 +1963,7 @@ impl_crypto_seal_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1953,6 +1992,7 @@ impl_crypto_seal_parameter_1 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -1977,6 +2017,7 @@ impl_crypto_seal_parameter_2 = {
     NULL,
     &afw_crypto_self_v_zz__e3850562fe04,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -2087,6 +2128,7 @@ impl_crypto_unseal_returns = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -2115,6 +2157,7 @@ impl_crypto_unseal_parameter_1 = {
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
     NULL
 };
 
@@ -2139,6 +2182,7 @@ impl_crypto_unseal_parameter_2 = {
     NULL,
     &afw_crypto_self_v_zz__Sealed_object_or_pure_JSON_string_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
@@ -2245,6 +2289,7 @@ impl_crypto_version_info_returns = {
     NULL,
     &afw_crypto_self_v_zz__Version_and_algorithm_information_,
     &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,
     &afw_crypto_boolean_self_v_false,

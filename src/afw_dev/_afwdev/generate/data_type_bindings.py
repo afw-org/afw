@@ -1986,9 +1986,9 @@ def write_c_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
         if id == 'object' or id == 'array':
-            bag = 'object' if id == 'object' else 'array'
-            fd.write('    const afw_' + bag + '_t *from;\n')
-            fd.write('    const afw_' + bag + '_t *to = NULL;\n')
+            kind = 'object' if id == 'object' else 'array'
+            fd.write('    const afw_' + kind + '_t *from;\n')
+            fd.write('    const afw_' + kind + '_t *to = NULL;\n')
             fd.write('\n')
             fd.write('    if (value->inf == &afw_value_permanent_' + id + '_inf) {\n')
             fd.write('        return value;\n')
@@ -2550,7 +2550,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('    afw_xctx_t *xctx)\n')
     fd.write('{\n')
     if id in ('object', 'array'):
-        fd.write('    /* Permanent bag: hold is self; isolate is get_assignable_value. */\n')
+        fd.write('    /* Permanent object or array: hold is self; isolate is get_assignable_value. */\n')
         fd.write('    (void)xctx;\n')
         fd.write('    return instance;\n')
     else:

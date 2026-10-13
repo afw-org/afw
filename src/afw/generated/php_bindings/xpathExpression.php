@@ -26,6 +26,35 @@ class xpathExpression
     }
 
     /**
+     * array_xpathExpression()
+     *
+     * Construct a new array of xpathExpression from the given values, the
+     * same as array() except that the new array is typed: each value, and
+     * each entry of a spread array, must be dataType xpathExpression, and
+     * adding a value of another data type to the array later throws. A value
+     * of another data type is an error, never converted. This is usually
+     * written `array<xpathExpression>(`...values).
+     *
+     * @param $values A value of dataType xpathExpression, or ... followed by
+     *                 an expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of xpathExpression.
+     */
+    public function array_xpathExpression(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_xpathExpression");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * as_xpathExpression()
      *
      * Returns value unchanged if it is dataType xpathExpression. Otherwise,
@@ -48,53 +77,6 @@ class xpathExpression
         $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_size_xpathExpression()
-     *
-     * This returns the integer number of values in array.
-     *
-     * @param array $value
-     *
-     * @return integer
-     */
-    public function bag_size_xpathExpression(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag_size<xpathExpression>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * bag_xpathExpression()
-     *
-     * Takes any number of xpathExpression values and returns an array of
-     * xpathExpression.
-     *
-     * @param array $values
-     *
-     * @return array
-     */
-    public function bag_xpathExpression(, $values = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "bag<xpathExpression>");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        if ($values != null)
-            $request->set('values', $values);
-
         return $request->get_result();
     }
 

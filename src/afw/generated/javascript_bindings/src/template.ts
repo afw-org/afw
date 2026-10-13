@@ -18,6 +18,28 @@ interface IAnyObject {
 }
 
 /**
+ * Construct a new array of template from the given values, the same as
+ * array() except that the new array is typed: each value, and each entry of a
+ * spread array, must be dataType template, and adding a value of another data
+ * type to the array later throws. A value of another data type is an error,
+ * never converted. This is usually written `array<template>(`...values).
+ * 
+ * @param {} values - A value of dataType template, or ... followed by an
+ *     expression that results in an array, every entry of which is included.
+ * 
+ * @returns {array} The constructed array of template.
+ */
+export function afwArrayTemplate(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "array_template";
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns value unchanged if it is dataType template. Otherwise, including
  * when value is undefined, throws an error. It never converts: to get a
  * template from a value of another data type, write a typed literal or call a
@@ -34,42 +56,6 @@ export function afwAsTemplate(client : any, value : any) : any {
 
     _action["function"] = "as_template";
     _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * This returns the integer number of values in array.
- * 
- * @param {array} value -
- * 
- * @returns {integer}
- */
-export function afwBagSizeTemplate(client : any, value : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag_size<template>";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Takes any number of template values and returns an array of template.
- * 
- * @param {array} values -
- * 
- * @returns {array}
- */
-export function afwBagTemplate(client : any, values? : any[]) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "bag<template>";
-
-    if (values !== undefined)
-        _action["values"] = values;
 
     return client.perform(_action);
 }

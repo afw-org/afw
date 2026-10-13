@@ -9,7 +9,7 @@
 //? description: Test filter function with integers.
 //? expect: ...
 
-bag<integer>(
+array<integer>(
     4,
     2,
     0
@@ -20,7 +20,7 @@ bag<integer>(
 filter(
     string("ge"),
     4,
-    bag<integer>(
+    array<integer>(
         4,
         2,
         9,
@@ -33,7 +33,7 @@ filter(
 //? description: Test filter function with strings.
 //? expect: ...
 
-bag<string>(
+array<string>(
     string("aaaaa")
 )
 
@@ -42,7 +42,7 @@ bag<string>(
 filter(
     string("gt"),
     string("mmmmm"),
-    bag<string>(
+    array<string>(
         string("zzzzz"),
         string("mmmmm"),
         string("aaaaa"),
