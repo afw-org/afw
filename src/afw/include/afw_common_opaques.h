@@ -756,6 +756,14 @@ typedef struct afw_try_s
 afw_try_t;
 
 /**
+ * @brief Opaque `afw_utf8_regexp_t`.
+ *
+ * A compiled regular expression. See afw_utf8.h.
+ */
+typedef struct afw_utf8_regexp_s
+afw_utf8_regexp_t;
+
+/**
  * @brief Opaque `afw_value_assignment_t`.
  *
  * See afw_value_internal.h for struct and more information.

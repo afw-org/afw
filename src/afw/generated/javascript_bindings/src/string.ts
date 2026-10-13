@@ -644,16 +644,18 @@ export function afwOneAndOnlyString(client : any, array : any[]) : any {
 }
 
 /**
- * Search string value for a regular expression and return index. If not
- * found, -1 is returned.
+ * Searches string value for the regular expression and returns the code point
+ * index of the first match, or -1 if there is none.
  * 
  * @param {string} value - The string value to search.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
- * @returns {integer} Zero-based index of subString or -1 if not found.
+ * @returns {integer} Zero-based code point index of the first match, or -1.
  */
-export function afwRegexpIndexOfString(client : any, value : string, regexp : string) : any {
+export function afwRegexpIndexOfString(client : any, value : string, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -665,16 +667,18 @@ export function afwRegexpIndexOfString(client : any, value : string, regexp : st
 }
 
 /**
- * Checks whether string value matches the regular expression regexp and
- * return the boolean result.
+ * Checks whether the regular expression matches anywhere in string value and
+ * returns the boolean result. Anchor with ^ and \z to match the whole value.
  * 
  * @param {string} value -
  * 
- * @param {string} regexp -
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
  * @returns {boolean}
  */
-export function afwRegexpMatchString(client : any, value : string, regexp : string) : any {
+export function afwRegexpMatchString(client : any, value : string, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -686,21 +690,27 @@ export function afwRegexpMatchString(client : any, value : string, regexp : stri
 }
 
 /**
- * Replace matched values for a regular expression in a string value.
+ * Replaces matches of the regular expression in string value, left to right,
+ * up to limit times. An empty match is replaced too.
  * 
  * @param {string} value - The original string value.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
- * @param {string} replacement - The replacement string.
+ * @param {string} replacement - The replacement for each match. $n is the
+ *     text of group n ($0 the whole match), ${name} the text of a named
+ *     group, and a backslash makes the next character literal (\$ for a
+ *     dollar sign). Any other $ is an error.
  * 
- * @param {integer} limit - This is the maximum times to replace. The default
- *     is 1. Specify -1 to replace all occurrences.
+ * @param {integer} limit - The maximum number of matches to replace. The
+ *     default is 1. Specify -1 (or any negative) to replace every match.
  * 
  * @returns {string} Result text as string (not re-typed as the input data
  *     type).
  */
-export function afwRegexpReplaceString(client : any, value : string, regexp : string, replacement : string, limit? : number) : any {
+export function afwRegexpReplaceString(client : any, value : string, regexp : any, replacement : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
@@ -1174,6 +1184,24 @@ export function afwToPasswordString(client : any, value : string) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "to_password<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts string value to a compiled regexp, the same value as a regexp
+ * literal. A pattern ICU does not accept is a conversion_error.
+ * 
+ * @param {string} value -
+ * 
+ * @returns {regexp}
+ */
+export function afwToRegexpString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_regexp<string>";
     _action["value"] = value;
 
     return client.perform(_action);

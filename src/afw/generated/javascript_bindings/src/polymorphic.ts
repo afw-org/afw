@@ -873,16 +873,18 @@ export function afwPow(client : any, base : any, exponent : any) : any {
 }
 
 /**
- * Search `<dataType>` value for a regular expression and return index. If not
- * found, -1 is returned.
+ * Searches `<dataType>` value for the regular expression and returns the code
+ * point index of the first match, or -1 if there is none.
  * 
  * @param {} value - The `<dataType>` value to search.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
- * @returns {integer} Zero-based index of subString or -1 if not found.
+ * @returns {integer} Zero-based code point index of the first match, or -1.
  */
-export function afwRegexpIndexOf(client : any, value : any, regexp : string) : any {
+export function afwRegexpIndexOf(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -894,16 +896,19 @@ export function afwRegexpIndexOf(client : any, value : any, regexp : string) : a
 }
 
 /**
- * Checks whether `<dataType>` value matches the regular expression regexp and
- * return the boolean result.
+ * Checks whether the regular expression matches anywhere in `<dataType>`
+ * value and returns the boolean result. Anchor with ^ and \z to match the
+ * whole value.
  * 
  * @param {} value -
  * 
- * @param {string} regexp -
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
  * @returns {boolean}
  */
-export function afwRegexpMatch(client : any, value : any, regexp : string) : any {
+export function afwRegexpMatch(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -915,21 +920,27 @@ export function afwRegexpMatch(client : any, value : any, regexp : string) : any
 }
 
 /**
- * Replace matched values for a regular expression in a `<dataType>` value.
+ * Replaces matches of the regular expression in `<dataType>` value, left to
+ * right, up to limit times. An empty match is replaced too.
  * 
  * @param {} value - The original `<dataType>` value.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
- * @param {string} replacement - The replacement string.
+ * @param {string} replacement - The replacement for each match. $n is the
+ *     text of group n ($0 the whole match), ${name} the text of a named
+ *     group, and a backslash makes the next character literal (\$ for a
+ *     dollar sign). Any other $ is an error.
  * 
- * @param {integer} limit - This is the maximum times to replace. The default
- *     is 1. Specify -1 to replace all occurrences.
+ * @param {integer} limit - The maximum number of matches to replace. The
+ *     default is 1. Specify -1 (or any negative) to replace every match.
  * 
  * @returns {string} Result text as string (not re-typed as the input data
  *     type).
  */
-export function afwRegexpReplace(client : any, value : any, regexp : string, replacement : string, limit? : number) : any {
+export function afwRegexpReplace(client : any, value : any, regexp : any, replacement : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
@@ -1463,6 +1474,24 @@ export function afwToPassword(client : any, value : any) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "to_password";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts `<dataType>` value to a compiled regexp, the same value as a
+ * regexp literal. A pattern ICU does not accept is a conversion_error.
+ * 
+ * @param {} value -
+ * 
+ * @returns {regexp}
+ */
+export function afwToRegexp(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_regexp";
     _action["value"] = value;
 
     return client.perform(_action);

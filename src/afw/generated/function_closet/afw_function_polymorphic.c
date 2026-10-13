@@ -1115,8 +1115,8 @@ afw_function_execute_one_and_only(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Search `<dataType>` value for a regular expression and return index. If not
- * found, -1 is returned.
+ * Searches `<dataType>` value for the regular expression and returns the code
+ * point index of the first match, or -1 if there is none.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1130,7 +1130,7 @@ afw_function_execute_one_and_only(
  * ```
  *   function regexp_index_of <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): integer;
  * ```
  *
@@ -1138,11 +1138,13 @@ afw_function_execute_one_and_only(
  *
  *   value - (``<Type>``) The `<dataType>` value to search.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
  *
  * Returns:
  *
- *   (integer) Zero-based index of subString or -1 if not found.
+ *   (integer) Zero-based code point index of the first match, or -1.
  */
 const afw_value_t *
 afw_function_execute_regexp_index_of(
@@ -1161,8 +1163,9 @@ afw_function_execute_regexp_index_of(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Checks whether `<dataType>` value matches the regular expression regexp and
- * return the boolean result.
+ * Checks whether the regular expression matches anywhere in `<dataType>` value
+ * and returns the boolean result. Anchor with ^ and \z to match the whole
+ * value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1176,7 +1179,7 @@ afw_function_execute_regexp_index_of(
  * ```
  *   function regexp_match <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -1184,7 +1187,9 @@ afw_function_execute_regexp_index_of(
  *
  *   value - (``<Type>``)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
  *
  * Returns:
  *
@@ -1207,7 +1212,8 @@ afw_function_execute_regexp_match(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Replace matched values for a regular expression in a `<dataType>` value.
+ * Replaces matches of the regular expression in `<dataType>` value, left to
+ * right, up to limit times. An empty match is replaced too.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1221,7 +1227,7 @@ afw_function_execute_regexp_match(
  * ```
  *   function regexp_replace <dataType>(
  *       value: dataType,
- *       regexp: string,
+ *       regexp: regexp,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -1231,12 +1237,17 @@ afw_function_execute_regexp_match(
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
  *
- *   replacement - (string) The replacement string.
+ *   replacement - (string) The replacement for each match. $n is the text of
+ *       group n ($0 the whole match), ${name} the text of a named group, and a
+ *       backslash makes the next character literal (\$ for a dollar sign). Any
+ *       other $ is an error.
  *
- *   limit - (optional integer) This is the maximum times to replace. The
- *       default is 1. Specify -1 to replace all occurrences.
+ *   limit - (optional integer) The maximum number of matches to replace. The
+ *       default is 1. Specify -1 (or any negative) to replace every match.
  *
  * Returns:
  *
@@ -1591,6 +1602,53 @@ afw_function_execute_subset(
  */
 const afw_value_t *
 afw_function_execute_substring(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for to_regexp
+ *
+ * afw_function_execute_to_regexp
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Converts `<dataType>` value to a compiled regexp, the same value as a regexp
+ * literal. A pattern ICU does not accept is a conversion_error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_regexp <dataType>(
+ *       value: dataType
+ *   ): regexp;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (regexp)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - the pattern does not compile
+ */
+const afw_value_t *
+afw_function_execute_to_regexp(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

@@ -96,7 +96,7 @@ return 0;
 
 //? test: 11.11.1_A3_T3
 //? description: If boolean(x) is false, return x
-//? expect: error:Parameter 1 of function 'and' must evaluate to data type 'boolean' but evaluated to be 'string'
+//? expect: error:Parameter 1 of function 'and' must evaluate to data type 'boolean' but evaluated to be 'string'; write string_to_boolean(v)
 //? source: ...
 #!/usr/bin/env afw
 
@@ -141,7 +141,7 @@ return 0;
 
 //? test: 11.11.1_A4_T3
 //? description: If boolean(x) is true, return y
-//? expect: error:Parameter 1 of function 'and' must evaluate to data type 'boolean' but evaluated to be 'string'
+//? expect: error:Parameter 1 of function 'and' must evaluate to data type 'boolean' but evaluated to be 'string'; write string_to_boolean(v)
 //? source: ...
 #!/usr/bin/env afw
 

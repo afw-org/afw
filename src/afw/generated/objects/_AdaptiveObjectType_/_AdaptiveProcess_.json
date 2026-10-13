@@ -75,6 +75,17 @@
                 "valueAccessor": "size"
             }
         },
+        "limitRegexpMatchSteps": {
+            "allowQuery": true,
+            "brief": "Regular expression match step limit",
+            "dataType": "integer",
+            "description": "Steps of the ICU match engine (uregex_setTimeLimit units) one regular expression match may take. A match that backtracks past it fails with payload_too_large; 1000 is about 0.1 second of backtracking on a current machine, and linear scans use a small part of it. Default 1000. 0 = unlimited.",
+            "label": "Limit Regexp Match Steps",
+            "runtime": {
+                "memberName": "limit_regexp_match_steps",
+                "valueAccessor": "size"
+            }
+        },
         "limitRequestPoolBytes": {
             "allowQuery": true,
             "brief": "Request/thread ST asked-for cap",

@@ -1,0 +1,20 @@
+{
+    "modelId": "RegexpModel",
+    "description": "onGetObject with regexp literals shared by request threads (#585)",
+    "objectTypes": {
+        "RegexpRead": {
+            "onGetObject": "const r = /^(?<w>[a-z]+)-(\\d+)$/i; const kept = r; const id: string = current::objectId; return { \"m\": regexp_match(id, kept), \"i\": regexp_index_of(id, /\\d/), \"r\": regexp_replace(id, r, \"${w}:$2\") };",
+            "propertyTypes": {
+                "m": {
+                    "dataType": "boolean"
+                },
+                "i": {
+                    "dataType": "integer"
+                },
+                "r": {
+                    "dataType": "string"
+                }
+            }
+        }
+    }
+}

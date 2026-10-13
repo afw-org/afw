@@ -114,7 +114,7 @@ def run():
             index_create("lmdb", "name", undefined, [ot], undefined, undefined, true, false);
             flag_set(["trace:adapterId:lmdb"], true);
             retrieve_objects("lmdb", ot,
-                { "filter": { "op": "match", "property": "name", "value": "app.*" } });
+                { "filter": { "op": "match", "property": "name", "value": "^app.*" } });
             return 0;
             """,
             "retrieve_objects: using index query",

@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringRegexp",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringRegexp",
+    "category": "regexp",
+    "dataTypeMethod": true,
+    "description": "Converts regexp value to string. For array values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<regexp>",
+    "functionLabel": "to_string_regexp",
+    "parameters": [
+        {
+            "dataType": "regexp",
+            "description": "A regexp value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

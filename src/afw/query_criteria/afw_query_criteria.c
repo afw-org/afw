@@ -12,7 +12,6 @@
  */
 
 #include "afw_internal.h"
-#include <libxml/xmlregexp.h>
 
 
 AFW_VECTOR_STRUCT(impl_utf8_p_vector_s, const afw_utf8_t *);
@@ -57,14 +56,22 @@ typedef struct impl_string_parser_s {
 
 } impl_string_parser_t;
 
-static void
-impl_query_criteria_regexp_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+/* The match pattern of value compiled in p, or NULL if it does not compile. */
+static const afw_utf8_regexp_t *
+impl_query_criteria_regexp_compile(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
 {
-    (void)data2;
-    (void)p;
-    (void)xctx;
-    xmlRegFreeRegexp((xmlRegexpPtr)data);
+    const afw_utf8_t *error_message;
+
+    if (!value || !afw_value_is_string(value)) {
+        return NULL;
+    }
+
+    return afw_utf8_regexp_compile(
+        (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), 0,
+        &error_message, p, xctx);
 }
 
 static void
@@ -978,7 +985,6 @@ impl_parse_string_relation(
     afw_query_criteria_filter_entry_t *entry;
     const impl_fiql_op_t *o;
     const afw_utf8_t *decoded = NULL;
-    const xmlChar *s_z;
 
     /* Allocate memory for entry */
     entry = afw_pool_calloc_type(parser->p, afw_query_criteria_filter_entry_t,
@@ -1058,14 +1064,11 @@ impl_parse_string_relation(
 
     /* If match or differ (not match), compile expression. */
     if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
-        s_z = BAD_CAST afw_utf8_to_utf8_z(decoded, parser->p, parser->xctx);
-        entry->op_specific = xmlRegexpCompile(s_z);
+        entry->op_specific = impl_query_criteria_regexp_compile(
+            entry->value, parser->p, parser->xctx);
         if (entry->op_specific == NULL) {
             IMPL_STRING_THROW_ERROR_Z("regexp syntax error");
         }
-        afw_pool_register_cleanup(parser->p,
-            (void *)entry->op_specific, NULL,
-            impl_query_criteria_regexp_cleanup, parser->xctx);
     }
 
     /* Return entry. */
@@ -1240,7 +1243,6 @@ impl_parse_string_function(
     afw_query_criteria_filter_entry_t *previous_entry;
     afw_query_criteria_filter_entry_t *previous_tree;
     const afw_array_t *list;
-    const xmlChar *s_z;
 
     /* Find impl_rql_op_t for this operator. */
     impl_get_token(parser);
@@ -1363,16 +1365,11 @@ impl_parse_string_function(
              * not compiled here, so match(p,x) threw at evaluation).
              */
             if (entry->alt_op_id == afw_query_criteria_filter_op_id_match) {
-                s_z = BAD_CAST afw_utf8_to_utf8_z(
-                    (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value),
-                    parser->p, parser->xctx);
-                entry->op_specific = xmlRegexpCompile(s_z);
+                entry->op_specific = impl_query_criteria_regexp_compile(
+                    entry->value, parser->p, parser->xctx);
                 if (entry->op_specific == NULL) {
                     IMPL_STRING_THROW_ERROR_Z("regexp syntax error");
                 }
-                afw_pool_register_cleanup(parser->p,
-                    (void *)entry->op_specific, NULL,
-                    impl_query_criteria_regexp_cleanup, parser->xctx);
             }
         }
 
@@ -1466,7 +1463,6 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     const afw_object_t *child_object;
     const afw_value_t *value;
     const afw_utf8_t *s;
-    const xmlChar *s_z;
 
     /* Get "op" property and get its corresponding operator. */
     s = afw_object_get_property_as_string_internal(filter_object,
@@ -1600,17 +1596,12 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                     "Value for match operator must be a string",
                     parser->xctx);
             }
-            s_z = BAD_CAST afw_utf8_to_utf8_z(
-                (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value),
-                parser->p, parser->xctx);
-            entry->op_specific = xmlRegexpCompile(s_z);
+            entry->op_specific = impl_query_criteria_regexp_compile(
+                entry->value, parser->p, parser->xctx);
             if (entry->op_specific == NULL) {
                 AFW_THROW_ERROR_Z(syntax, "regexp syntax error",
                     parser->xctx);
             }
-            afw_pool_register_cleanup(parser->p,
-                (void *)entry->op_specific, NULL,
-                impl_query_criteria_regexp_cleanup, parser->xctx);
         }
     }
 }
@@ -1730,8 +1721,6 @@ impl_compare_value(
     const afw_array_t * volatile list, *entry_list;
     const afw_value_t *entry_value_converted;
     const afw_utf8_t *s2;
-    const xmlChar *s_z;
-    int rv;
     afw_query_criteria_filter_entry_t alt;
 
     /*
@@ -1962,13 +1951,8 @@ impl_compare_value(
             }
 
             s2 = afw_value_convert_to_utf8(v2, p, xctx);
-            s_z = BAD_CAST afw_utf8_to_utf8_z(s2, p, xctx);
-            rv = xmlRegexpExec((xmlRegexpPtr)entry->op_specific, s_z);
-            if (rv < 0) {
-                AFW_THROW_ERROR_Z(general,
-                    "xmlRegexpExec() error", xctx);
-            }
-            is_true = (rv == 1);
+            is_true = afw_utf8_regexp_find(
+                (const afw_utf8_regexp_t *)entry->op_specific, s2, xctx);
         }
 
         break;

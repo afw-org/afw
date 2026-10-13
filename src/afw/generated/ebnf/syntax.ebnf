@@ -1062,9 +1062,10 @@ Json ::= Double | Integer | List | Object | String | 'true' | 'false' | 'null'
 RelaxedJson ::= Double | Integer | RelaxedList | RelaxedObject | String | 'true' | 'false' | 'null'
 
 /* From afw_compile_parse_value.c                                             */
+/* RegularExpressionLiteral is not in JSON or relaxed JSON.                   */
 
-ScalarLiteral ::= Double | Integer | String | TypedLiteral | 'true' |
-        'false' | 'null'
+ScalarLiteral ::= Double | Integer | String | TypedLiteral |
+        RegularExpressionLiteral | 'true' | 'false' | 'null'
 
 Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
 
@@ -1178,6 +1179,30 @@ UnicodeCodePoint ::= #x0-#x10FFFF
 UnicodeNonControl ::= (UnicodeCodePoint - [^\#x0-#x1f] )
 
 UnicodeNonSpaceNonControl ::= (UnicodeCodePoint - [^\#x0-#x20] )
+
+/* From afw_compile_lexical.c                                                 */
+/* A regular expression literal, as in ECMAScript, where an operand can       */
+/* start. Its value is a compiled regexp, the same value as a regexp typed    */
+/* literal. The body goes to ICU as written (no string escapes); a '/'        */
+/* inside it is written '\/' or inside a class ([/]). A body can not          */
+/* start with '=' ('/=' divides and assigns); write '\='. Flags i, m, s,      */
+/* and x become ICU inline flags, so /a+b/i is "(?i)a+b"re. u is              */
+/* accepted and changes nothing: ICU regular expressions are always           */
+/* Unicode.                                                                   */
+
+RegularExpressionLiteral ::= '/' RegularExpressionBody '/'
+    RegularExpressionFlags
+
+RegularExpressionBody ::= ( RegularExpressionChar |
+    '[' RegularExpressionClassChar* ']' )+
+
+RegularExpressionChar ::= ( UnicodeNonControl - ( '\' | '/' | '[' ) ) |
+    '\' UnicodeNonControl
+
+RegularExpressionClassChar ::= ( UnicodeNonControl - ( '\' | ']' ) ) |
+    '\' UnicodeNonControl
+
+RegularExpressionFlags ::= ( 'i' | 'm' | 's' | 'x' | 'u' )*
 
 /* From afw_compile_lexical.c                                                 */
 /* A typed literal is a String immediately followed (no whitespace) by a      */

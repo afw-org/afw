@@ -26,6 +26,61 @@ class regexp
     }
 
     /**
+     * array_regexp()
+     *
+     * Construct a new array of regexp from the given values, the same as
+     * array() except that the new array is typed: each value, and each entry
+     * of a spread array, must be dataType regexp, and adding a value of
+     * another data type to the array later throws. A value of another data
+     * type is an error, never converted. This is usually written
+     * `array<regexp>(`...values).
+     *
+     * @param $values A value of dataType regexp, or ... followed by an
+     *                 expression that results in an array, every entry of
+     *                 which is included.
+     *
+     * @return array The constructed array of regexp.
+     */
+    public function array_regexp(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "array_regexp");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * as_regexp()
+     *
+     * Returns value unchanged if it is dataType regexp. Otherwise, including
+     * when value is undefined, throws an error. It never converts: to get a
+     * regexp from a value of another data type, write a typed literal or call
+     * a to_T conversion function where one exists. This is usually written
+     * value as regexp.
+     *
+     * @param $value Value to assert
+     *
+     * @return regexp value, which is dataType regexp
+     */
+    public function as_regexp(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "as_regexp");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * compile_regexp()
      *
      * Compile regexp value and return either an unevaluated adaptive value or
@@ -169,6 +224,30 @@ class regexp
     }
 
     /**
+     * is_regexp()
+     *
+     * Checks whether value is dataType regexp and returns the boolean result.
+     * It is false for undefined. This can also be written
+     * `is<regexp>(value`).
+     *
+     * @param $value Value to check
+     *
+     * @return boolean
+     */
+    public function is_regexp(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "is_regexp");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * le_regexp()
      *
      * Checks for regexp arg1 is less than or equal to regexp arg2 and return
@@ -288,6 +367,29 @@ class regexp
         $request = $this->$session->request();
 
         $request->set("function", "regexp");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_string_regexp()
+     *
+     * Converts regexp value to string. For array values, the to_string()
+     * value for each entry is returned separated with commas.
+     *
+     * @param regexp $value A regexp value.
+     *
+     * @return string The string representation of the value.
+     */
+    public function to_string_regexp(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_string<regexp>");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

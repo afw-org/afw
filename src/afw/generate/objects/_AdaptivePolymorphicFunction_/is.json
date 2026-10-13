@@ -34,6 +34,7 @@
         "objectId",
         "objectPath",
         "password",
+        "regexp",
         "rfc822Name",
         "script",
         "string",

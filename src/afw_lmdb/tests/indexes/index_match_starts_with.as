@@ -2,7 +2,7 @@
 //?
 //? testScript: index_match_starts_with.as
 //? customPurpose: Part of lmdb tests
-//? description: Index-accelerated "starts with" queries via the match operator's literal-prefix shape (`<literal>.*`).
+//? description: Index-accelerated "starts with" queries via the match operator's literal-prefix shape (`^<literal>` or `^<literal>.*`).
 //? sourceType: script
 //?
 //? test: index_match_starts_with_correctness
@@ -26,18 +26,24 @@ add_object("lmdb", ot, { name: "application" }, idApplication);
 add_object("lmdb", ot, { name: "apply" }, idApply);
 add_object("lmdb", ot, { name: "app" }, idApp);
 add_object("lmdb", ot, { name: "banana" }, idBanana);
+add_object("lmdb", ot, { name: "pineapple" }, generate_uuid());
 
 const appl: array = retrieve_objects("lmdb", ot,
-    { "filter": { "op": "match", "property": "name", "value": "appl.*" } });
-assert(length(appl) === 3, "appl.* should match apple, application, apply");
+    { "filter": { "op": "match", "property": "name", "value": "^appl.*" } });
+assert(length(appl) === 3, "^appl.* should match apple, application, apply");
 
 const app: array = retrieve_objects("lmdb", ot,
-    { "filter": { "op": "match", "property": "name", "value": "app.*" } });
-assert(length(app) === 4, "app.* should match apple, application, apply, app (the literal itself)");
+    { "filter": { "op": "match", "property": "name", "value": "^app" } });
+assert(length(app) === 4, "^app should match apple, application, apply, app (the literal itself)");
+
+// Without ^ the pattern is found anywhere in the value (not sargable).
+const anywhere: array = retrieve_objects("lmdb", ot,
+    { "filter": { "op": "match", "property": "name", "value": "app" } });
+assert(length(anywhere) === 5, "app should also match pineapple");
 
 const none: array = retrieve_objects("lmdb", ot,
-    { "filter": { "op": "match", "property": "name", "value": "xyz.*" } });
-assert(length(none) === 0, "xyz.* should match nothing");
+    { "filter": { "op": "match", "property": "name", "value": "^xyz.*" } });
+assert(length(none) === 0, "^xyz.* should match nothing");
 
 // Combine with another indexed clause to prove the index-accelerated
 // conjunction path (afw_adapter_impl_index_query's cursor merge/dedup),
@@ -49,11 +55,11 @@ add_object("lmdb", ot, { name: "appstore", kind: "toy" }, generate_uuid());
 const appAndTool: array = retrieve_objects("lmdb", ot, { "filter": {
     "op": "and",
     "filters": [
-        { "op": "match", "property": "name", "value": "app.*" },
+        { "op": "match", "property": "name", "value": "^app.*" },
         { "op": "eq", "property": "kind", "value": "tool" }
     ]
 }});
-assert(length(appAndTool) === 1, "app.* AND kind=tool should return exactly the one appstore/tool object");
+assert(length(appAndTool) === 1, "^app.* AND kind=tool should return exactly the one appstore/tool object");
 
 safe_evaluate(index_remove("lmdb", "name"), null);
 safe_evaluate(index_remove("lmdb", "kind"), null);
@@ -76,8 +82,7 @@ add_object("lmdb", ot, { name: "apple", status: "active" }, generate_uuid());
 add_object("lmdb", ot, { name: "pear", status: "active" }, generate_uuid());
 add_object("lmdb", ot, { name: "crabapple", status: "inactive" }, generate_uuid());
 
-// ".*apple" is not the "<literal>.*" shape (the wildcard isn't at the
-// end), so it cannot be reduced to an index range scan. Anding it with a
+// ".*apple" is not the "^<literal>" shape (no ^), so it cannot be reduced to an index range scan. Anding it with a
 // sargable clause on another indexed property makes the overall filter
 // sargable: the status cursor finds the candidates and the match is
 // tested on them.

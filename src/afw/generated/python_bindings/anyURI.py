@@ -655,15 +655,17 @@ def regexp_index_of_anyURI(session, value, regexp):
     """
     Returns index of first match of regular expression
 
-    Search anyURI value for a regular expression and return index. If not
-    found, -1 is returned.
+    Searches anyURI value for the regular expression and returns the code
+    point index of the first match, or -1 if there is none.
 
     Args:
         value (object): The anyURI value to search.
-        regexp (str): A regular expression to use for search.
+        regexp (object): The regular expression. A regexp literal (/a+b/ or
+            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
 
     Returns:
-        int: Zero-based index of subString or -1 if not found.
+        int: Zero-based code point index of the first match, or -1.
     """
 
     request = session.Request()
@@ -686,12 +688,15 @@ def regexp_match_anyURI(session, value, regexp):
     """
     Search for a match using a regular expression
 
-    Checks whether anyURI value matches the regular expression regexp and
-    return the boolean result.
+    Checks whether the regular expression matches anywhere in anyURI value and
+    returns the boolean result. Anchor with ^ and \\z to match the whole
+    value.
 
     Args:
         value (object):
-        regexp (str):
+        regexp (object): The regular expression. A regexp literal (/a+b/ or
+            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
 
     Returns:
         bool:
@@ -717,14 +722,20 @@ def regexp_replace_anyURI(session, value, regexp, replacement, limit=None):
     """
     Replace strings matching a regular expression
 
-    Replace matched values for a regular expression in a anyURI value.
+    Replaces matches of the regular expression in anyURI value, left to right,
+    up to limit times. An empty match is replaced too.
 
     Args:
         value (object): The original anyURI value.
-        regexp (str): A regular expression to use for search.
-        replacement (str): The replacement string.
-        limit (int): This is the maximum times to replace. The default is 1.
-            Specify -1 to replace all occurrences.
+        regexp (object): The regular expression. A regexp literal (/a+b/ or
+            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+        replacement (str): The replacement for each match. $n is the text of
+            group n ($0 the whole match), ${name} the text of a named group,
+            and a backslash makes the next character literal (\\$ for a dollar
+            sign). Any other $ is an error.
+        limit (int): The maximum number of matches to replace. The default is
+            1. Specify -1 (or any negative) to replace every match.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).

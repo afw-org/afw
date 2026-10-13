@@ -143,6 +143,16 @@
     afw_size_t limit_c_stack_headroom_bytes;
 
     /**
+     * @brief Steps of the ICU match engine one regexp match may take.
+     *
+     * ICU uregex_setTimeLimit() units: a match that backtracks past
+     * this fails with payload_too_large (about 0.1 second per 1000 on
+     * a current machine; linear scans use a small part of it). 0 =
+     * unlimited. Default `AFW_ENVIRONMENT_LIMIT_REGEXP_MATCH_STEPS`.
+     */
+    afw_size_t limit_regexp_match_steps;
+
+    /**
      * @brief Request-thread pthread stack size. 0 = default formula.
      *
      * Non-zero: `afw_os_thread_create` uses this many bytes, raised

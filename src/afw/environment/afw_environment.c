@@ -479,6 +479,8 @@ afw_environment_create(
     env->limit_c_stack_headroom_bytes =
         afw_pool_round_up_chunk_size(
             AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES);
+    env->limit_regexp_match_steps =
+        AFW_ENVIRONMENT_LIMIT_REGEXP_MATCH_STEPS;
     env->thread_stack_bytes = 0;
     env->default_chunk_min = afw_pool_round_up_chunk_size(
         AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN

@@ -5,12 +5,68 @@
 //? description: Error-path tests for polymorphic functions. Happy-path coverage lives in the per-dataType files (e.g. string_regexp_match.as).
 //? sourceType: script
 //?
-//? test: regexp_match-error-invalid-regexp
-//? description: regexp_match throws when the regexp does not compile. The thrown message comes from libxml2 and is not asserted verbatim.
-//? expect: error
+//? test: regexp_match-error-string-pattern
+//? description: A string is not a regexp; write a regexp literal or use to_regexp.
+//? expect: error:Parameter 2 of function 'regexp_match<string>' must evaluate to data type 'regexp' but evaluated to be 'string'; write "a"regexp or to_regexp(v)
 //? source: ...
 
 regexp_match<string>(
     string("abc"),
-    string("(")
+    string("a")
 )
+
+//?
+//? test: regexp_match-error-invalid-regexp
+//? description: to_regexp throws conversion_error when the pattern does not compile.
+//? expect: error:Invalid regular expression: U_REGEX_MISMATCHED_PAREN at line 1 offset 1
+//? source: ...
+
+regexp_match<string>(
+    string("abc"),
+    to_regexp("(")
+)
+
+//?
+//? test: regexp_match-default-limit
+//? description: The default limitRegexpMatchSteps is 1000; at it, ^(a+)+$ on 22 a and ! completes and on 23 does not.
+//? expect: [1000, false, "payload_too_large"]
+//? source: ...
+
+let over = "no error";
+try {
+    regexp_match(repeat("a", 23) + "!", /^(a+)+$/);
+}
+catch (e) {
+    over = e.id;
+}
+return [
+    process::limitRegexpMatchSteps,
+    regexp_match(repeat("a", 22) + "!", /^(a+)+$/),
+    over
+];
+
+//?
+//? test: regexp_match-backtracking-limit
+//? description: A pattern that backtracks exponentially on the value stops at the match limit instead of holding the thread.
+//? expect: error:Regular expression match exceeded limitRegexpMatchSteps: the pattern backtracks too much on this value
+//? source: ...
+
+regexp_match(repeat("a", 40) + "!", /^(a+)+$/)
+
+//?
+//? test: regexp_match-long-linear
+//? description: The limit leaves a linear scan of a long value alone (2 MB, and 2 million replacements).
+//? expect: [2048001, true, 2048000, 1]
+//? source: ...
+
+let s = repeat("a", 1000);
+for (let i: integer = 0; i < 11; i = i + 1) {
+    s = s + s;
+}
+s = s + "b";
+return [
+    length(s),
+    regexp_match(s, /[a-z]+b/),
+    regexp_index_of(s, /b/),
+    length(regexp_replace(s, /a/, "", -1))
+];

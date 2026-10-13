@@ -1,0 +1,51 @@
+# An RQL match pattern comes from the request. ICU backtracks, so a
+# pattern like ^(a+)+$ on a long run of a that ends otherwise takes time
+# exponential in the length of the value. Each match stops at the match
+# limit with payload_too_large (413) instead of holding a server thread
+# (#585). A pattern that matches normally is answered as usual.
+version: 1
+description: RQL match patterns from requests stop at the match limit
+host: afwfcgi
+afwfcgi:
+  threads: 2
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: add-objects
+    sourceType: script
+    source: |
+      add_object("files", "Thing", { s: repeat("a", 40) + "!" }, "long");
+      add_object("files", "Thing", { s: "abc" }, "short");
+      return true;
+    expect: true
+
+  - name: match-normal
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/?match(s,%5Eab)
+      accept: application/json
+    expectStatus: 200
+
+  - name: match-backtracking
+    feed:
+      kind: rest
+      method: GET
+      path: /files/Thing/?match(s,%5E%28a%2B%29%2B%24)
+      accept: application/json
+    expectStatus: 413
+
+  - name: match-backtracking-action
+    sourceType: script
+    source: |
+      try {
+          retrieve_objects("files", "Thing",
+              {filter: {op: "match", property: "s", value: "^(a+)+$"}});
+          return "no error";
+      }
+      catch (e) {
+          return e.id;
+      }
+    expect: "payload_too_large"

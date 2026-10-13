@@ -103,14 +103,168 @@ super       this        typeof      var         with</code>
     "b": true 
 }</code>
     <paragraph>
-        A Scalar Literal may be one of: Double, Integer, String, true, false or null. 
+        A Scalar Literal may be one of: Double, Integer, String, true, false or null. A regular expression literal (<literal>/a+b/i</literal>) is also a scalar literal; see Regular Expressions below. 
     </paragraph>
     <code>3.14
 42
 "a string"
-true 
+true
 false
 null</code>
+    <header>Regular Expressions</header>
+    <paragraph>
+        Adaptive Script regular expressions are
+        <link href="https://unicode-org.github.io/icu/userguide/strings/regexp.html" text="ICU regular expressions"/>.
+        Like everything else in AFW, they work on Unicode text: a pattern
+        matches code points, not UTF-16 code units, so an emoji or any
+        character outside the Basic Multilingual Plane is one character and
+        never half of one. Classes such as <literal>\w</literal>,
+        <literal>\d</literal>, and <literal>\b</literal>, and case-insensitive
+        matching, follow Unicode for every language, and matching reads AFW's
+        UTF-8 strings in place, with no conversion of the whole string. The syntax will look
+        familiar from ECMAScript, Perl, Python, and Java, and ICU follows the
+        Perl tradition that Python and Java also come from: where ICU and
+        ECMAScript differ below, ICU usually answers the way Perl, and often
+        Python and Java, do. Where ICU's Unicode rules
+        give a different answer than ECMAScript or XML Schema regular
+        expressions, the notes at the end of this section say what to write.
+    </paragraph>
+    <section>
+        <title>Writing a Pattern</title>
+        <paragraph>
+            A regular expression literal is written as in ECMAScript, where a
+            value can start: <literal>/pattern/flags</literal>. Its value has
+            data type <literal>regexp</literal> and is compiled once, when the
+            script is compiled, so a pattern that does not compile is a syntax
+            error at the literal, and using it costs no compile at run time.
+            The pattern is passed to ICU as written: backslashes are not
+            doubled. Write a <literal>/</literal> in the pattern as
+            <literal>\/</literal> or inside a class (<literal>[/]</literal>).
+            After a value, <literal>/</literal> divides, and
+            <literal>/=</literal> always divides and assigns.
+        </paragraph>
+        <code>/^[a-z]+\d*$/
+/^smith$/i
+/(\d+)-(\d+)-(\d+)/
+/^\p{L}+$/</code>
+        <paragraph>
+            The typed literal <literal>"a+b"re</literal> (or
+            <literal>"a+b"regexp</literal>) is the same value, written as a
+            string, so its backslashes are doubled: <literal>"\\d+"re</literal>
+            is <literal>/\d+/</literal>.
+        </paragraph>
+        <paragraph>
+            A pattern matches anywhere in the value unless <literal>^</literal>
+            and <literal>$</literal> anchor it:
+            <literal>regexp_match("xaab", /a+b/)</literal> is true and
+            <literal>regexp_match("xaab", /^a+b$/)</literal> is false.
+        </paragraph>
+    </section>
+    <section>
+        <title>Flags</title>
+        <list>
+            <item><literal>i</literal> ignores case, using Unicode case folding.</item>
+            <item><literal>m</literal> lets <literal>^</literal> and <literal>$</literal> match at the start and end of each line.</item>
+            <item><literal>s</literal> lets <literal>.</literal> match a line terminator.</item>
+            <item><literal>x</literal> ignores whitespace and <literal>#</literal> comments in the pattern.</item>
+            <item><literal>u</literal> is accepted and changes nothing: patterns are always Unicode.</item>
+        </list>
+        <paragraph>
+            Flags become part of the pattern: <literal>/a+b/i</literal> is
+            <literal>"(?i)a+b"re</literal>. There is no <literal>g</literal>
+            flag; <literal>regexp_replace</literal> takes a limit instead.
+        </paragraph>
+    </section>
+    <section>
+        <title>Functions</title>
+        <paragraph>
+            The regexp functions take a <literal>regexp</literal>, not a
+            string: <literal>regexp_match(value, regexp)</literal>,
+            <literal>regexp_index_of(value, regexp)</literal> (the code point
+            index of the first match, or -1, counted as
+            <literal>index_of</literal> counts), and
+            <literal>regexp_replace(value, regexp, replacement, limit?)</literal>
+            (limit 1 by default, -1 for every match). In the replacement,
+            <literal>$1</literal> is the text of group 1, <literal>$0</literal>
+            the whole match, <literal>${name}</literal> a named group, and a
+            backslash makes the next character literal
+            (<literal>\$</literal>).
+        </paragraph>
+        <paragraph>
+            To use a pattern you have as a string, convert it once with
+            <literal>to_regexp(s)</literal> and keep the result. A
+            <literal>regexp</literal> value read from data is compiled each
+            time a function uses it, unless you compile it once with
+            <literal>compile&lt;regexp&gt;(r)</literal>.
+        </paragraph>
+        <code>const date = /(?&lt;y&gt;\d{4})-(?&lt;m&gt;\d\d)-(?&lt;d&gt;\d\d)/;
+regexp_replace("2024-10-13", date, "${d}/${m}/${y}");   // "13/10/2024"
+regexp_replace("a1b22c333", /\d+/, "#", -1);            // "a#b#c#"
+regexp_index_of("xyzaab", /a+b/);                       // 3
+regexp_match("Ελλάδα", /^\w+$/);                        // true</code>
+    </section>
+    <section>
+        <title>Match Limit</title>
+        <paragraph>
+            ICU finds a match by backtracking, so some patterns, such as
+            <literal>/^(a+)+$/</literal> on a long run of
+            <literal>a</literal> that does not end the way the pattern expects,
+            take time that grows exponentially with the length of the value.
+            A match stops after a fixed number of steps of the ICU match
+            engine with a <literal>payload_too_large</literal> error, so a
+            pattern, even one that arrives in a request, cannot hold a thread.
+            The number is the process limit
+            <literal>limitRegexpMatchSteps</literal>: 1000 by default, about a
+            tenth of a second of backtracking, and far more than a linear scan
+            of a long value needs. An application conf can change it like the
+            other <literal>limit*</literal> settings (0 is unlimited), and
+            <literal>process::limitRegexpMatchSteps</literal> shows the current
+            value.
+        </paragraph>
+        <paragraph>
+            Because of an ICU issue, a lazy loop over a group that can match
+            nothing, such as <literal>(b|)*?</literal> or
+            <literal>(a?)+?</literal>, can reach the limit even on a short
+            value. Write the loop so its body cannot match empty:
+            <literal>b*?</literal> instead of <literal>(b|)*?</literal>.
+        </paragraph>
+    </section>
+    <section>
+        <title>Coming from ECMAScript</title>
+        <paragraph>
+            ECMAScript keeps some rules for compatibility with its first,
+            ASCII and UTF-16 days. AFW does not need them, so these give a
+            different answer than ECMAScript, most of them the same answer as
+            Perl and Python:
+        </paragraph>
+        <list>
+            <item><literal>\d</literal>, <literal>\w</literal>, and <literal>\b</literal> are Unicode, as in Perl and Python 3: <literal>é</literal> is a word character and <literal>٣</literal> is a digit. For ASCII only, write <literal>[0-9]</literal> or <literal>[A-Za-z0-9_]</literal>.</item>
+            <item>The <literal>i</literal> flag uses full Unicode case folding, as Perl does: <literal>/strasse/i</literal> matches <literal>"Straße"</literal>.</item>
+            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value, as in Perl, Python, and Java: <literal>regexp_match("ab\n", /^ab$/)</literal> is true. Write <literal>\z</literal> for the very end (and <literal>\Z</literal> for the end or just before a final line terminator, as in Perl and Java).</item>
+            <item>The line terminators are LF, CR, CR LF, U+0085, U+2028, and U+2029, so <literal>.</literal> does not match U+0085.</item>
+            <item><literal>[^]</literal> is a syntax error. Write <literal>[\s\S]</literal>, or use the <literal>s</literal> flag.</item>
+            <item>A lookbehind must have a bounded length.</item>
+            <item>In a replacement, write <literal>$0</literal> for the whole match (ECMAScript <literal>$&amp;</literal>), <literal>${name}</literal> for a named group (<literal>$&lt;name&gt;</literal>), and <literal>\$</literal> for a dollar sign (<literal>$$</literal>).</item>
+            <item>There are no <literal>g</literal>, <literal>y</literal>, <literal>d</literal>, or <literal>v</literal> flags. Use the <literal>limit</literal> of <literal>regexp_replace</literal> for every match.</item>
+            <item>ICU also has things ECMAScript does not, such as <literal>\A</literal>, <literal>\z</literal>, <literal>\Z</literal>, the <literal>x</literal> flag, inline flags <literal>(?i)</literal>, atomic groups <literal>(?&gt;...)</literal>, and possessive quantifiers <literal>a*+</literal>.</item>
+        </list>
+    </section>
+    <section>
+        <title>Coming from XML Schema Regular Expressions and fn:matches</title>
+        <paragraph>
+            Earlier versions of AFW used XML Schema regular expressions. XPath
+            <literal>fn:matches</literal> uses the same syntax with
+            <literal>^</literal>, <literal>$</literal>, and flags added.
+        </paragraph>
+        <list>
+            <item>A pattern matches anywhere in the value, as with <literal>fn:matches</literal>. An XML Schema pattern always had to match the whole value: write <literal>^...\z</literal> for that.</item>
+            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value; <literal>fn:matches</literal> matches only at the end. Write <literal>\z</literal> for the very end.</item>
+            <item><literal>\w</literal> is letters, marks, digits, and connector punctuation (in XML Schema, every character except punctuation, separators, and other), and <literal>\s</literal> is all Unicode white space (in XML Schema, space, tab, LF, and CR only).</item>
+            <item>The <literal>m</literal> flag and <literal>.</literal> use all the ICU line terminators, not only LF and CR, and the <literal>i</literal> flag uses full case folding.</item>
+            <item>The XML name escapes <literal>\i</literal> and <literal>\c</literal> are not ICU syntax, and class subtraction is written <literal>[a-z--[aeiou]]</literal> instead of <literal>[a-z-[aeiou]]</literal>.</item>
+            <item>ICU also accepts lookahead, lookbehind, named groups, <literal>\b</literal>, and lazy and possessive quantifiers.</item>
+        </list>
+    </section>
     <header>Operators</header>
     <paragraph>
         The following tokens are used in expressions:

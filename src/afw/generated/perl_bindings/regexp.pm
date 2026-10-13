@@ -13,16 +13,20 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    array_regexp 
+    as_regexp 
     compile_regexp 
     eq_regexp 
     eqx_regexp 
     ge_regexp 
     gt_regexp 
+    is_regexp 
     le_regexp 
     lt_regexp 
     ne_regexp 
     nex_regexp 
     regexp 
+    to_string_regexp 
 );
 
 =head1 NAME
@@ -32,6 +36,36 @@ afw::regexp - Perl module for regexp functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 array_regexp
+
+Construct a new array of regexp from the given values, the same as array()
+except that the new array is typed: each value, and each entry of a spread
+array, must be dataType regexp, and adding a value of another data type to the
+array later throws. A value of another data type is an error, never converted.
+This is usually written `array<regexp>(`...values).
+Construct an array of regexp from values or spread arrays
+
+=head4 Parameters
+
+    $values
+
+A value of dataType regexp, or ... followed by an expression that results in
+an array, every entry of which is included.
+
+=head3 as_regexp
+
+Returns value unchanged if it is dataType regexp. Otherwise, including when
+value is undefined, throws an error. It never converts: to get a regexp from a
+value of another data type, write a typed literal or call a to_T conversion
+function where one exists. This is usually written value as regexp.
+Asserts that value is dataType regexp
+
+=head4 Parameters
+
+    $value
+
+Value to assert
 
 =head3 compile_regexp
 
@@ -116,6 +150,18 @@ Checks for greater than
     $arg2
 
 
+=head3 is_regexp
+
+Checks whether value is dataType regexp and returns the boolean result. It is
+false for undefined. This can also be written `is<regexp>(value`).
+Checks whether value is dataType regexp
+
+=head4 Parameters
+
+    $value
+
+Value to check
+
 =head3 le_regexp
 
 Checks for regexp arg1 is less than or equal to regexp arg2 and return the
@@ -186,7 +232,41 @@ Convert to data type regexp
 
 Value to convert
 
+=head3 to_string_regexp
+
+Converts regexp value to string. For array values, the to_string() value for
+each entry is returned separated with commas.
+Converts value to string
+
+=head4 Parameters
+
+    $value
+
+A regexp value.
+
 =cut
+
+sub array_regexp {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "array_regexp");
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
+sub as_regexp {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "as_regexp");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
 
 sub compile_regexp {
     my ($source, $listing) = @_;
@@ -250,6 +330,17 @@ sub gt_regexp {
     return $request->getResult();
 }
 
+sub is_regexp {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "is_regexp");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub le_regexp {
     my ($arg1, $arg2) = @_;
 
@@ -304,6 +395,17 @@ sub regexp {
     my $request = $session->request()
 
     $request->set("function" => "regexp");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub to_string_regexp {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_string<regexp>");
     $request->set("value", $value);
 
     return $request->getResult();

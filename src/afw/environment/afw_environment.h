@@ -26,6 +26,7 @@
     ((afw_size_t)(64 * 1024 * 1024))
 #define AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES \
     ((afw_size_t)(256 * 1024))
+#define AFW_ENVIRONMENT_LIMIT_REGEXP_MATCH_STEPS ((afw_size_t)1000)
 #define AFW_ENVIRONMENT_DEFAULT_THREAD_STACK_BYTES \
     ((afw_size_t)(2 * 1024 * 1024))
 #define AFW_ENVIRONMENT_DEFAULT_CHUNK_MIN ((afw_size_t)65536)

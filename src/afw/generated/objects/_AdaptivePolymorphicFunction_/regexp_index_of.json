@@ -2,7 +2,7 @@
     "brief": "Returns index of first match of regular expression",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Search <dataType> value for a regular expression and return index. If not found, -1 is returned.",
+    "description": "Searches <dataType> value for the regular expression and returns the code point index of the first match, or -1 if there is none.",
     "functionId": "regexp_index_of",
     "functionLabel": "regexp_index_of",
     "pure": true,
@@ -13,8 +13,8 @@
             "polymorphicDataType": true
         },
         {
-            "dataType": "string",
-            "description": "A regular expression to use for search.",
+            "dataType": "regexp",
+            "description": "The regular expression. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
             "name": "regexp"
         }
     ],
@@ -26,6 +26,6 @@
     "polymorphicExecuteFunction": "afw_function_execute_regexp_index_of",
     "returns": {
         "dataType": "integer",
-        "description": "Zero-based index of subString or -1 if not found."
+        "description": "Zero-based code point index of the first match, or -1."
     }
 }

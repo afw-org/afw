@@ -13,7 +13,6 @@
 
 #include "afw_internal.h"
 #include "afw_adapter_impl_index.h"
-#include <libxml/xmlregexp.h>
 
 AFW_VECTOR_STRUCT(impl_index_cursor_p_vector_s,
     const afw_adapter_impl_index_cursor_t *);
@@ -589,14 +588,14 @@ impl_index_entry_value_as_key_utf8(
 /*
  * Get the literal starts-with prefix of a match entry, if any.
  *
- * Patterns compiled for the match operator use XML Schema Datatype regex
- * (via libxml2), which is implicitly anchored to the whole string - there
- * is no '^' or '$' anchor syntax. A "starts with" test is therefore
- * written as `<literal>.*`, where `<literal>` contains no regex
- * metacharacters. Recognizes exactly that shape; anything else - a bare
- * ".*", a metacharacter in the literal part, or ".*" appearing anywhere
- * but at the very end - returns NULL and is left to the general
- * (non-sargable) full-scan regex evaluation in afw_query_criteria.c.
+ * The match operator finds its pattern anywhere in the value (ICU
+ * regular expressions; see afw_utf8_regexp_find()), so a "starts with"
+ * test is written `^<literal>` or `^<literal>.*`, where `<literal>` is
+ * not empty and contains no regex metacharacters. Recognizes exactly
+ * those shapes; anything else - no '^', a metacharacter in the literal
+ * part, or ".*" anywhere but at the very end - returns NULL and is left
+ * to the general (non-sargable) full-scan regex evaluation in
+ * afw_query_criteria.c.
  *
  * This lets a match entry be sargable for adapter indexes without
  * implementing a general regex-to-index-range translation; it is scoped
@@ -622,16 +621,22 @@ impl_index_match_literal_prefix(
 
     pattern = (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value);
 
-    if (pattern->len < 3 ||
-        pattern->s[pattern->len - 2] != '.' ||
-        pattern->s[pattern->len - 1] != '*')
-    {
+    if (pattern->len < 2 || pattern->s[0] != '^') {
         return NULL;
     }
 
-    prefix_len = pattern->len - 2;
+    prefix_len = pattern->len - 1;
+    if (prefix_len >= 2 &&
+        pattern->s[pattern->len - 2] == '.' &&
+        pattern->s[pattern->len - 1] == '*')
+    {
+        prefix_len -= 2;
+    }
+    if (prefix_len == 0) {
+        return NULL;
+    }
 
-    for (i = 0; i < prefix_len; i++) {
+    for (i = 1; i <= prefix_len; i++) {
         switch (pattern->s[i]) {
             case '.': case '*': case '+': case '?':
             case '(': case ')': case '[': case ']':
@@ -644,7 +649,7 @@ impl_index_match_literal_prefix(
     }
 
     prefix = afw_pool_calloc_type(p, afw_utf8_t, xctx);
-    prefix->s = pattern->s;
+    prefix->s = pattern->s + 1;
     prefix->len = prefix_len;
 
     return prefix;
@@ -2230,17 +2235,6 @@ struct afw_adapter_impl_index_query_test_s {
 };
 
 
-static void
-impl_index_regexp_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)data2;
-    (void)p;
-    (void)xctx;
-    xmlRegFreeRegexp((xmlRegexpPtr)data);
-}
-
-
 /* A string, or each string of an array, lowercased. */
 static const afw_value_t *
 impl_index_value_to_lower(
@@ -2281,62 +2275,9 @@ impl_index_value_to_lower(
 
 
 /*
- * A match pattern for a case-insensitive name: the pattern lowercased
- * like the values, except its escapes. \s and \S, \d and \D, ... differ
- * by case, and \p{...} / \P{...} name Unicode categories, so they are
- * kept as written. A category that names a case (\p{Lu}) never matches
- * a lowercased value.
- */
-static const afw_utf8_t *
-impl_index_pattern_to_lower(
-    const afw_utf8_t *pattern,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_utf8_t *result;
-    afw_utf8_t run;
-    afw_utf8_t escape;
-    afw_size_t start;
-    afw_size_t i;
-    afw_size_t j;
-
-    result = afw_s_a_empty_string;
-    for (i = 0, start = 0; i < pattern->len; ) {
-        if (pattern->s[i] != '\\') {
-            i++;
-            continue;
-        }
-
-        escape.s = pattern->s + i;
-        escape.len = (i + 1 < pattern->len) ? 2 : 1;
-        if (escape.len == 2 &&
-            (pattern->s[i + 1] == 'p' || pattern->s[i + 1] == 'P') &&
-            i + 2 < pattern->len && pattern->s[i + 2] == '{')
-        {
-            for (j = i + 3; j < pattern->len && pattern->s[j] != '}'; j++);
-            escape.len = ((j < pattern->len) ? j + 1 : pattern->len) - i;
-        }
-
-        run.s = pattern->s + start;
-        run.len = i - start;
-        result = afw_utf8_concat(p, xctx, result,
-            afw_utf8_to_lower(&run, p, xctx), &escape, NULL);
-
-        i += escape.len;
-        start = i;
-    }
-
-    run.s = pattern->s + start;
-    run.len = pattern->len - start;
-    return afw_utf8_concat(p, xctx, result,
-        afw_utf8_to_lower(&run, p, xctx), NULL);
-}
-
-
-/*
  * A copy of entry that compares with lowercased values: its value
- * lowercased, and for match and differ the pattern recompiled from
- * impl_index_pattern_to_lower().
+ * lowercased, and for match and differ the pattern compiled to ignore
+ * case.
  */
 static const afw_query_criteria_filter_entry_t *
 impl_index_entry_to_lower(
@@ -2345,8 +2286,8 @@ impl_index_entry_to_lower(
     afw_xctx_t *xctx)
 {
     afw_query_criteria_filter_entry_t *copy;
-    const afw_utf8_t *pattern;
-    xmlRegexpPtr regexp;
+    const afw_utf8_regexp_t *regexp;
+    const afw_utf8_t *error_message;
 
     copy = afw_pool_calloc_type(p, afw_query_criteria_filter_entry_t, xctx);
     afw_memory_copy(copy, entry);
@@ -2354,17 +2295,13 @@ impl_index_entry_to_lower(
     if (entry->alt_op_id == afw_query_criteria_filter_op_id_match &&
         entry->value && afw_value_is_string(entry->value))
     {
-        pattern = impl_index_pattern_to_lower(
-            (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value), p, xctx);
-        regexp = xmlRegexpCompile(
-            BAD_CAST afw_utf8_to_utf8_z(pattern, p, xctx));
+        regexp = afw_utf8_regexp_compile(
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value),
+            AFW_UTF8_REGEXP_CASE_INSENSITIVE, &error_message, p, xctx);
         if (!regexp) {
             AFW_THROW_ERROR_Z(general, "regexp syntax error", xctx);
         }
-        afw_pool_register_cleanup(p, regexp, NULL,
-            impl_index_regexp_cleanup, xctx);
         copy->op_specific = regexp;
-        copy->value = afw_value_create_unmanaged_string(pattern, p, xctx);
     }
     else if (entry->value) {
         copy->value = impl_index_value_to_lower(entry->value, p, xctx);

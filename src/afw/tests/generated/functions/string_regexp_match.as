@@ -12,7 +12,7 @@
 
 regexp_match<string>(
     string("aaaab"),
-    string("(a)*b")
+    "(a)*b"re
 )
 
 //?
@@ -23,7 +23,7 @@ regexp_match<string>(
 
 regexp_match<string>(
     string("aaaa"),
-    string("(a)*b")
+    "(a)*b"re
 )
 
 //?
@@ -34,6 +34,6 @@ regexp_match<string>(
 
 regexp_match<string>(
     string("aaaab"),
-    string("(a*b")
+    to_regexp("(a*b")
 )
 

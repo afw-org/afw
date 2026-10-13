@@ -117,6 +117,12 @@
                     "title": "Limit Evaluation Stack Count",
                     "type": "integer"
                 },
+                "limitRegexpMatchSteps": {
+                    "description": "Optional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited.",
+                    "markdownDescription": "**Limit Regexp Match Steps**\n\nOptional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited.",
+                    "title": "Limit Regexp Match Steps",
+                    "type": "integer"
+                },
                 "limitRequestPoolBytes": {
                     "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
                     "markdownDescription": "**Limit Request Pool Bytes**\n\nOptional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
@@ -426,6 +432,12 @@
                     "title": "Limit Evaluation Stack Count",
                     "type": "integer"
                 },
+                "limitRegexpMatchSteps": {
+                    "description": "Optional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited.",
+                    "markdownDescription": "**Limit Regexp Match Steps**\n\nOptional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited.",
+                    "title": "Limit Regexp Match Steps",
+                    "type": "integer"
+                },
                 "limitRequestPoolBytes": {
                     "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
                     "markdownDescription": "**Limit Request Pool Bytes**\n\nOptional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
@@ -697,6 +709,12 @@
             "description": "Optional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
             "markdownDescription": "**Limit Evaluation Stack Count**\n\nOptional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
             "title": "Limit Evaluation Stack Count",
+            "type": "integer"
+        },
+        "limitRegexpMatchSteps": {
+            "description": "Optional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited.",
+            "markdownDescription": "**Limit Regexp Match Steps**\n\nOptional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited.",
+            "title": "Limit Regexp Match Steps",
             "type": "integer"
         },
         "limitRequestPoolBytes": {

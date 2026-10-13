@@ -2,7 +2,7 @@
     "brief": "Search for a match using a regular expression",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Checks whether <dataType> value matches the regular expression regexp and return the boolean result.",
+    "description": "Checks whether the regular expression matches anywhere in <dataType> value and returns the boolean result. Anchor with ^ and \\z to match the whole value.",
     "functionId": "regexp_match",
     "functionLabel": "regexp_match",
     "pure": true,
@@ -12,7 +12,8 @@
             "polymorphicDataType": true
         },
         {
-            "dataType": "string",
+            "dataType": "regexp",
+            "description": "The regular expression. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
             "name": "regexp"
         }
     ],

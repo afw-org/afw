@@ -311,11 +311,15 @@ class rfc822Name
     /**
      * regexp_match_rfc822Name()
      *
-     * Checks whether rfc822Name value matches the regular expression regexp
-     * and return the boolean result.
+     * Checks whether the regular expression matches anywhere in rfc822Name
+     * value and returns the boolean result. Anchor with ^ and \z to match the
+     * whole value.
      *
      * @param rfc822Name $value
-     * @param string $regexp
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
      *
      * @return boolean
      */

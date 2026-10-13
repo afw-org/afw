@@ -1316,6 +1316,109 @@ afw_utf8_writer_current_string(
 
 
 
+/*
+ * afw_utf8_regexp_t (afw_common_opaques.h) is a compiled regular
+ * expression in ICU regular expression syntax. Immutable after
+ * afw_utf8_regexp_compile(), so one compiled regexp can be used by
+ * several threads at once: each find works on its own clone of the ICU
+ * matcher.
+ */
+
+/** @brief afw_utf8_regexp_compile() flag: ignore case. */
+#define AFW_UTF8_REGEXP_CASE_INSENSITIVE 0x01
+
+/**
+ * @brief Compile a regular expression.
+ * @param pattern in ICU regular expression syntax.
+ * @param flags AFW_UTF8_REGEXP_* flags or-ed together, or 0.
+ * @param error_message set when the pattern does not compile.
+ * @param p lifetime of the result. Its ICU resources are closed when p is.
+ * @param xctx of caller.
+ * @return compiled regexp, or NULL with *error_message set.
+ *
+ * A bad pattern is NULL rather than a throw, so the caller throws the
+ * error that fits its use (argument, syntax, ...).
+ */
+AFW_DECLARE(const afw_utf8_regexp_t *)
+afw_utf8_regexp_compile(
+    const afw_utf8_t *pattern,
+    afw_uint32_t flags,
+    const afw_utf8_t **error_message,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Copy of a compiled regexp with its ICU resources in p.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param p lifetime of the result. Its ICU resources are closed when p is.
+ * @param xctx of caller.
+ * @return copy of regexp.
+ *
+ * Cheaper than compiling the source again: ICU shares the compiled
+ * pattern between the copies (with its own atomic count).
+ */
+AFW_DECLARE(const afw_utf8_regexp_t *)
+afw_utf8_regexp_clone(
+    const afw_utf8_regexp_t *regexp,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief True if regexp matches anywhere in subject.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param subject to search.
+ * @param xctx of caller.
+ *
+ * Use ^ and $ in the pattern to match the whole subject.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_utf8_regexp_find(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Code point index of the first match of regexp in subject.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param subject to search.
+ * @param xctx of caller.
+ * @return zero-based code point index, or -1 if regexp does not match.
+ */
+AFW_DECLARE(afw_integer_t)
+afw_utf8_regexp_index_of(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Replace matches of regexp in subject.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param subject to search.
+ * @param replacement for each match. `$n` is the text of group n (`$0`
+ *     is the whole match), `${name}` the text of the group with that
+ *     name, and a backslash makes the next character literal (`\$`).
+ * @param limit maximum number of matches to replace.
+ * @param p for the result.
+ * @param xctx of caller.
+ * @return subject with up to limit matches replaced.
+ *
+ * Matches are found left to right without overlapping. An empty match
+ * is replaced too, and the next search starts one code point later. A
+ * `$` not followed by a group number or `{name}`, a group that does not
+ * exist, and a replacement that ends with a backslash are an
+ * argument_error.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_regexp_replace(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    const afw_utf8_t *replacement,
+    afw_size_t limit,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

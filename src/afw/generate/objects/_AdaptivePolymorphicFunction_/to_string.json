@@ -33,6 +33,7 @@
         "objectId",
         "objectPath",
         "password",
+        "regexp",
         "rfc822Name",
         "string",
         "template",

@@ -329,7 +329,7 @@ afw_data_type_regexp_direct = {
     AFW_UTF8_LITERAL("regexp"),
     (const afw_value_t *)&impl_data_type_id_value_regexp,
     AFW_UTF8_LITERAL("An regular expression"),
-    AFW_UTF8_LITERAL("Data type 'regexp' holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F. In a script, write one as a typed literal: \"a+b\"regexp or \"a+b\"re."),
+    AFW_UTF8_LITERAL("Data type 'regexp' holds the source of an ICU regular expression. A match is found anywhere in the value unless the pattern anchors it with ^ and \\z ($ also matches before a final line break). In a script, write one as a literal, /a+b/i, or as a typed literal, \"a+b\"re or \"a+b\"regexp; a literal is compiled once, when the script is compiled."),
     AFW_UTF8_LITERAL("SourceParameter"),
     afw_data_type_number_regexp,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

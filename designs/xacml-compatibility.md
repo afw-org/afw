@@ -51,6 +51,17 @@ XACML defines `-greater-than` / `-less-than` only for integer, double, string, t
 | `rfc822Name-match(string, rfc822Name)` | `rfc822Name_match(pattern, value)`, same order and cases (A.3.14) | #593 |
 | `x500Name-match(x500Name, x500Name)` | `x500Name_match(pattern, value)`, same (terminal RDNs) | #593 |
 | Functions that share a name with ECMAScript | ECMAScript argument order and behavior; functions with XACML-only names keep XACML order | #599 |
+| `type-regexp-match(regexp, value)` (A.3.13: XPath `fn:matches`, arguments reversed) | `regexp_match<T>(value, regexp)`: value first (AFW's order since before #585), and the pattern is a `regexp` value, not a string (`to_regexp(s)` converts a pattern held as a string). Matches anywhere unless `^`/`$` anchor it, as `fn:matches` does; the libxml2 XML Schema regexes it used before always matched the whole value | #585 |
+| Regular expression syntax and meaning: XPath F&O 7.6.1 (XML Schema regex plus `^`, `$`, lazy quantifiers, back-references; flags `s`, `m`, `i`, `x`) | ICU, which is neither. Same: search semantics, `^` / `$` anchors, the four flags. Different: `$` without `m` also matches before a final line terminator (XPath: end of string only; write `\z`); `\w` and `\s` have other definitions; `.` and `m` use all ICU line terminators (XPath: LF, CR); `i` is full case folding; `\i` / `\c` and `[a-z-[aeiou]]` subtraction are not ICU syntax (ICU: `[a-z--[aeiou]]`); ICU also accepts lookaround, named groups, `\b`. Public list: handbook *Lexical*, *Regular Expressions* (names XPath `fn:matches`, not XACML) | #585 |
 | `ipAddress` / `dnsName` matching or parts | Not provided (XACML 3.0 core has none beyond conversion either) | — |
 
 Spec texts: [XACML 3.0 core](https://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html) Appendix A; [XSD 1.1 Part 2](https://www.w3.org/TR/xmlschema11-2/).
+
+## Regular expressions in a policy handler (#585)
+
+A handler that maps XACML `*-regexp-match` onto AFW should:
+
+- swap the arguments: XACML is `(regexp, value)`, AFW `regexp_match<T>(value, regexp)`;
+- convert each pattern once when the policy loads (`to_regexp`, or `compile<regexp>` of a `regexp`), so a bad pattern is found at load and each decision matches with the compiled form;
+- make a regexp error Indeterminate, never Permit or Deny: `conversion_error` (bad pattern), `payload_too_large` (the match limit, about 0.1 s of backtracking). The ICU 74.2 bug where a lazy loop over a group that can match empty (`(b|)*?^(?=a)`) never ends also lands here, through the limit;
+- expect the ICU differences in the table above. Exact XPath semantics would need XPath-to-ICU translation in XACML-only functions; not done.

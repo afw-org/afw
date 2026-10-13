@@ -1084,13 +1084,16 @@ class polymorphic
     /**
      * regexp_index_of()
      *
-     * Search `<dataType>` value for a regular expression and return index. If
-     * not found, -1 is returned.
+     * Searches `<dataType>` value for the regular expression and returns the
+     * code point index of the first match, or -1 if there is none.
      *
      * @param $value The `<dataType>` value to search.
-     * @param string $regexp A regular expression to use for search.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
      *
-     * @return integer Zero-based index of subString or -1 if not found.
+     * @return integer Zero-based code point index of the first match, or -1.
      */
     public function regexp_index_of(, $value, $regexp)
     {
@@ -1109,11 +1112,15 @@ class polymorphic
     /**
      * regexp_match()
      *
-     * Checks whether `<dataType>` value matches the regular expression regexp
-     * and return the boolean result.
+     * Checks whether the regular expression matches anywhere in `<dataType>`
+     * value and returns the boolean result. Anchor with ^ and \z to match the
+     * whole value.
      *
      * @param $value
-     * @param string $regexp
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
      *
      * @return boolean
      */
@@ -1134,14 +1141,23 @@ class polymorphic
     /**
      * regexp_replace()
      *
-     * Replace matched values for a regular expression in a `<dataType>`
-     * value.
+     * Replaces matches of the regular expression in `<dataType>` value, left
+     * to right, up to limit times. An empty match is replaced too.
      *
      * @param $value The original `<dataType>` value.
-     * @param string $regexp A regular expression to use for search.
-     * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The default
-     *                       is 1. Specify -1 to replace all occurrences.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
+     * @param string $replacement The replacement for each match. $n is the
+     *                            text of group n ($0 the whole match),
+     *                            ${name} the text of a named group, and a
+     *                            backslash makes the next character literal
+     *                            (\$ for a dollar sign). Any other $ is an
+     *                            error.
+     * @param integer $limit The maximum number of matches to replace. The
+     *                       default is 1. Specify -1 (or any negative) to
+     *                       replace every match.
      *
      * @return string Result text as string (not re-typed as the input data
      *                type).
@@ -1793,6 +1809,29 @@ class polymorphic
         $request = $this->$session->request();
 
         $request->set("function", "to_password");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_regexp()
+     *
+     * Converts `<dataType>` value to a compiled regexp, the same value as a
+     * regexp literal. A pattern ICU does not accept is a conversion_error.
+     *
+     * @param $value
+     *
+     * @return regexp
+     */
+    public function to_regexp(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_regexp");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

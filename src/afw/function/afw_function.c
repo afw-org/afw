@@ -270,6 +270,43 @@ afw_function_evaluate_function_parameter(
 
 
 
+/* Evaluate a regexp parameter to its compiled form. */
+AFW_DEFINE(const afw_utf8_regexp_t *)
+afw_function_evaluate_regexp_parameter(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number)
+{
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+    const afw_utf8_t *error_message;
+
+    value = afw_function_evaluate_parameter(x, parameter_number,
+        afw_data_type_regexp);
+    if (!value) {
+        return NULL;
+    }
+
+    if (afw_value_is_compiled_regexp(value)) {
+        return ((const afw_value_compiled_regexp_t *)value)->regexp;
+    }
+
+    regexp = afw_utf8_regexp_compile(
+        &((const afw_value_regexp_t *)value)->internal, 0,
+        &error_message, x->p, x->xctx);
+    if (!regexp) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Parameter " AFW_SIZE_T_FMT
+            " of function '%ku' is not a valid regular expression: %ku",
+            parameter_number,
+            &x->function->functionId->internal,
+            error_message);
+    }
+
+    return regexp;
+}
+
+
+
 /*
  * Built-in formal: eval + definition metadata + optional convert to caller's
  * requested leaf data_type. Not script typeCheck (see compiler_internal).
@@ -296,6 +333,8 @@ afw_function_evaluate_parameter_with_p(
     afw_xctx_t *xctx = x->xctx;
     const afw_value_t *result;
     const afw_data_type_t *result_data_type;
+    const afw_data_type_t *expected;
+    const afw_utf8_z_t *hint;
     const afw_value_function_parameter_t *parameter;
 
     /* Formal metadata from Adaptive function definition. */
@@ -359,30 +398,34 @@ afw_function_evaluate_parameter_with_p(
     /* Get result's data type. */
     result_data_type = afw_value_get_data_type(result, xctx);
 
-    /* Error if result data type doesn't match parameter's defined data type. */
-    if (parameter->data_type && result_data_type) {
-        if (parameter->data_type != result_data_type)
-        {
-            AFW_THROW_ERROR_FZ(argument_error, xctx,
-                "Parameter " AFW_SIZE_T_FMT
-                " of function '%ku' must evaluate to data type '%ku' but evaluated to be '%ku'",
-                parameter_number,
-                &x->function->functionId->internal,
-                &parameter->data_type->data_type_id,
-                &result_data_type->data_type_id);
-        }
-    }
-
-    /* Error if result is not the data type the caller asked for (#583). */
-    if (data_type && result_data_type && result_data_type != data_type)
+    /*
+     * Error if result data type doesn't match parameter's defined data
+     * type, or is not the data type the caller asked for (#583). The
+     * message says how to get one when there is a way.
+     */
+    expected = NULL;
+    if (parameter->data_type && result_data_type &&
+        parameter->data_type != result_data_type)
     {
+        expected = parameter->data_type;
+    }
+    else if (data_type && result_data_type && result_data_type != data_type)
+    {
+        expected = data_type;
+    }
+    if (expected) {
+        hint = afw_value_type_conversion_hint_z(expected, result_data_type,
+            result, p, xctx);
         AFW_THROW_ERROR_FZ(argument_error, xctx,
             "Parameter " AFW_SIZE_T_FMT
-            " of function '%ku' must evaluate to data type '%ku' but evaluated to be '%ku'",
+            " of function '%ku' must evaluate to data type '%ku' but"
+            " evaluated to be '%ku'%s%s",
             parameter_number,
             &x->function->functionId->internal,
-            &data_type->data_type_id,
-            &result_data_type->data_type_id);
+            &expected->data_type_id,
+            &result_data_type->data_type_id,
+            hint ? "; " : "",
+            hint ? hint : "");
     }
 
     return result;

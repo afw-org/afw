@@ -57,7 +57,7 @@ check(Ada, "a", "eq");
 check({ op: "ne", property: "FullName_cn", value: "Ada" }, "b", "ne (c has no value)");
 check({ op: "ge", property: "FullName_cn", value: "Al" }, "b", "ge");
 check({ op: "lt", property: "FullName_cn", value: "Al" }, "a", "lt");
-check({ op: "match", property: "FullName_cn", value: "Al.*" }, "b", "match starts with");
+check({ op: "match", property: "FullName_cn", value: "^Al" }, "b", "match starts with");
 check({ op: "or", filters: [Ada, Alan] }, "a,b", "or of two names");
 check({ op: "and", filters: [Ada, { op: "eq", property: "Dept_cn", value: "ENG" }] },
     "a", "and of two computed names");

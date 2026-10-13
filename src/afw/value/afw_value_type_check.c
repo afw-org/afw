@@ -2048,23 +2048,20 @@ afw_value_type_check_adaptive_function_call(
 static const afw_utf8_t
 impl_quoted_ellipsis = AFW_UTF8_LITERAL("\"...\"");
 
-/* Message for a failed type assertion. See afw_value_internal.h. */
+/* How to get an expected from got. See afw_value_internal.h. */
 const afw_utf8_z_t *
-afw_value_type_assertion_mismatch_z(
+afw_value_type_conversion_hint_z(
     const afw_data_type_t *expected,
     const afw_data_type_t *got,
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_utf8_t *got_id;
     const afw_utf8_t *literal;
     const afw_utf8_t *to_id;
     const afw_utf8_z_t *literal_hint;
     const afw_utf8_z_t *to_hint;
     const afw_value_string_t *s;
-
-    got_id = got ? &got->data_type_id : afw_s_undefined;
 
     /* A string that could be written as a typed literal of expected. */
     literal_hint = NULL;
@@ -2104,15 +2101,35 @@ afw_value_type_assertion_mismatch_z(
     }
 
     if (literal_hint && to_hint) {
-        return afw_utf8_z_printf(p, xctx,
-            "expected %ku but got %ku; write %s or %s",
-            &expected->data_type_id, got_id, literal_hint, to_hint);
+        return afw_utf8_z_printf(p, xctx, "write %s or %s",
+            literal_hint, to_hint);
     }
     if (literal_hint || to_hint) {
-        return afw_utf8_z_printf(p, xctx,
-            "expected %ku but got %ku; write %s",
-            &expected->data_type_id, got_id,
+        return afw_utf8_z_printf(p, xctx, "write %s",
             literal_hint ? literal_hint : to_hint);
+    }
+    return NULL;
+}
+
+
+/* Message for a failed type assertion. See afw_value_internal.h. */
+const afw_utf8_z_t *
+afw_value_type_assertion_mismatch_z(
+    const afw_data_type_t *expected,
+    const afw_data_type_t *got,
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *got_id;
+    const afw_utf8_z_t *hint;
+
+    got_id = got ? &got->data_type_id : afw_s_undefined;
+    hint = afw_value_type_conversion_hint_z(expected, got, value, p, xctx);
+    if (hint) {
+        return afw_utf8_z_printf(p, xctx,
+            "expected %ku but got %ku; %s",
+            &expected->data_type_id, got_id, hint);
     }
     return afw_utf8_z_printf(p, xctx,
         "expected %ku but got %ku",

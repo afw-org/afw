@@ -53,9 +53,9 @@ return "\0" === "\u0000" && length("\0") === 1;
 return length("abc\0def") === 7;
 
 //?
-//? test: NullEscape-c-string-boundary
-//? description: Embedded NUL cannot convert to a C string
-//? expect: error
+//? test: NullEscape-regexp-match
+//? description: regexp_match reads the whole string, including an embedded NUL
+//? expect: true
 //? source: ...
 
-return regexp_match("abc\0def", "abc");
+return regexp_match("abc\0def", "abc"re);

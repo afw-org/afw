@@ -12,8 +12,6 @@
  */
 
 #include "afw_internal.h"
-#include <libxml/xmlerror.h>
-#include <libxml/xmlregexp.h>
 
 
 static afw_boolean_t
@@ -1678,8 +1676,9 @@ afw_function_execute_one_and_only(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Checks whether `<dataType>` value matches the regular expression regexp and
- * return the boolean result.
+ * Checks whether the regular expression matches anywhere in `<dataType>` value
+ * and returns the boolean result. Anchor with ^ and \z to match the whole
+ * value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1693,7 +1692,7 @@ afw_function_execute_one_and_only(
  * ```
  *   function regexp_match <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -1701,7 +1700,9 @@ afw_function_execute_one_and_only(
  *
  *   value - (``<Type>``)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
  *
  * Returns:
  *
@@ -1711,39 +1712,17 @@ const afw_value_t *
 afw_function_execute_regexp_match(
     afw_function_execute_t *x)
 {
-    xmlRegexpPtr rx = NULL;
     const afw_value_t *arg1;
-    const afw_value_string_t *arg2;
-    const xmlChar * s_z;
-    const xmlChar * regexp_z;
-    const afw_utf8_t *err_message;
-    const xmlError *err;
-    const afw_value_t *result;
+    const afw_utf8_regexp_t *regexp;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(arg1);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2, string);
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
 
-    s_z = BAD_CAST afw_utf8_to_utf8_z(
-        (const afw_utf8_t *)AFW_VALUE_INTERNAL(arg1), x->p, x->xctx);
-    regexp_z = BAD_CAST afw_utf8_to_utf8_z(&arg2->internal, x->p, x->xctx);
-    rx = xmlRegexpCompile(regexp_z);
-    if (rx == NULL) {
-        err = xmlGetLastError();
-        err_message = afw_utf8_create(err->message, AFW_UTF8_Z_LEN,
-            x->p, x->xctx);
-        xmlResetLastError();
-        xmlRegFreeRegexp(rx);
-        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "%ku",
-            err_message);
-    }
-
-    /* xmlRegexpExec returns: 1 if it matches, 0 if not */
-    result = xmlRegexpExec(rx, s_z) == 0 ? afw_boolean_v_false : afw_boolean_v_true;
-    xmlRegFreeRegexp(rx);
-
-    return result;
+    return afw_utf8_regexp_find(regexp,
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(arg1), x->xctx)
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -2723,8 +2702,8 @@ return_result:
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Search `<dataType>` value for a regular expression and return index. If not
- * found, -1 is returned.
+ * Searches `<dataType>` value for the regular expression and returns the code
+ * point index of the first match, or -1 if there is none.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2738,7 +2717,7 @@ return_result:
  * ```
  *   function regexp_index_of <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): integer;
  * ```
  *
@@ -2746,18 +2725,29 @@ return_result:
  *
  *   value - (``<Type>``) The `<dataType>` value to search.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
  *
  * Returns:
  *
- *   (integer) Zero-based index of subString or -1 if not found.
+ *   (integer) Zero-based code point index of the first match, or -1.
  */
 const afw_value_t *
 afw_function_execute_regexp_index_of(
     afw_function_execute_t *x)
 {
-    /** @fixme Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
+
+    return afw_value_create_unmanaged_integer(
+        afw_utf8_regexp_index_of(regexp,
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), x->xctx),
+        x->p, x->xctx);
 }
 
 
@@ -2769,7 +2759,8 @@ afw_function_execute_regexp_index_of(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Replace matched values for a regular expression in a `<dataType>` value.
+ * Replaces matches of the regular expression in `<dataType>` value, left to
+ * right, up to limit times. An empty match is replaced too.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2783,7 +2774,7 @@ afw_function_execute_regexp_index_of(
  * ```
  *   function regexp_replace <dataType>(
  *       value: dataType,
- *       regexp: string,
+ *       regexp: regexp,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -2793,12 +2784,17 @@ afw_function_execute_regexp_index_of(
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
  *
- *   replacement - (string) The replacement string.
+ *   replacement - (string) The replacement for each match. $n is the text of
+ *       group n ($0 the whole match), ${name} the text of a named group, and a
+ *       backslash makes the next character literal (\$ for a dollar sign). Any
+ *       other $ is an error.
  *
- *   limit - (optional integer) This is the maximum times to replace. The
- *       default is 1. Specify -1 to replace all occurrences.
+ *   limit - (optional integer) The maximum number of matches to replace. The
+ *       default is 1. Specify -1 (or any negative) to replace every match.
  *
  * Returns:
  *
@@ -2808,8 +2804,33 @@ const afw_value_t *
 afw_function_execute_regexp_replace(
     afw_function_execute_t *x)
 {
-    /** @fixme Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+    const afw_value_string_t *replacement;
+    const afw_value_integer_t *limit_value;
+    afw_size_t limit;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(replacement, 3, string);
+
+    /* As replace: default 1, a negative limit replaces all. */
+    limit = 1;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
+            limit_value, 4, integer);
+        limit = (limit_value->internal < 0 ||
+            limit_value->internal > AFW_SIZE_T_MAX)
+            ? AFW_SIZE_T_MAX
+            : (afw_size_t)limit_value->internal;
+    }
+
+    return afw_value_create_unmanaged_string(
+        afw_utf8_regexp_replace(regexp,
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(value),
+            &replacement->internal, limit, x->p, x->xctx),
+        x->p, x->xctx);
 }
 
 
@@ -3145,4 +3166,65 @@ afw_function_execute_freeze(
 
     AFW_THROW_ERROR_Z(general,
         "freeze requires an object or array", x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for to_regexp
+ *
+ * afw_function_execute_to_regexp
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Converts `<dataType>` value to a compiled regexp, the same value as a regexp
+ * literal. A pattern ICU does not accept is a conversion_error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_regexp <dataType>(
+ *       value: dataType
+ *   ): regexp;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (regexp)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - the pattern does not compile
+ */
+const afw_value_t *
+afw_function_execute_to_regexp(
+    afw_function_execute_t *x)
+{
+    const afw_value_string_t *value;
+    const afw_value_t *result;
+    const afw_utf8_t *error_message;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 1, string);
+
+    /* Pooled in x->p (caller does not release). */
+    result = afw_value_compiled_regexp_create(&value->internal,
+        &error_message, x->p, x->xctx);
+    if (!result) {
+        AFW_THROW_ERROR_FZ(conversion_error, x->xctx,
+            "Invalid regular expression: %ku",
+            error_message);
+    }
+
+    return result;
 }

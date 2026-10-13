@@ -67,14 +67,14 @@ check({ op: "or", filters: [
 ] }, "a,b,c", "or of two cursors on one name: no duplicate");
 
 /*
- * match is case-insensitive too: the pattern is lowercased like the
- * values, except its escapes (\S is not \s).
+ * match is case-insensitive too: the pattern is compiled to ignore
+ * case, so its escapes keep their meaning (\S is not \s).
  */
-check({ op: "match", property: "s_cim", value: "smi.*" }, "a,b", "match, lowercase pattern");
-check({ op: "match", property: "s_cim", value: "SMI.*" }, "a,b", "match, uppercase pattern");
-check({ op: "match", property: "s_cim", value: "[S]\\S+" }, "a,b", "match, class and \\S escape");
-check({ op: "match", property: "s_cim", value: "J\\s*ONES" }, "c", "match, \\s escape");
-check({ op: "match", property: "s_cim", value: "\\p{Lu}.*" }, "", "match, \\p{Lu} never matches a lowercased value");
+check({ op: "match", property: "s_cim", value: "^smi.*" }, "a,b", "match, lowercase pattern");
+check({ op: "match", property: "s_cim", value: "^SMI.*" }, "a,b", "match, uppercase pattern");
+check({ op: "match", property: "s_cim", value: "^[S]\\S+$" }, "a,b", "match, class and \\S escape");
+check({ op: "match", property: "s_cim", value: "^J\\s*ONES$" }, "c", "match, \\s escape");
+check({ op: "match", property: "s_cim", value: "^\\p{Lu}" }, "a,b,c", "match, \\p{Lu} ignoring case matches any cased letter");
 
 safe_evaluate(index_remove("lmdb", "s_cim"), null);
 
