@@ -16167,6 +16167,12 @@ afw_self_v_limitEvaluationStackCount = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitRegexpMatchSteps = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limitRegexpMatchSteps)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_limitRequestPoolBytes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_limitRequestPoolBytes)
@@ -16182,6 +16188,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_limit_evaluation_stack_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_limit_evaluation_stack_count)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_regexp_match_steps = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limit_regexp_match_steps)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -29283,6 +29295,12 @@ afw_self_v_zz__67ecd0355593 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__684514957280 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__684514957280)
+};
+
+const afw_value_string_t
 afw_self_v_zz__68558e746107 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__68558e746107)
@@ -30354,6 +30372,12 @@ const afw_value_string_t
 afw_self_v_zz__7b34812dccbf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__7b34812dccbf)
+};
+
+const afw_value_string_t
+afw_self_v_zz__7b61628936ff = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__7b61628936ff)
 };
 
 const afw_value_string_t
@@ -38157,6 +38181,12 @@ afw_self_v_zz__Limit_Evaluation_Stack_Count = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Limit_Regexp_Match_Steps = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Limit_Regexp_Match_Steps)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Limit_Request_Pool_Bytes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Limit_Request_Pool_Bytes)
@@ -39645,6 +39675,12 @@ afw_self_v_zz__Override_large_regions_a_thread_keeps_resident = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Override_regular_expression_match_step_limit = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_regular_expression_match_step_limit)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Override_request_thread_C_stack_size = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Override_request_thread_C_stack_size)
@@ -40404,6 +40440,12 @@ const afw_value_string_t
 afw_self_v_zz__Registry_type_for_instances_of_this_conf_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Registry_type_for_instances_of_this_conf_type)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Regular_expression_match_step_limit = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Regular_expression_match_step_limit)
 };
 
 const afw_value_string_t
@@ -64979,9 +65021,11 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_limit,
     &afw_self_v_limitCStackHeadroomBytes,
     &afw_self_v_limitEvaluationStackCount,
+    &afw_self_v_limitRegexpMatchSteps,
     &afw_self_v_limitRequestPoolBytes,
     &afw_self_v_limit_c_stack_headroom_bytes,
     &afw_self_v_limit_evaluation_stack_count,
+    &afw_self_v_limit_regexp_match_steps,
     &afw_self_v_limit_request_pool_bytes,
     &afw_self_v_line,
     &afw_self_v_listing,

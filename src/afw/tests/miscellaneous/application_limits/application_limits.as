@@ -11,6 +11,7 @@
 
 assert(process::limitEvaluationStackCount === 40);
 assert(process::limitCStackHeadroomBytes === 0);
+assert(process::limitRegexpMatchSteps === 100000);
 assert(process::limitRequestPoolBytes === 67108864);
 assert(process::defaultChunkMin === 4096);
 assert(process::smallChunkMin === 4096);
@@ -46,3 +47,11 @@ catch (e) {
 }
 assert(id === "payload_too_large", id);
 return 0;
+
+//?
+//? test: conf-regexp-match-steps
+//? description: A pattern that reaches the default limitRegexpMatchSteps (1000) completes under the conf's 100000
+//? expect: false
+//? source: ...
+
+regexp_match(repeat("a", 23) + "!", /^(a+)+$/)

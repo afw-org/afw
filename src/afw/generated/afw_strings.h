@@ -69969,6 +69969,32 @@ afw_self_v_limitEvaluationStackCount;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_limitRegexpMatchSteps \
+    "limitRegexpMatchSteps"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitRegexpMatchSteps */
+#define afw_s_limitRegexpMatchSteps \
+    (&afw_self_v_limitRegexpMatchSteps.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitRegexpMatchSteps */
+#define afw_self_s_limitRegexpMatchSteps \
+    (afw_self_v_limitRegexpMatchSteps.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limitRegexpMatchSteps */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitRegexpMatchSteps;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limitRegexpMatchSteps */
+#define afw_z_limitRegexpMatchSteps \
+    (afw_self_v_limitRegexpMatchSteps.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limitRegexpMatchSteps */
+#define afw_v_limitRegexpMatchSteps \
+    (&afw_self_v_limitRegexpMatchSteps.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_limitRequestPoolBytes \
     "limitRequestPoolBytes"
 
@@ -70043,6 +70069,32 @@ afw_self_v_limit_evaluation_stack_count;
 /** @brief 'const afw_value_t *' for AFW_Q_limit_evaluation_stack_count */
 #define afw_v_limit_evaluation_stack_count \
     (&afw_self_v_limit_evaluation_stack_count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_limit_regexp_match_steps \
+    "limit_regexp_match_steps"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_regexp_match_steps */
+#define afw_s_limit_regexp_match_steps \
+    (&afw_self_v_limit_regexp_match_steps.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_regexp_match_steps */
+#define afw_self_s_limit_regexp_match_steps \
+    (afw_self_v_limit_regexp_match_steps.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limit_regexp_match_steps */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_regexp_match_steps;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limit_regexp_match_steps */
+#define afw_z_limit_regexp_match_steps \
+    (afw_self_v_limit_regexp_match_steps.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limit_regexp_match_steps */
+#define afw_v_limit_regexp_match_steps \
+    (&afw_self_v_limit_regexp_match_steps.pub)
 
 
 

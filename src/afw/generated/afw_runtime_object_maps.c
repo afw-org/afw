@@ -4003,6 +4003,16 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_size
     },
     {
+        afw_v_limitRegexpMatchSteps,
+        offsetof(afw_environment_t, limit_regexp_match_steps),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
         afw_v_limitRequestPoolBytes,
         offsetof(afw_environment_t, limit_request_pool_bytes),
         -1,
@@ -4277,7 +4287,7 @@ impl_properties__AdaptiveProcess_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveProcess_ = {
     &afw_self_s__AdaptiveProcess_,
-    33,
+    34,
     &impl_properties__AdaptiveProcess_[0]
 };
 

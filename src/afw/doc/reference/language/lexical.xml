@@ -207,9 +207,16 @@ regexp_match("Ελλάδα", /^\w+$/);                        // true</code>
             <literal>/^(a+)+$/</literal> on a long run of
             <literal>a</literal> that does not end the way the pattern expects,
             take time that grows exponentially with the length of the value.
-            A match stops after about a tenth of a second of backtracking with
-            a <literal>payload_too_large</literal> error, so a pattern, even
-            one that arrives in a request, cannot hold a thread.
+            A match stops after a fixed number of steps of the ICU match
+            engine with a <literal>payload_too_large</literal> error, so a
+            pattern, even one that arrives in a request, cannot hold a thread.
+            The number is the process limit
+            <literal>limitRegexpMatchSteps</literal>: 1000 by default, about a
+            tenth of a second of backtracking, and far more than a linear scan
+            of a long value needs. An application conf can change it like the
+            other <literal>limit*</literal> settings (0 is unlimited), and
+            <literal>process::limitRegexpMatchSteps</literal> shows the current
+            value.
         </paragraph>
         <paragraph>
             Because of an ICU issue, a lazy loop over a group that can match

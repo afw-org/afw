@@ -26211,6 +26211,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__684514957280 \
+    "Optional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__684514957280 */
+#define afw_s_zz__684514957280 \
+    (&afw_self_v_zz__684514957280.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__684514957280 */
+#define afw_self_s_zz__684514957280 \
+    (afw_self_v_zz__684514957280.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__684514957280 */
+extern const afw_value_string_t \
+    afw_self_v_zz__684514957280;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__684514957280 */
+#define afw_z_zz__684514957280 \
+    (afw_self_v_zz__684514957280.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__684514957280 */
+#define afw_v_zz__684514957280 \
+    (&afw_self_v_zz__684514957280.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__68558e746107 \
     "Converts value to data type relaxedJson returning relaxedJson result. Holds relaxed JSON source text as a relaxedJson value (does not parse/compile). Use polymorphic compile to compile the source."
 
@@ -30861,6 +30887,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7b34812dccbf */
 #define afw_v_zz__7b34812dccbf \
     (&afw_self_v_zz__7b34812dccbf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__7b61628936ff \
+    "Steps of the ICU match engine (uregex_setTimeLimit units) one regular expression match may take. A match that backtracks past it fails with payload_too_large; 1000 is about 0.1 second of backtracking on a current machine, and linear scans use a small part of it. Default 1000. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7b61628936ff */
+#define afw_s_zz__7b61628936ff \
+    (&afw_self_v_zz__7b61628936ff.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7b61628936ff */
+#define afw_self_s_zz__7b61628936ff \
+    (afw_self_v_zz__7b61628936ff.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7b61628936ff */
+extern const afw_value_string_t \
+    afw_self_v_zz__7b61628936ff;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7b61628936ff */
+#define afw_z_zz__7b61628936ff \
+    (afw_self_v_zz__7b61628936ff.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7b61628936ff */
+#define afw_v_zz__7b61628936ff \
+    (&afw_self_v_zz__7b61628936ff.pub)
 
 
 
@@ -64665,6 +64717,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Limit_Regexp_Match_Steps \
+    "Limit Regexp Match Steps"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_Regexp_Match_Steps */
+#define afw_s_zz__Limit_Regexp_Match_Steps \
+    (&afw_self_v_zz__Limit_Regexp_Match_Steps.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_Regexp_Match_Steps */
+#define afw_self_s_zz__Limit_Regexp_Match_Steps \
+    (afw_self_v_zz__Limit_Regexp_Match_Steps.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Limit_Regexp_Match_Steps */
+extern const afw_value_string_t \
+    afw_self_v_zz__Limit_Regexp_Match_Steps;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Limit_Regexp_Match_Steps */
+#define afw_z_zz__Limit_Regexp_Match_Steps \
+    (afw_self_v_zz__Limit_Regexp_Match_Steps.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Limit_Regexp_Match_Steps */
+#define afw_v_zz__Limit_Regexp_Match_Steps \
+    (&afw_self_v_zz__Limit_Regexp_Match_Steps.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Limit_Request_Pool_Bytes \
     "Limit Request Pool Bytes"
 
@@ -71113,6 +71191,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_regular_expression_match_step_limit \
+    "Override regular expression match step limit"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_regular_expression_match_step_limit */
+#define afw_s_zz__Override_regular_expression_match_step_limit \
+    (&afw_self_v_zz__Override_regular_expression_match_step_limit.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_regular_expression_match_step_limit */
+#define afw_self_s_zz__Override_regular_expression_match_step_limit \
+    (afw_self_v_zz__Override_regular_expression_match_step_limit.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_regular_expression_match_step_limit */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_regular_expression_match_step_limit;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_regular_expression_match_step_limit */
+#define afw_z_zz__Override_regular_expression_match_step_limit \
+    (afw_self_v_zz__Override_regular_expression_match_step_limit.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_regular_expression_match_step_limit */
+#define afw_v_zz__Override_regular_expression_match_step_limit \
+    (&afw_self_v_zz__Override_regular_expression_match_step_limit.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Override_request_thread_C_stack_size \
     "Override request-thread C stack size"
 
@@ -74411,6 +74515,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Registry_type_for_instances_of_this_conf_type */
 #define afw_v_zz__Registry_type_for_instances_of_this_conf_type \
     (&afw_self_v_zz__Registry_type_for_instances_of_this_conf_type.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Regular_expression_match_step_limit \
+    "Regular expression match step limit"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Regular_expression_match_step_limit */
+#define afw_s_zz__Regular_expression_match_step_limit \
+    (&afw_self_v_zz__Regular_expression_match_step_limit.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Regular_expression_match_step_limit */
+#define afw_self_s_zz__Regular_expression_match_step_limit \
+    (afw_self_v_zz__Regular_expression_match_step_limit.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Regular_expression_match_step_limit */
+extern const afw_value_string_t \
+    afw_self_v_zz__Regular_expression_match_step_limit;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Regular_expression_match_step_limit */
+#define afw_z_zz__Regular_expression_match_step_limit \
+    (afw_self_v_zz__Regular_expression_match_step_limit.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Regular_expression_match_step_limit */
+#define afw_v_zz__Regular_expression_match_step_limit \
+    (&afw_self_v_zz__Regular_expression_match_step_limit.pub)
 
 
 

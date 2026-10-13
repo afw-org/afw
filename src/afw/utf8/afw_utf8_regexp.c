@@ -28,19 +28,15 @@ struct afw_utf8_regexp_s {
 
 
 /*
- * ICU backtracks, so a pattern such as (a+)+$ can take time exponential
- * in the length of the value. Each match may take this many steps of
- * the ICU match engine (about 0.1 second of backtracking on a current
- * machine; a linear scan of megabytes takes a small part of it) before it
- * fails with U_REGEX_TIME_OUT. RQL match patterns come from requests, so
- * this is what keeps one from holding a thread.
- */
-#define IMPL_MATCH_TIME_LIMIT 1000
-
-
-/*
  * A matcher for regexp on subject: a clone (the compiled one is never
- * matched itself) with the time limit, reading subject through *ut.
+ * matched itself) reading subject through *ut, with the match step
+ * limit. ICU backtracks, so a pattern such as (a+)+$ can take time
+ * exponential in the length of the value; a match that takes more than
+ * env->limit_regexp_match_steps steps of the ICU match engine (process
+ * or application conf limitRegexpMatchSteps; 0 = unlimited) fails with
+ * U_REGEX_TIME_OUT. RQL match patterns come from requests, so this is
+ * what keeps one from holding a thread.
+ *
  * Nothing here throws; check *status. Close with impl_matcher_close().
  */
 static URegularExpression *
@@ -48,14 +44,21 @@ impl_matcher_open(
     const afw_utf8_regexp_t *regexp,
     const afw_utf8_t *subject,
     UText *ut,
-    UErrorCode *status)
+    UErrorCode *status,
+    afw_xctx_t *xctx)
 {
     URegularExpression *rx;
+    afw_size_t limit;
+
+    limit = xctx->env->limit_regexp_match_steps;
+    if (limit > INT32_MAX) {
+        limit = INT32_MAX;
+    }
 
     rx = uregex_clone(regexp->rx, status);
     utext_openUTF8(ut, subject->s, (int64_t)subject->len, status);
     uregex_setUText(rx, ut, status);
-    uregex_setTimeLimit(rx, IMPL_MATCH_TIME_LIMIT, status);
+    uregex_setTimeLimit(rx, (int32_t)limit, status);
 
     return rx;
 }
@@ -75,10 +78,16 @@ impl_matcher_close(URegularExpression *rx, UText *ut)
 static void
 impl_throw_match_error(UErrorCode status, afw_xctx_t *xctx)
 {
-    if (status == U_REGEX_TIME_OUT || status == U_REGEX_STACK_OVERFLOW) {
+    if (status == U_REGEX_TIME_OUT) {
         AFW_THROW_ERROR_RV_Z(payload_too_large, icu, status,
-            "Regular expression match exceeded its limit: the pattern "
-            "backtracks too much on this value",
+            "Regular expression match exceeded limitRegexpMatchSteps: the "
+            "pattern backtracks too much on this value",
+            xctx);
+    }
+    if (status == U_REGEX_STACK_OVERFLOW) {
+        AFW_THROW_ERROR_RV_Z(payload_too_large, icu, status,
+            "Regular expression match exceeded ICU's backtrack stack: the "
+            "pattern backtracks too much on this value",
             xctx);
     }
     AFW_THROW_ERROR_RV_Z(general, icu, status,
@@ -199,7 +208,7 @@ impl_find(
     /* Nothing between open and close can throw. */
     start = -1;
     status = U_ZERO_ERROR;
-    rx = impl_matcher_open(regexp, subject, &ut, &status);
+    rx = impl_matcher_open(regexp, subject, &ut, &status, xctx);
     if (uregex_find(rx, 0, &status)) {
         start = uregex_start64(rx, 0, &status);
     }
@@ -388,7 +397,7 @@ afw_utf8_regexp_replace(
     writer = afw_utf8_writer_create(NULL, p, xctx);
 
     status = U_ZERO_ERROR;
-    rx = impl_matcher_open(regexp, subject, &ut, &status);
+    rx = impl_matcher_open(regexp, subject, &ut, &status, xctx);
     if (U_FAILURE(status)) {
         impl_matcher_close(rx, &ut);
         afw_writer_release(writer, xctx);

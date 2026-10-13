@@ -338,6 +338,13 @@ afw_application_internal_register_basic_application_context_type(
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_limitRegexpMatchSteps, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Limit Regexp Match Steps",
+        "Steps of the ICU match engine one regexp match may take. 0 = unlimited.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
         afw_s_limitCStackHeadroomBytes, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
         "Limit C Stack Headroom Bytes",
@@ -588,6 +595,10 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_v_limitCStackHeadroomBytes,
         &env->limit_c_stack_headroom_bytes, NULL,
         IMPL_KNOB_LIMIT_BYTES, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_limitRegexpMatchSteps,
+        &env->limit_regexp_match_steps, NULL,
+        IMPL_KNOB_AS_IS, source_location, xctx);
     impl_apply_optional_size_limit(properties,
         afw_v_threadStackBytes,
         &env->thread_stack_bytes, NULL,

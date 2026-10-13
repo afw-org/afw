@@ -27,9 +27,28 @@ regexp_match<string>(
 )
 
 //?
+//? test: regexp_match-default-limit
+//? description: The default limitRegexpMatchSteps is 1000; at it, ^(a+)+$ on 22 a and ! completes and on 23 does not.
+//? expect: [1000, false, "payload_too_large"]
+//? source: ...
+
+let over = "no error";
+try {
+    regexp_match(repeat("a", 23) + "!", /^(a+)+$/);
+}
+catch (e) {
+    over = e.id;
+}
+return [
+    process::limitRegexpMatchSteps,
+    regexp_match(repeat("a", 22) + "!", /^(a+)+$/),
+    over
+];
+
+//?
 //? test: regexp_match-backtracking-limit
 //? description: A pattern that backtracks exponentially on the value stops at the match limit instead of holding the thread.
-//? expect: error:Regular expression match exceeded its limit: the pattern backtracks too much on this value
+//? expect: error:Regular expression match exceeded limitRegexpMatchSteps: the pattern backtracks too much on this value
 //? source: ...
 
 regexp_match(repeat("a", 40) + "!", /^(a+)+$/)

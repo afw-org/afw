@@ -117,6 +117,14 @@
             "label": "Limit Evaluation Stack Count",
             "required": false
         },
+        "limitRegexpMatchSteps": {
+            "allowQuery": true,
+            "brief": "Override regular expression match step limit",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited.",
+            "label": "Limit Regexp Match Steps",
+            "required": false
+        },
         "limitRequestPoolBytes": {
             "allowQuery": true,
             "brief": "Override request/thread ST asked-for cap",
