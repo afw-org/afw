@@ -236,27 +236,6 @@ impl_for_let_next_clone(
 }
 
 
-/* Formal expects array of values: leaf array, T[], or tuple (#153). */
-static inline afw_boolean_t
-impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
-{
-    if (!type) {
-        return false;
-    }
-    if (type->kind == afw_value_type_kind_data_type &&
-        type->data_type == afw_data_type_array)
-    {
-        return true;
-    }
-    if (type->kind == afw_value_type_kind_array ||
-        type->kind == afw_value_type_kind_tuple)
-    {
-        return true;
-    }
-    return false;
-}
-
-
 /*
  * Evaluate a script-function formal (call_script_function only).
  *
@@ -264,8 +243,9 @@ impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
  * see afw_value_type_check_assignable for what is checked when runtime
  * typeCheck is off. Not used by Adaptive built-ins.
  *
- * Array-shaped formals accept utf8 code-point sequences via
- * afw_value_convert_to_array_sequence (#153), same language rule as built-ins.
+ * A string for an array-shaped formal is an error like any other mismatch;
+ * the caller writes [...s] for its code points (#583). Only built-in
+ * parameters marked iterableAsArray read a string as an array.
  */
 const afw_value_t *
 afw_function_script_evaluate_parameter_with_type(
@@ -277,9 +257,6 @@ afw_function_script_evaluate_parameter_with_type(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    afw_boolean_t wants_array_sequence;
-
-    wants_array_sequence = impl_script_formal_expects_array_sequence(type);
 
     if (type) {
         afw_value_type_check_call_arg_object_literal(type, value,
@@ -289,11 +266,6 @@ afw_function_script_evaluate_parameter_with_type(
     result = afw_value_is_defined_and_evaluated(value)
         ? value
         : afw_value_evaluate(value, p, xctx);
-
-    /* #153: materialize utf8 sequences before the check. */
-    if (wants_array_sequence) {
-        result = afw_value_convert_to_array_sequence(result, p, xctx);
-    }
 
     afw_value_type_check_assignable(type, result, "parameter",
         contextual, xctx);

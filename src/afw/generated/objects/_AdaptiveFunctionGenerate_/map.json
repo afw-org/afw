@@ -14,6 +14,7 @@
         },
         {
             "description": "The first array is walked one entry at a time as the first argument to functor. Additional parameters are passed on every call. At least one array is required.",
+            "iterableAsArray": true,
             "minArgs": 1,
             "name": "values"
         }

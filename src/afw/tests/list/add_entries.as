@@ -12,7 +12,7 @@
 
 let l1 = [];
 
-for (const v of [1, true, null, { "x": "y", "z": 1 }]) {
+for (const v of [1, true, null, { "x": "y", "z": 1 }, "x"]) {
     let threw = false;
     try { add_entries(l1, v); } catch (e) { threw = true; }
     assert(threw, "add_entries of " + stringify(v) + " did not throw");
@@ -22,13 +22,13 @@ assert(length(l1) === 0, "l1 is " + string(length(l1)));
 return 0;
 
 //? test: add_entries-string-code-points
-//? description: a string is a sequence of its code points (#153), so each one is added
+//? description: a string is not an array (#583); spread it to add its code points
 //? expect: 0
 //? source: ...
 
 let l1 = [];
 
-add_entries(l1, "x😀");
+add_entries(l1, [..."x😀"]);
 
 assert(length(l1) === 2, "l1 is " + string(length(l1)));
 assert(l1[0] === "x" && l1[1] === "😀", "code points");

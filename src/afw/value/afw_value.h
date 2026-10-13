@@ -157,6 +157,13 @@ struct afw_value_function_parameter_s {
     /* Indicates that dataTypeParameter is polymorphic. */
     const afw_value_boolean_t *polymorphicDataTypeParameter;
 
+    /*
+     * Indicates that a value whose data type can be iterated (a string or
+     * another utf8-backed value) is read as the array of its elements for
+     * this array parameter. Without it, a non-array value is an error.
+     */
+    const afw_value_boolean_t *iterableAsArray;
+
     /**
      * If non-NULL, dataTypeParameter was resolved at generate to this Adaptive
      * data type (typically ArrayOf element type). NULL: do not use the
@@ -1711,10 +1718,9 @@ afw_value_convert_to_utf8_z(const afw_value_t *value,
  * when the formal truly wants a value sequence (e.g. EVALUATE … array, HOF
  * walked list, script `array` / `T[]` / tuple).
  *
- * **Deferred (not required for beta language semantics):** an immutable
- * array *face* over utf8 (lazy get_next / get_by_index without eager
- * materialize). Same public contract; optional later if cost or clear
- * mutation-reject matters. See `designs/utf8-code-point-sequences.md`.
+ * The array is always made eagerly. A lazy array view over the utf8
+ * (values created as accessed) is not planned: values made from raw
+ * memory on access leaked (#2). See `designs/utf8-code-point-sequences.md`.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_convert_to_array_sequence(

@@ -326,10 +326,25 @@ afw_function_evaluate_parameter_with_p(
     }
 
     /*
-     * Caller requested array (EVALUATE_* … array): materialize keyless-
-     * iterator sequences (utf8 code points) as a temporary array (#153).
+     * An array parameter marked iterableAsArray reads an iterable value
+     * (utf8 code points) as a temporary array of its elements (#153). Any
+     * other array parameter given an iterable value is an error (#583).
      */
-    if (data_type == afw_data_type_array) {
+    if ((data_type == afw_data_type_array ||
+        parameter->data_type == afw_data_type_array) &&
+        !afw_value_is_array(result) &&
+        afw_value_has_iterator(result))
+    {
+        if (!afw_value_is_boolean_true(parameter->iterableAsArray)) {
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "Parameter " AFW_SIZE_T_FMT
+                " of function '%ku' must evaluate to data type 'array' but"
+                " evaluated to be '%ku'; write [...value] to use its"
+                " elements",
+                parameter_number,
+                &x->function->functionId->internal,
+                &afw_value_get_data_type(result, xctx)->data_type_id);
+        }
         result = afw_value_convert_to_array_sequence(result, p, xctx);
     }
 

@@ -215,7 +215,22 @@ return 0;
 
 //?
 //? test: script-formal-array-string
-//? description: script param typed array accepts utf8 code-point sequence
+//? description: a string is not an array for a typed script parameter (#583)
+//? expect: error:Type error in parameter: expected array but got string
+//? source: ...
+
+const join_cps = function (parts: array) {
+    let s = "";
+    for (let c of parts) {
+        s = s + c;
+    }
+    return s;
+};
+return join_cps("ab");
+
+//?
+//? test: script-formal-array-spread
+//? description: spread a string to pass its code points to a typed array parameter
 //? expect: 0
 //? source: ...
 
@@ -226,21 +241,32 @@ const join_cps = function (parts: array) {
     }
     return s;
 };
-assert(join_cps("ab") === "ab");
-assert(join_cps("\u20ac" + "z") === "\u20ac" + "z");
+assert(join_cps([..."ab"]) === "ab");
+assert(join_cps([..."\u20ac" + "z"]) === "\u20ac" + "z");
 return 0;
 
 //?
 //? test: script-formal-string-array-annotation
-//? description: script param string[] accepts string sequence
+//? description: a string is not a string[] for a typed script parameter (#583)
+//? expect: error:Type error in parameter: expected array type string[] but got string
+//? source: ...
+
+const first = function (parts: string[]) {
+    return parts[0];
+};
+return first("xy");
+
+//?
+//? test: script-formal-string-array-spread
+//? description: spread a string to pass it as string[]
 //? expect: 0
 //? source: ...
 
 const first = function (parts: string[]) {
     return parts[0];
 };
-assert(first("xy") === "x");
-assert(first("\u20ac" + "a") === "\u20ac");
+assert(first([..."xy"]) === "x");
+assert(first([..."\u20ac" + "a"]) === "\u20ac");
 return 0;
 
 //?
@@ -400,4 +426,101 @@ assert(a === "ii", "U+0130: " + stringify(a));
 assert(length(a) === 2, "U+0130 length");
 const b = normalize_to_lower_case("ȺB");
 assert(b === "ⱥb", "U+023A: " + stringify(b));
+return 0;
+
+//?
+//? test: iterable-as-array-walkers
+//? description: functions whose parameter is marked iterableAsArray read a string as its code points (#583)
+//? expect: 0
+//? source: ...
+
+assert(eq(map(function (c) { return c; }, "ab"), ["a", "b"]));
+assert(eq(filter(function (c) { return c !== "a"; }, "abc"), ["b", "c"]));
+assert(find(function (c) { return c === "b"; }, "abc") === "b");
+assert(some(function (c) { return c === "b"; }, "abc"));
+assert(every(function (c) { return c !== "z"; }, "abc"));
+assert(any_of(eq<string>, "b", ["a", "b"]), "a lone string next to an array is a value");
+assert(all_of(function (c) { return c !== "z"; }, "abc"));
+assert(reduce(function (a, c) { return c + a; }, "", "abc") === "cba");
+assert(join("abc", "-") === "a-b-c");
+assert(join("x€y", "") === "x€y");
+return 0;
+
+//?
+//? test: iterable-as-array-ambiguous
+//? description: with no array and two strings, a walker can't tell which to walk
+//? expect: error:No value passed to any_of is an array and more than one could be read as one; write [...value] for the one to walk
+//? source: ...
+
+return any_of(eq<string>, "b", "abc");
+
+//?
+//? test: set-functions-reject-string
+//? description: XACML-derived set functions don't read a string as an array (#583)
+//? expect: 0
+//? source: ...
+
+for (const f of [
+    function () { return is_in<string>("admin", "admin"); },
+    function () { return at_least_one_member_of<string>("ab", ["a"]); },
+    function () { return intersection<string>("ab", ["a"]); },
+    function () { return union<string>("ab", ["c"]); },
+    function () { return subset<string>("ab", ["a", "b"]); },
+    function () { return set_equals<string>("ab", ["a", "b"]); },
+    function () { return one_and_only<string>("a"); }
+]) {
+    let message = "";
+    try { f(); } catch (e) { message = e.message; }
+    assert(index_of(message, "write [...value]") >= 0, "got: " + message);
+}
+assert(is_in<string>("admin", ["admin"]));
+assert(is_in<string>("b", [..."abc"]), "spread to mean code points");
+return 0;
+
+//?
+//? test: array-only-functions-reject-string
+//? description: reverse, sort, add_entries and push don't read a string as an array (#583)
+//? expect: 0
+//? source: ...
+
+for (const f of [
+    function () { return reverse("abc"); },
+    function () { return sort(function (a, b) { return a < b; }, "cab"); },
+    function () { return add_entries([], "ab"); },
+    function () { return push("ab", "c"); }
+]) {
+    let threw = false;
+    try { f(); } catch (e) { threw = true; }
+    assert(threw);
+}
+assert(eq(reverse([..."abc"]), ["c", "b", "a"]));
+assert(eq(sort(function (a, b) { return a < b; }, [..."cab"]), ["a", "b", "c"]));
+return 0;
+
+//?
+//? test: iterable-as-array-type-check
+//? description: compile-time type checking accepts a string exactly where iterableAsArray does
+//? expect: 0
+//? source: ...
+
+#compile typeCheck;
+assert(join("abc", "-") === "a-b-c");
+assert(eq(map(function (c: string): string { return c; }, "ab"), ["a", "b"]));
+assert(reduce(function (a, c) { return a + c; }, "", "ab") === "ab");
+return 0;
+
+//?
+//? test: iterable-as-array-type-check-rejects
+//? description: compile-time type checking rejects a string for an unmarked array parameter, and accepts it for a marked one
+//? expect: 0
+//? source: ...
+
+let message = "";
+try {
+    compile<script>(script("#compile typeCheck;\nreturn is_in<string>(\"a\", \"abc\");"));
+} catch (e) {
+    message = e.message;
+}
+assert(index_of(message, "Type error in parameter") >= 0, "got: " + message);
+compile<script>(script("#compile typeCheck;\nreturn join(\"abc\", \"-\");"));
 return 0;

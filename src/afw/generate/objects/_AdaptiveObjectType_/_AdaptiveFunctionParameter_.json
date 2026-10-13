@@ -60,6 +60,17 @@
                 "valueAccessor": "value"
             }
         },
+        "iterableAsArray": {
+            "allowQuery": true,
+            "brief": "A value of an iterable data type is read as the array of its elements",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Indicates that a value whose data type can be iterated, such as a string or another data type stored as UTF-8, is accepted for this array parameter and read as the array of its elements. The data type decides what the elements are: for data types stored as UTF-8 they are one-code-point strings. Without this, a value that is not an array is an error for an array parameter; write [...value] to make the array.",
+            "label": "Iterable As Array",
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
         "minArgs": {
             "allowQuery": true,
             "brief": "Minimum number of values that can be specified for this parameter",

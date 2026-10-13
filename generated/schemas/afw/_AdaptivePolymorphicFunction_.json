@@ -94,6 +94,13 @@
                     "title": "Description",
                     "type": "string"
                 },
+                "iterableAsArray": {
+                    "default": false,
+                    "description": "Indicates that a value whose data type can be iterated, such as a string or another data type stored as UTF-8, is accepted for this array parameter and read as the array of its elements. The data type decides what the elements are: for data types stored as UTF-8 they are one-code-point strings. Without this, a value that is not an array is an error for an array parameter; write [...value] to make the array.",
+                    "markdownDescription": "**Iterable As Array**\n\nIndicates that a value whose data type can be iterated, such as a string or another data type stored as UTF-8, is accepted for this array parameter and read as the array of its elements. The data type decides what the elements are: for data types stored as UTF-8 they are one-code-point strings. Without this, a value that is not an array is an error for an array parameter; write [...value] to make the array.",
+                    "title": "Iterable As Array",
+                    "type": "boolean"
+                },
                 "minArgs": {
                     "description": "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
                     "markdownDescription": "**Min Args**\n\nThis is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
@@ -162,6 +169,13 @@
                     "markdownDescription": "**Description**\n\nThis is the description of this parameter.",
                     "title": "Description",
                     "type": "string"
+                },
+                "iterableAsArray": {
+                    "default": false,
+                    "description": "Indicates that a value whose data type can be iterated, such as a string or another data type stored as UTF-8, is accepted for this array parameter and read as the array of its elements. The data type decides what the elements are: for data types stored as UTF-8 they are one-code-point strings. Without this, a value that is not an array is an error for an array parameter; write [...value] to make the array.",
+                    "markdownDescription": "**Iterable As Array**\n\nIndicates that a value whose data type can be iterated, such as a string or another data type stored as UTF-8, is accepted for this array parameter and read as the array of its elements. The data type decides what the elements are: for data types stored as UTF-8 they are one-code-point strings. Without this, a value that is not an array is an error for an array parameter; write [...value] to make the array.",
+                    "title": "Iterable As Array",
+                    "type": "boolean"
                 },
                 "minArgs": {
                     "description": "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",

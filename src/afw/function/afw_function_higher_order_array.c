@@ -42,6 +42,7 @@ impl_over_array(
     const afw_value_t * (*functor_argv);
     const afw_iterator_old_t *iterator;
     afw_size_t remaining;
+    afw_size_t iterable_count;
     impl_call_over_array_cb_e_t e;
 
     /* Initialize param. */
@@ -62,10 +63,11 @@ impl_over_array(
 
     /*
      * Evaluate argv[n+1] to the new argv[n]. Prefer a real array as the
-     * walked sequence; only then fall back to materializing the first
-     * keyless-iterator value (utf8 code points) via convert_to_array_sequence
-     * (#153). Do not materialize every string arg — filter/find/any_of
-     * pass scalar string thresholds next to the array.
+     * walked sequence; only then, if the values parameter is marked
+     * iterableAsArray, fall back to materializing the first keyless-iterator
+     * value (utf8 code points) via convert_to_array_sequence (#153, #583).
+     * Do not materialize every string arg — filter/find/any_of pass scalar
+     * string thresholds next to the array.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
         functor_argv[e.n] = afw_value_evaluate(
@@ -81,7 +83,25 @@ impl_over_array(
             }
         }
     }
-    if (!e.entry_arg_ptr) {
+    if (!e.entry_arg_ptr &&
+        x->function->parameters_count >= 2 &&
+        afw_value_is_boolean_true(x->function->parameters[1]->iterableAsArray))
+    {
+        /*
+         * With no array, exactly one value may be read as the array:
+         * any_of(eq<string>, "b", "abc") can't tell which string to walk.
+         */
+        for (iterable_count = 0, e.n = 1; e.n <= functor_argc; e.n++) {
+            if (afw_value_has_iterator(functor_argv[e.n])) {
+                iterable_count++;
+            }
+        }
+        if (iterable_count > 1) {
+            AFW_THROW_ERROR_FZ(argument_error, e.xctx,
+                "No value passed to %ku is an array and more than one could"
+                " be read as one; write [...value] for the one to walk",
+                &x->function->functionId->internal);
+        }
         for (e.n = 1; e.n <= functor_argc; e.n++) {
             if (afw_value_has_iterator(functor_argv[e.n])) {
                 functor_argv[e.n] = afw_value_convert_to_array_sequence(
@@ -104,9 +124,11 @@ impl_over_array(
         }
     }
 
-    /* There must be a typed array (or materializable sequence) arg. */
+    /* There must be an array (or materializable sequence) arg. */
     if (!e.entry_arg_ptr) {
-        AFW_THROW_ERROR_Z(argument_error, "Missing typed array arg", e.xctx);
+        AFW_THROW_ERROR_FZ(argument_error, e.xctx,
+            "One of the values passed to %ku must be an array",
+            &x->function->functionId->internal);
     }
 
     /*

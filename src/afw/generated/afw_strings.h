@@ -67603,6 +67603,32 @@ afw_self_v_is_yearMonthDuration;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_iterableAsArray \
+    "iterableAsArray"
+
+/** @brief 'afw_utf8_t' for AFW_Q_iterableAsArray */
+#define afw_s_iterableAsArray \
+    (&afw_self_v_iterableAsArray.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_iterableAsArray */
+#define afw_self_s_iterableAsArray \
+    (afw_self_v_iterableAsArray.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_iterableAsArray */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_iterableAsArray;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_iterableAsArray */
+#define afw_z_iterableAsArray \
+    (afw_self_v_iterableAsArray.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_iterableAsArray */
+#define afw_v_iterableAsArray \
+    (&afw_self_v_iterableAsArray.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_iteratorReturnDataType \
     "iteratorReturnDataType"
 

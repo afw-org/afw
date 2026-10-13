@@ -13,8 +13,9 @@
             "name": "predicate"
         },
         {
-            "minArgs": 1,
             "description": "These are the values passed to the predicate with the exception that the first array is passed as the single current value from the array. At least one array is required.",
+            "iterableAsArray": true,
+            "minArgs": 1,
             "name": "values"
         }
     ],

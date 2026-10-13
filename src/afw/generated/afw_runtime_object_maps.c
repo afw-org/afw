@@ -1645,6 +1645,16 @@ impl_properties__AdaptiveFunctionParameter_[] = {
         afw_runtime_value_accessor_value
     },
     {
+        afw_v_iterableAsArray,
+        offsetof(afw_value_function_parameter_t, iterableAsArray),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
+    },
+    {
         afw_v_minArgs,
         offsetof(afw_value_function_parameter_t, minArgs),
         -1,
@@ -1699,7 +1709,7 @@ impl_properties__AdaptiveFunctionParameter_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveFunctionParameter_ = {
     &afw_self_s__AdaptiveFunctionParameter_,
-    10,
+    11,
     &impl_properties__AdaptiveFunctionParameter_[0]
 };
 

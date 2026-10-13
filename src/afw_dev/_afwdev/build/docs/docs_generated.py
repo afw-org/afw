@@ -215,6 +215,8 @@ def _format_function_notes(docsHtml, p):
         notes.append('optional')
     if p.get('canBeUndefined'):
         notes.append('can be undefined')
+    if p.get('iterableAsArray'):
+        notes.append('a string or other iterable value is read as an array of its elements')
 
     minArgs = p.get('minArgs')
     if minArgs is not None and minArgs != -1:

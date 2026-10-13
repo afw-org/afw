@@ -35,7 +35,7 @@ See also `typescript-differences.md` (motivated differences).
 | empty-separator `split` | Must be code points (octet step is a bug) |
 | `s[i]` on strings | Keyless `afw_iterator` `get_by_index` in `reference_by_key` (#153) |
 | HOFs / array formals with string | `afw_value_convert_to_array_sequence` choke (#153) |
-| Immutable array face over utf8 | **Skipped for this branch** — eager materialize is the beta model; face is optional later (same choke body). C notes on `afw_value_convert_to_array_sequence` in `afw_value.h`. |
+| Immutable array face over utf8 | **Dropped** (2026-10-13). The array is always made eagerly by `afw_value_convert_to_array_sequence`. A lazy view creating values from raw memory as they are accessed leaked during the #2 lifetime work. |
 
 Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share the **same definition of index** (code point). Prefer thin shared `afw_utf8_*` helpers over copy-pasted loops (“get it right at most once”).
 
@@ -58,8 +58,7 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 1. **C helpers** — count / byte offset of code-point index *i* / one-CP slice / foreach.  
 2. **`s[i]`** (read) on utf8-backed values; out-of-range policy align with array soft get where product agrees.  
 3. **Array consumers** — built-ins first: accept utf8-backed values where an array of values is consumed, via:
-   - immutable **array face/view** over code points, and/or  
-   - shared sequence access in built-in evaluate.  
+   shared sequence access in built-in evaluate (an eagerly made array; no lazy face, see above).  
 4. **Script functions** — same coercion at call/bind when formal expects **array** (not silent wrap for every string use).  
 5. **Easy opt-in** — metadata + one choke point so support is not N special cases per HOF.  
 6. **Docs + tests** — handbook, differences, test262 / language tests.
@@ -75,9 +74,9 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 
 1. This pad + GitHub **#153**.  
 2. C helpers on `afw_utf8_*`.  
-3. Immutable array face create-from-utf8 (any utf8-backed value).  
+3. ~~Immutable array face create-from-utf8~~ (dropped: eager array).  
 4. `s[i]` read path.  
-5. Built-in array formals accept face / wrap at evaluate.  
+5. Built-in array formals wrap at evaluate.  
 6. Script function parameter bind: same wrap when formal is array.  
 7. Fold for-of string branch onto helpers (optional fast path).  
 8. Tests + docs; fix any remaining octet-as-character bugs.
@@ -87,7 +86,7 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 | Do | Don’t |
 |----|--------|
 | Explicit sequence access + wrap when **array is expected** | Silent wrap on every string use |
-| Immutable view / face only | Mutable array editing the string |
+| Immutable (a new array; the string never changes) | Mutable array editing the string |
 | Opt-in formal / evaluate choke point | Hand list of HOFs only, forever |
 | One-char **string** elements | Integer code-point elements (unless separate API later) |
 

@@ -63287,6 +63287,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Iterable_As_Array \
+    "Iterable As Array"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Iterable_As_Array */
+#define afw_s_zz__Iterable_As_Array \
+    (&afw_self_v_zz__Iterable_As_Array.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Iterable_As_Array */
+#define afw_self_s_zz__Iterable_As_Array \
+    (afw_self_v_zz__Iterable_As_Array.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Iterable_As_Array */
+extern const afw_value_string_t \
+    afw_self_v_zz__Iterable_As_Array;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Iterable_As_Array */
+#define afw_z_zz__Iterable_As_Array \
+    (afw_self_v_zz__Iterable_As_Array.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Iterable_As_Array */
+#define afw_v_zz__Iterable_As_Array \
+    (&afw_self_v_zz__Iterable_As_Array.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Iterator_Return_Data_Type \
     "Iterator Return Data Type"
 
@@ -129873,6 +129899,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__a8830da22af2 \
+    "Indicates that a value whose data type can be iterated, such as a string or another data type stored as UTF-8, is accepted for this array parameter and read as the array of its elements. The data type decides what the elements are: for data types stored as UTF-8 they are one-code-point strings. Without this, a value that is not an array is an error for an array parameter; write [...value] to make the array."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a8830da22af2 */
+#define afw_s_zz__a8830da22af2 \
+    (&afw_self_v_zz__a8830da22af2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a8830da22af2 */
+#define afw_self_s_zz__a8830da22af2 \
+    (afw_self_v_zz__a8830da22af2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a8830da22af2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__a8830da22af2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a8830da22af2 */
+#define afw_z_zz__a8830da22af2 \
+    (afw_self_v_zz__a8830da22af2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a8830da22af2 */
+#define afw_v_zz__a8830da22af2 \
+    (&afw_self_v_zz__a8830da22af2.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__a88427b707c3 \
     "Adaptive Framework configuration component for type=authorization. This object type is the parent of an _AdaptiveObjectType_ that contains authorizationType specific properties."
 
@@ -143311,6 +143363,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d9795195cb0b */
 #define afw_v_zz__d9795195cb0b \
     (&afw_self_v_zz__d9795195cb0b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d98c34ba9a56 \
+    "A value of an iterable data type is read as the array of its elements"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d98c34ba9a56 */
+#define afw_s_zz__d98c34ba9a56 \
+    (&afw_self_v_zz__d98c34ba9a56.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d98c34ba9a56 */
+#define afw_self_s_zz__d98c34ba9a56 \
+    (afw_self_v_zz__d98c34ba9a56.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d98c34ba9a56 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d98c34ba9a56;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d98c34ba9a56 */
+#define afw_z_zz__d98c34ba9a56 \
+    (afw_self_v_zz__d98c34ba9a56.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d98c34ba9a56 */
+#define afw_v_zz__d98c34ba9a56 \
+    (&afw_self_v_zz__d98c34ba9a56.pub)
 
 
 

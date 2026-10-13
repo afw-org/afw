@@ -1664,6 +1664,28 @@ impl_arg_result_data_type(const afw_value_t *value, afw_xctx_t *xctx)
 
 
 
+/*
+ * True if param reads an iterable argument as an array (iterableAsArray)
+ * and arg's data type can be iterated, so the array check does not apply.
+ */
+static afw_boolean_t
+impl_iterable_as_array_arg(
+    const afw_value_function_parameter_t *param,
+    const afw_value_t *arg,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+
+    if (!param || !afw_value_is_boolean_true(param->iterableAsArray)) {
+        return false;
+    }
+    dt = impl_arg_result_data_type(arg, xctx);
+    return dt && dt != afw_data_type_array &&
+        dt->inf->optional_initialize_iterator;
+}
+
+
+
 static void
 impl_project_function_parameter(
     const afw_value_function_parameter_t *param,
@@ -1990,7 +2012,9 @@ afw_value_type_check_adaptive_function_call(
             }
             impl_project_function_parameter(param, specialized_dt, &expect,
                 xctx->p, xctx);
-            if (!afw_value_type_is_any(&expect) && arg) {
+            if (!afw_value_type_is_any(&expect) && arg &&
+                !impl_iterable_as_array_arg(param, arg, xctx))
+            {
                 afw_value_type_check_compile_assignable(&expect, arg,
                     "parameter", contextual, xctx);
             }
@@ -2004,7 +2028,9 @@ afw_value_type_check_adaptive_function_call(
                 }
                 impl_project_function_parameter(param, specialized_dt,
                     &expect, xctx->p, xctx);
-                if (!afw_value_type_is_any(&expect)) {
+                if (!afw_value_type_is_any(&expect) &&
+                    !impl_iterable_as_array_arg(param, arg, xctx))
+                {
                     afw_value_type_check_compile_assignable(&expect, arg,
                         "parameter", contextual, xctx);
                 }
