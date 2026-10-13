@@ -57,3 +57,18 @@ const result = perform({
 });
 assert(result.status === "success", result.error?.message);
 return [result.actions[0].result, result.actions[1].result];
+
+//?
+//? test: keep_response
+//? description: A kept response and result outlive the loop that made them (#607)
+//? expect: [[2, 1], "success", [3, 2, 1]]
+//? source: ...
+
+let kept;
+let keptResult;
+for (let i = 0; i < 3; i = i + 1) {
+    const r = perform({function: "reverse", array: [1, 2]});
+    kept = r;
+    keptResult = perform({function: "reverse", array: [1, 2, 3]}).result;
+}
+return [kept.result, kept.status, keptResult];

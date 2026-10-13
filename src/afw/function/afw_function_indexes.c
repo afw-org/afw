@@ -116,10 +116,13 @@ afw_function_execute_index_create(
                 afw_compile_type_script,
                 NULL, x->p, xctx);
         } AFW_CATCH_UNHANDLED {
+            /* Owns its pool; dest p takes that reference (#607). */
             result = afw_object_create_unmanaged_new_p(x->p, xctx);
             afw_object_set_property_as_object_internal(result, afw_v_error,
-                afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
-            return afw_value_create_unmanaged_object(result, x->p, xctx);
+                afw_error_to_object(AFW_ERROR_THROWN, result->p, xctx),
+                xctx);
+            afw_pool_release_value_at_cleanup(result->value, x->p, xctx);
+            return result->value;
         }
 
         AFW_ENDTRY;
