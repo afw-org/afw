@@ -2931,38 +2931,6 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="determine_data_type_and_set_immutable">
-
-      <description>
-        Determine data type of entries then set array to immutable.
-
-        An error is thrown if already immutable.
-
-        If the data type of values in the array is not already known and all
-        values have the same data type, make the array an array of that data
-        type.
-
-        Once an array is set to immutable, all other setter methods will
-        throw an error.
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this array setter instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="const afw_data_type_t *">
-        <description>
-          Data type of all values in the array, or NULL if unknown or mixed.
-        </description>
-      </return>
-
-    </method>
-
-
     <!-- Ends: push / pop / shift (deque) -->
 
     <method name="push_value">

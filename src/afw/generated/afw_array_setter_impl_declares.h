@@ -113,14 +113,6 @@ impl_afw_array_setter_set_immutable(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_array_setter_determine_data_type_and_set_immutable
-/* Declare method determine_data_type_and_set_immutable */
-AFW_DECLARE_STATIC(const afw_data_type_t *)
-impl_afw_array_setter_determine_data_type_and_set_immutable(
-    AFW_ARRAY_SETTER_SELF_T *self,
-    afw_xctx_t * xctx);
-#endif
-
 #ifndef impl_afw_array_setter_push_value
 /* Declare method push_value */
 AFW_DECLARE_STATIC(void)
@@ -230,8 +222,6 @@ impl_afw_array_setter_inf = {
     },
     (afw_array_setter_set_immutable_t)
     impl_afw_array_setter_set_immutable,
-    (afw_array_setter_determine_data_type_and_set_immutable_t)
-    impl_afw_array_setter_determine_data_type_and_set_immutable,
     (afw_array_setter_push_value_t)
     impl_afw_array_setter_push_value,
     (afw_array_setter_push_value_take_t)

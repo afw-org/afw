@@ -74,24 +74,6 @@ afw_array_set_immutable(
 }
 
 
-/* Set an array to immutable and determine data type. */
-AFW_DEFINE(const afw_data_type_t *)
-afw_array_determine_data_type_and_set_immutable(
-    const afw_array_t *instance, afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    return afw_array_setter_determine_data_type_and_set_immutable(
-        setter, xctx);
-}
-
-
 /* push_value */
 AFW_DEFINE(void)
 afw_array_push_value(

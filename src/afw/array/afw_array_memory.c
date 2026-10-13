@@ -20,10 +20,6 @@
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
 #define impl_afw_array_initialize_iterator afw_array_impl_initialize_iterator
 
-static void
-impl_managed_array_elements_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx);
-
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "memory"
 typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
@@ -187,12 +183,6 @@ struct afw_memory_internal_array_s {
      */
     afw_memory_internal_array_values_t *values;
     /*
-     * Optional base for a managed wrapper (NULL for a normal memory
-     * array). After materialize, entry values live on the local vector; sets
-     * never write to wrapped. See afw_array_create_wrapper_managed().
-     */
-    const afw_array_t *wrapped;
-    /*
      * Unmanaged memory arrays: extra holds from add_reference. Zero is
      * idle. Last extra hold walks remaining slot_store'd elements.
      */
@@ -262,11 +252,6 @@ afw_array_create_with_options(
         afw_memory_internal_array_values_t, 0, p, xctx);
     self->setter.inf = &impl_afw_array_setter_inf;
     self->setter.array = (const afw_array_t *)self;
-
-    if (!self->unmanaged) {
-        afw_pool_register_cleanup(p, self, NULL,
-            impl_managed_array_elements_cleanup, xctx);
-    }
 
     return (const afw_array_t *)self;
 
@@ -358,9 +343,7 @@ afw_array_to_managed(
     }
     data_type = afw_array_get_declared_data_type(from, xctx);
     to = afw_array_create_managed(data_type, p, xctx);
-    if (from->inf == &impl_afw_array_inf &&
-        !afw_array_is_memory_wrapper(from))
-    {
+    if (from->inf == &impl_afw_array_inf) {
         const afw_memory_internal_array_t *from_mem;
         const afw_value_t **entries;
         afw_size_t i;
@@ -399,43 +382,6 @@ afw_array_is_memory_managed(const afw_array_t *array)
 }
 
 
-AFW_DEFINE(const afw_array_t *)
-afw_array_create_wrapper_managed(
-    const afw_array_t *wrapped,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *self;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *value;
-    const afw_data_type_t *data_type;
-
-    if (!wrapped) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_array_create_wrapper_managed requires a wrapped array",
-            xctx);
-    }
-    if (afw_array_is_memory_managed(wrapped)) {
-        afw_array_get_reference(wrapped, xctx);
-        return wrapped;
-    }
-    data_type = afw_array_get_declared_data_type(wrapped, xctx);
-    self = (afw_memory_internal_array_t *)
-        afw_array_create_managed(data_type, p, xctx);
-    self->wrapped = wrapped;
-    afw_array_get_reference(wrapped, xctx);
-    for (iterator = NULL;;) {
-        value = afw_array_get_next_value(wrapped, &iterator, xctx);
-        if (!value) {
-            break;
-        }
-        afw_array_push_value((const afw_array_t *)self, value, xctx);
-    }
-    return (const afw_array_t *)self;
-}
-
-
-
 /* Data type a copy of array is created with. */
 AFW_DEFINE(const afw_data_type_t *)
 afw_array_get_declared_data_type(
@@ -455,7 +401,7 @@ afw_array_get_declared_data_type(
 
 
 
-/* True if array is a generic memory array (face or not). */
+/* True if array is a generic memory array. */
 AFW_DEFINE(afw_boolean_t)
 afw_array_is_memory(const afw_array_t *array)
 {
@@ -463,99 +409,6 @@ afw_array_is_memory(const afw_array_t *array)
 }
 
 
-/* True if array is a memory look-through / materialize wrapper face. */
-AFW_DEFINE(afw_boolean_t)
-afw_array_is_memory_wrapper(const afw_array_t *array)
-{
-    const afw_memory_internal_array_t *self;
-
-    if (!array ||
-        (array->inf != &impl_afw_array_inf &&
-            array->inf != &impl_afw_array_managed_inf))
-    {
-        return false;
-    }
-    self = (const afw_memory_internal_array_t *)array;
-    return self->wrapped != NULL;
-}
-
-
-/* Base under a face, or array if not a face. */
-AFW_DEFINE(const afw_array_t *)
-afw_array_memory_wrapper_base(const afw_array_t *array)
-{
-    const afw_memory_internal_array_t *self;
-
-    if (!array) {
-        return NULL;
-    }
-    if (array->inf != &impl_afw_array_inf &&
-        array->inf != &impl_afw_array_managed_inf)
-    {
-        return array;
-    }
-    self = (const afw_memory_internal_array_t *)array;
-    return self->wrapped ? self->wrapped : array;
-}
-
-
-
-static void impl_store_element(
-    AFW_ARRAY_SELF_T *self,
-    const afw_value_t **slot,
-    const afw_value_t *incoming,
-    afw_xctx_t *xctx);
-
-/* Face GET: store get_assignable_value of the child. Same pointer is a no-op. */
-static const afw_value_t *
-impl_promote_structured_entry(
-    AFW_ARRAY_SELF_T *self,
-    const afw_value_t **slot,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    if (!value || !slot || !self->wrapped || self->immutable) {
-        return value;
-    }
-    impl_store_element(self, slot, value, xctx);
-    return *slot;
-}
-
-
-
-/* Release remaining elements this array slot_store'd (not pop/shift). */
-static void
-impl_release_remaining_elements(
-    AFW_ARRAY_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t **entries;
-    afw_size_t i;
-    afw_size_t count;
-
-    /* Generic memory arrays store raw pointers (compile literals, YAML). */
-    if (!self->values || !self->wrapped) {
-        return;
-    }
-    count = self->values->count;
-    entries = self->values->entries;
-    for (i = 0; i < count; i++) {
-        if (entries[i]) {
-            afw_value_release_held(entries[i], xctx);
-            entries[i] = NULL;
-        }
-    }
-}
-
-
-static void
-impl_managed_array_elements_cleanup(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)data2;
-    (void)p;
-    impl_release_remaining_elements((AFW_ARRAY_SELF_T *)data, xctx);
-}
 
 
 /*
@@ -660,7 +513,7 @@ impl_afw_array_get_entry_value(
     if (!slot) {
         return NULL;
     }
-    return impl_promote_structured_entry(self, slot, *slot, xctx);
+    return *slot;
 }
 
 
@@ -690,8 +543,7 @@ impl_afw_array_get_next_value(
     }
 
     *iterator = (const afw_iterator_old_t *)(uintptr_t)(i + 1);
-    return impl_promote_structured_entry(self, &entries[i],
-        entries[i], xctx);
+    return entries[i];
 }
 
 
@@ -914,10 +766,9 @@ impl_note_removed(
 
 
 /*
- * Face overlay: slot_store (get_assignable_value). Generic memory
- * array: raw pointer, same as object set on a non-wrapper. Compile-time
- * array literals must not wrap nested arrays into the constant. Script
- * arrays are faces from get_assignable_value (self if already a face).
+ * Unmanaged memory array: store the raw pointer, the same as an object
+ * set. Compile-time array literals must not wrap nested arrays into the
+ * constant.
  */
 static void
 impl_store_element(
@@ -926,25 +777,7 @@ impl_store_element(
     const afw_value_t *incoming,
     afw_xctx_t *xctx)
 {
-    if (self->wrapped) {
-        afw_value_slot_store(slot, incoming, self->pub.p, xctx);
-    }
-    else {
-        *slot = incoming;
-    }
-}
-
-
-/* Face drop releases a held occupant. Generic array never held. */
-static void
-impl_drop_element(
-    AFW_ARRAY_SELF_T *self,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    if (self->wrapped) {
-        afw_value_release_held(value, xctx);
-    }
+    *slot = incoming;
 }
 
 
@@ -996,29 +829,6 @@ impl_afw_array_setter_set_immutable(
     /* Count now: get_data_type of an immutable array never writes. */
     impl_current_data_type(array_self, xctx);
     array_self->immutable = true;
-}
-
-
-
-/*
- * Implementation of method determine_data_type_and_set_immutable for
- * interface afw_array_setter.
- */
-const afw_data_type_t *
-impl_afw_array_setter_determine_data_type_and_set_immutable(
-    const afw_array_setter_t * self,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-
-    /* Make immutable if not already. */
-    if (array_self->immutable) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-    array_self->immutable = true;
-
-    return impl_current_data_type(array_self, xctx);
 }
 
 
@@ -1187,8 +997,8 @@ impl_afw_array_setter_set_value(
 /*
  * Implementation of method remove_value_by_index for interface afw_array_setter.
  *
- * Wrapper face only. Managed arrays use the managed setter, which
- * last-releases the occupant.
+ * Unmanaged arrays don't hold their entries, so nothing is released.
+ * Managed arrays use the managed setter, which last-releases the occupant.
  */
 void
 impl_afw_array_setter_remove_value_by_index(
@@ -1211,7 +1021,6 @@ impl_afw_array_setter_remove_value_by_index(
     }
 
     removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
-    impl_drop_element(array_self, *slot, xctx);
     afw_vector_remove(array_self->values, at, xctx);
     impl_note_removed(array_self, removed_dt);
 }
@@ -1239,7 +1048,6 @@ impl_afw_array_setter_remove_value(
     for (i = 0; i < count; i++) {
         if (afw_value_equal(value, entries[i], xctx)) {
             removed_dt = IMPL_ELEMENT_DATA_TYPE(entries[i], xctx);
-            impl_drop_element(array_self, entries[i], xctx);
             afw_vector_remove(array_self->values, i, xctx);
             impl_note_removed(array_self, removed_dt);
             return;
@@ -1261,15 +1069,7 @@ impl_afw_array_setter_remove_all_values(
 {
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    const afw_value_t **entries;
-    afw_size_t i;
-    afw_size_t count;
 
-    count = array_self->values->count;
-    entries = array_self->values->entries;
-    for (i = 0; i < count; i++) {
-        impl_drop_element(array_self, entries[i], xctx);
-    }
     afw_vector_clear(array_self->values);
 
     impl_note_removed(array_self, NULL);
@@ -1509,8 +1309,7 @@ impl_afw_array_managed_setter_remove_value_by_index(
     if (!slot) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
-    /* Managed array holds occupants. Unmanaged remove_by_index
-     * only drops a wrapper face; splice would leak the slot hold. */
+    /* Managed array holds occupants; splice would leak the slot hold. */
     removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
     afw_value_release_held(*slot, xctx);
     *slot = NULL;

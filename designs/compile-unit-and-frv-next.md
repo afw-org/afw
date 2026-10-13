@@ -143,7 +143,7 @@ What landed instead: unique `get_assignable_value` **transfers the occupant, set
 - Wrap unbraced loop bodies **after** parse in the current block. Opening the wrapper first hides `for (let x of []) let x`.
 - Do not `create_managed` in `array()` / `create_array()`. `[i]` compiles to `array()`; that spiked `array_rebind`.
 - Do not extra-hold the popped occupant in `execute_pop`. Do not wrap compiler `test_*` / `qualifier()` / `parse_uri` at return (temps in `x->p`).
-- Do not seal `slice` / `map` with `determine_data_type_and_set_immutable`. `freeze()` is the explicit door.
+- Do not seal `slice` / `map` results. `freeze()` is the explicit door.
 
 ---
 
