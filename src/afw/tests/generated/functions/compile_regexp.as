@@ -119,3 +119,27 @@ return [
     meta(a[0]).dataType,
     length(a)
 ];
+
+//?
+//? test: compile-polymorphic-regexp
+//? description: The polymorphic compile(v) dispatches on v's data type, so a regexp value compiles like compile<regexp>; a string is not a source type.
+//? expect: ["regexp", true, true, true, "\n\n#\n#  Adaptive Value is evaluated at compile time\n#\n\"(?i)a+b\"regexp\n"]
+//? source: ...
+
+const r1 = compile("a+b"re);
+const r2 = compile(to_regexp("^x\\d+$"));
+return [
+    meta(r1).dataType,
+    r1 == "a+b"re,
+    regexp_match("xaab", r1),
+    regexp_match("x42", r2),
+    compile(/a+b/i, true)
+];
+
+//?
+//? test: compile-polymorphic-string
+//? description: compile of a string is an error; a pattern held in a string goes through to_regexp first.
+//? expect: error:'compile' is not a method of data type 'string'
+//? source: ...
+
+compile("a+b")
