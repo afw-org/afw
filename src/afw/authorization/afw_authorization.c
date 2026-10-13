@@ -720,7 +720,7 @@ afw_authorization_check(
             afw_object_set_property(obj, afw_v_actionId,
                 action_id_value, xctx);
             afw_object_set_property(obj, afw_v_resourceId,
-                request_id_value, xctx);
+                resource_id_value, xctx);
             result = afw_value_create_unmanaged_object(obj, p, xctx);
 
             s = afw_value_as_string_internal(action_id_value, p, xctx);
