@@ -42,6 +42,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `keys(add)`, `to_string(add)`, or another object function on a built-in function value | A built-in function value is now a **`function`**, like a script function (it reported `object`, its `_AdaptiveFunction_` metadata). `keys(add)` and `to_string(add)` throw; `string(add)` is `"add"`. For the metadata, `get_object("afw", "_AdaptiveFunction_", "add")`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `is(v)` with no data type (it always returned false) | **`is<T>(v)`** or **`is_T(v)`**. `is(v)` is now a compile error, *Built-in function 'is' needs a data type*. The function id of `is_T` is now `is_T` (it was `is<T>`), so a request or client binding that names `is<integer>` by id names `is_integer`. [Type assertion](#type-assertion-v-as-t-issue-582) |
 | `to_boolean(s)` (it was truthy: `"false"` and `"x"` were `true`) | **`string_to_boolean(s)`**, which reads boolean text (`"true"` / `"false"` in any case, `"1"` / `"0"`, `t` / `f`) and throws on any other text. For ECMAScript `Boolean()` truthiness keep **`boolean(v)`**. [Conversion functions](#conversion-functions-read-text-strictly-issue-588) |
+| `match<rfc822Name>` / `match<x500Name>` (they threw *Not implemented*); `<`, `<=`, `>`, `>=` on `dnsName`, `ipAddress`, `rfc822Name`, or `x500Name` | **`rfc822Name_match(pattern, value)`** (pattern a string) and **`x500Name_match(pattern, value)`**. The four types have **no ordering**: `<` throws. Text that is not an rfc822Name (no `@`), not a distinguished name, not ASCII for `ia5String`, or not an object path for `objectPath` is now an error when read. [#593](#rfc822name-x500name-and-other-text-data-types-issue-593) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | Authorization handlers that deny what they do not recognize, where a journal is used | Journal operations are now **authorized like object operations**, on **`/<adapter>/_AdaptiveJournalEntry_/…`**: **`create`** on `…/` (add an entry), **`read`** on everything else: `…/<cursor>` (the entry at a cursor) and the special objectId of the other operations (`…/get_first`, `…/get_next_for_consumer:<consumer_id>`, `…/mark_consumed:<consumer_id>:<cursor>`, …). A built-in and its REST form are checked on the same path, without any `:<limit>`, so a handler can permit one consumer and not another. Mark consumed over REST is `GET …/mark_consumed:<consumer_id>:<cursor>`, the same as `journal_mark_consumed()`; consumer forms with no `:<limit>` have no limit, the same as the built-ins. A limit, REST or built-in, must be 1 or more (a built-in limit of 0 or less is now **`argument_error`**; it used to mean no limit). Entries an adapter writes for its own object changes are not checked. [#520](https://github.com/afw-org/afw/issues/520) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
@@ -142,6 +143,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Conversion functions read text strictly**](#conversion-functions-read-text-strictly-issue-588) ([#588](https://github.com/afw-org/afw/issues/588)) | `to_boolean` is now `string_to_boolean` (the boolean parser, not truthiness); new `to_base64Binary`, `to_hexBinary`, `to_ia5String`, `to_objectId`, `to_objectPath`, `to_password` from a string; a boolean text of one unknown character is an error |
 | [**Data type conversion functions removed**](#data-type-conversion-functions-removed-issue-589) ([#589](https://github.com/afw-org/afw/issues/589)) | The 18 generic `T(…)` functions (`dateTime("…")`, `integer(x)`, …) are gone: write a typed literal or `to_T(v)`. `decompile` writes typed literals; `objectId` and `objectPath` have typed literals now |
 | [**No hidden conversions**](#no-hidden-conversions-issue-583) ([#583](https://github.com/afw-org/afw/issues/583)) | Typed parameters, declarations and returns check and never convert; built-in parameters never convert; `array<T>(…)` makes a typed array; `+` / `add<string>` take strings only; `bag`/`bag_size` are `array<T>`/`length`; the single-value-as-array rule is gone; a string is an array only where ECMAScript iterates one, and `[...s]` spreads it |
+| [**rfc822Name, x500Name, and other text data types**](#rfc822name-x500name-and-other-text-data-types-issue-593) ([#593](https://github.com/afw-org/afw/issues/593)) | rfc822Name domain parts and x500Name names compare as mailboxes and distinguished names (`"a@Example.COM"rfc822Name == "a@example.com"rfc822Name`); new `rfc822Name_match` and `x500Name_match` replace the `match` stubs; no ordering for `dnsName`, `ipAddress`, `rfc822Name`, `x500Name`; read checks for rfc822Name, x500Name, ia5String, objectPath |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -636,7 +638,7 @@ Handbook: [#590](https://github.com/afw-org/afw/issues/590). Tests: `src/afw/tes
 - **New `to_T<string>`** for `base64Binary`, `hexBinary`, `ia5String`, `objectId`, `objectPath`, and `password`, so every data type with a `T(…)` conversion function has a `to_T` before those functions go ([#589](https://github.com/afw-org/afw/issues/589)). `to_base64Binary(s)` and `to_hexBinary(s)` read **encoded text** (`to_base64Binary("YWJj")` is the three bytes `abc`, the reverse of `to_string`); `encode_as_base64Binary(s)` still encodes the string's own bytes. `"a" as password` now also says to write `to_password(v)`.
 - **Boolean text of one character** other than `1`, `0`, `t`, `T`, `f`, `F` is an error wherever text is read as a boolean. It used to leave the result unset, so `perform({function: "not", condition: "x"})` returned `true`.
 - **Unchanged, now documented:** `to_integer(d)` of a double truncates toward zero (`to_integer(-1.9)` is `-1`; use `round`, `floor`, or `ceil` first for another choice) and throws for NaN, infinity, and a value outside the integer range. `to_double(s)` reads double text only, the same text a double literal accepts: integer text such as `"5"` is an error, since an integer is never a double; write `to_double(to_integer(s))`.
-- The parsers for `anyURI`, `dnsName`, `ia5String`, `ipAddress`, `objectId`, `objectPath`, `password`, `rfc822Name`, and `x500Name` accept any text today, so their `to_T(s)` (and typed literals) do not reject anything yet ([#593](https://github.com/afw-org/afw/issues/593)).
+- `anyURI`, `dnsName`, `ipAddress`, `objectId`, and `password` accept any text. `ia5String`, `objectPath`, `rfc822Name`, and `x500Name` check their text ([#593](#rfc822name-x500name-and-other-text-data-types-issue-593)).
 
 Tests: `src/afw/tests/language/script/to_t_from_string.as`, `src/afw/tests/generated/functions/string_to_boolean.as`.
 
@@ -666,6 +668,37 @@ Calling one of them is a compile error that names the replacement: *'dateTime' i
 - **Generated bindings** (Python, PHP, JavaScript) no longer have these functions.
 
 Tests: `src/afw/tests/language/script/conversion_functions.as` (`data-type-function-removed`), `src/afw/tests/compiler/decompile.as` (`decompile-typed-literal-round-trip`), `src/afw/tests/compiler/typed_literals.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## rfc822Name, x500Name, and other text data types (issue [#593](https://github.com/afw-org/afw/issues/593))
+
+These data types are text whose meaning comes from another standard. They still store the text as written (`to_string` returns it unchanged); what changed is how they compare and which text they read.
+
+**rfc822Name** is a mailbox, `local-part@domain`.
+- **Equality:** the local part compares exactly, the domain part ignoring case: `"a@Example.COM"rfc822Name == "a@example.com"rfc822Name` is `true`, `"A@example.com"rfc822Name == "a@example.com"rfc822Name` is `false`. The text is split at its last `@`.
+- **Read check:** text needs a local part, `@`, and a domain part. `"nope"rfc822Name` is a compile error; `to_rfc822Name("a@")` throws **`conversion_error`**.
+- **`rfc822Name_match(pattern, value)`**, where pattern is a string: a mailbox (`"Anderson@sun.com"`) matches that mailbox; a domain (`"sun.com"`) matches mailboxes at exactly that domain, not its subdomains; a domain with a leading dot (`".east.sun.com"`) matches mailboxes in its subdomains, not at the domain itself.
+
+**x500Name** is a distinguished name in RFC 4514 string form; RFC 2253 forms (`;` between RDNs, quoted values, `OID.2.5.4.3`, spaces around separators) are also read.
+- **Equality:** RDN by RDN. Attribute types ignore case, and a known name equals its OID (`cn` is `2.5.4.3`; also `sn`, `c`, `l`, `st`, `street`, `o`, `ou`, `title`, `uid`, `dc`). Values ignore case and leading, trailing, and repeated spaces; `\XX` escapes are UTF-8 bytes; `#…` values are compared as octets. The parts of a multi-valued RDN (`cn=a+ou=b`) may be in any order. So `"cn=A,o=B"x500Name == "CN=a, O=b"x500Name` is `true`.
+- **Read check:** text that does not parse as a distinguished name is an error, naming the offset: `to_x500Name("cn=a,")`.
+- **`x500Name_match(pattern, value)`:** true if the RDNs of pattern are the last RDNs of value: `x500Name_match("O=Medico Corp,C=US"x500Name, "cn=John Smith,o=Medico Corp, c=US"x500Name)` is `true`.
+
+**`match` is gone.** `match<rfc822Name>` and `match<x500Name>` always threw *Not implemented*, and their parameters were in the wrong order for rfc822Name. Use the two functions above.
+
+**No ordering for `dnsName`, `ipAddress`, `rfc822Name`, and `x500Name`.** `<`, `<=`, `>`, `>=` throw (*'lt' is not a method of data type 'rfc822Name'*), and `lt<rfc822Name>` and the like are gone. They ordered the text as a string, which means nothing for these values. `anyURI` keeps string ordering.
+
+**Other read checks:**
+- **`ia5String`:** every character must be ASCII (0 to 127): `to_ia5String("é")` throws.
+- **`objectPath`:** the text must parse as an object path: `to_objectPath("//")` throws. Relative paths (`"oid1"`) are still accepted.
+- **`anyURI`, `dnsName`, `ipAddress`, `objectId`, `password`:** any text, as before. Their JSON Schema no longer claims `format: uri-reference` (anyURI) or `idn-hostname` (dnsName), formats the data types do not check.
+
+Set functions that use equality (`is_in`, `intersection`, `union`, `subset`, `set_equals`, `at_least_one_member_of`, and `==` / `!=`) follow the new rfc822Name and x500Name equality.
+
+Tests: `src/afw/tests/language/script/rfc822Name_x500Name.as`, `src/afw/tests/language/script/to_t_from_string.as`, `src/afw/tests/generated/functions/rfc822Name_match.as`, `src/afw/tests/generated/functions/x500Name_match.as`.
 
 [↑ Highlights](#highlights)
 
