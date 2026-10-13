@@ -1090,6 +1090,8 @@ This is generate/docs presentation only; Adaptive function call semantics are un
 
 ## UTF-8 create, set, and ks encoding
 
+**Fixed ([#615](https://github.com/afw-org/afw/issues/615)):** invalid UTF-8 that came after a combining mark (or another code point whose NFC quick check is not YES) was accepted: `afw_utf8_is_valid` said valid, and `decode_to_string("ZcyB/w=="base64Binary)` (`e`, U+0301, `0xFF`) put the raw byte into a string. It is now an error like any other invalid UTF-8.
+
 C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` is a copy**.
 
 | Old | New |
