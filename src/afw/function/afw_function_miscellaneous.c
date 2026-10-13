@@ -496,9 +496,15 @@ afw_function_execute_perform(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(request, 1, object);
    
+    /*
+     * response owns its pool (caller releases). Caller does not
+     * release: dest p takes that reference (#607). Its counted face
+     * lets a script keep it with get_assignable_value.
+     */
     response = afw_action_perform(request->internal, NULL, NULL,
         x->p, x->xctx);
-    return afw_value_create_unmanaged_object(response, x->p, x->xctx);
+    afw_pool_release_value_at_cleanup(response->value, x->p, x->xctx);
+    return response->value;
 }
 
 

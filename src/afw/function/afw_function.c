@@ -147,11 +147,19 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         obj = afw_object_create_unmanaged_new_p(x->p, xctx);
 
         /*
-         * Use the object's pool for a temporary copy of x and an evaluated
-         * version of argv. These evaluated args will be place in the object
-         * passed to the authorization check and also passed to
-         * x->function->execute_implementation. This is done so that the args
-         * are evaluated only once.
+         * The object's pool holds a temporary copy of x (its p is still
+         * x->p), the argv pointer array, and the arrays and properties of
+         * the object passed to the authorization check. The argument
+         * values themselves are evaluated into x->p, once, and passed to
+         * both the authorization check and
+         * x->function->execute_implementation.
+         *
+         * obj is released in FINALLY, before the caller sees the result
+         * or a thrown error, so nothing that outlives this call may point
+         * into obj->p: the result and any error are built in x->p, and a
+         * denied error's data is copied by afw_error_set_data(). A wrapped
+         * function must not keep or return a view over x->argv (for
+         * example afw_array_create_unmanaged_from_values() of it).
          *
          * This is not compatible with functions that only evaluate args when
          * needed link and/or and for polymorphic functions that need to

@@ -68,3 +68,26 @@ try {
 }
 
 assert(caughtServiceRestart);
+
+
+//? test: errors read in catch after the wrapper releases its object
+//? description: A denied error and an error thrown inside a wrapped function are readable in catch (the wrapper's pool is already released)
+//? expect: [["denied", "Access 'execute' to '/afw/_AdaptiveFunction_/service_stop' is not permitted", "execute", "/afw/_AdaptiveFunction_/service_stop"], ["not_found", "Not found"]]
+//? source: ...
+
+let denied;
+let notFound;
+
+try {
+    service_stop('adapter-files');
+} catch (e) {
+    denied = [e.id, e.message, e.data.actionId, e.data.resourceId];
+}
+
+try {
+    service_get('no-such-service');
+} catch (e) {
+    notFound = [e.id, e.message];
+}
+
+return [denied, notFound];
