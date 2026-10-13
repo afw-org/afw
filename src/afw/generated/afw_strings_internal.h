@@ -26237,32 +26237,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__684514957280 \
-    "Optional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. 0 = unlimited."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__684514957280 */
-#define afw_s_zz__684514957280 \
-    (&afw_self_v_zz__684514957280.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__684514957280 */
-#define afw_self_s_zz__684514957280 \
-    (afw_self_v_zz__684514957280.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__684514957280 */
-extern const afw_value_string_t \
-    afw_self_v_zz__684514957280;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__684514957280 */
-#define afw_z_zz__684514957280 \
-    (afw_self_v_zz__684514957280.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__684514957280 */
-#define afw_v_zz__684514957280 \
-    (&afw_self_v_zz__684514957280.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__68558e746107 \
     "Converts value to data type relaxedJson returning relaxedJson result. Holds relaxed JSON source text as a relaxedJson value (does not parse/compile). Use polymorphic compile to compile the source."
 
@@ -30913,32 +30887,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7b34812dccbf */
 #define afw_v_zz__7b34812dccbf \
     (&afw_self_v_zz__7b34812dccbf.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__7b61628936ff \
-    "Steps of the ICU match engine (uregex_setTimeLimit units) one regular expression match may take. A match that backtracks past it fails with payload_too_large; 1000 is about 0.1 second of backtracking on a current machine, and linear scans use a small part of it. Default 1000. 0 = unlimited."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7b61628936ff */
-#define afw_s_zz__7b61628936ff \
-    (&afw_self_v_zz__7b61628936ff.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7b61628936ff */
-#define afw_self_s_zz__7b61628936ff \
-    (afw_self_v_zz__7b61628936ff.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7b61628936ff */
-extern const afw_value_string_t \
-    afw_self_v_zz__7b61628936ff;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7b61628936ff */
-#define afw_z_zz__7b61628936ff \
-    (afw_self_v_zz__7b61628936ff.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7b61628936ff */
-#define afw_v_zz__7b61628936ff \
-    (&afw_self_v_zz__7b61628936ff.pub)
 
 
 
@@ -139259,6 +139207,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ccf20ed8f7d1 \
+    "Optional. If present, overrides process limitRegexpMatchSteps: the steps of the ICU match engine one regular expression match may take before it fails with payload_too_large. It is needed for patterns whose backtracking grows exponentially with the value, such as ^(a+)+$. Until ICU fixes ICU-23047 (https://unicode-org.atlassian.net/browse/ICU-23047, planned for ICU 79.1; the cause is ICU-2905, https://unicode-org.atlassian.net/browse/ICU-2905), it also stops a lazy loop over a group that can match nothing, such as (b|)*?, which ICU otherwise never finishes; that part is a workaround (AFW issue #613). 0 = unlimited, which leaves both unbounded."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ccf20ed8f7d1 */
+#define afw_s_zz__ccf20ed8f7d1 \
+    (&afw_self_v_zz__ccf20ed8f7d1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ccf20ed8f7d1 */
+#define afw_self_s_zz__ccf20ed8f7d1 \
+    (afw_self_v_zz__ccf20ed8f7d1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ccf20ed8f7d1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ccf20ed8f7d1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ccf20ed8f7d1 */
+#define afw_z_zz__ccf20ed8f7d1 \
+    (afw_self_v_zz__ccf20ed8f7d1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ccf20ed8f7d1 */
+#define afw_v_zz__ccf20ed8f7d1 \
+    (&afw_self_v_zz__ccf20ed8f7d1.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__cd0f7aab0a55 \
     "This is the number of UTF-8 octets in this test's 'source' value in the full source for the test script."
 
@@ -142765,6 +142739,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d8c2cbc3c885 */
 #define afw_v_zz__d8c2cbc3c885 \
     (&afw_self_v_zz__d8c2cbc3c885.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d8d31bc23b51 \
+    "Steps of the ICU match engine (uregex_setTimeLimit units) one regular expression match may take. A match that backtracks past it fails with payload_too_large; 1000 is about 0.1 second of backtracking on a current machine, and linear scans use a small part of it. Default 1000. It is needed for patterns whose backtracking grows exponentially with the value, such as ^(a+)+$. Until ICU fixes ICU-23047 (https://unicode-org.atlassian.net/browse/ICU-23047, planned for ICU 79.1; the cause is ICU-2905, https://unicode-org.atlassian.net/browse/ICU-2905), it also stops a lazy loop over a group that can match nothing, such as (b|)*?, which ICU otherwise never finishes; that part is a workaround (AFW issue #613). 0 = unlimited, which leaves both unbounded."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d8d31bc23b51 */
+#define afw_s_zz__d8d31bc23b51 \
+    (&afw_self_v_zz__d8d31bc23b51.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d8d31bc23b51 */
+#define afw_self_s_zz__d8d31bc23b51 \
+    (afw_self_v_zz__d8d31bc23b51.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d8d31bc23b51 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d8d31bc23b51;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d8d31bc23b51 */
+#define afw_z_zz__d8d31bc23b51 \
+    (afw_self_v_zz__d8d31bc23b51.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d8d31bc23b51 */
+#define afw_v_zz__d8d31bc23b51 \
+    (&afw_self_v_zz__d8d31bc23b51.pub)
 
 
 

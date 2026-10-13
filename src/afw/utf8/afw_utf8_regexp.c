@@ -32,7 +32,7 @@ struct afw_utf8_regexp_s {
  * thread under limitRequestPoolBytes gets less when the request has less
  * left (see impl_matcher_open()).
  */
-#define AFW_UTF8_REGEXP_STACK_LIMIT_MAX ((afw_size_t)8000000)
+#define IMPL_MATCH_STACK_LIMIT_MAX ((afw_size_t)8000000)
 
 
 /*
@@ -50,7 +50,7 @@ struct afw_utf8_regexp_s {
  *   the pools, and grows it by doubling, so its peak is about twice its
  *   limit. The limit is half of what this request may still allocate
  *   under limitRequestPoolBytes, and at most
- *   AFW_UTF8_REGEXP_STACK_LIMIT_MAX. A match that needs more fails with
+ *   IMPL_MATCH_STACK_LIMIT_MAX. A match that needs more fails with
  *   U_REGEX_STACK_OVERFLOW.
  *
  * Nothing here throws; check *status. Close with impl_matcher_close().
@@ -75,8 +75,8 @@ impl_matcher_open(
     /* At least 1 byte: a stack limit of 0 means no limit to ICU. */
     stack = afw_xctx_internal_request_pool_bytes_remaining(xctx,
         xctx->thread) / 2;
-    if (stack > AFW_UTF8_REGEXP_STACK_LIMIT_MAX) {
-        stack = AFW_UTF8_REGEXP_STACK_LIMIT_MAX;
+    if (stack > IMPL_MATCH_STACK_LIMIT_MAX) {
+        stack = IMPL_MATCH_STACK_LIMIT_MAX;
     }
     if (stack == 0) {
         stack = 1;
@@ -102,7 +102,17 @@ impl_matcher_close(URegularExpression *rx, UText *ut)
 }
 
 
-/* Throw for an ICU error while matching. */
+/*
+ * Throw for an ICU error while matching.
+ *
+ * The lazy-loop wording of the U_REGEX_TIME_OUT message is for an ICU
+ * bug: a lazy loop over a group that can match nothing ((b|)*?) never
+ * finishes, because ICU breaks such loops for (...)* and (...)+ but not
+ * for (...)*? and others (ICU-2905). ICU tracks it as ICU-23047, planned
+ * for ICU 79.1; still present in 78.3. Once AFW requires an ICU with the
+ * fix, that wording (and the handbook note) can go; see AFW #613. The
+ * step limit itself stays: exponential backtracking (^(a+)+$) needs it.
+ */
 static void
 impl_throw_match_error(UErrorCode status, afw_xctx_t *xctx)
 {

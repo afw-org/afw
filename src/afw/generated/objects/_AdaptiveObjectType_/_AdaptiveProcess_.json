@@ -79,7 +79,7 @@
             "allowQuery": true,
             "brief": "Regular expression match step limit",
             "dataType": "integer",
-            "description": "Steps of the ICU match engine (uregex_setTimeLimit units) one regular expression match may take. A match that backtracks past it fails with payload_too_large; 1000 is about 0.1 second of backtracking on a current machine, and linear scans use a small part of it. Default 1000. 0 = unlimited.",
+            "description": "Steps of the ICU match engine (uregex_setTimeLimit units) one regular expression match may take. A match that backtracks past it fails with payload_too_large; 1000 is about 0.1 second of backtracking on a current machine, and linear scans use a small part of it. Default 1000. It is needed for patterns whose backtracking grows exponentially with the value, such as ^(a+)+$. Until ICU fixes ICU-23047 (https://unicode-org.atlassian.net/browse/ICU-23047, planned for ICU 79.1; the cause is ICU-2905, https://unicode-org.atlassian.net/browse/ICU-2905), it also stops a lazy loop over a group that can match nothing, such as (b|)*?, which ICU otherwise never finishes; that part is a workaround (AFW issue #613). 0 = unlimited, which leaves both unbounded.",
             "label": "Limit Regexp Match Steps",
             "runtime": {
                 "memberName": "limit_regexp_match_steps",
