@@ -933,35 +933,49 @@ afw_pool_scope_clear_last_statement_non_void_value(
 
 
 /*
- * Nearest scope in dest p's pool-parent chain. Throw if dest p is a
- * job heap (p == p->managed_p) or the chain ends with no scope.
- * Probe: do not last-release on the job heap from these helpers.
+ * Nearest scope in dest p's pool-parent chain. If there is no scope
+ * before the job heap, dest p itself. Throw if dest p is a job heap
+ * (p == p->managed_p). Probe: do not last-release on the job heap
+ * from these helpers.
+ *
+ * Why the fallback (#600): a built-in called outside any script
+ * evaluation has no scope above its dest p. perform() and POST /afw
+ * actions call the function with the response's own pool
+ * (afw_object_create_unmanaged_new_p), whose parent is the job heap,
+ * so the walk used to throw "reached job heap" for every built-in
+ * that returns a new array or object (reverse, slice, keys, ...).
+ * The built-in contract is "caller does not release; lasts for dest
+ * p" (designs/lifetime-principles.md), so dest p is the right place
+ * when no scope is found. Inside script evaluation the root of every
+ * compiled unit is a block, so a scope is always found first and
+ * nothing changes there. The throw stays for dest p that is itself
+ * the job heap, where a registered release would last until the
+ * xctx ends.
  */
 static const afw_pool_t *
 impl_scope_dest_p(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_pool_internal_self_t *self;
+    const afw_pool_t *dest_p;
 
     if (!p) {
         AFW_THROW_ERROR_Z(general,
             "for_scope_lifetime with no dest p",
             xctx);
     }
-    for (;;) {
+    if (p->managed_p == p) {
+        AFW_THROW_ERROR_Z(general,
+            "for_scope_lifetime dest p is a job heap "
+            "(p == p->managed_p)",
+            xctx);
+    }
+    for (dest_p = p;;) {
         if (afw_pool_internal_is_scope(p)) {
             return p;
         }
-        if (p->managed_p == p) {
-            AFW_THROW_ERROR_Z(general,
-                "for_scope_lifetime dest p reached job heap "
-                "(p == p->managed_p)",
-                xctx);
-        }
         self = (const afw_pool_internal_self_t *)p;
-        if (!self->parent) {
-            AFW_THROW_ERROR_Z(general,
-                "for_scope_lifetime dest p has no scope in parent chain",
-                xctx);
+        if (!self->parent || p->managed_p == p) {
+            return dest_p;
         }
         p = &self->parent->pub;
     }
